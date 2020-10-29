@@ -12,8 +12,8 @@ public class ClistCommand extends Command {
 
     public static final String COMMAND_WORD = "clist";
     public static final String MESSAGE_SUCCESS = "Listed all persons";
-    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + " : Lists all contacts"
-        + "\nExample: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + " : Lists all contacts\n"
+        + "Example: " + COMMAND_WORD;
 
     @Override
     public CommandResult execute(Model model) {

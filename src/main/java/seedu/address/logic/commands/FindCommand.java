@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,18 +27,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain all of "
-        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-        + "At least one of the specified parameters should be present.\n"
-        + "Parameters: "
-        + PREFIX_NAME + "NAME "
-        + PREFIX_PHONE + "PHONE "
-        + PREFIX_EMAIL + "EMAIL "
-        + PREFIX_DEPARTMENT + "DEPARTMENT "
-        + PREFIX_OFFICE + "OFFICE "
-        + "Example: "
-        + COMMAND_WORD + " "
-        + PREFIX_NAME + "alice liddel "
-        + PREFIX_DEPARTMENT + "computing";
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "At least one of the fields must be provided.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DEPARTMENT + "DEPARTMENT] "
+            + "[" + PREFIX_OFFICE + "OFFICE] "
+            + "[" + PREFIX_REMARK + "REMARK] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_NAME + "Alex Yeoh "
+            + PREFIX_DEPARTMENT + "computing";
 
     private final List<Predicate<Person>> predicates;
 

@@ -9,7 +9,7 @@ public class SwitchCommand extends Command {
 
     public static final String COMMAND_WORD = "switch";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches the active module list in FaculType."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Switches the active module list in FaculType.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SWITCH_SUCCESS = "Switched active module list to Semester %s";
