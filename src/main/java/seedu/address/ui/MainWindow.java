@@ -198,6 +198,9 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         updateTimeline();
     }
 
+    /**
+     * Updates the timeline window whenever a change is made in meetings
+     */
     public void updateTimeline() {
         timelineWindow.hide();
         timelineWindow = this.timelineWindow.updateLogic(logic);

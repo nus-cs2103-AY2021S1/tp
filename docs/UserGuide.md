@@ -290,6 +290,15 @@ Examples:
 * `copy phone m/CS2103`
 * `copy phone m/CS1010 t/classmate n/Bob Ross n/Peter Parker`
 
+### Viewing the timeline : `timeline`
+
+Displays the timeline view of the application in a new window.
+
+* Meetings displayed in chronological order, with the earliest meeting on the left side of the window
+* Meetings that have passed the current date and time marked as red
+
+Format: `timeline`
+
 ### Exiting the program : `exit`
 
 Exits the program.
