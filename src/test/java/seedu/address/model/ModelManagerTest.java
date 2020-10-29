@@ -170,7 +170,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTrackr, userPrefs)));
 
         // different module filteredList -> returns false
-        String[] moduleKeywords = CS2103T.getModuleId().id.split("\\s+");
+        String[] moduleKeywords = CS2103T.getModuleId().getId().split("\\s+");
         modelManager.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
 

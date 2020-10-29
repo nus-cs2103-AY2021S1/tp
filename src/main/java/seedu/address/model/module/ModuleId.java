@@ -18,7 +18,7 @@ public class ModuleId {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public String id;
+    private String id;
 
     /**
      * Constructs a {@code ModuleId}.
@@ -40,6 +40,10 @@ public class ModuleId {
 
     public void setId(String newId) {
         this.id = newId;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override
