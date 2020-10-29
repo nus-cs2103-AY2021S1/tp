@@ -27,9 +27,6 @@ import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTutorialGroupCommand;
 import seedu.address.logic.commands.ViewStudentCommand;
 import seedu.address.logic.commands.ViewTutorialGroupCommand;
-import seedu.address.logic.commands.FindTutorialGroupCommand;
-import seedu.address.logic.commands.EditTutorialGroupCommand;
-import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
