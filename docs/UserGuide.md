@@ -75,9 +75,11 @@ Tags a file with a unique tag name.
 Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]...`
 
 Examples:
-* (Without label) `tag t/Users f/C:\Users`
-* (With label) `tag t/Users f/C:\Users l/Important`
-* (With relative path) `tag t/Users f/.\Users`
+* `tag t/Users f/C:\Users` (Adds a tag with tag name `Users`,absolute file path `C:\Users`, and no label)
+* `tag t/Users f/C:\Users l/Important` (Adds a tag with tag name `Users`, absolute file path `C:\Users`, and label name `Important`)
+* `tag t/Users f/.\Users` (Adds a tag with tag name `Users`, relative file path `Users`, and no label)
+* `tag t/Users f/.\Users l/folder l/readonly` (Adds a tag with tag name `Users`, relative file path `Users`, and multiple lables
+with label name `folder` and `readonly`)
 
 ### Displaying information of a tagged file : `show`
 
@@ -87,7 +89,7 @@ Format: `show t/TAG_NAME`
 
 Examples:
 * `show t/my_research` (show you the details of a tag name `my_research`)
-* `show t/file2020` (show you the details of a tag name `my_research`)
+* `show t/file2020` (show you the details of a tag name `file2020`)
 
 ### Accessing a tagged file : `open`
 
@@ -128,7 +130,7 @@ Format: `label t/TAG_NAME l/LABEL1 [l/LABEL2]...`
 
 Examples:
 * `label t/file1 l/important` (Add a label of tag name `file1` with label name `important`) 
-* `label t/file2 l/important l/exam` (Add a label of tag name `file2` with labels name `important` and `exam`)
+* `label t/file2 l/important l/exam` (Add a label of tag name `file2` with multiple labels of label name `important` and `exam`)
 
 ### Deleting multiple labels from a tag : `unlabel`
 
@@ -137,9 +139,8 @@ Delete one or more label from a tag.
 Format: ` unlabel t/TAG_NAME l/LABEL1 [l/LABEL2]...`
 
 Examples:
-* `unlabel t/notes l/secret` (Deletes a label from a tag name `notes` that has label name `secret`)
-* `unlabel t/file1 l/important l/exams` (Deletes multiple labels from a tag name `file1`
-with label names `important` and `exam`)
+* `unlabel t/notes l/secret` (Deletes a label of label name `secret` that has tag name `notes`)
+* `unlabel t/file1 l/important l/exams` (Deletes labels of label name `important` and `exams` from tag name `file1`)
 
 ### Finding a tag : `find`
 
@@ -151,7 +152,7 @@ Examples:
 * `find file1` (finds a tag with tag name `file1`)
 * `find label2020` (finds a tag with label name `label2020`)    
 * `find tagname1 label1` (finds a tag name `tagname1` and label name `label1`)
-* `find he` (finds a tag with tag name contains `he` or label contains `he`)
+* `find he` (finds a tag with tag name contains `he` or label name contains `he`)
  
 
 ### Changing current directory : `cd`
