@@ -12,9 +12,9 @@ import javafx.scene.layout.Region;
 import nustorage.logic.Logic;
 import nustorage.model.record.FinanceRecord;
 
-public class Finance extends UiPart<Region> {
+public class FinanceWindow extends UiPart<Region> {
 
-    private static final String FXML = "Finance.fxml";
+    private static final String FXML = "FinanceWindow.fxml";
 
     @FXML
     private TableView<FinanceRecord> tableView;
@@ -30,9 +30,9 @@ public class Finance extends UiPart<Region> {
     private TableColumn<FinanceRecord, String> timeCol;
 
     /**
-     * Sets the display for the Finance tab in the user interface.
+     * Sets the display for the FinanceWindow tab in the user interface.
      */
-    public Finance(Logic logic) {
+    public FinanceWindow(Logic logic) {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseFinanceList(logic));

@@ -17,12 +17,12 @@ import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * Edits the details of an existing item in the Inventory
+ * Edits the details of an existing item in the InventoryWindow
  */
 public class EditFinanceCommand extends Command {
     public static final String COMMAND_WORD = "edit_finance";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the Finance Record specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the FinanceWindow Record specified "
             + "by the index number used in the displayed inventory. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "

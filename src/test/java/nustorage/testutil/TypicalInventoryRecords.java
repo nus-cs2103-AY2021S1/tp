@@ -37,7 +37,7 @@ public class TypicalInventoryRecords {
     private TypicalInventoryRecords() {} // prevents instantiation
 
     /**
-     * Returns an {@code Inventory} with all the typical inventoryRecords.
+     * Returns an {@code InventoryWindow} with all the typical inventoryRecords.
      */
     public static Inventory getTypicalInventory() {
         Inventory ab = new Inventory();

@@ -73,7 +73,7 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     @Override
     public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
-        // assert financeAccount != null : "Finance account is null!";
+        // assert financeAccount != null : "FinanceWindow account is null!";
         saveFinanceAccount(financeAccount, filePath);
     }
 

@@ -78,7 +78,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     /**
      * Removes the finance record with the corresponding index
      *
-     * @param key Finance record to be removed
+     * @param key FinanceWindow record to be removed
      */
     public void removeFinanceRecord(FinanceRecord key) {
         financeRecords.remove(key);

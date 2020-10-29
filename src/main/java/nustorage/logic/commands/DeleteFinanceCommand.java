@@ -22,12 +22,12 @@ public class DeleteFinanceCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Finance record deleted: %1$s";
+    public static final String MESSAGE_SUCCESS = "FinanceWindow record deleted: %1$s";
 
     private final Index targetIndex;
 
     /**
-     * Creates an AddFinanceCommand to add the specified {@code Finance Record}
+     * Creates an AddFinanceCommand to add the specified {@code FinanceWindow Record}
      */
     public DeleteFinanceCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

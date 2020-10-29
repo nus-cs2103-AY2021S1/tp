@@ -305,6 +305,7 @@ __Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finan
 __Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2`
 __Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
 __List finance__ | `list_finance`
+__Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes`
 __Exit programme__ | `exit`
 
 ---
@@ -317,7 +318,7 @@ WARNING: doing so will overwrite the existing data you may have on the other dev
 
 Steps to migrate data:
 
-1. Locate the data files under the directory (folder) `./data`. The data files are names `inventory.json` and `financeAccount.json` respectively.
+1. Locate the data files under the directory (folder) `./data`. The data files are names `inventory.json` and `financeAccount.json`.
 2. Copy the files to the other device.
 3. Place the two files under the directory `./data`.
 4. Restart NUStorage on the other device to load the data.

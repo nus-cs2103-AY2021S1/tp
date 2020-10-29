@@ -15,7 +15,7 @@ public class FinanceRecord {
     private String uiUsableIndex;
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      */
@@ -28,7 +28,7 @@ public class FinanceRecord {
     }
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      */
@@ -41,7 +41,7 @@ public class FinanceRecord {
     }
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      * @param dateTime Date of the transaction.
@@ -55,7 +55,7 @@ public class FinanceRecord {
     }
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param id ID of the transaction.
      * @param amount Amount of the transaction.
@@ -69,7 +69,7 @@ public class FinanceRecord {
         this.uiUsableIndex = "" + uiUsableIndex;
     }
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      * @param dateTime Date of the transaction.
@@ -124,10 +124,10 @@ public class FinanceRecord {
     }
 
     /**
-     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * Compares if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      *
      * @param obj Object to compare with
-     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * @return True if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      */
     public boolean hasSameData(Object obj) {
         if (obj instanceof FinanceRecord) {
@@ -138,10 +138,10 @@ public class FinanceRecord {
     }
 
     /**
-     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * Compares if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      *
      * @param obj Object to compare with
-     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * @return True if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      */
     public boolean isSameRecord(Object obj) {
         if (obj instanceof FinanceRecord) {

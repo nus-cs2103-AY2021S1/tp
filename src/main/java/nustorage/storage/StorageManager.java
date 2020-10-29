@@ -104,7 +104,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ Inventory methods ==============================
+    // ================ InventoryWindow methods ==============================
 
 
     @Override
