@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.model.meeting.Time;
 
 /**
  * Controller for a help page
@@ -52,6 +53,10 @@ public class TimelineWindow extends UiPart<Stage> {
         this(new Stage(), logic);
     }
 
+    public TimelineWindow updateLogic(Logic logic) {
+        return new TimelineWindow(logic);
+    }
+
     /**
      * Shows the help window.
      * @throws IllegalStateException
@@ -71,7 +76,7 @@ public class TimelineWindow extends UiPart<Stage> {
      * </ul>
      */
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing timeline view of the application.");
         getRoot().show();
         getRoot().centerOnScreen();
     }

@@ -199,12 +199,14 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
     @Override
     public void updateTimeline() {
-        this.timelineWindow = new TimelineWindow(logic);
+        timelineWindow.hide();
+        timelineWindow = this.timelineWindow.updateLogic(logic);
     }
 
     @FXML
     public void handleToggle() {
         logger.info("UI toggle triggered");
+
         if (!timelineWindow.isShowing()) {
             timelineWindow.show();
         } else {
