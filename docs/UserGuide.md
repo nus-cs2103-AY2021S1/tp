@@ -182,17 +182,22 @@ __Result:__ inventory records listed.
 
 #### 4.2.1. Add finance records: `add_finance`
 
-Adds and stores a new finance record into the account.
+NUStorage allows you to add and save a new finance record into the account. In the [Add Inventory Record](#411-add-items-to-inventory-create_inventory) section, we have seen how a finance record is added when an inventory record is created. The finance record is used to reflect the financial information of the newly created inventory record. However, there are times when creating an inventory record is unnecessary and the user just wants to create a standalone finance record. 
 
-Note: Date and time are default to current location's datetime unless specified
+This is where `add_finance` comes in handy. `add_finance` allows users to create finance records that are not attached to any inventory records. This is useful when users just want to record down an influx/outflow of funds.
 
-__Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
+Below are instructions on how to use the `add_finance` command:
+
+__Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]` creates a new finance record of amount `AMOUNT`. If `DATE` and `TIME` are specified, the finance record would reflect that `DATE` and `TIME` in the record.
 
 __Example:__ `add_finance amt/30000 at/2020-03-03` to create a new finance record of amount `$30000` on `3rd March 2020`
 
+Note: If the Date and Time fields are not specified, they will default to the current location's Date and Time.
+
+Enter the example command into the command box as shown below:
 ![Add finance command example](images/commands/add_finance_command.jpg)
 
-__Result:__ finance record of amount `$30000` on `3rd March 2020` is added to the finance account.
+__Expected Result:__ Finance record of amount `$30000` on `3rd March 2020` is added to the finance account.
 
 ![Add finance result example](images/commands/add_finance_result.jpg)
 
@@ -200,9 +205,19 @@ __Result:__ finance record of amount `$30000` on `3rd March 2020` is added to th
 
 #### 4.2.2. Delete finance records: `delete_finance`
 
-Deletes the specified finance record from the account.
+Previously, in the [Add Finance Records](#421-add-finance-records-add_finance) section, we created a finance record. Now, lets try to delete it from NUStorage using `delete_finance`.
 
-__Format:__ `delete_finance INDEX`
+Before we begin, ensure that NUStorage is currently in the "Finance" tab. To do so, click on the "Finance" button to change to the "Finance" tab. If you are already on the "Finance" tab, the "Finance" tab button should be black in color. 
+
+This is what you should be seeing:
+
+![Finance tab clicked example](images/finance_tab_button.jpg)
+
+After you have ensured that NUStorage is in the "Finance" tab, follow the instructions below to learn how to use the `delete_finance` command:
+
+__Format:__ `delete_finance INDEX`, where `INDEX` is the ID of the record you wish to delete. In this case, the record we created previously has an index of "1", as shown below:
+
+ 
 
 __Example:__ `delete_finance 1` to delete the finance record with index `1`.
 
