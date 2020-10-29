@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,6 +16,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -21,22 +24,29 @@ import seedu.address.model.task.Task;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    public static final String MESSAGE_NO_UNDO_HISTORY = "There are no commands to undo";
+    public static final String MESSAGE_NO_REDO_HISTORY = "There are no commands to redo";
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final ModuleList moduleList;
+    private final VersionedModuleList versionedModuleList;
     private final ContactList contactList;
+    private final VersionedContactList versionedContactList;
     private final TodoList todoList;
+    private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
+    private int accessPointer;
+    private List<Integer> accessSequence;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyContactList contactList, ReadOnlyTodoList todoList,
-                ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(moduleList, todoList, userPrefs);
 
@@ -44,13 +54,20 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
+        this.versionedModuleList = new VersionedModuleList(moduleList);
         this.contactList = new ContactList(contactList);
+        this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
+        this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
-        filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
+        sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
+        filteredContacts = new FilteredList<Contact>(sortedContacts);
         filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
+        accessPointer = 0;
+        accessSequence = new ArrayList<>();
+        accessSequence.add(0);
     }
 
     public ModelManager() {
@@ -128,6 +145,40 @@ public class ModelManager implements Model {
         moduleList.setModule(target, editedModule);
     }
 
+    @Override
+    public void commitModuleList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
+        versionedModuleList.commit(moduleList);
+        accessSequence.add(1);
+        accessPointer += 1;
+    }
+
+    @Override
+    public void undoModuleList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedModuleList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setModuleList(versionedModuleList.getCurrentModuleList());
+        //accessSequence.add(1);
+    }
+
+    @Override
+    public void redoModuleList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedModuleList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setModuleList(versionedModuleList.getCurrentModuleList());
+        //accessSequence.add(1);
+        //accessPointer += 1;
+    }
+
     //=========== Contact List ================================================================================
 
     @Override
@@ -169,6 +220,39 @@ public class ModelManager implements Model {
         return userPrefs.getContactListFilePath();
     }
 
+    @Override
+    public void commitContactList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
+        versionedContactList.commit(contactList);
+        accessSequence.add(2);
+        accessPointer += 1;
+    }
+
+    @Override
+    public void undoContactList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedContactList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setContactList(versionedContactList.getCurrentContactList());
+        //accessSequence.add(2);
+    }
+
+    @Override
+    public void redoContactList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedContactList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setContactList(versionedContactList.getCurrentContactList());
+        //accessSequence.add(2);
+    }
+
     //=========== Todo List =============================================================
 
     @Override
@@ -203,6 +287,89 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedTask);
 
         todoList.setTask(target, editedTask);
+    }
+
+    @Override
+    public void commitTodoList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
+        versionedTodoList.commit(todoList);
+        accessSequence.add(3);
+        accessPointer += 1;
+    }
+
+    @Override
+    public void undoTodoList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedTodoList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setTodoList(versionedTodoList.getCurrentTodoList());
+        //accessSequence.add(3);
+    }
+
+    @Override
+    public void redoTodoList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedTodoList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setTodoList(versionedTodoList.getCurrentTodoList());
+        //accessSequence.add(3);
+    }
+
+    //=========== General =============================================================
+    @Override
+    public void commit(int type) {
+        if (type == 1) {
+            commitModuleList();
+        } else if (type == 2) {
+            commitContactList();
+        } else {
+            commitTodoList();
+        }
+    }
+    @Override
+    public void undo() throws VersionedListException {
+        if (accessPointer == 0) {
+            throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
+        }
+        int pointer = accessSequence.get(accessPointer);
+        try {
+            if (pointer == 1) {
+                undoModuleList();
+            } else if (pointer == 2) {
+                undoContactList();
+            } else {
+                undoTodoList();
+            }
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        accessPointer -= 1;
+    }
+    @Override
+    public void redo() throws VersionedListException {
+        if (accessPointer >= accessSequence.size() - 1) {
+            throw new VersionedListException(MESSAGE_NO_REDO_HISTORY);
+        }
+        int pointer = accessSequence.get(accessPointer + 1);
+        try {
+            if (pointer == 1) {
+                redoModuleList();
+            } else if (pointer == 2) {
+                redoContactList();
+            } else {
+                redoTodoList();
+            }
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        accessPointer += 1;
     }
 
     //=========== Filtered Module List Accessors =============================================================
@@ -253,6 +420,21 @@ public class ModelManager implements Model {
     }
 
     //=========== Sorted List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getSortedContactList() {
+        return sortedContacts;
+    }
+
+    @Override
+    public void updateSortedContactList(Comparator<Contact> comparator) {
+        // No assertion here because comparator value can be null to reset ordering.
+        sortedContacts.setComparator(comparator);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of

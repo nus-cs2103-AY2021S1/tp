@@ -88,6 +88,8 @@ of the **XYZListPanel**.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
 help to the user.
 
+![Structure of the Storage Component](images/ModelClassDiagram.png)
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -172,7 +174,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## Todo List
 
-![Structure of the Todo List Component](images/TodoListClassDiagram.png)
+![Structure of the Todo List Component](images/TodoList/TodoListClassDiagram.png)
 
 #### Task class
 
