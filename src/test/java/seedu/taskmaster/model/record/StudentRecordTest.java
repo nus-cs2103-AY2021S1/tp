@@ -67,6 +67,6 @@ class StudentRecordTest {
         assertFalse(testRecord.equals(testRecord4)); // different name
         assertFalse(testRecord3.equals(testRecord4)); // different in both fields
         assertFalse(testRecord3.equals(testRecord6)); // different attendance type
-        assertFalse(testRecord6.equals(testRecord5)); // different object for class part
+        assertTrue(testRecord6.equals(testRecord5)); // different object for class part
     }
 }
