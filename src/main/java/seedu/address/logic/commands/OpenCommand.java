@@ -137,7 +137,7 @@ public class OpenCommand extends Command {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                });
+                }).start();
                 result.put(tag, String.format(MESSAGE_SUCCESS, tag));
             }
         });
