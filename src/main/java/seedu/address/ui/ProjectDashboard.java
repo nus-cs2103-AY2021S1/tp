@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
@@ -69,7 +70,7 @@ public class ProjectDashboard extends UiPart<Region> {
             headerOfListOfTasks = "All Tasks: ";
         }
         header2.setText(headerOfListOfTasks);
-        this.project.getFilteredTaskList().stream()
+        this.project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
     }
