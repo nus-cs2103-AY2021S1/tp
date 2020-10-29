@@ -164,7 +164,7 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_attendance() throws Exception {
-        assertTrue(parser.parseCommand("attendance add 1 d/19/02/2020 a/attended f/attentive")
+        assertTrue(parser.parseCommand("attendance add 1 d/19/02/2020 a/present f/attentive")
                 instanceof AttendanceCommand);
         assertTrue(parser.parseCommand("attendance delete 3 d/25/12/2020")
                 instanceof AttendanceCommand);

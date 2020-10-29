@@ -29,7 +29,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
             + PREFIX_ATTENDANCE_DATE + "LESSON_DATE " + PREFIX_ATTENDANCE_STATUS + "ATTENDANCE_STATUS "
             + PREFIX_ATTENDANCE_FEEDBACK + "FEEDBACK\n"
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
-            + PREFIX_ATTENDANCE_DATE + "14/02/2020 " + PREFIX_ATTENDANCE_STATUS + "attended "
+            + PREFIX_ATTENDANCE_DATE + "14/02/2020 " + PREFIX_ATTENDANCE_STATUS + "present "
             + PREFIX_ATTENDANCE_FEEDBACK + "attentive";
     public static final String MESSAGE_SUCCESS = "Attendance added for %s: %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE =

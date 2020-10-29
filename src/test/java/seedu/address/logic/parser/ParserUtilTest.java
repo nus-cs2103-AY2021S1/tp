@@ -68,7 +68,7 @@ public class ParserUtilTest {
     private static final String VALID_EXAM_DATE = "23/9/2019";
     private static final String VALID_SCORE = "50/100";
     private static final String VALID_ATTENDANCE_DATE = "23/9/2019";
-    private static final String VALID_ATTENDANCE_STATUS = "attended";
+    private static final String VALID_ATTENDANCE_STATUS = "present";
     private static final String VALID_FEEDBACK = "attentive";
     private static final String WHITESPACE = " \t\r\n";
 

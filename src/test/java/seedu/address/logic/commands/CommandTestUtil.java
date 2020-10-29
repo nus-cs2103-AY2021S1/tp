@@ -70,8 +70,8 @@ public class CommandTestUtil {
     public static final String VALID_EXAM_SCORE_BOB = "50/50";
     public static final String VALID_ATTENDANCE_DATE_AMY = "27/10/2020";
     public static final String VALID_ATTENDANCE_DATE_BOB = "19/4/2009";
-    public static final String VALID_ATTENDANCE_STATUS_AMY = "attended";
-    public static final String VALID_ATTENDANCE_STATUS_BOB = "unattended";
+    public static final String VALID_ATTENDANCE_STATUS_AMY = "present";
+    public static final String VALID_ATTENDANCE_STATUS_BOB = "absent";
     public static final String VALID_ATTENDANCE_FEEDBACK_AMY = "attentive";
     public static final String VALID_ATTENDANCE_FEEDBACK_BOB = "sick";
 

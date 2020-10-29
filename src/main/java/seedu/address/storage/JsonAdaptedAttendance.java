@@ -32,7 +32,7 @@ public class JsonAdaptedAttendance {
      */
     public JsonAdaptedAttendance(Attendance source) {
         this.date = source.getUserInputDate();
-        this.attendanceStatus = source.getAttendanceStatus() ? "attended" : "unattended";
+        this.attendanceStatus = source.getAttendanceStatus() ? "present" : "absent";
         this.feedback = source.getFeedback().toString();
     }
 

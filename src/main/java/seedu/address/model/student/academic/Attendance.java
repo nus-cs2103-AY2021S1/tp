@@ -12,30 +12,30 @@ public class Attendance {
     public static final String DATE_CONSTRAINTS =
             "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
     public static final String STATUS_CONSTRAINTS =
-            "Attendance status should be either 'attended' or 'unattended'.";
+            "Attendance status should be either 'present' or 'absent'.";
     private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
     private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
-    private static final String ATTENDED_STATUS = "attended";
-    private static final String UNATTENDED_STATUS = "unattended";
+    private static final String PRESENT_STATUS = "present";
+    private static final String ABSENT_STATUS = "absent";
 
     private LocalDate lessonDate;
-    private boolean hasAttended;
+    private boolean isPresent;
     private Feedback feedback;
 
     /**
      * Constructs a {@code Attendance} object.
      * @param date date of lesson
-     * @param hasAttended whether student has attended lesson
+     * @param isPresent whether student was present for lesson
      * @param feedback feedback for lesson
      */
-    public Attendance(String date, String hasAttended, Feedback feedback) {
-        requireAllNonNull(date, hasAttended, feedback);
+    public Attendance(String date, String isPresent, Feedback feedback) {
+        requireAllNonNull(date, isPresent, feedback);
         checkArgument(isValidDate(date), DATE_CONSTRAINTS);
-        checkArgument(isValidAttendanceStatus(hasAttended), STATUS_CONSTRAINTS);
+        checkArgument(isValidAttendanceStatus(isPresent), STATUS_CONSTRAINTS);
 
         this.lessonDate = parseDate(date);
-        this.hasAttended = parseAttendanceStatus(hasAttended);
+        this.isPresent = parseAttendanceStatus(isPresent);
         this.feedback = feedback;
     }
 
@@ -77,11 +77,11 @@ public class Attendance {
     }
 
     public static boolean isValidAttendanceStatus(String status) {
-        return status.equals(ATTENDED_STATUS) || status.equals(UNATTENDED_STATUS);
+        return status.equals(PRESENT_STATUS) || status.equals(ABSENT_STATUS);
     }
 
     public static boolean parseAttendanceStatus(String status) {
-        return status.equals(ATTENDED_STATUS); // if false, then will be equal to UNATTENDED_STATUS
+        return status.equals(PRESENT_STATUS); // if false, then will be equal to ABSENT_STATUS
     }
 
     public LocalDate getLessonDate() {
@@ -93,7 +93,7 @@ public class Attendance {
     }
 
     public boolean getAttendanceStatus() {
-        return hasAttended;
+        return isPresent;
     }
 
     public Feedback getFeedback() {
@@ -102,7 +102,7 @@ public class Attendance {
 
     public String getFormattedAttendance() {
         return "  - Lesson Date: " + getUserInputDate()
-                + "\n      - Attended Status: " + (getAttendanceStatus() ? "attended" : "unattended")
+                + "\n      - Present Status: " + (getAttendanceStatus() ? "present" : "absent")
                 + "\n      - Lesson Feedback: " + getFeedback();
     }
 
