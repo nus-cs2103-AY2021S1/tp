@@ -110,14 +110,16 @@ Figure 1.2: <i>The recipe view panel of ChopChop.</i>
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command.
  
-To learn about the commands you can perform, check out our [command summary](#commandSummary) for a quick overview or our [commands](#commands) for a detailed walkthrough.
+To learn about the commands you can perform, check out our [command summary](#commandSummary) for a quick overview or our [commands](#commands) for a detailed -.
 If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
 
 <a name="commandOutput"></a>
 ### 4.2 Command Output
-ChopChop will always display textual responses to the commands you input.
+ChopChop will always display textual responses to the commands you input — the `Command Output` is where you can view the responses.
 
-
+<a name="recipeButton"></a>
+### Recipe Button
+ChopChop is able to display all of your recipes as [Recipe Tiles]() when you press this button. The tile will be in a darker shade of orange when the `Recipe Tiles` are in play.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
