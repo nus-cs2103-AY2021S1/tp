@@ -70,7 +70,15 @@ run {
 }
 
 shadowJar {
-    archiveName = 'Calo.jar'
+    archiveName = 'calo.jar'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main': 'tp.src.main.java.Main'
+        )
+    }
 }
 
 defaultTasks 'clean', 'test'
