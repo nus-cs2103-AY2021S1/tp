@@ -26,7 +26,7 @@ import seedu.address.storage.StorageForExercise;
 public class LogicManagerForExercise implements LogicForExercise {
 
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private final Logger logger = LogsCenter.getLogger(LogicManagerForExercise.class);
 
     private final ExerciseModel model;
     private final StorageForExercise storage;

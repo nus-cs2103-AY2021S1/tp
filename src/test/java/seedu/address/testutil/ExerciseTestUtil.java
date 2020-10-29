@@ -6,13 +6,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.ExerciseModel;
+import seedu.address.model.exercise.Exercise;
 
 /**
  * A utility class for test cases.
  */
-public class TestUtil {
+public class ExerciseTestUtil {
 
     /**
      * Folder used for temp files created during testing. Ignored by Git.
@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the person in the {@code model}'s person list.
+     * Returns the middle index of the exercise in the {@code model}'s exercise list.
      */
-    public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size() / 2);
+    public static Index getMidIndex(ExerciseModel model) {
+        return Index.fromOneBased(model.getFilteredExerciseList().size() / 2);
     }
 
     /**
-     * Returns the last index of the person in the {@code model}'s person list.
+     * Returns the last index of the exercise in the {@code model}'s exercise list.
      */
-    public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredPersonList().size());
+    public static Index getLastIndex(ExerciseModel model) {
+        return Index.fromOneBased(model.getFilteredExerciseList().size());
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the exercise in the {@code model}'s exercise list at {@code index}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Exercise getExercise(ExerciseModel model, Index index) {
+        return model.getFilteredExerciseList().get(index.getZeroBased());
     }
 }
