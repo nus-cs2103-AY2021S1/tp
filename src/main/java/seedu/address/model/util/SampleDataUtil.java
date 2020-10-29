@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -27,8 +28,12 @@ import seedu.address.model.visit.VisitHistory;
  * Contains utility methods for populating {@code CliniCal} with sample data.
  */
 public class SampleDataUtil {
-    public static final VisitHistory EMPTY_VISIT_HISTORY1 = new VisitHistory(new ArrayList<Visit>());
-    public static final VisitHistory EMPTY_VISIT_HISTORY2 = new VisitHistory(new ArrayList<Visit>());
+    public static final VisitHistory VISIT_HISTORY1 =
+        new VisitHistory(new ArrayList<Visit>()).addVisit(new Visit(LocalDate.of(2020, 10, 28),
+            new Name("Alex Yeoh"), "Reflux esophagitis", "Synthroid", "No need to follow up"));
+    public static final VisitHistory VISIT_HISTORY2 =
+        new VisitHistory(new ArrayList<Visit>()).addVisit(new Visit(LocalDate.of(2020, 9, 3),
+            new Name("Bernice Yu"), "COVID-19", "Remdesivir", "Quarantined for 14 days"));
     public static final VisitHistory EMPTY_VISIT_HISTORY3 = new VisitHistory(new ArrayList<Visit>());
     public static final VisitHistory EMPTY_VISIT_HISTORY4 = new VisitHistory(new ArrayList<Visit>());
     public static final VisitHistory EMPTY_VISIT_HISTORY5 = new VisitHistory(new ArrayList<Visit>());
@@ -39,11 +44,11 @@ public class SampleDataUtil {
         ColorTag placeholderColorTag = new ColorTag();
 
         return new Patient[] {
-            new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new IcNumber("S7908430A"), EMPTY_VISIT_HISTORY1,
+            new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new IcNumber("S7908430A"), VISIT_HISTORY1,
                     new Address("Blk 30 Geylang Street 29, #06-40"), new Email("alexyeoh@example.com"),
                     profilePicture, new Sex("M"), new BloodType("A+"),
                     getAllergySet("penicillin"), placeholderColorTag),
-            new Patient(new Name("Bernice Yu"), new Phone("99272758"), new IcNumber("G4329854B"), EMPTY_VISIT_HISTORY2,
+            new Patient(new Name("Bernice Yu"), new Phone("99272758"), new IcNumber("G4329854B"), VISIT_HISTORY2,
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Email("berniceyu@example.com"),
                     profilePicture, new Sex("F"), new BloodType("B+"),
                     getAllergySet("sulfa", "penicillin"), new ColorTag("maroon")),
