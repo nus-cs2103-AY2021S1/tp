@@ -1,0 +1,27 @@
+@startuml
+
+scale 0.5
+
+class Allocation
+class UniqueAllocationList
+class Floor
+class RoomNumber
+class StudentId
+
+UniqueAllocationList o--> "*" Allocation
+
+Allocation o--> "1" Floor
+Allocation o--> "1" RoomNumber
+Allocation o--> "1" StudentId
+
+class UniqueAllocationList {
+addAllocation(Allocation)
+setAllocation(Allocation, Allocation)
+removeAllocation(Allocation)
+}
+
+class Allocation {
+}
+
+
+@enduml

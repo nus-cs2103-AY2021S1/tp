@@ -215,7 +215,7 @@ Aspect: Which part of the architecture does Bin belong
     operations are called only from within Bin.
   - Cons: Many sections with repeated code since its storage is structurally similar to AddressBook.
 
-### Allocation/ deallocation/ reallocation feature
+### Allocation/ Deallocation/ Reallocation Feature
 
 The allocation/ deallocation/ reallocation feature is facilitated by `Allocation`. It is an association class of the
 unique identifiers of a `Student` and a `Room` to which the `Student` is allocated to. The `Allocation` association
@@ -227,6 +227,26 @@ When a `Student` is allocated a `Room` using `AllocateCommand`, an `Allocation` 
 `UniqueAllocationList`. Likewise, when a `Student` is deallocated or reallocated a different `Room` using `DeallocateCommand` and
 `ReallocateCommand` respectively, the `Allocation` relating to the `Student` is removed from `ResiReg` in the former
 and edited in the latter.
+
+The follow class diagram shows how `Allocation` is implemented.
+
+![image](images/AllocationClassDiagram.png)
+
+Given below is an example usage scenario and how the allocation mechanism behaves at each step.
+
+Step 1. The user executes `allocate si/1 ri/1` command to allocate the first student in ResiReg to the first room in ResiReg.
+
+Step 2. The `LogicManager` executes the user input, running `parseCommand` to `AllocateCommandParser`.
+
+Step 3. The arguments `si/1 ri/1` are parsed by `AllocateCommandParser` and the `AllocateCommand` instance is created.
+
+Step 4. The `AllocateCommand` instance is executed in `LogicManager`, which performs 3 actions: `setStudent`, `setRoom` and `addAllocation` to the `Model`.
+
+Step 5. A `CommandResult` is returned.
+
+The following sequence diagram shows how an allocate command operates.
+
+![image](images/AllocateSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -569,12 +589,9 @@ Use case ends.
 
 - 3a. Room allocation does not exist or details supplied are invalid.
 
-<<<<<<< HEAD
   - ResiReg shows an error message.
 
     Use case resumes at step 2.
-=======
-      Use case resumes at step 2.
       
 #### Use case: UC07 - Undo previous command
 1. OHS admin enters a command that changes state.
@@ -620,7 +637,12 @@ Use case ends.
     - ResiReg shows an error message.
     
       Use case ends.
->>>>>>> fea735b51b0521c7174ae40b4f7dc4f794b1f7aa
+      
+#### Use case: UC010 - View piechart of allocated and unallocated rooms
+1. OHS admin requests to view a piechart of allocated and unallocated room.
+1. ResiReg shows a piechart of allocated rooms and unallocated rooms on the Statistics tab.
+
+Use case ends.
 
 ### Non-Functional Requirements
 

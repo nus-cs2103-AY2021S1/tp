@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ResiRegParser" as ResiRegParser LOGIC_COLOR
+participant ":AllocateCommandParser" as AllocateCommandParser LOGIC_COLOR
+participant "command:AllocateCommand" as AllocateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("allocate si/1 ri/1")
+activate LogicManager
+
+LogicManager -> ResiRegParser : parseCommand("allocate si/1 ri/1")
+activate ResiRegParser
+
+create AllocateCommandParser
+ResiRegParser -> AllocateCommandParser
+activate AllocateCommandParser
+
+AllocateCommandParser --> ResiRegParser
+deactivate AllocateCommandParser
+
+ResiRegParser -> AllocateCommandParser : parse("si/1 ri/1")
+activate AllocateCommandParser
+
+create AllocateCommand
+AllocateCommandParser -> AllocateCommand
+activate AllocateCommand
+
+AllocateCommand --> AllocateCommandParser : command
+deactivate AllocateCommand
+
+AllocateCommandParser --> ResiRegParser : command
+deactivate AllocateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AllocateCommandParser -[hidden]-> ResiRegParser
+destroy AllocateCommandParser
+
+ResiRegParser --> LogicManager : command
+deactivate ResiRegParser
+
+LogicManager -> AllocateCommand : execute()
+activate AllocateCommand
+
+AllocateCommand -> Model : setStudent(student)
+activate Model
+
+AllocateCommand -> Model : setRoom(room)
+
+AllocateCommand -> Model : addAllocation(allocation)
+
+Model --> AllocateCommand
+deactivate Model
+
+create CommandResult
+AllocateCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AllocateCommand
+deactivate CommandResult
+
+AllocateCommand --> LogicManager : commandResult
+deactivate AllocateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
