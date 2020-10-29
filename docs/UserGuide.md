@@ -90,20 +90,15 @@ You can add your assignments into your schedule so that you can manage all your 
  academic tasks conveniently. 
 
 <div markdown="span" class="alert alert-success">
+
 **:bulb: Tip:**
 You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
 </div>
 
 Examples:
-* To add a lab report assignment that is due on 23th April 2020 12.30pm and associated with the module CS2100, you can 
+* To add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`.
-* If the CS1010S tutorial assignment that you're intending to add is of high priority due to the tight deadline, 
-you can enter `add n/Tutorial 2 d/21-04-2020 2359 mod/CS1010S priority/HIGH`
-
-
-Examples:
-* `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
-* `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
+* To add a CS1010S tutorial assignment that is of **high priority**, you can enter `add n/Tutorial 2 d/21-04-2020 2359 mod/CS1010S priority/HIGH`
 
 ### Deleting assignments : `delete`
 
@@ -160,6 +155,7 @@ For example, `list 3` lists all your assignments that are due within 3 days (72 
 DIAGRAM
 
 <div markdown="span" class="alert alert-success">
+
 **:bulb: Tip:**
 You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
 
@@ -285,7 +281,7 @@ Format: `unprioritze INDEX`
 
 ### Marking assignments as done : `done`
 
-Format: `done INDEX`
+Format: `done INDEX [MORE_INDEXES]`
 
 You can keep track of your undone assignments by marking assignments that you've completed as done.
 
@@ -324,12 +320,12 @@ You can mark assignment that you have not completed as undone by specifying the 
 
 You can delete `one` assignment at a time. Here is an example with steps to follow:
 
-1) If you have accidentally marked the assignment with the name " " as done even though you have not completed it,
+1) If you have accidentally marked the assignment with the name " " as done,
 you can simply enter `undone X` into the command line based on the index circled in the figure.
 
 DIAGRAM
 
-2) The green tick associated to the assignment is no longer displayed, signifying that the assignment is not done.
+2) The green tick associated to the assignment is no longer displayed.
 
 DIAGRAM
 
@@ -350,9 +346,10 @@ DIAGRAM
 
 Format: `clear`
 
-You can use clear at the start of every semester to delete all your existing assignments and lessons.
+You can clear all your existing assignments and lessons at the start of every semester.
 
 <div markdown="span" class="alert alert-success">
+
 **:bulb: Tip:**
 If you cleared all your assignments and lessons by accident, use `undo` to retrieve your deleted data.
 </div>
