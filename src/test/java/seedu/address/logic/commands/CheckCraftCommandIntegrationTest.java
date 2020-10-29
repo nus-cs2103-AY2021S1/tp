@@ -53,7 +53,6 @@ public class CheckCraftCommandIntegrationTest {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("3"));
         String expectedMessage = String.format(MESSAGE_SUCCESS_CRAFTABLE, APPLE.getName(), 3)
                 + "\n" + recipeString;
-        System.out.println(ccc.execute(model).getFeedbackToUser());
         assertCommandSuccess(ccc, model, expectedMessage, expectedModel);
     }
 

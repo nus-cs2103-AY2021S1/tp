@@ -31,7 +31,6 @@ public class EditItemCommandParserTest {
         String userInput = " -o " + VALID_ITEM_NAME_APPLE + " -n edited";
         EditItemDescriptor descriptor = new EditItemDescriptor();
         descriptor.setName("edited");
-        System.out.println(descriptor);
         EditItemCommand expectedCommand = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
 
         //expected user input constructs successful edit item command
