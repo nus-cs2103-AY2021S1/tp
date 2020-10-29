@@ -226,6 +226,7 @@ Format: `remind INDEX [MORE_INDEXES]`
 
 You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
 
+   ![YourReminders](images/YourReminders.png)
    *Figure X: `Your Reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
@@ -266,9 +267,11 @@ You can remove your reminded assignments from `Your Reminders` by specifying the
 
 For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
 
-      ---------------------------------Figure of GUI before CS2106 Lab is removed from Your Reminders---------------------------------
-
-      ---------------------------------Figure of GUI after CS2106 Lab is removed from Your Reminders----------------------------------
+   ![Unemind1](images/Unremind1.png)
+   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your Reminders`*
+      
+   ![Unremind1YourReminders](images/Unremind1YourReminders.png)
+   *Figure X: "Statistics tutorial" is removed from`Your Reminders`*
 
 <div markdown="block" class="alert alert-primary">
   
