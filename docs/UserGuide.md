@@ -93,7 +93,7 @@ Example: `list case` followed by `delete case 2` deletes the 2nd case in the lis
 
 #### Open a case: `open case CASE_NO`
 Enters the specified case where users can add more information regarding the case
-(see Investigation Case Page).
+[(see Investigation Case Page)](#investigation-case-page).
 
 Format:  `open case CASE_NO`
 
@@ -121,7 +121,7 @@ Find cases whose details contain any of the given keywords.
 * The order of the keywords does not matter. e.g. keywords `Hans Bo` will match case containing `Bo Hans` in its details
 * The search finds cases depending on which section they are in. If they are in the DEFAULT section, cases found are in DEFAULT section only.
  If they are in the ARCHIVED section, cases found are in the ARCHIVED section only. Note that on start-up, they are in the DEFAULT section,
- and can alternate between sections using [`list case`](#list-all-investigation-cases-list-case) or [`list archive`](#list-all-investigation-cases-list-archive)
+ and can alternate between sections using [`list case`](#list-all-default-cases-list-case) or [`list archive`](#list-all-archived-cases-list-archive)
 * All details of all cases in the relevant section (ARCHIVED/DEFAULT) are searched, specifically: Title, Status, Description, 
 Documents (file name and file reference that the users input on creation), Suspects/Witnesses/Victims (Name, Gender, Phone, Email, Address)
 * Only full words will be matched e.g. keyword `Han` will not match cases containing `Hans` in their details
@@ -135,11 +135,28 @@ Example:
 * `find dhoby bishan` return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their details
 * `find 91234567 bishan` return cases with suspect, victim or witness containing Phone number `91234567`, and cases containing `bishan` in their details
 
-#### Exit application: `exit`
-Exits the application.
-
 ### Investigation Case page
 The page of the application when the user opens a specified case.
+
+#### List all documents in the current case: `list doc`
+Switches to the `Document` tab and lists all suspects for the current case.
+
+Format: `list doc`
+
+#### List all suspects in the current case: `list suspect`
+Switches to the `Suspect` tab and lists all suspects for the current case.
+
+Format: `list suspect`
+
+#### List all victims in the current case: `list victim`
+Switches to the `Victim` tab and lists all victims for the current case.
+
+Format: `list victim`
+
+#### List all witnesses in the current case: `list witness`
+Switches to the `Witness` tab and lists all victims for the current case.
+
+Format: `list witness`
 
 #### Add description to the current case: `add desc d:DESC`
 Adds the description of the case.
