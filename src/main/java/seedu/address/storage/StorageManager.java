@@ -11,7 +11,6 @@ import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
 
 /**
  * Manages storage of Trackr data in local storage.
@@ -19,17 +18,15 @@ import seedu.address.model.person.Student;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private StudentStorage studentStorage;
     private ModuleStorage moduleStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given storages.
      */
-    public StorageManager(StudentStorage studentStorage, ModuleStorage moduleStorage,
+    public StorageManager(ModuleStorage moduleStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-        this.studentStorage = studentStorage;
         this.moduleStorage = moduleStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
