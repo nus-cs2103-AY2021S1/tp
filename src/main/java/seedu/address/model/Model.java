@@ -226,21 +226,3 @@ public interface Model {
     Optional<Person> getPersonToBeDisplayedOnDashboard();
 
 }
-
-///** Returns an unmodifiable view of the filtered task list */
-//List<Task> getFilteredTaskList();
-
-///**
-// * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-// * @throws NullPointerException if {@code predicate} is null.
-// */
-//void updateFilteredTaskList(List<Task> taskList);
-
-///** Returns an unmodifiable view of the filtered teammate list */
-//List<Person> getFilteredTeammateList() ;
-
-///**
-// * Updates the filter of the filtered teammate list to filter by the given {@code predicate}.
-// * @throws NullPointerException if {@code predicate} is null.
-// */
-//void updateFilteredTeammateList(List<Person> teammatesList);

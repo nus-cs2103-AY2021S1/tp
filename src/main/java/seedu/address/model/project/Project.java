@@ -101,6 +101,10 @@ public class Project {
         this.taskFilter = predicate;
     }
 
+    public boolean isFullListOfTasks() {
+        return this.taskFilter.equals(SHOW_ALL_TASKS_PREDICATE);
+    }
+
     public void showAllTasks() {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
     }

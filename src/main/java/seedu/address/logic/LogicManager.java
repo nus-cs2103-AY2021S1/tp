@@ -137,14 +137,3 @@ public class LogicManager implements Logic {
         }
     }
 }
-
-
-// @Override
-// public List<Task> getFilteredTaskList() {
-// return model.getFilteredTaskList();
-// }
-//
-//@Override
-// public List<Person> getFilteredTeammateList() {
-// return model.getFilteredTeammateList();
-// }

@@ -156,10 +156,6 @@ public class MainWindow extends UiPart<Stage> {
                 && logic.getProjectToBeDisplayedOnDashBoard().isPresent()) {
             projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
             projectDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
-            //taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-            //projectListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-            //teammateListPanel = new TeammatesListPanel(logic.getFilteredTaskList());
-            //teammatesListPanelPlaceholder.getChildren().add(teammatesListPanel.getRoot());
         }
 
         if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
@@ -260,10 +256,3 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 }
-
-//
-//    @FXML
-//    private StackPane taskListPlaceholder;
-//
-//    @FXML
-//    private StackPane teammatesListPlaceholder;

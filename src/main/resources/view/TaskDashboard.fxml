@@ -49,7 +49,7 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <FlowPane id="taskAssignees" fx:id="assignees" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <FlowPane id="taskAssignees" fx:id="assignees" orientation="VERTICAL" prefWidth="700.0" stylesheets="@Extensions.css" />
          </children>
       </VBox>
    </children>
