@@ -82,10 +82,11 @@ A recipe consists of a list of used ingredients (and their quantities), as well 
 --------------------------------
 ## 4. Navigating the User Interface
 
-This is what ChopChop looks like:
+ChopChop's UI design allows users to view all of the information you need through mouse input over a few tabs. However, that might lead to a slightly steeper learning curve.
+Hence, this section aims to give you a breakdown of the GUI's various components.
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/UI_description.png" width="95%" /> <br />
-Figure 1.2: <i>The graphical user interface for ChopChop</i>
+<img src="images/ug/recipe_panel_description.png" width="95%" /> <br />
+Figure 1.2: <i>The recipe view panel of ChopChop.</i>
 </div>
 
 To use ChopChop you can enter commands into the command box as labelled in figure 1.2; start typing anywhere in ChopChop to enter a command (the command box does not have to be focused). The user interface will automatically update to reflect changes made by commands, and the output will be printed into the command output.
@@ -94,7 +95,16 @@ Besides navigating the app through the the command box, our interactive graphica
 
 Also, your cooking statistics will be displayed in the statistics box.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
+Figure 1.3: <i>The ingredient view panel of ChopChop.</i>
+</div>
 
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/recipe_display_description.png" width="95%" /> <br />
+Figure 1.4: <i>The recipe display panel of ChopChop.</i>
+</div>
 
 
 
