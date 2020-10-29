@@ -111,7 +111,7 @@ public class AddressBookParser {
 
         case FindTutorialGroupCommand.COMMAND_WORD:
             return new FindTutorialGroupCommandParser().parse(arguments);
-            
+
         case DeleteStudentCommand.COMMAND_WORD:
             return new DeleteStudentCommandParser().parse(arguments);
 
