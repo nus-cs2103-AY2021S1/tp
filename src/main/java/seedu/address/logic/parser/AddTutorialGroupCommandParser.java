@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTutorialGroupCommand;
@@ -25,11 +23,6 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    private static boolean isValidDayOfWeek(String toVerify) {
-        List<String> daysOfWeek = Arrays.asList(new String[] {"MON", "TUE", "WED", "THU", "FRI"});
-        return daysOfWeek.contains(toVerify);
     }
 
     private static boolean isValidTime(String toVerify) {
@@ -70,11 +63,12 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
         String startTimeString = argMultimap.getValue(PREFIX_TUTORIAL_GRP_START_TIME).orElse("");
         String endTimeString = argMultimap.getValue(PREFIX_TUTORIAL_GRP_END_TIME).orElse("");
 
-        if (!isValidDayOfWeek(day) || !isValidStartEndTimePair(startTimeString, endTimeString)) {
+        if (!isValidStartEndTimePair(startTimeString, endTimeString)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTutorialGroupCommand.MESSAGE_USAGE));
         }
 
+        TutorialGroupId tutorialGroupId = ParserUtil.parseTutorialGroupId(id);
         LocalTime startTime = LocalTime.parse(startTimeString + ":00");
         LocalTime endTime = LocalTime.parse(endTimeString + ":00");
 

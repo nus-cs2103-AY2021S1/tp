@@ -48,10 +48,12 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID_ALEX = "A1234567X";
     public static final String VALID_STUDENT_ID_BOB = "A7654321X";
     public static final String VALID_STUDENT_ID_BENG = "A7654321B";
-    public static final String VALID_MODULE_AMY = "CS2103T";
-    public static final String VALID_MODULE_ALEX = "CS2103T";
-    public static final String VALID_MODULE_BOB = "CS2040";
-    public static final String VALID_MODULE_BENG = "CS2040";
+    public static final String VALID_MODULE_CS2103T = "CS2103T";
+    public static final String VALID_MODULE_CS2040 = "CS2040";
+
+    public static final String MODULE_ID_DESC_CS2103T = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
+    public static final String MODULE_ID_DESC_CS2040 = " " + PREFIX_MODULE + VALID_MODULE_CS2040;
+    public static final String INVALID_MODULE_ID = " " + PREFIX_MODULE + "CS@";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -70,8 +72,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BENG = " " + PREFIX_EMAIL + VALID_EMAIL_BENG;
     public static final String STUDENT_ID_DESC_ALEX = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_ALEX;
     public static final String STUDENT_ID_DESC_BENG = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_BENG;
-    public static final String MODULE_DESC_ALEX = " " + PREFIX_MODULE + VALID_MODULE_ALEX;
-    public static final String MODULE_DESC_BENG = " " + PREFIX_MODULE + VALID_MODULE_BENG;
+    public static final String MODULE_DESC_ALEX = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -155,7 +156,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
 
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
-        final String[] splitName = module.getModuleId().id.split("\\s+");
+
+        final String[] splitName = module.getModuleId().getId().split("\\s+");
+
         model.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredModuleList().size());

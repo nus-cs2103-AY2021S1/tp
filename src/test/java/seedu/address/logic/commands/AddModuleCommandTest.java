@@ -119,7 +119,7 @@ public class AddModuleCommandTest {
 
         @Override
         public boolean isInModuleView() {
-            throw new AssertionError("This method should not be called.");
+            return true;
         }
 
         @Override

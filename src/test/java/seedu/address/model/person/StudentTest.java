@@ -31,13 +31,14 @@ public class StudentTest {
         // null -> returns false
         assertFalse(ALEX.isSame(null));
 
-        // different phone and email -> returns false
+        // students with same id are considered the same student
+        // different phone and email -> returns true
         Student editedAlex = new StudentBuilder(ALEX).withPhone(VALID_PHONE_BENG).withEmail(VALID_EMAIL_BENG).build();
-        assertFalse(ALEX.isSame(editedAlex));
+        assertTrue(ALEX.isSame(editedAlex));
 
-        // different name -> returns false
+        // different name -> returns true
         editedAlex = new StudentBuilder(ALEX).withName(VALID_NAME_BENG).build();
-        assertFalse(ALEX.isSame(editedAlex));
+        assertTrue(ALEX.isSame(editedAlex));
 
         // different student id -> returns false
         editedAlex = new StudentBuilder(ALEX).withStudentId(VALID_STUDENT_ID_BENG).build();

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
@@ -136,7 +137,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModule(Module target, String newModuleId) {
+    public void setModule(Module target, ModuleId newModuleId) {
         requireAllNonNull(target, newModuleId);
         moduleList.setModule(target, newModuleId);
     }
@@ -149,6 +150,10 @@ public class ModelManager implements Model {
     @Override
     public Module getCurrentModuleInView() {
         return currentModuleInView;
+    }
+
+    public void setCurrentModuleInView(Module module) {
+        this.currentModuleInView = module;
     }
 
     //=========== TutorialGroup Operations ====================================================================
@@ -175,6 +180,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTutorialGroup(TutorialGroup toCheck) {
+        filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
         return filteredTutorialGroup.contains(toCheck);
     }
 
@@ -192,6 +198,10 @@ public class ModelManager implements Model {
     @Override
     public TutorialGroup getCurrentTgInView() {
         return currentTgInView;
+    }
+
+    public void setCurrentTgInView(TutorialGroup tutorialGroup) {
+        this.currentTgInView = tutorialGroup;
     }
 
     //=========== Student Operations =============================================================================
@@ -305,7 +315,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredTutorialGroup.equals(other.filteredTutorialGroup)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }

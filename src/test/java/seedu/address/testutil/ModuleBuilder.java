@@ -8,7 +8,7 @@ import seedu.address.model.module.ModuleId;
  */
 public class ModuleBuilder {
 
-    public static final String DEFAULT_MODULE_ID = "CS2103T";
+    public static final String DEFAULT_MODULE_ID = "CS2100";
 
     private ModuleId moduleId;
 
