@@ -32,11 +32,11 @@ public class StatsIngredientUsedCommand extends Command {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         String msg;
         if (this.before != null && this.after != null) {
-            var onBefore = this.before.format(onFormatter);
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
+            var onAfter = this.after.format(onFormatter);
             if (this.after.plusDays(1).equals(this.before)) {
-                msg = String.format("Here is a list of ingredients used on %s", onBefore);
+                msg = String.format("Here is a list of ingredients used on %s", onAfter);
             } else {
                 msg = String.format("Here is a list of ingredients used from the period %s to %s", after, before);
             }
