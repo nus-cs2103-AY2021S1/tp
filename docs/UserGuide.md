@@ -333,23 +333,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 </div>
 
-#### 3.3.2 Deleting patient's visitation log: `deletevisit`
-
-Delete the patient's visitation log.
-
-Format: `deletevisit INDEX i/VISIT_INDEX`
-
-* `INDEX` refers to the patient's index number as shown in the displayed patient list.
-* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
-* Both indexes **must be a positive number** 1, 2, 3, …​
-
-**Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
-
-**Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
-
-**Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
-
-#### 3.3.3 Editing patient's visitation log: `editvisit`
+#### 3.3.2 Editing patient's visitation log: `editvisit`
 
 Display a new window to edit the visitation log for a specified patient.
 
@@ -372,6 +356,23 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 **Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
+
+
+#### 3.3.3 Deleting patient's visitation log: `deletevisit`
+
+Delete the patient's visitation log.
+
+Format: `deletevisit INDEX i/VISIT_INDEX`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
+* Both indexes **must be a positive number** 1, 2, 3, …​
+
+**Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
+
+**Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
 
 ### 3.4 Patient Appointment Commands
 
