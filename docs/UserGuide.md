@@ -466,7 +466,8 @@ Action | Format, Examples
 **Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
-**Reset**| `i-reset-all`
+**Reset all ingredients**| `i-reset-all`
+**View all ingredients that the user should restock**| `i-restock`
 **List**| `i-list`
 
 ### Employees' Contact Details
