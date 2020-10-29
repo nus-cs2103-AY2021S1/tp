@@ -53,8 +53,13 @@ public class Volume implements Quantity {
     }
 
     @Override
-    public double getValue() {
-        return this.value;
+    public boolean isZero() {
+        return (this.ratio * this.value) == 0;
+    }
+
+    @Override
+    public boolean isNegative() {
+        return (this.ratio * this.value) < 0;
     }
 
     @Override
@@ -74,7 +79,7 @@ public class Volume implements Quantity {
 
     @Override
     public String toString() {
-        String unit = "";
+        String unit = "?";
 
         if (this.ratio == RATIO_MILLILITRE) {
             unit = UNIT_MILLILITRE;
@@ -86,8 +91,6 @@ public class Volume implements Quantity {
             unit = UNIT_TABLESPOON;
         } else if (this.ratio == RATIO_TEASPOON) {
             unit = UNIT_TEASPOON;
-        } else {
-            unit = "?";
         }
 
         return String.format("%s%s", Quantity.formatDecimalValue(this.value), unit);
