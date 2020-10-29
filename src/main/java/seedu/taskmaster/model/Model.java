@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
@@ -162,4 +163,6 @@ public interface Model {
      * Clears the attendance statuses of all students in the student list.
      */
     void clearAttendance();
+
+    SimpleObjectProperty<Session> getCurrentSession();
 }

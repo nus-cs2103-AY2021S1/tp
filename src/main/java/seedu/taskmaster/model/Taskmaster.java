@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
@@ -25,7 +26,7 @@ import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
  */
 public class Taskmaster implements ReadOnlyTaskmaster {
 
-    protected Session currentSession;
+    protected SimpleObjectProperty<Session> currentSession;
     private final UniqueStudentList students;
     private final SessionList sessions;
 
@@ -39,7 +40,8 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     {
         students = new UniqueStudentList();
-        currentSession = null;
+        currentSession = new SimpleObjectProperty<Session>() {
+        };
         sessions = SessionListManager.of(new ArrayList<>());
     }
 
@@ -79,7 +81,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         requireNonNull(newData);
         setStudents(newData.getStudentList());
         setSessions(newData.getSessionList());
-        currentSession = null;
+        currentSession = new SimpleObjectProperty<>();
     }
 
     /* Session-Level Operations */
@@ -89,8 +91,8 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * created session with name {@code sessionName}.
      */
     public void changeSession(SessionName sessionName) {
-        assert sessions.contains(sessionName);
-        currentSession = sessions.get(sessionName);
+        assert sessions.contains(sessionName) || sessionName == null;
+        currentSession.setValue(sessionName == null ? null : sessions.get(sessionName));
     }
 
     /**
@@ -170,11 +172,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionException();
         }
 
-        if (!sessions.isEmpty() && currentSession == null) {
+        if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.markStudentAttendance(target.getNusnetId(), attendanceType);
+        currentSession.get().markStudentAttendance(target.getNusnetId(), attendanceType);
     }
 
     /**
@@ -193,11 +195,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionException();
         }
 
-        if (!sessions.isEmpty() && currentSession == null) {
+        if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.markStudentAttendance(nusnetId, attendanceType);
+        currentSession.get().markStudentAttendance(nusnetId, attendanceType);
     }
 
     /**
@@ -216,11 +218,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionException();
         }
 
-        if (!sessions.isEmpty() && currentSession == null) {
+        if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.markAllStudents(nusnetIds, attendanceType);
+        currentSession.get().markAllStudents(nusnetIds, attendanceType);
     }
 
     /**
@@ -241,7 +243,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.scoreStudentParticipation(target.getNusnetId(), score);
+        currentSession.get().scoreStudentParticipation(target.getNusnetId(), score);
     }
 
     /**
@@ -263,7 +265,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.scoreStudentParticipation(nusnetId, score);
+        currentSession.get().scoreStudentParticipation(nusnetId, score);
     }
 
     /**
@@ -285,7 +287,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.scoreAllParticipation(nusnetIds, score);
+        currentSession.get().scoreAllParticipation(nusnetIds, score);
     }
 
     /* Util Methods */
@@ -313,11 +315,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionException();
         }
 
-        if (!sessions.isEmpty() && currentSession == null) {
+        if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        return currentSession.getStudentRecords();
+        return currentSession.get().getStudentRecords();
     }
 
     @Override
@@ -336,11 +338,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionException();
         }
 
-        if (!sessions.isEmpty() && currentSession == null) {
+        if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.clearAttendance();
+        currentSession.get().clearAttendance();
     }
 
     /**
@@ -356,11 +358,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionException();
         }
 
-        if (!sessions.isEmpty() && currentSession == null) {
+        if (!sessions.isEmpty() && currentSession.get() == null) {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.updateStudentRecords(studentRecords);
+        currentSession.get().updateStudentRecords(studentRecords);
     }
 
     @Override
@@ -373,5 +375,9 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     @Override
     public int hashCode() {
         return students.hashCode();
+    }
+
+    public SimpleObjectProperty<Session> getCurrentSession() {
+        return this.currentSession;
     }
 }

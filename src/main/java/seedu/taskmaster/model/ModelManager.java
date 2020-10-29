@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.taskmaster.commons.core.GuiSettings;
@@ -237,6 +238,11 @@ public class ModelManager implements Model {
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
+    }
+
+    @Override
+    public SimpleObjectProperty<Session> getCurrentSession() {
+        return this.taskmaster.getCurrentSession();
     }
 
     @Override
