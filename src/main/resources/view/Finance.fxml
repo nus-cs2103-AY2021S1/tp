@@ -10,7 +10,7 @@
         <columns>
           <TableColumn fx:id="idCol" prefWidth="200.0" text="ID" />
             <TableColumn fx:id="financeIdCol" prefWidth="200.0" text="Finance ID" />
-          <TableColumn fx:id="costCol" prefWidth="200.0" text="Cost" />
+          <TableColumn fx:id="totalCostCol" prefWidth="200.0" text="Total Cost" />
             <TableColumn fx:id="dateCol" prefWidth="200.0" text="Date" />
             <TableColumn fx:id="timeCol" prefWidth="250.0" text="Time" />
         </columns>

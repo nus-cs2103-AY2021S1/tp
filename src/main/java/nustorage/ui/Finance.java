@@ -23,7 +23,7 @@ public class Finance extends UiPart<Region> {
     @FXML
     private TableColumn<FinanceRecord, String> financeIdCol;
     @FXML
-    private TableColumn<FinanceRecord, String> costCol;
+    private TableColumn<FinanceRecord, String> totalCostCol;
     @FXML
     private TableColumn<FinanceRecord, String> dateCol;
     @FXML
@@ -36,7 +36,7 @@ public class Finance extends UiPart<Region> {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseFinanceList(logic));
-        costCol.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        totalCostCol.setCellValueFactory(new PropertyValueFactory<>("cost"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         idCol.setCellValueFactory(id -> {
