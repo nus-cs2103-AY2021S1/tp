@@ -157,9 +157,8 @@ All patient profiles are preloaded with a stock profile picture.
 Format: `addpicture INDEX f/FILE_PATH`
 
 Examples:
-*  `addpicture 1 f/data/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' for the 1st patient
-*  `addpicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
-                                                  'downloads' folder for the 2nd patient
+*  `addpicture 3 f/data/profile_3.jpg` Replaces existing profile picture with 'profile_3.jpg' found in
+                                                  'data' folder for the 3rd patient, i.e Carl Kurz
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -185,9 +184,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be <span style="color:red">red</span>.
+*  `edit 1 p/11111111 e/pauline@example.com` Edits the phone number and email address of the 1st patient to be `11111111` and `pauline@example.com` respectively.
+*  `edit 2 ct/red` Clears the existing color tag and edits the color tag of the 2nd patient to be <span style="color:red">red</span>.
 
 ![example of color coded patient](images/colorTagExample.png)
 
@@ -204,7 +202,7 @@ Format: `delete INDEX`
 * `INDEX` **must be a positive number** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` Deletes the 2nd patient in the patient database.
+* `list` followed by `delete 9` Deletes the 9th patient (duplicated entry of John Doe) in the patient database.
 * `find Betsy` followed by `delete 1` Deletes the 1st patient in the results of the `find` command.
 
 #### 3.2.5 Deleting all patients: `clear`
@@ -272,7 +270,7 @@ Format: `undo`
 * Does not apply for undoable commands such as `find` and `list`.
 
 Example: 
-* While trying to `addpicture`, you accidentally deleted Alex Yeoh's patient details. Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
+* While trying to `addpicture`, you accidentally deleted John Doe's patient details. Instead of re-entering all the information again, you can easily restore John Doe's details by using `undo` on your previous `delete` command.
 
 #### 3.2.9 Redoing a command: `redo`
 
