@@ -11,9 +11,9 @@ import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-/**
- * https://stackoverflow.com/questions/42065871/how-to-display-values-in-javafx-pie-chart
- */
+//@@author lettuceman4-reused
+//Reused from https://stackoverflow.com/questions/42065871/how-to-display-values-in-javafx-pie-chart
+// with minor modifications
 public class LabeledPieChart extends PieChart {
     private final Map<Data, Text> labels = new HashMap<>();
 

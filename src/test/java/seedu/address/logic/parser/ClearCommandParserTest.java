@@ -25,6 +25,7 @@ public class ClearCommandParserTest {
     public void parse_validExpense_returnsClearCommand() {
         assertParseSuccess(parser, "clear c/expense", new ClearCommand(expense));
     }
+
     @Test
     public void parse_validRevenue_returnsClearCommand() {
         assertParseSuccess(parser, "clear c/revenue", new ClearCommand(revenue));

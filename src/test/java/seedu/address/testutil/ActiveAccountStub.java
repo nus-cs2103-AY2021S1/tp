@@ -47,8 +47,8 @@ public class ActiveAccountStub implements ActiveAccount {
 
     @Override
     public void setName(Name name){}
-    @Override
 
+    @Override
     public Account getAccount() {
         return null;
     }
