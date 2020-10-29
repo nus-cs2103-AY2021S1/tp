@@ -3,6 +3,7 @@ package seedu.taskmaster.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_ATTENDANCE_TYPE;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_NUSNETID;
@@ -39,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String PRESENT_ATTENDANCE = "present";
     public static final String ABSENT_ATTENDANCE = "absent";
+    public static final String VALID_SCORE_STRING = "0";
+    public static final int VALID_SCORE_INT = 0;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,6 +62,8 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_NUSNETID; // empty string not allowed for nusnetid
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE_TYPE + "notAttendanceType";
+    public static final String INVALID_PARTICIPATION_SCORE = " " + PREFIX_CLASS_PARTICIPATION + "-1";
+    public static final String INVALID_PARTICIPATION_NONINTEGER = " " + PREFIX_CLASS_PARTICIPATION + "NOTASCORE";
     // refer to {@code AttendanceType} for valid attendance types
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
