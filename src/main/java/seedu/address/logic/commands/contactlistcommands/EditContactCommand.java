@@ -106,7 +106,7 @@ public class EditContactCommand extends Command {
         if (contactToEdit.getTelegram().isPresent() || editContactDescriptor.getTelegram().isPresent()) {
             Telegram updatedTelegram = editContactDescriptor.getTelegram()
                     .orElseGet(() -> contactToEdit.getTelegram().get());
-            editedContact = new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags);
+            editedContact = new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags, isImportant);
         } else {
             editedContact = new Contact(updatedName, updatedEmail, updatedTags, isImportant);
         }
