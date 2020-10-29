@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +30,7 @@ import seedu.address.testutil.StudentBuilder;
  * and unit tests for ExamCommand
  */
 public class AddExamCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
     private Exam dummyExam = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
 
     @Test
@@ -66,7 +67,7 @@ public class AddExamCommandTest {
         String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS, expectedStudent.getName(),
                 dummyExam);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addExamCommand, model, expectedMessage, expectedModel);
@@ -95,7 +96,7 @@ public class AddExamCommandTest {
         String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS,
                 expectedStudent.getName(), dummyExam);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

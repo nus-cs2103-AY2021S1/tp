@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class AddAttendanceCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
     private final Attendance validAttendance = new Attendance("12/02/2020", "attended",
             new Feedback("sleepy"));
 
@@ -57,7 +58,7 @@ public class AddAttendanceCommandTest {
         String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
                 validAttendance);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addAttendanceCommand, model, expectedMessage, expectedModel);
@@ -87,7 +88,7 @@ public class AddAttendanceCommandTest {
         String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
                 validAttendance);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
