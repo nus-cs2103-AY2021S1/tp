@@ -20,4 +20,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULAR_CREDITS = new Prefix("mc/");
     public static final Prefix PREFIX_GRADE = new Prefix("g/");
     public static final Prefix PREFIX_GRADE_POINT = new Prefix("gp/");
+    public static final Prefix PREFIX_TARGET_CAP = new Prefix("tc/");
 }

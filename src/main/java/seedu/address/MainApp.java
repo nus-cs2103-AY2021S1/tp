@@ -140,6 +140,7 @@ public class MainApp extends Application {
             initialContactList = new ContactList();
         }
         return initialContactList;
+
     }
 
     private ReadOnlyEventList initializeEventList(Storage storage) {
