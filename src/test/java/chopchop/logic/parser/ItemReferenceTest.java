@@ -28,8 +28,8 @@ public class ItemReferenceTest {
         assertEquals(0, ItemReference.ofZeroIndex(0).getZeroIndex());
         assertEquals(3, ItemReference.ofZeroIndex(3).getZeroIndex());
         assertEquals(4, ItemReference.ofZeroIndex(3).getOneIndex());
-        assertThrows(AssertionError.class, () -> ItemReference.ofZeroIndex(-3));
-        assertThrows(AssertionError.class, () -> ItemReference.ofOneIndex(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> ItemReference.ofZeroIndex(-3));
+        assertThrows(IndexOutOfBoundsException.class, () -> ItemReference.ofOneIndex(0));
 
         assertEquals(oi, ItemReference.parse("#4").getValue());
         assertEquals(Result.of(nm), ItemReference.parse("OWO"));

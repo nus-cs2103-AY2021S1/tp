@@ -15,9 +15,9 @@ public class ArgNameTest {
     @Test
     void test_argName() {
         // check that this stuff throws
-        assertThrows(AssertionError.class, () -> new ArgName(null));
-        assertThrows(AssertionError.class, () -> new ArgName(""));
-        assertThrows(AssertionError.class, () -> new ArgName("/foo"));
+        assertThrows(NullPointerException.class, () -> new ArgName(null));
+        assertThrows(IllegalArgumentException.class, () -> new ArgName(""));
+        assertThrows(IllegalArgumentException.class, () -> new ArgName("/foo"));
 
         assertEquals(new ArgName("foo").name(), "foo");
         assertEquals(new ArgName("foo").toString(), "/foo");

@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.ListView?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<ScrollPane styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fitToWidth="true">
-    <TextFlow fx:id="body"/>
-</ScrollPane>
+<?import javafx.scene.text.TextFlow?>
+<StackPane alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@Style.css" />
+    </stylesheets>
+    <children>
+        <VBox alignment="TOP_CENTER" fx:id="statsBox">
+            <children>
+                <TextArea fx:id="pins" maxHeight="26" maxWidth="120.0" text="\$pins" editable="false" style="-fx-font-weight: bold"/>
+                <TextFlow fx:id="header1" prefHeight="72.0" maxWidth="245.0"/>
+                <ListView fx:id="listView" maxHeight="280.0" maxWidth="245.0" prefHeight="320.0" prefWidth="290.0" />
+            </children>
+        </VBox>
+    </children>
+</StackPane>

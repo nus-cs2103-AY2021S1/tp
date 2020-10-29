@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -228,35 +229,34 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the RecipeUsageList
+     * Returns a copy of RecipeUsage list.
      */
     @Override
     public UsageList<RecipeUsage> getRecipeUsageList() {
-        return this.recipeUsageList;
+        return new UsageList<>(this.recipeUsageList.getUsageList());
     }
 
     /**
-     * Returns the IngredientUsageList
+     * Returns a copy of IngredientUsage list.
      */
     @Override
     public UsageList<IngredientUsage> getIngredientUsageList() {
-        return this.ingredientUsageList;
+        return new UsageList<>(this.ingredientUsageList.getUsageList());
     }
 
     /**
      * Sets the RecipeUsageList
      */
     @Override
-    public void setRecipeUsageList(UsageList<RecipeUsage> list) {
-        this.recipeUsageList.setAll(list);
+    public void setRecipeUsageList(UsageList<RecipeUsage> rl) {
+        this.recipeUsageList.setAll(rl);
     }
-
     /**
      * Sets the IngredientUsageList
      */
     @Override
-    public void setIngredientUsageList(UsageList<IngredientUsage> list) {
-        this.ingredientUsageList.setAll(list);
+    public void setIngredientUsageList(UsageList<IngredientUsage> il) {
+        this.ingredientUsageList.setAll(il);
     }
 
     @Override
@@ -280,6 +280,16 @@ public class ModelManager implements Model {
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
         this.ingredientUsageList.pop(ingredient.getName());
+    }
+
+    @Override
+    public List<RecipeUsage> getRecentlyUsedRecipe(int n) {
+        return this.recipeUsageList.getRecentlyUsed(n);
+    }
+
+    @Override
+    public List<IngredientUsage> getRecentlyUsedIngredient(int n) {
+        return this.ingredientUsageList.getRecentlyUsed(n);
     }
 
     @Override

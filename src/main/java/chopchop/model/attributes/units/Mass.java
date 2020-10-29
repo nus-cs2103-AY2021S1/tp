@@ -56,8 +56,13 @@ public class Mass implements Quantity {
     }
 
     @Override
-    public double getValue() {
-        return this.value;
+    public boolean isZero() {
+        return (this.ratio * this.value) == 0;
+    }
+
+    @Override
+    public boolean isNegative() {
+        return (this.ratio * this.value) < 0;
     }
 
     @Override
@@ -77,15 +82,13 @@ public class Mass implements Quantity {
 
     @Override
     public String toString() {
-        var unit = "";
+        var unit = "?";
         if (this.ratio == 1) {
             unit = "g";
         } else if (this.ratio == 1000) {
             unit = "kg";
         } else if (this.ratio == 0.001) {
             unit = "mg";
-        } else {
-            unit = "?";
         }
 
         return String.format("%s%s", Quantity.formatDecimalValue(this.value), unit);

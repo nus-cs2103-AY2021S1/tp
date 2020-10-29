@@ -40,6 +40,11 @@ public class ViewCommand extends Command {
         return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName());
     }
 
+    @Override
+    public String toString() {
+        return String.format("ViewCommand(%s)", this.item);
+    }
+
     public static String getCommandString() {
         return "view";
     }
@@ -50,5 +55,12 @@ public class ViewCommand extends Command {
 
     public static String getUserGuideSection() {
         return "viewing-recipes--view";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ViewCommand
+                && this.item.equals(((ViewCommand) other).item));
     }
 }

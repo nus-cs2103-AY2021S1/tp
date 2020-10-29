@@ -8,6 +8,7 @@ import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
+import chopchop.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
@@ -26,6 +27,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Model model;
 
     private CommandBox commandBox;
     private CommandOutput commandOutput;
@@ -52,12 +54,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, Model model) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.model = model;
 
         // Configure the UI
         this.setWindowDefaultSize(logic.getGuiSettings());
@@ -82,7 +85,8 @@ public class MainWindow extends UiPart<Stage> {
         this.commandOutput = commandOutput;
         this.commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
-        var statsOutput = new StatsBox();
+        var statsOutput = new StatsBox(this.model.getRecentlyUsedRecipe(10));
+
         this.statsOutput = statsOutput;
         this.pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
@@ -129,7 +133,15 @@ public class MainWindow extends UiPart<Stage> {
             var result = this.logic.execute(commandText);
             logger.info("Result: " + result.toString());
 
-            this.commandOutput.setFeedbackToUser(result);
+            if (result.isStatsOutput()) {
+                this.commandOutput.clear(); // clear cmd box
+                var res = result.getStatsMessage();
+                this.statsOutput.setStatsMessage(result.toString(), res.size() == 0);
+                this.statsOutput.renderList(result.getStatsMessage());
+            } else {
+                this.commandOutput.setFeedbackToUser(result);
+                this.statsOutput.setStatsMessage("", false); // clear stats box
+            }
 
             if (result.shouldExit()) {
                 handleExit();
@@ -138,7 +150,6 @@ public class MainWindow extends UiPart<Stage> {
             return result;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            this.statsOutput.setBoxContent(e.getMessage());
 
             this.commandOutput.setFeedbackToUser(CommandResult.error(e.getMessage()));
             throw e;

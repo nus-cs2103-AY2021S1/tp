@@ -3,9 +3,11 @@
 
 package chopchop.logic.parser.commands;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -17,9 +19,13 @@ import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.StatsIngredientDateCommand;
-import chopchop.logic.commands.StatsRecipeDateCommand;
-import chopchop.logic.commands.StatsRecipeMostMadeCommand;
+import chopchop.logic.commands.StatsIngredientClearCommand;
+import chopchop.logic.commands.StatsIngredientRecentCommand;
+import chopchop.logic.commands.StatsIngredientUsedCommand;
+import chopchop.logic.commands.StatsRecipeClearCommand;
+import chopchop.logic.commands.StatsRecipeMadeCommand;
+import chopchop.logic.commands.StatsRecipeRecentCommand;
+import chopchop.logic.commands.StatsRecipeTopCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
@@ -29,10 +35,10 @@ public class StatsCommandParser {
      * Parses a 'stats' command. Syntax(es):
      */
     public static Result<? extends Command> parseStatsCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_STATS);
+        ensureCommandName(args, Strings.COMMAND_STATS);
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
+        if ((foo = getFirstUnknownArgument(args, List.of(
             Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
             return Result.error("'stats' command doesn't support '%s'", foo.get());
         }
@@ -43,13 +49,25 @@ public class StatsCommandParser {
 
                 switch (target.fst()) {
                 case RECIPE:
-                    if (target.snd().equals("most made")) {
-                        return Result.of(new StatsRecipeMostMadeCommand());
+                    if (target.snd().equals("top")) {
+                        return Result.of(new StatsRecipeTopCommand());
+                    }
+                    if (target.snd().equals("recent")) {
+                        return Result.of(new StatsRecipeRecentCommand());
+                    }
+                    if (target.snd().equals("clear")) {
+                        return Result.of(new StatsRecipeClearCommand());
                     }
 
                     return parseDateRecipeCommand(target.snd().strip(), args);
 
                 case INGREDIENT:
+                    if (target.snd().equals("clear")) {
+                        return Result.of(new StatsIngredientClearCommand());
+                    }
+                    if (target.snd().equals("recent")) {
+                        return Result.of(new StatsIngredientRecentCommand());
+                    }
                     return parseDateIngredientCommand(target.snd().strip(), args);
 
                 default:
@@ -58,40 +76,30 @@ public class StatsCommandParser {
             });
     }
 
-    private static Result<StatsRecipeDateCommand> parseDateRecipeCommand(String name, CommandArguments args) {
-        if (!name.isBlank()) {
-            return Result.error("just 'stats recipe' will do. Do not specify name.");
+    private static Result<StatsRecipeMadeCommand> parseDateRecipeCommand(String name, CommandArguments args) {
+        if (!name.equals("used")) {
+            return Result.error("This is an invalid command. Try 'stats recipe used', 'stats recipe top', "
+                + "stats recipe recent' or 'stats recipe clear'");
         }
 
         Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_ON, Strings.ARG_BEFORE, Strings.ARG_AFTER);
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+        var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'stats' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'stats recipe' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments");
         }
 
-        var on = args.getArgument(Strings.ARG_ON);
         var after = args.getArgument(Strings.ARG_AFTER);
         var before = args.getArgument(Strings.ARG_BEFORE);
 
-        if (on.size() > 1 || before.size() > 1 || after.size() > 1) {
-            return Result.error("Multiple dates specified");
-        }
-
-        if (on.size() == 1 && ((before.size() + after.size()) > 0)) {
-            return Result.error("'on' should not be used together with 'before' or 'after'");
-        } else if (on.size() + before.size() + after.size() == 0) {
-            return Result.error("At least 1 search criteria must be specified");
-        }
-
         try {
 
-            var arg1 = processDate(on).orElse(null);
-            var arg2 = processDate(before).orElse(null);
-            var arg3 = processDate(after).orElse(null);
+            var arg1 = processDate(before).orElse(null);
+            var arg2 = processDate(after).orElse(null);
 
-            return Result.of(new StatsRecipeDateCommand(arg1, arg2, arg3));
+            return Result.of(new StatsRecipeMadeCommand(arg1, arg2));
 
         } catch (Exception e) {
 
@@ -99,40 +107,34 @@ public class StatsCommandParser {
         }
     }
 
-    private static Result<StatsIngredientDateCommand> parseDateIngredientCommand(String name, CommandArguments args) {
+    private static Result<StatsIngredientUsedCommand> parseDateIngredientCommand(String name, CommandArguments args) {
 
-        if (!name.isBlank()) {
-            return Result.error("Just 'stats ingredient' will do. Do not specify name.");
+        if (!name.equals("used")) {
+            return Result.error("This is an invalid command. Try 'stats ingredient used',"
+                + "stats ingredient recent' or 'stats ingredient clear'");
         }
 
         Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_ON, Strings.ARG_BEFORE, Strings.ARG_AFTER);
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+        var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'stats' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'stats ingredient' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments");
         }
 
-        var on = args.getArgument(Strings.ARG_ON);
         var after = args.getArgument(Strings.ARG_AFTER);
         var before = args.getArgument(Strings.ARG_BEFORE);
 
-        if (on.size() > 1 || before.size() > 1 || after.size() > 1) {
+        if (before.size() > 1 || after.size() > 1) {
             return Result.error("Multiple dates specified");
         }
 
-        if (on.size() == 1 && (before.size() + after.size()) != 0) {
-            return Result.error("'on' should not be used together with 'before' or 'after'");
-        } else if (on.size() + before.size() + after.size() == 0) {
-            return Result.error("At least 1 search criteria must be specified");
-        }
-
         try {
-            var arg1 = processDate(on).orElse(null);
-            var arg2 = processDate(before).orElse(null);
-            var arg3 = processDate(after).orElse(null);
+            var arg1 = processDate(before).orElse(null);
+            var arg2 = processDate(after).orElse(null);
 
-            return Result.of(new StatsIngredientDateCommand(arg1, arg2, arg3));
+            return Result.of(new StatsIngredientUsedCommand(arg1, arg2));
 
         } catch (Exception e) {
             return Result.error("Unable to parse date");

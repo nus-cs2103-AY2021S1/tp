@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,6 +64,10 @@ public class UsageList<T extends Usage> {
         }
     }
 
+    public List<T> getUsageList() {
+        return this.usages;
+    }
+
     public int getUsageCount() {
         return this.usages.size();
     }
@@ -81,20 +86,48 @@ public class UsageList<T extends Usage> {
             .collect(Collectors.toList());
     }
 
-    public List<T> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
-        requireAllNonNull(start, end);
-        return this.usages.stream()
-            .filter(x -> x.isAfter(start))
-            .filter(x -> x.isBefore(end))
-            .collect(Collectors.toList());
+    /**
+     * Returns a list of string output pairs that can be directly fed into listView.
+     */
+    public List<Pair<String, String>> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
+        if (start == null && end == null) {
+            return new ArrayList<>();
+        } else if (start != null && end == null) {
+            return getUsagesAfter(start).stream()
+                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList());
+        } else if (start == null) {
+            return getUsagesBefore(end).stream()
+                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList());
+        } else {
+            return this.usages.stream()
+                .filter(x -> x.isAfter(start))
+                .filter(x -> x.isBefore(end))
+                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList());
+        }
+
     }
 
     public List<T> getRecentlyUsed(int n) {
         assert n >= 0;
+        Collections.sort(this.usages, new Comparator<T>() { //just in case
+            @Override
+            public int compare(final T o1, final T o2) {
+                if (o1.getDate().compareTo(o2.getDate()) < 0) {
+                    return -1;
+                } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                    return Integer.compare(o2.getName().compareTo(o1.getName()), 0);
+                } else {
+                    return 1;
+                }
+            }
+        });
         int len = this.usages.size();
         List<T> output = new ArrayList<>();
         int i = len - 1;
-        while (i >= 0 && n > 0) {
+        while (i >= 0 && n > 0) { //by right this should make sense cuz its a stack
             output.add(this.usages.get(i));
             i--;
             n--;
@@ -102,7 +135,7 @@ public class UsageList<T extends Usage> {
         return output;
     }
 
-    public List<Pair<String, Integer>> getMostUsed() {
+    public List<Pair<String, String>> getMostUsed() {
         ArrayList<T> newLst = new ArrayList<>(this.usages);
         ArrayList<Pair<String, Integer>> outputLst = new ArrayList<>();
         for (var i : newLst) {
@@ -116,9 +149,22 @@ public class UsageList<T extends Usage> {
                 outputLst.add(new Pair<>(i.getName(), k));
             }
         }
-        Comparator<Pair<String, Integer>> compare = (p1, p2)-> p1.snd() < p2.snd() ? 1 : 0;
-        outputLst.sort(compare);
-        return outputLst;
+        Collections.sort(outputLst, new Comparator<Pair<String, Integer>>() {
+            @Override
+            public int compare(final Pair<String, Integer> o1, final Pair<String, Integer> o2) {
+                if (o1.snd() < o2.snd()) {
+                    return 1;
+                } else if (o1.snd().equals(o2.snd())) {
+                    return Integer.compare(o1.fst().compareTo(o2.fst()), 0);
+                } else {
+                    return -1;
+                }
+            }
+        });
+
+        return outputLst.stream()
+            .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
+            .collect(Collectors.toList());
     }
 
 }

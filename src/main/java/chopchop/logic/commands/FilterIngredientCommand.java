@@ -61,6 +61,11 @@ public class FilterIngredientCommand extends Command {
             && expPredicate.equals(((FilterIngredientCommand) other).expPredicate)); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("FilterIngredientCommand(...)");
+    }
+
 
     public static String getCommandString() {
         return "filter ingredient";

@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import chopchop.commons.core.Config;
 import chopchop.commons.core.LogsCenter;
-import chopchop.commons.core.Version;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.util.ConfigUtil;
 import chopchop.commons.util.StringUtil;
@@ -41,11 +40,8 @@ import javafx.stage.Stage;
  * Runs the application.
  */
 public class MainApp extends Application {
-    public static final Version VERSION = new Version(0, 6, 0, true);
-
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static MainApp singletonInstance;
-
 
     protected Ui ui;
     protected Logic logic;
@@ -82,7 +78,7 @@ public class MainApp extends Application {
             new UsageList<>(), new UsageList<>(), userPrefs);
 
         this.logic = new LogicManager(this.model, this.storage);
-        this.ui = new UiManager(this.logic);
+        ui = new UiManager(logic, model);
     }
 
     private void loadEntries() {
@@ -257,7 +253,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ChopChop " + MainApp.VERSION);
+        logger.info("Starting ChopChop");
         this.ui.start(primaryStage);
 
         // we can only load entries after the UI starts!!!!

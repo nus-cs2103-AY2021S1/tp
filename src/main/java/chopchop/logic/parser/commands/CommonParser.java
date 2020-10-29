@@ -75,4 +75,13 @@ public class CommonParser {
     public static Result<Pair<CommandTarget, String>> getCommandTarget(CommandArguments args) {
         return getCommandTarget(args, /* acceptsPlural: */ false);
     }
+
+    /**
+     * Ensures that the command name matches the given string.
+     */
+    public static void ensureCommandName(CommandArguments args, String name) {
+        if (!args.getCommand().equals(name)) {
+            throw new IllegalArgumentException("invalid command name passed to parser");
+        }
+    }
 }

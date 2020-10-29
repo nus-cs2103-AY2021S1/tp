@@ -57,6 +57,6 @@ public class FindRecipeCommand extends Command {
     }
 
     public static String getUserGuideSection() {
-        return "find-recipes--findingredient";
+        return "find-recipes--findrecipe";
     }
 }
