@@ -60,7 +60,7 @@ public class Messages {
                         + "with just a slight difference in the command. You can enter the following "
                         + "command to add a delivery:\n"
                         + "`add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`\n"
-                        + "Example: `add-d n/DAMITH p/91231231 a/Jln Burong no 92 o/Mie Rebus by/15`\n")
+                        + "Example: `add-d n/DAMITH p/91231231 a/Jln Burong no 92 o/Mee Rebus by/15`\n")
                 .append(DIVIDER)
                 .append("GREAT JOB! Seems like you are getting the hang of it. If you have not seen the "
                         + "effect of clear-i and clear-d\n"
