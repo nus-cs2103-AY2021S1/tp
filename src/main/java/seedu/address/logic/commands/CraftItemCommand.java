@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -40,19 +41,17 @@ public class CraftItemCommand extends Command {
             + PREFIX_RECIPE_ID + "2";
 
     // success messages
-    public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted";
+    public static final String MESSAGE_SUCCESS = "%2$s %1$s crafted.";
     public static final String MESSAGE_SUCCESS_EXCESS = "%2$s %1$s crafted instead of %3$s, extras crafted"
-            + " due to recipe";
+            + " due to recipe.";
     public static final String MESSAGE_MISSING_RECIPE_INDEX = "First recipe used as recipe index was not provided.\n";
 
     // failure messages
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
     public static final String MESSAGE_INVALID_PRODUCT_QUANTITY = "Crafting failed, please enter a valid "
-            + "product quantity";
+            + "product quantity.";
     public static final String MESSAGE_INSUFFICIENT_INGREDIENTS = "Crafting failed, insufficient "
             + "ingredients in inventory.";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "No relevant recipes found in the recipe list";
-    public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
+    public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range.";
 
     private static final Logger logger = LogsCenter.getLogger(CraftItemCommand.class);
 
@@ -105,18 +104,16 @@ public class CraftItemCommand extends Command {
         List<Item> tempItemList = new ArrayList<>(model.getFilteredItemList());
         // filter to only get matching items
         tempItemList.removeIf(x -> !x.getName().equals(itemName));
-
-        Item itemToCraft;
-        itemToCraft = tempItemList.stream()
+        Item itemToCraft = tempItemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
 
         // fetch the recipe
         List<Recipe> tempRecipeList = new ArrayList<>(model.getFilteredRecipeList());
         // filter to only get matching recipes
         tempRecipeList.removeIf(x -> !x.getProductName().equals(itemName));
         if (tempRecipeList.isEmpty()) {
-            throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
+            throw new CommandException((String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, itemName)));
         }
         Recipe recipeToUse;
         try {

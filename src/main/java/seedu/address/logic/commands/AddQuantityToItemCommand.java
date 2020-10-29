@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -31,7 +32,6 @@ public class AddQuantityToItemCommand extends Command {
             + "Example: " + COMMAND_WORD + PREFIX_ITEM_NAME + "Iron "
             + PREFIX_ITEM_QUANTITY + "20 ";
 
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list.";
     public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name must be provided.";
     public static final String MESSAGE_QUANTITY_NOT_PROVIDED = "Quantity must be provided.";
     public static final String MESSAGE_NEGATIVE_QUANTITY = "Quantity will become negative.";
@@ -59,14 +59,10 @@ public class AddQuantityToItemCommand extends Command {
 
         // filter to only get matching and not deleted items
         itemList.removeIf(x -> !x.getName().equals(itemName));
-        if (itemList.isEmpty()) {
-            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
-        }
 
-        Item itemToEdit;
-        itemToEdit = itemList.stream()
+        Item itemToEdit = itemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(()-> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, itemName)));
         assert(itemToEdit != null);
         assert(itemToEdit.getQuantity() != null);
 

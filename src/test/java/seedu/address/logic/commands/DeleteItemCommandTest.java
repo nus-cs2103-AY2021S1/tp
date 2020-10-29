@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
 import seedu.address.model.ReadOnlyItemList;
@@ -59,14 +60,14 @@ public class DeleteItemCommandTest {
     @Test
     public void execute_itemNotFound_throwsCommandException() {
         DeleteItemCommand dic = new DeleteItemCommand("Bob's Toe nail");
-        assertThrows(CommandException.class, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND, (
-            ) -> dic.execute(modelStub));
+        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_FOUND, "Bob's Toe nail");
+
+        assertThrows(CommandException.class, expectedMessage, () -> dic.execute(modelStub));
         assertEquals(modelStub, expectedModelStub);
     }
 
     /**
-     * Tests for successful deletion of a item found in the item list
-     * with recipes
+     * Tests for successful deletion of a item found in the item list with recipes
      */
     @Test
     public void execute_itemDeletion_success() {
@@ -89,7 +90,7 @@ public class DeleteItemCommandTest {
     }
 
     @Test
-    public void execute_itemIsSoftDeleted() throws Exception {
+    public void execute_itemDeleted() throws Exception {
         DeleteItemCommand dic = new DeleteItemCommand(PEAR.getName());
         dic.execute(modelStub);
 
