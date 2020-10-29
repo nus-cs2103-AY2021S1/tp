@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
@@ -7,6 +9,9 @@ import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 // import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.model.module.grade.GradePoint;
+import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,6 +37,9 @@ public class EditModuleDescriptorBuilder {
         descriptor.setModuleName(module.getName());
         // descriptor.setZoomLink(module.getLink());
         descriptor.setModularCredits(module.getModularCredits());
+        if (module.getGradeTracker().getGradePoint().isPresent()) {
+            descriptor.setGradePoint(module.getGradeTracker().getGradePoint().get());
+        }
         descriptor.setTags(module.getTags());
     }
 
@@ -62,8 +70,17 @@ public class EditModuleDescriptorBuilder {
     /**
      * Sets the {@code Tag} of the {@code EditModuleDescriptor} that we are building.
      */
-    public EditModuleDescriptorBuilder withTags(Set<Tag> tags) {
-        descriptor.setTags(tags);
+    public EditModuleDescriptorBuilder withTags(String tag) {
+        Set<Tag> updatedTag = new HashSet<Tag>();
+        updatedTag.add(new Tag(tag));
+        return this;
+    }
+
+    /**
+     * Sets the {@code GradePoint} of the {@code EditModuleDescriptor} that we are building.
+     */
+    public EditModuleDescriptorBuilder withGradePoint(double gradePoint) {
+        descriptor.setGradePoint(new GradePoint(gradePoint));
         return this;
     }
 

@@ -45,7 +45,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditTaskCommand.MESSAGE_USAGE), pe);
+                    EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();

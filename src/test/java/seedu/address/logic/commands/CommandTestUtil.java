@@ -52,6 +52,8 @@ public class CommandTestUtil {
     public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
     public static final double VALID_MC_4 = 4.0;
     public static final double VALID_MC_2 = 2.0;
+    public static final double VALID_GRADEPOINT_4 = 4.0;
+    public static final double VALID_GRADEPOINT_5 = 5.0;
     public static final String VALID_TAG_LECTURE = "Lecture";
     public static final String VALID_TAG_TUTORIAL = "Tutorial";
 
