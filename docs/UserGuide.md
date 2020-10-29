@@ -64,7 +64,7 @@ This section explains the format of commands in this User Guide.
 
 Switches to the room tab if it is not already selected and shows a list of rooms in ResiReg, optionally filtered by some criteria.
 
-Format: `rooms [--vacant | --allocated] [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...`
+Format: `rooms [--vacant or --allocated] [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...`
 - If no parameters are given, all rooms are shown.
 - `--allocated` shows all rooms that have been allocated to a student, while `--vacant` shows all vacant rooms.
 - Rooms can be filtered by multiple criteria. Criteria of the same type (eg. floors) are combined using "or" while criteria of different types are combined using "and". See the section below for some examples.
@@ -86,7 +86,7 @@ Format: `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...`
 - The room will not be added if any piece of required information is missing. An error message will be displayed instead.
 
 Examples:
-- `add-room fl/12 n/112 t/CA` adds the room #12-107 of type corridor aircon.
+- `add-room fl/12 n/112 t/CA` adds the room #12-112 of type corridor aircon.
 
 #### 3. Deleting a room: `delete-room`
 
