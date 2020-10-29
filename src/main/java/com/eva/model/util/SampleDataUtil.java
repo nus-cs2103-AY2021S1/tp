@@ -118,6 +118,10 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
+
+    /**
+     * Returns a comment set containing the list of strings given.
+     */
     public static Set<Comment> getCommentSet(String... strings) {
         List<String> list = Arrays.asList(strings);
         return list.stream()
