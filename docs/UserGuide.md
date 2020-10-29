@@ -447,9 +447,11 @@ Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 Examples:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
-### 3.4 Scheduling Feature (By: Alex)
+### 3.4 Miscellaneous Features
 
-##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  
+#### 3.4.1 Scheduling: `schedule`
+
+##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
@@ -459,7 +461,7 @@ Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
 * Date must be in the format of **yyyy-mm-dd**.
 * Both mode and date are optional. If it is not provided, the timetable would be dafult in the weekly mode and showing the current date.
 
-Example: `schedule view mode/weekly date/2020-11-29` shows the whole of the week of the date given (To include screenshot)
+Example: (To include screenshot)
 
 ##### 3.4.1.2 Adding events to the schedule: `schedule add`
 
@@ -470,20 +472,27 @@ Format: `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [en
 * All fields are compulsory.
 * Event_Name has no restriction and can be of any form.
 * Start_Date_Time and End_Date_Time must be of the format yyyy-mm-ddTHH:mm
-* The time portion HH:mm must be in 24-hr format
 * Event_recurrence can only be one of these cases: `none`, `daily`, or `weekly`
 
 Example:
 `schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
 creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
 
+##### 3.4.1.3 List events: `schedule list`
+
+Lists events.
+
+Format: `schedule list`
+
+* Outputs a list of events on the same panel as the student list. 
+
 ##### 3.4.1.4 Delete events on the schedule: `schedule delete`
 
 Deletes an event on the schedule.
 
-Format: `schedule delete n/Meeting`
+Format: `schedule delete EVENT_INDEX`
 
-* The name of the 
+* EVENT_INDEX is the index of the event to be deleted.
 * User has to first call the `schedule list` command in order to find out the index of the event being deleted.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
