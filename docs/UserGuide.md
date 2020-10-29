@@ -474,7 +474,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/MorningShift`
+**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/morning shift`
 **List** | `c-list`
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
