@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+group Parse Import Command
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":ImportCommandParser" as ImportCommandParser LOGIC_COLOR
+participant "i:ImportCommand" as ImportCommand LOGIC_COLOR
+end box
+
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("import in.json")
+activate QuickCacheParser
+
+create ImportCommandParser
+QuickCacheParser -> ImportCommandParser
+activate ImportCommandParser
+
+ImportCommandParser -> QuickCacheParser
+deactivate ImportCommandParser
+
+QuickCacheParser -> ImportCommandParser : parse("in.json")
+activate ImportCommandParser
+
+create ImportCommand
+ImportCommandParser -> ImportCommand
+activate ImportCommand
+
+ImportCommand --> ImportCommandParser : i
+deactivate ImportCommand
+
+ImportCommandParser -> QuickCacheParser : i
+deactivate ImportCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ImportCommandParser -[hidden]-> QuickCacheParser
+destroy ImportCommandParser
+
+QuickCacheParser --> LogicManager : i
+deactivate QuickCacheParser
+end
+@enduml
