@@ -147,6 +147,20 @@ ChopChop is able to save your favourite recipes — press the `Favourites` butto
 ### Statistics Box
 ChopChop is able to produce statistics based on the food you make! -insert more info cause idk what stats does atm-
 
+<a name="recipeTiles"></a>
+### Recipe Tiles
+ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe.
+
+<a name="ingredientTiles"></a>
+### Ingredient Tiles
+ChopChop is able to show you your ingredients in the form of tiles. In each tile, there are 5 components:
+
+1. The `Index` shows the index of the ingredient for easier referencing.
+2. The `Expiry Date` of the ingredient.
+3. The `Quantity` of the ingredient.
+4. The `Ingredient Name` of the ingredient.
+5. The `Tags` associated with the ingredient.
+
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_display_description.png" width="95%" /> <br />
