@@ -5,6 +5,7 @@ import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
 
@@ -103,8 +104,9 @@ public class FinanceRecord {
         return this.dateTime.toLocalDate();
     }
 
-    public LocalTime getTime() {
-        return this.dateTime.toLocalTime();
+    public String getTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        return this.dateTime.toLocalTime().format(dtf);
     }
 
     public String getDatetimeString() {
