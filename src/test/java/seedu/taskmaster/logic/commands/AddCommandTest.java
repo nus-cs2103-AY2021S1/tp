@@ -12,9 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import javafx.beans.property.SimpleObjectProperty;
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
