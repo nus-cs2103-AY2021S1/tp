@@ -172,7 +172,7 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
-Here is the table of prefixes used:
+This is a table of prefixes used:
 | Prefix | Syntax | Examples | Remarks |
 |-|-|-|
 | n/ | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]  | n/Tutorial n/tutorial essay | Case insensitive |
