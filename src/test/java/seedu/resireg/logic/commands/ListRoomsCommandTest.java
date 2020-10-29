@@ -61,10 +61,10 @@ public class ListRoomsCommandTest {
         Allocation allocation2 = new Allocation(room2.getFloor(), room2.getRoomNumber(), ALICE.getStudentId());
         Allocation allocation3 = new Allocation(room3.getFloor(), room3.getRoomNumber(), BENSON.getStudentId());
         Allocation allocation5 = new Allocation(room5.getFloor(), room5.getRoomNumber(), CARL.getStudentId());
-        for (Room r: Arrays.asList(room1, room2, room3, room4, room5, room6)) {
+        for (Room r : Arrays.asList(room1, room2, room3, room4, room5, room6)) {
             ab.addRoom(r);
         }
-        for (Allocation a: Arrays.asList(allocation2, allocation3, allocation5)) {
+        for (Allocation a : Arrays.asList(allocation2, allocation3, allocation5)) {
             ab.addAllocation(a);
         }
         model = new ModelManager(ab, new UserPrefs());
@@ -95,12 +95,15 @@ public class ListRoomsCommandTest {
     public void equals() {
         assertEquals(new ListRoomsCommand(new RoomFilter()), new ListRoomsCommand(new RoomFilter()));
 
-        ListRoomsCommand command1 = new ListRoomsCommand(new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build());
-        ListRoomsCommand command2 = new ListRoomsCommand(new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build());
+        ListRoomsCommand command1 = new ListRoomsCommand(
+                new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build());
+        ListRoomsCommand command2 = new ListRoomsCommand(
+                new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build());
         assertEquals(command1, command2);
 
         // negative test
-        ListRoomsCommand command3 = new ListRoomsCommand(new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_B).build());
+        ListRoomsCommand command3 = new ListRoomsCommand(
+                new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_B).build());
         assertNotEquals(command1, command3);
     }
 

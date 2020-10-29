@@ -43,8 +43,8 @@ public enum CommandWordEnum {
     DELETE_ROOM_COMMAND(DeleteRoomCommand.COMMAND_WORD, DeleteRoomCommand.HELP, new DeleteRoomCommandParser()::parse),
 
     // misc
-    TOGGLE_TAB_SPLIT_COMMAND(ToggleTabSplitCommand.COMMAND_WORD, ToggleTabSplitCommand.HELP,
-            args -> new ToggleTabSplitCommand()),
+    TOGGLE_TAB_SPLIT_COMMAND(ToggleTabSplitCommand.COMMAND_WORD,
+            ToggleTabSplitCommand.HELP, args -> new ToggleTabSplitCommand()),
     HISTORY_COMMAND(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, args -> new HistoryCommand()),
     CLEAR_COMMAND(ClearCommand.COMMAND_WORD, ClearCommand.HELP, args -> new ClearCommand()),
     ARCHIVE_COMMAND(ArchiveCommand.COMMAND_WORD, ArchiveCommand.HELP, unused -> new ArchiveCommand()),

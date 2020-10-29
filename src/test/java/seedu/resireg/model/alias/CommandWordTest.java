@@ -39,7 +39,8 @@ class CommandWordTest {
         assertTrue(CommandWord.isValidCommandWord(AddCommand.COMMAND_WORD)); // 2 digits
         assertTrue(CommandWord.isValidCommandWord(ListStudentsCommand.COMMAND_WORD)); // 1 digit
         assertFalse(CommandWord.isValidCommandWord(AddCommand.COMMAND_WORD + " ")); // only non-numeric characters
-        assertFalse(CommandWord.isValidCommandWord(ListStudentsCommand.COMMAND_WORD + "\t")); // contains non-numeric characters
+        assertFalse(CommandWord.isValidCommandWord(
+                ListStudentsCommand.COMMAND_WORD + "\t")); // contains non-numeric characters
     }
 
 }
