@@ -8,10 +8,11 @@ import java.time.LocalDate;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all persons in address book whose tag(s) contains the next-day's day (i.e. Monday, Tuesday, etc).
+ * Finds and lists all active(unarchived) persons in address book whose tag(s) contains the next-day's day (i.e.
+ * Monday, Tuesday, etc).
  *
- * For example, assume today is Tuesday, after command "c-tomorrow", all employees whose tag(s) contains
- * "wednesday", case-insensitive, will be listed out.
+ * For example, assume today is Tuesday, after command "c-tomorrow", all active(unarchived) employees whose tag(s)
+ * contains "wednesday", case-insensitive, will be listed out.
  */
 public class FindByTagTomorrowCommand extends Command {
     public static final String COMMAND_WORD = "c-tomorrow";
