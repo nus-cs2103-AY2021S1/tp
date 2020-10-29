@@ -12,5 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TIMETABLE_URL = new Prefix("url/");
     public static final Prefix PREFIX_EXPECTED_HOURS = new Prefix("expected/");
     public static final Prefix PREFIX_DO_BEFORE = new Prefix("before/");
-    public static final Prefix PREFIX_PRIORITY = new Prefix("priority/");
+    public static final Prefix PREFIX_PRIORITY = new Prefix("p/");
 }
