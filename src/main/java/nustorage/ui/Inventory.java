@@ -5,7 +5,10 @@ import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
@@ -52,43 +55,41 @@ public class Inventory extends UiPart<Region> {
             financeId[0] = String.valueOf(item.getValue().getFinanceId());
             return property;
         });
-        Callback<TableColumn<InventoryRecord, String>, TableCell<InventoryRecord, String>> cellFactory
-                = new Callback<>() {
-            @Override
-            public TableCell call(final TableColumn<InventoryRecord, String> param) {
-                final TableCell<InventoryRecord, String> cell = new TableCell<InventoryRecord, String>() {
-
-                    final Button button = new Button(financeId[0]);
-
+        Callback<TableColumn<InventoryRecord, String>,
+                TableCell<InventoryRecord, String>> cellFactory = new Callback<>() {
                     @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            if (item.equals("0")) {
-                                button.setDisable(true);
-                                setText(financeId[0]);
-                            } else {
-                                button.setOnAction(event -> {
-                                    InventoryRecord inventoryRecord = getTableView().getItems().get(getIndex());
-                                    try {
-                                        uiLogic.execute("goto_finance");
-                                        logic.execute(String.format("find_finance %s", financeId[0]));
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-                                });
+                    public TableCell call(final TableColumn<InventoryRecord, String> param) {
+                        final TableCell<InventoryRecord, String> cell = new TableCell<>() {
 
-                                setGraphic(button);
+                            final Button button = new Button(financeId[0]);
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else if (item.equals("0")) {
+                                    button.setDisable(true);
+                                    setText(financeId[0]);
+                                } else {
+                                    button.setOnAction(event -> {
+                                        try {
+                                            uiLogic.execute("goto_finance");
+                                            logic.execute(String.format("find_finance %s", financeId[0]));
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    });
+
+                                    setGraphic(button);
+                                }
+
                             }
-                        }
+                        };
+                        return cell;
                     }
                 };
-                return cell;
-            }
-        };
         financeIdCol.setCellFactory(cellFactory);
 
     }

@@ -36,6 +36,9 @@ public class UiLogicManager implements UiLogic {
         }
     }
 
+    /**
+     * Switches to the specified tab given the specified parameters
+     */
     public CommandResult goToTab(String param) throws ParseException {
 
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
