@@ -19,6 +19,7 @@ import seedu.resireg.model.UserPrefs;
 public class ListStudentsCommandTest {
 
     private CommandHistory history = new CommandHistory();
+    private ListStudentsCommand.StudentFilter filter = new ListStudentsCommand.StudentFilter();
     private Model model;
     private Model expectedModel;
 
@@ -30,12 +31,14 @@ public class ListStudentsCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListStudentsCommand(), model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListStudentsCommand(filter),
+                model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListStudentsCommand(), model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListStudentsCommand(filter),
+                model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
