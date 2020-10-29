@@ -31,7 +31,7 @@ public class Student extends Person {
     }
 
     /**
-     * Returns true if both students of the same name have at least one other identity field that is the same.
+     * Returns true if both students have the same id. Other fields can be similar.
      * This defines a weaker notion of equality between two students.
      */
     public boolean isSame(Student otherStudent) {
@@ -40,8 +40,6 @@ public class Student extends Person {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName())
-                && (otherStudent.getPhone().equals(getPhone()) || otherStudent.getEmail().equals(getEmail()))
                 && otherStudent.getStudentId().equals(getStudentId());
     }
 

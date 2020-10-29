@@ -14,11 +14,16 @@ public class ListStudentCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS = "Viewing all students of: %1$s";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
 
     public ListStudentCommand() { }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!model.isInStudentView()) {
+            throw new CommandException(MESSAGE_WRONG_VIEW);
+        }
+
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         TutorialGroup tg = model.getCurrentTgInView();
         return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS, tg),

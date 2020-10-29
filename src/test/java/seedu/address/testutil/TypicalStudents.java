@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.person.Student;
 
 /**
@@ -45,5 +49,7 @@ public class TypicalStudents {
 
     private TypicalStudents() {} // prevents instantiation
 
-    // todo: getTypicalAddressBook() and getTypicalStudents()
+    public static List<Student> getTypicalStudents() {
+        return new ArrayList<>(Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH));
+    }
 }

@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
+import static seedu.address.testutil.TypicalTutorialGroups.getTutorialGroupList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +10,8 @@ import java.util.List;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.person.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
@@ -25,6 +30,24 @@ public class TypicalModules {
             tr.addModule(module);
         }
         return tr;
+    }
+
+    /**
+     * Returns an {@code Trackr} with all the typical modules, tutorial groups and students.
+     */
+    public static Trackr getTypicalTrackr() {
+        Trackr trackr = new Trackr();
+        // populate modules with the same tutorial groups and students
+        for (Student student : getTypicalStudents()) {
+            for (TutorialGroup tutorialGroup: getTutorialGroupList()) {
+                for (Module module : getTypicalModules()) {
+                    trackr.addModule(module);
+                    trackr.addTutorialGroup(tutorialGroup, module);
+                    trackr.addStudent(module, tutorialGroup, student);
+                }
+            }
+        }
+        return trackr;
     }
 
     public static List<Module> getTypicalModules() {
