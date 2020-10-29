@@ -48,7 +48,7 @@ public class ModuleList implements ReadOnlyModuleList {
         setModule(newData.getModuleList());
     }
 
-    //// person-level operations
+    //// Module-level operations
 
     /**
      * Returns true if a module with the same identity as {@code module} exists in the module list.

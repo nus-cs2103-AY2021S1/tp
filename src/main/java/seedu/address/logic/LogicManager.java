@@ -64,6 +64,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
         try {
             storage.saveModuleList(model.getModuleList());
+            storage.saveArchivedModuleList(model.getArchivedModuleList());
             storage.saveContactList(model.getContactList());
             storage.saveTodoList(model.getTodoList());
         } catch (IOException ioe) {
@@ -79,6 +80,14 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleListDisplay() {
+        if (model.getModuleListDisplay()) {
+            return model.getFilteredArchivedModuleList();
+        }
         return model.getFilteredModuleList();
     }
 
