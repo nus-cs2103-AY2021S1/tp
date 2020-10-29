@@ -151,7 +151,7 @@ Format: `find KEYWORD`
 Examples:
 * `find file1` (finds a tag with tag name `file1`)
 * `find label2020` (finds a tag with label name `label2020`)    
-* `find tagname1 label1` (finds a tag name `tagname1` and label name `label1`)
+* `find tagname1 label1` (finds a tag name/label name `tagname1` and `label1`)
 * `find he` (finds a tag with tag name contains `he` or label name contains `he`)
  
 
@@ -179,7 +179,7 @@ Format: `ls`
 ### Undoing command : `undo`
 
 Undo a recently executed command. Note that, there are some command that can't be undo.<br>
-Those commands include: `ls`,`show`,`exit`,`undo`,`redo`, `help`, `find`, `open` and `cd`
+Those commands include: `ls`,`show`,`exit`,`undo`, `help`, `find`, `open` and `cd`
 
 Format: `undo`
 
