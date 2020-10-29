@@ -63,8 +63,8 @@ public class Module {
                 .map(List::size).reduce(Integer::sum).orElse(0);
     }
 
-    public void setId(String newId) {
-        this.moduleId.setId(newId);
+    public void setId(ModuleId newId) {
+        this.moduleId.setId(newId.getId());
     }
 
     public int getTotalGroups() {
