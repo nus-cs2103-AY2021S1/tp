@@ -107,7 +107,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
     }
 
     /**
-     * Fil  ls up all the placeholders of this window.
+     * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredExerciseList());

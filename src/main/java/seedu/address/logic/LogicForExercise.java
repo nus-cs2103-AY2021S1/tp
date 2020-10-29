@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyExerciseBook;
+import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.exercise.Exercise;
 
 public interface LogicForExercise {
@@ -19,6 +20,7 @@ public interface LogicForExercise {
     public ObservableList<Exercise> getFilteredExerciseList();
 
     public Path getExerciseBookFilePath();
+    
 
     public GuiSettings getGuiSettings();
 

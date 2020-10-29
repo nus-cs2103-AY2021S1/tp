@@ -1,17 +1,21 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ExerciseBook;
+import seedu.address.model.GoalBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyExerciseBook;
+import seedu.address.model.ReadOnlyGoalBook;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.goal.Goal;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -82,5 +86,13 @@ public class SampleDataUtil {
             eb.addExercise(e);
         }
         return eb;
+    }
+
+    public static ReadOnlyGoalBook getSampleGoalBook() {
+        GoalBook gb = new GoalBook();
+        for (Map.Entry<Date, Goal> entry: gb.getGoalMap().entrySet()) {
+            gb.addGoal(entry.getValue());
+        }
+        return gb;
     }
 }

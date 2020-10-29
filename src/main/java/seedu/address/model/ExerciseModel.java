@@ -43,14 +43,29 @@ public interface ExerciseModel {
     Path getExerciseBookFilePath();
 
     /**
+     * Returns the user prefs' address book file path.
+     */
+    Path getGoalBookFilePath();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setExerciseBookFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user prefs' goal book file path.
+     */
+    void setGoalBookFilePath(Path goalBookFilePath);
+
+    /**
+     * Replaces goal book data with the data in {@code goalBook}.
      */
     void setExerciseBook(ReadOnlyExerciseBook addressBook);
+
+    /**
+     * Replaces goal book data with the data in {@code goalBook}.
+     */
+    void setGoalBook(ReadOnlyGoalBook goalBook);
 
     /**
      * Returns the AddressBook
@@ -58,15 +73,31 @@ public interface ExerciseModel {
     ReadOnlyExerciseBook getExerciseBook();
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyGoalBook getGoalBook();
+
+    /**
      * Returns true if a Exercise with the same identity as {@code Exercise} exists in the address book.
      */
     boolean hasExercise(Exercise exercise);
+
+    /**
+     * Returns true if a goal with the same identity as {@code goal} exists in the goal book.
+     */
+    boolean hasGoal(Goal goal);
 
     /**
      * Deletes the given exercise.
      * The exercise must exist in the address book.
      */
     void deleteExercise(Exercise target);
+
+    /**
+     * Deletes the given goal.
+     * The goal must exist in the exercise book.
+     */
+    void deleteGoal(Goal target);
 
     /**
      * Adds the given exercise.
@@ -79,11 +110,7 @@ public interface ExerciseModel {
      * {@code exercise} must not already exist in the address book.
      */
     void addGoal(Goal goal);
-
-    /**
-     * Returns true if a Exercise with the same identity as {@code Exercise} exists in the address book.
-     */
-    boolean hasGoal(Goal goal);
+    
     
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
@@ -97,6 +124,15 @@ public interface ExerciseModel {
      * Returns an unmodifiable view of the filtered Exercise list
      */
     ObservableList<Exercise> getFilteredExerciseList();
+
+    /**
+     * Replaces the given Exercise {@code target} with {@code editedExercise}.
+     * {@code target} must exist in the address book.
+     * The Exercise identity of {@code editedExercise} must not be the
+     * same as another existing Exercise in the exercise book.
+     */
+    void setGoal(Goal target, Goal editedGoal);
+
 
     /**
      * Updates the filter of the filtered Exercise list to filter by the given {@code predicate}.
