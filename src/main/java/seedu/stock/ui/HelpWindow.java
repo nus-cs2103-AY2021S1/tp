@@ -205,6 +205,9 @@ public class HelpWindow extends UiPart<Stage> {
         exitMethod.setText(EXIT);
         exitMessage.setText(EXIT_DESCRIPTION);
 
+        //Stats Method
+        statsMethod.setText(STATISTICS);
+        statsMessage.setText(STATISTICS_DESCRIPTION);
 
         //Disclaimer on where to click
         disclaimer.setText(DISCLAIMER);
