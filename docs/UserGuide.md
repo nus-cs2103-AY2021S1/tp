@@ -25,7 +25,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list case`** : Lists all investigation cases.
+   * **`list case`** : Lists all cases.
 
    * **`add case`**`t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
 
@@ -50,18 +50,18 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 ### Main page
 The main page of the application when the user first enters the app.
 
-#### List all default investigation cases: `list case`
-Lists all default investigation cases in PIVOT (unarchived cases).
+#### List all default cases: `list case`
+Lists all default cases in PIVOT (unarchived cases).
 
 Format: `list case`
 
-#### List all archived investigation cases: `list archive`
-Lists all archived investigation cases in PIVOT.
+#### List all archived cases: `list archive`
+Lists all archived cases in PIVOT.
 
 Format: `list archive`
 
-#### Adding an investigation case: `add case t:TITLE [s:STATUS]`
-Adds a new investigation case which has the active status by default, if not specified. The user can provide 3 status types:
+#### Adding a case: `add case t:TITLE [s:STATUS]`
+Adds a new case with the specified TITLE. The STATUS is active by default, if not specified. The user can provide 3 status types:
 
 1. `ACTIVE`
 
@@ -72,44 +72,44 @@ Adds a new investigation case which has the active status by default, if not spe
 The case will be added to the DEFAULT/ARCHIVED section, depending on which section they are currently in. 
 
 Format: `add case t:TITLE [s:STATUS]`
-* The title must be alphanumeric and cannot be blank
+* The title must be alphanumeric and cannot be blank.
 
 Example: 
-* `add case t:Kovan double murders` creates a new investigation case with the title “Kovan double murders”, the status initialized as an active case.
-* `add case t:Kovan double murders s:Closed` creates a new investigation case with the title “Kovan double murders”, the status initialized as a closed case.
+* `add case t:Kovan double murders` creates a new case with the title “Kovan double murders”, the status initialized as an active case.
+* `add case t:Kovan double murders s:Closed` creates a new case with the title “Kovan double murders”, the status initialized as a closed case.
 
-#### Delete an investigation case: `delete case CASE_NO`
-Deletes the specified investigation case.
+#### Delete a case: `delete case CASE_NO`
+Deletes the specified case.
 
 Format: `delete case CASE_NO`
 
-Example: `list case` followed by `delete case 2` deletes the 2nd case in the investigation list.
+Example: `list case` followed by `delete case 2` deletes the 2nd case in the list.
 
-#### Open an investigation case: `open case CASE_NO`
-Enters the specified investigation case where users can add more information regarding the case
+#### Open a case: `open case CASE_NO`
+Enters the specified case where users can add more information regarding the case
 (see Investigation Case Page).
 
 Format:  `open case CASE_NO`
 
-Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
+Example: `list case` followed by `open case 1` opens the 1st case in the list.
 
-#### Archiving an investigation case in the DEFAULT section: `archive case CASE_NO`
-Archives the specified investigation case in the DEFAULT section of Pivot.
+#### Archiving a case in the DEFAULT section: `archive case CASE_NO`
+Archives the specified case in the DEFAULT section of PIVOT.
 
 Format:  `archive case CASE_NO`
 
-Example: `list case` followed by `archive case 1` archives the 1st case in the investigation list.
+Example: `list case` followed by `archive case 1` archives the 1st case in the list.
 
-#### Unarchiving an investigation case in the ARCHIVED section: `unarchive case CASE_NO`
-Unarchives the specified investigation case in the ARCHIVED section of Pivot.
+#### Unarchiving a case in the ARCHIVED section: `unarchive case CASE_NO`
+Unarchives the specified case in the ARCHIVED section of Pivot.
 
 Format:  `unarchive case CASE_NO`
 
-Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the investigation list.
+Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the list.
 
-#### Finding an investigation case: `find KEYWORD [MORE_KEYWORDS]`
+#### Finding a case: `find KEYWORD [MORE_KEYWORDS]`
 
-Finds investigation cases whose details contains any of the given keywords.
+Find cases whose details contain any of the given keywords.
 
 * The search is case-insensitive. e.g keyword `hans` will match case containing `Hans` in its details
 * The order of the keywords does not matter. e.g. keywords `Hans Bo` will match case containing `Bo Hans` in its details
@@ -120,7 +120,7 @@ Finds investigation cases whose details contains any of the given keywords.
 Documents (file name and file reference that the users input on creation), Suspects/Witnesses/Victims (Name, Gender, Phone, Email, Address)
 * Only full words will be matched e.g. keyword `Han` will not match cases containing `Hans` in their details
 * Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
-containing `Hans Gruber`, `Bo Yang` in their details
+containing `Hans Gruber`, `Bo Yang` in their details.
 
 Format:  `find KEYWORD [MORE_KEYWORDS]`
 
@@ -133,20 +133,20 @@ Example:
 Exits the application.
 
 ### Investigation Case page
-The page of the application when the user opens a specified investigation case.
+The page of the application when the user opens a specified case.
 
-#### Add investigation case description: `add desc d:DESC`
-Adds the description of the investigation
+#### Add description to the current case: `add desc d:DESC`
+Adds the description of the case.
 
 Format: `add desc d:DESC`
 
-Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this investigation case to “Kovan double murders of twins xxx and yyy”.
+Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this case to “Kovan double murders of twins xxx and yyy”.
 
 This command is flexible. If a description has been added, this command will overwrite the current description.
 Tip: You can also use `add desc d:` to remove the current desc.
 
-#### Adding a document related to the case: `add doc n:TITLE r:FILE_NAME`
-Adds a new document that is related to the investigation case.
+#### Add a document to the current case: `add doc n:TITLE r:FILE_NAME`
+Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
 
 Format: `add doc n:TITLE r:FILE_NAME`
 
@@ -154,9 +154,9 @@ Example: `add doc n:Case Details r:case_details.pdf` adds a new document with ti
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
 
-#### Adding a Suspect related to the case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add a Suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Adds a new suspect related to the investigation case.
+Adds a new suspect to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
 
 Format: `add suspect n:NAME g:GENDER`
 
@@ -164,17 +164,17 @@ Example: `add suspect n:John Doe g:M`
 
 Gender must either be `M` or `F`.
 
-#### Adding a victim related to the case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add a victim to the current case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Adds a new victim that is related to the investigation case.
+Adds a new victim to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
 
 Format: `add victim n:NAME g:GENDER`
 
 Example: `add victim n:James Lee g:M`
 
-#### Add a witness related to the case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add a witness to the current case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Adds a new witness that is related to the investigation case.
+Adds a new witness to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
 
 Format: `add witness n:NAME g:GENDER`
 
@@ -182,73 +182,73 @@ Example: `add witness n:John Doe g:M`
 
 Gender must either be `M` or `F`.
 
-#### Open document: `open doc DOC_NO`
+#### Opens a document in the current case: `open doc DOC_NO`
 
-Opens the specified document reference.
+Opens the specified document at index `DOC_NO` in the list.
 
 Format: `open doc DOC_NO`
 
 Example: `open doc 1` opens the document in the list with index 1.
 
-#### Edit investigation case title: `edit title t:TITLE`
-Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
+#### Edit title in the current case: `edit title t:TITLE`
+Edits the title of the case with the specified `TITLE`.
 
 Format: `edit title t:TITLE`
 
-Example: `edit title t:Murder case 29` updates the title of this investigation case to “Murder case 29”.
+Example: `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
 
-#### Edit investigation case status: `edit status s:STATUS`
-Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
+#### Edit status in the current case: `edit status s:STATUS`
+Edits the status (ACTIVE, COLD, CLOSED) of the case with the specified `STATUS`.
 
 Format: `edit status s:STATUS`
 
-Example: `edit status s:CLOSED` updates the status of this investigation case to “CLOSED”.
+Example: `edit status s:CLOSED` updates the status of this case to “CLOSED”.
 
 
-#### Edit investigation case document: `edit doc INDEX [n:NAME] [r:REFERENCE]`
-Edits the document of the current investigation case at the specified index of the list
+#### Edit an existing document in the current case: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
+Edits the document of the current case at the specified `DOC_NO` of the list. There must be at least one field indicated.
 
-Format: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 
 Example: `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
-name "Fire outbreak details" and reference "newFireDoc.pdf".
+name `Fire outbreak details` and reference `newFireDoc.pdf`.
 
-This document "newFireDoc.pdf" must be manually added to the references folder provided and must be present before the document can be successfully updated.
+This document `newFireDoc.pdf` must be manually added to the references folder provided and must be present before the document can be successfully updated.
 
-#### Edit an existing suspect in the case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Edits the fields of the suspect specified with the index in the investigation case.
+Edits the fields of the suspect specified with the index in the case.
 At least one of the fields must be specified to be edited.
 
 Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
-"newEmail@mail.com" and the address "New Road Crescent".
+`newEmail@mail.com` and the address `New Road Crescent`.
 
-#### Edit an existing victim in the case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing victim in the current case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Edits the fields of the victim specified with the index in the investigation case.
+Edits the fields of the victim specified with the index in the case.
 At least one of the fields must be specified to be edited.
 
 Format: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
-"newEmail@mail.com" and the address "New Road Crescent".
+`newEmail@mail.com` and the address `New Road Crescent`.
 
 Gender must either be `M` or `F`.
 
-#### Edit an existing witness in the case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing witness in the current case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Edits the fields of the witness specified with the index in the investigation case. 
+Edits the fields of the witness specified with the index in the case. 
 At least one of the fields must be specified to be edited.
 
 Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
-"newEmail@mail.com" and the address "New Road Crescent".
+`newEmail@mail.com` and the address `New Road Crescent`.
 
 #### Delete document: `delete doc DOC_NO `
-Deletes the specified document reference.
+Deletes the document specified with `DOC_NO` from the list of documents.
 
 Format: `delete doc DOC_NO`
 
@@ -256,7 +256,7 @@ Example: `delete doc 0`
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
-Deletes the specified suspect from the list of suspects.
+Deletes the suspect specified with `SUSPECT_NO` from the list of suspects.
 
 Format: `delete suspect SUSPECT_NO`
 
@@ -265,7 +265,7 @@ Example: `delete suspect 0`
 
 #### Delete Victim: `delete victim VICTIM_NO`
 
-Deletes the specified victim from the list of victims.
+Deletes the victim specified with `VICTIM_NO` from the list of victims.
 
 Format: `delete victim VICTIM_NO`
 
@@ -274,7 +274,7 @@ Example: `delete victim 0`
 
 #### Delete witness: `delete witness WITNESS_NO`
 
-Deletes the specified witness from the list of witnesses.
+Deletes the witness specified with `WITNESS_NO` from the list of witnesses.
 
 Format: `delete witness WITNESS_NO`
 
@@ -307,11 +307,11 @@ Exits the application.
 
 #### Loading of User Data
 
-User data automatically loads when user opens the app
+User data automatically loads when user opens the app.
 
 #### Saving of User Data
 
-User data automatically saves when there is a change in data
+User data automatically saves when there is a change in data.
 
 --------------------------------------------------------------------------------------------------------------------
 
