@@ -22,7 +22,7 @@ public class StatsRecipeRecentCommand extends Command {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         try {
-            var output = model.getRecentlyUsedRecipe(N_MOST_RECENT);
+            var output = model.getRecentlyUsedRecipes(N_MOST_RECENT);
             var msgOutput = output.stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());

@@ -68,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
         this.setWindowDefaultSize(logic.getGuiSettings());
 
         this.setAccelerators();
+
+        this.primaryStage.setMinWidth(820);
+        this.primaryStage.setMinHeight(520);
     }
 
     public Stage getPrimaryStage() {
@@ -87,9 +90,7 @@ public class MainWindow extends UiPart<Stage> {
         this.commandOutput = commandOutput;
         this.commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
-        var statsOutput = new StatsBox(this.model.getRecentlyUsedRecipe(10));
-
-        this.statsOutput = statsOutput;
+        this.statsOutput = new StatsBox(this.model);
         this.pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
         var displayController = new DisplayController(logic);
@@ -136,13 +137,13 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + result.toString());
 
             if (result.isStatsOutput()) {
+
                 this.commandOutput.clear(); // clear cmd box
-                var res = result.getStatsMessage();
-                this.statsOutput.setStatsMessage(result.toString(), res.size() == 0);
-                this.statsOutput.renderList(result.getStatsMessage());
+                this.statsOutput.setMessage(result);
+
             } else {
                 this.commandOutput.setFeedbackToUser(result);
-                this.statsOutput.setStatsMessage("", false); // clear stats box
+                this.statsOutput.clearMessage();
             }
 
             if (result.shouldExit()) {

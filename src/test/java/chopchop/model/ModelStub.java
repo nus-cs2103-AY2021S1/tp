@@ -162,6 +162,16 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<RecipeUsage> getObservableRecipeUsages() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<IngredientUsage> getObservableIngredientUsages() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void addRecipeUsage(Recipe recipe) {
         throw new AssertionError("This method should not be called.");
     }
@@ -192,12 +202,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public List<RecipeUsage> getRecentlyUsedRecipe(int n) {
+    public List<RecipeUsage> getRecentlyUsedRecipes(int n) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public List<IngredientUsage> getRecentlyUsedIngredient(int n) {
+    public List<IngredientUsage> getRecentlyUsedIngredients(int n) {
         throw new AssertionError("This method should not be called.");
     }
 }

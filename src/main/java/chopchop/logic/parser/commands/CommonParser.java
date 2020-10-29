@@ -8,6 +8,7 @@ import java.util.Optional;
 import chopchop.commons.util.Pair;
 import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
+import chopchop.commons.util.Strings;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
@@ -71,7 +72,8 @@ public class CommonParser {
         var str = args.getRemaining();
 
         if (str.isEmpty()) {
-            return Result.error("no target specified (either 'recipe', 'ingredient' or 'recommendation')");
+            return Result.error("no target specified (either 'recipe', 'ingredient'%s)",
+                args.getCommand().equals(Strings.COMMAND_LIST) ?  ", or 'recommendation'" : "");
         }
 
         var x = new StringView(str).bisect(' ').fst().trim();

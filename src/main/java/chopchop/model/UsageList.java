@@ -112,7 +112,9 @@ public class UsageList<T extends Usage> {
 
     public List<T> getRecentlyUsed(int n) {
         assert n >= 0;
-        Collections.sort(this.usages, new Comparator<T>() { //just in case
+
+        var sorted = new ArrayList<>(this.usages);
+        Collections.sort(sorted, new Comparator<T>() { //just in case
             @Override
             public int compare(final T o1, final T o2) {
                 if (o1.getDate().compareTo(o2.getDate()) < 0) {
@@ -124,14 +126,14 @@ public class UsageList<T extends Usage> {
                 }
             }
         });
-        int len = this.usages.size();
-        List<T> output = new ArrayList<>();
-        int i = len - 1;
-        while (i >= 0 && n > 0) { //by right this should make sense cuz its a stack
-            output.add(this.usages.get(i));
-            i--;
-            n--;
+
+        var output = new ArrayList<T>();
+
+        int i = sorted.size();
+        while (i-- > 0 && n-- > 0) {
+            output.add(sorted.get(i));
         }
+
         return output;
     }
 

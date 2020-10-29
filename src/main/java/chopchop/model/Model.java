@@ -159,6 +159,12 @@ public interface Model {
     /** Returns the UsageList of ingredient */
     UsageList<IngredientUsage> getIngredientUsageList();
 
+    /** Returns the 'actual' {@code ObservableList<>} backing the RecipeUsageList */
+    ObservableList<RecipeUsage> getObservableRecipeUsages();
+
+    /** Returns the 'actual' {@code ObservableList<>} backing the IngredientUsageList */
+    ObservableList<IngredientUsage> getObservableIngredientUsages();
+
     void addRecipeUsage(Recipe recipe);
 
     void removeRecipeUsage(Recipe recipe);
@@ -173,7 +179,7 @@ public interface Model {
     /** Sets the IngredientUsageList */
     void setIngredientUsageList(UsageList<IngredientUsage> rl);
 
-    List<RecipeUsage> getRecentlyUsedRecipe(int n);
+    List<RecipeUsage> getRecentlyUsedRecipes(int n);
 
-    List<IngredientUsage> getRecentlyUsedIngredient(int n);
+    List<IngredientUsage> getRecentlyUsedIngredients(int n);
 }

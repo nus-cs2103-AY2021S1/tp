@@ -244,6 +244,16 @@ public class ModelManager implements Model {
         return new UsageList<>(this.ingredientUsageList.getUsageList());
     }
 
+    @Override
+    public ObservableList<RecipeUsage> getObservableRecipeUsages() {
+        return this.recipeUsageList.getUsages();
+    }
+
+    @Override
+    public ObservableList<IngredientUsage> getObservableIngredientUsages() {
+        return this.ingredientUsageList.getUsages();
+    }
+
     /**
      * Sets the RecipeUsageList
      */
@@ -251,6 +261,7 @@ public class ModelManager implements Model {
     public void setRecipeUsageList(UsageList<RecipeUsage> rl) {
         this.recipeUsageList.setAll(rl);
     }
+
     /**
      * Sets the IngredientUsageList
      */
@@ -283,12 +294,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<RecipeUsage> getRecentlyUsedRecipe(int n) {
+    public List<RecipeUsage> getRecentlyUsedRecipes(int n) {
         return this.recipeUsageList.getRecentlyUsed(n);
     }
 
     @Override
-    public List<IngredientUsage> getRecentlyUsedIngredient(int n) {
+    public List<IngredientUsage> getRecentlyUsedIngredients(int n) {
         return this.ingredientUsageList.getRecentlyUsed(n);
     }
 

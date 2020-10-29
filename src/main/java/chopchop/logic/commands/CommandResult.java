@@ -37,7 +37,7 @@ public class CommandResult {
         this.shouldExit = shouldExit;
         this.parts = List.of(Part.text(message));
         this.isStatsOutput = isStatsOutput;
-        this.statsMessage = new ArrayList<Pair<String, String>>(statsMessage);
+        this.statsMessage = new ArrayList<>(statsMessage);
     }
 
     /**
