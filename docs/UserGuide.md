@@ -24,7 +24,9 @@ This user guide provides you with the necessary information on how to become an 
 You can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
-The figure below shows the GUI of ProductiveNUS, with its components labelled. 
+The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
+![GUI](images/GUI.png)
+*Figure X: Labelled GUI sections*
 
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
@@ -103,14 +105,16 @@ You can delete assignments from your assignment list by specifying the assignmen
 
 You can delete **one or more** assignments at a time. Here is an example with steps to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command line as per their indexes that are circled and labelled in the figure.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command box as per their indexes that are labelled in the figure.
 
-DIAGRAM
+![DeleteCommand1](images/DeleteCommandDiagram1.png)
+*Figure X: User input and location of assignment indexes*
 
 2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
-3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
+3) A "Deleted assignment(s)" message that includes the information of your deleted assignments will be displayed in the Command Box.
 
-DIAGRAM
+![DeleteCommand2](images/DeleteCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 Examples:
 * `delete 1`
@@ -160,9 +164,15 @@ Format: `list [NUMBER_OF_DAYS]`
 
 You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date (and time) and `NUMBER_OF_DAYS` later (in number of hours).
 
-For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 1200, all assignments due within this date and time to 27/10/2020 1200 will be displayed.
+For example, you can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days (72 hours) from the current date (and current time). 
 
-DIAGRAM
+![ListCommand1](images/ListCommandDiagram1.png)
+*Figure X: `list 3` inputted by user*
+
+If the current date and time is 29/10/2020 1800, all assignments due within this date and time to 01/11/2020 1800 will be displayed. A message that indicates the number of assignments listed is shown.
+
+![ListCommand2](images/ListCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 <div markdown="span" class="alert alert-success">
 
@@ -191,27 +201,30 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Examples |
 |-|-|-|
-| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - n/Tutorial<br>- n/tutorial essay |
-| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | - mod/ST2334<br>- mod/CS2100 cs2103t |
-| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - d/24-10-2020 <br>- d/1200<br>- d/1300 25-11-2020 |
-| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - p/high<br>- p/LOW |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - `n/Tutorial`<br>- `n/tutorial essay` |
+| `mod/` | mod/MODULE_CODE [MORE MODULE_CODE] | - `mod/ST2334`<br>- `mod/CS2100 cs2103t` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020` <br>- `d/1200`<br>- `d/1300 25-11-2020` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - `p/high`<br>- `p/LOW` |
 
 <div markdown="block" class="alert alert-primary">
 
- **:clipboard: Pointers to note:**<br>
-Date keywords are irrespective of time  and time keywords are irrespective of date. For example, find d/1300 25-11-2020 will list assignments with due date of 25-11-2020 (regardless of time) and with due time of 1300 (regardless of date).
+ **:clipboard: Pointers to note for prefixes:**<br>
+* For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).
+* For prefixes `n/`,`mod/` and `p/`, keywords are case-insensitive.
 </div>
 
 Here is an example with steps to follow:
 
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
-DIAGRAM
+![FindCommand1](images/FindCommandDiagram1.png)
+*Figure X: `find mod/CS2100 ST2334` inputted by user*
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
-3) A "listed your assignments" message will be displayed in the command box.
+3) A message that indicates the number of assignments found will be displayed as shown in the figure below.
 
-DIAGRAM
+![FindCommand1](images/FindCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 <div markdown="block" class="alert alert-primary">
 
