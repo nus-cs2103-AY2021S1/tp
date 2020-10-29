@@ -8,6 +8,7 @@ import static seedu.pivot.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,7 @@ public class AddCaseCommandTest {
     @BeforeEach
     public void setUpMainPage() {
         StateManager.resetState();
+        StateManager.setDefaultSection();
     }
 
     @Test
@@ -114,6 +116,11 @@ public class AddCaseCommandTest {
         public void addCase(Case investigationCase) {
             requireNonNull(investigationCase);
             personsAdded.add(investigationCase);
+        }
+
+        @Override
+        public void updateFilteredCaseList(Predicate<Case> predicate) {
+            personsAdded.stream().filter(predicate);
         }
 
         @Override

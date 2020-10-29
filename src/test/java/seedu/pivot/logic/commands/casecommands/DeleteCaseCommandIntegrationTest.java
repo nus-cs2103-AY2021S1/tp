@@ -9,11 +9,13 @@ import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.DeleteCommand;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;
@@ -25,7 +27,14 @@ import seedu.pivot.model.investigationcase.Case;
  */
 public class DeleteCaseCommandIntegrationTest {
 
-    private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUpDefaultSection() {
+        StateManager.setDefaultSection();
+        model = new ModelManager(getTypicalPivot(), new UserPrefs());
+        model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
+    }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,6 +45,7 @@ public class DeleteCaseCommandIntegrationTest {
 
         ModelManager expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
+        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -59,7 +69,7 @@ public class DeleteCaseCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
-        showNoPerson(expectedModel);
+        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

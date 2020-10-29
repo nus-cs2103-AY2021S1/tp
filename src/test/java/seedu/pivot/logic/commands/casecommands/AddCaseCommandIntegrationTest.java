@@ -21,8 +21,9 @@ public class AddCaseCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
-    public void setUp() {
+    public void setUpDefaultSection() {
         model = new ModelManager(getTypicalPivot(), new UserPrefs());
+        model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
     }
 
     @Test
@@ -31,6 +32,7 @@ public class AddCaseCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.addCase(validCase);
+        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
 
         assertCommandSuccess(new AddCaseCommand(validCase), model,
                 String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase), expectedModel);

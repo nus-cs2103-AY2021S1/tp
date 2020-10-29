@@ -7,7 +7,9 @@ import static seedu.pivot.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -18,6 +20,7 @@ import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.testutil.CaseBuilder;
 
@@ -26,6 +29,12 @@ import seedu.pivot.testutil.CaseBuilder;
  * Unit Testing for DeleteCaseCommand
  */
 public class DeleteCaseCommandTest {
+
+    @BeforeEach
+    public void setUpMainPage() {
+        StateManager.resetState();
+        StateManager.setDefaultSection();
+    }
 
     @Test
     public void constructor_nullCase_throwsNullPointerException() {
@@ -52,7 +61,7 @@ public class DeleteCaseCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different case -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
@@ -98,6 +107,11 @@ public class DeleteCaseCommandTest {
         @Override
         public void deleteCase(Case target) {
             caseList.remove(target);
+        }
+
+        @Override
+        public void updateFilteredCaseList(Predicate<Case> predicate) {
+            caseList.stream().filter(predicate);
         }
 
         @Override
