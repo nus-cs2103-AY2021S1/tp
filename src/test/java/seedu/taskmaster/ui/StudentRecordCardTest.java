@@ -37,7 +37,8 @@ class StudentRecordCardTest {
     }
 
     @BeforeAll
-    public static void initJfx() {
+    @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
+    public static void initJFX() {
         Thread t = new Thread("JavaFX Init Thread") {
             public void run() {
                 Application.launch(AsNonApp.class, new String[0]);
