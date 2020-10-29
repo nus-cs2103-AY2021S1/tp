@@ -574,12 +574,9 @@ Use case ends.
 
 - 3a. Room allocation does not exist or details supplied are invalid.
 
-<<<<<<< HEAD
   - ResiReg shows an error message.
 
     Use case resumes at step 2.
-=======
-      Use case resumes at step 2.
       
 #### Use case: UC07 - Undo previous command
 1. OHS admin enters a command that changes state.
@@ -625,7 +622,6 @@ Use case ends.
     - ResiReg shows an error message.
     
       Use case ends.
->>>>>>> fea735b51b0521c7174ae40b4f7dc4f794b1f7aa
 
 ### Non-Functional Requirements
 
