@@ -203,9 +203,9 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
      
    * Date
    
-     * Your search date should be of the format: `YYYY-MM-DD`
+     * Your search date should be of the format: `YYYY-MM-DD`.
      
-     * You should only provide one search date
+     * You should only provide one search date, i.e. `d/2020-01-01 2020-02-02` would not be accepted.
      
      * Tasks with their date matching the search date exactly are considered to have fulfilled the task date search criteria.
      
@@ -214,7 +214,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
      * Your search priority should be one of the following: `highest`, `high`, `normal`, `low` (case-insensitive). 
        No other search priority will be allowed.
        
-     * You should only provide one search priority.
+     * You should only provide one search priority, i.e. `p/highest low` is not allowed.
      
      * Tasks with their priority matching the search priority exactly are considered to have fulfilled the task priority search criteria.
      
@@ -318,11 +318,64 @@ Examples:
  * `addcontact n/bob e/bob@gmail.com t/friend`
  
  
+ #### Locating contacts: `findcontact`
+ 
+ Finds all contacts that fulfil all the provided search criteria.
+ 
+ Format: `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
+ 
+  * The search is case-insensitive, e.g. `bob` will match `Bob`.
+  
+  * You are allowed to provide multiple search keywords for both the name and tag parameter.
+  
+  * The order of the search keywords does not matter, e.g. `Bob Abramham` will match `Abraham Bob`.
+  
+  * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
+    e.g. `findcontact n/bob abraham` will search for contacts using the 2 distinct keywords `bob` and `abraham`.
+    
+  * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
+    
+  * You should ensure that keywords are not be blank and at least one search parameter should be provided.
+  
+  * Search Parameters:
+  
+    * Name
+  
+      * Contact with a name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
+      
+    * Tag
+  
+      * Contacts containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the contact tag search criteria.
+        
+  * Only contacts matching all search parameters provided will be returned.      
+  
+  Examples:
+  
+   * `findcontact n/john` returns all contacts with the word `john` in their name, e.g. `john` and `john doe`
+  
+   * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` or `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
+   
+   * `findcontact t/friend` returns all contacts with the tag `friend`
+   
+   * `findcontact t/friend coworker` returns all contacts that have the `friend` or `coworker` tag 
+   
+   * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
+ 
+ 
  #### Listing all contacts: `listcontact`
  
  Shows a list of all contacts in the contact list.
  
  Format: `listcontact`
+ 
+ <div markdown="block" class="alert alert-info">
+ 
+ **:information_source: Tip:**<br>
+ 
+ `listcontact` is a useful command that you can use to display the original contact list.
+  e.g. after using the `findcontact` or `sortcontact` commands.
+ 
+ </div>
  
  
  #### Editing a contact: `editcontact`
@@ -350,50 +403,6 @@ Examples:
     `john` and `john@gmail.com` respectively.
     
   * `editcontact 2 n/Bob Abraham t/` Edits the name of the second contact to be `Bob Abraham` and clears all existing tags of the contact.
-
-
-#### Locating contacts: `findcontact`
-
-Finds all contacts that fulfil all the provided search criteria.
-
-Format: `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
-
- * The search is case-insensitive, e.g. `bob` will match `Bob`.
- 
- * You are allowed to provide multiple search keywords for both the name and tag parameter.
- 
- * The order of the search keywords does not matter, e.g. `Bob Abramham` will match `Abraham Bob`.
- 
- * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
-   e.g. `findcontact n/bob abraham` will search for contacts using the 2 distinct keywords `bob` and `abraham`.
-   
- * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
-   
- * You should ensure that keywords are not be blank and at least one search parameter should be provided.
- 
- * Search Parameters:
- 
-   * Name
- 
-     * Contact with a name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
-     
-   * Tag
- 
-     * Contacts containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the contact tag search criteria.
-       
- * Only contacts matching all search parameters provided will be returned.      
- 
- Examples:
- 
-  * `findcontact n/john` returns all contacts with the word `john` in their name, e.g. `john` and `john doe`
- 
-  * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` or `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
-  
-  * `findcontact t/friend` returns all contacts with the tag `friend`
-  
-  * `findcontact t/friend coworker` returns all contacts that have the `friend` or `coworker` tag 
-  
-  * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
 
 
 #### Deleting a contact: `deletecontact`
