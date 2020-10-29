@@ -53,7 +53,7 @@ public class ExerciseCard extends UiPart<Region> {
         name.setText(exercise.getName().fullName);
         date.setText(exercise.getDate().value);
         description.setText(exercise.getDescription().value);
-        calories.setText(exercise.getCalories().isPresent() ? exercise.getCalories().get().value : "None");
+        calories.setText(exercise.getCalories().toString());
         muscles.setText(exercise.getMusclesWorkedDescription() == null
                                 ? "None" : exercise.getMusclesWorkedDescription());
         exercise.getExerciseTags().stream()

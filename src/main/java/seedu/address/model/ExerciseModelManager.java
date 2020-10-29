@@ -71,8 +71,7 @@ public class ExerciseModelManager implements ExerciseModel {
 
     @Override
     public Path getExerciseBookFilePath() {
-        //To change later
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getExerciseBookFilePath();
     }
 
     @Override
@@ -169,7 +168,6 @@ public class ExerciseModelManager implements ExerciseModel {
         }
 
         // state check
-        @SuppressWarnings("unchecked")
         ExerciseModelManager other = (ExerciseModelManager) obj;
         return exerciseBook.equals(other.exerciseBook)
                 && userPrefs.equals(other.userPrefs)

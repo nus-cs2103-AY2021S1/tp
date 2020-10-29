@@ -174,7 +174,7 @@ class UniqueExerciseListTest {
         uniqueExerciseList.add(PUSH_UP);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value),
-                PUSH_UP.getCalories().isPresent() ? Integer.parseInt(PUSH_UP.getCalories().get().value) : 0);
+                Integer.parseInt(PUSH_UP.getCalories().toString()));
     }
 
     @Test
@@ -186,6 +186,6 @@ class UniqueExerciseListTest {
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value), 0);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(SIT_UP.getDate().value));
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(SIT_UP.getDate().value),
-                SIT_UP.getCalories().isPresent() ? Integer.parseInt(SIT_UP.getCalories().get().value) : 0);
+                Integer.parseInt(SIT_UP.getCalories().toString()));
     }
 }
