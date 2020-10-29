@@ -48,7 +48,7 @@ public class ArgumentTokenizer {
     /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
-     * @return           List of zero-based prefix positions in the given arguments string
+     * @return List of zero-based prefix positions in the given arguments string
      */
     private List<PrefixPosition> findAllPrefixPositions() throws ParseException {
         return Arrays.stream(prefixes)
@@ -69,7 +69,6 @@ public class ArgumentTokenizer {
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
         }
-
         return positions;
     }
 
@@ -128,7 +127,7 @@ public class ArgumentTokenizer {
      * {@code argsString}.
      *
      * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @return ArgumentMultimap object that maps prefixes to their arguments
      */
     private ArgumentMultimap extractArguments(List<PrefixPosition> prefixPositions) {
 
@@ -152,7 +151,6 @@ public class ArgumentTokenizer {
                     prefixPositions.get(i), prefixPositions.get(i + 1));
             argMultimap.put(prefix, prefixArgument);
         }
-
         return argMultimap;
     }
 

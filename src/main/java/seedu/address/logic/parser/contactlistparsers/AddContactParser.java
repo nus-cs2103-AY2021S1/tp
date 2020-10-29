@@ -23,14 +23,14 @@ import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddContactCommand object.
  */
 public class AddContactParser implements Parser<AddContactCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the AddContactCommand
+     * and returns an AddContactCommand object for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public AddContactCommand parse(String args) throws ParseException {
         ArgumentTokenizer tokenizer =
@@ -42,12 +42,17 @@ public class AddContactParser implements Parser<AddContactCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }
 
+        Contact contact;
         ContactName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Contact contact = new Contact(name, email, telegram, tagList);
+        if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
+            Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
+            contact = new Contact(name, email, telegram, tagList);
+        } else {
+            contact = new Contact(name, email, tagList);
+        }
 
         return new AddContactCommand(contact);
     }

@@ -49,7 +49,13 @@ public class JsonAdaptedContact {
     public JsonAdaptedContact(Contact source) {
         name = source.getName().fullName;
         email = source.getEmail().value;
-        telegram = source.getTelegramUsername().telegramUsername;
+
+        if (source.getTelegram().isPresent()) {
+            telegram = source.getTelegram().get().telegramUsername;
+        } else {
+            telegram = null;
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -61,10 +67,11 @@ public class JsonAdaptedContact {
      * @throws IllegalValueException if there were any data constraints violated in the adapted contact.
      */
     public Contact toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> contactTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            contactTags.add(tag.toModelType());
         }
+        final Set<Tag> modelTags = new HashSet<>(contactTags);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ContactName.class.getSimpleName()));
@@ -83,15 +90,14 @@ public class JsonAdaptedContact {
         final Email modelEmail = new Email(email);
 
         if (telegram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Telegram.class.getSimpleName()));
+            return new Contact(modelName, modelEmail, modelTags);
         }
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
+
         final Telegram modelTelegram = new Telegram(telegram);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Contact(modelName, modelEmail, modelTelegram, modelTags);
     }
 
