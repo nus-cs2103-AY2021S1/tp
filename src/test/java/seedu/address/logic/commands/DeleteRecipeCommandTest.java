@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyRecipeList;
@@ -54,8 +55,9 @@ public class DeleteRecipeCommandTest {
     public void execute_recipeNotFound() {
         DeleteRecipeCommand drc = new DeleteRecipeCommand("Cake", Index.fromOneBased(1));
         // Cake does not exist in recipe list
-        assertThrows(CommandException.class, DeleteRecipeCommand.MESSAGE_RECIPE_NOT_FOUND, (
-        ) -> drc.execute(modelStub));
+        String expectedMessage = String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, "Cake");
+
+        assertThrows(CommandException.class, expectedMessage, () -> drc.execute(modelStub));
         assertEquals(expectedModelStub, modelStub);
     }
 

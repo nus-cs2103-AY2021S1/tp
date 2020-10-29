@@ -15,6 +15,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -66,18 +67,20 @@ public class DeleteItemCommandIntegrationTest {
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
         String itemName = "Someone's Toenail";
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemName);
-        assertInventoryCommandFailure(deleteItemCommand, model, DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND);
+        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName);
+
+        assertInventoryCommandFailure(deleteItemCommand, model, expectedMessage);
     }
 
     @Test
     public void execute_deleteAnDeletedItem_throwsCommandException() throws Exception {
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteItemCommand dc = new DeleteItemCommand(itemToDelete.getName());
-        dc.execute(model); // Expected to suceed
+        dc.execute(model); // Expected to succeed
         DeleteItemCommand d2 = new DeleteItemCommand(itemToDelete.getName());
+        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemToDelete.getName());
 
         // Delete an item a second time.
-        assertThrows(CommandException.class,
-                DeleteItemCommand.MESSAGE_ITEM_NOT_FOUND, () -> d2.execute(model));
+        assertThrows(CommandException.class, expectedMessage, () -> d2.execute(model));
     }
 }

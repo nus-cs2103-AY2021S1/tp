@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -44,8 +45,7 @@ public class EditItemCommand extends Command {
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the item list.";
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list.";
+    public static final String MESSAGE_DUPLICATE_ITEM = "Item to edit to already exists in the item list.";
     public static final String MESSAGE_NO_ORIGINAL_ITEM = "Original item name must be present!";
 
     private final String itemName;
@@ -71,14 +71,10 @@ public class EditItemCommand extends Command {
 
         // filter to only get matching and not deleted items
         itemList.removeIf(x -> !x.getName().equals(itemName));
-        if (itemList.isEmpty()) {
-            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
-        }
 
-        Item itemToEdit;
-        itemToEdit = itemList.stream()
+        Item itemToEdit = itemList.stream()
                 .findFirst()// Get the first (and only) item matching or else throw Error
-                .orElseThrow(()-> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
 
         Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
 

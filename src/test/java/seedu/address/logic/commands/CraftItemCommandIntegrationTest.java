@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LocationList;
@@ -91,7 +92,7 @@ public class CraftItemCommandIntegrationTest {
     @Test
     public void execute_invalidItem_throwsCommandException() {
         CraftItemCommand cic = new CraftItemCommand("test", new Quantity("1"), Index.fromZeroBased(0));
-        String expectedMessage = CraftItemCommand.MESSAGE_ITEM_NOT_FOUND;
+        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_FOUND, "test");
         assertInventoryCommandFailure(cic, model, expectedMessage);
     }
 
@@ -101,7 +102,7 @@ public class CraftItemCommandIntegrationTest {
     @Test
     public void execute_recipeNotFound_throwsCommandException() {
         CraftItemCommand cic = new CraftItemCommand(BANANA.getName(), new Quantity("1"), Index.fromZeroBased(0));
-        String expectedMessage = CraftItemCommand.MESSAGE_RECIPE_NOT_FOUND;
+        String expectedMessage = String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, BANANA.getName());
         assertInventoryCommandFailure(cic, model, expectedMessage);
     }
 

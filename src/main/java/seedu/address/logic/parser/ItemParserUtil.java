@@ -106,6 +106,7 @@ public class ItemParserUtil {
         requireNonNull(tags);
         return tags.stream()
                 .flatMap(x -> Arrays.stream(x.split(REGEX_ENTRIES)))
+                .map(String::strip)
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }

@@ -4,25 +4,21 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.item.NameMatchesKeywordsPredicate;
+import seedu.address.model.item.TagMatchesKeywordsPredicate;
 import seedu.address.ui.DisplayedInventoryType;
 
-/**
- * Finds and lists all items in item list whose name contains any of the keywords.
- * Keyword matching is case insensitive.
- */
-public class FindItemCommand extends Command {
+public class FindByTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "findt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all items whose tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice, bob, charlie";
+            + "Example: " + COMMAND_WORD + " consumable, delicious";
 
-    private final NameMatchesKeywordsPredicate predicate;
+    private final TagMatchesKeywordsPredicate predicate;
 
-    public FindItemCommand(NameMatchesKeywordsPredicate predicate) {
+    public FindByTagCommand(TagMatchesKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -46,7 +42,7 @@ public class FindItemCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindItemCommand // instanceof handles nulls
-                && predicate.equals(((FindItemCommand) other).predicate)); // state check
+                || (other instanceof FindByTagCommand // instanceof handles nulls
+                && predicate.equals(((FindByTagCommand) other).predicate)); // state check
     }
 }
