@@ -146,21 +146,7 @@ Figure 5: Sequence Diagram of Delete Finance Command.
 
 #### 2.3.4. Model component
 
-This section shows the structure and logic of the `Model` component of NUStorage. It shows a generalised view of the `Model` component within the packages.
 
-Given below is the class diagram of the `Model` component.
-
-![Structure of the Model Component](images/ModelClassDiagram.png)<br>
-Figure 6: Class Diagram of Model Component.
-
-**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/model/Model.java)
-
-The `Model`,
-
-* Stores a `UserPref` object that represents the user’s preferences.
-* Stores Inventory and financeAccount data.
-* Exposes unmodifiable `ObservableList<InventoryRecord>` and `ObservableList<FinanceRecord>` that can be 'observed' e.g. the UI can be bound to the lists so that the UI automatically updates when the data in the lists change.
-* Does __not__ depend on any of the other three components (UI, Logic and Storage).
 
 #### 2.3.5. Storage component
 
