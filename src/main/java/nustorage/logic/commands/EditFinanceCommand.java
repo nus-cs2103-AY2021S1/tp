@@ -54,7 +54,7 @@ public class EditFinanceCommand extends Command {
         List<FinanceRecord> lastShownList = model.getFilteredFinanceList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX);
         }
 
         FinanceRecord financeRecordToEdit = lastShownList.get(index.getZeroBased());
