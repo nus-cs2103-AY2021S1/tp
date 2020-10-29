@@ -9,7 +9,7 @@
 <StackPane alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <VBox alignment="TOP_CENTER" fx:id="statsBox">
         <Label styleClass="stats-header" text="Statistics"/>
-        <Label fx:id="subtitle" styleClass="stats-subtitle"/>
+        <Label fx:id="subtitle" styleClass="stats-subtitle" wrapText="true"/>
 
         <ScrollPane fitToWidth="true"><content>
             <VBox fx:id="recipeList" spacing="7"></VBox>

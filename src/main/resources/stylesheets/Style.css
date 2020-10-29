@@ -268,7 +268,7 @@
 
 .stats-subtitle {
     -fx-font-size: 16px;
-    -fx-padding: 0 0 8px 0;
+    -fx-padding: 0 8px 8px 8px;
 }
 
 .stats-item-container {
