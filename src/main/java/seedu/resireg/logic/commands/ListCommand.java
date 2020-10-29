@@ -1,7 +1,7 @@
 package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
@@ -21,7 +21,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model, Storage storage, CommandHistory history) {
         requireNonNull(model);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new ToggleCommandResult(MESSAGE_SUCCESS, TabView.STUDENTS);
     }
 }
