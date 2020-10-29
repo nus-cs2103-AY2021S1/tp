@@ -59,7 +59,9 @@ public class CommandOutput extends UiPart<Region> {
             }
 
             if (part.isLink()) {
+                texts.add(new Text(" "));
                 texts.add(new ClickableLink(msg, part.getUrl()));
+                texts.add(new Text(" "));
             } else {
                 texts.add(new Text(msg));
             }

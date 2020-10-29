@@ -32,9 +32,9 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
 
         if (helpCommand.isEmpty() || helpCommand.get().isEmpty()) {
-            return CommandResult.message("Refer to the ")
+            return CommandResult.message("Refer to the")
                 .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL, /* newline: */ false)
-                .appending(" for more detailed help", /* newline: */ false);
+                .appending("for more detailed help", /* newline: */ false);
         }
 
         var cmd = helpCommand.get();
@@ -56,7 +56,7 @@ public class HelpCommand extends Command {
         var ret = CommandResult.message("%s: %s", cmdStr, cmdHelp);
         if (cmdUgLink != null) {
             ret = ret
-                .appending("see the ", /* newline: */ true)
+                .appending("see the", /* newline: */ true)
                 .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + cmdUgLink,
                     /* newline: */ false);
         }
