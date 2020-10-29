@@ -24,7 +24,8 @@ public class CalculateCapCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredModuleList();
+        List<Module> lastShownList = model.getFilteredArchivedModuleList();
+        lastShownList.addAll(model.getFilteredUnarchivedModuleList());
         cap = calculateCap(lastShownList);
         return new CommandResult(createSuccessMessage(cap));
     }

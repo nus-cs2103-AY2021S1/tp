@@ -170,6 +170,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered archived module list */
     ObservableList<Module> getFilteredArchivedModuleList();
 
+    /** Returns an unmodifiable view of the filtered module list */
+    ObservableList<Module> getFilteredUnarchivedModuleList();
+
     /**
      * Updates the filter of the filtered archived module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

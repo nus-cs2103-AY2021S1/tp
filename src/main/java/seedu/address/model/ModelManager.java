@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     public static final String MESSAGE_NO_UNDO_HISTORY = "There are no commands to undo";
     public static final String MESSAGE_NO_REDO_HISTORY = "There are no commands to redo";
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private final ModuleList moduleListDisplay;
     private final ModuleList moduleList;
     private final ArchivedModuleList archivedModuleList;
     private final VersionedModuleList versionedModuleList;
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
     private final TodoList todoList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
+    private final FilteredList<Module> filteredModulesDisplay;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Module> filteredArchivedModules;
     private final FilteredList<Contact> filteredContacts;
@@ -44,6 +46,7 @@ public class ModelManager implements Model {
     private int accessPointer;
     private List<Integer> accessSequence;
     private boolean isArchiveModuleOnDisplay = false;
+    private FilteredList<Module> mainList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -57,6 +60,7 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
+        this.moduleListDisplay = new ModuleList(moduleList);
         this.archivedModuleList = new ArchivedModuleList(archivedModuleList);
         this.versionedModuleList = new VersionedModuleList(moduleList);
         this.contactList = new ContactList(contactList);
@@ -64,6 +68,7 @@ public class ModelManager implements Model {
         this.todoList = new TodoList(todoList);
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredModulesDisplay = new FilteredList<Module>(this.moduleListDisplay.getModuleList());
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
         filteredArchivedModules = new FilteredList<Module>(this.archivedModuleList.getModuleList());
         sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
@@ -73,6 +78,7 @@ public class ModelManager implements Model {
         accessPointer = 0;
         accessSequence = new ArrayList<>();
         accessSequence.add(0);
+        mainList = filteredModules;
     }
 
     public ModelManager() {
@@ -119,6 +125,9 @@ public class ModelManager implements Model {
     @Override
     public void setModuleList(ReadOnlyModuleList moduleList) {
         this.moduleList.resetData(moduleList);
+        if (!getModuleListDisplay()) {
+            this.moduleListDisplay.resetData(moduleList);
+        }
     }
 
     @Override
@@ -135,19 +144,27 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         moduleList.removeModule(target);
+        if (!getModuleListDisplay()) {
+            moduleListDisplay.removeModule(target);
+        }
     }
 
     @Override
     public void addModule(Module module) {
         moduleList.addModule(module);
+        if (!getModuleListDisplay()) {
+            moduleListDisplay.addModule(module);
+        }
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
         moduleList.setModule(target, editedModule);
+        if (!getModuleListDisplay()) {
+            moduleListDisplay.setModule(target, editedModule);
+        }
     }
 
     @Override
@@ -187,6 +204,9 @@ public class ModelManager implements Model {
     @Override
     public void setArchivedModuleList(ReadOnlyModuleList archivedModuleList) {
         this.archivedModuleList.resetData(archivedModuleList);
+        if (getModuleListDisplay()) {
+            this.moduleListDisplay.resetData(archivedModuleList);
+        }
     }
 
     @Override
@@ -203,10 +223,16 @@ public class ModelManager implements Model {
     @Override
     public void deleteArchivedModule(Module target) {
         archivedModuleList.removeModule(target);
+        if (getModuleListDisplay()) {
+            this.moduleListDisplay.removeModule(target);
+        }
     }
     @Override
     public void addArchivedModule(Module module) {
         archivedModuleList.addModule(module);
+        if (getModuleListDisplay()) {
+            this.moduleListDisplay.addModule(module);
+        }
         updateFilteredArchivedModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
@@ -214,6 +240,9 @@ public class ModelManager implements Model {
     public void setArchivedModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
         archivedModuleList.setModule(target, editedModule);
+        if (getModuleListDisplay()) {
+            this.moduleListDisplay.setModule(target, editedModule);
+        }
     }
 
     @Override
@@ -230,11 +259,13 @@ public class ModelManager implements Model {
     @Override
     public void displayArchivedModules() {
         isArchiveModuleOnDisplay = true;
-        this.moduleList.resetData(this.archivedModuleList);
+        this.moduleListDisplay.resetData(archivedModuleList);
+        //mainList = filteredArchivedModules;
     }
     @Override
     public void displayNonArchivedModules() {
         isArchiveModuleOnDisplay = false;
+        this.moduleListDisplay.resetData(moduleList);
     }
     //=========== Contact List ================================================================================
 
@@ -436,13 +467,14 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        return filteredModules;
+        return filteredModulesDisplay;
     }
 
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredModules.setPredicate(predicate);
+        //filteredModules.setPredicate(predicate);
+        filteredModulesDisplay.setPredicate(predicate);
     }
 
     /**
@@ -458,6 +490,17 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredArchivedModules.setPredicate(predicate);
     }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Module> getFilteredUnarchivedModuleList() {
+        return filteredModules;
+    }
+
+
 
     /**
      * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
