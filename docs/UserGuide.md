@@ -283,7 +283,7 @@ Deletes the document specified with `DOC_NO` from the list of documents.
 
 Format: `delete doc DOC_NO`
 
-Example: `delete doc 0`
+Example: `delete doc 1`
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
@@ -291,7 +291,7 @@ Deletes the suspect specified with `SUSPECT_NO` from the list of suspects.
 
 Format: `delete suspect SUSPECT_NO`
 
-Example: `delete suspect 0`
+Example: `delete suspect 1`
 
 #### Delete victim: `delete victim VICTIM_NO`
 
@@ -299,7 +299,7 @@ Deletes the victim specified with `VICTIM_NO` from the list of victims.
 
 Format: `delete victim VICTIM_NO`
 
-Example: `delete victim 0`
+Example: `delete victim 1`
 
 
 #### Delete witness: `delete witness WITNESS_NO`
@@ -308,7 +308,7 @@ Deletes the witness specified with `WITNESS_NO` from the list of witnesses.
 
 Format: `delete witness WITNESS_NO`
 
-Example: `delete witness 0`
+Example: `delete witness 1`
 
 #### Return to main page: `return`
 
