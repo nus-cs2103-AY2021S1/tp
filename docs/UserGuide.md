@@ -326,27 +326,49 @@ User data automatically saves when there is a change in data
 
 #### Main Page Commands
 
-|Command            | Format                                | Association   |
-| ----------------- | ------------------------------------- | ------------- |
-|**case**           | `add case t:TITLE [s:STATUS]` | Investigation |
-|**list**           | `list case`                           | Investigation |
-|**delete**         | `delete case CASE_NO`                 | Investigation |
-|**open**           | `open case CASE_NO`                   | Investigation |
-|**exit**           | `exit`                                | General       |
+|Command            | Format                                |
+| ----------------- | ------------------------------------- |
+|**list case**      | `list case`                           |
+|**list archive**   | `list archive`                        |
+|**add case**       | `add case t:TITLE [s:STATUS]`         |
+|**open case**      | `open case CASE_NO`                   |
+|**delete case**    | `delete case CASE_NO`                 |
+|**archive**        | `archive case CASE_NO`                |
+|**unarchive**      | `unarchive case CASE_NO`              |
+|**find**           | `find KEYWORD [MORE KEYWORDS]`        |
+|**exit**           | `exit`                                |
 
 #### Investigation Page Commands
 
-| Command           | Format                        | Association   |
-| ----------------- | ----------------------------- | ------------- |
-|**desc**           | `add desc d:DESC`             | Investigation |
-|**document**       | `add doc t:TITLE r:FILE_NAME` | Document      |
-|**delete doc**     | `delete doc DOC_NO`           | Document      |
-|**open doc**       | `open doc DOC_NO`             | Document      |
-|**suspect**        | `add suspect n:NAME`          | Suspect       |
-|**delete suspect** | `delete suspect SUSPECT_NO`   | Suspect       |
-|**victim**         | `add victim n:NAME`           | Victim        |
-|**delete victim**  | `delete victim VICTIM_NO`     | Victim        |
-|**witness**        | `add witness n:NAME`          | Witness       |
-|**delete witness** | `delete witness WITNESS_NO`   | Witness       |
-|**return**         | `return`                      | General       |
-|**exit**           | `exit`                        | General       |
+| Command           | Format                                                                            |
+| ----------------- | ----------------------------------------------------------------------------------|
+|**list document**  | `list doc`                                                                        |
+|**list suspect**   | `list suspect`                                                                    |
+|**list victim**    | `list victim`                                                                     |
+|**list witness**   | `list witness`                                                                    |
+|**add desc**       | `add desc d:DESC`                                                                 |
+|**add document**   | `add doc n:TITLE r:FILE_NAME`                                                     |
+|**add suspect**    | `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                     |
+|**add victim**     | `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                      |
+|**add witness**    | `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`                     |
+|**open doc**       | `open doc DOC_NO`                                                                 |
+|**edit title**     | `edit title t:TITLE`                                                              |
+|**edit status**    | `edit status s:STATUS`                                                            |
+|**edit document**  | `edit doc DOC_NO [n:TITLE] [r:FILE_NAME]`                                         |
+|**edit suspect**   | `edit suspect SUSPECT_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`     |
+|**edit victim**    | `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`       |
+|**edit witness**   | `edit witness WITNESS_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`     |
+|**delete doc**     | `delete doc DOC_NO`                                                               |
+|**delete suspect** | `delete suspect SUSPECT_NO`                                                       |
+|**delete victim**  | `delete victim VICTIM_NO`                                                         |
+|**delete witness** | `delete witness WITNESS_NO`                                                       |
+|**return**         | `return`                                                                          |
+|**exit**           | `exit`                                                                            |
+
+#### Both Pages
+
+|Command            | Format                        |
+| ----------------- | ------------------------------|
+|**undo**           | `undo`                        |
+|**redo**           | `redo`                        |
+|**exit**           | `exit`                        |
