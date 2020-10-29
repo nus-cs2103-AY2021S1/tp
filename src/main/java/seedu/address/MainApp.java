@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Version;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.util.ConfigUtil;
+import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
@@ -113,13 +114,15 @@ public class MainApp extends Application {
             storage.saveAddressBook(initialData);
         } catch (IOException e) {
             logger.warning("Something unexpected occurred!");
-            assert model != null;
+            assert false;
         }
         try {
-            storage.savePresetManager(new ArrayList<>(new ArrayList<>()));
+            if (!FileUtil.isFileExists(storage.getPresetManagerFilePath())) {
+                storage.savePresetManager(new ArrayList<>(new ArrayList<>()));
+            };
         } catch (IOException e) {
             logger.warning("Something unexpected occurred!");
-            assert model != null;
+            assert false;
         }
 
         return new ModelManager(initialData, userPrefs, initialMenuManagers, initialOrderManager);
