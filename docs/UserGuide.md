@@ -105,9 +105,9 @@ You can delete assignments from your assignment list by specifying the assignmen
 
 You can delete **one or more** assignments at a time. Here is an example with steps to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command line as per their indexes that are circled and labelled in the figure.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command box as per their indexes that are circled and labelled in the figure.
 
-DIAGRAM
+![Ui](images/Ui.png)
 
 2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
 3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
