@@ -53,8 +53,9 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         if (contains(toAdd)) {
             // if it exists, then replace it with the new entry
             setSalesEntry(toAdd);
+        } else {
+            internalList.add(toAdd);
         }
-        internalList.add(toAdd);
     }
 
     /**
@@ -75,7 +76,14 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         internalList.set(index, newEntry); // replace with the new entry
     }
 
+    /**
+     * Finds the SalesRecordEntry in the list by its Drink type.
+     *
+     * @param drink the drink type to search for
+     * @return the SalesRecordEntry that contains that Drink type
+     */
     public SalesRecordEntry getSalesEntry(Drink drink) {
+        requireNonNull(drink);
         int index = indexOf(drink);
         if (index == -1) {
             throw new SalesRecordNotFoundException();
@@ -117,10 +125,17 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         }
     }
 
+    /**
+     * Returns true if the list is empty.
+     */
     public boolean isEmpty() {
         return internalList.isEmpty();
     }
 
+    /**
+     * Returns the number of elements in the list.
+     * @return
+     */
     public int size() {
         return internalList.size();
     }

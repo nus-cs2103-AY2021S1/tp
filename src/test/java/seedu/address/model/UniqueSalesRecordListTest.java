@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -18,7 +19,7 @@ import seedu.address.model.sales.exception.SalesRecordNotFoundException;
 public class UniqueSalesRecordListTest {
 
     private final UniqueSalesRecordList uniqueSalesRecordList = new UniqueSalesRecordList();
-    private final SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBBT, 100);
+    private final SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBM, 100);
 
     @Test
     public void contains_nullSalesRecordEntry_throwsNullPointerException() {
@@ -74,7 +75,18 @@ public class UniqueSalesRecordListTest {
         SalesRecordEntry entryOfSameDrink =
                 new SalesRecordEntry(entry.getDrink(), entry.getNumberSold() - 3);
         uniqueSalesRecordList.setSalesEntry(entryOfSameDrink);
+        assertNotEquals(entry, uniqueSalesRecordList.getSalesEntry(entryOfSameDrink.getDrink()));
         assertEquals(entryOfSameDrink, uniqueSalesRecordList.getSalesEntry(entryOfSameDrink.getDrink()));
+    }
+
+    @Test
+    public void getSalesEntry_nullDrink_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, ()-> uniqueSalesRecordList.getSalesEntry(null));
+    }
+
+    @Test
+    public void getSalesEntry_salesRecordEntryDoesNotExist_throwsSalesRecordNotFoundException() {
+        assertThrows(SalesRecordNotFoundException.class, () -> uniqueSalesRecordList.getSalesEntry(Drink.BSBM));
     }
 
     @Test
@@ -161,6 +173,25 @@ public class UniqueSalesRecordListTest {
         UniqueSalesRecordList expectedUniqueSalesRecordList = new UniqueSalesRecordList();
         expectedUniqueSalesRecordList.add(newEntry);
         assertEquals(expectedUniqueSalesRecordList, uniqueSalesRecordList);
+    }
+
+    @Test
+    public void sort_correctlySortsInDescendingOrder() {
+        SalesRecordEntry entryTwo = new SalesRecordEntry(Drink.BSBBT, 30);
+        SalesRecordEntry entryThree = new SalesRecordEntry(Drink.BSBGT, 70);
+
+        uniqueSalesRecordList.add(entry);
+        uniqueSalesRecordList.add(entryTwo);
+        uniqueSalesRecordList.add(entryThree);
+
+        uniqueSalesRecordList.sort();
+
+        UniqueSalesRecordList sortedList = new UniqueSalesRecordList();
+        sortedList.add(entry);
+        sortedList.add(entryThree);
+        sortedList.add(entryTwo);
+
+        assertEquals(sortedList, uniqueSalesRecordList);
     }
 
     @Test

@@ -117,7 +117,7 @@ public class SalesBook implements ReadOnlySalesBook {
 
     /**
      * Returns an unmodifiable view of the list of sales records.
-     * This map will not contain any duplicate drink items.
+     * This list will not contain any duplicate sales records.
      */
     @Override
     public ObservableList<SalesRecordEntry> getSalesRecord() {
