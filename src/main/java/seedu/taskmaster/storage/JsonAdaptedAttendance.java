@@ -69,7 +69,6 @@ class JsonAdaptedAttendance {
 
         final AttendanceType modelAttendanceType = AttendanceType.valueOf(attendanceType);
 
-        // TODO: implement
         final ClassParticipation classParticipation = new ClassParticipation();
 
         return new StudentRecord(placeholderName, modelNusnetId, modelAttendanceType, classParticipation);
