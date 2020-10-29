@@ -21,10 +21,12 @@ import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 // import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
@@ -249,6 +251,46 @@ public class AddModuleCommandTest {
 
         @Override
         public void updateSortedTodoList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventList(ReadOnlyEventList eventList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEventList getEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

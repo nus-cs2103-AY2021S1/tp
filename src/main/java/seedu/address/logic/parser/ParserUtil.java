@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SEARCH_KEYWORD;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,6 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
@@ -324,5 +328,21 @@ public class ParserUtil {
         default:
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
+    }
+    ///////////////////// Scheduler /////////////////////////////
+
+    public static EventName parseEventName(String name) {
+        return new EventName(name);
+    }
+
+    /**
+     * Parses the input string and creates an EventTime object based on that.
+     * @param date string to be parsed.
+     * @return EventTime.
+     */
+    public static EventTime parseEventTime(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+        return new EventTime(localDateTime);
     }
 }

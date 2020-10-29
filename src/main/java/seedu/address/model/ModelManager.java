@@ -16,6 +16,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
@@ -32,11 +33,13 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final VersionedContactList versionedContactList;
     private final TodoList todoList;
+    private final EventList eventList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Event> filteredEvents;
     private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
     private int accessPointer;
@@ -46,7 +49,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyContactList contactList, ReadOnlyTodoList todoList,
-                        ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyEventList eventList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(moduleList, todoList, userPrefs);
 
@@ -58,11 +61,13 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
+        this.eventList = new EventList(eventList);
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
         sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
         filteredContacts = new FilteredList<Contact>(sortedContacts);
+        filteredEvents = new FilteredList<Event>(this.eventList.getEventList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
         filteredTasks = new FilteredList<Task>(sortedTasks);
         accessPointer = 0;
@@ -71,7 +76,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new ModuleList(), new ContactList(), new TodoList(), new UserPrefs());
+        this(new ModuleList(), new ContactList(), new TodoList(), new EventList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -253,7 +258,7 @@ public class ModelManager implements Model {
         //accessSequence.add(2);
     }
 
-    //=========== Todo List =============================================================
+    //=========== Todo List =============================================================//
 
     @Override
     public void setTodoList(ReadOnlyTodoList todoList) {
@@ -419,6 +424,16 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        filteredEvents.setPredicate(predicate);
+    }
+
     //=========== Sorted List Accessors =============================================================
 
     /**
@@ -450,27 +465,39 @@ public class ModelManager implements Model {
         // No assertion here because comparator value can be null to reset ordering.
         sortedTasks.setComparator(comparator);
     }
+    // ==================================== Scehduler =============================================== //
+    @Override
+    public void setEventList(ReadOnlyEventList eventList) {
+        this.eventList.resetData(eventList);
+    }
 
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return moduleList.equals(other.moduleList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules)
-                && filteredContacts.equals(other.filteredContacts)
-                && filteredTasks.equals(other.filteredTasks)
-                && sortedTasks.equals(other.sortedTasks);
+    public ReadOnlyEventList getEventList() {
+        return this.eventList;
     }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        return this.eventList.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        this.eventList.removeEvent(target);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        this.eventList.addEvent(event);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        this.eventList.setEvent(target, editedEvent);
+    }
+
+    // TODO: Yet to be implemented
+    //@Override
+    //public void commitEventList() {}
 
 }
