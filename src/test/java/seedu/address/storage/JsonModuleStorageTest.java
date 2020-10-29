@@ -16,11 +16,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Trackr;
-import seedu.address.model.module.Module;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.Trackr;
+import seedu.address.model.module.Module;
 
 public class JsonModuleStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleStorageTest");
