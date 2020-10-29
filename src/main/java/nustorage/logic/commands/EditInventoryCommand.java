@@ -1,7 +1,6 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
@@ -29,8 +28,7 @@ public class EditInventoryCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
+            + "[" + PREFIX_ITEM_DESCRIPTION + "ITEM_NAME] ";
 
     public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Inventory record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
