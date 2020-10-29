@@ -33,9 +33,9 @@ public class EditModuleCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_MODULE + "MODULE "
-            + "[" + PREFIX_NAME + "NEW_MODULENAME] "
+            + "[" + PREFIX_NAME + "NEW_MODULE_NAME] "
             + "[" + PREFIX_PARTICIPANT + "NEW_MEMBERS]...\n"
-            + "Example: " + COMMAND_WORD + " CS2103 n/CS2103T ";
+            + "Example: " + COMMAND_WORD + " m/CS2103 n/CS2103T ";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
