@@ -3,7 +3,10 @@ package seedu.address.model.preset;
 import java.util.List;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
+
+import static java.util.Objects.requireNonNull;
 
 public class Preset {
     public static final String MESSAGE_DUPLICATE_ORDERITEM = "Order contains duplicate orderItems.";
@@ -41,8 +44,24 @@ public class Preset {
         orderItems.add(orderItem);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Preset)) {
+            return false;
+        }
+
+       Preset otherPreset = (Preset) other;
+        return otherPreset.getName().equals(getName())
+                && otherPreset.getOrderItems().equals(getOrderItems());
+    }
+
     /////// Methods below are not in use
     public boolean contains(OrderItem orderItem) {
+        requireNonNull(orderItem);
         return this.orderItems.contains(orderItem);
     }
 
