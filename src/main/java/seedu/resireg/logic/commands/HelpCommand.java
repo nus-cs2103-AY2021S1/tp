@@ -25,7 +25,8 @@ public class HelpCommand extends Command {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Cannot show help for %s: " + Messages.MESSAGE_UNKNOWN_COMMAND;
 
-    // weird getter system is necessary due to cyclic dependency between CommandWordEnum and HelpCommand
+    // weird getter system (rather than making these final static constants)
+    // is necessary due to cyclic dependency between CommandWordEnum and HelpCommand
     // TODO explain this better
     private static Map<String, Help> commandWordToHelpMap;
     private static String generalHelpMessage;
@@ -44,13 +45,13 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
+        Map<String, String> aliasMap = AliasUtils.makeAliasToCommandWordMap(model.getCommandWordAliases());
+        inputCommandWord = aliasMap.getOrDefault(inputCommandWord, inputCommandWord);
 
         if (inputCommandWord.isBlank()) {
             return new CommandResult(getGeneralHelpMessage());
         }
 
-        Map<String, String> aliasMap = AliasUtils.makeAliasToCommandWordMap(model.getCommandWordAliases());
-        inputCommandWord = aliasMap.getOrDefault(inputCommandWord, inputCommandWord);
         if (getCommandWordToHelpMap().containsKey(inputCommandWord)) {
             return new CommandResult(getCommandWordToHelpMap().get(inputCommandWord).getFullMessage());
         }

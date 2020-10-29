@@ -372,6 +372,52 @@ a reference to current state.
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Help command
+
+The help command allows the user to view the help message for any command in the application based on the command word. The command word refers to the text that the user enters to execute the application eg. `delete-student` for the command to delete a student, `help` for the help command. 
+
+#### Implementation
+
+The help command is implemented in the `HelpCommand` class and facilitated by the `Help` class and `CommandWordEnum`.
+
+`CommandWordEnum` is an enumeration class where each enumeration object stores the command word, `Help` object and `Parser` associated with a command.
+
+`HelpCommand` uses `CommandWordEnum` to generate a mapping of each command word to its `Help` object, which is stored in a static variable, the `commandWordToHelp` map.
+
+The steps below describes how the help command works:
+
+1. The user enters a command in the format `help <input>`
+1. `LogicManager` calls the appropriate classes, as described under the implementation of the `logic` component, to create an instance of `HelpCommand` with the given `input`.
+1. `HelpCommand` obtains a list of the current aliases currently registered using `Model#getCommandWordAliases`. This list of aliases is transformed into a map mapping the alias to the command word using `AliasUtils#makeAliasToCommandWordMap`
+1. `HelpCommand` uses the alias map to check if the input is an alias, and if it is, maps it to its proper command word.
+1. `HelpCommand` checks if the input is blank. If it is, a general help message describing all the commands is shown to the user. This general help message is generated using the `commandWordToHelp` map.
+1. Otherwise, `HelpCommand` checks if the input is a valid command word. If it is, the command retrieves the `Help` object for the command from the `commandWordToHelp` map and returns a message describing usage of the command using `Help#getFullMessage`.
+1. Otherwise, this means that the input is a non-empty string which is not a valid command word, so an error message informing the user that there is no such command is shown.
+
+The sequence diagram below summarizes these steps. Self calls have been omitted for clarity:
+
+![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
+
+
+###### Design considerations
+
+**Aspect: where to store the mapping of command words to Help**
+
+Having started with [AddressBook 3's implementation](https://github.com/se-edu/addressbook-level3/blob/master/src/main/java/seedu/address/logic/parser/AddressBookParser.java) of the `AddressBookParser` (renamed `ResiRegParser` in our project), which stored the mapping from each command word to its respective CommandParser, the requirements of the HelpCommand was a major reason why we chose to shift the mapping into the `CommandWordEnum` instead.
+
+HelpCommand basically requires a mapping of each command to its Help object. To do this, HelpCommand needs to be able to access some kind of list or other data structure of all commands available in the application, with information about the command word and Help object for each command. These are some of the options we considered on where to store this list:
+
+- **Alternative 1:** Within the HelpCommand class, for example as a map of command words to their Help. When adding a new command, developers add another entry to the map.
+    - Pros: simple to implement
+    - Cons: it is easy for developers to forget to modify the map in the HelpCommand class when adding new commands. This mistake can easily go unnoticed as the command will still if the command word has been correctly associated with its parser.
+- **Alternative 2:** Have a data structure inside ResiRegParser which maps each command word to both its Help and Parser. ResiRegParser uses the mapping from command word to Parser, while the mapping from command word to Help is exposed to HelpCommand via a public method or attribute.
+    - Pros: ensures that the HelpCommand is always up to date, as developers must bind the command word to both its Help and Parser.
+    - Cons: violates the single responsibility principle. ResiRegParser does not need to know about the Help for each command to parse commands.
+- **Alternative 3 (current choice):** Have a separate class (`CommandWordEnum`) containing a data structure that maps each command word to its Parser and Help. Developers would modify this class when adding commands. HelpCommand and ResiRegParser can use the `CommandWordEnum` to generate a mapping of each command word to its Parser or Help respectively.
+   - Pros: 
+       - Similar to alternative 2, this ensures the HelpCommand is always up to date as developers must bind the command word to both its Help and Parser. 
+       - Does not violate the single responsibility principle like alternative 2. Both ResiRegParser and HelpCommand only store the information they need. 
+
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
