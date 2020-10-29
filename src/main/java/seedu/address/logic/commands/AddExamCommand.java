@@ -25,7 +25,7 @@ public class AddExamCommand extends ExamCommand {
 
     public static final String MESSAGE_USAGE = ExamCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds an exam to a student.\n\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_EXAM_NAME + "EXAM_NAME "
             + PREFIX_EXAM_DATE + "EXAM_DATE "
             + PREFIX_SCORE + "SCORE \n\n"

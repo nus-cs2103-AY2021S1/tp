@@ -12,10 +12,10 @@ public class ToggleStudentCardCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_toggle_success() {
         CommandResult expectedCommandResult =
                 new CommandResult(ToggleStudentCardCommand.MESSAGE_TOGGLE_SUCCESS, false,
-                        false, true);
+                        false, true, null);
         assertCommandSuccess(new ToggleStudentCardCommand(), model, expectedCommandResult, expectedModel);
     }
 }

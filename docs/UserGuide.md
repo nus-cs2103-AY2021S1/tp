@@ -30,6 +30,7 @@
     + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student---exam---by--hogan-)
         + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student---exam-add-)
         + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student---exam-delete-)
+        + [3.3.2.3 Viewing exam statistics of a student: `exam stats`](#3323-viewing-exam-statistics-of-a-student---exam-stats-)
     + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student---attendance---by--vaishak-)
         + [3.3.2.1 Adding an attendance record to a student: `attendance add`](#3321-adding-an-attendance-record-to-a-student---attendance-add-)
         + [3.3.2.2 Deleting an attendance record for a student: `attendance delete`](#3322-deleting-an-attendance-record-for-a-student---attendance-delete-)
@@ -403,6 +404,21 @@ Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
+
+##### 3.3.2.3 Viewing exam statistics of a student: `exam stats`
+
+To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded examinations.
+
+Format: `exam stats STUDENT_INDEX`
+
+* Views exam statistics of the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed students list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
+* `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
 #### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
 

@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.DeleteExamCommand;
 import seedu.address.logic.commands.ExamCommand;
+import seedu.address.logic.commands.ExamStatsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
@@ -55,6 +56,9 @@ public class ExamCommandParser implements Parser<ExamCommand> {
 
         case DeleteExamCommand.COMMAND_WORD:
             return parseDelExamCommand(arguments);
+
+        case ExamStatsCommand.COMMAND_WORD:
+            return parseExamStatsCommand(arguments);
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -120,6 +124,16 @@ public class ExamCommandParser implements Parser<ExamCommand> {
         }
 
         return new DeleteExamCommand(studentIndex, examIndex);
+    }
+
+    private ExamStatsCommand parseExamStatsCommand(String args) throws ParseException {
+        try {
+            Index index = ParserUtil.parseIndex(args);
+            return new ExamStatsCommand(index);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ExamStatsCommand.MESSAGE_USAGE), pe);
+        }
     }
     //@@author
 }

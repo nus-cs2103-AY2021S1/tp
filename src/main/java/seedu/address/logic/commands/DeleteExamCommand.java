@@ -24,12 +24,12 @@ public class DeleteExamCommand extends ExamCommand {
 
     public static final String MESSAGE_USAGE = ExamCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Deletes an exam from a student.\n\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_EXAM_INDEX
-            + "EXAM_INDEX (must be a positive integer)\n"
+            + "EXAM_INDEX (must be a positive integer) \n\n"
             + "Example: "
             + ExamCommand.COMMAND_WORD
-            + COMMAND_WORD + " 2 "
+            + " " + COMMAND_WORD + " 2 "
             + PREFIX_EXAM_INDEX
             + "1";
 
