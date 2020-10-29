@@ -27,7 +27,6 @@ public class Name {
      * @param name A valid name.
      */
     public Name(String name) {
-        assert true;
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
