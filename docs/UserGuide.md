@@ -95,7 +95,7 @@ Views a module stored in the system
 
   Example:
   `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
-   for a lesson `lecture`.
+   in the displayed module list for the lesson `lecture`.
   
 
 #### Deleting a module: `deletemodule`
@@ -178,12 +178,65 @@ and priority to `HIGH`.
 
 #### Locating tasks: `findtask`
 
-Finds all the tasks that fulfil the search criteria provided.
+Finds all tasks that fulfil all the provided search criteria.
 
-Format: `findtask` 
+Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]` 
 
-Examples:
-* `findtask` n
+ * The search is case-insensitive, e.g. `lab` will match `Lab`.
+ 
+ * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
+   e.g. `findtask n/lab quiz` will search for tasks using the 2 distinct keywords `lab` and `quiz`.
+   
+ * You should ensure that search arguments are not blank and at least one search parameter should be provided.
+ 
+ * Search Parameters:
+ 
+   * Task Name
+ 
+     * You are allowed to provide multiple search keywords.
+     
+     * Tasks with their name matching at least one of the name keywords provided will be considered to have fulfilled the task name search criteria.
+     
+     * The order of the search keywords does not matter, e.g. `Lab Quiz` will match `Quiz Lab`.
+     
+     * Only full words will be matched, e.g. `lab` will match `lab assignment` but not `labs`.
+     
+   * Date
+   
+     * Your search date should be of the format: `YYYY-MM-DD`
+     
+     * You should only provide one search date
+     
+     * Tasks with their date matching the search date exactly are considered to have fulfilled the task date search criteria.
+     
+   * Priority
+   
+     * Your search priority should be one of the following: `highest`, `high`, `normal`, `low` (case-insensitive). 
+       No other search priority will be allowed.
+       
+     * You should only provide one search priority.
+     
+     * Tasks with their priority matching the search priority exactly are considered to have fulfilled the task priority search criteria.
+     
+   * Tag
+ 
+     * You are allowed to provide multiple tag keywords.
+     
+     * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
+       
+ * Only tasks matching all search parameters provided will be returned.      
+ 
+ Examples:
+ 
+  * `findtask n/lab` returns all tasks with the word `lab` in their name
+ 
+  * `findtask d/2020-10-10 p/HIGHEST` returns all tasks with the date `2020-10-10` **and** `highest` priority
+  
+  * `findtask t/difficult online` returns all tasks that have the `difficult` or `online` tag 
+  
+  * `findtask n/lab quiz t/difficult` returns all tasks with their name containing **either** 
+     the word `lab` or  `quiz` **and** has `difficult` as one of its tags
+
 
 #### Marking a task as completed: `completetask`
 
@@ -224,14 +277,6 @@ Examples:
 * `sorrtask priority` sorts the task from lowest to highest priority.
 * `sorrtask r priority` sorts the task from the highest to the lowest.
 
-#### Filtering tasks: `filtertask`
-
-Filters the list based on a criterion.
-
-Format: `filtertask` + **_`[CRITERION]`_** + **_`[KEYWORD]`_**
-
-Examples:
-* `filtertask priority high` shows only tasks that has high priority.
 
 #### Archiving a task: `archivetask`
 
@@ -307,13 +352,15 @@ Examples:
   * `editcontact 2 n/Bob Abraham t/` Edits the name of the second contact to be `Bob Abraham` and clears all existing tags of the contact.
 
 
-#### Locating a contact: `findcontact`
+#### Locating contacts: `findcontact`
 
 Finds all contacts that fulfil all the provided search criteria.
 
 Format: `findocontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
 
  * The search is case-insensitive, e.g. `bob` will match `Bob`.
+ 
+ * You are allowed to provide multiple search keywords for both the name and tag parameter.
  
  * The order of the search keywords does not matter, e.g. `Bob Abramham` will match `Abraham Bob`.
  
@@ -328,19 +375,19 @@ Format: `findocontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
  
    * Name
  
-     * Contacts matching at least one of the name keywords provided will be returned.
+     * Contact with a name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
      
    * Tag
  
-     * Contacts containing tags which match at least one of the tag keywords provided will be returned.
+     * Contacts containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the contact tag search criteria.
        
  * Only contacts matching all search parameters provided will be returned.      
  
  Examples:
  
-  * `fincontact n/john` returns `John` and `John doe`
+  * `findcontact n/john` returns all contacts with the word `john` in their name, e.g. `john` and `john doe`
  
-  * `findcontact n/Bob Abraham` returns `Bob Lim`, `Tommy Abraham`
+  * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` or `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
   
   * `findcontact t/friend` returns all contacts with the tag `friend`
   
