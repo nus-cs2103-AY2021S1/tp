@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant "i:ImportCommand" as ImportCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":Storage" as Storage MODEL_COLOR
+end box
+[-> LogicManager : execute("import in.json")
+activate LogicManager
+
+ref over LogicManager, ImportCommand : Parse Import Command
+
+LogicManager -> ImportCommand : execute()
+activate ImportCommand
+
+ImportCommand -> Storage : readQuickCache()
+activate Storage
+
+Storage -> ImportCommand : readBack
+deactivate Storage
+
+loop over each flashcard in readBack
+ImportCommand -> Model : hasFlashcard(flashcard)
+activate Model
+
+Model -> ImportCommand : hasFlashcard
+deactivate Model
+
+alt !hasFlashcard
+ImportCommand -> Model : addFlashcard(flashcard)
+activate Model
+
+Model -> ImportCommand
+deactivate Model
+end
+
+end
+
+ImportCommand --> LogicManager : result
+deactivate ImportCommand
+ImportCommand -[hidden]-> LogicManager : result
+destroy Storage
+destroy ImportCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+
+@enduml
