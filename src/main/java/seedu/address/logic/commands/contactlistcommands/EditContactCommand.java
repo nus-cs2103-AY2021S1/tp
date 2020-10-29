@@ -102,13 +102,10 @@ public class EditContactCommand extends Command {
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
         Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
 
-        if (editContactDescriptor.getTelegram().isPresent()) {
-            Telegram updatedTelegram = editContactDescriptor
-                    .getTelegram().get();
+        if (contactToEdit.getTelegram().isPresent() || editContactDescriptor.getTelegram().isPresent()) {
+            Telegram updatedTelegram = editContactDescriptor.getTelegram()
+                    .orElseGet(() -> contactToEdit.getTelegram().get());
             editedContact = new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags);
-        } else if (contactToEdit.getTelegram().isPresent()) {
-            Telegram telegram = contactToEdit.getTelegram().get();
-            editedContact = new Contact(updatedName, updatedEmail, telegram, updatedTags);
         } else {
             editedContact = new Contact(updatedName, updatedEmail, updatedTags);
         }
