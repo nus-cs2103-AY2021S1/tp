@@ -92,11 +92,9 @@ public class AddAppointmentCommand extends Command {
                 throw new CommandException(MESSAGE_CONFLICTING_APP);
             }
 
-            //        if (model.getFilteredAppointmentList().contains(toAdd)) {
-            //            throw new CommandException(MESSAGE_CONFLICTING_APP);
-            //        }
-
             model.addAppointment(toAdd);
+            model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD + " for ",
+                toAdd));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
     }

@@ -43,6 +43,7 @@ public class DeleteAppointmentCommand extends Command {
 
         Appointment toDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAppointment(toDelete);
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD + " for ", toDelete));
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 

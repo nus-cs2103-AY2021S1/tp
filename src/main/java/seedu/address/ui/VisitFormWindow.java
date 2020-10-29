@@ -121,8 +121,8 @@ public class VisitFormWindow extends UiPart<Stage> {
         String diagnosisString = diagnosis.getText();
         String commentString = comment.getText();
 
-        SaveVisitCommand saveCommand = new SaveVisitCommand(patientIndex, visitDate, prescriptionString,
-                                                            diagnosisString, commentString, visitIndex);
+        SaveVisitCommand saveCommand = new SaveVisitCommand(patientIndex, visitDate, diagnosisString,
+            prescriptionString, commentString, visitIndex);
 
         CommandResult commandResult = logic.execute(saveCommand);
         this.feedbackMessage = commandResult.getFeedbackToUser();

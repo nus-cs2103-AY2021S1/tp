@@ -12,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 public class SaveVisitCommand extends Command {
     public static final String MESSAGE_SAVE_VISIT_SUCCESS = "Successfully saved visit for the "
@@ -57,13 +58,17 @@ public class SaveVisitCommand extends Command {
         Patient patientEdited;
 
         if (visitIndex != NEW_VISIT) {
+            VisitHistory newVisitHistory = VisitHistory.deepCopyVisitHistory(patientToEdit.getVisitHistory());
+            // Edit existing Visit
             patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getIcNumber(),
-                    patientToEdit.getVisitHistory().editVisit(visitIndex, visit), patientToEdit.getAddress(),
+                    newVisitHistory.editVisit(visitIndex, visit), patientToEdit.getAddress(),
                     patientToEdit.getEmail(), patientToEdit.getProfilePicture(), patientToEdit.getSex(),
                     patientToEdit.getBloodType(), patientToEdit.getAllergies(), patientToEdit.getColorTag());
         } else {
+            // Add new Visit
+            VisitHistory newVisitHistory = VisitHistory.deepCopyVisitHistory(patientToEdit.getVisitHistory());
             patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getIcNumber(),
-                    patientToEdit.getVisitHistory().addVisit(visit), patientToEdit.getAddress(),
+                    newVisitHistory.addVisit(visit), patientToEdit.getAddress(),
                     patientToEdit.getEmail(), patientToEdit.getProfilePicture(), patientToEdit.getSex(),
                     patientToEdit.getBloodType(), patientToEdit.getAllergies(), patientToEdit.getColorTag());
         }
@@ -72,7 +77,8 @@ public class SaveVisitCommand extends Command {
 
         model.setPatient(patientToEdit, patientEdited);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, "Add/Edit visit for the patient:\n",
+            patientEdited));
         return new CommandResult(String.format(MESSAGE_SAVE_VISIT_SUCCESS, patientToEdit));
     }
 
