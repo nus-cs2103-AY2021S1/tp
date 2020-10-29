@@ -17,7 +17,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_AMOUNT = "Amount if not a decimal value.";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount is not a decimal value.";
     public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
     public static final String MESSAGE_INVALID_QUANITY = "Quantity is not a non-zero integer.";
     public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be a positive numerical value.";

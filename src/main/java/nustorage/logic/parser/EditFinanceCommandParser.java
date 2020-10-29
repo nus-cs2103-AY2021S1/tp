@@ -43,7 +43,6 @@ public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
             editFinanceDescriptor.setDatetime(ParserUtil.parseDatetime(
                     argMultimap.getValue(PREFIX_DATETIME).get()));
         }
-
         if (!editFinanceDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditFinanceCommand.MESSAGE_NOT_EDITED);
         }
