@@ -29,7 +29,8 @@ public class EditFinanceCommand extends Command {
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
-    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_AMT_MISSING = "'amt/' tag must be used.";
+    public static final String MESSAGE_EDIT_FINANCE_SUCCESS = "Edited finance record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -67,7 +68,7 @@ public class EditFinanceCommand extends Command {
 
         model.setFinanceRecord(financeRecordToEdit, editedFinanceRecord);
         model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
-        return new CommandResult(String.format(MESSAGE_EDIT_INVENTORY_SUCCESS, editedFinanceRecord));
+        return new CommandResult(String.format(MESSAGE_EDIT_FINANCE_SUCCESS, editedFinanceRecord));
     }
 
     /**
