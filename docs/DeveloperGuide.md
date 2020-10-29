@@ -144,7 +144,7 @@ Given below is an example usage scenario and how the `OpenCommand` mechanism beh
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
 Step 2. The user executes `open 1` command to display the first flashcard in the list on the GUI.
- 
+
 Step 3. This will call `OpenCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
 Step 4. The `index` is then passed to the `OpenCommand`
@@ -174,7 +174,7 @@ Given below is an example usage scenario and how the `StatsCommand` mechanism be
 Step 1. The user launches the application after a few times of playing around with the `TestCommand` feature. The `QuickCache` will be initialized with the existing QuickCache state.
 
 Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI.
- 
+
 Step 3. This will call `StatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
 Step 4. The `index` is then passed to the `StatsCommand`
@@ -204,7 +204,7 @@ Step 1. The user launches the application after a few times of playing around wi
 Step 2. The user executes `stats 1` command to display the `Statistics` of the first flashcard in the list on the GUI. The user sees that the `Statistics` has values that are not zero.
 
 Step 3. The user executes `clearstats 1` command to clear the `Statistics` of the first flashcard in the list on the GUI.
- 
+
 Step 4. This will call `ClearStatsCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseIndex` will be called to convert the user input into the `Index` of the first `Flashcard`.
 
 Step 5. The `index` is then passed to the `ClearStatsCommand`
@@ -238,17 +238,17 @@ Given below is an example usage scenario and how the `FindCommand` mechanism beh
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
  Step 2. The user executes `find t/Assembly q/What` command to find a `Flashcard` with the tag `Assembly` and the keyword `What` in its `Question`.
- 
+
  Step 3. This will call `FindCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags`and `Parserutil#parseKeywords` will be called to create tags and keywords for the arguments.
- 
+
  Step 4. A new `FlashcardPredicate` will then be created from the `QuestionContainsKeywordsPredicate` and `FlashcardContainsTagPredicate` generated from the given tags and keywords. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `FindCommand`
- 
+
  Step 5. `FindCommand#execute` will set the `QuickCache` model's filter with the provided predicate.
- 
+
  Step 6. The GUI will then proceed to get the filtered list based on the newly set predicate to display to the user.
- 
+
  Step 7. After execution, `CommandResult` will contain a message indicating that it has listed all `Flashcards` based on the specified restrictions.
- 
+
  The following sequence diagram shows how the find operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -266,17 +266,17 @@ Changes to the `DeleteCommand` class will also have to be made as it must be abl
 Step 1. The user launches the application for the first time. The `QuickCache` will be initialized with the initial QuickCache state.
 
  Step 2. The user executes `delete t/MCQ` command to delete all flashcards with the tag `MCQ`. 
- 
+
  Step 3. This will call `DeleteCommandParser#parse` which will then parse the arguments provided. Within the method, `ParserUtil#parseTags` will be called to create tags for the arguments. 
- 
+
  Step 4. A new `FlashcardPredicate` will then be created from the given tags. It will be used to filter for all the flashcards that have the specified tags. This `FlashcardPredicate` is then passed to the `DeleteCommand`
- 
+
  Step 5. `DeleteCommand#execute` will filter the `QuickCache` model with the provided predicate and get back the filtered list
- 
+
  Step 6. It will then iterate through the list and call `QuickCache#deleteFlashcard` on each `Flashcard` in the list.
- 
+
  Step 7. After execution, `CommandResult` will contain a message indicating that all flashcards with the specified tags have been deleted.
- 
+
 ### Tags
 
 The tags mechanism is facilitated by `Flashcard` upon creation. It is stored internally as an `Set<Tag>` inside the `flashcard` object.
@@ -531,6 +531,45 @@ The following activity diagram summarizes what happens when a user executes an `
 
 _{more aspects and alternatives to be added}_
 
+### Import Feature
+
+#### Implementation
+
+The import mechanism is similarly facilitated by `Storage` and `QuickCache`. `Storage` is used to interact with the users local data, and a new `QuickCache` containing the data to be imported is read by `Storage` from local data.
+
+Given below is an example usage scenario and how the export mechanism behaves at each step.
+
+Step 1. The user places the file `in.json` that he wants to import in his `/import/`folder.
+
+Step 2. The user inputs the `import in.json` command. The following sequence diagram shows how the input command gets parsed:
+
+![ImportParserSequenceDiagram](images/ImportParserSequenceDiagram.png)
+
+Step 3. The parsed `Import` command is executed. The flashcards from the file `in.json` is imported into his local `QuickCache`. If a flashcard has been imported before, it will not be imported again. The check for repitive flashcards is carried out using `Model#hasFlashcard` and `Flashcard#equals`.
+
+The following sequence diagram shows how the import operation works as a whole:
+
+![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes an `Import` command:
+
+![ImportActivityDiagram](images/ImportActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to import the input file
+
+* **Alternative 1 (current choice):** Predefined directory of `/import/` 
+  * Pros: Easy to implement.
+  * Cons: The user will have to navigate to his `/import/` folder to a place the input file in it.
+
+* **Alternative 2:** User specifies which directory to save the export file to.
+  * Pros: More control over where the import file can be from e.g. user's download folder.
+  * Cons: Difficult to implement.
+  * Cons: Command becomes more complicated as the entire path needs to be typed out.
+
+_{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -605,7 +644,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Error message indicating that QuickCache.jar cannot be opened pops up.
-    
+  
   * 1a1. User opens up CLI in the directory containing QuickCache and runs `java -jar QuickCache.jar`.
     
     Use case resumes at step 2.
@@ -617,7 +656,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a2. QuickCache displays all available commands.
     
     Use case resumes at step 3.
-    
+  
 * 3b. User quits QuickCache while trying out quiz feature.
 
   * 3b1. When opening QuickCache again, quiz resumes from where the User left off.
@@ -631,6 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
     
     
+
 **Use case: UC02 - View Statistics**
 
 **Preconditions: User has QuickCache open.**
@@ -647,7 +687,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. User has not done any quiz on QuickCache.
-    
+  
   * 1a1. QuickCache shows an error message.
     
     Use case resumes at step 3.
@@ -701,7 +741,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. QuickCache shows an error message.
     
     Use case ends.
-    
+  
 * 1b. The answer is empty.
 
   * 1b1. QuickCache shows an error message.
@@ -798,6 +838,7 @@ MSS:
   Use case ends.
   
   
+
 **Use case: UC07 - Update flashcard save file**
 
 **Actor: QuickCache**
@@ -958,6 +999,7 @@ MSS:
 
     Use case ends.
     
+
 **Use case: UC13 - Open a single flashcard**
 
 **MSS**
@@ -970,6 +1012,7 @@ MSS:
 
 	Use case ends.
 	
+
 **Extensions**
 
 * 2a. The list is empty.
