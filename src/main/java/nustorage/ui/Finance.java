@@ -36,7 +36,7 @@ public class Finance extends UiPart<Region> {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseFinanceList(logic));
-        totalCostCol.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        totalCostCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         idCol.setCellValueFactory(id -> {

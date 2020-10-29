@@ -45,7 +45,7 @@ public class Inventory extends UiPart<Region> {
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         costUnitCol.setCellValueFactory(item -> {
             SimpleStringProperty property = new SimpleStringProperty();
-            property.setValue(String.valueOf(item.getValue()));
+            property.setValue(String.valueOf(item.getValue().getUnitCost()));
             return property;
         });
         financeIdCol.setCellValueFactory(item -> {
