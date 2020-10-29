@@ -1,12 +1,15 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 /**
  * Represents the container that stores the start and end time of an Event.
  */
 public class EventTime {
+    private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     private final LocalDateTime start;
     private final LocalDateTime end;
 
@@ -37,17 +40,11 @@ public class EventTime {
      * @return boolean is valid.
      */
     public static boolean isValidDateTime(String input) {
-        /*
-        boolean isValid = false;
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-ddTHHmm");
-            LocalDateTime.parse(input,formatter);
-            isValid = true;
+            LocalDateTime.parse(input);
         } catch (DateTimeParseException e) {
-            isValid = false;
+            return false;
         }
-        return isValid;
-        */
         return true;
     }
 
