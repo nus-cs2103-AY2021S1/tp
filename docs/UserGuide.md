@@ -81,8 +81,8 @@ not be so obvious!
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM …` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
+* Items with `...`​ after them can be used once or multiple times.<br>
+  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
 
 
 * Parameters can be in any order.<br>
@@ -384,7 +384,7 @@ Format: `c-archive INDEX`
 
 * Archives the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...​
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -417,7 +417,7 @@ Format: `c-unarchive INDEX`
 
 * Unarchives the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -463,9 +463,9 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------------------
 **Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
+**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**View a single ingredient**| `i-view-single i/INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
 **Reset all ingredients**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 **List**| `i-list`
