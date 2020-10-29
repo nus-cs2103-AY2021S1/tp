@@ -212,19 +212,19 @@ The following are commands related to the finance account storage.
 
 #### 5.2.1. Add finance records: `add_finance`
 
-NUStorage allows you to add and save a new finance record into the account. In the [Add Inventory Record](#511-add-items-to-inventory-create_inventory) section, we have seen how a finance record is added when an inventory record is created. The finance record is used to reflect the financial information of the newly created inventory record. However, there are times when creating an inventory record is unnecessary and the user just wants to create a standalone finance record. 
+NUStorage allows you to add and save a new finance record into the account. In the [Add Inventory Record](#511-add-items-to-inventory-create_inventory) section, we have seen how a finance record is added when an inventory record is created. The finance record is used to reflect the financial information of the newly created inventory record. However, there are times when creating an inventory record is unnecessary and the user just wants to create a standalone finance record.
 
 This is where `add_finance` comes in handy. `add_finance` allows users to create finance records that are not attached to any inventory records. This is useful when users just want to record down an influx/outflow of funds.
 
 Below are instructions on how to use the `add_finance` command:
 
-__Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]` 
+__Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
 
 This creates a new finance record of amount `AMOUNT`. If `DATE` and `TIME` are specified, the finance record would reflect that `DATE` and `TIME` in the record.
 
 **Note** If the Date and Time fields are not specified, they will default to the current location's Date and Time.
 
-__Example:__ `add_finance amt/30000 at/2020-03-03` 
+__Example:__ `add_finance amt/30000 at/2020-03-03`
 
 This creates a new finance record of amount `$30000` on `3rd March 2020`
 
@@ -242,7 +242,7 @@ Previously, in the [Add Finance Records](#521-add-finance-records-add_finance) s
 
 **NOTE** If you are reading this section without having followed the instructions from the previous section, ensure that your NUStorage application has at least one finance record stored in its system. If you are unclear on how to do so, refer to the [Adding finance records](#521-add-finance-records-add_finance) section.
 
-Before we begin, ensure that NUStorage is currently in the "Finance" tab. To do so, click on the "Finance" button to change to the "Finance" tab. If you are already on the "Finance" tab, the "Finance" tab button should be black in color. 
+Before we begin, ensure that NUStorage is currently in the "Finance" tab. To do so, click on the "Finance" button to change to the "Finance" tab. If you are already on the "Finance" tab, the "Finance" tab button should be black in color.
 
 This is what you should be seeing:
 
@@ -257,7 +257,7 @@ This allows us to delete the finance record with the ID of `INDEX`.
 Currently, our NUStorage only contains one record, as shown below:
 ![Finance tab finding ID](images/finance_finding_ID.jpg)
 
-__Example:__ `delete_finance 1` 
+__Example:__ `delete_finance 1`
 
 This deletes the finance record with index `1`.
 
@@ -275,7 +275,7 @@ Previously, in the [Delete finance records](#522-delete-finance-records-delete_f
 
 `edit_finance` allows us to edit details of the stand-alone finance records currently stored within NUStorage. Currently, with `edit_finance`, we are able to edit a stand-alone finance record's amount and date.
 
-If you are having trouble with adding stand-alone finance records or switching to the finance tab, refer to the section on [Adding finance records](#521-add-finance-records-add_finance) or [Deleting finance records](#522-delete-finance-records-delete_finance) respectively. 
+If you are having trouble with adding stand-alone finance records or switching to the finance tab, refer to the section on [Adding finance records](#521-add-finance-records-add_finance) or [Deleting finance records](#522-delete-finance-records-delete_finance) respectively.
 
 **NOTE** [Adding inventory records](#511-add-items-to-inventory-create_inventory) will result in a linked finance record being created. These finance records cannot be edited through `edit_finance`. Instead, refer to the [Editing inventory records](#523-edit-a-finance-record-edit_finance) section for instructions on how to modify linked finance records.
 
@@ -285,11 +285,11 @@ Your NUStorage application should currently look something like this:
 
 Below are instructions on how to use the `edit_finance` command:
 
-__Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]` 
+__Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
 This allows us to change the amount and date details of the finance record with the `INDEX` ID.
 
-__Example:__ `edit_finance 1 amt/120` 
+__Example:__ `edit_finance 1 amt/120`
 
 This changes the amount of the finance record with the ID of `1` to `120`.
 
@@ -310,18 +310,18 @@ In the case that we have multiple records, it can get a little tedious to locate
 
 Ensure that you have at least 2 finance records, preferably with differing amounts/dates, stored in NUStorage as well as that you are in the 'Finance' tab before proceeding. If you are having trouble adding stand-alone/linked finance records or navigating to the 'Finance' panel, refer to the sections on [Adding finance records](#521-add-finance-records-add_finance), [Adding inventory records](#511-add-items-to-inventory-create_inventory) or [Deleting finance records](#522-delete-finance-records-delete_finance) respectively.
 
-Currently, your NUStorage application should look something like this: 
+Currently, your NUStorage application should look something like this:
 ![Finance with three records](images/finance_withThreeRecords.jpg)
 
 Below are instructions on how to use the `find_finance` command:
 
-__Format:__ `find_finance [id/ID] [aft/AFTDATE] [bef/BEFDATE] [item/YESNO]`: 
+__Format:__ `find_finance [id/ID] [aft/AFTDATE] [bef/BEFDATE] [item/YESNO]`:
 
 This allows us to find finance records with a Finance ID that contains `ID` if the `ID` field is filled, that were made after `AFTDATE` if the `AFTDATE` field is filled, but before `BEFDATE` if the `BEFDATE` field is filled, and is linked to an inventory record if the `YESNO` field is filled with the `yes` parameter or stand-alone finance records if the `YESNO` field is filled with the `no` parameter.
 
 **NOTE** If every optional field is not filled, NUStorage will simply display every finance record stored upon entering the command.
 
-__Example:__ `find_finance id/8 aft/2019-10-20 bef/2020-12-30 item/no` 
+__Example:__ `find_finance id/8 aft/2019-10-20 bef/2020-12-30 item/no`
 
 This allows us to find records with a Finance ID containing "8", took place between 20th Oct 2019 to 30th Dec 2020 (inclusive), and does not have a linked inventory record.
 
