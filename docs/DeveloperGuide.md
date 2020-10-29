@@ -381,37 +381,27 @@ _{Explain here how the data archiving feature will be implemented}_
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: manage students, room allocations and billing faster than a typical GUI app.
+**Value proposition**: manage students, rooms, and  allocations faster than a typical GUI app (like Excel).
 
-### User stories
+### Implemented User stories
 
 Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
 | -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| \* \*    | Meticulous OHS admin     | have automatic backups of my data                        | rest knowing my data will not be accidentally erased.                                                     |
-| \* \*    | OHS admin                | generate audit reports for financial data                | comply with internal audits of the Residential College.                                                   |
-| \* \*    | OHS admin                | export records to csv files                              | easily create mailing lists or send relevant data to other admin.                                         |
-| \* \* \* | New/Confused User        | check the syntax for a command                           | do a task even if I am unsure of the command usage.                                                       |
-| \* \* \* | First Time User          | ask for help                                             | quickly and easily learn how to use the application in one place.                                         |
-| \* \* \* | OHS Admin                | view a list of all students                              | check which students are in the system and access their particulars.                                      |
-| \* \*    | As as skeptical GUI user | create aliases to other commands                         | perform my common actions while typing less.                                                              |
+| \* \* \* | new/confused user        | check the syntax for a command                           | do a task even if I am unsure of the command usage.                                                       |
+| \* \* \* | first-time user          | ask for help                                             | quickly and easily learn how to use the application in one place.                                         |
+| \* \* \* | OHS admin                | view a list of all students                              | check which students are in the system and access their particulars.                                      |
+| \* \*    | advanced user | create aliases to other commands                         | perform my common actions while typing less.                                                              |
 | \*       | OHS admin                | find a room by searching for the room number             | get the details of a specific room, without getting cluttered by other information.                       |
-| \* \*    | OHS Admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
-| \* \*    | OHS admin                | delete a bill                                            | remove a erroneously added bill.                                                                          |
-| \* \*    | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                    |
-| \* \*    | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                  |
-| \* \*    | skeptical GUI user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
-| \* \*    | skeptical GUI user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
-| \* \*    | Busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
-| \* \*    | Skeptical GUI user       | undo my last command                                     | fix any change that I made erroneously.                                                                   |
-| \* \*    | skeptical GUI user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
-| \* \*    | OHS admin                | edit the bill amount                                     | ensure that changes in the billing amounts due to changes in university policies can be reflected.        |
-| \* \*    | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                  |
-| \* \*    | OHS admin                | update a Semester name                                   | correct typos in the semester name.                                                                       |
-| \* \*    | OHS admin                | add a bill for a student                                 | keep track of a student's bills and finances.                                                             |
+| \* \*    | OHS admin                | view a list of rooms filtered by a particular type       | select the rooms that needs to be upgraded, for example.                                                  |
+| \* \*    | advanced user       | have autocompletions for a command                       | quickly and efficiently complete an operation.                                                            |
+| \* \*    | advanced user       | redo the previous command using a keyboard shortcut      | do the same task without typing again, e.g. if two students wish to pay the same bill.                    |
+| \* \*    | busy OHS Admin           | find a student by partial searching for their first name | type quickly without worrying about typos.                                                                |
+| \* \*    | carless user      | undo my last command                                     | fix any change that I made erroneously.                                                                   |
+| \* \*    | advanced user       | view previous commands using a keyboard shortcut         | check if I made an error in adding or deleting records.                                                   |
 | \* \* \* | OHS admin                | view a list of vacant rooms                              | start assigning rooms to students before the semester starts.                                             |
-| \* \*    | OHS admin                | archive the current Semester's data                      | keep the data for auditing purposes, but not hvae it distract me while dealing with the current semester. |
+| \* \*    | OHS admin                | archive the current Semester's data                      | keep the data for auditing purposes, but not have it distract me while dealing with a new semester. |
 | \* \* \* | OHS admin                | view a room allocation for a student                     | check and inform a student of their room allocation during check in.                                      |
 | \* \* \* | OHS admin                | allocate a room to a student                             | allocate a student to a room before the semester starts.                                                  |
 | \* \* \* | OHS admin                | delete a room allocation for a student                   | update vacancies when a student applies to leave their room.                                              |
@@ -420,14 +410,25 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \* \* | OHS admin                | view a list of all allocated rooms                       | check which students stay in which rooms.                                                                 |
 | \* \* \* | OHS admin                | edit a room allocation for a student                     | change a student's room allocation and update the room vacancies.                                         |
 | \*       | OHS admin                | edit a room's type                                       | log upgrades like the installation of an aircon.                                                          |
+| \* \* \* | OHS admin                | add a student to ResiReg                                 | perform admin duties related to the student.                                                              |
+| \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details when needed (e.g. faculty).            |
+| \* \* \* | OHS admin                | delete a student                                         | not have to keep track of students not staying in the College.             |
+
+### Potential User stories
+
+| Priority | As a…                    | I can…                                                   | So that I can…                                                                                            |
+| -------- | ------------------------ | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| \* \*    | Meticulous OHS admin     | have automatic backups of my data                        | ensure my data will not be accidentally erased.                                                     |
+| \* \*    | OHS admin                | export records to csv files                              | easily create mailing lists or send relevant data to other admin.                                         |
+| \* \*    | OHS admin                | delete a bill                                            | remove a erroneously added bill.                                                                          |
+| \* \*    | OHS admin                | import data from a data file                             | continue work from where my predecessor left off.                                                         |
 | \* \*    | OHS admin                | export all of the current data to a data-file            | hand over my duties to another admin.                                                                     |
 | \*       | OHS admin                | edit a room's semesterly fees                            | update room charges when costs increase (e.g. from $1000 to $1500)                                        |
-| \* \*    | OHS admin                | import data from a data file                             | continue work from where my predecessor left off.                                                         |
-| \* \* \* | OHS admin                | add a student to ResiReg                                 | perform admin duties related to the student.                                                              |
-| \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details in response to changes (e.g. faculty).            |
-| \* \* \* | OHS admin                | delete a student                                         | so that I can remove an erroneously added student.                                                        |
+| \* \*    | OHS admin                | add a bill for a student                                 | keep track of a student's bills and finances.                                                             |
+| \* \*    | OHS admin                | view all outstanding bills for a student                 | inform the student of his/her due bills.                                                                  |
+| \* \*    | OHS admin                | mark a bill as paid                                      | easily keep track of the remaining amount a student has to pay to OHS.                                    |
+| \* \*    | OHS admin                | view a list of all students with outstanding bills       | remind students of outstanding payments.                                                                  |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -623,19 +624,18 @@ Use case ends.
   - ResiReg shows an error message.
   Use case ends.
 
-
-**Extensions**
-
-- 1a. The history of previously entered commands is empty. - ResiReg shows an error message.
-  Use case ends.
+#### Use case: UC10 - Delete an alias
+Similar to UC09, except the extension should be:
+- 1a. The given alias does not exist.
+   - ResiReg shows an error message.
+   Use case ends.
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 records (students and rooms) without a noticeable sluggishness in performance (defined as 1 second latency) for typical usage.
+2. Should be able to hold up to 1000 records (students and rooms) without a noticeable sluggishness in performance (where a "noticeable sluggishness" is defined as a lag of 1 second) for typical usage.
 3. Should not require an installer.
 4. A user with above average typing speed for regular English text (i.e not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-6. The codebase should be maintainable so that developers can easily add new features to the project
 
 ### Glossary
 
