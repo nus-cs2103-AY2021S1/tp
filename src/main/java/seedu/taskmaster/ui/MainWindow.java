@@ -2,6 +2,7 @@ package seedu.taskmaster.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -18,6 +19,7 @@ import seedu.taskmaster.logic.Logic;
 import seedu.taskmaster.logic.commands.CommandResult;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
+import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
 
 /**
@@ -37,6 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private UiPart<Region> mainListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private SimpleObjectProperty<Session> currentSession;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -73,6 +77,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
+        this.currentSession = logic.getCurrentSession();
+        currentSession.addListener((o, ov, nv) -> fillInnerParts(false));
     }
 
     public Stage getPrimaryStage() {
@@ -122,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
         SessionListPanel sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(),
-                this::changeSessionAndFill, this::handleStudent);
+                this::changeSession, this::handleStudent);
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -149,9 +155,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Change current session and fill the main list with it.
      */
-    void changeSessionAndFill(SessionName sessionName) {
+    void changeSession(SessionName sessionName) {
         logic.changeSession(sessionName);
-        fillInnerParts(false);
     }
 
     /**
@@ -200,6 +205,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleStudent() {
         fillInnerParts(true);
+        changeSession(null);
     }
 
     /**

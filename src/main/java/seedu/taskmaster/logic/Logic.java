@@ -2,6 +2,7 @@ package seedu.taskmaster.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.logic.commands.CommandResult;
@@ -59,5 +60,6 @@ public interface Logic {
 
     void changeSession(SessionName sessionName);
 
+    SimpleObjectProperty<Session> getCurrentSession();
 
 }
