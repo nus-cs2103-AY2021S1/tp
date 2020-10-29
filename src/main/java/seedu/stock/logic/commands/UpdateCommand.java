@@ -18,6 +18,7 @@ import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
@@ -171,7 +172,20 @@ public class UpdateCommand extends Command {
             updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS));
         }
 
-        return new Stock(updatedName, stockSerialNumber, updatedSource, updatedQuantity, updatedLocation);
+        Stock result = new Stock(updatedName, stockSerialNumber, updatedSource, updatedQuantity, updatedLocation);
+
+        if (stockToUpdate.getNotes().size() > 0) {
+            List<Note> noteList = stockToUpdate.getNotes();
+
+            for(Note note : noteList) {
+                result.addNote(note);
+            }
+        }
+        if (stockToUpdate.getIsBookmarked()) {
+            result.setBookmarked();
+        }
+
+        return result;
     }
 
     @Override
