@@ -33,7 +33,6 @@ public class OpenDocumentCommandTest {
         StateManager.setState(firstCaseIndex);
     }
 
-
     @Test
     public void execute_invalidDocumentIndex_throwsCommandException() {
 

@@ -83,9 +83,6 @@ Format:  `open case CASE_NO`
 
 Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
 
-#### Exit application: `exit`
-Exits the application.
-
 ### Investigation Case page
 The page of the application when the user opens a specified investigation case.
 
@@ -99,6 +96,20 @@ Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the desc
 This command is flexible. If a description has been added, this command will overwrite the current description.
 Tip: You can also use `add desc d:` to remove the current desc.
 
+#### Edit investigation case title: `edit title t:TITLE`
+Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
+
+Format: `edit title t:TITLE`
+
+Example: `edit title t:Murder case 29` updates the title of this investigation case to “Murder case 29”.
+
+#### Edit investigation case status: `edit status s:STATUS`
+Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
+
+Format: `edit status s:STATUS`
+
+Example: `edit status s:CLOSED` updates the status of this investigation case to “CLOSED”.
+
 #### Adding a document related to the case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document that is related to the investigation case.
 
@@ -107,6 +118,16 @@ Format: `add doc n:TITLE r:FILE_NAME`
 Example: `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
+
+#### Edit investigation case document: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+Edits the document of the current investigation case at the specified index of the list
+
+Format: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+
+Example: `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
+name "Fire outbreak details" and reference "newFireDoc.pdf".
+
+This document "newFireDoc.pdf" must be manually added to the references folder provided and must be present before the document can be successfully updated.
 
 #### Delete document: `delete doc DOC_NO `
 Deletes the specified document reference.
@@ -121,7 +142,7 @@ Opens the specified document reference.
 
 Format: `open doc DOC_NO`
 
-Example: `open doc 0`
+Example: `open doc 1` opens the document in the list with index 1.
 
 #### Adding a Suspect related to the case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
@@ -132,6 +153,16 @@ Format: `add suspect n:NAME g:GENDER`
 Example: `add suspect n:John Doe g:M`
 
 Gender must either be `M` or `F`.
+
+#### Edit an existing suspect in the case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the suspect specified with the index in the investigation case.
+At least one of the fields must be specified to be edited.
+
+Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
@@ -148,6 +179,16 @@ Adds a new victim that is related to the investigation case.
 Format: `add victim n:NAME g:GENDER`
 
 Example: `add victim n:James Lee g:M`
+
+#### Edit an existing victim in the case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the victim specified with the index in the investigation case.
+At least one of the fields must be specified to be edited.
+
+Format: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
 
 Gender must either be `M` or `F`.
 
@@ -169,6 +210,16 @@ Example: `add witness n:John Doe g:M`
 
 Gender must either be `M` or `F`.
 
+#### Edit an existing witness in the case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the witness specified with the index in the investigation case. 
+At least one of the fields must be specified to be edited.
+
+Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
+
 #### Delete witness: `delete witness WITNESS_NO`
 
 Deletes the specified witness from the list of witnesses.
@@ -180,6 +231,21 @@ Example: `delete witness 0`
 #### Return to main page: `return`
 
 Returns to the application main page.
+
+### Both pages
+
+#### Undo: `undo`
+
+Undoes the previous command.
+
+Format: `undo`
+
+#### Redo: `redo`
+
+Redoes the command that was just undone. If another command that changes the data of PIVOT is used after an undo 
+command, redo will not be able to be called.
+
+Format: `redo`
 
 #### Exit application: `exit`
 

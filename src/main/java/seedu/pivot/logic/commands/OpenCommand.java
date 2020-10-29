@@ -1,6 +1,9 @@
 package seedu.pivot.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.pivot.commons.core.index.Index;
+
 
 /**
  * Abstract class for opening items based on Index.
@@ -24,6 +27,7 @@ public abstract class OpenCommand extends Command {
     protected final Index targetIndex;
 
     protected OpenCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
