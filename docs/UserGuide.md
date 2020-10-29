@@ -200,9 +200,8 @@ All patient profiles are preloaded with a stock profile picture.
 Format: `addpicture INDEX f/FILE_PATH`
 
 Examples:
-*  `addpicture 1 f/data/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' for the 1st patient
-*  `addpicture 2 f/downloads/profile_picture.png` Replaces existing profile picture with 'profile_picture.png' found in
-                                                  'downloads' folder for the 2nd patient
+*  `addpicture 3 f/data/profile_3.jpg` Replaces existing profile picture with 'profile_3.jpg' found in
+                                                  'data' folder for the 3rd patient, i.e Carl Kurz
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -228,9 +227,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be <span style="color:red">red</span>.
+*  `edit 1 p/11111111 e/pauline@example.com` Edits the phone number and email address of the 1st patient to be `11111111` and `pauline@example.com` respectively.
+*  `edit 2 ct/red` Clears the existing color tag and edits the color tag of the 2nd patient to be <span style="color:red">red</span>.
 
 ![example of color coded patient](images/colorTagExample.png)
 
@@ -247,7 +245,7 @@ Format: `delete INDEX`
 * `INDEX` **must be a positive number** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` Deletes the 2nd patient in the patient database.
+* `list` followed by `delete 9` Deletes the 9th patient (duplicated entry of John Doe) in the patient database.
 * `find Betsy` followed by `delete 1` Deletes the 1st patient in the results of the `find` command.
 
 #### 4.2.5 Deleting all patients: `clear`
@@ -405,9 +403,11 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 #### 4.4.1 Adding an appointment: `addappt`
 
+![example of add appointment](images/addApptExample.png)
+
 Add a new appointment for the specified patient to the appointment database.
 
-Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
+Format: `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
@@ -426,7 +426,7 @@ Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 Example: You want to add an appointment with the first patient on the list.
 
-Step 1: Input `addappt 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
+Step 1: Input `addappt 6 st/2020-10-29 16:00 d/120` into the command box and press Enter.
 
 Step 2: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -440,6 +440,8 @@ Step 3: If your newly added appointment is happening within a week from today, y
 </div>
 
 #### 4.4.2 Editing an appointment: `editappt`
+
+![example of edit appointment](images/editApptExample.png)
 
 Edit the specified appointment in the appointment database.
 
@@ -467,13 +469,15 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETI
 
 Example: You want to edit the time and the duration of the first appointment in the appointment list.
 
-Step 1: Input `editappt 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
+Step 1: Input `editappt 1 st/2020-10-29 17:00 d/120` into the command box and press Enter.
 
 Step 2: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
 Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
 
 #### 4.4.3 Deleting an appointment: `deleteappt`
+
+![example of delete appointment](images/DeleteApptExample.png)
 
 Delete the specified appointment from the appointment database.
 
@@ -482,7 +486,7 @@ Format: `deleteappt INDEX`
 * `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 
-Example: You want to delete your next upcoming appointment as your patient could not make it.
+Example: You want to delete your next upcoming appointment as your patient could not make it for the appointment.
 
 Step 1: Input `deleteappt 1` and press Enter.
 

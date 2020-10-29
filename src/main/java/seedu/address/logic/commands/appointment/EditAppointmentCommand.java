@@ -28,7 +28,7 @@ import seedu.address.model.patient.Name;
  */
 public class EditAppointmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "editapp";
+    public static final String COMMAND_WORD = "editappt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the appointment identified "
             + "by the index number used in the displayed appointment list. "
