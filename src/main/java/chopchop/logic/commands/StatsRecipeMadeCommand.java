@@ -1,8 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.Strings.ARG_AFTER;
-import static chopchop.commons.util.Strings.ARG_BEFORE;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,13 +8,6 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsRecipeMadeCommand extends Command {
-    public static final String COMMAND_WORD = "stats recipe made";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of recipes. "
-        + "Parameters: "
-        + "[" + ARG_BEFORE + " DATE] "
-        + "[" + ARG_AFTER + " DATE] "
-        + "Example: " + COMMAND_WORD + " " + ARG_BEFORE + " 2020-02-13 " + ARG_AFTER + " 2020-01-13";
 
     private final LocalDateTime before;
     private final LocalDateTime after;

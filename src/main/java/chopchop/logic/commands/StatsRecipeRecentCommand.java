@@ -8,9 +8,7 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsRecipeRecentCommand extends Command {
-    public static final String COMMAND_WORD = "stats recipe recent";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows a list"
-        + "of recipes recently made. (Capped at 10 recipes)";
+
     private static final int N_MOST_RECENT = 10;
 
     /**
