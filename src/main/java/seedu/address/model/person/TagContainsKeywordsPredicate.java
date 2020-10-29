@@ -19,7 +19,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return ((!person.getArchiveStatus().archiveStatus)
                 && keywords.stream().anyMatch(keyword
-                        -> StringUtil
+                    -> StringUtil
                         .containsWordIgnoreCase(person.getTags().toString()
                                 .replaceAll("\\[", "")
                                 .replaceAll("]", "")
