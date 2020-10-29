@@ -55,7 +55,8 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
 
-        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).orElse(template.getCalories().toString()));
+        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).
+                orElse(template.getCalories().toString()));
         List<Muscle> musclesWorked = ParserUtil.parseMusclesWorked(argMultimap.getValue(PREFIX_MUSCLES).orElse(null));
         Set<ExerciseTag> tagList = ParserUtil.parseExerciseTags(argMultimap.getAllValues(PREFIX_TAG));
 
