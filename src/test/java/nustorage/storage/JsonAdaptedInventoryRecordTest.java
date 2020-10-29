@@ -28,7 +28,7 @@ import nustorage.model.record.InventoryRecord;
 
 class JsonAdaptedInventoryRecordTest {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Inventory record's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "InventoryWindow record's %s field is missing!";
 
 
     @Test

@@ -37,8 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private Inventory inventory;
-    private Finance finance;
+    private InventoryWindow inventoryWindow;
+    private FinanceWindow financeWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -128,11 +128,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     public void fillInnerParts() {
-        finance = new Finance(logic);
-        financePlaceholder.getChildren().add(finance.getRoot());
+        financeWindow = new FinanceWindow(logic);
+        financePlaceholder.getChildren().add(financeWindow.getRoot());
 
-        inventory = new Inventory(logic, uiLogic);
-        inventoryPlaceholder.getChildren().add(inventory.getRoot());
+        inventoryWindow = new InventoryWindow(logic, uiLogic);
+        inventoryPlaceholder.getChildren().add(inventoryWindow.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
             if (isUiCommand(commandText)) {
                 commandResult = uiLogic.execute(commandText);
                 String userInput = commandText.trim();
-                if (userInput.split("_")[1].equals("inventory")) {
+                if (userInput.split("_")[1].equals("inventoryWindow")) {
                     logic.execute("list_inventory");
                 } else {
                     logic.execute("list_finance");
@@ -206,11 +206,11 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            inventory = new Inventory(logic, uiLogic);
-            inventoryPlaceholder.getChildren().add(inventory.getRoot());
+            inventoryWindow = new InventoryWindow(logic, uiLogic);
+            inventoryPlaceholder.getChildren().add(inventoryWindow.getRoot());
 
-            finance = new Finance(logic);
-            financePlaceholder.getChildren().add(finance.getRoot());
+            financeWindow = new FinanceWindow(logic);
+            financePlaceholder.getChildren().add(financeWindow.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
