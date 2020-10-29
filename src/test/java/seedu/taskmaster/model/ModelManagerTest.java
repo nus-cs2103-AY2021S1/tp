@@ -19,8 +19,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
-import seedu.taskmaster.model.record.StudentRecordList;
-import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
@@ -218,7 +216,7 @@ public class ModelManagerTest {
                 stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.scoreAllStudents( stds,1);
+        modelManager.scoreAllStudents(stds, 1);
 
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|NO_RECORD|Class Participation Score: 1,"
@@ -240,12 +238,12 @@ public class ModelManagerTest {
                 stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.markAllStudents( stds, AttendanceType.PRESENT);
+        modelManager.markAllStudents(stds, AttendanceType.PRESENT);
 
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|PRESENT|Class Participation Score: 0,"
                         + " e0456789|PRESENT|Class Participation Score: 0]"));
-        modelManager.markAllStudents( stds, AttendanceType.ABSENT);
+        modelManager.markAllStudents(stds, AttendanceType.ABSENT);
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|ABSENT|Class Participation Score: 0,"
                         + " e0456789|ABSENT|Class Participation Score: 0]"));
