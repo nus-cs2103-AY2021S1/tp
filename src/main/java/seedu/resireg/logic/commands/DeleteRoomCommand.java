@@ -9,6 +9,7 @@ import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.storage.Storage;
 
@@ -44,14 +45,13 @@ public class DeleteRoomCommand extends Command {
 
         Room toDelete = lastShownList.get(targetIndex.getZeroBased());
 
-        // TODO: shift checking to model?
-        assert !model.isAllocated(toDelete) : "Room should not be allocated while in new mode";
-
         if (model.isAllocated(toDelete)) {
             throw new CommandException(MESSAGE_ROOM_ALLOCATION_EXISTS);
         }
 
         model.deleteRoom(toDelete);
+        BinItem binItem = new BinItem(toDelete);
+        model.addBinItem(binItem);
         model.saveStateResiReg();
         return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, toDelete.toString()));
     }

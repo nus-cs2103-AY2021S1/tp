@@ -10,6 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.bin.Binnable;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -49,6 +50,9 @@ public class BinItemListPanel extends UiPart<Region> {
                 if (item instanceof Student) {
                     Student student = (Student) item;
                     setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                } else if (item instanceof Room) {
+                    Room room = (Room) item;
+                    setGraphic(new RoomCard(room, getIndex() + 1).getRoot());
                 } else {
                     assert false : "Another Binnable instance must be created!";
                 }

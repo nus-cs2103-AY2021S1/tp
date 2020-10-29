@@ -3,8 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
 
@@ -120,19 +120,17 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/model/Model.java)
 
 The `Model`,
 
 - stores a `UserPref` object that represents the user’s preferences.
-- stores the residence regulation data.
-- exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResiReg`, which `Person` references. This allows `ResiReg` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
+- stores the residence regulation data
+- exposes the following `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change:
+    - unmodifiable `ObservableList<Student>`
+    - unmodifiable `ObservableList<Room>`
+    - unmodifiable `ObservableList<Allocation>`
+    - unmodifiable `ObservableList<BinItem>`
 
 ### Storage component
 
@@ -383,9 +381,46 @@ a reference to current state.
    - Cons: Further away from the command pattern than Alternative 1, so shifting to Alternative 2
    in how undo & redo executes will incur more additional work.
 
-### \[Proposed\] Data archiving for semester
+### Data archiving for semester
+Allocations of a student to a room are valid only for a given semester. This implies that ResiReg should support the archival and creation of multiple semesters, so that the data can be managed and stored in an organized fashion that suits the OHS admin. The `archive` command accomplishes this by allowing the user to achive the current semester's allocations, and advance to a new semester which pre-fills the Student and Room details.
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+The archival feature is facilitated by `Semester`. It is a class denoting the current semester the allocations are valid for.
+
+The following diagram shows how ResiReg is implemented with the `archive` feature. A `Semester` object denoting the current Semester is kept in the `ResiReg` class. Upon executing the `archive` command, ResiReg computes the succeeding Semester from the current Semester. A snapshot of the current semester's data (e.g. allocations) is then stored in a folder that denotes that semester. Finally, the current semester in the application is updated, and the allocations are reset for the admin to start afresh.
+
+Given below is an usage scenario and how the archive mechanism behaves at each step.
+
+Step 1. The user launches the application. The current semester is initialized from the `semester` field inside`./data/resireg.json`, when `MainApp.java` calls `Storage#readResiReg`.
+
+Step 2. The user executes the `archive` command to archive the current semester's allocations and advance to the next semester. The `archive` command first retrieves the current state of ResiReg via `Model#getResiReg`.
+
+Step 3. The `archive` command then computes the succeeding state from the current state via `ResiReg#getNextSemesterResiReg`. This method computes the succeeding semester from the current semester via `Semester#getNextSemester`, and resets the allocations of students to rooms.
+
+Step 4. The `Storage#archiveResiReg` is then called. This operation saves the current data of the semester inside `./AY{YEAR}S{SEMESTER}/archive.json`, where `{YEAR}` denotes the academic year and `{SEMESTER}` denotes which semester of the academic year. For example, the data of Semester 1 of Year 2020 would be stored inside `./AY2020S1/archive.json`.
+
+Step 5. Finally, the fresh semester in ResiReg is then updated in 2 steps:
+
+Step 5.1: Firstly, the application state is updated by calling `Model#setResiReg` with the computed succeeding state in Step 2. 
+
+Step 5.2: Then, `resireg.json` is updated via `Model#saveStateResiReg`.
+
+The following sequence diagram shows the flow of the `archive` operation as described by the 5 steps above.
+
+![Sequence diagram of archive command](./images/ArchiveSemesterSequenceDiagram.png)
+
+#### Design Consideration
+
+**Aspect: Separating the archival and semester updating logic**
+
+- **Alternative 1 (current choice):** keep the `archiveResiReg` method in the `Storage` interface, and computing of next Semester in `Semester`
+
+  - Pros: Adheres to the Single-responsibility Principle. The responsibility of computing the next Semester is kept to `Semester`, and saving to storage kept to `Storage`.
+  - Cons: additional methods like `Semester#getNextSemester` have to be implemented to support 
+
+- **Alternative 2:** Compute the next semester directly within the `archiveResiReg` method
+  - Pros: violates the Single-responsibility Principle, as `archiveResiReg` now has 2 responsibilities: computing the next semester, and writing the file to storage
+  - Cons: Compared to Alternative 1, less intermediate methods to implement.
 
 ---
 
@@ -477,10 +512,8 @@ Use case ends.
 **Extensions**
 
 - 1a. Student details are missing or invalid, or there is already a student with the same matriculation number.
-
   - ResiReg shows an error message.
-
-    Use case starts over.
+  -  Use case starts over.
 
 #### Use case: UC02 - Delete a student
 
@@ -594,6 +627,9 @@ Use case ends.
     Use case resumes at step 2.
       
 #### Use case: UC07 - Undo previous command
+
+**MSS**
+
 1. OHS admin enters a command that changes state.
 1. ResiReg processes and executes the command.
 1. OHS admin requests to undo previously entered command.
@@ -610,6 +646,9 @@ Use case ends.
       Use case resumes at Step 1.
       
 #### Use case: UC08 - Redo previous command
+
+**MSS**
+
 1. OHS admin requests to redo previously undone command 
 that changes state.
 1. ResiReg processes and executes the command.
@@ -623,9 +662,12 @@ Use case ends.
 - 1a. There are no previously undone commands that change state to redo.
     - ResiReg shows an error message.
     
-      Use case ends.
+Use case ends.
       
 #### Use case: UC09 - History command
+
+**MSS**
+
 1. OHS admin requests to list history of previously entered commands.
 1. ResiReg shows a history of previously entered commands in reverse chronological order.
 
@@ -635,12 +677,21 @@ Use case ends.
 
 - 1a. The history of previously entered commands is empty.
     - ResiReg shows an error message.
-    
+   
       Use case ends.
       
 #### Use case: UC010 - View piechart of allocated and unallocated rooms
 1. OHS admin requests to view a piechart of allocated and unallocated room.
 1. ResiReg shows a piechart of allocated rooms and unallocated rooms on the Statistics tab.
+
+Use case ends.
+
+#### Use case: UC11 - Archive command
+
+**MSS**
+
+1. OHS admin requests to archive the current semester.
+1. ResiReg resets the allocations of rooms and students, and advances to the next semester in chronological order.
 
 Use case ends.
 

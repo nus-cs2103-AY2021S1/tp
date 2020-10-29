@@ -21,6 +21,7 @@ import seedu.resireg.model.ReadOnlyResiReg;
 public class JsonResiRegStorage implements ResiRegStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonResiRegStorage.class);
+    private static final String ARCHIVE_FILENAME = "archive.json";
 
     private Path filePath;
 
@@ -81,7 +82,7 @@ public class JsonResiRegStorage implements ResiRegStorage {
     @Override
     public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
         Path currentPath = filePath.subpath(0, filePath.getNameCount() - 1).toAbsolutePath();
-        Path newPath = Paths.get(currentPath.toString(), resiReg.getSemesterString(), "archive.json");
+        Path newPath = Paths.get(currentPath.toString(), resiReg.getSemesterString(), ARCHIVE_FILENAME);
 
         saveResiReg(resiReg, newPath);
     }

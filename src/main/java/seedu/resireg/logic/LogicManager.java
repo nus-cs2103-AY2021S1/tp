@@ -2,9 +2,12 @@ package seedu.resireg.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
@@ -16,7 +19,6 @@ import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ResiRegParser;
 import seedu.resireg.logic.parser.exceptions.ParseException;
-import seedu.resireg.model.AppMode;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.alias.CommandWordAlias;
@@ -32,6 +34,10 @@ import seedu.resireg.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+
+    private static final Map<String, Parser<Command>> commandWordToParserMap = Arrays.stream(CommandWordEnum.values())
+            .collect(Collectors.toMap(CommandWordEnum::getCommandWord, CommandWordEnum::getCommandParser));
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -56,7 +62,7 @@ public class LogicManager implements Logic {
         isModified = false;
 
         CommandResult commandResult;
-        Map<String, Parser<Command>> map = CommandWordEnum.getCommandWordToParserMap(model.getAppMode());
+        Map<String, Parser<Command>> map = new HashMap<>(commandWordToParserMap);
         addAliases(map, model.getCommandWordAliases());
         try {
             Command command = ResiRegParser.parseCommand(commandText, map);
@@ -136,10 +142,5 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public AppMode getAppMode() {
-        return model.getAppMode();
     }
 }
