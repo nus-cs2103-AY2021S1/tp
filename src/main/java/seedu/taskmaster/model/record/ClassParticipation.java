@@ -29,12 +29,6 @@ public class ClassParticipation {
         this.score = score;
     }
 
-    /**
-     * Constructor method for Class Participation with score and maxScore
-     * The maximum score is given and set accordingly
-     * The score is given and set accordingly
-     */
-
     @Override
     public String toString() {
         return "Class Participation Score: " + score;
