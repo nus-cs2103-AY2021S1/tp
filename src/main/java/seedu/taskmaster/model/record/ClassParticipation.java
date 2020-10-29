@@ -4,12 +4,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger; // to test logging
 
 public class ClassParticipation {
-    public static final String MESSAGE_CONSTRAINTS = "The score of a student needs to be an integer between"
-            + "0 and the maximum score (default 10), inclusive.";
-    private static Logger logger = Logger.getLogger("LoggingTest");
+    public static final String MESSAGE_CONSTRAINTS = "The score of a student needs to be a positive integer.";
+    private static final Logger logger = Logger.getLogger("LoggingTest");
 
     private int score = 0;
-    private int maxScore;
 
     /**
      * Constructor method for Class Participation
@@ -18,7 +16,6 @@ public class ClassParticipation {
      */
     public ClassParticipation() {
         logger.log(Level.INFO, "Making Class Participation");
-        this.maxScore = 10;
     }
 
     /**
@@ -28,9 +25,7 @@ public class ClassParticipation {
      */
     public ClassParticipation(int score) {
         logger.log(Level.INFO, "Making Class Participation");
-        assert score <= 10;
         assert score >= 0;
-        this.maxScore = 10;
         this.score = score;
     }
 
@@ -39,19 +34,10 @@ public class ClassParticipation {
      * The maximum score is given and set accordingly
      * The score is given and set accordingly
      */
-    public ClassParticipation(int newScore, int newMaxScore) {
-        logger.log(Level.INFO, "Making Class Participation");
-        assert newScore <= maxScore;
-        assert newScore >= 0;
-        assert newMaxScore >= 0;
-        this.maxScore = newMaxScore;
-        this.score = newScore;
-    }
 
     @Override
     public String toString() {
-        return "Class Participation Score:"
-                + score + " out of " + maxScore;
+        return "Class Participation Score: " + score;
     }
 
     public String description() {
@@ -72,7 +58,6 @@ public class ClassParticipation {
 
         // state check
         ClassParticipation classPart = (ClassParticipation) other;
-        return (this.score == classPart.score)
-                && (this.maxScore == classPart.maxScore);
+        return (this.score == classPart.score);
     }
 }

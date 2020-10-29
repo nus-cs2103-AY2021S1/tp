@@ -25,7 +25,7 @@ public class ParticipationCommand extends Command {
             + PREFIX_CLASS_PARTICIPATION + "CLASS_PARTICIPATION (default: integer between 0 to 10) \n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS_PARTICIPATION + "7";
 
-    public static final String MESSAGE_MARK_STUDENT_SUCCESS = "%1$s scored %2$s for class participation";
+    public static final String MESSAGE_SCORE_STUDENT_SUCCESS = "%1$s scored %2$s for class participation";
     protected final int score;
     private final Index targetIndex;
 
@@ -54,7 +54,7 @@ public class ParticipationCommand extends Command {
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());
         }
-        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToScore, score));
+        return new CommandResult(String.format(MESSAGE_SCORE_STUDENT_SUCCESS, studentToScore, score));
     }
 
     @Override

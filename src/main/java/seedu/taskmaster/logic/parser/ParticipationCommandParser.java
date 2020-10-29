@@ -29,6 +29,10 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
             score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_CLASS_PARTICIPATION).get());
             String preamble = argMultimap.getPreamble();
 
+            if (score < 0) {
+                throw new ParseException("Negative score");
+            }
+
             if (preamble.equals("all")) {
                 return new ParticipationAllCommand(score);
             } else {
