@@ -39,6 +39,9 @@ public class ViewMeetingCommand extends Command {
      * @param targetMeetingName Name of the meeting.
      */
     public ViewMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName) {
+        requireNonNull(targetModuleName);
+        requireNonNull(targetMeetingName);
+
         this.targetModuleName = targetModuleName;
         this.targetMeetingName = targetMeetingName;
     }
