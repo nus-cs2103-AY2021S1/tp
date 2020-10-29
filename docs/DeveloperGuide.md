@@ -378,6 +378,7 @@ Shows the medical records of a patient either through the `CLI` or the `GUI` in 
 
 The **Activity Diagram** below shows an overview for users to show the Patient's appointments through 
 the `GUI` or `CLI`.
+
 ![showApptActivityDiagram](images/showAppt/ShowApptActivityDiagram.png)
 
 ###### Detailed Implementation
@@ -408,9 +409,10 @@ to check if the patient is clicked and show the `AppointmentWindow` on the click
         1. `AppointmentWindow` retrieves the appointments of the Patient and map the appointments
         into a TableView.
         1. Finally, `MainWindow` shows the updated `AppointmentWindow` to the User.
-        
+<div markdown="block" class="alert alert-warning">
 **:warning: Important:** AppointmentWindow is **STATIC** (i.e. only **ONE** instance of AppointmentWindow is allowed).
 This design is to prevent Users from opening multiple windows of the same patient and freezing the App.
+</div>
         
 --------------------------------------------------------------------------------------------------------------------
 

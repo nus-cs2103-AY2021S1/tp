@@ -96,11 +96,14 @@ The `help` command shows a list of all the commands and their usages with exampl
 ![tp_help_command](images/helpWindow.png)
 
 Format: `help`
+<div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
 
 **:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
 for the commands.
+
+</div>
 
 ### Adding a patient: `add` (by Cedric Lim Jun Wei)
 
@@ -271,27 +274,36 @@ Examples:
 The `showAppt` command shows you all the appointments of a patient in a table for ease of viewing.
 Unlike other commands, you can click on the patient's information to show the appointments **without needing to enter any commands**.
 
-1. Using the `GUI`\
+###### 1. Using the `GUI`
 You can simply **double click** on the patient to display all the appointments of that patient.
+
 ![show appointments via gui](images/showAppt/showAppt_gui.PNG)
 
-2. Using the `Command Line`\
+###### 2. Using the `Command Line`
 If the number of patients is too large, it might be difficult to find the patient's information to click.
 In that case, you can use the command line to show the patient's appointments.
+
 ![show appointments via gui](images/showAppt/showAppt_input.PNG)
 
 Format: `showAppt NRIC`
 
 Example: `showAppt S1234567A`
 
-The Appointment window should pop up after successfully running the command either through the `GUI` or the `Command Line` shown below.
+The **Appointment window should pop up** after successfully running the command either through the `GUI` or the `Command Line` shown below.
+
 ![Appointment Window](images/showAppt/showAppt_window.PNG)
 
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tip:** You can **click on the headers** to sort the appointments from earliest to latest or latest to earliest.
+</div>
 
+<div markdown="span" class="alert alert-warning">
 **:warning: Important:** Only **ONE** appointment window is allowed to be opened at any moment.
+</div>
 
+<div markdown="span" class="alert alert-info">
 **:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
+</div>
 
 ### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
 
@@ -446,18 +458,26 @@ _{explain the feature here}_
 Step 1. Open up **Command Prompt** by searching for **cmd** in the task bar.\
 Step 2. Type the command `java -version` to check for the version.
 ![windows java version](images/faq/windows_javaVersion.PNG)
+
+<div markdown="block" class="alert alert-warning">
 **:warning: Important:** Ensure that the java version is at least **11**.
+</div>
 
 * On **MAC**\
 Step 1. Open up **Terminal** by searching for **terminal** in the search bar.\
 ![mac search bar](images/faq/mac_search.PNG)
 Step 2. Type the command `java -version` to check for the version.
 ![windows java version](images/faq/mac_javaVersion.PNG)
-**:warning: Important:** Ensure that the java version is at least **11**.
 
+<div markdown="block" class="alert alert-warning">
+**:warning: Important:** Ensure that the java version is at least **11**.
+</div>
+
+<div markdown="block" class="alert alert-primary">
 **:information_source: Notes:** If your java version is **less than 11**, visit
  the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
- 
+</div>
+
 **Q**: How do I get the latest version of **Hospify**?\
 **A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
  latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
