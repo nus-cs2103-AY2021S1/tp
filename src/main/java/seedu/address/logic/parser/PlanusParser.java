@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeadlineCommand;
+import seedu.address.logic.commands.DeleteLessonCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.EditLessonCommand;
@@ -80,6 +81,8 @@ public class PlanusParser {
             return new EditLessonCommandParser().parse(arguments);
         case FindLessonCommand.COMMAND_WORD:
             return new FindLessonCommandParser().parse(arguments);
+        case DeleteLessonCommand.COMMAND_WORD:
+            return new DeleteLessonCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
