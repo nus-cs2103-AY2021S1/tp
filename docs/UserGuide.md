@@ -403,7 +403,7 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 #### 4.4.1 Adding an appointment: `addappt`
 
-![example of add appointment](images/AddApptExample.png)
+![example of add appointment](images/addApptExample.png)
 
 Add a new appointment for the specified patient to the appointment database.
 
@@ -441,7 +441,7 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 #### 4.4.2 Editing an appointment: `editappt`
 
-![example of edit appointment](images/EditApptExample.png)
+![example of edit appointment](images/editApptExample.png)
 
 Edit the specified appointment in the appointment database.
 
