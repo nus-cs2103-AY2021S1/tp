@@ -36,4 +36,12 @@ public class TimelineSection extends UiPart<Region> {
         timelineSection.flip();
         return timelineSection;
     }
+
+    private void setOverdue() {
+        timelineMeetingCard.setOverdue();
+    }
+    public static TimelineSection getOverdue(TimelineSection timelineSection) {
+        timelineSection.setOverdue();
+        return timelineSection;
+    }
 }

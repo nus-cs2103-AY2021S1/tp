@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -38,6 +39,8 @@ public class TimelineMeetingCard extends UiPart<Region> {
     private Label date;
     @FXML
     private FlowPane participants;
+    @FXML
+    private VBox vbox;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -53,6 +56,13 @@ public class TimelineMeetingCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(participant -> participant.getName().fullName))
                 .forEach(participant -> participants.getChildren()
                         .add(new Label(participant.getName().getFirstName())));
+    }
+
+    public void setOverdue() {
+        vbox.setStyle("-fx-background-color: rgb(102, 0, 0);" +
+                "-fx-background-radius: 20;" +
+                "-fx-border-color: white;" +
+                "-fx-border-radius: 20;");
     }
 
     @Override

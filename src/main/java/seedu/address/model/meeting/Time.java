@@ -3,6 +3,7 @@ package seedu.address.model.meeting;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -27,6 +28,10 @@ public class Time {
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         this.value = time;
         this.time = LocalTime.parse(time, INPUT_FORMAT);
+    }
+
+    public LocalTime getLocalTimeFormat() {
+        return this.time;
     }
 
     /**
