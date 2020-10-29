@@ -174,3 +174,4 @@ If the file is located at C:\Users\Desktop\App, the archived file will be saved 
 | *Archive*   | `archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
 *Help* | `help`
 *Exit* | `exit`
+
