@@ -55,6 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
             "update sn/<serial number> (followed by combination of any):\n"
                     + "iq/<+/-><quantity to increment/decrement> \nnq/<new quantity> \nn/<new name>\n"
                     + "l/<new location in warehouse> \ns/<new source of stock>\n"
+                    + "lq/<low quantity>"
                     + "NOTE: only either of iq/ or nq/ can be provided.\n";
 
     public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note for stock>\n"
@@ -191,10 +192,6 @@ public class HelpWindow extends UiPart<Stage> {
         //Update Method
         sortMethod.setText(SORT);
         sortMessage.setText(SORT_DESCRIPTION);
-
-        //Update Method
-        statsMethod.setText(UPDATE);
-        statsMessage.setText(UPDATE_DESCRIPTION);
 
         //Find Method
         findMethod.setText(FIND);
