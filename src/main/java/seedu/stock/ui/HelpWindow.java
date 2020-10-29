@@ -28,6 +28,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String STATISTICS = "STATISTICS\n";
     public static final String SORT = "SORT\n";
     public static final String BOOKMARK = "BOOKMARK\n";
+    public static final String UNBOOKMARK = "UNBOOKMARK\n";
     public static final String EXIT = "EXIT\n";
 
     public static final String COMMAND_DESCRIPTION = "COMMAND DESCRIPTION";
@@ -68,6 +69,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String SORT_DESCRIPTION = "sort o/<order> by/<field>";
 
     public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number>";
+
+    public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number>";
 
     public static final String EXIT_DESCRIPTION = "exit";
 
@@ -157,6 +160,12 @@ public class HelpWindow extends UiPart<Stage> {
     private Label bookmarkMessage;
 
     @FXML
+    private Label unbookmarkMethod;
+
+    @FXML
+    private Label unbookmarkMessage;
+
+    @FXML
     private Label url;
 
     @FXML
@@ -221,6 +230,10 @@ public class HelpWindow extends UiPart<Stage> {
         //Bookmark Method
         bookmarkMethod.setText(BOOKMARK);
         bookmarkMessage.setText(BOOKMARK_DESCRIPTION);
+
+        //Unbookmark Method
+        unbookmarkMethod.setText(UNBOOKMARK);
+        unbookmarkMessage.setText(UNBOOKMARK_DESCRIPTION);
 
         //Disclaimer on where to click
         disclaimer.setText(DISCLAIMER);
