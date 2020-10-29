@@ -14,9 +14,9 @@ import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListStudentsCommand.
  */
-public class ListCommandTest {
+public class ListStudentsCommandTest {
 
     private CommandHistory history = new CommandHistory();
     private Model model;
@@ -30,12 +30,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, history, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListStudentsCommand(), model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, history, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListStudentsCommand(), model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

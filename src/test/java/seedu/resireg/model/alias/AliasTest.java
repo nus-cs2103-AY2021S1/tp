@@ -7,7 +7,7 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.logic.commands.AddCommand;
-import seedu.resireg.logic.commands.ListCommand;
+import seedu.resireg.logic.commands.ListStudentsCommand;
 
 class AliasTest {
 
@@ -33,7 +33,7 @@ class AliasTest {
         assertFalse(Alias.isValidAlias("123")); // contains 3 digits
         assertFalse(Alias.isValidAlias("01")); // starts with 0
         assertFalse(Alias.isValidAlias(AddCommand.COMMAND_WORD)); // only non-numeric characters
-        assertFalse(Alias.isValidAlias(ListCommand.COMMAND_WORD)); // contains non-numeric characters
+        assertFalse(Alias.isValidAlias(ListStudentsCommand.COMMAND_WORD)); // contains non-numeric characters
         assertFalse(Alias.isValidAlias("two words")); // contains multiple words
 
 

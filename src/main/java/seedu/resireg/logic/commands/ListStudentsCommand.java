@@ -10,7 +10,7 @@ import seedu.resireg.storage.Storage;
 /**
  * Lists all students in ResiReg to the user.
  */
-public class ListCommand extends Command {
+public class ListStudentsCommand extends Command {
 
     public static final String COMMAND_WORD = "students";
 

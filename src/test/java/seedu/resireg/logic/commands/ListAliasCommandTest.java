@@ -14,7 +14,7 @@ import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListStudentsCommand.
  */
 public class ListAliasCommandTest {
 

@@ -44,7 +44,7 @@ public enum CommandWordEnum {
 
     // misc
     TOGGLE_TAB_SPLIT_COMMAND(ToggleTabSplitCommand.COMMAND_WORD, ToggleTabSplitCommand.HELP,
-        args -> new ToggleTabSplitCommand()),
+            args -> new ToggleTabSplitCommand()),
     HISTORY_COMMAND(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, args -> new HistoryCommand()),
     CLEAR_COMMAND(ClearCommand.COMMAND_WORD, ClearCommand.HELP, args -> new ClearCommand()),
     ARCHIVE_COMMAND(ArchiveCommand.COMMAND_WORD, ArchiveCommand.HELP, unused -> new ArchiveCommand()),
@@ -60,7 +60,8 @@ public enum CommandWordEnum {
     DELETE_COMMAND(DeleteCommand.COMMAND_WORD, DeleteCommand.HELP, new DeleteCommandParser()::parse),
     EDIT_COMMAND(EditCommand.COMMAND_WORD, EditCommand.HELP, new EditCommandParser()::parse),
     FIND_COMMAND(FindCommand.COMMAND_WORD, FindCommand.HELP, new FindCommandParser()::parse),
-    LIST_COMMAND(ListCommand.COMMAND_WORD, ListCommand.HELP, args -> new ListCommand()),
+    LIST_STUDENTS_COMMAND(ListStudentsCommand.COMMAND_WORD, ListStudentsCommand.HELP,
+            args -> new ListStudentsCommand()),
 
     // allocations
     ALLOCATE_COMMAND(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse),
