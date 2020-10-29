@@ -15,7 +15,6 @@ import java.util.Set;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.StringUtil;
-import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Description;
