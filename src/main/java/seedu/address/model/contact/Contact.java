@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Contact {
 
     // Identity fields
-    private final Name name;
+    private final ContactName name;
     private final Email email;
     private final Telegram telegram;
     private final boolean isImportant;
@@ -34,7 +33,7 @@ public class Contact {
      * @param email Email field of the Contact object.
      * @param tags Set of tags of the Contact object.
      */
-    public Contact(Name name, Email email, Set<Tag> tags, boolean isImportant) {
+    public Contact(ContactName name, Email email, Set<Tag> tags, boolean isImportant) {
         requireAllNonNull(name, email);
         this.name = name;
         this.email = email;
@@ -44,14 +43,14 @@ public class Contact {
     }
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for the {@code telegram} field.
      *
      * @param name Name field of the Contact object.
      * @param email Email field of the Contact object.
      * @param telegram Telegram field of the Contact object.
      * @param tags Set of tags of the Contact object.
      */
-    public Contact(Name name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
+    public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
         requireAllNonNull(name, email, telegram, tags);
         this.name = name;
         this.email = email;
@@ -60,7 +59,7 @@ public class Contact {
         this.isImportant = isImportant;
     }
 
-    public Name getName() {
+    public ContactName getName() {
         return name;
     }
 
@@ -91,8 +90,7 @@ public class Contact {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegram().equals(getTelegram());
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
@@ -154,20 +152,13 @@ public class Contact {
     }
 
     @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, telegram, tags);
-    }
-
-    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Telegram: ")
-                .append(getTelegram())
-                .append(" Tags: ")
+                .append(getTelegram().isPresent() ? getTelegram().get() : "")
                 .append(" Important: ")
                 .append(isImportant ? "Yes" : "No")
                 .append(" Tags: ");

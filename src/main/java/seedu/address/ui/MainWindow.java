@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ContactListPanel contactListPanel;
+    private EventListPanel eventListPanel;
     private TodoListPanel todoListPanel;
 
     @FXML
@@ -128,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
 
         contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
+
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
 
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
         todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
