@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import chopchop.model.ingredient.Ingredient;
-import javafx.collections.ListChangeListener;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
