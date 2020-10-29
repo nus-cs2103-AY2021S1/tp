@@ -139,7 +139,7 @@ Thereafter, you will be able to view, edit find or delete these students.
 
 You can add a student together with his/her individual administrative details into **Reeve's** student list.
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]`
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -277,14 +277,17 @@ General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each `COMMAND_WORD` as explained below.
 
-Examples:  
-* `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
-* `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
-* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
-
 #### 3.2.8.1 Adding a detail: `detail add`
 
 You can add a detail to a specified student in **Reeve**.
+
+Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
+
+* Adds the detail to the student at the specified `STUDENT_INDEX`.
+
+Examples:  
+* `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
+* `detail add 3 t/Punctual` adds the "Punctual" detail to the 3rd student in **Reeve**.
 
 #### 3.2.8.2 Editing a detail: `detail edit`
 
@@ -440,7 +443,7 @@ You can add or delete an attendance record to/from a specified student.
 General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD` field accepts either `add` or `delete`.
-* The command affects the student at the specified `INDEX`.
+* The command affects the student at the specified `STUDENT_INDEX`.
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
@@ -458,12 +461,12 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBA
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of FEEDBACK is as follows:
-* attended or unattended.
+* present or absent.
 </div>
 
 Examples:
-* `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
-status of attended and feedback of attentive, to the 2nd student in **Reeve**.
+* `attendance add 2 d/08/12/2020 s/present f/attentive` adds the attendance record with the date 8 Dec 2020,
+status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
 ##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`
 
@@ -535,7 +538,7 @@ Format: `toggle`
 
 #### 3.4.3 Viewing help: `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -564,8 +567,8 @@ Action | Format, Examples
 **Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
 **List** | `list`
 **Help** | `help`
-**Add exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE` <br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
-**Delete exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX` <br> e.g. `exam delete 2 i/5`
+**Add Exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE` <br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+**Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX` <br> e.g. `exam delete 2 i/5`
 
 ## 5. Glossary
 
