@@ -111,7 +111,7 @@ Things to note for the commands:
 
 #### 3.1.1 Viewing help : `help`
 
-##### 3.1.1.a `help start`
+##### 3.1.1a `help start`
 
 If you are a first time user, we strongly encourage you to follow the guide to kick-start your journey in **OneShelf**.
 
@@ -123,7 +123,7 @@ To open up `help start` window, you can also do the following:
 
 A new help window similar to [Figure 2](#uihelpstart) should appear on your desktop.
 
-##### 3.1.1.b `help summary`
+##### 3.1.1b `help summary`
 
 We understand that even if you are not a first time user, it is not easy to remember all the commands.
 Should you require any quick reference of commands, you can enter `help summary`.
@@ -149,7 +149,7 @@ Figure 4: Help Summary Window
 
 Adds inventory item or pending delivery to **OneShelf**.
 
-##### 3.1.2.a `add-i`
+##### 3.1.2a `add-i`
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
 * If item does not exist in the inventory book, a new item will be added.
@@ -202,7 +202,7 @@ You can refer to the diagram below for the expected result:
 An item can have any number of tags (including 0) and adding exactly the same tag to an existing item will not result in duplicated tags
 </div>
 
-##### 3.1.2.b `add-d`
+##### 3.1.2b `add-d`
 
 Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/]`
 
@@ -264,7 +264,7 @@ There is no remove-d since a pending delivery does not have a quantity
 
 Edits an existing item in the Inventory book or an existing pending delivery in the Delivery book.
 
-##### 3.1.4.a `edit-i`
+##### 3.1.4a `edit-i`
 
 Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
 
@@ -306,7 +306,7 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
     <br>
 
 
-##### 3.1.4.b `edit-d`
+##### 3.1.4b `edit-d`
 
 Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
 
@@ -320,7 +320,7 @@ Edits the name and phone number of the 1st item to be `AARON` and `91111233` res
 
 Finds items or deliveries whose attributes contain any of the given keywords.
 
-##### 3.1.5.a `find-i`
+##### 3.1.5a `find-i`
 
 Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 
@@ -337,7 +337,7 @@ Examples:
 * `find-i n/Chicken` returns `chicken` and `chicken salad` items.
 * `find-i s/Cold Storage t/meat` returns item with supplier of Cold Storage and tags of meat.
 
-##### 3.1.5.b `find-d`
+##### 3.1.5b `find-d`
 
 Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
 
