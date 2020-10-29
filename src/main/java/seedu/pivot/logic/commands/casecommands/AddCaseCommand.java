@@ -61,7 +61,7 @@ public class AddCaseCommand extends AddCommand {
         }
 
         model.addCase(investigationCase);
-        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase));
+        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase), true);
         if (StateManager.atDefaultSection()) {
             model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
         }

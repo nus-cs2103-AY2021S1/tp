@@ -124,6 +124,6 @@ public class DeleteSuspectCommandTest {
         }
 
         @Override
-        public void commitPivot(String command) {}
+        public void commitPivot(String command, boolean isMainPageCommand) {}
     }
 }
