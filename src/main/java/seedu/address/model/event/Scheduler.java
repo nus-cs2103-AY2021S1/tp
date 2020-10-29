@@ -109,7 +109,7 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
     }
 
     /**
-     * Returns true if a vEvent with the same identity as {@code eventToCheck} exists in Scheduler.
+     * Returns true if a Event with the same identity as {@code eventToCheck} exists in Scheduler.
      */
     public boolean hasEvent(Event eventToCheck) {
         requireNonNull(eventToCheck);

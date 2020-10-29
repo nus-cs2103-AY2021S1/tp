@@ -16,7 +16,7 @@ public class DeleteEvent extends Event {
     }
 
     /**
-     * Creates an deleteEvent object that will be used to check with the schedule's event.
+     * Creates a deleteEvent object that will be used to check with the schedule's event.
      */
     private DeleteEvent(String eventName, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                        String uniqueIdentifier, EventRecurrence recurrence) {

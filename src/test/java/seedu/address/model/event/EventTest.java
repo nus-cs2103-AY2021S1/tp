@@ -187,4 +187,19 @@ public class EventTest {
         assertFalse(event1.isSameEvent(differentEndEvent));
     }
 
+    @Test
+    public void isClashing_sameEvent_returnsTrue() {
+        assertTrue(ALICE_CLASS_EVENT.isOverlapping(ALICE_CLASS_EVENT));
+    }
+
+    @Test
+    public void isClashing_nonOverlappingTimes_returnsTrue() {
+        Event event = new EventBuilder(ALICE_CLASS_EVENT)
+                .withEventStartDateTime(ALICE_CLASS_EVENT.getEventStartDateTime().plusHours(2))
+                .withEventEndDateTime(ALICE_CLASS_EVENT.getEventEndDateTime().plusHours(2))
+                .build();
+
+        assertFalse(ALICE_CLASS_EVENT.isOverlapping(event));
+    }
+
 }

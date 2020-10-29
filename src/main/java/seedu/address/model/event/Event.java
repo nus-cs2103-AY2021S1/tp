@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 
@@ -91,7 +92,6 @@ public class Event {
         return otherEvent.eventName.equals(eventName)
                 && otherEvent.eventStartDateTime.equals(eventStartDateTime)
                 && otherEvent.eventEndDateTime.equals(eventEndDateTime);
-
     }
 
     /**
@@ -133,7 +133,7 @@ public class Event {
     }
 
     /**
-     * Returns true if the this event overlaps with another event.
+     * Returns true if this event overlaps with another event.
      *
      * @param otherEvent the event to be compared
      */
@@ -141,4 +141,9 @@ public class Event {
         return eventStartDateTime.isBefore(otherEvent.eventEndDateTime)
                 && otherEvent.eventStartDateTime.isBefore(eventEndDateTime);
     }
+
+    public boolean isSameName(Event otherEvent) {
+        return otherEvent.eventName.equals(eventName);
+    }
+
 }

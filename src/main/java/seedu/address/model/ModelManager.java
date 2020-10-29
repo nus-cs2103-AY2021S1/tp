@@ -245,6 +245,4 @@ public class ModelManager implements Model {
     public boolean isClashingEvent(Event event) {
         return scheduler.isClashingEvents(event);
     }
-
-
 }
