@@ -60,9 +60,11 @@ will be able to manage and access your files with ease.
 
 ### Viewing help : `help`
 
-Displays help for all commands.
+Displays help for all/certain commands.
 
-Format: `help`
+Format: (All command) `help` or (Certain command) `help COMMAND`
+
+Examples : `help tag` 
 
 ### Adding a tag with filepath : `tag`
 
@@ -83,17 +85,16 @@ Format: `show t/TAG_NAME`
 
 Examples:
 * `show t/my_research`
-* `show t/notes`
 
 ### Accessing a tagged file : `open`
 
 Opens the file specified by the unique tag name.
 
-Format: `open t/TAG_NAME`
+Format: `open t/TAG_NAME` or `open l/LABEL`
 
 Examples:
 * `open t/my_research`
-* `open t/notes`
+* `open l/notes`
 
 ### Removing a tag : `untag`
 
@@ -113,6 +114,26 @@ Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 Examples:
 * `retag o/notes t/secret`
 
+### Adding a label to a tag : `label`
+
+Adds one or more label to an existing tag. Duplicated labels will only be added once. 
+
+Format: `label t/TAG_NAME l/LABEL1 [l/LABEL2...]`
+
+Examples:
+* `label t/file1 l/important`
+* `label t/file2 l/important l/exam`
+
+### Deleting multiple labels from a tag : `unlabel`
+
+Delete one or more label from a tag.
+
+Format: ` unlabel t/TAG_NAME l/label1 [l/label2 ...]`
+
+Examples:
+* (Deleting a label) `unlabel t/notes l/secret`
+* (Deleting multiple labels) `unlabel t/file1 l/important l/exams l/`
+
 ### Finding a tag : `find`
 
 Finds a tag by its keyword (can be tag name and/or label).
@@ -120,7 +141,8 @@ Finds a tag by its keyword (can be tag name and/or label).
 Format: `find KEYWORD`
         
 Examples:
-* `find notes`
+* (With tag name as keyword) `find file1`
+* (With label as keyword) `find label2020`
 
 ### Changing current directory : `cd`
 
@@ -142,6 +164,20 @@ Examples:
 Lists all managed tags.
 
 Format: `ls`
+
+### Undoing command : `undo`
+
+Undo a recently executed command. Note that, there are some command that can't be undo.<br>
+Those commands include: `ls`,`show`,`exit`,`undo`,`redo`, `help`, `find`, `open` and `cd`
+
+Format: `undo`
+
+### Redoing command : `redo`
+
+Redo a recently executed command. Redo only exists when undo has been executed.<br> Note that, there are some command that can't be redo.
+Those commands include: `ls`,`show`,`exit`,`undo`,`redo`, `help`, `find`, `open` and `cd`
+
+Format: `redo`
 
 ### Clearing all tags : `clear`
 
@@ -181,12 +217,16 @@ Action | Format, Examples
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
-**Find** | `find KEYWORD` <br> e.g., `find newtag`
-**Open** | `open t/TAG_NAME`
+**Find** | `find KEYWORD` <br> e.g., `find newtag` or  `find newlabel`
+**Open** | `open t/TAG_NAME` or `open l/LABEL` <br> e.g., `open t/newTag` or `open l/newlabel`
+**Label** | `label t/TAG_NAME l/LABEL1 [l/LABEL2...]` <br> e.g., `label t/newtag l/new` or `label t/myFile l/important l/exclusive`
+**Unlabel** | `unlabel t/TAG_NAME l/LABEL1 [l/LABEL2...]` <br> e.g., `unlabel t/newtag l/new` or `unlabel t/myFile l/important l/exclusive`
 **List** | `ls`
 **Cd to an absolute file Path**| `cd f/ABSOLUTE_FILE_PATH` <br> e.g., `cd f/C:\Users`
 **Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` <br> e.g., `cd ./project01`
 **Cd to the parent file Path**| `cd ../`
+**Undo** | `undo`
+**Redo** | `redo`
 **Clear** | `clear`
-**Help** | `help`
+**Help** | `help` or `help COMMAND` <br> e.g., `help tag`
 **Exit** | `exit`
