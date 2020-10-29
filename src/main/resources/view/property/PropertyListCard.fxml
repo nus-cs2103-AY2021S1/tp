@@ -24,9 +24,9 @@
          <GridPane alignment="CENTER_LEFT">
            <columnConstraints>
              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-             <ColumnConstraints halignment="LEFT" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
-               <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0" />
-               <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0" />
+             <ColumnConstraints halignment="LEFT" maxWidth="125.0" minWidth="10.0" prefWidth="125.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0" />
+               <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0" />
            </columnConstraints>
            <rowConstraints>
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
