@@ -26,6 +26,13 @@ public class CommandBoxHandle extends NodeHandle<TextField> {
     }
 
     /**
+     * Clears the text in the command box.
+     */
+    public void clearInput() {
+        getRootNode().clear();
+    }
+
+    /**
      * Enters the given command in the Command Box and presses enter.
      */
     public void run(String command) {

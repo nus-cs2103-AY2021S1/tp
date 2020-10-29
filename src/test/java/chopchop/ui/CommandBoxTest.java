@@ -161,18 +161,38 @@ public class CommandBoxTest extends GuiUnitTest {
     }
 
     @Test
-    public void handleKeyPress_tabAutocompleteCommand() {
+    public void handleKeyPress_tabAutocompleteTargetWithTarget() {
+        // Autocomplete command
         executeKeyCodes(KeyCode.L);
         assertInputHistory(KeyCode.TAB, "list ");
+
+        // Autocomplete command target
+        executeKeyCodes(KeyCode.R);
+        assertInputHistory(KeyCode.TAB, COMMAND_THAT_SUCCEEDS + " ");
     }
 
     @Test
-    public void handleKeyPress_tabAutocompleteTargetWithTarget() {
-        executeKeyCodes(KeyCode.L);
-        assertInputHistory(KeyCode.TAB, "list ");
-        executeKeyCodes(KeyCode.R);
-        assertInputHistory(KeyCode.TAB, "list recipe ");
+    public void handleKeyPress_tabAutocompleteForUserInputs() {
+        // one arg starting with char
+        String firstCommand = "add recipe ";
+        String firstArg = "duck soup";
+        String secondCommand = "view ";
+        commandBoxHandle.run(firstCommand + firstArg);
+        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.D);
+        assertInputHistory(KeyCode.TAB, secondCommand + firstArg + " ");
+
+        // two args in history with same prefix get second
+        String secondArg = "duck pudding";
+        commandBoxHandle.run(firstCommand + secondArg);
+        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.D, KeyCode.TAB);
+        assertInputHistory(KeyCode.TAB, secondCommand + secondArg + " ");
+
+        // two args in history with same prefix get first
+        commandBoxHandle.clearInput();
+        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.D, KeyCode.TAB, KeyCode.TAB);
+        assertInputHistory(KeyCode.TAB, secondCommand + firstArg + " ");
     }
+
 
 
     /**
