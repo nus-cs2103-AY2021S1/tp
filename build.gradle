@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'ModDuke.jar'
+    archiveName = 'Modduke.jar'
 }
 
 defaultTasks 'clean', 'test'
