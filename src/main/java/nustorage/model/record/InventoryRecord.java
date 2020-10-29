@@ -22,6 +22,20 @@ public class InventoryRecord {
      * Constructs an InventoryRecord.
      * @param itemName Name of item added..
      * @param quantity Number of items added/removed.
+     * @param unitCost Cost per item.
+     */
+    public InventoryRecord(String itemName, int quantity, Double unitCost) {
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.dateTime = LocalDateTime.now();
+        this.unitCost = unitCost;
+        this.uiUsableIndex = "" + uiUsableIndex;
+    }
+
+    /**
+     * Constructs an InventoryRecord.
+     * @param itemName Name of item added..
+     * @param quantity Number of items added/removed.
      * @param dateTime Date and time movement.
      */
     public InventoryRecord(String itemName, int quantity, Double unitCost, LocalDateTime dateTime) {

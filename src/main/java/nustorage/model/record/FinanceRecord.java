@@ -78,7 +78,6 @@ public class FinanceRecord {
     public FinanceRecord(double amount, LocalDateTime dateTime, boolean hasInventory) {
         this.id = this.hashCode();
         this.amount = amount;
-
         this.dateTime = dateTime;
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
