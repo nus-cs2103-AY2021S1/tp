@@ -42,7 +42,7 @@ public class Contact {
     }
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for the {@code telegram} field.
      *
      * @param name Name field of the Contact object.
      * @param email Email field of the Contact object.
@@ -88,8 +88,7 @@ public class Contact {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegram().equals(getTelegram());
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
@@ -114,19 +113,13 @@ public class Contact {
     }
 
     @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, telegram, tags);
-    }
-
-    @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Telegram: ")
-                .append(getTelegram())
+                .append(getTelegram().isPresent() ? getTelegram().get() : "")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

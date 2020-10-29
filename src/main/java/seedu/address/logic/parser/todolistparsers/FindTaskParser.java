@@ -46,6 +46,7 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args,
                 PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
+
         if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG)
                 || !argMultiMap.getPreamble().isBlank()) {
             throw new ParseException(

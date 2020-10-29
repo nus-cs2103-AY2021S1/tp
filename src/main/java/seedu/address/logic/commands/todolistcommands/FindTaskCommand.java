@@ -25,7 +25,7 @@ public class FindTaskCommand extends Command {
             + "the specified search parameters provided (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "At least one of the following search parameters must be provided: \n"
-            + "Parameters: [n/TASK_NAME] [d/TASK_DATE] [p/TASK_PRIORITY] [t/TASK_TAG...]\n"
+            + "Parameters: [n/TASK_NAME] [d/TASK_DATE] [p/TASK_PRIORITY] [t/TASK_TAG]...\n"
             + "Example: " + COMMAND_WORD + " n/lab t/easy t/cs2103T";
 
     private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
@@ -50,7 +50,7 @@ public class FindTaskCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTodoList(predicate);
-        logger.info("The find task command has been executed");
+        logger.info("The result of executing the find task command has been displayed");
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTodoList().size()));
     }

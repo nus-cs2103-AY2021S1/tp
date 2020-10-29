@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.contactlistcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -57,14 +58,13 @@ public class EditContactCommand extends Command {
      * @param editContactDescriptor details to edit the contact with
      */
     public EditContactCommand(Index index, EditContactDescriptor editContactDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editContactDescriptor);
+        requireAllNonNull(index, editContactDescriptor);
 
         assert index.getZeroBased() >= 0 : "zero based index must be non-negative";
 
         this.index = index;
         this.editContactDescriptor = new EditContactDescriptor(editContactDescriptor);
-        logger.info("Edited a contact");
+        logger.info("Editing a contact at index " + index.getOneBased());
     }
 
     @Override
@@ -94,8 +94,8 @@ public class EditContactCommand extends Command {
      * Creates and returns a {@code Contact} with the details of {@code contactToEdit}
      * edited with {@code editContactDescriptor}.
      */
-    private static Contact createEditedContact(Contact contactToEdit, EditContactDescriptor editContactDescriptor) {
-        assert contactToEdit != null;
+    private Contact createEditedContact(Contact contactToEdit, EditContactDescriptor editContactDescriptor) {
+        requireAllNonNull(contactToEdit, editContactDescriptor);
 
         Contact editedContact;
         ContactName updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
@@ -113,6 +113,7 @@ public class EditContactCommand extends Command {
             editedContact = new Contact(updatedName, updatedEmail, updatedTags);
         }
 
+        logger.info("Edited contact created: " + editedContact.toString());
         return editedContact;
 
     }
