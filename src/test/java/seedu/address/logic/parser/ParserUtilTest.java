@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.notes.note.Description;
 import seedu.address.model.notes.note.Title;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -51,7 +52,7 @@ public class ParserUtilTest {
     private static final String INVALID_ATTENDANCE_STATUS = "you wot m8";
     private static final String INVALID_FEEDBACK = " ";
     private static final String INVALID_TITLE = "What is the meaning of life?";
-    private static final String INVALID_Description = "Lorem ipsum dolor sit amet, consectetur"
+    private static final String INVALID_DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur"
             + " adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ali"
             + "qua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut "
             + "aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in volupt"
@@ -568,19 +569,19 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTitle_invalidDescription_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    public void parseDescription_invalidDescription_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
-    public void parseTitle_validDescriptionWithoutWhiteSpace_returnsDescriptionString() throws Exception {
-        assertEquals(new Title(VALID_TITLE), ParserUtil.parseTitle(VALID_TITLE));
+    public void parseDescription_validDescriptionWithoutWhiteSpace_returnsDescriptionString() throws Exception {
+        assertEquals(new Description(VALID_DESCRIPTION), ParserUtil.parseDescription(VALID_DESCRIPTION));
     }
 
     @Test
-    public void parseTitle_validDescriptionWithWhiteSpace_returnsDescriptionString() throws Exception {
-        String titleWithWhiteSpace = WHITESPACE + VALID_TITLE + WHITESPACE;
-        assertEquals(new Title(VALID_TITLE), ParserUtil.parseTitle(titleWithWhiteSpace));
+    public void parseDescription_validDescriptionWithWhiteSpace_returnsDescriptionString() throws Exception {
+        String descriptionWithWhiteSpace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        assertEquals(new Description(VALID_DESCRIPTION), ParserUtil.parseDescription(descriptionWithWhiteSpace));
     }
 
 }
