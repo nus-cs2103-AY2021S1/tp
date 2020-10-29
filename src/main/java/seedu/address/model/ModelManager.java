@@ -286,7 +286,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedContactList(Comparator<Contact> comparator) {
-        requireNonNull(comparator);
+        // No assertion here because comparator value can be null to reset ordering.
         sortedContacts.setComparator(comparator);
     }
 
