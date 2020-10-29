@@ -122,15 +122,15 @@ __Format:__ `delete_inventory INDEX`
 
 __Example:__ `delete_inventory 1` deletes the inventory record at index `1`.
 
-![Delete inventory command example](images/commands/delete_inventory_command.jpg)
+![Delete inventory command example](images/commands/delete_inventory_command.png)
 
 __Result:__ record at index `1` is removed from the inventory.
 
-![Delete inventory result example](images/commands/delete_inventory_result.jpg)
+![Delete inventory result example](images/commands/delete_inventory_result.png)
 
 __Result:__ Deleted the corresponding finance record.
 
-![Delete inventory result example](images/commands/delete_finance_from_inventory_result.jpg)
+![Delete inventory result example](images/commands/delete_finance_from_inventory_result.png)
 
 ---
 
@@ -140,21 +140,21 @@ Edits the item name, quantity or unit cost of the specified record in the invent
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-__Example:__ `edit_inventory 2 i/iPad q/100 c/20` edits the inventory record at index `2`.
+__Example:__ `edit_inventory 2 i/iPad q/10 c/2000` edits the inventory record at index `2`.
 
-![Edit inventory command example](images/commands/edit_inventory_command.jpg)
+![Edit inventory command example](images/commands/edit_inventory_command.png)
 
-__Result:__ item name changed from `iphone` to `iPad`, quantity changed from `10` to `100` and unit cost from `5` to `20`.
+__Result:__ item name changed from `iphone 12` to `iPad`, quantity changed from `100` to `10` and unit cost from `1000` to `2000`.
 
-![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+![Edit inventory result example](images/commands/edit_inventory_result.png)
 
-__Result:__ updated corresponding finance record with a total cost of `2000`.
+__Result:__ updated corresponding finance record with a total cost of `20000`.
 
-![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+![Edit inventory result example](images/commands/edit_inventory_finance_result.png)
 
 ---
 
-#### 5.1.4. Edit record in inventory: `find_inventory`
+#### 5.1.4. Find record in inventory: `find_inventory`
 
 Edits the item name, quantity or unit cost of the specified record in the inventory list.
 
@@ -162,11 +162,11 @@ __Format:__ `find_inventory KEYWORD`
 
 __Example:__ `find_inventory ipad` finds for inventory records containing the name `ipad`.
 
-![Edit inventory command example](images/commands/edit_inventory_command.jpg)
+![Edit inventory command example](images/commands/find_inventory_command.png)
 
 __Result:__ lists all inventory records with the word `ipad`.
 
-![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+![Edit inventory result example](images/commands/find_inventory_result.png)
 
 ---
 
@@ -178,11 +178,31 @@ __Format:__ `list_inventory`
 
 __Example:__ `list_inventory` lists all inventory records.
 
-![List inventory command example](images/commands/list_inventory_command.jpg)
+![List inventory command example](images/commands/list_inventory_command.png)
 
 __Result:__ lists all inventory records.
 
-![List inventory result example](images/commands/list_inventory_result.jpg)
+![List inventory result example](images/commands/list_inventory_result.png)
+
+---
+
+#### 5.1.5. Update inventory record: `update_inventory`
+
+Displays all records in the inventory list.
+
+__Format:__ `update_inventory INDEX q/CHANGE_QUANTITY`
+
+__Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by `-5` and updates corresponding finance record. `CHANGE_QUANTITY` can be of negative value.
+
+![List inventory command example](images/commands/update_inventory_command.png)
+
+__Result:__ Updated inventory record at `1`.
+
+![List inventory result example](images/commands/update_inventory_result.png)
+
+__Result:__ Updated corresponding finance record.
+
+![List inventory result example](images/commands/update_inventory_finance_result.png)
 
 ---
 
