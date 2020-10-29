@@ -43,6 +43,8 @@ public class AddVisitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model cannot be null.";
+
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
@@ -54,7 +56,6 @@ public class AddVisitCommand extends Command {
         return new CommandResult(String.format(MESSAGE_POPUP_PROMPT, patientToEdit),
                                  visitDate, patientIndex.getOneBased());
     }
-
 
     @Override
     public boolean equals(Object other) {

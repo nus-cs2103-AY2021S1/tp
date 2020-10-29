@@ -51,6 +51,7 @@ public class EditVisitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model cannot be null.";
         List<Patient> lastShownList = model.getFilteredPatientList();
         int listSize = lastShownList.size();
 
@@ -63,7 +64,6 @@ public class EditVisitCommand extends Command {
         ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
 
         if (visitIndex == EMPTY_VISIT_LOG) {
-
             return new CommandResult(MESSAGE_MISSING_INDEX_PROMPT, observableHistory);
         } else {
             try {

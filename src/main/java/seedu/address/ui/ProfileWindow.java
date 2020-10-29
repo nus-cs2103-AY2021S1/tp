@@ -117,9 +117,9 @@ public class ProfileWindow extends UiPart<Stage> {
 
     @FXML
     void mouseEnterClose(MouseEvent e) {
-        logger.info("User pressed 'close'. Profile Panel closing..");
+        logger.info("User pressed 'close'. Profile panel closing..");
         getRoot().hide();
-        logger.info("Profile Panel successfully closed.");
+        logger.info("Profile panel successfully closed.");
     }
 
     /**
@@ -130,6 +130,8 @@ public class ProfileWindow extends UiPart<Stage> {
     public void setup(Patient patient, Logic logic) {
         this.logic = logic;
         this.patient = patient;
+
+        assert patient != null || logic != null : "Patient and logic cannot be null";
 
         Name patientName = patient.getName();
         Set<Allergy> patientAllergy = patient.getAllergies();

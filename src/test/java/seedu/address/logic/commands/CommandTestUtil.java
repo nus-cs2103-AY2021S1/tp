@@ -209,9 +209,7 @@ public class CommandTestUtil {
 
     /**
      * Executes the given {@code command}, confirms that <br>
-     * - a {@code CommandException} is thrown <br>
-     * - the CommandException message matches {@code expectedMessage} <br>
-     * - the clinical, filtered patient list and selected patient in {@code actualModel} remain unchanged
+     * - {@code expectedModel} <br> matches {@code actualModel}
      */
     public static void assertCommandPass(Command command, Model expectedModel,
                                          String expectedMessage, Model actualModel) {
