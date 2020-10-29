@@ -20,7 +20,7 @@ import seedu.address.model.patient.Patient;
 
 public class AddAppointmentCommand extends Command {
 
-    public static final String COMMAND_WORD = "addapp";
+    public static final String COMMAND_WORD = "addappt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment to the appointment list.\n"
             + "Parameters: "

@@ -374,11 +374,11 @@ Format: `deletevisit INDEX i/VISIT_INDEX`
 
 ### 3.4 Patient Appointment Commands
 
-#### 3.4.1 Adding an appointment: `addapp`
+#### 3.4.1 Adding an appointment: `addappt`
 
 Add a new appointment for the specified patient to the appointment database.
 
-Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
+Format: `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
@@ -397,7 +397,7 @@ Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 Example: You want to add an appointment with the first patient on the list.
 
-Step 1: Input `addapp 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
+Step 1: Input `addappt 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
 
 Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -410,11 +410,11 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 </div>
 
-#### 3.4.2 Editing an appointment: `editapp`
+#### 3.4.2 Editing an appointment: `editappt`
 
 Edit the specified appointment in the appointment database.
 
-Format: `editapp INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
+Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
 
 * Edits the appointment at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed appointment list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -438,24 +438,24 @@ Format: `editapp INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIM
 
 Example: You want to edit the time and the duration of the first appointment in the appointment list.
 
-Step 1: Input `editapp 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
+Step 1: Input `editappt 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
 
 Step 2: On the overview tab, you can find the newly updated appointment inside the appointment list. 
 
 Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
 
-#### 3.4.3 Deleting an appointment: `deleteapp`
+#### 3.4.3 Deleting an appointment: `deleteappt`
 
 Delete the specified appointment from the appointment database.
 
-Format: `deleteapp INDEX`
+Format: `deleteappt INDEX`
 
 * `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 
 Example: You want to delete your next upcoming appointment as your patient could not make it.
 
-Step 1: Input `deleteapp 1` and press Enter.
+Step 1: Input `deleteappt 1` and press Enter.
 
 Step 2: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
 
@@ -495,14 +495,14 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]`
-**Add Appointment** | `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addapp 1 st/2020-10-27 14:00 d/60`
+**Add Appointment** | `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addappt 1 st/2020-10-27 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
-**Delete Appointment** | `deleteapp INDEX` <br> e.g., `delete 3`
+**Delete Appointment** | `deleteappt INDEX` <br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
-**Edit Appointment** | `editapp INDEX` <br> e.g., `editapp 3 st/2020-11-11 10:10 d/40`
+**Edit Appointment** | `editappt INDEX` <br> e.g., `editappt 3 st/2020-11-11 10:10 d/40`
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
