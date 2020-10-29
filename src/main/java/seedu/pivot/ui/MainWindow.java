@@ -195,6 +195,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setMainWindowPanel(Index index) {
         logger.info("Updating Case Information Panel with index:" + index);
         Case investigationCase = null;
+        caseTabPane.setVisible(index != null);
 
         if (index != null) {
             logger.info("Updating Case Information Panel with Case");
