@@ -9,7 +9,7 @@
             <StackPane fx:id="basicInfoPlaceholder" VBox.vgrow="NEVER"/>
         </VBox>
         <VBox VBox.vgrow="ALWAYS" SplitPane.resizableWithParent="false"
-              minWidth="500" focusTraversable="false">
+              minWidth="400" focusTraversable="false">
             <StackPane fx:id="commentListPanelPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
     </SplitPane>

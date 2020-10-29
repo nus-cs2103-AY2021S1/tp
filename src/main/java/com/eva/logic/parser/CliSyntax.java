@@ -19,6 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_STAFF_LIST = new Prefix("-staff");
     public static final Prefix PREFIX_APPLICANT_LIST = new Prefix("-applicant");
     public static final Prefix PREFIX_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_APPLICATION_STATUS = new Prefix("as/");
     public static final Prefix PREFIX_DESC = new Prefix("desc/");
     public static final Prefix PREFIX_TITLE = new Prefix("ti/");
     public static final Prefix PREFIX_ADD_COMMENT = new Prefix("-a");

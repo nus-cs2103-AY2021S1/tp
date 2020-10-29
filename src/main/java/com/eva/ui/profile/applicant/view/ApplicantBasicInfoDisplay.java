@@ -11,6 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+
 public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     private static final String FXML = "ApplicantBasicInfoDisplay.fxml";
 
@@ -39,12 +40,17 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     public ApplicantBasicInfoDisplay(Applicant applicant) {
         super(FXML);
         this.applicant = applicant;
-        name.setText(this.applicant.getName().fullName);
-        phone.setText(this.applicant.getPhone().value);
-        address.setText(this.applicant.getAddress().value);
-        email.setText(this.applicant.getEmail().value);
-        interviewDate.setText(this.applicant.getInterviewDate().toString());
-        applicationStatus.setText(this.applicant.getApplicationStatus().toString());
+        name.setText("Name: " + this.applicant.getName().fullName);
+        phone.setText("Phone: " + this.applicant.getPhone().value);
+        address.setText("Address: " + this.applicant.getAddress().value);
+        email.setText("Email: " + this.applicant.getEmail().value);
+        interviewDate.setText("Interview Date: "
+                + (this.applicant.getInterviewDate().isPresent()
+                        ? this.applicant.getInterviewDate().get().toString()
+                        : "Not set yet")
+        );
+        applicationStatus.setText("Application Status: "
+                + this.applicant.getApplicationStatus().toString());
         tags.getChildren().add(new Label("Applicant"));
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

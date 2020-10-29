@@ -17,6 +17,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setApplicantDatabase(new EvaDatabase<>());
+        model.setStaffDatabase(new EvaDatabase<>());
         model.setPersonDatabase(new EvaDatabase<>());
         return new CommandResult(MESSAGE_SUCCESS);
     }
