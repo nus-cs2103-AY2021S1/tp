@@ -28,7 +28,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
    * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
 
-   * **`contact delete John Doe`** : Deletes `John Doe` from the contact list.
+   * **`contact delete`** `n/John Doe` : Deletes `John Doe` from the contact list.
 
    * **`contact clear`** : Deletes all contacts.
 
@@ -84,12 +84,13 @@ Example:
 
 Delete contacts with the given criteria from Modduke.
 
-Format: `contact delete [n/CONTACT_FULL_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+Format: `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
+Note(s):
 * [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
-Examples:
+Example(s):
 * `contact delete n/Roy Chan n/Jake Ng` delete contacts `Roy Chan` and `Jake Ng` from Modduke.
 * `contact delete m/CS2103 t/classmates` deletes all contacts in `CS2103` module or have `classmates` tag
 
@@ -109,9 +110,10 @@ Examples:
 
 Deletes all existing contacts.
 
-Format: NA
+Format: `contact clear`
 
-Note: Once cleared, contacts are permanently deleted.
+Note(s):
+* Once cleared, contacts are permanently deleted.
 
 ### Viewing all contacts : `contact list`
 
@@ -119,15 +121,18 @@ Shows a list of all persons in the address book.
 
 Format: `contact list`
 
-### Finding contacts: `contact find`
+### Finding contacts: `find`
 
 Shows a list of all persons in the address book that have the given keywords in their name and/or the given tags.
 
-Format: `contact find [n/KEYWORD] [t/TAG_NAME]`
+Format: `find [n/KEYWORD]... [t/TAG_NAME]...`
 
-Examples:
-*   `contact find n/Tan` Shows all persons with `Tan` in their name.
-*   `contact find n/Jay t/classmates` Shows all persons with `Jay` in their name and persons with the `classmates` tag.
+Note(s):
+* At least one optional field must be provided.
+
+Example(s):
+*   `find n/Tan` Shows all persons with `Tan` in their name.
+*   `find n/Jay t/classmates` Shows all persons with `Jay` in their name and persons with the `classmates` tag.
 
 ### Creating a module : `module add`
 
@@ -142,34 +147,37 @@ Note: A Module can have more than 1 member separated by “,” but can only hav
 
 Adds the given labels to a contact
 
-Format: ` label add CONTACT_NAME t/TAG_NAME`
+Format: `label add CONTACT_NAME t/TAG_NAME...`
 
+Note(s):
 * Only 1 contact name can be used at a time but multiple tags can be added.
 
-Examples:
+Example(s):
 * `label add Jay t/classmate t/friend`
 
 ### Deleting a tag from a user : `label delete`
 
 Deletes the given labels from a contact
 
-Format: ` label delete CONTACT_NAME t/TAG_NAMES`
+Format: `label delete CONTACT_NAME t/TAG_NAMES...`
 
+Note(s)
 * Only 1 contact name can be used at a time but multiple tags can be deleted.
 * The contact has to have the given tag.
 
-Examples:
+Example(s):
 * `label delete Jay t/friend`
 
 ### Clear tags of a user : `label clear`
 
 Deletes all labels of a contact
 
-Format: ` label clear CONTACT_NAME`
+Format: `label clear CONTACT_NAME`
 
+Note(s):
 * Only 1 contact name can be used at a time.
 
-Examples:
+Example(s):
 * `label clear Jay`
 
 ### Adding a meeting: `meeting add`
@@ -248,12 +256,13 @@ Examples:
 
 Copies email address of contacts with the given criteria to your clipboard.
 
-Format: `copy email [n/CONTACT_FULL_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+Format: `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
+Note(s):
 * [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
-Examples:
+Example(s):
 * `copy email n/Bob Ross`
 * `copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 
@@ -261,12 +270,13 @@ Examples:
 
 Copies phone numbers of contacts with the given criteria to your clipboard.
 
-Format: `copy phone [n/CONTACT_FULL_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+Format: `copy phone [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
+Note(s):
 * [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
-Examples:
+Example(s):
 * `copy phone m/CS2103`
 * `copy phone m/CS1010 t/classmate n/Bob Ross n/Peter Parker`
 
@@ -327,12 +337,17 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `contact add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
 **Clear Contacts** | `contact clear`
-**Delete Contact** | `contact delete CONTACT_NAME`<br> e.g., `delete Jay`
-**Edit Contact** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
+**Delete Contacts** | `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
+**Edit Contacts** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
 **List Contacts** | `contact list`
+**Find Contacts** | `find [n/KEYWORD]... [t/TAG_NAME]...` <br> e.g.,`find n/Roy t/friend`
 **Add Module** | `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`<br> e.g., `module add n/CS2103 m/Jay, Roy`
 **List Modules** | `module list  [n/MODULE_NAME]`<br> e.g., `module list n/CS2103`
-**Add Label** | `label add [c/CONTACT_NAME] [t/TAG_NAMES]…` <br> e.g., `label add c/Bobby Bob t/friend`
+**Add Labels** | `label add CONTACT_NAME t/TAG_NAME...` <br> e.g., `label add Jay t/acquaintance`
+**Delete Labels** | `label delete CONTACT_NAME t/TAG_NAME...` <br> e.g., `label delete Jay t/friend`
+**Clear Labels** | `label clear CONTACT_NAME` <br> e.g., `label clear Jay`
 **Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
 **Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 **List Meetings** | `meeting list`
+**Copy Email** | `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
+**Copy Email** | `copy phone [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
