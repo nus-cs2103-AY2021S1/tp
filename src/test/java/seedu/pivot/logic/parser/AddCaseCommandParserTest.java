@@ -4,6 +4,7 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_STATUS;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_TAG;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_TITLE_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_STATUS_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_STATUS_BOB;
@@ -11,7 +12,6 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TA
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TAG_HUSBAND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREIFX_WITH_INVALID_TAG;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
@@ -96,13 +96,14 @@ public class AddCaseCommandParserTest {
                 Status.MESSAGE_CONSTRAINTS);
 
         // invalid tag
-        assertParseFailure(parser, PREFIX_WITH_TITLE_BOB + PREIFX_WITH_INVALID_TAG + VALID_TAG_FRIEND,
+        assertParseFailure(parser, PREFIX_WITH_TITLE_BOB + PREFIX_WITH_INVALID_TAG + VALID_TAG_FRIEND,
                 Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        // TODO: for "add case t:TITLE", this test case may not be so relevant bc only one value
-        // but might be relevant for "add case t:TITLE d:DESCRIPTION" <-- can KIV for future use?
-        assertParseFailure(parser, PREFIX_WITH_INVALID_TITLE_AMY, Title.MESSAGE_CONSTRAINTS);
+        // Is relevant for "add case t:TITLE s:STATUS" or any number of invalid fields
+        // Using 2 invalid Fields Title and Status
+        assertParseFailure(parser, PREFIX_WITH_INVALID_TITLE_AMY + PREFIX_WITH_INVALID_STATUS,
+                Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_WITH_TITLE_BOB

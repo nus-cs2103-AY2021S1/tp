@@ -18,13 +18,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.suspectcommands.AddSuspectCommand;
+import seedu.pivot.logic.commands.victimcommands.AddVictimCommand;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.caseperson.Name;
-import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CasePersonBuilder;
 
-public class AddSuspectCommandParserTest {
+public class AddVictimCommandParserTest {
     // Todo: move static fields to CommandTestUtil
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
@@ -33,7 +33,7 @@ public class AddSuspectCommandParserTest {
 
     private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 
-    private AddSuspectCommandParser parser = new AddSuspectCommandParser();
+    private AddVictimCommandParser parser = new AddVictimCommandParser();
 
     @BeforeAll
     public static void setStateZero() {
@@ -45,29 +45,28 @@ public class AddSuspectCommandParserTest {
         StateManager.resetState();
     }
 
-    //TODO: add all the fields in for suspect here
+    //TODO: add all the fields in for victim here
     @Test
     public void parse_allFieldsPresent_success() {
-        Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB)
-                .withGender(VALID_GENDER_BOB)
-                .buildSuspect();
+        Victim expectedVictim = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB).withGender(VALID_GENDER_BOB)
+                .buildVictim();
 
         // normal input
         assertParseSuccess(parser, NAME_DESC_BOB + GENDER_DESC_BOB,
-                new AddSuspectCommand(index, expectedSuspect));
+                new AddVictimCommand(index, expectedVictim));
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + GENDER_DESC_BOB,
-                new AddSuspectCommand(index, expectedSuspect));
+                new AddVictimCommand(index, expectedVictim));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + GENDER_DESC_BOB,
-                new AddSuspectCommand(index, expectedSuspect));
+                new AddVictimCommand(index, expectedVictim));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSuspectCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVictimCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, NAME_DESC_BOB, expectedMessage);
@@ -80,6 +79,6 @@ public class AddSuspectCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + GENDER_DESC_BOB,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSuspectCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVictimCommand.MESSAGE_USAGE));
     }
 }
