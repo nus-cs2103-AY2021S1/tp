@@ -10,7 +10,7 @@
     </VBox>
     <SplitPane>
         <VBox minWidth="100" maxWidth="200" >
-            <Label fx:id="name" VBox.vgrow="ALWAYS" />
+            <Label fx:id="applicationName" VBox.vgrow="ALWAYS" />
         </VBox>
         <VBox VBox.vgrow="ALWAYS" SplitPane.resizableWithParent="true"
               minWidth="350">
