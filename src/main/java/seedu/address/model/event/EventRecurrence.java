@@ -7,8 +7,12 @@ public enum EventRecurrence {
     WEEKLY("weekly", "FREQ=WEEKLY;INTERVAL=1"),
     NONE("none", "FREQ=YEARLY;INTERVAL=1");
 
+    public static final String INCORRECT_EVENT_RECURRENCE_MESSAGE = "Event recurrence is incorrect";
+    public static final String INCORRECT_EVENT_RECURRENCE_RULE_MESSAGE = "Recurrence rule is incorrect";
+
     private String recurrenceString;
     private String vEventRecurRule;
+
 
     EventRecurrence(String recurrenceString, String vEventRecurRule) {
         this.recurrenceString = recurrenceString;
@@ -29,7 +33,7 @@ public enum EventRecurrence {
                 return type;
             }
         }
-        throw new ParseException("Event recurrence is incorrect");
+        throw new ParseException(INCORRECT_EVENT_RECURRENCE_MESSAGE);
     }
 
     /**
@@ -44,10 +48,14 @@ public enum EventRecurrence {
                 return type;
             }
         }
-        throw new ParseException("Recurrence rule is incorrect");
+        throw new ParseException(INCORRECT_EVENT_RECURRENCE_RULE_MESSAGE);
     }
 
-    public String getvEventRecurRule() {
+    public String getVEventRecurRule() {
         return this.vEventRecurRule;
+    }
+
+    public String getRecurrenceString() {
+        return this.recurrenceString;
     }
 }

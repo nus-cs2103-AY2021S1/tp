@@ -1,0 +1,15 @@
+{
+  "events" : [ {
+    "eventName" : "valid event",
+    "eventStartDateTime" : "2020-12-03T10:15:30",
+    "eventEndDateTime" : "2020-12-03T10:17:30",
+    "uniqueIdentifier" : "uidAliceLesson",
+    "eventRecurrence" : "WEEKLY"
+  }, {
+    "eventName" : "invalid event",
+    "eventStartDateTime" : "2020/11/03 invalid format",
+    "eventEndDateTime" : "2020-11-03T10:16:35",
+    "uniqueIdentifier" : "uidPlanLesson",
+    "eventRecurrence" : "DAILY"
+  } ]
+}

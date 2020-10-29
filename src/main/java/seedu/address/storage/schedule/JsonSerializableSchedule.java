@@ -51,7 +51,7 @@ public class JsonSerializableSchedule {
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
             Event event = jsonAdaptedEvent.toModelType();
             if (lstOfEvents.contains(event)) {
-                throw new DuplicateEventException();
+                throw new IllegalValueException(MESSAGE_DUPLICATE_EVENTS);
             }
             lstOfEvents.add(event);
         }

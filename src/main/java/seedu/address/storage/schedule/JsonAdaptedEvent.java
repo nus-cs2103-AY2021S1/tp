@@ -19,7 +19,7 @@ import seedu.address.model.event.EventRecurrence;
 public class JsonAdaptedEvent {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Event's %s field is missing!";
-    public static final String INCORRECT_DATE_TIME_MESSAGE = "Event date time is in incorrect format!";
+
 
     private String eventName;
     private String eventStartDateTime;
@@ -54,9 +54,6 @@ public class JsonAdaptedEvent {
         eventRecurrence = source.getRecurrence().toString();
     }
 
-    public JsonAdaptedEvent(VEvent vEvent) {
-    }
-
     /**
      * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
@@ -80,7 +77,7 @@ public class JsonAdaptedEvent {
         }
 
         if (uniqueIdentifier == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "uid"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "uniqueIdentifier"));
         }
 
         if (eventRecurrence == null) {
@@ -106,7 +103,7 @@ public class JsonAdaptedEvent {
                     eventRecurrenceEnum);
 
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException(INCORRECT_DATE_TIME_MESSAGE);
+            throw new IllegalValueException(Event.INCORRECT_DATE_TIME_MESSAGE);
         }
 
     }

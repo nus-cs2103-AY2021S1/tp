@@ -17,6 +17,8 @@ public class Event {
 
     public static final String INVALID_EVENT_NAME_MSG = "Event name cannot be blank";
     public static final String INVALID_EVENT_START_END_TIME_MSG = "Event start time is after end time";
+    public static final String INCORRECT_DATE_TIME_MESSAGE = "Event date time is in incorrect format!";
+
 
     private String eventName;
     private LocalDateTime eventStartDateTime;

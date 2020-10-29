@@ -1,0 +1,25 @@
+{
+  "events": [
+    {
+      "eventName": "Lesson event",
+      "eventStartDateTime": "2020-12-03T10:15:30",
+      "eventEndDateTime": "2020-12-03T10:17:30",
+      "uniqueIdentifier": "uidAliceLesson",
+      "eventRecurrence": "WEEKLY"
+    },
+    {
+      "eventName": "Lesson event",
+      "eventStartDateTime": "2020-12-03T10:15:30",
+      "eventEndDateTime": "2020-12-03T10:17:30",
+      "uniqueIdentifier": "uidAliceLesson",
+      "eventRecurrence": "WEEKLY"
+    },
+    {
+      "eventName": "Lesson event",
+      "eventStartDateTime": "2020-12-03T10:15:30",
+      "eventEndDateTime": "2020-12-03T10:17:30",
+      "uniqueIdentifier": "uidAliceLesson",
+      "eventRecurrence": "WEEKLY"
+    }
+  ]
+}

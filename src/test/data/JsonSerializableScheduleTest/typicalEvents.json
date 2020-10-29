@@ -1,0 +1,21 @@
+{
+  "events" : [ {
+    "eventName" : "Lesson event",
+    "eventStartDateTime" : "2020-12-03T10:15:30",
+    "eventEndDateTime" : "2020-12-03T10:17:30",
+    "uniqueIdentifier" : "uidAliceLesson",
+    "eventRecurrence" : "WEEKLY"
+  }, {
+    "eventName" : "Plan lessons",
+    "eventStartDateTime" : "2020-11-03T10:14:30",
+    "eventEndDateTime" : "2020-11-03T10:16:35",
+    "uniqueIdentifier" : "uidPlanLesson",
+    "eventRecurrence" : "DAILY"
+  }, {
+    "eventName" : "Watch a movie",
+    "eventStartDateTime" : "2020-11-25T10:10",
+    "eventEndDateTime" : "2020-11-26T10:12:01",
+    "uniqueIdentifier" : "uidWatchMovie",
+    "eventRecurrence" : "NONE"
+  } ]
+}

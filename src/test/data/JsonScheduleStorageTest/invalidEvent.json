@@ -1,0 +1,7 @@
+{
+  "eventName" : "Watch a movie",
+  "eventStartDateTime" : "2020/10/20 invalid date time",
+  "eventEndDateTime" : "2020-11-03T10:16:35",
+  "uniqueIdentifier" : "uidWatchMovie",
+  "eventRecurrence" : "NONE"
+}

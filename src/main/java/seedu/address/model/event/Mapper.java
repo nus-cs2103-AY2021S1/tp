@@ -25,10 +25,10 @@ public class Mapper {
                 .withDateTimeEnd(event.getEventEndDateTime())
                 .withUniqueIdentifier(event.getUniqueIdentifier());
         if (!(event.getRecurrence() == null) || !event.getRecurrence().equals(EventRecurrence.NONE)) {
-            vEvent.setRecurrenceRule(event.getRecurrence().getvEventRecurRule());
+            vEvent.setRecurrenceRule(event.getRecurrence().getVEventRecurRule());
         }
-        if (event.getRecurrence().getvEventRecurRule() == "") {
-            vEvent.setRecurrenceRule(EventRecurrence.NONE.getvEventRecurRule());
+        if (event.getRecurrence().getVEventRecurRule() == "") {
+            vEvent.setRecurrenceRule(EventRecurrence.NONE.getVEventRecurRule());
         }
 
         return vEvent;

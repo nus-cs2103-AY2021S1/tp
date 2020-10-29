@@ -3,6 +3,7 @@ package seedu.address.model;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.event.SchedulePrefs;
 
 public class UserPrefsTest {
 
@@ -17,5 +18,13 @@ public class UserPrefsTest {
         UserPrefs userPrefs = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
     }
+
+    @Test
+    public void setScheduleFilePath_nullPath_throwsNullPointerException() {
+        UserPrefs userPrefs = new UserPrefs();
+        assertThrows(NullPointerException.class, () -> userPrefs.setScheduleFilePath(null));
+    }
+
+
 
 }
