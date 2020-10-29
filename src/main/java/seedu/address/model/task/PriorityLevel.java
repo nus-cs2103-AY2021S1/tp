@@ -1,6 +1,7 @@
 package seedu.address.model.task;
 
 public enum PriorityLevel {
+    NONE("No Priority Assigned"),
     LOW("Low"),
     MEDIUM("Medium"),
     HIGH("High");

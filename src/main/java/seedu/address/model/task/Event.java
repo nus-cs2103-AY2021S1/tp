@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -19,6 +21,7 @@ public class Event extends Task {
     public Event(Title title, Description description, Priority priority,
                  TaskDate eventDate, TaskTime eventTime, Set<Tag> tags) {
         super(title, description, priority, tags);
+        requireAllNonNull(eventDate, eventTime);
         this.eventDate = eventDate;
         this.eventTime = eventTime;
     }

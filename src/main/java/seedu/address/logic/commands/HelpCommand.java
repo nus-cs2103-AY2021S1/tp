@@ -19,10 +19,6 @@ public class HelpCommand extends Command {
 
     public HelpCommand() {}
 
-    public HelpCommand(String commandWord) {
-        commandDescription = commandWord;
-    }
-
     @Override
     public CommandResult execute(Model model) {
         UiManager.setCommandDescription(commandDescription);
@@ -31,5 +27,20 @@ public class HelpCommand extends Command {
 
     public String getCommandWord () {
         return commandDescription;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof HelpCommand)) {
+            return false;
+        }
+
+        return true;
     }
 }
