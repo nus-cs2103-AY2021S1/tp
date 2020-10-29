@@ -14,12 +14,14 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.exceptions.ParseException;
+import chopchop.logic.recommendation.RecommendationManager;
 import chopchop.model.Model;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import chopchop.storage.Storage;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * The main LogicManager governing the logic in the app.
@@ -31,6 +33,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final HistoryManager historyManager;
+    private final RecommendationManager recommendationManager;
     private final CommandParser parser;
     private final AutoCompleter completer;
 
@@ -41,6 +44,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         this.historyManager = new HistoryManager();
+        this.recommendationManager = new RecommendationManager(model);
         this.parser = new CommandParser();
         this.completer = new AutoCompleter();
     }
@@ -127,6 +131,16 @@ public class LogicManager implements Logic {
     @Override
     public List<String> getInputHistory(String prefix) {
         return this.historyManager.getInputHistory(prefix);
+    }
+
+    @Override
+    public FilteredList<Recipe> getRecommendedRecipeList() {
+        return this.recommendationManager.getRecommendedRecipeList();
+    }
+
+    @Override
+    public FilteredList<Recipe> getExpiringRecipeList() {
+        return this.recommendationManager.getExpiringRecipeList();
     }
 
     @Override

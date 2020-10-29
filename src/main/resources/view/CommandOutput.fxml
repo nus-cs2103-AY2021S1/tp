@@ -1,22 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.text.TextFlow?>
 
-<?import javafx.geometry.Insets?>
-<StackPane alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <stylesheets>
-        <URL value="@Style.css" />
-    </stylesheets>
-    <StackPane.margin>
-        <Insets bottom="12.0" />
-    </StackPane.margin>
-   <children>
-      <TextFlow fx:id="displayBox" maxHeight="240.0" maxWidth="272.0" />
-   </children>
-</StackPane>
-
-
+<ScrollPane styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fitToWidth="true">
+    <TextFlow fx:id="displayBox"/>
+</ScrollPane>
