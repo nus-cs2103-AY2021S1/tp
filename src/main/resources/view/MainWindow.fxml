@@ -36,6 +36,13 @@
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                     </Menu>
                 </MenuBar>
+                <AnchorPane styleClass="pane-with-border">
+                    <Label fx:id="sectionLabel" alignment="CENTER" minHeight="30" styleClass="label-bright" text="Section" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                        <padding>
+                            <Insets bottom="5" top="5" />
+                        </padding>
+                    </Label>
+                </AnchorPane>
 
                 <SplitPane fx:id="caseDisplayPlaceholder" dividerPositions="0.5" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <VBox fx:id="caseList" minWidth="250" prefWidth="250" styleClass="pane-with-border">
@@ -65,9 +72,9 @@
                             </padding>
                         </Label>
 
-                        <TabPane fx:id="caseTabPane" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED" VBox.vgrow="ALWAYS" styleClass="tab-pane">
+                        <TabPane fx:id="caseTabPane" styleClass="tab-pane" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets bottom="10"/>
+                                <Insets bottom="10" />
                             </padding>
                             <Tab fx:id="documentTab" text="Documents">
                                 <AnchorPane VBox.vgrow="ALWAYS">

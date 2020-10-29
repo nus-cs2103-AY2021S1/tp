@@ -82,6 +82,7 @@ public class StateManager {
     public static void setArchivedSection() {
         logger.info("StateManager: Setting archiveStatus:" + ArchiveStatus.ARCHIVED);
         currentSection = ArchiveStatus.ARCHIVED;
+        UiStateManager.setStatusBarArchived();
     }
 
     /**
@@ -91,6 +92,7 @@ public class StateManager {
     public static void setDefaultSection() {
         logger.info("StateManager: Setting archiveStatus:" + ArchiveStatus.DEFAULT);
         currentSection = ArchiveStatus.DEFAULT;
+        UiStateManager.setStatusBarDefault();
     }
 
     /**

@@ -31,6 +31,7 @@ import seedu.pivot.logic.Logic;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.parser.exceptions.ParseException;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
@@ -58,6 +59,7 @@ public class MainWindow extends UiPart<Stage> {
     private CasePersonListPanel victimListPanel;
     private SimpleObjectProperty<Index> indexSimpleObjectProperty;
     private SimpleObjectProperty<String> tabSimpleObjectProperty;
+    private SimpleObjectProperty<ArchiveStatus> archiveStatusSimpleObjectProperty;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -113,6 +115,15 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Tab victimTab;
 
+    @FXML
+    private Label sectionLabel;
+
+    // For Section Label
+    private final String firstInit = "Welcome to PIVOT. ";
+    private final String preamble = "You are now at the ";
+    private final String homepage = "Homepage";
+    private final String archive = "Archive";
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -138,10 +149,23 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
 
+        tabSimpleObjectProperty = UiStateManager.getTabState();
         UiStateManager.getTabState().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 setTabSelected((String) newValue);
+            }
+        });
+
+        archiveStatusSimpleObjectProperty = UiStateManager.getCurrentSection();
+        UiStateManager.getCurrentSection().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                String section = "";
+                if (newValue != null) {
+                    section = newValue.equals(ArchiveStatus.DEFAULT) ? homepage : archive;
+                }
+                sectionLabel.setText(preamble + section);
             }
         });
 
@@ -205,6 +229,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        sectionLabel.setText(firstInit + preamble + homepage);
 
         updateCaseInformationPanel(indexSimpleObjectProperty.get());
     }

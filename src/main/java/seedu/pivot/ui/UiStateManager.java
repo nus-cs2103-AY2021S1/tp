@@ -79,4 +79,8 @@ public class UiStateManager {
         currentSection.set(ArchiveStatus.DEFAULT);
     }
 
+    public static SimpleObjectProperty<ArchiveStatus> getCurrentSection() {
+        return currentSection;
+    }
+
 }
