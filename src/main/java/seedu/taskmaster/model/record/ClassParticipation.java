@@ -28,6 +28,8 @@ public class ClassParticipation {
      */
     public ClassParticipation(int score) {
         logger.log(Level.INFO, "Making Class Participation");
+        assert score <= 10;
+        assert score >= 0;
         this.maxScore = 10;
         this.score = score;
     }
@@ -37,21 +39,13 @@ public class ClassParticipation {
      * The maximum score is given and set accordingly
      * The score is given and set accordingly
      */
-    public ClassParticipation(int score, int maxScore) {
+    public ClassParticipation(int newScore, int newMaxScore) {
         logger.log(Level.INFO, "Making Class Participation");
-        this.maxScore = maxScore;
-        this.score = score;
-    }
-
-    public void setScore(int score) {
-        assert score >= 0;
-        this.score = score;
-    }
-
-    public void setMaxScore(int maxScore) {
-        assert maxScore >= score;
-        assert maxScore != 0;
-        this.maxScore = maxScore;
+        assert newScore <= maxScore;
+        assert newScore >= 0;
+        assert newMaxScore >= 0;
+        this.maxScore = newMaxScore;
+        this.score = newScore;
     }
 
     @Override
