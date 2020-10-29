@@ -265,7 +265,7 @@ Examples: `bin`
 
 Restores an existing bin item in ResiReg.
 
-Format: `restore <index>​`
+Format: `restore <index>`
 
 - Restores the bin item at the specified `index` to the list it was originally deleted from (e.g. student list). The index refers to the index number shown in the displayed bin item list. The index **must be a positive integer** 1, 2, 3, …​
 
