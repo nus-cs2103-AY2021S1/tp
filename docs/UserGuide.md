@@ -14,10 +14,10 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Deleting a student: `delete`](#Deleting-a-student-delete "Goto Deleting-a-student-delete")
     - [Adding a session: `session`](#Adding-a-session-session "Goto Adding-a-session-session")
     - [Changing the current session: `goto`](#Changing-the-current-session-goto "Goto Changing-the-current-session-goto")
-    - [Marking a student's attendance: `mark`](#Marking-a-student’s-attendance-mark "Goto Marking-a-students-attendance-mark")
-    - [Marking all students' attendance: `mark all`](#Marking-all-students'-attendance "Goto Marking-all-students'-attendance")
-    - [Scoring a student's participation: `score`](#Scoring-a-student’s-participation "Goto Scoring-a-students-participation")
-    - [Scoring all students' participation: `score all`](#Scoring-all-students'-participation "Goto Scoring-all-students'-participation")
+    - [Marking a student's attendance: `mark`](#marking-a-students-attendance-mark "Goto marking-a-students-attendance-mark")
+    - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Goto marking-all-students-attendance-mark-all")
+    - [Scoring a student's participation: `score`](#scoring-a-students-participation-score "Goto scoring-a-students-participation-score")
+    - [Scoring all students' participation: `score all`](#scoring-all-students-participation-score-all "Goto scoring-all-students-participation-score-all")
     - [Clear all students: `clear`](#Clearing-all-entries-clear "Goto Clearing-all-entries-clear")
     - [Exit the program: `exit`](#Exiting-the-program-exit "Goto Exiting-the-program-exit")
 - [Command Summary](#Command-Summary "Goto Command-Summary")
@@ -126,6 +126,7 @@ exit
 ```
 
 ## Command Summary
+
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
 | Add student       | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```  |
