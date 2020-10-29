@@ -88,8 +88,7 @@ public abstract class EditCommand extends Command {
         List<Suspect> updatedSuspects = editCaseDescriptor.getSuspects().orElse(caseToEdit.getSuspects());
         List<Victim> updatedVictims = editCaseDescriptor.getVictims().orElse(caseToEdit.getVictims());
         Set<Tag> updatedTags = editCaseDescriptor.getTags().orElse(caseToEdit.getTags());
-        //TODO: to be edited
-        ArchiveStatus updatedArchiveStatus = ArchiveStatus.DEFAULT;
+        ArchiveStatus updatedArchiveStatus = caseToEdit.getArchiveStatus();
         List<Witness> updatedWitnesses =
                 editCaseDescriptor.getWitnesses().orElse(caseToEdit.getWitnesses());
         return new Case(updatedTitle, updatedDescription, updatedStatus, updatedDocuments,
