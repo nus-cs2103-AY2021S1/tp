@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
+import seedu.pivot.logic.commands.suspectcommands.EditSuspectCommand;
 import seedu.pivot.logic.commands.victimcommands.EditVictimCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
@@ -42,7 +43,8 @@ public class EditVictimCommandParser implements Parser<EditVictimCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 arguments, PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        EditPersonDescriptor editPersonDescriptor = ParserUtil.parseEditedPersonFields(argMultimap);
+        EditPersonDescriptor editPersonDescriptor =
+                ParserUtil.parseEditedPersonFields(argMultimap, EditSuspectCommand.MESSAGE_USAGE);
 
         return new EditVictimCommand(caseIndex, victimIndex, editPersonDescriptor);
     }
