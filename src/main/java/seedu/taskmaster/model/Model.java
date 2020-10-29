@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
@@ -67,6 +68,12 @@ public interface Model {
      */
     void setSessions(List<Session> sessions);
 
+    /**
+     * Adds the given session.
+     * {@code session} must not already exist in the session list.
+     */
+    void addSession(Session session);
+
     void changeSession(SessionName sessionName);
 
     /**
@@ -78,12 +85,6 @@ public interface Model {
      * Returns true if a session with {@code sessionName} exists in the session list.
      */
     boolean hasSession(SessionName sessionName);
-
-    /**
-     * Adds the given session.
-     * {@code session} must not already exist in the session list.
-     */
-    void addSession(Session session);
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student list.
@@ -162,4 +163,6 @@ public interface Model {
      * Clears the attendance statuses of all students in the student list.
      */
     void clearAttendance();
+
+    SimpleObjectProperty<Session> getCurrentSession();
 }

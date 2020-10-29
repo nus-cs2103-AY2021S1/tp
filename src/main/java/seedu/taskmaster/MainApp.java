@@ -21,6 +21,8 @@ import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.session.SessionList;
+import seedu.taskmaster.model.session.SessionListManager;
 import seedu.taskmaster.model.util.SampleDataUtil;
 import seedu.taskmaster.storage.JsonTaskmasterStorage;
 import seedu.taskmaster.storage.JsonUserPrefsStorage;
@@ -36,7 +38,7 @@ import seedu.taskmaster.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 1, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -56,7 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(userPrefs.getTaskmasterFilePath());
+        TaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(userPrefs.getTaskmasterFilePath(),
+                userPrefs.getSessionListFilePath());
         storage = new StorageManager(taskmasterStorage, userPrefsStorage);
 
         initLogging(config);
@@ -75,22 +78,35 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskmaster> taskmasterOptional;
-        ReadOnlyTaskmaster initialData;
+        Optional<SessionList> sessionListOptional;
+        ReadOnlyTaskmaster initialData = null;
+        SessionList initialSessionList = new SessionListManager();
         try {
             taskmasterOptional = storage.readTaskmaster();
             if (!taskmasterOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Taskmaster");
             }
             initialData = taskmasterOptional.orElseGet(SampleDataUtil::getSampleTaskmaster);
+
+            sessionListOptional = storage.readSessionList();
+            if (!sessionListOptional.isPresent()) {
+                logger.info("Session List file not found.");
+            }
+            initialSessionList = sessionListOptional.orElse(initialSessionList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Taskmaster");
             initialData = new Taskmaster();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Taskmaster");
             initialData = new Taskmaster();
+        } catch (NumberFormatException e) {
+            logger.warning("Problem when parsing ClassParticipation scores."
+                    + " Will be starting with empty SessionList.");
+            initialData = (initialData != null) ? initialData : new Taskmaster();
+            initialSessionList = new SessionListManager();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, initialSessionList.asUnmodifiableObservableList(), userPrefs);
     }
 
     private void initLogging(Config config) {
