@@ -75,9 +75,10 @@ Adds a contact to Modduke.
 
 Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
-Note: All fields are required except those in square brackets. No duplicate names.
+Note(s): 
+* All fields are required except those in square brackets. No duplicate names.
 
-Example:
+Example(s):
 * `contact add n/John Doe p/98765432 e/johnd@example.com`
 
 ### Deleting a contact : `contact delete`
@@ -387,7 +388,7 @@ Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggest
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `contact add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
+**Add Contact** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
 **Clear Contacts** | `contact clear`
 **Delete Contacts** | `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
 **Edit Contacts** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
@@ -401,5 +402,7 @@ Action | Format, Examples
 **Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
 **Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 **List Meetings** | `meeting list`
+**View Meeting** | `meeting view m/MODULE n/MEETING_NAME`  <br> e.g., `meeting view m/CS2100 n/Report Discussion`
 **Copy Email** | `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Copy Phone** | `copy phone [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
+
