@@ -778,20 +778,20 @@ Example:
 Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
 
 <a name="StatsRecipeRecentCommand"></a>
-### 5.19. Listing Recipes recently made — **`stats recipe recent`**
+### 5.19. Listing recently made Recipes— **`stats recipe recent`**
 Shows a list of most recently made recipes. The list is arranged in descending chronological order; the recipe most recently made is the first item on the list. 
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown. 
 
 <a name="StatsRecipeMadeCommand"></a>
-### 5.20. Listing Recipes made in a given time frame — **`stats recipe made`**
+### 5.20. Listing Recipes made within a given time frame — **`stats recipe made`**
 Shows a list of recipes that were made within the given time frame. The list is arranged in descending chronological order.
 
-Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown. 
+Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will see the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown. 
 
 **Usage**: `stats recipe [/before <DATE>] [/after <DATE>]`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** If you are omit both `[/before <DATE>]` and `[/after <DATE>]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
+:bulb: **Tip:** If you are omit both `[/before DATE]` and `[/after DATE]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
 </div>
 
 For example:
@@ -816,7 +816,7 @@ After you execute this command, the records of recipes that were made are delete
 **Usage**: `stats recipe clear`
 
 <a name="StatsIngredientRecentCommand"></a>
-### 5.22. Listing Ingredients recently made — **`stats ingredient recent`**
+### 5.22. Listing recently used Ingredients— **`stats ingredient recent`**
 Shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown. 
 
@@ -866,7 +866,7 @@ For easy reference, here are the commands that ChopChop supports, listed in alph
 | [stats recipe clear] (#ClearRecipeCommand)   | Clear recipe usage records                                                 | **YES**  |
 | [stats ingredient recent] (#StatsIngredientRecentCommand) | Shows the recently used ingredients                           | **NO**   |
 | [stats ingredient made] (#StatsIngredientUsedCommand) | Shows the ingredient used within the given time frame             | **NO**   |
-| [stats ingredient clear] (#StatsIngredientClearCommand) | Clear ingredient usage records                                  | **YES**   |
+| [stats ingredient clear] (#StatsIngredientClearCommand) | Clear ingredient usage records                                  | **YES**  |
 
 
 

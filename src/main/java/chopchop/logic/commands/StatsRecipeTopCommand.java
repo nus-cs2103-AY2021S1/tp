@@ -38,6 +38,6 @@ public class StatsRecipeTopCommand extends Command {
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("list-top-recipe-statsrecipetop");
+        throw new RuntimeException("listing-top-recipes-statsrecipetop");
     }
 }

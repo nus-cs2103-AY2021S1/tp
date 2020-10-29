@@ -40,7 +40,9 @@ public class HelpCommandParser {
         var words = new StringView(args.getRemaining()).words();
 
         Optional<String> cmd = words.size() > 0 ? Optional.of(words.get(0)) : Optional.empty();
-        Optional<String> tgt = words.size() > 1 ? Optional.of(words.get(1)) : Optional.empty();
+        //todo: I change this to handle 3 keywords
+        Optional<String> tgt = words.size() > 1 ? Optional.of(String.join(" ", words.subList(1, words.size())))
+            : Optional.empty();
 
         // for now, instead of erroring on arguments, we just let it pass through.
         // we might want to display command-specific help in the future.

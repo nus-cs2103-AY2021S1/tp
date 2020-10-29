@@ -48,6 +48,6 @@ public class StatsIngredientRecentCommand extends Command {
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recent-ingredient-usages-statsingredientrecent");
+        throw new RuntimeException("listing-recently-used-ingredient-statsingredientrecent");
     }
 }
