@@ -54,12 +54,12 @@ Objectives of PlaNus:
 1. Ensure you have Java 11 or above installed in your computer.
 2. Download the latest planus.jar from **[here](https://github.com/AY2021S1-CS2103T-T12-3/tp/releases/)**.
 
-    ![setup](images/setup.png)
+    ![setup](images/Setup.png)
 
 3. Copy the file to the folder you want to use as the home folder for PlaNus.
 4. Double-click the file to start the app. Upon launching PlaNus, you should see the following user interface.
 
-    ![sample PlaNus](images/samplePlanus.png)
+    ![sample PlaNus](images/SamplePlanus.png)
 
 5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`
 6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
@@ -104,7 +104,7 @@ Format: `help`
 1. Type in `help` into the command box.
 2. A success message and a pop-up window with a link to the user guide will appear.
 
-![help message](images/helpMessage.png)
+![help message](images/HelpMessage.png)
 
 
 <br>
@@ -117,13 +117,13 @@ Format: `clear`
 
 1. Type in `clear` into the command box.
 
-![clear message](images/clearMessage.png)
+![clear message](images/ClearMessage.png)
 
 <br>
 2. All the tasks and lessons in PlaNus will be cleared.
 <br>
 
-![clear success message](images/clearSuccessMessage.png)
+![clear success message](images/ClearSuccessMessage.png)
 
 <br>
 
@@ -135,7 +135,7 @@ Format: `exit`
 
 1. Type `exit` into the command box.
 
-    ![exit message](images/exitMessage.png)
+    ![exit message](images/ExitMessage.png)
 
 2. The application window will automatically close.
 
@@ -571,7 +571,7 @@ How does it work:
 | **Delete task** | `delete-task INDEX...` <br> e.g. `delete-task 3`, `delete-task 3, 4, 5`                       |
 | **Done task**   | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120`    |
 | **Find task**   | `find-task ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find-task title:dinner date:02-02-2020` |
-| **Edit task**   | `edit-task INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [type:TYPE] [tag:MODULE_CODE]`<br>e.g. `edit-task 1 date:02-02-2020 12:00 tag:CS2101` |
+| **Edit task**   | `edit-task INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [tag:MODULE_CODE] [datetime:DEADLINE (deadline only)] [date:EVENT_DATE (event only)] [start:START_TIME (event only)] [end:END_TIME (event only)]`<br>e.g. `edit-task 1 date:02-02-2020 12:00 tag:CS2101` |
 | **List lesson** | `list-lesson` |
 | **Add Lesson** | `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
 | **Edit lesson**   | `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [day:DAY] [from:TIME] [to:TIME] [start:DATE] [end:DATE]` <br> `e.g.edit-lesson 1 start:10-10-2020`                                                       |
