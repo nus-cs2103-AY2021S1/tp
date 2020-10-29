@@ -66,6 +66,19 @@ public class FinanceRecord {
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount Amount of the transaction.
+     * @param dateTime Date of the transaction.
+     */
+    public FinanceRecord(double amount, LocalDateTime dateTime, boolean hasInventory) {
+        this.id = this.hashCode();
+        this.amount = amount;
+        this.dateTime = dateTime;
+        this.hasInventory = hasInventory;
+        this.uiUsableIndex = "" + uiUsableIndex;
+    }
 
     public int getID() {
         return id;

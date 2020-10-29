@@ -69,10 +69,10 @@ public class EditInventoryCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INVENTORY_RECORD);
         }
         FinanceRecord financeRecordToEdit = model.getFinanceRecord(inventoryRecordToEdit);
-        FinanceRecord editedFinanceRecord = new FinanceRecord(editedInventoryRecord.getFinanceId(),
-                editedInventoryRecord.getUnitCost() * editedInventoryRecord.getQuantity(),
+        FinanceRecord editedFinanceRecord = new FinanceRecord(editedInventoryRecord.getUnitCost() * editedInventoryRecord.getQuantity(),
                 editedInventoryRecord.getDateTime(), true);
-
+        editedInventoryRecord.setFinanceRecord(editedFinanceRecord);
+        editedInventoryRecord.setFinanceRecord(editedFinanceRecord);
         model.setInventoryRecord(inventoryRecordToEdit, editedInventoryRecord);
         model.setFinanceRecord(financeRecordToEdit, editedFinanceRecord);
 

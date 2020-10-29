@@ -45,11 +45,11 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
                     argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
-            editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
+            editInventoryDescriptor.setUnitCost(ParserUtil.parseItemCost(
                     argMultimap.getValue(PREFIX_ITEM_COST).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
+            editInventoryDescriptor.setDateTime(ParserUtil.parseDatetime(
                     argMultimap.getValue(PREFIX_DATETIME).get()));
         }
 
