@@ -19,53 +19,99 @@ This User Guide will provide a general overview of installation, current feature
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick Start
 
+### 2.1 Installation Guide
+
 <a name="installationvideo"></a>
 Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 <br>
 
 [![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
+
 <br>
 
+Installation Steps:
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-<a name="uiwithannotationpng"></a>
-1. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
-   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
-    <br>
-    
-    ![Ui](images/UiWithAnnotation.png) 
-    Figure 1: Introduction to OneShelf User Interface
-    <br>
-    
-   <a name="uihelpstart"></a>
-1. Type the command `help start` in the command box and press Enter to execute it. <br>
-   A new help window shown below should appear on your desktop. You are strongly encouraged to follow
-   the steps in the help window if you are a new user.
-    <br>
-    
-    ![Help Window](images/UiHelpStart.png) 
-    Figure 2: Help Start Window
-    <br>
+1. Double-click the file to start the app.
 
 1. Refer to the [Features](#3-features) below for details of each command.
 
---------------------------------------------------------------------------------------------------------------------
-
-## <a name="3-features"></a>3. Features
+   
+### 2.2 How to use OneShelf
 
 **OneShelf** has 2 main components, namely are:
 1. Inventory items
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
+
+#### Inventory items
+
+Inventory items are the items that you want to keep track in your restaurant. The input for inventory items are flexible,
+so that you can define the items according to your needs. <br>
+
+You can keep track of restaurant items such as chair, frying pan, spoon or even ingredients such as milk, chicken, etc. <br>
+
+All items related commands have a suffix `-i`. 
+
+#### Pending deliveries
+
+Pending deliveries are deliveries that has yet to be delivered out to customers. Imagine you have received a call from
+a customer requesting for a delivery, you can also keep track for all the deliveries' request.
+
+All pending deliveries related command have a suffix `-d`.
+
+### 2.3 User Interface Sections
+
+<a name="uiwithannotationpng"></a>
+* Once you have opened OneShelf application, similar GUI shown below (Figure 1) should appear. <br>
+     *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
+   <br>
+      
+   ![Ui](images/UiWithAnnotation.png) 
+   <br>
+      
+   Figure 1: Introduction to OneShelf User Interface
+   <br>
+   <br>
+   
+| Component | Description |
+|-----------|-------------|
+| Toolbar | Displays the toolbar options for this application. You can access the different `help` windows and `exit` the application.|
+| Inventory book | Shows the list of inventory items that you have |
+| Delivery book | Shows the list of pending deliveries that you have |
+| Result Display | Displays the result of your command |
+| Command box | For users to type their commands |
+| Date time | Displays the date time at the current moment of viewing |
+
 *You may want to refer to the [glossary](#6-glossary)*
 
+<br>
+
+   <a name="uihelpstart"></a>
+* Type the command `help start` in the command box and press Enter to execute it. <br>
+   A new help window shown below should appear on your desktop. You are strongly encouraged to follow
+   the steps in the help window if you are a new user.
+    <br>
+    
+    ![Help Window](images/UiHelpStart.png)
+    <br>
+    
+    Figure 2: Help Start Window
+    <br>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<a name="3-features"></a>
+## 3. Features
+
+In this section, you can find the different available command features, general features 
+and upcoming features.
+
 
 ### 3.1 Command Features
 
@@ -79,6 +125,7 @@ Things to note for the commands:
   
   ![Index](images/Index.png)
   <br>
+  
   Figure 3: Index Annotation
   <br>
 
@@ -101,11 +148,10 @@ Things to note for the commands:
   1. either `add-i n/Chicken q/10`
   1. or `add-i q/10 n/Chicken`
 
---------------------------------------------------------------------------------------------------------------------
 
 #### 3.1.1 Viewing help : `help`
 
-##### 3.1.1.a `help start`
+##### 3.1.1a `help start`
 
 If you are a first time user, we strongly encourage you to follow the guide to kick-start your journey in **OneShelf**.
 
@@ -117,9 +163,7 @@ To open up `help start` window, you can also do the following:
 
 A new help window similar to [Figure 2](#uihelpstart) should appear on your desktop.
 
-##### Help Summary
-
-##### 3.1.1.b `help summary`
+##### 3.1.1b `help summary`
 
 We understand that even if you are not a first time user, it is not easy to remember all the commands.
 Should you require any quick reference of commands, you can enter `help summary`.
@@ -136,6 +180,7 @@ A new help window similar to Figure 4 below should appear on your desktop.
 
 ![Help Summary Screenshot](images/HelpSummaryWindow.png)
 <br>
+
 Figure 4: Help Summary Window
 <br>
 
@@ -144,7 +189,7 @@ Figure 4: Help Summary Window
 
 Adds inventory item or pending delivery to **OneShelf**.
 
-##### 3.1.2.a `add-i`
+##### 3.1.2a `add-i`
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
 * If item does not exist in the inventory book, a new item will be added.
@@ -162,36 +207,42 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. The new item will show up in Inventory Book, refer to the diagram below:
-<br>
-![add-i_step_1](images/add-i_eg1.1.PNG)
-<br>
-Figure 5: Add new item of duck
-<br>
+    <br>
+    
+    ![add-i_step_1](images/add-i_eg1.1.PNG)
+    <br>
+    
+    Figure 5: Add new item of duck
+    <br>
 
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
 through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below:
-<br>
-![add-i_step_2](images/add-i_eg1.2.PNG)
-<br>
-Figure 6: Error when adding maximum quantity and metric to an existing item
-<br>
+    <br>
+
+    ![add-i_step_2](images/add-i_eg1.2.PNG)
+    <br>
+    
+    Figure 6: Error for invalid input
+    <br>
  
    *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
 
 5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
 are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
 You can refer to the diagram below for the expected result:
-<br>
-![add-i_step3](images/add-i_eg1.3.PNG)
-<br>
-Figure 7: Successfully added quantity with new tag
+    <br>
+    
+    ![add-i_step3](images/add-i_eg1.3.PNG)
+    <br>
+    
+    Figure 7: Successfully added quantity with new tag
+    
 
-<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
-<li>An item can have any number of tags (including 0)</li>
-<li>Adding exactly the same tag to an existing item will not result in duplicated tags</li>
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
+An item can have any number of tags (including 0) and adding exactly the same tag to an existing item will not result in duplicated tags
 </div>
 
-##### 3.1.2.b `add-d`
+##### 3.1.2b `add-d`
 
 Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/]`
 
@@ -203,11 +254,13 @@ Example 1:
 
 3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
  you may want to refer to the diagram below:
-<br>
-![add-d_step1](images/add-d_eg1.1.PNG)
-<br>
-Figure 8: Added Jason's delivery
-<br>
+    <br>
+    
+    ![add-d_step1](images/add-d_eg1.1.PNG)
+    <br>
+    
+    Figure 8: Added Jason's delivery
+    <br>
 
 Example 2: 
 
@@ -216,15 +269,16 @@ Example 2:
 
 2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
  you may want to refer to the diagram below:
-<br>
-![add-d_step2](images/add-d_eg1.2.PNG)
-<br>
-Figure 8: Added Jason's delivery
-<br>
+    <br>
+    
+    ![add-d_step2](images/add-d_eg1.2.PNG)
+    <br>
+    
+    Figure 9: Added Hugo's delivery
+    <br>
 
-<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
-<li>Pending deliveries are automatically sorted based on their `deliver by` time</li>
-<li>Unlike inventory item, pending delivery does not have a quantity</li>
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
+Pending deliveries are automatically sorted based on their `deliver by` time and unlike inventory item, pending delivery does not have a quantity
 </div>
 
 
@@ -240,8 +294,8 @@ The [index](#index) refers to the index number shown in the displayed item list.
 Examples:
 * `remove-i 1 q/10`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* There is no remove-d since a pending delivery does not have a quantity
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+There is no remove-d since a pending delivery does not have a quantity
 </div>
 
 
@@ -250,11 +304,12 @@ Examples:
 
 Edits an existing item in the Inventory book or an existing pending delivery in the Delivery book.
 
-##### 3.1.4.a `edit-i`
+##### 3.1.4a `edit-i`
 
 Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** The `|` symbol means the user must provide at least one of the fields
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** <br>
+The `|` symbol means the user must provide at least one of the fields
 separated by the `|`
 </div>
 
@@ -271,10 +326,13 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
-<br>
-![edit-i example one step three](images/edit-i_example_one_step_three.png)
-<br>
-<br>
+    <br>
+    
+    ![edit-iexampleonestepthree](images/edit-i_example_one_step_three.png)
+    <br>
+    
+    Figure 10: Edit Carrot Result
+    <br>
 
 Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the starting point.
 
@@ -283,15 +341,18 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
-<br>
-![add-i example two step three](images/edit-i_example_two_step_three.png)
-<br>
-<br>
+    <br>
+    
+    ![add-i example two step three](images/edit-i_example_two_step_three.png)
+    <br>
+    
+    Figure 11: Edit Spinach Result
+    <br>
 
 
-##### 3.1.4.b `edit-d`
+##### 3.1.4b `edit-d`
 
-Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
+Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER] [by/TIME]`
 
 Examples:
 * `edit-d 1 n/AARON p/91111233` <br>
@@ -303,7 +364,7 @@ Edits the name and phone number of the 1st item to be `AARON` and `91111233` res
 
 Finds items or deliveries whose attributes contain any of the given keywords.
 
-##### 3.1.5.a `find-i`
+##### 3.1.5a `find-i`
 
 Format: `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`
 
@@ -325,13 +386,15 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown.
-<br>
-![find-command-4](images/find-command-1.PNG)
-<br>
-<br>
+    <br>
+    
+    ![find-command-4](images/find-command-1.PNG)
+    <br>
+    
+    Figure 12: Find item supplied by NTUC in meat category
+    <br>
 
-
-##### 3.1.5.b `find-d`
+##### 3.1.5b `find-d`
 
 Format: `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
 
@@ -353,12 +416,14 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown.
-<br>
-<a name="findexample1"></a>
-![find-command-2](images/find-command-2.PNG)
+    <br>
+    <a name="findexample1"></a>
 
-<br>
-<br>
+    ![find-command-2](images/find-command-2.PNG)
+    <br>
+    
+    Figure 13: Find delivery by alex and aileen
+    <br>
 
 #### 3.1.6 Listing all items or delivery: `list-i` or `list-d`
 
@@ -376,10 +441,13 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display.
-<br>
-![list-command-1](images/list-command-1.PNG)
-<br>
-<br>
+    <br>
+    
+    ![list-command-1](images/list-command-1.PNG)
+    <br>
+    
+    Figure 14: List inventory items
+    <br>
 
 #### 3.1.7 Deleting an item or delivery: `delete-i` or `delete-d`
 
@@ -394,19 +462,25 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 
 Example 1:
 1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below:
- <br>
- ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
- <br>
- <br>
+    <br>
+     
+    ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
+    <br>
+    
+    Figure 15: Before deleting index 2
+    <br>
  
 2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
-<br>
-![delete-i_step2](images/UG_delete_eg1_step2.PNG)
-<br>
-<br>
+    <br>
+    
+    ![delete-i_step2](images/UG_delete_eg1_step2.PNG)
+    <br>
+    
+    Figure 16: After deleting index 2
+    <br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* delete-d behaves similarly to delete-i, but deletes a delivery instead of an inventory item
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+`delete-d` behaves similarly to `delete-i`, but deletes a delivery instead of an inventory item
 </div>
 
 
@@ -434,10 +508,14 @@ Format: `undo`
 1. Select the Command box and type in `clear-i`
 
 2. Either press Enter on your keyboard or click Send to execute the command.
-<br>
-![edit-i example one step three](images/undo-example-one-step-two.png)
-<br>
-<br>
+    <br>
+    
+    ![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+    <br>
+    
+    Figure 17: Clear all items
+    <br>
+
 
 <a name="undoExample1Step2"></a>
 3. Select the Command box and type in `undo`
@@ -477,8 +555,6 @@ Exits the program.
 Format: `exit`
 
 
---------------------------------------------------------------------------------------------------------------------
-
 ### 3.2 General Features
 
 #### 3.2.1 Saving the data
@@ -497,17 +573,16 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 #### 3.2.3 Sorting
 
-##### 3.2.3.1 Sorting Inventory Items
+##### 3.2.3a Sorting Inventory Items
 
 * Inventory items are sorted based on percentage of quantity in ascending order.
 * If the maximum quantity does not exist for that particular item then the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
-##### 3.2.3.2 Sorting Pending Deliveries
+##### 3.2.3b Sorting Pending Deliveries
 
 * Pending deliveries are sorted based on deliver by timing.
 
---------------------------------------------------------------------------------------------------------------------
 
 ### 3.3 Coming Soon
 
@@ -593,8 +668,8 @@ You may refer to the [video](#installationvideo) of installation guide.
 --------------------------------------------------------------------------------------------------------------------
 
 
-
-### <a name="6-glossary"></a>6. Glossary
+<a name="6-glossary"></a>
+### 6. Glossary
 * **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
 *(i.e milk, cheese)*
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant
