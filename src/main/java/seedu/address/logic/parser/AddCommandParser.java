@@ -36,7 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         boolean isRemindPresent = args.matches(".*\\bremind\\b$");
         boolean isRemindTypo = false;
-        boolean isPriorityPresent = args.matches(".*\\bpriority/\\b.*");
+        boolean isPriorityPresent = args.matches(".*\\bp/\\b.*");
 
         if (!isRemindPresent) {
             isRemindTypo = args.matches(".*rem[a-z]*$");
