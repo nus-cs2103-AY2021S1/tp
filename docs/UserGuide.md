@@ -318,13 +318,13 @@ Returns to the application main page.
 
 #### Undo: `undo`
 
-Undoes the previous command.
+Undoes the previous command. Open, list, find and return commands are unable to be undone.
 
 Format: `undo`
 
 #### Redo: `redo`
 
-Redoes the command that was just undone. If another command that changes the data of PIVOT is used after an undo 
+Redoes the command that was just undone. Open, list, find and return commands are unable to be redone. If another command that changes the data of PIVOT is used after an undo 
 command, redo will not be able to be called.
 
 Format: `redo`
