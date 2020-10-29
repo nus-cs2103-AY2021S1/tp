@@ -344,7 +344,7 @@ The following table gives a summary of the [__finance commands__](#52-finance-co
 
 ### 6.3. Universal Commands Summary
 
-The following table gives a summary of the [__general commands__](#53-universal-commands) for quick reference and look-ups.
+The following table gives a summary of the [__universal commands__](#53-universal-commands) for quick reference and look-ups.
 
 |Description|Command and Example|
 |---|---|
