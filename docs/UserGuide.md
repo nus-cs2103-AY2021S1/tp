@@ -29,10 +29,10 @@ The figure below shows the GUI of ProductiveNUS, with its components labelled.
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
 
-| Icon        | Icon usage                                               | Box color |
-|-------------|----------------------------------------------------------|-----------|
-| :clipboard: | - Notes about the command format <br> - Pointers to note | Green     |
-| :bulb:      | - Tip                                                    | Blue      |
+| Icon        | Icon usage                                             | Box color |
+|-------------|--------------------------------------------------------|-----------|
+| :clipboard: | * Notes about the command format<br>* Pointers to note | Green     |
+| :bulb:      | * Tip                                                  | Blue      |
 
 ### Command syntax and terminologies
 
@@ -175,10 +175,10 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Examples | Remarks |
 |-|-|-|-|
-| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | n/Tutorial n/tutorial essay | Case insensitive |
-| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | mod/ST2334 mod/CS2100 cs2103t | Case insensitive |
-| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Under **Pointers to note** |
-| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | p/high p/LOW | Case insensitive |
+| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | * n/Tutorial<br>* n/tutorial essay | Case insensitive |
+| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | * mod/ST2334<br>* mod/CS2100 cs2103t | Case insensitive |
+| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | * d/24-10-2020 <br>* d/1200<br>* d/1300 25-11-2020 | Under **Pointers to note** |
+| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | * p/high<br>* p/LOW | Case insensitive |
 
 <div markdown="block" class="alert alert-primary">
 
