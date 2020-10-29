@@ -21,27 +21,25 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all assignments"
-            + " by its NAME, MODULE CODE, DEADLINE or PRIORITY. "
-            + "Finding is done one field at a time.\n"
+            + " by either its NAME, MODULE CODE, DEADLINE or PRIORITY. \n"
             + "DEADLINE keywords are in the format dd-MM-yyyy or HHmm, which allows finding of assignments by date "
             + "and time separately.\n"
             + "Parameters:" + PREFIX_NAME + "NAME [MORE NAMES] or\n"
             + PREFIX_MODULE_CODE + "MODULE_CODE [MORE MODULE_CODES] or\n"
             + PREFIX_DEADLINE + " DATE_OR_TIME_OF_DEADLINE [MORE DATE_OR_TIME_OF_DEADLINE] or\n"
             + PREFIX_PRIORITY + " PRIORITY [MORE PRIORITIES]\n"
-            + "Example: " + COMMAND_WORD + " d/1200 24-10-2020 25-10-2020\n"
-            + "The example above finds all assignments due on 24 October 2020 (regardless of time),"
-            + " due on 25 October 2020 (regardless of time) and finds all "
-            + "assignments due at 1200 (regardless of date)";
+            + "Example: " + COMMAND_WORD + " d/1200 24-10-2020\n"
+            + "The example above finds all assignments due on 24-10-2020 (regardless of time), and "
+            + "all assignments due at 1200 (regardless of date)";
 
     public static final String INVALID_DATE_OR_TIME_MESSAGE =
-            "Deadline field should have date or time keywords in the format dd-MM-yyyy or HHmm.\n"
+            "Deadline field should have date or time keywords in the format dd-MM-yyyy and HHmm respectively.\n"
              + "It should not be left empty.";
 
     public static final String MORE_THAN_ONE_PREFIX_MESSAGE =
             "Multiple assignment fields detected. Finding is done one field at a time.\n"
              + "Fields and its prefix: n/ to find by name, d/ to find by date or time, \n"
-             + "priority/ to find by priorities and mod/ to find by module code.";
+             + "p/ to find by priority and mod/ to find by module code.";
 
     private final Predicate<Assignment> predicate;
 

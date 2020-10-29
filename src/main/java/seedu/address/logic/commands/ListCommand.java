@@ -21,12 +21,11 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists the assignments in the next [INDEX] days, starting from the current date and time.\n"
-            + "A day represents 24 hours.\n"
+            + ": Lists the assignments that are due within the next [INDEX] days, starting from the current date and time.\n"
             + "If no index is keyed in, all your assignments will be displayed.\n"
             + "Parameters: [INDEX] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3\n"
-            + "The above example will list all your assignments 72 hours (3 days) from the current date and time.";
+            + "If the current date and time is 24-10-2020 1200, it will list your assignments that are due between this date and time and 27-10-2020 1200.";
 
     public static final String MESSAGE_SUCCESS = "Listed your assignments";
 
