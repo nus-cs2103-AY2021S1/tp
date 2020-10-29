@@ -213,6 +213,7 @@ public class CommandBoxTest extends GuiUnitTest {
             guiRobot.push(keyCode);
         }
     }
+
     /**
      * Pushes {@code keycode} and checks that the input in the {@code commandBox} equals to {@code expectedCommand}.
      */

@@ -12,13 +12,15 @@ import java.util.stream.Collectors;
  * A handle to the {@code RecipeDisplay} in the GUI.
  */
 public class RecipeDisplayHandle extends NodeHandle<Node> {
-    private static final String NAME_FIELD_ID = "#recipeName";
-    private static final String INGREDIENT_LIST_FIELD_ID = "#ingredientList";
-    private static final String STEP_LIST_FIELD_ID = "#stepList";
-    private static final String TAG_LIST_FIELD_ID = "#tagList";
+
+    public static final String RECIPE_DISPLAY_FIELD_ID = "gridPane";
+    public static final String NAME_FIELD_ID = "#recipeName";
+    public static final String INGREDIENT_LIST_FIELD_ID = "#ingredientList";
+    public static final String STEP_LIST_FIELD_ID = "#stepList";
+    public static final String TAG_LIST_FIELD_ID = "#tagList";
 
     private final Label nameLabel;
-    private final List<Text> tagTexts;
+    private final List<Label> tagTexts;
     private final List<Text> ingredientTexts;
     private final List<Text> stepTexts;
 
@@ -34,20 +36,21 @@ public class RecipeDisplayHandle extends NodeHandle<Node> {
         tagTexts = tagsContainer
                 .getChildrenUnmodifiable()
                 .stream()
-                .map(Text.class::cast)
+                .map(Label.class::cast)
                 .collect(Collectors.toList());
 
-        Region ingredientContainer = getChildNode(TAG_LIST_FIELD_ID);
+        Region ingredientContainer = getChildNode(INGREDIENT_LIST_FIELD_ID);
         ingredientTexts = ingredientContainer
                 .getChildrenUnmodifiable()
                 .stream()
                 .map(Text.class::cast)
                 .collect(Collectors.toList());
 
-        Region stepContainer = getChildNode(TAG_LIST_FIELD_ID);
+        Region stepContainer = getChildNode(STEP_LIST_FIELD_ID);
         stepTexts = stepContainer
             .getChildrenUnmodifiable()
             .stream()
+            .filter(x -> (x instanceof Text))
             .map(Text.class::cast)
             .collect(Collectors.toList());
     }
@@ -65,27 +68,30 @@ public class RecipeDisplayHandle extends NodeHandle<Node> {
     public List<String> getTags() {
         return tagTexts
                 .stream()
-                .map(Text::getText)
+                .map(Label::getText)
+                .map(x -> x.trim())
                 .collect(Collectors.toList());
     }
 
     /**
      * Retrieves the list of tags of the recipe in the recipe display.
      */
-    public List<String> getIngredients() {
+    public String getIngredients() {
         return ingredientTexts
                 .stream()
                 .map(Text::getText)
-                .collect(Collectors.toList());
+                .map(x -> x.trim())
+                .collect(Collectors.joining());
     }
 
     /**
      * Retrieves the list of tags of the recipe in the recipe display.
      */
-    public List<String> getSteps() {
+    public String getSteps() {
         return stepTexts
                 .stream()
                 .map(Text::getText)
-                .collect(Collectors.toList());
+                .map(x -> x.trim())
+                .collect(Collectors.joining());
     }
 }

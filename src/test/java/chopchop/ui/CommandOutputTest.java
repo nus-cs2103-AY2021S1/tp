@@ -1,15 +1,13 @@
 package chopchop.ui;
 
+import static chopchop.ui.testutil.GuiTestUtil.parseTextToString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import chopchop.logic.commands.CommandResult;
 import guitests.guihandles.CommandOutputHandle;
-import javafx.scene.Node;
-import javafx.scene.text.Text;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 
 public class CommandOutputTest extends GuiUnitTest {
 
@@ -50,16 +48,5 @@ public class CommandOutputTest extends GuiUnitTest {
         guiRobot.pauseForHuman();
         // Command output adds a newline to the end of each text
         assertEquals(errorWrapper + testError + "\n", parseTextToString(commandOutputHandle.getText()));
-    }
-
-
-    private String parseTextToString(List<Node> nodeList) {
-        StringBuilder str = new StringBuilder();
-        for (Node node : nodeList) {
-            if (node instanceof Text) {
-                str.append(((Text) node).getText());
-            }
-        }
-        return str.toString();
     }
 }
