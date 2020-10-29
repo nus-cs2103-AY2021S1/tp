@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.schedulerparsers;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
@@ -15,12 +15,8 @@ import seedu.address.logic.commands.schedulercommands.DeleteEventCommand;
 import seedu.address.logic.commands.schedulercommands.EditEventCommand;
 import seedu.address.logic.commands.schedulercommands.FindEventCommand;
 import seedu.address.logic.commands.schedulercommands.ViewEventCommand;
+import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.schedulerparsers.AddEventParser;
-import seedu.address.logic.parser.schedulerparsers.DeleteEventParser;
-import seedu.address.logic.parser.schedulerparsers.EditEventParser;
-import seedu.address.logic.parser.schedulerparsers.FindEventParser;
-import seedu.address.logic.parser.schedulerparsers.ViewEventParser;
 
 /**
  * Represents the parser in charge for Scheduler related commands.

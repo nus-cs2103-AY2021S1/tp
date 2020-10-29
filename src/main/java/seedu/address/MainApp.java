@@ -16,17 +16,21 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.storage.ContactListStorage;
+import seedu.address.storage.EventListStorage;
 import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonEventListStorage;
 import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonTodoListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -66,7 +70,9 @@ public class MainApp extends Application {
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
         TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
-        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, userPrefsStorage);
+        EventListStorage eventListStorage = new JsonEventListStorage(userPrefs.getEventListFilePath());
+        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage,
+                eventListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -88,6 +94,7 @@ public class MainApp extends Application {
         ReadOnlyModuleList initialData;
         ReadOnlyContactList initialContactList = initializeContactList(storage);
         ReadOnlyTodoList initialTodoList = initializeTodoList(storage);
+        ReadOnlyEventList initialEventList = initializeEventList(storage);
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
@@ -105,8 +112,7 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
         }
-        return new ModelManager(initialData, initialContactList, initialTodoList, userPrefs);
-
+        return new ModelManager(initialData, initialContactList, initialTodoList, initialEventList, userPrefs);
     }
 
     /**
@@ -135,6 +141,27 @@ public class MainApp extends Application {
         }
         return initialContactList;
 
+    }
+
+    private ReadOnlyEventList initializeEventList(Storage storage) {
+        Optional<ReadOnlyEventList> contactListOptional;
+        ReadOnlyEventList initialEventList;
+        try {
+            contactListOptional = storage.readEventList();
+            if (!contactListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample EventList");
+                initialEventList = new EventList();
+            } else {
+                initialEventList = contactListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty EventList");
+            initialEventList = new EventList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty EventList");
+            initialEventList = new EventList();
+        }
+        return initialEventList;
     }
 
     /**
