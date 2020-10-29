@@ -12,7 +12,7 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
 * [Introduction](#introduction)
 * [Set-up](#set-up)
 * [Features](#features)
-  * [1. General Features](#1-general-features) 
+  * [1. General Features](#1-general-features)
       * [1.1 Show all commands : `help`](#11-show-all-commands--help)
       * [1.2 Clear the program : `clear`](#12-clear-the-program--clear)
       * [1.3 Exit the program : `exit`](#13-exit-the-program--exit)
@@ -75,7 +75,7 @@ This section is a comprehensive walkthrough of the features in PlaNus.
 * Words highlighted are code snippets. <br>
     - e.g. `title`
 * Words in **upper case** are the parameters (i.e. user input) to be supplied by the user.<br>
-  - e.g. in `event title:TITLE`, `TITLE` is a parameter which users can determine. 
+  - e.g. in `event title:TITLE`, `TITLE` is a parameter which users can determine.
   - For example, users can type `title:homework 1` or `title:assignment`.
 
 * Items in **square brackets** are optional fields that a user can provide to add more details to the command. <br>
@@ -144,7 +144,7 @@ Format: `exit`
 ## 2. Create, Read, Update and Delete a Task
 
 This section shows features that deal with operation of tasks including
-creating, reading, updating and deleting a task. A task can be either a 
+creating, reading, updating and deleting a task. A task can be either a
 `event` or `deadline`. <br>
 
 ### 2.1 List all tasks : `list-task`
@@ -170,10 +170,10 @@ A deadline is a task that has a compulsary deadline date and time.
 
 Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
 
-* Adds a deadline to PlaNus, 
-    * with the specified title in `title:TITLE`, 
-    * with the specified description in `description:DESCRIPTION`, 
-    * with a date and time in `datetime:DATE_TIME` of when this deadline should be completed before, 
+* Adds a deadline to PlaNus,
+    * with the specified title in `title:TITLE`,
+    * with the specified description in `description:DESCRIPTION`,
+    * with a date and time in `datetime:DATE_TIME` of when this deadline should be completed before,
     * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added deadline will be tracked for time analysis if it has a tag.
 
@@ -181,7 +181,7 @@ Examples:
 
 To add a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus,
 users can do the following:
- 
+
 1) Type in the command box the following command:
 * `deadline title:Return book datetime:02-01-2020 18:00`
 
@@ -202,10 +202,10 @@ An event is a task that has a start time, end time and a date.
 
 Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
 
-* Adds an event to PlaNus, 
-    * with the specified title in `title:TITLE`, 
-    * with the specified description in `description:DESCRIPTION`, 
-    * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`, 
+* Adds an event to PlaNus,
+    * with the specified title in `title:TITLE`,
+    * with the specified description in `description:DESCRIPTION`,
+    * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
     * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added event will be tracked for time analysis if it has a tag.
 
@@ -213,7 +213,7 @@ Examples:
 
 To add an event with title "Project meeting", and a date "29-10-2020" with start time of "09:00" and end time of "11:30" and with tag "CS2103T" to PlaNus,
 users can do the following:
- 
+
 1) Type in the command box the following command:
 * `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`
 
@@ -240,7 +240,7 @@ Format: `done INDEX:TIME_TAKEN...`
 
 **:information_source: Notes**<br>
 
-* There are two type of tasks, event and deadline. 
+* There are two type of tasks, event and deadline.
     * Only a deadline can be marked as done through this command, an error message will be shown if the user attempts to mark an event as done.
 * After the user has marked a deadline as done, the user cannot edit the deadline or undo the done command anymore.
 </div>
@@ -248,9 +248,9 @@ Format: `done INDEX:TIME_TAKEN...`
 
 Examples:
 
-* `list-task` followed by `done 2:30 3:60` 
+* `list-task` followed by `done 2:30 3:60`
     * Marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and records that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
-* `find-task title:homework` followed by `done 1:20` 
+* `find-task title:homework` followed by `done 1:20`
     * Marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline as 20 minutes.
 
 To mark the first deadline in the current task list as done and stating you have spend 50 minutes on it,
