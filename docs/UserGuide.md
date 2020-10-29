@@ -984,5 +984,5 @@ What if there are multiple items that share a prefix, for example <i>baking powd
 The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle between `find` and `filter`.
 
 --------------------
-<a name="TabCompletion"></a>
-## 7. Tab Completion
+<a name="commandSummary"></a>
+## 8. Command Summary
