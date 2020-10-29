@@ -13,7 +13,6 @@ import javafx.scene.text.TextFlow;
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandOutput extends UiPart<Region> {
-
     private static final String FXML = "CommandOutput.fxml";
 
     @FXML

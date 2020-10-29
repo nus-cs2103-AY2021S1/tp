@@ -3,7 +3,6 @@ package chopchop.ui;
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -13,10 +12,10 @@ import javafx.scene.layout.StackPane;
 public class RecommendationCard extends UiPart<Region> {
 
     private static final String FXML = "RecommendationCard.fxml";
-    private static final String RECOMMENDED_MESSAGE = "These recommended recipes all contain ingredients that you " +
-            "currently have.";
-    private static final String EXPIRING_MESSAGE = "Consider cooking this recipe to use ingredients that are about to" +
-            " expire.";
+    private static final String RECOMMENDED_MESSAGE = "These recommended recipes all contain ingredients that you "
+            + "currently have.";
+    private static final String EXPIRING_MESSAGE = "Consider cooking this recipe to use ingredients that are about to"
+            + " expire.";
     private static final String OLD_MESSAGE = "Consider cooking this recipe that you haven't tried for a while.";
 
     public final Recipe recipe;

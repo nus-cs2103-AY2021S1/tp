@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<GridPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints percentWidth="40.0" />
       <ColumnConstraints percentWidth="60.0" />
@@ -17,17 +17,17 @@
       <RowConstraints vgrow="ALWAYS" />
    </rowConstraints>
    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <Label styleClass="rvRecipeName" fx:id="recipeName" wrapText="true"/>
-      <VBox styleClass="rvTagDisplay">
-         <FlowPane styleClass="rvTagList" fx:id="tagList" hgap="8" vgap="6"/>
+      <Label styleClass="recipe-name" fx:id="recipeName" wrapText="true"/>
+      <VBox styleClass="recipe-tags-container">
+         <FlowPane fx:id="tagList" hgap="8" vgap="6"/>
       </VBox>
-      <VBox styleClass="rvIngredientDisplay" VBox.vgrow="ALWAYS">
-         <Label styleClass="rvIngredientHeader" fx:id="ingredientHeader" underline="true"/>
-         <TextFlow styleClass="rvIngredientList" fx:id="ingredientList"/>
+      <VBox styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS">
+         <Label styleClass="recipe-ingredients-header" fx:id="ingredientHeader" underline="true"/>
+         <TextFlow styleClass="recipe-ingredients" fx:id="ingredientList"/>
       </VBox>
    </VBox>
-   <VBox styleClass="rvStepDisplay" GridPane.columnIndex="1" GridPane.rowIndex="0">
-      <Label styleClass="rvStepHeader" fx:id="stepHeader"/>
-      <TextFlow styleClass="rvStepList" fx:id="stepList"/>
+   <VBox styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <Label styleClass="recipe-steps-header" fx:id="stepHeader"/>
+      <TextFlow styleClass="recipe-steps" fx:id="stepList"/>
    </VBox>
 </GridPane>

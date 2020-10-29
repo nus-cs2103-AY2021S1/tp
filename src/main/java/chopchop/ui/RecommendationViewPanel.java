@@ -43,7 +43,7 @@ public class RecommendationViewPanel extends UiPart<Region> {
         this.recommendationGridView.getChildren().clear();
 
         this.getPlaceholderText().ifPresentOrElse(
-                t -> this.recommendationPanel.setContent(new TextDisplay(t).getRoot()), this::populate
+            t -> this.recommendationPanel.setContent(new TextDisplay(t).getRoot()), this::populate
         );
     }
 

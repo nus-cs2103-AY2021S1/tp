@@ -80,20 +80,20 @@ public class MainWindow extends UiPart<Stage> {
     public void fillInnerParts() {
         var commandOutput = new CommandOutput();
         this.commandOutput = commandOutput;
-        commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
+        this.commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
         var statsOutput = new StatsBox();
         this.statsOutput = statsOutput;
-        pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
+        this.pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
         var displayController = new DisplayController(logic);
         DisplayNavigator.setDisplayController(displayController);
-        displayPlaceholder.getChildren().setAll(displayController.getRoot());
+        this.displayPlaceholder.getChildren().setAll(displayController.getRoot());
 
         var commandBox = new CommandBox(this::executeCommand, this.logic);
         this.commandBox = commandBox;
-        commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
-        primaryStage.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+        this.commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
+        this.primaryStage.addEventFilter(KeyEvent.KEY_TYPED, event -> {
             commandBox.setFocus(event.getCharacter());
         });
     }

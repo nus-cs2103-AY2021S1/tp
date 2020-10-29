@@ -37,10 +37,10 @@ public class UiManager implements Ui {
         logger.info("Starting UI...");
 
         //Set the application icon.
-        primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        primaryStage.getIcons().add(this.getImage(ICON_APPLICATION));
 
         try {
-            this.mainWindow = new MainWindow(primaryStage, logic);
+            this.mainWindow = new MainWindow(primaryStage, this.logic);
             this.mainWindow.show(); //This should be called before creating other UI parts
             this.mainWindow.fillInnerParts();
         } catch (Throwable e) {

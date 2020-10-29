@@ -172,50 +172,50 @@
 }
 
 /* -------------------- RECIPE VIEW THINGS -------------------- */
-.rvRecipeName {
+.recipe-name {
     -fx-font-size: 36px;
     -fx-padding: 16px 8px 8px;
 }
 
-.rvIngredientDisplay,
-.rvStepDisplay {
+.recipe-ingredients-container,
+.recipe-steps-container {
     -fx-background-radius: 6;
     -fx-border-radius: 6;
-    -fx-padding: 14px 18px;
-    -fx-spacing: 12;
+    -fx-padding: 12px 16px;
 }
 
-.rvIngredientDisplay {
+.recipe-ingredients-container {
     -fx-background-color: #f1f8e9;
     -fx-border-color: #8bc34a;
 }
 
-.rvStepDisplay {
+.recipe-steps-container {
     -fx-background-color: #fff3e0;
     -fx-border-color: #ff9800;
     -fx-border-insets: 0 0 0 12px;
     -fx-background-insets: 0 0 0 12px;
 }
 
-.rvIngredientHeader,
-.rvStepHeader {
+.recipe-ingredients-header,
+.recipe-steps-header {
     -fx-font-size: 20px;
     -fx-underline: true;
+    -fx-padding: 0 0 12px 0;
     -fx-font-family: "Source Sans Pro SemiBold";
 }
 
-.rvIngredientList,
-.rvStepList {
-    -fx-line-spacing: 4;
+.recipe-ingredients,
+.recipe-steps {
+    -fx-line-spacing: 4px;
 }
 
-.rvTagDisplay {
-    -fx-padding: 16px 8px;
+.recipe-tags-container {
+    -fx-padding: 12px 6px;
 }
 
-.rvTagItem {
-    -fx-font-size: 11pt;
-    -fx-background-color: #ffab91;
+.recipe-tag {
+    -fx-font-size: 14px;
+    -fx-background-color: #ff8a65;
     -fx-background-radius: 5px;
     -fx-padding: 4px 8px;
 }

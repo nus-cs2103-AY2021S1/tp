@@ -11,8 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
@@ -20,7 +18,6 @@ import javafx.scene.layout.StackPane;
  * Controller class for the swappable display region.
  */
 public class DisplayController extends UiPart<Region> {
-
     private static final String FXML = "DisplayPanel.fxml";
     private static final String WELCOME_MESSAGE = "Welcome to ChopChop, a food recipe management system!";
     private static final String NOTIFICATION_MESSAGE = "Feature will be coming soon!!";
@@ -28,8 +25,8 @@ public class DisplayController extends UiPart<Region> {
     private final TextDisplay textDisplay;
     private final ObservableList<Recipe> recipeObservableList;
     private final ObservableList<Ingredient> ingredientObservableList;
-    private FilteredList<Recipe> recommendedRecipeObservableList;
-    private FilteredList<Recipe> expiringRecipeObservableList;
+    private final FilteredList<Recipe> recommendedRecipeObservableList;
+    private final FilteredList<Recipe> expiringRecipeObservableList;
 
     @FXML
     private StackPane displayAreaPlaceholder;
@@ -74,17 +71,8 @@ public class DisplayController extends UiPart<Region> {
         });
         this.ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> this.displayIngredientList());
 
-        this.displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode().equals(KeyCode.ESCAPE)) {
-                this.displayWelcomeMessage();
-                this.resetButtons();
-            }
-        });
-
         if (!logic.getFilteredRecipeList().isEmpty()) {
             this.displayRecipeList();
-        } else if (!logic.getFilteredIngredientList().isEmpty()) {
-            this.displayIngredientList();
         } else {
             this.displayWelcomeMessage();
         }
@@ -101,27 +89,27 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayRecipeList() {
-        RecipeViewPanel recipeViewPanel = new RecipeViewPanel(recipeObservableList);
-        displayAreaPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
-        selectRecipeButton();
+        var recipeViewPanel = new RecipeViewPanel(this.recipeObservableList);
+        this.displayAreaPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
+        this.selectRecipeButton();
     }
 
     /**
      * Displays the RecipeDisplay on the swappable display region.
      */
     protected void displayRecipe(Recipe recipe) {
-        RecipeDisplay recipeDisplay = new RecipeDisplay(recipe);
-        displayAreaPlaceholder.getChildren().setAll(recipeDisplay.getRoot());
-        selectRecipeButton();
+        var recipeDisplay = new RecipeDisplay(recipe);
+        this.displayAreaPlaceholder.getChildren().setAll(recipeDisplay.getRoot());
+        this.selectRecipeButton();
     }
 
     /**
      * Displays the IngredientViewPanel on the swappable display region.
      */
     protected void displayIngredientList() {
-        IngredientViewPanel ingredientViewPanel = new IngredientViewPanel(ingredientObservableList);
-        displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
-        selectIngredientButton();
+        var ingredientViewPanel = new IngredientViewPanel(this.ingredientObservableList);
+        this.displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
+        this.selectIngredientButton();
     }
 
     /**
@@ -184,7 +172,6 @@ public class DisplayController extends UiPart<Region> {
         this.displayRecipeList();
     }
 
-
     /**
      * Displays the recipe panel.
      */
@@ -198,7 +185,6 @@ public class DisplayController extends UiPart<Region> {
      */
     @FXML
     public void handleRecommendations() {
-        // To add more code.
         this.displayRecommendationList();
     }
 }

@@ -41,8 +41,8 @@
                 </right>
                 <center>
                     <VBox styleClass="content-pane">
-                        <StackPane fx:id="commandBoxPlaceholder" styleClass="command-input-container" />
-                        <StackPane fx:id="displayPlaceholder" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="commandBoxPlaceholder" styleClass="command-input-container"/>
+                        <StackPane fx:id="displayPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
                 </center>
             </BorderPane>
