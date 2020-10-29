@@ -12,8 +12,9 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.exceptions.IllegalValueException;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
-
+// TODO add tests for rooms
 public class JsonAdaptedBinItemTest {
     private static final String INVALID_DATE_DELETED = "fnfnf";
     private static final JsonAdaptedStudent INVALID_ITEM = null;
@@ -30,7 +31,7 @@ public class JsonAdaptedBinItemTest {
     @Test
     public void toModelType_invalidDateDeleted_throwsIllegalValueException() {
         JsonAdaptedBinItem binItem =
-            new JsonAdaptedBinItem(INVALID_DATE_DELETED, VALID_ITEM);
+            new JsonAdaptedBinItem(INVALID_DATE_DELETED, null, VALID_ITEM);
         String expectedMessage = INVALID_DATE_DELETED_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, binItem::toModelType);
     }
@@ -38,7 +39,7 @@ public class JsonAdaptedBinItemTest {
     @Test
     public void toModelType_nullDateDeleted_throwsIllegalValueException() {
         JsonAdaptedBinItem binItem =
-            new JsonAdaptedBinItem(null, VALID_ITEM);
+            new JsonAdaptedBinItem(null, null, VALID_ITEM);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDate.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, binItem::toModelType);
     }
@@ -46,8 +47,9 @@ public class JsonAdaptedBinItemTest {
     @Test
     public void toModelType_nullItem_throwsIllegalValueException() {
         JsonAdaptedBinItem binItem =
-            new JsonAdaptedBinItem(VALID_DATE_DELETED, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Student.class.getSimpleName());
+            new JsonAdaptedBinItem(VALID_DATE_DELETED, null, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Student.class.getSimpleName() + ", "
+                + Room.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, binItem::toModelType);
     }
 }
