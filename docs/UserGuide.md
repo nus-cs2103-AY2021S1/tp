@@ -56,7 +56,7 @@ Interested? Read on to get [started](#3-quick-start-guide)!
 
 ---
 
-## 4. Features
+## 4. Command formats
 
 <div markdown="block" class="alert alert-info">
 
@@ -186,7 +186,7 @@ __Result:__ lists all inventory records.
 
 ---
 
-#### 5.1.5. Update inventory record: `update_inventory`
+#### 5.1.6. Update inventory record: `update_inventory`
 
 Displays all records in the inventory list.
 
@@ -196,7 +196,7 @@ __Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by 
 
 ![List inventory command example](images/commands/update_inventory_command.png)
 
-__Result:__ Updated inventory record at `1`.
+__Result:__ Updated inventory record at `1` from `30` to `25`.
 
 ![List inventory result example](images/commands/update_inventory_result.png)
 
