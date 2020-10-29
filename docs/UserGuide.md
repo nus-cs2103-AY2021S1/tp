@@ -21,7 +21,7 @@
    --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
    --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
    --- 4.3.3 [Find a tutorial group: `findTG`](#433-find-a-tutorial-group-findtg)<br>
-   --- 4.3.4 [Return to Tutorial Group List: listTG](#434-return-to-tutorial-group-list-listtg)<br>
+   --- 4.3.4 [Return to Tutorial Group List: `listTG`](#434-return-to-tutorial-group-list-listtg)<br>
    --- 4.3.5 [Delete a tutorial group from a module: `deleteTG`](#435-delete-a-tutorial-group-from-a-module-deletetg)<br>
    --- 4.3.6 [Edit a Tutorial Group: `editTG`](#436-edit-a-tutorial-group-edittg)<br>
    4.4 [Student features](#44-student-features)<br>
