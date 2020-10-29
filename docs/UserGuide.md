@@ -143,7 +143,7 @@ Follow these steps and try importing your timetable:
 3) Added lesson information can be found in your task list.
 
    ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
-   *Figure X: Added lesson information found in the `Upcoming tasks` list*
+   *Figure X: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
 
 <div markdown="block" class="alert alert-primary">
 
