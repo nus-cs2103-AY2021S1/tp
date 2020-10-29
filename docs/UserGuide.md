@@ -68,16 +68,17 @@ All pending deliveries related command have a suffix `-d`.
 ### 2.3 User Interface Sections
 
 <a name="uiwithannotationpng"></a>
-1. Once you have opened OneShelf application, similar GUI shown below (Figure 1) should appear. <br>
+* Once you have opened OneShelf application, similar GUI shown below (Figure 1) should appear. <br>
      *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
-      <br>
+   <br>
       
-      ![Ui](images/UiWithAnnotation.png) 
-      <br>
+   ![Ui](images/UiWithAnnotation.png) 
+   <br>
       
-      Figure 1: Introduction to OneShelf User Interface
-      <br>
-
+   Figure 1: Introduction to OneShelf User Interface
+   <br>
+   <br>
+   
 | Component | Description |
 |-----------|-------------|
 | Toolbar | Displays the toolbar options for this application. You can access the different `help` windows and `exit` the application.|
@@ -89,8 +90,10 @@ All pending deliveries related command have a suffix `-d`.
 
 *You may want to refer to the [glossary](#6-glossary)*
 
+<br>
+
    <a name="uihelpstart"></a>
-1. Type the command `help start` in the command box and press Enter to execute it. <br>
+* Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below should appear on your desktop. You are strongly encouraged to follow
    the steps in the help window if you are a new user.
     <br>
