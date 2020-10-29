@@ -7,17 +7,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 
-import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddTutorialGroupCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditTutorialGroupCommand;
-import seedu.address.logic.commands.ViewStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
@@ -54,7 +47,8 @@ public class EditTutorialGroupCommandParser implements Parser<EditTutorialGroupC
                     EditTutorialGroupCommand.MESSAGE_USAGE), pe);
         }
 
-        TutorialGroupId tutorialGroupId = ParserUtil.parseTutorialGroupId(argMultimap.getValue(PREFIX_TUTORIAL_GRP).get());
+        TutorialGroupId tutorialGroupId = ParserUtil
+                .parseTutorialGroupId(argMultimap.getValue(PREFIX_TUTORIAL_GRP).get());
         DayOfWeek dayOfWeek = ParserUtil.parseDayOfWeek(argMultimap.getValue(PREFIX_TUTORIAL_GRP_DAY).get());
         TimeOfDay[] timeOfDays = ParserUtil.parseTimesOfDay(argMultimap.getValue(PREFIX_TUTORIAL_GRP_START_TIME).get(),
                 argMultimap.getValue(PREFIX_TUTORIAL_GRP_END_TIME).get());

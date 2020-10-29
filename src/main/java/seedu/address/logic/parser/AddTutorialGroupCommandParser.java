@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 
-import java.sql.Time;
-import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTutorialGroupCommand;
@@ -44,7 +42,8 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
                     AddTutorialGroupCommand.MESSAGE_USAGE));
         }
 
-        TutorialGroupId tutorialGroupId = ParserUtil.parseTutorialGroupId(argMultimap.getValue(PREFIX_TUTORIAL_GRP).get());
+        TutorialGroupId tutorialGroupId =
+                ParserUtil.parseTutorialGroupId(argMultimap.getValue(PREFIX_TUTORIAL_GRP).get());
         DayOfWeek day = ParserUtil.parseDayOfWeek(argMultimap.getValue(PREFIX_TUTORIAL_GRP_DAY).get());
         TimeOfDay[] timeOfDays = ParserUtil.parseTimesOfDay(argMultimap.getValue(PREFIX_TUTORIAL_GRP_START_TIME).get(),
                 argMultimap.getValue(PREFIX_TUTORIAL_GRP_END_TIME).get());

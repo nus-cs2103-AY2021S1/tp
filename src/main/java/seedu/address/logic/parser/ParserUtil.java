@@ -10,7 +10,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -19,7 +18,6 @@ import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
-import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 /**
