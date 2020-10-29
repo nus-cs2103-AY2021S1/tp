@@ -7,6 +7,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 
 ## Contents:
 - [Quick Start](#Quick-Start "Goto Quick Start")
+- [GUI](#GUI "Goto GUI")
 - [Commands](#Commands "Goto Commands")
     - [Adding a student: `add`](#Adding-a-student-add "Goto Adding-a-student-add")
     - [Listing all students: `list`](#Listing-all-students-list "Goto Listing-all-students-list")
@@ -29,6 +30,14 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 3. Copy the file to the folder you want to use as the home folder for the application.
 4. Double-click the file to start the app. A GUI should appear, with the field bar to input commands. The list of commands are available below.
 
+## GUI
+![Ui](images/UiShowcase.png)
+
+### Accessing the student lists
+Click on the button titled "Students".
+
+### Accessing a session
+Click on the button with the name of the Session.
 
 ## Commands
 > Command format:
