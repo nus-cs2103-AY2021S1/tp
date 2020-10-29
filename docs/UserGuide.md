@@ -561,4 +561,9 @@ All the keywords mentioned in the command should follow the format stated below:
 | **datetime** | `dd-MM-yyyy HH:mm` <br> e.g. 21-10-2020 10:00 
 | **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
 | **from, to, time** | `HH:mm` <br> e.g. 18:00      |
+<<<<<<< Updated upstream
  
+=======
+                                                     |
+
+>>>>>>> Stashed changes
