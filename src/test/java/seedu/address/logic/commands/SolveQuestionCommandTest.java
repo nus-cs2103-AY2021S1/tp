@@ -177,6 +177,7 @@ public class SolveQuestionCommandTest {
             questions.add(toAdd);
         }
         return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
-                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams());
+                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams(),
+                toCopy.getAcademic());
     }
 }

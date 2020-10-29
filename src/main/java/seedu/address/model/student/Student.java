@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import seedu.address.model.student.academic.Academic;
+import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.Detail;
@@ -26,14 +28,15 @@ public class Student {
     private final Admin admin;
     private final List<Question> questions = new ArrayList<>();
     private final List<Exam> exams = new ArrayList<>();
+    private final Academic academic;
 
     /**
      *  name, phone, school, year, must be present and not null.
      *  exams is empty when a student is first initialised.
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions, List<Exam> exams) {
-        requireAllNonNull(name, phone, school, year, admin);
+                   Admin admin, List<Question> questions, List<Exam> exams, Academic academic) {
+        requireAllNonNull(name, phone, school, year, admin, academic);
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -41,6 +44,7 @@ public class Student {
         this.admin = admin;
         this.questions.addAll(questions);
         this.exams.addAll(exams);
+        this.academic = academic;
     }
 
     private Student(Student copy) {
@@ -52,6 +56,7 @@ public class Student {
         this.admin = copy.admin;
         this.questions.addAll(copy.questions);
         this.exams.addAll(copy.exams);
+        this.academic = copy.academic;
     }
 
     public Name getName() {
@@ -72,6 +77,10 @@ public class Student {
 
     public Admin getAdmin() {
         return admin;
+    }
+
+    public Academic getAcademic() {
+        return academic;
     }
 
     public List<Question> getQuestions() {
@@ -98,6 +107,10 @@ public class Student {
 
     public List<Detail> getDetails() {
         return admin.getDetails();
+    }
+
+    public List<Attendance> getAttendance() {
+        return academic.getAttendance();
     }
 
     /**
@@ -180,13 +193,16 @@ public class Student {
                 && otherStudent.getSchool().equals(getSchool())
                 && otherStudent.getYear().equals(getYear())
                 && otherStudent.getAdmin().equals(getAdmin())
-                && otherStudent.getQuestions().equals(getQuestions());
+                && otherStudent.getAcademic().equals(getAcademic())
+                && otherStudent.getQuestions().equals(getQuestions())
+                && otherStudent.getExams().equals(getExams())
+                && otherStudent.getAcademic().equals(getAcademic());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, school, year, questions, admin);
+        return Objects.hash(name, phone, school, year, questions, admin, academic);
     }
 
     @Override
@@ -200,7 +216,8 @@ public class Student {
                 .append(getSchool())
                 .append("\nYear: ")
                 .append(getYear())
-                .append(getAdmin());
+                .append(getAdmin())
+                .append(getAcademic());
 
         if (!questions.isEmpty()) {
             builder.append("\nQuestions:\n");
@@ -214,6 +231,8 @@ public class Student {
             builder.append("\nExams:\n");
             exams.forEach(builder::append);
         }
+
+
 
         return builder.toString();
     }

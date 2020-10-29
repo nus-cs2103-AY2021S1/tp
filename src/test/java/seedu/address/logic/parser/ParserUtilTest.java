@@ -17,6 +17,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -44,6 +45,10 @@ public class ParserUtilTest {
     private static final String INVALID_EXAM_DATE_ALPHABETS = "abcdef";
     private static final String INVALID_SCORE_LARGER = "100/50";
     private static final String INVALID_SCORE_NEGATIVE = "-50/-100";
+    private static final String INVALID_ATTENDANCE_DATE_FORMAT = "23-9-2019";
+    private static final String INVALID_ATTENDANCE_DATE_ALPHABETS = "abcdef";
+    private static final String INVALID_ATTENDANCE_STATUS = "you wot m8";
+    private static final String INVALID_FEEDBACK = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -62,7 +67,9 @@ public class ParserUtilTest {
     private static final String VALID_EXAM_NAME = "Mid Year 2020";
     private static final String VALID_EXAM_DATE = "23/9/2019";
     private static final String VALID_SCORE = "50/100";
-
+    private static final String VALID_ATTENDANCE_DATE = "23/9/2019";
+    private static final String VALID_ATTENDANCE_STATUS = "attended";
+    private static final String VALID_FEEDBACK = "attentive";
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -293,50 +300,50 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAdditionalDetail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAdditionalDetail(null));
+    public void parseDetail_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDetail(null));
     }
 
     @Test
-    public void parseAdditionalDetail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAdditionalDetail(INVALID_ADDITIONAL_DETAIL));
+    public void parseDetail_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDetail(INVALID_ADDITIONAL_DETAIL));
     }
 
     @Test
-    public void parseAdditionalDetail_validValue_returnsAdditionalDetail() throws Exception {
+    public void parseDetail_validValue_returnsDetail() throws Exception {
         Detail expectedDetail = new Detail(VALID_ADDITIONAL_DETAIL_WEEB);
-        assertEquals(expectedDetail, ParserUtil.parseAdditionalDetail(VALID_ADDITIONAL_DETAIL_WEEB));
+        assertEquals(expectedDetail, ParserUtil.parseDetail(VALID_ADDITIONAL_DETAIL_WEEB));
     }
 
     @Test
-    public void parseAdditionalDetail_validValueWithWhiteSpace_returnsTrimmedDetail() throws Exception {
+    public void parseDetail_validValueWithWhiteSpace_returnsTrimmedDetail() throws Exception {
         String detailWithWhiteSpace = WHITESPACE + VALID_ADDITIONAL_DETAIL_WEEB + WHITESPACE;
         Detail expectedDetail = new Detail(VALID_ADDITIONAL_DETAIL_WEEB);
-        assertEquals(expectedDetail, ParserUtil.parseAdditionalDetail(detailWithWhiteSpace));
+        assertEquals(expectedDetail, ParserUtil.parseDetail(detailWithWhiteSpace));
     }
 
     @Test
-    public void parseAdditionalDetails_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAdditionalDetails(null));
+    public void parseDetails_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDetails(null));
     }
 
     @Test
-    public void parseAdditionalDetails_invalidDetail_throwsParseException() {
+    public void parseDetails_invalidDetail_throwsParseException() {
         List<String> invalidSet = List.of(INVALID_ADDITIONAL_DETAIL);
-        assertThrows(ParseException.class, () -> ParserUtil.parseAdditionalDetails(invalidSet));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDetails(invalidSet));
     }
 
     @Test
-    public void parseAdditionalDetails_validDetails_returnsDetails() throws Exception {
+    public void parseDetails_validDetails_returnsDetails() throws Exception {
         List<String> validList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
         List<Detail> expectedSet = validList.stream()
                 .map(Detail::new)
                 .collect(Collectors.toList());
-        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
+        assertEquals(expectedSet, ParserUtil.parseDetails(validList));
     }
 
     @Test
-    public void parseAdditionalDetails_validDetailsSpace_returnsTrimmedDetails() throws Exception {
+    public void parseDetails_validDetailsSpace_returnsTrimmedDetails() throws Exception {
         List<String> baseList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
         List<String> validList = baseList.stream()
                 .map(string -> WHITESPACE + string + WHITESPACE)
@@ -344,7 +351,7 @@ public class ParserUtilTest {
         List<Detail> expectedSet = baseList.stream()
                 .map(Detail::new)
                 .collect(Collectors.toList());
-        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
+        assertEquals(expectedSet, ParserUtil.parseDetails(validList));
     }
 
     @Test
@@ -376,6 +383,7 @@ public class ParserUtilTest {
         assertNotEquals(unexpectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
     }
 
+    @Test
     public void parseSolution_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseSolution(null));
     }
@@ -470,4 +478,68 @@ public class ParserUtilTest {
         Score expectedScore = new Score(VALID_SCORE);
         assertEquals(expectedScore, ParserUtil.parseScore(scoreWithWhiteSpace));
     }
+
+    @Test
+    public void parseAttendanceDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendanceDate(null));
+    }
+
+    @Test
+    public void parseAttendanceDate_invalidDateWrongFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendanceDate(INVALID_ATTENDANCE_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseAttendanceDate_invalidDateAlphabets_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendanceDate(INVALID_ATTENDANCE_DATE_ALPHABETS));
+    }
+
+    @Test
+    public void parseAttendanceDate_validDateWithoutWhiteSpace_returnsExamDateString() throws Exception {
+        assertEquals(VALID_EXAM_DATE, ParserUtil.parseExamDate(VALID_ATTENDANCE_DATE));
+    }
+
+    @Test
+    public void parseAttendanceDate_validDateWithWhiteSpace_returnsTrimmedExamDateString() throws Exception {
+        String attendanceDateWithWhiteSpace = WHITESPACE + VALID_ATTENDANCE_DATE + WHITESPACE;
+        assertEquals(VALID_EXAM_DATE, ParserUtil.parseAttendanceDate(attendanceDateWithWhiteSpace));
+    }
+
+    @Test
+    public void parseAttendanceStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendanceStatus(null));
+    }
+
+    @Test
+    public void parseAttendanceStatus_invalidStatus_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseAttendanceStatus(INVALID_ATTENDANCE_STATUS));
+    }
+
+    @Test
+    public void parseAttendanceStatus_validStatusWithoutWhiteSpace_returnsStatusString() throws Exception {
+        assertEquals(VALID_ATTENDANCE_STATUS, ParserUtil.parseAttendanceStatus(VALID_ATTENDANCE_STATUS));
+    }
+
+    @Test
+    public void parseAttendanceStatus_validStatusWithWhiteSpace_returnsStatusString() throws Exception {
+        String statusWithWhiteSpace = WHITESPACE + VALID_ATTENDANCE_STATUS + WHITESPACE;
+        assertEquals(VALID_ATTENDANCE_STATUS, ParserUtil.parseAttendanceStatus(statusWithWhiteSpace));
+    }
+
+    @Test
+    public void parseFeedback_invalidStatus_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFeedback(INVALID_FEEDBACK));
+    }
+
+    @Test
+    public void parseFeedback_validStatusWithoutWhiteSpace_returnsFeedbackString() throws Exception {
+        assertEquals(new Feedback(VALID_FEEDBACK), ParserUtil.parseFeedback(VALID_FEEDBACK));
+    }
+
+    @Test
+    public void parseFeedback_validStatusWithWhiteSpace_returnsFeedbackString() throws Exception {
+        String statusWithWhiteSpace = WHITESPACE + VALID_FEEDBACK + WHITESPACE;
+        assertEquals(new Feedback(VALID_FEEDBACK), ParserUtil.parseFeedback(statusWithWhiteSpace));
+    }
+
 }

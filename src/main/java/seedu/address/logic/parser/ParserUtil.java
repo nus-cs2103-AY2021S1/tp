@@ -17,6 +17,8 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Attendance;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.ClassTime;
@@ -221,12 +223,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String detail} into a {@code AdditionalDetail}.
+     * Parses a {@code String detail} into a {@code Detail}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code detail} is invalid.
      */
-    public static Detail parseAdditionalDetail(String detail) throws ParseException {
+    public static Detail parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = detail.trim();
         if (!Detail.isValidAdditionalDetail(trimmedDetail)) {
@@ -236,14 +238,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> details} into a {@code List<Detail>}.
      */
-    public static List<Detail> parseAdditionalDetails(Collection<String> additionalDetails)
+    public static List<Detail> parseDetails(Collection<String> additionalDetails)
             throws ParseException {
         requireNonNull(additionalDetails);
         final List<Detail> detailSet = new ArrayList<>();
         for (String detail : additionalDetails) {
-            detailSet.add(parseAdditionalDetail(detail));
+            detailSet.add(parseDetail(detail));
         }
         return detailSet;
     }
@@ -291,6 +293,49 @@ public class ParserUtil {
             throw new ParseException(Score.MESSAGE_CONSTRAINTS);
         }
         return new Score(trimmedScore);
+    }
+
+    /**
+     * Parses a {@code String lessonDate} into a {@code Attendance} formatted {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lessonDate} is invalid.
+     */
+    public static String parseAttendanceDate(String lessonDate) throws ParseException {
+        requireNonNull(lessonDate);
+        String trimmedLessonDate = lessonDate.trim();
+        if (!Attendance.isValidDate(trimmedLessonDate)) {
+            throw new ParseException(Attendance.DATE_CONSTRAINTS);
+        }
+        return trimmedLessonDate;
+    }
+
+    /**
+     * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code String}.
+     * @throws ParseException if the given {@code attendanceStatus} is invalid.
+     */
+    public static String parseAttendanceStatus(String attendanceStatus) throws ParseException {
+        requireNonNull(attendanceStatus);
+        String formattedStatus = attendanceStatus.trim().toLowerCase();
+        if (!Attendance.isValidAttendanceStatus(formattedStatus)) {
+            throw new ParseException(Attendance.STATUS_CONSTRAINTS);
+        }
+        return formattedStatus;
+    }
+
+    /**
+     * Parses a {@code String score} into a {@code Feedback}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code feedback} is invalid.
+     */
+    public static Feedback parseFeedback(String feedback) throws ParseException {
+        requireNonNull(feedback);
+        String trimmedFeedback = feedback.trim();
+        if (!Feedback.isValidFeedback(trimmedFeedback)) {
+            throw new ParseException(Feedback.MESSAGE_CONSTRAINTS);
+        }
+        return new Feedback(trimmedFeedback);
     }
 
 }

@@ -148,6 +148,6 @@ public class DeleteQuestionCommandTest {
         List<Question> questions = new ArrayList<>(toCopy.getQuestions());
         questions.remove(index.getZeroBased());
         return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
-                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams());
+                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams(), toCopy.getAcademic());
     }
 }

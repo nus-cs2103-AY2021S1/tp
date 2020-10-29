@@ -14,6 +14,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.question.Question;
@@ -39,6 +40,9 @@ class JsonAdaptedStudent {
     @JsonProperty("exams")
     private final ArrayList<JsonAdaptedExam> jsonAdaptedExams = new ArrayList<>();
 
+    @JsonProperty("academic")
+    private final JsonAdaptedAcademic jsonAdaptedAcademic;
+
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
@@ -47,7 +51,8 @@ class JsonAdaptedStudent {
                               @JsonProperty("school") String school, @JsonProperty("year") String year,
                               @JsonProperty("admin") JsonAdaptedAdmin admin,
                               @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
-                              @JsonProperty("exams") ArrayList<JsonAdaptedExam> exams) {
+                              @JsonProperty("exams") ArrayList<JsonAdaptedExam> exams,
+                              @JsonProperty("academic") JsonAdaptedAcademic academic) {
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -59,6 +64,7 @@ class JsonAdaptedStudent {
         if (exams != null) {
             this.jsonAdaptedExams.addAll(exams);
         }
+        this.jsonAdaptedAcademic = academic;
     }
 
     /**
@@ -78,6 +84,8 @@ class JsonAdaptedStudent {
         jsonAdaptedExams.addAll(source.getExams().stream()
                 .map(JsonAdaptedExam::new)
                 .collect(Collectors.toList()));
+
+        jsonAdaptedAcademic = new JsonAdaptedAcademic(source.getAcademic());
     }
 
     /**
@@ -133,7 +141,8 @@ class JsonAdaptedStudent {
             exams.add(exam.toModelType());
         }
 
-        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, exams);
+        Academic academic = jsonAdaptedAcademic.toModelType();
+        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, exams, academic);
     }
 
 }

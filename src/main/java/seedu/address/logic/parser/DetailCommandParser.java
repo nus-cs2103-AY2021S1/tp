@@ -72,7 +72,7 @@ public class DetailCommandParser implements Parser<DetailCommand> {
                     AddDetailCommand.MESSAGE_USAGE), pe);
         }
 
-        Detail detail = ParserUtil.parseAdditionalDetail(argMultimap
+        Detail detail = ParserUtil.parseDetail(argMultimap
                 .getValue(PREFIX_TEXT).get());
 
         return new AddDetailCommand(index, detail);
@@ -119,7 +119,7 @@ public class DetailCommandParser implements Parser<DetailCommand> {
                     EditDetailCommand.MESSAGE_USAGE), pe);
         }
 
-        Detail detail = ParserUtil.parseAdditionalDetail(argMultimap
+        Detail detail = ParserUtil.parseDetail(argMultimap
                 .getValue(PREFIX_TEXT).get());
 
         return new EditDetailCommand(studentIndex, detailIndex, detail);

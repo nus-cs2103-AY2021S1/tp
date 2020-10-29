@@ -40,6 +40,6 @@ public abstract class ExamCommand extends Command {
     public Student updateStudentExam(Student studentToUpdate, ArrayList<Exam> exams) {
         return new Student(studentToUpdate.getName(), studentToUpdate.getPhone(),
                 studentToUpdate.getSchool(), studentToUpdate.getYear(), studentToUpdate.getAdmin(),
-                studentToUpdate.getQuestions(), exams);
+                studentToUpdate.getQuestions(), exams, studentToUpdate.getAcademic());
     }
 }
