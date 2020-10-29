@@ -7,7 +7,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 
 ## Contents:
 - [Quick Start](#Quick-Start "Goto Quick Start")
-- [Features](#Features "Goto Features")
+- [Commands](#Commands "Goto Commands")
     - [Adding a student: `add`](#Adding-a-student-add "Goto Adding-a-student-add")
     - [Listing all students: `list`](#Listing-all-students-list "Goto Listing-all-students-list")
     - [Deleting a student: `delete`](#Deleting-a-student-delete "Goto Deleting-a-student-delete")
@@ -15,11 +15,10 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Changing the current session: `goto`](#Changing-the-current-session-goto "Goto Changing-the-current-session-goto")
     - [Marking a student's attendance: `mark`](#Marking-a-student’s-attendance-mark "Goto Marking-a-students-attendance-mark")
     - [Marking all students' attendance: `mark all`](#Marking-all-students'-attendance "Goto Marking-all-students'-attendance")
-    - [Storing students' attendance records: `store_record`](#Storing-students’-attendance-records-store_record "Goto Storing-students'-attendance-records")
-    - [Loading students' attendance records: `load_record`](#Loading-students’-attendance-records-load_record "Goto Loading-students'-attendance-records")
     - [Clear all students: `clear`](#Clearing-all-entries-clear "Goto Clearing-all-entries-clear")
     - [Exit the program: `exit`](#Exiting-the-program-exit "Goto Exiting-the-program-exit")
 - [Command Summary](#Command-Summary "Goto Command-Summary")
+- [Storage](#Storage "Goto Storage")
 - [FAQ](#Frequently-Asked-Questions-FAQ "Goto Frequently-Asked-Questions-FAQ")
 
 ## Quick Start
@@ -29,7 +28,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 4. Double-click the file to start the app. A GUI should appear, with the field bar to input commands. The list of commands are available below.
 
 
-## Features
+## Commands
 > Command format:
 > - Words in `UPPER_CASE` are parameters supplied by the user
 > - Items in square brackets are optional
@@ -87,23 +86,6 @@ mark all a/ATTENDANCE_TYPE
 - Marks the attendances of all students shown in the displayed student list.
 - The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
-### Storing students' attendance records: `store_record`
-Stores the attendance records of all the students to a file.
-```
-store_record fn/FILENAME
-```
-- Stores the NUSNET ID and attendance state of all students in the student list, then clears the attendance of all students
-- The `FILENAME` can _only_ contain **alphanumeric characters**
-- The files are stored in the `/data` folder.
-
-### Loading students' attendance records: `load_record`
-```
-load_record fn/FILENAME
-```
-- Loads the attendance state of all students whose attendance is stored in the file.
-- Students whose NUSNET IDs do not appear in the file have their attendance cleared to a NO_RECORD state.
-- The `FILENAME` must refer to an existing file and can _only_ contain **alphanumeric** characters.
-
 ### Clearing all entries: `clear`
 Clears all students from the student list.
 ```
@@ -130,6 +112,14 @@ exit
 | Load Attendance   | ```load_record fn/FILENAME```
 | Clear             | ```clear```                                                                                              |
 
+## Storage
+The TAskmaster stores the running list of students and sessions automatically to JSON files when they are updated.
+
+**Student data** is stored in `data/taskmaster.json`
+**Session data** is stored in `data/session_list.json`
+
+Avoid modifying the files as this may cause the program to read the input as invalid on startup and load with an
+empty student list without any sessions.
 
 ## Frequently Asked Questions (FAQ)
 How to download java? [Here](https://lmgtfy.com/?q=how+to+download+java)

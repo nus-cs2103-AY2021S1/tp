@@ -66,6 +66,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         this.students.setStudents(students);
     }
 
+
     /**
      * Replaces the contents of the session list with {@code sessions}.
      * {@code sessions} must not contain duplicate sessions.
@@ -85,6 +86,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /* Session-Level Operations */
+
+    /**
+     * Adds a session to the session list.
+     * The session must not already exist in the session list.
+     */
+    public void addSession(Session session) {
+        sessions.add(session);
+    }
 
     /**
      * Changes the current session of this {@code Taskmaster} to a previously
@@ -119,14 +128,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
-    }
-
-    /**
-     * Adds a session to the session list.
-     * The session must not already exist in the session list.
-     */
-    public void addSession(Session session) {
-        sessions.add(session);
     }
 
     /**
@@ -322,7 +323,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         return currentSession.get().getStudentRecords();
     }
 
-    @Override
     public ObservableList<Session> getSessionList() {
         return sessions.asUnmodifiableObservableList();
     }

@@ -33,18 +33,24 @@ public class ModelManager implements Model {
     private final FilteredList<Session> filteredSessions;
 
     /**
-     * Initializes a ModelManager with the given taskmaster and userPrefs.
+     * Initializes a ModelManager with the given Taskmaster, SessionList, and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskmaster taskmaster, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskmaster taskmaster, List<Session> sessionList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskmaster, userPrefs);
 
         logger.fine("Initializing with student list: " + taskmaster + " and user prefs " + userPrefs);
 
         this.taskmaster = new Taskmaster(taskmaster);
+        this.taskmaster.setSessions(sessionList);
+
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
         filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
+    }
+
+    public ModelManager(ReadOnlyTaskmaster taskmaster, ReadOnlyUserPrefs userPrefs) {
+        this(taskmaster, taskmaster.getSessionList(), userPrefs);
     }
 
     public ModelManager() {
@@ -104,6 +110,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addSession(Session session) {
+        taskmaster.addSession(session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
     public void changeSession(SessionName sessionName) {
         taskmaster.changeSession(sessionName);
     }
@@ -118,12 +130,6 @@ public class ModelManager implements Model {
     public boolean hasSession(SessionName sessionName) {
         requireNonNull(sessionName);
         return taskmaster.hasSession(sessionName);
-    }
-
-    @Override
-    public void addSession(Session session) {
-        taskmaster.addSession(session);
-        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override

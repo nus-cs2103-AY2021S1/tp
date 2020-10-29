@@ -3,7 +3,6 @@ package seedu.taskmaster.storage;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -12,7 +11,7 @@ import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.UserPrefs;
-import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.SessionList;
 
 /**
  * Manages storage of Taskmaster data in local storage.
@@ -65,6 +64,11 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public Path getSessionListFilePath() {
+        return taskmasterStorage.getSessionListFilePath();
+    }
+
+    @Override
     public Optional<ReadOnlyTaskmaster> readTaskmaster() throws DataConversionException, IOException {
         return readTaskmaster(taskmasterStorage.getTaskmasterFilePath());
     }
@@ -87,16 +91,26 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAttendance(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
-        logger.fine("Attempting to save attendance to file: " + filePath);
-        taskmasterStorage.saveAttendance(taskmaster, filePath);
+    public void saveSessionList(ReadOnlyTaskmaster taskmaster) throws IOException {
+        saveSessionList(taskmaster, taskmasterStorage.getSessionListFilePath());
     }
 
     @Override
-    public Optional<List<StudentRecord>> readAttendance(Path filepath)
+    public void saveSessionList(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
+        logger.fine("Attempting to save session list to file: " + filePath);
+        taskmasterStorage.saveSessionList(taskmaster, filePath);
+    }
+
+    @Override
+    public Optional<SessionList> readSessionList() throws DataConversionException, IOException {
+        return readSessionList(taskmasterStorage.getSessionListFilePath());
+    }
+
+    @Override
+    public Optional<SessionList> readSessionList(Path filepath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to load attendance from file: " + filepath);
-        return taskmasterStorage.readAttendance(filepath);
+        return taskmasterStorage.readSessionList(filepath);
     }
 
     // ================ Util methods ==============================
