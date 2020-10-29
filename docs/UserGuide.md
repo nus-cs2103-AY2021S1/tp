@@ -92,7 +92,7 @@ Accompanying the details of each command are figures that show an example of the
 
 ### 4.1. Inventory Commands
 
----
+The following are commands related to the inventory storage.
 
 #### 4.1.1. Add items to inventory: `create_inventory`
 
@@ -180,7 +180,7 @@ __Result:__ inventory records listed.
 
 ### 4.2. Finance Commands
 
----
+The following are commands related to the finance account storage.
 
 #### 4.2.1. Add finance records: `add_finance`
 
@@ -262,7 +262,7 @@ __Result:__ finance records that fit the paramaters are listed
 
 ### 4.3. Universal Commands
 
----
+The following are universal commands for navigating the application.
 
 #### 4.3.1. Switch to inventory: `goto_inventory`
 
@@ -316,21 +316,41 @@ __Result:__ Undo or redo the previous command.
 
 ---
 
-## 5. Command Summary
+## 5. Commands Summary
 
-The following table gives a summary of the commands as given and explained in [Commands](#4-commands) for quick reference and look-ups.
+### 5.1. Inventory Commands Summary
 
---------|------------------
-__Add inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50`
-__Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23`
-__Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
-__Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2`
-__Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10`
-__Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
-__Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes`
-__List finance__ | `list_finance`
-__List inventory__ | `list_inventory`
-__Exit programme__ | `exit`
+The following table gives a summary of the [__inventory commands__](#41-inventory-commands) for quick reference and look-ups.
+
+|Description|Command and Example|
+|---|---|
+| __Add inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50` |
+| __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4` |
+| __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10` |
+| __Find inventory__ | `find_inventory KEYWORD` <br> e.g. `find_inventory ipad` |
+| __List inventory__ | `list_inventory` |
+
+### 5.1. Finance Commands Summary
+
+The following table gives a summary of the [__finance commands__](#42-finance-commands) for quick reference and look-ups.
+
+|Description|Command and Example|
+|---|---|
+| __Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23` |
+| __Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2` |
+| __Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01` |
+| __Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes` |
+| __List finance__ | `list_finance` |
+
+### 5.1. Universal Commands Summary
+
+The following table gives a summary of the [__general commands__](#43-universal-commands) for quick reference and look-ups.
+
+|Description|Command and Example|
+|---|---|
+| __Exit programme__ | `exit` |
+| __Switch to inventory__ | `goto_inventory` |
+| __Switch to finance__ | `goto_finance` |
 
 ---
 
