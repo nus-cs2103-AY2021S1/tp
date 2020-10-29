@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="170.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane fx:id="meetingCard" prefHeight="105.0" />
+      <Line endX="-100.0" endY="190.0" startX="-100.0" startY="105.0" stroke="WHITE" strokeWidth="5.0" />
+      <Line endX="75.46446228027344" startX="-95.0" stroke="WHITE" strokeWidth="5.0" />
+   </children>
+</VBox>

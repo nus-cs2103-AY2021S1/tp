@@ -1,0 +1,13 @@
+#participants {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#participants .label {
+    -fx-text-fill: white;
+    -fx-background-color: #329568;
+    -fx-padding: 1 5 1 5;
+    -fx-border-radius: 2;
+    -fx-background-radius: 50;
+    -fx-font-size: 11;
+}

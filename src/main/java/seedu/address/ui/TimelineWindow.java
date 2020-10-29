@@ -37,12 +37,12 @@ public class TimelineWindow extends UiPart<Stage> {
 
         for (int i = 0; i < logic.getFilteredMeetingList().size(); i++) {
             if (i % 2 == 0) {
-                top.getChildren().addAll(
-                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i)).getRoot());
+                top.getChildren().addAll(new TimelineSectionTop(
+                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i))).getRoot());
                 bottom.getChildren().addAll(new EmptyCard().getRoot());
             } else {
-                bottom.getChildren().addAll(
-                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i)).getRoot());
+                bottom.getChildren().addAll(new TimelineSectionBot(
+                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i))).getRoot());
                 top.getChildren().addAll(new EmptyCard().getRoot());
             }
         }

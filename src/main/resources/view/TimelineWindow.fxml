@@ -5,26 +5,24 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Timeline" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root height="450.0" resizable="false" title="Timeline" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
-         <VBox alignment="CENTER" prefHeight="400.0">
+    <Scene fill="#383838">
+         <VBox alignment="CENTER" maxWidth="1195.0" prefHeight="400.0" style="-fx-background-color: #121212;">
             <opaqueInsets>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+               <Insets left="10.0" right="10.0" />
             </opaqueInsets>
             <padding>
-               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+               <Insets left="10.0" right="10.0" />
             </padding>
             <children>
-               <HBox fx:id="top" prefHeight="190.0" />
-               <Line endX="112.31768798828125" endY="-0.28469306230545044" startX="-514.9752197265625" startY="-1.8829107284545898E-4" />
-               <HBox fx:id="bottom" prefHeight="190.0" />
+               <HBox fx:id="top" prefHeight="200.0" />
+               <HBox fx:id="bottom" prefHeight="200.0" />
             </children>
          </VBox>
     </Scene>
