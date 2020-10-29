@@ -34,7 +34,7 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
         } catch (Exception e) {
             return CommandResult.error("Unable to clear records of ingredients used");
         }
-        return CommandResult.statsMessage(new ArrayList<>(), "All records of ingredients used cleared!");
+        return CommandResult.statsMessage(new ArrayList<>(), "All records of ingredients used are cleared!");
     }
 
     /**
@@ -66,5 +66,17 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
     @Override
     public String toString() {
         return "StatsIngredientClearCommand";
+    }
+
+    public static String getCommandString() {
+        return "stats ingredient clear";
+    }
+
+    public static String getCommandHelp() {
+        return "Clears all records of ingredients used";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("clearing-ingredient-usage-records--statsingredientclear");
     }
 }

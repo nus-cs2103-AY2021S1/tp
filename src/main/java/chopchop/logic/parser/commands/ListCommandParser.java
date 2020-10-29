@@ -15,6 +15,7 @@ import chopchop.logic.commands.Command;
 import chopchop.logic.commands.ListRecipeCommand;
 import chopchop.logic.commands.ListIngredientCommand;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
@@ -29,7 +30,7 @@ public class ListCommandParser {
      * @return     a ListCommand, if the input was valid.
      */
     public static Result<? extends Command> parseListCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_LIST);
+        ensureCommandName(args, Strings.COMMAND_LIST);
 
         // we expect no named arguments
         Optional<ArgName> foo;

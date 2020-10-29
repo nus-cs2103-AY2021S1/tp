@@ -10,7 +10,7 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
-public class StatsIngredientDateCommand extends Command {
+public class StatsIngredientUsedCommand extends Command {
     public static final String COMMAND_WORD = "stats ingredient used";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of ingredient. "
@@ -24,13 +24,12 @@ public class StatsIngredientDateCommand extends Command {
 
     /**
      * Creates an StatsIngredientCommand to add the specified {@code Command}.
-     * On takes precedence over before and after.
-     * If on is specified together with before and after, only 'on' is considered.
+     * If both before and after are not specified. It is assumed that the time frame is today.
      */
-    public StatsIngredientDateCommand(LocalDateTime before, LocalDateTime after) {
+    public StatsIngredientUsedCommand(LocalDateTime before, LocalDateTime after) {
         if (before == null && after == null) {
             var now = LocalDateTime.now();
-            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfYear(), 0, 0, 0);
+            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfYear(), 0, 0);
             this.after = this.before.plusDays(1);
         } else {
             this.before = before;
@@ -39,22 +38,24 @@ public class StatsIngredientDateCommand extends Command {
     }
 
     private String getMessage() {
+        DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         String msg;
         if (this.before != null && this.after != null) {
+            var onBefore = this.before.format(onFormatter);
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
             if (this.before.plusDays(1).equals(this.after)) {
-                msg = String.format("Here is the list of recipes made on %s", before);
+                msg = String.format("Here is a list of ingredients made on %s", onBefore);
             } else {
-                msg = String.format("Here is the list of recipes made from the period %s to %s", after, before);
+                msg = String.format("Here is a list of ingredients made from the period %s to %s", after, before);
             }
         } else if (this.before != null) {
             var before = this.before.format(formatter);
-            msg = String.format("Here is the list of recipes made before %s", before);
+            msg = String.format("Here is a list of ingredients made before %s", before);
         } else {
             var before = this.after.format(formatter);
-            msg = String.format("Here is the list of recipes made after %s", before);
+            msg = String.format("Here is a list of ingredients made after %s", before);
         }
         return msg;
     }
@@ -68,25 +69,25 @@ public class StatsIngredientDateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof StatsIngredientDateCommand
-            && this.before.equals(((StatsIngredientDateCommand) other).before)
-            && this.after.equals(((StatsIngredientDateCommand) other).after));
+            || (other instanceof StatsIngredientUsedCommand
+            && this.before.equals(((StatsIngredientUsedCommand) other).before)
+            && this.after.equals(((StatsIngredientUsedCommand) other).after));
     }
 
     @Override
     public String toString() {
-        return String.format("StatsIngredientDateCommand");
+        return String.format("StatsIngredientUsedCommand");
     }
 
     public static String getCommandString() {
-        return "stats ingredient";
+        return "stats ingredient used";
     }
 
     public static String getCommandHelp() {
-        return "Shows ingredients that were used by cooked recipes in a given timeframe";
+        return "Shows ingredients used by recipes that were made in a given time frame";
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("Travis pls implement this");
+        throw new RuntimeException("listing-ingredients-used-within-a-given-time-frame-statsingredientused");
     }
 }

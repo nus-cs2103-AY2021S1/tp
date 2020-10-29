@@ -82,9 +82,23 @@ public class HelpCommand extends Command {
             target = "recipe";
         } else if (target.equals("ingredients")) {
             target = "ingredient";
+        } else if (target.equals("recipe top")) {
+            target = "recipe top";
+        } else if (target.equals("recipe recent")) {
+            target = "recipe recent";
+        } else if (target.equals("recipe made")) {
+            target = "recipe made";
+        } else if (target.equals("recipe clear")) {
+            target = "recipe clear";
+        } else if (target.equals("ingredient recent")) {
+            target = "ingredient recent";
+        } else if (target.equals("ingredient made")) {
+            target = "ingredient made";
+        } else if (target.equals("ingredient clear")) {
+            target = "ingredient clear";
         }
 
-
+        //todo: stats commands have 3 keywords tho
         for (var cmdName : Strings.COMMAND_NAMES) {
 
             if (!cmdName.equals(cmd)) {
@@ -212,6 +226,15 @@ public class HelpCommand extends Command {
         }
         public static String getCommandHelp() {
             return "Edits an item; see 'edit recipe' or 'edit ingredient'";
+        }
+    }
+
+    private static class StatsCommandDummy {
+        public static String getCommandString() {
+            return "stats";
+        }
+        public static String getCommandHelp() {
+            return "Lists item's usages; see 'stats recipe made' or 'stats ingredient made'";
         }
     }
 }
