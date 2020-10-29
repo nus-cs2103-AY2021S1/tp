@@ -83,7 +83,6 @@ public class ModelManager implements Model {
         accessPointer = 0;
         accessSequence = new ArrayList<>();
         accessSequence.add(0);
-        mainList = filteredModules;
     }
     public ModelManager() {
         this(new ModuleList(), new ArchivedModuleList(), new ContactList(), new TodoList(),
@@ -331,7 +330,6 @@ public class ModelManager implements Model {
             throw versionedListException;
         }
         setContactList(versionedContactList.getCurrentContactList());
-        //accessSequence.add(2);
     }
 
     @Override
@@ -343,7 +341,6 @@ public class ModelManager implements Model {
             throw versionedListException;
         }
         setContactList(versionedContactList.getCurrentContactList());
-        //accessSequence.add(2);
     }
 
     //=========== Todo List =============================================================
@@ -401,7 +398,6 @@ public class ModelManager implements Model {
             throw versionedListException;
         }
         setTodoList(versionedTodoList.getCurrentTodoList());
-        //accessSequence.add(3);
     }
 
     @Override
@@ -413,7 +409,6 @@ public class ModelManager implements Model {
             throw versionedListException;
         }
         setTodoList(versionedTodoList.getCurrentTodoList());
-        //accessSequence.add(3);
     }
 
     //=========== General =============================================================
