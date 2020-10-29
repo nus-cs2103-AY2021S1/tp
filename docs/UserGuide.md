@@ -24,7 +24,9 @@ This user guide provides you with the necessary information on how to become an 
 You can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
-The figure below shows the GUI of ProductiveNUS, with its components labelled. 
+The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
+![GUI](images/GUI.png)
+*Figure X: Labelled GUI sections*
 
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
