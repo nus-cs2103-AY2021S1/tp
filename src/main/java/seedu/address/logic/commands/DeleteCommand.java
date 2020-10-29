@@ -73,7 +73,7 @@ public class DeleteCommand extends Command {
         deletedNames = deletedNames.substring(0, deletedNames.length() - 2);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames), false, false,
-                true);
+                true, false);
     }
 
     @Override
