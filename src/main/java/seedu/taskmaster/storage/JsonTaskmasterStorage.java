@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -14,7 +13,7 @@ import seedu.taskmaster.commons.exceptions.IllegalValueException;
 import seedu.taskmaster.commons.util.FileUtil;
 import seedu.taskmaster.commons.util.JsonUtil;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
-import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.SessionList;
 
 /**
  * A class to access Taskmaster data stored as a json file on the hard disk.
@@ -23,19 +22,30 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonTaskmasterStorage.class);
 
-    private Path filePath;
+    private Path taskmasterFilePath;
+    private Path sessionListFilePath;
 
-    public JsonTaskmasterStorage(Path filePath) {
-        this.filePath = filePath;
+    /**
+     * Initialises the Storage object which will use the given file paths.
+     */
+    public JsonTaskmasterStorage(Path taskmasterFilePath, Path sessionListFilePath) {
+        this.taskmasterFilePath = taskmasterFilePath;
+        this.sessionListFilePath = sessionListFilePath;
     }
 
+    @Override
     public Path getTaskmasterFilePath() {
-        return filePath;
+        return taskmasterFilePath;
+    }
+
+    @Override
+    public Path getSessionListFilePath() {
+        return sessionListFilePath;
     }
 
     @Override
     public Optional<ReadOnlyTaskmaster> readTaskmaster() throws DataConversionException {
-        return readTaskmaster(filePath);
+        return readTaskmaster(taskmasterFilePath);
     }
 
     /**
@@ -63,7 +73,7 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
 
     @Override
     public void saveTaskmaster(ReadOnlyTaskmaster taskmaster) throws IOException {
-        saveTaskmaster(taskmaster, filePath);
+        saveTaskmaster(taskmaster, taskmasterFilePath);
     }
 
     /**
@@ -79,40 +89,48 @@ public class JsonTaskmasterStorage implements TaskmasterStorage {
         JsonUtil.saveJsonFile(new JsonSerializableTaskmaster(taskmaster), filePath);
     }
 
+    @Override
+    public void saveSessionList(ReadOnlyTaskmaster taskmaster) throws IOException {
+        saveSessionList(taskmaster, sessionListFilePath);
+    }
+
     /**
-     * Saves the list of Attendances in a Taskmaster to the filepath specified.
+     * Saves the SessionList in a Taskmaster to the filepath specified.
      */
     @Override
-    public void saveAttendance(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
+    public void saveSessionList(ReadOnlyTaskmaster taskmaster, Path filePath) throws IOException {
         requireNonNull(taskmaster);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(
-                JsonSerializableAttendanceList.getSerializableListFromAttendances(
-                        taskmaster.getStudentRecordList()),
-                filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableSessionList(taskmaster), filePath);
     }
 
     /**
-     * Gets a list of Attendances from the filePath specified.
+     * See {@link #readSessionList(Path)}
+     */
+    public Optional<SessionList> readSessionList() throws DataConversionException {
+        return readSessionList(sessionListFilePath);
+    }
+
+    /**
+     * Gets SessionList from the filePath specified.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<List<StudentRecord>> readAttendance(Path filePath)
-            throws DataConversionException {
+    public Optional<SessionList> readSessionList(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAttendanceList> jsonAttendanceList = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAttendanceList.class);
+        Optional<JsonSerializableSessionList> jsonSerializableSessionList = JsonUtil.readJsonFile(
+                filePath, JsonSerializableSessionList.class);
 
-        if (!jsonAttendanceList.isPresent()) {
+        if (!jsonSerializableSessionList.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAttendanceList.get().toModelType());
+            return Optional.of(jsonSerializableSessionList.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

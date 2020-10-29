@@ -27,11 +27,15 @@ public class JsonTaskmasterStorageTest {
 
     @Test
     public void readTaskmaster_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readTaskmaster(null));
+        assertThrows(NullPointerException.class, () -> readTaskmaster(null,
+                "SessionList.json"));
+        assertThrows(NullPointerException.class, () -> readTaskmaster("taskmaster.json", null));
     }
 
-    private java.util.Optional<ReadOnlyTaskmaster> readTaskmaster(String filePath) throws Exception {
-        return new JsonTaskmasterStorage(Paths.get(filePath)).readTaskmaster(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyTaskmaster> readTaskmaster(String taskmasterFilePath, String sessionListFilePath)
+            throws Exception {
+        return new JsonTaskmasterStorage(Paths.get(taskmasterFilePath), Paths.get(sessionListFilePath))
+                .readTaskmaster(addToTestDataPathIfNotNull(taskmasterFilePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -42,40 +46,45 @@ public class JsonTaskmasterStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readTaskmaster("NonExistentFile.json").isPresent());
+        assertFalse(readTaskmaster("NonExistentFile.json", "NoFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readTaskmaster("notJsonFormatTaskmaster.json"));
+        assertThrows(DataConversionException.class, () -> readTaskmaster("notJsonFormatTaskmaster.json",
+                "SessionList.json"));
     }
 
     @Test
     public void readTaskmaster_invalidStudentTaskmaster_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTaskmaster("invalidStudentTaskmaster.json"));
+        assertThrows(DataConversionException.class, () -> readTaskmaster("invalidStudentTaskmaster.json",
+                "SessionList.json"));
     }
 
     @Test
     public void readTaskmaster_invalidAndValidStudentTaskmaster_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readTaskmaster("invalidAndValidStudentTaskmaster.json"));
+        assertThrows(DataConversionException.class, () -> readTaskmaster("invalidAndValidStudentTaskmaster.json",
+                "SessionList.json"));
     }
 
     @Test
     public void readAndSaveTaskmaster_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempTaskmaster.json");
+        Path taskmasterFilePath = testFolder.resolve("TempTaskmaster.json");
+        Path sessionlistFilePath = testFolder.resolve("TempSessionList.json");
         Taskmaster original = getTypicalTaskmaster();
-        JsonTaskmasterStorage jsonTaskmasterStorage = new JsonTaskmasterStorage(filePath);
+        JsonTaskmasterStorage jsonTaskmasterStorage = new JsonTaskmasterStorage(taskmasterFilePath,
+                sessionlistFilePath);
 
         // Save in new file and read back
-        jsonTaskmasterStorage.saveTaskmaster(original, filePath);
-        ReadOnlyTaskmaster readBack = jsonTaskmasterStorage.readTaskmaster(filePath).get();
+        jsonTaskmasterStorage.saveTaskmaster(original, taskmasterFilePath);
+        ReadOnlyTaskmaster readBack = jsonTaskmasterStorage.readTaskmaster(taskmasterFilePath).get();
         assertEquals(original, new Taskmaster(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addStudent(HOON);
         original.removeStudent(ALICE);
-        jsonTaskmasterStorage.saveTaskmaster(original, filePath);
-        readBack = jsonTaskmasterStorage.readTaskmaster(filePath).get();
+        jsonTaskmasterStorage.saveTaskmaster(original, taskmasterFilePath);
+        readBack = jsonTaskmasterStorage.readTaskmaster(taskmasterFilePath).get();
         assertEquals(original, new Taskmaster(readBack));
 
         // Save and read without specifying file path
@@ -88,16 +97,16 @@ public class JsonTaskmasterStorageTest {
 
     @Test
     public void saveTaskmaster_nullTaskmaster_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTaskmaster(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveTaskmaster(null, "SomeFile.json", "SessionList.json"));
     }
 
     /**
-     * Saves {@code taskmaster} at the specified {@code filePath}.
+     * Saves {@code taskmaster} at the specified {@code taskmasterFilePath}.
      */
-    private void saveTaskmaster(ReadOnlyTaskmaster taskmaster, String filePath) {
+    private void saveTaskmaster(ReadOnlyTaskmaster taskmaster, String taskmasterFilePath, String sessionListFilePath) {
         try {
-            new JsonTaskmasterStorage(Paths.get(filePath))
-                    .saveTaskmaster(taskmaster, addToTestDataPathIfNotNull(filePath));
+            new JsonTaskmasterStorage(Paths.get(taskmasterFilePath), Paths.get(sessionListFilePath))
+                    .saveTaskmaster(taskmaster, addToTestDataPathIfNotNull(taskmasterFilePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -105,6 +114,6 @@ public class JsonTaskmasterStorageTest {
 
     @Test
     public void saveTaskmaster_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTaskmaster(new Taskmaster(), null));
+        assertThrows(NullPointerException.class, () -> saveTaskmaster(new Taskmaster(), null, null));
     }
 }

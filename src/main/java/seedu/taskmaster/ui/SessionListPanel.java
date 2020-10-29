@@ -47,10 +47,10 @@ public class SessionListPanel extends UiPart<Region> {
      *
      */
     class SessionListViewCell extends ListCell<Session> { //change the stub to session
-        private final Consumer<SessionName> changeSessionAndFill;
+        private final Consumer<SessionName> changeSession;
         private final Button button = new Button();
-        SessionListViewCell(Consumer<SessionName> changeSessionAndFill) {
-            this.changeSessionAndFill = changeSessionAndFill;
+        SessionListViewCell(Consumer<SessionName> changeSession) {
+            this.changeSession = changeSession;
         }
         @Override
         protected void updateItem(Session session, boolean empty) {
@@ -72,7 +72,7 @@ public class SessionListPanel extends UiPart<Region> {
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        changeSessionAndFill.accept(sessionName);
+                        changeSession.accept(sessionName);
                     }
                 });
                 AnchorPane anchorPane = new AnchorPane();

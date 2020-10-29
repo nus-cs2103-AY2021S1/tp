@@ -7,36 +7,43 @@ import seedu.taskmaster.commons.exceptions.IllegalValueException;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.ClassParticipation;
 import seedu.taskmaster.model.record.StudentRecord;
-import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
 
 /**
- * Jackson-friendly version of {@link StudentRecordListManager}.
+ * Jackson-friendly version of {@link StudentRecord}.
  */
-class JsonAdaptedAttendance {
+class JsonAdaptedStudentRecord {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student record's %s field is missing!";
 
+    private final String name;
     private final String nusnetId;
     private final String attendanceType;
+    private final String classParticipation;
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedAttendance(@JsonProperty("nusnetId") String nusnetId,
-                                 @JsonProperty("telegram") String attendanceType) {
+    public JsonAdaptedStudentRecord(@JsonProperty("name") String name,
+                                    @JsonProperty("nusnetId") String nusnetId,
+                                    @JsonProperty("telegram") String attendanceType,
+                                    @JsonProperty("classParticipation") String classParticipation) {
+        this.name = name;
         this.nusnetId = nusnetId;
         this.attendanceType = attendanceType;
+        this.classParticipation = classParticipation;
     }
 
     /**
      * Converts a given {@code StudentRecord} into this class for Jackson use.
      */
-    public JsonAdaptedAttendance(StudentRecord source) {
+    public JsonAdaptedStudentRecord(StudentRecord source) {
+        name = source.getName().fullName;
         nusnetId = source.getNusnetId().value;
         attendanceType = source.getAttendanceType().name();
+        classParticipation = String.valueOf(source.getClassParticipation().getRawScore());
     }
 
     /**
@@ -45,6 +52,11 @@ class JsonAdaptedAttendance {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public StudentRecord toModelType() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Name.class.getSimpleName()));
+        }
+
         if (nusnetId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     NusnetId.class.getSimpleName()));
@@ -63,15 +75,16 @@ class JsonAdaptedAttendance {
             throw new IllegalValueException(AttendanceType.MESSAGE_CONSTRAINTS);
         }
 
-        final Name placeholderName = Name.getStudentNotFoundName();
+        final Name modelName = new Name(name);
 
         final NusnetId modelNusnetId = new NusnetId(nusnetId);
 
         final AttendanceType modelAttendanceType = AttendanceType.valueOf(attendanceType);
 
-        final ClassParticipation classParticipation = new ClassParticipation();
 
-        return new StudentRecord(placeholderName, modelNusnetId, modelAttendanceType, classParticipation);
+        final ClassParticipation classParticipation = new ClassParticipation(Integer.parseInt(this.classParticipation));
+
+        return new StudentRecord(modelName, modelNusnetId, modelAttendanceType, classParticipation);
     }
 
 }

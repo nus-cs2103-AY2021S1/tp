@@ -44,7 +44,8 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonTaskmasterStorage taskmasterStorage =
-                new JsonTaskmasterStorage(temporaryFolder.resolve("taskmaster.json"));
+                new JsonTaskmasterStorage(temporaryFolder.resolve("taskmaster.json"),
+                        temporaryFolder.resolve("session_list.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(taskmasterStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -72,7 +73,8 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonTaskmasterIoExceptionThrowingStub
         JsonTaskmasterStorage taskmasterStorage =
-                new JsonTaskmasterIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskmaster.json"));
+                new JsonTaskmasterIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionTaskmaster.json"),
+                        temporaryFolder.resolve("ioExceptionSessionList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(taskmasterStorage, userPrefsStorage);
@@ -150,8 +152,8 @@ public class LogicManagerTest {
      * A stub class to throw an {@code IOException} when the save method is called.
      */
     private static class JsonTaskmasterIoExceptionThrowingStub extends JsonTaskmasterStorage {
-        private JsonTaskmasterIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+        private JsonTaskmasterIoExceptionThrowingStub(Path taskmasterFilePath, Path sessionListFilePath) {
+            super(taskmasterFilePath, sessionListFilePath);
         }
 
         @Override

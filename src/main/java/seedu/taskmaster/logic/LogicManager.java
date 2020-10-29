@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.commons.core.LogsCenter;
@@ -66,6 +67,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveTaskmaster(model.getTaskmaster());
+            storage.saveSessionList(model.getTaskmaster());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -111,5 +113,9 @@ public class LogicManager implements Logic {
     @Override
     public void changeSession(SessionName sessionName) {
         model.changeSession(sessionName);
+    }
+    @Override
+    public SimpleObjectProperty<Session> getCurrentSession() {
+        return this.model.getCurrentSession();
     }
 }

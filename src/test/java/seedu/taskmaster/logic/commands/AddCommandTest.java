@@ -14,6 +14,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
@@ -233,6 +234,11 @@ public class AddCommandTest {
         @Override
         public void clearAttendance() {
             throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public SimpleObjectProperty<Session> getCurrentSession() {
+            throw new AssertionError("This method should not be call");
         }
     }
 

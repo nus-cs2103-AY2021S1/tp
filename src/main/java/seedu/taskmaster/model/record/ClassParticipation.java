@@ -29,6 +29,13 @@ public class ClassParticipation {
         this.score = score;
     }
 
+    /**
+     * Returns the class participation score as an integer.
+     */
+    public int getRawScore() {
+        return this.score;
+    }
+
     @Override
     public String toString() {
         return "Class Participation Score: " + score;
