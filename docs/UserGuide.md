@@ -519,9 +519,16 @@ for more information. Sample usage:
 
 ## 4. Calendar View
 
-Users can use the calendar view to see what tasks and lessons they have in the previous week and the coming 3 weeks.
+The calendar view is located in the area shown below.
 
-What does it display:
+![calendar view](./images/CalendarView.png)
+
+Users can use the calendar view to see what tasks and lessons they have in the previous week, current week and next 
+two weeks as shown below.
+
+![calendar view week](./images/CalendarViewWeek.png)
+
+Calendar view displays:
 * Deadlines
 * Events
 * Lessons
@@ -530,7 +537,10 @@ What does it display:
 
 ## 5. Data Analysis
 
-Users can use the pie chart and list of modules to visualise how much time is spent on each module. Each module is denoted by the `tag` on its task/lesson.
+Users can use the pie chart and list of modules to visualise how much time is spent on each module. Each module is 
+denoted by the `tag` on its task/lesson.
+
+![data analysis](./images/DataAnalysis.png)
 
 How does it work:
 * Each module has a **time spent on tasks** and **time spent on lessons**.
@@ -538,6 +548,16 @@ How does it work:
 * When an `event` has occured, it contributes towards **time spent on tasks** for that module.
 * When a `lesson` has occcured, it contributes towards **time spent on lesson** for that module.
 
+Example:
+
+![data analysis example](./images/DataAnalysisExample.png)
+* The first lesson in the list:
+    * Title of "CS2103T Lecture"
+    * Only occurred one time during the past week
+    * Has a duration of 4 hours from 12:00 to 16:00
+
+Therefore, the **time analysis for the week** will show that the **time spent on lessons** with the CS2103T `tag` as
+240 minutes (4 hours).
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes**<br>
@@ -588,9 +608,3 @@ All the keywords mentioned in the command should follow the format stated below:
 | **datetime** | `dd-MM-yyyy HH:mm` <br> e.g. 21-10-2020 10:00 
 | **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
 | **from, to, time** | `HH:mm` <br> e.g. 18:00      |
-<<<<<<< Updated upstream
- 
-=======
-                                                     |
-
->>>>>>> Stashed changes
