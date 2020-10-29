@@ -49,6 +49,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "current day.\n"
             + "s-find KEYWORD [MORE_KEYWORDS] ...: Finds all drinks where their abbreviated names match the "
             + "KEYWORD(s).\n"
+            + "s-rank: Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks "
+            + "is ranked from the most popular \nto the least popular.\n"
             + "help: Displays a brief explanation of the list of commands, and a link to the help page, "
             + "which is the user guide.\n"
             + "exit: Exits the program.\n";
