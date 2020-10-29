@@ -38,7 +38,7 @@ public class EditContactDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, email, telegram);
+        return CollectionUtil.isAnyNonNull(name, email, telegram, tags);
     }
 
     public void setName(ContactName name) {
