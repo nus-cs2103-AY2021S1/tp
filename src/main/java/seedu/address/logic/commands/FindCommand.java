@@ -16,10 +16,12 @@ public class FindCommand extends Command {
 
     public static final String FIND_COMMAND_USAGE = COMMAND_WORD + " " + "KEYWORD";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tag whose tag name contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tag whose tag name / label contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n\n"
-            + "Example: " + COMMAND_WORD + " myfile1 myfile2 myfile3";
+            + "Example: \n\t(i) " + COMMAND_WORD + " tagname1 tagname2 tagname3"
+            + "\n\t(ii) " + COMMAND_WORD + " label1 label2 label3"
+            + "\n\t(iii) " + COMMAND_WORD + " tagname1 label1";
 
     private final TagNameContainsKeywordsPredicate predicate;
 

@@ -22,8 +22,8 @@ public class TagCommand extends Command {
             + "\n\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
             + PREFIX_FILE_ADDRESS + "FILE_ADDRESS "
-            + "[" + PREFIX_LABEL_NAME + "LABEL_NAME" + "]...\n"
-            + "\n\nExample: " + COMMAND_WORD + " "
+            + "[" + PREFIX_LABEL_NAME + "LABEL_NAME" + "]...\n\n"
+            + "Example: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
             + PREFIX_LABEL_NAME + "CS2103T";

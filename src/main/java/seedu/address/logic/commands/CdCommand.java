@@ -29,7 +29,8 @@ public class CdCommand extends Command {
             + "\n\t(1)" + COMMAND_WORD + " " + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
             + "\n\t(2)" + COMMAND_WORD + " " + PREFIX_CHILD_PATH + "OneDrive"
             + "\n\t(3)" + COMMAND_WORD + " " + PREFIX_PARENT_PATH;
-    public static final String CD_COMMAND_USAGE = COMMAND_WORD + " " + "FILE_PATH";
+    public static final String CD_COMMAND_USAGE = COMMAND_WORD + " " + "f/<FILE_PATH>" + " OR "
+            + COMMAND_WORD + " ./<CHILD_FILE PATH>" + " OR " + COMMAND_WORD + " ../" ;
     public static final String MESSAGE_SUCCESS = "Current path set to '%s'";
     public static final String MESSAGE_PATH_NOT_FOUND = "Cannot find '%s'";
     public static final String MESSAGE_PATH_INVALID = "Cannot set the path to '%s'";
