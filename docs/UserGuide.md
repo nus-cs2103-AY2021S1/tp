@@ -117,13 +117,13 @@ Note(s):
 
 ### Viewing all contacts : `contact list`
 
-Shows a list of all persons in the address book.
+Shows a list of all contacts in the address book.
 
 Format: `contact list`
 
 ### Finding contacts: `find`
 
-Shows a list of all persons in the address book that have the given keywords in their name and/or the given tags.
+Shows a list of all contacts in the address book that have the given keywords in their name and/or the given tags.
 
 Format: `find [n/KEYWORD]... [t/TAG_NAME]...`
 
@@ -131,8 +131,8 @@ Note(s):
 * At least one optional field must be provided.
 
 Example(s):
-*   `find n/Tan` Shows all persons with `Tan` in their name.
-*   `find n/Jay t/classmates` Shows all persons with `Jay` in their name and persons with the `classmates` tag.
+*   `find n/Tan` Shows all contacts with `Tan` in their name.
+*   `find n/Jay t/classmates` Shows all contacts with `Jay` in their name and persons with the `classmates` tag.
 
 ### Creating a module : `module add`
 
@@ -145,7 +145,7 @@ Note: A Module can have more than 1 member separated by “,” but can only hav
 
 ### Adding a tag to a user : `label add`
 
-Adds the given labels to a contact
+Adds the given labels to a contact.
 
 Format: `label add CONTACT_NAME t/TAG_NAME...`
 
@@ -157,7 +157,7 @@ Example(s):
 
 ### Deleting a tag from a user : `label delete`
 
-Deletes the given labels from a contact
+Deletes the given labels from a contact.
 
 Format: `label delete CONTACT_NAME t/TAG_NAMES...`
 
@@ -170,7 +170,7 @@ Example(s):
 
 ### Clear tags of a user : `label clear`
 
-Deletes all labels of a contact
+Deletes all labels of a contact.
 
 Format: `label clear CONTACT_NAME`
 
