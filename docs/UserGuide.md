@@ -199,15 +199,16 @@ This is the table of prefixes used:
 
 | Prefix | Syntax | Examples |
 |-|-|-|
-| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - n/Tutorial<br>- n/tutorial essay |
-| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | - mod/ST2334<br>- mod/CS2100 cs2103t |
-| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - d/24-10-2020 <br>- d/1200<br>- d/1300 25-11-2020 |
-| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - p/high<br>- p/LOW |
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - `n/Tutorial`<br>- `n/tutorial essay` |
+| `mod/` | mod/MODULE_CODE [MORE MODULE_CODE] | - `mod/ST2334`<br>- `mod/CS2100 cs2103t` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020` <br>- `d/1200`<br>- `d/1300 25-11-2020` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - `p/high`<br>- `p/LOW` |
 
 <div markdown="block" class="alert alert-primary">
 
- **:clipboard: Pointers to note:**<br>
-Date keywords are irrespective of time  and time keywords are irrespective of date. For example, find d/1300 25-11-2020 will list assignments with due date of 25-11-2020 (regardless of time) and with due time of 1300 (regardless of date).
+ **:clipboard: Pointers to note for prefixes:**<br>
+* For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).
+* For prefixes `n/`,`mod/` and `p/`, keywords are case-insensitive.
 </div>
 
 Here is an example with steps to follow:
@@ -218,7 +219,7 @@ Here is an example with steps to follow:
 *Figure X: `find mod/CS2100 ST2334` inputted by user*
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
-3) A message that indicates the number of assignments found will be displayed in the command box.
+3) A message that indicates the number of assignments found will be displayed as shown in the figure below.
 
 ![FindCommand1](images/FindCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
