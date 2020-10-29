@@ -90,15 +90,21 @@ You can add your assignments into your schedule so that you can manage all your 
  academic tasks conveniently. 
 
 <div markdown="span" class="alert alert-success">
-
 **:bulb: Tip:**
 You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
 </div>
 
-Examples:
-* To add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
+For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`.
-* To add a CS1010S tutorial assignment that is of **high priority**, you can enter `add n/Tutorial 2 d/21-04-2020 2359 mod/CS1010S priority/HIGH`
+
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
+</div> 
+
+Examples:
+* `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
+* `add n/Lab report d/30-04-2020 1230 mod/CS2100 remind p/LOW`
 
 ### Deleting assignments : `delete`
 
@@ -158,7 +164,6 @@ DIAGRAM
 
 **:bulb: Tip:**
 You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
-
 </div>
 
 More examples: 
@@ -283,7 +288,7 @@ Format: `unprioritze INDEX`
 
 Format: `done INDEX [MORE_INDEXES]`
 
-You can keep track of your undone assignments by marking assignments that you've completed as done.
+You can keep track of your uncompleted assignments by marking assignments that you've completed as done.
 
 You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. Here is
 an example with steps to follow:
@@ -293,7 +298,7 @@ the command line based on the indexes circled and labelled in the figure.
 
 DIAGRAM
 
-2) The two assignments will be marked as done and this is represented by the green ticks circled in the figure. 
+2) The two assignments will be marked as done and each assignment will have a green tick displayed as circled in the figure. 
 
 DIAGRAM
 
@@ -302,7 +307,6 @@ DIAGRAM
 DIAGRAM
 
 <div markdown="block" class="alert alert-primary">
-
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index will not work.
 * The indexes **must be a positive integer** 1, 2, 3, …​
@@ -315,17 +319,17 @@ DIAGRAM
 
 Format: `undone INDEX`
 
-You can mark assignment that you have not completed as undone by specifying the assignment `INDEX` as shown in your
+You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
  list.
 
-You can delete `one` assignment at a time. Here is an example with steps to follow:
+You can unmark `one` done assignment at a time. Here is an example with steps to follow:
 
 1) If you have accidentally marked the assignment with the name " " as done,
 you can simply enter `undone X` into the command line based on the index circled in the figure.
 
 DIAGRAM
 
-2) The green tick associated to the assignment is no longer displayed.
+2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
 
 DIAGRAM
 
@@ -334,9 +338,8 @@ DIAGRAM
 DIAGRAM 
 
 <div markdown="block" class="alert alert-primary">
-
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as undone **by default**
+* Assignments are marked as not done**by default**
 * The index must be present. For example, `undone` without any index will not work.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The index **must be found in your assignment list**
@@ -421,10 +424,11 @@ DIAGRAM
 
 **Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?
 **A**: 
+*For Windows Users:*
 1. Go to the folder where you have downloaded and saved the productivenus.jar file.
 2. Copy the file directory of the folder. The file directory is labelled in the diagram below.
 DIAGRAM
-3. Open your command interpreter. To do so, press the Windows key, type in `cmd` and press ENTER.
+3. Open your command interpreter. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
 4. Your command interpreter will start, and the command interpreter should look something similar to the diagram below.
 <br>
 DIAGRAM
