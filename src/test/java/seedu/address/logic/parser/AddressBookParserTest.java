@@ -25,20 +25,23 @@ import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.module.Module;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.*;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
+//    @Test
+//    public void parseCommand_add() throws Exception {
+//        Person person = new PersonBuilder().build();
+//        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+//        assertEquals(new AddCommand(person), command);
+//    }
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_addModule() throws Exception {
+        Module module = new ModuleBuilder().build();
+        AddModuleCommand command = (AddModuleCommand) parser.parseCommand(ModuleUtil.getAddModuleCommand(module));
+        assertEquals(new AddModuleCommand(module), command);
     }
 
 //    @Test
@@ -74,7 +77,7 @@ public class AddressBookParserTest {
     public void parseCommand_editModule() throws Exception {
         Module module = new ModuleBuilder().build();
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + "CS21");
+                + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
         assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, "CS21"), command);
     }
 

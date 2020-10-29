@@ -305,7 +305,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && filteredTutorialGroup.equals(other.filteredTutorialGroup)
+                && filteredModules.equals(other.filteredModules);
     }
 
 }
