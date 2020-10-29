@@ -617,9 +617,95 @@ Given below is the sequence diagram of how the mechanism behaves when called usi
 
 ![DeleteLabelSequenceDiagram](images/DeleteLabelSequenceDiagram.png)
 
-### \[Proposed\] Data archiving
+### Viewing a Specific Meeting's Agendas and Notes 
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation:
+
+The mechanism to view a specific meeting's agendas and notes is primarily facilitated by the `ViewMeetingCommand`. It
+extends `Command` and implements the `execute` operation:
+
+• `execute(Model model)` - Executes the ViewMeetingCommand on the model, setting the selected meeting to update the
+selected meeting field in the `ModelManager` before creating a `CommandResult` which triggers a UI update in
+ `MainWindow`.
+ 
+ <div markdown="span" class="alert alert-info">:information_source: **Note:** Although the `ViewMeetingCommand` is the 
+ main command to view the details of a selected meeting, other commands may also trigger UI updates for the selected
+ meeting. For example, if the module name of the currently selected meeting is updated using the `EditModuleCommand`,
+ a UI update will be triggered such that the changes will be reflected in the `MeetingDetailsPanel`.
+ More details about this will be explained under design considerations. 
+ </div>
+ 
+ As an illustration of the interactions between the different architectural components, given below is the sequence
+ diagram for the `meeting view m/CS2100 n/Report Discussion` command execution.
+ 
+ ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
+ 
+When the Logic signals that an update is required, the following update method in `MainWindow` is invoked to update the 
+selected meeting user interface:
+```
+public void update() {
+    logger.info("UI update triggered");
+    if (logic.getSelectedMeeting() == null) {
+        selectedMeetingPlaceholder.getChildren().remove(0);
+    } else {
+        MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
+                logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
+        if (selectedMeetingPlaceholder.getChildren().size() == 1) {
+            selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
+        } else {
+            selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+        }
+    }
+}
+```
+
+Given below is a object diagram of the initial state of the application. If the `MeetingBook` is not empty, the
+`selectedMeeting` field in `ModelManager` will be set to the first meeting in the `MeetingBook`. Otherwise, it will be 
+set to null. Note that on the first launch, the `MeetingBook` is guaranteed to have sample data with the first meeting
+being CS2100 Report Discussion. Irrelevant details have been omitted from the diagram.
+
+![ViewMeetingInitialStateObjectDiagram](images/ViewMeetingInitialStateObjectDiagram.png)
+
+Given below is the object diagram after the `meeting view m/CS2103 n/Weekly Meeting` command is executed.
+
+![ViewMeetingFinalObjectDiagram](images/ViewMeetingFinalObjectDiagram.png)
+
+#### Design Considerations:
+
+##### Ensuring the UI gets updated whenever information about the selected meeting changes
+
+As mentioned earlier, the `SelectedMeeting` details can be changed whenever information pertaining to the meeting gets
+ deleted or edited. These are the following commands that can affect the `SelectedMeeting` details
+ (namely all edit and delete commands):
+* `DeleteCommand` 
+* `EditCommand`
+* `DeleteMeetingCommand` 
+* `EditMeetingCommand`
+* `DeleteModuleCommand` 
+* `EditModuleCommand`
+
+Hence this feature is designed in such a way that whenever any of the above commands are executed, the Ui will be
+updated accordingly if necessary. 
+Given below is the activity diagram which illustrates the workflow of this process:
+
+![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
+
+##### Alternatives considered
+* **Alternative 1 (current choice):** Boolean flag `triggerUpdate` in `CommandResult`
+  * Pros: 
+      * Ease of implementation. (Simply set the flag to true for commands that need to update the Ui)
+      * Ease of extension. (Can create additional boolean flags to update other parts of the Ui)
+  * Cons:
+      * Need to be wary of all cases (Must remember to adjust relevant commands to set `triggerUpdate` to true)
+      * If there are many different Ui components that wish to get updated separately, can end up having many boolean 
+      attributes in `CommandResult`
+
+* **Alternative 2:** JavaFX ObservableList
+  * Pros: 
+      * Built in support for robust observer design pattern. (Don't have to reinvent the wheel)
+  * Cons:
+      * Using a list is not very suitable since `SelectedMeeting` is a single value.
+      * Only certain JavaFX views can be used with ObservableList.
 
 
 --------------------------------------------------------------------------------------------------------------------
