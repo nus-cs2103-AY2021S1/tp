@@ -20,7 +20,6 @@ public class Event {
     private String eventName;
     private LocalDateTime eventStartDateTime;
     private LocalDateTime eventEndDateTime;
-    private String description;
     private String uniqueIdentifier; // uid for iCalendarAgenda use
     private EventRecurrence recurrence;
 
@@ -29,19 +28,17 @@ public class Event {
      * @param eventName
      * @param eventStartDateTime
      * @param eventEndDateTime
-     * @param description
      * @param uniqueIdentifier
      * @param recurrence
      */
     public Event(String eventName, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
-                 String description, String uniqueIdentifier, EventRecurrence recurrence) {
-        requireAllNonNull(eventName, eventStartDateTime, eventEndDateTime, description, uniqueIdentifier, recurrence);
+                 String uniqueIdentifier, EventRecurrence recurrence) {
+        requireAllNonNull(eventName, eventStartDateTime, eventEndDateTime, uniqueIdentifier, recurrence);
         checkArgument(isValidEventName(eventName));
         checkArgument(isValidEventStartAndEndTime(eventStartDateTime, eventEndDateTime));
         this.eventName = eventName;
         this.eventStartDateTime = eventStartDateTime;
         this.eventEndDateTime = eventEndDateTime;
-        this.description = description;
         this.uniqueIdentifier = uniqueIdentifier;
         this.recurrence = recurrence;
     }
@@ -71,10 +68,6 @@ public class Event {
         return eventEndDateTime;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String getUniqueIdentifier() {
         return uniqueIdentifier;
     }
@@ -85,7 +78,18 @@ public class Event {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventName, eventStartDateTime, eventEndDateTime, description, uniqueIdentifier, recurrence);
+        return Objects.hash(eventName, eventStartDateTime, eventEndDateTime, uniqueIdentifier, recurrence);
+    }
+
+    /**
+     * This method checks if events are the same based on event name, start and end date time.
+     * This is a weaker notion of equality between events.
+     */
+    public boolean isSameEvent(Event otherEvent) {
+        return otherEvent.eventName.equals(eventName)
+                && otherEvent.eventStartDateTime.equals(eventStartDateTime)
+                && otherEvent.eventEndDateTime.equals(eventEndDateTime);
+
     }
 
     /**
@@ -106,7 +110,6 @@ public class Event {
         return otherEvent.eventName.equals(eventName)
                 && otherEvent.eventStartDateTime.equals(eventStartDateTime)
                 && otherEvent.eventEndDateTime.equals(eventEndDateTime)
-                && otherEvent.description.equals(description)
                 && otherEvent.uniqueIdentifier.equals(uniqueIdentifier)
                 && otherEvent.recurrence.equals(recurrence);
     }
@@ -114,15 +117,35 @@ public class Event {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Event name: ")
+        builder.append("Event: ")
                 .append(eventName)
-                .append("Timing: ")
+                .append("\n")
+                .append("StartDateTime: ")
                 .append(eventStartDateTime)
-                .append(" - ")
-                .append(eventEndDateTime)
-                .append("Description: ")
-                .append(description);
+                .append("\n")
+                .append("EndDateTime: ")
+                .append(eventEndDateTime);
 
         return builder.toString();
+    }
+
+    /**
+     * Returns true if the this event overlaps with another event.
+     * @param otherEvent the event to be compared
+     */
+    public boolean isOverlapping(Event otherEvent) {
+        return eventStartDateTime.isBefore(otherEvent.eventEndDateTime)
+                && otherEvent.eventStartDateTime.isBefore(eventEndDateTime);
+    }
+
+    public boolean isSameDay() {
+        return this.eventStartDateTime.toLocalDate().equals(eventEndDateTime.toLocalDate());
+    }
+
+    public boolean isSameStartAndEndTime(Event event) {
+        return eventStartDateTime.toLocalTime().equals(event.eventStartDateTime.toLocalTime())
+                && eventEndDateTime.toLocalTime().equals(event.eventEndDateTime.toLocalTime())
+                // this is assuming that both events are a one day event
+                && eventStartDateTime.getDayOfWeek().equals(event.eventStartDateTime.getDayOfWeek());
     }
 }
