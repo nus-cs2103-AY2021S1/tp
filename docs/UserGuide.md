@@ -280,6 +280,12 @@ Examples:
 * `copy phone m/CS2103`
 * `copy phone m/CS1010 t/classmate n/Bob n/Roy`
 
+### Viewing the timeline : `timeline`
+
+Displays the timeline view of the application in a new window.
+
+Format: `timeline`
+
 ### Exiting the program : `exit`
 
 Exits the program.
