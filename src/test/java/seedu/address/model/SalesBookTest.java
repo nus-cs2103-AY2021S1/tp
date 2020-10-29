@@ -58,7 +58,8 @@ public class SalesBookTest {
     }
 
     @Test
-    public void overwriteSales_overwriteEmptySalesBookWithOneDrinkItem_success() {
+    public void overwriteSales_overwriteSalesBookWithOneDrinkItem_success() {
+        // overwrite empty sales book
         sales.put(Drink.BSBM, 90);
         salesBook.overwriteSales(sales);
 
@@ -68,33 +69,19 @@ public class SalesBookTest {
         sales.put(Drink.BSPGT, 0);
         sales.put(Drink.BSPBT, 0);
 
-        UniqueSalesRecordList expectedSalesRecord = new UniqueSalesRecordList();
-        expectedSalesRecord.setSalesRecord(sales);
+        UniqueSalesRecordList expectedSalesRecordList = new UniqueSalesRecordList();
+        expectedSalesRecordList.setSalesRecord(sales);
 
-        assertEquals(expectedSalesRecord, salesBook.getRecord());
-    }
+        assertEquals(expectedSalesRecordList, salesBook.getRecord());
 
-    @Test
-    public void overwriteSales_overwriteNonEmptySalesBookWithOneDrinkItem_success() {
-        // initialise sales book
-        sales.put(Drink.BSBM, 90);
+        // overwrite existing sales book
+        sales.put(Drink.BSBM, 45);
         salesBook.overwriteSales(sales);
 
-        // overwrite an initialised sales book
-        HashMap<Drink, Integer> newSales = new HashMap<>();
-        newSales.put(Drink.BSBM, 45);
-        salesBook.overwriteSales(newSales);
+        UniqueSalesRecordList newSalesRecordList = new UniqueSalesRecordList();
+        newSalesRecordList.setSalesRecord(sales);
 
-        newSales.put(Drink.BSBBT, 0);
-        newSales.put(Drink.BSBGT, 0);
-        newSales.put(Drink.BSPM, 0);
-        newSales.put(Drink.BSPGT, 0);
-        newSales.put(Drink.BSPBT, 0);
-
-        UniqueSalesRecordList expectedSalesRecord = new UniqueSalesRecordList();
-        expectedSalesRecord.setSalesRecord(newSales);
-
-        assertEquals(expectedSalesRecord, salesBook.getRecord());
+        assertEquals(newSalesRecordList, salesBook.getRecord());
     }
 
     @Test
