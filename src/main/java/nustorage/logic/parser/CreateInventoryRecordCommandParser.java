@@ -1,12 +1,10 @@
 package nustorage.logic.parser;
 
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import nustorage.logic.commands.CreateInventoryRecordCommand;
@@ -28,7 +26,7 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
     public CreateInventoryRecordCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION,
-                        PREFIX_ITEM_COST, PREFIX_DATETIME);
+                        PREFIX_ITEM_COST);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,14 +43,9 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
         } else {
             unitCost = 0;
         }
-        LocalDateTime dateTime;
-        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            dateTime = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_DATETIME).get());
-        } else {
-            dateTime = LocalDateTime.now();
-        }
+
         FinanceRecord financeRecord = new FinanceRecord(unitCost * quantity, true);
-        InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity, unitCost, dateTime);
+        InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity, unitCost);
 
         return new CreateInventoryRecordCommand(inventoryRecord, financeRecord);
     }

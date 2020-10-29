@@ -58,7 +58,7 @@ public class InventoryWindow extends UiPart<Region> {
         Callback<TableColumn<InventoryRecord, String>,
                 TableCell<InventoryRecord, String>> cellFactory = new Callback<>() {
                     @Override
-                    public TableCell call(final TableColumn<InventoryRecord, String> param) {
+                    public TableCell<InventoryRecord, String> call(final TableColumn<InventoryRecord, String> param) {
                         final TableCell<InventoryRecord, String> cell = new TableCell<>() {
 
                             @Override
@@ -75,6 +75,7 @@ public class InventoryWindow extends UiPart<Region> {
                                     button.setOnAction(event -> {
                                         try {
                                             uiLogic.execute("goto_finance");
+
                                             // copy the command
                                             final Clipboard clipboard = Clipboard.getSystemClipboard();
                                             final ClipboardContent url = new ClipboardContent();
