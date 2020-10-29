@@ -79,6 +79,7 @@ public class EditTaskCommand extends Command {
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
+        model.commitTodoList();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
