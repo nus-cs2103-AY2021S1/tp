@@ -560,6 +560,7 @@ that will be returned by each parser respectively.
 given by their parsers using `model#hasPersonName`. If there does not exist a Person, then a `CommandException` is thrown.
 Otherwise, the Person with the name is obtained from the AddressBook. This Person is then modified by each command accordingly.
 * `AddLabelCommand` - Adds tags to the Person based on the `LabelPersonDescriptor` given by `AddLabelCommandParser`
+
 Adding Tags Code Snippet :
 ```
 Set<Tag> updatedTags = new HashSet<>(personToLabel.getTags());
@@ -594,6 +595,7 @@ Once they have obtained the modified Person, they replace the original Person wi
 `MeetingBook` and `ModuleBook`.
 
 Updating Modduke Code Snippet :
+
 ```
 model.setPerson(personToLabel, labelledPerson);
 
@@ -601,6 +603,7 @@ model.updatePersonInMeetingBook(personToLabel, labelledPerson);
 
 model.updatePersonInModuleBook(personToLabel, labelledPerson);
 ```
+
 The above code snippet updates the Person in each of the three books.
 
 #### Sequence Diagram
@@ -642,6 +645,7 @@ selected meeting field in the `ModelManager` before creating a `CommandResult` w
  
 When the Logic signals that an update is required, the following update method in `MainWindow` is invoked to update the 
 selected meeting user interface:
+
 ```
 public void update() {
     logger.info("UI update triggered");
