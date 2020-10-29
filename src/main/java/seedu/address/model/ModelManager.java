@@ -37,6 +37,7 @@ public class ModelManager implements Model {
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
     private int accessPointer;
     private List<Integer> accessSequence;
@@ -60,7 +61,8 @@ public class ModelManager implements Model {
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
-        filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
+        sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
+        filteredContacts = new FilteredList<Contact>(sortedContacts);
         filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
         accessPointer = 0;
@@ -418,6 +420,21 @@ public class ModelManager implements Model {
     }
 
     //=========== Sorted List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getSortedContactList() {
+        return sortedContacts;
+    }
+
+    @Override
+    public void updateSortedContactList(Comparator<Contact> comparator) {
+        // No assertion here because comparator value can be null to reset ordering.
+        sortedContacts.setComparator(comparator);
+    }
 
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
