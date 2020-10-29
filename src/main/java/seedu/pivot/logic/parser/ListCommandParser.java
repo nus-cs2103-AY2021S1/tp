@@ -2,11 +2,13 @@ package seedu.pivot.logic.parser;
 
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.logic.commands.Command.TYPE_ARCHIVE;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.logic.parser.PivotParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
+import seedu.pivot.logic.commands.ListArchiveCommand;
 import seedu.pivot.logic.commands.ListCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
@@ -32,10 +34,15 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         final String commandWord = matcher.group("commandWord");
 
-        if (!commandWord.equals(TYPE_CASE)) {
+        switch (commandWord) {
+        case TYPE_CASE:
+            return new ListCaseCommand();
+
+        case TYPE_ARCHIVE:
+            return new ListArchiveCommand();
+
+        default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
-
-        return new ListCaseCommand();
     }
 }

@@ -52,11 +52,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         case TYPE_DOC:
             return new EditDocumentCommandParser().parse(arguments);
         case TYPE_SUSPECT:
-
+            return new EditSuspectCommandParser().parse(arguments);
         case TYPE_WITNESS:
-
+            return new EditWitnessCommandParser().parse(arguments);
         case TYPE_VICTIM:
-
+            return new EditVictimCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));

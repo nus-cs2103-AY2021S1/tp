@@ -64,7 +64,7 @@ public class EditStatusCommand extends EditCommand {
         // create new updated case
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(), status,
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
-                stateCase.getTags());
+                stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_EDIT_STATUS_SUCCESS, status));
 

@@ -3,7 +3,7 @@ package seedu.pivot.logic.commands.witnesscommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -67,11 +67,11 @@ public class DeleteWitnessCommand extends DeleteCommand {
 
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
-                stateCase.getVictims(), updatedWitnesses, stateCase.getTags());
+                stateCase.getVictims(), updatedWitnesses, stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));
     }

@@ -21,6 +21,10 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        if (StateManager.atCasePage()) {
+            throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+        }
+
         if (StateManager.atMainPage()) {
             String trimmedArgs = args.trim();
             if (trimmedArgs.isEmpty()) {
@@ -33,9 +37,6 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new DetailsContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
 
-        if (StateManager.atCasePage()) {
-            throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
-        }
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 

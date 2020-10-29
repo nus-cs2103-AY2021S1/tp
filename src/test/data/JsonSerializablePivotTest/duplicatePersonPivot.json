@@ -10,7 +10,8 @@
     } ],
     "suspects": [],
     "victims": [],
-    "tagged": [ "friends" ]
+    "tagged": [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title": "Alice Pauline",
     "description": "",
@@ -21,6 +22,7 @@
       "reference" : "test1.txt"
     } ],
     "suspects": [],
-    "victims": []
+    "victims": [],
+    "archiveStatus" : "DEFAULT"
   } ]
 }

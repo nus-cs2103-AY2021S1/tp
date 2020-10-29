@@ -11,6 +11,8 @@ public abstract class ListCommand extends Command {
             + ": Lists all items of a specified type.\n"
             + "Format: '" + COMMAND_WORD + " TYPE'\n\n"
             + "TYPE 'case'\n"
-            + "Example: " + COMMAND_WORD + " case";
+            + "Example: " + COMMAND_WORD + " case"
+            + "TYPE 'archive'\n"
+            + "Example: " + COMMAND_WORD + " archive";;
 
 }

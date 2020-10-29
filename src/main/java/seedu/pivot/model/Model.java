@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.GuiSettings;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 
 /**
@@ -12,7 +13,11 @@ import seedu.pivot.model.investigationcase.Case;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Case> PREDICATE_SHOW_ALL_CASES = unused -> true;
+    Predicate<Case> PREDICATE_SHOW_DEFAULT_CASES = investigationCase ->
+            investigationCase.getArchiveStatus().equals(ArchiveStatus.DEFAULT);
+
+    Predicate<Case> PREDICATE_SHOW_ARCHIVED_CASES = investigationCase ->
+            investigationCase.getArchiveStatus().equals(ArchiveStatus.ARCHIVED);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -98,4 +103,5 @@ public interface Model {
     boolean canUndoPivot();
 
     String undoPivot();
+
 }
