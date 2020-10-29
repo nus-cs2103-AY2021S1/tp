@@ -126,6 +126,8 @@ exit
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 1```
 | Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/present`                                             |
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
+| Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
+| Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
 | Store Attendance  | ```store_record fn/FILENAME``` <br> e.g., `store_record tutorial01`                                |
 | Load Attendance   | ```load_record fn/FILENAME```
 | Clear             | ```clear```                                                                                              |
