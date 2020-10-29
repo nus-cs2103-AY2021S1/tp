@@ -64,7 +64,7 @@ public class EditTutorialGroupCommand extends Command {
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_GROUP_DISPLAYED_INDEX);
         }
 
         TutorialGroup tutorialGroupToEdit = model.getFilteredTutorialGroupList().get(index.getZeroBased());

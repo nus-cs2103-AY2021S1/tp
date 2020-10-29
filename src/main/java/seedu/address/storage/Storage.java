@@ -9,7 +9,6 @@ import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
 
 /**
  * API of the Storage component
@@ -22,14 +21,14 @@ public interface Storage extends StudentStorage, ModuleStorage, UserPrefsStorage
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
-//    @Override
-//    Path getStudentFilePath();
-//
-//    @Override
-//    Optional<ReadOnlyTrackr<Student>> readStudentList() throws DataConversionException, IOException;
-//
-//    @Override
-//    void saveStudentList(ReadOnlyTrackr<Student> studentList) throws IOException;
+    //    @Override
+    //    Path getStudentFilePath();
+    //
+    //    @Override
+    //    Optional<ReadOnlyTrackr<Student>> readStudentList() throws DataConversionException, IOException;
+    //
+    //    @Override
+    //    void saveStudentList(ReadOnlyTrackr<Student> studentList) throws IOException;
 
     @Override
     Path getModuleFilePath();

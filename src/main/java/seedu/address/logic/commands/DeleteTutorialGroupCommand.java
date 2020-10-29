@@ -40,7 +40,7 @@ public class DeleteTutorialGroupCommand extends Command {
         List<TutorialGroup> lastShownList = model.getFilteredTutorialGroupList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_GROUP_DISPLAYED_INDEX);
         }
 
         TutorialGroup tutorialGroupToDelete = lastShownList.get(targetIndex.getZeroBased());
