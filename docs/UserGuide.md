@@ -419,14 +419,18 @@ Exits the program.
 Format: `exit`
 
 #### 14. View students and rooms side by side: `toggle-split`
-While allocating rooms to students, it is probably easier to view rooms and students at the same time. If the rooms and students tabs are currently separate, `toggle-split` will merge the students and rooms tab into 1 tab that shows them side by side. You can use the `rooms` or `students` commands to switch to the combined tab as usual.
+While allocating rooms to students, it is probably easier to view rooms and students at the same time. If the rooms and students tabs are currently separate, `toggle-split` will merge the students and rooms tab into 1 tab that shows them side by side, which is shown the image below. You can use the `rooms` or `students` commands to switch to the combined tab as usual.
 
 Format: `toggle-split`
+
+![](images/CombinedStudentsRoomsTab.png)
 
 #### 15. View students and rooms in separate tabs: `toggle-split`
-If the rooms and students tab are currently combined, `toggle-split` will separate them into 2 separate tabs.
+If the rooms and students tab are currently combined, `toggle-split` will separate them into 2 separate tabs, as shown below.
 
 Format: `toggle-split`
+
+![](images/SeparateStudentsRoomsTab.png)
 
 ## FAQ
 
