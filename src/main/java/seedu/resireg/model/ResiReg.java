@@ -28,7 +28,6 @@ import seedu.resireg.model.student.UniqueStudentList;
 public class ResiReg implements ReadOnlyResiReg {
 
     private Semester semester;
-    private AppMode appMode;
     private final UniqueStudentList students;
     private final UniqueRoomList rooms;
     private final UniqueAllocationList allocations;
@@ -51,7 +50,6 @@ public class ResiReg implements ReadOnlyResiReg {
         rooms = new UniqueRoomList();
         allocations = new UniqueAllocationList();
         binItems = new UniqueBinItemList();
-        appMode = AppMode.NEW;
     }
 
     public ResiReg() {}
@@ -140,7 +138,6 @@ public class ResiReg implements ReadOnlyResiReg {
         setRooms(newData.getRoomList());
         setAllocations(newData.getAllocationList());
         setBinItems(newData.getBinItemList());
-        setAppMode(newData.getAppMode());
     }
 
     //// student-level operations
@@ -359,31 +356,6 @@ public class ResiReg implements ReadOnlyResiReg {
         listenerList.callListeners(this);
     }
 
-    //// methods related to AppMode
-    // AppMode can only be set internally
-
-    @Override
-    public AppMode getAppMode() {
-        return appMode;
-    }
-
-    /**
-     * Switch the {@code AppMode} from new mode to normal mode.
-     */
-    public void finalizeRooms() {
-        assert appMode != AppMode.NORMAL
-                : "Rooms have already been finalized. The user shouldn't be able to call the FinalizeRoomsCommand.";
-        setAppMode(AppMode.NORMAL);
-    }
-
-    private void setAppMode(AppMode appMode) {
-        requireNonNull(appMode);
-        if (appMode != this.appMode) {
-            this.appMode = appMode;
-            indicateModified();
-        }
-    }
-
     //// util methods
 
     @Override
@@ -426,8 +398,7 @@ public class ResiReg implements ReadOnlyResiReg {
                 && students.equals(((ResiReg) other).students)
                 && rooms.equals(((ResiReg) other).rooms)
                 && allocations.equals(((ResiReg) other).allocations))
-                && binItems.equals(((ResiReg) other).binItems)
-                && appMode.equals(((ResiReg) other).appMode);
+                && binItems.equals(((ResiReg) other).binItems);
     }
 
     @Override

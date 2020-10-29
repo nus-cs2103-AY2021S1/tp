@@ -2,6 +2,8 @@ package seedu.resireg.logic.parser.exceptions;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_FLOOR;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.logic.parser.ParserUtil.parseTagsForEdit;
@@ -18,7 +20,8 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
     @Override
     public EditRoomCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOM_TYPE, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOM_FLOOR, PREFIX_ROOM_NUMBER,
+                PREFIX_ROOM_TYPE, PREFIX_TAG);
 
         Index index;
 
@@ -30,6 +33,13 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
         }
 
         EditRoomDescriptor editRoomDescriptor = new EditRoomDescriptor();
+        if (argMultimap.getValue(PREFIX_ROOM_FLOOR).isPresent()) {
+            editRoomDescriptor.setFloor(ParserUtil.parseFloor(argMultimap.getValue(PREFIX_ROOM_FLOOR).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
+            editRoomDescriptor.setRoomNumber(
+                    ParserUtil.parseRoomNumber(argMultimap.getValue(PREFIX_ROOM_NUMBER).get()));
+        }
         if (argMultimap.getValue(PREFIX_ROOM_TYPE).isPresent()) {
             editRoomDescriptor.setRoomType(ParserUtil.parseRoomType(argMultimap.getValue(PREFIX_ROOM_TYPE).get()));
         }

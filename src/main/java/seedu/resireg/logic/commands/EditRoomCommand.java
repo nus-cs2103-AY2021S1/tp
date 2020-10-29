@@ -1,6 +1,8 @@
 package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_FLOOR;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -17,7 +19,9 @@ import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.tag.Tag;
 import seedu.resireg.storage.Storage;
@@ -35,6 +39,8 @@ public class EditRoomCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD,
             "Edits the details of the room identified by the index number used in the displayed room list.",
             "Parameters: INDEX (must be a positive integer) "
+                    + "[" + PREFIX_ROOM_FLOOR + "FLOOR] "
+                    + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
                     + "[" + PREFIX_ROOM_TYPE + "ROOM_TYPE] "
                     + "[" + PREFIX_TAG + "TAG]...\n"
                     + "Example: " + COMMAND_WORD + " 1 "
@@ -95,9 +101,11 @@ public class EditRoomCommand extends Command {
      */
     private static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
         assert roomToEdit != null;
+        Floor updatedFloor = editRoomDescriptor.getFloor().orElse(roomToEdit.getFloor());
+        RoomNumber updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
         RoomType updatedRoomType = editRoomDescriptor.getRoomType().orElse(roomToEdit.getRoomType());
         Set<Tag> updatedTags = editRoomDescriptor.getTags().orElse(roomToEdit.getTags());
-        return new Room(roomToEdit.getFloor(), roomToEdit.getRoomNumber(), updatedRoomType, updatedTags);
+        return new Room(updatedFloor, updatedRoomNumber, updatedRoomType, updatedTags);
     }
 
     @Override
@@ -123,6 +131,8 @@ public class EditRoomCommand extends Command {
      * corresponding field value of the room.
      */
     public static class EditRoomDescriptor {
+        private Floor floor;
+        private RoomNumber roomNumber;
         private RoomType roomType;
         private Set<Tag> tags;
 
@@ -133,6 +143,8 @@ public class EditRoomCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditRoomDescriptor(EditRoomDescriptor toCopy) {
+            setFloor(toCopy.floor);
+            setRoomNumber(toCopy.roomNumber);
             setRoomType(toCopy.roomType);
             setTags(toCopy.tags);
         }
@@ -141,7 +153,15 @@ public class EditRoomCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(roomType, tags);
+            return CollectionUtil.isAnyNonNull(floor, roomNumber, roomType, tags);
+        }
+
+        public void setFloor(Floor floor) {
+            this.floor = floor;
+        }
+
+        public void setRoomNumber(RoomNumber roomNumber) {
+            this.roomNumber = roomNumber;
         }
 
         public void setRoomType(RoomType roomType) {
@@ -158,6 +178,14 @@ public class EditRoomCommand extends Command {
 
         public Optional<RoomType> getRoomType() {
             return Optional.ofNullable(roomType);
+        }
+
+        public Optional<Floor> getFloor() {
+            return Optional.ofNullable(floor);
+        }
+
+        public Optional<RoomNumber> getRoomNumber() {
+            return Optional.ofNullable(roomNumber);
         }
 
         /**
@@ -184,7 +212,9 @@ public class EditRoomCommand extends Command {
             // state check
             EditRoomDescriptor e = (EditRoomDescriptor) other;
 
-            return getRoomType().equals(e.getRoomType())
+            return getFloor().equals(e.getFloor())
+                    && getRoomNumber().equals(e.getRoomNumber())
+                    && getRoomType().equals(e.getRoomType())
                     && getTags().equals(e.getTags());
         }
     }
