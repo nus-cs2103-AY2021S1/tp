@@ -87,8 +87,8 @@ Hence, this section aims to give you a breakdown of the GUI's various components
 
 Specifically, this section covers:
 1. [Command Box](#commandBox)
-2. Command Output
-3. Recipe Button
+2. [Command Output](#commandOutput)
+3. [Recipe Button](#recipeButton)
 4. Ingredient Button
 5. Recommendation Button
 6. Favourites Button
@@ -108,9 +108,15 @@ Figure 1.2: <i>The recipe view panel of ChopChop.</i>
 <a name="commandBox"></a>
 ### 4.1 Command Box 
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
-After typing your commands, press <kbd>enter</kbd> to execute the command.
+After typing your commands, press <kbd>enter</kbd> to input the command.
  
 To learn about the commands you can perform, check out our [command summary](#commandSummary) for a quick overview or our [commands](#commands) for a detailed walkthrough.
+If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
+
+<a name="commandOutput"></a>
+### 4.2 Command Output
+ChopChop will always display textual responses to the commands you input.
+
 
 
 <div style="text-align: center; padding-bottom: 2em">
