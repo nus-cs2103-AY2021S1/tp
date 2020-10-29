@@ -21,7 +21,6 @@ import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
 import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
-import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -78,14 +77,14 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
-    }
-
-    @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
+    }
+
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
     }
 
     @Override
@@ -110,8 +109,36 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
+        if (currentViewStaff.getCurrentView().isPresent()) {
+            this.currentViewStaff = currentViewStaff;
+        } else {
+            throw new IllegalArgumentException(); // placeholder exception
+        }
+    }
+
+    @Override
+    public void setCurrentViewApplicant(CurrentViewApplicant currentViewApplicant) {
+        if (currentViewApplicant.getCurrentView().isPresent()) {
+            this.currentViewApplicant = currentViewApplicant;
+        } else {
+            throw new IllegalArgumentException(); // placeholder exception
+        }
+    }
+
+    @Override
     public Path getPersonDatabaseFilePath() {
         return userPrefs.getPersonDatabaseFilePath();
+    }
+
+    @Override
+    public Path getStaffDatabaseFilePath() {
+        return userPrefs.getStaffDatabaseFilePath();
+    }
+
+    @Override
+    public Path getApplicantDatabaseFilePath() {
+        return userPrefs.getApplicantDatabaseFilePath();
     }
 
     @Override
@@ -121,19 +148,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getStaffDatabaseFilePath() {
-        return userPrefs.getStaffDatabaseFilePath();
-    }
-
-    @Override
     public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
         requireNonNull(staffDatabaseFilePath);
         userPrefs.setStaffDatabaseFilePath(staffDatabaseFilePath);
-    }
-
-    @Override
-    public Path getApplicantDatabaseFilePath() {
-        return userPrefs.getApplicantDatabaseFilePath();
     }
 
     @Override
@@ -142,17 +159,17 @@ public class ModelManager implements Model {
         userPrefs.setStaffDatabaseFilePath(applicantDatabaseFilePath);
     }
 
-    @Override
-    public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
-        return personDatabase;
-    }
+    //=========== person database ================================================================================
 
     @Override
     public void setPersonDatabase(ReadOnlyEvaDatabase<Person> personDatabase) {
         this.personDatabase.resetData(personDatabase);
     }
 
-    //=========== person database ================================================================================
+    @Override
+    public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
+        return personDatabase;
+    }
 
     @Override
     public boolean hasPerson(Person person) {
@@ -219,17 +236,17 @@ public class ModelManager implements Model {
         personDatabase.setPerson(target, editedPerson);
     }
 
-    @Override
-    public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
-        return staffDatabase;
-    }
+    //=========== staff database ================================================================================
 
     @Override
     public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> staffDatabase) {
         this.staffDatabase.resetData(staffDatabase);
     }
 
-    //=========== staff database ================================================================================
+    @Override
+    public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
+        return staffDatabase;
+    }
 
     @Override
     public boolean hasStaff(Staff staff) {
@@ -254,17 +271,17 @@ public class ModelManager implements Model {
         staffDatabase.setPerson(target, editedStaff);
     }
 
-    @Override
-    public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
-        return applicantDatabase;
-    }
+    //=========== applicant database ================================================================================
 
     @Override
     public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> applicantDatabase) {
         this.applicantDatabase.resetData(applicantDatabase);
     }
 
-    //=========== applicant database ================================================================================
+    @Override
+    public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
+        return applicantDatabase;
+    }
 
     @Override
     public boolean hasApplicant(Applicant applicant) {
@@ -295,13 +312,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setApplicationStatus(Applicant applicant, ApplicationStatus status) {
-        applicant.setApplicationStatus(status);
-    }
-
     public void deleteApplication(Applicant target, Application toSet) {
         target.setApplication(toSet);
     }
+
+    //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -318,7 +333,7 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Staff List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -334,22 +349,13 @@ public class ModelManager implements Model {
         return currentViewStaff;
     }
 
-    //=========== Filtered Staff List Accessors =============================================================
-
-    @Override
-    public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
-        if (currentViewStaff.getCurrentView().isPresent()) {
-            this.currentViewStaff = currentViewStaff;
-        } else {
-            throw new IllegalArgumentException(); // placeholder exception
-        }
-    }
-
     @Override
     public void updateFilteredStaffList(Predicate<Staff> predicate) {
         requireNonNull(predicate);
         filteredStaffs.setPredicate(predicate);
     }
+
+    //=========== Filtered Applicant List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -360,20 +366,9 @@ public class ModelManager implements Model {
         return filteredApplicants;
     }
 
-    //=========== Filtered Applicant List Accessors =============================================================
-
     @Override
     public ReadOnlyCurrentViewApplicant getCurrentViewApplicant() {
         return currentViewApplicant;
-    }
-
-    @Override
-    public void setCurrentViewApplicant(CurrentViewApplicant currentViewApplicant) {
-        if (currentViewApplicant.getCurrentView().isPresent()) {
-            this.currentViewApplicant = currentViewApplicant;
-        } else {
-            throw new IllegalArgumentException(); // placeholder exception
-        }
     }
 
     @Override

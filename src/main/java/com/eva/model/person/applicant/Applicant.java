@@ -124,13 +124,9 @@ public class Applicant extends Person {
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append(" Interview Date: ")
-                .append(getInterviewDate().isEmpty() ? "Not set yet" : getInterviewDate().get())
+                .append(getInterviewDate().isEmpty() ? "Interview date not set yet" : getInterviewDate())
                 .append(" Application Status: ")
                 .append(getApplicationStatus());
         return builder.toString();
-    }
-
-    public void setApplicationStatus(ApplicationStatus status) {
-        this.applicationStatus = status;
     }
 }

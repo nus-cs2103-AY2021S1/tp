@@ -114,4 +114,8 @@ public class EvaDatabase<P extends Person> implements ReadOnlyEvaDatabase<P> {
                 && persons.equals(((EvaDatabase<?>) other).persons));
     }
 
+    @Override
+    public int hashCode() {
+        return persons.hashCode();
+    }
 }
