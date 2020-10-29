@@ -274,7 +274,7 @@ Example 2:
     ![add-d_step2](images/add-d_eg1.2.PNG)
     <br>
     
-    Figure 8: Added Jason's delivery
+    Figure 9: Added Hugo's delivery
     <br>
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
@@ -328,8 +328,10 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
     <br>
     
-    ![edit-i example one step three](images/edit-i_example_one_step_three.png)
+    ![edit-iexampleonestepthree](images/edit-i_example_one_step_three.png)
     <br>
+    
+    Figure 10: Edit Carrot Result
     <br>
 
 Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the starting point.
@@ -343,12 +345,14 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
     
     ![add-i example two step three](images/edit-i_example_two_step_three.png)
     <br>
+    
+    Figure 11: Edit Spinach Result
     <br>
 
 
 ##### 3.1.4b `edit-d`
 
-Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
+Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER] [by/TIME]`
 
 Examples:
 * `edit-d 1 n/AARON p/91111233` <br>
@@ -382,10 +386,13 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown.
-<br>
-![find-command-4](images/find-command-1.PNG)
-<br>
-<br>
+    <br>
+    
+    ![find-command-4](images/find-command-1.PNG)
+    <br>
+    
+    Figure 12: Find item supplied by NTUC in meat category
+    <br>
 
 ##### 3.1.5b `find-d`
 
@@ -409,12 +416,14 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown.
-<br>
-<a name="findexample1"></a>
-![find-command-2](images/find-command-2.PNG)
+    <br>
+    <a name="findexample1"></a>
 
-<br>
-<br>
+    ![find-command-2](images/find-command-2.PNG)
+    <br>
+    
+    Figure 13: Find delivery by alex and aileen
+    <br>
 
 #### 3.1.6 Listing all items or delivery: `list-i` or `list-d`
 
@@ -432,10 +441,13 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display.
-<br>
-![list-command-1](images/list-command-1.PNG)
-<br>
-<br>
+    <br>
+    
+    ![list-command-1](images/list-command-1.PNG)
+    <br>
+    
+    Figure 14: List inventory items
+    <br>
 
 #### 3.1.7 Deleting an item or delivery: `delete-i` or `delete-d`
 
@@ -454,6 +466,8 @@ Example 1:
      
     ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
     <br>
+    
+    Figure 15: Before deleting index 2
     <br>
  
 2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
@@ -461,6 +475,8 @@ Example 1:
     
     ![delete-i_step2](images/UG_delete_eg1_step2.PNG)
     <br>
+    
+    Figure 16: After deleting index 2
     <br>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
@@ -496,6 +512,8 @@ Format: `undo`
     
     ![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
     <br>
+    
+    Figure 17: Clear all items
     <br>
 
 
