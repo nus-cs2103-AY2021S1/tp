@@ -14,20 +14,24 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
-    /** Ui should trigger update */
+    /** Ui should trigger update. */
     private final boolean triggerUpdate;
 
     /** The application should exit. */
     private final boolean exit;
 
+    /** The view of the application should be toggled. */
+    private final boolean toggle;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean triggerUpdate) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean triggerUpdate, boolean toggle) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.triggerUpdate = triggerUpdate;
+        this.toggle = toggle;
     }
 
     /**
@@ -35,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -51,7 +55,12 @@ public class CommandResult {
     }
 
     public boolean isTriggerUpdate() {
-        return triggerUpdate; }
+        return triggerUpdate;
+    }
+
+    public boolean isToggle() {
+        return toggle;
+    }
 
     @Override
     public boolean equals(Object other) {

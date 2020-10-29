@@ -144,7 +144,8 @@ public class AddMeetingCommand extends Command {
         Meeting toAdd = new Meeting(module, meetingName, date, time, personSet, agendaList, noteList);
 
         model.addMeeting(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
+                false, false, true, false);
     }
 
     @Override

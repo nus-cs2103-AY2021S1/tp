@@ -43,7 +43,7 @@ public class DeleteCommandTest {
         );
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-                personToDelete.getName().toString());
+                personToDelete.getName().toString(), false, false, true, false);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(),
             model.getModuleBook(), new UserPrefs());
