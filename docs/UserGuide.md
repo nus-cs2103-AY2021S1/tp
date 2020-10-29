@@ -29,7 +29,7 @@ this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
     * [3.2. Add a lesson: `lesson`](#32-add-a-lesson--lesson)
     * [3.3. Edit a lesson: `edit-lesson`](#33-edit-a-lesson--edit-lesson)
     * [3.4. Find a lesson: `find-lesson`](#34-find-a-lesson--find-lesson)
-    * [3.5. Delete a lesson: `delete-lesson`](#35-delete-a-lesson-delete-lesson)
+    * [3.5. Delete a lesson: `delete-lesson`](#35-delete-a-lesson--delete-lesson)
   * [4. Calendar View](#4-calendar-view)
   * [5. Data Analysis](#5-data-analysis)
 * [Glossary](#glossary)
@@ -340,7 +340,9 @@ Examples:
 
 ## 3. Create, Read, Update and Delete a Lesson
 
-This section shows features that a user can use to manage lessons.
+This section shows features that a user can use to manage lessons. A lesson happens in a 
+recurring manner that have a start and end time and a start and end date.
+
 ### 3.1 List all lessons :`list-lesson`
 
 Shows the user a list of all the lessons in PlaNus.
@@ -350,8 +352,6 @@ Format: `list-lesson`
 ### 3.2 Add a lesson : `lesson`
 
 Users can add a lesson to PlaNus.
-
-A lesson happens in a recurring manner that have a start and end time.
 
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
@@ -368,15 +368,24 @@ Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME
 
 Examples:
 
-* `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 `
-    * Adds a lesson with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020 to PlaNus.
+To add a lesson named "Week 9 Tutorial" which is under module "CS2101", and happens on Monday from 12pm to 14pm, 
+from 10 Aug 2020 to 10 Nov 2020, users can do the following:
+
+1) Type in the command box the following command:
+* `lesson title:Week 9 Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`
+
+![add lesson](./images/AddLessonCommand.png)
+
+2) This adds the corresponding lesson to PlaNus. You can see the added lesson in the lesson list, calendar view and 
+time analysis.
+
+![add lesson result](./images/AddLessonCommandResult.png)
 
 <br>
 
 ### 3.3 Edit a lesson : `edit-lesson`
 
 Users can edit a lesson in PlaNus. When a lesson is edited, all the occurrences of the particular lesson will be updated.
-
 
 Format: `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [day:DAY] [from:TIME] [to:TIME] [start:DATE] [end:DATE]`
 
@@ -395,11 +404,24 @@ Format: `edit-lesson INDEX [title:TITLE] [tag:MODULE_CODE] [desc:DESCRIPTION] [d
 
 Examples:
 
-* `list-lesson`
-    * Displays all lessons.
+To edit a lesson, users can do the following:
+
+1) Display all lessons by typing `list-lesson` in the command box.
+
+![list lesson](images/ListLessonCommand.png)
+
+This will display all lessons.
  
-* `edit-lesson 1 start:10-10-2020`
-    * Changes the start date of the first lesson to 10th Oct, 2020.
+2) Choose the lesson you want to edit. Find its index which is displayed on the top-left corner.
+For example, if we want to change the first lesson to Wednesday, we can type
+`edit-lesson 1 day:WED` in the command box.
+
+![edit lesson](./images/EditLessonCommand.png)
+
+This changes the day of the first lesson to every Wednesday. You can see the calendar view and 
+time analysis also updated.
+
+![edit lesson result](./images/EditLessonCommandResult.png)
 
 ### 3.4 Find a lesson : `find-lesson`
 
@@ -426,8 +448,23 @@ Available attributes in v1.3 include:
 
 Examples:
 
-* `find-lesson title:Tutorial` 
-    * Lists all lessons with a title including the phrase `Tutorial`.
+To find all lessons with titles containing the phrase "tutorial" (case insensitive), users can do
+the following steps:
+
+1) List all lessons by typing `list-lesson` in the command box:
+
+![list lesson](./images/ListLessonCommand.png)
+
+2) type the following command in the command box: 
+* `find-lesson title:tutorial` 
+
+![find lesson](./images/FindLessonCommand.png)
+
+This lists all lessons with a title including the phrase `Tutorial`.
+
+![find lesson result](./images/FindLessonCommandResult.png)
+
+Other examples include:
 * `find-lesson tag:CS2040` 
     * Lists all lessons with a tag containing 'CS2040'.
 * `find-lesson date:01-01-2020` .
@@ -438,6 +475,47 @@ Examples:
     * Lists all lessons happening on 01-01-2020 at 14:00.
 
 <br>
+
+### 3.5 Delete a Lesson : `delete-lesson`
+
+Users can delete a specified set of lessons from PlaNus.
+
+Format: `delete-lesson INDEX...`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes**<br>
+
+* `INDEX` refers to the index of the lesson in the lesson list.
+
+* `...` means that there can be multiple indexes supplied. If all indexes are valid,
+all lessons of the specified indexes will be deleted. 
+
+</div>
+
+Examples:
+
+To delete the first two lessons, users can following the steps:
+
+1) Type `list-lesson` in the command box to display all lessons.
+
+![list lesson](./images/ListLessonCommand.png)
+
+2) Type `delete-lesson 1 2` in the command box.
+
+![delete lesson](./images/DeleteLessonCommand.png)
+ 
+This deletes the 1st and 2nd lesson from PlaNus.
+
+![delete lesson result](./images/DeleteLessonCommandResult.png)
+
+
+Users can also delete lessons by first finding the lessons of interest, refer to [feature 3.4](#34-find-a-lesson--find-lesson)
+for more information. Sample usage:
+* `find-lesson title:Lab` followed by `delete-lesson 1` 
+    * Deletes the 1st lesson in the results of the `find-lesson` command.
+
+
 
 ## 4. Calendar View
 
@@ -510,4 +588,9 @@ All the keywords mentioned in the command should follow the format stated below:
 | **datetime** | `dd-MM-yyyy HH:mm` <br> e.g. 21-10-2020 10:00 
 | **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
 | **from, to, time** | `HH:mm` <br> e.g. 18:00      |
+<<<<<<< Updated upstream
  
+=======
+                                                     |
+
+>>>>>>> Stashed changes
