@@ -376,6 +376,8 @@ Format: `deletevisit INDEX i/VISIT_INDEX`
 
 #### 3.4.1 Adding an appointment: `addappt`
 
+![example of add appointment](images/AddApptExample.png)
+
 Add a new appointment for the specified patient to the appointment database.
 
 Format: `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION`
@@ -397,7 +399,7 @@ Format: `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 Example: You want to add an appointment with the first patient on the list.
 
-Step 1: Input `addappt 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
+Step 1: Input `addappt 6 st/2020-10-29 16:00 d/120` into the command box and press Enter.
 
 Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -411,6 +413,8 @@ Step 3: If your newly added appointment is happening within a week from today, y
 </div>
 
 #### 3.4.2 Editing an appointment: `editappt`
+
+![example of edit appointment](images/EditApptExample.png)
 
 Edit the specified appointment in the appointment database.
 
@@ -438,13 +442,15 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETI
 
 Example: You want to edit the time and the duration of the first appointment in the appointment list.
 
-Step 1: Input `editappt 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
+Step 1: Input `editappt 1 st/2020-10-29 17:00 d/120` into the command box and press Enter.
 
 Step 2: On the overview tab, you can find the newly updated appointment inside the appointment list. 
 
 Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
 
 #### 3.4.3 Deleting an appointment: `deleteappt`
+
+![example of delete appointment](images/DeleteApptExample.png)
 
 Delete the specified appointment from the appointment database.
 
