@@ -28,8 +28,9 @@
    --- 4.4.1 [View all students in a tutorial group: `viewStudent`](#441-view-all-students-in-a-tutorial-group-viewstudent)<br>
    --- 4.4.2 [Add a student: `addStudent`](#442-add-a-student-addstudent)<br>
    --- 4.4.3 [Delete a student: `deleteStudent`](#443-delete-a-student-deletestudent)<br>
-   --- 4.4.4 [Find a student: `findStudent`](#444-find-a-student-findstudent)<br>
-   --- 4.4.5 [Edit a student: `editStudent` [coming in v1.4]](#445-edit-a-student-editstudent-coming-in-v14)<br>
+   --- 4.4.4 [Edit a student: `editStudent`](#444-edit-a-student-editstudent)<br>
+   --- 4.4.5 [Find a student: `findStudent`](#445-find-a-student-findstudent)<br>
+   --- 4.4.6 [List all students in a tutorial group: `listStudent`](#446-list-all-students-in-a-tutorial-group-liststudent)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [Module commands](#61-module-commands)<br>
@@ -299,11 +300,16 @@ Note:
 
 - `INDEX` refers to the index number shown in the Tutorial Group view.
 - `INDEX` must be a positive integer starting from 1.
+- You should perform this command in the Tutorial Group view.
 
 Example:
 
 - Views all students of tutorial group _T03_.
     - `viewStudent T03`
+    
+Expected Outcome:
+
+![ViewStudentCommand](images/ViewStudentCommand.png)
 
 > You should perform the following features while in the Student view.
 
@@ -315,9 +321,9 @@ Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 
 Note:
 
-- Students should not share the same name within the same tutorial group.
+- Students should not share the same student ID within the same tutorial group.
 - Phone numbers should only be 8 digits long.
-- Student IDs begin and end with a fcapital letter and should have 7 digits (e.g. A1243567X).
+- Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
 - A student can have any number of tags, including 0.
 
 Example:
@@ -328,10 +334,7 @@ and tag _student_ to the current tutorial group in view.
   
 Expected Outcome:
 
-- From the example above, the result box will display the following message:
-
-    New student added: New student added: John Tan Phone: 81234567 Email: johntan@u.nus.edu Student ID: A1234567X 
-    Tags: [student]
+![AddStudentCommand](images/AddStudentCommand.png)
     
 #### 4.4.3 Delete a student: `deleteStudent`
 
@@ -353,35 +356,66 @@ Example:
     
 Expected Outcome:
 
-- From the example given above, the result box will display the following message:
-
-    Deleted student: {to be implemented by this week}
+![DeleteStudentCommand](images/DeleteStudentCommand.png)
     
-#### 4.4.4 Find a student: `findStudent`
+#### 4.4.4 Edit a student: `editStudent`
 
-Finds and lists all students in the current Student view whose field contains any of the given keywords.
+Edits a student at the given `INDEX` with the provided details.
+
+Format: `editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...`
+
+Note:
+
+- `INDEX` refers to the index number shown in the Student view.
+- `INDEX` must be a positive integer starting from 1.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the given values.
+- When you edit the tag(s), the existing tag(s) of the student will be replaced (adding of tag(s) is not cumulative).
+- You may wish to remove all the student's tags by typing `t/` without specifying any tags after it.
+
+Example:
+
+- Editing the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
+    
+    - `editStudent 1 p/97654321 e/jtan@u.nus.edu`
+    
+Expected Outcome:
+
+![EditStudentCommand](images/EditStudentCommand.png)
+    
+#### 4.4.5 Find a student: `findStudent`
+
+Finds and lists all students in the current Student view whose name contains any of the given keywords.
 
 Format: `findStudent KEYWORD`
 
 Note:
 
 - `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
-- The search will look for matches in the student's name and student ID.
+- The search will look for matches in the student's name.
 - If no student matching the keyword is found, the Student view will be empty.
 
 Example:
 
-- Finds a student with `KEYWORD` _a1234567x_.
+- Finds a student with `KEYWORD` _john_.
 
-    - `findStudent a1234567x`
+    - `findStudent john`
     
 Expected Outcome:
 
-- From the example given above, the Student view will display the students matching the criteria:
-  
-#### 4.4.5 Edit a student: `editStudent` [coming in v1.4]
+![FindStudentCommand](images/FindStudentCommand.png)
 
-Edits a student with the provided details.
+#### 4.4.6 List all students in a tutorial group: `listStudent`
+
+Shows a list of all students in the current Student view.
+
+Format: `listStudent`
+
+Note:
+
+- This is a quick way to view all of your students in the current Student view again after using the `findStudent` 
+command.
+- `listStudent` command only works in Student view.
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
@@ -421,6 +455,8 @@ Command | Summary
 Command | Summary
 --------|--------
 `viewStudent INDEX` | Views all students in the given tutorial group.
-`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view. 
-`deleteStudent INDEX` | Deletes a student from the current Student view. 
-`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view. 
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view.
+`deleteStudent INDEX` | Deletes a student from the current Student view.
+`editStudent INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [id/STUDENT_ID] [t/TAG]...` | Edits a student in the current Student view.
+`findStudent KEYWORD` | Finds student(s) whose name(s) contain the keyword in the current Student view.
+`listStudent` | Shows a list of all students in the current Student view.
