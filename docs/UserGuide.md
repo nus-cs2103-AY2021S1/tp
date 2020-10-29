@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ## Introduction
 
@@ -13,8 +13,8 @@ title: User Guide
 **ResiReg** has the following main features:
 
 - Manage records of students.
-- Manage allocations of students to rooms in the College
-- Export records of students, rooms or transactions to CSV files for easy reference and sharing.
+- Manage records of rooms.
+- Manage allocations of students to rooms in the College.
 
 **ResiReg** is optimised for OHS admin who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
 
