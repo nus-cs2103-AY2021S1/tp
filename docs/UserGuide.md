@@ -766,7 +766,7 @@ If you need to quickly look up a command, we have added a table below to summari
         		Open Ended: <code>test INDEX a/ANSWER</code>
         	</td>
         	<td rowspan=1>
-        		<code>test 2 a/Sample Answer</code>
+        		<code>test 2 ans/Sample Answer</code>
         	</td>
         </tr>
         <tr>
