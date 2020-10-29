@@ -21,7 +21,7 @@ As a **student from the SoC in NUS**, you tend to have a **heavy workload**. Pro
 
 ## About
 This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
-Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
+You can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
 The figure below shows the GUI of ProductiveNUS, with its components labelled. 
@@ -70,7 +70,7 @@ You can find out more about the command terminologies here:
   e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME_OF_ASSIGNMENT [mod/MODULE_CODE]` can be used as `n/Assignment 2 mod/CS2100` or as `n/Assignment 2`.
+  e.g `n/NAME_OF_ASSIGNMENT [remind]` can be used as `n/Assignment 2 remind` or as `n/Assignment 2`.
 
 
 * Parameters can be in any order.<br>
@@ -157,9 +157,7 @@ Format: `list [NUMBER_OF_DAYS]`
 
 You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date (and time) and `NUMBER_OF_DAYS` later (in number of hours).
 
-The `NUMBER_OF_DAYS` in hours is multiplied by 24.
-
-For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
+For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 1200, all assignments due within this date and time to 27/10/2020 1200 will be displayed.
 
 DIAGRAM
 
@@ -186,16 +184,22 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
-Here is the table of prefixes used:
-| Prefix | Syntax                                                          | Examples                             | Remarks                                                                                                                                                                                                                                        |
-|--------|-----------------------------------------------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/     | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]                 | n/Tutorial n/tutorial essay          | Case insensitive                                                                                                                                                                                                                               |
-| mod/   | mod/MODULE_CODE  [MORE MODULE_CODE]                             | mod/ST2334 mod/CS2100 cs2103t        | Case insensitive                                                                                                                                                                                                                               |
-| d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).  |
-| p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                               |
+This is the table of prefixes used:
+| Prefix | Syntax | Examples | Remarks |
+|-|-|-|-|
+| n/ | n/NAME_OF_ASSIGNMENT \[MORE NAME_OF_ASSIGNMENT\]  | n/Tutorial n/tutorial essay | Case insensitive |
+| mod/ | mod/MODULE_CODE \[MORE MODULE_CODE\] | mod/ST2334 mod/CS2100 cs2103t | Case insensitive |
+| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT \[MORE DATE_OR_TIME_OF_ASSIGNMENT\] | d/24-10-2020 d/1200d/1300 25-11-2020 | Nil |
+| p/ | p/PRIORITY_OF_ASSIGNMENT \[MORE PRIORITY_OF_ASSIGNMENT\] | p/high p/LOW | Case insensitive |
 
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+Date keywords are irrespective of time  and time keywords are irrespective of date. For example, find d/1300 25-11-2020 will list assignments with due date of 25-11-2020 (regardless of time) and with due time of 1300 (regardless of date).
+</div>
 
 Here is an example with steps to follow:
+
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
 DIAGRAM
@@ -208,7 +212,7 @@ DIAGRAM
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DATE_OR_TIME_OF_ASSIGNMENT` must have dates in the format **dd-MM-yyyy** or times in the format **HHmm** (24 hour).
+* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
 </div>
 
