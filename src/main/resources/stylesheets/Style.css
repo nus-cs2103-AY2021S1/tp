@@ -171,97 +171,77 @@
     -fx-padding: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.cell_small_label {
-    -fx-font-size: 15px;
-    -fx-text-fill: #fa47df;
-}
-.cell-big-label {
-    -fx-font-size: 22pt;
-}
-
-
-
 /* -------------------- RECIPE VIEW THINGS -------------------- */
 .rvRecipeName {
-    -fx-font-size: 20pt;
-    -fx-font-color: #575555;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-    -fx-padding-top: 25px;
-    -fx-padding-left: 25px;
+    -fx-font-size: 36px;
+    -fx-padding: 16px 8px 8px;
 }
-.rvIngredientDisplay {
-    -fx-background-color: #f1f8e9;
+
+.rvIngredientDisplay,
+.rvStepDisplay {
     -fx-background-radius: 6;
-    -fx-border-color: #8bc34a;
     -fx-border-radius: 6;
-    -fx-font-size: 12pt;
-    -fx-font-color: #212121;
-    -fx-padding: 12;
+    -fx-padding: 14px 18px;
     -fx-spacing: 12;
 }
-.rvIngredientHeader {
-    -fx-font-size: 14pt;
+
+.rvIngredientDisplay {
+    -fx-background-color: #f1f8e9;
+    -fx-border-color: #8bc34a;
 }
-.rvIngredientList {
-    -fx-font-size: 11pt;
-    -fx-line-spacing: 4;
-}
+
 .rvStepDisplay {
     -fx-background-color: #fff3e0;
     -fx-border-color: #ff9800;
-    -fx-font-size: 12pt;
-    -fx-font-color: #212121;
-    -fx-prompt-text-fill: #212121;
-    -fx-background-radius: 6;
-    -fx-border-radius: 6;
-    -fx-padding: 12;
-    -fx-spacing: 12;
+    -fx-border-insets: 0 0 0 12px;
+    -fx-background-insets: 0 0 0 12px;
 }
+
+.rvIngredientHeader,
 .rvStepHeader {
-    -fx-font-size: 14pt;
+    -fx-font-size: 20px;
+    -fx-underline: true;
+    -fx-font-family: "Source Sans Pro SemiBold";
 }
+
+.rvIngredientList,
 .rvStepList {
-    -fx-font-size: 11pt;
     -fx-line-spacing: 4;
 }
+
 .rvTagDisplay {
-    -fx-padding: 6;
-    -fx-spacing: 6;
+    -fx-padding: 16px 8px;
 }
+
 .rvTagItem {
     -fx-font-size: 11pt;
-    -fx-font-color: #212121;
-    -fx-prompt-text-fill: #212121;
     -fx-background-color: #ffab91;
-    -fx-background-radius: 5;
-    -fx-padding: 4;
+    -fx-background-radius: 5px;
+    -fx-padding: 4px 8px;
 }
+
 .rvTagList {
-    -fx-hgap: 6;
-    -fx-vgap: 6;
+    -fx-hgap: 8px;
+    -fx-vgap: 8px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* -------------------- INGREDIENT CARD THINGS -------------------- */
 .icName {
@@ -307,13 +287,4 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
-}
-
-
-#favouriteBox {
-    -fx-background-color:transparent;
-}
-#name {
-    -fx-text-fill: #212121;
-    -fx-padding: 6 10 0;
 }

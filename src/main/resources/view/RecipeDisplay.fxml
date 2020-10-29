@@ -1,50 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
 
-<?import javafx.geometry.Insets?>
-<BorderPane prefHeight="472.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <padding><Insets top="8" bottom="12" /></padding>
-   <left>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <VBox spacing="10" prefHeight="470.0" prefWidth="288.0">
-               <children>
-                  <AnchorPane minHeight="30.0" maxHeight="70" prefWidth="200.0" maxWidth="200.0">
-                     <children>
-                        <Label styleClass="rvRecipeName" maxHeight="70" prefWidth="200.0" fx:id="recipeName" wrapText="true"
-                               AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
-                     </children>
-                  </AnchorPane>
-                  <VBox styleClass="rvTagDisplay" prefWidth="200.0">
-                     <children>
-                        <FlowPane styleClass="rvTagList" fx:id="tagList" />
-                     </children>
-                  </VBox>
-                  <VBox styleClass="rvIngredientDisplay" VBox.vgrow="ALWAYS" prefWidth="200.0">
-                     <children>
-                        <Label styleClass="rvIngredientHeader" fx:id="ingredientHeader" underline="true"/>
-                        <TextFlow styleClass="rvIngredientList" fx:id="ingredientList" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </left>
-   <right>
-      <HBox BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <VBox styleClass="rvStepDisplay" prefHeight="465.0" prefWidth="310.0">
-               <children>
-                  <Label styleClass="rvStepHeader" fx:id="stepHeader" underline="true" />
-                  <TextFlow styleClass="rvStepList" fx:id="stepList" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </right>
-</BorderPane>
+<GridPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints percentWidth="40.0" />
+      <ColumnConstraints percentWidth="60.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints vgrow="ALWAYS" />
+   </rowConstraints>
+   <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <Label styleClass="rvRecipeName" fx:id="recipeName" wrapText="true"/>
+      <VBox styleClass="rvTagDisplay">
+         <FlowPane styleClass="rvTagList" fx:id="tagList"/>
+      </VBox>
+      <VBox styleClass="rvIngredientDisplay" VBox.vgrow="ALWAYS">
+         <Label styleClass="rvIngredientHeader" fx:id="ingredientHeader" underline="true"/>
+         <TextFlow styleClass="rvIngredientList" fx:id="ingredientList"/>
+      </VBox>
+   </VBox>
+   <VBox styleClass="rvStepDisplay" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <Label styleClass="rvStepHeader" fx:id="stepHeader"/>
+      <TextFlow styleClass="rvStepList" fx:id="stepList"/>
+   </VBox>
+</GridPane>

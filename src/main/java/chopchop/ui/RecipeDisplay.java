@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 public class RecipeDisplay extends UiPart<Region> {
-
     private static final String FXML = "RecipeDisplay.fxml";
 
     private final Recipe recipe;
@@ -54,7 +53,6 @@ public class RecipeDisplay extends UiPart<Region> {
      * Displays the recipe on the recipeDisplay.
      */
     private void display() {
-
         this.recipeName.setText(this.recipe.getName());
 
         this.stepHeader.setText("Steps");
@@ -63,7 +61,6 @@ public class RecipeDisplay extends UiPart<Region> {
         this.tagList.getChildren().clear();
         this.stepList.getChildren().clear();
         this.ingredientList.getChildren().clear();
-
 
         if (this.recipe.getIngredients().isEmpty()) {
             this.ingredientList.getChildren().add(new Text("Recipe uses no ingredients"));
