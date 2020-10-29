@@ -173,12 +173,12 @@ You can find your assignments based on keywords you enter. The types of keywords
 
 This is the table of prefixes used:
 
-| Prefix | Syntax | Examples | Remarks |
-|-|-|-|-|
-| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - n/Tutorial<br>- n/tutorial essay | Case insensitive |
-| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | - mod/ST2334<br>- mod/CS2100 cs2103t | Case insensitive |
-| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - d/24-10-2020 <br>- d/1200<br>- d/1300 25-11-2020 | Under **Pointers to note** |
-| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - p/high<br>- p/LOW | Case insensitive |
+| Prefix | Syntax | Examples |
+|-|-|-|
+| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - n/Tutorial<br>- n/tutorial essay |
+| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | - mod/ST2334<br>- mod/CS2100 cs2103t |
+| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - d/24-10-2020 <br>- d/1200<br>- d/1300 25-11-2020 |
+| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - p/high<br>- p/LOW |
 
 <div markdown="block" class="alert alert-primary">
 
