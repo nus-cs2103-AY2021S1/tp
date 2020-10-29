@@ -51,7 +51,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
     
-    ![Help window](images/Help%20window.PNG)
+    ![Help window](images/cleanHelpWindow.PNG)
     Figure 1.3 Help window
     
    Now, you can try out some other commands:
@@ -91,10 +91,12 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 ### Displaying usage instructions: `help` (By Peh Jun Siang)
 
-The `help` command shows a list of all the commands and their usages supported by **Hospify**.
+The `help` command shows a list of all the commands and their usages with examples supported by **Hospify**.
+
+![tp_help_command](images/helpWindow.png)
 
 Format: `help`
-![tp_help_command](images/helpWindow.png)
+
 **:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
 
 **:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
@@ -285,9 +287,9 @@ Example: `showAppt S1234567A`
 The Appointment window should pop up after successfully running the command either through the `GUI` or the `Command Line` shown below.
 ![Appointment Window](images/showAppt/showAppt_window.PNG)
 
-**:bulb: Tip:** You can click on the headers to sort the appointments from earliest to latest or latest to earliest.
+**:bulb: Tip:** You can **click on the headers** to sort the appointments from earliest to latest or latest to earliest.
 
-**:information_source: Notes:** Only **ONE** appointment window is allowed to be opened at any moment.
+**:warning: Important:** Only **ONE** appointment window is allowed to be opened at any moment.
 
 **:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
 
@@ -433,7 +435,7 @@ _{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ (Peh Jun Siang)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
