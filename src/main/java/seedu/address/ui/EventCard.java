@@ -6,9 +6,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.event.Event;
-import seedu.address.model.module.Module;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Event}.

@@ -245,7 +245,7 @@ public interface Model {
     /**
      * Replaces Event list data with the data in {@code Eventlist}.
      */
-    void setEventList(ReadOnlyEventList EventList);
+    void setEventList(ReadOnlyEventList eventList);
 
     /** Returns the EventList */
     ReadOnlyEventList getEventList();

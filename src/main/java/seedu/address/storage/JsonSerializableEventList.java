@@ -1,19 +1,17 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.EventList;
-import seedu.address.model.ModuleList;
-import seedu.address.model.ReadOnlyEventList;
-import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.event.Event;
-import seedu.address.model.module.Module;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.EventList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.event.Event;
 
 @JsonRootName(value = "eventlist")
 public class JsonSerializableEventList {

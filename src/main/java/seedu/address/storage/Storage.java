@@ -5,12 +5,18 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.*;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends ModuleListStorage, ContactListStorage, TodoListStorage, UserPrefsStorage, EventListStorage {
+public interface Storage extends ModuleListStorage, ContactListStorage, TodoListStorage,
+        UserPrefsStorage, EventListStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;

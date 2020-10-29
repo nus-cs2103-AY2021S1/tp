@@ -1,9 +1,6 @@
 package seedu.address.model.event;
 
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 /**
@@ -23,21 +20,34 @@ public class EventTime {
         this.end = end;
     }
 
+    /**
+     * Creates a EventTime that stores the start time of the event.
+     *
+     * @param start LocalDateTime of the start.
+     */
     public EventTime(LocalDateTime start) {
         this.start = start;
         this.end = null;
     }
 
+    /**
+     * Checks if the given input is a valid date format.
+     *
+     * @param input date.
+     * @return boolean is valid.
+     */
     public static boolean isValidDateTime(String input) {
-//        boolean isValid = false;
-//        try {
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-ddTHHmm");
-//            LocalDateTime.parse(input,formatter);
-//            isValid = true;
-//        } catch (DateTimeParseException e) {
-//            isValid = false;
-//        }
-//        return isValid;
+        /*
+        boolean isValid = false;
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-ddTHHmm");
+            LocalDateTime.parse(input,formatter);
+            isValid = true;
+        } catch (DateTimeParseException e) {
+            isValid = false;
+        }
+        return isValid;
+        */
         return true;
     }
 

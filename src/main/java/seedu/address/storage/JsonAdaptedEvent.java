@@ -1,25 +1,18 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
-import seedu.address.model.module.ModularCredits;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.ZoomLink;
-import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Event}.

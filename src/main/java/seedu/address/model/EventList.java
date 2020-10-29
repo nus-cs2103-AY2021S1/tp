@@ -1,19 +1,22 @@
 package seedu.address.model;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.UniqueEventList;
-import seedu.address.model.module.Module;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.UniqueEventList;
 
 public class EventList implements ReadOnlyEventList {
     private final UniqueEventList events = new UniqueEventList();
 
     public EventList() {}
 
+    /**
+     * Creates the EventList from an existing EventList.
+     * @param toBeCopied EventList to copy.
+     */
     public EventList(ReadOnlyEventList toBeCopied) {
         this();
         resetData(toBeCopied);

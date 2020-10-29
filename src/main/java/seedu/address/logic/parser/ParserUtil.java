@@ -310,6 +310,11 @@ public class ParserUtil {
         return new EventName(name);
     }
 
+    /**
+     * Parses the input string and creates an EventTime object based on that.
+     * @param date string to be parsed.
+     * @return EventTime.
+     */
     public static EventTime parseEventTime(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
         LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);

@@ -53,7 +53,7 @@ public class ParserManager {
             return this.contactListParser;
         } else if (commandWord.contains("assignment")) {
             return this.gradeTrackerParser;
-        } else if (commandWord.contains("event")){
+        } else if (commandWord.contains("event")) {
             return this.schedulerParser;
         } else {
             throw new ParseException("Does not recognise command type!");

@@ -1,15 +1,15 @@
 package seedu.address.model.event;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.contact.exceptions.ContactNotFoundException;
-import seedu.address.model.contact.exceptions.DuplicateContactException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.contact.exceptions.ContactNotFoundException;
+import seedu.address.model.contact.exceptions.DuplicateContactException;
 
 public class UniqueEventList implements Iterable<Event> {
 

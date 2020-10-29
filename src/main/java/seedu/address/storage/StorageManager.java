@@ -7,7 +7,12 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.*;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -26,7 +31,8 @@ public class StorageManager implements Storage {
      * {@code ContactListStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(ModuleListStorage moduleListStorage, ContactListStorage contactListStorage,
-                          TodoListStorage todoListStorage, EventListStorage eventListStorage, UserPrefsStorage userPrefsStorage) {
+                          TodoListStorage todoListStorage, EventListStorage eventListStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.moduleListStorage = moduleListStorage;
         this.contactListStorage = contactListStorage;
@@ -133,6 +139,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
+    public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
+        logger.fine("Attempting to write Todo list to data file: " + filePath);
+        todoListStorage.saveTodoList(todoList, filePath);
+    }
+
+    @Override
     public Path getEventListFilePath() {
         return eventListStorage.getEventListFilePath();
     }
@@ -157,9 +169,4 @@ public class StorageManager implements Storage {
         eventListStorage.saveEventList(eventList, filePath);
     }
 
-    @Override
-    public void saveTodoList(ReadOnlyTodoList todoList, Path filePath) throws IOException {
-        logger.fine("Attempting to write Todo list to data file: " + filePath);
-        todoListStorage.saveTodoList(todoList, filePath);
-    }
 }

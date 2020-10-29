@@ -1,25 +1,25 @@
 package seedu.address.logic.commands.schedulercommands;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.event.EventTime;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventTime;
+import seedu.address.model.tag.Tag;
 
 public class EditEventCommand extends Command {
 
@@ -39,6 +39,12 @@ public class EditEventCommand extends Command {
     private Index index;
     private EditEventDescriptor descriptor;
 
+    /**
+     * Creates an EditEventCommand.
+     *
+     * @param index index of the event.
+     * @param descriptor the container that hold the changes.
+     */
     public EditEventCommand(Index index, EditEventDescriptor descriptor) {
         requireNonNull(index);
         requireNonNull(descriptor);
@@ -79,6 +85,9 @@ public class EditEventCommand extends Command {
         return new Event(updatedName, updatedTime);
     }
 
+    /**
+     * Represents the EditEventDescriptor that holds all the changes.
+     */
     public static class EditEventDescriptor {
         private EventName eventName;
         private EventTime eventTime;
@@ -86,6 +95,11 @@ public class EditEventCommand extends Command {
 
         public EditEventDescriptor() {}
 
+        /**
+         * Represents the constructor that creates the container to hold the changes.
+         *
+         * @param toCopy EditEventDescriptor to be cpoied.
+         */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             this.eventName = toCopy.eventName;
             this.eventTime = toCopy.eventTime;

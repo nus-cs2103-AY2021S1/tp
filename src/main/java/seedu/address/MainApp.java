@@ -15,8 +15,30 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
-import seedu.address.storage.*;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
+import seedu.address.storage.ContactListStorage;
+import seedu.address.storage.EventListStorage;
+import seedu.address.storage.JsonContactListStorage;
+import seedu.address.storage.JsonEventListStorage;
+import seedu.address.storage.JsonModuleListStorage;
+import seedu.address.storage.JsonTodoListStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ModuleListStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.TodoListStorage;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -49,7 +71,8 @@ public class MainApp extends Application {
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
         TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
         EventListStorage eventListStorage = new JsonEventListStorage(userPrefs.getEventListFilePath());
-        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, eventListStorage, userPrefsStorage);
+        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage,
+                eventListStorage, userPrefsStorage);
 
         initLogging(config);
 

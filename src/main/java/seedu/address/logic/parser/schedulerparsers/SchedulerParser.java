@@ -17,11 +17,6 @@ import seedu.address.logic.commands.schedulercommands.FindEventCommand;
 import seedu.address.logic.commands.schedulercommands.ViewEventCommand;
 import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.schedulerparsers.AddEventParser;
-import seedu.address.logic.parser.schedulerparsers.DeleteEventParser;
-import seedu.address.logic.parser.schedulerparsers.EditEventParser;
-import seedu.address.logic.parser.schedulerparsers.FindEventParser;
-import seedu.address.logic.parser.schedulerparsers.ViewEventParser;
 
 /**
  * Represents the parser in charge for Scheduler related commands.
