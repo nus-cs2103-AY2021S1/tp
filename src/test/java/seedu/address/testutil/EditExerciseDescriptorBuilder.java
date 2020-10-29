@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.UpdateExerciseCommand.EditExerciseDescriptor;
+import seedu.address.logic.commands.UpdateCommand.EditExerciseDescriptor;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
@@ -37,7 +37,7 @@ public class EditExerciseDescriptorBuilder {
         descriptor.setName(exercise.getName());
         descriptor.setDate(exercise.getDate());
         descriptor.setDescription(exercise.getDescription());
-        descriptor.setCalories(exercise.getCalories().isPresent() ? exercise.getCalories().get() : null);
+        descriptor.setCalories(exercise.getCalories());
         descriptor.setMusclesWorked(exercise.getMusclesWorked().isPresent() ? exercise.getMusclesWorked().get() : null);
         descriptor.setTags(exercise.getExerciseTags());
     }

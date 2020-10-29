@@ -15,22 +15,21 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.UpdateExerciseCommand;
+import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.ExerciseTag;
 
 /**
  * Parses input arguments and creates a new UpdateExerciseCommand object
  */
-public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExerciseCommand> {
+public class UpdateExerciseCommandParser implements ExerciseParser<UpdateCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UpdateExerciseCommand
      * and returns an UpdateExerciseCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public UpdateExerciseCommand parse(String args) throws ParseException {
+    public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
@@ -42,11 +41,11 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExercis
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UpdateExerciseCommand.MESSAGE_USAGE), pe);
+                    UpdateCommand.MESSAGE_USAGE), pe);
         }
 
-        UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor =
-                new UpdateExerciseCommand.EditExerciseDescriptor();
+        UpdateCommand.EditExerciseDescriptor editExerciseDescriptor =
+                new UpdateCommand.EditExerciseDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editExerciseDescriptor.setName(ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -69,10 +68,10 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExercis
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editExerciseDescriptor::setTags);
 
         if (!editExerciseDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(UpdateCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new UpdateExerciseCommand(index, editExerciseDescriptor);
+        return new UpdateCommand(index, editExerciseDescriptor);
     }
 
     /**

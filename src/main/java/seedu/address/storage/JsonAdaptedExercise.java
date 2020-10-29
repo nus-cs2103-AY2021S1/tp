@@ -57,7 +57,7 @@ class JsonAdaptedExercise {
         name = source.getName().fullName;
         description = source.getDescription().value;
         date = source.getDate().value;
-        calories = source.getCalories().isPresent() ? source.getCalories().get().value : "None";
+        calories = source.getCalories().toString();
         musclesWorked = source.getMusclesWorkedDescription();
         tagged.addAll(source.getExerciseTags().stream()
                 .map(JsonAdaptedExerciseTag::new)

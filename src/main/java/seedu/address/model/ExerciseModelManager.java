@@ -20,11 +20,12 @@ import seedu.address.model.exercise.TemplateList;
  * Represents the in-memory model of the address book data.
  */
 public class ExerciseModelManager implements ExerciseModel {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(ExerciseModelManager.class);
 
     private final ExerciseBook exerciseBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Exercise> filteredExercises;
+    private final FilteredList<Template> filteredTemplates;
 
     /**
      * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
@@ -37,6 +38,7 @@ public class ExerciseModelManager implements ExerciseModel {
         this.exerciseBook = new ExerciseBook(exerciseBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredExercises = new FilteredList<>(this.exerciseBook.getExerciseList());
+        this.filteredTemplates = new FilteredList<>(this.exerciseBook.getTemplateList());
     }
 
     public ExerciseModelManager() {
@@ -69,8 +71,7 @@ public class ExerciseModelManager implements ExerciseModel {
 
     @Override
     public Path getExerciseBookFilePath() {
-        //To change later
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getExerciseBookFilePath();
     }
 
     @Override
@@ -111,7 +112,7 @@ public class ExerciseModelManager implements ExerciseModel {
     @Override
     public void addTemplate(Template template) {
         TemplateList.addTemplate(template);
-        updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+        //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
     @Override
@@ -138,6 +139,12 @@ public class ExerciseModelManager implements ExerciseModel {
         return filteredExercises;
     }
 
+    @Override
+    public ObservableList<Template> getFilteredTemplateList() {
+
+        return TemplateList.getObservableList();
+    }
+
     public HashMap<String, Integer> getCaloriesByDay() {
         return exerciseBook.getCaloriesByDay();
     }
@@ -161,7 +168,6 @@ public class ExerciseModelManager implements ExerciseModel {
         }
 
         // state check
-        @SuppressWarnings("unchecked")
         ExerciseModelManager other = (ExerciseModelManager) obj;
         return exerciseBook.equals(other.exerciseBook)
                 && userPrefs.equals(other.userPrefs)

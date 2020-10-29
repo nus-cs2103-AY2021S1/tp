@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Template> getFilteredTemplateList() {
+            throw new AssertionError("this method should not be called.");
+        }
+
+        @Override
         public void archive(Path path) {
             throw new AssertionError("This method should not be called.");
         }
@@ -173,8 +178,7 @@ public class AddCommandTest {
 
         private void addCaloriesForDay(Exercise newEntry) {
             String stringDate = newEntry.getDate().value;
-            int intCalories = newEntry.getCalories().isPresent()
-                    ? Integer.parseInt(newEntry.getCalories().get().value) : 0;
+            int intCalories = Integer.parseInt(newEntry.getCalories().toString());
             if (caloriesByDay.containsKey(stringDate)) {
                 Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
                 caloriesByDay.put(stringDate, newCalories);

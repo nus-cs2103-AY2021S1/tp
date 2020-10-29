@@ -32,7 +32,7 @@ import seedu.address.model.exercise.Name;
 /**
  * Edits the details of an existing exercise in the exercise book.
  */
-public class UpdateExerciseCommand extends CommandForExercise {
+public class UpdateCommand extends CommandForExercise {
 
     public static final String COMMAND_WORD = "update";
 
@@ -66,12 +66,12 @@ public class UpdateExerciseCommand extends CommandForExercise {
      * @param index                  of the exercise in the filtered exercise list to edit
      * @param editExerciseDescriptor details to edit the exercise with
      */
-    public UpdateExerciseCommand(Index index, EditExerciseDescriptor editExerciseDescriptor) {
+    public UpdateCommand(Index index, EditExerciseDescriptor editExerciseDescriptor) {
         requireNonNull(index);
         requireNonNull(editExerciseDescriptor);
 
         this.index = index;
-        this.editExerciseDescriptor = new UpdateExerciseCommand.EditExerciseDescriptor(editExerciseDescriptor);
+        this.editExerciseDescriptor = new UpdateCommand.EditExerciseDescriptor(editExerciseDescriptor);
     }
 
     @Override
@@ -100,15 +100,14 @@ public class UpdateExerciseCommand extends CommandForExercise {
      * edited with {@code editExerciseDescriptor}.
      */
     private static Exercise createEditedExercise(Exercise exerciseToEdit,
-                                                 UpdateExerciseCommand.EditExerciseDescriptor editExerciseDescriptor) {
+                                                 UpdateCommand.EditExerciseDescriptor editExerciseDescriptor) {
         assert exerciseToEdit != null;
 
         Name updatedName = editExerciseDescriptor.getName().orElse(exerciseToEdit.getName());
         Description updatedDescription = editExerciseDescriptor.getDescription()
                 .orElse(exerciseToEdit.getDescription());
         Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
-        Calories updatedCalories = editExerciseDescriptor.getCalories()
-                                    .orElse(exerciseToEdit.getCalories().orElse(null));
+        Calories updatedCalories = editExerciseDescriptor.getCalories().orElse(exerciseToEdit.getCalories());
         List<Muscle> updatedMusclesWorked = editExerciseDescriptor.getMusclesWorked()
                                                 .orElse(exerciseToEdit.getMusclesWorked().orElse(null));
         Set<ExerciseTag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getExerciseTags());
@@ -125,12 +124,12 @@ public class UpdateExerciseCommand extends CommandForExercise {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UpdateExerciseCommand)) {
+        if (!(other instanceof UpdateCommand)) {
             return false;
         }
 
         // state check
-        UpdateExerciseCommand e = (UpdateExerciseCommand) other;
+        UpdateCommand e = (UpdateCommand) other;
         return index.equals(e.index)
                 && editExerciseDescriptor.equals(e.editExerciseDescriptor);
     }
@@ -158,7 +157,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditExerciseDescriptor(UpdateExerciseCommand.EditExerciseDescriptor toCopy) {
+        public EditExerciseDescriptor(UpdateCommand.EditExerciseDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.date);
             setDescription(toCopy.description);
@@ -239,12 +238,12 @@ public class UpdateExerciseCommand extends CommandForExercise {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof UpdateExerciseCommand.EditExerciseDescriptor)) {
+            if (!(other instanceof UpdateCommand.EditExerciseDescriptor)) {
                 return false;
             }
 
             // state check
-            UpdateExerciseCommand.EditExerciseDescriptor e = (UpdateExerciseCommand.EditExerciseDescriptor) other;
+            UpdateCommand.EditExerciseDescriptor e = (UpdateCommand.EditExerciseDescriptor) other;
 
             return getName().equals(e.getName())
                     && getDescription().equals(e.getDescription())

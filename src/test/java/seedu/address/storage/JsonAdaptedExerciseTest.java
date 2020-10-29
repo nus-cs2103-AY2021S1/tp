@@ -34,7 +34,7 @@ public class JsonAdaptedExerciseTest {
     private static final String VALID_DESCRIPTION = PUSH_UP.getDescription().toString();
     private static final String VALID_DATE = PUSH_UP.getDate().toString();
     // Always valid
-    private static final String VALID_CALORIES = PUSH_UP.getCalories().get().toString();
+    private static final String VALID_CALORIES = PUSH_UP.getCalories().toString();
     private static final String VALID_MUSCLES = PUSH_UP.getMusclesWorkedDescription();
     private static final List<JsonAdaptedExerciseTag> VALID_TAGS = PUSH_UP.getExerciseTags().stream()
             .map(JsonAdaptedExerciseTag::new)

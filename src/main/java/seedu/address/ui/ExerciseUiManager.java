@@ -7,7 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import seedu.address.MainApp;
+import seedu.address.ExerciseMainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.LogicForExercise;
@@ -51,7 +51,7 @@ public class ExerciseUiManager implements Ui {
     }
 
     private Image getImage(String imagePath) {
-        return new Image(MainApp.class.getResourceAsStream(imagePath));
+        return new Image(ExerciseMainApp.class.getResourceAsStream(imagePath));
     }
 
     void showAlertDialogAndWait(Alert.AlertType type, String title, String headerText, String contentText) {
