@@ -701,7 +701,7 @@ Given below is the activity diagram which illustrates the workflow of this proce
       attributes in `CommandResult`
 
 * **Alternative 2:** JavaFX ObservableList
-  * Pros: 
+  * Pros:
       * Built in support for robust observer design pattern. (Don't have to reinvent the wheel)
   * Cons:
       * Using a list is not very suitable since `SelectedMeeting` is a single value.

@@ -13,17 +13,17 @@ package Model <<Rectangle>> {
     object "<u>:MeetingName" as MeetingName {
         MeetingName = "Report Discussion"
     }
-    
+
     object "<u>:ModuleName" as ModuleName {
         moduleName = "CS2100"
     }
-    
+
     object "<u>:Module" as Module {
     }
-    
+
     object "<u>:Meeting" as Meeting {
     }
-    
+
     object "<u>:ModelManager" as ModelManager {
         setSelectedMeeting(Meeting m)
         getSelectedMeeting(): Meeting
@@ -40,7 +40,7 @@ package Ui <<Rectangle>> {
     object "<u>:MainWindow" as MainWindow {
         update()
     }
-    
+
     object "<u>:MeetingDetailsPanel" as MeetingDetailsPanel {
     }
 }

@@ -27,11 +27,11 @@ alt isShowHelp
     deactivate ui UI_COLOR
 else isExit
     ui-> ui : handleExit()
-    activate ui UI_COLOR    
+    activate ui UI_COLOR
     deactivate ui UI_COLOR
 else isTriggerUpdate
     ui-> ui : update()
-    activate ui UI_COLOR    
+    activate ui UI_COLOR
     deactivate ui UI_COLOR
 else else
 end

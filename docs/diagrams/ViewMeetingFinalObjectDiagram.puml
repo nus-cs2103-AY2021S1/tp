@@ -13,17 +13,17 @@ package Model <<Rectangle>> {
     object "<u>:MeetingName" as MeetingName {
         MeetingName = "Weekly Meeting"
     }
-    
+
     object "<u>:ModuleName" as ModuleName {
         moduleName = "CS2103"
     }
-    
+
     object "<u>:Module" as Module {
     }
-    
+
     object "<u>:Meeting" as Meeting {
     }
-    
+
     object "<u>:ModelManager" as ModelManager {
         setSelectedMeeting(Meeting m)
         getSelectedMeeting(): Meeting
@@ -34,16 +34,16 @@ package Logic <<Rectangle>> {
     object "<u>:LogicManager" as LogicManager {
         getSelectedMeeting(): Meeting
     }
-    
+
     object "<u>:CommandResult" as CommandResult {
         triggerUpdate = true
         execute(Model m)
     }
-    
+
     object "<u>:ViewMeetingCommand" as ViewMeetingCommand {
         execute(Model model): CommandResult
     }
-    
+
     object "<u>:ViewMeetingCommandParser" as ViewMeetingCommandParser {
         parse(String args): ViewMeetingCommand
     }
@@ -53,7 +53,7 @@ package Ui <<Rectangle>> {
     object "<u>:MainWindow" as MainWindow {
         update()
     }
-    
+
     object "<u>:MeetingDetailsPanel" as MeetingDetailsPanel {
     }
 }
