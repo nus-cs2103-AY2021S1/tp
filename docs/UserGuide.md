@@ -171,15 +171,15 @@ Adds a meeting at a given date and time with specified members, and a provided m
 
 Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS [a/AGENDA] [no/NOTES]`
 
-* Creates a meeting with the provided meeting name for the given module
+Note(s):
 * All the fields must be provided except those in square brackets
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * There can be multiple members separated by a ","
 * There can be multiple agendas separated by a ","
 * There can be multiple notes separated by a ","
-* Participants added need to be contacts that are exist in the given module
+* Participants added need to be contacts that exist in the given module
 
-Examples:
+Example(s):
 *  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon,
 Ekam a/Discuss sequence diagram n/Revise page 2 of textbook beforehand`
 
@@ -187,12 +187,10 @@ Ekam a/Discuss sequence diagram n/Revise page 2 of textbook beforehand`
 
 Deletes the specified meeting from Modduke.
 
-Format: `contact meeting m/MODULE n/MEETING_NAME`
-
-* Deletes the meeting with the specified meeting name in the given module.
+Format: `meeting delete m/MODULE n/MEETING_NAME`
 
 Examples:
-* `meeting delete n/CS2103 n/Weekly Meeting` deletes `Weekly Meeting` meeting from the module `CS2103`.
+* `meeting delete m/CS2103 n/Weekly Meeting` deletes `Weekly Meeting` meeting from the module `CS2103`.
 
 ### Editing a meeting: `meeting edit`
 
@@ -207,16 +205,15 @@ Edits a given meeting. Listed below are the meeting details that can be changed:
 Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [m/NEW_MEMBERS]… [a/AGENDA]…
  [no/NOTES]…`
 
-* Edits any of the details of the specified meeting from the given module
-* `nN/NEW_NAME`, `d/NEW_DATE`, `t/NEW_TIME`, `m/NEW_MEMBERS`, `a/NEW_AGENDAS`, `n/NEW_NOTES` are all optional fields,
- but at least one of the optional fields must be provided
+Note(s)
+* At least one of the optional fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * If there is more than one member to edit, they should be separated by “,”
 * If there is more than one agenda to edit, they should be separated by “,”
 * If there is more than one note to edit, they should be separated by “,”
 * All the newly provided fields will override previous fields
 
-Examples:
+Example(s):
 * `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be `2020-09-27` and `14:00` respectively
 * `meeting edit m/CS2103 n/Meeting nN/Group Discussion' edits the name of Meeting to be `Group Discussion` in the module CS2103
 
@@ -224,7 +221,7 @@ Examples:
 
 Views all of the existing meetings.
 
-Format: NA
+Format: `meeting list`
 
 ### Viewing specific meeting: `meeting view`
 
