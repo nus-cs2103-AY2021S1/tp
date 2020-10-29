@@ -162,6 +162,8 @@ public class CommandBoxTest extends GuiUnitTest {
 
     @Test
     public void handleKeyPress_tabAutocompleteTargetWithTarget() {
+
+        commandBoxHandle.run("");
         // Autocomplete command
         executeKeyCodes(KeyCode.L);
         assertInputHistory(KeyCode.TAB, "list ");
