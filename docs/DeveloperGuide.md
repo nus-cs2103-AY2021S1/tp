@@ -3,8 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
 
@@ -16,18 +16,17 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Introduction
 
-**ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks. **ResiReg** allows admin to allocate rooms to students, manage students records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+**ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks. **ResiReg** allows admin to allocate rooms to students, and manage student and room records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
 
 **ResiReg** has the following main features:
 
 1. Manage records of students.
-2. Manage allocations of students to rooms in the College
-3. Generate bills and log payments for RC-related services.
-4. Export records of students, rooms or transactions to CSV files for easy reference and sharing.
+2. Manage records of rooms.
+3. Manage allocations of students to rooms in the College.
 
 ## Purpose and Audience for this Guide
 
-This Developer Guide specifies the architecture, design, implementation and user cases for **ResiReg**, as well as our considerations behind key design decisions.
+This Developer Guide specifies the architecture, design, implementation and use cases for **ResiReg**, as well as our considerations behind key design decisions.
 
 It is intended for developers, software testers, open-source contrubitors and any like-minded persons who wish to contribute this project or gain deeper insights about **ResiReg**.
 
@@ -159,61 +158,50 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The bin feature is facilitated by `BinItem`, `UniqueBinItemList` classes and the interface `Binnable`. Objects that
-can be "binned" will implement the interface `Binnable`. When a `Binnable` object is deleted, it is wrapped in a
-wrapper class `BinItem` and is moved into `UniqueBinItemList`.
+ResiReg allows for a bin feature, where students and rooms are moved to a bin on deletion, and persist there for a user-specified period (with a default of 30 days) before they are removed permanently. The feature is built using the `BinItem`, `UniqueBinItemList` and `JsonAdaptedBinItem` classes and an interface `Binnable`. Items that can be stored in the bin (`Student` and `Room`) implement the empty<sup>1</sup> interface `Binnable`. A `BinItem` object is created when a `Binnable` object is deleted, and it contains the Binnable object and the date of deletion (implemented as a `LocalDate`) as its attributes. Consequently, the `BinItem` is placed into `UniqueBinItemList`.
 
-The follow class diagram shows how bin is implemented.
+The class diagram below represents the class structure pictorially.
 
 ![image](images/BinClassDiagram.png)
 
-`BinItem` has 1 key attribute that is wrapped on top of the `Binnable` object, namely: `dateDeleted`.
-Objects in the bin stay there for 30 days by default, before they are automatically deleted forever. Both attributes are used in the
-auto-deletion mechanism of objects in the bin.
+The following is a run-through of a typical user session where ResiReg is started, a student is deleted and moved to the bin, and then the user restores the student from the bin. Note that the sequence is the same for when a room is deleted and restored.
 
-Given below is an example usage scenario and how the bin mechanism behaves at each step.
+Step 1. On launching ResiReg, `ModelManager` calls `ModelManager#deleteExpiredItems()` during initialization. This method iterates through `UniqueBinItemList` and removes all bin items which have expired (i.e they have persisted in the bin for more days than the user-specified cutoff) by calling `UniqueBinItemList#remove()` for the expired object.
 
-Step 1. When the user launches ResiReg, `ModelManager` will run `ModelManager#deleteExpiredItems()`, which will check the
-`isExpired` method of all objects in `UniqueBinItemList` against the system clock. If an object has expired as per the system clock,
-`UniqueBinItemList#remove()` is called and deletes the expired object permanently.
+Step 2. The user executes the `delete 1` command to delete the first student in ResiReg. The `delete`
+command calls the constructor of `BinItem` with the deleted student to create a new `BinItem` object. The `dateDeleted` attribute is initialized with the current system time. 
 
-Step 2. The user executes `delete 1` command to delete the first student in ResiReg. The `delete`
-command calls the constructor of `BinItem` with the deleted policy to create a new `BinItem` object. At this
-juncture, the attribute `dateDeleted` is created.
+Step 3. The `delete` command then adds the new `BinItem` object to the `UniqueBinItemList` by first checking for uniqueness (as a defensive precaution) and calling `Model#addBinItem(studentToBin)`.
 
-Step 3. The `delete` command then calls `Model#addBinItem(studentToBin)` and shifts the newly created `BinItem` to
-`UniqueBinItemList`.
-
-The following sequence diagram shows how a `delete` operation involves the bin.
+The sequence diagram given below represents this process of deleting a student (steps 2 and 3).
 
 ![image](images/BinDeleteSequenceDiagram.png)
 
-Step 4. The user quits the current session and starts a new session some time later. He/she then realises that he/she
-needs the person that was deleted and wants it back, so he/she executes `restore 1` to restore the deleted person
-from the bin.
+Step 4. The user executes a few other commands. He then cognizes that he has erroneously deleted the student, and doesn't wish to execute the `undo` command multiple times. He then navigates to the Bin tab, (by executing `bin`) and executes the `restore` command to retrieve the `Student` item from the bin. 
 
-Step 5. The `restore` command then calls `Model#deleteBinItem(itemToRestore)`, which removes `itemToRestore` from
-`UniqueBinItemList`. The wrapper class `BinItem` is then stripped and the internal policy item is added back to
-`UniqueStudentList`.
+Step 5. The `execute` method of `RestoreCommand` removes the `itemToRestore` from `UniqueBinItemList` by caling `Model#deleteBinItem(itemToRestore)`. The student item is retrieved by calling an instance method, `itemToRestore.getBinnedItem()` and typecasted to a `Student` object. 
+
+Step 6. The Ui is updated accordingly, since both the `UniqueBinItemList` and `UniqueStudentList` follow the Observer pattern. 
 
 The following sequence diagram shows how a restore command operates.
 
 ![image](images/BinRestoreSequenceDiagram.png)
 
+<sup>1</sup> Refer below for the design decision of maintaining an empty interface. 
+
 #### Design Considerations
 
-Aspect: Which part of the architecture does Bin belong
+##### Aspect: Handling the storage of bin items
+Problem Statement: A bin item must be polymorphic in its storage, i.e., it must be capable of serializing and deserializing multiple types of data (`Student`s as well as `Room`s). However, JSON does not support polymorphic storage natively, and a concrete serializable type must be provided during read/write operations. This leads to the problem of how to store `Binnable` instances whose concrete type is not known.
 
-- **Alternative 1 (current choice):** included in the ResiReg model
+- **Alternative 1 (current choice):** Reusing storage classes for `Room` and `Student` and typecasting explicitly
 
-  - Pros: Lesser repeated code and unnecessary refactoring. Other features at the AddressBook level such as undo/redo
-    will not be affected with a change/modification made to Bin as it is not dependent on them.
-  - Cons: From a OOP design point of view, this is not the most direct way of structuring the program.
+  - Pros: Allows a clean separation of concerns since the `Binnable` interface does not need to contain information about storage.  This removes  the need to repeat code by creating storage classes such as `JsonAdaptedStudentBin` and `JsonAdaptedRoomBin` dedicated to storing objects in the Bin only. In other words, it makes the Ui, Logic and Model structure OOP-compliant. Further, it results in more efficient testing (since storage tests for `Student` and `Room` objects need not be re-written)
+  - Cons: Doesn't scale well since if new types of `Binnable` objects are to be handled by the system (e.g. `Bills`), then multiple storage-related files will have to be modified to allow for the new object to have robust type-checking and storage. In other words, it makes the storage less OOP-compliant. 
 
-- **Alternative 2:** As a separate entity from ResiReg
-  - Pros: More OOP like and lesser dependencies since Bin is extracted out from ResiReg. Methods related to bin
-    operations are called only from within Bin.
-  - Cons: Many sections with repeated code since its storage is structurally similar to AddressBook.
+- **Alternative 2:** Assigning storage responsibility to the `Binnable` interface
+  - Pros: Makes storage more OOP-compliant, prevents need for explicit type-checking. 
+  - Cons: Complicates the general MVC structure, and makes it more difficult to migrate to non-JSON storage, since instances of `Binnable` (e.g. `Student` and `Room`) must now contain their storage implementation details as well. 
 
 ### Allocation/ deallocation/ reallocation feature
 
@@ -230,23 +218,23 @@ and edited in the latter.
 
 #### Design consideration:
 
-##### Aspect: How to associate the allocation between a student and a room
+Aspect: How to associate the allocation between a student and a room
 
 - **Alternative 1:** A student has a room.
 
   - Pros: Trivial implementation.
   - Cons: Storage redundancy as a student now has a copy of a room.
-  
+
 - **Alternative 2:** A room has a student.
 
   - Pros: Trivial implementation.
   - Cons: Storage redundancy as a room now has a copy of a student.
-  
+
 - **Alternative 3:** A student has a room and a room has a student.
 
   - Pros: Easy implementation.
   - Cons: Cyclic dependency between a room and a student.
-  
+
 - **Alternative 4 (final choice):** A student's room allocation is referred to by an association class.
 
   - Pros: Natural representation of the allocation.
@@ -273,13 +261,13 @@ These operations are exposed in the `Model` interface as `Model#saveStateResiReg
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedResiReg` will be initialized with the initial residence regulation state. 
+Step 1. The user launches the application for the first time. The `VersionedResiReg` will be initialized with the initial residence regulation state.
 Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` will be set to this single residence regulation state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 3` command to delete the 3rd person in the residence regulation. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the residence regulation before the `delete 3` command executes 
-to be saved in the `undoStatesStack`  and setting `currState` to be the state of the resident regulation after command execution.
+Step 2. The user executes `delete 3` command to delete the 3rd person in the residence regulation. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the residence regulation before the `delete 3` command executes
+to be saved in the `undoStatesStack` and setting `currState` to be the state of the resident regulation after command execution.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -293,9 +281,9 @@ both `currState` and `undoStatesStack` will not be updated.
 
 </div>
 
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoResiReg()`, 
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoResiReg()`,
 which will add the current state `stateAfterAdd` to `redoStatesStack` and set `currState` to the last entry in
- `undoStatesStack`, the previous residence regulation state (`stateBeforeAdd`), and restores the residence regulation to that state.
+`undoStatesStack`, the previous residence regulation state (`stateBeforeAdd`), and restores the residence regulation to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -313,19 +301,19 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `undoStatesStack` and set `currState` to the last entry in 
+The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `undoStatesStack` and set `currState` to the last entry in
 `redoStatesStack`, the next residence regulation state, and restores the residence regulation to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `redoStatesStack` is empty, then there are no undone ResiReg states to restore. The `redo` command uses `Model#canRedoResiReg()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `rooms`. Commands that do not modify the state of ResiReg 
+Step 5. The user then decides to execute the command `rooms`. Commands that do not modify the state of ResiReg
 (e.g. `alias`, `rooms`, `togglesplit`, etc.) will not call `Model#saveStateResiReg()`, `Model#undoResiReg()` or `Model#redoResiReg()`. Thus, both `redoStatesStack` and `undoStatesStack` remain unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#saveStateResiReg()`. 
+Step 6. The user executes `clear`, which calls `Model#saveStateResiReg()`.
 As before, the current state `stateBeforeClear` clear will be pushed into `undoStatesStack`. This time `redoStatesStack` is no longer empty. It will be cleared as it no longer make sense to redo the add n/Jet command (this is the behavior that most modern desktop applications follow).
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -335,8 +323,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ![SaveActivityDiagram](images/SaveActivityDiagram.png)
 
 #### Design consideration:
-
-##### Aspect: How undo & redo executes
+##### How undo & redo executes
 
 - **Alternative 1 (current choice):** Saves the entire ResiReg.
 
@@ -351,17 +338,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: Data structure to support the undo/redo commands
 
 - **Alternative 1 (current choice):** Use separate stacks for undo and redo, along with
-a reference to current state.
+  a reference to current state.
+
   - Pros: Closer to the command pattern than the alternative below, meaning a change from Alternative 1
-  to Alternative 2 in how undo & redo executes will incur less additional work.
+    to Alternative 2 in how undo & redo executes will incur less additional work.
   - Cons: May have performance issues in terms of memory usage due to holding an additional reference and
- managing two data structures.
- 
+    managing two data structures.
+
 - **Alternative 2:** Use a list to store the history.
-   - Pros: Better performance in terms of memory usage as compared to Alternative 1 and
-   has a simpler implementation.
-   - Cons: Further away from the command pattern than Alternative 1, so shifting to Alternative 2
-   in how undo & redo executes will incur more additional work.
+  - Pros: Better performance in terms of memory usage as compared to Alternative 1 and
+    has a simpler implementation.
+  - Cons: Further away from the command pattern than Alternative 1, so shifting to Alternative 2
+    in how undo & redo executes will incur more additional work.
 
 ### \[Proposed\] Data archiving for semester
 
@@ -569,46 +557,49 @@ Use case ends.
 
 - 3a. Room allocation does not exist or details supplied are invalid.
 
-<<<<<<< HEAD
-  - ResiReg shows an error message.
+- ResiReg shows an error message.
 
     Use case resumes at step 2.
-=======
-      Use case resumes at step 2.
-      
+
+
 #### Use case: UC07 - Undo previous command
+
 1. OHS admin enters a command that changes state.
 1. ResiReg processes and executes the command.
 1. OHS admin requests to undo previously entered command.
-1. This previous command gets undone and the state of 
-`ResiReg` is reverted.
+1. This previous command gets undone and the state of
+   `ResiReg` is reverted.
 
 Use case ends.
 
 **Extensions**
 
 - 3a. There are no previously entered commands entered that change state.
-    - ResiReg shows an error message.
-    
-      Use case resumes at Step 1.
-      
+
+  - ResiReg shows an error message.
+
+    Use case resumes at Step 1.
+
 #### Use case: UC08 - Redo previous command
-1. OHS admin requests to redo previously undone command 
-that changes state.
+
+1. OHS admin requests to redo previously undone command
+   that changes state.
 1. ResiReg processes and executes the command.
-1. This previous command gets undone and the state of 
-`ResiReg` is updated. 
+1. This previous command gets undone and the state of
+   `ResiReg` is updated.
 
 Use case ends.
 
 **Extensions**
 
 - 1a. There are no previously undone commands that change state to redo.
-    - ResiReg shows an error message.
-    
-      Use case ends.
-      
+
+  - ResiReg shows an error message.
+
+    Use case ends.
+
 #### Use case: UC09 - History command
+
 1. OHS admin requests to list history of previously entered commands.
 1. ResiReg shows a history of previously entered commands in reverse chronological order.
 
@@ -616,27 +607,42 @@ Use case ends.
 
 **Extensions**
 
-- 1a. The history of previously entered commands is empty.
-    - ResiReg shows an error message.
-    
-      Use case ends.
->>>>>>> fea735b51b0521c7174ae40b4f7dc4f794b1f7aa
+- 1a. The history of previously entered commands is empty. - ResiReg shows an error message.
+  Use case ends.
+
+#### Use case: UC09 - Add an alias
+
+1. OHS admin requests to add an alias for a command word.
+2. ResiReg adds the alias and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The specified command word does not exist, or the alias is invalid.
+  - ResiReg shows an error message.
+  Use case ends.
+
+
+**Extensions**
+
+- 1a. The history of previously entered commands is empty. - ResiReg shows an error message.
+  Use case ends.
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be simple to pick up for OHS admin (to incentivize them to migrate from Excel+paper-based workflow).
-3. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-4. Should automatically backup frequently to avoid loss of sensitive data.
-5. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Should be able to hold up to 1000 records (students and rooms) without a noticeable sluggishness in performance (defined as 1 second latency) for typical usage.
+3. Should not require an installer.
+4. A user with above average typing speed for regular English text (i.e not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 6. The codebase should be maintainable so that developers can easily add new features to the project
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **OHS**: Office of Housing Services
-- **OHS Admin**: An employee of the OHS who works at a Residential College
-- **Residential College**: A university residence for students that offers a 2-year program.
+- **OHS**: Office of Housing Services at the National University of Singapore (NUS)
+- **OHS Admin**: An employee of the OHS who works at a Residential College at NUS
+- **Residential College**: A university residence for students that offers a 2-year program at NUS
 - **Check-in**: Exercise conducted at the beginning of the semester (in Week 0), where a student is informed of his room allocation.
 - **Outstanding bill**: A bill due to be paid by a student.
 
