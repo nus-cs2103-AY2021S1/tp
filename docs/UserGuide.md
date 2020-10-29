@@ -83,12 +83,12 @@ Format:  `open case CASE_NO`
 
 Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
 
-#### List all investigation cases: `list case`
+#### List all default investigation cases: `list case`
 Lists all default investigation cases in PIVOT (unarchived cases).
 
 Format: `list case`
 
-#### List all investigation cases: `list archive`
+#### List all archived investigation cases: `list archive`
 Lists all archived investigation cases in PIVOT.
 
 Format: `list archive`
@@ -142,12 +142,22 @@ Format: `add desc d:DESC`
 
 Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this investigation case to “Kovan double murders of twins xxx and yyy”.
 
-#### Edit investigation case tag: `tag STATUS`
+This command is flexible. If a description has been added, this command will overwrite the current description.
+Tip: You can also use `add desc d:` to remove the current desc.
+
+#### Edit investigation case title: `edit title t:TITLE`
 Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
 
-Format: `tag STATUS`
+Format: `edit title t:TITLE`
 
-Example: `tag CLOSED` updates the tag status of this investigation case to “CLOSED”.
+Example: `edit title t:Murder case 29` updates the title of this investigation case to “Murder case 29”.
+
+#### Edit investigation case status: `edit status s:STATUS`
+Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
+
+Format: `edit status s:STATUS`
+
+Example: `edit status s:CLOSED` updates the status of this investigation case to “CLOSED”.
 
 #### Adding a document related to the case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document that is related to the investigation case.
@@ -158,11 +168,15 @@ Example: `add doc n:Case Details r:case_details.pdf` adds a new document with ti
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
 
-#### List all documents related to the case: `list doc`
+#### Edit investigation case document: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+Edits the document of the current investigation case at the specified index of the list
 
-Lists all added documents that are related to the investigation case.
+Format: `edit doc INDEX [n:NAME] [r:REFERENCE]`
 
-Format: `list doc`
+Example: `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
+name "Fire outbreak details" and reference "newFireDoc.pdf".
+
+This document "newFireDoc.pdf" must be manually added to the references folder provided and must be present before the document can be successfully updated.
 
 #### Delete document: `delete doc DOC_NO `
 Deletes the specified document reference.
@@ -177,21 +191,27 @@ Opens the specified document reference.
 
 Format: `open doc DOC_NO`
 
-Example: `open doc 0`
+Example: `open doc 1` opens the document in the list with index 1.
 
-#### Adding a Suspect related to the case: `add suspect n:NAME`
+#### Adding a Suspect related to the case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new suspect related to the investigation case.
 
-Format: `add suspect n:NAME`
+Format: `add suspect n:NAME g:GENDER`
 
-Example: `add suspect n:John Doe`
+Example: `add suspect n:John Doe g:M`
 
-#### List all suspects related to the case: `list suspect`
+Gender must either be `M` or `F`.
 
-Lists all added suspects that are related to the investigation case.
+#### Edit an existing suspect in the case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Format: `list suspect`
+Edits the fields of the suspect specified with the index in the investigation case.
+At least one of the fields must be specified to be edited.
+
+Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
@@ -201,21 +221,27 @@ Format: `delete suspect SUSPECT_NO`
 
 Example: `delete suspect 0`
 
-#### Adding a victim related to the case: `add victim n:NAME`
+#### Adding a victim related to the case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new victim that is related to the investigation case.
 
-Format: `add victim n:NAME`
+Format: `add victim n:NAME g:GENDER`
 
-Example: `add victim n:James Lee`
+Example: `add victim n:James Lee g:M`
 
-#### List all victims related to the case: `list victim`
+#### Edit an existing victim in the case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Lists all added victims that are related to the investigation case.
+Edits the fields of the victim specified with the index in the investigation case.
+At least one of the fields must be specified to be edited.
 
-Format: `list victim`
+Format: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-#### Delete victim: `delete victim VICTIM_NO`
+Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
+
+Gender must either be `M` or `F`.
+
+#### Delete Victim: `delete victim VICTIM_NO`
 
 Deletes the specified victim from the list of victims.
 
@@ -223,21 +249,27 @@ Format: `delete victim VICTIM_NO`
 
 Example: `delete victim 0`
 
-#### Add a witness related to the case: `add witness n:NAME`
+#### Add a witness related to the case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new witness that is related to the investigation case.
 
-Format: `add witness n:NAME`
+Format: `add witness n:NAME g:GENDER`
 
-Example: `add witness n:John Doe`
+Example: `add witness n:John Doe g:M`
 
-#### List all witness related to the case: `list witness`
+Gender must either be `M` or `F`.
 
-Lists all added witnesses that are related to the investigation case.
+#### Edit an existing witness in the case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
-Format: `list witness`
+Edits the fields of the witness specified with the index in the investigation case. 
+At least one of the fields must be specified to be edited.
 
-#### Delete suspect: `delete witness WITNESS_NO`
+Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
+
+#### Delete witness: `delete witness WITNESS_NO`
 
 Deletes the specified witness from the list of witnesses.
 
@@ -248,6 +280,21 @@ Example: `delete witness 0`
 #### Return to main page: `return`
 
 Returns to the application main page.
+
+### Both pages
+
+#### Undo: `undo`
+
+Undoes the previous command.
+
+Format: `undo`
+
+#### Redo: `redo`
+
+Redoes the command that was just undone. If another command that changes the data of PIVOT is used after an undo 
+command, redo will not be able to be called.
+
+Format: `redo`
 
 #### Exit application: `exit`
 
@@ -278,7 +325,7 @@ User data automatically saves when there is a change in data
 
 |Command            | Format                                | Association   |
 | ----------------- | ------------------------------------- | ------------- |
-|**case**           | `add case t:TITLE [s:STATUS] [t/TAG]` | Investigation |
+|**case**           | `add case t:TITLE [s:STATUS]` | Investigation |
 |**list**           | `list case`                           | Investigation |
 |**delete**         | `delete case CASE_NO`                 | Investigation |
 |**open**           | `open case CASE_NO`                   | Investigation |
@@ -289,19 +336,14 @@ User data automatically saves when there is a change in data
 | Command           | Format                        | Association   |
 | ----------------- | ----------------------------- | ------------- |
 |**desc**           | `add desc d:DESC`             | Investigation |
-|**tag**            | `tag STATUS`                  | Investigation |
 |**document**       | `add doc t:TITLE r:FILE_NAME` | Document      |
-|**list doc**       | `list doc`                    | Document      |
 |**delete doc**     | `delete doc DOC_NO`           | Document      |
 |**open doc**       | `open doc DOC_NO`             | Document      |
 |**suspect**        | `add suspect n:NAME`          | Suspect       |
-|**list suspect**   | `list suspect`                | Suspect       |
 |**delete suspect** | `delete suspect SUSPECT_NO`   | Suspect       |
 |**victim**         | `add victim n:NAME`           | Victim        |
-|**list victim**    | `list victim`                 | Victim        |
 |**delete victim**  | `delete victim VICTIM_NO`     | Victim        |
 |**witness**        | `add witness n:NAME`          | Witness       |
-|**list witness**   | `list witness`                | Witness       |
 |**delete witness** | `delete witness WITNESS_NO`   | Witness       |
 |**return**         | `return`                      | General       |
 |**exit**           | `exit`                        | General       |

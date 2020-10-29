@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.archivecommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_ARCHIVED_SECTION;
@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.Command;
+import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.ArchiveStatus;
@@ -28,7 +30,7 @@ public class UnarchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";
 
-    private static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
+    public static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(UnarchiveCommand.class);
 

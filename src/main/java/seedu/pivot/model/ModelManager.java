@@ -106,13 +106,6 @@ public class ModelManager implements Model {
     @Override
     public void addCase(Case investigationCase) {
         pivot.addCase(investigationCase);
-        if (StateManager.atArchivedSection()) {
-            updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
-        }
-        if (StateManager.atDefaultSection()) {
-            updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
-        }
-
     }
 
     @Override

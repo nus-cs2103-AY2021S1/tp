@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.ArchiveCommand;
 import seedu.pivot.logic.commands.ClearCommand;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.DeleteCommand;
@@ -19,8 +18,9 @@ import seedu.pivot.logic.commands.ListCommand;
 import seedu.pivot.logic.commands.OpenCommand;
 import seedu.pivot.logic.commands.RedoCommand;
 import seedu.pivot.logic.commands.ReturnCommand;
-import seedu.pivot.logic.commands.UnarchiveCommand;
 import seedu.pivot.logic.commands.UndoCommand;
+import seedu.pivot.logic.commands.archivecommands.ArchiveCommand;
+import seedu.pivot.logic.commands.archivecommands.UnarchiveCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 
 /**
