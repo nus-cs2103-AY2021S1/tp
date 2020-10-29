@@ -29,6 +29,7 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String SORT = "SORT\n";
     public static final String BOOKMARK = "BOOKMARK\n";
     public static final String UNBOOKMARK = "UNBOOKMARK\n";
+    public static final String PRINT = "PRINT\n";
     public static final String EXIT = "EXIT\n";
 
     public static final String COMMAND_DESCRIPTION = "COMMAND DESCRIPTION";
@@ -71,6 +72,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number>";
 
     public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number>";
+
+    public static final String PRINT_DESCRIPTION = "print fn/<file name>";
 
     public static final String EXIT_DESCRIPTION = "exit";
 
@@ -166,6 +169,12 @@ public class HelpWindow extends UiPart<Stage> {
     private Label unbookmarkMessage;
 
     @FXML
+    private Label printMethod;
+
+    @FXML
+    private Label printMessage;
+
+    @FXML
     private Label url;
 
     @FXML
@@ -234,6 +243,10 @@ public class HelpWindow extends UiPart<Stage> {
         //Unbookmark Method
         unbookmarkMethod.setText(UNBOOKMARK);
         unbookmarkMessage.setText(UNBOOKMARK_DESCRIPTION);
+
+        //Print Method
+        printMethod.setText(PRINT);
+        printMessage.setText(PRINT_DESCRIPTION);
 
         //Disclaimer on where to click
         disclaimer.setText(DISCLAIMER);
