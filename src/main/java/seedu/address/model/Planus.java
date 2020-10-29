@@ -201,6 +201,7 @@ public class Planus implements ReadOnlyPlanus {
             removeTask(target.getAssociatedTasks().toArray(new Task[0]));
             removeTaskInCalendar(target.getAssociatedTasks().toArray(new Task[0]));
         }
+        lessons.remove(targets);
     }
 
     /**
