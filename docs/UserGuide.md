@@ -356,7 +356,7 @@ Examples:
 
 Finds all contacts that fulfil all the provided search criteria.
 
-Format: `findocontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
+Format: `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
 
  * The search is case-insensitive, e.g. `bob` will match `Bob`.
  
@@ -414,6 +414,11 @@ Examples:
  
  * `findcontact n/bob` followed by `deletecontact 2` deletes the second contact in the results of the `findcontact` command
 
+
+#### Sorting contacts:
+
+
+#### Marking contacts as important:
 
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
@@ -473,13 +478,17 @@ Redoes the previously undone user command
 
 Action | Format, Examples
 --------|------------------
-**Add** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
-**View** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
+**Add Module** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
+**View Module** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
 **Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
 **Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
-**Add Zoom** | `addzoomlink n/MODULE_NAME l/ZOOM_LINK` <br> e.g. `addzoomlink n/cs2103T l/https://sample.zoom.us`
+**Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
+**Add Contact** | `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...` <br> e.g. `addcontact n/john e/john@gmail.com te/@johndoe t/friend`
+**EditContact** | `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...` <br> e.g. `editcontact 1 n/amy te/@amytele`
+**FindContact** | `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]` <br> e.g. `findcontact n/john`
+**DeleteContact** | `deletcontact INDEX` <br> e.g. `deletecontact`
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`
