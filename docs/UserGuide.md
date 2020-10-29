@@ -300,7 +300,11 @@ __Format:__ `goto_inventory`
 
 __Example:__ `goto_inventory`
 
+![goto inventory command example](images/commands/goto_inventory_command.png)
+
 __Result:__ Switched to Inventory tab.
+
+![goto inventory result example](images/commands/goto_inventory_result.png)
 
 ---
 
@@ -312,7 +316,11 @@ __Format:__ `goto_finance`
 
 __Example:__ `goto_finance`
 
+![goto finance command example](images/commands/goto_finance_command.png)
+
 __Result:__ Switched to Finance tab.
+
+![goto finance result example](images/commands/goto_finance_result.png)
 
 ---
 

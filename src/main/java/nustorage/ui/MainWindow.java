@@ -193,11 +193,11 @@ public class MainWindow extends UiPart<Stage> {
 
             if (isUiCommand(commandText)) {
                 commandResult = uiLogic.execute(commandText);
-                String userInput = commandText.trim();
-                if (userInput.split("_")[1].equals("inventory")) {
-                    logic.execute("list_inventory");
+                String[] userInput = commandText.split("_");
+                if (userInput[1].equals("inventory")) {
+                    commandResult = logic.execute("list_inventory");
                 } else {
-                    logic.execute("list_finance");
+                    commandResult = logic.execute("list_finance");
                 }
             } else {
                 commandResult = logic.execute(commandText);
