@@ -143,7 +143,7 @@ Format: `s-list`
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
-Format: `s-find KEYWORD [MORE_KEYWORDS]`
+Format: `s-find KEYWORD [MORE_KEYWORDS] ...`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
 * Only the drink's abbreviated name is searched.
@@ -259,7 +259,7 @@ Format: `i-restock`
 
 Adds an employee to the contact list.
 
-Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…​`
+Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -268,8 +268,8 @@ An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `c-add n/John Doe p/98765432 e/81234567`.
-* `c-add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
+* `c-add n/John Doe p/98765432 a/Blk 123 ABC Road e/81234567`.
+* `c-add n/Betsy Crowe e/81234567 p/1234567 a/Blk 120 ABC Road t/Friday t/PartTime`.
 
 #### 3.2 Listing all employees : `c-list`
 
@@ -307,7 +307,7 @@ tags contain `Thursday` will be listed out.
 
 Edits the corresponding contact information in the contact list.
 
-Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [t/TAG] …​​`
+Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADRESS] [t/TAG] …​​`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -326,7 +326,7 @@ Examples:
 
 Finds all contacts that contain the KEYWORD(s) in their names.
 
-Format: `c-find KEYWORD [MORE_KEYWORDS]`
+Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
@@ -343,7 +343,7 @@ Examples:
 
 Finds all contacts that contain the KEYWORD(s) in their tags.
 
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
@@ -463,9 +463,9 @@ Action | Format, Examples
 Action | Format, Examples
 -------|------------------------------
 **Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
+**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**View a single ingredient**| `i-view-single i/INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
 **Reset all ingredients**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 **List**| `i-list`
@@ -474,12 +474,12 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/morning shift`
+**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 AB Road t/MorningShift`
 **List** | `c-list`
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
-**Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>

@@ -18,15 +18,15 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t12-2.github.io/tp/UserGuide.html";
     public static final String BRIEF_COMMAND_EXPLANATION = "The list of commands that tCheck can recognize are"
             + " as follows:\n"
-            + "c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…: Adds a person to the contact list. \n"
+            + "c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]…: Adds a person to the contact list. \n"
             + "c-list: Shows a list of all persons in the address book.\n"
             + "c-today: Shows a list of all employees whose tags contain today's day (i.e. Wednesday, Tuesday, etc).\n"
             + "c-tomorrow: Shows a list of all employees whose tags contain tomorrow's day (i.e. Wednesday, Tuesday, "
             + "etc).\n"
-            + "c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]…: Edits the corresponding contact "
-            + "information in \nthe contact list.\n"
-            + "c-find KEYWORD [MORE_KEYWORDS]: Finds all contacts that contain the KEYWORD(s).\n"
-            + "c-tag-find KEYWORD [MORE_KEYWORDS]: Finds all contacts that contain the KEYWORD(s) in their tags.\n"
+            + "c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]…: Edits the corresponding contact \n"
+            + "information in the contact list.\n"
+            + "c-find KEYWORD [MORE_KEYWORDS] ...: Finds all contacts that contain the KEYWORD(s).\n"
+            + "c-tag-find KEYWORD [MORE_KEYWORDS] ...: Finds all contacts that contain the KEYWORD(s) in their tags.\n"
             + "c-delete INDEX: Deletes the specified person from the address book.\n"
             + "c-clear: Clears all entries from the contact list.\n"
             + "c-archive INDEX: Archives the specified employee’s contact detail from tCheck.\n"
@@ -46,7 +46,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "s-list: Shows a list of all types of drinks sold for the current day.\n"
             + "s-update A/NUM B/NUM C/NUM ...: Asks the user to enter the number of each type of drink sold for the "
             + "current day.\n"
-            + "s-find KEYWORD [MORE_KEYWORDS]: Finds all drinks where their abbreviated names match the KEYWORD(s).\n"
+            + "s-find KEYWORD [MORE_KEYWORDS] ...: Finds all drinks where their abbreviated names match the KEYWORD(s).\n"
             + "help: Displays a brief explanation of the list of commands, and a link to the help page, "
             + "which is the user guide.\n"
             + "exit: Exits the program.\n";
@@ -88,20 +88,6 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Shows the help window.
      * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
