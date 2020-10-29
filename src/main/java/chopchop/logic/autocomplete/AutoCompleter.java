@@ -264,7 +264,7 @@ public class AutoCompleter {
     private String completeStatsKind(CommandArguments args, String orig, List<String> valids, boolean nested) {
 
         var xs = new StringView(args.getRemaining()).words();
-        if ((nested && xs.size() < 3) || (!nested && xs.size() < 2)) {
+        if ((nested && xs.size() != 3) || (!nested && xs.size() != 2)) {
             return orig;
         }
 
@@ -274,25 +274,6 @@ public class AutoCompleter {
 
         return tryCompletionUsing(valids, orig, partial)
             .orElse(orig);
-
-        // assert this.lastCompletionIndex < this.lastViableCompletions.size();
-
-        //     // var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
-        //     // this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
-
-        // if (nested) {
-
-        //     // now this is a little complicated; split the input into two pieces; the first being
-        //     // everything occurring before "partial" (this is the only part we want)
-        //     var idx = orig.lastIndexOf(partial);
-        //     var prefix = orig.substring(0, idx);
-
-        //     return prefix + completion + " ";
-        // } else {
-        //     // if we're not nested, then we're guaranteed that the command must happen at the beginning of
-        //     // the input, so we can just return the completion as-is.
-        //     return completion + " ";
-        // }
     }
 
 

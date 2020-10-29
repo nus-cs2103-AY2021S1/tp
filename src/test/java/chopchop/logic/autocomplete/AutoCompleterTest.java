@@ -58,6 +58,7 @@ public class AutoCompleterTest {
         cases.put("m",                                      "make");
         cases.put("u",                                      "undo");
         cases.put("r",                                      "redo");
+        cases.put("s",                                      "stats");
         cases.put("d",                                      "delete");
         cases.put("fil",                                    "filter");
 
@@ -242,6 +243,35 @@ public class AutoCompleterTest {
         cases.put("help a",                                 "help add");
         cases.put("help d",                                 "help delete");
         cases.put("help add r",                             "help add recipe");
+        cases.put("help stats r",                           "help stats recipe");
+        cases.put("help stats recipe t",                    "help stats recipe top");
+        cases.put("help stats recipe top asdf",             "help stats recipe top asdf");
+        cases.put("help stats i",                           "help stats ingredient");
+        cases.put("help stats ingredient u",                "help stats ingredient used");
+        cases.put("help stats recommendation u",            "help stats recommendation u");
+        cases.put("help stats",                             "help stats");
+
+        runTests(cases);
+    }
+
+    @Test
+    public void test_statsCompletions() {
+
+        var cases = new HashMap<String, String>();
+
+        cases.put("stats r",                                "stats recipe");
+        cases.put("stats i",                                "stats ingredient");
+
+        cases.put("stats recipe t",                         "stats recipe top");
+        cases.put("stats recipe m",                         "stats recipe made");
+        cases.put("stats recipe c",                         "stats recipe clear");
+        cases.put("stats recipe r",                         "stats recipe recent");
+
+        cases.put("stats ingredient u",                     "stats ingredient used");
+        cases.put("stats ingredient c",                     "stats ingredient clear");
+        cases.put("stats ingredient r",                     "stats ingredient recent");
+
+        cases.put("stats ingredient used asdf",             "stats ingredient used asdf");
 
         runTests(cases);
     }
