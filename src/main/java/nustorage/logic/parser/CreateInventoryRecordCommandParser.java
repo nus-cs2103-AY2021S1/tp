@@ -44,7 +44,7 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
         } else {
             cost = 0;
         }
-        FinanceRecord financeRecord = new FinanceRecord(cost * quantity);
+        FinanceRecord financeRecord = new FinanceRecord(cost * quantity, true);
         return new CreateInventoryRecordCommand(inventoryRecord, financeRecord);
     }
 

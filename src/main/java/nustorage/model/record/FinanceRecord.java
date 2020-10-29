@@ -1,11 +1,10 @@
 package nustorage.model.record;
 
+import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
-
-    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     private final int id;
     private LocalDateTime dateTime;
