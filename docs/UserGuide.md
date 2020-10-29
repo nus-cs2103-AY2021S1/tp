@@ -237,33 +237,6 @@ Format: `meeting view m/MODULE n/MEETING_NAME`
 Examples:
 * `meeting view n/CS2103 n/Weekly Meeting` views the `Weekly Meeting` meeting from the module `CS2103`.
 
-### Adding a consultation : `consult add`
-
-Creates a new consultation with given ConsultName.
-
-Format: `consult add n/CONSULT_NAME d/CONSULT_DATE t/CONSULT_TIME m/MEMBERS`
-
-* CONSULT_NAME is a required field.
-* [d/CONSULT_DATE], [t/CONSULT_TIME], [m/MEMBERS] are optional fields
-* Multiple members can join one consultation.
-* [d/CONSULT_DATE] is in the YYYY:MM:dd format and [t/CONSULT_TIME] is in the HH:mm format.
-
-### Editing a consultation : `consult edit`
-
-Edits any of the details of a consult
-
-Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…`
-
-* [n/NEW_NAME], [d/NEW_DATE], [t/NEW_TIME], [cD/CONTACTS] and [cA/CONTACTS] are all optional fields,
-* At least one of the optional fields must be provided.
-* If there is more than one contact to be added or deleted in [cA/CONTACTS], they should be separated by “,”
-
-### View all consults : `consult list`
-
-View all the existing consults
-
-Format: `consult list`
-
 ### Copy email address of contacts : `copy email`
 
 Copies email address of contacts with the given criteria to your clipboard.
@@ -320,10 +293,6 @@ Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggest
 
 `Ctrl-U` --- Clears CommandBox
 
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -340,8 +309,8 @@ _{explain the feature here}_
 **Q**: Are commands case-sensitive?<br>
 **A**: Yes
 
-**Q**: How can I import contacts from my existing devices e.g. Mobile Phones / Email?<br>
-**A**: We are currently working on importing .vcf contacts, stay tuned!
+**Q**: Can I import contacts from my existing devices e.g. Mobile Phones / Email?<br>
+**A**: Unfortunately we currently do not support this.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -360,6 +329,3 @@ Action | Format, Examples
 **Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
 **Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 **List Meetings** | `meeting list`
-**Add Consults** | `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]` <br> e.g., `add n/CS2103 Consult d/2020:09:25 t/13:00 m/Vineeth, Ekam, Jay, Jerryl, Roy`
-**Edit Consults** | `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS] [cA/CONTACTS]` <br> e.g., `consult edit CS2103 Consult n/CS2103 Consult with Prof Damith d/2020:09:28 t/15:00 cD/Vineeth cA/Prof Damith`
-**List Consults** | `consult list`
