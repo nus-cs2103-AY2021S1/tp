@@ -21,6 +21,7 @@ import seedu.address.model.ExerciseModelManager;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.exercise.TemplateList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ExerciseBookStorage;
 import seedu.address.storage.JsonExerciseBookStorage;
@@ -66,6 +67,8 @@ public class ExerciseMainApp extends Application {
         logic = new LogicManagerForExercise(model, storage);
 
         ui = new ExerciseUiManager(logic);
+
+        TemplateList.load();
     }
 
     /**

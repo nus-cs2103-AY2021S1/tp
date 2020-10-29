@@ -33,8 +33,7 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES,
-                                PREFIX_MUSCLES, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTemplateCommand.MESSAGE_USAGE));
@@ -43,11 +42,9 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
         Name name = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        List<Muscle> musclesWorked = ParserUtil.parseMusclesWorked(argMultimap.getValue(PREFIX_MUSCLES).get());
-        Set<ExerciseTag> tagList = ParserUtil.parseExerciseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Template template = new Template(name.fullName, description.value,
-                                        parseInt(calories.value), musclesWorked, tagList);
+                                        parseInt(calories.value));
 
         return new AddTemplateCommand(template);
     }
@@ -62,8 +59,7 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES,
-                PREFIX_MUSCLES, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTemplateCommand.MESSAGE_USAGE));
@@ -72,11 +68,8 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
         Name name = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        List<Muscle> musclesWorked = ParserUtil.parseMusclesWorked(argMultimap.getValue(PREFIX_MUSCLES).get());
-        Set<ExerciseTag> tagList = ParserUtil.parseExerciseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Template template = new Template(name.fullName, description.value,
-                parseInt(calories.value), musclesWorked, tagList);
+        Template template = new Template(name.fullName, description.value, parseInt(calories.value));
 
         return template;
     }
