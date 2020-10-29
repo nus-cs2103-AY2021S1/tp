@@ -1,20 +1,18 @@
 package seedu.address.testutil;
 
-import seedu.address.model.Reeve;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventRecurrence;
-import seedu.address.model.event.Scheduler;
-import seedu.address.model.student.SchoolType;
-import seedu.address.model.student.Student;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventRecurrence;
+import seedu.address.model.event.Scheduler;
+
 public class TypicalEvents {
 
-    public static final LocalDateTime dateTimeBeforeAliceEndTime = LocalDateTime.parse("2020-12-03T10:16:30");
+    public static final LocalDateTime DATE_TIME_BEFORE_ALICE_CLASS_EVENT = LocalDateTime.parse("2020-12-03T10:16:30");
 
     public static final Event ALICE_CLASS_EVENT = new EventBuilder().withEventName("Lesson event")
             .withEventStartDateTime(LocalDateTime.parse("2020-12-03T10:15:30"))

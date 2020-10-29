@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
+import static seedu.address.testutil.TypicalEvents.DATE_TIME_BEFORE_ALICE_CLASS_EVENT;
 import static seedu.address.testutil.TypicalEvents.TODO_EVENT;
-import static seedu.address.testutil.TypicalEvents.dateTimeBeforeAliceEndTime;
 
 import java.time.LocalDateTime;
 
@@ -99,12 +99,12 @@ public class EventTest {
 
         // different startTime -> returns false
         editedAliceClassEvent = new EventBuilder(ALICE_CLASS_EVENT)
-                .withEventStartDateTime(dateTimeBeforeAliceEndTime).build();
+                .withEventStartDateTime(DATE_TIME_BEFORE_ALICE_CLASS_EVENT).build();
         assertFalse(ALICE_CLASS_EVENT.equals(editedAliceClassEvent));
 
         // different endTime -> returns false
         editedAliceClassEvent =
-                new EventBuilder(ALICE_CLASS_EVENT).withEventEndDateTime(dateTimeBeforeAliceEndTime).build();
+                new EventBuilder(ALICE_CLASS_EVENT).withEventEndDateTime(DATE_TIME_BEFORE_ALICE_CLASS_EVENT).build();
         assertFalse(ALICE_CLASS_EVENT.equals(editedAliceClassEvent));
 
         // different recurrence -> return false

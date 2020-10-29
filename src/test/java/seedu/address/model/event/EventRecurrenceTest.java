@@ -1,16 +1,16 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.testutil.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class EventRecurrenceTest {
 
     @Test
-    public void checkWhichRecurrence_validInput_success() throws Exception  {
+    public void checkWhichRecurrence_validInput_success() throws Exception {
         assertEquals(EventRecurrence.DAILY, EventRecurrence.checkWhichRecurrence("Daily"));
         assertEquals(EventRecurrence.WEEKLY, EventRecurrence.checkWhichRecurrence("Weekly"));
         assertEquals(EventRecurrence.NONE, EventRecurrence.checkWhichRecurrence("None"));
