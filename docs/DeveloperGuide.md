@@ -494,10 +494,8 @@ Use case ends.
 **Extensions**
 
 - 1a. Student details are missing or invalid, or there is already a student with the same matriculation number.
-
   - ResiReg shows an error message.
-
-    Use case starts over.
+  -  Use case starts over.
 
 #### Use case: UC02 - Delete a student
 
@@ -606,14 +604,14 @@ Use case ends.
 
 - 3a. Room allocation does not exist or details supplied are invalid.
 
-<<<<<<< HEAD
   - ResiReg shows an error message.
 
     Use case resumes at step 2.
-=======
-      Use case resumes at step 2.
       
 #### Use case: UC07 - Undo previous command
+
+**MSS**
+
 1. OHS admin enters a command that changes state.
 1. ResiReg processes and executes the command.
 1. OHS admin requests to undo previously entered command.
@@ -630,6 +628,9 @@ Use case ends.
       Use case resumes at Step 1.
       
 #### Use case: UC08 - Redo previous command
+
+**MSS**
+
 1. OHS admin requests to redo previously undone command 
 that changes state.
 1. ResiReg processes and executes the command.
@@ -643,9 +644,12 @@ Use case ends.
 - 1a. There are no previously undone commands that change state to redo.
     - ResiReg shows an error message.
     
-      Use case ends.
+Use case ends.
       
 #### Use case: UC09 - History command
+
+**MSS**
+
 1. OHS admin requests to list history of previously entered commands.
 1. ResiReg shows a history of previously entered commands in reverse chronological order.
 
@@ -656,8 +660,7 @@ Use case ends.
 - 1a. The history of previously entered commands is empty.
     - ResiReg shows an error message.
     
-      Use case ends.
->>>>>>> fea735b51b0521c7174ae40b4f7dc4f794b1f7aa
+Use case ends.
 
 ### Non-Functional Requirements
 
