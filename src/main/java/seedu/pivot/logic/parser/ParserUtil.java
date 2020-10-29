@@ -2,6 +2,7 @@ package seedu.pivot.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_MISSING_PREFIX_INVALID_COMMAND;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -14,7 +15,6 @@ import java.util.Set;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.StringUtil;
-import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Description;
@@ -229,7 +229,8 @@ public class ParserUtil {
      * @return An EditPersonDescriptor.
      * @throws ParseException If no fields are edited.
      */
-    public static EditPersonDescriptor parseEditedPersonFields(ArgumentMultimap argMultimap) throws ParseException {
+    public static EditPersonDescriptor parseEditedPersonFields(ArgumentMultimap argMultimap, String errorMessage)
+            throws ParseException {
         requireNonNull(argMultimap);
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -250,7 +251,7 @@ public class ParserUtil {
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_MISSING_PREFIX_INVALID_COMMAND, errorMessage));
         }
 
         return editPersonDescriptor;

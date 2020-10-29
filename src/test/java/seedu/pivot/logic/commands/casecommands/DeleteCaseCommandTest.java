@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +20,8 @@ import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
+import seedu.pivot.logic.state.StateManager;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.testutil.CaseBuilder;
 
@@ -26,6 +30,16 @@ import seedu.pivot.testutil.CaseBuilder;
  * Unit Testing for DeleteCaseCommand
  */
 public class DeleteCaseCommandTest {
+
+    public void setUpMainPageDefaultSection() {
+        StateManager.resetState();
+        StateManager.setDefaultSection();
+    }
+
+    public void setUpMainPageArchivedSection() {
+        StateManager.resetState();
+        StateManager.setArchivedSection();
+    }
 
     @Test
     public void constructor_nullCase_throwsNullPointerException() {
@@ -52,12 +66,14 @@ public class DeleteCaseCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different case -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     @Test
-    public void execute_caseDeletedByModel_deleteSuccessful() throws CommandException {
+    public void executeDefaultSection_caseDeletedByModel_deleteSuccessful() throws CommandException {
+        setUpMainPageDefaultSection();
+
         Case testCase = new CaseBuilder().withTitle("Alice").build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
@@ -71,7 +87,38 @@ public class DeleteCaseCommandTest {
     }
 
     @Test
-    public void execute_invalidIndex_throwsCommandException() {
+    public void executeArchivedSection_caseDeletedByModel_deleteSuccessful() throws CommandException {
+        setUpMainPageArchivedSection();
+
+        Case testCase = new CaseBuilder().withTitle("Alice").withArchiveStatus(ArchiveStatus.ARCHIVED).build();
+        List<Case> caseList = new ArrayList<>();
+        caseList.add(testCase);
+
+        Index index = Index.fromZeroBased(0);
+        ModelStubWithCaseList modelStub = new ModelStubWithCaseList(caseList);
+        DeleteCommand deleteCommand = new DeleteCaseCommand(index);
+        CommandResult result = deleteCommand.execute(modelStub);
+        assertEquals(String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, testCase),
+                result.getFeedbackToUser());
+        assertEquals(Arrays.asList(), modelStub.caseList);
+    }
+
+    @Test
+    public void executeDefaultSection_invalidIndex_throwsCommandException() {
+        setUpMainPageDefaultSection();
+
+        List<Case> caseList = new ArrayList<>();
+        Index index = Index.fromZeroBased(0);
+        ModelStub modelStub = new ModelStubWithCaseList(caseList);
+        DeleteCommand deleteCommand = new DeleteCaseCommand(index);
+        assertThrows(CommandException.class,
+                UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX, () -> deleteCommand.execute(modelStub));
+    }
+
+    @Test
+    public void executeArchivedSection_invalidIndex_throwsCommandException() {
+        setUpMainPageArchivedSection();
+
         List<Case> caseList = new ArrayList<>();
         Index index = Index.fromZeroBased(0);
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
@@ -84,7 +131,7 @@ public class DeleteCaseCommandTest {
      * A Model stub that holds a caseList.
      */
     private class ModelStubWithCaseList extends ModelStub {
-        private final List<Case> caseList;
+        final List<Case> caseList;
 
         private ModelStubWithCaseList(List<Case> caseList) {
             this.caseList = caseList;
@@ -101,6 +148,11 @@ public class DeleteCaseCommandTest {
         }
 
         @Override
-        public void commitPivot(String command) {}
+        public void updateFilteredCaseList(Predicate<Case> predicate) {
+            caseList.stream().filter(predicate);
+        }
+
+        @Override
+        public void commitPivot(String command, boolean isMainPageCommand) {}
     }
 }

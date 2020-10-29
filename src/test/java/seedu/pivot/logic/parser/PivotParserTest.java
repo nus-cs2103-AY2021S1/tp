@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.ClearCommand;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.ExitCommand;
 import seedu.pivot.logic.commands.FindCommand;
@@ -41,11 +40,11 @@ public class PivotParserTest {
         assertEquals(new AddCaseCommand(investigationCase), command);
     }
 
-    @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    }
+    //    @Test
+    //    public void parseCommand_clear() throws Exception {
+    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    //    }
 
     @Test
     public void parseCommand_delete_case() throws Exception {

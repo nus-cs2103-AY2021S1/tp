@@ -7,8 +7,8 @@ public class UserMessages {
 
     // Common messages
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_MISSING_PREFIX_INVALID_COMMAND = "Please specify a field to change! \n%1$s";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n%1$s";
+    public static final String MESSAGE_MISSING_PREFIX_INVALID_COMMAND = "Please specify a field to change!\n%1$s";
 
     // Main page messages
     public static final String MESSAGE_INVALID_CASE_DISPLAYED_INDEX = "The case index provided is invalid";

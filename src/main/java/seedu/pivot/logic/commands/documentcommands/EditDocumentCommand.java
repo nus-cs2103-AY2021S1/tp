@@ -29,7 +29,7 @@ public class EditDocumentCommand extends EditCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DOC
             + ": Edits the document of the opened case at the specified index.\n"
             + "Parameters: "
-            + "INDEX "
+            + "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_REFERENCE + "REFERENCE]\n"
             + "Example: " + COMMAND_WORD + " " + TYPE_DOC + " " + "1" + " "
@@ -99,7 +99,7 @@ public class EditDocumentCommand extends EditCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
+        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
     }

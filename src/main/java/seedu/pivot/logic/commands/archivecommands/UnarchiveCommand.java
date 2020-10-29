@@ -30,7 +30,7 @@ public class UnarchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";
 
-    private static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
+    public static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(UnarchiveCommand.class);
 
@@ -71,7 +71,7 @@ public class UnarchiveCommand extends Command {
         //model.setCase(caseToUnarchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_ARCHIVED_CASES);
-        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
+        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase), true);
 
         return new CommandResult(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
     }

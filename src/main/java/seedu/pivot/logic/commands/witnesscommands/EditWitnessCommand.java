@@ -32,7 +32,7 @@ public class EditWitnessCommand extends EditPersonCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_WITNESS
             + ": Edits a person in the opened case in PIVOT.\n"
-            + "Parameters: INDEX "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -81,7 +81,7 @@ public class EditWitnessCommand extends EditPersonCommand {
                 caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_WITNESS_SUCCESS, editedWitness));
+        model.commitPivot(String.format(MESSAGE_EDIT_WITNESS_SUCCESS, editedWitness), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_WITNESS_SUCCESS, editedWitness));
     }
