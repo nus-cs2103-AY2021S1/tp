@@ -60,20 +60,26 @@ will be able to manage and access your files with ease.
 
 ### Viewing help : `help`
 
-Displays help for all commands.
+Displays help for all/certain commands.
 
-Format: `help`
+Format: (All command) `help` or (Certain command) `help COMMAND`
+
+Examples : 
+* `help` (Shows all command and its format)
+* `help tag` (shows tag command description, format and examples usage)
 
 ### Adding a tag with filepath : `tag`
 
 Tags a file with a unique tag name.
 
-Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]`
+Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]...`
 
 Examples:
-* (Without label) `tag t/Users f/C:\Users`
-* (With label) `tag t/Users f/C:\Users l/Important`
-* (With relative path) `tag t/Users f/.\Users`
+* `tag t/Users f/C:\Users` (Adds a tag with tag name `Users`,absolute file path `C:\Users`, and no label)
+* `tag t/Users f/C:\Users l/Important` (Adds a tag with tag name `Users`, absolute file path `C:\Users`, and label name `Important`)
+* `tag t/Users f/.\Users` (Adds a tag with tag name `Users`, relative file path `Users`, and no label)
+* `tag t/Users f/.\Users l/folder l/readonly` (Adds a tag with tag name `Users`, relative file path `Users`, and multiple lables
+with label name `folder` and `readonly`)
 
 ### Displaying information of a tagged file : `show`
 
@@ -82,18 +88,18 @@ Displays the information of the tagged file.
 Format: `show t/TAG_NAME`
 
 Examples:
-* `show t/my_research`
-* `show t/notes`
+* `show t/my_research` (show you the details of a tag name `my_research`)
+* `show t/file2020` (show you the details of a tag name `file2020`)
 
 ### Accessing a tagged file : `open`
 
 Opens the file specified by the unique tag name.
 
-Format: `open t/TAG_NAME`
+Format: `open t/TAG_NAME` or `open l/LABEL`
 
 Examples:
-* `open t/my_research`
-* `open t/notes`
+* `open t/my_research` (open the file with tag name `my_research`)
+* `open l/notes` (open all the files with label `notes`)
 
 ### Removing a tag : `untag`
 
@@ -102,7 +108,8 @@ Removes the tag from the list of tags.
 Format: `untag t/TAG_NAME`
 
 Examples:
-* `untag t/notes`
+* `untag t/notes` (delete tag with tag name `notes`)
+* `untag t/secret_file` (delete tag with tag name `secret_file`)
 
 ### Renaming a tag : `retag`
 
@@ -111,7 +118,29 @@ Renames a tag.
 Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
 
 Examples:
-* `retag o/notes t/secret`
+* `retag o/notes t/secret` (Rename an old tag name `notes` to new tag name `secret`)
+* `retag o/examfiles t/oldexamfiles` (Rename an old tag name `examfiles` to new tag name `oldexamfiles`)
+
+
+### Adding a label to a tag : `label`
+
+Adds one or more label to an existing tag. Duplicated labels will only be added once. 
+
+Format: `label t/TAG_NAME l/LABEL1 [l/LABEL2]...`
+
+Examples:
+* `label t/file1 l/important` (Add a label of tag name `file1` with label name `important`) 
+* `label t/file2 l/important l/exam` (Add a label of tag name `file2` with multiple labels of label name `important` and `exam`)
+
+### Deleting multiple labels from a tag : `unlabel`
+
+Delete one or more label from a tag.
+
+Format: ` unlabel t/TAG_NAME l/LABEL1 [l/LABEL2]...`
+
+Examples:
+* `unlabel t/notes l/secret` (Deletes a label of label name `secret` that has tag name `notes`)
+* `unlabel t/file1 l/important l/exams` (Deletes labels of label name `important` and `exams` from tag name `file1`)
 
 ### Finding a tag : `find`
 
@@ -120,7 +149,11 @@ Finds a tag by its keyword (can be tag name and/or label).
 Format: `find KEYWORD`
         
 Examples:
-* `find notes`
+* `find file1` (finds a tag with tag name `file1`)
+* `find label2020` (finds a tag with label name `label2020`)    
+* `find tagname1 label1` (finds a tag name/label name `tagname1` and `label1`)
+* `find he` (finds a tag with tag name contains `he` or label name contains `he`)
+ 
 
 ### Changing current directory : `cd`
 
@@ -133,15 +166,29 @@ Format 2: `cd ./RELATIVE_FILE_PATH`
 Format 3: `cd ../`
 
 Examples:
-* `cd f/C:\Users`
-* `cd ./tp`
-* `cd ../`
+* `cd f/C:\Users` (Changes the current directory to `C:\Users`)
+* `cd ./tp` (Changes the current directory to the child directory `tp`)
+* `cd ../` (Changes the current directory to the parent directory)
 
 ### Listing all tags : `ls`
 
 Lists all managed tags.
 
 Format: `ls`
+
+### Undoing command : `undo`
+
+Undo a recently executed command. Note that, there are some command that can't be undo.<br>
+Those commands include: `ls`,`show`,`exit`,`undo`, `help`, `find`, `open` and `cd`
+
+Format: `undo`
+
+### Redoing command : `redo`
+
+Redo a recently executed command. Redo only exists when undo has been executed.<br> Note that, there are some command that can't be redo.
+Those commands include: `ls`,`show`,`exit`,`undo`,`redo`, `help`, `find`, `open` and `cd`
+
+Format: `redo`
 
 ### Clearing all tags : `clear`
 
@@ -181,12 +228,16 @@ Action | Format, Examples
 **Show** | `show t/TAG_NAME`
 **Untag** | `untag t/TAG_NAME`
 **Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
-**Find** | `find KEYWORD` <br> e.g., `find newtag`
-**Open** | `open t/TAG_NAME`
+**Find** | `find KEYWORD` <br> e.g., `find newtag` or  `find newlabel`
+**Open** | `open t/TAG_NAME` or `open l/LABEL` <br> e.g., `open t/newTag` or `open l/newlabel`
+**Label** | `label t/TAG_NAME l/LABEL1 [l/LABEL2...]` <br> e.g., `label t/newtag l/new` or `label t/myFile l/important l/exclusive`
+**Unlabel** | `unlabel t/TAG_NAME l/LABEL1 [l/LABEL2...]` <br> e.g., `unlabel t/newtag l/new` or `unlabel t/myFile l/important l/exclusive`
 **List** | `ls`
 **Cd to an absolute file Path**| `cd f/ABSOLUTE_FILE_PATH` <br> e.g., `cd f/C:\Users`
 **Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` <br> e.g., `cd ./project01`
 **Cd to the parent file Path**| `cd ../`
+**Undo** | `undo`
+**Redo** | `redo`
 **Clear** | `clear`
-**Help** | `help`
+**Help** | `help` or `help COMMAND` <br> e.g., `help tag`
 **Exit** | `exit`

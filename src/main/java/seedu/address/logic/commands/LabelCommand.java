@@ -23,16 +23,16 @@ import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
 public class LabelCommand extends Command {
     public static final String COMMAND_WORD = "label";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds Label(s) to an existing Tag. "
-            + "\nParameters: "
+            + "\n\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
-            + PREFIX_LABEL_NAME + "LABEL_NAME "
-            + "[" + PREFIX_LABEL_NAME + "LABEL_NAME" + "]...\n"
+            + PREFIX_LABEL_NAME + "LABEL_NAME1 "
+            + "[" + PREFIX_LABEL_NAME + "LABEL_NAME2" + "]...\n"
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_LABEL_NAME + "notes "
             + PREFIX_LABEL_NAME + "CS2103T";
     public static final String LABEL_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>"
-            + " " + PREFIX_LABEL_NAME + "<FILEPATH>";
+            + " " + PREFIX_LABEL_NAME + "<LABEL>";
     public static final String MESSAGE_SUCCESS = "Tag successfully updated: %1$s!";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag: %s not found!"
             + " Please make sure that Tag is present before labeling.";
