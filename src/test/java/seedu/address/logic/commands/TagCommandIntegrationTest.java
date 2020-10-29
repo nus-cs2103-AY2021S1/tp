@@ -20,10 +20,10 @@ public class TagCommandIntegrationTest {
     @Test
     public void execute_newTag_success() {
         Model model = new ModelStubWithTagAndTaglist();
-        Tag validTag = new TagBuilder().build();
+        Tag validTag = new TagBuilder().build().toAbsolute(false, new FileAddress(USER_DIRECTORY_ADDRESS));
 
         Model expectedModel = new ModelStubWithTagAndTaglist();
-        expectedModel.addTag(validTag.toAbsolute(false, new FileAddress(USER_DIRECTORY_ADDRESS)));
+        expectedModel.addTag(validTag);
         expectedModel.commitAddressBook();
 
         assertCommandSuccess(new TagCommand(validTag), model,

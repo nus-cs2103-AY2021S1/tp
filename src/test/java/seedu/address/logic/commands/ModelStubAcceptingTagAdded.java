@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.explorer.CurrentPath;
+import seedu.address.model.explorer.FileList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,6 +26,11 @@ class ModelStubAcceptingTagAdded extends ModelStub {
     public void addTag(Tag tag) {
         requireNonNull(tag);
         tagsAdded.add(tag);
+    }
+
+    @Override
+    public CurrentPath getCurrentPath() {
+        return new CurrentPath(System.getProperty("user.dir"), new FileList());
     }
 
     @Override
