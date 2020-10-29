@@ -224,6 +224,12 @@ The user can find assignments by providing keywords of the following fields:
 
 The user can find assignments with single or multiple keywords of the same type of field.
 
+It implements the following operations:
+* `find n/Lab` - Finds assignments with a name that has "Lab".
+* `find mod/CS2100 CS2103T` - Finds assignments from the module CS2100 and CS2103T.
+* `find d/1200 24-10-2020` - Finds assignments with due time 1200 (regardless of date), and with due date 24-10-2020 (regardless of time).
+* `find p/HIGH` - Finds assignments of high priority.
+
 #### Reasons for Implementation
 
 If the user can search by only one field, it would restrict the user's process of viewing assignments.
@@ -240,11 +246,11 @@ We thus concluded that finding by specific fields would be beneficial for users,
 ##### Prefixes used in identifying keywords
 The use of prefixes before keywords allows for validation of keywords in the user's input, with Regular Expressions.
 
-The following prefixes are used to identify the fields:
-- /n for Name
-- /mod for Module code
-- /d for Due date or time
-- /p for Priority
+The following prefixes are used to identify the fields and its keywords:
+- `/n` for Name
+- `/mod` for Module code
+- `/d` for Due date or time
+- `/p` for Priority
 
 ##### Predicate classes 
 The following Predicate classes implements `Predicate<Assignment>` and are used when the user inputs keywords of its assigned field:
@@ -261,14 +267,14 @@ Given below is the class diagram of these Predicate classes:
 
 ##### FindCommand Class
 - `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
-
 - The constructor of `FindCommand` takes in a Predicate depending on the prefix or keywords in the user's input. 
+- This class contains static `String` attributes of error messages to be displayed in the event of invalid user input.
 
 ##### FindCommandParser Class
 - The `FindCommandParser` class contains private methods to parse each type of keyword field, and to check for valid input format.
 - `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
 
-Given below is the class diagram of `FindCommandParser` class:
+Given below is the class diagram of `FindCommandParser` class.
 
 
 
@@ -290,9 +296,6 @@ Given below is the class diagram of `FindCommandParser` class:
 
 The following is a usage scenario of when a user wants to find assignments with the name 'Lab'.
 
-Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(find n/Lab)` API call.
-![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
-
 1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
 2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `FindCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
 3. If user input is valid, it returns a `FindCommand` object, which takes in `NameContainsKeywordsPredicate` with the list of keywords.
@@ -300,6 +303,9 @@ Given below is the sequence diagram for the interactions within `LogicManager` f
 5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
 6. The `execute` method returns a `CommandResult` object.
 
+
+Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(find n/Lab)` API call.
+![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
 
 
 ### \[Implemented\] Remind assignments feature
@@ -322,46 +328,100 @@ It implements the following operations:
 * `remind 2` - Sets reminders for the 2nd assignment in the displayed assignment list.
 
 
+### List by days feature
 
-### \[Implemented\] List by days feature
-
-The user can list all his assignments (`list` without a subsequent argument index), or list assignments with deadlines 
-within a number of days from the current date (and time), with the number being the user input after `list`. 
-
-#### Reasons for Implementation
-It is likely that the user will want to view assignments that are due within days (soon) from the current date, so that he will know which assignments to complete first in order to meet the deadlines.
-It is different from the `find` command as users can list all assignments with deadlines within a period of time (from the current date and time to a number of days later, depending on the index he keys in).
-`find` by deadline (date or time) will only display assignments due on this particular day or time.
-
-It also provides a more intuitive approach for users to view assignments that are more urgent to complete.
-
-#### Current Implementation
-- The list command is a typical command used in ProductiveNUS. 
-- It extends `Command` and overrides the method `execute` in `CommandResult`.
-- `ListCommandParser` implements `Parser<ListCommand>` and it parses the user's input to return a `ListCommand` object.
-- The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+The user can list all his assignments with `list` without a subsequent argument index, or list assignments with 
+deadlines within a number of days from the current date (and time), with this number being an argument index after `list`.
 
 It implements the following operations:
-* `list` — Lists all assignments stored in ProductiveNUS.
-* `list 3` — Lists assignments with deadline 3 days (72 hours) from the current date. (and current time)
-* `list 2` — Lists assignments with deadline 2 days (48 hours) from the current date. (and current time)
-
-### \[Coming up\] Delete multiple assignments feature
-The user can delete multiple assignments at a time, when more than one index is keyed in.
+* `list` - Lists all assignments
+* `list 2` - List all assignments with deadline within 2 days (48 hours) from the current date (and time).
+For example, if the current date and time is 22/10/2020 1200, assignments with deadlines from this date and time to
+24/10/2020 1200 will be displayed.
 
 #### Reasons for Implementation
-It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
-
+- As a student user, he will want to view assignments that are due within days from the current date, so that he will know which assignments to complete first in order to meet the deadlines.
+- It is different from the `find` command as users can list all assignments with deadlines within a time period (from the current date to a number of days later),
+whereas finding assignments by date or time will only display assignments due on this particular day or time.
 
 #### Current Implementation
-- The `delete` command is a typical command used in ProductiveNUS. 
-- It extends `Command` and overrides the method `execute` in `CommandResult`.
-- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
-- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
+
+##### ListCommand Class
+- It extends the abstract class `Command` and overrides the method `execute` in `CommandResult`.
+- The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+- The class contains a private method `showLimitedAssignments()` that returns a `Predicate<Assignment>`. This method will filter 
+assignments to be displayed based on the argument index in the user's input.
+- The class also contains a private attribute `numberOfDays` of type `Index` and `String` attributes of messages to be displayed to the user.
+
+##### ListCommandParser Class
+- `ListCommandParser` implements `Parser<ListCommand>`. It has a method `parse` which parses the user's input to return a `ListCommand` object.
+- With the use of Regular Expressions to identify index arguments present in the input, it sets a boolean variable `hasArgumentIndex`.
+
+##### Usage scenario
+The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from now.
+
+1. `execute("list 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+ 1. `parseCommand("list 3")` parses the String `"list 3"` and returns an initialized `ListCommandParser` object. 
+ 1. `parseCommand("List 3")` calls the `parse` method in `ListCommandParser` to return a `ListCommand` object.
+ 1. There is return call to `LogicManager` which then calls the overridden `execute` method of `ListCommand`.
+ 1. The `execute` method of `ListCommand` will call the `updateFilteredAssignmentList` method of the object `model`, which takes in `showLimitedAssignments` predicate.
+ 1. If `getZeroBased` value of `Index` attribute `numberOfDays` is 0, it would take in `PREDICATE_SHOW_ALL_ASSIGNMENT`. Else, it would take in `showLimitedAssignments` to return assignments that passes this predicate.
+ 1. The `execute()` method returns a `CommandResult` object.
  
-It can implement the following operations:
-* `delete 1 3` — Deletes the assignment at the first and third index in list.
-* `delete 1` — Deletes the assignment at the first index in list.
+ Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(list 3)` API call.
+
+
+DIAGRAM
+
+
+
+### Delete multiple assignments feature
+The user can delete one or multiple assignments at a time.
+
+It implements the following operations:
+* `delete 1` - Deletes the 1st assignment in the displayed assignment list.
+* `delete 1 2 3` - Deletes the 1st, 2nd and 3rd assignments in the displayed assignment list.
+
+#### Reasons for Implementation
+It will provide convenience to users who want to delete more than one assignment at a time, and it makes the process of removing completed assignments faster.
+
+#### Current Implementation
+
+##### DeleteCommand class 
+- It extends the abstract class `Command` and overrides the method `execute` in `CommandResult`.
+- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input to return a `DeleteCommand` object.
+- It contains a private attribute ` targetIndexes`, of type `List<Index>`. It stores a list of indexes of respective assignments to be deleted.  
+- The constructor of `DeleteCommand` takes in a `List<Index>`. 
+
+##### DeleteCommandParser Class
+- `DeleteCommandParser` implements `Parser<DeleteCommand>`. 
+- It has a method `parse` which parses the user's input by calling `parseIndexes` method of `ParserUtil`, to return `parsedIndexes` of type `List<Index>`.
+- The `parse` method returns a `DeleteCommand` object that takes in `parsedIndexes`.
+
+##### Design Considerations
+To delete an assignment, it calls the `deleteAssignment` method of `model`.
+
+When deleting multiple assignments, it calls this method repeatedly with a for loop as shown in the following sequence diagram under "Usage Scenario".
+Since the index of assignments in the list will update after each delete in the loop, we sorted the list from the largest index to the smallest, and implemented deleting of assignments from the largest index in the list to maintain order.
+
+##### Usage Scenario
+The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list.
+1. `execute("delete 1 2")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+ 1. `parseCommand("delete 1 2")` parses the String `"delete 1 2"` and returns an initialized `DeleteCommandParser` object. 
+ 1. `parseCommand("delete 1 2")` calls the `parse` method in `DeleteCommandParser` which parses the user input into `List<Index>`. This is by calling the static method `parseIndexes()` of `ParserUtil`.
+ 1. If the indexes are valid, it returns a `DeleteCommand` object, which takes in `parsedIndexes`, of type `List<Index>` containing `Index` `1` and `2`.
+ 1. There is return call to `LogicManager` which then calls the overridden `execute` method of `DeleteCommand`.
+ 1. The `execute` method of `DeleteCommand` will call the `checkForDuplicatedIndexes` method of `CommandLogic` to check for duplicated indexes. 
+ 1. The `execute()` method then calls `checkForInvalidIndexes` method of the `CommandLogic` to check for any indexes not found in the displayed assignment list.
+ 1. The `deleteAssignment` method of `Model` is repeatedly called, once for each `Index` in `List<Index>`. In this case, the loop terminates after 2 times.
+ 1. The `execute()` method returns a `CommandResult` object.
+ 
+ Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(delete 1 2)` API call.
+ 
+ 
+ DIAGRAM
+ 
+ 
 
 ### \[Coming up\] Help feature
 
