@@ -318,13 +318,18 @@ __Result:__ Undo or redo the previous command.
 
 ## 5. Command Summary
 
+The following table gives a summary of the commands as given and explained in [Commands](#4-commands) for quick reference and look-ups.
+
 --------|------------------
 __Add inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50`
+__Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23`
 __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
+__Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2`
 __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10`
 __Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
-__List finance__ | `list_finance`
 __Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes`
+__List finance__ | `list_finance`
+__List inventory__ | `list_inventory`
 __Exit programme__ | `exit`
 
 ---
