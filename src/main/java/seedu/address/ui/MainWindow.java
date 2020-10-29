@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -31,7 +30,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
     private Stage primaryStage;
     private Logic logic;
-    private HostServices hostServices;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -39,6 +37,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimelineWindow timelineWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -67,13 +66,13 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic, HostServices hostServices) {
+    public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.hostServices = hostServices;
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -81,6 +80,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timelineWindow = new TimelineWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -173,7 +173,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            helpWindow.show(hostServices);
+            helpWindow.show();
         } else {
             helpWindow.focus();
         }
@@ -193,6 +193,28 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
             }
         }
+
+        updateTimeline();
+    }
+
+    @Override
+    public void updateTimeline() {
+        timelineWindow.hide();
+        timelineWindow = this.timelineWindow.updateLogic(logic);
+    }
+
+    /**
+     * Opens the timeline window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleToggle() {
+        logger.info("UI toggle triggered");
+
+        if (!timelineWindow.isShowing()) {
+            timelineWindow.show();
+        } else {
+            timelineWindow.focus();
+        }
     }
 
     void show() {
@@ -208,6 +230,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        timelineWindow.hide();
         primaryStage.hide();
     }
 
@@ -236,6 +259,9 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
             if (commandResult.isTriggerUpdate()) {
                 update();
+            }
+            if (commandResult.isToggle()) {
+                handleToggle();
             }
 
             return commandResult;

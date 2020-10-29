@@ -47,7 +47,7 @@ public class AutocompleteCommandBox extends CommandBox {
                 return;
             }
 
-            if (userInput.length() >= prefixLength && caretPos >= prefixLength - 1) {
+            if (userInput.length() > prefixLength - 1 && caretPos > prefixLength) {
                 String substring = userInput.substring(caretPos - prefixLength);
                 if (!isAutocompleteMode && substring.equals(commandPrefix)) {
                     commandPrefixPos = caretPos;

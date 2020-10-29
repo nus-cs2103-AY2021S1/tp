@@ -60,6 +60,7 @@ public class ClearLabelCommand extends Command {
      */
     private static Person createClearedPerson(Person personToClear) {
         assert personToClear != null;
+
         return new Person(personToClear.getName(), personToClear.getPhone(), personToClear.getEmail(), new HashSet<>());
     }
 
