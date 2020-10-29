@@ -68,8 +68,8 @@ public class UpdateInventoryCommand extends Command {
 
 
         FinanceRecord oldFinanceRecord = model.getFinanceRecord(inventoryRecordToUpdate.getFinanceId());
-        double cost = oldFinanceRecord.getCost();
-        FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost, cost);
+        double cost = inventoryRecordToUpdate.getUnitCost();
+        FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost);
         updatedInventoryRecord.setFinanceRecord(newFinanceRecord);
         model.setFinanceRecord(oldFinanceRecord, newFinanceRecord);
         model.setInventoryRecord(inventoryRecordToUpdate, updatedInventoryRecord);
@@ -85,6 +85,7 @@ public class UpdateInventoryCommand extends Command {
         Integer updateQuantityBy = updateInventoryDescriptor.getChangeInQuantity().orElse(0);
         Integer oldQuantity = inventoryRecord.getQuantity();
         Integer newQuantity = updateQuantityBy + oldQuantity;
+        Double unitCost = inventoryRecord.getUnitCost();
 
         if (newQuantity < 0) {
             throw new CommandException(MESSAGE_INVALID_UPDATE_OPERATION);
@@ -93,7 +94,7 @@ public class UpdateInventoryCommand extends Command {
         String itemDescription = inventoryRecord.getItemName();
         LocalDateTime newDateTime = LocalDateTime.now();
 
-        return new InventoryRecord(itemDescription, newQuantity, newDateTime);
+        return new InventoryRecord(itemDescription, newQuantity, unitCost, newDateTime);
     }
 
     /**
