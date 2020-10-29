@@ -250,7 +250,7 @@ public class Module {
      * @return Module a new module with the assignment added if it is different.
      */
     public Module addAssignment(Assignment assignment) {
-        if (!gradeTracker.isDuplicateAssignment(assignment)) {
+        if (!gradeTracker.containsDuplicateAssignment(assignment)) {
             gradeTracker.addAssignment(assignment);
             return new Module(name, zoomLinks, gradeTracker, tags);
         } else {
@@ -266,6 +266,20 @@ public class Module {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("TagNotProvided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
     /**
      * Adds a grade to the GradeTracker of the module.
      *
