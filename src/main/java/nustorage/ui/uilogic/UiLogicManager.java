@@ -36,7 +36,7 @@ public class UiLogicManager implements UiLogic {
         }
     }
 
-    private CommandResult goToTab(String param) throws ParseException {
+    public CommandResult goToTab(String param) throws ParseException {
 
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
 
