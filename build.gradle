@@ -70,7 +70,7 @@ run {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'Calo.jar'
 }
 
 defaultTasks 'clean', 'test'
