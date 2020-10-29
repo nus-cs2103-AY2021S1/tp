@@ -1,6 +1,7 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
@@ -27,7 +28,8 @@ public class EditInventoryCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] ";
+            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
     public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -82,7 +84,7 @@ public class EditInventoryCommand extends Command {
 
         Integer updatedQuantity = editInventoryDescriptor.getQuantity().orElse(inventoryRecord.getQuantity());
         String updatedDescription = editInventoryDescriptor.getDescription().orElse(inventoryRecord.getItemName());
-        LocalDateTime dateTime = inventoryRecord.getDateTime();
+        LocalDateTime dateTime = editInventoryDescriptor.getDateTime().orElse(inventoryRecord.getDateTime());
 
         return new InventoryRecord(updatedDescription, updatedQuantity, dateTime);
     }
@@ -112,6 +114,7 @@ public class EditInventoryCommand extends Command {
     public static class EditInventoryDescriptor {
         private Integer quantity;
         private String description;
+        private LocalDateTime dateTime;
 
 
         public EditInventoryDescriptor() {}
@@ -123,6 +126,7 @@ public class EditInventoryCommand extends Command {
         public EditInventoryDescriptor(EditInventoryDescriptor toCopy) {
             setQuantity(toCopy.quantity);
             setDescription(toCopy.description);
+            setDateTime(toCopy.dateTime);
         }
 
         /**
@@ -146,6 +150,14 @@ public class EditInventoryCommand extends Command {
 
         public Optional<String> getDescription() {
             return Optional.ofNullable(description);
+        }
+
+        public void setDateTime(LocalDateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
+        public Optional<LocalDateTime> getDateTime() {
+            return Optional.ofNullable(dateTime);
         }
         @Override
         public boolean equals(Object other) {

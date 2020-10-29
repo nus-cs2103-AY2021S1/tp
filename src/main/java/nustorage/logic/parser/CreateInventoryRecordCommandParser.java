@@ -5,10 +5,9 @@ import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
-import nustorage.logic.commands.AddInventoryRecordCommand;
+import nustorage.logic.commands.CreateInventoryRecordCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
@@ -16,7 +15,7 @@ import nustorage.model.record.InventoryRecord;
 /**
  * Parses input arguments and creates a new AddInventory object
  */
-public class AddInventoryRecordCommandParser implements Parser<AddInventoryRecordCommand> {
+public class CreateInventoryRecordCommandParser implements Parser<CreateInventoryRecordCommand> {
 
     /**
      * Parses Inventory commands arguments from the user.
@@ -24,14 +23,14 @@ public class AddInventoryRecordCommandParser implements Parser<AddInventoryRecor
      * @return An AddInventoryCommand.
      * @throws ParseException When user arguments results in a parsing error.
      */
-    public AddInventoryRecordCommand parse(String args) throws ParseException {
+    public CreateInventoryRecordCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_COST);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddInventoryRecordCommand.MESSAGE_USAGE));
+                    CreateInventoryRecordCommand.MESSAGE_USAGE));
         }
 
         String itemDescription = ParserUtil.parseItemDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
@@ -39,13 +38,14 @@ public class AddInventoryRecordCommandParser implements Parser<AddInventoryRecor
 
         InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity);
 
+        double cost;
         if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
-            double cost = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_ITEM_COST).get());
-            FinanceRecord financeRecord = new FinanceRecord(cost * quantity, true);
-            return new AddInventoryRecordCommand(inventoryRecord, Optional.of(financeRecord));
+            cost = ParserUtil.parseItemCost(argMultimap.getValue(PREFIX_ITEM_COST).get());
+        } else {
+            cost = 0;
         }
-
-        return new AddInventoryRecordCommand(inventoryRecord, Optional.empty());
+        FinanceRecord financeRecord = new FinanceRecord(cost * quantity, true);
+        return new CreateInventoryRecordCommand(inventoryRecord, financeRecord);
     }
 
     private boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

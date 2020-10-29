@@ -11,11 +11,11 @@ import org.junit.jupiter.api.Test;
 
 // import java.util.ArrayList;
 
-public class AddInventoryCommandTest {
+public class CreateInventoryCommandTest {
 
     @Test
     public void constructor_nullInventory_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddInventoryRecordCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new CreateInventoryRecordCommand(null, null));
     }
 
 }
