@@ -151,6 +151,10 @@ public class ModelManager implements Model {
         return currentModuleInView;
     }
 
+    public void setCurrentModuleInView(Module module) {
+        this.currentModuleInView = module;
+    }
+
     //=========== TutorialGroup Operations ====================================================================
 
     @Override
@@ -175,6 +179,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTutorialGroup(TutorialGroup toCheck) {
+        filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
         return filteredTutorialGroup.contains(toCheck);
     }
 
@@ -192,6 +197,10 @@ public class ModelManager implements Model {
     @Override
     public TutorialGroup getCurrentTgInView() {
         return currentTgInView;
+    }
+
+    public void setCurrentTgInView(TutorialGroup tutorialGroup) {
+        this.currentTgInView = tutorialGroup;
     }
 
     //=========== Student Operations =============================================================================

@@ -20,6 +20,7 @@ public class TypicalModules {
     public static final Module CS2100 = new Module(new ModuleId("CS2100"));
     public static final Module CS2103T = new Module(new ModuleId("CS2103T"));
     public static final Module CS2040 = new Module(new ModuleId("CS2040"));
+    public static final Module CS2030 = new Module(new ModuleId("CS2030"));
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
@@ -38,11 +39,11 @@ public class TypicalModules {
     public static Trackr getTypicalTrackr() {
         Trackr trackr = new Trackr();
         // populate modules with the same tutorial groups and students
-        for (Student student : getTypicalStudents()) {
+        for (Module module : getTypicalModules()) {
+            trackr.addModule(module);
             for (TutorialGroup tutorialGroup: getTutorialGroupList()) {
-                for (Module module : getTypicalModules()) {
-                    trackr.addModule(module);
-                    trackr.addTutorialGroup(tutorialGroup, module);
+                trackr.addTutorialGroup(tutorialGroup, module);
+                for (Student student : getTypicalStudents()) {
                     trackr.addStudent(module, tutorialGroup, student);
                 }
             }
