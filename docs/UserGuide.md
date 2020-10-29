@@ -37,7 +37,7 @@ You may refer to [Quick Start](#quick-start) for a short tutorial on how to run 
 1. Ensure that Java 11 or above is installed in your computer
 2. Download the latest `ResiReg.jar` here.
 3. Copy the file to the folder you want to use as the home folder for your **ResiReg**.
-4. Double-click the file to start the app. The following window should appear within a few seconds - this is the Session Screen, where you can create, open, or delete interview sessions:
+4. Double-click the file to start the app. The app window should open in a few seconds.
 5. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing Enter will open this user guide.
 6. Some example commands you can try:
    - `rooms --vacant`: lists all rooms that are vacant.
