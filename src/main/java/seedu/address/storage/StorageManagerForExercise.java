@@ -16,7 +16,7 @@ import seedu.address.model.UserPrefs;
  */
 public class StorageManagerForExercise implements StorageForExercise {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Logger logger = LogsCenter.getLogger(StorageManagerForExercise.class);
     private ExerciseBookStorage exerciseBookStorage;
     private UserPrefsStorage userPrefsStorage;
 

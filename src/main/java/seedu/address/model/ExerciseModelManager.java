@@ -20,7 +20,7 @@ import seedu.address.model.exercise.TemplateList;
  * Represents the in-memory model of the address book data.
  */
 public class ExerciseModelManager implements ExerciseModel {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Logger logger = LogsCenter.getLogger(ExerciseModelManager.class);
 
     private final ExerciseBook exerciseBook;
     private final UserPrefs userPrefs;

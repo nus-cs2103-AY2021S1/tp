@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.UpdateExerciseCommand.EditExerciseDescriptor;
+import seedu.address.logic.commands.UpdateCommand.EditExerciseDescriptor;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
