@@ -250,7 +250,7 @@ public class Module {
      * @return Module a new module with the assignment added if it is different.
      */
     public Module addAssignment(Assignment assignment) {
-        if (!gradeTracker.isDuplicateAssignment(assignment)) {
+        if (!gradeTracker.containsDuplicateAssignment(assignment)) {
             gradeTracker.addAssignment(assignment);
             return new Module(name, zoomLinks, gradeTracker, tags);
         } else {
