@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.global.EditCommand;
 import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 
@@ -37,8 +36,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_REPOURL,
-                        PREFIX_PROJECT_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK, PREFIX_MEETING);
+            ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_REPOURL,
+                PREFIX_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK, PREFIX_MEETING);
 
         Index index;
 
@@ -51,7 +50,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditProjectDescriptor editProjectDescriptor = new EditProjectDescriptor();
         if (argMultimap.getValue(PREFIX_PROJECT_NAME).isPresent()) {
             editProjectDescriptor.setProjectName(ParserUtil.parseProjectName(
-                    argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
+                argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
@@ -59,13 +58,12 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_REPOURL).isPresent()) {
             editProjectDescriptor.setRepoUrl(ParserUtil.parseRepoUrl(argMultimap.getValue(PREFIX_REPOURL).get()));
         }
-        if (argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editProjectDescriptor.setProjectDescription(ParserUtil.projectDescription(argMultimap
-                    .getValue(PREFIX_PROJECT_DESCRIPTION).get()));
+                .getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_PROJECT_TAG)).ifPresent(editProjectDescriptor::setTags);
         parseTasksForEdit(argMultimap.getAllValues(PREFIX_TASK)).ifPresent(editProjectDescriptor::setTasks);
-        parseMeetingsForEdit(argMultimap.getAllValues(PREFIX_MEETING)).ifPresent(editProjectDescriptor::setMeetings);
 
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -102,22 +100,5 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> taskSet = tasks.size() == 1 && tasks.contains("") ? Collections.emptySet() : tasks;
         return Optional.of(ParserUtil.parseTasks(taskSet));
-    }
-
-    /**
-     * Parses {@code Collection<String> meetings} into a {@code Set<Meeting>} if {@code meetings} is non-empty.
-     * If {@code meetings} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Meeting>} containing zero meetings.
-     */
-    private Optional<Set<Meeting>> parseMeetingsForEdit(
-            Collection<String> meetings) {
-        assert meetings != null;
-
-        if (meetings.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> meetingSet = meetings.size() == 1 && meetings.contains("")
-                ? Collections.emptySet() : meetings;
-        return Optional.of(ParserUtil.parseMeetings(meetingSet));
     }
 }

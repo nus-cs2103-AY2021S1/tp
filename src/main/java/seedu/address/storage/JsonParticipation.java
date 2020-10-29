@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Role;
 import seedu.address.model.task.Task;
@@ -18,7 +17,7 @@ import seedu.address.model.task.Task;
  */
 class JsonParticipation {
 
-    private final JsonAdaptedPerson person;
+    private final String person;
     private final String project;
     private final Role role;
     private List<JsonAdaptedTask> tasks = new ArrayList<>();
@@ -28,7 +27,7 @@ class JsonParticipation {
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonParticipation(@JsonProperty("person") JsonAdaptedPerson person,
+    public JsonParticipation(@JsonProperty("person") String person,
                              @JsonProperty("project") String project,
                              @JsonProperty("role")Role role,
                              @JsonProperty("tasks")List<JsonAdaptedTask> tasks
@@ -45,7 +44,7 @@ class JsonParticipation {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonParticipation(Participation source) {
-        person = new JsonAdaptedPerson(source.getPerson());
+        person = source.getPerson().getGitUserNameString();
         project = source.getProject().getProjectName().toString();
         role = source.getRole();
         tasks.addAll(source.getTasks().stream()
@@ -61,9 +60,7 @@ class JsonParticipation {
      */
     public Participation toModelType() throws IllegalValueException {
 
-        Person p = person.toModelType();
-
-        Participation part = new Participation(p.getGitUserNameString(), project);
+        Participation part = new Participation(person, project);
 
         for (JsonAdaptedTask jsonTask : tasks) {
             Task task = jsonTask.toModelType();

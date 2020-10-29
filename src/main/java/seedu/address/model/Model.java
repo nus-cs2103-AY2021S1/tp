@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -19,6 +18,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Participation> PREDICATE_SHOW_ALL_PARTICIPATION = unused -> true;
+    //Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    //Predicate<Person> PREDICATE_SHOW_ALL_TEAMMATES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -110,6 +112,20 @@ public interface Model {
     void addPerson(Person person);
 
     /**
+     * Adds the given participation.
+     * {@code person} must not already exist in the main catalogue.
+     */
+    void addParticipation(Participation participation);
+
+
+    /**
+     * Deletes the given participation.
+     * The project must exist in the main catalogue.
+     */
+    void deleteParticipation(Participation target);
+
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the main catalogue.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the main
@@ -168,11 +184,6 @@ public interface Model {
     void enterTeammate(Participation teammate);
 
     /**
-     * Enters the designated meeting of the current project.
-     */
-    void enterMeeting(Meeting meeting);
-
-    /**
      * Updates the project to be displayed on dashboard.
      * @param project project to be displayed on dashboard
      */
@@ -203,16 +214,6 @@ public interface Model {
      * Gets the teammate to be displayed on dashboard.
      */
     Optional<Participation> getTeammateToBeDisplayedOnDashboard();
-
-    /**
-     * Updates the meeting to be displayed on dashboard.
-     */
-    void updateMeetingToBeDisplayedOnDashboard(Meeting meeting);
-
-    /**
-     * Gets the meeting to be displayed on dashboard.
-     */
-    Optional<Meeting> getMeetingToBeDisplayedOnDashboard();
 
     /**
      * Updates the person to be displayed on dashboard.

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
@@ -50,8 +51,8 @@ public class Person {
      */
     public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address,
                   HashMap<ProjectName,
-        Participation> listOfParticipations) {
-        requireAllNonNull(personName, phone, email, address);
+                          Participation> listOfParticipations) {
+        requireAllNonNull(personName, gitUserName, phone, email, address);
         this.personName = personName;
         this.gitUserName = gitUserName;
         this.phone = phone;
@@ -88,6 +89,16 @@ public class Person {
         return allPeople;
     }
 
+    public static void setPerson(Person person) {
+        for (int i = 0; i < allPeople.size(); i++) {
+            String gitUserName = allPeople.get(i).getGitUserNameString();
+            String toFind = person.getGitUserNameString();
+            if (gitUserName.equals(toFind)) {
+                allPeople.set(i, person);
+            }
+        }
+    }
+
     public HashMap<ProjectName, Participation> getParticipations() {
         return this.listOfParticipations;
     }
@@ -99,6 +110,20 @@ public class Person {
         List<Project> projects = Collections.emptyList();
         listOfParticipations.values().forEach(p -> projects.add(p.getProject()));
         return projects;
+    }
+
+    /**
+     * Gets a person from the universal list of persons from the GitUserName
+     */
+    public static Person getPersonFromList(GitUserIndex gitUserIndex) {
+        for (Person p : allPeople) {
+            String indexToCompare = p.getGitUserNameString();
+            String gitUserName = gitUserIndex.getGitUserName();
+            if (indexToCompare.equals(gitUserName)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     /**
@@ -144,11 +169,11 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getGitUserName().equals(getGitUserName())
-            && otherPerson.getPhone().equals(getPhone())
-            && otherPerson.getEmail().equals(getEmail())
-            && (otherPerson.getPersonName().equals(getPersonName())
-            || otherPerson.getAddress().equals(getAddress()));
+                && otherPerson.getGitUserName().equals(getGitUserName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && (otherPerson.getPersonName().equals(getPersonName())
+                || otherPerson.getAddress().equals(getAddress()));
     }
 
     /**
@@ -167,10 +192,10 @@ public class Person {
 
         Person otherProject = (Person) other;
         return otherProject.getPersonName().equals(getPersonName())
-            && otherProject.getGitUserName().equals(getGitUserName())
-            && otherProject.getPhone().equals(getPhone())
-            && otherProject.getEmail().equals(getEmail())
-            && otherProject.getAddress().equals(getAddress());
+                && otherProject.getGitUserName().equals(getGitUserName())
+                && otherProject.getPhone().equals(getPhone())
+                && otherProject.getEmail().equals(getEmail())
+                && otherProject.getAddress().equals(getAddress());
     }
 
     @Override
@@ -183,15 +208,15 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Person name: ")
-            .append(getPersonName())
-            .append(" Git Username: ")
-            .append(getGitUserName())
-            .append(" Phone: ")
-            .append(getPhone())
-            .append(" Email: ")
-            .append(getEmail())
-            .append(" Address: ")
-            .append(getAddress());
+                .append(getPersonName())
+                .append(" Git Username: ")
+                .append(getGitUserName())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Address: ")
+                .append(getAddress());
         return builder.toString();
     }
 }

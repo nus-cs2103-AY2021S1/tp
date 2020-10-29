@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -28,10 +27,12 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Participation> filteredParticipations;
+    //private final List<Task> filteredTasks;
+    //private final List<Person> filteredTeammates;
     private Optional<Project> projectToBeDisplayedOnDashboard;
     private Optional<Task> taskToBeDisplayedOnDashboard;
     private Optional<Participation> teammateToBeDisplayedOnDashboard;
-    private Optional<Meeting> meetingToBeDisplayedOnDashboard;
     private Optional<Person> personToBeDisplayedOnDashboard;
 
     /**
@@ -47,10 +48,12 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
         filteredPersons = new FilteredList<>(this.mainCatalogue.getPersonList());
+        filteredParticipations = new FilteredList<>(this.mainCatalogue.getParticipationList());
+        //filteredTasks = new ArrayList<>();
+        //filteredTeammates = new ArrayList<>();;
         this.projectToBeDisplayedOnDashboard = Optional.empty();
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.personToBeDisplayedOnDashboard = Optional.empty();
     }
 
@@ -147,6 +150,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addParticipation(Participation participation) {
+        mainCatalogue.addParticipation(participation);
+        updateFilteredParticipationList(PREDICATE_SHOW_ALL_PARTICIPATION);
+
+    }
+
+    @Override
+    public void deleteParticipation(Participation target) {
+        mainCatalogue.removeParticipation(target);
+    }
+
+    //    @Override
+    //    public void addParticipation(Participation participation) {
+    //        mainCatalogue.addParticipation(participation);
+    //        update
+    //    }
+
+    @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
@@ -195,9 +216,6 @@ public class ModelManager implements Model {
         case TASK:
             taskToBeDisplayedOnDashboard = Optional.empty();
             break;
-        case MEETING:
-            meetingToBeDisplayedOnDashboard = Optional.empty();
-            break;
         case TEAMMATE:
             teammateToBeDisplayedOnDashboard = Optional.empty();
             break;
@@ -214,7 +232,6 @@ public class ModelManager implements Model {
     public void enterTask(Task task) {
         mainCatalogue.enterTask(task);
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
         updateTaskToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTaskOnView().get());
     }
@@ -222,19 +239,9 @@ public class ModelManager implements Model {
     @Override
     public void enterTeammate(Participation teammate) {
         mainCatalogue.enterTeammate(teammate);
-        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
         updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
-    }
-
-    @Override
-    public void enterMeeting(Meeting meeting) {
-        mainCatalogue.enterMeeting(meeting);
-        this.taskToBeDisplayedOnDashboard = Optional.empty();
-        this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.projectToBeDisplayedOnDashboard.get().updateMeetingOnView(meeting);
-        updateMeetingToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getMeetingOnView().get());
     }
 
     //=========== Filtered Project List Accessors =============================================================
@@ -270,6 +277,21 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Participation} backed by the internal list of
+     * {@code versionedMainCatalogue}
+     */
+    public void updateFilteredParticipationList(Predicate<Participation> predicate) {
+        requireNonNull(predicate);
+        filteredParticipations.setPredicate(predicate);
+    }
+
+    //    @Override
+    //    public void updateFilteredParticipationList(Predicate<Participation> predicate) {
+    //        requireNonNull(predicate);
+    //        filter.setPredicate(predicate);
+    //    }
 
     @Override
     public boolean equals(Object obj) {
@@ -333,18 +355,6 @@ public class ModelManager implements Model {
     @Override
     public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
         return teammateToBeDisplayedOnDashboard;
-    }
-
-    //=========== Meeting To Be Displayed On DashBoard Accessors ======================================================
-    @Override
-    public void updateMeetingToBeDisplayedOnDashboard(Meeting meeting) {
-        requireNonNull(meeting);
-        this.meetingToBeDisplayedOnDashboard = Optional.of(meeting);
-    }
-
-    @Override
-    public Optional<Meeting> getMeetingToBeDisplayedOnDashboard() {
-        return meetingToBeDisplayedOnDashboard;
     }
 
     //=========== Person To Be Displayed On DashBoard Accessors ======================================================

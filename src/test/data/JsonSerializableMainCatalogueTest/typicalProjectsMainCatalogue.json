@@ -1,86 +1,113 @@
 {
   "_comment": "MainCatalogue save file which contains the same Project values as in TypicalProjects#getTypicalMainCatalogue()",
-  "projects" : [ {
-    "projectName" : "Apeakapp",
-    "deadline": "21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/a/a.git",
-    "projectDescription" : "An app for you to speak your mind",
-    "projectTagged" : [ "linguistics" ],
-    "occupied" : [ {
-      "taskName" : "Refactor project class",
-      "description" : "tedious :(",
-      "publishDate" : "2020-10-20",
-      "deadline" : null,
-      "progress" : "25.0",
-      "isDone" : "false",
-      "assignees" : [ ]
-    }, {
-      "taskName" : "Brainstorm user stories",
-      "description" : "",
-      "publishDate" : "2020-10-20",
-      "deadline" : null,
-      "progress" : "100.0",
-      "isDone" : "true",
-      "assignees" : [ ]
-    } ]
-  }, {
-    "projectName" : "Brick No Meier",
-    "deadline": "21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/b/b.git",
-    "projectDescription" : "To destroy the brick and mortar",
-    "projectTagged" : [ "amazon", "evil" ],
-    "occupied" : [ {
-      "taskName" : "Refine data model",
-      "description" : "so hard T.T",
-      "publishDate" : "2020-10-20",
-      "deadline" : null,
-      "progress" : "0.0",
-      "isDone" : "false",
-      "assignees" : [ ]
-    } ]
-  }, {
-    "projectName" : "Caractive",
-    "deadline": "21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/c/c.git",
-    "projectDescription" : "best car app for tesla",
-    "projectTagged" : [ "electric" ],
-    "occupied" : [ {
-      "taskName" : "Write UG",
-      "description" : "",
-      "publishDate" : "2020-10-20",
-      "deadline" : null,
-      "progress" : "50.0",
-      "isDone" : "false",
-      "assignees" : [ ]
-    } ]
-  }, {
-    "projectName" : "Dayum Snap",
-    "deadline": "21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/d/d.git",
-    "projectDescription" : "yet another stories app",
-    "projectTagged" : [ "instagram" , "snapchat" ],
-    "occupied" : [ ]
-  }, {
-    "projectName" : "Elfie save",
-    "deadline":"21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/e/e.git",
-    "projectDescription" : "save elves from persecution",
-    "projectTagged" : [ ],
-    "occupied" : [ ]
-  }, {
-    "projectName" : "Fans",
-    "deadline": "21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/f/f.git",
-    "projectDescription" : "an app only for fans",
-    "projectTagged" : [ ],
-    "occupied" : [ ]
-  }, {
-    "projectName" : "Gerry Mander",
-    "deadline": "21-03-2020 00:00:00",
-    "repoUrl": "https://github.com/g/g.git",
-    "projectDescription" : "Call us to rig any election",
-    "projectTagged" : [ ],
-    "occupied" : [ ]
-  } ],
-  "persons": [ ]
+  "projects": [
+    {
+      "projectName": "Apeakapp",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/a/a.git",
+      "projectDescription": "An app for you to speak your mind",
+      "projectTagged": [
+        "linguistics"
+      ],
+      "occupied": [
+        {
+          "taskName": "Refactor project class",
+          "description": "tedious :(",
+          "publishDate": "2020-10-26",
+          "deadline": null,
+          "progress": "25.0",
+          "isDone": "false",
+          "assignees": []
+        },
+        {
+          "taskName": "Brainstorm user stories",
+          "description": null,
+          "publishDate": "2020-10-26",
+          "deadline": null,
+          "progress": "100.0",
+          "isDone": "true",
+          "assignees": []
+        }
+      ]
+    },
+    {
+      "projectName": "Brick No Meier",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/b/b.git",
+      "projectDescription": "To destroy the brick and mortar",
+      "projectTagged": [
+        "amazon",
+        "evil"
+      ],
+      "occupied": [
+        {
+          "taskName": "Refine data model",
+          "description": "so hard T.T",
+          "publishDate": "2020-10-26",
+          "deadline": null,
+          "progress": "0.0",
+          "isDone": "false",
+          "assignees": []
+        }
+      ]
+    },
+    {
+      "projectName": "Caractive",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/c/c.git",
+      "projectDescription": "best car app for tesla",
+      "projectTagged": [
+        "electric"
+      ],
+      "occupied": [
+        {
+          "taskName": "Write UG",
+          "description": null,
+          "publishDate": "2020-10-26",
+          "deadline": null,
+          "progress": "50.0",
+          "isDone": "false",
+          "assignees": []
+        }
+      ]
+    },
+    {
+      "projectName": "Dayum Snap",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/d/d.git",
+      "projectDescription": "yet another stories app",
+      "projectTagged": [
+        "instagram",
+        "snapchat"
+      ],
+      "occupied": []
+    },
+    {
+      "projectName": "Elfie save",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/e/e.git",
+      "projectDescription": "save elves from persecution",
+      "projectTagged": [],
+      "occupied": []
+    },
+    {
+      "projectName": "Fans",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/f/f.git",
+      "projectDescription": "an app only for fans",
+      "projectTagged": [],
+      "occupied": []
+    },
+    {
+      "projectName": "Gerry Mander",
+      "deadline": "21-03-2020 00:00:00",
+      "repoUrl": "https://github.com/g/g.git",
+      "projectDescription": "Call us to rig any election",
+      "projectTagged": [],
+      "occupied": []
+    }
+  ],
+  "persons": [],
+  "participations": []
+
 }

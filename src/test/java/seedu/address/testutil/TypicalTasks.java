@@ -1,15 +1,28 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.task.Task;
+import seedu.address.model.util.SampleDataUtil;
 
+/**
+ * A utility class containing a list of {@code Task} objects to be used in tests.
+ */
 public class TypicalTasks {
-    public static final String VALID_TASK_DEADLINE = "31-12-2020 10:00:00";
-    public static final String VALID_TASK_NAME = "Plan for group meeting on milestone v1.4";
-    public static final String VALID_TASK_DESCRIPTION = "";
-    public static final double VALID_TASK_PROGRESS = 0;
-    public static final double VALID_TASK_PROGRESS_HALF = 0.5;
-    public static final boolean VALID_TASK_DONE = true;
 
-    public static final Task PLAN_MEETING = new Task(VALID_TASK_NAME, VALID_TASK_DESCRIPTION,
-            VALID_TASK_DEADLINE, VALID_TASK_PROGRESS, VALID_TASK_DONE);
+    public static final Task TASK_A = new TaskBuilder()
+            .withTaskName(SampleDataUtil.getValidTask().get(0))
+            .withTaskDescription(SampleDataUtil.getValidTask().get(1))
+            .withDeadline(SampleDataUtil.getValidTask().get(2))
+            .withProgress(SampleDataUtil.getValidTask().get(3))
+            .withCompletion(SampleDataUtil.getValidTask().get(4)).build();
+
+    private TypicalTasks() {
+    } // prevents instantiation
+
+    public static List<Task> getTypicalProjects() {
+        return new ArrayList<>(Arrays.asList(TASK_A));
+    }
 }

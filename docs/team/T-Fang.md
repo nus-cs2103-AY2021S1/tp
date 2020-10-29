@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   * What changes made: 
     * Created TaskFilterCommand and MeetingFilterCommand
     * Created relevant parsers
-    * Allowed user to filter tasks by assignee, deadline, or task name
+    * Allowed user to filter tasks by assignee, deadline, or task name, progress, done status
     * Allowed user to filter meeting by meeting name.
     * Added relevant test cases.
 * **New Feature**: Added commands to show all the tasks/meetings.
@@ -35,9 +35,18 @@ Given below are my contributions to the project.
   * What changes made: 
     * Created AllTasksCommand and AllMeetingsCommand
     * Updated MainCatalogueParser
+* **New Feature**: Added a command to sort the task list
+    (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
+  * What changes made: 
+    * Created TaskSorterCommand and the relevant parser
+    * Updated MainCatalogueParser
+    * Allowed user to sort the task list by task name, deadline, progress, and done status
+    * Added relevant test cases
+    
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=T-Fang&tabRepo=AY2021S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 * **Project management**:
-* **Enhancements to existing features**: Update task filter to support filtering by progress/isDone (Pull Request [\#138](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/138))
+* **Enhancements to existing features**: Update task filter to support filtering by progress/isDone 
+    (Pull Request [\#138](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/138))
     * What changes made: 
         * Added more prefixes
         * Updated relevant parser
@@ -46,7 +55,14 @@ Given below are my contributions to the project.
     * What changes made: 
         * Allowed user to create tasks with deadlines(optional)
         * Fully supported filter tasks by deadline
-    
+* **Enhancements to existing features**: Update task filter to support filtering tasks within a time range 
+    (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
+    * What changes made: 
+        * Creates Date class
+        * Updated relevant parsers
+        * Allowed user to find tasks within a time period
+
+
 * **Documentation**:
   * User Guide:
     * Added documentation for basic task-related features.

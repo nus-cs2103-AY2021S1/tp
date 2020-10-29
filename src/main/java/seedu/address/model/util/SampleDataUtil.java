@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GitUserName;
@@ -69,6 +68,13 @@ public class SampleDataUtil {
             "15.0",
             "false"
     ));
+    private static ArrayList<String> VALID_TASK = new ArrayList<>(Arrays.asList(
+            "Write testcases",
+            "testcases for storage, person and project class",
+            "10-10-2020 23:59:00",
+            "10.0",
+            "false"
+    ));
 
     public static Person[] getSamplePersons() {
         return new Person[]{
@@ -83,6 +89,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            generateTask(task1),
+            generateTask(task2),
+            generateTask(task3),
+            generateTask(task4),
+            generateTask(task5),
+            generateTask(task6)
+        };
+    }
+
     public static Project[] getSampleProjects() {
 
         return new Project[]{
@@ -90,30 +107,28 @@ public class SampleDataUtil {
                     new RepoUrl("http://github.com/a/b.git"),
                     new ProjectDescription("Made for pilots wanting to tie the " + "knot"),
                     getTagSet("creative"), new HashMap<>(),
-                    getTaskSet(task1),
-                    getMeetingSet("10-10-2020 00:00:00")),
+                    getTaskSet(task1)),
             new Project(new ProjectName("Basket Web"), new Deadline("21-04-2021 00:00:00"),
                     new RepoUrl("http://github.com/a/b.git"),
                     new ProjectDescription("Puts all your ususal searches into one place"),
                     getTagSet("internet", "iot"), new HashMap<>(),
-                    getTaskSet(task2, task3), getMeetingSet("10-10-2020 00:00:00")),
+                    getTaskSet(task2, task3)),
             new Project(new ProjectName("Charletan"), new Deadline("21-04-2021 00:00:00"),
                     new RepoUrl("http://github.com/a/b.git"),
                     new ProjectDescription("To nurture a more informed people"),
                     getTagSet("neighbours"), new HashMap<>(),
-                    getTaskSet(task4), getMeetingSet("10-10-2020 00:00:00")),
+                    getTaskSet(task4)),
             new Project(new ProjectName("Dacharie"), new Deadline("21-04-2021 00:00:00"),
                     new RepoUrl("http://github.com/a/b.git"),
                     new ProjectDescription("kitchen knife subscription service"),
-                    getTagSet("family"), new HashMap<>(), getTaskSet(task5),
-                    getMeetingSet("10-10-2020 00:00:00")),
+                    getTagSet("family"), new HashMap<>(), getTaskSet(task5)),
             new Project(new ProjectName("Iterab"), new Deadline("21-04-2021 00:00:00"),
                     new RepoUrl("http://github.com/a/b.git"), new ProjectDescription("Habit tracker"),
-                    getTagSet("classmates"), new HashMap<>(), getTaskSet(), getMeetingSet("10-10-2020 00:00:00")),
+                    getTagSet("classmates"), new HashMap<>(), getTaskSet()),
             new Project(new ProjectName("Reuletan"), new Deadline("21-04-2021 00:00:00"),
                     new RepoUrl("http://github.com/a/b.git"),
                     new ProjectDescription("Brings low cost investment to the " + "masses"),
-                    getTagSet("colleagues"), new HashMap<>(), getTaskSet(task6), getMeetingSet("10-10-2020 00:00:00"))
+                    getTagSet("colleagues"), new HashMap<>(), getTaskSet(task6))
         };
     }
 
@@ -138,24 +153,31 @@ public class SampleDataUtil {
     }
 
     /**
+     * Generates a task from a String list describing the attributes of the task
+     * @param s the String list describing the attributes of the task
+     * @return  the task corresponds to the input String list
+     */
+    public static Task generateTask(List<String> s) {
+        return new Task(s.get(0),
+            s.get(1),
+            s.get(2) == null ? null : new Deadline(s.get(2)),
+            Double.parseDouble(s.get(3)),
+            Boolean.parseBoolean(s.get(4)));
+    }
+    /**
      * Returns a task set containing the list of strings given.
      */
     public static Set<Task> getTaskSet(List<String>... strings) {
         return Arrays.stream(strings)
-                .map(s -> new Task(s.get(0),
-                        s.get(1),
-                        s.get(2),
-                        Double.parseDouble(s.get(3)),
-                        Boolean.parseBoolean(s.get(4))))
+                .map(s -> generateTask(s))
                 .collect(Collectors.toSet());
     }
 
     /**
-     * Returns a meeting set containing the list of strings given.
+     * Returns a assignee set containing the list of strings given.
      */
-    public static Set<Meeting> getMeetingSet(String... strings) {
+    public static Set<String> getAssigneeSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Meeting::new)
                 .collect(Collectors.toSet());
     }
 
@@ -181,5 +203,8 @@ public class SampleDataUtil {
 
     public static ArrayList<String> getTask6() {
         return task6;
+    }
+    public static ArrayList<String> getValidTask() {
+        return VALID_TASK;
     }
 }

@@ -52,11 +52,7 @@ class JsonAdaptedTask {
         taskName = source.taskName;
         description = source.getDescription();
         publishDate = source.getPublishDate().toString();
-        if (source.getDeadline() != null) {
-            deadline = source.getDeadline().toString();
-        } else {
-            deadline = null;
-        }
+        deadline = source.getDeadline().map(Deadline::toString).orElse(null);
         progress = source.getProgress().toString();
         isDone = source.isDone().toString();
         assignees = source.getAssignees();
@@ -90,7 +86,7 @@ class JsonAdaptedTask {
         }
         if (deadline != null) {
             if (!Deadline.isValidDeadline(deadline)) {
-                throw new IllegalValueException(Task.DEADLINE_MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
             }
         }
         if (progress == null) {
@@ -108,11 +104,20 @@ class JsonAdaptedTask {
             throw new IllegalValueException(Task.IS_DONE_MESSAGE_CONSTRAINTS);
         }
         Task task = null;
-        task = new Task(taskName,
-                description,
-                deadline,
-                Double.parseDouble(progress),
-                Boolean.parseBoolean(isDone));
+        if (deadline == null) {
+            task = new Task(taskName,
+                    description,
+                    null,
+                    Double.parseDouble(progress),
+                    Boolean.parseBoolean(isDone));
+
+        } else {
+            task = new Task(taskName,
+                    description,
+                    new Deadline(deadline),
+                    Double.parseDouble(progress),
+                    Boolean.parseBoolean(isDone));
+        }
 
 
         task.setPublishDate(LocalDate.parse(publishDate));

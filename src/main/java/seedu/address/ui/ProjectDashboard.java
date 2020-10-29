@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 import java.util.Optional;
 
 import javafx.fxml.FXML;

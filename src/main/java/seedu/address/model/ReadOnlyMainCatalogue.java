@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -23,6 +22,12 @@ public interface ReadOnlyMainCatalogue {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Person> getPersonList();
+
+    /**
+     * Returns an unmodifiable view of the persons list.
+     * This list will not contain any duplicate persons.
+     */
+    ObservableList<Participation> getParticipationList();
 
     /**
      * Gets the current status for valid scope.
@@ -59,9 +64,4 @@ public interface ReadOnlyMainCatalogue {
      * @param teammate
      */
     void enterTeammate(Participation teammate);
-
-    /**
-     * Enters a designated meeting of a project.
-     */
-    void enterMeeting(Meeting meeting);
 }

@@ -11,6 +11,4 @@ class TaskFilterCommandTest {
     void execute_nullPredicate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskFilterCommand(null));
     }
-
-    //TODO: will add more when meeting filter is implemented
 }

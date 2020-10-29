@@ -16,7 +16,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.Status;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -88,11 +87,6 @@ public class LogicManager implements Logic {
     @Override
     public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
         return model.getTeammateToBeDisplayedOnDashboard();
-    }
-
-    @Override
-    public Optional<Meeting> getMeetingToBeDisplayedOnDashboard() {
-        return model.getMeetingToBeDisplayedOnDashboard();
     }
 
     @Override

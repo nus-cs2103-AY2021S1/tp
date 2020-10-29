@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Task;
 
 /**
@@ -52,7 +53,7 @@ public class TaskDashboard extends UiPart<Region> {
         taskName.setText(this.task.getTaskName());
         taskDescription.setText("Task description: " + this.task.getDescription());
         publishDate.setText("Task published date: " + this.task.getPublishDate());
-        deadline.setText("Task deadline: " + this.task.getDeadline());
+        deadline.setText("Task deadline: " + this.task.getDeadline().map(Deadline::toString).orElse("null"));
         progress.setText("Task progress: " + this.task.getProgress());
         header1.setText("Task assignees: ");
         this.task.getAssignees()
