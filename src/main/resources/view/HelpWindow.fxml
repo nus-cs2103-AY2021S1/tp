@@ -254,6 +254,26 @@
                         <padding>
                             <Insets top="5" right="5" bottom="5" left="5" />
                         </padding>
+                        <Label fx:id="bookmarkMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="bookmarkMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
+
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
+
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
                         <Label fx:id="exitMethod" styleClass="help-title" />
                     </VBox>
                     <VBox GridPane.columnIndex="1" styleClass="help-table" alignment="TOP_LEFT">
