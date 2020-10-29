@@ -27,7 +27,7 @@ public class Inventory extends UiPart<Region> {
     @FXML
     private TableColumn<InventoryRecord, String> itemNameCol;
     @FXML
-    private TableColumn<InventoryRecord, String> costCol;
+    private TableColumn<InventoryRecord, String> costUnitCol;
     @FXML
     private TableColumn<InventoryRecord, Integer> quantityCol;
     @FXML
@@ -38,13 +38,12 @@ public class Inventory extends UiPart<Region> {
      */
     public Inventory(Logic logic, UiLogic uiLogic) {
         super(FXML);
-        final String[] financeId = {""};
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseInventoryList(logic));
         idCol.setCellValueFactory(new PropertyValueFactory<>("UiUsableIndex"));
         itemNameCol.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        costCol.setCellValueFactory(item -> {
+        costUnitCol.setCellValueFactory(item -> {
             SimpleStringProperty property = new SimpleStringProperty();
             property.setValue(String.valueOf(item.getValue()));
             return property;
@@ -52,7 +51,6 @@ public class Inventory extends UiPart<Region> {
         financeIdCol.setCellValueFactory(item -> {
             SimpleStringProperty property = new SimpleStringProperty();
             property.setValue(String.valueOf(item.getValue().getFinanceId()));
-            financeId[0] = String.valueOf(item.getValue().getFinanceId());
             return property;
         });
         Callback<TableColumn<InventoryRecord, String>,
@@ -61,22 +59,21 @@ public class Inventory extends UiPart<Region> {
                     public TableCell call(final TableColumn<InventoryRecord, String> param) {
                         final TableCell<InventoryRecord, String> cell = new TableCell<>() {
 
-                            final Button button = new Button(financeId[0]);
-
                             @Override
                             public void updateItem(String item, boolean empty) {
+                                final Button button = new Button(item);
                                 super.updateItem(item, empty);
                                 if (empty) {
                                     setGraphic(null);
                                     setText(null);
                                 } else if (item.equals("0")) {
                                     button.setDisable(true);
-                                    setText(financeId[0]);
+                                    setText(item);
                                 } else {
                                     button.setOnAction(event -> {
                                         try {
                                             uiLogic.execute("goto_finance");
-                                            logic.execute(String.format("find_finance %s", financeId[0]));
+                                            logic.execute(String.format("find_finance %s", item));
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
