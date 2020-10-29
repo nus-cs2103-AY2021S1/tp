@@ -62,7 +62,6 @@ public class ArgumentTokenizer {
         return prefixPositions;*/
     }
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
-        System.out.println(prefix);
         List<PrefixPosition> positions = new ArrayList<>();
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
         while (prefixPosition != -1) {
