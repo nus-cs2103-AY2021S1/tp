@@ -305,7 +305,7 @@ Hence, we have modified it to allow the predicate to match the substrings of the
 </div>
 
 You can refer to the sequence diagram as shown below:
-![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
+![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram2.png)
 
 ### Undo/Redo Command
 
