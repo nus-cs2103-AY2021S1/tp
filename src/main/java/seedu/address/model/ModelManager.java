@@ -369,35 +369,3 @@ public class ModelManager implements Model {
         return personToBeDisplayedOnDashboard;
     }
 }
-
-//    //=========== Filtered Task List Accessors =============================================================
-//
-//    /**
-//     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-//     * {@code versionedMainCatalogue}
-//     */
-//    @Override
-//    public List<Task> getFilteredTaskList() {
-//        return filteredTasks;
-//    }
-//
-//    @Override
-//    public void updateFilteredTaskList(List<Task> taskList) {
-//        this.filteredTasks.addAll(taskList);
-//    }
-//
-//    //=========== Filtered Teammates List Accessors =============================================================
-//
-//    /**
-//     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-//     * {@code versionedMainCatalogue}
-//     */
-//    @Override
-//    public List<Person> getFilteredTeammateList() {
-//        return filteredTeammates;
-//    }
-//
-//    @Override
-//    public void updateFilteredTeammateList(List<Person> teammatesList) {
-//        filteredTeammates.addAll(teammatesList);
-//    }
