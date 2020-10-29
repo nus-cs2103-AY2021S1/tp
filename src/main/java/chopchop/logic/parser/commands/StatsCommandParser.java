@@ -125,8 +125,8 @@ public class StatsCommandParser {
 
         try {
 
-            var arg1 = processDate(before).orElse(null);
-            var arg2 = processDate(after).orElse(null);
+            var arg1 = processDate(after).orElse(null);
+            var arg2 = processDate(before).orElse(null);
 
             return Result.of(new StatsRecipeMadeCommand(arg1, arg2));
 
@@ -152,8 +152,8 @@ public class StatsCommandParser {
         }
 
         try {
-            var arg1 = processDate(before).orElse(null);
-            var arg2 = processDate(after).orElse(null);
+            var arg1 = processDate(after).orElse(null);
+            var arg2 = processDate(before).orElse(null);
 
             return Result.of(new StatsIngredientUsedCommand(arg1, arg2));
 

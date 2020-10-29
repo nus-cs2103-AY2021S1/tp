@@ -82,28 +82,28 @@ public class UsageList<T extends Usage> {
     public List<T> getUsagesBefore(LocalDateTime upperBound) {
         requireNonNull(upperBound);
         return this.usages.stream()
-            .filter(x-> x.isAfter(upperBound))
+            .filter(x-> x.isBefore(upperBound))
             .collect(Collectors.toList());
     }
 
     /**
      * Returns a list of string output pairs that can be directly fed into listView.
      */
-    public List<Pair<String, String>> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
-        if (start == null && end == null) {
+    public List<Pair<String, String>> getUsagesBetween(LocalDateTime after, LocalDateTime before) {
+        if (after == null && before == null) {
             return new ArrayList<>();
-        } else if (start != null && end == null) {
-            return getUsagesAfter(start).stream()
+        } else if (after != null && before == null) {
+            return getUsagesAfter(after).stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
-        } else if (start == null) {
-            return getUsagesBefore(end).stream()
+        } else if (after == null) {
+            return getUsagesBefore(before).stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
         } else {
             return this.usages.stream()
-                .filter(x -> x.isAfter(start))
-                .filter(x -> x.isBefore(end))
+                .filter(x -> x.isAfter(after))
+                .filter(x -> x.isBefore(before))
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
         }
