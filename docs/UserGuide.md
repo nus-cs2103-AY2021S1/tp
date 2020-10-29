@@ -329,6 +329,17 @@ command, redo will not be able to be called.
 
 Format: `redo`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about undo/redo:**<br>
+
+If the command that is being undone/redone is a `main page command`, and if the application is currently on the case page,
+using undo/redo will make the application return to the main page.<br>
+e.g. `add case t:Lost Wallet` will add a new case to PIVOT. `open case 1` will open the first case in the list of cases,
+and the application will now be at the case page. Using `undo` will undo the `add case t:Lost Wallet command`, which is
+a `main page command`. This will bring the application back to the main page.
+</div>
+
 #### Exit application: `exit`
 
 Exits the application.
