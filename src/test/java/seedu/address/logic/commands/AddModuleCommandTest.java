@@ -118,7 +118,7 @@ public class AddModuleCommandTest {
 
         @Override
         public boolean isInModuleView() {
-            return false;
+            return true;
         }
 
         @Override
