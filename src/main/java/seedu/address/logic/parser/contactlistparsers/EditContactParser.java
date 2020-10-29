@@ -35,7 +35,8 @@ public class EditContactParser implements Parser<EditContactCommand> {
      */
     public EditContactCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_TELEGRAM);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
+                PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         Index index;
@@ -46,7 +47,6 @@ public class EditContactParser implements Parser<EditContactCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditContactCommand.MESSAGE_USAGE), pe);
         }
-
         EditContactDescriptor editContactDescriptor = new EditContactDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
