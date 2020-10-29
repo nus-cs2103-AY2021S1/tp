@@ -10,7 +10,7 @@ import seedu.resireg.logic.parser.DeleteCommandParser;
 import seedu.resireg.logic.parser.DeleteRoomCommandParser;
 import seedu.resireg.logic.parser.EditCommandParser;
 import seedu.resireg.logic.parser.FindCommandParser;
-import seedu.resireg.logic.parser.ListRoomCommandParser;
+import seedu.resireg.logic.parser.ListRoomsCommandParser;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ReallocateCommandParser;
 import seedu.resireg.logic.parser.RestoreCommandParser;
@@ -37,7 +37,7 @@ public enum CommandWordEnum {
     LIST_ALIAS_COMMAND(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, args -> new ListAliasCommand()),
 
     // rooms
-    LIST_ROOM_COMMAND(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse),
+    LIST_ROOMS_COMMAND(ListRoomsCommand.COMMAND_WORD, ListRoomsCommand.HELP, new ListRoomsCommandParser()::parse),
     EDIT_ROOM_COMMAND(EditRoomCommand.COMMAND_WORD, EditRoomCommand.HELP, new EditRoomCommandParser()::parse),
     ADD_ROOM_COMMAND(AddRoomCommand.COMMAND_WORD, AddRoomCommand.HELP, new AddRoomCommandParser()::parse),
     DELETE_ROOM_COMMAND(DeleteRoomCommand.COMMAND_WORD, DeleteRoomCommand.HELP, new DeleteRoomCommandParser()::parse),
