@@ -7,10 +7,10 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
-public class StatsIngredientRecentlyUsedCommand extends Command {
-    public static final String COMMAND_WORD = "stats ingredient recently used";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows a list of"
-        + "ingredients that are recently used. (Capped at 10 ingredients)";
+public class StatsRecipeRecentCommand extends Command {
+    public static final String COMMAND_WORD = "stats recipe recent";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows a list"
+        + "of recipes recently made. (Capped at 10 recipes)";
     private static final int N_MOST_RECENT = 10;
 
     /**
@@ -24,13 +24,30 @@ public class StatsIngredientRecentlyUsedCommand extends Command {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         try {
-            var output = model.getRecentlyUsedIngredient(N_MOST_RECENT);
+            var output = model.getRecentlyUsedRecipe(N_MOST_RECENT);
             var msgOutput = output.stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
-            return CommandResult.statsMessage(msgOutput, "Here is the list of ingredients recently used");
+            return CommandResult.statsMessage(msgOutput, "Here is a list of recipes recently made");
         } catch (Exception e) {
-            return CommandResult.message("Unable to generate ingredient recently used");
+            return CommandResult.message("Unable to generate recipes recently made");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "StatsRecipeRecentCommand";
+    }
+
+    public static String getCommandString() {
+        return "stats recipe recent";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows the recipes that were recently made";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("listing-recently-made-recipes--statsreciperecent");
     }
 }
