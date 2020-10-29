@@ -89,7 +89,7 @@ Specifically, this section covers:
 1. [Command Box](#commandBox)
 2. [Command Output](#commandOutput)
 3. [Recipe Button](#recipeButton)
-4. Ingredient Button
+4. [Ingredient Button](#ingredientButton)
 5. Recommendation Button
 6. Favourites Button
 7. Statistics Box
@@ -103,6 +103,11 @@ Specifically, this section covers:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_panel_description.png" width="95%" /> <br />
 Figure 1.2: <i>The recipe view panel of ChopChop.</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
+Figure 1.3: <i>The ingredient view panel of ChopChop.</i>
 </div>
 
 <a name="commandBox"></a>
@@ -119,12 +124,15 @@ ChopChop will always display textual responses to the commands you input — the
 
 <a name="recipeButton"></a>
 ### Recipe Button
-ChopChop is able to display all of your recipes as [Recipe Tiles]() when you press this button. The tile will be in a darker shade of orange when the `Recipe Tiles` are in play.
+ChopChop is able to display all of your recipes as [Recipe Tiles]() as shown in Figure 1.2 when you press the `Recipe Button`. Also, the `Recipe Button` will be in a darker shade of orange when the `Recipe Tiles` are in play.
 
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
-Figure 1.3: <i>The ingredient view panel of ChopChop.</i>
-</div>
+
+
+
+<a name="ingredientButton"></a>
+### Ingredient Button
+ChopChop is able to display all of your ingredients as [Ingredient Tiles]() as shown in Figure 1.3 when you press the `Ingredient button`. Also, the `Ingredient Button` will be in a darker shade of orange when the `Ingredient Tiles` are in play.
+
 
 
 <div style="text-align: center; padding-bottom: 2em">
