@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.pivot.logic.commands.AddCommand;
-import seedu.pivot.logic.commands.ClearCommand;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.EditCommand;
@@ -58,9 +57,6 @@ public class PivotParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-
-//        case ClearCommand.COMMAND_WORD:
-//            return new ClearCommand();
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
