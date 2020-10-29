@@ -165,6 +165,7 @@ public class UpdateCommand extends Command {
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
         SerialNumber stockSerialNumber = stockToUpdate.getSerialNumber();
         Optional<QuantityAdder> quantityAdder = updateStockDescriptor.getQuantityAdder();
+        List<Note> noteList = stockToUpdate.getNotes();
 
         if (!quantityAdder.isEmpty()) {
             QuantityAdder valueToBeAdded = quantityAdder.get();
@@ -172,15 +173,10 @@ public class UpdateCommand extends Command {
             updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS));
         }
 
-        Stock result = new Stock(updatedName, stockSerialNumber, updatedSource, updatedQuantity, updatedLocation);
+        Stock result = new Stock(updatedName, stockSerialNumber, updatedSource,
+                updatedQuantity, updatedLocation, noteList);
 
-        if (stockToUpdate.getNotes().size() > 0) {
-            List<Note> noteList = stockToUpdate.getNotes();
 
-            for (Note note : noteList) {
-                result.addNote(note);
-            }
-        }
         if (stockToUpdate.getIsBookmarked()) {
             result.setBookmarked();
         }
