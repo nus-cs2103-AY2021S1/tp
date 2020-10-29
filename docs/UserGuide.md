@@ -28,10 +28,14 @@ will be able to manage and access your files with ease.
 ![Illustration](images/Illustrations.PNG)
 
 ### Basic workflow
-1. Tag important files with the `tag` command for ease of access.
-2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.
-3. To find the location of tagged files, use the `show` command to get the file path of the file.
-4. To exit the application, either close the application window, or use the `exit` command.
+1. Tag important files with the `tag` command for ease of access.<br>
+![Tag](images/tag.PNG)
+2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.<br>
+![Open](images/open.PNG)
+3. To find the location of tagged files, use the `show` command to get the file path of the file.<br>
+![show](images/show.PNG)
+4. To exit the application, either close the application window, or use the `exit` command.<br>
+![Exit](images/exit.PNG)
 
 --------------------------------------------------------------------------------------------------------------------
 
