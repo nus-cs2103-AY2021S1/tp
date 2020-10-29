@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Title {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Title must be less than 20 characters";
+            "Title not be more than 20 characters";
 
     /*
      * The first character of the title must not be a whitespace,

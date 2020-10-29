@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Description must be less than 80 characters";
+            "Description must not be more than 80 characters";
 
     /*
      * The first character of the description must not be a whitespace,
