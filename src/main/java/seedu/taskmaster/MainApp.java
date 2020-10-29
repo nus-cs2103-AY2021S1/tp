@@ -80,7 +80,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyTaskmaster> taskmasterOptional;
         Optional<SessionList> sessionListOptional;
         ReadOnlyTaskmaster initialData;
-        SessionList initialSessionList;
+        SessionList initialSessionList = new SessionListManager();
         try {
             taskmasterOptional = storage.readTaskmaster();
             if (!taskmasterOptional.isPresent()) {
@@ -92,8 +92,7 @@ public class MainApp extends Application {
             if (!sessionListOptional.isPresent()) {
                 logger.info("Session List file not found.");
             }
-            initialSessionList = sessionListOptional.orElseGet(SessionListManager::new);
-            initialData.setSessions(initialSessionList.asUnmodifiableObservableList());
+            initialSessionList = sessionListOptional.orElse(initialSessionList);
 
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Taskmaster");
@@ -103,7 +102,7 @@ public class MainApp extends Application {
             initialData = new Taskmaster();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, initialSessionList, userPrefs);
     }
 
     private void initLogging(Config config) {

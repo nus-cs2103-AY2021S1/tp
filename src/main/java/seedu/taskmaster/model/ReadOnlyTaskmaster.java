@@ -27,6 +27,4 @@ public interface ReadOnlyTaskmaster {
      * {@code StudentRecord}.
      */
     ObservableList<StudentRecord> getStudentRecordList();
-
-    void setSessions(List<Session> sessions);
 }

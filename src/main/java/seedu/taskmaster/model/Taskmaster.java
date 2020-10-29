@@ -69,7 +69,6 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * Replaces the contents of the session list with {@code sessions}.
      * {@code sessions} must not contain duplicate sessions.
      */
-    @Override
     public void setSessions(List<Session> sessions) {
         this.sessions.setSessions(sessions);
     }

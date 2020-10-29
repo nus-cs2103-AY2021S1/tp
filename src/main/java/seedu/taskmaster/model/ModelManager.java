@@ -16,6 +16,8 @@ import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionList;
+import seedu.taskmaster.model.session.SessionListManager;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
@@ -32,22 +34,25 @@ public class ModelManager implements Model {
     private final FilteredList<Session> filteredSessions;
 
     /**
-     * Initializes a ModelManager with the given taskmaster and userPrefs.
+     * Initializes a ModelManager with the given Taskmaster, SessionList, and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskmaster taskmaster, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskmaster taskmaster, SessionList sessionList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskmaster, userPrefs);
 
         logger.fine("Initializing with student list: " + taskmaster + " and user prefs " + userPrefs);
 
         this.taskmaster = new Taskmaster(taskmaster);
+        this.taskmaster.setSessions(sessionList.asUnmodifiableObservableList());
+
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
         filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
     }
 
+
     public ModelManager() {
-        this(new Taskmaster(), new UserPrefs());
+        this(new Taskmaster(), new SessionListManager(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
