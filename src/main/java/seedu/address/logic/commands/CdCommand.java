@@ -67,7 +67,7 @@ public class CdCommand extends Command {
             absolutePathString = addressString;
             break;
         case CHILD:
-            absolutePathString = currentPath.getAddress().value + "\\" + addressString;
+            absolutePathString = currentPath.getAddress().value + "/" + addressString;
             break;
         case PARENT:
             absolutePathString = currentPath.getParentAddress();
