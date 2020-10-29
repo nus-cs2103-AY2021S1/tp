@@ -45,14 +45,14 @@ Interested? Read on to get [started](#3-quick-start-guide)!
 
 5. Below is an image explaining the relevant areas of the application:
 
-    ![NUStorage explained](images/NustorageExplain.png)
+    ![NUStorage explained](images/NUStorage_explained.png)
 
 6. Type a few commands in the command box and press enter to execute. This is small calibration test to ensure that NUStorage is working as intended.
     * Here are some sample commands to type:
         * `create_inventory i/Logitech G400 q/20 c/69` to add 20 Logitech G400 gaming mouse that cost $69 to the inventory
         * `add_finance amt/120.17` to add an inbound transaction of $120.17
         * `bye` to exit programme
-    * Refer to the commands list below for details of each command.
+    * Refer to the [commands list](#5-commands) below for details of each command.
 
 ---
 
