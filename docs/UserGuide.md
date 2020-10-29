@@ -151,9 +151,12 @@ creating, reading, updating and deleting a task. A task can be either a
 
 Shows the user a list of all the tasks in PlaNus.
 
-![list tasks](images/ListTasks.png)
-
 Format: `list-task`
+
+1. Type in `list-task` into the command box.
+2. A success message will appear and list of all task will be shown in the task panel.
+
+![list tasks](images/ListTasks.png)
 
 <br>
 
@@ -176,10 +179,18 @@ Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODUL
 
 Examples:
 
-* `deadline title:Return book datetime:02-01-2020 18:00`<br>
-    * Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
-* `deadline title:Assignment 1 desc:CS3230 Assignment 1 datetime:01-11-2020 18:00 tag:CS3230`<br>
-    * Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 1”, and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
+To add a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus,
+users can do the following:
+ 
+1) Type in the command box the following command:
+* `deadline title:Return book datetime:02-01-2020 18:00`
+
+![add deadline](./images/AddDeadlineCommand.png)
+
+2) This adds the corresponding deadline to PlaNus. You can see the added deadline in the task list.
+
+![add deadline_result](./images/AddDeadlineCommandResult.png)
+
 <br>
 
 ### 2.3 Add an event : `event`
@@ -200,11 +211,17 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 
 Examples:
 
-* `event title:Career Talk date:02-01-2020 from:09:00 to:12:30`<br>
-    * Adds an event with title "Career Talk", and a date "02-01-2020" with start time of "09:00" and end time of "11:30" to PlaNus.
-* `event title:Consultation date:13-10-2020 from:19:00 to:20:30 desc:CS2105 consultation tag:CS2105`<br> 
-    * Adds an event with title "Consultation", a date "13-10-2020" with start time of "19:00" and end time of "20:30" with tag "CS2105" to PlaNus.
+To add an event with title "Project meeting", and a date "29-10-2020" with start time of "09:00" and end time of "11:30" and with tag "CS2103T" to PlaNus,
+users can do the following:
+ 
+1) Type in the command box the following command:
+* `event title:Project meeting date:29-10-2020 from:09:00 to:12:30 tag:CS2103T`
 
+![add event](./images/AddEventCommand.png)
+
+2) This adds the corresponding event to PlaNus. You can see the added event in the task list and the calendar. The duration if the event will be recorded for time analysis.
+
+![add event_result](./images/AddEventCommandResult.png)
 
 <br>
 
@@ -235,6 +252,17 @@ Examples:
     * Marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and records that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
 * `find-task title:homework` followed by `done 1:20` 
     * Marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline as 20 minutes.
+
+To mark the first deadline in the current task list as done and stating you have spend 50 minutes on it,
+users can do the following:
+1) Type in the command box the following command:
+* `done 1:50`
+
+![mark_as_done](./images/DoneCommand.png)
+
+2) The status of the deadline has been set to complete. And the time taken to complete the task will be used for time analysis.
+
+![mark_as_done_result](./images/DoneCommandResult.png)
 
 <br>
 
