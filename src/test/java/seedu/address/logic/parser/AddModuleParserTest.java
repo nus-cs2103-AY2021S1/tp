@@ -144,7 +144,7 @@ public class AddModuleParserTest {
 
     @Test
     public void parse_invalidTags_failure() {
-        String invalidTags = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T + " " + PREFIX_MODULAR_CREDITS + "-2"
+        String invalidTags = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4
                 + " " + PREFIX_TAG + "@#@#";
         assertParseFailure(parser, invalidTags, Tag.MESSAGE_CONSTRAINTS);
     }
@@ -152,8 +152,8 @@ public class AddModuleParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE);
-        String nonEmptyPreamble = "add " + PREFIX_NAME + VALID_MODULENAME_CS2103T + " " + PREFIX_MODULAR_CREDITS + "-2"
-                + " " + PREFIX_TAG + VALID_TAG_LECTURE;
+        String nonEmptyPreamble = "add " + PREFIX_NAME + VALID_MODULENAME_CS2103T + " " + PREFIX_MODULAR_CREDITS
+                + VALID_MC_4 + " " + PREFIX_TAG + VALID_TAG_LECTURE;
         assertParseFailure(parser, nonEmptyPreamble, expectedMessage);
     }
 

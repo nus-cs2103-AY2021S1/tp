@@ -16,7 +16,7 @@ public class ModuleName {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[A-Z]{2,2}[\\d]{4,4}\\D?";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,3}[\\d]{4,4}\\D?";
 
     public final String fullName;
 

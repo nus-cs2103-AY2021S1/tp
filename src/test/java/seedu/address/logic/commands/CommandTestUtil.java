@@ -48,8 +48,8 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
     public static final String VALID_MODULELESSONTYPE_CS2103T = "Lecture";
     public static final String VALID_MODULELESSONTYPE_ES2660 = "Tutorial";
-    public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
-    public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
+    public static final String VALID_ZOOMLINK_CS2103T = "https://nus-sg.zoom.us/cs2103t";
+    public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/es2660";
     public static final double VALID_MC_4 = 4.0;
     public static final double VALID_MC_2 = 2.0;
     public static final double VALID_GRADEPOINT_4 = 4.0;
