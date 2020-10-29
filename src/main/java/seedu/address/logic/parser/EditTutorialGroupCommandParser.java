@@ -6,10 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
+
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.EditModuleCommand;
@@ -33,9 +35,9 @@ public class EditTutorialGroupCommandParser implements Parser<EditTutorialGroupC
             return false;
         } else {
             String[] splitTime = toVerify.split(":");
-            int Hour = Integer.valueOf(splitTime[0]);
-            int Minute = Integer.valueOf(splitTime[1]);
-            return (Hour >= 0 && Hour <= 23) && (Minute >= 0 && Minute <= 59);
+            int hour = Integer.valueOf(splitTime[0]);
+            int minute = Integer.valueOf(splitTime[1]);
+            return (hour >= 0 && hour <= 23) && (minute >= 0 && minute <= 59);
         }
     }
 
@@ -57,7 +59,8 @@ public class EditTutorialGroupCommandParser implements Parser<EditTutorialGroupC
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_GRP, PREFIX_TUTORIAL_GRP_DAY,
             PREFIX_TUTORIAL_GRP_START_TIME, PREFIX_TUTORIAL_GRP_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTutorialGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTutorialGroupCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -74,14 +77,16 @@ public class EditTutorialGroupCommandParser implements Parser<EditTutorialGroupC
             String endTimeString = argMultimap.getValue(PREFIX_TUTORIAL_GRP_END_TIME).orElse("");
 
             if (!isValidDayOfWeek(dayOfWeek) || !isValidStartEndTimePair(startTimeString, endTimeString)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialGroupCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddTutorialGroupCommand.MESSAGE_USAGE));
             }
 
             startTime = LocalTime.parse(startTimeString + ":00");
             endTime = LocalTime.parse(endTimeString + ":00");
 
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditModuleCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
         return new EditTutorialGroupCommand(index, newTutorialGroupId, dayOfWeek, startTime, endTime);
