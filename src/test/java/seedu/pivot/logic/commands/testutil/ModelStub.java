@@ -86,7 +86,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void commitPivot(String command) {
+    public void commitPivot(String command, boolean isMainPageCommand) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -96,7 +96,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String redoPivot() {
+    public void redoPivot() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -106,7 +106,19 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String undoPivot() {
+    public void undoPivot() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public String getStateCommand() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isMainPageCommand() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
 }

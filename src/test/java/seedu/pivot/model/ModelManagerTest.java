@@ -3,7 +3,7 @@ package seedu.pivot.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.ALICE_PAULINE_ASSAULT;
 import static seedu.pivot.testutil.TypicalCases.BENSON_MEIER_ROBBERY;
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(pivot, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        modelManager.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

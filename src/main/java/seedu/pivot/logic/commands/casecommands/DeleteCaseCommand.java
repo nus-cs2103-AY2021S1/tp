@@ -2,6 +2,8 @@ package seedu.pivot.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -53,7 +55,15 @@ public class DeleteCaseCommand extends DeleteCommand {
 
         Case caseToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCase(caseToDelete);
-        model.commitPivot(String.format(MESSAGE_DELETE_CASE_SUCCESS, caseToDelete));
+        model.commitPivot(String.format(MESSAGE_DELETE_CASE_SUCCESS, caseToDelete), true);
+
+        if (StateManager.atDefaultSection()) {
+            model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
+        }
+        if (StateManager.atArchivedSection()) {
+            model.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_CASE_SUCCESS, caseToDelete));
     }
 

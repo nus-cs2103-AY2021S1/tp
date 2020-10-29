@@ -5,9 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_CASES_LISTED_OVERVIEW;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 import static seedu.pivot.testutil.TypicalCases.CARL_KURZ_FIRE;
 import static seedu.pivot.testutil.TypicalCases.ELLE_MEYER_SHOOTING;
 import static seedu.pivot.testutil.TypicalCases.FIONA_KUNZ_KIDNAPPING;
+import static seedu.pivot.testutil.TypicalCases.JUNK_YARD_MURDER;
+import static seedu.pivot.testutil.TypicalCases.KLOOK_SCAM;
+import static seedu.pivot.testutil.TypicalCases.LOUIS_HOMICIDE;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.util.Arrays;
@@ -15,6 +20,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;
@@ -65,11 +71,27 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywordsArchivedSection_multiplePersonsFound() {
+        StateManager.setArchivedSection();
+
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 3);
-        DetailsContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        DetailsContainsKeywordsPredicate predicate = preparePredicate("Junk Klook Louis Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredCaseList(predicate);
+        expectedModel.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_ARCHIVED_CASES));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(JUNK_YARD_MURDER, KLOOK_SCAM,
+                LOUIS_HOMICIDE), model.getFilteredCaseList());
+
+        StateManager.setDefaultSection();
+    }
+
+    @Test
+    public void execute_multipleKeywordsDefaultSection_multiplePersonsFound() {
+        StateManager.setDefaultSection();
+        String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 3);
+        DetailsContainsKeywordsPredicate predicate = preparePredicate("Junk Klook Louis Kurz Elle Kunz");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_DEFAULT_CASES));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL_KURZ_FIRE, ELLE_MEYER_SHOOTING,
                 FIONA_KUNZ_KIDNAPPING), model.getFilteredCaseList());

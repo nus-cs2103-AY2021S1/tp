@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -43,7 +44,7 @@ public class AddCommandParserMainPageTest {
         List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = new HashSet<>();
         Case validCase = new Case(title, description, status, documents,
-                suspects, victims, witnesses, tagList);
+                suspects, victims, witnesses, tagList, ArchiveStatus.DEFAULT);
         assertParseSuccess(parser, TYPE_CASE + PREFIX_TITLE + VALID_TITLE, new AddCaseCommand(validCase));
     }
 

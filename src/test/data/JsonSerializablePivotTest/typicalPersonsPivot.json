@@ -29,7 +29,8 @@
       "email" : "tom@gmail.com",
       "address" : "Blk 123"
     } ],
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Benson Meier Robbery",
     "description": "",
@@ -53,7 +54,8 @@
       "email" : "tom@gmail.com",
       "address" : "Blk 123"
     } ],
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Carl Kurz Fire",
     "description": "",
@@ -62,7 +64,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Daniel Meier Shoplifting",
     "description": "",
@@ -71,7 +74,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Elle Meyer Shooting",
     "description": "",
@@ -80,7 +84,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Fiona Kunz Kidnapping",
     "description": "",
@@ -89,7 +94,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "George Best Vandalism",
     "description": "",
@@ -98,6 +104,40 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
-  } ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Junk Yard Murder",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "ARCHIVED"
+  },
+    {
+      "title" : "Klook Scam",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    },
+    {
+      "title" : "Louis Homicide",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    }
+  ]
 }

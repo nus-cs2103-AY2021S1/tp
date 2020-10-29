@@ -106,7 +106,6 @@ public class ModelManager implements Model {
     @Override
     public void addCase(Case investigationCase) {
         pivot.addCase(investigationCase);
-        updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
     }
 
     @Override
@@ -118,10 +117,10 @@ public class ModelManager implements Model {
 
     //=========== Versioned Pivot ===========================================================================
     @Override
-    public void commitPivot(String command) {
+    public void commitPivot(String command, boolean isMainPageCommand) {
         requireNonNull(command);
         this.versionedPivot.purgeStates();
-        this.versionedPivot.commit(new Pivot(this.pivot), command);
+        this.versionedPivot.commit(new Pivot(this.pivot), command, isMainPageCommand);
     }
 
     @Override
@@ -130,10 +129,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String redoPivot() {
+    public void redoPivot() {
         ReadOnlyPivot pivot = this.versionedPivot.redo();
         this.setPivot(pivot);
-        return this.versionedPivot.getStateCommand();
     }
 
     @Override
@@ -142,11 +140,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String undoPivot() {
-        String command = this.versionedPivot.getStateCommand();
+    public void undoPivot() {
         ReadOnlyPivot pivot = this.versionedPivot.undo();
         this.setPivot(pivot);
-        return command;
+    }
+
+    @Override
+    public String getStateCommand() {
+        return this.versionedPivot.getCommandResult();
+    }
+
+    @Override
+    public boolean isMainPageCommand() {
+        return this.versionedPivot.getIsMainPageCommandResult();
     }
 
     //=========== Filtered Case List Accessors =============================================================

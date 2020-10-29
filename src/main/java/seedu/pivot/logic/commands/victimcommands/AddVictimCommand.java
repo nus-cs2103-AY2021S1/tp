@@ -81,10 +81,10 @@ public class AddVictimCommand extends AddCommand {
 
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), stateCase.getDocuments(), stateCase.getSuspects(),
-                updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
+                updatedVictims, stateCase.getWitnesses(), stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_VICTIM_SUCCESS, victim));
+        model.commitPivot(String.format(MESSAGE_ADD_VICTIM_SUCCESS, victim), false);
 
         return new CommandResult(String.format(MESSAGE_ADD_VICTIM_SUCCESS, victim));
     }

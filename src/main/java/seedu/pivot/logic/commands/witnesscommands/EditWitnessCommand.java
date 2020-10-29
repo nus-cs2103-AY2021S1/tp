@@ -78,10 +78,10 @@ public class EditWitnessCommand extends EditPersonCommand {
         editedWitnesses.set(personIndex.getZeroBased(), editedWitness);
         Case editedCase = new Case(caseToEdit.getTitle(), caseToEdit.getDescription(), caseToEdit.getStatus(),
                 caseToEdit.getDocuments(), caseToEdit.getSuspects(), caseToEdit.getVictims(), editedWitnesses,
-                caseToEdit.getTags());
+                caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_WITNESS_SUCCESS, editedWitness));
+        model.commitPivot(String.format(MESSAGE_EDIT_WITNESS_SUCCESS, editedWitness), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_WITNESS_SUCCESS, editedWitness));
     }

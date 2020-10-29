@@ -6,7 +6,6 @@ import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.Optional;
@@ -96,12 +95,11 @@ public class EditDocumentCommand extends EditCommand {
 
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(),
                 stateCase.getStatus(), documents, stateCase.getSuspects(),
-                stateCase.getVictims(), stateCase.getWitnesses(), stateCase.getTags());
+                stateCase.getVictims(), stateCase.getWitnesses(), stateCase.getTags(), stateCase.getArchiveStatus());
 
         //update model
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
     }

@@ -77,10 +77,10 @@ public class AddSuspectCommand extends AddCommand {
         updatedSuspects.add(suspect);
         Case updatedCase = new Case(openCase.getTitle(), openCase.getDescription(), openCase.getStatus(),
                 openCase.getDocuments(), updatedSuspects, openCase.getVictims(), openCase.getWitnesses(),
-                openCase.getTags());
+                openCase.getTags(), openCase.getArchiveStatus());
 
         model.setCase(openCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
+        model.commitPivot(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect), false);
 
         return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }
