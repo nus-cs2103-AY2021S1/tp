@@ -150,8 +150,9 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 Action | Format | Examples
 --------|------------------ | --------------
-**Add** | `add e/EXERCISE r/REPS [c/COMMENTS]` <br> | e.g., `add e/situp r/30 c/Send help`
-**Delete** | `delete INDEX` | <br> e.g., `delete 3`
-**Edit** | `edit INDEX [r/REPS] [c/COMMENT]` | <br> e.g.,`edit 1 r/20 c/no abs were hurt`
+**Add** | `add e/EXERCISE r/REPS [c/COMMENTS]` <br> | e.g. `add e/situp r/30 c/Send help`
+**Delete** | `delete INDEX` | <br> e.g. `delete 3`
+**Edit** | `edit INDEX [r/REPS] [c/COMMENT]` | <br> e.g.`edit 1 r/20 c/no abs were hurt`
 **List** | `list`
+**Find** | `find` | <br> e.g.`find pushups`
 **Exit** | `exit`

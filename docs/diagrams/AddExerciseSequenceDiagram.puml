@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FixMyAbsParser" as FixMyAbsParser LOGIC_COLOR
+participant ":AddExCommandParser" as AddExCommandParser LOGIC_COLOR
+participant "a:AddExCommand" as AddExCommand LOGIC_COLOR
+participant "newExercise:Exercise" as Exercise LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(command)
+activate LogicManager
+
+LogicManager -> FixMyAbsParser : parseCommand(command)
+activate FixMyAbsParser
+
+create AddExCommandParser
+FixMyAbsParser -> AddExCommandParser
+activate AddExCommandParser
+
+AddExCommandParser --> FixMyAbsParser
+deactivate AddExCommandParser
+
+FixMyAbsParser -> AddExCommandParser : parse(command)
+activate AddExCommandParser
+
+create AddExCommand
+AddExCommandParser -> AddExCommand
+activate AddExCommand
+
+create Exercise
+AddExCommand -> Exercise
+activate Exercise
+
+Exercise --> AddExCommand : newExercise
+deactivate Exercise
+
+AddExCommand --> AddExCommandParser : a
+deactivate AddExCommand
+
+AddExCommandParser --> FixMyAbsParser : a
+deactivate AddExCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddExCommandParser -[hidden]-> FixMyAbsParser
+destroy AddExCommandParser
+
+FixMyAbsParser --> LogicManager : a
+deactivate FixMyAbsParser
+
+LogicManager -> AddExCommand : execute(model)
+activate AddExCommand
+
+AddExCommand -> Model : addExercise(newExercise)
+activate Model
+
+Model --> AddExCommand
+deactivate Model
+
+create CommandResult
+AddExCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddExCommand
+deactivate CommandResult
+
+AddExCommand --> LogicManager : result
+deactivate AddExCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

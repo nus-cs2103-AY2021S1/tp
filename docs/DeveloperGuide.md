@@ -132,58 +132,90 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features were implemented.
 
 ### Add Exercise feature
+The adding of Exercises is one of the core functionalities of FixMyAbs. Apart from the generic exercises provided when users first start the app, users are also able to add their own exercises, which makes FixMyAbs customizable and more suited to each user's specific needs.  
 
-- AddExCommandParsers parse user input
-- AddExercise adds the exercise in the logbook
+The mechanism is facilitated by an `Exercise` class. An `Exercise` class has `Name` and `Calories`. Calories represent the number of calories burnt per rep of the exercise.
 
-Below is how it works:
+![AddLogClassDiagram](images/AddExerciseClassDiagram.png)
 
-Step 1. User executes `addex e/<exercise name> c/<calories>`
+A user can add an `Exercise`to the `LogBook` by executing the `addex` command.
 
-Step 2. `AddExCommandParser` parses user's input and creates an `AddExCommand`
+#### Example usage scenario
+Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the application.
 
-![](images/AddExCommand.png)
+Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsParser` creates a new `AddExCommandParser` and calls the `AddExCommandParser#parse()` method.
 
-Step 3: `AddExCommand` executes and adds exercise to `Model`
+Step 2. The user input is passed into the `AddExCommandParser#parse()` method and instances of `Name` and `Calories` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Exercise` constructor, and a new `Exercise` object is created as a result.
 
-![](images/AddExModel.png)
+![AddLogClassDiagram](images/AddExerciseStep2.png)
 
-### Edit Exercise feature
+Step 3. A new `AddExCommand` is returned with the created `Exercise` object as a parameter. The `Exercise` object is then added to the `Model`.
 
-Edit exercise function uses following classes:
+![AddLogClassDiagram](images/AddExerciseStep3.png)
 
-- `EditExCommandParser` - Parses user input.
-- `EdutExCommand` Deletes the exercise from the Exercise List.
+The following sequence diagram shows how the `Add Exercise` feature works:
 
-Below is how it works:
+![AddLogClassDiagram](images/AddExerciseSequenceDiagram.png)
 
-Step 1. User executes `editex <index> [e/EXERCISE] [c/CALORIES]`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddExCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-Step 2. `EditExCommandParser` parses the user input and creates a `EditExCommand` with the target index of the exercise to be deleted.
+### Add Log feature
+The adding of Logs are the core to the functionality of FixMyAbs. Users are able to add information related to that 
+exercise log, which will then allow them to track their fitness progress and details regarding their workout.  
 
-Step 3: `EditExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is edited in `Model`.
+The mechanism is facilitated by a `Log` class. A `Log` class has `Exercise`, `Rep`, `Comment` and `LocalDateTime`.
 
-![](images/EditExDiagram.png)
+![AddLogClassDiagram](images/AddLogClassDiagram.png)
 
-### Delete Exercise feature
+A user can add a `Log`to the `LogBook` by executing the `add` command.
 
-Delete exercise function uses following classes:
+#### Example usage scenario
+Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the application.
 
-- `DeleteExCommandParsers` - Parses user input.
-- `DeleteExCommand` Deletes the exercise from the Exercise List.
+Step 1. The user executes the command `add e/Pushups r/50 c/Managed to increase to 50 reps today!`. `FixMyAbsParser` creates a new `AddCommandParser` and calls the `AddCommandParser#parse()` method.
 
-Below is how it works:
+Step 2. The user input is passed into the `AddCommandParser#parse()` method and instances of `Exercise`, `Rep` and `Comment` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Log` constructor, and a new `Log` object is created as a result. Each `Log` instantiates with a new `dateTime` field, which calls the `LocalDateTime#now()` method alongside the current system clock of the user's computer.`
 
-Step 1. User executes `deleteex <index>`.
+Step 3. A new `AddCommand` is returned with the created `Log` object as a parameter. The `Log` object is then added to the `Model`.
 
-Step 2. `DeleteExCommandParser` parses the user input and creates a `DeleteExCommand` with the target index of the exercise to be deleted.
+The following sequence diagram shows how the `Add Log` feature works:
 
-Step 3: `DeleteExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is deleted exercise from `Model`.
+![AddLogClassDiagram](images/AddLogSequenceDiagram.png)
 
-![](images/DeleteExDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Find Log feature
+To find specific exercise logs, users are able to search for logs based on the exercise name. This will allow them to easily track the number of logs for a certain exercise, as well as its details.
+
+![AddLogClassDiagram](images/NameContainsKeywordsPredicate.png) 
+
+The mechanism is supported by the `NameContainsKeywordsPredicate`, which checks if the user keyword input is matches any name of the exercises in the list of exercise logs. The `NameContainsKeywordsPredicate#test()` method is used to check this.
+
+A user can find a `Log` by executing the `find` command.
+
+#### Example usage scenario
+Given below is an example usage scenario and how the `find log` mechanism behaves at each step after launching the application.
+
+Step 1. The user executes the command `find Push ups`. `FixMyAbsParser` creates a new `FindCommandParser` and calls the `FindCommandParser#parse()` method.
+
+Step 2. The user input is passed into the `FindCommandParser#parse()` method, which then creates a new `NameContainsKeywordsPredicate` object, with the user input as the parameter. This object checks if there is a match between the keyword and the tested `Log`. 
+
+Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindCommand` is returned with the created `NameContainsKeywordsPredicate` object as a parameter. Upon calling `FindCommand#execute()`, the model is updated through `Model#updateFilteredLogList()`, and the new filtered log list is displayed to the user.
+
+The following sequence diagram shows how the `Find Log` feature works:
+
+![AddLogClassDiagram](images/FindLogSequenceDiagram.png) 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### \[Proposed\] Undo/redo feature
 
