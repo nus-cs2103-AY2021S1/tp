@@ -41,7 +41,12 @@ It helps them to centralize key module details, contacts and information while f
   e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/easy`, `t/friend t/important` etc.
   
 * Argument parameters can be provided in any order.
-  e.g. If the command specifies `addtask n/NAME [p/PRIORITY]`, `addtask [p/PRIORITY] n/NAME` is also acceptable.  
+  e.g. if the command specifies `addtask n/NAME [p/PRIORITY]`, `addtask [p/PRIORITY] n/NAME` is also acceptable.  
+  
+* If duplicate parameters are provided when the command format does not expect multiple occurrence of the same parameter, i.e. 
+  parameters without `...` at the back in the command format (e.g. n/NAME), the application will only consider the argument of the last 
+  occurring duplicate parameter. 
+  e.g. in `addtask n/Week 11 quiz n/Lab assignment`, `n/Week 11 quiz` will be ignored and a task with the name `Lab assignment` will be added.
 
 </div>
 
@@ -73,16 +78,25 @@ Views a module stored in the system
   Examples:
    * `viewmodule n/cs2103t` views the specified module
 
-#### Adding a zoom link to a module: `add zoom`
+#### Adding a zoom link for a specific lesson to a module: `addzoom`
 
-  Adds a zoom link to an existing module.
+  Adds a zoom link for a specific lesson to an existing module.
 
-  Format: `add zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+  Format: `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK`
+  
+   * Adds a zoom link to the module at the specified `INDEX`. 
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+   
+   * The index **must be a positive integer** 1, 2, 3...
+   
+   * The zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
+     would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
 
-  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_**
-
-  Example of usage:
-  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
+  Example:
+  `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+   for a lesson `lecture`.
+  
 
 #### Deleting a module: `deletemodule`
 
@@ -162,14 +176,14 @@ Examples:
 * `edittask 1 n/read chapter 5 p/HIGH` edits the first task name to `read chapter 5` and
 and priority to `HIGH`.
 
-#### Finding a task: `findtask`
+#### Locating tasks: `findtask`
 
-Finds a task based on keywords.
+Finds all the tasks that fulfil the search criteria provided.
 
-Format: `findtask` **_`[KEYWORD]`_**
+Format: `findtask` 
 
 Examples:
-* `findtask` **_`[k/KEYWORD]`_** list all the task that matches the keyword.
+* `findtask` n
 
 #### Marking a task as completed: `completetask`
 
@@ -237,44 +251,123 @@ Clears all tasks in the list.
 Format: `cleartask`
 
 
-### Contact Features
+### Contact List Features
 
-#### Add a contact: `addcontact`
+
+#### Adding a contact: `addcontact`
 
 Adds a new contact into the contact list if it does not already exist.
 
-Format: `addcontact n/NAME [e/EMAIL] [te/TELEGRAM] [t/TAG]`
+Format: `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...`
+   
+ * The `TELEGRAM` field provided must start with the `@` symbol and must be a valid telegram username,
+   i.e. at least 5 characters long, not including the `@` symbol and contains only alphanumeric characters or underscore
+ 
+ * A contact can have any number of tags (including 0)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
-Users are required to provide at least one other contact detail apart from **Name**.
-</div>
 
-Examples of Usage:
-`addcontact n/john e/john@gmail.com te/@john123`
+Examples:
 
-#### Delete a contact: `deletecontact`
+ * `addcontact n/john e/john@gmail.com`
+ * `addcontact n/amy e/amy@gmail.com te/@anytele`
+ * `addcontact n/bob e/bob@gmail.com t/friend`
+ 
+ 
+ #### Listing all contacts: `listcontact`
+ 
+ Shows a list of all contacts in the contact list.
+ 
+ Format: `listcontact`
+ 
+ 
+ #### Editing a contact: `editcontact`
+ 
+ Edits an existing contact in the contact list.
+ 
+ Format: `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...`
+ 
+ * Edits the contact at the specified `INDEX`. The index refers to the index number of the contact shown 
+   in the displayed contact list. The index **must be a positive integer** 1, 2, 3...
+ 
+ * At least one of the contact fields must be provided
+ 
+ * At least one of the optional fields must be provided.
+ 
+ * Existing values will be updated to the input values.
+ 
+ * When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+ 
+ * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+ 
+ Examples:
+ 
+  * `editcontact 1 n/john e/john@gmail.com` Edits the name and email address of the first contact to be 
+    `john` and `john@gmail.com` respectively.
+    
+  * `editcontact 2 n/Bob Abraham t/` Edits the name of the second contact to be `Bob Abraham` and clears all existing tags of the contact.
 
-Deletes an existing contact from the contact list
 
-Format: `deletecontact CONTACT_INDEX`
+#### Locating a contact: `findcontact`
 
-* Contact index refers to the index number of the contact in the contact list displayed in the application
+Finds all contacts that fulfil all the provided search criteria.
 
-Examples of Usage:
-`deletecontact 1`
+Format: `findocontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
 
-#### Edit a contact: `editcontact`
+ * The search is case-insensitive, e.g. `bob` will match `Bob`.
+ 
+ * The order of the search keywords does not matter, e.g. `Bob Abramham` will match `Abraham Bob`.
+ 
+ * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
+   e.g. `findcontact n/bob abraham` will search for contacts using the 2 distinct keywords `bob` and `abraham`.
+   
+ * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
+   
+ * You should ensure that keywords are not be blank and at least one search parameter should be provided.
+ 
+ * Search Parameters:
+ 
+   * Name
+ 
+     * Contacts matching at least one of the name keywords provided will be returned.
+     
+   * Tag
+ 
+     * Contacts containing tags which match at least one of the tag keywords provided will be returned.
+       
+ * Only contacts matching all search parameters provided will be returned.      
+ 
+ Examples:
+ 
+  * `fincontact n/john` returns `John` and `John doe`
+ 
+  * `findcontact n/Bob Abraham` returns `Bob Lim`, `Tommy Abraham`
+  
+  * `findcontact t/friend` returns all contacts with the tag `friend`
+  
+  * `findcontact t/friend coworker` returns all contacts that have the `friend` or `coworker` tag 
+  
+  * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
 
-Edits an existing contact in the contact list.
 
-Format: `editcontact CONTACT_INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM]`
+#### Deleting a contact: `deletecontact`
 
-* This feature edits the contact at the specified contact index. Contact index refers to the index number of the contact in the contact list displayed in the application
-* At least one of the contact fields must be provided
-* The edit contact must not already exist in the contact list
+Deletes the specified contact from the contact list.
 
-Examples of Usage:
-`editcontact 1 n/john e/john@gmail.com`: Edits the name and email of the contact at index 1 to `john` and `john@gmail.com` respectively
+Format: `deletecontact INDEX`
+
+ * Deletes the contact at the specified `INDEX`. 
+ 
+ * The index refers to the index number of the contact shown on the displayed contact list. 
+   
+ * The index **must be a positive integer** 1, 2, 3...
+
+Examples:
+
+ * `listcontact` followed by `deletecontact 1` deletes the first contact in the contact list
+ 
+ * `findcontact n/bob` followed by `deletecontact 2` deletes the second contact in the results of the `findcontact` command
+
+
 
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
