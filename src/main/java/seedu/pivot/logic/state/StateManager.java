@@ -127,4 +127,8 @@ public class StateManager {
         tabState = Optional.empty();
         UiStateManager.resetTabState();
     }
+
+    public static String getTabState() {
+        return tabState.orElse(null);
+    }
 }

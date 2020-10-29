@@ -12,7 +12,7 @@ import seedu.pivot.model.Model;
 
 
 public class ListTabCommand extends ListCommand {
-    private static final String LIST_TAB_SUCCESS = "Tab successfully listed: %1$s";
+    public static final String LIST_TAB_SUCCESS = "Tab successfully listed: %1$s";
     private static final Logger logger = LogsCenter.getLogger(ListTabCommand.class);
 
     private final String tabType;
