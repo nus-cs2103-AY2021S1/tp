@@ -54,9 +54,10 @@ public class StringUtil {
         requireNonNull(key);
 
         String preparedKey = key.trim();
+        String preparedStr = toCheck.toLowerCase();
         checkArgument(!preparedKey.isEmpty(), "Key parameter cannot be empty");
 
-        return toCheck.contains(key);
+        return preparedStr.contains(key) || toCheck.contains(key);
     }
 
     /**
