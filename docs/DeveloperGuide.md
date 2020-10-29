@@ -662,6 +662,15 @@ Use case ends.
     
 Use case ends.
 
+#### Use case: UC10 - Archive command
+
+**MSS**
+
+1. OHS admin requests to archive the current semester.
+1. ResiReg resets the allocations of rooms and students, and advances to the next semester in chronological order.
+
+Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
