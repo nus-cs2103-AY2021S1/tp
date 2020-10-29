@@ -1,8 +1,11 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import seedu.pivot.commons.core.UserMessages;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 
@@ -21,14 +24,28 @@ public class FindCommand extends Command {
 
     private final DetailsContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindCommand to find cases in the current section based on the given predicate.
+     *
+     * @param predicate The predicate used to filter cases.
+     */
     public FindCommand(DetailsContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
+
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredCaseList(predicate);
+
+        if (StateManager.atArchivedSection()) {
+            model.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_ARCHIVED_CASES));
+        }
+
+        if (StateManager.atDefaultSection()) {
+            model.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_DEFAULT_CASES));
+        }
+
         return new CommandResult(
                 String.format(UserMessages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
     }

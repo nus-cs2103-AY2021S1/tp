@@ -24,6 +24,7 @@ public class CasePersonListPanel extends UiPart<Region> {
         super(FXML);
         casePersonListView.setItems(casePersonList);
         casePersonListView.setCellFactory(listView -> new CasePersonViewCell());
+
     }
 
     /**

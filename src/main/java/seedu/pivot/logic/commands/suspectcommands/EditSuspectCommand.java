@@ -78,7 +78,7 @@ public class EditSuspectCommand extends EditPersonCommand {
         editedSuspects.set(personIndex.getZeroBased(), editedSuspect);
         Case editedCase = new Case(caseToEdit.getTitle(), caseToEdit.getDescription(), caseToEdit.getStatus(),
                 caseToEdit.getDocuments(), editedSuspects, caseToEdit.getVictims(), caseToEdit.getWitnesses(),
-                caseToEdit.getTags());
+                caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
         model.commitPivot(String.format(MESSAGE_EDIT_SUSPECT_SUCCESS, editedSuspect));

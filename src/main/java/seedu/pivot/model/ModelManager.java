@@ -106,7 +106,6 @@ public class ModelManager implements Model {
     @Override
     public void addCase(Case investigationCase) {
         pivot.addCase(investigationCase);
-        updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
     }
 
     @Override

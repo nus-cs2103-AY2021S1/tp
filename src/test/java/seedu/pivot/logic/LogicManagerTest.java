@@ -5,6 +5,7 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_CASE_DISPLAY
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_AMY;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.AMY_BEE_DISAPPEARANCE;
 
@@ -21,6 +22,7 @@ import seedu.pivot.logic.commands.ListCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.parser.exceptions.ParseException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.ReadOnlyPivot;
@@ -45,8 +47,6 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-
-
         JsonPivotStorage pivotStorage =
                 new JsonPivotStorage(temporaryFolder.resolve("pivot.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
@@ -63,6 +63,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
+        StateManager.resetState();
         String deleteCommand = "delete case 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
@@ -70,8 +71,12 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         //TODO: check that the state is empty first.
+        StateManager.resetState();
+        StateManager.setDefaultSection();
+        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
+        expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
         String listCommand = ListCommand.COMMAND_WORD + " " + TYPE_CASE;
-        assertCommandSuccess(listCommand, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, model);
+        assertCommandSuccess(listCommand, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -89,6 +94,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
+        StateManager.resetState();
         String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + PREFIX_WITH_TITLE_AMY;
         Case expectedCase = new CaseBuilder(AMY_BEE_DISAPPEARANCE).withTags().build();
         ModelManager expectedModel = new ModelManager();

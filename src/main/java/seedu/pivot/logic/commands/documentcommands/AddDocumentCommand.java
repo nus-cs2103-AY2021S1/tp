@@ -77,7 +77,7 @@ public class AddDocumentCommand extends AddCommand {
         //create new updated case
         Case updatedCase = new Case(stateCase.getTitle(), stateCase.getDescription(), stateCase.getStatus(),
                 updatedDocuments, stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
-                stateCase.getTags());
+                stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));

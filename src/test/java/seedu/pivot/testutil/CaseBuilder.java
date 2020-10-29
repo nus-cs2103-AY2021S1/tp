@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -36,6 +37,7 @@ public class CaseBuilder {
     private List<Victim> victims;
     private Set<Tag> tags;
     private List<Witness> witnesses;
+    private ArchiveStatus archiveStatus;
 
     /**
      * Creates a {@code CaseBuilder} with the default details.
@@ -49,6 +51,7 @@ public class CaseBuilder {
         victims = new ArrayList<>();
         witnesses = new ArrayList<>();
         tags = new HashSet<>();
+        archiveStatus = ArchiveStatus.DEFAULT;
     }
 
     /**
@@ -63,6 +66,7 @@ public class CaseBuilder {
         victims = caseToCopy.getVictims();
         witnesses = caseToCopy.getWitnesses();
         tags = new HashSet<>(caseToCopy.getTags());
+        archiveStatus = caseToCopy.getArchiveStatus();
     }
 
     /**
@@ -142,12 +146,20 @@ public class CaseBuilder {
     }
 
     /**
+     * Sets the {@code ArchiveStatus} of the {@code Case} that we are building.
+     */
+    public CaseBuilder withArchiveStatus(ArchiveStatus archiveStatus) {
+        this.archiveStatus = archiveStatus;
+        return this;
+    }
+
+    /**
      * Generates a {@code Case} object with existing fields.
      * @return Person object
      */
     public Case build() {
-        return new Case(title, description, status, documents, suspects, victims, witnesses, tags);
+        return new Case(title, description, status, documents, suspects, victims, witnesses, tags,
+                archiveStatus);
     }
-
 
 }

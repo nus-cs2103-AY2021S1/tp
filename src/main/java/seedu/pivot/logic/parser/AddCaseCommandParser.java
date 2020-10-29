@@ -14,6 +14,7 @@ import java.util.Set;
 import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -45,8 +46,18 @@ public class AddCaseCommandParser implements Parser<AddCaseCommand> {
         List<Victim> victims = new ArrayList<>();
         List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Case investigationCase = new Case(title, description, status, documents,
-                suspects, victims, witnesses, tagList);
+
+        Case investigationCase = null;
+        if (StateManager.atArchivedSection()) {
+            investigationCase = new Case(title, description, status, documents,
+                    suspects, victims, witnesses, tagList, ArchiveStatus.ARCHIVED);
+        }
+
+        if (StateManager.atDefaultSection()) {
+            investigationCase = new Case(title, description, status, documents,
+                    suspects, victims, witnesses, tagList, ArchiveStatus.DEFAULT);
+        }
+
         return new AddCaseCommand(investigationCase);
     }
 }

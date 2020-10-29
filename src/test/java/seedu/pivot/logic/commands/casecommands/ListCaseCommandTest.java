@@ -30,12 +30,14 @@ public class ListCaseCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
+        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
         assertCommandSuccess(new ListCaseCommand(), model, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showCaseAtIndex(model, INDEX_FIRST_PERSON);
+        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
         assertCommandSuccess(new ListCaseCommand(), model, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, expectedModel);
     }
 }
