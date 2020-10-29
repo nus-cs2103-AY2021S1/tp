@@ -25,7 +25,7 @@ public class DeliveryAddCommand extends DeliveryCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_ORDER + "ORDER"
+            + PREFIX_ORDER + "ORDER "
             + "[" + PREFIX_TIME + "TIME]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alex Yeoh "
@@ -33,7 +33,7 @@ public class DeliveryAddCommand extends DeliveryCommand {
             + PREFIX_ADDRESS + "Blk 30 Geylang Street 29, #06-40 "
             + PREFIX_ORDER + "2x Chicken Rice, 1x Ice Milo";
 
-    public static final String MESSAGE_SUCCESS = "New delivery added: \n%1$s";
+    public static final String MESSAGE_SUCCESS = "New delivery added: %1$s";
     public static final String MESSAGE_DUPLICATE_DELIVERY = "This delivery already existed in the delivery book";
 
 
