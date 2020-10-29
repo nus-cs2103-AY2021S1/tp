@@ -69,7 +69,6 @@ public class AddIngredientCommand extends Command implements Undoable {
             return CommandResult.message("Updated ingredient '%s'", this.combinedIngredient.getName());
 
         } else {
-
             model.addIngredient(this.addedIngredient);
             return CommandResult.message("Added ingredient '%s'", this.addedIngredient.getName());
         }

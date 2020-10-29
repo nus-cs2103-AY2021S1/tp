@@ -63,11 +63,6 @@ public class Recipe extends Entry {
     }
 
     @Override
-    public Optional<List<ExpiryDate>> getExpiryDates() {
-        return Optional.empty();
-    }
-
-    @Override
     public boolean isSame(Entry other) {
         return other == this
             || (other instanceof Recipe

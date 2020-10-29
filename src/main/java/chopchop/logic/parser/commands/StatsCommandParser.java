@@ -67,11 +67,11 @@ public class StatsCommandParser {
         case "recent":
             return ensureNoArgs(args, c + " recent", new StatsRecipeRecentCommand());
 
-        case "used":
+        case "made":
             return parseDateRecipeCommand(kind, args);
 
         default:
-            return Result.error("Expected one of 'top', 'used', 'recent', or 'clear'"
+            return Result.error("Expected one of 'top', 'made', 'recent', or 'clear'"
                 + " after '%s' (found '%s')", c, kind);
         }
     }
@@ -114,6 +114,10 @@ public class StatsCommandParser {
         var after = args.getArgument(ARG_AFTER);
         var before = args.getArgument(ARG_BEFORE);
 
+        if (before.size() > 1 || after.size() > 1) {
+            return Result.error("Multiple dates specified");
+        }
+
         try {
 
             var arg1 = processDate(before).orElse(null);
@@ -148,8 +152,8 @@ public class StatsCommandParser {
 
             return Result.of(new StatsIngredientUsedCommand(arg1, arg2));
 
-        } catch (Exception e) {
-            return Result.error("Unable to parse date");
+        } catch (DateTimeParseException e) {
+            return Result.error("Unable to parse date: %s", e.getMessage());
         }
     }
 

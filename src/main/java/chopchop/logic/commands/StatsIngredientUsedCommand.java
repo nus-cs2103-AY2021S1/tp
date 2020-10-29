@@ -29,7 +29,7 @@ public class StatsIngredientUsedCommand extends Command {
     public StatsIngredientUsedCommand(LocalDateTime before, LocalDateTime after) {
         if (before == null && after == null) {
             var now = LocalDateTime.now();
-            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfYear(), 0, 0);
+            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0);
             this.after = this.before.plusDays(1);
         } else {
             this.before = before;

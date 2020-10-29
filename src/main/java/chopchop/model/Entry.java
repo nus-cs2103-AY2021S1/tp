@@ -26,8 +26,6 @@ public abstract class Entry {
 
     public abstract Optional<ExpiryDate> getExpiryDate();
 
-    public abstract Optional<List<ExpiryDate>> getExpiryDates();
-
     /**
      * Returns true if both entries have the same name.
      * This defines a weaker notion of equality between two entries.

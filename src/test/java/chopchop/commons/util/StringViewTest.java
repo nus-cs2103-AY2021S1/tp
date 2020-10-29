@@ -30,14 +30,29 @@ public class StringViewTest {
         assertEquals('a', sv1.front());
         assertEquals('A', sv2.back());
 
-        assertThrows(AssertionError.class, () -> new StringView("").front());
-        assertThrows(AssertionError.class, () -> new StringView("").back());
+        assertThrows(IndexOutOfBoundsException.class, () -> new StringView("").front());
+        assertThrows(IndexOutOfBoundsException.class, () -> new StringView("").back());
+        assertThrows(IndexOutOfBoundsException.class, () -> new StringView("3").drop(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> new StringView("3").takeLast(-1));
 
         assertEquals("owo", sv2.take(3).toString());
         assertEquals("AYAYA", sv2.takeLast(5).toString());
 
         assertEquals("owo uwu AYAYA", sv2.take(400).toString());
         assertEquals("owo uwu AYAYA", sv2.takeLast(400).toString());
+
+        assertEquals("wo uwu AYAYA", sv2.drop(3).undrop(2).toString());
+
+        var sv4 = new StringView("");
+        var sv5 = new StringView("");
+        assertEquals("asdf", new StringView("asdfxxxxxuwuwu").bisect('x').fst().toString());
+        assertEquals("asdf", new StringView("asdfxxxxxuwuwu").bisect('x', sv4).toString());
+        new StringView("asdfxxxxxuwuwu").bisect(sv4, 'x', sv5);
+
+        assertEquals("asdf", sv4.toString());
+        assertEquals("uwuwu", sv5.toString());
+
+
 
         assertEquals(new StringView("ayaya").uppercase().toString(), "AYAYA");
         assertEquals(new StringView("AYAYA").lowercase().toString(), "ayaya");

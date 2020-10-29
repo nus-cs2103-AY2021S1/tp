@@ -60,7 +60,11 @@ public class IngredientBuilder {
      * Sets the {@code ExpiryDate} of the {@code Ingredient} that we are building.
      */
     public IngredientBuilder withDate(String date) {
-        this.expDate = new ExpiryDate(date);
+        if (date == null || date.isEmpty()) {
+            this.expDate = null;
+        } else {
+            this.expDate = new ExpiryDate(date);
+        }
         return this;
     }
 

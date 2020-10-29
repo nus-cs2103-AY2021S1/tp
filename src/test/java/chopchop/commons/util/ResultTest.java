@@ -74,6 +74,11 @@ public class ResultTest {
 
         assertEquals(1234, r1.orElseThrow(e -> new RuntimeException("")));
         assertThrows(RuntimeException.class, () -> e1.orElseThrow(e -> new RuntimeException("")));
+        assertThrows(RuntimeException.class, () -> e1.throwIfError(e -> new RuntimeException("")));
+        assertThrows(RuntimeException.class, () -> r1.perform(x -> { throw new RuntimeException(""); }));
+
+
+        r1.perform(x -> {});
     }
 
     @Test
@@ -150,6 +155,23 @@ public class ResultTest {
 
         assertTrue(seq2.isError());
         assertEquals(Result.error("owo"), seq2);
+
+
+
+        var r1 = Result.of(1);
+        var r2 = Result.of(2);
+        var r3 = Result.of(3);
+
+        var e1 = Result.error("e1");
+        var e2 = Result.error("e2");
+        var e3 = Result.error("e3");
+
+        assertEquals(Optional.of("e1"), Result.firstError(r1, r2, e1));
+        assertEquals(Optional.empty(), Result.firstError(r1, r2, r3));
+
+        var pi = Result.of(3.14);
+        assertEquals(pi, Result.allOf(() -> pi));
+        assertEquals(e3, Result.allOf(() -> Result.of(3.14), r1, r2, e3));
     }
 }
 

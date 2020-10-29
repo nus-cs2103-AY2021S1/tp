@@ -105,10 +105,6 @@ public class Ingredient extends Entry {
         return this.sets.firstKey();
     }
 
-    public Optional<List<ExpiryDate>> getExpiryDates() {
-        return null;
-    }
-
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
         // i want const correctness dammit
         var ret = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
@@ -158,6 +154,7 @@ public class Ingredient extends Entry {
                     .orElseThrow(IncompatibleIngredientsException::new);
 
                 newSets.put(exp, newQty);
+
             } else {
                 if (!thisQty.compatibleWith(qty)) {
                     throw new IncompatibleIngredientsException(
