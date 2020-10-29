@@ -18,8 +18,16 @@ public class ApplicationInfoDisplay extends UiPart<Region> {
 
     @FXML
     private HBox displayPane;
+//    @FXML
+//    private Label application;
     @FXML
-    private Label application;
+    private Label applicationHeader;
+    @FXML
+    private Label name;
+    @FXML
+    private Label experienceSection;
+    @FXML
+    private Label educationSection;
 
     /**
      * Creates an application info display with the current application.
@@ -27,7 +35,11 @@ public class ApplicationInfoDisplay extends UiPart<Region> {
     ApplicationInfoDisplay(Application currentApplication) {
         super(FXML);
         this.currentApplication = currentApplication;
-        application.setText(currentApplication.toString());
+//        application.setText(currentApplication.toString());
+        applicationHeader.setText("Application");
+        name.setText(currentApplication.getApplicantName());
+        experienceSection.setText(currentApplication.getExperienceSectionString());
+        educationSection.setText(currentApplication.getEducationSectionString());
     }
 
     @Override

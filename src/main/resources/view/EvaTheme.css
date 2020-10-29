@@ -2,6 +2,10 @@
     -fx-background-color: white;
 }
 
+.ApplicationLabel{
+
+}
+
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -397,5 +401,22 @@
     -fx-text-fill: #19216c;
     -fx-pref-height: 36px;
     -fx-min-height: 36px;
+    -fx-padding: 0 16px 0 16px;
+}
+
+#appHead {
+    -fx-background-color: #e0e8f9;
+    -fx-padding: 0 16px 0 16px;
+}
+
+#name {
+    -fx-padding: 16px 16px 0 16px;
+}
+
+#experienceSection {
+    -fx-padding: 0 16px 0 16px;
+}
+
+#educationSection {
     -fx-padding: 0 16px 0 16px;
 }
