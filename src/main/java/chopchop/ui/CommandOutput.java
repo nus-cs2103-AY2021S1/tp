@@ -1,3 +1,5 @@
+//@@author fall9x
+
 package chopchop.ui;
 
 import static java.util.Objects.requireNonNull;
@@ -6,8 +8,6 @@ import chopchop.logic.commands.CommandResult;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -15,11 +15,7 @@ import javafx.scene.text.TextFlow;
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandOutput extends UiPart<Region> {
-
     private static final String FXML = "CommandOutput.fxml";
-
-    private static final Font boldFont = Font.font(Font.getDefault().getFamily(),
-        FontWeight.BOLD, Font.getDefault().getSize());
 
     @FXML
     private TextFlow displayBox;
@@ -47,15 +43,15 @@ public class CommandOutput extends UiPart<Region> {
     public void setFeedbackToUser(CommandResult result) {
         requireNonNull(result);
 
-        var texts = displayBox.getChildren();
+        var texts = this.displayBox.getChildren();
         texts.clear();
 
-        boolean shouldUnCaps = false;
+        var shouldUnCaps = false;
 
         if (result.isError()) {
             var foo = new Text("Error: ");
-            foo.setStyle("-fx-font-weight: bolder");
-            foo.setFill(Color.RED);
+            foo.setStyle("-fx-font-family: 'Source Sans Pro SemiBold'");
+            foo.setFill(Color.valueOf("#ff1744"));
 
             texts.add(foo);
             shouldUnCaps = true;
@@ -73,7 +69,9 @@ public class CommandOutput extends UiPart<Region> {
             }
 
             if (part.isLink()) {
+                texts.add(new Text(" "));
                 texts.add(new ClickableLink(msg, part.getUrl()));
+                texts.add(new Text(" "));
             } else {
                 texts.add(new Text(msg));
             }

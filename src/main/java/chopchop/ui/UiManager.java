@@ -1,3 +1,5 @@
+//@@author fall9x
+
 package chopchop.ui;
 
 import java.util.logging.Logger;
@@ -18,11 +20,10 @@ import javafx.stage.Stage;
  * The manager of the UI component.
  */
 public class UiManager implements Ui {
-
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/recipes.png";
+    private static final String ICON_APPLICATION = "/images/chopchop.png";
 
     private Logic logic;
     private Model model;
@@ -42,16 +43,15 @@ public class UiManager implements Ui {
         logger.info("Starting UI...");
 
         //Set the application icon.
-        primaryStage.getIcons().add(getImage(ICON_APPLICATION));
+        primaryStage.getIcons().add(this.getImage(ICON_APPLICATION));
 
         try {
             mainWindow = new MainWindow(primaryStage, logic, model);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
-            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+            this.showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
 
@@ -67,12 +67,10 @@ public class UiManager implements Ui {
         );
     }
 
-
     @Override
     public void displayModalDialog(AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+        showAlertDialogAndWait(this.mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
-
 
     /**
      * Shows an alert dialog on {@code owner} with the given parameters.
@@ -80,8 +78,8 @@ public class UiManager implements Ui {
      */
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
-        final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/Style.css");
+        var alert = new Alert(type);
+        alert.getDialogPane().getStylesheets().add("stylesheets/Style.css");
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
@@ -97,9 +95,8 @@ public class UiManager implements Ui {
     private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
         logger.severe(title + " " + e.getMessage() + StringUtil.getDetails(e));
 
-        displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
+        this.displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
     }
-
 }

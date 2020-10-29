@@ -1,6 +1,9 @@
+//@@author fall9x
+
 package chopchop.ui;
 
 import chopchop.logic.Logic;
+import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
 import javafx.fxml.FXML;
@@ -13,6 +16,8 @@ import javafx.scene.layout.Region;
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
+
+    public static final String ERROR_STYLE_CLASS = "error";
 
     private static final String FXML = "CommandBox.fxml";
 
@@ -31,36 +36,34 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.logic = logic;
+        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        this.commandTextField.textProperty().addListener((unused1, unused2, unused3) -> this.setStyleToDefault());
         // No commands entered yet.
-        historyPointer = 0;
+        this.historyPointer = 0;
 
-        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        this.commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.DOWN) && this.historyPointer < logic.getInputHistory().size()) {
+                this.historyPointer++;
 
-            if (event.getCode().equals(KeyCode.DOWN) && historyPointer < logic.getInputHistory().size()) {
-                historyPointer++;
-
-                if (historyPointer == logic.getInputHistory().size()) {
-                    commandTextField.clear();
+                if (this.historyPointer == logic.getInputHistory().size()) {
+                    this.commandTextField.clear();
                 } else {
-                    var command = logic.getInputHistory().get(historyPointer);
-                    commandTextField.setText(command);
-                    commandTextField.positionCaret(command.length());
+                    var command = logic.getInputHistory().get(this.historyPointer);
+                    this.commandTextField.setText(command);
+                    this.commandTextField.positionCaret(command.length());
                 }
 
                 event.consume();
+            } else if (event.getCode().equals(KeyCode.UP) && this.historyPointer > 0) {
+                this.historyPointer--;
+                var command = logic.getInputHistory().get(this.historyPointer);
+                this.commandTextField.setText(command);
+                this.commandTextField.positionCaret(command.length());
 
-            } else if (event.getCode().equals(KeyCode.UP) && historyPointer > 0) {
-
-                historyPointer--;
-                String command = logic.getInputHistory().get(historyPointer);
-                commandTextField.setText(command);
-                commandTextField.positionCaret(command.length());
                 event.consume();
-
             } else if (event.getCode().equals(KeyCode.TAB)) {
-
-                var text = commandTextField.getText();
-                var cursor = commandTextField.getCaretPosition();
+                var text = this.commandTextField.getText();
+                var cursor = this.commandTextField.getCaretPosition();
 
                 // first split the thing by cursor position -- only complete the first portion.
                 var fst = text.substring(0, cursor);
@@ -71,12 +74,11 @@ public class CommandBox extends UiPart<Region> {
                 // now, we can change the cursor position accordingly.
                 cursor = completion.length();
 
-                commandTextField.setText(completion + snd);
-                commandTextField.positionCaret(cursor);
+                this.commandTextField.setText(completion + snd);
+                this.commandTextField.positionCaret(cursor);
+
                 event.consume();
-
             } else {
-
                 // when the user presses any other key, just reset the completion state.
                 logic.resetCompletionState();
             }
@@ -88,30 +90,47 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        var command = commandTextField.getText();
-        if (command.isEmpty()) {
-            return;
-        }
-
-        try {
-            commandExecutor.execute(command);
-        } catch (CommandException | ParseException e) {
-            // Stub for now
-            setFocus("");
-        } finally {
-            historyPointer = logic.getInputHistory().size();
-            commandTextField.clear();
+        var command = this.commandTextField.getText();
+        if (!command.isEmpty()) {
+            try {
+                System.out.println("SADs");
+                this.commandExecutor.execute(command);
+                System.out.println("SAD");
+            } catch (CommandException | ParseException e) {
+                this.setStyleToIndicateCommandFailure();
+            } finally {
+                this.historyPointer = this.logic.getInputHistory().size();
+                this.commandTextField.clear();
+            }
         }
     }
 
     protected void setFocus(String keypress) {
-        if (!commandTextField.isFocused()) {
-            commandTextField.appendText(keypress);
-            commandTextField.requestFocus();
-            commandTextField.end();
+        if (!this.commandTextField.isFocused()) {
+            this.commandTextField.appendText(keypress);
+            this.commandTextField.requestFocus();
+            this.commandTextField.end();
         }
     }
 
+
+    /**
+     * Sets the command box style to use the default style.
+     */
+    private void setStyleToDefault() {
+        this.commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+    }
+
+    /**
+     * Sets the command box style to indicate a failed command.
+     */
+    private void setStyleToIndicateCommandFailure() {
+        var styleClass = this.commandTextField.getStyleClass();
+
+        if (!styleClass.contains(ERROR_STYLE_CLASS)) {
+            styleClass.add(ERROR_STYLE_CLASS);
+        }
+    }
 
     /**
      * Represents a function that can execute commands.
@@ -121,9 +140,8 @@ public class CommandBox extends UiPart<Region> {
         /**
          * Executes the command and returns the result.
          *
-         * @see chopchop.logic.Logic#execute(String)
+         * @see Logic#execute(String)
          */
-        chopchop.logic.commands.CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException;
     }
-
 }

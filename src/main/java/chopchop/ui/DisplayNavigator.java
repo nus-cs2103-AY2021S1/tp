@@ -1,3 +1,5 @@
+//@@author fall9x
+
 package chopchop.ui;
 
 import chopchop.model.recipe.Recipe;
@@ -39,6 +41,13 @@ public class DisplayNavigator {
      */
     public static void loadIngredientPanel() {
         displayController.displayIngredientList();
+    }
+
+    /**
+     * Loads the RecommendationViewPanel into the swappable display region.
+     */
+    public static void loadRecommendationPanel() {
+        displayController.displayRecommendationList();
     }
 
     /**
