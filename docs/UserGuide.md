@@ -16,7 +16,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Download the latest `modduke.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Modduke.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -298,7 +298,7 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Modduke's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Autocompletion
 
@@ -329,13 +329,13 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModDuke home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Modduke home folder.
 
 **Q**: Can I retrieve my contacts after I have delete them?<br>
 **A**: No. Contacts are permanently deleted and cannot be retrieved after.
 
 **Q**: If I face an error/bug, where can I seek assistance?<br>
-**A**: You can head to the **[ModDuke GitHub Issues page](https://github.com/AY2021S1-CS2103-F10-2/tp/issues)** and create or find your issue there.
+**A**: You can head to the **[Modduke GitHub Issues page](https://github.com/AY2021S1-CS2103-F10-2/tp/issues)** and create or find your issue there.
 
 **Q**: Are commands case-sensitive?<br>
 **A**: Yes
