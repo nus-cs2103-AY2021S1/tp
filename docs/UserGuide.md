@@ -65,8 +65,8 @@ Displays help for all/certain commands.
 Format: (All command) `help` or (Certain command) `help COMMAND`
 
 Examples : 
-* `help`
-* `help tag` 
+* `help` (Shows all command and its format)
+* `help tag` (shows tag command description, format and examples usage)
 
 ### Adding a tag with filepath : `tag`
 
@@ -128,7 +128,7 @@ Format: `label t/TAG_NAME l/LABEL1 [l/LABEL2]...`
 
 Examples:
 * `label t/file1 l/important` (Add a label of tag name `file1` with label name `important`) 
-* `label t/file2 l/important l/exam` (Add a label of tag name `file 2` with labels name `important` and `exam`)
+* `label t/file2 l/important l/exam` (Add a label of tag name `file2` with labels name `important` and `exam`)
 
 ### Deleting multiple labels from a tag : `unlabel`
 
