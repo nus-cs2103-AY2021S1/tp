@@ -1,5 +1,6 @@
 package seedu.pivot.logic.parser;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -13,6 +14,7 @@ import java.util.Set;
 import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -26,7 +28,7 @@ import seedu.pivot.model.tag.Tag;
 public class AddCaseCommandParser implements Parser<AddCaseCommand> {
     @Override
     public AddCaseCommand parse(String args) throws ParseException {
-        assert(StateManager.atMainPage()) : "Program should be at main page";
+        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_STATUS, PREFIX_TAG);
@@ -44,8 +46,18 @@ public class AddCaseCommandParser implements Parser<AddCaseCommand> {
         List<Victim> victims = new ArrayList<>();
         List<Witness> witnesses = new ArrayList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Case investigationCase = new Case(title, description, status, documents,
-                suspects, victims, witnesses, tagList);
+
+        Case investigationCase = null;
+        if (StateManager.atArchivedSection()) {
+            investigationCase = new Case(title, description, status, documents,
+                    suspects, victims, witnesses, tagList, ArchiveStatus.ARCHIVED);
+        }
+
+        if (StateManager.atDefaultSection()) {
+            investigationCase = new Case(title, description, status, documents,
+                    suspects, victims, witnesses, tagList, ArchiveStatus.DEFAULT);
+        }
+
         return new AddCaseCommand(investigationCase);
     }
 }

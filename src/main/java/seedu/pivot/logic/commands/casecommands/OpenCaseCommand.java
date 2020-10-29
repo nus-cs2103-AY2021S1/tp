@@ -22,6 +22,12 @@ public class OpenCaseCommand extends OpenCommand {
 
     public static final String MESSAGE_OPEN_CASE_SUCCESS = "Opened Case: %1$s";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Opens the case at specified index in the current list\n"
+            + "TYPE 'case'\n"
+            + "Parameters: INDEX\n"
+            + "Example: " + COMMAND_WORD + " case 1\n\n";
+
     private static final Logger logger = LogsCenter.getLogger(OpenCaseCommand.class);
 
     /**

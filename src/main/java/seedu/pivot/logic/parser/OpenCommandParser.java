@@ -29,9 +29,45 @@ public class OpenCommandParser implements Parser<OpenCommand> {
     public OpenCommand parse(String args) throws ParseException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
-        if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
+
+        if (StateManager.atMainPage()) {
+            return parseMainPage(matcher);
         }
+
+        if (StateManager.atCasePage()) {
+            return parseCasePage(matcher);
+        }
+
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
+    }
+
+    private static OpenCommand parseMainPage(Matcher matcher) throws ParseException {
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    OpenCaseCommand.MESSAGE_USAGE));
+        }
+
+        final String openType = matcher.group("commandWord");
+        final String indexString = matcher.group("arguments");
+
+        Index index = ParserUtil.getParsedIndex(indexString, OpenCaseCommand.MESSAGE_USAGE);
+
+        switch(openType) {
+        case TYPE_CASE:
+            return new OpenCaseCommand(index);
+        case TYPE_DOC:
+            throw new ParseException(MESSAGE_INCORRECT_CASE_PAGE);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCaseCommand.MESSAGE_USAGE));
+        }
+    }
+
+    private static OpenCommand parseCasePage(Matcher matcher) throws ParseException {
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    OpenCommand.MESSAGE_USAGE));
+        }
+
         final String openType = matcher.group("commandWord");
         final String indexString = matcher.group("arguments");
 
@@ -41,15 +77,11 @@ public class OpenCommandParser implements Parser<OpenCommand> {
         case TYPE_CASE:
             return new OpenCaseCommand(index);
         case TYPE_DOC:
-            if (StateManager.atMainPage()) {
-                throw new ParseException(MESSAGE_INCORRECT_CASE_PAGE);
-            }
             return new OpenDocumentCommand(index);
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
         }
-
     }
 
 }

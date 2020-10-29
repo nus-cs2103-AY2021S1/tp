@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.pivot.commons.util.CollectionUtil;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -36,12 +37,11 @@ public abstract class EditCommand extends Command {
             + "Parameters: [s:STATUS]\n"
             + "Example: " + COMMAND_WORD + " status s:closed\n\n"
             + "TYPE 'doc'\n"
-            + "Parameters: [n:NAME] [r:REFERENCE]\n"
-            + "Example: " + COMMAND_WORD + " doc n:meeting notes\n\n"
+            + "Parameters: INDEX [n:NAME] [r:REFERENCE]\n"
+            + "Example: " + COMMAND_WORD + " doc 1 n:meeting notes\n\n"
             + "TYPE 'suspect','victim','witness'\n"
-            + "Parameters: [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
-            + "Example: " + COMMAND_WORD + " suspect e:newEmail.com a:new road crescent\n\n";
-
+            + "Parameters: INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
+            + "Example: " + COMMAND_WORD + " suspect 1 e:newEmail@mail.com a:new road crescent\n\n";
 
     //public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -88,10 +88,11 @@ public abstract class EditCommand extends Command {
         List<Suspect> updatedSuspects = editCaseDescriptor.getSuspects().orElse(caseToEdit.getSuspects());
         List<Victim> updatedVictims = editCaseDescriptor.getVictims().orElse(caseToEdit.getVictims());
         Set<Tag> updatedTags = editCaseDescriptor.getTags().orElse(caseToEdit.getTags());
+        ArchiveStatus updatedArchiveStatus = caseToEdit.getArchiveStatus();
         List<Witness> updatedWitnesses =
                 editCaseDescriptor.getWitnesses().orElse(caseToEdit.getWitnesses());
         return new Case(updatedTitle, updatedDescription, updatedStatus, updatedDocuments,
-                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
+                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags, updatedArchiveStatus);
     }
 
 
