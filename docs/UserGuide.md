@@ -110,7 +110,9 @@ Opens the file specified by the unique tag name.<br>
 You can open a file using its tag, with the default application in your operating system.
 Additionally, you can open all files with a specific label. This could potentially open many files.
 This command only accepts one tag or one label but not both.
+<div markdown="block" class="alert alert-info">
 Tip: You can tag many files that you want to open at the same time with the same label, so you can open them at once.
+</div>
 
 Format: `open t/TAG_NAME` or `open l/LABEL`
 
@@ -144,7 +146,9 @@ Examples:
 
 Adds one or more label to an existing tag.<br>
 You can use label to categorise tags.
+<div markdown="block" class="alert alert-info">
 Warning: Duplicated labels will only be added once. 
+</div>
 
 Format: `label t/TAG_NAME l/LABEL1 [l/LABEL2]...`
 
@@ -220,7 +224,9 @@ Format: `redo`
 ### Clearing all tags : `clear`
 
 Clears the list of all tags.<br>
+<div markdown="block" class="alert alert-info">
 **Warning: All tags will be deleted!**
+</div>
 
 Format: `clear`
 
