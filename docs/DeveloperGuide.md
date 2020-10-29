@@ -585,8 +585,8 @@ Use case ends.
 
 **MSS**
 
-1. OHS admin requests to list students without a room allocation and list vacant rooms.
-1. ResiReg shows a list of students without a room allocation and a list of vacant rooms.
+1. OHS admin requests to <u>list students without a room allocation (UC12)</u> and <u>list vacant rooms (UC11)</u>. 
+1. ResiReg shows a list of students without a room allocation and a list of vacant rooms side by side.
 1. OHS admin requests to allocate a particular student to a particular room.
 1. ResiReg adds the room allocation and saves the changes.
 
@@ -709,6 +709,54 @@ Use case ends.
 1. ResiReg resets the allocations of rooms and students, and advances to the next semester in chronological order.
 
 Use case ends.
+
+#### Use case: UC11 - Find rooms which match a specific criteria
+
+**MSS**
+
+1. OHS admin requests to view a list of rooms which match a certain set of criteria (eg. a list of all vacant rooms of a particular type)
+1. ResiReg shows a list of rooms which match that criteria
+
+Use case ends.
+
+**Extensions**
+
+- 1a. There are no rooms matching the given criteria.
+    - Resireg shows an empty list
+    
+      Use case ends.
+      
+- 2a. The criteria specified are not valid.
+  - ResiReg shows an error message.
+
+    Use case resumes at step 1.
+    
+#### Use case: UC12 - Find students which match a specific criteria
+
+Similar to <u>UC11 - Find rooms which match a specific criteria</u>, just replace rooms with students.
+
+#### Use case: UC13 - Add a room
+
+**MSS**
+
+1. OHS admin requests to add a room and supplies room details.
+1. ResiReg adds the room and saves the changes.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. Room details are missing or invalid, or there is already a room with the same floor and unit number.
+  - ResiReg shows an error message.
+  -  Use case starts over.
+
+#### Use case: UC14 - Delete a room
+
+Similar to <u>UC02 - delete a student</u>, just replace student with room.
+
+#### Use case: UC15 - Edit a room
+
+Similar to <u>UC03 - edit a student</u>, just replace student with room.
 
 ### Non-Functional Requirements
 
