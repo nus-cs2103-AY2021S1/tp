@@ -193,6 +193,13 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
             }
         }
+
+        updateTimeline();
+    }
+
+    @Override
+    public void updateTimeline() {
+        this.timelineWindow = new TimelineWindow(logic);
     }
 
     @FXML
