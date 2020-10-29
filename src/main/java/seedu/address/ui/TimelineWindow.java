@@ -21,9 +21,7 @@ public class TimelineWindow extends UiPart<Stage> {
     private Logic logic;
 
     @FXML
-    private HBox top;
-    @FXML
-    private HBox bottom;
+    private HBox container;
 
     /**
      * Creates a new TimelineWindow.
@@ -37,13 +35,11 @@ public class TimelineWindow extends UiPart<Stage> {
 
         for (int i = 0; i < logic.getFilteredMeetingList().size(); i++) {
             if (i % 2 == 0) {
-                top.getChildren().addAll(new TimelineSectionTop(
+                container.getChildren().addAll(new TimelineSection(
                         new TimelineMeetingCard(logic.getFilteredMeetingList().get(i))).getRoot());
-                bottom.getChildren().addAll(new EmptyCard().getRoot());
             } else {
-                bottom.getChildren().addAll(new TimelineSectionBot(
-                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i))).getRoot());
-                top.getChildren().addAll(new EmptyCard().getRoot());
+                container.getChildren().addAll(TimelineSection.getFlipped(new TimelineSection(
+                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i)))).getRoot());
             }
         }
     }
