@@ -171,7 +171,7 @@ t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 Edits an existing student in **Reeve**.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
+Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
 
 <div markdown="block" class="alert alert-info">
 
@@ -182,7 +182,7 @@ E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 </div>
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Start time has to be before end time.
@@ -226,14 +226,14 @@ Format: `list`
 
 You can delete a specified student from **Reeve**.
 
-Format: `delete INDEX`
+Format: `delete STUDENT_INDEX`
 
-* Deletes the student at the specified `INDEX`.
+* Deletes the student at the specified `STUDENT_INDEX`.
 * The index refers to the index number shown in the displayed students list.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: `INDEX` **must be a positive integer** 1, 2, 3, …​
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 :information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
 
@@ -331,23 +331,23 @@ Thereafter, you will be able to view, edit or delete these details of each stude
 
 You can add, resolve or remove questions from a specified student in **Reeve**.
 
-General Format: `question COMMAND_WORD INDEX DETAILS`
+General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
 * The `COMMAND_WORD` field accepts either `add`, `solve` or `delete`.
-* The command affects the student at the specified `INDEX`, which is his/her position on the list.
+* The command affects the student at the specified `STUDENT_INDEX`, which is his/her position on the list.
 * The format of `DETAILS` varies with each command word as explained below.
 
 <div markdown="block" class="alert alert-info">
-:information_source: `INDEX` **must be a positive integer** 1, 2, 3, …​
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 </div>
 
 ##### 3.3.1.1 Adding a question: `question add`
 
 Adds a new question to the student.
 
-Format: `question add INDEX t/QUESTION`
+Format: `question add STUDENT_INDEX t/QUESTION`
 
-* This records a new unresolved question to the student at the specified `INDEX`.
+* This records a new unresolved question to the student at the specified `STUDENT_INDEX`.
 
 <div markdown="block" class="alert alert-info">
 :information_source: `QUESTION` must not be empty.
@@ -360,9 +360,9 @@ Example:
 
 Marks a student's question as resolved.
 
-Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
+Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`
 
-* This resolves the question from the student at the specified `INDEX`
+* This resolves the question from the student at the specified `STUDENT_INDEX`
 * This resolves the question at the `QUESTION_INDEX`. The `QUESTION_INDEX` refers to the position of the question in the student's list of questions.
 
 <div markdown="block" class="alert alert-info">
@@ -382,7 +382,7 @@ Example:
 
 Deletes a student's question.
 
-Format: `question delete INDEX i/QUESTION_INDEX`
+Format: `question delete STUDENT_INDEX i/QUESTION_INDEX`
 
 * This deletes the question at the specified `QUESTION_INDEX`.
 * `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -394,10 +394,10 @@ Example:
 
 You can add or delete an exam to/from a specified student.
 
-General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
+General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD_EXAM` field accepts either `add` or `delete`.
-* The command affects the student at the specified `INDEX`.
+* The command affects the student at the specified `STUDENT_INDEX`.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
@@ -405,9 +405,9 @@ General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
 
 You can add an exam record to a specified student in **Reeve**.
 
-Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
+Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
-* Adds the given exam to the student at the specified `INDEX`.
+* Adds the given exam to the student at the specified `STUDENT_INDEX`.
 
 <div markdown="block" class="alert alert-info">
 :information_source: The format of EXAM_DATE is as follows:
@@ -562,21 +562,21 @@ Table 2: Summary of commands in **Reeve**
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
-**Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
-**List** | `list`
-**Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
+**Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
+**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
+**List Students** | `list`
+**Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
+**Sort Students** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
 **Overdue** | `overdue unpaid`
 **Add Detail** | `detail add STUDENT_INDEX t/DETAIL_TEXT`<br> e.g. `detail add 1 t/Smart`
 **Edit Detail** | `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`<br> e.g. `detail edit 1 i/2 t/Handsome`
 **Delete Detail** | `detail delete STUDENT_INDEX i/DETAIL_INDEX`<br> e.g. `detail delete 1 i/3`
 **Clear** | `clear`
-**Add Question** | `question add INDEX t/QUESTION`<br> e.g. `question add 1 t/How do birds fly?`
-**Resolve Question** | `question solve INDEX i/QUESTION_INDEX t/SOLUTION`<br> e.g. `question solve 1 i/1 t/Read a book.`
-**Delete Question** | `question delete INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
-**Add Exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+**Add Question** | `question add STUDENT_INDEX t/QUESTION`<br> e.g. `question add 1 t/How do birds fly?`
+**Resolve Question** | `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`<br> e.g. `question solve 1 i/1 t/Read a book.`
+**Delete Question** | `question delete STUDENT_INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
+**Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
@@ -584,7 +584,7 @@ Action | Format, Examples
 **Add Schedule Event** | `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [description/Event_Description] [recurrence/Event_recurrence]`<br> e.g. `schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
 **List Schedule Events** | `schedule list`
 **Delete Schedule Event** | `schedule delete EVENT_INDEX`
-**Toggle** | `toggle`
+**Toggle View** | `toggle`
 **Help** | `help`
 **Exit** | `exit`
 
