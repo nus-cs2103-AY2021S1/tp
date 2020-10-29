@@ -14,13 +14,13 @@ import javafx.scene.layout.Region;
 public class RecipeCard extends UiPart<Region> {
     private static final String FXML = "RecipeCard.fxml";
 
-    public final Recipe recipe;
+    private final Recipe recipe;
 
     @FXML
     private Button recipeButton;
 
     @FXML
-    private Label index;
+    private Label recipeIndex;
 
     /**
      * Creates a {@code RecipeCard} with the given {@code Recipe}.
@@ -28,9 +28,8 @@ public class RecipeCard extends UiPart<Region> {
     public RecipeCard(Recipe recipe, int id) {
         super(FXML);
         this.recipe = recipe;
-
+        recipeIndex.setText(String.format("#%d", id));
         this.recipeButton.setText(recipe.getName());
-        this.index.setText(String.format("#%d", id));
     }
 
     @FXML

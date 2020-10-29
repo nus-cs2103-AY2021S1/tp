@@ -15,5 +15,5 @@
             </ImageView>
         </graphic>
     </Button>
-    <Label fx:id="index" styleClass="recipe-card-number" StackPane.alignment="TOP_LEFT" mouseTransparent="true"/>
+    <Label fx:id="recipeIndex" styleClass="recipe-card-number" StackPane.alignment="TOP_LEFT" mouseTransparent="true"/>
 </StackPane>

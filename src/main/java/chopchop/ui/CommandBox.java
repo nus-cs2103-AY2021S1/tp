@@ -18,6 +18,7 @@ import javafx.scene.layout.Region;
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
+
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
@@ -92,9 +93,7 @@ public class CommandBox extends UiPart<Region> {
         var command = this.commandTextField.getText();
         if (!command.isEmpty()) {
             try {
-                System.out.println("SADs");
                 this.commandExecutor.execute(command);
-                System.out.println("SAD");
             } catch (CommandException | ParseException e) {
                 this.setStyleToIndicateCommandFailure();
             } finally {
@@ -111,6 +110,7 @@ public class CommandBox extends UiPart<Region> {
             this.commandTextField.end();
         }
     }
+
 
     /**
      * Sets the command box style to use the default style.

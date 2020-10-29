@@ -8,7 +8,7 @@
             prefHeight="126.0" prefWidth="148.0" styleClass="ingredient-button">
         <graphic>
             <VBox alignment="CENTER">
-                <Label fx:id="name" styleClass="ingredient-name" wrapText="true"/>
+                <Label fx:id="ingredientName" styleClass="ingredient-name" wrapText="true"/>
                 <HBox fx:id="expiryBox" alignment="CENTER">
                     <Label styleClass="ingredient-expiry-date" text="exp: "/>
                     <Label fx:id="expiryDate" styleClass="ingredient-expiry-date"/>

@@ -5,7 +5,6 @@ package chopchop.ui;
 
 import chopchop.model.ingredient.Ingredient;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -18,11 +17,9 @@ public class IngredientCard extends UiPart<Region> {
 
     public final Ingredient ingredient;
 
-    @FXML
-    private Button ingredientCard;
 
     @FXML
-    private Label name;
+    private Label ingredientName;
 
     @FXML
     private Label quantity;
@@ -48,7 +45,7 @@ public class IngredientCard extends UiPart<Region> {
 
         this.index.setText(String.format("#%d", id));
 
-        this.name.setText(ingredient.getName());
+        this.ingredientName.setText(ingredient.getName());
         this.quantity.setText(ingredient.getQuantity().toString());
 
         this.ingredient.getExpiryDate().ifPresentOrElse(exp -> this.expiryDate.setText(exp.toString()), () -> {
