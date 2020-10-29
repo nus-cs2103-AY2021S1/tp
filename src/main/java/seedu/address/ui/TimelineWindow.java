@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.meeting.Time;
 
 /**
  * Controller for a help page

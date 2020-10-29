@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Collections;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,8 +9,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import java.util.Collections;
 
 public class TimelineSection extends UiPart<Region> {
     private static final String FXML = "TimelineSection.fxml";
@@ -32,8 +32,8 @@ public class TimelineSection extends UiPart<Region> {
         vbox.getChildren().setAll(tmp);
     }
 
-    public static TimelineSection getFlipped(TimelineSection TimelineSection) {
-        TimelineSection.flip();
-        return TimelineSection;
+    public static TimelineSection getFlipped(TimelineSection timelineSection) {
+        timelineSection.flip();
+        return timelineSection;
     }
 }

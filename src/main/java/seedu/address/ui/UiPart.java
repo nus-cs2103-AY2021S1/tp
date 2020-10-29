@@ -7,7 +7,6 @@ import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
 import seedu.address.MainApp;
-import seedu.address.logic.Logic;
 
 /**
  * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.

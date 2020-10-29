@@ -203,6 +203,9 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         timelineWindow = this.timelineWindow.updateLogic(logic);
     }
 
+    /**
+     * Opens the timeline window or focuses on it if it's already opened.
+     */
     @FXML
     public void handleToggle() {
         logger.info("UI toggle triggered");
