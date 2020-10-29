@@ -246,7 +246,7 @@ public class ParserUtil {
     public static GradePoint parseGradePoint(String gradePoint) throws ParseException {
         double trimmedGradePoint;
         if (!GradePoint.isValidGradePoint(gradePoint)) {
-            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+            throw new ParseException(GradePoint.MESSAGE_CONSTRAINTS);
         } else {
             trimmedGradePoint = Double.parseDouble(gradePoint.trim());
         }
