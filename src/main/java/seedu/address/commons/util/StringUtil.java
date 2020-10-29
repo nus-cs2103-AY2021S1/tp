@@ -53,11 +53,11 @@ public class StringUtil {
         requireNonNull(toCheck);
         requireNonNull(key);
 
-        String preparedKey = key.trim();
+        String preparedKey = key.trim().toLowerCase();
         String preparedStr = toCheck.toLowerCase();
         checkArgument(!preparedKey.isEmpty(), "Key parameter cannot be empty");
 
-        return preparedStr.contains(key) || toCheck.contains(key);
+        return preparedStr.contains(preparedKey);
     }
 
     /**
