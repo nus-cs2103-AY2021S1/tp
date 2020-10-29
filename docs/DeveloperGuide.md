@@ -261,18 +261,22 @@ The task can also be edited with the command 'edittask' and include **any** of t
   - `d/` prefix followed by a description of the task
   - `td/` prefix followed by the deadline of the task
 
- *Each of the fields above is validated upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
+ *The system validates each field upon entry by the user, and failing the validation, will display to the user that the command failed, and requesting the user to try again.*
 
 Given below is an example usage scenario and how the add task and edit task mechanism behaves at each step.
 
 After entering the project scope of a chosen project, the user enters the command to add a new task such as "addtask n/Create Person class tp/25 done/false td/9-11-2020 00:00:00".
 The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `addtask`. A new instance of `AddTaskCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
-If the fields are all valid, a new `Task` object would be created passed into the `AddTaskCommand` class. 
+If the fields are all valid, a new `Task` object would be created and passed into the `AddTaskCommand` class. 
 
 Within the `AddTaskCommand` class, an instance of `AddTaskCommand` is created, along with an instance of the task created in the same class and this instance of `Command` is passed back to `LogicManager`.
 
 LogicManager then calls the method `execute` of the `AddTaskCommand` which stores the task into the respective project's task list.
+
+The diagram below summarises the events above with the help of a sequence diagram:
+![AddTaskSequenceDiagramImage](images/AddTaskSequenceDiagram.png)
+
 
 ### Filtering feature
 
@@ -683,10 +687,11 @@ should be able to accomplish most of the tasks faster using commands than using 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Member**: A person belonging to a member of a team leader's team. <!-- need to be re-written -->
-* **Task**: Something that has to be done with relation to a project to complete it. <!-- this is not a glossary but a note. Need a glossary -->
-* **Project**: A project with a deadline, tasks, and members allocated to those tasks.
+* **Teammate**: A person belonging to a project of the team leader's team.
+* **Participation**: The class of an object that handles the relations between a Project object and Person Object.
+
 <!-- may add more: e.g. person, participation, start, user, index -->
+<!-- I dont think you need to clarify those terms as they are self explanatory -->
 
 --------------------------------------------------------------------------------------------------------------------
 
