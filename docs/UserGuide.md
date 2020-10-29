@@ -50,7 +50,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 ### Main page
 The main page of the application when the user first enters the app.
 
-#### Adding an active investigation case: `add case t:TITLE [s:STATUS] [t/TAG]`
+#### Adding an active investigation case: `add case t:TITLE [s:STATUS]`
 Adds a new investigation case which has the active status by default. The user can provide 3 status types:
 
 1. `ACTIVE`
@@ -59,16 +59,21 @@ Adds a new investigation case which has the active status by default. The user c
 
 3. `COLD`
 
-User can tag the case they add. Tags cannot contain whitespaces.
+The case will be added to the DEFAULT/ARCHIVED section, depending on which section they are currently in. 
 
-Format: `add case t:[TITLE] [s:STATUS] [t/TAG]`
+Format: `add case t:[TITLE] [s:STATUS]`
 
-Example: `add case t:Kovan double murders s:Closed t/SerialKiller` creates a new investigation case with the title “Kovan double murders”, the status initalized as a closed case, tagged as SerialKiller.
+Example: `add case t:Kovan double murders s:Closed` creates a new investigation case with the title “Kovan double murders”, the status initalized as a closed case.
 
 #### List all investigation cases: `list case`
-Lists all available investigation cases in PIVOT.
+Lists all default investigation cases in PIVOT (unarchived cases).
 
 Format: `list case`
+
+#### List all investigation cases: `list archive`
+Lists all archived investigation cases in PIVOT.
+
+Format: `list archive`
 
 #### Delete an investigation case: `delete case CASE_NO`
 Deletes the specified investigation case.
@@ -84,6 +89,42 @@ Enters the specified investigation case where users can add more information reg
 Format:  `open case CASE_NO`
 
 Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
+
+#### Archiving an investigation case in the DEFAULT section: `archive case CASE_NO`
+Archives the specified investigation case in DEFAULT section of Pivot.
+
+Format:  `archive case CASE_NO`
+
+Example: `list case` followed by `archive case 1` archives the 1st case in the investigation list.
+
+#### Unarchiving an investigation case in the ARCHIVED section: `archive case CASE_NO`
+Unarchives the specified investigation case in the ARCHIVED section of Pivot.
+
+Format:  `unarchives case CASE_NO`
+
+Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the investigation list.
+
+### Finding an investigation case: `find KEYWORD`
+
+Finds investigation cases whose details contains any of the given keywords.
+
+Format:  `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g keyword `hans` will match case containing `Hans` in its details
+* The order of the keywords does not matter. e.g. keywords `Hans Bo` will match case containing `Bo Hans` in its details
+* The search finds cases depending on which section they are in. If they are in the DEFAULT section, cases found are in DEFAULT section only.
+ If they are in the ARCHIVED section, cases found are in the ARCHIVED section only. Note that on start-up, they are in the DEFAULT section,
+ and can alternate between sections using `list case` or `list archive` as mentioned above
+* All details of all cases in relevant section (ARCHIVED/DEFAULT) are searched, specifically: Title, Status, Description, 
+Documents (file name and file reference that the users input on creation), Suspects/Witnesses/Victims (Name, Gender, Phone, Email, Address)
+* Only full words will be matched e.g. keyword `Han` will not match cases containing `Hans` in their details
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
+containing `Hans Gruber`, `Bo Yang` in their details
+
+Example:
+* `find Ang` return cases `ang` and `Ang Mo Kio Car Theft`, and cases containing `Ang` in their details
+* `find dhoby bishan` return cases `Dhoby Ghaut Murder Case` and `Bishan Shopping Theft`, and cases containing `dhoby` or `bishan` in their details
+* `find 91234567 bishan` return cases with suspect, victim or witness containing Phone number `91234567`, and cases containing `bishan` in their details
 
 #### Exit application: `exit`
 Exits the application.
