@@ -327,9 +327,12 @@ Adds an application to an applicant under Eva.
 Format: `addapplication INDEX [filepath]`
 
  - An applicant should be created prior to the addition of its application.
+ - You may use the sample resume by keying in `sample` as filepath.
 
 Example:
 * `addapplication 1 C:\Users\Public\Downloads\resume.txt`
+* `addapplication 1 sample`
+
 
 #### 3.4.5. Delete an application: `deleteapplication`
 
