@@ -11,9 +11,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.LessonEvent;
 import seedu.address.model.student.Student;
+
+import java.time.LocalDateTime;
 
 /**
  * Adds a person to the address book.
@@ -65,7 +70,26 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
+
+
+        // creates a lesson event based on the student
+        Event lessonEvent = LessonEvent.createLessonEvent(toAdd, LocalDateTime.now());
+
+        if (model.isClashingEvent(lessonEvent)) {
+            throw new CommandException(Messages.MESSAGE_CLASHING_EVENT);
+        }
+
+
+        if (model.hasEvent(lessonEvent)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_EVENT);
+        }
+
+        // add the schedule
+        model.addEvent(lessonEvent);
+
+        // add the student
         model.addPerson(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
