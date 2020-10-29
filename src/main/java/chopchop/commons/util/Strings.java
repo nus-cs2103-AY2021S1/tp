@@ -56,7 +56,9 @@ public class Strings {
         COMMAND_VIEW
     );
 
-    // command targets
-    // public static final String TARGET_RECIPE        = "recipe";
-    // public static final String TARGET_INGREDIENT    = "ingredient";
+    public static final String STATS_KIND_TOP       = "top";
+    public static final String STATS_KIND_USED      = "used";
+    public static final String STATS_KIND_MADE      = "made";
+    public static final String STATS_KIND_CLEAR     = "clear";
+    public static final String STATS_KIND_RECENT    = "recent";
 }

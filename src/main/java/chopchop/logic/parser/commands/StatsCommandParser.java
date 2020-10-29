@@ -26,6 +26,11 @@ import chopchop.logic.parser.CommandArguments;
 import static chopchop.commons.util.Strings.ARG_AFTER;
 import static chopchop.commons.util.Strings.ARG_BEFORE;
 import static chopchop.commons.util.Strings.COMMAND_STATS;
+import static chopchop.commons.util.Strings.STATS_KIND_CLEAR;
+import static chopchop.commons.util.Strings.STATS_KIND_MADE;
+import static chopchop.commons.util.Strings.STATS_KIND_RECENT;
+import static chopchop.commons.util.Strings.STATS_KIND_TOP;
+import static chopchop.commons.util.Strings.STATS_KIND_USED;
 import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.checkArguments;
@@ -58,16 +63,16 @@ public class StatsCommandParser {
     private static Result<? extends Command> parseRecipeStatsCommand(CommandArguments args, String kind) {
         var c = "stats recipe";
         switch (kind) {
-        case "top":
-            return ensureNoArgs(args, c + " top", new StatsRecipeTopCommand());
+        case STATS_KIND_TOP:
+            return ensureNoArgs(args, c + " " + STATS_KIND_TOP, new StatsRecipeTopCommand());
 
-        case "clear":
-            return ensureNoArgs(args, c + " clear", new StatsRecipeClearCommand());
+        case STATS_KIND_CLEAR:
+            return ensureNoArgs(args, c + " " + STATS_KIND_CLEAR, new StatsRecipeClearCommand());
 
-        case "recent":
-            return ensureNoArgs(args, c + " recent", new StatsRecipeRecentCommand());
+        case STATS_KIND_RECENT:
+            return ensureNoArgs(args, c + " " + STATS_KIND_RECENT, new StatsRecipeRecentCommand());
 
-        case "made":
+        case STATS_KIND_MADE:
             return parseDateRecipeCommand(kind, args);
 
         default:
@@ -80,13 +85,13 @@ public class StatsCommandParser {
         var c = "stats ingredient";
 
         switch (kind) {
-        case "clear":
-            return ensureNoArgs(args, c + " clear", new StatsIngredientClearCommand());
+        case STATS_KIND_CLEAR:
+            return ensureNoArgs(args, c + " " + STATS_KIND_CLEAR, new StatsIngredientClearCommand());
 
-        case "recent":
-            return ensureNoArgs(args, c + " recent", new StatsIngredientRecentCommand());
+        case STATS_KIND_RECENT:
+            return ensureNoArgs(args, c + " " + STATS_KIND_RECENT, new StatsIngredientRecentCommand());
 
-        case "used":
+        case STATS_KIND_USED:
             return parseDateIngredientCommand(kind, args);
 
         default:

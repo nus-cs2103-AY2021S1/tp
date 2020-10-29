@@ -7,8 +7,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import chopchop.commons.core.LogsCenter;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.parser.ArgName;
@@ -19,6 +21,8 @@ import chopchop.model.Entry;
 import chopchop.model.Model;
 
 public class AutoCompleter {
+
+    private static final Logger logger = LogsCenter.getLogger(AutoCompleter.class);
 
     private int lastCompletionIndex = 0;
     private List<String> lastViableCompletions = null;
@@ -56,8 +60,18 @@ public class AutoCompleter {
             return orig;
         }
 
+        var statsRecipeKinds = List.of(Strings.STATS_KIND_TOP, Strings.STATS_KIND_MADE,
+            Strings.STATS_KIND_CLEAR, Strings.STATS_KIND_RECENT);
+
+        var statsIngredientKinds = List.of(Strings.STATS_KIND_USED, Strings.STATS_KIND_CLEAR,
+            Strings.STATS_KIND_RECENT);
+
+
         var args = res.getValue();
         var req = getRequiredCompletion(args, orig);
+        logger.info(String.format("completing: %s", req));
+
+
         switch (req) {
 
         case COMMAND_NAME:
@@ -88,6 +102,18 @@ public class AutoCompleter {
 
         case TAG_NAME:
             return completeTag(model, args, orig);
+
+        case STATS_RECIPE_KIND_NAME:
+            return completeStatsKind(args, orig, statsRecipeKinds, /* nested: */ false);
+
+        case STATS_INGREDIENT_KIND_NAME:
+            return completeStatsKind(args, orig, statsIngredientKinds, /* nested: */ false);
+
+        case NESTED_STATS_RECIPE_KIND_NAME:
+            return completeStatsKind(args, orig, statsRecipeKinds, /* nested: */ true);
+
+        case NESTED_STATS_INGREDIENT_KIND_NAME:
+            return completeStatsKind(args, orig, statsIngredientKinds, /* nested: */ true);
 
         case NONE: // fallthrough
         default:
@@ -173,7 +199,13 @@ public class AutoCompleter {
         var valids = new ArrayList<String>();
         for (var tgt : CommandTarget.values()) {
             if (tgt.toString().startsWith(partial)) {
-                valids.add(tgt.toString());
+
+                // only suggest 'recommendation' for the 'list' command.
+                if (!tgt.equals(CommandTarget.RECOMMENDATION)
+                    || args.getCommand().equals(Strings.COMMAND_LIST)) {
+
+                    valids.add(tgt.toString());
+                }
             }
         }
 
@@ -223,6 +255,49 @@ public class AutoCompleter {
             })
             .orElse(orig);
     }
+
+
+    /**
+     * Returns a completion for {@code <x>} in {@code stats (ingredient|recipe) <x>}.
+     * Since each "kind" is uniquely prefixed (T, U, M, C, R), we don't have to care about cycling.
+     */
+    private String completeStatsKind(CommandArguments args, String orig, List<String> valids, boolean nested) {
+
+        var xs = new StringView(args.getRemaining()).words();
+        if ((nested && xs.size() < 3) || (!nested && xs.size() < 2)) {
+            return orig;
+        }
+
+        var partial = nested
+            ? xs.get(2)
+            : xs.get(1);
+
+        return tryCompletionUsing(valids, orig, partial)
+            .orElse(orig);
+
+        // assert this.lastCompletionIndex < this.lastViableCompletions.size();
+
+        //     // var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
+        //     // this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
+
+        // if (nested) {
+
+        //     // now this is a little complicated; split the input into two pieces; the first being
+        //     // everything occurring before "partial" (this is the only part we want)
+        //     var idx = orig.lastIndexOf(partial);
+        //     var prefix = orig.substring(0, idx);
+
+        //     return prefix + completion + " ";
+        // } else {
+        //     // if we're not nested, then we're guaranteed that the command must happen at the beginning of
+        //     // the input, so we can just return the completion as-is.
+        //     return completion + " ";
+        // }
+    }
+
+
+
+
 
     /**
      * Returns a completion for the argument name only.
@@ -443,8 +518,9 @@ public class AutoCompleter {
 
             var cmd = args.getCommand();
             var sv = new StringView(args.getRemaining());
+            var words = sv.words();
 
-            if (commandRequiresTarget(cmd) && sv.words().size() == 1) {
+            if (commandRequiresTarget(cmd) && words.size() == 1) {
                 return RequiredCompletion.TARGET_NAME;
             }
 
@@ -453,8 +529,26 @@ public class AutoCompleter {
 
                 // this is tricky. first, get the command you want help for:
                 var helpedCmd = args.getFirstWordFromRemaining();
-                if (commandRequiresTarget(helpedCmd) && sv.words().size() > 1) {
+                if (commandRequiresTarget(helpedCmd) && words.size() == 2) {
+
                     return RequiredCompletion.NESTED_TARGET_NAME;
+
+                } else if (helpedCmd.equals(Strings.COMMAND_STATS) && words.size() > 2) {
+
+                    var target = words.get(1);
+                    return CommandTarget.of(target)
+                        .map(tgt -> {
+                            switch (tgt) {
+                            case RECIPE:
+                                return RequiredCompletion.NESTED_STATS_RECIPE_KIND_NAME;
+
+                            case INGREDIENT:
+                                return RequiredCompletion.NESTED_STATS_INGREDIENT_KIND_NAME;
+
+                            default:
+                                return RequiredCompletion.NONE;
+                            }
+                        }).orElse(RequiredCompletion.NONE);
                 }
 
                 return RequiredCompletion.NESTED_COMMAND_NAME;
@@ -471,11 +565,17 @@ public class AutoCompleter {
                             // -- only for ingredients.
                             if (cmd.equals(Strings.COMMAND_ADD)) {
                                 return RequiredCompletion.NONE;
+                            } else if (cmd.equals(Strings.COMMAND_STATS)) {
+                                return RequiredCompletion.STATS_RECIPE_KIND_NAME;
                             }
 
                             return RequiredCompletion.RECIPE_NAME;
 
                         case INGREDIENT:
+                            if (cmd.equals(Strings.COMMAND_STATS)) {
+                                return RequiredCompletion.STATS_INGREDIENT_KIND_NAME;
+                            }
+
                             return RequiredCompletion.INGREDIENT_NAME;
 
                         default:
@@ -585,6 +685,7 @@ public class AutoCompleter {
             Strings.COMMAND_LIST,
             Strings.COMMAND_FIND,
             Strings.COMMAND_EDIT,
+            Strings.COMMAND_STATS,
             Strings.COMMAND_FILTER,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
@@ -612,6 +713,10 @@ public class AutoCompleter {
         INGREDIENT_NAME_IN_ARG,
         COMPONENT_NAME,
         TAG_NAME,
+        STATS_RECIPE_KIND_NAME,
+        STATS_INGREDIENT_KIND_NAME,
+        NESTED_STATS_RECIPE_KIND_NAME,
+        NESTED_STATS_INGREDIENT_KIND_NAME,
         NESTED_COMMAND_NAME,
         NESTED_TARGET_NAME
     }
