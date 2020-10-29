@@ -129,21 +129,21 @@ Examples:
 Format: `import url/YOUR_NUSMODS_URL`
 
 You can import your NUSMods timetable data into ProductiveNUS by providing the URL to your NUSMods timetable share
-link. Imported lesson information can be found in the `Upcoming tasks` list as shown.
- 
-DIAGRAM
+link. Imported lesson information can be found in the `Upcoming tasks`.
  
 Follow these steps and try importing your timetable:
 
 1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
 
-DIAGRAM
+   ![NusModsShareSync](images/NusModsShareSync.PNG)
+   *Figure X: The "Share/Sync" at the NUSMods website highlighted in green*
 
 2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
 
 3) Added lesson information can be found in your task list.
 
-DIAGRAM
+   ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
+   *Figure X: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
 
 <div markdown="block" class="alert alert-primary">
 
@@ -278,7 +278,8 @@ Format: `prioritize INDEX p/PRIORITY`
 You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
 shown with a coloured priority tag (As shown highlighted in red in the figure below).
 
-DIAGRAM
+   ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
+   *Figure X: The priority tags of assignments highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
 
