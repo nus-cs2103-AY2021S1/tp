@@ -177,7 +177,7 @@ public class UpdateCommand extends Command {
         if (stockToUpdate.getNotes().size() > 0) {
             List<Note> noteList = stockToUpdate.getNotes();
 
-            for(Note note : noteList) {
+            for (Note note : noteList) {
                 result.addNote(note);
             }
         }
