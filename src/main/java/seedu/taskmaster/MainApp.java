@@ -79,7 +79,7 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskmaster> taskmasterOptional;
         Optional<SessionList> sessionListOptional;
-        ReadOnlyTaskmaster initialData;
+        ReadOnlyTaskmaster initialData = null;
         SessionList initialSessionList = new SessionListManager();
         try {
             taskmasterOptional = storage.readTaskmaster();
@@ -93,16 +93,20 @@ public class MainApp extends Application {
                 logger.info("Session List file not found.");
             }
             initialSessionList = sessionListOptional.orElse(initialSessionList);
-
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Taskmaster");
             initialData = new Taskmaster();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty Taskmaster");
             initialData = new Taskmaster();
+        } catch (NumberFormatException e) {
+            logger.warning("Problem when parsing ClassParticipation scores." +
+                    " Will be starting with empty SessionList.");
+            initialData = (initialData != null) ? initialData : new Taskmaster();
+            initialSessionList = new SessionListManager();
         }
 
-        return new ModelManager(initialData, initialSessionList, userPrefs);
+        return new ModelManager(initialData, initialSessionList.asUnmodifiableObservableList(), userPrefs);
     }
 
     private void initLogging(Config config) {

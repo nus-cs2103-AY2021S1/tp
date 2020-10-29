@@ -43,7 +43,7 @@ class JsonAdaptedStudentRecord {
         name = source.getName().fullName;
         nusnetId = source.getNusnetId().value;
         attendanceType = source.getAttendanceType().name();
-        classParticipation = source.getClassParticipation().toString();
+        classParticipation = String.valueOf(source.getClassParticipation().getRawScore());
     }
 
     /**
@@ -75,16 +75,16 @@ class JsonAdaptedStudentRecord {
             throw new IllegalValueException(AttendanceType.MESSAGE_CONSTRAINTS);
         }
 
-        final Name placeholderName = new Name(name);
+        final Name modelName = new Name(name);
 
         final NusnetId modelNusnetId = new NusnetId(nusnetId);
 
         final AttendanceType modelAttendanceType = AttendanceType.valueOf(attendanceType);
 
-        // TODO: implement
-        final ClassParticipation classParticipation = new ClassParticipation();
 
-        return new StudentRecord(placeholderName, modelNusnetId, modelAttendanceType, classParticipation);
+        final ClassParticipation classParticipation = new ClassParticipation(Integer.parseInt(this.classParticipation));
+
+        return new StudentRecord(modelName, modelNusnetId, modelAttendanceType, classParticipation);
     }
 
 }

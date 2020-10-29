@@ -111,9 +111,6 @@ public class TaskmasterTest {
         public ObservableList<Session> getSessionList() {
             return sessions;
         }
-
-        @Override
-        public void setSessions(List<Session> sessions) { }
     }
 
 }

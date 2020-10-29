@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -36,14 +37,14 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given Taskmaster, SessionList, and userPrefs.
      */
-    public ModelManager(ReadOnlyTaskmaster taskmaster, SessionList sessionList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaskmaster taskmaster, List<Session> sessionList, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(taskmaster, userPrefs);
 
         logger.fine("Initializing with student list: " + taskmaster + " and user prefs " + userPrefs);
 
         this.taskmaster = new Taskmaster(taskmaster);
-        this.taskmaster.setSessions(sessionList.asUnmodifiableObservableList());
+        this.taskmaster.setSessions(sessionList);
 
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
@@ -51,11 +52,11 @@ public class ModelManager implements Model {
     }
 
     public ModelManager(ReadOnlyTaskmaster taskmaster, ReadOnlyUserPrefs userPrefs) {
-        this(taskmaster, new SessionListManager(), userPrefs);
+        this(taskmaster, taskmaster.getSessionList(), userPrefs);
     }
 
     public ModelManager() {
-        this(new Taskmaster(), new SessionListManager(), new UserPrefs());
+        this(new Taskmaster(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================

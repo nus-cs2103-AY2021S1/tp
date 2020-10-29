@@ -1,7 +1,5 @@
 package seedu.taskmaster.model;
 
-import java.util.List;
-
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
