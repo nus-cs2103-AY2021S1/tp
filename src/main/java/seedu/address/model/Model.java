@@ -2,13 +2,12 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.ReadOnlyEvent;
 import seedu.address.model.event.ScheduleViewMode;
 import seedu.address.model.student.Student;
@@ -92,31 +91,71 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Student> predicate);
 
     // =========== schedule ================================================================================
+
+    /**
+     * Sets the scheduler with {@code events}.
+     */
     void setSchedulerWithEvents(ReadOnlyEvent events);
 
+    /**
+     * Returns the current schedule.
+     */
     ReadOnlyEvent getSchedule();
 
-    ReadOnlyVEvent getVEvents();
-
+    /**
+     * Gets the schedule storage file path.
+     */
     Path getScheduleFilePath();
 
+    /**
+     * Sets the file path of schedule. This is the storage path for the events.
+     */
     void setScheduleFilePath(Path scheduleFilePath);
 
+    /**
+     * Gets the current schedule viewing date time.
+     */
     LocalDateTime getScheduleViewDateTime();
 
+    /**
+     * Set the viewing date time of the schedule.
+     */
     void setScheduleViewDateTime(LocalDateTime targetDateTime);
 
+    /**
+     * Returns the current schedule view mode
+     */
     ScheduleViewMode getScheduleViewMode();
 
+    /**
+     * Sets the schedule view mode to either week view or day view.
+     */
     void setScheduleViewMode(ScheduleViewMode viewMode);
 
-    void addVEvent(VEvent vEvent);
+    /**
+     * Adds an {@code eventToAdd} to the schedule.
+     */
+    void addEvent(Event eventToAdd);
 
-    boolean hasVEvent(VEvent vEvent);
+    /**
+     * Checks if schedule has {@code eventToCheck}
+     */
+    boolean hasEvent(Event eventToCheck);
 
-    void removeVEvent(Index index);
-
-    VEvent getVEvent(Index index);
-
+    /**
+     * Returns the VEvent list used for jfxtras iCalendar.
+     */
     ObservableList<VEvent> getVEventList();
+
+    /**
+     * Checks if an event clashes with another event already in the schedule.
+     * Clashing events are events that occur during the same time.
+     */
+    boolean isClashingEvent(Event event);
+
+    /**
+     * Remove the given event.
+     * The event must exist in the schedule.
+     */
+    void removeEvent(Event event);
 }

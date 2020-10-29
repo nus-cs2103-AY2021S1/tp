@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
@@ -17,7 +18,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ReeveBuilder;
 
 public class ModelManagerTest {
@@ -134,4 +134,38 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(reeve, differentUserPrefs, scheduler)));
 
     }
+
+    @Test
+    public void setScheduleFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setScheduleFilePath(null));
+    }
+
+    @Test
+    public void setScheduleFilePath_validPath_setsScheduleFilePath() {
+        Path path = Paths.get("schedule/file/path");
+        modelManager.setScheduleFilePath(path);
+        assertEquals(path, modelManager.getScheduleFilePath());
+    }
+
+    @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
+    }
+
+    @Test
+    public void hasEvent_eventNotInSchedule_returnsFalse() {
+        assertFalse(modelManager.hasEvent(ALICE_CLASS_EVENT));
+    }
+
+    @Test
+    public void hasEvent_eventInSchedule_returnsTrue() {
+        modelManager.addEvent(ALICE_CLASS_EVENT);
+        assertTrue(modelManager.hasEvent(ALICE_CLASS_EVENT));
+    }
+
+    @Test
+    public void getVEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getVEventList().remove(0));
+    }
+
 }

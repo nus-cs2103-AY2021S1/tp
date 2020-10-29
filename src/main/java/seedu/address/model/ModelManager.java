@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -14,7 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.ReadOnlyEvent;
 import seedu.address.model.event.SchedulePrefs;
 import seedu.address.model.event.ScheduleViewMode;
@@ -40,7 +39,8 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs, schedule);
 
-        logger.fine("Initializing with address book: " + addressBook + ", schedule : " + schedule + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook
+                + ", schedule : " + schedule + " and user prefs " + userPrefs);
 
         this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -131,7 +131,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         reeve.setStudent(target, editedStudent);
     }
 
@@ -164,16 +163,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyVEvent getVEvents() { return scheduler;}
-
-    @Override
     public LocalDateTime getScheduleViewDateTime() {
-        return schedulePrefs.getTargetViewDateTime();
+        return schedulePrefs.getViewDateTime();
     }
 
     @Override
     public void setScheduleViewDateTime(LocalDateTime viewDateTime) {
-        schedulePrefs.setTargetViewDateTime(viewDateTime);
+        schedulePrefs.setViewDateTime(viewDateTime);
     }
 
     @Override
@@ -187,30 +183,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addVEvent(VEvent vEvent) {
-        scheduler.addVEvent(vEvent);
+    public void addEvent(Event eventToAdd) {
+        scheduler.addEvent(eventToAdd);
     }
 
     @Override
-    public boolean hasVEvent(VEvent vEvent) {
-        return scheduler.hasVEvent(vEvent);
+    public boolean hasEvent(Event eventToCheck) {
+        return scheduler.hasEvent(eventToCheck);
     }
 
     @Override
-    public void removeVEvent(Index index) {
-        scheduler.removeVEvent(index);
-    }
-
-    @Override
-    public VEvent getVEvent(Index index) {
-        return scheduler.getVEvent(index);
+    public void removeEvent(Event toRemove) {
+        scheduler.removeEvent(toRemove);
     }
 
     @Override
     public ObservableList<VEvent> getVEventList() {
         return scheduler.getVEvents();
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -230,5 +220,11 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
     }
+
+    @Override
+    public boolean isClashingEvent(Event event) {
+        return scheduler.isClashingEvents(event);
+    }
+
 
 }
