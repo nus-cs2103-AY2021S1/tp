@@ -134,15 +134,6 @@ Example(s):
 *   `find n/Tan` Shows all contacts with `Tan` in their name.
 *   `find n/Jay t/classmates` Shows all contacts with `Jay` in their name and persons with the `classmates` tag.
 
-### Creating a module : `module add`
-
-Creates a Module with a given name and members .
-
-Format: `module add n/MODULE_NAME [m/MEMBER_NAMES]…`
-
-Note: A Module can have more than 1 member separated by “,” but can only have one name. Members can be optional.
-
-
 ### Adding a tag to a user : `label add`
 
 Adds the given labels to a contact.
@@ -179,6 +170,61 @@ Note(s):
 
 Example(s):
 * `label clear Jay`
+
+### Creating a module : `module add`
+
+Creates a Module with a given name and members .
+
+Format: `module add n/MODULE_NAME [p/MEMBER_NAME]...`
+
+Note(s): 
+* A Module can have more than 1 member but can only have one name. 
+* Members can be optional.
+* Professors and TA's can also be added in the same format as other contacts.
+
+Example(s):
+* `module add n/CS2103 p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
+
+### Listing a module : `module list`
+
+Finds and displays all the contacts of the module specified.
+
+Format: `module list m/MODULE_NAME`
+
+Note(s): 
+* The command `module list m/clean` will restore the module UI to show all contacts again.
+
+Example(s):
+* `module list m/CS2103`
+
+### Editing a module : `module edit`
+
+Edits a Module based on the inputted details.
+
+Format: `module edit m/MODULE_NAME n/NEW_MODULE_NAME [p/MEMBER_NAME]...`
+
+Note(s): 
+* Note that if you change the participants, the old participants will be overwritten and replaced by the newly
+added participants. 
+* You can change either the module name, the participants or both. 
+* Changes to module will affect meetings based on that module, so if the meeting does not include any of the new module
+participants, it will be deleted. 
+
+Example(s):
+* `module edit m/CS2103 n/CS2103T p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
+
+### Deleting a module : `module delete`
+
+Deletes a module with a specific name.
+
+Format: `module delete m/MODULE_NAME`
+
+Note(s): 
+* All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module 
+carefully.
+
+Example(s):
+* `module delete m/CS2103`
 
 ### Adding a meeting: `meeting add`
 
