@@ -105,14 +105,16 @@ You can delete assignments from your assignment list by specifying the assignmen
 
 You can delete **one or more** assignments at a time. Here is an example with steps to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command box as per their indexes that are circled and labelled in the figure.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command box as per their indexes that are labelled in the figure.
 
-![Ui](images/Ui.png)
+![DeleteCommand1](images/DeleteCommandDiagram1.png)
+*Figure X: User input and location of assignment indexes*
 
 2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
-3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
+3) A "Deleted assignment(s)" message that includes the information of your deleted assignments will be displayed in the Command Box.
 
-DIAGRAM
+![DeleteCommand2](images/DeleteCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 More examples:
 * `delete 1`
@@ -145,9 +147,15 @@ Format: `list [NUMBER_OF_DAYS]`
 
 You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date (and time) and `NUMBER_OF_DAYS` later (in number of hours).
 
-For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 1200, all assignments due within this date and time to 27/10/2020 1200 will be displayed.
+For example, you can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days (72 hours) from the current date (and current time). 
 
-DIAGRAM
+![ListCommand1](images/ListCommandDiagram1.png)
+*Figure X: `list 3` inputted by user*
+
+If the current date and time is 29/10/2020 1800, all assignments due within this date and time to 01/11/2020 1800 will be displayed. A message that indicates the number of assignments listed is shown.
+
+![ListCommand2](images/ListCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
@@ -190,12 +198,14 @@ Here is an example with steps to follow:
 
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
-DIAGRAM
+![FindCommand1](images/FindCommandDiagram1.png)
+*Figure X: `find mod/CS2100 ST2334` inputted by user*
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
-3) A "listed your assignments" message will be displayed in the command box.
+3) A message that indicates the number of assignments found will be displayed in the command box.
 
-DIAGRAM
+![FindCommand1](images/FindCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 <div markdown="block" class="alert alert-primary">
 
