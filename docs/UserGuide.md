@@ -33,7 +33,7 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-<a name="uiwithannotationpng"></a>
+   <a name="uiwithannotationpng"></a>
 1. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
     <br>
@@ -79,7 +79,6 @@ Things to note for the commands:
   <br> 
   
   ![Index](images/Index.png)
-  <center><img src="images/Index.png"></center>
   <br>
   Figure 3: Index Annotation
   <br>
@@ -162,33 +161,35 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. The new item will show up in Inventory Book, refer to the diagram below:
-<br>
-![add-i_step_1](images/add-i_eg1.1.PNG)
-<br>
-Figure 5: Add new item of duck
-<br>
+    <br>
+    
+    ![add-i_step_1](images/add-i_eg1.1.PNG)
+    <br>
+    Figure 5: Add new item of duck
+    <br>
 
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
 through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below:
-<br>
-![add-i_step_2](images/add-i_eg1.2.PNG)
-<br>
-Figure 6: Error when adding maximum quantity and metric to an existing item
-<br>
+    <br>
+
+    ![add-i_step_2](images/add-i_eg1.2.PNG)
+    <br>
+    Figure 6: Error when adding maximum quantity and metric to an existing item
+    <br>
  
    *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
 
 5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
 are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
 You can refer to the diagram below for the expected result:
-<br>
-![add-i_step3](images/add-i_eg1.3.PNG)
-<br>
-Figure 7: Successfully added quantity with new tag
+    <br>
+    
+    ![add-i_step3](images/add-i_eg1.3.PNG)
+    <br>
+    Figure 7: Successfully added quantity with new tag
 
-<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
-<li>An item can have any number of tags (including 0)</li>
-<li>Adding exactly the same tag to an existing item will not result in duplicated tags</li>
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
+An item can have any number of tags (including 0) and adding exactly the same tag to an existing item will not result in duplicated tags
 </div>
 
 ##### 3.1.2.b `add-d`
@@ -203,11 +204,12 @@ Example 1:
 
 3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
  you may want to refer to the diagram below:
-<br>
-![add-d_step1](images/add-d_eg1.1.PNG)
-<br>
-Figure 8: Added Jason's delivery
-<br>
+    <br>
+    
+    ![add-d_step1](images/add-d_eg1.1.PNG)
+    <br>
+    Figure 8: Added Jason's delivery
+    <br>
 
 Example 2: 
 
@@ -216,15 +218,15 @@ Example 2:
 
 2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
  you may want to refer to the diagram below:
-<br>
-![add-d_step2](images/add-d_eg1.2.PNG)
-<br>
-Figure 8: Added Jason's delivery
-<br>
+    <br>
+    
+    ![add-d_step2](images/add-d_eg1.2.PNG)
+    <br>
+    Figure 8: Added Jason's delivery
+    <br>
 
-<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
-<li>Pending deliveries are automatically sorted based on their `deliver by` time</li>
-<li>Unlike inventory item, pending delivery does not have a quantity</li>
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
+Pending deliveries are automatically sorted based on their `deliver by` time and unlike inventory item, pending delivery does not have a quantity
 </div>
 
 
@@ -240,8 +242,8 @@ The [index](#index) refers to the index number shown in the displayed item list.
 Examples:
 * `remove-i 1 q/10`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* There is no remove-d since a pending delivery does not have a quantity
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+There is no remove-d since a pending delivery does not have a quantity
 </div>
 
 
@@ -254,7 +256,8 @@ Edits an existing item in the Inventory book or an existing pending delivery in 
 
 Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** The `|` symbol means the user must provide at least one of the fields
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** <br>
+The `|` symbol means the user must provide at least one of the fields
 separated by the `|`
 </div>
 
@@ -271,10 +274,11 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
-<br>
-![edit-i example one step three](images/edit-i_example_one_step_three.png)
-<br>
-<br>
+    <br>
+    
+    ![edit-i example one step three](images/edit-i_example_one_step_three.png)
+    <br>
+    <br>
 
 Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the starting point.
 
@@ -283,10 +287,11 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
-<br>
-![add-i example two step three](images/edit-i_example_two_step_three.png)
-<br>
-<br>
+    <br>
+    
+    ![add-i example two step three](images/edit-i_example_two_step_three.png)
+    <br>
+    <br>
 
 
 ##### 3.1.4.b `edit-d`
@@ -363,19 +368,21 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 
 Example 1:
 1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below:
- <br>
- ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
- <br>
- <br>
+    <br>
+     
+    ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
+    <br>
+    <br>
  
 2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
-<br>
-![delete-i_step2](images/UG_delete_eg1_step2.PNG)
-<br>
-<br>
+    <br>
+    
+    ![delete-i_step2](images/UG_delete_eg1_step2.PNG)
+    <br>
+    <br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* delete-d behaves similarly to delete-i, but deletes a delivery instead of an inventory item
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+`delete-d` behaves similarly to `delete-i`, but deletes a delivery instead of an inventory item
 </div>
 
 
@@ -403,10 +410,11 @@ Format: `undo`
 1. Select the Command box and type in `clear-i`
 
 2. Either press Enter on your keyboard or click Send to execute the command.
-<br>
-![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
-<br>
-<br>
+    <br>
+    
+    ![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+    <br>
+    <br>
 
 3. Select the Command box and type in `undo`
 
@@ -466,13 +474,13 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 #### 3.2.3 Sorting
 
-##### 3.2.3.1 Sorting Inventory Items
+##### 3.2.3a Sorting Inventory Items
 
 * Inventory items are sorted based on percentage of quantity in ascending order.
 * If the maximum quantity does not exist for that particular item then the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
-##### 3.2.3.2 Sorting Pending Deliveries
+##### 3.2.3b Sorting Pending Deliveries
 
 * Pending deliveries are sorted based on deliver by timing.
 
