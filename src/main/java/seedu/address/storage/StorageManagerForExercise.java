@@ -23,9 +23,9 @@ public class StorageManagerForExercise implements StorageForExercise {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManagerForExercise(ExerciseBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManagerForExercise(ExerciseBookStorage exerciseBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
-        this.exerciseBookStorage = addressBookStorage;
+        this.exerciseBookStorage = exerciseBookStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -71,9 +71,9 @@ public class StorageManagerForExercise implements StorageForExercise {
     }
 
     @Override
-    public void saveExerciseBook(ReadOnlyExerciseBook addressBook, Path filePath) throws IOException {
+    public void saveExerciseBook(ReadOnlyExerciseBook exerciseBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        exerciseBookStorage.saveExerciseBook(addressBook, filePath);
+        exerciseBookStorage.saveExerciseBook(exerciseBook, filePath);
     }
 
 }

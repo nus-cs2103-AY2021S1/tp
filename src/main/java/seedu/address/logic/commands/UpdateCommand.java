@@ -107,8 +107,7 @@ public class UpdateCommand extends CommandForExercise {
         Description updatedDescription = editExerciseDescriptor.getDescription()
                 .orElse(exerciseToEdit.getDescription());
         Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
-        Calories updatedCalories = editExerciseDescriptor.getCalories()
-                                    .orElse(exerciseToEdit.getCalories().orElse(null));
+        Calories updatedCalories = editExerciseDescriptor.getCalories().orElse(exerciseToEdit.getCalories());
         List<Muscle> updatedMusclesWorked = editExerciseDescriptor.getMusclesWorked()
                                                 .orElse(exerciseToEdit.getMusclesWorked().orElse(null));
         Set<ExerciseTag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getExerciseTags());

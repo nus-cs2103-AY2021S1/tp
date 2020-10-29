@@ -51,7 +51,7 @@ public class ExerciseBuilder {
         name = exerciseToCopy.getName();
         description = exerciseToCopy.getDescription();
         date = exerciseToCopy.getDate();
-        calories = exerciseToCopy.getCalories().isPresent() ? exerciseToCopy.getCalories().get() : null;
+        calories = exerciseToCopy.getCalories();
         musclesWorked = exerciseToCopy.getMusclesWorked().isPresent() ? exerciseToCopy.getMusclesWorked().get() : null;
         tags = new HashSet<>(exerciseToCopy.getExerciseTags());
     }
