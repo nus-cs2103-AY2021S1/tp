@@ -19,6 +19,8 @@ This User Guide will provide a general overview of installation, current feature
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick Start
 
+### 2.1 Installation Guide
+
 <a name="installationvideo"></a>
 Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 <br>
@@ -33,17 +35,59 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-   <a name="uiwithannotationpng"></a>
-1. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
-   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
-    <br>
-    
-    ![Ui](images/UiWithAnnotation.png) 
-    <br>
-    
-    Figure 1: Introduction to OneShelf User Interface
-    <br>
-    
+1. Double-click the file to start the app.
+
+1. Refer to the [Features](#3-features) below for details of each command.
+
+   
+### 2.2 How to use OneShelf
+
+**OneShelf** has 2 main components, namely are:
+1. Inventory items
+2. Pending deliveries
+
+From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
+
+#### Inventory items
+
+Inventory items are the items that you want to keep track in your restaurant. The input for inventory items are flexible,
+so that you can define the items according to your needs. <br>
+
+You can keep track of restaurant items such as chair, frying pan, spoon or even ingredients such as milk, chicken, etc. <br>
+
+All items related commands have a suffix `-i`. 
+
+#### Pending deliveries
+
+Pending deliveries are deliveries that has yet to be delivered out to customers. Imagine you have received a call from
+a customer requesting for a delivery, you can also keep track for all the deliveries' request.
+
+
+
+### 2.3 User Interface Sections
+
+<a name="uiwithannotationpng"></a>
+1. Once you have opened OneShelf application, similar GUI shown below (Figure 1) should appear. <br>
+     *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
+      <br>
+      
+      ![Ui](images/UiWithAnnotation.png) 
+      <br>
+      
+      Figure 1: Introduction to OneShelf User Interface
+      <br>
+
+| Component | Description |
+|-----------|-------------|
+| Toolbar | Displays the toolbar options for this application. You can access the different `help` windows and `exit` the application.|
+| Inventory book | Shows the list of inventory items that you have |
+| Delivery book | Shows the list of pending deliveries that you have |
+| Result Display | Displays the result of your command |
+| Command box | For users to type their commands |
+| Date time | Displays the date time at the current moment of viewing |
+
+*You may want to refer to the [glossary](#6-glossary)*
+
    <a name="uihelpstart"></a>
 1. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below should appear on your desktop. You are strongly encouraged to follow
@@ -56,21 +100,14 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
     Figure 2: Help Start Window
     <br>
 
-1. Refer to the [Features](#3-features) below for details of each command.
-
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="3-features"></a>3. Features
+<a name="3-features"></a>
+## 3. Features
 
-**OneShelf** has 2 main components, namely are:
-1. Inventory items
-2. Pending deliveries
+In this section, you can find the different available command features, general features 
+and upcoming features.
 
-From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
-*You may want to refer to the [glossary](#6-glossary)*
-
-
---------------------------------------------------------------------------------------------------------------------
 
 ### 3.1 Command Features
 
@@ -107,7 +144,6 @@ Things to note for the commands:
   1. either `add-i n/Chicken q/10`
   1. or `add-i q/10 n/Chicken`
 
---------------------------------------------------------------------------------------------------------------------
 
 #### 3.1.1 Viewing help : `help`
 
@@ -582,8 +618,8 @@ You may refer to the [video](#installationvideo) of installation guide.
 --------------------------------------------------------------------------------------------------------------------
 
 
-
-### <a name="6-glossary"></a>6. Glossary
+<a name="6-glossary"></a>
+### 6. Glossary
 * **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
 *(i.e milk, cheese)*
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant
