@@ -19,7 +19,10 @@ import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.commands.DeleteLeaveCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
+import com.eva.logic.commands.EditApplicantCommand;
 import com.eva.logic.commands.EditCommand;
+import com.eva.logic.commands.EditCommentCommand;
+import com.eva.logic.commands.EditStaffCommand;
 import com.eva.logic.commands.ExitCommand;
 import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.HelpCommand;
@@ -28,6 +31,7 @@ import com.eva.logic.commands.SetApplicationStatusCommand;
 import com.eva.logic.commands.ViewCommand;
 import com.eva.logic.parser.comment.AddCommentCommandParser;
 import com.eva.logic.parser.comment.DeleteCommentCommandParser;
+import com.eva.logic.parser.comment.EditCommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.AddLeaveCommandParser;
 import com.eva.logic.parser.leave.DeleteLeaveCommandParser;
@@ -68,6 +72,9 @@ public class EvaParser {
         case DeleteStaffCommand.COMMAND_WORD:
             return new DeleteStaffCommandParser().parse(arguments);
 
+        case EditStaffCommand.COMMAND_WORD:
+            return new EditStaffCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -79,6 +86,9 @@ public class EvaParser {
 
         case DeleteCommentCommand.COMMAND_WORD:
             return new DeleteCommentCommandParser().parse(arguments);
+
+        case EditCommentCommand.COMMAND_WORD:
+            return new EditCommentCommandParser().parse(arguments);
 
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveCommandParser().parse(arguments);
@@ -109,6 +119,9 @@ public class EvaParser {
 
         case DeleteApplicantCommand.COMMAND_WORD:
             return new DeleteApplicantCommandParser().parse(arguments);
+
+        case EditApplicantCommand.COMMAND_WORD:
+            return new EditApplicantCommandParser().parse(arguments);
 
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
