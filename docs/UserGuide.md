@@ -39,6 +39,8 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
     <br>
     
     ![Ui](images/UiWithAnnotation.png) 
+    <br>
+    
     Figure 1: Introduction to OneShelf User Interface
     <br>
     
@@ -48,7 +50,9 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
    the steps in the help window if you are a new user.
     <br>
     
-    ![Help Window](images/UiHelpStart.png) 
+    ![Help Window](images/UiHelpStart.png)
+    <br>
+    
     Figure 2: Help Start Window
     <br>
 
@@ -80,6 +84,7 @@ Things to note for the commands:
   
   ![Index](images/Index.png)
   <br>
+  
   Figure 3: Index Annotation
   <br>
 
@@ -135,6 +140,7 @@ A new help window similar to Figure 4 below should appear on your desktop.
 
 ![Help Summary Screenshot](images/HelpSummaryWindow.png)
 <br>
+
 Figure 4: Help Summary Window
 <br>
 
@@ -165,6 +171,7 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     
     ![add-i_step_1](images/add-i_eg1.1.PNG)
     <br>
+    
     Figure 5: Add new item of duck
     <br>
 
@@ -174,7 +181,8 @@ through as you are not allowed to add with max quantity and metric. You should r
 
     ![add-i_step_2](images/add-i_eg1.2.PNG)
     <br>
-    Figure 6: Error when adding maximum quantity and metric to an existing item
+    
+    Figure 6: Error for invalid input
     <br>
  
    *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
@@ -186,7 +194,9 @@ You can refer to the diagram below for the expected result:
     
     ![add-i_step3](images/add-i_eg1.3.PNG)
     <br>
+    
     Figure 7: Successfully added quantity with new tag
+    
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
 An item can have any number of tags (including 0) and adding exactly the same tag to an existing item will not result in duplicated tags
@@ -208,6 +218,7 @@ Example 1:
     
     ![add-d_step1](images/add-d_eg1.1.PNG)
     <br>
+    
     Figure 8: Added Jason's delivery
     <br>
 
@@ -222,6 +233,7 @@ Example 2:
     
     ![add-d_step2](images/add-d_eg1.2.PNG)
     <br>
+    
     Figure 8: Added Jason's delivery
     <br>
 
