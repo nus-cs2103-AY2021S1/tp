@@ -11,7 +11,6 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 /**
  * Wraps all data at the Trackr level.
@@ -93,7 +92,7 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     /**
-     * Adds an object to Trackr.
+     * Adds an TutorialGroup to Trackr.
      * The object must not already exist in Trackr.
      */
     public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {
@@ -101,6 +100,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
         moduleList.addTutorialGroup(tutorialGroup, currentModuleInView);
     }
 
+    /**
+     * Deletes a TutorialGroup to Trackr.
+     */
     public void deleteTutorialGroup(TutorialGroup tutorialGroupToDelete, Module moduleToDeleteFrom) {
         requireAllNonNull(tutorialGroupToDelete);
         moduleList.getUniqueTutorialGroupList(moduleToDeleteFrom)
