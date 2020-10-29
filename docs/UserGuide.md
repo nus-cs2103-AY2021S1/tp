@@ -15,7 +15,7 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
 ## 0. Using this User-Guide
 This User-Guide aims to aid users in using NUStorage to its fullest potential. In this guide, we will be guiding users through the entire process of using NUStorage, from setting it up on your system to the usage of features that NUStorage offers. 
 
-If you are a new user, we recommend that you read this user guide from start to finish as well as follow the examples provided in the [Commands](#4-commands) section to gain a much better understanding of the application. If you are an experienced user, feel free to use the Table-Of-Contents to skip to the section most relevant to you.
+If you are a new user, we recommend that you read this user guide from start to finish and follow the examples provided in the [Commands](#4-commands) section to gain a much better understanding of the application. If you are an experienced user, feel free to use the Table-Of-Contents to skip to the section most relevant to you.
 
 If you see an acronym that you don't understand, kindly refer to the [glossary](#7-glossary-and-terms). If you have further questions regarding NUStorage or this User-Guide, feel free to contact us at nustorage.support@u.nus.edu. 
 
@@ -47,7 +47,7 @@ Interested? Read on to get [started](#2-quick-start-guide)!
     
 6. Type a few commands in the command box and press enter to execute. This is small calibration test to ensure that NUStorage is working as intended.
     * Here are some sample commands to type:
-        * `add_inventory i/Logitech G400 q/20 c/69` to add 20 Logitech G400 gaming mouse that cost $69 to the inventory
+        * `create_inventory i/Logitech G400 q/20 c/69` to add 20 Logitech G400 gaming mouse that cost $69 to the inventory
         * `add_finance amt/120.17` to add an inbound transaction of $120.17
         * `bye` to exit programme
     * Refer to the commands list below for details of each command.
@@ -61,7 +61,7 @@ Interested? Read on to get [started](#2-quick-start-guide)!
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the __parameters__ to be keyed-in by the user.<br>
-  e.g. in `add_inventory i/ITEM`, `ITEM` is a parameter which can be used as `add_inventory i/MacBook`.
+  e.g. in `create_inventory i/ITEM`, `ITEM` is a parameter which can be used as `create_inventory i/MacBook`.
 * Items in square brackets are **optional**.<br>
   e.g `amt/AMOUNT [at/DATE] [TIME]` can be used as the possible formats:
   * `amt/200 at/2020-04-10 18:00`
@@ -92,19 +92,23 @@ Accompanying the details of each command are figures that show an example of the
 
 ---
 
-#### 4.1.1. Add items to inventory: `add_inventory`
+#### 4.1.1. Add items to inventory: `create_inventory`
 
-Adds and stores a new inventory record into the inventory list.
+Creates and stores a new inventory record into the inventory list.
 
-__Format:__ `add_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
+__Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST] [at/DATE [TIME]]`
 
-__Example:__ `add_inventory i/iphone q/10` to create a new inventory record of item `iphone` and quantity `10`.
+__Example:__ `create_inventory i/iphone q/10 c/20` to create a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount (QUANTITY * ITEM_COST) will also be created.
 
-![Add inventory command example](images/commands/add_inventory_command.jpg)
+![Add inventory command example](images/commands/create_inventory_command.jpg)
 
 __Result:__ item `iphone` of quantity `10` is added to the inventory.
 
-![Add inventory result example](images/commands/add_inventory_result.jpg)
+![Add inventory result example](images/commands/create_inventory_result.jpg)
+
+__Result:__ corresponding finance record of total cost `200` is added to the inventory.
+
+![Add inventory result example](images/commands/create_inventory_finance_record_result.jpg)
 
 ---
 
@@ -126,15 +130,15 @@ __Result:__ record at index `1` is removed from the inventory list of records.
 
 #### 4.1.3. Edit record in inventory: `edit_inventory`
 
-Edits the specified record in the inventory list.
+Edits the item name, quantity or unit cost of the specified record in the inventory list.
 
-__Format:__ `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`
+__Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-__Example:__ `edit_inventory 1 i/iPad q/100` to edit the inventory record at index `1`.
+__Example:__ `edit_inventory 1 i/iPad q/100 c/20` to edit the inventory record at index `1`.
 
 ![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
-__Result:__ item name changed from `iphone` to `iPad` and its quantity changed from `10` to `100`.
+__Result:__ item name changed from `iphone` to `iPad`, quantity changed from `10` to `100` and unit cost from `5` to `20`.
 
 ![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
@@ -150,7 +154,7 @@ __Example:__ `list_inventory`
 
 ![List inventory command example](images/commands/list_inventory_command.jpg)
 
-__Result:__ inventory is listed.
+__Result:__ inventory records listed.
 
 ![List inventory result example](images/commands/list_inventory_result.jpg)
 
@@ -250,7 +254,7 @@ __Format:__ `goto_inventory`
 
 __Example:__ `goto_inventory`
 
-__Result:__ Inventory tab is switched to.
+__Result:__ Switched to Inventory tab.
 
 ---
 
@@ -262,7 +266,7 @@ __Format:__ `goto_finance`
 
 __Example:__ `goto_finance`
 
-__Result:__ Finance tab is switched to.
+__Result:__ Switched to Finance tab.
 
 ---
 
@@ -297,7 +301,7 @@ __Result:__ Undo or redo the previous command.
 ## 5. Command Summary
 
 --------|------------------
-__Add inventory__ | `add_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `add_inventory i/MacBook pro q/200 c/50`
+__Add inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50`
 __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
 __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10`
 __List inventory__ | `list_inventory`
