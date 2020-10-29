@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import com.eva.model.person.applicant.ApplicationStatus;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
@@ -307,6 +308,12 @@ public class AddCommandTest {
         public void setApplicant(Applicant target, Applicant editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setApplicationStatus(Applicant applicant, ApplicationStatus status) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deleteApplication(Applicant target, Application toSet) {
             throw new AssertionError("This method should not be called.");

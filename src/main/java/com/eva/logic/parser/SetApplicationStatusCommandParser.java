@@ -1,16 +1,16 @@
 package com.eva.logic.parser;
 
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
+import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
+
+import java.io.FileNotFoundException;
+
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.SetApplicationStatusCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.applicant.ApplicationStatus;
-
-import java.io.FileNotFoundException;
-
-import static com.eva.logic.parser.CliSyntax.*;
-import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 
 /**
  * Parses the given {@code String} of arguments in the context of the SetApplicationStatusCommand

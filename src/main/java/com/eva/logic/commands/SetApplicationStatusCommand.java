@@ -1,8 +1,8 @@
 package com.eva.logic.commands;
 
-import static java.util.Objects.requireNonNull;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 

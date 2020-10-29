@@ -6,7 +6,11 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import com.eva.commons.core.index.Index;
@@ -35,6 +39,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -134,6 +139,7 @@ public class ParserUtil {
 
     /**
      * Parses the commands inside comment input
+     *
      * @param comment comment input
      * @return Comment object created with input
      * @throws ParseException
@@ -163,6 +169,7 @@ public class ParserUtil {
             return new Comment(title);
         }
     }
+
     /**
      * Parses {@code String leaveDates} into a {@code Leave}.
      * Leading and trailing whitespaces will be trimmed.
@@ -189,6 +196,7 @@ public class ParserUtil {
 
     /**
      * Parses the date arguments inside individual leave input
+     *
      * @param leaveArgsList add leave input
      * @return list of leaves created.
      * @throws ParseException if the any leaveArgs in {@code leaveArgsList} is invalid.
@@ -207,6 +215,7 @@ public class ParserUtil {
 
     /**
      * Converts string with details of comments into a Comment object
+     *
      * @param comments strings of details
      * @return Set of comment objects
      * @throws ParseException
@@ -241,10 +250,13 @@ public class ParserUtil {
         return new InterviewDate(value.trim());
     }
 
+    /**
+     * Parses {@code String value} into a {@code Application Status}.
+     */
     public static ApplicationStatus parseApplicationStatus(String value) throws ParseException {
-        if (! ApplicationStatus.isValidApplicationStatus(value)) {
+        if (!ApplicationStatus.isValidApplicationStatus(value)) {
             throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
         }
-        return  new ApplicationStatus(value);
+        return new ApplicationStatus(value);
     }
 }

@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.PossibleApplicationStatus;
 import org.junit.jupiter.api.Test;
 
 import com.eva.logic.parser.exceptions.ParseException;
@@ -26,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_APPLICATION_STATUS = "processsing";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +36,11 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_APPLICATION_STATUS_1 = "received";
+    private static final String VALID_APPLICATION_STATUS_2 = "accepted";
+    private static final String VALID_APPLICATION_STATUS_3 = "processing";
+    private static final String VALID_APPLICATION_STATUS_4 = "rejected";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -192,5 +200,19 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseApplicationStatusTest() throws Exception {
+        ApplicationStatus valid1 = ParserUtil.parseApplicationStatus(VALID_APPLICATION_STATUS_1);
+        ApplicationStatus valid2 = ParserUtil.parseApplicationStatus(VALID_APPLICATION_STATUS_2);
+        ApplicationStatus valid3 = ParserUtil.parseApplicationStatus(VALID_APPLICATION_STATUS_3);
+        ApplicationStatus valid4 = ParserUtil.parseApplicationStatus(VALID_APPLICATION_STATUS_4);
+
+        assertEquals(PossibleApplicationStatus.RECEIVED, valid1.getValue());
+        assertEquals(PossibleApplicationStatus.ACCEPTED, valid2.getValue());
+        assertEquals(PossibleApplicationStatus.PROCESSING, valid3.getValue());
+        assertEquals(PossibleApplicationStatus.REJECTED, valid4.getValue());
+        assertThrows(ParseException.class, () -> ParserUtil.parseApplicationStatus(INVALID_APPLICATION_STATUS));
     }
 }

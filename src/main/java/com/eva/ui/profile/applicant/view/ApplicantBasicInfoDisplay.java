@@ -1,14 +1,16 @@
 package com.eva.ui.profile.applicant.view;
 
+import java.util.Comparator;
+
 import com.eva.model.person.applicant.Applicant;
 import com.eva.ui.UiPart;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-import java.util.Comparator;
 
 public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     private static final String FXML = "ApplicantBasicInfoDisplay.fxml";
@@ -42,8 +44,8 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
         phone.setText("Phone: " + this.applicant.getPhone().value);
         address.setText("Address: " + this.applicant.getAddress().value);
         email.setText("Email: " + this.applicant.getEmail().value);
-        interviewDate.setText("Interview Date: " +
-                (this.applicant.getInterviewDate().isPresent()
+        interviewDate.setText("Interview Date: "
+                + (this.applicant.getInterviewDate().isPresent()
                         ? this.applicant.getInterviewDate().get().toString()
                         : "Not set yet")
         );
