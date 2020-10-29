@@ -81,8 +81,8 @@ not be so obvious!
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM …` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
+* Items with `...`​ after them can be used once or multiple times.<br>
+  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
 
 
 * Parameters can be in any order.<br>
@@ -343,7 +343,7 @@ Examples:
 
 Finds all active(unarchived) contacts that contain the KEYWORD(s) in their tags.
 
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
@@ -384,7 +384,7 @@ Format: `c-archive INDEX`
 
 * Archives the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...​
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -417,7 +417,7 @@ Format: `c-unarchive INDEX`
 
 * Unarchives the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -479,7 +479,7 @@ Action | Format, Examples
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
