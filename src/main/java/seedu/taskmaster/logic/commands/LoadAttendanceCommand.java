@@ -10,7 +10,7 @@ import java.util.List;
 import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
 
 /**

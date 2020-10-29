@@ -21,8 +21,10 @@ import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.Taskmaster;
-import seedu.taskmaster.model.session.AttendanceType;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.testutil.StudentBuilder;
@@ -118,12 +120,37 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setTaskmaster(ReadOnlyTaskmaster taskmaster) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyTaskmaster getTaskmaster() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSessions(List<Session> sessions) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void changeSession(SessionName sessionName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSession(SessionName sessionName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -153,14 +180,20 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Session> getFilteredSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
+        public void updateFilteredSessionList(Predicate<Session> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
 
         @Override
         public void markStudent(Student student, AttendanceType attendanceType) {
@@ -169,6 +202,11 @@ public class AddCommandTest {
 
         @Override
         public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markAllStudents(List<Student> students, AttendanceType attendanceType) {
             throw new AssertionError("This method should not be called.");
         }
 

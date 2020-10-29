@@ -13,8 +13,8 @@ package Session {
 }
 
 Taskmaster *--down-> "1" SessionList
-SessionList *--down-> "*" Session
-Taskmaster o--right-> "1" Session
+SessionList *--right-> "*" Session
+Taskmaster --down-> "1" Session
 Session *--> "1" StudentRecordList
 
 @enduml

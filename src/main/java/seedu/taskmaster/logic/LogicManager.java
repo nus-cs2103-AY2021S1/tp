@@ -9,13 +9,18 @@ import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.logic.commands.Command;
 import seedu.taskmaster.logic.commands.CommandResult;
+import seedu.taskmaster.logic.commands.NewSessionCommand;
 import seedu.taskmaster.logic.commands.StorageCommand;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.logic.parser.TaskmasterParser;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecordList;
+import seedu.taskmaster.model.record.StudentRecordListManager;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.storage.Storage;
 
@@ -50,10 +55,14 @@ public class LogicManager implements Logic {
             StorageCommand storageCommand = (StorageCommand) command;
             storageCommand.initialiseStorage(storage);
             commandResult = storageCommand.execute(model);
+        } else if (command instanceof NewSessionCommand) {
+            NewSessionCommand newSessionCommand = (NewSessionCommand) command;
+            StudentRecordList studentRecords = StudentRecordListManager.of(model.getFilteredStudentList());
+            newSessionCommand.setStudentRecords(studentRecords);
+            commandResult = newSessionCommand.execute(model);
         } else {
             commandResult = command.execute(model);
         }
-
 
         try {
             storage.saveTaskmaster(model.getTaskmaster());
@@ -80,6 +89,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return model.getFilteredSessionList();
+    }
+
+    @Override
     public Path getTaskmasterFilePath() {
         return model.getTaskmasterFilePath();
     }
@@ -92,5 +106,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void changeSession(SessionName sessionName) {
+        model.changeSession(sessionName);
     }
 }

@@ -219,7 +219,48 @@ Alternative implementations:
 * Store the SessionList as a JSON field in the existing Taskmaster file
     * Doing it this way would mean that the file would be repeatedly overwritten and any format errors will invalidate the whole file, including the StudentList.
 
+### ClassParticipation
 
+Author: **Theodore Leebrant**
+* Implementing the class in charge of representing the class participation of each student in a session.
+
+![Class Participation](images/ClassParticipation.png)
+
+The `ClassParticipation` is planned to
+* store a `score` and the maximum score (`maxScore`) attainable
+* have mutators for both the score and the maximum score.
+* be used by the StudentRecord
+
+**To do**
+* make a corresponding command in Taskmaster to set score
+* implement a default scoring system at launch
+
+Given below is the planned Sequence Diagram for interaction to set the class participation mark via `Taskmaster#markStudentParticipation(nusnetId, score)`.
+
+![Activity Diagram for Class Participation](images/ClassPartActivity.png)
+
+<br>
+
+### UI
+
+Author: **Lim Jin Feng**
+* Change/Add classes in the UI package to display newly implemented functionality such as ClassRecords.
+
+![Structure of the UI Component](images/UpdatedUiClassDiagram.png)
+
+A new method `MainWindow#fillInnerParts2` will change the contents of the Ui to the student record, from the student list.
+* This is implemented in such a way to accomodate future expansion.
+
+**To-Do:**
+* Support displaying of Sessions when Sessions are implemented.
+* Support displaying of any new future implementation.
+
+**_Notes from developer:_**
+* Implementation still buggy: Ui does not update accordingly for student records.
+
+Alternative implementations considered:
+* Use FXML's tab feature to display class records
+    * Does not support future expansion when sessions is implemented - there may be an indefinite amount of sessions created.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

@@ -7,13 +7,16 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.commons.core.LogsCenter;
-import seedu.taskmaster.model.session.AttendanceType;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -26,7 +29,7 @@ public class ModelManager implements Model {
     private final Taskmaster taskmaster;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final FilteredList<StudentRecord> filteredStudentRecords;
+    private final FilteredList<Session> filteredSessions;
 
     /**
      * Initializes a ModelManager with the given taskmaster and userPrefs.
@@ -40,7 +43,7 @@ public class ModelManager implements Model {
         this.taskmaster = new Taskmaster(taskmaster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
-        filteredStudentRecords = new FilteredList<>(this.taskmaster.getStudentRecordList());
+        filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
     }
 
     public ModelManager() {
@@ -95,6 +98,34 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setSessions(List<Session> sessions) {
+        taskmaster.setSessions(sessions);
+    }
+
+    @Override
+    public void changeSession(SessionName sessionName) {
+        taskmaster.changeSession(sessionName);
+    }
+
+    @Override
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return taskmaster.hasSession(session);
+    }
+
+    @Override
+    public boolean hasSession(SessionName sessionName) {
+        requireNonNull(sessionName);
+        return taskmaster.hasSession(sessionName);
+    }
+
+    @Override
+    public void addSession(Session session) {
+        taskmaster.addSession(session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return taskmaster.hasStudent(student);
@@ -114,7 +145,6 @@ public class ModelManager implements Model {
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-
         taskmaster.setStudent(target, editedStudent);
     }
 
@@ -122,14 +152,22 @@ public class ModelManager implements Model {
     public void markStudent(Student target, AttendanceType attendanceType) {
         requireAllNonNull(target, attendanceType);
         taskmaster.markStudent(target, attendanceType);
-        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     @Override
     public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
         requireAllNonNull(nusnetId, attendanceType);
         taskmaster.markStudentWithNusnetId(nusnetId, attendanceType);
-        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+    }
+
+    @Override
+    public void markAllStudents(List<Student> students, AttendanceType attendanceType) {
+        List<NusnetId> nusnetIds = students
+                .stream()
+                .map(Student::getNusnetId)
+                .collect(Collectors.toList());
+
+        taskmaster.markAllStudents(nusnetIds, attendanceType);
     }
 
     @Override
@@ -165,13 +203,18 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<StudentRecord> getFilteredStudentRecordList() {
-        return filteredStudentRecords;
+        return new FilteredList<>(this.taskmaster.getStudentRecordList());
     }
 
     @Override
-    public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
-        filteredStudentRecords.setPredicate(predicate);
+        filteredSessions.setPredicate(predicate);
     }
 
     @Override

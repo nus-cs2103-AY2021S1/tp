@@ -8,17 +8,17 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.taskmaster.commons.core.LogsCenter;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 
 /**
- * Panel containing the list of attendance.
+ * Panel containing the list of student records.
  */
 public class StudentRecordListPanel extends UiPart<Region> {
-    private static final String FXML = "StudentRecordListPanel.fxml";
+    private static final String FXML = "ListDisplayPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StudentRecordListPanel.class);
 
     @FXML
-    private ListView<StudentRecord> studentRecordListView;
+    private ListView<StudentRecord> mainListView;
 
     /**
      * Creates a {@code StudentRecordListPanel} with the given {@code ObservableList}.
@@ -26,8 +26,8 @@ public class StudentRecordListPanel extends UiPart<Region> {
      */
     public StudentRecordListPanel(ObservableList<StudentRecord> studentRecordList) {
         super(FXML);
-        studentRecordListView.setItems(studentRecordList);
-        studentRecordListView.setCellFactory(listView -> new StudentRecordListViewCell());
+        mainListView.setItems(studentRecordList);
+        mainListView.setCellFactory(listView -> new StudentRecordListViewCell());
     }
 
     /**
@@ -43,7 +43,7 @@ public class StudentRecordListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentRecordListCard(studentRecord, getIndex() + 1).getRoot());
+                setGraphic(new StudentRecordCard(studentRecord, getIndex() + 1).getRoot());
             }
         }
     }

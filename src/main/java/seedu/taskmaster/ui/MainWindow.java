@@ -3,13 +3,13 @@ package seedu.taskmaster.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.taskmaster.commons.core.GuiSettings;
@@ -18,6 +18,7 @@ import seedu.taskmaster.logic.Logic;
 import seedu.taskmaster.logic.commands.CommandResult;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
+import seedu.taskmaster.model.session.SessionName;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,8 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private StudentListPanel studentListPanel;
-    private StudentRecordListPanel studentRecordListPanel; ///////////////////////////attendance stufffffffffffff
+    private UiPart<Region> mainListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,13 +51,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private AnchorPane statusbarPlaceholder;
 
     @FXML
-    private MenuItem studentPage;
-
-    @FXML
-    private Menu attendanceMenu;
+    private AnchorPane sessionListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -76,15 +73,6 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        //add menu items
-        MenuItem newMenuItem = new MenuItem("StudentRecord");
-        newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                fillInnerParts2(0);
-            }
-        });
-        attendanceMenu.getItems().add(newMenuItem);
     }
 
     public Stage getPrimaryStage() {
@@ -128,9 +116,14 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        viewListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    void fillInnerParts(boolean bool) {
+
+        fillWithStudents(bool);
+        viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+
+        SessionListPanel sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(),
+                this::changeSessionAndFill, this::handleStudent);
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -143,21 +136,22 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up with attendance instead.
+     * Decides on what to fill the main list with.
      */
-    void fillInnerParts2(int index) {
-        assert index > 0;
-        studentRecordListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
-        viewListPanelPlaceholder.getChildren().add(studentRecordListPanel.getRoot());
+    void fillWithStudents(boolean bool) {
+        if (bool) {
+            mainListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        } else {
+            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
+        }
+    }
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskmasterFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    /**
+     * Change current session and fill the main list with it.
+     */
+    void changeSessionAndFill(SessionName sessionName) {
+        logic.changeSession(sessionName);
+        fillInnerParts(false);
     }
 
     /**
@@ -205,11 +199,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleStudent() {
-        fillInnerParts();
-    }
-
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
+        fillInnerParts(true);
     }
 
     /**

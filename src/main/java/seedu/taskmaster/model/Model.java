@@ -6,8 +6,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
-import seedu.taskmaster.model.session.AttendanceType;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -19,7 +21,7 @@ public interface Model {
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
-    Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -60,6 +62,30 @@ public interface Model {
     ReadOnlyTaskmaster getTaskmaster();
 
     /**
+     * Replaces the contents of the session list with {@code sessions}.
+     * {@code sessions} must not contain duplicate sessions.
+     */
+    void setSessions(List<Session> sessions);
+
+    void changeSession(SessionName sessionName);
+
+    /**
+     * Returns true if {@code session} exists in the session list.
+     */
+    boolean hasSession(Session session);
+
+    /**
+     * Returns true if a session with {@code sessionName} exists in the session list.
+     */
+    boolean hasSession(SessionName sessionName);
+
+    /**
+     * Adds the given session.
+     * {@code session} must not already exist in the session list.
+     */
+    void addSession(Session session);
+
+    /**
      * Returns true if a student with the same identity as {@code student} exists in the student list.
      */
     boolean hasStudent(Student student);
@@ -90,17 +116,16 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered attendance list */
     ObservableList<StudentRecord> getFilteredStudentRecordList();
 
+    /** Returns an unmodifiable view of the filtered session list */
+    ObservableList<Session> getFilteredSessionList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-    /**
-     * Updates the filter of the filtered attendance list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
+    void updateFilteredSessionList(Predicate<Session> predicate);
 
     /**
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
@@ -109,6 +134,11 @@ public interface Model {
     void markStudent(Student target, AttendanceType attendanceType);
 
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
+
+    /**
+     * Marks the attendances of all {@code students} with the given {@code attendanceType}
+     */
+    void markAllStudents(List<Student> students, AttendanceType attendanceType);
 
     /**
      * Updates the corresponding attendance statuses with the Attendances in the given list.

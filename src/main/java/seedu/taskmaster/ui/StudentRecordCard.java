@@ -4,12 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 
 /**
  * An UI component that displays information of a {@code Student}.
  */
-public class StudentRecordListCard extends UiPart<Region> {
+public class StudentRecordCard extends UiPart<Region> {
 
     private static final String FXML = "StudentRecordListCard.fxml";
 
@@ -39,7 +39,7 @@ public class StudentRecordListCard extends UiPart<Region> {
     /**
      * Creates a {@code StudentRecordListCard} with the given {@code AttendanceType} and index to display.
      */
-    public StudentRecordListCard(StudentRecord studentRecord, int displayedIndex) {
+    public StudentRecordCard(StudentRecord studentRecord, int displayedIndex) {
         super(FXML);
         this.studentRecord = studentRecord;
         id.setText(displayedIndex + ". ");
@@ -68,12 +68,13 @@ public class StudentRecordListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentRecordListCard)) {
+        if (!(other instanceof StudentRecordCard)) {
             return false;
         }
 
         // state check
-        StudentRecordListCard card = (StudentRecordListCard) other;
-        return this.studentRecord.equals(card.studentRecord);
+        StudentRecordCard card = (StudentRecordCard) other;
+        return id.getText().equals(card.id.getText())
+                && this.studentRecord.equals(card.studentRecord);
     }
 }

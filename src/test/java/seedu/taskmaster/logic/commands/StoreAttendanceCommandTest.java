@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.storage.JsonTaskmasterStorage;
 import seedu.taskmaster.storage.JsonUserPrefsStorage;
 import seedu.taskmaster.storage.Storage;
@@ -33,7 +34,7 @@ public class StoreAttendanceCommandTest {
 
     @BeforeEach
     public void setUp() {
-        JsonTaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(getTempFilePath("ab"));
+        JsonTaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(getTempFilePath("tm"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storage = new StorageManager(taskmasterStorage, userPrefsStorage);
     }
@@ -54,8 +55,11 @@ public class StoreAttendanceCommandTest {
         }
 
         // Run command in the condition where file already exists
+        assert(Files.exists(filepath));
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+        model.changeSession(new SessionName("Typical session"));
+        expectedModel.changeSession(new SessionName("Typical session"));
         StorageCommand storeCommand = new StoreAttendanceCommand(filename);
         storeCommand.initialiseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_OVERWRITE;
@@ -75,13 +79,23 @@ public class StoreAttendanceCommandTest {
         }
 
         // Run command in the condition where file does not exist
+        assert(!Files.exists(filepath));
         Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+        model.changeSession(new SessionName("Typical session"));
+        expectedModel.changeSession(new SessionName("Typical session"));
         StorageCommand storeCommand = new StoreAttendanceCommand(filename);
         storeCommand.initialiseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_NEWFILE;
         CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
+
         assertCommandSuccess(storeCommand, model, expectedCommandResult, expectedModel);
+        boolean isExistingFileAgain = Files.exists(filepath);
+        if (isExistingFileAgain) {
+            File file = new File(filepath.toString());
+            file.delete();
+        }
+        assert(!Files.exists(filepath));
     }
 
 }

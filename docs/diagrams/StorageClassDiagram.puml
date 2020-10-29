@@ -21,8 +21,8 @@ StorageManager o--> TaskmasterStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonTaskmasterStorage .left.|> TaskmasterStorage
-JsonTaskmasterStorage .right.> JsonSerializableTaskmasterStorage
-JsonSerializableTaskmasterStorage .down.> JsonSerializableStudent
+JsonTaskmasterStorage .right.> JsonSerializableTaskmaster
+JsonSerializableTaskmaster .down.> JsonSerializableStudent
 JsonSerializableStudent .right.> JsonAdaptedTag
 
 JsonTaskmasterStorage .-down.> JsonSerializableSessionList

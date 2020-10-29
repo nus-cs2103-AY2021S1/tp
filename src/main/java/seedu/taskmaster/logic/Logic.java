@@ -8,7 +8,9 @@ import seedu.taskmaster.logic.commands.CommandResult;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 
 /**
@@ -37,6 +39,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of student records */
     ObservableList<StudentRecord> getFilteredStudentRecordList();
 
+    /** Returns an unmodifiable view of the filtered session list */
+    ObservableList<Session> getFilteredSessionList();
+
     /**
      * Returns the user prefs' student list file path.
      */
@@ -51,4 +56,8 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    void changeSession(SessionName sessionName);
+
+
 }
