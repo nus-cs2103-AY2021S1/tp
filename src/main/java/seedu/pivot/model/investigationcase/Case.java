@@ -22,18 +22,19 @@ import seedu.pivot.model.tag.Tag;
  */
 public class Case {
 
-    private static final String DESCRIPTION_HEADER = " Description: ";
-    private static final String STATUS_HEADER = " Status: ";
-    private static final String DOCUMENTS_HEADER = " Documents: ";
-    private static final String SUSPECTS_HEADER = " Suspects: ";
-    private static final String VICTIMS_HEADER = " Victims: ";
-    private static final String WITNESSES_HEADER = " Witnesses: ";
-    private static final String TAGS_HEADER = " Tags: ";
+    private static final String DESCRIPTION_HEADER = "Description: ";
+    private static final String STATUS_HEADER = "Status: ";
+    private static final String DOCUMENTS_HEADER = "Documents: ";
+    private static final String SUSPECTS_HEADER = "Suspects: ";
+    private static final String VICTIMS_HEADER = "Victims: ";
+    private static final String WITNESSES_HEADER = "Witnesses: ";
+    private static final String TAGS_HEADER = "Tags: ";
 
     // Identity fields
     private final Title title;
     private final Description description;
     private final Status status;
+    private final ArchiveStatus archiveStatus;
 
     // Data fields
     private final List<Suspect> suspects = new ArrayList<>();
@@ -45,9 +46,9 @@ public class Case {
     /**
      * Every field must be present and not null.
      */
-
     public Case(Title title, Description description, Status status, List<Document> documents,
-                List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+                List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags,
+                ArchiveStatus archiveStatus) {
         requireAllNonNull(title, description, status, documents, suspects, victims, witnesses, tags);
         this.title = title;
         this.description = description;
@@ -57,6 +58,7 @@ public class Case {
         this.victims.addAll(victims);
         this.tags.addAll(tags);
         this.witnesses.addAll(witnesses);
+        this.archiveStatus = archiveStatus;
     }
 
     public Title getTitle() {
@@ -93,6 +95,10 @@ public class Case {
 
     public List<Witness> getWitnesses() {
         return witnesses.stream().collect(Collectors.toList());
+    }
+
+    public ArchiveStatus getArchiveStatus() {
+        return archiveStatus;
     }
 
     /**
@@ -146,7 +152,7 @@ public class Case {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle()).append("\n")
                 .append(DESCRIPTION_HEADER).append(getDescription()).append("\n")
-                .append(STATUS_HEADER).append(getStatus()).append("\n");
+                .append(STATUS_HEADER).append(getStatus());
 
         // Documents
         if (!getDocuments().isEmpty()) {

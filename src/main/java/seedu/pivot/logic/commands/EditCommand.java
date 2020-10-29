@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.pivot.commons.util.CollectionUtil;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -87,10 +88,11 @@ public abstract class EditCommand extends Command {
         List<Suspect> updatedSuspects = editCaseDescriptor.getSuspects().orElse(caseToEdit.getSuspects());
         List<Victim> updatedVictims = editCaseDescriptor.getVictims().orElse(caseToEdit.getVictims());
         Set<Tag> updatedTags = editCaseDescriptor.getTags().orElse(caseToEdit.getTags());
+        ArchiveStatus updatedArchiveStatus = caseToEdit.getArchiveStatus();
         List<Witness> updatedWitnesses =
                 editCaseDescriptor.getWitnesses().orElse(caseToEdit.getWitnesses());
         return new Case(updatedTitle, updatedDescription, updatedStatus, updatedDocuments,
-                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
+                updatedSuspects, updatedVictims, updatedWitnesses, updatedTags, updatedArchiveStatus);
     }
 
 

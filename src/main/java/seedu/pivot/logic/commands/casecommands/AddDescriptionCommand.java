@@ -73,7 +73,7 @@ public class AddDescriptionCommand extends AddCommand {
         // create new updated case
         Case updatedCase = new Case(stateCase.getTitle(), this.description, stateCase.getStatus(),
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
-                stateCase.getTags());
+                stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
 

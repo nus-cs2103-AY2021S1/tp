@@ -16,6 +16,7 @@ public abstract class Command {
     public static final String TYPE_SUSPECT = "suspect";
     public static final String TYPE_WITNESS = "witness";
     public static final String TYPE_VICTIM = "victim";
+    public static final String TYPE_ARCHIVE = "archive";
 
     /**
      * Executes the command and returns the result message.

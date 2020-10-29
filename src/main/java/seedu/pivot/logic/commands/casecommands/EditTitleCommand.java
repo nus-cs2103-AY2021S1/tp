@@ -63,7 +63,7 @@ public class EditTitleCommand extends EditCommand {
         // create new updated case
         Case updatedCase = new Case(title, stateCase.getDescription(), stateCase.getStatus(),
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
-                stateCase.getTags());
+                stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title));
 
