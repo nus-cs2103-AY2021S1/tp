@@ -32,6 +32,7 @@ public class ArchiveCommandIntegrationTest {
     @BeforeEach
     public void setUpDefaultSection() {
         StateManager.setDefaultSection();
+        StateManager.resetState();
         model = new ModelManager(getTypicalPivot(), new UserPrefs());
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
     }

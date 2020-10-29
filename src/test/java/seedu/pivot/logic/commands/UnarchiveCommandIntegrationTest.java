@@ -32,6 +32,7 @@ public class UnarchiveCommandIntegrationTest {
     @BeforeEach
     public void setUpArchivedSection() {
         StateManager.setArchivedSection();
+        StateManager.resetState();
         model = new ModelManager(getTypicalPivot(), new UserPrefs());
         model.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
     }
