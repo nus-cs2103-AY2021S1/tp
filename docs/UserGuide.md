@@ -56,7 +56,7 @@ Interested? Read on to get [started](#3-quick-start-guide)!
 
 ---
 
-## 4. Features
+## 4. Command formats
 
 <div markdown="block" class="alert alert-info">
 
@@ -102,15 +102,15 @@ __Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
 __Example:__ `create_inventory i/iphone q/10 c/20` to create a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount (QUANTITY * ITEM_COST) will also be created.
 
-![Add inventory command example](images/commands/create_inventory_command.jpg)
+![Add inventory command example](images/commands/create_inventory_command.png)
 
 __Result:__ item `iphone` of quantity `10` is added to the inventory.
 
-![Add inventory result example](images/commands/create_inventory_result.jpg)
+![Add inventory result example](images/commands/create_inventory_result.png)
 
 __Result:__ corresponding finance record of total cost `200` is added to the inventory.
 
-![Add inventory result example](images/commands/create_inventory_finance_record_result.jpg)
+![Add inventory result example](images/commands/create_inventory_finance_record_result.png)
 
 ---
 
@@ -122,11 +122,15 @@ __Format:__ `delete_inventory INDEX`
 
 __Example:__ `delete_inventory 1` deletes the inventory record at index `1`.
 
-![Delete inventory command example](images/commands/delete_inventory_command.jpg)
+![Delete inventory command example](images/commands/delete_inventory_command.png)
 
-__Result:__ record at index `1` is removed from the inventory list of records.
+__Result:__ record at index `1` is removed from the inventory.
 
-![Delete inventory result example](images/commands/delete_inventory_result.jpg)
+![Delete inventory result example](images/commands/delete_inventory_result.png)
+
+__Result:__ Deleted the corresponding finance record.
+
+![Delete inventory result example](images/commands/delete_finance_from_inventory_result.png)
 
 ---
 
@@ -136,17 +140,21 @@ Edits the item name, quantity or unit cost of the specified record in the invent
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-__Example:__ `edit_inventory 2 i/iPad q/100 c/20` edits the inventory record at index `2`.
+__Example:__ `edit_inventory 2 i/iPad q/10 c/2000` edits the inventory record at index `2`.
 
-![Edit inventory command example](images/commands/edit_inventory_command.jpg)
+![Edit inventory command example](images/commands/edit_inventory_command.png)
 
-__Result:__ item name changed from `iphone` to `iPad`, quantity changed from `10` to `100` and unit cost from `5` to `20`.
+__Result:__ item name changed from `iphone 12` to `iPad`, quantity changed from `100` to `10` and unit cost from `1000` to `2000`.
 
-![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+![Edit inventory result example](images/commands/edit_inventory_result.png)
+
+__Result:__ updated corresponding finance record with a total cost of `20000`.
+
+![Edit inventory result example](images/commands/edit_inventory_finance_result.png)
 
 ---
 
-#### 5.1.4. Edit record in inventory: `find_inventory`
+#### 5.1.4. Find record in inventory: `find_inventory`
 
 Edits the item name, quantity or unit cost of the specified record in the inventory list.
 
@@ -154,11 +162,11 @@ __Format:__ `find_inventory KEYWORD`
 
 __Example:__ `find_inventory ipad` finds for inventory records containing the name `ipad`.
 
-![Edit inventory command example](images/commands/edit_inventory_command.jpg)
+![Edit inventory command example](images/commands/find_inventory_command.png)
 
-__Result:__ listed all inventory records with the word `ipad`.
+__Result:__ lists all inventory records with the word `ipad`.
 
-![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+![Edit inventory result example](images/commands/find_inventory_result.png)
 
 ---
 
@@ -170,11 +178,31 @@ __Format:__ `list_inventory`
 
 __Example:__ `list_inventory` lists all inventory records.
 
-![List inventory command example](images/commands/list_inventory_command.jpg)
+![List inventory command example](images/commands/list_inventory_command.png)
 
-__Result:__ inventory records listed.
+__Result:__ lists all inventory records.
 
-![List inventory result example](images/commands/list_inventory_result.jpg)
+![List inventory result example](images/commands/list_inventory_result.png)
+
+---
+
+#### 5.1.6. Update inventory record: `update_inventory`
+
+Displays all records in the inventory list.
+
+__Format:__ `update_inventory INDEX q/CHANGE_QUANTITY`
+
+__Example:__ `update_inventory 1 q/-5` changes the quantity of the inventory by `-5` and updates corresponding finance record. `CHANGE_QUANTITY` can be of negative value.
+
+![List inventory command example](images/commands/update_inventory_command.png)
+
+__Result:__ Updated inventory record at `1` from `30` to `25`.
+
+![List inventory result example](images/commands/update_inventory_result.png)
+
+__Result:__ Updated corresponding finance record.
+
+![List inventory result example](images/commands/update_inventory_finance_result.png)
 
 ---
 
@@ -283,7 +311,6 @@ In the case that we have multiple records, it can get a little tedious to locate
 Ensure that you have at least 2 finance records, preferably with differing amounts/dates, stored in NUStorage as well as that you are in the 'Finance' tab before proceeding. If you are having trouble adding stand-alone/linked finance records or navigating to the 'Finance' panel, refer to the sections on [Adding finance records](#521-add-finance-records-add_finance), [Adding inventory records](#511-add-items-to-inventory-create_inventory) or [Deleting finance records](#522-delete-finance-records-delete_finance) respectively.
 
 Currently, your NUStorage application should look something like this: 
-
 ![Finance with three records](images/finance_withThreeRecords.jpg)
 
 Below are instructions on how to use the `find_finance` command:
@@ -334,7 +361,7 @@ __Example:__ `list_finance`
 Enter the example command into the command box as shown below:
 ![List finance command example](images/commands/list_finance_command.jpg)
 
-__Result:__ finance account is listed.
+__Result:__ All finance records are listed.
 ![List finance result example](images/commands/list_finance_result.jpg)
 
 ---
@@ -351,7 +378,11 @@ __Format:__ `goto_inventory`
 
 __Example:__ `goto_inventory`
 
+![goto inventory command example](images/commands/goto_inventory_command.png)
+
 __Result:__ Switched to Inventory tab.
+
+![goto inventory result example](images/commands/goto_inventory_result.png)
 
 ---
 
@@ -363,7 +394,11 @@ __Format:__ `goto_finance`
 
 __Example:__ `goto_finance`
 
+![goto finance command example](images/commands/goto_finance_command.png)
+
 __Result:__ Switched to Finance tab.
+
+![goto finance result example](images/commands/goto_finance_result.png)
 
 ---
 
