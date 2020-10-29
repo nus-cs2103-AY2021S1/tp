@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**Common Cents** is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
+Thank you for choosing **Common Cents**! This is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
 With just a few commands, _Common Cents_ will keep track, categorise and calculate your income and expenditure for you! 
 You can even keep your expenses in multiple accounts for seamless organisation. Amalgamating the features of a 
 Command Line Interface (CLI) with a Graphical User Interface (GUI), _Common Cents_ is meant to be functional, intuitive and 
@@ -21,6 +21,7 @@ The _Common Cents_ interface and commands consist of a few levels: `Application`
 
 --------------------------------------------------------------------------------------------------------------------
 # 1. Quick Start
+Below are steps to help you set up and start your Common Cents experience!
 
 1\. Ensure you have Java `11` or above installed in your Computer.
 
@@ -155,6 +156,7 @@ your Entries in Common Cents.
 --------------------------------------------------------------------------------------------------------------------
 
 # 5. Features
+Here are some general notes about the commands in _Common Cents_ 
 
 <div markdown="block" class="alert alert-info">
 
@@ -252,7 +254,7 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 * The category refers to the classification of the entry in the entry lists.
 * The category must be either 'expense' or 'revenue'.
 * Each tag can only be 1 word.
-* If multiple tags are required, do input multiple t/ prefixes
+* If multiple tags are required, do input multiple t/ prefixes.
 * Each tag in entry only appears once even if added multiple times.
 
 </div>
@@ -289,6 +291,8 @@ it anymore.
 * It is possible for you to use the `find` function then `delete`.
 
 </div>
+
+<div markdown="block" class="alert alert-danger">
 
 :warning: **Warning:**
 
@@ -351,7 +355,7 @@ You can use this to make edits to any existing entries in the tracker when the d
 ### 5.2.4 Locating entries by description: `find`
 
 You can use this command to list expenses and/or revenues that have the given keyword(s) in their descriptions. This is 
-useful when you want to find some particular entries to [`delete`](#deleting-an-entry-delete) or [`edit`](#editing-an-entry-edit). 
+useful when you want to find some particular entries to [`delete`](#522-deleting-an-entry-delete) or [`edit`](#523-editing-an-entry-edit). 
 If there is no expense or revenue found, the respective list will be empty.
 
 **Format:** `find [c/CATEGORY] k/KEYWORDS`
@@ -390,7 +394,7 @@ description (**Figure 5.2-5**)
 [comment]: <> (This only appears in Github CSS)
 
 :bulb: **Tip:** When there are a lot of entries, and you want to delete something, 
-you can use `find` to search for it in the list and use [`delete ENTRY_INDEX`](#deleting-an-entry-delete) to remove it from the updated
+you can use `find` to search for it in the list and use [`delete ENTRY_INDEX`](#522-deleting-an-entry-delete) to remove it from the updated
 list, with the updated `ENTRY INDEX`.
 
 </div>
@@ -477,8 +481,8 @@ You can use this command to return to the state of the entry prior to the previo
 :green_book: **Example:**
 
 * `undo`: Returns the state of expenses and revenues prior to the previous command. For example, if the 
-[`delete`](#deleting-an-entry-delete) command was used (**Figure 5.2-8**), using `undo` returns account to the state before the 
-[`delete`](#deleting-an-entry-delete) command was used (**Figure 5.2-9**).
+[`delete`](#522-deleting-an-entry-delete) command was used (**Figure 5.2-8**), using `undo` returns account to the state before the 
+[`delete`](#522-deleting-an-entry-delete) command was used (**Figure 5.2-9**).
 
 </div>
 
@@ -492,8 +496,8 @@ You can use this command to return to the state of the entry prior to the previo
 
 :information_source: **Note:**
 
-Do note that the `undo` command can only undo  [`add`](#adding-an-entry-add), [`delete`](#deleting-entries-delete),
-[`edit`](#editing-an-entry-edit) and [`clear`](#clearing-all-expenses-or-revenue-clear) commands at the entry-level. 
+Do note that the `undo` command can only undo  [`add`](#521-adding-an-entry-add), [`delete`](#522-deleting-an-entry-delete),
+[`edit`](#523-editing-an-entry-edit) and [`clear`](#526-clearing-all-expenses-or-revenue-clear) commands at the entry-level. 
 Account-level commands cannot be reverted using the `undo` command.
 
 </div>
@@ -507,24 +511,6 @@ Account-level commands cannot be reverted using the `undo` command.
 before you exit the app!
 
 </div>
-
-### 5.2.9 Calculating total expenses or revenues: `total`
-
-You can use this command to do calculate the total expenses or revenues in your current account.
-
-**Format:** `total c/CATEGORY`
-
-<div markdown="block" class="alert alert-success">
-
-:green_book: **Example:**
-
-* `total c/expense`: Returns the sum of all the expenses
-* `total c/revenue`: Returns the sum of all the revenues
-
-</div>
-
-(add screenshots to show the total expense/revenue message)
-
 
 ## 5.3 Account-level Commands
 Account-Level commands involve managing the different accounts in the app. 
@@ -551,7 +537,7 @@ You can create a new account to manage a different set of entries with this comm
 
 :information_source: **Note:**
 
-* The app does not automatically switch to the new account. Once the account is created, you can check it using [`listacc`](#listing-accounts-you-have-listacc) or switch to it using [`switchacc`](#switching-accounts-switchacc). 
+* The app does not automatically switch to the new account. Once the account is created, you can check it using [`listacc`](#534-listing-accounts-you-have-listacc) or switch to it using [`switchacc`](#switching-accounts-switchacc). 
 * You cannot create an account with the same name as an existing account.
 
 </div>
@@ -566,7 +552,7 @@ You can remove an account by using this command. This command is useful for clea
 
 :green_book: **Example:**
 
-* `deleteacc 3`: Deletes third account based on list generated by using [`listacc`](#listing-accounts-you-have-listacc)
+* `deleteacc 3`: Deletes third account based on list generated by using [`listacc`](#534-listing-accounts-you-have-listacc)
  (**Figure 5.3-2**)
 
 </div>
@@ -586,7 +572,7 @@ or if the account is your only account left.
 
 :bulb: **Tip:**
 
-If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+If you are unsure of the account index, use [`listacc`](#534-listing-accounts-you-have-listacc) to check the index!
 </div>
 
 
@@ -621,7 +607,7 @@ You can edit the name of the current account you are on using this command.
 :information_source: **Note:**
 
 * You can only edit the account name of the account you are currently on. To edit the name
-of another account, you can use [`switchacc`](#switching-accounts-switchacc) to switch to the other account
+of another account, you can use [`switchacc`](#535-switching-accounts-switchacc) to switch to the other account
 and edit the name from there.
 * You cannot edit the account name to a name of another existing account.
 
@@ -657,7 +643,7 @@ desired account or edit the name of the desired account.
 :green_book: **Example:**
 
 * `switchacc 2`: Switches to the second account based on the list generated by 
-[`listacc`](#listing-accounts-you-have-listacc) (**Figure 5.3-5**)
+[`listacc`](#534-listing-accounts-you-have-listacc) (**Figure 5.3-5**)
 
 </div>
 
@@ -668,7 +654,7 @@ desired account or edit the name of the desired account.
 
 :bulb: **Tip:**
 
-If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+If you are unsure of the account index, use [`listacc`](#534-listing-accounts-you-have-listacc) to check the index!
 
 </div>
 
@@ -676,7 +662,7 @@ If you are unsure of the account index, use [`listacc`](#listing-accounts-you-ha
 
 :warning: **Warning:**
 
-Once you use the `switchacc` command, all the previous states for the [`undo`](#undoing-entry-level-commands-undo) command will
+Once you use the `switchacc` command, all the previous states for the [`undo`](#528-undoing-entry-level-commands-undo) command will
 be lost. This would mean that if you choose to switch back to the account, you cannot undo the previous entry-level
 commands anymore. Do confirm the changes made to the entries in the account before you switch account!
 
@@ -723,22 +709,21 @@ The table below summarises the above commands in the order of appearance in this
 
 Action | Format
 --------|------------------
-[**Help**](#viewing-help--help) | `help`
-[**Exit**](#exiting-the-program--exit) | `exit`
-[**Add**](#adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
-[**Delete**](#deleting-an-entry-delete) | `delete ENTRY_INDEX c/CATEGORY`
-[**Edit**](#editing-an-entry-edit) | `edit ENTRY_INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
-[**Find**](#locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
-[**List**](#listing-all-entries-list) | `list`
-[**Clear**](#clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
-[**Profit**](#calculating-net-profits-based-on-expenses-and-revenues-profit) | `profit`
-[**Undo**](#undoing-entry-level-commands-undo) | `undo`
-[**Total**](#calculating-total-expenses-or-revenues-total) | `total c/CATEGORY`
-[**New Account**](#adding-new-account-newacc) | `newacc n/NAME`
-[**Delete Account**](#deleting-an-account-deleteacc) | `deleteacc INDEX`
-[**Edit Account Name**](#editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
-[**List Account**](#listing-accounts-you-have-listacc) | `listacc`
-[**Switch Account**](#switching-accounts-switchacc) | `switchacc INDEX`
+[**Help**](#511-viewing-help--help) | `help`
+[**Exit**](#512-exiting-the-program--exit) | `exit`
+[**Add**](#521-adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
+[**Delete**](#522-deleting-an-entry-delete) | `delete ENTRY_INDEX c/CATEGORY`
+[**Edit**](#523-editing-an-entry-edit) | `edit ENTRY_INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
+[**Find**](#524-locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
+[**List**](#525-listing-all-entries-list) | `list`
+[**Clear**](#526-clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
+[**Profit**](#527-calculating-net-profits-based-on-expenses-and-revenues-profit) | `profit`
+[**Undo**](#528-undoing-entry-level-commands-undo) | `undo`
+[**New Account**](#531-adding-new-account-newacc) | `newacc n/NAME`
+[**Delete Account**](#532-deleting-an-account-deleteacc) | `deleteacc INDEX`
+[**Edit Account Name**](#533-editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
+[**List Account**](#534-listing-accounts-you-have-listacc) | `listacc`
+[**Switch Account**](#535-switching-accounts-switchacc) | `switchacc INDEX`
 
 --------------------------------------------------------------------------------------------------------------------
 
