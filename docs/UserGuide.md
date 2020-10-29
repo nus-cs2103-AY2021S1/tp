@@ -52,7 +52,7 @@ This section explains the format of commands in this User Guide.
 
 - Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
 - Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
-- Items separated by <Code>or</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant | --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
+- Items separated by <Code>or</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant or --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
 - Items with `…` after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
 </div>
 
@@ -348,7 +348,7 @@ You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io
 
 Shows the purpose, syntax, and parameters of a command if you need to use the command but are unsure of its syntax.
 
-Format: `help <command_word> | <alias>`
+Format: `help <command_word> or <alias>`
 
 - `<command_word>` if supplied, should exactly match one of the command words listed by the `help` command
 - `<alias>` if supplied, should exactly match one of the aliases listed by the `aliases` command
@@ -360,7 +360,7 @@ Examples:
 ```
 rooms: Lists all rooms within the system. If the --vacant flag is specified, lists only vacant rooms i.e rooms which have no students allocated to them.
 Otherwise, if the --allocated flag is specified, lists only allocated rooms i.e. rooms which have students allocated to them.
-Parameters: [--vacant | --allocated]
+Parameters: [--vacant or --allocated]
 Example: rooms
 ```
 
@@ -425,7 +425,7 @@ Just type in the `help` command!
 | _allocate room_       | `allocate si/<student_index> ri/<room_index>` e.g. `allocate si/1 ri/1`                                                                                   |
 | _deallocate room_     | `deallocate si/<student_index>` e.g. `deallocate si/1`                                                                                                    |
 | _edit allocation_     | `reallocate si/<student_index> ri/<room_index>` e.g. `reallocate si/1 ri/2`                                                                               |
-| _students_            | `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]` e.g. `students n/dameeth`                                                     |
+| _find students_       | `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]` e.g. `students n/dameeth`                                                     |
 | _add student_         | `add n/<name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [t/<tag_name>]...` e.g.`add n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` |
 | _edit student_        | `edit <index> [n/<name>] [i/<student_id>] [p/<8_digit_phone_no>] [e/<email>] [f/<faculty>] [t/<tag_name>]…` e.g.`edit 1 n/Jet New`                        |
 | _delete student_      | `delete <index>` e.g.`delete 2`                                                                                                                           |
