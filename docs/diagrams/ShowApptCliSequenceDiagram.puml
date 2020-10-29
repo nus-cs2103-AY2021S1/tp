@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box UI MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+participant ":AppointmentWindow" as AppointmentWindow <<class>> MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HospifyParser" as HospifyParser LOGIC_COLOR
+participant ":ShowApptCommandParser" as ShowApptCommandParser LOGIC_COLOR
+participant "o:ShowApptCommand" as ShowApptCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+MainWindow-> LogicManager : execute("showAppt S1234567A")
+activate LogicManager
+
+LogicManager -> HospifyParser : parseCommand("showAppt S1234567A")
+activate HospifyParser
+
+create ShowApptCommandParser
+HospifyParser -> ShowApptCommandParser
+activate ShowApptCommandParser
+
+ShowApptCommandParser --> HospifyParser
+deactivate ShowApptCommandParser
+
+HospifyParser -> ShowApptCommandParser : parse("S1234567A")
+activate ShowApptCommandParser
+
+create ShowApptCommand
+ShowApptCommandParser -> ShowApptCommand
+activate ShowApptCommand
+
+ShowApptCommand --> ShowApptCommandParser : o
+deactivate ShowApptCommand
+
+ShowApptCommandParser --> HospifyParser : o
+deactivate ShowApptCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ShowApptCommandParser -[hidden]-> HospifyParser
+destroy ShowApptCommandParser
+
+HospifyParser --> LogicManager : o
+deactivate HospifyParser
+
+LogicManager -> ShowApptCommand : execute()
+activate ShowApptCommand
+
+create CommandResult
+ShowApptCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ShowApptCommand
+deactivate CommandResult
+
+ShowApptCommand --> LogicManager : result
+deactivate ShowApptCommand
+
+MainWindow <--LogicManager : PatientFound
+deactivate LogicManager
+
+MainWindow --> AppointmentWindow : setAppointmentWindow(patientFound)
+MainWindow --> AppointmentWindow : showAppointmentWindow()
+@enduml

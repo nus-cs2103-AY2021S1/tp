@@ -374,8 +374,44 @@ _{more aspects and alternatives to be added}_
 Shows the medical records of a patient either through the `CLI` or the `GUI` in a Tableview.
 
 #### Implementation
-![showApptActivityDiagram](images/UML_Diagrams/ShowApptDiagram.png)
+###### OVERVIEW
 
+The **Activity Diagram** below shows an overview for users to show the Patient's appointments through 
+the `GUI` or `CLI`.
+![showApptActivityDiagram](images/showAppt/ShowApptActivityDiagram.png)
+
+###### Detailed Implementation
+
+* Using the `GUI`
+    * **Sequence Diagram** for `GUI`\
+![showApptGuiSequenceDiagram](images/showAppt/ShowApptGuiSequenceDiagram.png)
+        * Clicking on the Patient Card triggers the `onDoubleClick` controller which updates the 
+        static `AppointmentWindow`.
+        * The controller calls `AppointmentWindow#setAppointmentWindow(patient)` to update the information of the 
+        patient in `AppointmentWindow`. 
+        * `AppointmentWindow` retrieves all the appointments of the patient and map the
+        appointment into a tableView before calling `AppointmentWindow#show()` to show the window. 
+* Using the `CLI`\
+`ShowAppt` on the `CLI` is more complicated than using the `GUI` because we have to find the 
+patient and check if the NRIC entered is valid. On the `GUI`, we only have to use a controller 
+to check if the patient is clicked and show the `AppointmentWindow` on the click event.
+    * **Sequence Diagram** for `CLI`\
+![showApptCliSequenceDiagram](images/showAppt/ShowApptCliSequenceDiagram.png)
+**Brief Description**
+        1. The `MainWindow` takes in the command from the user in the `UI`.
+        1. `LogicManager` parses the command under `Logic`.
+        1. `ShowCommandparser` verifies the command is in the stipulated format.
+        1. `LogicManager` exceutes the command and updates the **filteredPersonList** which contains the patient found.
+        1. `MainWindow` in the `UI` then verifies if there is only **ONE** patient found. If not, 
+        `MainWindow` throws an error to the User.
+        1. `MainWindow` updates the patient found to the `AppointmentWindow` by calling `AppointmentWindow#setAppointmentWindow(patient)`.
+        1. `AppointmentWindow` retrieves the appointments of the Patient and map the appointments
+        into a TableView.
+        1. Finally, `MainWindow` shows the updated `AppointmentWindow` to the User.
+        
+**:warning: Important:** AppointmentWindow is **STATIC** (i.e. only **ONE** instance of AppointmentWindow is allowed).
+This design is to prevent Users from opening multiple windows of the same patient and freezing the App.
+        
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
