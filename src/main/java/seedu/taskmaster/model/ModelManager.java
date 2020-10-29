@@ -103,6 +103,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addSession(Session session) {
+        taskmaster.addSession(session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
     public void changeSession(SessionName sessionName) {
         taskmaster.changeSession(sessionName);
     }
@@ -117,12 +123,6 @@ public class ModelManager implements Model {
     public boolean hasSession(SessionName sessionName) {
         requireNonNull(sessionName);
         return taskmaster.hasSession(sessionName);
-    }
-
-    @Override
-    public void addSession(Session session) {
-        taskmaster.addSession(session);
-        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override

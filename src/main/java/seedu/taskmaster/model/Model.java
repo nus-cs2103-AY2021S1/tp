@@ -67,6 +67,12 @@ public interface Model {
      */
     void setSessions(List<Session> sessions);
 
+    /**
+     * Adds the given session.
+     * {@code session} must not already exist in the session list.
+     */
+    void addSession(Session session);
+
     void changeSession(SessionName sessionName);
 
     /**
@@ -78,12 +84,6 @@ public interface Model {
      * Returns true if a session with {@code sessionName} exists in the session list.
      */
     boolean hasSession(SessionName sessionName);
-
-    /**
-     * Adds the given session.
-     * {@code session} must not already exist in the session list.
-     */
-    void addSession(Session session);
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in the student list.

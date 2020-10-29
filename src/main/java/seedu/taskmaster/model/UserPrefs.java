@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path taskmasterFilePath = Paths.get("data" , "taskmaster.json");
+    private Path sessionListFilePath = Paths.get("data", "session_list.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -54,6 +55,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setTaskmasterFilePath(Path taskmasterFilePath) {
         requireNonNull(taskmasterFilePath);
         this.taskmasterFilePath = taskmasterFilePath;
+    }
+
+    public Path getSessionListFilePath() {
+        return sessionListFilePath;
     }
 
     @Override

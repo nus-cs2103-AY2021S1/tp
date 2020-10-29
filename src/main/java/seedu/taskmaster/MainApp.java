@@ -21,6 +21,8 @@ import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.ReadOnlyUserPrefs;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.session.SessionList;
+import seedu.taskmaster.model.session.SessionListManager;
 import seedu.taskmaster.model.util.SampleDataUtil;
 import seedu.taskmaster.storage.JsonTaskmasterStorage;
 import seedu.taskmaster.storage.JsonUserPrefsStorage;
@@ -56,7 +58,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(userPrefs.getTaskmasterFilePath());
+        TaskmasterStorage taskmasterStorage = new JsonTaskmasterStorage(userPrefs.getTaskmasterFilePath(),
+                userPrefs.getSessionListFilePath());
         storage = new StorageManager(taskmasterStorage, userPrefsStorage);
 
         initLogging(config);
@@ -75,13 +78,23 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyTaskmaster> taskmasterOptional;
+        Optional<SessionList> sessionListOptional;
         ReadOnlyTaskmaster initialData;
+        SessionList initialSessionList;
         try {
             taskmasterOptional = storage.readTaskmaster();
             if (!taskmasterOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Taskmaster");
             }
             initialData = taskmasterOptional.orElseGet(SampleDataUtil::getSampleTaskmaster);
+
+            sessionListOptional = storage.readSessionList();
+            if (!sessionListOptional.isPresent()) {
+                logger.info("Session List file not found.");
+            }
+            initialSessionList = sessionListOptional.orElseGet(SessionListManager::new);
+            initialData.setSessions(initialSessionList.asUnmodifiableObservableList());
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Taskmaster");
             initialData = new Taskmaster();
