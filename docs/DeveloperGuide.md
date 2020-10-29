@@ -710,7 +710,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   **Extensions**
 
-  * 1a. The file being dragged into ClinCal application is not a valid image file.
+  * 1a. The file being dragged into CliniCal application is not a valid image file.
       * 1a1. Patient profile picture is not updated.
 
     Use case resumes at step 1.

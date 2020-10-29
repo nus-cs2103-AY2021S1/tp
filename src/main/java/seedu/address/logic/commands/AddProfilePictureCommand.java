@@ -72,7 +72,8 @@ public class AddProfilePictureCommand extends Command {
         String editedPersonName = editedPersonNameObject.toString();
         CommandResult commandResult = new CommandResult(String.format(MESSAGE_ADD_PROFILE_PICTURE_SUCCESS,
                 editedPersonName));
-        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, editedPersonName));
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD + " for the following "
+            + "patient:\n", patientEdited));
         return commandResult;
     }
 }

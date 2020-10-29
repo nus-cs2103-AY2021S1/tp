@@ -1,11 +1,13 @@
 package seedu.address.model.visit;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.patient.Name;
 
 /**
  * Represents a patient's visit history in the CliniCal application.
@@ -60,6 +62,20 @@ public class VisitHistory {
 
     public ArrayList<Visit> getVisits() {
         return this.visits;
+    }
+
+    /**
+     * Deep-copies an existing visit history to facilitate undo/redo functions.
+     * @return a new VisitHistory with no reference to the existingVisitHistory
+     */
+    public static VisitHistory deepCopyVisitHistory(VisitHistory existingVisitHistory) {
+        ArrayList<Visit> newVisitArrayList = new ArrayList<>();
+        for (Visit v : existingVisitHistory.getVisits()) {
+            Visit newVisit = new Visit(LocalDate.parse(v.getVisitDate().toString()),
+                new Name(v.getPatientName().toString()), v.getDiagnosis(), v.getPrescription(), v.getComment());
+            newVisitArrayList.add(newVisit);
+        }
+        return new VisitHistory(newVisitArrayList);
     }
 
     /**

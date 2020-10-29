@@ -51,7 +51,6 @@ public class AddVisitCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, patientToEdit));
         return new CommandResult(String.format(MESSAGE_POPUP_PROMPT, patientToEdit),
                                  visitDate, patientIndex.getOneBased());
     }
