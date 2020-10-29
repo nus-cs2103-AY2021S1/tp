@@ -4,17 +4,23 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyVEvent;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 
-public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent, Iterable<VEvent> {
+/**
+ * This class provides the basic functionalities of event operations.
+ * Mapping of local Event to jfxtras's VEvent is contained here.
+ */
+public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
 
     private final ObservableList<VEvent> internalList = FXCollections.observableArrayList();
     private final ObservableList<VEvent> internalUnmodifiableList =
@@ -54,12 +60,26 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent, Iterable<VEvent
 
     private boolean isSameVEvent(VEvent e1, VEvent e2) {
         return e1.getSummary().equals(e2.getSummary()) // check name of event
-                && e1.getDateTimeStart().equals(e2.getDateTimeStart())
-                && e1.getDateTimeEnd().equals(e2.getDateTimeEnd());
+                && e1.getDateTimeStart().equals(e2.getDateTimeStart()) // start time
+                && e1.getDateTimeEnd().equals(e2.getDateTimeEnd()); // end time
     }
 
-    public List<Event> getListOfEvents() {
-        return Mapper.mapListOfVEventsToEvent(this.internalList);
+    private boolean isSameEvent(Event e1, Event e2) {
+        return e1.isSameEvent(e2);
+    }
+
+    /**
+     * Checks if there are events in the current schedule that clashes with the {@code eventToCheck}
+     */
+    public boolean isClashingEvents(Event eventToCheck) {
+        List<Event> events = getEventsList();
+        for (int i = 0; i < events.size(); i++) {
+            Event currentEvent = events.get(i);
+            if (currentEvent.isOverlapping(eventToCheck)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /** Replaces the contents of this list with {@code vEvents}.
@@ -90,47 +110,50 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent, Iterable<VEvent
     }
 
     /**
-     * Returns true if a vEvent with the same identity as {@code vEvent} exists in Scheduler.
+     * Returns true if a vEvent with the same identity as {@code eventToCheck} exists in Scheduler.
      */
-    public boolean hasVEvent(VEvent vEvent) {
-        requireNonNull(vEvent);
-        return internalList.stream().anyMatch(Event -> isSameVEvent(vEvent, Event));
+    public boolean hasEvent(Event eventToCheck) {
+        requireNonNull(eventToCheck);
+        return internalList.stream().map(Mapper::mapVEventToEvent).anyMatch(Event -> isSameEvent(eventToCheck,
+                Event));
     }
 
     /**
-     * Adds a vEvent to Scheduler.
-     * The vEvent must not already exist in Scheduler.
+     * Adds a {@code eventToAdd} to Scheduler.
+     * The {@code eventToAdd} must not already exist in Scheduler.
      */
-    public void addVEvent(VEvent vEvent) {
-        requireNonNull(vEvent);
-        if (hasVEvent(vEvent)) {
+    public void addEvent(Event eventToAdd) {
+        requireNonNull(eventToAdd);
+        if (hasEvent(eventToAdd)) {
             throw new DuplicateEventException();
         }
-        internalList.add(vEvent);
+        internalList.add(Mapper.mapEventToVEvent(eventToAdd));
     }
 
     /**
-     * Removes {@code vEvent} from this {@code Scheduler}.
-     * {@code vEvent} must exist in Scheduler.
+     * Removes {@code toRemove} from this Scheduler.
+     * {@code toRemove} must exist in Scheduler.
      */
-    public void removeVEvent(Index index) {
-        requireNonNull(index);
-        internalList.remove(index.getZeroBased());
+    public void removeEvent(Event toRemove) {
+        requireNonNull(toRemove);
+        Index eventToRemoveIndex = getEventIndex(toRemove).orElseThrow(EventNotFoundException::new);
+        internalList.remove(eventToRemoveIndex.getZeroBased());
     }
 
-    /**
-     * Returns a VEvent object from the scheduler
-     * @param index
-     * @return
-     */
-    public VEvent getVEvent(Index index) {
-        requireNonNull(index);
-        return internalList.get(index.getZeroBased());
+    private Optional<Index> getEventIndex(Event event) {
+        List<Event> events = getEventsList();
+        for (int i = 0; i < events.size(); i++) {
+            Event currEvent = events.get(i);
+            if (currEvent.isSameEvent(event)) {
+                return Optional.ofNullable(Index.fromZeroBased(i));
+            }
+        }
+        return Optional.empty();
     }
 
     @Override
     public String toString() {
-        return internalUnmodifiableList.size() + " vEvents";
+        return internalUnmodifiableList.size() + " Events in Schedule";
     }
 
     @Override
@@ -149,8 +172,7 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent, Iterable<VEvent
         }
 
         Scheduler otherScheduler = (Scheduler) other;
-        ObservableList<VEvent> otherList =
-                otherScheduler.getVEvents();
+        ObservableList<VEvent> otherList = otherScheduler.getVEvents();
         if (otherList.size() != this.internalList.size()) {
             return false;
         }
@@ -164,12 +186,8 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent, Iterable<VEvent
     }
 
     @Override
-    public Iterator<VEvent> iterator() {
-        return internalList.iterator();
-    }
-
-    @Override
     public List<Event> getEventsList() {
         return Mapper.mapListOfVEventsToEvent(this.internalList);
     }
+
 }
