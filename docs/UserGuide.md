@@ -310,7 +310,7 @@ WARNING: doing so will overwrite the existing data you may have on the other dev
 
 Steps to migrate data:
 
-1. Locate the data files under the directory (folder) `./data`. The data files are names `inventory.json` and `financeAccount.json` respectively.
+1. Locate the data files under the directory (folder) `./data`. The data files are names `inventory.json` and `financeAccount.json`.
 2. Copy the files to the other device.
 3. Place the two files under the directory `./data`.
 4. Restart NUStorage on the other device to load the data.
