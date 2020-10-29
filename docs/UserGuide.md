@@ -56,8 +56,8 @@ A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01-A3`
-* `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
+* `add n/Janson Garrick p/98765432 e/jansongarrick@example.com d/Computer Science o/B01-A3`
+* `add n/Amanda Holt p/98765431 e/amanda123@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
 ### Deleting a contact : `delete`
 
@@ -70,8 +70,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in FaculType.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+* `clist` followed by `delete 2` deletes the 2nd contact in FaculType.
+* `find n/Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 ### Editing a contact : `edit`
 
@@ -88,7 +88,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TA
 
 Examples:
 *  `edit 1 d/Computing o/COM2-01-02` edits the department and office of the 1st contact to be `Computing` and `COM2-01-02` respectively.
-*  `edit 2 n/Betsy Crowe t/` edits the name of the 2nd contact to be `Betsy Crowe` and clears all existing tags.
+*  `edit 2 n/Brenda Chan t/` edits the name of the 2nd contact to be `Brenda Chan` and clears all existing tags.
 
 ### Adding or updating a remark : `remark`
 
@@ -130,7 +130,7 @@ Format : `addmod m/MODULE_CODE n/MODULE_NAME`
 * Adds the `MODULE_CODE` specified to the active semester. The `MODULE_CODE` must not exist in the active semester in the first place.
 
 Examples:
-* `addmod m/CS2103 n/Software Engineering` adds a module named `Software Engineering` with code `CS2103` to the active semester.
+* `addmod m/CS2040S n/Data Structures and Algorithms` adds a module named `Data Structures and Algorithms` with code `CS2040S` to the active semester.
 * `addmod m/CS2102 n/Database Systems` adds a module named `Database Systems` with code `CS2102` to the active semester.
 
 ### Deleting a module: `delmod`
@@ -142,14 +142,14 @@ Format: `delmod m/MODULE_CODE`
 * Deletes the `MODULE_CODE` specified from the active semester. The `MODULE_CODE` **must exist** in the active semester in the first place.
 
 Examples:
-* `delmod m/CS2103` deletes the existing module with code `CS2103` from the active semester.
+* `delmod m/CS2040S` deletes the existing module with code `CS2040S` from the active semester.
 * `delmod m/CS2102` deletes the existing module with code `CS2102` from the active semester.
 
 ### Finding modules : `findmod`
 
 Finds all modules in the active semester that match the given fields.
 
-Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR]`
+Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]`
 
 * The search is insensitive. e.g. `cs2103` will match `CS2103`.
 * Partial words will be matched. e.g. `database` will match `Database Systems`.
@@ -160,8 +160,8 @@ Examples :
 
 * `findmod m/cs210` returns all modules with codes containing `cs210`.
 * `findmod n/programming` returns all modules with names containing `programming`.
-* `findmod m/CS2 n/security i/Bob` returns all modules with codes containing `CS2`, names containing `programming`,
-and instructors with names containing `Bob`.
+* `findmod m/CS2 n/security i/Alex` returns all modules with codes containing `CS2`, names containing `programming`,
+and instructors with names containing `Alex`.
 
 ### Listing all contacts and modules: `list`
 
@@ -275,7 +275,7 @@ Action | Format, Examples
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [r/REMARK] [t/TAG]` <br> e.g. `find n/Victor Tan d/Math`
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
-**Find modules** | `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR]` <br> e.g. `findmod m/CS2`
+**Find modules** | `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]` <br> e.g. `findmod m/CS2`
 **List all contacts and modules** | `list`
 **List all contacts** | `clist`
 **List all modules** | `mlist`
