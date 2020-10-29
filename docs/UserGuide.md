@@ -438,11 +438,12 @@ The following table gives a summary of the [__inventory commands__](#51-inventor
 
 |Description|Command and Example|
 |---|---|
-| __Add inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50` |
+| __Create inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50` |
 | __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4` |
 | __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10` |
 | __Find inventory__ | `find_inventory KEYWORD` <br> e.g. `find_inventory ipad` |
 | __List inventory__ | `list_inventory` |
+| __Update Inventory__| `update_inventory` <br> e.g. `update_inventory 1 q/50` |
 
 ### 6.2. Finance Commands Summary
 
