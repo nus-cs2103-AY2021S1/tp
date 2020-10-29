@@ -3,12 +3,12 @@ package seedu.pivot.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_DEFAULT_SECTION;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
-import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
@@ -56,7 +56,7 @@ public class ArchiveCommand extends Command {
 
         // check case provided is valid index
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
         Case caseToArchive = lastShownList.get(targetIndex.getZeroBased());
