@@ -43,8 +43,8 @@ public class TutorialGroupCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         groupId.setText(tutorialGroup.getId().toString());
         dayOfWeek.setText("Day: " + tutorialGroup.getDayOfWeek());
-        startTime.setText("Start Time: " + tutorialGroup.getStartTime().toString().substring(0,5));
-        endTime.setText("End Time: " + tutorialGroup.getEndTime().toString().substring(0,5));
+        startTime.setText("Start Time: " + tutorialGroup.getStartTime().toString().substring(0, 5));
+        endTime.setText("End Time: " + tutorialGroup.getEndTime().toString().substring(0, 5));
         //totalStudents.setText("Total Students: " + module.getTotalStudents());
         //        startTime.setText(tutorialGroup.getStartTime().toString());
         //        endTime.setText(tutorialGroup.getEndTime().toString());

@@ -1,7 +1,6 @@
 package seedu.address.model.tutorialgroup;
 
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Student;

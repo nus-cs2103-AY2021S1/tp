@@ -43,7 +43,8 @@ public class ViewTutorialGroupCommand extends Command {
 
         Module moduleToViewTutorialGroups = lastShownList.get(targetIndex.getZeroBased());
         model.setViewToTutorialGroup(moduleToViewTutorialGroups);
-        return new CommandResult(String.format(MESSAGE_VIEWING_TG_SUCCESS, moduleToViewTutorialGroups), false, false, true, false, false);
+        return new CommandResult(String.format(MESSAGE_VIEWING_TG_SUCCESS, moduleToViewTutorialGroups),
+                false, false, true, false, false);
     }
 
     @Override

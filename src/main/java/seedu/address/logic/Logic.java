@@ -9,7 +9,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTrackr;
-
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;

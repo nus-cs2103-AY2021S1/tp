@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+
 import java.time.LocalTime;
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,7 +30,8 @@ public class EditTutorialGroupCommand extends Command {
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial Group: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This Tutorial Group already exists in this Module.";
-    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
+    public static final String MESSAGE_NOT_IN_TUTORIAL_VIEW =
+            "You are currently not in the Module view. Run listMod to go back to the module view.";
 
     private final Index index;
     private final TutorialGroupId tutorialGroupId;
@@ -36,6 +39,9 @@ public class EditTutorialGroupCommand extends Command {
     private final LocalTime startTime;
     private final LocalTime endTime;
 
+    /**
+     * Edits the selected {@code TutorialGroup}
+     */
     public EditTutorialGroupCommand(Index index, TutorialGroupId tutorialGroupId, String dayOfWeek,
                                     LocalTime startTime, LocalTime endTime) {
         requireNonNull(index);
@@ -74,6 +80,7 @@ public class EditTutorialGroupCommand extends Command {
 
         model.setTutorialGroup(tutorialGroupToEdit, editedTutorialGroup);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup), false, false, true, false, false);
+        return new CommandResult(String.format(MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup),
+                false, false, true, false, false);
     }
 }

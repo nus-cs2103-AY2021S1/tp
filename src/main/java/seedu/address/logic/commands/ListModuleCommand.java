@@ -1,10 +1,9 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
 
 public class ListModuleCommand extends Command {
     public static final String COMMAND_WORD = "listMod";
