@@ -71,6 +71,15 @@ class JsonAdaptedInventoryRecordTest {
 
 
     @Test
+    void toModelType_validDetails3_returnsInventoryRecord() throws Exception {
+        JsonAdaptedInventoryRecord testInventoryRecord =
+                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, COST_3, DATE_TIME_B, ID_B);
+        assertEquals(new InventoryRecord(ITEM_NAME_3, QUANTITY_3, COST_3, DATE_TIME_B, ID_B),
+                testInventoryRecord.toModelType());
+    }
+
+
+    @Test
     void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedInventoryRecord testInventoryRecord =
                 new JsonAdaptedInventoryRecord(null, QUANTITY_1, COST_1, DATE_TIME_A, ID_A);
@@ -99,7 +108,7 @@ class JsonAdaptedInventoryRecordTest {
     @Test
     void toModelType_invalidCost_throwsIllegalValueException() {
         JsonAdaptedInventoryRecord testInventoryRecord =
-                new JsonAdaptedInventoryRecord(ITEM_NAME_2, QUANTITY_2, -15.7, DATE_TIME_B, ID_B);
+                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, -15.7, DATE_TIME_B, ID_B);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "unitCost");
         assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
