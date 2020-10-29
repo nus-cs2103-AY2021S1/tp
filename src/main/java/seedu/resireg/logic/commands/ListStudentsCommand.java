@@ -35,11 +35,11 @@ public class ListStudentsCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD,
             "Lists all students within the system, optionally filtered by some criteria.",
             "Parameters: "
-                    + "[" + PREFIX_NAME + "NAME]... "
-                    + "[" + PREFIX_PHONE + "PHONE]... "
-                    + "[" + PREFIX_EMAIL + "EMAIL +]... "
-                    + "[" + PREFIX_FACULTY + "FACULTY +]... "
-                    + "[" + PREFIX_STUDENT_ID + "STUDENT_ID +]...\n"
+                    + "[" + PREFIX_NAME + "NAME] "
+                    + "[" + PREFIX_PHONE + "PHONE] "
+                    + "[" + PREFIX_EMAIL + "EMAIL +] "
+                    + "[" + PREFIX_FACULTY + "FACULTY +] "
+                    + "[" + PREFIX_STUDENT_ID + "STUDENT_ID]\n"
                     + "Example: " + COMMAND_WORD
                     + " " + PREFIX_NAME + "dameeth");
 
