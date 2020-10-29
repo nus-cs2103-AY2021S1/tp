@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.SolveQuestionCommand.MESSAGE_BAD_QUES
 import static seedu.address.logic.commands.SolveQuestionCommand.MESSAGE_SOLVED_QUESTION;
 import static seedu.address.logic.commands.SolveQuestionCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -25,8 +26,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Scheduler;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
 
 public class SolveQuestionCommandTest {
@@ -35,37 +38,53 @@ public class SolveQuestionCommandTest {
 
     @Test
     void constructor_null_throwsNullPointerException() {
-        // both fields null
-        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(null, null));
+        String validSolution = "Solution.";
+
+        // all fields null
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(null, null, null));
 
         // one null field
-        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(null, INDEX_FIRST_PERSON));
-        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(INDEX_FIRST_PERSON, null));
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(null,
+                INDEX_FIRST_PERSON, validSolution));
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(INDEX_FIRST_PERSON,
+                null, validSolution));
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(INDEX_FIRST_PERSON,
+                INDEX_FIRST_PERSON, null));
+
+        // two null fields
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(INDEX_FIRST_PERSON,
+                null, null));
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(null,
+                INDEX_FIRST_PERSON, null));
+        assertThrows(NullPointerException.class, () -> new SolveQuestionCommand(null,
+                null, validSolution));
     }
 
     @Test
     void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(1);
         Student expectedStudent = getAnsweredStudent(question, clone);
         Question solved = expectedStudent.getQuestions().get(question.getZeroBased());
-        String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
+                expectedStudent.getName(), solved);
 
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
+
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBounds = Index.fromOneBased(model.getSortedStudentList().size() + 1);
         Index question = Index.fromOneBased(1);
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, question);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(outOfBounds, question, DEFAULT_SOLUTION);
         assertCommandFailure(solveCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
@@ -73,18 +92,19 @@ public class SolveQuestionCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(2);
         Student expectedStudent = getAnsweredStudent(question, clone);
         Question solved = expectedStudent.getQuestions().get(question.getZeroBased());
-        String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
+        String expectedMessage = String.format(MESSAGE_SUCCESS,
+                expectedStudent.getName(), solved);
 
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);
 
@@ -95,47 +115,56 @@ public class SolveQuestionCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Index question = Index.fromOneBased(1);
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_SECOND_PERSON, question);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_SECOND_PERSON, question, DEFAULT_SOLUTION);
         assertCommandFailure(solveCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidQuestionIndex_throwsCommandException() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index outOfBounds = Index.fromOneBased(TEST_QUESTIONS.length + 1);
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, outOfBounds);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, outOfBounds, DEFAULT_SOLUTION);
         assertCommandFailure(solveCommand, model, MESSAGE_BAD_QUESTION_INDEX);
     }
 
     @Test
     public void execute_alreadySolvedQuestion_throwsCommandException() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(1);
-        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
+        SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         assertCommandFailure(solveCommand, model, MESSAGE_SOLVED_QUESTION);
     }
 
     @Test
     public void equals() {
-        SolveQuestionCommand command = new SolveQuestionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+        Index question = Index.fromOneBased(1);
+        SolveQuestionCommand command = new SolveQuestionCommand(INDEX_FIRST_PERSON,
+                question, DEFAULT_SOLUTION);
 
         // same object -> true
         assertTrue(command.equals(command));
 
         // same fields -> true
-        assertTrue(command.equals(new SolveQuestionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON)));
+        assertTrue(command.equals(new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION)));
 
         // different questionIndex -> false
-        assertFalse(command.equals(new SolveQuestionCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)));
+        assertFalse(command.equals(new SolveQuestionCommand(INDEX_FIRST_PERSON, Index.fromOneBased(2),
+                DEFAULT_SOLUTION)));
 
         // different studentIndex -> false
-        assertFalse(command.equals(new SolveQuestionCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON)));
+        assertFalse(command.equals(new SolveQuestionCommand(INDEX_SECOND_PERSON, question, DEFAULT_SOLUTION)));
+
+        // different solution -> false
+        assertFalse(command.equals(new SolveQuestionCommand(INDEX_SECOND_PERSON, question, "Dummy solution")));
+
+        // different class -> false
+        assertFalse(command.equals(new OverdueCommand()));
     }
 
     private Student getAnsweredStudent(Index index, Student toCopy) {
@@ -143,13 +172,14 @@ public class SolveQuestionCommandTest {
         for (int i = 0; i < toCopy.getQuestions().size(); i++) {
             Question toAdd;
             if (i == index.getZeroBased()) {
-                toAdd = new Question(TEST_QUESTIONS[i], true);
+                toAdd = new SolvedQuestion(TEST_QUESTIONS[i], DEFAULT_SOLUTION);
             } else {
-                toAdd = new Question(TEST_QUESTIONS[i]);
+                toAdd = new UnsolvedQuestion(TEST_QUESTIONS[i]);
             }
             questions.add(toAdd);
         }
         return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
-                toCopy.getYear(), toCopy.getAdmin(), questions);
+                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams(),
+                toCopy.getAcademic());
     }
 }

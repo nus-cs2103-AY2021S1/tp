@@ -14,9 +14,4 @@ public abstract class ScheduleCommand extends Command {
     public static final String EMPTY_DATE_MESSAGE = "Please input a date";
 
     public static final String COMMAND_SUCCESS_MESSAGE = "Here is your schedule";
-
-
-    public ScheduleCommand() {};
-
-
 }

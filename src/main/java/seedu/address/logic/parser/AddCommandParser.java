@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.model.student.admin.PaymentDate.TODAY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,16 +22,19 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.academic.Academic;
+import seedu.address.model.student.academic.Attendance;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
 
 
 /**
@@ -59,13 +63,16 @@ public class AddCommandParser implements Parser<AddCommand> {
         ClassVenue classVenue = ParserUtil.parseClassVenue(argMultimap.getValue(PREFIX_VENUE).get());
         ClassTime classTime = ParserUtil.parseClassTime(argMultimap.getValue(PREFIX_TIME).get());
         Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
-        PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get());
-        List<AdditionalDetail> detailList =
-                ParserUtil.parseAdditionalDetails(argMultimap.getAllValues(PREFIX_DETAILS));
+        PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).orElse(TODAY));
+        List<Detail> detailList =
+                ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_DETAILS));
 
         Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
         List<Question> questions = new ArrayList<>();
-        Student student = new Student(name, phone, school, year, admin, questions);
+        ArrayList<Exam> exams = new ArrayList<>();
+        List<Attendance> attendanceList = new ArrayList<>();
+        Academic academic = new Academic(attendanceList);
+        Student student = new Student(name, phone, school, year, admin, questions, exams, academic);
         return new AddCommand(student);
     }
 

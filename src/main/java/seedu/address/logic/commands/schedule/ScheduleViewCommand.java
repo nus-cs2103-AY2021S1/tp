@@ -50,7 +50,7 @@ public class ScheduleViewCommand extends ScheduleCommand {
         if (viewMode != null) {
             model.setScheduleViewMode(viewMode);
         }
-        return new CommandResult(COMMAND_SUCCESS_MESSAGE, false, false, true);
+        return new CommandResult(COMMAND_SUCCESS_MESSAGE, false, false, true, false);
     }
 
 

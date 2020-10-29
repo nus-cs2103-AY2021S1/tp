@@ -31,7 +31,7 @@ public class AddCommandIntegrationTest {
         Student validStudent = new StudentBuilder().build();
 
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.addPerson(validStudent);
+        expectedModel.addStudent(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);

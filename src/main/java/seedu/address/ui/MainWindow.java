@@ -60,6 +60,7 @@ public class MainWindow extends UiPart<Stage> {
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
+
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -121,6 +122,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
         studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        studentListPanel = new StudentListPanel(logic.getSortedStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -189,6 +191,13 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel.getRoot().toFront();
     }
 
+    /**
+     * Toggle the display of student cards in the student list panel between admin and academic.
+     */
+    public void handleAcademicPanel() {
+        studentListPanel.toggleState();
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -212,6 +221,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+
             // this is to open schedule when schedule command is called
             if (commandResult.isSchedule()) {
                 handleCalendar();
@@ -220,6 +230,11 @@ public class MainWindow extends UiPart<Stage> {
 
             // closes schedule if other command is called
             schedulePanel.getRoot().toBack();
+
+
+            if (commandResult.isToggleStudentCard()) {
+                handleAcademicPanel();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

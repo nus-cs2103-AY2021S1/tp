@@ -39,6 +39,6 @@ public class ScheduleAddCommand extends ScheduleCommand {
 
         model.addEvent(eventToAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd),
-                false, false, true);
+                false, false, true, false);
     }
 }

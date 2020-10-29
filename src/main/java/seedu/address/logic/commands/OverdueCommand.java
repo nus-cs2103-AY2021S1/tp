@@ -16,8 +16,8 @@ public class OverdueCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(new OverdueFeePredicate());
+        model.updateFilteredStudentList(new OverdueFeePredicate());
         return new CommandResult(String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW,
-                model.getFilteredPersonList().size()));
+                model.getSortedStudentList().size()));
     }
 }

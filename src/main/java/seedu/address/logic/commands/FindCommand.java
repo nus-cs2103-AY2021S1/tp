@@ -52,9 +52,9 @@ public class FindCommand extends Command {
         for (Predicate <Student> currentPredicate : predicates) {
             consolidatedPredicate = consolidatedPredicate.and(currentPredicate);
         }
-        model.updateFilteredPersonList(consolidatedPredicate);
+        model.updateFilteredStudentList(consolidatedPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getSortedStudentList().size()));
     }
 
     @Override

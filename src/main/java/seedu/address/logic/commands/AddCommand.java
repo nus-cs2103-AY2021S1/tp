@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_VENUE + "CLASS_VENUE "
             + PREFIX_TIME + "CLASS_TIME "
             + PREFIX_FEE + "FEE "
-            + PREFIX_PAYMENT + "LAST_PAYMENT_DATE "
+            + "[" + PREFIX_PAYMENT + "LAST_PAYMENT_DATE] "
             + "[" + PREFIX_DETAILS + "ADDITIONAL_DETAILS]\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -66,11 +66,9 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
-
-
 
         // creates a lesson event based on the student
         Event lessonEvent = LessonEvent.createLessonEvent(toAdd, LocalDateTime.now());
@@ -88,8 +86,7 @@ public class AddCommand extends Command {
         model.addEvent(lessonEvent);
 
         // add the student
-        model.addPerson(toAdd);
-
+        model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

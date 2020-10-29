@@ -1,0 +1,72 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ReeveParser" as ReeveParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "command:EditCommand" as Command LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit")
+activate LogicManager
+
+LogicManager -> ReeveParser : parseCommand("edit")
+activate ReeveParser
+
+create EditCommandParser
+ReeveParser -> EditCommandParser
+activate EditCommandParser
+
+
+EditCommandParser -> ReeveParser
+deactivate EditCommandParser
+
+
+ReeveParser -> EditCommandParser : parse()
+activate EditCommandParser
+
+EditCommandParser -> EditCommandParser : parseStudent()
+EditCommandParser -> EditCommandParser : parseAdmin()
+
+create Command
+EditCommandParser -> Command
+activate Command
+
+Command --> EditCommandParser : command
+deactivate Command
+
+EditCommandParser --> ReeveParser : command
+deactivate EditCommandParser
+
+ReeveParser --> LogicManager : command
+deactivate ReeveParser
+
+LogicManager -> Command : execute()
+activate Command
+
+Command -> Model : setStudent()
+activate Model
+
+Model --> Command
+deactivate Model
+
+Command -> Model : updateFilteredStudentList()
+activate Model
+
+Model --> Command
+deactivate Model
+
+Command --> LogicManager : result
+deactivate Command
+
+Command -[hidden]-> LogicManager
+destroy Command
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

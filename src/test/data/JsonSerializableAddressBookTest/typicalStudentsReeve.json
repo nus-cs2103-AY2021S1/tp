@@ -7,15 +7,36 @@
     "year": "Secondary 3",
     "admin" : {
       "classVenue": "123, Jurong West Ave 6, #08-111",
-      "classTime": "1 1500-1700",
+      "classTime": "5 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": ["owesMoney", "friends"]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    }],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+  }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -23,15 +44,36 @@
     "year": "Secondary 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "2 1200-1430",
+      "classTime": "2 1230-1430",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],
+      "exams" : [ {
+        "examName" : "CA2",
+        "examDate" : "19/9/2020",
+        "score" : "73/100"
+      }, {
+        "examName" : "CA1",
+        "examDate" : "2/3/2020",
+        "score" : "21/40"
+  }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -44,10 +86,31 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -55,15 +118,36 @@
     "year": "Secondary 1",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "1 1700-1900",
       "fee": "21.00",
       "paymentDate": "28/2/2018",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -71,15 +155,36 @@
     "year": "JC 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "1 1900-2100",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "1 | What is Newton's Second Law?",
-      "1 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : true,
+      "question" : "What is Newton's Second Law?",
+      "solution" : "Read your textbook"
+    }, {
+      "status" : true,
+      "question" : "How do you inverse a matrix?",
+      "solution" : "Read your textbook"
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -87,30 +192,70 @@
     "year": "Secondary 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "3 1200-1430",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
-  }, {
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }}, {
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",
     "year": "Secondary 4",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "2 1000-1230",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],"exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   } ]
 }

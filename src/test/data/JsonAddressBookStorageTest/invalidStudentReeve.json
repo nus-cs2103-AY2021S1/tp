@@ -11,6 +11,10 @@
       "paymentDate": "21/03/2020",
       "additionalDetails": ["Just update if you going use for test:)"]
     },
-    "questions": [" "]
+    "questions": [{
+      "status" : true,
+      "question" : "",
+      "solution" : " "
+    }]
   } ]
 }

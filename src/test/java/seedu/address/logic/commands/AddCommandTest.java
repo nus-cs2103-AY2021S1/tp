@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -116,7 +117,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Student student) {
+        public void addStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -131,27 +132,37 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Student target) {
+        public void deleteStudent(Student target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Student target, Student editedStudent) {
+        public void setStudent(Student target, Student editedStudent) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Student> getFilteredPersonList() {
+        public ObservableList<Student> getSortedStudentList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Student> predicate) {
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedStudentList(Comparator<? super Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,7 +244,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             requireNonNull(student);
             return this.student.isSameStudent(student);
         }
@@ -246,13 +257,13 @@ public class AddCommandTest {
         final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Student student) {
+        public boolean hasStudent(Student student) {
             requireNonNull(student);
             return personsAdded.stream().anyMatch(student::isSameStudent);
         }
 
         @Override
-        public void addPerson(Student student) {
+        public void addStudent(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
         }

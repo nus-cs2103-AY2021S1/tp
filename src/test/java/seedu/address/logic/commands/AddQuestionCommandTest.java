@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ALICE;
@@ -21,8 +22,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Scheduler;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddQuestionCommandTest {
@@ -40,62 +41,78 @@ public class AddQuestionCommandTest {
 
         // one argument null
         assertThrows(NullPointerException.class, () -> new AddQuestionCommand(testIndex, null));
-        assertThrows(NullPointerException.class, () -> new AddQuestionCommand(null, new Question(TEST_QUESTION)));
+        assertThrows(NullPointerException.class, () -> new AddQuestionCommand(null,
+                new UnsolvedQuestion(TEST_QUESTION)));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions().build();
-        Question question = new Question(TEST_QUESTION);
+        UnsolvedQuestion question = new UnsolvedQuestion(TEST_QUESTION);
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, question);
         Student expectedStudent = new StudentBuilder(ALICE).withQuestions(TEST_QUESTION).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
-        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
+        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS,
+                clone.getName(), question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
+
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        Question question = new Question(TEST_QUESTION);
+        Index outOfBounds = Index.fromOneBased(model.getSortedStudentList().size() + 1);
+        UnsolvedQuestion question = new UnsolvedQuestion(TEST_QUESTION);
         AddQuestionCommand invalidCommand = new AddQuestionCommand(outOfBounds, question);
 
         assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_questionAlreadyExists_throwsCommandException() {
+    public void execute_unsolvedQuestionAlreadyExists_throwsCommandException() {
         Student asker = new StudentBuilder(ALICE).withQuestions(TEST_QUESTION).build();
-        model.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
+        model.setStudent(model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
 
-        AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, new Question(TEST_QUESTION));
-        String expectedMessage = MESSAGE_DUPLICATE_QUESTION;
+        AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON,
+                new UnsolvedQuestion(TEST_QUESTION));
 
-        assertCommandFailure(invalidCommand, model, expectedMessage);
+        assertCommandFailure(invalidCommand, model, MESSAGE_DUPLICATE_QUESTION);
+    }
+
+    @Test
+    public void execute_solvedQuestionAlreadyExists_throwsCommandException() {
+        Student asker = new StudentBuilder(ALICE).withSolved(DEFAULT_SOLUTION, TEST_QUESTION).build();
+        model.setStudent(model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
+
+        AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON,
+                new UnsolvedQuestion(TEST_QUESTION));
+
+        assertCommandFailure(invalidCommand, model, MESSAGE_DUPLICATE_QUESTION);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Question question = new Question(TEST_QUESTION);
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        UnsolvedQuestion question = new UnsolvedQuestion(TEST_QUESTION);
         Student clone = new StudentBuilder(asker).withQuestions().build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, question);
         Student expectedStudent = new StudentBuilder(BENSON).withQuestions(TEST_QUESTION).build();
 
-        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
+        String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS,
+                expectedStudent.getName(), question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expectedStudent);
+
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);
 
@@ -105,16 +122,15 @@ public class AddQuestionCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBounds = INDEX_SECOND_PERSON;
-        Question question = new Question(TEST_QUESTION);
-        AddQuestionCommand invalidCommand = new AddQuestionCommand(outOfBounds, question);
+        UnsolvedQuestion question = new UnsolvedQuestion(TEST_QUESTION);
+        AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_SECOND_PERSON, question);
 
         assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        Question testQuestion = new Question(TEST_QUESTION);
+        UnsolvedQuestion testQuestion = new UnsolvedQuestion(TEST_QUESTION);
         AddQuestionCommand addQuestionCommand = new AddQuestionCommand(INDEX_FIRST_PERSON, testQuestion);
 
         // same object -> return true;
@@ -127,7 +143,7 @@ public class AddQuestionCommandTest {
         assertFalse(addQuestionCommand.equals(new AddQuestionCommand(INDEX_SECOND_PERSON, testQuestion)));
 
         // different question -> return false;
-        Question altQuestion = new Question("Why do birds fly?");
+        UnsolvedQuestion altQuestion = new UnsolvedQuestion("Why do birds fly?");
         assertFalse(addQuestionCommand.equals(new AddQuestionCommand(INDEX_FIRST_PERSON, altQuestion)));
     }
 

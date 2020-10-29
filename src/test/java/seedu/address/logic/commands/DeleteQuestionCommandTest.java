@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.DeleteQuestionCommand.MESSAGE_BAD_QUESTION_INDEX;
 import static seedu.address.logic.commands.DeleteQuestionCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
@@ -24,8 +25,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Scheduler;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.Question;
 import seedu.address.testutil.StudentBuilder;
 
 public class DeleteQuestionCommandTest {
@@ -46,37 +47,39 @@ public class DeleteQuestionCommandTest {
 
     @Test
     public void execute_validIndicesUnsolved_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withQuestions(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index questionIndex = Index.fromOneBased(1);
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
         Student expected = deleteQuestion(questionIndex, clone);
+
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expected);
+        expectedModel.setStudent(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validIndicesSolved_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
+        model.setStudent(asker, clone);
 
         Index questionIndex = Index.fromOneBased(2);
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
         Student expected = deleteQuestion(questionIndex, clone);
+
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expected);
+        expectedModel.setStudent(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
@@ -84,25 +87,26 @@ public class DeleteQuestionCommandTest {
     public void execute_validIndicesFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
-
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
+        model.setStudent(asker, clone);
         Index questionIndex = Index.fromOneBased(2);
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
         Student expected = deleteQuestion(questionIndex, clone);
+
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
-        expectedModel.setPerson(clone, expected);
+        expectedModel.setStudent(clone, expected);
+
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
-        String expectedMessage = String.format(MESSAGE_SUCCESS, removed);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidStudentUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromZeroBased(model.getFilteredPersonList().size());
+        Index outOfBounds = Index.fromZeroBased(model.getSortedStudentList().size());
         Index question = Index.fromZeroBased(0);
         DeleteQuestionCommand invalidCommand = new DeleteQuestionCommand(outOfBounds, question);
         assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -119,9 +123,9 @@ public class DeleteQuestionCommandTest {
 
     @Test
     public void execute_invalidQuestionIndex_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withSolved(TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
+        model.setStudent(asker, clone);
 
         Index questionIndex = Index.fromZeroBased(TEST_QUESTIONS.length);
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
@@ -149,6 +153,6 @@ public class DeleteQuestionCommandTest {
         List<Question> questions = new ArrayList<>(toCopy.getQuestions());
         questions.remove(index.getZeroBased());
         return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
-                toCopy.getYear(), toCopy.getAdmin(), questions);
+                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams(), toCopy.getAcademic());
     }
 }

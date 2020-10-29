@@ -1,17 +1,23 @@
 package seedu.address.model.student;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_LEVEL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_TYPE_BOB;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
@@ -97,11 +103,45 @@ public class StudentTest {
         String[] questions = new String[] {test1, test2};
         Student editedAlice = new StudentBuilder(ALICE).withQuestions(questions).build();
 
-        assertTrue(editedAlice.containsQuestion(new Question(test1)));
-        assertTrue(editedAlice.containsQuestion(new Question(test2)));
-        assertTrue(editedAlice.containsQuestion(new Question(test1, true)));
-        assertTrue(editedAlice.containsQuestion(new Question(test2, true)));
+        assertTrue(editedAlice.containsQuestion(new UnsolvedQuestion(test1)));
+        assertTrue(editedAlice.containsQuestion(new UnsolvedQuestion(test2)));
+        assertTrue(editedAlice.containsQuestion(new SolvedQuestion(test1, DEFAULT_SOLUTION)));
+        assertTrue(editedAlice.containsQuestion(new SolvedQuestion(test2, DEFAULT_SOLUTION)));
 
-        assertFalse(editedAlice.containsQuestion(new Question(test3)));
+        assertFalse(editedAlice.containsQuestion(new UnsolvedQuestion(test3)));
     }
+
+    @Test
+    public void addQuestion() {
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions().build();
+        Student newAlice = editedAlice.addQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH));
+        Student expected = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH).build();
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+    }
+
+    @Test
+    public void setQuestion() {
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH).build();
+        Student newAlice = editedAlice.setQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH),
+                new SolvedQuestion(DEFAULT_QUESTION_MATH, DEFAULT_SOLUTION));
+        Student expected = new StudentBuilder(ALICE).withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_MATH).build();
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+    }
+
+    @Test
+    public void deleteQuestion() {
+        Student editedAlice = new StudentBuilder(ALICE).withQuestions(DEFAULT_QUESTION_MATH).build();
+        Student newAlice = editedAlice.deleteQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH));
+        Student expected = new StudentBuilder(ALICE).withQuestions().build();
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+
+        editedAlice = new StudentBuilder(ALICE).withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_MATH).build();
+        newAlice = editedAlice.deleteQuestion(new SolvedQuestion(DEFAULT_QUESTION_MATH, DEFAULT_SOLUTION));
+        assertNotEquals(editedAlice, newAlice);
+        assertEquals(expected, newAlice);
+    }
+
 }

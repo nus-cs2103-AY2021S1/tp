@@ -20,14 +20,30 @@ public class CommandResult {
     /** Schedule should be shown to user. */
     private final boolean schedule;
 
+    /** The application should toggle between admin and academic student cards. */
+    private final boolean toggleStudentCard;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean schedule) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean schedule, boolean toggleStudentCard) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.schedule = schedule;
+        this.toggleStudentCard = toggleStudentCard;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleStudentCard) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.toggleStudentCard = toggleStudentCard;
+        this.schedule = false;
     }
 
     /**
@@ -54,6 +70,10 @@ public class CommandResult {
         return schedule;
     }
 
+    public boolean isToggleStudentCard() {
+        return toggleStudentCard;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,12 +88,17 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && toggleStudentCard == otherCommandResult.toggleStudentCard;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, toggleStudentCard);
     }
 
+    @Override
+    public String toString() {
+        return this.feedbackToUser;
+    }
 }
