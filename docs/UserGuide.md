@@ -172,14 +172,13 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
-Here is the table of prefixes used:
-| Prefix | Syntax                                                          | Examples                             | Remarks                                                                                                                                                                                                                                         |
-|--------|-----------------------------------------------------------------|--------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/     | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]                 | n/Tutorial n/tutorial essay          | Case insensitive                                                                                                                                                                                                                                |
-| mod/   | mod/MODULE_CODE  [MORE MODULE_CODE]                             | mod/ST2334 mod/CS2100 cs2103t        | Case insensitive                                                                                                                                                                                                                                |
-| d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, find d/1300 25-11-2020 will list assignments with due date of 25-11-2020 (regardless of time) and with due time of 1300 (regardless of date).  |
-| p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                                |
-
+This is a table of prefixes used:
+| Prefix | Syntax | Examples | Remarks |
+|-|-|-|
+| n/ | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]  | n/Tutorial n/tutorial essay | Case insensitive |
+| mod/ | mod/MODULE_CODE  [MORE MODULE_CODE] | mod/ST2334 mod/CS2100 cs2103t` | Case insensitive |
+| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, find d/1300 25-11-2020 will list assignments with due date of 25-11-2020 (regardless of time) and with due time of 1300 (regardless of date). |
+| p/ | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT] | p/high p/LOW | Case insensitive |
 
 Here is an example with steps to follow:
 
