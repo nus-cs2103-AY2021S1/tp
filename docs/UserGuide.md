@@ -61,9 +61,12 @@ Adds a new investigation case which has the active status by default, if not spe
 
 The case will be added to the DEFAULT/ARCHIVED section, depending on which section they are currently in. 
 
-Format: `add case t:[TITLE] [s:STATUS]`
+Format: `add case t:TITLE [s:STATUS]`
+* The title must be alphanumeric and cannot be blank
 
-Example: `add case t:Kovan double murders s:Closed` creates a new investigation case with the title “Kovan double murders”, the status initalized as a closed case.
+Example: 
+* `add case t:Kovan double murders` creates a new investigation case with the title “Kovan double murders”, the status initialized as an active case.
+* `add case t:Kovan double murders s:Closed` creates a new investigation case with the title “Kovan double murders”, the status initialized as a closed case.
 
 #### List all investigation cases: `list case`
 Lists all default investigation cases in PIVOT (unarchived cases).
