@@ -78,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         this.currentSession = logic.getCurrentSession();
+        // the ui will refill its contents when currentSession updates
         currentSession.addListener((o, ov, nv) -> fillInnerParts(false));
     }
 
