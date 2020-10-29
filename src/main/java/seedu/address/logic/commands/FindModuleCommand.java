@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 
@@ -19,6 +20,9 @@ public class FindModuleCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2100 cs3243 CS2030";
 
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW =
+            "You are currently not in the Module view. Run listMod to go back to the module view.";
+
     private final ModuleContainsKeywordsPredicate predicate;
 
     public FindModuleCommand(ModuleContainsKeywordsPredicate predicate) {
@@ -26,11 +30,15 @@ public class FindModuleCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (!model.isInModuleView()) {
+            throw new CommandException(MESSAGE_NOT_IN_MODULE_VIEW);
+        }
         model.updateFilteredModuleList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()), false, false, false, false, true);
+                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()),
+                false, false, false, false, true);
     }
 
     @Override

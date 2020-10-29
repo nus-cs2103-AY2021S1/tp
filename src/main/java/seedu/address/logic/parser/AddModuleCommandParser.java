@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -15,8 +17,12 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
      */
     public AddModuleCommand parse(String args) throws ParseException {
         try {
-            Module module = ParserUtil.parseModule(args);
-            return new AddModuleCommand(module);
+            requireNonNull(args);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                    PREFIX_MODULE);
+            String id = argMultimap.getValue(PREFIX_MODULE).orElse("");
+            Module moduleToAdd = ParserUtil.parseModule(id);
+            return new AddModuleCommand(moduleToAdd);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE), pe);

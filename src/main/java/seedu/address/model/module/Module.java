@@ -6,9 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.TaskList;
-import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class Module {
 
@@ -42,17 +41,17 @@ public class Module {
     //        this.taskList = new TaskList(taskList);
     //    }
 
-        /**
-         * Constructs an {@code Module}.
-         * @param moduleId
-         * @param tutorialGroups
-         */
-        public Module(ModuleId moduleId, UniqueTutorialGroupList tutorialGroups) {
-            requireNonNull(moduleId);
-            requireNonNull(tutorialGroups);
-            this.moduleId = moduleId;
-            this.tutorialGroups = tutorialGroups;
-        }
+    /**
+     * Constructs an {@code Module}.
+     * @param moduleId
+     * @param tutorialGroups
+     */
+    public Module(ModuleId moduleId, UniqueTutorialGroupList tutorialGroups) {
+        requireNonNull(moduleId);
+        requireNonNull(tutorialGroups);
+        this.moduleId = moduleId;
+        this.tutorialGroups = tutorialGroups;
+    }
 
 
     public ModuleId getModuleId() {
@@ -65,7 +64,7 @@ public class Module {
     }
 
     public void setId(String newId) {
-            this.moduleId.setId(newId);
+        this.moduleId.setId(newId);
     }
 
     public int getTotalGroups() {

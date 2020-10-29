@@ -25,12 +25,12 @@ public class TutorialGroupCard extends UiPart<Region> {
     private Label groupId;
     @FXML
     private Label id;
-    //    @FXML
-    //    private Label startTime;
-    //    @FXML
-    //    private Label endTime;
-    //    @FXML
-    //    private Label duration;
+    @FXML
+    private Label startTime;
+    @FXML
+    private Label endTime;
+    @FXML
+    private Label dayOfWeek;
     //    @FXML
     //    private FlowPane tags;
 
@@ -42,6 +42,9 @@ public class TutorialGroupCard extends UiPart<Region> {
         this.tutorialGroup = tutorialGroup;
         id.setText(displayedIndex + ". ");
         groupId.setText(tutorialGroup.getId().toString());
+        dayOfWeek.setText("Day: " + tutorialGroup.getDayOfWeek());
+        startTime.setText("Start Time: " + tutorialGroup.getStartTime().toString().substring(0, 5));
+        endTime.setText("End Time: " + tutorialGroup.getEndTime().toString().substring(0, 5));
         //totalStudents.setText("Total Students: " + module.getTotalStudents());
         //        startTime.setText(tutorialGroup.getStartTime().toString());
         //        endTime.setText(tutorialGroup.getEndTime().toString());
@@ -67,6 +70,6 @@ public class TutorialGroupCard extends UiPart<Region> {
         // state check
         TutorialGroupCard card = (TutorialGroupCard) other;
         return id.getText().equals(card.id.getText())
-                && tutorialGroup.equals(card.tutorialGroup);
+            && tutorialGroup.equals(card.tutorialGroup);
     }
 }

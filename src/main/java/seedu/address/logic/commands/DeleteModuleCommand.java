@@ -9,7 +9,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -25,6 +24,9 @@ public class DeleteModuleCommand extends Command {
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW =
+            "You are currently not in the Module view. Run listMod to go back to the module view.";
+
     private final Index targetIndex;
 
     public DeleteModuleCommand(Index targetIndex) {
@@ -35,6 +37,10 @@ public class DeleteModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
+
+        if (!model.isInModuleView()) {
+            throw new CommandException(MESSAGE_NOT_IN_MODULE_VIEW);
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);

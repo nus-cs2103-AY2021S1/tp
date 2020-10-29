@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALGROUPS;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.module.Module;
 
 public class ListTutorialGroupCommand extends Command {
     public static final String COMMAND_WORD = "listTG";
@@ -13,14 +13,21 @@ public class ListTutorialGroupCommand extends Command {
             + ": Views all the modules.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS = "Viewing All Tutorial Groups";
+    public static final String MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS = "Viewing all tutorial groups of: %1$s";
 
     public ListTutorialGroupCommand() { }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (model.isInModuleView()) {
+            throw new CommandException(
+                "This command cannot be used in Module View, use viewTG MODULE_INDEX to specify which Module's"
+                + "Tutorial Groups you would like to view.");
+        }
         model.updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
-        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS), false, false, true, false, false);
+        Module mod = model.getCurrentModuleInView();
+        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS, mod),
+                false, false, true, false, false);
     }
 
     @Override

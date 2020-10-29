@@ -13,7 +13,6 @@ import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
-import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class JsonAdaptedTutorialGroup {
 
@@ -22,6 +21,7 @@ public class JsonAdaptedTutorialGroup {
     private final String tutorialGroupId;
     private final String startTime;
     private final String endTime;
+    private final String dayOfWeek;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
@@ -31,8 +31,10 @@ public class JsonAdaptedTutorialGroup {
     public JsonAdaptedTutorialGroup(@JsonProperty("tutorialGroupId") String tutorialGroupId,
                                     @JsonProperty("startTime") String startTime,
                                     @JsonProperty("endTime") String endTime,
+                                    @JsonProperty("dayOfWeek") String dayOfWeek,
                                     @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.tutorialGroupId = tutorialGroupId;
+        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
         this.students.addAll(students);
@@ -43,6 +45,7 @@ public class JsonAdaptedTutorialGroup {
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         tutorialGroupId = source.getId().toString();
+        dayOfWeek = source.getDayOfWeek();
         startTime = source.getStartTime().toString();
         endTime = source.getEndTime().toString();
         this.students.addAll(source.getStudents().stream().map(JsonAdaptedStudent::new)
@@ -68,9 +71,10 @@ public class JsonAdaptedTutorialGroup {
         if (!TutorialGroupId.isValidTutorialGroupId(tutorialGroupId)) {
             throw new IllegalValueException(TutorialGroupId.MESSAGE_CONSTRAINTS);
         }
+
         final TutorialGroupId modelTutorialGroupId = new TutorialGroupId(tutorialGroupId);
 
-        return new TutorialGroup(modelTutorialGroupId, modelStudents,
+        return new TutorialGroup(modelTutorialGroupId, modelStudents, dayOfWeek,
                 LocalTime.parse(startTime), LocalTime.parse(endTime));
     }
 

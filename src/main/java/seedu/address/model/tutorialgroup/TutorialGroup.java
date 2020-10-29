@@ -1,7 +1,6 @@
 package seedu.address.model.tutorialgroup;
 
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Student;
@@ -14,25 +13,29 @@ public class TutorialGroup {
     private final UniqueStudentList students;
     private LocalTime startTime;
     private LocalTime endTime;
+    private String dayOfWeek;
 
     /**
      * Constructor for Tutorial Group
      * @param tutorialGroupId
      */
-    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime) {
+    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime, String dayOfWeek) {
         this.tutorialGroupId = tutorialGroupId;
         this.students = new UniqueStudentList();
         this.startTime = startTime;
         this.endTime = endTime;
+        this.dayOfWeek = dayOfWeek;
     }
 
     /**
      * Constructor for Tutorial Group
      * @param tutorialGroupId
      */
-    public TutorialGroup(TutorialGroupId tutorialGroupId, UniqueStudentList students,  LocalTime startTime, LocalTime endTime) {
+    public TutorialGroup(TutorialGroupId tutorialGroupId, UniqueStudentList students, String dayOfWeek,
+                         LocalTime startTime, LocalTime endTime) {
         this.tutorialGroupId = tutorialGroupId;
         this.students = students;
+        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
     }
@@ -51,8 +54,8 @@ public class TutorialGroup {
         return endTime;
     }
 
-    public double getDurationInHours() {
-        return (this.startTime.until(endTime, ChronoUnit.MINUTES)) / 60.0;
+    public String getDayOfWeek() {
+        return this.dayOfWeek;
     }
 
     public ObservableList<Student> getStudents() {

@@ -2,19 +2,14 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.ModelManager;
-import seedu.address.model.Task;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class JsonAdaptedModule {

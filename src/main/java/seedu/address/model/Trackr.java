@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Student;
@@ -93,12 +92,30 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     /**
-     * Adds an object to Trackr.
+     * Adds an TutorialGroup to Trackr.
      * The object must not already exist in Trackr.
      */
     public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {
         requireNonNull(tutorialGroup);
         moduleList.addTutorialGroup(tutorialGroup, currentModuleInView);
+    }
+
+    /**
+     * Deletes a TutorialGroup to Trackr.
+     */
+    public void deleteTutorialGroup(TutorialGroup tutorialGroupToDelete, Module moduleToDeleteFrom) {
+        requireAllNonNull(tutorialGroupToDelete);
+        moduleList.getUniqueTutorialGroupList(moduleToDeleteFrom)
+            .removeTutorialGroup(tutorialGroupToDelete);
+    }
+
+    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
+        requireAllNonNull(target, edited);
+        for (Module module : moduleList) {
+            if (module.getUniqueTutorialGroupList().contains(target)) {
+                module.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
+            }
+        }
     }
 
     // Student Operations
@@ -111,6 +128,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
         return moduleList.getUniqueTutorialGroupList(targetModule).getUniqueStudentList(targetTg);
     }
 
+    /**
+     * Adds Student to Trackr.
+     */
     public void addStudent(Module targetModule, TutorialGroup targetTg, Student student) {
         requireNonNull(student);
         moduleList.getUniqueTutorialGroupList(targetModule).addStudent(student, targetTg);

@@ -8,10 +8,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ViewTutorialGroupCommandParser implements Parser<ViewTutorialGroupCommand> {
     /**
-     //     * Parses the given {@code String} of arguments in the context of the ViewTutorialGroupCommand
-     //     * and returns a ViewTutorialGroupCommand object for execution.
-     //     * @throws ParseException if the user input does not conform the expected format
-     //     */
+     * Parses the given {@code String} of arguments in the context of the ViewTutorialGroupCommand
+     * and returns a ViewTutorialGroupCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public ViewTutorialGroupCommand parse(String args) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(args);
