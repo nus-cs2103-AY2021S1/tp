@@ -1,17 +1,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADEPOINT_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
@@ -48,8 +52,8 @@ public class EditModuleParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).
-                withGradePoint(VALID_GRADEPOINT_4).withMc(VALID_MC_4).withTags(VALID_TAG_LECTURE).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660)
+                .withGradePoint(VALID_GRADEPOINT_4).withMc(VALID_MC_4).withTags(VALID_TAG_LECTURE).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_ALL_FIELDS, expectedCommand);
     }
@@ -76,7 +80,7 @@ public class EditModuleParserTest {
     }
 
     @Test
-    public void parse_onlyMCSpecified_success() {
+    public void parse_onlyMcSpecified_success() {
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withMc(VALID_MC_4).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_MC, expectedCommand);

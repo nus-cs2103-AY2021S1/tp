@@ -1,16 +1,16 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * A utility class to help with building Module objects.
@@ -21,7 +21,7 @@ public class ModuleBuilder {
     public static final String DEFAULT_MODULELESSONTYPE = "tutorial";
     public static final String DEFAULT_ZOOMLINK = "www.zoom.us";
     public static final double DEFAULT_MODULARCREDITS = 4.0;
-    public static final String DEFAULT_TAGS = "online";
+    public static final String DEFAULT_TAGS = "";
 
     private ModuleName moduleName;
     private Map<String, ZoomLink> zoomLinkMap;

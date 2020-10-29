@@ -1,8 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -27,6 +35,11 @@ public class AddModuleParserTest {
             + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4
             + " " + PREFIX_TAG + VALID_TAG_LECTURE;
 
+    private static final String multipleTags = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4
+            + " " + PREFIX_TAG + VALID_TAG_LECTURE
+            + " " + PREFIX_TAG + VALID_TAG_TUTORIAL;
+
     private static final String validInput = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4
             + " " + PREFIX_TAG + VALID_TAG_LECTURE;
@@ -37,7 +50,7 @@ public class AddModuleParserTest {
     private static final String validInputNoModularCredits = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_TAG + VALID_TAG_LECTURE;
 
-    private static final String validInputOnlyName= " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
+    private static final String validInputOnlyName = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
 
     private AddModuleParser parser = new AddModuleParser();
 
@@ -88,10 +101,17 @@ public class AddModuleParserTest {
     }
 
     @Test
-    public void parse_multipleMCs_success() {
+    public void parse_multipleModularCredits_success() {
         Module expectedModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
                 .withMC(VALID_MC_2).withTag(VALID_TAG_LECTURE).build();
         assertParseSuccess(parser, multipleMCs, new AddModuleCommand(expectedModule));
+    }
+
+    @Test
+    public void parse_multipleTags_success() {
+        Module expectedModule = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
+                .withMC(VALID_MC_4).withTag(VALID_TAG_TUTORIAL).withTag(VALID_TAG_LECTURE).build();
+        assertParseSuccess(parser, multipleTags, new AddModuleCommand(expectedModule));
     }
 
     @Test
