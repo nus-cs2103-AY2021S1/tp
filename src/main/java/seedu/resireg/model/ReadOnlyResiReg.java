@@ -46,6 +46,4 @@ public interface ReadOnlyResiReg extends Observable {
      * This list will not contain any duplicate bin items.
      */
     ObservableList<BinItem> getBinItemList();
-
-    AppMode getAppMode();
 }

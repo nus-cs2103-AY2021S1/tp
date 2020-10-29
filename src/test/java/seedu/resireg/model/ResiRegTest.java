@@ -182,11 +182,6 @@ public class ResiRegTest {
         }
 
         @Override
-        public AppMode getAppMode() {
-            return AppMode.NEW;
-        }
-
-        @Override
         public void addListener(InvalidationListener listener) {
             throw new AssertionError("This method should not be called.");
         }

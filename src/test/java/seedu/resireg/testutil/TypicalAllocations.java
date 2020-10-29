@@ -58,12 +58,11 @@ public class TypicalAllocations {
      */
     public static ResiReg getTypicalResiReg() {
         ResiReg ab = new ResiReg();
-        for (Room room : TypicalRooms.getTypicalRooms()) {
-            ab.addRoom(room);
-        }
-        ab.finalizeRooms();
         for (Student student : TypicalStudents.getTypicalStudents()) {
             ab.addStudent(student);
+        }
+        for (Room room : TypicalRooms.getTypicalRooms()) {
+            ab.addRoom(room);
         }
         for (Allocation allocation: getTypicalAllocations()) {
             ab.addAllocation(allocation);
