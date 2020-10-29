@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import com.eva.model.person.applicant.ApplicationStatus;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
@@ -27,6 +26,7 @@ import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -90,12 +90,12 @@ public class AddCommandTest {
      */
     private class ModelStub implements Model {
         @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+        public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
+        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -120,27 +120,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setCurrentViewApplicant(CurrentViewApplicant currentViewStaff) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public Path getPersonDatabaseFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getStaffDatabaseFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getApplicantDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -150,7 +130,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getStaffDatabaseFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setStaffDatabaseFilePath(Path staffDatabaseFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getApplicantDatabaseFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,11 +151,6 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPersonDatabase(ReadOnlyEvaDatabase<Person> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -200,6 +185,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setPersonDatabase(ReadOnlyEvaDatabase<Person> newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -230,12 +220,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> newData) {
+        public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEvaDatabase<Staff> getStaffDatabase() {
+        public void setStaffDatabase(ReadOnlyEvaDatabase<Staff> newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -265,8 +255,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public CurrentViewApplicant getCurrentViewApplicant() {
             return null;
+        }
+
+        @Override
+        public void setCurrentViewApplicant(CurrentViewApplicant currentViewStaff) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -285,12 +285,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> newData) {
+        public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyEvaDatabase<Applicant> getApplicantDatabase() {
+        public void setApplicantDatabase(ReadOnlyEvaDatabase<Applicant> newData) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,7 +1,11 @@
 package com.eva.model.util;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.eva.model.EvaDatabase;
@@ -56,29 +60,29 @@ public class SampleDataUtil {
 
     public static Applicant[] getSampleApplicants() {
         return new Applicant[] {
-                new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                        new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet(),
-                        getCommentSet("Interests|2010-10-10|passionate about marketing"),
-                        new ApplicationStatus("received")),
-                new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet(),
-                        getCommentSet("Duration|2010-11-10|Internship from Jan to Jun"),
-                        Optional.of(new InterviewDate("02/11/2020")), new ApplicationStatus("processing")),
-                new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        getTagSet(), getCommentSet(), new ApplicationStatus("received")),
-                new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                        new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet(),
-                        getCommentSet("Review|2010-10-10|Have experience in marketing at big firm before"),
-                        Optional.of(new InterviewDate("02/11/2020")), new ApplicationStatus("processing")),
-                new Applicant(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                        new Address("Blk 47 Tampines Street 20, #17-35"),
-                        getTagSet("business"), getCommentSet("title 7|2010-07-10|hi"),
-                        new ApplicationStatus("received")),
-                new Applicant(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                        new Address("Blk 45 Aljunied Street 85, #11-31"),
-                        getTagSet("tech"), getCommentSet("title 8|2011-11-10|hi"),
-                        new ApplicationStatus("received"))
+            new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                    new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet(),
+                    getCommentSet("Interests|2010-10-10|passionate about marketing"),
+                    new ApplicationStatus("received")),
+            new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet(),
+                    getCommentSet("Duration|2010-11-10|Internship from Jan to Jun"),
+                    Optional.of(new InterviewDate("02/11/2020")), new ApplicationStatus("processing")),
+            new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    getTagSet(), getCommentSet(), new ApplicationStatus("received")),
+            new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet(),
+                    getCommentSet("Review|2010-10-10|Have experience in marketing at big firm before"),
+                    Optional.of(new InterviewDate("02/11/2020")), new ApplicationStatus("processing")),
+            new Applicant(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                    new Address("Blk 47 Tampines Street 20, #17-35"),
+                    getTagSet("business"), getCommentSet("title 7|2010-07-10|hi"),
+                    new ApplicationStatus("received")),
+            new Applicant(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getTagSet("tech"), getCommentSet("title 8|2011-11-10|hi"),
+                    new ApplicationStatus("received"))
         };
     }
 

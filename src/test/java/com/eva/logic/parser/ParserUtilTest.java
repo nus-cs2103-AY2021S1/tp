@@ -11,8 +11,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.eva.model.person.applicant.ApplicationStatus;
-import com.eva.model.person.applicant.PossibleApplicationStatus;
 import org.junit.jupiter.api.Test;
 
 import com.eva.logic.parser.exceptions.ParseException;
@@ -20,6 +18,8 @@ import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.PossibleApplicationStatus;
 import com.eva.model.tag.Tag;
 
 public class ParserUtilTest {
