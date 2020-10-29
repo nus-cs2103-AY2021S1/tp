@@ -38,7 +38,6 @@ public class SortCommandParser implements Parser<SortCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_SORT);
         List<String> sortKeys = argMultimap.getAllValues(PREFIX_SORT);
-        System.out.println(sortKeys);
         for (String sortKey : sortKeys) {
             if (!sortKey.matches(VALIDATION_REGEX + "(" + REVERSE_KEYWORD + ")?")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
@@ -51,7 +50,6 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         // filter and clean up repeats. Only take the latest entry if conflicting entries are found
         List<String> sortKeysUnique = getUniqueSortKeys(sortKeys);
-        System.out.println(sortKeysUnique);
 
         DescriptionComparator descriptionComparator = new DescriptionComparator(false, false, -1);
         AmountComparator amountComparator = new AmountComparator(false, false, -1);
