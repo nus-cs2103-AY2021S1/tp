@@ -83,7 +83,7 @@ public class PivotTest {
     /**
      * A stub ReadOnlyPivot whose persons list can violate interface constraints.
      */
-    private static class PivotStub implements ReadOnlyPivot {
+    static class PivotStub implements ReadOnlyPivot {
         private final ObservableList<Case> cases = FXCollections.observableArrayList();
 
         PivotStub(Collection<Case> cases) {

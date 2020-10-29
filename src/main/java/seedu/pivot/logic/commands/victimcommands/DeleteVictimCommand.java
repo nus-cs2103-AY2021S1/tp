@@ -69,6 +69,7 @@ public class DeleteVictimCommand extends DeleteCommand {
                 updatedVictims, stateCase.getWitnesses(), stateCase.getTags());
 
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_DELETE_VICTIM_SUCCESS, victimToDelete));
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_VICTIM_SUCCESS, victimToDelete));

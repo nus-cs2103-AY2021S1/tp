@@ -141,7 +141,7 @@ The `Storage` component,
 
 ![Structure of the State Component](images/StateClassDiagram.png)
 
-**API** : [`StateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/logic/state/StateManager.java), [`UiStateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/UiStateManager.java) 
+**API** : [`StateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/logic/state/StateManager.java), [`UiStateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/UiStateManager.java)
 
 The `StateManager` component,
 * can set the state for an opened `Case` in the app, denoted by its `Index`.
@@ -201,32 +201,32 @@ Its implementation is similar to the `OpenCaseCommand` except it resets the stat
 ### Including Documents to PIVOT
 
 #### Reference class
-The `Reference` class represents a file location in the directory `./references` of the program. A `reference` only 
-exists if there is a file present at the file location in the user's local directory. The validity of a  
-`reference` depends on the user's operating system and the different acceptable file names. A `reference` object must 
+The `Reference` class represents a file location in the directory `./references` of the program. A `reference` only
+exists if there is a file present at the file location in the user's local directory. The validity of a
+`reference` depends on the user's operating system and the different acceptable file names. A `reference` object must
 have a valid file name on creation.
 
 #### Document class
-The `Document` class represents a file on the user's local computer. It contains a `name` for easy viewing 
-and a `reference` to the file location. It is used for tracking files that are stored in PIVOT and for opening 
+The `Document` class represents a file on the user's local computer. It contains a `name` for easy viewing
+and a `reference` to the file location. It is used for tracking files that are stored in PIVOT and for opening
 of documents.
 <br>
 ![Structure of the Document Component](images/DocumentClassDiagram.png)
 
-The documents are stored in a list for a particular case and you can only manipulate 
+The documents are stored in a list for a particular case and you can only manipulate
 documents(adding, deleting, opening) while inside a `case`. This is because the program stores a state of which
-interface (main page or case) the user is at and will manipulate the documents according to the `document list` in that 
-current `case`. 
+interface (main page or case) the user is at and will manipulate the documents according to the `document list` in that
+current `case`.
 
 #### Adding a Document
 When a user executes `add doc n:name r:reference.txt`, to add a document with the specified name and file reference
-to the current "opened" case in the state, `addDocumandCommandParser` will be invoked to parse the 
+to the current "opened" case in the state, `addDocumandCommandParser` will be invoked to parse the
 name (prefixed with n:) and reference (prefixed with r:) inputs. The program must be at an "opened" case at this point.
  <br><br>
-`addDocumandCommandParser` will check for a valid name as well as a valid 
-reference that exists in the `./references` directory. This is to prevent a user from creating a document when the 
-program is active when they have yet to include the file in the program's directory. The appropriate error message 
-should be returned for a better user experience. It will then successfully create a `Document` and 
+`addDocumandCommandParser` will check for a valid name as well as a valid
+reference that exists in the `./references` directory. This is to prevent a user from creating a document when the
+program is active when they have yet to include the file in the program's directory. The appropriate error message
+should be returned for a better user experience. It will then successfully create a `Document` and
 return `addDocumandCommand`
 <br><br>
 `addDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
@@ -237,14 +237,14 @@ The following sequence diagram shows adding a document to the current case: <br>
 ![Adding a document to current case](images/AddDocumentDiagram.png)
 
 #### Deleting a Document
-Deleting a document works about the same as adding a document. When a user executes `delete doc 2`, to delete the 
-second `document` in the list of documents of the current "opened" case in the state. The program must be at an 
+Deleting a document works about the same as adding a document. When a user executes `delete doc 2`, to delete the
+second `document` in the list of documents of the current "opened" case in the state. The program must be at an
 "opened" case at this point.`DeleteCommandParser` parses the given index as a `Index` object and gets the `case index`
 in the current state. It returns `DeleteDocumentCommand` if the inputs are valid.
 <br><br>
-`DeleteDocumentCommand` gets the list of documents in the current case using the `case index` and checks if the 
+`DeleteDocumentCommand` gets the list of documents in the current case using the `case index` and checks if the
 input `index` is within bounds. The check occurs in the `Command` rather than `DeleteDocumentParser` so that we
-can distinguish between `ParseException` and `CommandException`. The command then removes the specified `document` 
+can distinguish between `ParseException` and `CommandException`. The command then removes the specified `document`
 in the list and updates the `model`.
 
 The following activity diagram shows a successful delete document operation at a case page: <br>
@@ -253,21 +253,21 @@ The following activity diagram shows a successful delete document operation at a
 #### Design considerations
 ##### Aspect: For `Reference` object, separate validity (of the String) and existence (of the actual file path) checks.
 * **Alternative 1 (current choice):** A reference object can be both valid but doesn't exists at the same time.
-   - Pros: A document file deletion on the user's local machine will not affect loading the current cases in the Json 
+   - Pros: A document file deletion on the user's local machine will not affect loading the current cases in the Json
    file
    - Cons: More prone to bugs
-   
+
 * **Alternative 2:** A reference object must be both valid and exists to be created.
      - Pros: A document is only created when we know there is a valid and existing `Reference`. Easier for testing.
-     - Cons: The program cannot load if there is a missing file (due to external user deletion) which was previously 
+     - Cons: The program cannot load if there is a missing file (due to external user deletion) which was previously
      saved in the Json file
      
 ##### Aspect: Integrate `ReferenceStorage` with current Storage Design
 * **Alternative 1 (current choice):** Separate `ReferenceStorage` to handle all `Reference` and storage interactions.
    - Pros: Easier to implement and increases cohesion.
    - Cons: More classes and code in the program
-   
-* **Alternative 2:** Make use of `Config.java` and `UserPrefsStorage` to integrate `ReferenceStorage` such as saving 
+
+* **Alternative 2:** Make use of `Config.java` and `UserPrefsStorage` to integrate `ReferenceStorage` such as saving
 default file paths.
      - Pros: Makes use of existing infrastructure, lesser code and possibly lesser code duplication.
      - Cons: Increased coupling, more prone to bugs and harder to test
@@ -276,7 +276,7 @@ default file paths.
 
 #### Proposed Implementation
 
-The proposed undo mechanism is facilitated by `VersionedPivot`. It extends `Pivot` with an undo history, stored internally as an `pivotStateStack`. 
+The proposed undo mechanism is facilitated by `VersionedPivot`. It extends `Pivot` with an undo history, stored internally as an `pivotStateStack`.
 `pivotStateStack` stores the entire Pivot at any point. Additionally, it implements the following operations:
 
 * `VersionedPivot#commit()` — Saves the current Pivot state in its history.
@@ -375,19 +375,19 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * has a basic understanding of file paths to manage his/her files
 
-**Value proposition**:  
+**Value proposition**:
 
-A lot of detectives use physical folders, whiteboards to consolidate their investigation information. 
-This uses up a lot of physical resources such as printing papers. 
-There may also exist cluttered information across multiple cases. 
-This leads to disorganisation of evidence and documents during investigations, 
-which makes it difficult to link the investigation together. 
-Furthermore, physically looking through archive files can be time-consuming, and 
+A lot of detectives use physical folders, whiteboards to consolidate their investigation information.
+This uses up a lot of physical resources such as printing papers.
+There may also exist cluttered information across multiple cases.
+This leads to disorganisation of evidence and documents during investigations,
+which makes it difficult to link the investigation together.
+Furthermore, physically looking through archive files can be time-consuming, and
 they might miss out important information in the process.
 
-PIVOT can help to better organise investigation cases and 
-group the relevant information on a digital platform. 
-This helps investigators to manage and easily locate the required information. 
+PIVOT can help to better organise investigation cases and
+group the relevant information on a digital platform.
+This helps investigators to manage and easily locate the required information.
 It also links up relations between people for better visualisation of the case so that detectives will not miss any information.
 
 PIVOT can assist to manage investigation cases faster than a typical mouse/GUI driven app.
@@ -438,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The title is empty.
     * 1a1. PIVOT shows an error message.
-    
+
 	  Use case ends.
 
 **Use case: List Investigation Case**
@@ -461,12 +461,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
 
 **Use case: Open Investigation Case**
@@ -481,12 +481,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
 
 **Use case: Tag Investigation Case**
@@ -503,17 +503,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
-      
+
 * 5a. The given tag is invalid.
     * 5a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 5.
 
 **Use case: Add Description for an Investigation Case**
@@ -530,17 +530,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
-      
+
 * 5a. The given description is empty.
     * 5a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 5.
 
 **Use case: Add Document to Investigation Case**
@@ -548,23 +548,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add a document to investigation case, specifies a document title and reference
 2. PIVOT adds a new document to the investigation case
-   
+
    Use case ends.
 
 **Extensions**
 * 1a. The title is empty.
     * 1a1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1b. The reference is empty.
     * 1b1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
-    
+
 * 1c. The reference is invalid.
     * 1c1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: List Document related to Investigation Case**
@@ -592,7 +592,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: Open Document**
@@ -612,14 +612,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 * 4a. The specified document does not exist in the saved reference.
     * 4a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
-        
+
 **Use case: Add Person[Suspect/Witness/Victim] in Investigation Case**
 
 **MSS**
@@ -639,12 +639,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 * 5a. The given category of person to add is invalid.
     * 5a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 **Use case: List Person[Suspect/Witness/Victim] in Investigation Case**
@@ -672,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 **Use case: Return to the Main Page**

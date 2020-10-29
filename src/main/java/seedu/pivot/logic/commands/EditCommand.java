@@ -1,12 +1,5 @@
 package seedu.pivot.logic.commands;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,12 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.pivot.commons.core.UserMessages;
-import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.CollectionUtil;
-import seedu.pivot.logic.commands.exceptions.CommandException;
-import seedu.pivot.logic.state.StateManager;
-import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -33,62 +21,57 @@ import seedu.pivot.model.tag.Tag;
 /**
  * Edits the details of an existing case in PIVOT.
  */
-public class EditCommand extends Command {
+public abstract class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the specified type identified "
-            + "by the index number used in the displayed case list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the specified type "
+            + "to the current case in program is at.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Format: '" + COMMAND_WORD + " TYPE PARAMETERS'\n\n"
-            + "TYPE 'case'\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TITLE + "TITLE] "
-            + "[" + PREFIX_STATUS + "STATUS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 t:Triple Kovan Murders";
+            + "TYPE 'title'\n"
+            + "Parameters: [t:TITLE]\n"
+            + "Example: " + COMMAND_WORD + " title t:Triple Kovan Murders\n\n"
+            + "TYPE 'status'\n"
+            + "Parameters: [s:STATUS]\n"
+            + "Example: " + COMMAND_WORD + " status s:closed\n\n"
+            + "TYPE 'doc'\n"
+            + "Parameters: INDEX [n:NAME] [r:REFERENCE]\n"
+            + "Example: " + COMMAND_WORD + " doc 1 n:meeting notes\n\n"
+            + "TYPE 'suspect','victim','witness'\n"
+            + "Parameters: INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
+            + "Example: " + COMMAND_WORD + " suspect 1 e:newEmail@mail.com a:new road crescent\n\n";
 
-    public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
+    //public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in PIVOT.";
+    //public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in PIVOT.";
 
-    private final Index index;
-    private final EditCaseDescriptor editCaseDescriptor;
 
-    /**
-     * @param index of the case in the filtered case list to edit
-     * @param editCaseDescriptor details to edit the case with
-     */
-    public EditCommand(Index index, EditCaseDescriptor editCaseDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editCaseDescriptor);
 
-        this.index = index;
-        this.editCaseDescriptor = new EditCaseDescriptor(editCaseDescriptor);
-    }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Case> lastShownList = model.getFilteredCaseList();
+    //    @Override
+    //    public CommandResult execute(Model model) throws CommandException {
+    //        requireNonNull(model);
+    //        List<Case> lastShownList = model.getFilteredCaseList();
+    //
+    //        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
+    //
+    //        if (index.getZeroBased() >= lastShownList.size()) {
+    //            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+    //        }
+    //
+    //        Case caseToEdit = lastShownList.get(index.getZeroBased());
+    //        Case editedCase = createEditedCase(caseToEdit, editCaseDescriptor);
+    //
+    //        if (!caseToEdit.isSameCase(editedCase) && model.hasCase(editedCase)) {
+    //            throw new CommandException(MESSAGE_DUPLICATE_CASE);
+    //        }
+    //
+    //        model.setCase(caseToEdit, editedCase);
+    //        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+    //        return new CommandResult(String.format(MESSAGE_EDIT_CASE_SUCCESS, editedCase));
+    //    }
 
-        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-        }
-
-        Case caseToEdit = lastShownList.get(index.getZeroBased());
-        Case editedCase = createEditedCase(caseToEdit, editCaseDescriptor);
-
-        if (!caseToEdit.isSameCase(editedCase) && model.hasCase(editedCase)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CASE);
-        }
-
-        model.setCase(caseToEdit, editedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-        return new CommandResult(String.format(MESSAGE_EDIT_CASE_SUCCESS, editedCase));
-    }
 
     /**
      * Creates and returns a {@code Case} with the details of {@code caseToEdit}
@@ -110,23 +93,6 @@ public class EditCommand extends Command {
                 updatedSuspects, updatedVictims, updatedWitnesses, updatedTags);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
-            return false;
-        }
-
-        // state check
-        EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editCaseDescriptor.equals(e.editCaseDescriptor);
-    }
 
     /**
      * Stores the details to edit the case with. Each non-empty field value will replace the
@@ -288,6 +254,7 @@ public class EditCommand extends Command {
                     //&& getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
+
 
     }
 }

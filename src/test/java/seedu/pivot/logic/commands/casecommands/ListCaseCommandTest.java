@@ -8,6 +8,7 @@ import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;
@@ -22,6 +23,7 @@ public class ListCaseCommandTest {
 
     @BeforeEach
     public void setUp() {
+        StateManager.resetState();
         model = new ModelManager(getTypicalPivot(), new UserPrefs());
         expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
     }

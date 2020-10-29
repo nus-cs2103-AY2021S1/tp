@@ -72,6 +72,7 @@ public class DeleteDocumentCommand extends DeleteCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete));
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete));

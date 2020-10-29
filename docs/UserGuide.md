@@ -52,7 +52,7 @@ The main page of the application when the user first enters the app.
 
 #### Adding an active investigation case: `add case t:TITLE [s:STATUS] [t/TAG]`
 Adds a new investigation case which has the active status by default. The user can provide 3 status types:
- 
+
 1. `ACTIVE`
 
 2. `CLOSED`
@@ -233,7 +233,7 @@ User data automatically saves when there is a change in data
 #### Main Page Commands
 
 |Command            | Format                                | Association   |
-| ----------------- | ------------------------------------- | ------------- | 
+| ----------------- | ------------------------------------- | ------------- |
 |**case**           | `add case t:TITLE [s:STATUS] [t/TAG]` | Investigation |
 |**list**           | `list case`                           | Investigation |
 |**delete**         | `delete case CASE_NO`                 | Investigation |

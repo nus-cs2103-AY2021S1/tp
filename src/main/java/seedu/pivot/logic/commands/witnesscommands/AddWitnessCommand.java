@@ -83,6 +83,7 @@ public class AddWitnessCommand extends AddCommand {
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags());
 
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_ADD_WITNESS_SUCCESS, witness));
 
         return new CommandResult(String.format(MESSAGE_ADD_WITNESS_SUCCESS, witness));
     }

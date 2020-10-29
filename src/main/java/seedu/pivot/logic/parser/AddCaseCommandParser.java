@@ -1,5 +1,6 @@
 package seedu.pivot.logic.parser;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -26,7 +27,7 @@ import seedu.pivot.model.tag.Tag;
 public class AddCaseCommandParser implements Parser<AddCaseCommand> {
     @Override
     public AddCaseCommand parse(String args) throws ParseException {
-        assert(StateManager.atMainPage()) : "Program should be at main page";
+        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_STATUS, PREFIX_TAG);

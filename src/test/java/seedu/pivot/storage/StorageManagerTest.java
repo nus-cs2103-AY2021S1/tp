@@ -15,6 +15,7 @@ import seedu.pivot.commons.core.GuiSettings;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.ReadOnlyPivot;
 import seedu.pivot.model.UserPrefs;
+import seedu.pivot.storage.testutil.ReferenceStorageStub;
 
 public class StorageManagerTest {
 
@@ -27,7 +28,8 @@ public class StorageManagerTest {
     public void setUp() throws IOException {
         JsonPivotStorage pivotStorage = new JsonPivotStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(pivotStorage, userPrefsStorage);
+        ReferenceStorage referenceStorage = new ReferenceStorageStub(getTempFilePath("./testDir"));
+        storageManager = new StorageManager(pivotStorage, userPrefsStorage, referenceStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -65,5 +67,6 @@ public class StorageManagerTest {
     public void getPivotFilePath() {
         assertNotNull(storageManager.getPivotFilePath());
     }
+
 
 }
