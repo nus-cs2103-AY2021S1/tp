@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final ModuleList moduleList;
     private final ArchivedModuleList archivedModuleList;
     private final VersionedModuleList versionedModuleList;
+    private final VersionedModuleList versionedArchivedModuleList;
     private final ContactList contactList;
     private final VersionedContactList versionedContactList;
     private final TodoList todoList;
@@ -52,7 +53,8 @@ public class ModelManager implements Model {
     private FilteredList<Module> mainList;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given moduleList, archivedModuleList, contactList, todoList,
+     * eventList and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList,
                         ReadOnlyContactList contactList, ReadOnlyTodoList todoList, ReadOnlyEventList eventList,
@@ -66,6 +68,7 @@ public class ModelManager implements Model {
         this.moduleListDisplay = new ModuleList(moduleList);
         this.archivedModuleList = new ArchivedModuleList(archivedModuleList);
         this.versionedModuleList = new VersionedModuleList(moduleList);
+        this.versionedArchivedModuleList = new VersionedModuleList(archivedModuleList);
         this.contactList = new ContactList(contactList);
         this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
@@ -84,6 +87,10 @@ public class ModelManager implements Model {
         accessSequence = new ArrayList<>();
         accessSequence.add(0);
     }
+    /**
+     * Initializes a ModelManager with a blank moduleList, archivedModuleList, contactList, todoList,
+     * eventList and userPrefs.
+     */
     public ModelManager() {
         this(new ModuleList(), new ArchivedModuleList(), new ContactList(), new TodoList(),
                 new EventList(), new UserPrefs());
@@ -176,6 +183,7 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedModuleList.commit(moduleList);
+        versionedArchivedModuleList.commit(archivedModuleList);
         accessSequence.add(1);
         accessPointer += 1;
     }
@@ -185,11 +193,12 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         try {
             versionedModuleList.undo();
+            versionedArchivedModuleList.undo();
         } catch (VersionedListException versionedListException) {
             throw versionedListException;
         }
         setModuleList(versionedModuleList.getCurrentModuleList());
-        //accessSequence.add(1);
+        setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
     }
 
     @Override
@@ -197,12 +206,12 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         try {
             versionedModuleList.redo();
+            versionedArchivedModuleList.redo();
         } catch (VersionedListException versionedListException) {
             throw versionedListException;
         }
         setModuleList(versionedModuleList.getCurrentModuleList());
-        //accessSequence.add(1);
-        //accessPointer += 1;
+        setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
     }
     //Archived Modules
     @Override

@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
-import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ModuleList;
-import seedu.address.model.ReadOnlyModuleList;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
+
+import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyModuleList;
 
 /**
  * Represents a storage for {@link ModuleList}.
@@ -32,13 +32,13 @@ public interface ArchivedModuleListStorage extends ModuleListStorage {
 
     /**
      * Saves the given {@link ReadOnlyModuleList} to the storage.
-     * @param ArchivedModuleList cannot be null.
+     * @param archivedModuleList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveArchivedModuleList(ReadOnlyModuleList ArchivedModuleList) throws IOException;
+    void saveArchivedModuleList(ReadOnlyModuleList archivedModuleList) throws IOException;
 
     /**
      * @see #saveArchivedModuleList(ReadOnlyModuleList)
      */
-    void saveArchivedModuleList(ReadOnlyModuleList ArchivedModuleList, Path filePath) throws IOException;
+    void saveArchivedModuleList(ReadOnlyModuleList archivedModuleList, Path filePath) throws IOException;
 }

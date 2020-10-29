@@ -1,7 +1,10 @@
 package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -40,7 +43,7 @@ public class AddCompletedModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasModule(toAdd)) {
+        if (model.hasModule(toAdd) || model.hasArchivedModule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
         model.addModule(toAdd);

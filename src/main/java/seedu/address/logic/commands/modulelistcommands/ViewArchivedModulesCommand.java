@@ -1,11 +1,11 @@
 package seedu.address.logic.commands.modulelistcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Deletes a module identified using it's displayed index from the address book.
@@ -17,7 +17,7 @@ public class ViewArchivedModulesCommand extends Command {
             + ": Views all archived modules.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_VIEW_ARHIVED_MODULES_SUCCESS = "Viewing archived modules";
+    public static final String MESSAGE_VIEW_ARCHIVED_MODULES_SUCCESS = "Viewing archived modules";
 
     public ViewArchivedModulesCommand() {}
 
@@ -25,7 +25,7 @@ public class ViewArchivedModulesCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.displayArchivedModules();
-        return new CommandResult(MESSAGE_VIEW_ARHIVED_MODULES_SUCCESS);
+        return new CommandResult(MESSAGE_VIEW_ARCHIVED_MODULES_SUCCESS);
     }
 
     @Override

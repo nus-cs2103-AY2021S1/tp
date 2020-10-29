@@ -15,7 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.*;
+import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
