@@ -24,6 +24,7 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 <br>
 
 [![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
+
 <br>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -78,6 +79,7 @@ Things to note for the commands:
   <br> 
   
   ![Index](images/Index.png)
+  <center><img src="images/Index.png"></center>
   <br>
   Figure 3: Index Annotation
   <br>
@@ -116,8 +118,6 @@ To open up `help start` window, you can also do the following:
 * Click on `Help` located at the top toolbar and then click `Start F1`
 
 A new help window similar to [Figure 2](#uihelpstart) should appear on your desktop.
-
-##### Help Summary
 
 ##### 3.1.1.b `help summary`
 
