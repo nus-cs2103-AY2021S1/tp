@@ -7,15 +7,25 @@ import static seedu.taskmaster.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
 import static seedu.taskmaster.testutil.TypicalStudents.BENSON;
+import static seedu.taskmaster.testutil.TypicalStudents.BOB;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.commons.core.GuiSettings;
+import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecordList;
+import seedu.taskmaster.model.record.StudentRecordListManager;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionDateTime;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NameContainsKeywordsPredicate;
+import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.testutil.TaskmasterBuilder;
 
 public class ModelManagerTest {
@@ -131,5 +141,113 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTaskmasterFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(taskmaster, differentUserPrefs)));
+    }
+
+    @Test
+    void markStudent() {
+        SessionName sName = new SessionName("Test Session");
+        ArrayList<Student> stds = new ArrayList<Student>();
+        stds.add(ALICE);
+        Session s = new Session(sName,
+                new SessionDateTime(LocalDateTime.now()),
+                stds);
+        modelManager.addSession(s);
+        modelManager.changeSession(sName);
+        modelManager.markStudent(ALICE, AttendanceType.PRESENT);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|PRESENT|Class Participation Score: 0]"));
+        modelManager.markStudent(ALICE, AttendanceType.ABSENT);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|ABSENT|Class Participation Score: 0]"));
+    }
+
+    @Test
+    void markStudentWithNusnetId() {
+        SessionName sName = new SessionName("Test Session");
+        ArrayList<Student> stds = new ArrayList<Student>();
+        stds.add(ALICE);
+        Session s = new Session(sName,
+                new SessionDateTime(LocalDateTime.now()),
+                stds);
+        modelManager.addSession(s);
+        modelManager.changeSession(sName);
+        modelManager.markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.PRESENT);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|PRESENT|Class Participation Score: 0]"));
+        modelManager.markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.ABSENT);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|ABSENT|Class Participation Score: 0]"));
+    }
+
+    @Test
+    void scoreStudent() {
+        SessionName sName = new SessionName("Test Session");
+        ArrayList<Student> stds = new ArrayList<Student>();
+        stds.add(ALICE);
+        Session s = new Session(sName,
+                new SessionDateTime(LocalDateTime.now()),
+                stds);
+        modelManager.addSession(s);
+        modelManager.changeSession(sName);
+        modelManager.scoreStudent(ALICE, 1);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 1]"));
+        modelManager.scoreStudent(ALICE, 2);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 2]"));
+    }
+
+    @Test
+    void scoreStudentWithNusnetId() {
+        SessionName sName = new SessionName("Test Session");
+        ArrayList<Student> stds = new ArrayList<Student>();
+        stds.add(ALICE);
+        Session s = new Session(sName,
+                new SessionDateTime(LocalDateTime.now()),
+                stds);
+        modelManager.addSession(s);
+        modelManager.changeSession(sName);
+        modelManager.scoreStudentWithNusnetId(ALICE.getNusnetId(), 1);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 1]"));
+        modelManager.scoreStudentWithNusnetId(ALICE.getNusnetId(), 2);
+        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 2]"));
+    }
+
+    @Test
+    void scoreAllStudents() {
+        SessionName sName = new SessionName("Test Session");
+        ArrayList<Student> stds = new ArrayList<Student>();
+        stds.add(ALICE);
+        stds.add(BOB);
+        Session s = new Session(sName,
+                new SessionDateTime(LocalDateTime.now()),
+                stds);
+        modelManager.addSession(s);
+        modelManager.changeSession(sName);
+        modelManager.scoreAllStudents( stds,1);
+
+        assertTrue(s.getStudentRecords().toString()
+                .equals("[e0123456|NO_RECORD|Class Participation Score: 1,"
+                        + " e0456789|NO_RECORD|Class Participation Score: 1]"));
+        modelManager.scoreAllStudents(stds, 2);
+        assertTrue(s.getStudentRecords().toString()
+                .equals("[e0123456|NO_RECORD|Class Participation Score: 2,"
+                + " e0456789|NO_RECORD|Class Participation Score: 2]"));
+    }
+
+    @Test
+    void markAllStudents() {
+        SessionName sName = new SessionName("Test Session");
+        ArrayList<Student> stds = new ArrayList<Student>();
+        stds.add(ALICE);
+        stds.add(BOB);
+        Session s = new Session(sName,
+                new SessionDateTime(LocalDateTime.now()),
+                stds);
+        modelManager.addSession(s);
+        modelManager.changeSession(sName);
+        modelManager.markAllStudents( stds, AttendanceType.PRESENT);
+
+        assertTrue(s.getStudentRecords().toString()
+                .equals("[e0123456|PRESENT|Class Participation Score: 0,"
+                        + " e0456789|PRESENT|Class Participation Score: 0]"));
+        modelManager.markAllStudents( stds, AttendanceType.ABSENT);
+        assertTrue(s.getStudentRecords().toString()
+                .equals("[e0123456|ABSENT|Class Participation Score: 0,"
+                        + " e0456789|ABSENT|Class Participation Score: 0]"));
     }
 }
