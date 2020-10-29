@@ -175,7 +175,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CL
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+:information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
+Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing Monday, Wednesday and Sunday respectively.<br>
+Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
+E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.  
 
 </div>
 
@@ -261,7 +264,7 @@ Examples:
 
 You can find all students whose date of last payment is more than a month ago.
 
-Format: `unpaid`
+Format: `overdue unpaid`
 
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
@@ -489,7 +492,7 @@ Examples:
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
-Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
+Format: `schedule view [mode/VIEW_MODE] [date/DATE_TO_VIEW]`
 
 * mode can be either **weekly** or **daily**. The case of the letters does not matter.
 * Date must be in the format of **yyyy-mm-dd**.
@@ -559,16 +562,31 @@ Table 2: Summary of commands in **Reeve**
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
+**Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
 **Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
-**Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
 **List** | `list`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
+**Overdue** | `overdue unpaid`
+**Add Detail** | `detail add STUDENT_INDEX t/DETAIL_TEXT`<br> e.g. `detail add 1 t/Smart`
+**Edit Detail** | `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`<br> e.g. `detail edit 1 i/2 t/Handsome`
+**Delete Detail** | `detail delete STUDENT_INDEX i/DETAIL_INDEX`<br> e.g. `detail delete 1 i/3`
+**Clear** | `clear`
+**Add Question** | `question add INDEX t/QUESTION`<br> e.g. `question add 1 t/How do birds fly?`
+**Resolve Question** | `question solve INDEX i/QUESTION_INDEX t/SOLUTION`<br> e.g. `question solve 1 i/1 t/Read a book.`
+**Delete Question** | `question delete INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
+**Add Exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+**Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
+**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
+**Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
+**View Schedule** | `schedule view [mode/View_Mode] [date/Date_To_View]`
+**Add Schedule Event** | `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [description/Event_Description] [recurrence/Event_recurrence]`<br> e.g. `schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
+**List Schedule Events** | `schedule list`
+**Delete Schedule Event** | `schedule delete EVENT_INDEX`
+**Toggle** | `toggle`
 **Help** | `help`
-**Add Exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE` <br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
-**Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX` <br> e.g. `exam delete 2 i/5`
+**Exit** | `exit`
 
 ## 5. Glossary
 
