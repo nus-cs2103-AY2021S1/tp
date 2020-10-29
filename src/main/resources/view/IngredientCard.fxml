@@ -5,18 +5,19 @@
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <Button mnemonicParsing="false" maxHeight="125.0" maxWidth="148.0"
-            prefHeight="126.0" prefWidth="148.0" styleClass="icButton">
+            prefHeight="126.0" prefWidth="148.0" styleClass="ingredient-button">
         <graphic>
             <VBox alignment="CENTER">
-                <Label fx:id="name" styleClass="icName" wrapText="true"/>
+                <Label fx:id="name" styleClass="ingredient-name" wrapText="true"/>
                 <HBox fx:id="expiryBox" alignment="CENTER">
-                    <Label styleClass="icExpiry" text="exp: "/>
-                    <Label fx:id="expiryDate" styleClass="icExpiry"/>
+                    <Label styleClass="ingredient-expiry-date" text="exp: "/>
+                    <Label fx:id="expiryDate" styleClass="ingredient-expiry-date"/>
                 </HBox>
             </VBox>
         </graphic>
     </Button>
-    <Label fx:id="index" styleClass="icNumber" StackPane.alignment="TOP_LEFT"/>
-    <Label fx:id="quantity" styleClass="icQuantity" StackPane.alignment="TOP_RIGHT"/>
-    <FlowPane fx:id="tagList" styleClass="icTagList" maxHeight="30.0" maxWidth="148.0" StackPane.alignment="BOTTOM_CENTER" hgap="4" vgap="2"/>
+    <Label fx:id="index" styleClass="ingredient-number" StackPane.alignment="TOP_LEFT" mouseTransparent="true"/>
+    <Label fx:id="quantity" styleClass="ingredient-quantity" StackPane.alignment="TOP_RIGHT" mouseTransparent="true"/>
+    <FlowPane fx:id="tagList" styleClass="ingredient-tags" maxHeight="30.0" maxWidth="148.0"
+              StackPane.alignment="BOTTOM_CENTER" hgap="4" vgap="2" mouseTransparent="true"/>
 </StackPane>

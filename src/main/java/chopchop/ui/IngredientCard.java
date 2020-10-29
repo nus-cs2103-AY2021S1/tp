@@ -51,9 +51,10 @@ public class IngredientCard extends UiPart<Region> {
         this.name.setText(ingredient.getName());
         this.quantity.setText(ingredient.getQuantity().toString());
 
-        this.ingredient.getExpiryDate().ifPresentOrElse(exp -> {
-            this.expiryDate.setText(exp.toString());
-        }, () -> this.expiryBox.setVisible(false));
+        this.ingredient.getExpiryDate().ifPresentOrElse(exp -> this.expiryDate.setText(exp.toString()), () -> {
+            this.expiryBox.setVisible(false);
+            this.expiryBox.setManaged(false);
+        });
 
         this.ingredient.getTags().stream()
             .map(Object::toString)

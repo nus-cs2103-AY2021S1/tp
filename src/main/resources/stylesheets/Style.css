@@ -221,22 +221,22 @@
 }
 
 /* INGREDIENT CARD THINGS */
-.icName {
+.ingredient-name {
     -fx-text-align: center;
     -fx-text-alignment: center;
     -fx-vertical-align: top;
 }
 
-.icNumber, .icQuantity {
+.ingredient-number, .ingredient-quantity {
    -fx-font-size: 14px;
    -fx-padding: 12px;
 }
 
-.icExpiry {
+.ingredient-expiry-date {
     -fx-font-size: 11pt;
 }
 
-.icButton {
+.ingredient-button {
     -fx-padding: 0 0 16px 0;
     -fx-border-color: #795548;
     -fx-background-radius: 4;
@@ -244,19 +244,19 @@
     -fx-background-color: #efebe9;
 }
 
-.icButton:hover {
+.ingredient-button:hover {
     -fx-background-color: #d7ccc8;
 }
 
-.icButton:pressed {
+.ingredient-button:pressed {
     -fx-background-color: #bcaaa4;
 }
 
-.icTagList {
-    -fx-padding: 8px;
+.ingredient-tags {
+    -fx-padding: 6px;
 }
 
-.icTagList .label {
+.ingredient-tags .label {
     -fx-text-fill: #fafafa;
     -fx-background-color: #00897b;
     -fx-padding: 2px 4px;
