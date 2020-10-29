@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         finance = new Finance(logic);
         financePlaceholder.getChildren().add(finance.getRoot());
 
-        inventory = new Inventory(logic);
+        inventory = new Inventory(logic, uiLogic);
         inventoryPlaceholder.getChildren().add(inventory.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -206,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            inventory = new Inventory(logic);
+            inventory = new Inventory(logic, uiLogic);
             inventoryPlaceholder.getChildren().add(inventory.getRoot());
 
             finance = new Finance(logic);

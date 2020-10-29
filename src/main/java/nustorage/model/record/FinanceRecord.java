@@ -2,7 +2,9 @@ package nustorage.model.record;
 
 import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class FinanceRecord {
 
@@ -76,7 +78,7 @@ public class FinanceRecord {
      */
     public FinanceRecord(double amount, double cost) {
         this.amount = amount;
-        this.id = this.hashCode();;
+        this.id = this.hashCode();
         this.dateTime = LocalDateTime.now();
         this.cost = cost;
         this.hasInventory = true;
@@ -101,6 +103,14 @@ public class FinanceRecord {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public LocalDate getDate() {
+        return this.dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return this.dateTime.toLocalTime();
     }
 
     public String getDatetimeString() {
