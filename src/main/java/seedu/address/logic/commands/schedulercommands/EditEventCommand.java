@@ -50,6 +50,7 @@ public class EditEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
+        //TODO: need to catch index out of bound error somewhere
         Event eventToEdit = lastShownList.get(index.getZeroBased());
         Event updatedEvent = createEditedEvent(eventToEdit, descriptor);
         System.out.println(eventToEdit.equals(updatedEvent));
