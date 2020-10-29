@@ -22,7 +22,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.eva.model.EvaDatabase;
-import com.eva.model.person.*;
+import com.eva.model.person.Address;
+import com.eva.model.person.Email;
+import com.eva.model.person.Name;
+import com.eva.model.person.Person;
+import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;

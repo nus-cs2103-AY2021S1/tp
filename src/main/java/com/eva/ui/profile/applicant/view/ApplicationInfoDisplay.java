@@ -21,7 +21,7 @@ public class ApplicationInfoDisplay extends UiPart<Region> {
     @FXML
     private Label applicationHeader;
     @FXML
-    private Label name;
+    private Label applicationName;
     @FXML
     private Label experienceSection;
     @FXML
@@ -34,7 +34,7 @@ public class ApplicationInfoDisplay extends UiPart<Region> {
         super(FXML);
         this.currentApplication = currentApplication;
         applicationHeader.setText("Application");
-        name.setText(currentApplication.getApplicantName());
+        applicationName.setText(currentApplication.getApplicantName());
         experienceSection.setText(currentApplication.getExperienceSectionString());
         educationSection.setText(currentApplication.getEducationSectionString());
     }

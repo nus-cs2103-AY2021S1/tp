@@ -409,9 +409,9 @@
     -fx-padding: 0 16px 0 16px;
 }
 
- /*#name {
+#applicationName {
     -fx-padding: 16px 16px 0 16px;
-}*/
+}
 
 #experienceSection {
     -fx-padding: 0 16px 0 16px;
