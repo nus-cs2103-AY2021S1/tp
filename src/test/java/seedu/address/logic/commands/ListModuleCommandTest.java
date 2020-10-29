@@ -28,12 +28,14 @@ public class ListModuleCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListModuleCommand(), model,
+                ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showModuleAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListModuleCommand(), model,
+                ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
     }
 }

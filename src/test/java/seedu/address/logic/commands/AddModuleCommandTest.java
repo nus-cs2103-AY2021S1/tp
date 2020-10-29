@@ -48,9 +48,8 @@ public class AddModuleCommandTest {
         AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
-        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE, ()
-                -> addModuleCommand.execute(modelStub)
-        );
+        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE,
+            () -> addModuleCommand.execute(modelStub));
     }
 
     @Test
@@ -119,7 +118,7 @@ public class AddModuleCommandTest {
 
         @Override
         public boolean isInModuleView() {
-            throw new AssertionError("This method should not be called.");
+            return true;
         }
 
         @Override

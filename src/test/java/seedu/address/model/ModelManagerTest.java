@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORIALGROUPS;
+
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalStudents.ALEX;
@@ -170,7 +171,9 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTrackr, userPrefs)));
 
         // different module filteredList -> returns false
+
         String[] moduleKeywords = CS2103T.getModuleId().getId().split("\\s+");
+
         modelManager.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
 

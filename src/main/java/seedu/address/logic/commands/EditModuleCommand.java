@@ -146,11 +146,6 @@ public class EditModuleCommand extends Command {
                 return true;
             }
 
-            // instanceof handles nulls
-            if (!(other instanceof EditModuleDescriptor)) {
-                return false;
-            }
-
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
