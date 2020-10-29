@@ -17,13 +17,13 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword
-                    -> StringUtil
+        return ((!person.getArchiveStatus().archiveStatus)
+                && keywords.stream().anyMatch(keyword
+                        -> StringUtil
                         .containsWordIgnoreCase(person.getTags().toString()
-                                        .replaceAll("\\[", "")
-                                        .replaceAll("]", "")
-                                        .replaceAll(",", ""), keyword));
+                                .replaceAll("\\[", "")
+                                .replaceAll("]", "")
+                                .replaceAll(",", ""), keyword)));
     }
 
     @Override

@@ -24,20 +24,27 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_ARCHIVED_PERSONS = person -> (
             person.getArchiveStatus().archiveStatus);
 
-    Predicate<Person> PREDICATE_SHOW_ALL_MONDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("monday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_TUESDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("tuesday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_WEDNESDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("wednesday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_THURSDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("thursday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_FRIDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("friday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_SATURDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("saturday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_SUNDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("sunday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_MONDAY_PERSONS = person ->(
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("monday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_TUESDAY_PERSONS = person -> (
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("tuesday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_WEDNESDAY_PERSONS = person -> (
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("wednesday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_THURSDAY_PERSONS = person -> (
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("thursday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_FRIDAY_PERSONS = person -> (
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("friday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_SATURDAY_PERSONS = person -> (
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("saturday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_SUNDAY_PERSONS = person -> (
+            (!person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("sunday"));
 
     Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
     Predicate<SalesRecordEntry> PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY = unused -> true;
