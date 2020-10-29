@@ -14,6 +14,7 @@ import com.eva.logic.parser.ArgumentTokenizer;
 public class Comment {
     public static final String MESSAGE_CONSTRAINTS = "addcomment must have ti/TITLE d/DATE desc/DESCRIPTION\n"
             + "deletecomment must have ti/TITLE_OF_COMMENT_TO_DELETE";
+    public static final String MESSAGE_COMMENT_PARAMS = "Comments must have a title, date and description";
 
     public final LocalDate date;
     public final Title title;
