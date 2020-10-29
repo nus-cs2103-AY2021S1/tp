@@ -108,6 +108,14 @@ Examples:
 
 - `allocate ri/1 si/1` allocates the room at `room_index` 1 to the student at `student_index` 1.
 
+##### Before allocation
+
+<img src="https://user-images.githubusercontent.com/27071473/97580044-c66fd380-1a2d-11eb-8dd4-cb05da8f9dda.png">
+
+##### After allocation
+
+<img src="https://user-images.githubusercontent.com/27071473/97580070-d1c2ff00-1a2d-11eb-839a-f2ddeb2fd6c1.png">
+
 #### 5. Deallocating a room for a student : `deallocate`
 
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
@@ -117,7 +125,14 @@ Format: `deallocate si/<student_index>`
 * The student at `student_index` must have been allocated a room. Otherwise, an error message is displayed.
 
 Examples:
-* `deallocate si/1` deallocates the room for the student at `student_index` 1. 
+* `deallocate si/1` deallocates the room for the student at `student_index` 1.
+
+##### Before deallocation
+Refer to "After allocation" above.
+
+##### After deallocation
+
+<img src="https://user-images.githubusercontent.com/27071473/97580237-0040da00-1a2e-11eb-9337-f3bf29f85bed.png">
 
 #### 6. Reallocating a room for a student : `reallocate`
 
@@ -134,7 +149,28 @@ Format: `reallocate si/<student_index> ri/<room_index>`
 Examples:
 * `reallocate si/1 ri/2` edits the allocation of the student with index 1's current room to the room with index 2.
 
-#### 7. Archiving a Semester
+##### Before reallocation
+Refer to "After allocation" above.
+
+##### After reallocation
+
+<img src="https://user-images.githubusercontent.com/27071473/97580478-53b32800-1a2e-11eb-863b-4931b40569dd.png">
+
+#### 7. Visualising a Piechart of Allocated Rooms
+
+Visualises a piechart of allocated and unallocated rooms by switching to the `Statistics` tab, and updates upon a change in room allocation.
+
+Example:
+* `allocate si/1 ri/1` allocates a room to a student, updating the piechart.
+
+##### Before a room allocation
+
+<img src="https://user-images.githubusercontent.com/27071473/97579055-8fe58900-1a2c-11eb-8485-ffcf51bd4fae.png">
+
+##### After a room allocation
+<img src="https://user-images.githubusercontent.com/27071473/97579112-9d9b0e80-1a2c-11eb-848c-8ab5532f9c24.png">
+
+#### 8. Archiving a Semester
 
 Archives the previous semester's data into an archival folder, and adjusts the application to operate on the succeeding semester.
 
