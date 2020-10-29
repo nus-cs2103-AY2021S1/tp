@@ -10,8 +10,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -40,11 +42,12 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public FindTaskCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args,
                 PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
         if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG)
-                || !argMultiMap.getPreamble().isEmpty()) {
+                || !argMultiMap.getPreamble().isBlank()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         }
@@ -52,7 +55,7 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
         FindTaskCriteria findTaskCriteria = new FindTaskCriteria();
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
-            List<String> nameKeywords = parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
+            List<String> nameKeywords = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
             NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
             findTaskCriteria.addPredicate(namePredicate);
         }
@@ -70,30 +73,13 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
         }
 
         if (argMultiMap.getValue(PREFIX_TAG).isPresent()) {
-            Set<Tag> taskTags = ParserUtil.parseTags(argMultiMap.getAllValues(PREFIX_TAG));
-            TaskContainsTagsPredicate tagsPredicate = new TaskContainsTagsPredicate(taskTags);
+            List<String> tags = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_TAG).get());
+            Set<Tag> searchTags = ParserUtil.parseTags(tags);
+            TaskContainsTagsPredicate tagsPredicate = new TaskContainsTagsPredicate(searchTags);
             findTaskCriteria.addPredicate(tagsPredicate);
         }
 
         return new FindTaskCommand(findTaskCriteria);
-    }
-
-    /**
-     * Parses the String containing the search keywords provided by the user into a list of keywords.
-     *
-     * @param keywords String containing search keywords provided by the user.
-     * @return List of search keywords.
-     * @throws ParseException If no valid keyword was provided by the user.
-     */
-    private List<String> parseSearchKeywords(String keywords) throws ParseException {
-        requireNonNull(keywords);
-        if (keywords.isBlank()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
-        } else {
-            String[] keywordArray = keywords.split("\\s+");
-            return Arrays.asList(keywordArray);
-        }
     }
 
     /**

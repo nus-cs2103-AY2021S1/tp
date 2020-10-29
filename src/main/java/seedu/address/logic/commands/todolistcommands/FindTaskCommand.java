@@ -42,6 +42,7 @@ public class FindTaskCommand extends Command {
      */
     public FindTaskCommand(FindTaskCriteria findTaskCriteria) {
         requireNonNull(findTaskCriteria);
+        logger.info("Executing FindTaskCommand");
         this.predicate = findTaskCriteria.getFindTaskPredicate();
     }
 
