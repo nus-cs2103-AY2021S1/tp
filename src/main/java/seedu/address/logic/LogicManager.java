@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FeatureParser;
+import seedu.address.logic.parser.GradeTrackerParser;
 import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
@@ -18,8 +19,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -34,6 +37,7 @@ public class LogicManager implements Logic {
     private final ModuleListParser moduleListParser;
     private final ContactListParser contactListParser;
     private final TodoListParser todoListParser;
+    private final GradeTrackerParser gradeTrackerParser;
     private final ParserManager parserManager;
 
     /**
@@ -45,7 +49,8 @@ public class LogicManager implements Logic {
         moduleListParser = new ModuleListParser();
         contactListParser = new ContactListParser();
         todoListParser = new TodoListParser();
-        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser);
+        gradeTrackerParser = new GradeTrackerParser();
+        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser, gradeTrackerParser);
     }
 
     @Override
@@ -100,6 +105,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Contact> getFilteredContactList() {
         return model.getFilteredContactList();
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return model.getTodoList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTodoList() {
+        return model.getFilteredTodoList();
     }
 
     @Override
