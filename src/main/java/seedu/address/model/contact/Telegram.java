@@ -19,7 +19,7 @@ public class Telegram {
     public static final String USERNAME_REGEX = "[a-zA-Z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + USERNAME_REGEX;
 
-    /** Telegram username. */
+    /** String containing the telegram username. */
     public final String telegramUsername;
 
     /**
