@@ -86,19 +86,19 @@ ChopChop's UI design allows users to view all of the information you need throug
 Hence, this section aims to give you a breakdown of the GUI's various components.
 
 Specifically, this section covers:
-1. [Command Box](#commandBox)
-2. [Command Output](#commandOutput)
-3. [Recipe Button](#recipeButton)
-4. [Ingredient Button](#ingredientButton)
-5. [Recommendation Button](#recommendationButton)
-6. [Favourites Button](#favouriteButton)
-7. [Statistics Box](#statisticsBox)
-8. [Recipe Tile](#recipeTiles)
-9. [Ingredient Tile](#ingredientTiles)
-10. [Recipe Name and Tags](#recipeName)
-11. [Recipe Ingredients](#recipeIngredients)
-12. [Recipe Steps](#recipeSteps)
-13. [Menu Bar](#menuBar)
+1. [Command Box](#CommandBox)
+2. [Command Output](#CommandOutput)
+3. [Recipe Button](#RecipeButton)
+4. [Ingredient Button](#IngredientButton)
+5. [Recommendation Button](#RecommendationButton)
+6. [Favourites Button](#FavouriteButton)
+7. [Statistics Box](#StatisticsBox)
+8. [Recipe Tile](#RecipeTiles)
+9. [Ingredient Tile](#IngredientTiles)
+10. [Recipe Name and Tags](#RecipeName)
+11. [Recipe Ingredients](#RecipeIngredients)
+12. [Recipe Steps](#RecipeSteps)
+13. [Menu Bar](#MenuBar)
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_panel_description.png" width="95%" /> <br />
@@ -110,48 +110,48 @@ Figure 1.2: <i>The Recipe View Panel of ChopChop.</i>
 Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
 </div>
 
-<a name="commandBox"></a>
+<a name="CommandBox"></a>
 ### 4.1 Command Box 
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command.
  
-To learn about the commands you can perform, check out our [command summary](#commandSummary) for a quick overview or our [commands](#commands) for a detailed -.
+To learn about the commands you can perform, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed -.
 If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
 
-<a name="commandOutput"></a>
+<a name="CommandOutput"></a>
 ### 4.2 Command Output
 ChopChop will always display textual responses to the commands you input — the `Command Output` is where you can view the responses.
 
-<a name="recipeButton"></a>
+<a name="RecipeButton"></a>
 ### Recipe Button
-ChopChop is able to display all of your recipes as [Recipe Tiles]() in the `Main Display Area` as shown in Figure 1.2 when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
+ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` as shown in Figure 1.2 when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
 
 
 
 
-<a name="ingredientButton"></a>
+<a name="IngredientButton"></a>
 ### Ingredient Button
-ChopChop is able to display all of your ingredients as [Ingredient Tiles]() in the `Main Display Area` as shown in Figure 1.3 when you press the `Ingredients` button.
+ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the `Main Display Area` as shown in Figure 1.3 when you press the `Ingredients` button.
 
 
-<a name="recommendationButton"></a>
+<a name="RecommendationButton"></a>
 ### Recommendation Button
-ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be display as [Recipe Tiles]() in the `Main Display Area` when you press the `Recommendations` button.
+ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be display as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` when you press the `Recommendations` button.
 
-<a name="favouriteButton"></a>
+<a name="FavouriteButton"></a>
 ### Favourite Button
-ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles]().
+ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles](#RecipeTiles).
 
 
-<a name="statisticsBox"></a>
+<a name="StatisticsBox"></a>
 ### Statistics Box
 ChopChop is able to produce statistics based on the food you make! -insert more info cause idk what stats does atm-
 
-<a name="recipeTiles"></a>
+<a name="RecipeTiles"></a>
 ### Recipe Tiles
 ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in Figure 1.4.
 
-<a name="ingredientTiles"></a>
+<a name="IngredientTiles"></a>
 ### Ingredient Tiles
 ChopChop is able to show you your ingredients in the form of tiles, as shown in Figure 1.3. In each tile, there are 5 components:
 
@@ -167,30 +167,30 @@ ChopChop is able to show you your ingredients in the form of tiles, as shown in 
 Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
 </div>
 
-<a name="recipeName"></a>
+<a name="RecipeName"></a>
 ### Recipe Name and Tags
 ChopChop displays the name of the recipe, and the tags associated with it in this area. 
 
-<a name="recipeName"></a>
+<a name="RecipeName"></a>
 ### Recipe Name and Tags
 ChopChop displays the name of the recipe, and the tags associated here. 
 
-<a name="recipeIngredients"></a>
+<a name="RecipeIngredients"></a>
 ### Recipe Ingredients
 ChopChop displays the ingredients you need in the recipe here. The format of the display is the `Ingredient`, follow by the `(Quantity)`. 
 
-<a name="recipeSteps"></a>
+<a name="RecipeSteps"></a>
 ### Recipe Steps
 ChopChop lists down the steps you can take to create the dish here.
 
-<a name="menuBar"></a>
+<a name="MenuBar"></a>
 ### Menu Bar
 ChopChop provides two buttons here — `File` and `Help`. Click the `exit` option under `File` to exit ChopChop, and if you want to view this User Guide, you can click the `help` option under `Help`.
 
 
 
 -----------
-<a name="commands"></a>
+<a name="Commands"></a>
 ## 5. Commands
 
 While ChopChop has a graphical user interface, the main method of interaction is through the use of *typed commands*. Using these commands as described below, you can manipulate your recipes and ingredients without ever needing to move your mouse!
@@ -1044,7 +1044,3 @@ How does it work? ChopChop uses the current text when completing and searches fo
 What if there are multiple items that share a prefix, for example <i>baking powder</i> and <i>baking soda</i> in the pancake recipe above? Worry not; pressing <kbd>tab</kbd> <i>repeatedly</i> will cycle through the available completions, and they are sorted lexicographically (length, followed by alphabetical order) — pressing <kbd>tab</kbd> after `/ingredient b` would give you <i>butter</i>, <i>baking powder</i>, and <i>baking soda</i>, in that order.
 
 The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle between `find` and `filter`.
-
---------------------
-<a name="commandSummary"></a>
-## 8. Command Summary
