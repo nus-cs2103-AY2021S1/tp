@@ -112,9 +112,10 @@ class OpenCommandTest {
             Model modelStubWithTag = new ModelStubWithTag(new TagBuilder().build());
             modelStubWithTag.addTag(correctTag);
 
-            assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_ERROR, correctTag,
-                    String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND,
-                    correctTag.getFileAddress().value)), () -> openCommand.execute(modelStubWithTag));
+            assertThrows(CommandException.class,
+                    String.format(OpenCommand.MESSAGE_ERROR + OpenCommand.MESSAGE_FILE_NOT_FOUND,
+                            correctTag.getTagName(),
+                            correctTag.getFileAddress()), () -> openCommand.execute(modelStubWithTag));
         }
     }
 

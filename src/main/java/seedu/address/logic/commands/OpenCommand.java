@@ -35,7 +35,7 @@ public class OpenCommand extends Command {
     public static final String MESSAGE_SUCCESS = "File opened! Tag: %1$s";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag '%s' not found!";
     public static final String MESSAGE_LABEL_NOT_FOUND = "No tag found with the label %s!";
-    public static final String MESSAGE_ERROR = "Error opening %s: %s";
+    public static final String MESSAGE_ERROR = "Error opening %s: ";
     public static final String MESSAGE_FILE_NOT_FOUND = "The file: %s doesn't exist.";
 
     private final TagName tagName;
@@ -126,15 +126,21 @@ public class OpenCommand extends Command {
         // Open every tags in the list and store error messages
         tags.forEach(tag -> {
             File file = new File(tag.getFileAddress().value);
-            try {
-                Desktop.getDesktop().open(file);
+            if (!file.exists()) {
+                result.put(tag, String.format(MESSAGE_ERROR + MESSAGE_FILE_NOT_FOUND,
+                        tag.getTagName(), tag.getFileAddress()));
+            } else {
+                // Use concurrent threads here to avoid JavaFX freeze in Linux
+                new Thread(() -> {
+                    try {
+                        Desktop.getDesktop().open(file);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
                 result.put(tag, String.format(MESSAGE_SUCCESS, tag));
-            } catch (IOException | IllegalArgumentException e) {
-                result.put(tag, String.format(MESSAGE_ERROR, tag, e.getMessage()));
             }
         });
-
-
 
         return result;
     }
