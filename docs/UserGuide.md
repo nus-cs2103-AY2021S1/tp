@@ -297,6 +297,7 @@ __Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finan
 __Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2`
 __Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
 __List finance__ | `list_finance`
+__Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes`
 __Exit programme__ | `exit`
 
 ---
