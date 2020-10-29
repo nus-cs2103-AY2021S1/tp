@@ -50,7 +50,7 @@ class JsonAdaptedComment {
      */
     public Comment toModelType() throws IllegalValueException {
         if (!Comment.isValidAddComment(" d/ " + date.toString() + " desc/ " + description + " ti/ " + title)) {
-            throw new IllegalValueException(Comment.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Comment.MESSAGE_COMMENT_PARAMS);
         }
         return new Comment(date, description, title);
     }
