@@ -307,7 +307,7 @@ tags contain `Thursday` will be listed out.
 
 Edits the corresponding contact information in the contact list.
 
-Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [a/ADRESS] [t/TAG] …​​`
+Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [t/TAG] …​​`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
