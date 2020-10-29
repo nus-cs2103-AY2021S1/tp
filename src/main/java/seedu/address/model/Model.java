@@ -17,6 +17,9 @@ public interface Model {
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
+    Predicate<TutorialGroup> PREDICATE_SHOW_ALL_TUTORIALGROUPS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
@@ -59,6 +62,8 @@ public interface Model {
     /** Returns the module Trackr */
     ReadOnlyTrackr<Module> getModuleList();
 
+    void setViewToModule();
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in trackr.
      */
@@ -81,7 +86,11 @@ public interface Model {
      * {@code target} must exist in trackr.
      * The module identity of {@code editedModule} must not be the same as another existing module in trackr.
      */
-    void setModule(Module target, Module editedModule);
+    void setModule(Module target, String newModuleId);
+
+    boolean isInModuleView();
+
+    Module getCurrentModuleInView();
 
     //TutorialGroup Operations
 
@@ -97,6 +106,13 @@ public interface Model {
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
 
+    void deleteTutorialGroup(TutorialGroup tutorialGroup);
+
+    boolean hasTutorialGroup(TutorialGroup tutorialGroup);
+
+    void setTutorialGroup(TutorialGroup target, TutorialGroup edited);
+
+    boolean isInTutorialGroupView();
     // Student Operations
 
     /**
@@ -104,6 +120,8 @@ public interface Model {
      * @param target
      */
     void setViewToStudent(TutorialGroup target);
+
+    TutorialGroup getCurrentTgInView();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in trackr.
@@ -128,6 +146,8 @@ public interface Model {
      * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
      */
     void setStudent(Student target, Student editedStudent);
+
+    boolean isInStudentView();
 
     // FilteredList Operations
 

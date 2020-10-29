@@ -11,6 +11,7 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 /**
  * Wraps all data at the Trackr level.
@@ -72,9 +73,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
      * {@code target} must exist in Trackr.
      * The identity of {@code editedObject} must not be the same as another existing object.
      */
-    public void setModule(Module target, Module editedObject) {
-        requireAllNonNull(target, editedObject);
-        moduleList.setModule(target, editedObject);
+    public void setModule(Module target, String newModuleId) {
+        requireAllNonNull(target, newModuleId);
+        moduleList.setModule(target, newModuleId);
     }
 
     /**
@@ -98,6 +99,21 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {
         requireNonNull(tutorialGroup);
         moduleList.addTutorialGroup(tutorialGroup, currentModuleInView);
+    }
+
+    public void deleteTutorialGroup(TutorialGroup tutorialGroupToDelete, Module moduleToDeleteFrom) {
+        requireAllNonNull(tutorialGroupToDelete);
+        moduleList.getUniqueTutorialGroupList(moduleToDeleteFrom)
+            .removeTutorialGroup(tutorialGroupToDelete);
+    }
+
+    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
+        requireAllNonNull(target, edited);
+        for (Module module : moduleList) {
+            if (module.getUniqueTutorialGroupList().contains(target)) {
+                module.getUniqueTutorialGroupList().setTutorialGroup(target, edited);
+            }
+        }
     }
 
     // Student Operations

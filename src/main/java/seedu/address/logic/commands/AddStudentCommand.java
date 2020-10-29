@@ -11,9 +11,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 
-import java.util.List;
-
-
 public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "addStudent";
@@ -33,7 +30,8 @@ public class AddStudentCommand extends Command {
             + PREFIX_TAG + "CS2100";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Trackr";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in current tutorial group";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the Student view";
 
     private final Student toAdd;
 
@@ -48,8 +46,12 @@ public class AddStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
-        if (lastShownList.contains(toAdd)) {
+
+        if (!model.isInStudentView()) {
+            throw new CommandException(MESSAGE_WRONG_VIEW);
+        }
+
+        if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 

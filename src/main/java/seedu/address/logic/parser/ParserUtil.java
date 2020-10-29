@@ -125,6 +125,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String module id} into a {@code ModuleId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code module id} is invalid.
+     */
+    public static String parseModuleId(String moduleId) throws ParseException {
+        requireNonNull(moduleId);
+        String trimmedModule = moduleId.trim();
+        if (!ModuleId.isValidModuleId(trimmedModule)) {
+            throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
+        }
+        return moduleId;
+    }
+
+    /**
      * Parses a {@code String studentId} into a {@code StudentId}.
      * Leading and trailing whitespaces will be trimmed.
      *
