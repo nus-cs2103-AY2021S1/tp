@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.modulelistcommands.modulelistexceptions.CapCalculationException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
@@ -15,7 +16,8 @@ import seedu.address.model.module.Module;
  */
 public class TargetCapCalculatorCommand extends Command {
     public static final String COMMAND_WORD = "targetcap";
-
+    public static final String MESSAGE_CONSTRAINTS =
+            "Unable to calculate CAP details because you do not have any completed mods";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Determines CAP needed for ongoing modules for user to reach specified target CAP. "
             + "Parameters: "
@@ -37,7 +39,12 @@ public class TargetCapCalculatorCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        double capNeeded = calculateCapNeeded(model.getFilteredModuleList());
+        double capNeeded;
+        try {
+            capNeeded = calculateCapNeeded(model.getFilteredModuleList());
+        } catch (CapCalculationException capCalculationException) {
+            throw new CommandException(capCalculationException.getMessage());
+        }
         return new CommandResult(createSuccessMessage(capNeeded,
                 getPlannedCredits(model.getFilteredModuleList())));
     }
@@ -47,8 +54,13 @@ public class TargetCapCalculatorCommand extends Command {
      * @param modules List of modules
      * @return
      */
-    public double calculateCapNeeded(List<Module> modules) {
-        double currentCap = CalculateCapCommand.calculateCap(modules);
+    public double calculateCapNeeded(List<Module> modules) throws CapCalculationException {
+        double currentCap;
+        try {
+            currentCap = CalculateCapCommand.calculateCap(modules);
+        } catch (CapCalculationException capCalculationException) {
+            throw new CapCalculationException(MESSAGE_CONSTRAINTS);
+        }
         double plannedCredits = getPlannedCredits(modules);
         double completedCredits = getCompletedCredits(modules);
         double totalCredits = plannedCredits + completedCredits;
