@@ -211,6 +211,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void scoreStudent(Student target, int score) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void scoreStudentWithNusnetId(NusnetId nusnetId, int score) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void scoreAllStudents(List<Student> students, int score) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateStudentRecords(List<StudentRecord> studentRecords) {
             throw new AssertionError("This method should not be called");
         }
