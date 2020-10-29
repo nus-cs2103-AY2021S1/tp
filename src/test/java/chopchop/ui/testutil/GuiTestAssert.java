@@ -2,10 +2,8 @@ package chopchop.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import chopchop.model.recipe.Recipe;
 import guitests.guihandles.CommandOutputHandle;
 import guitests.guihandles.RecipeCardHandle;
-import guitests.guihandles.RecipeDisplayHandle;
 
 /**
  * A set of assertion methods useful for writing GUI tests.

@@ -14,7 +14,7 @@ public class RecipeDisplayTest extends GuiUnitTest {
 
     @Test
     public void displayRecipe() {
-        RecipeDisplay recipeDisplay= new RecipeDisplay(APRICOT_SALAD);
+        RecipeDisplay recipeDisplay = new RecipeDisplay(APRICOT_SALAD);
         uiPartExtension.setUiPart(recipeDisplay);
         assertDisplay(recipeDisplay, APRICOT_SALAD);
     }
