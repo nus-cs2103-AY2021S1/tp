@@ -17,7 +17,6 @@ import chopchop.model.recipe.Recipe;
  *
  * {@code String getCommandString()}    -- the command string (eg. "add recipe")
  * {@code String getCommandHelp()}      -- a brief description of what the command does
- * {@code String getUserGuideSection()} -- the ref portion (ONLY) (eg. #foo-bar) of its UG section
  *
  */
 public abstract class Command {

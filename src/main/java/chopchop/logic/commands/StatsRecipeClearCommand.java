@@ -75,8 +75,4 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Clears all records of recipes made";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("clearing-recipe-usage-records-statsrecipeclear");
-    }
 }

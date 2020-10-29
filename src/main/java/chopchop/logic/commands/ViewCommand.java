@@ -45,22 +45,18 @@ public class ViewCommand extends Command {
         return String.format("ViewCommand(%s)", this.item);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ViewCommand
+                && this.item.equals(((ViewCommand) other).item));
+    }
+
     public static String getCommandString() {
         return "view";
     }
 
     public static String getCommandHelp() {
         return "Views the given recipe by opening its detailed view";
-    }
-
-    public static String getUserGuideSection() {
-        return "viewing-recipes--view";
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof ViewCommand
-                && this.item.equals(((ViewCommand) other).item));
     }
 }

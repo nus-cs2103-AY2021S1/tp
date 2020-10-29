@@ -31,8 +31,4 @@ public class RedoCommand extends Command {
     public static String getCommandHelp() {
         return "Redoes the last performed command";
     }
-
-    public static String getUserGuideSection() {
-        return "redoing-commands--redo";
-    }
 }

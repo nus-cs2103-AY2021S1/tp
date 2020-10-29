@@ -46,8 +46,4 @@ public class StatsIngredientRecentCommand extends Command {
     public static String getCommandHelp() {
         return "Shows the ingredients that were recently used by recipes that were made";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recently-used-ingredient-statsingredientrecent");
-    }
 }

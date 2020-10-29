@@ -73,10 +73,6 @@ public class FilterRecipeCommand extends Command {
     public static String getCommandHelp() {
         return "Filters recipes by one or more criteria (tags and ingredients used)";
     }
-
-    public static String getUserGuideSection() {
-        return "filtering-recipes--filterrecipe";
-    }
 }
 
 

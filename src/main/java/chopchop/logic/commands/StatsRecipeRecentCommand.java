@@ -46,8 +46,4 @@ public class StatsRecipeRecentCommand extends Command {
     public static String getCommandHelp() {
         return "Shows the recipes that were recently made";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recently-made-recipes--statsreciperecent");
-    }
 }

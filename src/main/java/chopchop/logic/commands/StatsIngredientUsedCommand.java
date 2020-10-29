@@ -86,8 +86,4 @@ public class StatsIngredientUsedCommand extends Command {
     public static String getCommandHelp() {
         return "Shows ingredients used by recipes that were made in a given time frame";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-ingredients-used-within-a-given-time-frame-statsingredientused");
-    }
 }

@@ -66,8 +66,4 @@ public class DeleteRecipeCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Deletes a recipe";
     }
-
-    public static String getUserGuideSection() {
-        return "deleting-recipes--deleterecipe";
-    }
 }

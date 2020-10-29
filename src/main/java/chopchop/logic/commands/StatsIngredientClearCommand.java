@@ -75,8 +75,4 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Clears all records of ingredients used";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("clearing-ingredient-usage-records--statsingredientclear");
-    }
 }

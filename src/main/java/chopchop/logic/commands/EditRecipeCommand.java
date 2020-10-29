@@ -240,8 +240,4 @@ public class EditRecipeCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Edits an existing recipe";
     }
-
-    public static String getUserGuideSection() {
-        return "editing-recipes--editrecipe";
-    }
 }

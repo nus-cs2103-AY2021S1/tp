@@ -127,8 +127,4 @@ public class AddIngredientCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Adds a new ingredient, or increases the quantity of an existing ingredient";
     }
-
-    public static String getUserGuideSection() {
-        return "adding-ingredients--addingredient";
-    }
 }

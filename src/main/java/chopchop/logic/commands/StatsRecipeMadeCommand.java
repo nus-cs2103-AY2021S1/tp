@@ -86,8 +86,4 @@ public class StatsRecipeMadeCommand extends Command {
     public static String getCommandHelp() {
         return "Shows recipes that were made in a given time frame";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recipes-made-within-a-given-time-frame--statsrecipemade");
-    }
 }

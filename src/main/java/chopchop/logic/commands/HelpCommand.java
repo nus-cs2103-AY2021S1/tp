@@ -15,7 +15,6 @@ public class HelpCommand extends Command {
 
     private static final String METHOD_NAME_GET_CMD = "getCommandString";
     private static final String METHOD_NAME_GET_HELP = "getCommandHelp";
-    private static final String METHOD_NAME_GET_UG_LINK = "getUserGuideSection";
 
     private final Optional<String> helpCommand;
     private final Optional<String> helpTarget;
@@ -47,17 +46,18 @@ public class HelpCommand extends Command {
 
         var cmdStr = invokeMethod(cls, METHOD_NAME_GET_CMD);
         var cmdHelp = invokeMethod(cls, METHOD_NAME_GET_HELP);
-        var cmdUgLink = invokeMethod(cls, METHOD_NAME_GET_UG_LINK);
 
         if (cmdStr == null || cmdHelp == null) {
             return CommandResult.error("No help available for command '%s'", cmd);
         }
 
+        var ugSection = cls.getSimpleName();
         var ret = CommandResult.message("%s: %s", cmdStr, cmdHelp);
-        if (cmdUgLink != null) {
+
+        if (!ugSection.endsWith("Dummy")) {
             ret = ret
                 .appending("see the", /* newline: */ true)
-                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + cmdUgLink,
+                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + ugSection,
                     /* newline: */ false);
         }
 

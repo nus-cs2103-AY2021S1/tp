@@ -36,8 +36,4 @@ public class StatsRecipeTopCommand extends Command {
     public static String getCommandHelp() {
         return "Shows the recipes that are made the most";
     }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-top-recipes-statsrecipetop");
-    }
 }
