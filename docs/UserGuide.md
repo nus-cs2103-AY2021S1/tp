@@ -110,11 +110,11 @@ Examples:
 
 ##### Before allocation
 
-<img src="https://user-images.githubusercontent.com/27071473/97580044-c66fd380-1a2d-11eb-8dd4-cb05da8f9dda.png">
+<img src="images/BeforeAllocation.png">
 
 ##### After allocation
 
-<img src="https://user-images.githubusercontent.com/27071473/97580070-d1c2ff00-1a2d-11eb-839a-f2ddeb2fd6c1.png">
+<img src="images/AfterAllocation.png">
 
 #### 5. Deallocating a room for a student : `deallocate`
 
@@ -132,7 +132,7 @@ Refer to "After allocation" above.
 
 ##### After deallocation
 
-<img src="https://user-images.githubusercontent.com/27071473/97580237-0040da00-1a2e-11eb-9337-f3bf29f85bed.png">
+<img src="images/AfterDeallocation.png">
 
 #### 6. Reallocating a room for a student : `reallocate`
 
@@ -154,7 +154,7 @@ Refer to "After allocation" above.
 
 ##### After reallocation
 
-<img src="https://user-images.githubusercontent.com/27071473/97580478-53b32800-1a2e-11eb-863b-4931b40569dd.png">
+<img src="images/AfterReallocation.png">
 
 #### 7. Visualising a Piechart of Allocated Rooms
 
@@ -165,10 +165,10 @@ Example:
 
 ##### Before a room allocation
 
-<img src="https://user-images.githubusercontent.com/27071473/97579055-8fe58900-1a2c-11eb-8485-ffcf51bd4fae.png">
+<img src="images/BeforeAllocationPiechart.png">
 
 ##### After a room allocation
-<img src="https://user-images.githubusercontent.com/27071473/97579112-9d9b0e80-1a2c-11eb-848c-8ab5532f9c24.png">
+<img src="images/AfterAllocationPiechart.png">
 
 #### 8. Archiving a Semester
 
