@@ -68,16 +68,6 @@ Example:
 * `add case t:Kovan double murders` creates a new investigation case with the title “Kovan double murders”, the status initialized as an active case.
 * `add case t:Kovan double murders s:Closed` creates a new investigation case with the title “Kovan double murders”, the status initialized as a closed case.
 
-#### List all investigation cases: `list case`
-Lists all default investigation cases in PIVOT (unarchived cases).
-
-Format: `list case`
-
-#### List all investigation cases: `list archive`
-Lists all archived investigation cases in PIVOT.
-
-Format: `list archive`
-
 #### Delete an investigation case: `delete case CASE_NO`
 Deletes the specified investigation case.
 
@@ -92,6 +82,16 @@ Enters the specified investigation case where users can add more information reg
 Format:  `open case CASE_NO`
 
 Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
+
+#### List all investigation cases: `list case`
+Lists all default investigation cases in PIVOT (unarchived cases).
+
+Format: `list case`
+
+#### List all investigation cases: `list archive`
+Lists all archived investigation cases in PIVOT.
+
+Format: `list archive`
 
 #### Archiving an investigation case in the DEFAULT section: `archive case CASE_NO`
 Archives the specified investigation case in the DEFAULT section of Pivot.
