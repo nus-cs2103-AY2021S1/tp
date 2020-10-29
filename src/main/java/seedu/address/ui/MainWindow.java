@@ -39,6 +39,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimelineWindow timelineWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -81,6 +82,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timelineWindow = new TimelineWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -193,6 +195,26 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
             }
         }
+        updateTimeline();
+    }
+
+    public void updateTimeline() {
+        timelineWindow.hide();
+        timelineWindow = this.timelineWindow.updateLogic(logic);
+    }
+
+    /**
+     * Opens the timeline window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleToggle() {
+        logger.info("UI toggle triggered");
+
+        if (!timelineWindow.isShowing()) {
+            timelineWindow.show();
+        } else {
+            timelineWindow.focus();
+        }
     }
 
     void show() {
@@ -208,6 +230,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        timelineWindow.hide();
         primaryStage.hide();
     }
 
@@ -236,6 +259,10 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
             if (commandResult.isTriggerUpdate()) {
                 update();
+            }
+
+            if (commandResult.isToggle()) {
+                handleToggle();
             }
 
             return commandResult;
