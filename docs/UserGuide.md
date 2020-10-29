@@ -255,12 +255,13 @@ Format: `find-i [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`
 
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
-* Name, Supplier and Tag can be searched
+* `Name`, `Supplier` and `Tag` can be searched
 * Only full words will be matched e.g. `chicke` will not match `chicken`
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
 * More than one Prefix can be specified (i.e. `AND` search).
-  e.g. 'find-i n/Chicken s/NTUC' will return items matching name and supplier.
+  e.g. `find-i n/Chicken s/NTUC` will return items matching name and supplier.
+* Finding multiple `Tag` needs to be seperated e.g. `find-i t/meat t/perishable`
 
 Example:
 * `find-i s/ntuc t/meat` using [Figure 1](#uiwithannotationpng) as the starting point.
