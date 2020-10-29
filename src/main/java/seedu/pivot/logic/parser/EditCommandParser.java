@@ -48,9 +48,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         case TYPE_TITLE:
             return new EditTitleCommandParser().parse(arguments);
         case TYPE_STATUS:
-
+            return new EditStatusCommandParser().parse(arguments);
         case TYPE_DOC:
-
+            return new EditDocumentCommandParser().parse(arguments);
         case TYPE_SUSPECT:
 
         case TYPE_WITNESS:
