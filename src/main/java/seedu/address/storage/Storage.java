@@ -14,7 +14,8 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends ModuleListStorage, ContactListStorage, TodoListStorage, UserPrefsStorage {
+public interface Storage extends ModuleListStorage, ArchivedModuleListStorage,
+        ContactListStorage, TodoListStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -30,6 +31,8 @@ public interface Storage extends ModuleListStorage, ContactListStorage, TodoList
 
     @Override
     void saveModuleList(ReadOnlyModuleList moduleList) throws IOException;
+    Optional<ReadOnlyModuleList> readArchivedModuleList() throws DataConversionException, IOException;
+    void saveArchivedModuleList(ReadOnlyModuleList moduleList) throws IOException;
 
     @Override
     Path getContactListFilePath();
