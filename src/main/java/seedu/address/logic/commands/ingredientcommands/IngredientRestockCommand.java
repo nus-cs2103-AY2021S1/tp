@@ -19,8 +19,9 @@ public class IngredientRestockCommand extends Command {
 
     public static final String COMMAND_WORD = "i-restock";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :shows the ingredient levels of"
-            + " ingredients that need to be restocked."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the ingredient's levels of all ingredient types"
+            + " that fall below their minimum stock levels and require the user to restock.\n"
+            + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients that should be restocked: \n\n";

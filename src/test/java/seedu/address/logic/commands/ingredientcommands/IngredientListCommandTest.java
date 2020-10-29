@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -50,14 +48,8 @@ public class IngredientListCommandTest {
 
         final IngredientListCommand standardCommand = new
                 IngredientListCommand();
-        String ingredientList = "";
-        final char lineSeparator = '\n';
-        List<Ingredient> lastShownList = expectedModel.getFilteredIngredientList();
-        for (Ingredient i : lastShownList) {
-            ingredientList += i.toString() + lineSeparator;
-        }
         assertCommandSuccess(standardCommand, model,
-                IngredientListCommand.MESSAGE_SUCCESS + ingredientList, expectedModel);
+                IngredientListCommand.MESSAGE_SUCCESS, expectedModel);
 
     }
 

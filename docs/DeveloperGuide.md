@@ -230,7 +230,7 @@ user in the `s-update` command
   
 Finds specific drinks' sales data feature allows the user to get the sales data of a drink quickly. The command is:
   
-* `s-find KEYWORDS [MORE_KEYWORDS]` - Views sales data of drinks with the specified keywords.
+* `s-find KEYWORD [MORE_KEYWORDS]` - Views sales data of drinks with the specified keywords.
   
 #### Completed Implementation
   
@@ -318,15 +318,15 @@ The completed set ingredients' levels feature consists of three commands with sl
 
 * `i-set i/INGREDIENT_NAME m/AMOUNT` — Sets the level of one specific ingredient to the specified amount.
 * `i-set-default` — Sets the levels of all ingredients defined in the ingredient book to pre-determined amounts.
-* `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_BROWN_SUGAR` — Sets the levels of all ingredients defined in the ingredient book to different specified amounts for each ingredient.
+* `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` — Sets the levels of all ingredients defined in the ingredient book to different specified amounts for each ingredient.
 
 #### Completed Implementation
 
-The completed set ingredients' levels mechanism is facilitated by `IngredientBook`. It implements `ReadOnlyIngredientBook` interface and offers methods to set the application's `ingredientBook`. Particularly, it implements the following three operations:
+The completed set ingredients' levels mechanism is facilitated by `IngredientBook`. It implements `ReadOnlyIngredientBook` interface and offers methods to set the system's `ingredientBook`. Particularly, it implements the following three operations:
 
-* `IngredientBook#setIngredient(Ingredient target, Ingredient newAmount)` — Changes the amount the `target` ingredient in the ingredient book to the specified new amount.
-* `IngredientBook#setIngredients(List<Ingredient> ingredients)` — Changes the amounts of all ingredients defined in the ingredient book to the specified amounts in `ingredients` list.
-* `IngredientBook#setData(ReadOnlyIngredientBook newAmount)` — Changes the amounts of all ingredients defined in the ingredient book according to the `newAmount` ingredient book.
+* `IngredientBook#setIngredient(Ingredient target, Ingredient newAmount)` — Sets the amount the `target` ingredient in the ingredient book to the specified new amount.
+* `IngredientBook#setIngredients(List<Ingredient> ingredients)` — Sets the amounts of all ingredients defined in the ingredient book to the specified amounts in `ingredients` list.
+* `IngredientBook#setData(ReadOnlyIngredientBook newAmount)` — Sets the amounts of all ingredients defined in the ingredient book according to the `newAmount` ingredient book.
 
 These operations are exposed in the `Model` interface as `Model#setIngredient(Ingredient target, Ingredient newAMount)` and `Model#setIngredientBook(ReadOnlyIngredientBook ingredientBook)` respectively.
 
@@ -335,7 +335,7 @@ These operations are exposed in the `Model` interface as `Model#setIngredient(In
 
 Given below is an example usage scenario and how the set ingredients' levels mechanism behaves at each step.
 
-Step 1. The user launches the application. The `IngredientBook` will be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, with an amount of 0 for all.
+Step 1. The user launches the application. The `IngredientBook` will be initialized with the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 for all.
 
 ![IngredientBookState0](images/IngredientBookState0.png)
 
@@ -352,8 +352,8 @@ The command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`
 
 </div>
 
-Step 4. After some time of operation, the user decides to update the ingredient book with current amounts of ingredients in his/her stall by executing the `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_BROWN_SUGAR` command. 
-In this case, the exact command entered is :  `i-set-all M/10 P/15 B/20 O/5 S/15`. The command calls `Model#setIngredient(ReadOnlyIngredientBook ingredientBook)`, causing the current ingredient book to be replaced by the `ingredientBook` with different specified amounts for each ingredient.
+Step 4. After some time of operation, the user decides to update the ingredient book with current amounts of ingredients in his/her stall by executing the `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` command. 
+In this case, the exact command entered is :  `i-set-all M/10 P/15 B/20 L/5 G/5 S/15`. The command calls `Model#setIngredient(ReadOnlyIngredientBook ingredientBook)`, causing the current ingredient book to be replaced by the `ingredientBook` with new different specified amounts for each ingredient.
 
 The following sequence diagram shows how the set ingredients operation works, using `i-set i/INGREDIENT m/AMOUNT` as an example:
 

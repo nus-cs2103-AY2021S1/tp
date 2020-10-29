@@ -81,8 +81,8 @@ not be so obvious!
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used once or multiple times.<br>
-  e.g. `sales A/NUM B/NUM C/NUM …` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
+* Items with `...`​ after them can be used once or multiple times.<br>
+  e.g. `sales A/NUM B/NUM C/NUM ...` can be used as `sales BSBM/100` or `sales BSBM/100 BSBBT/120`.
 
 
 * Parameters can be in any order.<br>
@@ -114,7 +114,7 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 </div>
 
 
-#### 1.1 Updating the number of drinks sold for the day : `s-update`
+#### 1.1 Updating the number of drinks sold : `s-update`
 Updates the number of drinks sold for each drink type as given in the user input.
 
 
@@ -141,12 +141,12 @@ Format: `s-list`
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
-Finds all sales data of drinks that contain the KEYWORD(s).
+Finds all drinks where their abbreviated names match the KEYWORD(s).
 
 Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
-* Only the drink's abbreviated form name is searched.
+* Only the drink's abbreviated name is searched.
 * Only full words will be matched e.g. `BSB` will not match `BSBBT`.
 * Drinks matching at least one keyword will be returned.
   e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
@@ -286,7 +286,7 @@ Format: `c-list`
 
 #### 3.3 Listing all employees who are working today: `c-today`
 
-Shows a list of all employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
+Shows a list of all active(unarchived) employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
 
 Format: `c-today`
 
@@ -298,7 +298,7 @@ Examples:
 
 #### 3.4 Listing all employees who are working tomorrow: `c-tomorrow`
 
-Shows a list of all employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
+Shows a list of all active(unarchived) employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
 
 Format: `c-tomorrow`
 
@@ -330,7 +330,7 @@ Examples:
 
 #### 3.6 Locating persons by keywords: `c-find`
 
-Finds all contacts that contain the KEYWORD(s) in their names.
+Finds all active(unarchived) contacts that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
@@ -347,9 +347,9 @@ Examples:
 
 #### 3.7 Locating persons based on matching tags: `c-tag-find`
 
-Finds all contacts that contain the KEYWORD(s) in their tags.
+Finds all active(unarchived) contacts that contain the KEYWORD(s) in their tags.
 
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
@@ -390,7 +390,7 @@ Format: `c-archive INDEX`
 
 * Archives the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...​
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -423,7 +423,7 @@ Format: `c-unarchive INDEX`
 
 * Unarchives the employee at the specified `INDEX`.
 * The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -462,18 +462,20 @@ Action | Format, Examples
 -------|------------------------------
 **Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
-**Find**| `sales YYYY-MM-DD`
+**Find**| `s-find KEYWORD [MORE_KEYWORDS] ...` <br> e.g., `s-find BSBM BSBBT`
 **Rank**| `s-rank`
+
 
 ### Ingredients  Tracking
 
 Action | Format, Examples
 -------|------------------------------
 **Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
+**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
-**Reset**| `i-reset-all`
+**View a single ingredient**| `i-view-single i/INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**Reset all ingredients**| `i-reset-all`
+**View all ingredients that the user should restock**| `i-restock`
 **List**| `i-list`
 
 ### Employees' Contact Details
@@ -485,7 +487,7 @@ Action | Format, Examples
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
 **Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
