@@ -403,18 +403,6 @@ public class ModelManager implements Model {
         statefulResiReg.save();
     }
 
-    //=========== AppMode =============================================================
-
-    @Override
-    public AppMode getAppMode() {
-        return statefulResiReg.getAppMode();
-    }
-
-    @Override
-    public void finalizeRooms() {
-        statefulResiReg.finalizeRooms();
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
