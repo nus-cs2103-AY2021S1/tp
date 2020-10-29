@@ -34,11 +34,11 @@ public class LessonCommand extends Command {
             + PREFIX_TITLE + "CS2103T Lecture "
             + PREFIX_TAG + "CS2103T "
             + PREFIX_DESCRIPTION + "Most exciting lecture in NUS! "
-            + PREFIX_DAY + "Mon "
+            + PREFIX_DAY + "Monday "
             + PREFIX_START_TIME + "12:00 "
             + PREFIX_END_TIME + "14:00 "
-            + PREFIX_START_DATE + "01-01-2020 "
-            + PREFIX_END_DATE + "01-05-2020 ";
+            + PREFIX_START_DATE + "01-05-2020 "
+            + PREFIX_END_DATE + "01-11-2020 ";
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
