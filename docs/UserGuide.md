@@ -305,7 +305,7 @@ Finds items or deliveries whose attributes contain any of the given keywords.
 
 ##### 3.1.5.a `find-i`
 
-Format: `find-i [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`
+Format: `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`
 
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
@@ -333,7 +333,7 @@ Example:
 
 ##### 3.1.5.b `find-d`
 
-Format: `find-d [n/KEYWORDS] [p/KEYWORDS] [a/KEYWORDS] [o/KEYWORDS]`
+Format: `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
 
 * The search is case-insensitive. e.g `john` will match `JOHN`
 * The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
@@ -574,7 +574,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Clear from Inventory**  | `clear-i`            |
 |**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`         |
 |**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`    |
-|**Find in Inventory**   | `find-i [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]`<br> e.g., `find-i s/ntuc t/meat`     |
+|**Find in Inventory**   | `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`<br> e.g., `find-i s/ntuc t/meat`     |
 |**List Inventory**   | `list-i` |
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
 
@@ -588,7 +588,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`     |
 |**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
 |**List Delivery**   | `list-d` |
-|**Find in Delivery**  | `find-d [n/KEYWORDS] [p/KEYWORDS] [a/KEYWORDS] [o/KEYWORDS]` <br> e.g., `find-d n/alex aileen`   |
+|**Find in Delivery**  | `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]` <br> e.g., `find-d n/alex aileen`   |
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -709,8 +709,11 @@ if there is no existing same item. If there is an existing same item,
 
     1. Prerequisites: List all item or delivery using `list-i` and `list-d` respectively.
 
-    1. Test Case: `edit-i 1 n/TUNA` <br>
-       Expected: Name of the `Item` located at Index 1 of the current list will be changed to "TUNA".
+    1. Test Case: `edit-i 1 metric/KG` <br>
+       Expected: Metric of the `Item` located at Index 1 of the current list will be changed to "KG".
+
+    1. Test Case: `edit-i 2 t/` <br>
+       Expected: Tag of the `Item` located at Index 2 of the current list will be empty.
 
     1. Test Case: `edit-d 3 p/85734829` <br>
        Expected: Phone number of the `Delivery` located at Index 3 of the current list will be changed to 85734829.
@@ -718,7 +721,7 @@ if there is no existing same item. If there is an existing same item,
     1. Test Case: `edit-i 1` or `edit-d 3` <br>
        Expected: No item or delivery is edited. Error details shown in status message.
 
-    1. other incorrect edit commands to try: `edit`, edit x n/TUNA`, ... (where x is larger than the list size of x is a negative number) <br>
+    1. other incorrect edit commands to try: `edit`, edit x n/TUNA`, ... (where x is larger than the list size, x is a negative number or x is not an integer) <br>
        Expected: Similar to previous.
 
 ### Deleting an item
