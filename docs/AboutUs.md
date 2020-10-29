@@ -46,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/jetnew)]
 [[portfolio](team/jetnew.md)]
 
-* Role: Developer, Intellij
-* Responsibilities: Documentation
+* Role: Developer, Intellij *eXPerT*
+* Responsibilities: Documentation, Allocation Feature, Piechart Feature
 
 ### Chloe Lee Ke Er
 
