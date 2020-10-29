@@ -18,6 +18,14 @@ class StudentRecordTest {
             new Name("Chiau Siak"), new NusnetId("e0201167"));
     private StudentRecord testRecord4 = new StudentRecord(
             new Name("Coh Ghiau Siak"), new NusnetId("e0201166"));
+    private StudentRecord testRecord5 = new StudentRecord(
+            new Name("Coh Ghiau Siak"), new NusnetId("e0201166"),
+            AttendanceType.ABSENT, new ClassParticipation());
+    private ClassParticipation classPartTest = new ClassParticipation();
+    private StudentRecord testRecord6 = new StudentRecord(
+            new Name("Coh Ghiau Siak"), new NusnetId("e0201166"),
+            AttendanceType.ABSENT, classPartTest
+    );
 
     @Test
     void getName() {
@@ -54,8 +62,11 @@ class StudentRecordTest {
         assertTrue(testRecord.equals(testRecord)); // same instance
         assertTrue(testRecord.equals(testRecord2)); // same fields
         assertFalse(testRecord.equals("some string")); // not InstanceOf
+        assertFalse(testRecord.equals(null)); // not InstanceOf
         assertFalse(testRecord.equals(testRecord3)); // different NusnetId
         assertFalse(testRecord.equals(testRecord4)); // different name
         assertFalse(testRecord3.equals(testRecord4)); // different in both fields
+        assertFalse(testRecord3.equals(testRecord6)); // different attendance type
+        assertFalse(testRecord6.equals(testRecord5)); // different object for class part
     }
 }
