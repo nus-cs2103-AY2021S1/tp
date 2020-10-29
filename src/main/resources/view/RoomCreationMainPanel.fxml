@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox>
         <Label VBox.vgrow="NEVER" fx:id="newModeLabel" wrapText="true">
-            You are creating a new ResiReg. You can only add, delete and edit rooms. Once you are done adding rooms, enter
-            "finalize". After that, you will no longer be able to add or remove any rooms.
+            You are creating a new ResiReg. You can only add, delete and edit rooms. Once you are done adding rooms,
+            enter "finalize". After that, you will no longer be able to add or remove any rooms.
         </Label>
         <Label styleClass="split-view-title">Rooms</Label>
         <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>

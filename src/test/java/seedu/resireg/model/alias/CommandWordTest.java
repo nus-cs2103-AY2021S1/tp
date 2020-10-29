@@ -7,7 +7,7 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.logic.commands.AddCommand;
-import seedu.resireg.logic.commands.ListCommand;
+import seedu.resireg.logic.commands.ListStudentsCommand;
 
 class CommandWordTest {
 
@@ -37,9 +37,10 @@ class CommandWordTest {
 
         // valid command word
         assertTrue(CommandWord.isValidCommandWord(AddCommand.COMMAND_WORD)); // 2 digits
-        assertTrue(CommandWord.isValidCommandWord(ListCommand.COMMAND_WORD)); // 1 digit
+        assertTrue(CommandWord.isValidCommandWord(ListStudentsCommand.COMMAND_WORD)); // 1 digit
         assertFalse(CommandWord.isValidCommandWord(AddCommand.COMMAND_WORD + " ")); // only non-numeric characters
-        assertFalse(CommandWord.isValidCommandWord(ListCommand.COMMAND_WORD + "\t")); // contains non-numeric characters
+        assertFalse(CommandWord.isValidCommandWord(
+                ListStudentsCommand.COMMAND_WORD + "\t")); // contains non-numeric characters
     }
 
 }
