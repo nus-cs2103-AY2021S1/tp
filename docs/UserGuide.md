@@ -111,7 +111,7 @@ Lists out all the exercises that the user has keyed in.
 Format: `list`
 
 ## 3.6. Find exercises: `find`
-Finds exercises whose name contain any of the given keywords.
+Finds an exercise that matches the given properties.
 
 ![find command message](images/findCommandMessage.png)
 
