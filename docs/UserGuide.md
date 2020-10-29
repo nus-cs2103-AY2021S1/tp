@@ -31,8 +31,8 @@ Wondering what each icon is used for? You can refer to the table below to find o
 
 | Icon        | Icon usage                                             | Box color |
 |-------------|--------------------------------------------------------|-----------|
-| :clipboard: | - Notes about the command format<br>- Pointers to note | Green     |
-| :bulb:      | - Tip                                                  | Blue      |
+| :clipboard: | - Notes about the command format<br>- Pointers to note | Blue      |
+| :bulb:      | - Tip                                                  | Green     |
 
 ### Command syntax and terminologies
 
@@ -83,8 +83,6 @@ You can find out more about the command terminologies here:
 
 ### Adding an assignment: `add`
 
-Adds an assignment into your schedule.
-
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
 
 <div markdown="span" class="alert alert-success">
@@ -114,7 +112,7 @@ DIAGRAM
 
 DIAGRAM
 
-More examples:
+Examples:
 * `delete 1`
 * `delete 2 3 1`
 
@@ -128,14 +126,32 @@ More examples:
 
 ### Importing your timetable : `import`
 
-Imports your NUSMods timetable data into your schedule.
-
 Format: `import url/YOUR_NUSMODS_URL`
 
-* Lesson data based on your NUSMods timetable will be added into your schedule.
-* `YOUR_NUSMODS_URL` is obtained by clicking on the "Share/Sync" timetable icon at the NUSMods website.
+You can import your NUSMods timetable data into ProductiveNUS by providing the URL to your NUSMods timetable share
+link. Imported lesson information can be found in the `Upcoming tasks` list as shown.
+ 
+DIAGRAM
+ 
+Follow these steps and try importing your timetable:
 
-Examples:
+1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
+
+DIAGRAM
+
+2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
+
+3) Added lesson information can be found in your task list.
+
+DIAGRAM
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* Importing a new timetable will override your previous timetable data.
+</div>
+
+Example:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
 
 ### Listing assignments : `list`
@@ -149,9 +165,9 @@ For example, `list 3` lists all your assignments that are due within 3 days (72 
 DIAGRAM
 
 <div markdown="span" class="alert alert-success">
+
 **:bulb: Tip:**
 You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
-
 </div>
 
 More examples: 
@@ -257,23 +273,40 @@ For example, `unremind 1` will remove the first assignment in `Your Reminders` (
 
 ### Setting priority for assignments : `prioritize`
 
-Sets a priority for the specified assignment.
+Format: `prioritize INDEX p/PRIORITY`
 
-Format: `prioritize INDEX priority/PRIORITY`
+You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
+shown with a coloured priority tag (As shown highlighted in red in the figure below).
 
-* Sets the priority to the assignment at the specified `INDEX`.
-* Priority levels include LOW, MEDIUM and HIGH.
-* The index refers to the index number shown in the displayed assignment list.
+DIAGRAM
+
+You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
+
+For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
+
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
+* The `INDEX` must be found in your assignment list.
+* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH`.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
+</div>
 
 ### Removing priority for assignments : `unprioritize`
 
-Removes a priority for the specified assignment.
-
 Format: `unprioritze INDEX`
 
-* Removes the priority of the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
+You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
+you wish to have the priority tag removed.
+
+For example, `unprioritize 1` will remove the priority tag, if present, of the first assignment in your assignment list.
+
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
+* At least one `INDEX` must be present. For example, `remind` will not work.
+* The `INDEX` must be found in your assignment list.
+</div>
 
 ### Marking assignments as done : `done`
 
