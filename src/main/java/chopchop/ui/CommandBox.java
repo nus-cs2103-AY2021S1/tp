@@ -1,3 +1,5 @@
+//@@author fall9x
+
 package chopchop.ui;
 
 import chopchop.logic.Logic;
@@ -90,7 +92,9 @@ public class CommandBox extends UiPart<Region> {
         var command = this.commandTextField.getText();
         if (!command.isEmpty()) {
             try {
+                System.out.println("SADs");
                 this.commandExecutor.execute(command);
+                System.out.println("SAD");
             } catch (CommandException | ParseException e) {
                 this.setStyleToIndicateCommandFailure();
             } finally {

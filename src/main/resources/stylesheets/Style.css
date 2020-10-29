@@ -264,3 +264,88 @@
     -fx-background-radius: 3px;
     -fx-font-size: 11px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pins {
+    -fx-background-color: transparent;
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #575555;
+    -fx-font-weight: bold;
+}
+
+/* ListView CSS */
+#listView {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #212121;
+    -fx-prompt-text-fill: #212121;
+    -fx-border-color: #FFFFFF;
+}
+
+
+#listView .scroll-pane .content{
+    -fx-background-color: #0093ff;
+    -fx-background-radius: 6;
+}
+
+#listView {
+    -fx-selection-bar: green ;
+    -fx-selection-bar-non-focused: green ;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #d30063;
+    -fx-text-fill: white;
+}
+
+#listView .scroll-arrow {
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:even {
+    -fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #fedaeb;
+    -fx-text-fill: white;
+}
+
+.pair-name {
+    -fx-font-size: 1.4em;
+    -fx-font-weight: bold;
+}
+
+.pair-second {
+    -fx-font-size: 1.2em;
+}
+#header1 {
+    -fx-background-color: transparent;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #575555;
+}
+#header1 .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#header1 .scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#header1 .scroll-pane .content{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
