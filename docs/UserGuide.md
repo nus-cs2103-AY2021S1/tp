@@ -89,13 +89,16 @@ There are many versions of Java `11` listed. Select the correct version based on
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
 </div>
 
-### Displaying usage instructions: `help`
+### Displaying usage instructions: `help` (By Peh Jun Siang)
 
-Shows a list of basic commands (and their usages) supported by **Hospify**.
-
-![tp_help_command](images/helpMessage.png)
+The `help` command shows a list of all the commands and their usages supported by **Hospify**.
 
 Format: `help`
+![tp_help_command](images/helpWindow.png)
+**:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
+
+**:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
+for the commands.
 
 ### Adding a patient: `add` (by Cedric Lim Jun Wei)
 
@@ -261,6 +264,33 @@ Examples:
 * `sort name` would result in the patients to be sorted by their name in ascending order.
 * `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
 
+### Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
+
+The `showAppt` command shows you all the appointments of a patient in a table for ease of viewing.
+Unlike other commands, you can click on the patient's information to show the appointments **without needing to enter any commands**.
+
+1. Using the `GUI`\
+You can simply **double click** on the patient to display all the appointments of that patient.
+![show appointments via gui](images/showAppt/showAppt_gui.PNG)
+
+2. Using the `Command Line`\
+If the number of patients is too large, it might be difficult to find the patient's information to click.
+In that case, you can use the command line to show the patient's appointments.
+![show appointments via gui](images/showAppt/showAppt_input.PNG)
+
+Format: `showAppt NRIC`
+
+Example: `showAppt S1234567A`
+
+The Appointment window should pop up after successfully running the command either through the `GUI` or the `Command Line` shown below.
+![Appointment Window](images/showAppt/showAppt_window.PNG)
+
+**:bulb: Tip:** You can click on the headers to sort the appointments from earliest to latest or latest to earliest.
+
+**:information_source: Notes:** Only **ONE** appointment window is allowed to be opened at any moment.
+
+**:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
+
 ### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
 
 This command allows you to schedule an `Appointment` for a patient in **Hospify**.
@@ -407,6 +437,33 @@ _{explain the feature here}_
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
+
+**Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
+**A**: Check if you have at least `Java 11` installed on your Computer.
+* On **Windows**\
+Step 1. Open up **Command Prompt** by searching for **cmd** in the task bar.\
+Step 2. Type the command `java -version` to check for the version.
+![windows java version](images/faq/windows_javaVersion.PNG)
+**:warning: Important:** Ensure that the java version is at least **11**.
+
+* On **MAC**\
+Step 1. Open up **Terminal** by searching for **terminal** in the search bar.\
+![mac search bar](images/faq/mac_search.PNG)
+Step 2. Type the command `java -version` to check for the version.
+![windows java version](images/faq/mac_javaVersion.PNG)
+**:warning: Important:** Ensure that the java version is at least **11**.
+
+**:information_source: Notes:** If your java version is **less than 11**, visit
+ the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+ 
+**Q**: How do I get the latest version of **Hospify**?\
+**A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
+ latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
+![download jar](images/faq/download_jar.PNG)
+
+**Q**: My question is not listed in the FAQ?\
+**A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

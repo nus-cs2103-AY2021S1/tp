@@ -371,7 +371,10 @@ _{more aspects and alternatives to be added}_
 
 ### Show Appointment (by Peh Jun Siang)
 
+Shows the medical records of a patient either through the `CLI` or the `GUI` in a Tableview.
+
 #### Implementation
+![showApptActivityDiagram](images/UML_Diagrams/ShowApptDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
