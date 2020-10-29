@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
@@ -9,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
+import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -26,6 +30,7 @@ public class TeammateDashboard extends UiPart<Region> {
      */
 
     public final Participation teammate;
+    public final List<String> listOfTasksName = new ArrayList<>();
 
     @FXML
     private HBox teammateDashboardPane;
@@ -42,7 +47,7 @@ public class TeammateDashboard extends UiPart<Region> {
     @FXML
     private Label header1;
     @FXML
-    private FlowPane projects;
+    private FlowPane tasks;
 
     /**
      * Creates a {@code TaskDashboardCode} with the given {@code Task} to display.
@@ -57,11 +62,25 @@ public class TeammateDashboard extends UiPart<Region> {
         phone.setText("Teammate phone number: " + person.getPhone());
         email.setText("Teammate email: " + person.getEmail());
         address.setText("Teammate address: " + person.getAddress());
-        header1.setText("Projects participated: ");
-        person.getParticipations().keySet()
-                .forEach(participation -> projects.getChildren()
-                        .add(new Label(participation.toString())));
-        // TODO: Add person-project info
+        header1.setText("Tasks assigned: ");
+        for (Participation p : person.getParticipations().values()) {
+            System.out.println(p);
+            String projectName = p.getProject().getProjectName().toString();
+            Project proj = p.getProject();
+            Participation pp = proj.getParticipation(person.getGitUserNameString());
+            System.out.println(projectName);
+            for (Task task : pp.getTasks()) {
+                System.out.println(task);
+                listOfTasksName.add(projectName + ": " + task.getTaskName());
+            }
+        }
+        System.out.println("fasudhasodsa");
+        for (String str : listOfTasksName) {
+            System.out.println(str);
+        }
+        this.listOfTasksName.stream()
+                .forEach(tasksName -> tasks.getChildren()
+                        .add(new Label(tasksName)));
     }
 
     @Override

@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -185,11 +184,6 @@ public interface Model {
     void enterTeammate(Participation teammate);
 
     /**
-     * Enters the designated meeting of the current project.
-     */
-    void enterMeeting(Meeting meeting);
-
-    /**
      * Updates the project to be displayed on dashboard.
      * @param project project to be displayed on dashboard
      */
@@ -222,16 +216,6 @@ public interface Model {
     Optional<Participation> getTeammateToBeDisplayedOnDashboard();
 
     /**
-     * Updates the meeting to be displayed on dashboard.
-     */
-    void updateMeetingToBeDisplayedOnDashboard(Meeting meeting);
-
-    /**
-     * Gets the meeting to be displayed on dashboard.
-     */
-    Optional<Meeting> getMeetingToBeDisplayedOnDashboard();
-
-    /**
      * Updates the person to be displayed on dashboard.
      */
     void updatePersonToBeDisplayedOnDashboard(Person person);
@@ -242,21 +226,3 @@ public interface Model {
     Optional<Person> getPersonToBeDisplayedOnDashboard();
 
 }
-
-///** Returns an unmodifiable view of the filtered task list */
-//List<Task> getFilteredTaskList();
-
-///**
-// * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-// * @throws NullPointerException if {@code predicate} is null.
-// */
-//void updateFilteredTaskList(List<Task> taskList);
-
-///** Returns an unmodifiable view of the filtered teammate list */
-//List<Person> getFilteredTeammateList() ;
-
-///**
-// * Updates the filter of the filtered teammate list to filter by the given {@code predicate}.
-// * @throws NullPointerException if {@code predicate} is null.
-// */
-//void updateFilteredTeammateList(List<Person> teammatesList);

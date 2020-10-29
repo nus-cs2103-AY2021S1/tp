@@ -51,8 +51,8 @@ public class Person {
      */
     public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address,
                   HashMap<ProjectName,
-        Participation> listOfParticipations) {
-        requireAllNonNull(personName, phone, email, address);
+                          Participation> listOfParticipations) {
+        requireAllNonNull(personName, gitUserName, phone, email, address);
         this.personName = personName;
         this.gitUserName = gitUserName;
         this.phone = phone;
@@ -169,11 +169,11 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getGitUserName().equals(getGitUserName())
-            && otherPerson.getPhone().equals(getPhone())
-            && otherPerson.getEmail().equals(getEmail())
-            && (otherPerson.getPersonName().equals(getPersonName())
-            || otherPerson.getAddress().equals(getAddress()));
+                && otherPerson.getGitUserName().equals(getGitUserName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && (otherPerson.getPersonName().equals(getPersonName())
+                || otherPerson.getAddress().equals(getAddress()));
     }
 
     /**
@@ -192,10 +192,10 @@ public class Person {
 
         Person otherProject = (Person) other;
         return otherProject.getPersonName().equals(getPersonName())
-            && otherProject.getGitUserName().equals(getGitUserName())
-            && otherProject.getPhone().equals(getPhone())
-            && otherProject.getEmail().equals(getEmail())
-            && otherProject.getAddress().equals(getAddress());
+                && otherProject.getGitUserName().equals(getGitUserName())
+                && otherProject.getPhone().equals(getPhone())
+                && otherProject.getEmail().equals(getEmail())
+                && otherProject.getAddress().equals(getAddress());
     }
 
     @Override
@@ -208,15 +208,15 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Person name: ")
-            .append(getPersonName())
-            .append(" Git Username: ")
-            .append(getGitUserName())
-            .append(" Phone: ")
-            .append(getPhone())
-            .append(" Email: ")
-            .append(getEmail())
-            .append(" Address: ")
-            .append(getAddress());
+                .append(getPersonName())
+                .append(" Git Username: ")
+                .append(getGitUserName())
+                .append(" Phone: ")
+                .append(getPhone())
+                .append(" Email: ")
+                .append(getEmail())
+                .append(" Address: ")
+                .append(getAddress());
         return builder.toString();
     }
 }
