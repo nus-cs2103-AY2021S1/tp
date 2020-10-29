@@ -30,7 +30,7 @@ Below are steps to help you set up and start your Common Cents experience!
 3\. Copy the file to the folder you want to use as the _home folder_ for _Common Cents_.
 
 4\. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds (**Figure 1-1**). 
-Note how the app contains some sample expenses and revenues.<br>
+Note how the app contains some sample expenses and revenues if you have not used the app before.<br>
 
  ![Ui](images/Ui.png)
  <p align="center"> <sub> <b>Figure 1-1</b>: Default GUI </sub> </p>
@@ -42,7 +42,7 @@ Note how the app contains some sample expenses and revenues.<br>
    * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
    * `exit` : Exits the app.
 
-6\. Refer to the [Features](#features) below for details of each command.
+6\. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
@@ -135,11 +135,13 @@ will be displayed as a scrollable list, right beside the expenses list.
 
 ## 4.2 Entries
 'Entry' (or 'Entries') is the term used to describe either Expense or Revenue. Each entry input into Common Cents would 
-have compulsory fields - Category (e.g. expense or revenue), Description, Amount - and optional Tags. 
+have compulsory fields - Description, Amount - and optional Tags. 
 
 ### 4.2.1 Category
-Category is the field that specifies the type of Entry input that Common Cents receives from you. You can either specify 
-the category as an expense or a revenue.
+Category is the field that specifies the type of Entry input that Common Cents receives from you. It is used in commands
+to differentiate entries between Expense and Revenue. You can either specify the category as an `expense` or a `revenue`,
+or `e` or `r` for short and these are not case-sensitive. This documentation uses `expense` or `revenue` as examples in 
+the [Features](#5-features) below.
 
 ### 4.2.2 Description
 Description refers to the textual information that is associated with the Entry that Common Cents receives from you, in
@@ -291,15 +293,6 @@ it anymore.
 * It is possible for you to use the `find` function then `delete`.
 
 </div>
-
-<div markdown="block" class="alert alert-danger">
-
-:warning: **Warning:**
-
-* Entry index should only be a single integer, for example, `delete 1 2 c/revenue` will not work.
-
-</div>
-
 
 ![deleteCommand1](images/commands/deleteCommand1.png)
 <p align="center"> <sub> <b>Figure 5.2-2</b>: The revenue at index 2 is deleted </sub> </p>
@@ -701,6 +694,11 @@ wrong. Can I clarify on this situation?<br>
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
 `expense n/buy McSpicy a/8.60` instead of `expense`. Do remember to check that the **prefixes and parameters required for a command
 are correct!** If you are unsure of the prefixes and parameters required, do check the sections under features above! 
+
+3. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`
+**Answer:** Multiple instances of prefixes, as well as indexes except for `tags (t/)` will not be executed and an error 
+message will be shown. For instance, the example above has both `c/expense` and `c/revenue`, hence the command will not be executed. 
+Please follow the format of the commands closely in the [Features](#5-features) section above!
 --------------------------------------------------------------------------------------------------------------------
 
 # 7. Command summary
