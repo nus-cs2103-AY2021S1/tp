@@ -33,32 +33,32 @@ public class StorageManagerTest {
         return testFolder.resolve(fileName);
     }
 
-        @Test
-        public void prefsReadSave() throws Exception {
-            /*
-             * Note: This is an integration test that verifies the StorageManager is properly wired to the
-             * {@link JsonUserPrefsStorage} class.
-             * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
-             */
-            UserPrefs original = new UserPrefs();
-            original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
-            storageManager.saveUserPrefs(original);
-            UserPrefs retrieved = storageManager.readUserPrefs().get();
-            assertEquals(original, retrieved);
-        }
+    @Test
+    public void prefsReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonUserPrefsStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonUserPrefsStorageTest} class.
+         */
+        UserPrefs original = new UserPrefs();
+        original.setGuiSettings(new GuiSettings(300, 600, 4, 6));
+        storageManager.saveUserPrefs(original);
+        UserPrefs retrieved = storageManager.readUserPrefs().get();
+        assertEquals(original, retrieved);
+    }
 
-        @Test
-        public void addressBookReadSave() throws Exception {
-            /*
-             * Note: This is an integration test that verifies the StorageManager is properly wired to the
-             * {@link JsonAddressBookStorage} class.
-             * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-             */
-            Trackr original = new Trackr();
-            storageManager.saveModuleList(original);
-            ReadOnlyTrackr<Module> retrieved = storageManager.readModuleList().get();
-            assertEquals(original, new Trackr(retrieved));
-        }
+    @Test
+    public void addressBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonAddressBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         */
+        Trackr original = new Trackr();
+        storageManager.saveModuleList(original);
+        ReadOnlyTrackr<Module> retrieved = storageManager.readModuleList().get();
+        assertEquals(original, new Trackr(retrieved));
+    }
 
     @Test
     public void getAddressBookFilePath() {

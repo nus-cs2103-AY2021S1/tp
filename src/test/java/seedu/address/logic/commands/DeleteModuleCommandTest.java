@@ -44,7 +44,7 @@ public class DeleteModuleCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
