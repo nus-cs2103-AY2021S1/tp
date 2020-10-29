@@ -86,7 +86,7 @@
     <!-- Validate abbreviations (consecutive capital letters) length in identifier name -->
     <module name="AbbreviationAsWordInName">
       <property name="ignoreFinal" value="false"/>
-      <property name="allowedAbbreviationLength" value="3"/>
+      <property name="allowedAbbreviationLength" value="1"/>
     </module>
 
     <module name="PackageName">
