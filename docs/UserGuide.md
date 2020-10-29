@@ -53,9 +53,16 @@ Objectives of PlaNus:
 
 1. Ensure you have Java 11 or above installed in your computer.
 2. Download the latest planus.jar from **[here](https://github.com/AY2021S1-CS2103T-T12-3/tp/releases/)**.
+
+    ![setup](images/setup.png)
+
 3. Copy the file to the folder you want to use as the home folder for PlaNus.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. Upon launching PlaNus, you should see the following user interface.
+
+    ![sample PlaNus](images/samplePlanus.png)
+
 5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`
+6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Features
@@ -85,16 +92,20 @@ This section is a comprehensive walkthrough of the features in PlaNus.
 
 ## 1. General Features
 
-This section shows features that deal with the general functionality of  PlaNus application.
+This section shows features that deal with the general functionality of PlaNus application.
 
 
 ### 1.1 Show all commands : `help`
 
-Shows the user a list of commands and a link to the user guide.
+Shows the user a link to the user guide.
+
+Format: `help`
+
+1. Type in `help` into the command box.
+2. A success message and a pop-up window with a link to the user guide will appear.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
 
 <br>
 
@@ -104,6 +115,16 @@ Users can clear all the tasks in the PlaNus.
 
 Format: `clear`
 
+1. Type in `clear` into the command box.
+
+![clear message](images/clearMessage.png)
+
+<br>
+2. All the tasks and lessons in PlaNus will be cleared.
+<br>
+
+![clear success message](images/clearSuccessMessage.png)
+
 <br>
 
 ### 1.3 Exit the program : `exit`
@@ -111,6 +132,12 @@ Format: `clear`
 Users can exit PlaNus.
 
 Format: `exit`
+
+1. Type `exit` into the command box.
+
+    ![exit message](images/exitMessage.png)
+
+2. The application window will automatically close.
 
 <br>
 
