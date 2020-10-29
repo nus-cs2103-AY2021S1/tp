@@ -22,7 +22,7 @@ If you see an acronym that you don't understand, kindly refer to the [glossary](
 
 ## 2. Introduction
 
-Welcome to NUStorage, a desktop application that aims to help users to mange __inventory__, __finance transactions__ as well as __accounts__.
+Welcome to NUStorage, a desktop application that aims to help users to manage __inventory__, __finance transactions__ as well as __accounts__.
 
 NUStorage revolutionises the way we can manage our inventory and finances by ridding us of cumbersome traditional means of management, such as books and folders. Instead, everything is now stored and displayed neatly in a fast and low-resource application!
 
@@ -224,7 +224,7 @@ After you have ensured that NUStorage is in the "Finance" tab, follow the instru
 
 __Format:__ `delete_finance INDEX`:
 
-This allows us to delete the finance record with the ID of 1.
+This allows us to delete the finance record with the ID of `INDEX`.
 
 Currently, our NUStorage only contains one record, as shown below:
 ![Finance tab finding ID](images/finance_finding_ID.jpg)
@@ -243,7 +243,7 @@ __Expected Result:__ record at index `1` is removed from the finance account rec
 
 #### 5.2.3. Edit a finance record: `edit_finance`
 
-Previously, in the [Delete finance records](#522-delete-finance-records-delete_finance) section, we have deleted our only finance record in our application. For this section, ensure you have at least one stand-alone(i.e not attached to any inventory records) finance record stored in the application and that you are on the finance tab.
+Previously, in the [Delete finance records](#522-delete-finance-records-delete_finance) section, we have deleted our only finance record in our application. For this section, ensure you have at least one stand-alone (i.e not attached to any inventory records) finance record stored in the application and that you are on the finance tab.
 
 `edit_finance` allows us to edit details of the stand-alone finance records currently stored within NUStorage. Currently, with `edit_finance`, we are able to edit a stand-alone finance record's amount and date.
 
