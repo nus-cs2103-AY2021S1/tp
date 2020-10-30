@@ -376,33 +376,37 @@ Multiple notes can be added to the stock and each note will be indexed. <br>
 **:warning:**
 If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
 To view full notes for the stock, use the `noteview` command.
+
 </div>
 
-* Required fields:
-    1. Serial number of stock
-    2. Note to add to stock
-
-<h5>Format</h5>
+<h4>Format</h4>
 `note sn/<serial number> nt/<note>`
 
-<h5>Example usages</h5>
-
-Example Usages:
+<h4>Examples</h4>
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
-**Stock 2** | Name: Chicken<br> Serial Number: SHENG SIONG1<br> Source: Sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry section
+**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: Ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
+**Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
 
-Command: `note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
+```
+note sn/sheng siong1 nt/chicken will expire soon
+```
+will add note with index 1 in note column for Stock 2. <br>
 
 ![chicken note 1](images/note_img1.jpg)
 
-Command: `note sn/sheng siong1 nt/chicken order will arrive wednesday` will add note with index 2 for Stock 2. <br>
+```
+note sn/sheng siong1 nt/chicken order will arrive wednesday
+```
+will add note with index 2 for Stock 2. <br>
 
 ![chicken note 2](images/note_img2.jpg)
 
-Command: `note sn/ntuc1 nt/banana just arrived` will add note with index 1 in note column for Stock 1. <br>
+```
+note sn/ntuc1 nt/banana just arrived
+```
+will add note with index 1 in note column for Stock 1. <br>
 
 ![banana note 1](images/note_img3.jpg)
 
