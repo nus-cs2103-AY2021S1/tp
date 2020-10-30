@@ -238,7 +238,7 @@ public class AddCommandTest {
 
         @Override
         public SimpleObjectProperty<Session> getCurrentSession() {
-            throw new AssertionError("This method should not be call");
+            throw new AssertionError("This method should not be called.");
         }
     }
 

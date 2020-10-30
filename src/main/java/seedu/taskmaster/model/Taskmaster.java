@@ -238,9 +238,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
         if (sessions.isEmpty()) {
             throw new NoSessionException();
-        }
-
-        if (!sessions.isEmpty() && currentSession == null) {
+        } else if (currentSession.isNull().get()) {
             throw new NoSessionSelectedException();
         }
 
@@ -260,9 +258,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
         if (sessions.isEmpty()) {
             throw new NoSessionException();
-        }
-
-        if (!sessions.isEmpty() && currentSession == null) {
+        } else if (currentSession.isNull().get()) {
             throw new NoSessionSelectedException();
         }
 
@@ -282,9 +278,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
         if (sessions.isEmpty()) {
             throw new NoSessionException();
-        }
-
-        if (!sessions.isEmpty() && currentSession == null) {
+        } else if (currentSession.isNull().get()) {
             throw new NoSessionSelectedException();
         }
 

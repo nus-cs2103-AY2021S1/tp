@@ -25,7 +25,6 @@ public class MarkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present' or 'absent') \n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ATTENDANCE_TYPE + "present";
-
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as %2$s";
 
     protected final AttendanceType attendanceType;
