@@ -147,7 +147,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal to add must not already exist in the `ZooKeep` book.
+* `ID` of animal to add must not already exist in your `ZooKeep` book.
 
 * `FEED_TIME` must be a valid time in 24 hour format.
 </div>
@@ -167,7 +167,7 @@ New animal added: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Suns
 ```
 
 Adds an animal with name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition of `Sunstroke`
-and feed times of `1230 hrs` and `1400 hrs` to the `ZooKeep` book.
+and feed times of `1230 hrs` and `1400 hrs` to your `ZooKeep` book.
 
 ---
 
@@ -185,7 +185,7 @@ Format: `delete ID`
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the `ZooKeep` book.
+* `ID` of animal to delete must exist in your `ZooKeep` book.
 </div>
 
 Example Usage:
@@ -195,7 +195,7 @@ Expected Outcome:
 ```
 Deleted Animal: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke]  Feeding times: [1230][1400]
 ```
-The animal with ID of `200` is deleted from the `ZooKeep` book.
+The animal with ID of `200` is deleted from your `ZooKeep` book.
 
 ---
 
@@ -254,7 +254,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal must exist in the `ZooKeep` book.
+* `ID` of animal must exist in your `ZooKeep` book.
 
 * `FEED_TIME` must be a valid time in 24 hour format.
 </div>
@@ -297,7 +297,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal must exist in the `ZooKeep` book.
+* `ID` of animal must exist in your `ZooKeep` book.
 
 * `FEED_TIME` must be a valid time in 24 hour format.
 </div>
@@ -323,7 +323,7 @@ The animal with ID `200` has its ID replaced with `2910` its name with `Jirachi`
 
 You may find yourself in situations where you need to retrieve a specific group of animals from your `ZooKeep` book. For
 example, you may need to find animals with the same feed times or similar medical conditions.
-You can use this command to find and list all animals in the `ZooKeep` book whose fields contain any of the specified 
+You can use this command to find and list all animals in your `ZooKeep` book whose fields contain any of the specified 
 argument keywords (at least 1).
 
 Format: `find KEYWORD [MORE KEYWORDS]…`
@@ -395,7 +395,7 @@ The animals in your `ZooKeep` book are sorted by their ID, in ascending order.
 
 ### Saving a snapshot of animal data: `snap`
 
-This command is useful for storing important archives in the `data/snapshots` folder of the `ZooKeep` application, in case you need
+This command is useful for storing important archives in the `data/snapshots` folder of your `ZooKeep` application, in case you need
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
 
@@ -425,7 +425,7 @@ Expected Outcome:
 Current ZooKeep Book saved as zookeepbook_19-10-2020.json
 ```
 A file named `zookeepbook_19-10-2020.json` is created in the `data/snapshots` directory.
-This file contains the state of the `ZooKeep` book data at the point in time when the command
+This file contains the state of your `ZooKeep` book data at the point in time when the command
 was executed.
 
 ---
