@@ -15,25 +15,24 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="800" minWidth="1200" onCloseRequest="#handleExit" title="PropertyFree" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="700" minWidth="1250" onCloseRequest="#handleExit" title="PropertyFree" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/address_book_32.png"/>
+        <Image url="@/images/address_book_32.png" />
     </icons>
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css"/>
-                <URL value="@Extensions.css"/>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
             </stylesheets>
 
             <VBox>
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                     </Menu>
                     <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                     </Menu>
                 </MenuBar>
 
@@ -41,69 +40,61 @@
 
                     <VBox maxWidth="200" prefHeight="200.0" prefWidth="100.0">
                         <children>
-                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
-                                  style="-fx-background-color: #12232E; -fx-border-radius: 0; -fx-border-width: 4; -fx-border-color: grey;">
+                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #12232E; -fx-border-radius: 0; -fx-border-width: 4; -fx-border-color: grey;">
                                 <children>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true"
-                                               preserveRatio="true">
+                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/prompter_icon.png"/>
+                                            <Image url="@../images/prompter_icon.png" />
                                         </image>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0"
-                                          text="PropertyFree Prompter" translateX="-5.0">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PropertyFree Prompter" textAlignment="CENTER" translateX="-5.0" wrappingWidth="149.1969451904297">
                                         <font>
-                                            <Font name="DengXian Regular" size="22.0"/>
+                                            <Font name="DengXian Regular" size="22.0" />
                                         </font>
                                     </Text>
                                 </children>
                             </HBox>
-                            <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                                       HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                            <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                                 <padding>
-                                    <Insets bottom="5" left="10" right="10" top="5"/>
+                                    <Insets bottom="5" left="10" right="10" top="5" />
                                 </padding>
                             </StackPane>
                         </children>
                         <stylesheets>
-                            <URL value="@Extensions.css"/>
-                            <URL value="@DarkTheme.css"/>
+                            <URL value="@Extensions.css" />
+                            <URL value="@DarkTheme.css" />
                         </stylesheets>
                     </VBox>
 
-                    <StackPane fx:id="personAndBidTabPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS"
-                               VBox.vgrow="ALWAYS">
+                    <StackPane fx:id="personAndBidTabPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <padding>
-                            <Insets bottom="5" left="10" right="10" top="5"/>
+                            <Insets bottom="5" left="10" right="10" top="5" />
                         </padding>
                     </StackPane>
 
-                    <VBox fx:id="calendarList" maxWidth="250" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0"
-                              style="-fx-background-color: #12232E; -fx-border-radius: 0; -fx-border-width: 4; -fx-border-color: grey;">
+                    <VBox fx:id="calendarList" maxWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #12232E; -fx-border-radius: 0; -fx-border-width: 4; -fx-border-color: grey;">
                             <children>
-                                <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/calendar_icon.png"/>
+                                        <Image url="@../images/calendar_icon.png" />
                                     </image>
                                 </ImageView>
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeting Schedule">
                                     <font>
-                                        <Font name="DengXian Regular" size="42.0"/>
+                                        <Font name="DengXian Regular" size="38.0" />
                                     </font>
                                 </Text>
                             </children>
                         </HBox>
-                        <StackPane fx:id="calendarListPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS"
-                                   VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="calendarListPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets bottom="5" left="10" right="10" top="5"/>
+                                <Insets bottom="5" left="10" right="10" top="5" />
                             </padding>
                         </StackPane>
-                        <StackPane fx:id="calendar" styleClass="pane-with-border" HBox.hgrow="ALWAYS"
-                                   VBox.vgrow="ALWAYS">
+                        <StackPane fx:id="calendar" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                             <padding>
-                                <Insets bottom="5" left="10" right="10" top="5"/>
+                                <Insets bottom="5" left="10" right="10" top="5" />
                             </padding>
                         </StackPane>
                     </VBox>
@@ -111,11 +102,11 @@
 
                 <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
-                        <Insets bottom="5" left="10" right="10" top="5"/>
+                        <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
 
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
 
             </VBox>
         </Scene>

@@ -197,10 +197,10 @@ Expected Output:
 
 ```java
 New bidder added: 
-		Name: Marcus Duigan 
+	Name: Marcus Duigan 
     Phone number: 12345678
-		Id: B1
-		Tags: [bidder]
+	Id: B1
+	Tags: [bidder]
 ```
 
 ## Searching for **Bidder**
@@ -310,10 +310,10 @@ Expected Output:
 
 ```java
 New seller added: 
-		Name: Kor Ming Soon
+	Name: Kor Ming Soon
     Phone number: 12345778 
-		Id: S1
-		Tags: [seller]
+    Id: S1
+	Tags: [seller]
 ```
 
 ## Searching for **Seller**
