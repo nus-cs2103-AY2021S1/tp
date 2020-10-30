@@ -11,12 +11,10 @@ Class "{abstract}\nNegateCommand" as NegateCommand
 Class UnremindCommand
 Class UnprioritizeCommand
 Class UndoneCommand
-Class UndoCommand
 
 NegateCommand -up-|> Command
 UnremindCommand -up-|> NegateCommand
 UnprioritizeCommand -up-|> NegateCommand
 UndoneCommand -up-|> NegateCommand
-UndoCommand -up-|> NegateCommand
 }
 @enduml
