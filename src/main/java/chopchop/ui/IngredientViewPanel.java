@@ -5,12 +5,12 @@ package chopchop.ui;
 import java.util.Optional;
 
 import chopchop.model.ingredient.Ingredient;
+import com.jfoenix.controls.JFXMasonryPane;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 
 public class IngredientViewPanel extends UiPart<Region> {
@@ -25,7 +25,7 @@ public class IngredientViewPanel extends UiPart<Region> {
     private ScrollPane ingredientPanel;
 
     @FXML
-    private FlowPane ingredientGridView;
+    private JFXMasonryPane ingredientGridView;
 
     /**
      * Creates a {@code RecipeView} with the given {@code ObservableList}.

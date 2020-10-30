@@ -51,12 +51,10 @@ public class DisplayController extends UiPart<Region> {
         this.recommendationViewPanel = new RecommendationViewPanel(logic.getRecommendedRecipeList(),
                 logic.getExpiringRecipeList());
 
-        // TODO: Edit to account for loading of recipes/ingredients after UI
         logic.getFilteredRecipeList().addListener((ListChangeListener<Recipe>) c -> {
             c.next();
 
             /*
-             * TODO: Make logic more robust
              * Check if a recipe was replaced in the recipe book, with an extra check to account for
              * updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES).
              */

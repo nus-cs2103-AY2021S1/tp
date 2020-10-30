@@ -10,29 +10,30 @@
 <?import javafx.scene.text.TextFlow?>
 
 <GridPane fx:id="gridPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <columnConstraints>
-      <ColumnConstraints percentWidth="40.0" />
-      <ColumnConstraints percentWidth="60.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints vgrow="ALWAYS" />
-   </rowConstraints>
-   <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <Label styleClass="recipe-name" fx:id="recipeName" wrapText="true"/>
-      <VBox styleClass="recipe-tags-container">
-         <FlowPane fx:id="tagList" hgap="8" vgap="6"/>
-      </VBox>
-      <ScrollPane styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS">
-         <VBox>
-            <Label styleClass="recipe-ingredients-header" fx:id="ingredientHeader" underline="true"/>
-            <TextFlow styleClass="recipe-ingredients" fx:id="ingredientList"/>
-         </VBox>
-      </ScrollPane>
-   </VBox>
-   <ScrollPane styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0" fitToWidth="true">
-      <VBox>
-         <Label styleClass="recipe-steps-header" fx:id="stepHeader"/>
-         <TextFlow styleClass="recipe-steps" fx:id="stepList"/>
-      </VBox>
-   </ScrollPane>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="40.0"/>
+        <ColumnConstraints percentWidth="60.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label styleClass="recipe-name" fx:id="recipeName" wrapText="true"/>
+        <VBox styleClass="recipe-tags-container">
+            <FlowPane fx:id="tagList" hgap="8" vgap="6"/>
+        </VBox>
+        <ScrollPane styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS" hbarPolicy="NEVER">
+            <VBox>
+                <Label styleClass="recipe-ingredients-header" fx:id="ingredientHeader" underline="true"/>
+                <TextFlow styleClass="recipe-ingredients" fx:id="ingredientList"/>
+            </VBox>
+        </ScrollPane>
+    </VBox>
+    <ScrollPane styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0" fitToWidth="true"
+                hbarPolicy="NEVER">
+        <VBox>
+            <Label styleClass="recipe-steps-header" fx:id="stepHeader"/>
+            <TextFlow styleClass="recipe-steps" fx:id="stepList"/>
+        </VBox>
+    </ScrollPane>
 </GridPane>
