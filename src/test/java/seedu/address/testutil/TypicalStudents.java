@@ -18,6 +18,7 @@ public class TypicalStudents {
             .withTags("CS2103T")
             .withStudentId("A1234567X")
             .build();
+
     public static final Student BENG = new StudentBuilder()
             .withName("Ah Beng")
             .withEmail("abeng@u.nus.edu")
@@ -25,6 +26,7 @@ public class TypicalStudents {
             .withTags("CS2103T")
             .withStudentId("A7654321B")
             .build();
+
     public static final Student CHARLIE = new StudentBuilder()
             .withName("CHARLIE CHEN")
             .withEmail("ccharlie@u.nus.edu")
@@ -32,6 +34,7 @@ public class TypicalStudents {
             .withTags("CS2103T")
             .withStudentId("A1928835B")
             .build();
+
     public static final Student DAVID = new StudentBuilder()
             .withName("David Ong")
             .withEmail("dong@u.nus.edu")
@@ -39,12 +42,21 @@ public class TypicalStudents {
             .withTags("CS2103T")
             .withStudentId("A1837538N")
             .build();
+
     public static final Student ELIZABETH = new StudentBuilder()
             .withName("Elizabeth Teo")
             .withEmail("eteo@u.nus.edu")
             .withPhone("89993333")
             .withTags("CS2103T")
             .withStudentId("A1938563M")
+            .build();
+
+    public static final Student FIONA = new StudentBuilder()
+            .withName("Fiona Chan")
+            .withEmail("fionachan@u.nus.edu")
+            .withPhone("82938378")
+            .withTags("CS1231S")
+            .withStudentId("A2038468T")
             .build();
 
     private TypicalStudents() {} // prevents instantiation

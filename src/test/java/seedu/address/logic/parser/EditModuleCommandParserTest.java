@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.model.module.ModuleId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditModuleCommandParserTest {
@@ -74,7 +75,7 @@ public class EditModuleCommandParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, "CS2040");
+        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, new ModuleId("CS2040"));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -86,7 +87,7 @@ public class EditModuleCommandParserTest {
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, "CS2040");
+        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, new ModuleId("CS2040"));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -97,7 +98,7 @@ public class EditModuleCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + MODULE_ID_DESC_CS2040;
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, "CS2040");
+        EditModuleCommand expectedCommand = new EditModuleCommand(targetIndex, new ModuleId("CS2040"));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

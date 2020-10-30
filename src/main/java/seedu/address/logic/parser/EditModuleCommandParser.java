@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,7 +31,7 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE);
 
         Index index;
-        String newModuleId;
+        ModuleId newModuleId;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

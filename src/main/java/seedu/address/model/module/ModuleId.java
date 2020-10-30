@@ -42,6 +42,10 @@ public class ModuleId {
         this.id = newId;
     }
 
+    public String getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return id;

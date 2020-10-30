@@ -37,13 +37,13 @@ public class EditModuleCommand extends Command {
             + "Run listMod to go back to the Module view.";
 
     private final Index index;
-    private final String newModuleId;
+    private final ModuleId newModuleId;
 
     /**
      * @param index of the person in the filtered person list to edit
      * @param newModuleId details to edit the person with
      */
-    public EditModuleCommand(Index index, String newModuleId) {
+    public EditModuleCommand(Index index, ModuleId newModuleId) {
         requireNonNull(index);
         requireNonNull(newModuleId);
 
@@ -65,7 +65,7 @@ public class EditModuleCommand extends Command {
         }
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
-        Module editedModule = new Module(new ModuleId(newModuleId));
+        Module editedModule = new Module(newModuleId);
 
         if (!moduleToEdit.isSame(editedModule) && model.hasModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);

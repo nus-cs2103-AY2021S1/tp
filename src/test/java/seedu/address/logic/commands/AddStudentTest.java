@@ -85,6 +85,11 @@ public class AddStudentTest {
         }
 
         @Override
+        public boolean isInStudentView() {
+            return true;
+        }
+
+        @Override
         public boolean hasStudent(Student student) {
             requireNonNull(student);
             return this.student.isSame(student);
@@ -96,6 +101,11 @@ public class AddStudentTest {
      */
     private class ModelStubAcceptingStudentAdded extends ModelStub {
         final ArrayList<Student> studentsAdded = new ArrayList<>();
+
+        @Override
+        public boolean isInStudentView() {
+            return true;
+        }
 
         @Override
         public boolean hasStudent(Student student) {

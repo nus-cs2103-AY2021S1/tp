@@ -24,6 +24,7 @@ import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleId;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
 
@@ -78,7 +79,7 @@ public class AddressBookParserTest {
         Module module = new ModuleBuilder().build();
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
-        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, "CS21"), command);
+        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
     }
 
     @Test

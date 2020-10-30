@@ -74,7 +74,6 @@ public class Student extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        // todo add tut group
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())

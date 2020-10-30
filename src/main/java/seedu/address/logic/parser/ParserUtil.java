@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,13 +10,15 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorialgroup.DayOfWeek;
+import seedu.address.model.tutorialgroup.TimeOfDay;
+import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -110,18 +113,52 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String module} into a {@code Module}.
+     * Parses a {@code String tutorial group id} into a {@code TutorialGroupId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code module} is invalid.
+     * @throws ParseException if the given {@code tutorial group id} is invalid.
      */
-    public static Module parseModule(String module) throws ParseException {
-        requireNonNull(module);
-        String trimmedModule = module.trim();
-        if (!ModuleId.isValidModuleId(trimmedModule)) {
-            throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
+    public static TutorialGroupId parseTutorialGroupId(String tutorialGroupId) throws ParseException {
+        requireNonNull(tutorialGroupId);
+        String trimmedModule = tutorialGroupId.trim();
+        if (!TutorialGroupId.isValidTutorialGroupId(trimmedModule)) {
+            throw new ParseException(TutorialGroupId.MESSAGE_CONSTRAINTS);
         }
-        return new Module(new ModuleId(trimmedModule));
+        return new TutorialGroupId(tutorialGroupId);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static DayOfWeek parseDayOfWeek(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!DayOfWeek.isValidDayOfWeek(trimmedDay)) {
+            throw new ParseException(DayOfWeek.MESSAGE_CONSTRAINTS);
+        }
+        return new DayOfWeek(trimmedDay);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static TimeOfDay[] parseTimesOfDay(String startTime, String endTime) throws ParseException {
+        requireAllNonNull(startTime, endTime);
+        String trimmedStartTime = startTime.trim();
+        String trimmedEndTime = endTime.trim();
+        if (!TimeOfDay.isValidTimeOfDay(trimmedStartTime) || !TimeOfDay.isValidTimeOfDay(trimmedEndTime)) {
+            throw new ParseException(TimeOfDay.MESSAGE_CONSTRAINTS);
+        } else if (!TimeOfDay.isValidTimes(trimmedStartTime, trimmedEndTime)) {
+            throw new ParseException(TimeOfDay.TIME_CONSTRAINTS);
+        }
+        TimeOfDay[] timeOfDays = {new TimeOfDay(trimmedStartTime), new TimeOfDay(trimmedEndTime)};
+        return timeOfDays;
     }
 
     /**
@@ -130,13 +167,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code module id} is invalid.
      */
-    public static String parseModuleId(String moduleId) throws ParseException {
+    public static ModuleId parseModuleId(String moduleId) throws ParseException {
         requireNonNull(moduleId);
         String trimmedModule = moduleId.trim();
         if (!ModuleId.isValidModuleId(trimmedModule)) {
             throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
         }
-        return moduleId;
+        return new ModuleId(moduleId);
     }
 
     /**

@@ -72,8 +72,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BENG = " " + PREFIX_EMAIL + VALID_EMAIL_BENG;
     public static final String STUDENT_ID_DESC_ALEX = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_ALEX;
     public static final String STUDENT_ID_DESC_BENG = " " + PREFIX_STUDENT_ID + VALID_STUDENT_ID_BENG;
-    public static final String MODULE_DESC_ALEX = " " + PREFIX_MODULE + VALID_STUDENT_ID_ALEX;
-    public static final String MODULE_DESC_BENG = " " + PREFIX_MODULE + VALID_STUDENT_ID_BENG;
+    public static final String MODULE_DESC_ALEX = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -157,7 +156,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
 
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
-        final String[] splitName = module.getModuleId().toString().split("\\s+");
+
+        final String[] splitName = module.getModuleId().getId().split("\\s+");
+
         model.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredModuleList().size());

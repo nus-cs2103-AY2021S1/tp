@@ -21,6 +21,7 @@ import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
@@ -48,8 +49,9 @@ public class AddModuleCommandTest {
         AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
-        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE, () ->
-                addModuleCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE, ()
+                -> addModuleCommand.execute(modelStub)
+        );
     }
 
     @Test
@@ -218,7 +220,7 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public void setModule(Module target, String newModuleId) {
+        public void setModule(Module target, ModuleId newModuleId) {
             throw new AssertionError("This method should not be called.");
         }
 
