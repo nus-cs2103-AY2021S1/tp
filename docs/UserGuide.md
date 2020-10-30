@@ -96,9 +96,10 @@ This section provides support for the commands required to perform desired actio
   For example, in `list lt/<list type>`, the `lt/<list type>` must be provided and no duplicate is allowed. <br>
   `list` and `list lt/all lt/bookmark` are invalid command formats, but `list lt/all` is valid.
 
-* Prefixes enclosed with `[]` is optional and can be omitted by the user. <br>
+* Prefixes enclosed with `[]` is optional, can be omitted by the user, and duplicate is not allowed. <br>
   For example, in `update sn/<serial number> [n/<name]`, the `n/<name>` can be omitted. <br>
-  `update sn/Fairprice1 n/Apple` and `update sn/Fairprice1` are both valid command formats.
+  `update sn/Fairprice1 n/Apple` and `update sn/Fairprice1` are both valid command formats, <br>
+  but `update sn/Fairprice1 n/Apple n/Banana` is not a valid command format.
 
 * Compulsory prefixes with `...` trailing after them can be used more than one time in one command. <br>
   For example, in `delete sn/<serial number>...`, the `sn/<serial number>` must be provided and duplicates are allowed. <br>
@@ -184,13 +185,13 @@ Lists all the stock(s) in the inventory.
 
 <div markdown="block" class="alert alert-info">
 
-The valid list types that can be provided and the respective list that it shows are
+**:information_source: The valid list types that can be provided and the respective list that it shows are**
 
 **list type** | **What the list shows**
 ------| --------
-**lt/all** | All the stocks in the inventory.
-**lt/bookmark** | All the stocks in the inventory that is bookmarked.
-**lt/low** | All the stocks in the inventory that is low in quantity.
+**all** | All the stocks in the inventory.
+**bookmark** | All the stocks in the inventory that is bookmarked.
+**low** | All the stocks in the inventory that is low in quantity.
 
 </div>
 
@@ -226,31 +227,11 @@ delete sn/Fairprice1 sn/Ntuc1
 Displays a list of stocks found in the inventory that contains all keywords
 specified in ANY one of fields searched.
 
-* Fields that can be searched:
-    * Name
-    * Serial Number
-    * Location in warehouse
-    * Source of the stock
-
 <h4>Format</h4> 
 
-Any combination of 1,2,3 or 4 of the fields: <br>
-* Single:
-    * `find n/<name keyword(s) to be searched in stock name>` <br>
-    * `find sn/<serial number to be searched in stock serial number>` <br>
-    * `find l/<location stored keyword(s) to be searched in stock location stored>` <br>
-    * `find s/<source keyword(s) to be searched in stock source>` <br>
-* Multiple:
-    * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
+`find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]`
 
-<div markdown="block" class="alert alert-warning">
-
-**:warning:**
-Each specific fields specified in the `find` command should only be entered once.<br>
-e.g. `find n/banana n/apple` is not a valid command.
-</div>
-
-<h5>Search criteria</h5>
+<h4>Search criteria</h4>
 
 * Only stocks that contain all the search keywords for a field will be displayed. <br>
     e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
@@ -260,17 +241,33 @@ e.g. `find n/banana n/apple` is not a valid command.
     e.g. `find n/ashLey` will match stock with Name: Ashley.
 
 * Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.<br>
-    e.g.
+
+<h4>Examples</h4>
 
 Stock | Details
 ------| --------
 **Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
 **Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
 
-`find n/banana sn/SHENGSIONG` will match both Stock 1 and Stock 2 <br>
-`find l/section` will match both Stock 1 and Stock 2. <br>
-`find n/chicken l/poultry` will match only Stock 2. <br>
-`find s/ntuc l/singapore` will match only Stock 1.
+```
+find n/banana sn/SHENGSIONG
+```
+will match both Stock 1 and Stock 2 <br>
+
+```
+find l/section
+```
+will match both Stock 1 and Stock 2. <br>
+
+```
+find n/chicken l/poultry
+```
+will match only Stock 2. <br>
+
+```
+find s/ntuc l/singapore
+```
+will match only Stock 1.
 
 ### Find exact stocks from inventory: `findexact`
 Displays a list of stocks found in the inventory that contains all keywords specified in ALL fields searched.
