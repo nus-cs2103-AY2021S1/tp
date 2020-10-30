@@ -362,6 +362,18 @@ Format: `leaveTeammateView`
 
 Example: `leaveTeammateView` leaves the view of teammates, and reenters the project view.
 
+# **Features** in person scope
+
+### Start work on an existing person `startperson `
+Initialises the person specified.
+
+Format: `startperson (INDEX)`
+- Initialises the person at the specified INDEX.
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples: `startperson 2` Initialises the second person in the person list.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
