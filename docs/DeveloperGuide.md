@@ -227,21 +227,25 @@ giving their pitch.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                     | I can …                        | So that I can…                                                         |
+| Priority | As a/an …                                  | I can …                        | So that I can…                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | regular user                               | add more clients               | handle more clients                                                    |
 | `* * *`  | regular user                               | delete a client                | account for my clients who churned                                     |
 |  `* *`   | first-time user                            | get some help on using the product | know how to use it                                                 |
-| `* * *`  | first-time user                            | view all clients               | get a general overview                                                 |
+| `* * *`  | first-time user                            | view all (active) clients      | get a general overview                                                 |
 | `* * *`  | first-time user                            | load existing data that I have on user personal details |                                               |
 | `* * *`  | regular user                               | save my client information     | save my edits for next time use                                        |
+| `* *`    | expert user                                | archive clients                | hide clients whom I am no longer working with                          |
+| `* *`    | expert user                                | view all archived clients      | see the clients that I am no longer working with                       |
+| `* *`    | expert user                                | unarchive clients              | display them when I start working with them again                      |
+| `* *`    | regular user                               | clear all clients              | delete irrelevant client data when I move to a new company             |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is `I4I` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01 - User adds Client**
+**UC01 - User adds client**
 
 **MSS**
 
@@ -258,53 +262,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC02 - User deletes Client**
+* 1b. User attempts to add clients in the archive mode.
+   
+    * 1b1. System gives corresponding error message.
 
-**MSS**
+      Use case ends.
 
-1. User requests to list persons.
-2. System shows a list of persons.
-3. User chooses to delete particular client.
-4. System gives success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. User enters wrong delete command format.
-
-    * 3a1. System gives corresponding error message.
+* 1c. User attempts to add an existing client.
+   
+    * 1c1. System gives corresponding error message.
 
       Use case ends.
       
-* 3b. User enters invalid index.
-
-    * 3b1. System gives corresponding error message.
-
-      Use case ends.
-
-**UC03 - User lists all Clients**
+**UC02 - User deletes client**
 
 **MSS**
 
-1. User chooses to list all clients.
-2. System shows all clients.
+1. User requests to <ins>list all active clients (UC03)</ins> or to <ins>list all archived clients (UC04)</ins>.
+2. User chooses to delete particular client.
+3. System gives success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User enters wrong list command format.
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. User enters wrong delete command format.
+
+    * 2a1. System gives corresponding error message.
+
+      Use case ends.
+      
+* 2b. User enters invalid index.
+
+    * 2b1. System gives corresponding error message.
+
+      Use case ends.
+
+**UC03 - User lists all active clients**
+
+**MSS**
+
+1. User chooses to list all active clients.
+2. System shows all active clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong list command format (for active clients).
 
     * 1a1. System gives corresponding error message.
 
       Use case ends.
       
-**UC04 - User requests for help**
+**UC04 - User lists all archived clients**
+
+**MSS**
+
+1. User chooses to list all archived clients.
+2. System shows all archived clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong list command format (for archived clients).
+
+    * 1a1. System gives corresponding error message.
+
+      Use case ends.
+
+**UC05 - User requests for help**
 
 **MSS**
 
@@ -321,6 +353,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
       
+**UC06 - User archives client**
+
+**MSS**
+
+1. User requests to <ins>list all active clients (UC03)</ins>.
+2. User chooses to archive particular active client.
+3. System gives success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. User enters wrong archive command format.
+
+    * 2a1. System gives corresponding error message.
+
+      Use case ends.
+      
+* 2b. User enters invalid index.
+
+    * 2b1. System gives corresponding error message.
+
+      Use case ends.
+
+**UC07 - User unarchives client**
+
+**MSS**
+
+1. User requests to <ins>list all archived clients (UC04)</ins>.
+2. User chooses to unarchive particular archived client.
+3. System gives success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. User enters wrong unarchive command format.
+
+    * 2a1. System gives corresponding error message.
+
+      Use case ends.
+      
+* 2b. User enters invalid index.
+
+    * 2b1. System gives corresponding error message.
+
+      Use case ends.
+
+      
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
@@ -333,6 +422,11 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Insurance4Insurance**: Name of the product.
 * **I4I**: Short for Insurance4Insurance, the name of the product.
+* **Active Client**: A client not in the archive.
+* **Active List** / **Active Client List**: List of clients not in the archive.
+* **Active Mode**: The mode which allows users to view the active list.
+* **Archive Mode**: The mode which allows users to view the archive.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
