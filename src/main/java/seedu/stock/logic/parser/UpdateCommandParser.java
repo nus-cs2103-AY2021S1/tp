@@ -3,14 +3,21 @@ package seedu.stock.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.UpdateCommand.MESSAGE_TOO_MANY_QUANTITY_PREFIXES;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +45,11 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     @Override
     public UpdateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_LOW_QUANTITY
-                );
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefixes(args);
         List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
+        List<Prefix> illegalPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_QUANTITY, PREFIX_FILE_NAME,
+                PREFIX_LIST_TYPE, PREFIX_NOTE, PREFIX_NOTE_INDEX, PREFIX_SORT_FIELD, PREFIX_SORT_ORDER,
+                PREFIX_STATISTICS_TYPE);
         boolean isSerialNumberPresent = argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent();
         boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
         boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
@@ -51,10 +57,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         boolean isSourcePresent = argMultimap.getValue(PREFIX_SOURCE).isPresent();
         boolean isLocationPresent = argMultimap.getValue(PREFIX_LOCATION).isPresent();
         boolean isLowQuantityPresent = argMultimap.getValue(PREFIX_LOW_QUANTITY).isPresent();
-        boolean isQuantityPresent = argMultimap.getValue(PREFIX_QUANTITY).isPresent();
+        boolean isInvalidPrefixPresent = argMultimap.checkIfAnyExist(illegalPrefixes);
 
         // If unallowed prefixes are provided
-        if (isQuantityPresent) {
+        if (isInvalidPrefixPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 
