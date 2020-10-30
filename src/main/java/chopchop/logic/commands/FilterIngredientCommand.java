@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Entry;
 import chopchop.model.Model;
-import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
+import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.ui.DisplayNavigator;
 
@@ -18,14 +18,14 @@ import chopchop.ui.DisplayNavigator;
 public class FilterIngredientCommand extends Command {
 
     private final TagContainsKeywordsPredicate tagPredicates;
-    private final ExpiryDateMatchesKeywordsPredicate expPredicate;
+    private final ExpiryDateOnOrBeforePredicate expPredicate;
 
     /**
      * Constructs a command that finds the given ingredient item.
      * @param expPredicate
      * @param tagPredicates
      */
-    public FilterIngredientCommand(ExpiryDateMatchesKeywordsPredicate expPredicate,
+    public FilterIngredientCommand(ExpiryDateOnOrBeforePredicate expPredicate,
             TagContainsKeywordsPredicate tagPredicates) {
         this.tagPredicates = tagPredicates;
         this.expPredicate = expPredicate;

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -16,17 +15,17 @@ public class TagsContainKeywordsPredicateTest {
 
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("first");
+        List<String> firstPredicateKeywordList = List.of("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TagContainsKeywordsPredicate firstPredicate = new TagContainsKeywordsPredicate(firstPredicateKeywordList);
-        TagContainsKeywordsPredicate secondPredicate = new TagContainsKeywordsPredicate(secondPredicateKeywordList);
+        var firstPredicate = new TagContainsKeywordsPredicate(firstPredicateKeywordList);
+        var secondPredicate = new TagContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TagContainsKeywordsPredicate firstPredicateCopy = new TagContainsKeywordsPredicate(firstPredicateKeywordList);
+        var firstPredicateCopy = new TagContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,8 +41,7 @@ public class TagsContainKeywordsPredicateTest {
     @Test
     public void test_tagContainsKeywords_returnsTrue() {
         // One keyword
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(
-            Collections.singletonList("Family 123*"));
+        var predicate = new TagContainsKeywordsPredicate(List.of("Family 123*"));
 
         assertTrue(predicate.test(new IngredientBuilder().withTags(
             new HashSet<>(Arrays.asList(new Tag("Family 123*")))).build()));
@@ -85,8 +83,7 @@ public class TagsContainKeywordsPredicateTest {
 
     @Test
     public void test_tagDoesNotContainKeywords_noMatchingTagReturnsFalse() {
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(
-            Collections.singletonList("Family 123*"));
+        var predicate = new TagContainsKeywordsPredicate(List.of("Family 123*"));
         assertFalse(predicate.test(new IngredientBuilder().withTags(
             new HashSet<>(Arrays.asList(new Tag("TagOne"), new Tag("TagTwo")))).build()));
         assertFalse(predicate.test(new IngredientBuilder().withTags(
@@ -95,13 +92,14 @@ public class TagsContainKeywordsPredicateTest {
             new HashSet<>(Arrays.asList(new Tag("TagOne"), new Tag("TagTwo")))).build()));
         assertFalse(predicate.test(new RecipeBuilder().withTags(
             new HashSet<>(Arrays.asList(new Tag("TagOne TagTwo")))).build()));
+
+        assertFalse(predicate.test(new RecipeBuilder().withTags(new HashSet<>()).build()));
     }
 
     @Test
     public void test_tagDoesNotContainKeywords_partiallyMatchingTagReturnsFalse() {
         // keywords are only partially contained in the tags
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(
-            Collections.singletonList("Family 123*"));
+        var predicate = new TagContainsKeywordsPredicate(List.of("Family 123*"));
         assertFalse(predicate.test(new IngredientBuilder().withTags(
             new HashSet<>(Arrays.asList(new Tag("Fami"), new Tag("123*")))).build()));
         assertFalse(predicate.test(new IngredientBuilder().withTags(
@@ -115,8 +113,7 @@ public class TagsContainKeywordsPredicateTest {
     @Test
     public void test_tagDoesNotContainKeywords_onlyMatchingOtherCriteriaReturnsFalse() {
         // keywords match other fields but not tags
-        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(
-            Collections.singletonList("Family 123*"));
+        var predicate = new TagContainsKeywordsPredicate(List.of("Family 123*"));
         assertFalse(predicate.test(new IngredientBuilder()
             .withName("Family 123*")
             .withTags(new HashSet<>(Arrays.asList(new Tag("Famil"), new Tag("123*"))))

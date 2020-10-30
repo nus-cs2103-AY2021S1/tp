@@ -23,6 +23,7 @@ import chopchop.logic.commands.StatsRecipeRecentCommand;
 import chopchop.logic.commands.StatsRecipeTopCommand;
 import chopchop.logic.parser.CommandArguments;
 
+import static chopchop.commons.util.Enforce.enforceLessThan;
 import static chopchop.commons.util.Strings.ARG_AFTER;
 import static chopchop.commons.util.Strings.ARG_BEFORE;
 import static chopchop.commons.util.Strings.COMMAND_STATS;
@@ -163,7 +164,7 @@ public class StatsCommandParser {
     }
 
     private static Optional<LocalDateTime> processDate(List<String> strings) throws DateTimeParseException {
-        assert strings.size() < 2;
+        enforceLessThan(strings.size(), 2);
 
         if (strings.size() == 0) {
             return Optional.empty();

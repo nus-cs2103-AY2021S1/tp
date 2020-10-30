@@ -6,12 +6,12 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
- * Tests that an item's {@code Name} matches any of the keywords given.
+ * Tests that an item's {@code ExpiryDate} is on or before the given expiry date
  */
-public class ExpiryDateMatchesKeywordsPredicate implements Predicate<Entry> {
+public class ExpiryDateOnOrBeforePredicate implements Predicate<Entry> {
     private final ExpiryDate exd;
 
-    public ExpiryDateMatchesKeywordsPredicate(ExpiryDate exd) {
+    public ExpiryDateOnOrBeforePredicate(ExpiryDate exd) {
         this.exd = exd;
     }
 
@@ -28,8 +28,8 @@ public class ExpiryDateMatchesKeywordsPredicate implements Predicate<Entry> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ExpiryDateMatchesKeywordsPredicate // instanceof handles nulls
-                && this.exd.equals(((ExpiryDateMatchesKeywordsPredicate) other).exd)); // state check
+                || (other instanceof ExpiryDateOnOrBeforePredicate // instanceof handles nulls
+                && this.exd.equals(((ExpiryDateOnOrBeforePredicate) other).exd)); // state check
     }
 
 }

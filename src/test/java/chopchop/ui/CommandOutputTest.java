@@ -32,8 +32,7 @@ public class CommandOutputTest extends GuiUnitTest {
         String testFeedback = "test feedback to user";
         guiRobot.interact(() -> commandOutput.setFeedbackToUser(CommandResult.message(testFeedback)));
         guiRobot.pauseForHuman();
-        // Command output adds a newline to the end of each text
-        assertEquals(testFeedback + "\n", parseTextToString(commandOutputHandle.getText()));
+        assertEquals(testFeedback, parseTextToString(commandOutputHandle.getText()));
 
         // Clear message
         guiRobot.interact(() -> commandOutput.clear());
@@ -46,7 +45,6 @@ public class CommandOutputTest extends GuiUnitTest {
         String testError = "test error to user.";
         guiRobot.interact(() -> commandOutput.setFeedbackToUser(CommandResult.error(testError)));
         guiRobot.pauseForHuman();
-        // Command output adds a newline to the end of each text
-        assertEquals(errorWrapper + testError + "\n", parseTextToString(commandOutputHandle.getText()));
+        assertEquals(errorWrapper + testError, parseTextToString(commandOutputHandle.getText()));
     }
 }

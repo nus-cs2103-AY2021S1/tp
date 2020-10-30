@@ -19,7 +19,7 @@ import chopchop.model.recipe.Recipe;
  * Makes a dish according to the recipe identified by the index number or name used in the displayed recipe list,
  * removing the ingredients used.
  */
-public class MakeRecipeCommand extends Command implements Undoable {
+public class MakeCommand extends Command implements Undoable {
 
     private final ItemReference item;
     private Recipe recipe;
@@ -28,14 +28,10 @@ public class MakeRecipeCommand extends Command implements Undoable {
     /**
      * Constructs a command that makes the given recipe item.
      */
-    public MakeRecipeCommand(ItemReference item) {
+    public MakeCommand(ItemReference item) {
         requireNonNull(item);
         this.item = item;
         this.ingredients = new ArrayList<>();
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
     }
 
     @Override
@@ -104,14 +100,14 @@ public class MakeRecipeCommand extends Command implements Undoable {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof MakeRecipeCommand
-                && this.item.equals(((MakeRecipeCommand) other).item)
-                && this.ingredients.equals(((MakeRecipeCommand) other).ingredients));
+                || (other instanceof MakeCommand
+                && this.item.equals(((MakeCommand) other).item)
+                && this.ingredients.equals(((MakeCommand) other).ingredients));
     }
 
     @Override
     public String toString() {
-        return String.format("MakeRecipeCommand(%s)", this.item);
+        return String.format("MakeCommand(%s)", this.item);
     }
 
     public static String getCommandString() {

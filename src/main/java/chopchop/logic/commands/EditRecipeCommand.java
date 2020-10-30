@@ -1,6 +1,9 @@
 package chopchop.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceContains;
+import static chopchop.commons.util.Enforce.enforceNonNull;
+import static chopchop.commons.util.Enforce.enforcePresent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -37,8 +40,7 @@ public class EditRecipeCommand extends Command implements Undoable {
      * Constructs a command that edits the given recipe item.
      */
     public EditRecipeCommand(ItemReference item, RecipeEditDescriptor recipeEditDescriptor) {
-        requireNonNull(item);
-        requireNonNull(recipeEditDescriptor);
+        enforceNonNull(item, recipeEditDescriptor);
 
         this.item = item;
         this.recipeEditDescriptor = recipeEditDescriptor;
@@ -47,7 +49,7 @@ public class EditRecipeCommand extends Command implements Undoable {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        requireNonNull(model);
+        enforceNonNull(model);
 
         var res = resolveRecipeReference(this.item, model);
         if (res.isError()) {
@@ -56,12 +58,18 @@ public class EditRecipeCommand extends Command implements Undoable {
 
         this.recipe = res.getValue();
 
-        var newName = this.recipeEditDescriptor.getNameEdit()
-            .orElse(this.recipe.getName());
+        var red = this.recipeEditDescriptor;
+        if (red.getNameEdit().isEmpty() && red.getIngredientEdits().isEmpty()
+            && red.getTagEdits().isEmpty() && red.getStepEdits().isEmpty()) {
 
-        var newIngredients = performIngredientEdits(this.recipeEditDescriptor.getIngredientEdits());
-        var newSteps = performStepEdits(this.recipeEditDescriptor.getStepEdits());
-        var newTags = performTagEdits(this.recipeEditDescriptor.getTagEdits());
+            return CommandResult.message("No edits provided; recipe '%s' was not modified",
+                this.recipe.getName());
+        }
+
+        var newName = red.getNameEdit().orElse(this.recipe.getName());
+        var newIngredients = performIngredientEdits(red.getIngredientEdits());
+        var newSteps = performStepEdits(red.getStepEdits());
+        var newTags = performTagEdits(red.getTagEdits());
 
         var foo = Result.firstError(newIngredients, newSteps, newTags);
         if (foo.isPresent()) {
@@ -73,11 +81,16 @@ public class EditRecipeCommand extends Command implements Undoable {
             newSteps.getValue(),
             newTags.getValue());
 
+
+        var editedName = !this.recipe.getName().equalsIgnoreCase(newName);
+        if (editedName && model.findRecipeWithName(newName).isPresent()) {
+            return CommandResult.error("Cannot rename recipe '%s' to '%s'; the latter already exists",
+                this.recipe.getName(), newName);
+        }
+
         model.setRecipe(this.recipe, this.editedRecipe);
-        return CommandResult.message("Edited recipe '%s'%s",
-            this.recipe.getName(), !this.recipe.getName().equals(newName)
-                ? String.format(" (renamed to '%s')", newName)
-                : "");
+        return CommandResult.message("Edited recipe '%s'%s", this.recipe.getName(),
+            editedName ? String.format(" (renamed to '%s')", newName) : "");
     }
 
 
@@ -94,10 +107,11 @@ public class EditRecipeCommand extends Command implements Undoable {
             var name = edit.getIngredientName();
             var qtyOpt = edit.getIngredientQuantity();
 
+            enforceContains(type, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
             if (type == EditOperationType.ADD) {
 
                 for (var ingr : ingredients) {
-                    if (ingr.getName().equals(name)) {
+                    if (ingr.getName().equalsIgnoreCase(name)) {
                         return Result.error("Recipe '%s' already contains ingredient '%s'",
                             this.recipe.getName(), name);
                     }
@@ -113,23 +127,21 @@ public class EditRecipeCommand extends Command implements Undoable {
 
                 if (opt.isEmpty()) {
                     return Result.error("Recipe doesn't contain an ingredient named '%s'", name);
-                } else if (type == EditOperationType.EDIT && qtyOpt.isEmpty()) {
-                    return Result.error("Missing quantity to edit ingredient '%s'", name);
                 }
 
                 var existing = opt.get();
 
                 if (type == EditOperationType.EDIT) {
 
+                    enforcePresent(qtyOpt);
+
                     var idx = ingredients.indexOf(existing);
                     ingredients.set(idx, new IngredientReference(name, qtyOpt.get()));
 
                 } else if (type == EditOperationType.DELETE) {
 
+                    enforce(qtyOpt.isEmpty());
                     ingredients.remove(existing);
-
-                } else {
-                    return Result.error("Cannot %s ingredients", type);
                 }
             }
         }
@@ -147,15 +159,14 @@ public class EditRecipeCommand extends Command implements Undoable {
             var step = edit.getStepText();
             var numOpt = edit.getStepNumber().map(x -> x - 1);
 
+            enforceContains(type, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
+
             if (type == EditOperationType.ADD) {
 
                 steps.add(numOpt.orElse(steps.size()), new Step(step));
 
             } else {
-
-                if (numOpt.isEmpty()) {
-                    return Result.error("Missing step number for %s", type);
-                }
+                enforcePresent(numOpt);
 
                 int index = numOpt.get();
                 if (index < 0 || index >= steps.size()) {
@@ -188,6 +199,8 @@ public class EditRecipeCommand extends Command implements Undoable {
 
             var tagName = edit.getTagName();
 
+            enforceContains(edit.getEditType(), EditOperationType.ADD, EditOperationType.DELETE);
+
             if (edit.getEditType() == EditOperationType.ADD) {
 
                 // it's a Set<Tag>, so we don't need to check for dupes.
@@ -203,8 +216,6 @@ public class EditRecipeCommand extends Command implements Undoable {
 
                 tags.remove(opt.get());
 
-            } else {
-                return Result.error("Cannot %s tags", edit.getEditType());
             }
         }
 
@@ -214,7 +225,7 @@ public class EditRecipeCommand extends Command implements Undoable {
 
     @Override
     public CommandResult undo(Model model) {
-        requireNonNull(model);
+        enforceNonNull(model);
 
         model.setRecipe(this.editedRecipe, this.recipe);
         return CommandResult.message("Undo: un-edited recipe '%s'", this.recipe.getName());

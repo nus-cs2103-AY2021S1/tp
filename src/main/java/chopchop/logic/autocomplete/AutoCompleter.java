@@ -2,6 +2,10 @@
 
 package chopchop.logic.autocomplete;
 
+import static chopchop.commons.util.Enforce.enforceGreaterThan;
+import static chopchop.commons.util.Enforce.enforceLessThan;
+import static chopchop.commons.util.Enforce.enforceNotEmpty;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -157,7 +161,7 @@ public class AutoCompleter {
             //     internal state is not reset
             // (c) if 'partial' changed due to user input, then we are supposed to be reset.
 
-            assert this.lastCompletionIndex < this.lastViableCompletions.size();
+            enforceLessThan(this.lastCompletionIndex, this.lastViableCompletions.size());
 
             var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
@@ -186,9 +190,7 @@ public class AutoCompleter {
         String partial = "";
         if (nested) {
             var words = new StringView(args.getRemaining()).words();
-            if (words.size() < 2) {
-                return orig;
-            }
+            enforceGreaterThan(words.size(), 1);
 
             partial = words.get(1);
 
@@ -224,7 +226,7 @@ public class AutoCompleter {
         } else {
 
             // see the note in completeCommand ('this should always hold, because...')
-            assert this.lastCompletionIndex < this.lastViableCompletions.size();
+            enforceLessThan(this.lastCompletionIndex, this.lastViableCompletions.size());
 
             var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
@@ -234,7 +236,7 @@ public class AutoCompleter {
     }
 
     private String completeTag(Model model, CommandArguments args, String orig) {
-        assert args.getAllArguments().size() > 0;
+        enforceNotEmpty(args.getAllArguments());
 
         var lastArg = args.getAllArguments().get(args.getAllArguments().size() - 1);
         var partial = lastArg.snd();
@@ -284,7 +286,7 @@ public class AutoCompleter {
      * Returns a completion for the argument name only.
      */
     private String completeArgument(CommandArguments args, String orig) {
-        assert args.getAllArguments().size() > 0;
+        enforceNotEmpty(args.getAllArguments());
 
         var lastArg = args.getAllArguments().get(args.getAllArguments().size() - 1);
         var partial = lastArg.fst().name();
@@ -347,7 +349,7 @@ public class AutoCompleter {
     }
 
     private String completeArgComponent(CommandArguments args, String orig) {
-        assert args.getAllArguments().size() > 0;
+        enforceNotEmpty(args.getAllArguments());
 
         var last = args.getAllArguments().get(args.getAllArguments().size() - 1);
         var comps = last.fst().getComponents();
@@ -400,16 +402,14 @@ public class AutoCompleter {
         String orig, List<T> entries) {
 
         var words = new StringView(orig).words();
-        assert !words.isEmpty();
+        enforceNotEmpty(words);
 
         String partial = "";
         if (req == RequiredCompletion.RECIPE_NAME_IN_ARG || req == RequiredCompletion.INGREDIENT_NAME_IN_ARG) {
 
             // get the last argument.
             var arglist = args.getAllArguments();
-            if (arglist.isEmpty()) {
-                return Optional.empty();
-            }
+            enforceNotEmpty(arglist);
 
             var last = arglist.get(arglist.size() - 1);
             partial = last.snd();
@@ -456,7 +456,7 @@ public class AutoCompleter {
 
             // see the note in completeCommand ('this should always hold, because...')
 
-            assert this.lastCompletionIndex < this.lastViableCompletions.size();
+            enforceLessThan(this.lastCompletionIndex, this.lastViableCompletions.size());
 
             var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();

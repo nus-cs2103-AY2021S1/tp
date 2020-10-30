@@ -13,7 +13,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import chopchop.model.attributes.ExpiryDate;
-import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
+import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
@@ -34,8 +34,8 @@ public class FilterIngredientCommandTest {
         var firstTagPredicate = new TagContainsKeywordsPredicate(Collections.singletonList("firstTag"));
         var secondTagPredicate = new TagContainsKeywordsPredicate(Collections.singletonList("secondTag"));
 
-        var firstExpiryPredicate = new ExpiryDateMatchesKeywordsPredicate(new ExpiryDate("2020-12-31"));
-        var secondExpiryPredicate = new ExpiryDateMatchesKeywordsPredicate(new ExpiryDate("2022-01-01"));
+        var firstExpiryPredicate = new ExpiryDateOnOrBeforePredicate(new ExpiryDate("2020-12-31"));
+        var secondExpiryPredicate = new ExpiryDateOnOrBeforePredicate(new ExpiryDate("2022-01-01"));
 
         var filterFirstCommand = new FilterIngredientCommand(firstExpiryPredicate, firstTagPredicate);
         var filterSecondCommand = new FilterIngredientCommand(secondExpiryPredicate, firstTagPredicate);
@@ -116,10 +116,10 @@ public class FilterIngredientCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code ExpiryDateMatchesKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code ExpiryDateOnOrBeforePredicate}.
      */
-    private ExpiryDateMatchesKeywordsPredicate prepareExpiryPredicate(String userInput) {
-        return new ExpiryDateMatchesKeywordsPredicate(new ExpiryDate(userInput));
+    private ExpiryDateOnOrBeforePredicate prepareExpiryPredicate(String userInput) {
+        return new ExpiryDateOnOrBeforePredicate(new ExpiryDate(userInput));
     }
 }
 

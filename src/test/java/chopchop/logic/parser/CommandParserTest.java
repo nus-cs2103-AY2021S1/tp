@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import chopchop.commons.util.Pair;
+import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.commands.AddCommandParser;
 import chopchop.logic.parser.commands.DeleteCommandParser;
 import chopchop.logic.parser.commands.EditCommandParser;
@@ -60,12 +61,15 @@ public class CommandParserTest {
         tests.put("undo", "Result(UndoCommand)");
         tests.put("redo", "Result(RedoCommand)");
 
+        tests.put("filter recipe /tag x", "Result(FilterRecipeCommand(...))");
+        tests.put("filter ingredient /tag x", "Result(FilterIngredientCommand(...))");
+
         tests.put("list recipe", "Result(ListRecipeCommand)");
         tests.put("list recipes", "Result(ListRecipeCommand)");
         tests.put("list ingredient", "Result(ListIngredientCommand)");
         tests.put("list ingredients", "Result(ListIngredientCommand)");
 
-        tests.put("make cake", "Result(MakeRecipeCommand(cake))");
+        tests.put("make cake", "Result(MakeCommand(cake))");
         tests.put("view cake", "Result(ViewCommand(cake))");
         tests.put("filter recipe /tag owo", "Result(FilterRecipeCommand(...))");
         tests.put("edit recipe cake", "Result(EditRecipeCommand(cake))");
@@ -92,6 +96,15 @@ public class CommandParserTest {
 
             System.err.println(x);
             assertEquals(v, x.toString());
+        });
+
+
+        assertThrows(CommandException.class, () -> {
+            throw new CommandException("asdf");
+        });
+
+        assertThrows(CommandException.class, () -> {
+            throw new CommandException("asdf", new RuntimeException("owo"));
         });
     }
 
@@ -198,10 +211,20 @@ public class CommandParserTest {
         cases.put("filter ingredient /tag",                                             false);
         cases.put("filter ingredient /expiry a a a ",                                   false);
 
+        cases.put("add recommendation x",                                               false);
+        cases.put("edit recommendation",                                                false);
+        cases.put("find recommendation x",                                              false);
+        cases.put("filter recommendation /x",                                           false);
+        cases.put("delete recommendation x",                                            false);
+        cases.put("stats recommendation",                                               false);
+        cases.put("list",                                                               false);
+
         cases.put("help",                                                               true);
         cases.put("help add",                                                           true);
         cases.put("help add recipe",                                                    true);
         cases.put("add ingredient f",                                                   true);
+        cases.put("list recommendation",                                                true);
+        cases.put("list recommendations",                                               true);
 
         cases.put("filter recipe /tag x",                                               true);
         cases.put("filter recipe /tag x /ingredient x",                                 true);

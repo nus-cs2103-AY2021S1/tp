@@ -29,4 +29,11 @@ public class IngredientUsage extends Usage {
             this.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
             this.getQty());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj)
+            && (obj instanceof IngredientUsage)
+            && (this.qty.equals(((IngredientUsage) obj).qty));
+    }
 }

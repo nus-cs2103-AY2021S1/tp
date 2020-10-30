@@ -11,7 +11,10 @@ import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
+import chopchop.model.exceptions.EntryNotFoundException;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import org.junit.jupiter.api.Test;
@@ -68,6 +71,13 @@ public class ModelManagerTest {
     public void hasRecipe_recipeInRecipeBook_returnsTrue() {
         modelManager.addRecipe(APRICOT_SALAD);
         assertTrue(modelManager.hasRecipe(APRICOT_SALAD));
+    }
+
+    @Test
+    public void setRecipe_notFound() {
+        assertThrows(EntryNotFoundException.class, () -> {
+            modelManager.setRecipe(new Recipe("owo salad", List.of(), List.of(), Set.of()), APRICOT_SALAD);
+        });
     }
 
     @Test
