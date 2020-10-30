@@ -32,7 +32,7 @@ public class ModuleTest {
 
         // valid addresses
         assertTrue(ModuleId.isValidModuleId("CS2103T"));
-        assertTrue(ModuleId.isValidModuleId("-")); // one character
+        assertFalse(ModuleId.isValidModuleId("-")); // one character
         assertTrue(ModuleId.isValidModuleId("GER1000H")); // long address
     }
 }
