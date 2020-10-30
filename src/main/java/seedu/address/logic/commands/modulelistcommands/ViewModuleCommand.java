@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all modules in the module list to the user.
  */
 public class ViewModuleCommand extends Command {
 

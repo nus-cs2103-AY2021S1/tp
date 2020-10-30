@@ -134,7 +134,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ReadOnlyContactList} with the data from {@code storage}'s Archived Module list.
+     * Returns a {@code ReadOnlyModuleList} with the data from {@code storage}'s Archived Module list.
      *
      * @param storage Storage object containing archived module list data.
      * @return ReadOnlyContactList containing the archived modules from the Storage argument.

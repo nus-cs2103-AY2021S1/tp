@@ -47,7 +47,6 @@ import seedu.address.logic.parser.modulelistparsers.RedoParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
 import seedu.address.logic.parser.modulelistparsers.UnarchiveModuleParser;
 import seedu.address.logic.parser.modulelistparsers.UndoParser;
-import seedu.address.logic.parser.modulelistparsers.ViewArchivedModulesParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 
 /**
@@ -140,7 +139,7 @@ public class ModuleListParser implements FeatureParser {
         case ArchiveModuleCommand.COMMAND_WORD:
             return new ArchiveModuleParser().parse(arguments);
         case ViewArchivedModulesCommand.COMMAND_WORD:
-            return new ViewArchivedModulesParser().parse(arguments);
+            return new ViewArchivedModulesCommand();
         case UnarchiveModuleCommand.COMMAND_WORD:
             return new UnarchiveModuleParser().parse(arguments);
 

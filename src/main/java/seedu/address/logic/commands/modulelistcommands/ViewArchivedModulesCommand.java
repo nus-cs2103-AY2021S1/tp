@@ -8,7 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Deletes a module identified using it's displayed index from the address book.
+ * Lists all modules in the archived module list to the user.
  */
 public class ViewArchivedModulesCommand extends Command {
     public static final String COMMAND_WORD = "viewarchive";
