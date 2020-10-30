@@ -242,7 +242,8 @@ Step 5: `setText` method in `ResultDisplay` receives the `result` as a parameter
 
 ### Better user interface
 
-We plan to change and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
+We changed and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel
+` which is similar to `LogListCard` and `LogListPanel` to the
 `MainWindow`.
 
 The `UI` component works the same
