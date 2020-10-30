@@ -55,6 +55,7 @@ public class EditEventCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_WRONG_TYPE = "This task selected is not in the type Event.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -81,6 +82,11 @@ public class EditEventCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
+
+        if (!(taskToEdit instanceof Event)) {
+            throw new CommandException(MESSAGE_WRONG_TYPE);
+        }
+
         Task editedTask = createEditedEvent((Event) taskToEdit, editEventDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {

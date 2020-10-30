@@ -56,10 +56,10 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             editEventDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_DATE).isPresent()) {
-            editEventDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_TASK_DATE).get()));
+            editEventDescriptor.setEventDate(ParserUtil.parseTaskDate(argMultimap.getValue(PREFIX_TASK_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_TIME).isPresent()) {
-            editEventDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_TASK_TIME).get()));
+            editEventDescriptor.setEventTime(ParserUtil.parseTaskTime(argMultimap.getValue(PREFIX_TASK_TIME).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEventDescriptor::setTagList);
 
