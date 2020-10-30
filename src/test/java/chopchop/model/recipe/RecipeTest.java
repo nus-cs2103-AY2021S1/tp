@@ -3,7 +3,6 @@ package chopchop.model.recipe;
 import java.util.List;
 import java.util.Set;
 
-import static chopchop.testutil.TypicalIngredients.APRICOT_REF;
 import static chopchop.testutil.TypicalIngredients.BANANA_REF;
 import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
