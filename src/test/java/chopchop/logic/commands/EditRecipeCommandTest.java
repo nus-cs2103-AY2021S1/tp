@@ -2,26 +2,16 @@
 
 package chopchop.logic.commands;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import chopchop.commons.util.Pair;
 import chopchop.commons.util.Result;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
-import chopchop.model.EntryBook;
 import chopchop.model.Model;
-import chopchop.model.ReadOnlyEntryBook;
-import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Volume;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.Recipe;
 import chopchop.testutil.StubbedModel;
-import chopchop.testutil.TypicalIngredients;
 import chopchop.testutil.TypicalRecipes;
 
 import org.junit.jupiter.api.Test;
@@ -181,7 +171,8 @@ public class EditRecipeCommandTest {
                 return cr;
             })
             .map(cr -> {
-                ((EditRecipeCommand) cr.fst()).undo(m);
+                var erc = ((EditRecipeCommand) cr.fst());
+                erc.undo(m);
                 return cr;
             });
 

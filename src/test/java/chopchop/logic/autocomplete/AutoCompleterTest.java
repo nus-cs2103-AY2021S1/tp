@@ -2,22 +2,11 @@
 
 package chopchop.logic.autocomplete;
 
-import java.util.Set;
 import java.util.List;
 import java.util.HashMap;
-import java.util.Optional;
 
 import chopchop.logic.parser.CommandParser;
-
-import chopchop.model.EntryBook;
-import chopchop.model.ReadOnlyEntryBook;
-import chopchop.model.attributes.Step;
-import chopchop.model.attributes.Tag;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.Recipe;
 import chopchop.testutil.StubbedModel;
-import chopchop.testutil.TypicalIngredients;
-import chopchop.testutil.TypicalRecipes;
 
 import org.junit.jupiter.api.Test;
 

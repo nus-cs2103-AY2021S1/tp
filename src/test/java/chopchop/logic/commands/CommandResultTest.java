@@ -67,8 +67,7 @@ public class CommandResultTest {
             .appendingLink("aaa", "y", false)   // 7
             .appendingLink("bbb", "x", false)   // 8
             .appendingLink("bbb", "x", false)   // 9
-            .appendingLink("aaa", "", false)    // 10
-            ;
+            .appendingLink("aaa", "", false);   // 10
 
         var parts = c.getParts();
         assertEquals(parts.get(0), parts.get(0));

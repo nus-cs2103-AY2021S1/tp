@@ -12,14 +12,15 @@ import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
-import chopchop.testutil.TypicalRecipes;
-import chopchop.testutil.TypicalIngredients;
 
 public class StubbedModel extends chopchop.model.ModelStub {
 
     private final EntryBook<Recipe> recipes;
     private final EntryBook<Ingredient> ingredients;
 
+    /**
+     * Makes a new stubbed model that has some functionality to contain and replace recipes.
+     */
     public StubbedModel() {
         this.recipes = new EntryBook<>();
         this.ingredients = new EntryBook<>();
