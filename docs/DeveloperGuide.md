@@ -257,11 +257,8 @@ Step 5: `setText` method in `ResultDisplay` receives the `result` as a parameter
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Better user interface
+### Better user interface
 
 We plan to change and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
 `MainWindow`.
