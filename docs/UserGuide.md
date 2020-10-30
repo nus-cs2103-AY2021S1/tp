@@ -470,21 +470,33 @@ Generates a statistical view in a pie chart depicting the target fields.
 * Required fields:
     1. Type of statistics to generate and display.
 
-<h5>Format</h5>
-`stats `, followed by one of the following:
+<h4>Format</h4>
 
-**Command to append** | **What the statistics describes**
+`stats st/<statistics type>`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: The valid statistics types that can be provided and what the respective statistics describes are**
+
+**Statistics type** | **What the statistics describes**
 ------| --------
-**st/source** | Distribution of source companies.
-**st/source-qd-<source company>** | Distribution of stocks for the target source company.
+**source** | Distribution of source companies.
+**source-qd-<source company>** | Distribution of stocks for the target source company.
 
-e.g. `stats st/source`, `stats st/source-qd-abc`
+</div>
 
-* Command: `stats st/source`: <br>
+<h4>Examples</h4>
+
+```
+stats st/source
+```
 
 ![SourceStatistics](images/SourceStatistics.png)
 
-* Command: `stats st/source-qd-abc` (`abc` exists with the shown items): <br>
+```
+stats st/source-qd-abc
+```
+(`abc` exists with the shown items) <br>
 
 ![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
 
