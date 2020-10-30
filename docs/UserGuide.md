@@ -15,10 +15,13 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 - **Features in global scope**
   - Get help `help` 
   - Exit application `exit`
-  - Start working on an existing project `start `
+  - List all projects `listprojects `
+  - List all person `listpersons `
+
+- **Features in project_list scope**
+  - Start working on an existing project `startproject `
   - Add a new project to the catalogue `add `
   - Delete a project from the catalogue `delete `
-  - List all projects `list `
   - Locate projects with matching keywords `find ` 
   - Edit details of a project `edit `
 
@@ -37,6 +40,10 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - View a teammate's details `viewteammate `
     - Delete a teammate `deleteteammate`
     - Return to project view from teammate view `leaveTeammateView `
+    
+- **Features in person_list scope**
+  - Start working on an existing person `startperson `
+    
 - **Summary**
 
 --------------------------------------------------------------------------------------------------------------------
