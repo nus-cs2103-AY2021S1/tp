@@ -480,7 +480,7 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule`
+#### 3.4.1 Scheduling: `schedule` (COMING SOON)
 
 ##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
 
