@@ -306,7 +306,6 @@ public class Module {
         return otherModule != null
                 && otherModule.getName().equals(getName());
     }
-
     /**
      * Returns true if module is completed by checking whether the module has a completed tag.
      */
@@ -314,7 +313,15 @@ public class Module {
         return this.tags.stream().map(x -> x.equals(new Tag("completed")))
                 .reduce(false, (x, y) -> x || y);
     }
-
+    /**
+     * Returns true if module has a grade point.
+     */
+    public boolean hasGradePoint() {
+        if (this.gradeTracker.getGradePoint().isPresent()) {
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getAllLinks(),

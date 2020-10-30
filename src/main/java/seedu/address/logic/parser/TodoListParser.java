@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.todolistcommands.AddTaskCommand;
+import seedu.address.logic.commands.todolistcommands.ClearTaskCommand;
 import seedu.address.logic.commands.todolistcommands.CompleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.DeleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
@@ -59,8 +60,8 @@ public class TodoListParser implements FeatureParser {
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskParser().parse(arguments);
 
-        //case ClearCommand.COMMAND_WORD:
-        //return new ClearCommand();
+        case ClearTaskCommand.COMMAND_WORD:
+            return new ClearTaskCommand();
 
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskParser().parse(arguments);

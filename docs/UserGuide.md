@@ -64,8 +64,22 @@ Creates and add a new module to be stored in the system.
   * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
    
    Example:
-   * `addmodule CS2103T` creates and add the module CS2103T with no zoom link.
+   * `addmodule n/CS2103T` creates and add the module CS2103T with no zoom link.
 
+#### Adding a new completed module: `addcmodule`
+
+Creates and add a new completed module to be stored in the system.
+
+  Format: `addcmodule n/NAME mc/MODULAR_CREDITS gp/GRADE_POINT [t/TAG]...`
+
+   * Using this command to add a completed module will automatically tag the module as completed.
+   * Completed modules added this way will be used for CAP calculation purposes.
+
+   Examples:
+   * `addcmodule n/CS2103T mc/4.0 gp/5.0` creates and adds the module named CS2103T with 4 modular credits 
+      and 5 grade points with a `completed` tag.
+   * `addcmodule n/CS2101 mc/2.0 gp/4.5 t/year1` creates and adds the module named CS2101 with 2 modular credits 
+      and 4.5 grade points with the tags `completed` and `year1`.
 
 #### Viewing a module: `viewmodule`
 
@@ -98,7 +112,7 @@ Adds a zoom link for a specific lesson to an existing module.
      would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
 
   Example:
-  `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+  * `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
    in the displayed module list for the lesson `lecture`.
   
 
@@ -138,7 +152,27 @@ Edits an existing module in the displayed module list with new details.
  To be implemented:
   * We are working on adding the functionality to edit the zoom links for the module for each lesson. 
 
+#### What is an Assignment ? : `Assignment`
+Each assignment is stored under a module and represents the cumulative results achieved for that module. Your 
+assignments will contain the following fields:
 
+* **`ASSIGNMENT_NAME`**
+ 
+  * Represents the name of the assignment you are providing, eg. `Quiz 1` or `Oral Presentation 2`.
+  
+* **`ASSIGNMENT_PERCENTAGE`**
+
+  * Represents the percentage the assignment carries for the final grade, eg. if `Quiz 1` is worth `15`% of the final 
+  grade, the `ASSIGNMENT_PERCENTAGE` should be `15.0`%.
+
+  * Can only be a value from `0.00 - 1.00`
+
+* **`ASSIGNMENT_RESULT`**
+
+  * Represents your results attained for the assignment, eg. if a score of `75/100` is achieved for 
+  `Oral Presentation 2`, an `ASSIGNMENT_RESULT` of `0.75` should be input.
+  
+  
 #### Adding assignment to a module: `addassignment`
 
   Adds an assignment to an existing module.
@@ -151,9 +185,12 @@ Edits an existing module in the displayed module list with new details.
   
   * Your `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
 
-  Example of usage:
-  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
+  Example:
+  * `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
   carries `5`% of the final grade and the result for this assignment is `80/100`.
+  
+  To be implemented:
+  * We are working on developing the display to show more details for each assignment besides the `ASSIGNMENT_NAME`.
   
 #### Editing an assignment in a module: `editassignment`
 
@@ -172,11 +209,64 @@ Edits an existing module in the displayed module list with new details.
   * Your new `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
 
   Example of usage:
-   `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
+   * `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
    assignment name, `Quiz 1`. 
-   `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
-   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
 
+   * `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
+   
+#### Archiving a module: `archivemodule`
+
+Archives a module in the module list and moves it into archived storage.
+
+Format: `archivemodule` `INDEX`
+
+ * The module archived will be at the `INDEX` position of the currently displayed un-archived list.
+
+ * The index refers to the index number of the module shown on the displayed un-archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `archivemodule 1` Archives the first module in the displayed list.
+ 
+#### Un-archiving a module: `unarchivemodule`
+
+Un-Archives a module in the module list and moves it back into current module list storage.
+
+Format: `unarchivemodule` `INDEX`
+
+ * The module un-archived will be at the `INDEX` position of the currently displayed archived list.
+
+ * The index refers to the index number of the module shown on the displayed archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `unarchivemodule 1` Un-Archives the first module in the displayed archived module list.
+ * `unarchivemodule 2` Un-Archives the second module in the displayed archived module list.
+
+#### View-archived modules: `viewarchive`
+
+Allows you to view the archived module list on the display.
+
+Format: `viewarchive`
+
+ * Executing this command will remove the current un-archived module list from display if you are currently viewing it. You can use the `list` command to display the un-archived module list(See next section).
+
+ Examples:
+ * `viewarchive` Views the archived module list on the display.
+
+#### View un-archived modules: `list`
+
+Allows you to view the un-archived module list on the display.
+
+Format: `list`
+
+ * Executing this command will remove the current archived module list from display if you are currently viewing it. You can use the `viewarchive` command to display the archived module list(See previous section).
+
+ Examples:
+ * `list` Views the un-archived module list on the display.
 
 ### Todo List Features
 
@@ -470,7 +560,7 @@ Examples:
  * `addcontact n/bob e/bob@gmail.com t/friend`
  
  
- #### Locating contacts: `findcontact`
+#### Locating contacts: `findcontact`
  
  Finds all contacts that fulfil all the provided search criteria.
  
@@ -514,7 +604,7 @@ Examples:
    * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
  
  
- #### Listing all contacts: `listcontact`
+#### Listing all contacts: `listcontact`
  
  Shows a list of all contacts in the contact list.
  
@@ -530,7 +620,7 @@ Examples:
  </div>
  
  
- #### Editing a contact: `editcontact`
+#### Editing a contact: `editcontact`
  
  Edits an existing contact in the contact list.
  
@@ -657,7 +747,7 @@ Creates and add a new Event with the specified information from the user input
   Format: `addevent n/[event name] d/[date]`
 
    Examples:
-    * `addevent n/CS2103T exams d/12-12-2020` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
+    * `addevent n/CS2103T exams d/12-12-2020 1200` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
 
 #### Deleting an Event from the Scheduler: `deleteevent`
 
@@ -706,8 +796,10 @@ Undoes the previous user command
 #### Redo previous user command: `redo`
 
 Redoes the previously undone user command
- * The `undo` feature currently has not been extended to Scheduler commands
+
  Format: `redo`
+ 
+  * The `redo` feature currently has not been extended to Scheduler commands
 
   Examples:
   * `redo`
@@ -717,10 +809,10 @@ Redoes the previously undone user command
 ## FAQ
 
 **Q**: How do you add a module into the program?<br>
-**A**: Run the program and wait for the terminal to start up. Next, type in : “add module [CS2103T]” to add a module called CS2103T.
+**A**: Run the program and wait for the terminal to start up. Next, type in : “addmodule n/CS2103T” to add a module called CS2103T.
 
 **Q**: How do you view the zoom links of a particular module?<br>
-**A**: When the program has started running, enter the following in the terminal : “view [CS2103T]” to view the zoom link for the module called CS2103T.
+**A**: When the program has started running, enter the following in the terminal : “viewmodule 1” to view the zoom link for the first module in the displayed list.
 
 **Q**: How do you edit a module's information?
 **A**: When the program is running, you can enter the edit command and enter whichever field you want to modify but at least
@@ -731,12 +823,17 @@ Redoes the previously undone user command
 
 Action | Format, Examples
 --------|------------------
-**Add Module** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
-**View Module** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
-**Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
-**Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
+**Add Module** | `addmodule n/MODULE_NAME`<br> e.g. `addmodule n/CS2103T`
+**Add Completed Module** | `addcmodule n/MODULE_NAME mc/MODULAR_CREDITS gp/GRADE_POINT [t/TAG]...`<br> e.g. `addcmodule n/CS2101 mc/2.0 gp/4.5 t/year1`
+**View Module** | `viewmodule INDEX`<br> e.g. `viewmodule 2`
+**Delete** | `deletemodule INDEX`<br> e.g. `deletemodule 3`
+**Edit** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
-**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
+**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/0.80`
+**Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
+**Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
+**View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
+**View Un-archived Module List** | `list `<br> e.g. `list`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
