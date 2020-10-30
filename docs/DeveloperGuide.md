@@ -401,9 +401,6 @@ The diagram below gives a short overview on what happens when a user's input is 
 
 ![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
 
-<!--TODO: Task implementation-->
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
