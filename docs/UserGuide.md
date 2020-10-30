@@ -24,7 +24,9 @@ This user guide provides you with the necessary information on how to become an 
 Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
-The figure below shows the GUI of ProductiveNUS, with its components labelled. 
+The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
+![GUI](images/GUI.png)
+*Figure X: Labelled GUI sections*
 
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
@@ -83,7 +85,7 @@ You can find out more about the command terminologies here:
 
 ### Adding an assignment: `add`
 
-Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[priority/PRIORITY] 
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[p/PRIORITY] 
 [remind]`
 
 You can add your assignments into your schedule so that you can manage all your assignments and
@@ -97,7 +99,7 @@ You can include `remind` when adding an assignment instead of using the `remind`
 For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
 
-   ![UserGuideAddCommand](images/UserGuideAddCommand.png)
+   ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 1: Information of the assignment added labelled*
 
 <div markdown="span" class="alert alert-success">
@@ -117,14 +119,16 @@ You can delete assignments from your assignment list by specifying the assignmen
 
 You can delete **one or more** assignments at a time. Here is an example with steps to follow:
 
-1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command line as per their indexes that are circled and labelled in the figure.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command box as per their indexes that are labelled in the figure.
 
-DIAGRAM
+![DeleteCommand1](images/DeleteCommandDiagram1.png)
+*Figure X: User input and location of assignment indexes*
 
 2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
-3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
+3) A "Deleted assignment(s)" message that includes the information of your deleted assignments will be displayed in the Command Box.
 
-DIAGRAM
+![DeleteCommand2](images/DeleteCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 More examples:
 * `delete 1`
@@ -141,7 +145,24 @@ More examples:
 
 ### Importing your timetable : `import`
 
-Imports your NUSMods timetable data into your schedule.
+Format: `import url/YOUR_NUSMODS_URL`
+
+You can import your NUSMods timetable data into ProductiveNUS by providing the URL to your NUSMods timetable share
+link. Imported lesson information can be found in the `Upcoming tasks`.
+ 
+Follow these steps and try importing your timetable:
+
+1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
+
+   ![NusModsShareSync](images/NusModsShareSync.PNG)
+   *Figure X: The "Share/Sync" at the NUSMods website highlighted in green*
+
+2) The URL obtained will be `YOUR_NUSMODS_URL` to be used in the import command.
+
+3) Added lesson information can be found in your task list.
+
+   ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
+   *Figure X: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
 
 Format: `import url/YOUR_NUSMODS_URL`
 
@@ -157,11 +178,15 @@ Format: `list [NUMBER_OF_DAYS]`
 
 You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date (and time) and `NUMBER_OF_DAYS` later (in number of hours).
 
-The `NUMBER_OF_DAYS` in hours is multiplied by 24.
+For example, you can enter `list 3` as shown in the diagram below to list your assignments that are due within 3 days (72 hours) from the current date (and current time). 
 
-For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
+![ListCommand1](images/ListCommandDiagram1.png)
+*Figure X: `list 3` inputted by user*
 
-DIAGRAM
+If the current date and time is 29/10/2020 1800, all assignments due within this date and time to 01/11/2020 1800 will be displayed. A message that indicates the number of assignments listed is shown.
+
+![ListCommand2](images/ListCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 <div markdown="span" class="alert alert-success">
 
@@ -194,16 +219,31 @@ Here is the table of prefixes used:
 | d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).  |
 | p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                               |
 
+| Prefix | Syntax | Examples |
+|-|-|-|
+| `n/` | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - `n/Tutorial`<br>- `n/tutorial essay` |
+| `mod/` | mod/MODULE_CODE [MORE MODULE_CODE] | - `mod/ST2334`<br>- `mod/CS2100 cs2103t` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - `d/24-10-2020` <br>- `d/1200`<br>- `d/1300 25-11-2020` |
+| `p/` | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - `p/high`<br>- `p/LOW` |
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note for prefixes:**<br>
+* For prefix `d/`, date keywords are irrespective of time and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).
+* For prefixes `n/`,`mod/` and `p/`, keywords are case-insensitive.
+</div>
 
 Here is an example with steps to follow:
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
-DIAGRAM
+![FindCommand1](images/FindCommandDiagram1.png)
+*Figure X: `find mod/CS2100 ST2334` inputted by user*
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
-3) A "listed your assignments" message will be displayed in the command box.
+3) A message that indicates the number of assignments found will be displayed as shown in the figure below.
 
-DIAGRAM
+![FindCommand1](images/FindCommandDiagram2.png)
+*Figure X: The displayed message and the updated list*
 
 <div markdown="block" class="alert alert-primary">
 
@@ -218,21 +258,29 @@ Format: `remind INDEX [MORE_INDEXES]`
 
 You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
 
-   ![UserGuideYourReminders](images/UserGuideYourReminders.png)
-   *Figure 1: `Your Reminders` highlighted in red*
+   ![YourReminders](images/YourReminders.png)
+   *Figure X: `Your Reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your assignment list ("CS1231S Homework" as shown in the figure below) and adds it to `Your Reminders`.
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your Reminders` (Figure X).
 
-      ---------------------------Figure of GUI with CS1231S Homework (Highlighted red) added into Your Reminders----------------------------
+   ![Remind1](images/Remind1.png)
+   *Figure X: Before "Statistics tutorial" is added into `Your Reminders`*
+      
+   ![Remind1InYourReminders](images/Remind1InYourReminders.png)
+   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your Reminders`*
 
 You can set reminders for **more than one** assignments at a time as well. 
 
-For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list and adds both assignments to `Your Reminders`.
+For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list ("Essay" and "Assignment 3" respectively as shown in Figure X) and adds both assignments to `Your Reminders` (Figure X).
 
 
-      ---------------------------Figure of GUI with second and fourth assignment (Highlighted red) added into Your Reminders----------------------------
+   ![Remind24](images/Remind24.png)
+   *Figure X: Before "Essay" and "Assignment 3" are added into `Your Reminders`*
+      
+   ![Remind24InYourReminders](images/Remind24InYourReminders.png)
+   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your Reminders`*
 
 
 <div markdown="block" class="alert alert-primary">
@@ -252,9 +300,11 @@ You can remove your reminded assignments from `Your Reminders` by specifying the
 
 For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
 
-      ---------------------------------Figure of GUI before CS2106 Lab is removed from Your Reminders---------------------------------
-
-      ---------------------------------Figure of GUI after CS2106 Lab is removed from Your Reminders----------------------------------
+   ![Unemind1](images/Unremind1.png)
+   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your Reminders`*
+      
+   ![Unremind1YourReminders](images/Unremind1YourReminders.png)
+   *Figure X: "Statistics tutorial" is removed from`Your Reminders`*
 
 <div markdown="block" class="alert alert-primary">
   
@@ -267,7 +317,13 @@ For example, `unremind 1` will remove the first assignment in `Your Reminders` (
 
 ### Setting priority for assignments : `prioritize`
 
-Sets a priority for the specified assignment.
+Format: `prioritize INDEX p/PRIORITY`
+
+You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
+shown with a coloured priority tag (As shown highlighted in red in the figure below).
+
+   ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
+   *Figure X: The priority tags of assignments highlighted in red*
 
 Format: `prioritize INDEX priority/PRIORITY`
 
@@ -283,9 +339,12 @@ Removes a priority for the specified assignment.
 
 Format: `unprioritze INDEX`
 
-* Removes the priority of the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+<div markdown="block" class="alert alert-primary">
+
+**:clipboard: Pointers to note:**<br>
+* At least one `INDEX` must be present. For example, `unprioritize` will not work.
+* The `INDEX` must be found in your assignment list.
+</div>
 
 ### Marking assignments as done : `done`
 
@@ -299,23 +358,22 @@ an example with steps to follow:
 1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
 the command line based on the indexes labelled in the figure.
 
-   ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.png)
+   ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
    *Figure 10a: `Indexes` of assignments labelled*
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.png)
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
    *Figure 10b: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
-   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.png)
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 10c: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index will not work.
-* The indexes **must be a positive integer** 1, 2, 3, …​
 * The indexes **must be found in your assignment list**
 * The indexes **must not be duplicated**. For example, `done 4 4` will not work.
 </div>
@@ -333,26 +391,57 @@ You can unmark `one` done assignment at a time. Here is an example with steps to
 1) If you have **accidentally** marked the assignment with the name "Essay" as done,
 you can simply enter `undone 2` into the command line based on the index labelled in the figure.
 
-   ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.png)
+   ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
    *Figure 11a: `Index` of assignment labelled*
 
 2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
 
-   ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.png)
+   ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
    *Figure 11b: Deleted green tick labelled*
 
 3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
 
-   ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.png)
+   ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
    *Figure 11c: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * Assignments are marked as not done**by default**
 * The index must be present. For example, `undone` without any index will not work.
-* The index **must be a positive integer** 1, 2, 3, …​
 * The index **must be found in your assignment list**
 </div>
+
+### Scheduling assignments:
+
+Schedules the assignment identified by the `INDEX` number used in the displayed assignment list.
+The suggested schedule with start time and end time will be displayed in the assignment card.
+It is guaranteed that the suggested time slot will not class with any of your lessons or the suggested time
+slots of other assignments.
+
+Format: `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME`
+* Suggests a schedule for the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The expected number of hours for an assignment **must be a positive integer between `1` and `5`**.
+
+Examples:
+* `schedule 1 expected/2 before/23-12-2020 2359`
+* `schedule 2 expected/5 before/01-01-2021 0530`
+
+### Removing suggested time for assignments:
+
+Removes the suggested time slot of the assignment identified by the `INDEX` number used in the displayed assignment list.
+
+Format: `unschedule INDEX`
+
+* Removes the suggested time slot of the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+
+### Undoing commands:
+
+Undoes the most recent command.
+
+Format: `undo`
 
 ### Clearing all assignments: `clear`
 
@@ -371,7 +460,7 @@ Format: `help`
 
 If you are new to ProductiveNUS or want to have a quick overview of all the available commands, you can simply enter `help` and a Help Window will appear as shown in the labelled diagram below.
 
-   ![UserGuideHelpCommand](images/UserGuideHelpCommand.png)
+   ![UserGuideHelpCommand](images/UserGuideHelpCommand.PNG)
    *Figure 12: Help Window labelled*
 
 ### Exiting the program : `exit`
@@ -390,17 +479,21 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 | Action | Format | Examples |
 |-|-|-|
-| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
-| **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3` `delete 2 3 4` |
+| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [p/PRIORITY] [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3`<br>`delete 2 3 4` |
 | **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
-| **list** | `list [NUMBER_OF_DAYS]` | `list 2` `list` |
-| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100` `find p/HIGH` |
-| **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5` `remind 2 4 5` |
+| **list** | `list [NUMBER_OF_DAYS]` | `list 2`<br>`list` |
+| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100`<br>`find p/HIGH` |
+| **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
-| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH` `prioritize 1 p/LOW` |
+| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
 | **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
 | **done** | `done INDEX` | `done 4` |
 | **undone** | `undone INDEX` | `undone 2` |
+| **schedule** | `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME` | `schedule 1 expected/2 before/23-12-2020 2359` |
+| **unschedule** | `unschedule INDEX` | `unschedule 1` |
+| **undo** | `undo` | `undo` |
+| **clear** | `clear` | `clear` |
 | **help** | `help` | `help` |
 | **exit** | `exit` | `exit` |
 
