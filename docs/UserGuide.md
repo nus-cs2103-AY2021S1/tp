@@ -64,7 +64,7 @@ Creates and add a new module to be stored in the system.
   * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
    
    Example:
-   * `addmodule CS2103T` creates and add the module CS2103T with no zoom link.
+   * `addmodule n/CS2103T` creates and add the module CS2103T with no zoom link.
 
 
 #### Viewing a module: `viewmodule`
@@ -98,7 +98,7 @@ Adds a zoom link for a specific lesson to an existing module.
      would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
 
   Example:
-  `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+  * `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
    in the displayed module list for the lesson `lecture`.
   
 
@@ -138,7 +138,27 @@ Edits an existing module in the displayed module list with new details.
  To be implemented:
   * We are working on adding the functionality to edit the zoom links for the module for each lesson. 
 
+#### What is an Assignment ? : `Assignment`
+Each assignment is stored under a module and represents the cumulative results achieved for that module. Your 
+assignments will contain the following fields:
 
+* **`ASSIGNMENT_NAME`**
+ 
+  * Represents the name of the assignment you are providing, eg. `Quiz 1` or `Oral Presentation 2`.
+  
+* **`ASSIGNMENT_PERCENTAGE`**
+
+  * Represents the percentage the assignment carries for the final grade, eg. if `Quiz 1` is worth `15`% of the final 
+  grade, the `ASSIGNMENT_PERCENTAGE` should be `15.0`%.
+
+  * Can only be a value from `0.00 - 1.00`
+
+* **`ASSIGNMENT_RESULT`**
+
+  * Represents your results attained for the assignment, eg. if a score of `75/100` is achieved for 
+  `Oral Presentation 2`, an `ASSIGNMENT_RESULT` of `0.75` should be input.
+  
+  
 #### Adding assignment to a module: `addassignment`
 
   Adds an assignment to an existing module.
@@ -151,9 +171,12 @@ Edits an existing module in the displayed module list with new details.
   
   * Your `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
 
-  Example of usage:
-  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
+  Example:
+  * `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
   carries `5`% of the final grade and the result for this assignment is `80/100`.
+  
+  To be implemented:
+  * We are working on developing the display to show more details for each assignment besides the `ASSIGNMENT_NAME`.
   
 #### Editing an assignment in a module: `editassignment`
 
@@ -172,9 +195,9 @@ Edits an existing module in the displayed module list with new details.
   * Your new `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
 
   Example of usage:
-   `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
+   * `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
    assignment name, `Quiz 1`. 
-   `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
+   * `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
    assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
 
 
@@ -715,10 +738,10 @@ Redoes the previously undone user command
 ## FAQ
 
 **Q**: How do you add a module into the program?<br>
-**A**: Run the program and wait for the terminal to start up. Next, type in : “add module [CS2103T]” to add a module called CS2103T.
+**A**: Run the program and wait for the terminal to start up. Next, type in : “addmodule n/CS2103T” to add a module called CS2103T.
 
 **Q**: How do you view the zoom links of a particular module?<br>
-**A**: When the program has started running, enter the following in the terminal : “view [CS2103T]” to view the zoom link for the module called CS2103T.
+**A**: When the program has started running, enter the following in the terminal : “viewmodule 1” to view the zoom link for the first module in the displayed list.
 
 **Q**: How do you edit a module's information?
 **A**: When the program is running, you can enter the edit command and enter whichever field you want to modify but at least
@@ -729,12 +752,12 @@ Redoes the previously undone user command
 
 Action | Format, Examples
 --------|------------------
-**Add Module** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
-**View Module** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
-**Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
-**Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
+**Add Module** | `addmodule n/MODULE_NAME`<br> e.g. `addmodule n/CS2103T`
+**View Module** | `viewmodule INDEX`<br> e.g. `viewmodule 2`
+**Delete** | `deletemodule INDEX`<br> e.g. `deletemodule 3`
+**Edit** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
-**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
+**Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
