@@ -13,9 +13,11 @@ public class Attendance {
             "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
     public static final String STATUS_CONSTRAINTS =
             "Attendance status should be either 'present' or 'absent'.";
+
     private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
     private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
+
     private static final String PRESENT_STATUS = "present";
     private static final String ABSENT_STATUS = "absent";
 
@@ -106,9 +108,8 @@ public class Attendance {
 
     @Override
     public String toString() {
-        return getOutputDate()
-                + "\n\t- Status: " + (getAttendanceStatus() ? "Present" : "Absent")
-                + "\n\t- Feedback: " + getFeedback();
+        return String.format("%s (%s) %s",
+                getOutputDate(), (getAttendanceStatus() ? "\u2713" : "\u2718"), getFeedback());
     }
 
     @Override
