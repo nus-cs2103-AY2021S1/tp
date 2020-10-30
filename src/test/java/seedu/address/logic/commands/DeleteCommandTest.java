@@ -2,10 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
 import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_POTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_TENTH_ENTRY;
 
 import org.junit.jupiter.api.Test;
@@ -54,15 +56,38 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexExpense_failure() {
+    public void execute_invalidIndexExpense_failure() {
         assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_ENTRY, expense)
                 .execute(modelStub, activeAccount));
     }
 
     @Test
-    public void execute_validIndexRevenue_failure() {
+    public void execute_invalidIndexRevenue_failure() {
         assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_ENTRY, revenue)
                 .execute(modelStub, activeAccount));
     }
 
+    @Test
+    public void equals() {
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ENTRY, expense);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ENTRY, revenue);
+
+        // same object -> returns true
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+
+        // same values -> returns true
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ENTRY, expense);
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    }
+
 }
+

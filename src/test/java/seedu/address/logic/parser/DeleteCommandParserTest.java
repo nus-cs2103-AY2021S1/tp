@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
@@ -36,4 +37,20 @@ public class DeleteCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_extraPrefixes() {
+        String expectedMessage = String.format(MESSAGE_MULTIPLE_PREFIXES, DeleteCommand.PREFIXES);
+
+        // Extra prefixes
+        assertParseFailure(parser, "1 c/revenue c/revenue", expectedMessage);
+    }
+
+    @Test
+    public void parse_noPrefixPresent() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+        // No prefix present
+        assertParseFailure(parser, "c/revenue", expectedMessage);
+    }
+
 }

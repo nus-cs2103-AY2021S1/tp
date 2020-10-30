@@ -23,26 +23,26 @@ The _Common Cents_ interface and commands consist of a few levels: `Application`
 # 1. Quick Start
 Below are steps to help you set up and start your Common Cents experience!
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1\. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `commoncents.jar`.
+2\. Download the latest `commoncents.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
+3\. Copy the file to the folder you want to use as the _home folder_ for _Common Cents_.
 
-1. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds (**Figure 1-1**). 
-Note how the app contains some sample expenses and revenues.<br>
+4\. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds (**Figure 1-1**). 
+Note how the app contains some sample expenses and revenues if you have not used the app before.<br>
 
  ![Ui](images/Ui.png)
  <p align="center"> <sub> <b>Figure 1-1</b>: Default GUI </sub> </p>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+5\. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
    * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6\. Refer to the [Features](#5-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
@@ -109,22 +109,51 @@ are new to _Common Cents_, do not fret as this section will guide you step by st
 available! This will better your experience with _Common Cents_ and your usage of features!
 
 ## 4.1 Accounts
+Accounts in Common Cents are key features that help you better manage, categorise, and organise your finances better. 
+In Common Cents, each account has a unique name, and a unique list of expenses and revenues. 
+You can make as many accounts as you'd like in order to help you better categorise and organise your finances better!<br>
+ 
+When you first launch Common Cents, a **General Account** is made for you by default, which you may use on top of other
+accounts. You may also make new accounts and switch between them and give them their very own set of expenses and revenues.
 
 ### 4.1.1 Name
+As mentioned in the previous section, you are able to make new accounts on top of the General Account. Every account 
+**MUST** have a unique name and duplicate names are not supported, so that you are able to distinguish and identify your
+accounts better.
 
 ### 4.1.2 Expense List
+Each account will have an Expense list - that is, a list of transactions that involve expenditure on your end (i.e.
+net outflow of money). In general, expenses keyed into Common Cents have a compulsory Description and Amount, as well as 
+optional Tags. In the app user interface, each expense amount will be displayed as a negative value and all the expenses
+will be displayed as a scrollable list.
 
 ### 4.1.3 Revenue List
+Each account will also have a Revenue list - that is, a list of transactions that involve profit from your end (i.e.
+net inflow. of money). Like expenses, revenues keyed into Common Cents have a compulsory Description and Amount, as well as 
+optional Tags. In the app user interface, each revenue amount will be displayed as a positive value and all the revenues
+will be displayed as a scrollable list, right beside the expenses list.
 
 ## 4.2 Entries
+'Entry' (or 'Entries') is the term used to describe either Expense or Revenue. Each entry input into Common Cents would 
+have compulsory fields - Description, Amount - and optional Tags. 
 
 ### 4.2.1 Category
+Category is the field that specifies the type of Entry input that Common Cents receives from you. It is used in commands
+to differentiate entries between Expense and Revenue. You can either specify the category as an `expense` or a `revenue`,
+or `e` or `r` for short and these are not case-sensitive. This documentation uses `expense` or `revenue` as examples in 
+the [Features](#5-features) below.
 
 ### 4.2.2 Description
+Description refers to the textual information that is associated with the Entry that Common Cents receives from you, in
+order to provide more information about the Entry.  
 
 ### 4.2.3 Amount 
+Amount is the numeric value associated with the Entry that Common Cents receives from you. All amounts, for both expenses
+and revenues must be given as a positive value.
 
 ### 4.2.4 Tags
+Tags refer to short textual prompts attached to an Entry, with the purpose of giving extra information and identity for
+your Entries in Common Cents.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,6 +176,10 @@ Here are some general notes about the commands in _Common Cents_
 * **Numeric** parameters (e.g. `ENTRY_INDEX`) must be in the correct order.<br>
   e.g. if the command specifies `ENTRY_INDEX c/CATEGORY`, only `ENTRY_INDEX c/CATEGORY` is acceptable 
   and `c/CATEGORY ENTRY_INDEX` is invalid. 
+  
+* Commands with no prefix parameters (e.g. `clear`, `profit`, `listacc`) can take in extra words after the command word
+  without affecting its execution.<br>
+  e.g. the command `profit abc` works the same as `profit` and is considered valid.
 
 </div>
 
@@ -260,15 +293,6 @@ it anymore.
 * It is possible for you to use the `find` function then `delete`.
 
 </div>
-
-<div markdown="block" class="alert alert-danger">
-
-:warning: **Warning:**
-
-* Entry index should only be a single integer, for example, `delete 1 2 c/revenue` will not work.
-
-</div>
-
 
 ![deleteCommand1](images/commands/deleteCommand1.png)
 <p align="center"> <sub> <b>Figure 5.2-2</b>: The revenue at index 2 is deleted </sub> </p>
@@ -674,6 +698,11 @@ wrong. Can I clarify on this situation?<br>
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
 `expense n/buy McSpicy a/8.60` instead of `expense`. Do remember to check that the **prefixes and parameters required for a command
 are correct!** If you are unsure of the prefixes and parameters required, do check the sections under features above! 
+
+3. **Question:** What if I typed in multiple prefixes with valid parameters? For instance, `add c/expense c/revenue d/Buy lunch a/4.30`
+**Answer:** Multiple instances of prefixes, as well as indexes except for `tags (t/)` will not be executed and an error 
+message will be shown. For instance, the example above has both `c/expense` and `c/revenue`, hence the command will not be executed. 
+Please follow the format of the commands closely in the [Features](#5-features) section above!
 --------------------------------------------------------------------------------------------------------------------
 
 # 7. Command summary
