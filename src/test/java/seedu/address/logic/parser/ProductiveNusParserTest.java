@@ -38,9 +38,9 @@ import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.testutil.AssignmentUtil;
 import seedu.address.testutil.EditAssignmentDescriptorBuilder;
 
-public class AddressBookParserTest {
+public class ProductiveNusParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ProductiveNusParser parser = new ProductiveNusParser();
 
     @Test
     public void parseCommand_add() throws Exception {

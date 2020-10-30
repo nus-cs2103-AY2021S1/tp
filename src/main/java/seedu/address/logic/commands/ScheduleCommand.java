@@ -27,7 +27,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
 
 /**
- * Schedules an assignment identified using it's displayed index from the address book.
+ * Schedules an assignment identified using it's displayed index from ProductiveNus.
  */
 public class ScheduleCommand extends Command {
 

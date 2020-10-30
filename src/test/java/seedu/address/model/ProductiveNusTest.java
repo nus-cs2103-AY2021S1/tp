@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.CS1231S_HW;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,25 +25,25 @@ import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.timetable.TimetableData;
 
 
-public class AddressBookTest {
+public class ProductiveNusTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ProductiveNus productiveNus = new ProductiveNus();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getAssignmentList());
+        assertEquals(Collections.emptyList(), productiveNus.getAssignmentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> productiveNus.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyProductiveNus_replacesData() {
+        ProductiveNus newData = getTypicalProductiveNus();
+        productiveNus.resetData(newData);
+        assertEquals(newData, productiveNus);
     }
 
     @Test
@@ -52,49 +52,49 @@ public class AddressBookTest {
         Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
         List<Lesson> lessonList = Arrays.asList();
-        AddressBookStub newData = new AddressBookStub(newAssignments, lessonList);
+        ProductiveNusStub newData = new ProductiveNusStub(newAssignments, lessonList);
 
-        assertThrows(DuplicateAssignmentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateAssignmentException.class, () -> productiveNus.resetData(newData));
     }
 
     @Test
     public void hasAssignment_nullAssignment_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasAssignment(null));
+        assertThrows(NullPointerException.class, () -> productiveNus.hasAssignment(null));
     }
 
     @Test
-    public void hasAssignment_assignmentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasAssignment(CS1231S_HW));
+    public void hasAssignment_assignmentNotInProductiveNus_returnsFalse() {
+        assertFalse(productiveNus.hasAssignment(CS1231S_HW));
     }
 
     @Test
-    public void hasAssignment_assignmentInAddressBook_returnsTrue() {
-        addressBook.addAssignment(CS1231S_HW);
-        assertTrue(addressBook.hasAssignment(CS1231S_HW));
+    public void hasAssignment_assignmentInProductiveNus_returnsTrue() {
+        productiveNus.addAssignment(CS1231S_HW);
+        assertTrue(productiveNus.hasAssignment(CS1231S_HW));
     }
 
     @Test
-    public void hasAssignment_assignmentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addAssignment(CS1231S_HW);
+    public void hasAssignment_assignmentWithSameIdentityFieldsInProductiveNusk_returnsTrue() {
+        productiveNus.addAssignment(CS1231S_HW);
         Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
                 .withModuleCode(VALID_MODULE_CODE_HW).build();
-        assertTrue(addressBook.hasAssignment(editedCs1231sHw));
+        assertTrue(productiveNus.hasAssignment(editedCs1231sHw));
     }
 
     @Test
     public void getAssignmentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getAssignmentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> productiveNus.getAssignmentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose assignments list can violate interface constraints.
+     * A stub ReadOnlyProductiveNus whose assignments list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ProductiveNusStub implements ReadOnlyProductiveNus {
         private final ObservableList<Assignment> assignments = FXCollections.observableArrayList();
         private final ObservableList<Lesson> lessons = FXCollections.observableArrayList();
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Assignment> assignments, Collection<Lesson> lessons) {
+        ProductiveNusStub(Collection<Assignment> assignments, Collection<Lesson> lessons) {
             this.assignments.setAll(assignments);
             this.lessons.setAll(lessons);
         }

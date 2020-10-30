@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
@@ -31,7 +31,7 @@ import seedu.address.testutil.AssignmentBuilder;
  */
 public class DoneCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private Model model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
 
     private List<Index> indexesToMarkDone = new ArrayList<>();
     private List<Assignment> assignmentsToMarkDone = new ArrayList<>();
@@ -52,7 +52,7 @@ public class DoneCommandTest {
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
                 assignmentsToMarkDone);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -79,7 +79,7 @@ public class DoneCommandTest {
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
                 assignmentsToMarkDone);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);
 
         assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
@@ -92,8 +92,8 @@ public class DoneCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
         indexesToMarkDone.add(outOfBoundIndex);
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
         DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
         assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
@@ -103,7 +103,7 @@ public class DoneCommandTest {
     public void execute_alreadyMarkedDoneAssignmentUnfilteredList_failure() {
         indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
 
-        // Set assignment in filtered list in address book as done
+        // Set assignment in filtered list in ProductiveNus as done
         Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment firstAssignmentMarkedDone = new AssignmentBuilder(firstAssignment).withDoneStatusSet().build();
         model.setAssignment(firstAssignment, firstAssignmentMarkedDone);
@@ -118,8 +118,8 @@ public class DoneCommandTest {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
         indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
 
-        // Set assignment in filtered list in address book as done
-        Assignment assignmentInList = model.getAddressBook().getAssignmentList()
+        // Set assignment in filtered list in ProductiveNus as done
+        Assignment assignmentInList = model.getProductiveNus().getAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment assignmentInListMarkedDone = new AssignmentBuilder(assignmentInList).withDoneStatusSet().build();
         model.setAssignment(assignmentInList, assignmentInListMarkedDone);

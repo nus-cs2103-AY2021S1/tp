@@ -2,8 +2,8 @@ package seedu.address.model.util;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ProductiveNus;
+import seedu.address.model.ReadOnlyProductiveNus;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
@@ -14,7 +14,7 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ProductiveNus} with sample data.
  */
 public class SampleDataUtil {
     private static final Remind NOT_REMINDED = new Remind();
@@ -68,8 +68,8 @@ public class SampleDataUtil {
         return new Schedule(new Deadline(suggestedStartTime), new Deadline(suggestedEndTime));
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyProductiveNus getSampleProductiveNus() {
+        ProductiveNus sampleAb = new ProductiveNus();
         for (Assignment sampleAssignment : getSampleAssignments()) {
             sampleAb.addAssignment(sampleAssignment);
         }

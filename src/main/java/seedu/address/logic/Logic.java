@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProductiveNus;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.task.Task;
 
@@ -25,11 +25,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns ProductiveNus.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getProductiveNus()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyProductiveNus getProductiveNus();
 
     /** Returns an unmodifiable view of the filtered list of assignments */
     ObservableList<Assignment> getFilteredAssignmentList();
@@ -41,9 +41,9 @@ public interface Logic {
     ObservableList<Assignment> getRemindedAssignmentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ProductiveNus file path.
      */
-    Path getAddressBookFilePath();
+    Path getProductiveNusFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

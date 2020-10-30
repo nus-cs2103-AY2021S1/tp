@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
 import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
@@ -29,7 +29,7 @@ import seedu.address.model.assignment.Assignment;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private Model model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
 
     private List<Index> indexesToDelete = new ArrayList<>();
     private List<Assignment> assignmentsToDelete = new ArrayList<>();
@@ -46,7 +46,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.deleteAssignment(assignmentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -70,7 +70,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
 
         expectedModel.deleteAssignment(secondAssignmentToDelete);
         expectedModel.deleteAssignment(firstAssignmentToDelete);
@@ -102,7 +102,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 
         String expectedMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.deleteAssignment(firstAssignmentToDelete);
         showNoAssignment(expectedModel);
 
@@ -115,8 +115,8 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
         indexesToDelete.add(outOfBoundIndex);
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 
@@ -131,8 +131,8 @@ public class DeleteCommandTest {
         // adds duplicated indexes to list
         indexesToDelete.add(duplicatedIndex);
         indexesToDelete.add(duplicatedIndex);
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(duplicatedIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(duplicatedIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 

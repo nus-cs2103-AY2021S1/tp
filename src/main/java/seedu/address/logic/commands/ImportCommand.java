@@ -11,7 +11,7 @@ public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports a NUSMods timetable to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports a NUSMods timetable to ProductiveNus. "
             + "Parameters: "
             + PREFIX_TIMETABLE_URL + "TIMETABLE URL "
             + "Example: " + COMMAND_WORD + " "

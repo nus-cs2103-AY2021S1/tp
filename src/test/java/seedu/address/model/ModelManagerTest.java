@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ProductiveNusBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new ProductiveNus(), new ProductiveNus(modelManager.getProductiveNus()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setProductiveNusFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setProductiveNusFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setProductiveNusFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setProductiveNusFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setProductiveNusFilePath_validPath_setsProductiveNusFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setProductiveNusFilePath(path);
+        assertEquals(path, modelManager.getProductiveNusFilePath());
     }
 
     @Test
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasAssignment_assignmentNotInAddressBook_returnsFalse() {
+    public void hasAssignment_assignmentNotInProductiveNus_returnsFalse() {
         assertFalse(modelManager.hasAssignment(CS1231S_HW));
     }
 
     @Test
-    public void hasAssignment_assignmentInAddressBook_returnsTrue() {
+    public void hasAssignment_assignmentInProductiveNus_returnsTrue() {
         modelManager.addAssignment(CS1231S_HW);
         assertTrue(modelManager.hasAssignment(CS1231S_HW));
     }
@@ -101,14 +101,14 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder()
+        ProductiveNus productiveNus = new ProductiveNusBuilder()
                 .withAssignment(CS1231S_HW).withAssignment(CS2103T_TUT).build();
-        AddressBook differentAddressBook = new AddressBook();
+        ProductiveNus differentProductiveNus = new ProductiveNus();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs, null);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs, null);
+        modelManager = new ModelManager(productiveNus, userPrefs, null);
+        ModelManager modelManagerCopy = new ModelManager(productiveNus, userPrefs, null);
 
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -121,20 +121,20 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, null)));
+        // different productiveNus -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentProductiveNus, userPrefs, null)));
 
         // different filteredList -> returns false
         String[] keywords = CS1231S_HW.getName().fullName.split("\\s+");
         modelManager.updateFilteredAssignmentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs, null)));
+        assertFalse(modelManager.equals(new ModelManager(differentProductiveNus, userPrefs, null)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, null)));
+        differentUserPrefs.setProductiveNusFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(productiveNus, differentUserPrefs, null)));
     }
 }

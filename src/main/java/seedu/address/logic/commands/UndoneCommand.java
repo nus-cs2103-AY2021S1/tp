@@ -20,7 +20,7 @@ import seedu.address.model.task.Name;
 
 
 /**
- * Removes done status for an assignment identified using it's displayed index from the address book.
+ * Removes done status for an assignment identified using it's displayed index from ProductiveNus.
  */
 public class UndoneCommand extends NegateCommand {
 

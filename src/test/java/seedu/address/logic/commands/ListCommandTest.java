@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -49,8 +49,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
+        expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
     }
 
     @Test

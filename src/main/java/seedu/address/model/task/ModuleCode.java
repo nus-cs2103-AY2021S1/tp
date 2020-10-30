@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a task's module code in the address book.
+ * Represents a task's module code in ProductiveNus.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
 public class ModuleCode {

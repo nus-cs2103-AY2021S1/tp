@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
@@ -31,7 +31,7 @@ import seedu.address.testutil.AssignmentBuilder;
  */
 public class RemindCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private Model model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
 
     private List<Index> indexesToRemind = new ArrayList<>();
     private List<Assignment> assignmentsToRemind = new ArrayList<>();
@@ -51,7 +51,7 @@ public class RemindCommandTest {
 
         String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class RemindCommandTest {
 
         String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
@@ -90,8 +90,8 @@ public class RemindCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
         indexesToRemind.add(outOfBoundIndex);
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
         assertCommandFailure(remindCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
@@ -115,7 +115,7 @@ public class RemindCommandTest {
 
         String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), firstAssignmentToRemind);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(1), secondAssignmentToRemind);
 
@@ -126,7 +126,7 @@ public class RemindCommandTest {
     public void execute_alreadyRemindedAssignmentUnfilteredList_failure() {
         indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
 
-        // Set reminders for assignment in filtered list in address book
+        // Set reminders for assignment in filtered list in ProductiveNus
         Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment firstAssignmentReminded = new AssignmentBuilder(firstAssignment).withRemindersSet().build();
         model.setAssignment(firstAssignment, firstAssignmentReminded);
@@ -142,8 +142,8 @@ public class RemindCommandTest {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
         indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
 
-        // Set reminders for assignment in filtered list in address book
-        Assignment assignmentInList = model.getAddressBook().getAssignmentList()
+        // Set reminders for assignment in filtered list in ProductiveNus
+        Assignment assignmentInList = model.getProductiveNus().getAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment assignmentInListReminded = new AssignmentBuilder(assignmentInList).withRemindersSet().build();
         model.setAssignment(assignmentInList, assignmentInListReminded);
@@ -165,8 +165,8 @@ public class RemindCommandTest {
         indexesToRemind.add(duplicatedIndex);
         indexesToRemind.add(duplicatedIndex);
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(duplicatedIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(duplicatedIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 

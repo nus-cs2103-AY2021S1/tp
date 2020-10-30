@@ -19,7 +19,7 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Sets assignment(s) identified using it's displayed index(es) from the address book as done.
+ * Sets assignment(s) identified using it's displayed index(es) from ProductiveNus as done.
  */
 public class DoneCommand extends Command {
 

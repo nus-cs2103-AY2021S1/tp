@@ -19,7 +19,7 @@ import seedu.address.model.task.ModuleCode;
 import seedu.address.model.task.Name;
 
 /**
- * Removes priority for an assignment identified using it's displayed index from the address book.
+ * Removes priority for an assignment identified using it's displayed index from ProductiveNus.
  */
 public class UnprioritizeCommand extends NegateCommand {
 

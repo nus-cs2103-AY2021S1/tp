@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.ProductiveNus;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.Priority;
 
@@ -62,14 +62,14 @@ public class TypicalAssignments {
     private TypicalAssignments() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical assignments.
+     * Returns an {@code ProductiveNus} with all the typical assignments.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ProductiveNus getTypicalProductiveNus() {
+        ProductiveNus pn = new ProductiveNus();
         for (Assignment assignment : getTypicalAssignments()) {
-            ab.addAssignment(assignment);
+            pn.addAssignment(assignment);
         }
-        return ab;
+        return pn;
     }
 
     public static List<Assignment> getTypicalAssignments() {
