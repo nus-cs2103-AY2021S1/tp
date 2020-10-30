@@ -15,11 +15,6 @@ public class DayOfWeek {
     public static final String MESSAGE_CONSTRAINTS =
             "Day of the week can only be MON/TUE/WED/THU/FRI/SAT/SUN";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String day;
 
@@ -37,7 +32,7 @@ public class DayOfWeek {
     /**
      * Returns true if a given string is a valid ID.
      */
-    private static boolean isValidDayOfWeek(String day) {
+    public static boolean isValidDayOfWeek(String day) {
         List<String> daysOfWeek = Arrays.asList("MON", "TUE", "WED", "THU", "FRI");
         return daysOfWeek.contains(day);
     }

@@ -79,7 +79,7 @@ public class AddressBookParserTest {
         Module module = new ModuleBuilder().build();
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
-        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, "CS21"), command);
+        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
     }
 
     @Test
