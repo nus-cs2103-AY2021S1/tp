@@ -8,7 +8,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import com.eva.logic.commands.FindApplicantCommand;
 import com.eva.logic.commands.FindCommand;
+import com.eva.logic.commands.FindStaffCommand;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -21,14 +23,32 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_invalidArgs_throwsParseException() {
+        // no "-staff" or "-applicant"
+        assertParseFailure(parser, "Alice Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindApplicantCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        FindApplicantCommand expectedFindCommand =
+                new FindApplicantCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "-applicant Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "-applicant \n Alice \n \t Bob  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validArgs_returnsFindStaffCommand() {
+        // no leading and trailing whitespaces
+        FindStaffCommand expectedFindCommand =
+                new FindStaffCommand(new NameContainsKeywordsPredicate<>(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, "-staff Alice Bob", expectedFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, "-staff \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
 }

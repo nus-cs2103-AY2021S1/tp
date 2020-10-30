@@ -33,7 +33,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         case "-staff":
             return new FindStaffCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
         default:
-            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
     }
 

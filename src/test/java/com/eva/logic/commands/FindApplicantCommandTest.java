@@ -1,7 +1,7 @@
 package com.eva.logic.commands;
 
 import static com.eva.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static com.eva.logic.commands.CommandTestUtil.assertChangePanelCommandSuccess;
 import static com.eva.testutil.TypicalPersons.CARL;
 import static com.eva.testutil.TypicalPersons.ELLE;
 import static com.eva.testutil.TypicalPersons.FIONA;
@@ -17,16 +17,17 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import com.eva.commons.core.PanelState;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
 import com.eva.model.UserPrefs;
 import com.eva.model.person.NameContainsKeywordsPredicate;
-import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindCommandTest {
+public class FindApplicantCommandTest {
     private Model model = new ModelManager(getTypicalPersonDatabase(),
             getTypicalStaffDatabase(), getTypicalApplicantDatabase(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalPersonDatabase(),
@@ -34,19 +35,19 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate<Person> firstPredicate =
+        NameContainsKeywordsPredicate<Applicant> firstPredicate =
                 new NameContainsKeywordsPredicate<>(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate<Person> secondPredicate =
+        NameContainsKeywordsPredicate<Applicant> secondPredicate =
                 new NameContainsKeywordsPredicate<>(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindApplicantCommand findFirstCommand = new FindApplicantCommand(firstPredicate);
+        FindApplicantCommand findSecondCommand = new FindApplicantCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindApplicantCommand findFirstCommandCopy = new FindApplicantCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -62,27 +63,29 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate<Person> predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        NameContainsKeywordsPredicate<Applicant> predicate = preparePredicate(" ");
+        FindApplicantCommand command = new FindApplicantCommand(predicate);
+        expectedModel.setPanelState(PanelState.APPLICANT_LIST);
+        expectedModel.updateFilteredApplicantList(predicate);
+        assertChangePanelCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate<Person> predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        NameContainsKeywordsPredicate<Applicant> predicate = preparePredicate("Kurz Elle Kunz");
+        FindApplicantCommand command = new FindApplicantCommand(predicate);
+        expectedModel.setPanelState(PanelState.APPLICANT_LIST);
+        expectedModel.updateFilteredApplicantList(predicate);
+        assertChangePanelCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredApplicantList());
     }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate<Person> preparePredicate(String userInput) {
+    private NameContainsKeywordsPredicate<Applicant> preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicate<>(Arrays.asList(userInput.split("\\s+")));
     }
 }
