@@ -447,19 +447,21 @@ notedelete sn/sheng siong1 ni/0
 
 ### Viewing all notes of a stock: `noteview`
 Views all notes of the stock specified by its serial number.
-* Required field(s):
-    1. Serial number of stock
 
-<h5>Format</h5>
+<h4>Format</h4>
+
 `noteview sn/<serial number>`
 
-<h5>Example usages</h5>
+<h4>Examples</h4>
 
 * Before: <br>
 
 ![before](images/noteview_img1.jpg)
 
-* After command: `noteview sn/ntuc1`: <br>
+* After command
+```
+noteview sn/ntuc1
+```
 
 ![after note delete1](images/noteview_img2.jpg)
 
