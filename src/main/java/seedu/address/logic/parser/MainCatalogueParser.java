@@ -95,6 +95,7 @@ public class MainCatalogueParser {
             case TEAMMATE:
             case PROJECT:
             case TASK:
+                return new StartProjectCommandParser().parse(arguments);
             default:
                 throw new InvalidScopeException(Status.PROJECT_LIST, status);
             }
