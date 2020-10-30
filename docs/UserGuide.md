@@ -66,6 +66,20 @@ Creates and add a new module to be stored in the system.
    Example:
    * `addmodule n/CS2103T` creates and add the module CS2103T with no zoom link.
 
+#### Adding a new completed module: `addcmodule`
+
+Creates and add a new completed module to be stored in the system.
+
+  Format: `addcmodule n/NAME mc/MODULAR_CREDITS gp/GRADE_POINT [t/TAG]...`
+
+   * Using this command to add a completed module will automatically tag the module as completed.
+   * Completed modules added this way will be used for CAP calculation purposes.
+
+   Examples:
+   * `addcmodule n/CS2103T mc/4.0 gp/5.0` creates and adds the module named CS2103T with 4 modular credits 
+      and 5 grade points with a `completed` tag.
+   * `addcmodule n/CS2101 mc/2.0 gp/4.5 t/year1` creates and adds the module named CS2101 with 2 modular credits 
+      and 4.5 grade points with the tags `completed` and `year1`.
 
 #### Viewing a module: `viewmodule`
 
@@ -810,6 +824,7 @@ Redoes the previously undone user command
 Action | Format, Examples
 --------|------------------
 **Add Module** | `addmodule n/MODULE_NAME`<br> e.g. `addmodule n/CS2103T`
+**Add Completed Module** | `addcmodule n/MODULE_NAME mc/MODULAR_CREDITS gp/GRADE_POINT [t/TAG]...`<br> e.g. `addcmodule n/CS2101 mc/2.0 gp/4.5 t/year1`
 **View Module** | `viewmodule INDEX`<br> e.g. `viewmodule 2`
 **Delete** | `deletemodule INDEX`<br> e.g. `deletemodule 3`
 **Edit** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
