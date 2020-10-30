@@ -12,7 +12,7 @@
 4. [Features](#4-features)<br>
    4.1 [View help: `help`](#41-view-help-help)<br>
    4.2 [Module features](#42-module-features)<br>
-   --- 4.2.1 [View all modules: `viewMod`](#421-view-all-modules-viewmod)<br>
+   --- 4.2.1 [List all modules: `listMod`](#421-list-all-modules-listmod)<br>
    --- 4.2.2 [Add a module: `addMod`](#422-add-a-module-addmod)<br>
    --- 4.2.3 [Delete a module: `deleteMod`](#423-delete-a-module-deletemod)<br>
    --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
@@ -452,10 +452,11 @@ for MacOS and Linux users.
 
 Command | Summary
 --------|--------
-`viewMod` | Views all modules in __Trackr__.
-`addMod MODULE_CODE` | Adds a new module to the current Module view. 
+`listMod` | Views all modules in __Trackr__.
+`addMod m/MODULE_CODE` | Adds a new module to the current Module view. 
 `deleteMod INDEX` | Deletes a module from the current Module view. 
 `findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view. 
+`editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code. 
 
 ### 6.2 Tutorial Group commands
 
