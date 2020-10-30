@@ -412,32 +412,36 @@ will add note with index 1 in note column for Stock 1. <br>
 
 ### Deleting note(s) from stock: `notedelete`
 Deletes a note, specified by the note's index, from the stock specified by its serial number.
-* Required fields:
-    1. Serial number of stock
-    2. Note index of note to delete
 
 <div markdown="block" class="alert alert-warning">
 
 **:warning:**
 Note index must be an integer.
 To delete ALL notes from a stock, note index to specify is 0.
+
 </div>
 
-<h5>Format</h5>
+<h4>Format</h4>
 
 `notedelete sn/<serial number> ni/<note index>`
 
-<h5>Example usages</h5>
+<h4>Examples</h4>
 
 * Before: <br>
 
 ![before notes](images/note_img3.jpg)
 
-* After command: `notedelete sn/ntuc1 ni/1`: <br>
+* After command:
+```
+notedelete sn/ntuc1 ni/1
+```
 
 ![after note delete1](images/notedelete_img1.jpg)
 
-* After command: `notedelete sn/sheng siong1 ni/0`: <br>
+* After command
+```
+notedelete sn/sheng siong1 ni/0
+```
 
 ![after note delete0](images/notedelete_img2.jpg)
 
