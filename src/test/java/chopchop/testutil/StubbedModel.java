@@ -11,6 +11,7 @@ import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 
 public class StubbedModel extends chopchop.model.ModelStub {
@@ -68,7 +69,52 @@ public class StubbedModel extends chopchop.model.ModelStub {
     }
 
     @Override
+    public Optional<Ingredient> findIngredientWithName(String name) {
+        return this.ingredients.getEntryList()
+            .stream()
+            .filter(ingredient -> ingredient.getName().equalsIgnoreCase(name))
+            .findFirst();
+    }
+
+    @Override
     public void setRecipe(Recipe target, Recipe editedRecipe) {
         this.recipes.set(target, editedRecipe);
+    }
+
+    @Override
+    public void setIngredient(Ingredient target, Ingredient edited) {
+        this.ingredients.set(target, edited);
+    }
+
+    @Override
+    public void addRecipe(Recipe target) {
+        this.recipes.add(target);
+    }
+
+    @Override
+    public void addIngredient(Ingredient target) {
+        this.ingredients.add(target);
+    }
+
+    @Override
+    public void deleteIngredient(Ingredient target) {
+        this.ingredients.remove(target);
+    }
+
+    // do nothing for these
+    @Override
+    public void addRecipeUsage(Recipe recipe) {
+    }
+
+    @Override
+    public void removeRecipeUsage(Recipe recipe) {
+    }
+
+    @Override
+    public void addIngredientUsage(IngredientReference ingredient) {
+    }
+
+    @Override
+    public void removeIngredientUsage(IngredientReference ingredient) {
     }
 }

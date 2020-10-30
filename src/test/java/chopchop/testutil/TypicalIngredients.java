@@ -57,17 +57,17 @@ public class TypicalIngredients {
 
     public static final IngredientReference APRICOT_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_APRICOT,
-        Count.of(VALID_INGREDIENT_QTY_APRICOT)
+        Count.of(3)
     );
 
     public static final IngredientReference BANANA_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_BANANA,
-        Count.of(VALID_INGREDIENT_QTY_BANANA)
+        Count.of(3)
     );
 
     public static final IngredientReference CUSTARD_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_CUSTARD,
-        Count.of(VALID_INGREDIENT_QTY_CUSTARD)
+        Count.of(3)
     );
 
     public static final IngredientReference BAKED_BEANS_REF = new IngredientReference(
