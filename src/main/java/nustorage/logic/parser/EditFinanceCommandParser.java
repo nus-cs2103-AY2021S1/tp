@@ -36,12 +36,13 @@ public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
         EditFinanceDescriptor editFinanceDescriptor = new EditFinanceDescriptor();
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editFinanceDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
+        } else {
+            throw new ParseException(EditFinanceCommand.MESSAGE_AMT_MISSING);
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editFinanceDescriptor.setDatetime(ParserUtil.parseDatetime(
                     argMultimap.getValue(PREFIX_DATETIME).get()));
         }
-
         if (!editFinanceDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditFinanceCommand.MESSAGE_NOT_EDITED);
         }

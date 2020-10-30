@@ -26,7 +26,7 @@ public class UpdateInventoryCommand extends Command {
             + "[" + PREFIX_QUANTITY + "CHANGE IN QUANTITY] ";
 
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "Nothing has been updated!";
-    public static final String MESSAGE_UPDATE_INVENTORY_SUCCESS = "Updated Item: %1$s";
+    public static final String MESSAGE_UPDATE_INVENTORY_SUCCESS = "Updated Item quantity: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "The change in quantity field must be provided.";
     public static final String MESSAGE_INVALID_UPDATE_OPERATION = "You cannot update this item by that quantity!";
 

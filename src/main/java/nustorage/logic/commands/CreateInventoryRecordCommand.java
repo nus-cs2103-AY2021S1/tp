@@ -17,14 +17,14 @@ public class CreateInventoryRecordCommand extends Command {
 
     public static final String COMMAND_WORD = "create_inventory";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates an inventory record in the InventoryWindow. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates an inventory record in the Inventory. "
             + "Parameters: "
             + PREFIX_ITEM_DESCRIPTION + "ITEM_DESCRIPTION "
             + PREFIX_QUANTITY + "QUANTITY "
             + "[" + PREFIX_ITEM_COST + "ITEM_COST]";
 
-    public static final String MESSAGE_SUCCESS = "New InventoryWindow record created: %1$s";
-    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the InventoryWindow";
+    public static final String MESSAGE_SUCCESS = "New Inventory record created: %1$s";
+    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the Inventory";
     private final InventoryRecord newInventoryRecord;
     private final FinanceRecord newFinanceRecord;
 

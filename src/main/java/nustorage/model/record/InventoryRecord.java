@@ -116,8 +116,9 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Record on " + DATETIME_FORMAT.format(dateTime)
-                + ": " + itemName + ", " + quantity + " in stock";
+        return "on " + DATETIME_FORMAT.format(dateTime)
+                + ": " + itemName + ", " + quantity + " in stock, "
+                + "cost price: " + unitCost + "\nfinance id: " + financeId;
     }
 
 
