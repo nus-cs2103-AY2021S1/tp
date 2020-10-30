@@ -4,13 +4,14 @@ package chopchop.ui;
 
 import java.util.Optional;
 
+import com.jfoenix.controls.JFXMasonryPane;
+
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 
 public class RecommendationViewPanel extends UiPart<Region> {
@@ -24,7 +25,7 @@ public class RecommendationViewPanel extends UiPart<Region> {
     private ScrollPane recommendationPanel;
 
     @FXML
-    private FlowPane recommendationGridView;
+    private JFXMasonryPane recommendationGridView;
 
     /**
      * Creates a {@code RecipeView} with the given {@code ObservableList}.

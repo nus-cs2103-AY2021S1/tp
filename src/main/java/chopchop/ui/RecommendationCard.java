@@ -4,9 +4,10 @@ package chopchop.ui;
 
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -22,22 +23,11 @@ public class RecommendationCard extends UiPart<Region> {
 
     public final Recipe recipe;
 
-    private final int id;
+    @FXML
+    private TextFlow recommendationText;
 
     @FXML
-    private TextArea recommendationText;
-
-    @FXML
-    private TextArea expiringRecipeText;
-
-    @FXML
-    private TextArea oldRecipeText;
-
-    @FXML
-    private StackPane expiringRecipeContainer;
-
-    @FXML
-    private StackPane oldRecipeContainer;
+    private StackPane recipeCardContainer;
 
     /**
      * Creates a {@code RecipeCard} with the given {@code Recipe}.
@@ -45,15 +35,10 @@ public class RecommendationCard extends UiPart<Region> {
     public RecommendationCard(Recipe recipe, int id) {
         super(FXML);
         this.recipe = recipe;
-        this.id = id;
 
-        recommendationText.setText(RECOMMENDED_MESSAGE);
-        RecipeCard expiringRecipeCard = new RecipeCard(recipe, id);
-        expiringRecipeContainer.getChildren().add(expiringRecipeCard.getRoot());
-        expiringRecipeText.setText(EXPIRING_MESSAGE);
-        RecipeCard oldRecipeCard = new RecipeCard(recipe, id);
-        oldRecipeContainer.getChildren().add(oldRecipeCard.getRoot());
-        oldRecipeText.setText(OLD_MESSAGE);
+        var recipeCard = new RecipeCard(recipe, id);
+        this.recipeCardContainer.getChildren().add(recipeCard.getRoot());
+        this.recommendationText.getChildren().add(new Text(EXPIRING_MESSAGE));
     }
 
     @Override

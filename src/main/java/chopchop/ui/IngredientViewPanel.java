@@ -4,8 +4,9 @@ package chopchop.ui;
 
 import java.util.Optional;
 
-import chopchop.model.ingredient.Ingredient;
 import com.jfoenix.controls.JFXMasonryPane;
+
+import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
