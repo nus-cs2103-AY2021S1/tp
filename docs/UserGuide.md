@@ -461,16 +461,12 @@ from 10 Aug 2020 to 10 Nov 2020, users can do the following:
 1) Type in the command box the following command:
 * `lesson title:Week 9 Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`
 
-<p align="center">
-    <img src="./images/AddLessonCommand.png" alt="add lesson" width="1000" height="500">
-</p>
+![add lesson](./images/AddLessonCommand.png)
 
 2) This adds the corresponding lesson to PlaNus. You can see the added lesson in the lesson list, calendar view and 
 time analysis.
 
-<p align="center">
-    <img src="./images/AddLessonCommandResult.png" alt="add lesson result" width="1000" height="500">
-</p>
+![add lesson result](./images/AddLessonCommandResult.png)
 
 <br>
 
@@ -499,7 +495,7 @@ To edit a lesson, users can do the following:
 
 1) Display all lessons by typing `list-lesson` in the command box.
 
-![list lesson](images/ListLessonCommand.png)
+![list lesson](images/ListLesson.png)
 
 This will display all lessons.
  
@@ -544,7 +540,7 @@ the following steps:
 
 1) List all lessons by typing `list-lesson` in the command box:
 
-![list lesson](./images/ListLessonCommand.png)
+![list lesson](./images/ListLesson.png)
 
 2) type the following command in the command box: 
 * `find-lesson title:tutorial` 
@@ -590,7 +586,7 @@ To delete the first two lessons, users can following the steps:
 
 1) Type `list-lesson` in the command box to display all lessons.
 
-![list lesson](./images/ListLessonCommand.png)
+![list lesson](./images/ListLesson.png)
 
 2) Type `delete-lesson 1 2` in the command box.
 
