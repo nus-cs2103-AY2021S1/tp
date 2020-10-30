@@ -20,8 +20,8 @@ It helps you to centralize key module details, contacts and information while fo
 
 1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/OriginalImages/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. <br>
+   ![Ui](images/StartingApp.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -362,7 +362,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
  
    * Task Name
  
-     * You are allowed to provide multiple search keywords.
+     * You are allowed to provide multiple name keywords.
      
      * Tasks with their name matching at least one of the name keywords provided will be considered to have fulfilled the task name search criteria.
      
@@ -390,6 +390,8 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
    * Tag
  
      * You are allowed to provide multiple tag keywords.
+     
+     * Task tags will be considered a match only if the tag words are an exact match.
      
      * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
        
