@@ -130,7 +130,6 @@ public class LogicManager implements Logic {
         case PROJECT_LIST:
         case PROJECT:
         case TASK:
-        case MEETING:
             return true;
         default:
             return false;

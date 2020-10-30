@@ -87,14 +87,15 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 **:information_source: Notes about scoping:**<br>
 
 The hierarchy of command scoping is as follows:
-* `CATALOGUE` (i.e. global)
+* `PROJECT_LIST`
   * `PROJECT`
     * `TASK`
-    * `Meeting`
-  * `TEAMMATE`
+    * `TEAMMATE`
+* `PERSON_LIST`
+  * `PERSON`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
-scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
+scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is
 a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
 </div>
