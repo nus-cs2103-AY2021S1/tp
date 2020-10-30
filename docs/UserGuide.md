@@ -85,7 +85,7 @@ You can find out more about the command terminologies here:
 
 ### Adding an assignment: `add`
 
-Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[priority/PRIORITY] 
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[p/PRIORITY] 
 [remind]`
 
 You can add your assignments into your schedule so that you can manage all your assignments and
@@ -342,7 +342,7 @@ For example, `unprioritize 1` will remove the priority tag, if present, of the f
 <div markdown="block" class="alert alert-primary">
   
 **:clipboard: Pointers to note:**<br>
-* At least one `INDEX` must be present. For example, `remind` will not work.
+* At least one `INDEX` must be present. For example, `unprioritize` will not work.
 * The `INDEX` must be found in your assignment list.
 </div>
 
@@ -374,7 +374,6 @@ the command line based on the indexes labelled in the figure.
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index will not work.
-* The indexes **must be a positive integer** 1, 2, 3, …​
 * The indexes **must be found in your assignment list**
 * The indexes **must not be duplicated**. For example, `done 4 4` will not work.
 </div>
@@ -409,7 +408,6 @@ you can simply enter `undone 2` into the command line based on the index labelle
  **:clipboard: Pointers to note:**<br>
 * Assignments are marked as not done**by default**
 * The index must be present. For example, `undone` without any index will not work.
-* The index **must be a positive integer** 1, 2, 3, …​
 * The index **must be found in your assignment list**
 </div>
 
@@ -438,7 +436,6 @@ Format: `unschedule INDEX`
 
 * Removes the suggested time slot of the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Undoing commands:
 
@@ -482,20 +479,21 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 | Action | Format | Examples |
 |-|-|-|
-| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
-| **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3` `delete 2 3 4` |
+| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [p/PRIORITY] [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3`<br>`delete 2 3 4` |
 | **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
-| **list** | `list [NUMBER_OF_DAYS]` | `list 2` `list` |
-| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100` `find p/HIGH` |
-| **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5` `remind 2 4 5` |
+| **list** | `list [NUMBER_OF_DAYS]` | `list 2`<br>`list` |
+| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100`<br>`find p/HIGH` |
+| **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5`<br>`remind 2 4 5` |
 | **unremind** | `unremind INDEX` | `unremind 2` |
-| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH` `prioritize 1 p/LOW` |
+| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW` |
 | **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
 | **done** | `done INDEX` | `done 4` |
 | **undone** | `undone INDEX` | `undone 2` |
 | **schedule** | `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME` | `schedule 1 expected/2 before/23-12-2020 2359` |
 | **unschedule** | `unschedule INDEX` | `unschedule 1` |
 | **undo** | `undo` | `undo` |
+| **clear** | `clear` | `clear` |
 | **help** | `help` | `help` |
 | **exit** | `exit` | `exit` |
 
