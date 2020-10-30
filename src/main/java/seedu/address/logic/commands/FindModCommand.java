@@ -17,18 +17,16 @@ public class FindModCommand extends Command {
     public static final String COMMAND_WORD = "findmod";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the module whose code, name and instructors' "
-            + "names contain the specified keywords (case-insensitive) and displays them as a list. "
-            + "Command must contain at least one parameter and each parameter can have multiple keywords, "
-            + "except for module code. "
+            + "names contain the specified keywords (case-insensitive) and displays them as a list.\n"
+            + "At least one of the fields must be provided and each field can have multiple keywords, "
+            + "except for module code.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_MODULE_NAME + "MODULE NAME ... "
-            + PREFIX_MODULE_INSTRUCTOR + "INSTRUCTOR's NAME ... \n"
-            + "Examples: "
-            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2103 "
-            + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS2 " + PREFIX_MODULE_INSTRUCTOR + "John, "
+            + "[" + PREFIX_MODULE_CODE + "MODULE_CODE] "
+            + "[" + PREFIX_MODULE_NAME + "MODULE_NAME] "
+            + "[" + PREFIX_MODULE_INSTRUCTOR + "INSTRUCTOR_NAME]\n"
+            + "Example: "
             + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "CS1 "
-            + PREFIX_MODULE_NAME + "programming methodology" + PREFIX_MODULE_INSTRUCTOR + "Martin";
+            + PREFIX_MODULE_NAME + "programming methodology " + PREFIX_MODULE_INSTRUCTOR + "Martin";
 
     private final List<Predicate<Module>> predicates;
 

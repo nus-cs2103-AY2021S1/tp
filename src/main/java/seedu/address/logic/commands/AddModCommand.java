@@ -16,10 +16,10 @@ public class AddModCommand extends Command {
 
     public static final String COMMAND_WORD = "addmod";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to FaculType. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to FaculType.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_MODULE_NAME + "MODULE NAME\n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + PREFIX_MODULE_NAME + "MODULE_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS2103 "
             + PREFIX_MODULE_NAME + "Software Engineering ";
