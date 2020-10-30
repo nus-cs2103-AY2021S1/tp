@@ -508,7 +508,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
-
+<br>
 **Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
 **A**:
 You can reschedule by using the schedule command on that assignment again.
@@ -531,20 +531,21 @@ You can paste the command into the command box after step 3 and repeat step 2-3 
 3. Press ENTER to reschedule your assignment.
 
 DIAGRAM
-
+<br>
 **Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?
 **A**: 
 *For Windows Users:*
 1. Go to the folder where you have downloaded and saved the productivenus.jar file.
-2. Copy the file directory of the folder. The file directory is labelled in the diagram below.
-DIAGRAM
-3. Open your command interpreter. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
-4. Your command interpreter will start, and the command interpreter should look something similar to the diagram below.
-<br>
-DIAGRAM
-4. In the command interpreter, type `cd ` and paste the file directory that you have copied in step 2.
-<br>For example, `cd C:\Desktop\ProductiveNUS`.
-5. Press ENTER and the file directory will be shown in the command interpreter.
-<br>
-DIAGRAM
+2. Copy the file directory of the folder. Please refer to the labelled diagram below.<br>
+   ![UserGuideLocateDirectory](images/UserGuideLocateDirectory.PNG)
+   *Figure 14a: File directory labelled*
+3. Open your command prompt. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
+4. Your command prompt will start, and it should look something similar to the diagram below.<br>
+   ![UserGuideCommandPrompt](images/UserGuideCommandPrompt.PNG)
+   *Figure 14b: Command Prompt*
+4. In the command prompt, type `cd ` and paste the file directory that you have copied in step 2.
+<br>For example, `cd C:\Users\YourUserName\Desktop\ProductiveNUS`.
+5. Press ENTER and the file directory will be shown in the command prompt.<br>
+   ![UserGuideChangeDirectory](images/UserGuideChangeDirectory.PNG)
+   *Figure 14c: After changing file directory in Command Prompt*
 6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
