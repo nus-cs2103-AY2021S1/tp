@@ -104,6 +104,12 @@ This section provides support for the commands required to perform desired actio
 * Compulsory prefixes with `...` trailing after them can be used more than one time in one command. <br>
   For example, in `delete sn/<serial number>...`, the `sn/<serial number>` must be provided and duplicates are allowed. <br>
   `delete sn/Fairprice1` and `delete sn/Fairprice1 sn/Ntuc1` are both valid command formats.
+  
+* Multiple prefixes combined with `|` means only one of them can be provided at a single command. <br>
+  For example, in `update sn/<serial number> [iq/<increment value> | nq/<new quantity>]`, at most one of `iq/<increment value>`
+  or `nq/<new quantity>` may be provided. <br>
+  `update sn/Fairprice iq/+10 nq/100` is an invalid command format, but `update sn/Fairprice1 iq/+10`, 
+  `update sn/Fairprice1 nq/100`, `update sn/Fairprice1` are all valid command formats.
 
 * Prefixes given can be in any order. <br>
   For example, `update sn/Fairprice1 n/Apple` and `update n/Apple sn/Fairprice1` are both valid and behave exactly the same.
@@ -672,7 +678,7 @@ The set of used serial number sources is automatically saved to
 ### Exiting Warenager: `exit`
 Terminates the program.
 
-<h5>Format</h5>
+<h4>Format</h4>
 
 `exit`
 
