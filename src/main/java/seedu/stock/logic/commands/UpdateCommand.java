@@ -53,7 +53,12 @@ public class UpdateCommand extends Command {
             + "[" + PREFIX_NAME + PREFIX_NAME_DESCRIPTION + "] "
             + "[" + PREFIX_SOURCE + PREFIX_SOURCE_DESCRIPTION + "] "
             + "[" + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + "] "
-            + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]";
+            + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "ntuc1 "
+            + PREFIX_INCREMENT_QUANTITY + "+50 "
+            + PREFIX_NAME + "heineken";
 
     public static final String MESSAGE_UPDATE_STOCK_SUCCESS = "Updated Stock: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";

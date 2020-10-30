@@ -27,7 +27,11 @@ public class NoteDeleteCommand extends Command {
             + "Format: "
             + COMMAND_WORD + " "
             + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " "
-            + PREFIX_NOTE_INDEX + PREFIX_NOTE_INDEX_DESCRIPTION;
+            + PREFIX_NOTE_INDEX + PREFIX_NOTE_INDEX_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "ntuc1 "
+            + PREFIX_NOTE_INDEX + "1";
 
     private static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note(s) from Stock: %1$s";
     private static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND =

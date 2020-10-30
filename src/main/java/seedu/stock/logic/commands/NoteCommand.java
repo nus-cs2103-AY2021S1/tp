@@ -27,7 +27,11 @@ public class NoteCommand extends Command {
             + "Format: "
             + COMMAND_WORD + " "
             + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " "
-            + PREFIX_NOTE + PREFIX_NOTE_DESCRIPTION;
+            + PREFIX_NOTE + PREFIX_NOTE_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "shengsiong1 "
+            + PREFIX_NOTE + "chicken will expire soon";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";

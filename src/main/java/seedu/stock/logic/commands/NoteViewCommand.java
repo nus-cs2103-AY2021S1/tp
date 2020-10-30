@@ -20,7 +20,10 @@ public class NoteViewCommand extends Command {
             + "by the serial number of the stock.\n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " ";
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "ntuc1";
 
     public static final String MESSAGE_NOTE_DISPLAY_SUCCESS = "Viewing notes for Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists.";

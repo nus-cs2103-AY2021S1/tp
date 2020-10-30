@@ -29,7 +29,10 @@ public class PrintCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies all stocks in the inventory into a csv file.\n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_FILE_NAME + PREFIX_FILE_NAME_DESCRIPTION;
+            + PREFIX_FILE_NAME + PREFIX_FILE_NAME_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_FILE_NAME + "stocks";
 
     public static final char CSV_SEPARATOR = ',';
 

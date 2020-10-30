@@ -141,7 +141,7 @@ Action | Format, Examples
 **Delete** | `delete sn/<serial number>...` <br> e.g. `delete sn/Fairprice1`
 **Find** | `find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]` <br> e.g. `find n/banana sn/SHENGSIONG`
 **FindExact** | `findexact [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]` <br> e.g. `findexact n/banana sn/SHENGSIONG`
-**Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/sheng siong1 nt/chicken will expire soon`
+**Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/shengsiong1 nt/chicken will expire soon`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
 **NoteView** | `noteview sn/<serial number>` <br> e.g. `noteview sn/ntuc1`
 **Update** | `update sn/<serial number>... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 

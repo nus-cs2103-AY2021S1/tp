@@ -24,7 +24,11 @@ public class SortCommand extends Command {
             + "Format: "
             + COMMAND_WORD + " "
             + PREFIX_SORT_ORDER + PREFIX_SORT_ORDER_DESCRIPTION + " "
-            + PREFIX_SORT_FIELD + PREFIX_SORT_FIELD_DESCRIPTION;
+            + PREFIX_SORT_FIELD + PREFIX_SORT_FIELD_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SORT_ORDER + "descending "
+            + PREFIX_SORT_FIELD + "quantity";
 
     public static final String MESSAGE_SORT_STOCK_SUCCESS = "Sorted stock by %1$s";
     public static final String MESSAGE_INVALID_FIELD = "The field to be sorted by is not recognized.";

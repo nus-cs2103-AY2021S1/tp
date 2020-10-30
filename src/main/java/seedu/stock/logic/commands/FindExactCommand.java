@@ -34,7 +34,11 @@ public class FindExactCommand extends Command {
             + "[" + PREFIX_NAME + PREFIX_NAME_DESCRIPTION + "] "
             + "[" + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "] "
             + "[" + PREFIX_SOURCE + PREFIX_SOURCE_DESCRIPTION + "] "
-            + "[" + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + "]";
+            + "[" + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + "]\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_NAME + "banana "
+            + PREFIX_SOURCE + "SHENGSIONG";
 
     private final List<FieldContainsKeywordsPredicate> predicates; // list of predicates to filter stocks by
     private final Predicate<Stock> combinedPredicates; // combined predicates to filter stocks by

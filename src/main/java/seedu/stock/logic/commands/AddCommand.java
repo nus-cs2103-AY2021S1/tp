@@ -30,7 +30,13 @@ public class AddCommand extends Command {
             + PREFIX_SOURCE + PREFIX_SOURCE_DESCRIPTION + " "
             + PREFIX_QUANTITY + PREFIX_QUANTITY_DESCRIPTION + " "
             + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + " "
-            + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]";
+            + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_NAME + "Banana cake "
+            + PREFIX_SOURCE + "Fairprice "
+            + PREFIX_QUANTITY + "100 "
+            + PREFIX_LOCATION + "Food section ";
 
     public static final String MESSAGE_SUCCESS = "New stock added: %1$s";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the stock book";

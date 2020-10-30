@@ -25,7 +25,10 @@ public class BookmarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Bookmarks stocks in the inventory.\n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...";
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "China3 ";
 
 
     public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock: %1$s";

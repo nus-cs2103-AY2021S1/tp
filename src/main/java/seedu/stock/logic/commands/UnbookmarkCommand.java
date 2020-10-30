@@ -26,7 +26,10 @@ public class UnbookmarkCommand extends Command {
             + "the given serial number. \n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...";
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "China3 ";
 
 
     public static final String MESSAGE_UNBOOKMARK_STOCK_SUCCESS = "Unbookmarked Stock: %1$s";

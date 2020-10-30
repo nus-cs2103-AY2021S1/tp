@@ -19,7 +19,10 @@ public abstract class ListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all stocks in the inventory \n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_LIST_TYPE + PREFIX_LIST_TYPE_DESCRIPTION;
+            + PREFIX_LIST_TYPE + PREFIX_LIST_TYPE_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_LIST_TYPE + "bookmark";
 
 
     @Override

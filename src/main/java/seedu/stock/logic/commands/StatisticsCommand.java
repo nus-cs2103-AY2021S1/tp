@@ -13,5 +13,8 @@ public abstract class StatisticsCommand extends Command {
             + "distribution in a particular source company\n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_STATISTICS_TYPE + PREFIX_STATISTICS_TYPE_DESCRIPTION;
+            + PREFIX_STATISTICS_TYPE + PREFIX_STATISTICS_TYPE_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_STATISTICS_TYPE + "source-qd-ntuc";
 }
