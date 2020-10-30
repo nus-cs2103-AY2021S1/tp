@@ -61,20 +61,6 @@ public class StatsBox extends UiPart<Region> {
         });
     }
 
-    private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
-        List<Pair<String, LocalDateTime>> outputList = new ArrayList<>();
-        int i = 0;
-        while (i < 3 && records.size() != 0) {
-            outputList.add(records.remove(records.size() - 1));
-            i++;
-        }
-        String output = outputList.stream()
-            .map(x -> String.format("%s, %s", x.fst(),
-                x.snd().format(DateTimeFormatter.ofPattern("dd-MMM-yy hh:mm a"))))
-            .collect(Collectors.joining("\n"));
-        return output.toString();
-    }
-
     /**
      * Sets the content based on the command result
      */
