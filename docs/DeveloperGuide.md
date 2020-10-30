@@ -206,7 +206,7 @@ Problem Statement: A bin item must be polymorphic in its storage, i.e., it must 
   - Pros: Makes storage more OOP-compliant, prevents need for explicit type-checking. 
   - Cons: Complicates the general MVC structure, and makes it more difficult to migrate to non-JSON storage, since instances of `Binnable` (e.g. `Student` and `Room`) must now contain their storage implementation details as well. 
 
-### Allocation/ deallocation/ reallocation feature
+### Allocation/ Deallocation/ Reallocation Feature
 
 The allocation/ deallocation/ reallocation feature is facilitated by `Allocation`. It is an association class of the
 unique identifiers of a `Student` and a `Room` to which the `Student` is allocated to. The `Allocation` association
@@ -218,6 +218,26 @@ When a `Student` is allocated a `Room` using `AllocateCommand`, an `Allocation` 
 `UniqueAllocationList`. Likewise, when a `Student` is deallocated or reallocated a different `Room` using `DeallocateCommand` and
 `ReallocateCommand` respectively, the `Allocation` relating to the `Student` is removed from `ResiReg` in the former
 and edited in the latter.
+
+The follow class diagram shows how `Allocation` is implemented.
+
+![image](images/AllocationClassDiagram.png)
+
+Given below is an example usage scenario and how the allocation mechanism behaves at each step.
+
+Step 1. The user executes `allocate si/1 ri/1` command to allocate the first student in ResiReg to the first room in ResiReg.
+
+Step 2. The `LogicManager` executes the user input, running `parseCommand` to `AllocateCommandParser`.
+
+Step 3. The arguments `si/1 ri/1` are parsed by `AllocateCommandParser` and the `AllocateCommand` instance is created.
+
+Step 4. The `AllocateCommand` instance is executed in `LogicManager`, which performs 3 actions: `setStudent`, `setRoom` and `addAllocation` to the `Model`.
+
+Step 5. A `CommandResult` is returned.
+
+The following sequence diagram shows how an allocate command operates.
+
+![image](images/AllocateSequenceDiagram.png)
 
 #### Design consideration:
 
@@ -698,10 +718,17 @@ Use case ends.
 
 - 1a. The history of previously entered commands is empty.
     - ResiReg shows an error message.
-    
+   
+      Use case ends.
+      
+#### Use case: UC10 - View piechart of allocated and unallocated rooms
+**MSS**
+1. OHS admin requests to view a piechart of allocated and unallocated rooms.
+1. ResiReg shows a piechart of allocated rooms and unallocated rooms on the Statistics tab.
+
 Use case ends.
 
-#### Use case: UC10 - Archive command
+#### Use case: UC11 - Archive command
 
 **MSS**
 
@@ -710,7 +737,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use case: UC11 - Find rooms which match a specific criteria
+#### Use case: UC12 - Find rooms which match a specific criteria
 
 **MSS**
 
@@ -731,11 +758,11 @@ Use case ends.
 
     Use case resumes at step 1.
     
-#### Use case: UC12 - Find students which match a specific criteria
+#### Use case: UC13 - Find students which match a specific criteria
 
-Similar to <u>UC11 - Find rooms which match a specific criteria</u>, just replace rooms with students.
+Similar to <u>UC12 - Find rooms which match a specific criteria</u>, just replace rooms with students.
 
-#### Use case: UC13 - Add a room
+#### Use case: UC14 - Add a room
 
 **MSS**
 
@@ -750,11 +777,11 @@ Use case ends.
   - ResiReg shows an error message.
   -  Use case starts over.
 
-#### Use case: UC14 - Delete a room
+#### Use case: UC15 - Delete a room
 
 Similar to <u>UC02 - delete a student</u>, just replace student with room.
 
-#### Use case: UC15 - Edit a room
+#### Use case: UC16 - Edit a room
 
 Similar to <u>UC03 - edit a student</u>, just replace student with room.
 
