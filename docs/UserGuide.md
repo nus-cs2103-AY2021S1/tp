@@ -501,8 +501,8 @@ stats st/source-qd-abc
 ![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
 
 ### Bookmarking stocks in the list: `bookmark`
-Bookmarks the desired stock. 
-Bookmarking a stock pushes the stock to the top of the stocklist.
+Bookmarks the desired stock(s). 
+Bookmarking a stock pushes the stock to the top of the stock list.
 
 <h4>Format</h4>
 
@@ -518,17 +518,17 @@ bookmark sn/China3
 
 
 ### Unbookmarking stocks in the list: `unbookmark`
-Removes bookmark from the desired stock
+Removes bookmark from the desired stock(s).
 
-* Required fields:
-    1. Serial number of stock
+<h4>Format</h4>
 
-<h5>Format</h5>
+`unbookmark sn/<serial number>...`
 
-`unbookmark sn/<serial number>`
+<h4>Examples</h4>
 
-
-Command: `unbookmark sn/<serial number>` will remove the bookmark from the given stock
+```
+unbookmark sn/China3
+```
 
 ![GUI_component](images/unbookmark.png)
 
