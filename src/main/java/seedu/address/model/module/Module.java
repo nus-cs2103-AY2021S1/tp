@@ -267,6 +267,20 @@ public class Module {
     }
 
     /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("TagNotProvided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
+    /**
      * Adds a grade to the GradeTracker of the module.
      *
      * @param grade grade to add to grade tracker.
@@ -292,7 +306,6 @@ public class Module {
         return otherModule != null
                 && otherModule.getName().equals(getName());
     }
-
     /**
      * Returns true if module is completed by checking whether the module has a completed tag.
      */
@@ -300,7 +313,15 @@ public class Module {
         return this.tags.stream().map(x -> x.equals(new Tag("completed")))
                 .reduce(false, (x, y) -> x || y);
     }
-
+    /**
+     * Returns true if module has a grade point.
+     */
+    public boolean hasGradePoint() {
+        if (this.gradeTracker.getGradePoint().isPresent()) {
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getAllLinks(),
