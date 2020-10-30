@@ -454,7 +454,7 @@ General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 You can add an attendance record to a specified student in **Reeve**.
 
-Format: `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`
+Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`
 
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
@@ -570,7 +570,7 @@ Action | Format, Examples
 **Delete Question** | `question delete STUDENT_INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
 **Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
-**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
+**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
 **Toggle View** | `toggle`
 **Help** | `help`
