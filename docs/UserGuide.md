@@ -377,10 +377,13 @@ Action | Format, Examples | Scope
 --------|------------------|-------
 **Get Help** | `help` | global scope
 **Exit application** | `exit` | global scope
-**Start** | `start INDEX`<br> e.g., `start 3` | global scope
+**Show all projects** | `listprojects` | global scope 
+**Show all persons** | `listpersons` | global scope 
+**Leave a view** | `leave` | global scope
+**Start a project** | `startproject INDEX`<br> e.g., `startproject 3` | project_list scope
+**Start a person** | `startperson INDEX`<br> e.g., `startperson 3` | person_list scope
 **Add** | `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` | global scope
 **Delete project** | `delete INDEX` <br> eg. `delete 2` | global scope
-**Show all projects** | `list` | global scope 
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | global scope
 **edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
 **Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
@@ -389,9 +392,7 @@ Action | Format, Examples | Scope
 **Filter Tasks by Assignee/Deadline/Task Name** | ``filtert (ta/ASSIGNEE NAME) **OR** (td/DEADLINE) **OR** (tn/TASK NAME) **OR** (tp/PROGRESS) **OR** (done/ISDONE)``<br>e.g. `filtert ta/Alice` | project scope
 **View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
 **Show all the tasks** | `allt` | project scope 
-**Leave Task view to go to Project view** | `leavetaskview` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
-**Leave Teammate view to go to Project view** | `leaveteammateview` | project scope
