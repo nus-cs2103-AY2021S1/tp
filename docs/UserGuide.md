@@ -535,12 +535,13 @@ unbookmark sn/China3
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
 
-* Required fields:
-    1. The field to be sorted by
-    2. The order of the sorting
+<h4>Format</h4>
 
-<h5>Format</h5>
 `sort o/<order> by/<field>`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Regarding order and field to be sorted** 
 
 * The order can only be one of the following:
     1. `ascending` - sorts the inventory in ascending order
@@ -553,7 +554,9 @@ Sort the inventory by a specific field and order.
     4. `location` - sorts the inventory by location
     5. `serialnumber` - sorts the inventory by serial number
 
-<h5>Example usages</h5>
+</div>
+
+<h4>Examples</h4>
 
 Stock | Details
 ------| --------
@@ -562,11 +565,17 @@ Stock | Details
 **Stock 3** | Name: Coca cola<br> Serial Number: NTUC1<br> Quantity: 100<br> Source: Ntuc<br> Location in warehouse: Drinks section
 **Stock 4** | Name: Sprite<br> Serial Number: NTUC2<br> Quantity: 100<br> Source: Ntuc<br> Location in warehouse: Drinks section
 
-Command: `sort o/descending by/quantity` will sort based on quantity and in descending order. <br>
+```
+sort o/descending by/quantity
+```
+will sort based on quantity and in descending order. <br>
 
 ![SortQuantityDescending](images/SortQuantityDescending.png)
 
-Command: `sort o/ascending by/name` will sort based on name and in ascending order. <br>
+```
+sort o/ascending by/name
+```
+will sort based on name and in ascending order. <br>
 
 ![SortNameAscending](images/SortNameAscending.png)
 
