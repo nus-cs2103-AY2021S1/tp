@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
 import seedu.address.storage.StorageForExercise;
 
 /**
@@ -25,7 +26,7 @@ import seedu.address.storage.StorageForExercise;
 public class LogicManagerForExercise implements LogicForExercise {
 
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private final Logger logger = LogsCenter.getLogger(LogicManagerForExercise.class);
 
     private final ExerciseModel model;
     private final StorageForExercise storage;
@@ -76,6 +77,11 @@ public class LogicManagerForExercise implements LogicForExercise {
     @Override
     public ObservableList<Exercise> getFilteredExerciseList() {
         return model.getFilteredExerciseList();
+    }
+
+    @Override
+    public ObservableList<Template> getFilteredTemplateList() {
+        return model.getFilteredTemplateList();
     }
 
     @Override

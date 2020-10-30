@@ -21,6 +21,7 @@ import seedu.address.model.ExerciseModelManager;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.exercise.TemplateList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.ExerciseBookStorage;
 import seedu.address.storage.JsonExerciseBookStorage;
@@ -38,7 +39,7 @@ public class ExerciseMainApp extends Application {
 
     public static final Version VERSION = new Version(0, 6, 0, true);
 
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final Logger logger = LogsCenter.getLogger(ExerciseMainApp.class);
 
     protected Ui ui;
     protected LogicForExercise logic;
@@ -66,6 +67,8 @@ public class ExerciseMainApp extends Application {
         logic = new LogicManagerForExercise(model, storage);
 
         ui = new ExerciseUiManager(logic);
+
+        TemplateList.load();
     }
 
     /**
@@ -167,7 +170,7 @@ public class ExerciseMainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ExerciseBook " + MainApp.VERSION);
+        logger.info("Starting ExerciseBook " + ExerciseMainApp.VERSION);
         ui.start(primaryStage);
     }
 

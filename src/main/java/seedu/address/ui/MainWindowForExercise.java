@@ -33,6 +33,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ExerciseListPanel exerciseListPanel;
+    private TemplateListPanel templateListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CaloriesGraph caloriesGraph;
@@ -45,6 +46,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane templateListPanelPlaceholder;
 
     @FXML
     private StackPane exerciseListPanelPlaceholder;
@@ -121,6 +125,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredExerciseList());
         exerciseListPanelPlaceholder.getChildren().add(exerciseListPanel.getRoot());
 
+        templateListPanel = new TemplateListPanel(logic.getFilteredTemplateList());
+        templateListPanelPlaceholder.getChildren().add(templateListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -180,8 +187,6 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     /**
      * Executes the command and returns the result.
-     *
-     * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException, IOException {
         try {

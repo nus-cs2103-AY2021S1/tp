@@ -52,16 +52,8 @@ public class Exercise {
         return date;
     }
 
-    public Optional<Calories> getCalories() {
-        return Optional.ofNullable(calories);
-    }
-
-    public String getCaloriesDescription() {
-        if (!getCalories().isPresent()) {
-            return "None";
-        }
-
-        return getCalories().get().toString();
+    public Calories getCalories() {
+        return calories;
     }
 
     public Optional<List<Muscle>> getMusclesWorked() {

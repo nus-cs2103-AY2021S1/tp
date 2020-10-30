@@ -7,6 +7,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
+import seedu.address.model.exercise.TemplateList;
 import seedu.address.model.exercise.UniqueExerciseList;
 
 /**
@@ -110,6 +112,11 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     @Override
     public ObservableList<Exercise> getExerciseList() {
         return exercises.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Template> getTemplateList() {
+        return TemplateList.getObservableList();
     }
 
     @Override

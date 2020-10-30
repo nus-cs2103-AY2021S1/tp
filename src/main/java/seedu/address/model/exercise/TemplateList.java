@@ -6,18 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.parser.AddTemplateCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TemplateList {
     private static ArrayList<Template> list = new ArrayList<Template>();
+    private static ObservableList<Template> observableList = FXCollections.observableArrayList();
 
     public static List<Template> getList() {
         return list;
     }
 
+    public static ObservableList<Template> getObservableList() {
+        return observableList;
+    }
+
     public static Template getTemp(String name) {
-        load();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName().equals(name)) {
                 return list.get(i);
@@ -26,8 +32,12 @@ public class TemplateList {
         return null;
     }
 
+    /**
+     * Adds a template to the list.
+     */
     public static void addTemplate(Template template) {
         list.add(template);
+        observableList.add(template);
     }
 
     /**
@@ -60,6 +70,7 @@ public class TemplateList {
             while (s.hasNext()) {
                 String string = s.nextLine();
                 list.add(parser.parseTemp(" " + string));
+                observableList.add(parser.parseTemp(" " + string));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

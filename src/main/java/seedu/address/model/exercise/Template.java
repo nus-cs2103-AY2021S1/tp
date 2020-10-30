@@ -25,17 +25,14 @@ public class Template {
      * @param name        name of the template
      * @param description description of the template
      * @param calories    calories of the template
-     * @param musclesWorked muscles worked
-     * @param tags tags
      */
-    public Template(String name, String description, Integer calories,
-                    List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
-        requireAllNonNull(name, description, calories, musclesWorked, tags);
+    public Template(String name, String description, Integer calories) {
+        requireAllNonNull(name, description, calories);
         this.name = name;
         this.description = description;
         this.calories = calories;
-        this.musclesWorked = musclesWorked;
-        this.tags.addAll(tags);
+        //this.musclesWorked = musclesWorked;
+        //this.tags.addAll(tags);
     }
 
     public String getName() {

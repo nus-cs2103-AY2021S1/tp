@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.UpdateExerciseCommand;
+import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.Muscle;
@@ -46,7 +46,7 @@ public class ExerciseUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getEditExerciseDescriptorDetails(UpdateExerciseCommand.EditExerciseDescriptor descriptor) {
+    public static String getEditExerciseDescriptorDetails(UpdateCommand.EditExerciseDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.toString()).append(" "));
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
