@@ -91,17 +91,22 @@ This section provides support for the commands required to perform desired actio
 
 * Words enclosed in `<>` are the input parameters to be supplied by the user. <br>
   For example, in `n/<name>`, `name` is a parameter which can be used as `n/Pork Belly`.
-* Prefixes not enclosed with anything is compulsory, must be provided by the user, and duplicate is now allowed. <br>
+
+* Prefixes not enclosed with anything is compulsory, must be provided by the user, and duplicate is not allowed. <br>
   For example, in `list lt/<list type>`, the `lt/<list type>` must be provided and no duplicate is allowed. <br>
   `list` and `list lt/all lt/bookmark` are invalid command formats, but `list lt/all` is valid.
+
 * Prefixes enclosed with `[]` is optional and can be omitted by the user. <br>
   For example, in `update sn/<serial number> [n/<name]`, the `n/<name>` can be omitted. <br>
   `update sn/Fairprice1 n/Apple` and `update sn/Fairprice1` are both valid command formats.
+
 * Compulsory prefixes with `...` trailing after them can be used more than one time in one command. <br>
   For example, in `delete sn/<serial number>...`, the `sn/<serial number>` must be provided and duplicates are allowed. <br>
   `delete sn/Fairprice1` and `delete sn/Fairprice1 sn/Ntuc1` are both valid command formats.
+
 * Prefixes given can be in any order. <br>
   For example, `update sn/Fairprice1 n/Apple` and `update n/Apple sn/Fairprice1` are both valid and behave exactly the same.
+
 * All 15 valid prefixes that are used in Warenager are <br>
   `n/<name>, s/<source>, q/<quantity>, lq/<low quantity>, l/<location>, lt/<list type>, sn/<serial number>, nq/<new quantity>,
   iq/<increment value>, nt/<note>, ni/<note index>, st/<statistics type>, by/<field>, o/<order>, fn/<file name>`.
@@ -110,7 +115,8 @@ This section provides support for the commands required to perform desired actio
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:**
+**:warning: Warning for invalid prefixes**
+
 Unexpected behaviors might occur if any prefix besides the 15 valid prefixes recognized by Warenager is supplied by the user. <br>
 In general, Warenager will not be able to parse any prefix besides the 15 valid prefixes above and will recognize the
 invalid prefix as a parameter instead. <br>
