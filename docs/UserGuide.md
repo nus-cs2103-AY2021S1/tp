@@ -560,7 +560,7 @@ Examples:
  * `addcontact n/bob e/bob@gmail.com t/friend`
  
  
- #### Locating contacts: `findcontact`
+#### Locating contacts: `findcontact`
  
  Finds all contacts that fulfil all the provided search criteria.
  
@@ -604,7 +604,7 @@ Examples:
    * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
  
  
- #### Listing all contacts: `listcontact`
+#### Listing all contacts: `listcontact`
  
  Shows a list of all contacts in the contact list.
  
@@ -620,7 +620,7 @@ Examples:
  </div>
  
  
- #### Editing a contact: `editcontact`
+#### Editing a contact: `editcontact`
  
  Edits an existing contact in the contact list.
  
