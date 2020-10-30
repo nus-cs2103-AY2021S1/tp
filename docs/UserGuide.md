@@ -3,9 +3,10 @@ layout: page
 title: User Guide
 ---
 
+<img align="right" height="170" src="images/inventoryinator.jpg">
+
 [//]: # (// TODO ** add authorship for grading purposes **)
 
-<img align="right" src="images/inventoryinator.jpg">
 
 ## Introduction
 
