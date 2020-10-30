@@ -5,6 +5,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
+    -fx-effect: none;
     -fx-background: #383838;
 }
 
