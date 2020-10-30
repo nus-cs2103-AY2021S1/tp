@@ -185,27 +185,6 @@ The following sequence diagram shows how the `Add Log` feature works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-### Autocomplete  feature
-
-Autocomplete feature uses following classes:
-
-- `ResultDisplay` - Displays user input.
-- `CommandBox` - CommandBox which consists of `commandTextField`
-- `LogicManager` - Implements logic between models and user interface
-
-Below is how it works:
-
-Step 1. User enters command `add`.
-
-Step 2. `commandTextField` in `CommandBox` detects changes in the user input and parse the input into
- `showAutoCompleteResult()` method in `ResultDisplay` 
-
-Step 3: `ResultDisplay` retrieves a list of commmands from `LogicManager` by `getSuggestionList()`
-
-Step 4: `ResultDisplay` computes the result to display to the user
-
-Step 5: `ResultDisplay` display result to the user.
-
 
 ![](images/DeleteExDiagram.png)
 
@@ -264,6 +243,31 @@ The following sequence diagram shows how the `Find Log` feature works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+
+
+### Autocomplete  feature
+
+Autocomplete feature uses following classes:
+
+- `ResultDisplay` - Displays user input.
+- `CommandBox` - CommandBox which consists of `commandTextField`
+- `LogicManager` - Implements logic between models and user interface
+
+Below is how it works:
+
+Step 1. User enters command `add`.
+
+Step 2. `commandTextField` in `CommandBox` detects changes in the user input and parse the input into
+ `showAutoCompleteResult()` method in `ResultDisplay` 
+
+Step 3: `ResultDisplay` executes method `setText` which executes `getAutoCompleteResult` method.
+
+Step 4: `getAutoCompleteResult` computes the result to display to the user and returns the String `result`.
+
+Step 5: `setText` method in `ResultDisplay` receives the `result` as a parameter and display the `result` for the user.
+
+![AutocompleteSequenceDiagram](images/AutocompleteSequenceDiagram.png) 
 
 
 ### Better user interface
