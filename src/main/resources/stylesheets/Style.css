@@ -11,7 +11,8 @@
 
 /* OVERRIDES */
 .scroll-pane {
-    -fx-background-color:transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 0 8px 0 0;
 }
 
 .scroll-pane .viewport {
@@ -30,7 +31,6 @@
 .scroll-pane .scroll-bar .increment-button,
 .scroll-pane .scroll-bar .decrement-button {
     -fx-padding: 0;
-    -fx-background-insets: 0;
 }
 
 .scroll-pane .scroll-bar .increment-button .increment-arrow,
