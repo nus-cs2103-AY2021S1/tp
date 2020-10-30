@@ -5,11 +5,9 @@ title: User Guide
 
 [//]: # (// TODO ** add authorship for grading purposes **)
 
+<img align="right" src="images/inventoryinator.jpg">
+
 ## Introduction
-
-[//]: # (// TODO shift to the right)
-
-![inventoryinator](images/inventoryinator.jpg)
 
 [//]: # (// TODO longer intro)
 
