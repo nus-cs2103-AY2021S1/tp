@@ -674,7 +674,7 @@ This section features general questions about _Common Cents_ that are not specif
  under the name of `CommonCents.json`.
 
 2. **Question:** How do I transfer my data to another computer?<br>
-**Answer:** Install the app in the other computer and overwrite the default data file it creates with the file 
+**Answer:** Install the app in the other computer and overwrite the default data file (in the `data` folder) with the file 
 `(CommonCents.json)` that contains the data of your previous _Common Cents_ session.
 
 3. **Question:** What if I notice something wrong with the application?<br>
