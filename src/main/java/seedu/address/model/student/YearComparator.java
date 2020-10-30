@@ -6,6 +6,8 @@ import java.util.Comparator;
 
 public class YearComparator implements Comparator<Student> {
 
+    public static final String COMPARISON_MEANS = "year";
+
     @Override
     public int compare(Student o1, Student o2) {
         requireNonNull(o1);

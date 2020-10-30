@@ -8,6 +8,8 @@ import seedu.address.model.student.Student;
 
 public class ClassTimeComparator implements Comparator<Student> {
 
+    public static final String COMPARISON_MEANS = "classTime";
+
     @Override
     public int compare(Student o1, Student o2) {
         requireNonNull(o1);
