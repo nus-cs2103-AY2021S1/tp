@@ -339,6 +339,7 @@ You can use this to make edits to any existing entries in the tracker when the d
 
 * Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified.
 * The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT.
+* When editing an entry’s tags, the existing tags of the entry will be removed i.e adding of tags is not cumulative.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries
 (e.g. if there are 10 entries, the `INDEX` given cannot be > 10).
 
@@ -669,11 +670,15 @@ This section contains a few frequently asked questions with regard to _Common Ce
 ## 6.1 General Inquiry
 This section features general questions about _Common Cents_ that are not specific to the features.
 
-1. **Question:** How do I transfer my data to another computer?<br>
-**Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that 
-contains the data of your previous _CommonCents_ home folder.
+1. **Question:** How do I save my data in _Common Cents_?<br>
+**Answer:** You do not need to do anything! Your data will be automatically saved in the `data` folder
+ under the name of `CommonCents.json`.
 
-2. **Question:** What if I notice something wrong with the application?<br>
+2. **Question:** How do I transfer my data to another computer?<br>
+**Answer:** Install the app in the other computer and overwrite the default data file (in the `data` folder) with the file 
+`(CommonCents.json)` that contains the data of your previous _Common Cents_ session.
+
+3. **Question:** What if I notice something wrong with the application?<br>
 **Answer:** You may submit a bug report or send us a notice directly [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
 
 
