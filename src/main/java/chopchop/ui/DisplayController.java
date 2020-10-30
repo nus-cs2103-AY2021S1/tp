@@ -73,6 +73,9 @@ public class DisplayController extends UiPart<Region> {
                 this.displayIngredientList());
     }
 
+    /**
+     * Loads the initial panel.
+     */
     public void initialLoad(boolean isPresent) {
         if (isPresent) {
             this.displayRecipeList();
