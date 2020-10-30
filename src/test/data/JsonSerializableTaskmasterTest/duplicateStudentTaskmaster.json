@@ -1,13 +1,13 @@
 {
   "students": [ {
     "name": "Alice Pauline",
-    "telegram": "94351253",
+    "telegram": "alicepauline",
     "email": "alice@example.com",
     "nusnetId": "e0123456",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
-    "telegram": "94351253",
+    "telegram": "alicepauline",
     "email": "pauline@example.com",
     "nusnetId": "e0123456"
   } ]
