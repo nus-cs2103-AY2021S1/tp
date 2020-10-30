@@ -53,4 +53,19 @@ public class IdParserUtil {
         }
         return new BidderId(trimmedBidderId);
     }
+
+    /**
+     * Parses a {@code String bidderId} into an {@code List<BidderId>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code bidderId} is invalid.
+     */
+    public static BidderId parseBidderIdList(String bidderId) throws ParseException {
+        requireNonNull(bidderId);
+        String trimmedBidderId = bidderId.trim();
+        if (!BidderId.isValidId(bidderId)) {
+            throw new ParseException(BidderId.MESSAGE_CONSTRAINTS);
+        }
+        return new BidderId(trimmedBidderId);
+    }
 }

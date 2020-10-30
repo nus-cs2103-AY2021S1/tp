@@ -320,7 +320,7 @@ These operations are exposed in the `Model` interface as `Model#commitAddressBoo
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first date. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
@@ -429,7 +429,7 @@ will be retained.
 
 #### Edit Meeting Feature
 
-The Edit Meeting feature edits an attribute of an exisiting meeting in the meeting book with the user defined attribute, such as the bidder id, property id, venue or time.
+The Edit Meeting feature edits an attribute of an exisiting meeting in the meeting book with the user defined attribute, such as the bidder id, property id, venue or date.
 
 1. ```LogicManager``` executes the user input. 
 2. It calls ```AddressBookParser``` to parse the user input, which creates an ```EditMeetingCommandParser```, as 
@@ -459,7 +459,7 @@ This process occurs inside the ```AddMeetingCommand``` class where the meeting o
 
 #### Find Meeting Feature
 The find meeting feature finds meetings with various different inputs. The user is able to find meetings based on 
-attributes such as venue, time, bidderId or the propertyId. The user simply has to use the relevant prefixes and add
+attributes such as venue, date, bidderId or the propertyId. The user simply has to use the relevant prefixes and add
 in a string that is contained in any of the meetings attributes and the fid feature will return you a list of the 
 meetings that contain them.
 
