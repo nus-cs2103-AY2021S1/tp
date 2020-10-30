@@ -126,6 +126,24 @@ Closes the application for the user.
 
 Format: `exit
 
+### List all projects in the catalogue `listprojects`
+
+List all projects currently in the project catalogue
+
+Format: `listprojects`
+- Lists all projects if there are projects in the catalogue
+
+Example: `listprojects` lists all projects in the catalogue to the user.
+
+### List all persons in the catalogue `listpersons`
+
+List all persons currently in the catalogue
+
+Format: `listpersons`
+- Lists all persons if there are persons in the catalogue
+
+Example: `listpersons` lists all persons in the catalogue to the user.
+
 ### Start work on an existing project `start `
 Initialises the project specified.
 
@@ -165,15 +183,6 @@ Format: `delete (INDEX) `
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `delete 2` deletes the second project from the catalogue.
-
-### List all projects in the catalogue `list `
-
-List all projects currently in the project catalogue
-
-Format: `list `
-- Lists all projects if there are projects in the catalogue
-
-Example: `list ` lists all projects in the catalogue to the user.
 
 #### Locate projects by keyword `find `
 
