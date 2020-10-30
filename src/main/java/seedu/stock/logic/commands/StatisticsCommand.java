@@ -1,5 +1,8 @@
 package seedu.stock.logic.commands;
 
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE_DESCRIPTION;
+
 public abstract class StatisticsCommand extends Command {
 
     public static final String COMMAND_WORD = "stats";
@@ -8,7 +11,7 @@ public abstract class StatisticsCommand extends Command {
             + "stats st/source: Shows statistics for source companies\n"
             + "stats st/source-qd-<source company>: Shows statistics for the quantity "
             + "distribution in a particular source company\n"
-            + "Parameters:\n"
-            + "st/source\n"
-            + "st/source-qd-<source company>";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_STATISTICS_TYPE + PREFIX_STATISTICS_TYPE_DESCRIPTION;
 }
