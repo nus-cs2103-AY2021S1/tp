@@ -64,7 +64,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  open the help window.<br>
    Some commands you can try:
 
-   * **`start 1 `** : Opens the first project
+   * **`startproject 1 `** : Opens the first project
 
    * **`exit`** : Exits the app.
 
@@ -94,12 +94,13 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 **:information_source: Notes about scoping:**<br>
 
 The hierarchy of command scoping is as follows:
-* `PROJECT_LIST`
-  * `PROJECT`
-    * `TASK`
-    * `TEAMMATE`
-* `PERSON_LIST`
-  * `PERSON`
+* global
+    * `PROJECT_LIST`
+      * `PROJECT`
+        * `TASK`
+        * `TEAMMATE`
+    * `PERSON_LIST`
+      * `PERSON`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
 scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is
