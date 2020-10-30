@@ -48,7 +48,7 @@ public class ListCommandParser {
                     return Result.of(new ListRecommendationCommand());
 
                 default:
-                    return Result.error("Can only list recipes, ingredients or recommendations ('%s' invalid)",
+                    return Result.error("Can only list recipes, ingredients, or recommendations ('%s' invalid)",
                             target.fst());
                 }
             });

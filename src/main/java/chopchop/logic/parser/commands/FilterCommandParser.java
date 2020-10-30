@@ -13,7 +13,7 @@ import chopchop.logic.commands.FilterIngredientCommand;
 import chopchop.logic.commands.FilterRecipeCommand;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.model.attributes.ExpiryDate;
-import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
+import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 
@@ -78,7 +78,7 @@ public class FilterCommandParser {
 
         return parseExpiryDates(exps)
             .map(optExpiry -> new FilterIngredientCommand(
-                optExpiry.map(ExpiryDateMatchesKeywordsPredicate::new).orElse(null),
+                optExpiry.map(ExpiryDateOnOrBeforePredicate::new).orElse(null),
                 tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags)
             ));
     }

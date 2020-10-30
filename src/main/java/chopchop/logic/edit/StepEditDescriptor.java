@@ -2,7 +2,12 @@
 
 package chopchop.logic.edit;
 
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceContains;
+import static chopchop.commons.util.Enforce.enforcePresent;
+
 import java.util.Optional;
+
 
 public class StepEditDescriptor extends EditDescriptor {
 
@@ -21,14 +26,16 @@ public class StepEditDescriptor extends EditDescriptor {
 
         super(editType);
 
-        assert editType == EditOperationType.ADD
-            || editType == EditOperationType.EDIT
-            || editType == EditOperationType.DELETE;
+        enforceContains(editType, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
 
-        if (editType == EditOperationType.ADD || editType == EditOperationType.EDIT) {
-            assert !stepText.isEmpty();
+        if (editType == EditOperationType.ADD) {
+            enforce(!stepText.isEmpty());
+        } else if (editType == EditOperationType.EDIT) {
+            enforce(!stepText.isEmpty());
+            enforcePresent(stepNumber);
         } else {
-            assert stepText.isEmpty();
+            enforcePresent(stepNumber);
+            enforce(stepText.isEmpty());
         }
 
         this.stepNumber = stepNumber;
@@ -41,6 +48,20 @@ public class StepEditDescriptor extends EditDescriptor {
 
     public Optional<Integer> getStepNumber() {
         return this.stepNumber;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof StepEditDescriptor)) {
+            return false;
+        } else {
+            var other = (StepEditDescriptor) obj;
+            return this.getEditType() == other.getEditType()
+                && this.stepNumber.equals(other.stepNumber)
+                && this.stepText.equals(other.stepText);
+        }
     }
 }
 

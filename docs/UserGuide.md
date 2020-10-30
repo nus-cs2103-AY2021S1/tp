@@ -897,7 +897,7 @@ Even after the recipe is deleted, its past usages are still saved within ChopCho
 **Usage**: `stats recipe [/before <DATE>] [/after <DATE>]`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** If you are omit both `[/before DATE]` and `[/after DATE]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
+:bulb: **Tip:** If you omit both `[/before DATE]` and `[/after DATE]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
 </div>
 
 For example:
@@ -919,7 +919,7 @@ If you enter `stats recipe` into the command box without either `[/before <DATE>
 
 <a name="StatsRecipeClearCommand"></a>
 ### 5.21. Clearing Recipe usage records -- **`stats recipe clear`**
-After you execute this command, the records of recipes that were made are deleted from ChopChop. If you run other stats commands such as `stats recipe recent`, you will see "No results found" as all records are deleted.'
+After you execute this command, the records of recipes that were made are deleted from ChopChop.
 
 **Usage**: `stats recipe clear`
 
@@ -941,13 +941,13 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 Shows a list of ingredients that were used by recipes made recently within the given time frame.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
-**Usage**: Similar to the previous command [above](#StatsRecipeMadeCommand), the only difference is the keyword is now `stats ingredient` instead of `stats recipe`.
+**Usage**: Similar to the previous command [above](#StatsRecipeMadeCommand), the only difference is the keyword is now `stats ingredient used` instead of `stats recipe made`.
 
 
 
 <a name="StatsIngredientClearCommand"></a>
 ### 5.24. Clearing Ingredient usage records -- **`stats ingredient clear`**
-After you execute this command, the records of ingredients that were used are deleted from ChopChop. If you run other stats commands such as `stats ingredient recent`, you will see "No results found" as all records are deleted.'
+After you execute this command, the records of ingredients that were used are deleted from ChopChop.
 
 **Usage**: `stats ingredient clear`
 

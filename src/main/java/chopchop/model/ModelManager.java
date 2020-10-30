@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' ingredient book file path.
      *
      * @param ingredientBookFilePath
      */
@@ -215,7 +215,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code FilteredList}
      */
     @Override
     public ObservableList<Ingredient> getFilteredIngredientList() {

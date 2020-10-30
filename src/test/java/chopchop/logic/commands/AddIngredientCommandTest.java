@@ -9,6 +9,9 @@ import java.util.NoSuchElementException;
 import chopchop.model.EntryBook;
 import chopchop.model.ModelStub;
 import chopchop.model.ReadOnlyEntryBook;
+import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.attributes.Tag;
+import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Volume;
 import chopchop.model.ingredient.Ingredient;
 
@@ -16,8 +19,8 @@ import org.junit.jupiter.api.Test;
 import chopchop.testutil.IngredientBuilder;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AddIngredientCommandTest {
@@ -38,9 +41,6 @@ public class AddIngredientCommandTest {
 
     @Test
     public void add_ingredients_combine() throws Exception {
-        var milk1 = new IngredientBuilder().withName("milk").withQuantity(Volume.litres(0.7)).build();
-        var milk2 = new IngredientBuilder().withName("MILK").withQuantity(Volume.cups(1)).build();
-
         var modelStub = new ModelStubAcceptingIngredientAdded();
         var historyStub = new CommandTestUtil.HistoryManagerStub();
 
@@ -49,34 +49,53 @@ public class AddIngredientCommandTest {
 
         assertTrue(out.didSucceed());
 
-        var out2 = new AddIngredientCommand("MILK", Optional.of(Volume.cups(1)), Optional.empty(), Set.of())
-            .execute(modelStub, historyStub);
+        var c2 = new AddIngredientCommand("MILK", Optional.of(Volume.cups(1)), Optional.empty(), Set.of());
+        var out2 = c2.execute(modelStub, historyStub);
 
         assertTrue(out2.didSucceed());
+        c2.undo(modelStub);
+
+        assertEquals(Volume.millilitres(700), modelStub.findIngredientWithName("milk").get().getQuantity());
+
+        var out3 = new AddIngredientCommand("milk", Optional.of(Count.of(7)), Optional.empty(), Set.of())
+            .execute(modelStub, historyStub);
+        assertTrue(out3.isError());
     }
 
     @Test
     public void equals() {
-        var apple = new IngredientBuilder().withName("Apple").build();
-        var banana = new IngredientBuilder().withName("Banana").build();
-        var appleCmd = new AddIngredientCommand("Apple", Optional.empty(), Optional.empty(), Set.of());
+        var appleCmd1 = new AddIngredientCommand("Apple", Optional.empty(), Optional.empty(), Set.of());
+        var appleCmd2 = new AddIngredientCommand("Apple", Optional.empty(), Optional.empty(), Set.of());
+
+        var appleCmd3 = new AddIngredientCommand("Apple",
+            Optional.of(Count.of(1)), Optional.empty(), Set.of());
+
+        var appleCmd4 = new AddIngredientCommand("Apple",
+            Optional.empty(), Optional.of(new ExpiryDate("2020-11-09")), Set.of());
+
+        var appleCmd5 = new AddIngredientCommand("Apple",
+            Optional.empty(), Optional.empty(), Set.of(new Tag("x")));
+
         var bananaCmd = new AddIngredientCommand("Banana", Optional.empty(), Optional.empty(), Set.of());
 
         // same object -> returns true
-        assertTrue(appleCmd.equals(appleCmd));
+        assertEquals(appleCmd1, appleCmd1);
 
         // same values -> returns true
-        var appleCmdCopy = new AddIngredientCommand("Apple", Optional.empty(), Optional.empty(), Set.of());
-        assertTrue(appleCmd.equals(appleCmdCopy));
+        assertEquals(appleCmd1, appleCmd2);
 
         // different types -> returns false
-        assertFalse(appleCmd.equals(1));
+        assertNotEquals(appleCmd1, "asdf");
 
         // null -> returns false
-        assertFalse(appleCmd.equals(null));
+        assertNotEquals(appleCmd1, null);
 
         // different ingredient -> returns false
-        assertFalse(appleCmd.equals(bananaCmd));
+        assertNotEquals(appleCmd1, bananaCmd);
+
+        assertNotEquals(appleCmd1, appleCmd3);
+        assertNotEquals(appleCmd1, appleCmd4);
+        assertNotEquals(appleCmd1, appleCmd5);
     }
 
     /**

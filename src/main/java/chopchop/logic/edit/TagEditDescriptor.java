@@ -2,6 +2,9 @@
 
 package chopchop.logic.edit;
 
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceContains;
+
 import chopchop.model.attributes.Tag;
 
 public class TagEditDescriptor extends EditDescriptor {
@@ -17,13 +20,26 @@ public class TagEditDescriptor extends EditDescriptor {
     public TagEditDescriptor(EditOperationType editType, String tag) {
         super(editType);
 
-        assert Tag.isValidTag(tag);
-        assert editType == EditOperationType.ADD || editType == EditOperationType.DELETE;
+        enforce(Tag.isValidTag(tag));
+        enforceContains(editType, EditOperationType.ADD, EditOperationType.DELETE);
 
         this.tagName = tag;
     }
 
     public String getTagName() {
         return this.tagName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof TagEditDescriptor)) {
+            return false;
+        } else {
+            var other = (TagEditDescriptor) obj;
+            return this.getEditType() == other.getEditType()
+                && this.tagName.equalsIgnoreCase(other.tagName);
+        }
     }
 }

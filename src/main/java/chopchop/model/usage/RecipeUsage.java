@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class RecipeUsage extends Usage {
+
     public RecipeUsage(String name, LocalDateTime date) {
         super(name, date);
     }

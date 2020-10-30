@@ -20,7 +20,6 @@ public class CommandResult {
     private final List<Part> parts;
 
     private final boolean isError;
-    private final boolean showHelp;
     private final boolean shouldExit;
     private final boolean isStatsOutput;
     private final List<Pair<String, String>> statsMessage;
@@ -28,12 +27,11 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    private CommandResult(String message, boolean isError, boolean shouldExit, boolean showHelp, boolean isStatsOutput,
+    private CommandResult(String message, boolean isError, boolean shouldExit, boolean isStatsOutput,
                           List<Pair<String, String>> statsMessage) {
         requireAllNonNull(message, statsMessage);
 
         this.isError = isError;
-        this.showHelp = showHelp;
         this.shouldExit = shouldExit;
         this.parts = List.of(Part.text(message));
         this.isStatsOutput = isStatsOutput;
@@ -43,13 +41,12 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    private CommandResult(List<Part> parts, boolean isError, boolean shouldExit, boolean showHelp,
-                          boolean isStatsOutput, List<Pair<String, String>> statsMessage) {
+    private CommandResult(List<Part> parts, boolean isError, boolean shouldExit, boolean isStatsOutput,
+                          List<Pair<String, String>> statsMessage) {
         requireNonNull(parts);
 
         this.parts = parts;
         this.isError = isError;
-        this.showHelp = showHelp;
         this.shouldExit = shouldExit;
         this.isStatsOutput = isStatsOutput;
         this.statsMessage = statsMessage;
@@ -60,13 +57,6 @@ public class CommandResult {
      */
     public boolean shouldExit() {
         return this.shouldExit;
-    }
-
-    /**
-     * Returns true if the app should open the help window
-     */
-    public boolean shouldShowHelp() {
-        return this.showHelp;
     }
 
     /**
@@ -87,7 +77,7 @@ public class CommandResult {
      * Returns the parts of the message
      */
     public List<Part> getParts() {
-        return this.parts;
+        return new ArrayList<>(this.parts);
     }
 
     /**
@@ -95,14 +85,13 @@ public class CommandResult {
      */
     public CommandResult appending(String text, boolean prependNewline) {
         var list = new ArrayList<>(this.parts);
-        if (list.size() > 0 && !prependNewline) {
-            list.get(list.size() - 1).setAppendNewline(false);
+        if (list.size() > 0) {
+            list.get(list.size() - 1).setAppendNewline(prependNewline);
         }
 
         list.add(Part.text(text));
 
-        return new CommandResult(list, this.isError, this.shouldExit, this.showHelp, this.isStatsOutput,
-            this.statsMessage);
+        return new CommandResult(list, this.isError, this.shouldExit, this.isStatsOutput, this.statsMessage);
     }
 
     /**
@@ -110,14 +99,13 @@ public class CommandResult {
      */
     public CommandResult appendingLink(String text, String url, boolean prependNewline) {
         var list = new ArrayList<>(this.parts);
-        if (list.size() > 0 && !prependNewline) {
-            list.get(list.size() - 1).setAppendNewline(false);
+        if (list.size() > 0) {
+            list.get(list.size() - 1).setAppendNewline(prependNewline);
         }
 
         list.add(Part.link(text, url));
 
-        return new CommandResult(list, this.isError, this.shouldExit, this.showHelp, this.isStatsOutput,
-            this.statsMessage);
+        return new CommandResult(list, this.isError, this.shouldExit, this.isStatsOutput, this.statsMessage);
     }
 
     /**
@@ -153,13 +141,12 @@ public class CommandResult {
 
         return this.parts.equals(cr.parts)
             && this.isError == cr.isError
-            && this.showHelp == cr.showHelp
             && this.shouldExit == cr.shouldExit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.parts, this.isError, this.showHelp, this.shouldExit);
+        return Objects.hash(this.parts, this.isError, this.shouldExit, this.statsMessage);
     }
 
     /**
@@ -169,7 +156,7 @@ public class CommandResult {
      */
     public static CommandResult message(String message, Object... args) {
         return new CommandResult(String.format(message, args),
-            /* isError: */ false, /* shouldExit: */ false, /* showHelp: */ false, false,
+            /* isError: */ false, /* shouldExit: */ false, /* statsMsg: */ false,
             new ArrayList<>());
     }
 
@@ -180,24 +167,16 @@ public class CommandResult {
      */
     public static CommandResult error(String error, Object... args) {
         return new CommandResult(String.format(error, args),
-            /* isError: */ true, /* shouldExit: */ false, /* showHelp: */ false, false,
+            /* isError: */ true, /* shouldExit: */ false, /* statsMsg: */ false,
             new ArrayList<>());
-    }
-
-    /**
-     * Constructs a new command result that shows help
-     */
-    public static CommandResult help() {
-        return new CommandResult("", /* isError: */ false, /* shouldExit: */ false,
-            /* showHelp: */ true, false, new ArrayList<>());
     }
 
     /**
      * Constructs a new command result that quits.
      */
     public static CommandResult exit() {
-        return new CommandResult("", /* isError: */ false, /* shouldExit: */ true,
-            /* showHelp: */ false, false, new ArrayList<>());
+        return new CommandResult(List.of(), /* isError: */ false, /* shouldExit: */ true,
+            /* statsMsg: */ false, new ArrayList<>());
     }
 
     /**
@@ -206,8 +185,7 @@ public class CommandResult {
      */
     public static CommandResult statsMessage(List<Pair<String, String>> outputList, String message, Object... args) {
         return new CommandResult(String.format(message, args),
-            /* isError: */ false, /* shouldExit: */ false, /* showHelp: */ false, true,
-            outputList);
+            /* isError: */ false, /* shouldExit: */ false, /* statsMsg: */true, outputList);
     }
 
 
@@ -224,7 +202,7 @@ public class CommandResult {
             this.url = url;
             this.text = text;
             this.isLink = isLink;
-            this.appendNewline = true;
+            this.appendNewline = false;
         }
 
         public String getText() {
@@ -268,6 +246,11 @@ public class CommandResult {
                 && Objects.equals(this.text, other.text)
                 && Objects.equals(this.isLink, other.isLink)
                 && Objects.equals(this.appendNewline, other.appendNewline);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(this.url, this.text, this.isLink, this.appendNewline);
         }
     }
 }

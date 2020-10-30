@@ -1,6 +1,7 @@
 package chopchop.model.attributes;
 
 import static chopchop.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,5 +42,12 @@ public class TagTest {
     public void caseInsensitiveComparison() {
         assertEquals(new Tag("chopchop"), new Tag("cHopChOP"));
         assertEquals(new Tag("chopchop"), new Tag("CHOPCHOP"));
+        assertEquals(new Tag("tag"), "TAG");
+
+        var t = new Tag("t");
+        assertEquals(t, t);
+
+        assertNotEquals(new Tag("tag"), "owo");
+        assertNotEquals(new Tag("3"), 3);
     }
 }

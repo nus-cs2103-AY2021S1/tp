@@ -16,11 +16,11 @@ public class StatsIngredientUsedCommand extends Command {
      * Creates an StatsIngredientCommand to add the specified {@code Command}.
      * If both before and after are not specified. It is assumed that the time frame is today.
      */
-    public StatsIngredientUsedCommand(LocalDateTime before, LocalDateTime after) {
+    public StatsIngredientUsedCommand(LocalDateTime after, LocalDateTime before) {
         if (before == null && after == null) {
             var now = LocalDateTime.now();
-            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0);
-            this.after = this.before.plusDays(1);
+            this.after = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0);
+            this.before = this.after.plusDays(1);
         } else {
             this.before = before;
             this.after = after;
@@ -32,27 +32,27 @@ public class StatsIngredientUsedCommand extends Command {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         String msg;
         if (this.before != null && this.after != null) {
-            var onBefore = this.before.format(onFormatter);
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
-            if (this.before.plusDays(1).equals(this.after)) {
-                msg = String.format("Here is a list of ingredients made on %s", onBefore);
+            var onAfter = this.after.format(onFormatter);
+            if (this.after.plusDays(1).equals(this.before)) {
+                msg = String.format("Here is a list of ingredients used on %s", onAfter);
             } else {
-                msg = String.format("Here is a list of ingredients made from the period %s to %s", after, before);
+                msg = String.format("Here is a list of ingredients used from the period %s to %s", after, before);
             }
         } else if (this.before != null) {
             var before = this.before.format(formatter);
-            msg = String.format("Here is a list of ingredients made before %s", before);
+            msg = String.format("Here is a list of ingredients used before %s", before);
         } else {
             var before = this.after.format(formatter);
-            msg = String.format("Here is a list of ingredients made after %s", before);
+            msg = String.format("Here is a list of ingredients used after %s", before);
         }
         return msg;
     }
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        var output = model.getRecipeUsageList().getUsagesBetween(before, after);
+        var output = model.getIngredientUsageList().getUsagesBetween(after, before);
         return CommandResult.statsMessage(output, getMessage());
     }
 

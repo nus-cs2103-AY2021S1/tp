@@ -24,7 +24,6 @@ public class JsonRecipeBookStorage implements RecipeBookStorage {
      * Constucts a {@code JsonRecipeBookStorage} based on filePath.
      */
     public JsonRecipeBookStorage(Path filePath) {
-        assert filePath != null;
         this.filePath = filePath;
     }
 

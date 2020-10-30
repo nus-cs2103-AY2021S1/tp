@@ -2,33 +2,21 @@
 
 package chopchop.logic.autocomplete;
 
-import java.util.Set;
 import java.util.List;
 import java.util.HashMap;
-import java.util.Optional;
 
 import chopchop.logic.parser.CommandParser;
-
-import chopchop.model.EntryBook;
-import chopchop.model.ReadOnlyEntryBook;
-import chopchop.model.attributes.Step;
-import chopchop.model.attributes.Tag;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.Recipe;
-
-import chopchop.testutil.TypicalIngredients;
-import chopchop.testutil.TypicalRecipes;
+import chopchop.testutil.StubbedModel;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-
 public class AutoCompleterTest {
 
     private final CommandParser parser = new CommandParser();
-    private final ModelStub model = new ModelStub();
+    private final StubbedModel model = new StubbedModel();
 
     private void runTests(HashMap<String, String> cases) {
         var completer = new AutoCompleter();
@@ -289,6 +277,7 @@ public class AutoCompleterTest {
         cases.put("add owo /q",                             "add owo /q");
         cases.put("add owo",                                "add owo");
         cases.put("add recipe",                             "add recipe");
+        cases.put("add recipe ",                            "add recipe");
         cases.put("add recommendation owo",                 "add recommendation owo");
         cases.put("add recommendation owo /tag a",          "add recommendation owo /tag a");
         cases.put("add recipe /ingredient qqq",             "add recipe /ingredient qqq");
@@ -303,52 +292,4 @@ public class AutoCompleterTest {
 
         runTests(cases);
     }
-
-
-
-    private class ModelStub extends chopchop.model.ModelStub {
-
-        private final EntryBook<Recipe> recipes;
-        private final EntryBook<Ingredient> ingredients;
-
-        public ModelStub() {
-            this.recipes = new EntryBook<>();
-            this.ingredients = new EntryBook<>();
-
-            this.recipes.setAll(List.of(
-                TypicalRecipes.APRICOT_SALAD,
-                TypicalRecipes.BANANA_SALAD,
-                TypicalRecipes.CUSTARD_SALAD
-            ));
-
-            this.recipes.add(new Recipe(
-                "Peanut Salad", List.of(TypicalIngredients.APRICOT_REF), List.of(new Step("mix")),
-                Set.of(new Tag("gross"), new Tag("round"))
-            ));
-
-            this.ingredients.setAll(List.of(
-                TypicalIngredients.APRICOT,
-                TypicalIngredients.BANANA,
-                TypicalIngredients.CUSTARD,
-                TypicalIngredients.BAKED_BEANS
-            ));
-
-            this.ingredients.add(new Ingredient(
-                "Peanut", Optional.empty(), Optional.empty(),
-                Set.of(new Tag("brown"), new Tag("round"))
-            ));
-        }
-
-        @Override
-        public ReadOnlyEntryBook<Ingredient> getIngredientBook() {
-            return this.ingredients;
-        }
-
-        @Override
-        public ReadOnlyEntryBook<Recipe> getRecipeBook() {
-            return this.recipes;
-        }
-
-    }
-
 }
