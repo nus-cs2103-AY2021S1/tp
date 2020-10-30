@@ -136,17 +136,20 @@ Summary of the commands required to perform certain actions is listed in this ta
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br> `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse> lq/<low quantity>` <br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section` <br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section lq/100`
-**List** | `list`
-**Delete** | `delete sn/<serial number>`<br> e.g. `delete sn/100`
-**Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
-**FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
-**Note** | `note sn/<serial number> nt/<note>`
-**NoteDelete** | `notedelete sn/<serial number> ni<note index>`
-**NoteView** | `noteview sn/<serial number>`
-**Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
-**Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
-**Print** | `print fn/<file name>`
+**Add** | `add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]` <br> e.g. `add n/Banana cake s/Fairprice q/100 l/Food section`
+**List** | `list lt/<list type>` <br> e.g. `list lt/bookmark`
+**Delete** | `delete sn/<serial number>...` <br> e.g. `delete sn/Fairprice1`
+**Find** | `find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]` <br> e.g. `find n/banana sn/SHENGSIONG`
+**FindExact** | `findexact [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]` <br> e.g. `findexact n/banana sn/SHENGSIONG`
+**Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/sheng siong1 nt/chicken will expire soon`
+**NoteDelete** | `notedelete sn/<serial number> ni<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
+**NoteView** | `noteview sn/<serial number>` <br> e.g. `noteview sn/ntuc1`
+**Update** | `update sn/<serial number>... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
+**Statistics** | `stats st/<statistics type>` <br> e.g. `stats st/source-qd-ntuc`
+**Print** | `print fn/<file name>` <br> e.g. `print fn/stocks`
+**Sort** | `sort o/<order> by/<field>` <br> e.g. `sort o/descending by/quantity`
+**Bookmark** | `bookmark sn/<serial number>...` <br> e.g. `bookmark sn/China3`
+**Unbookmark** | `unbookmark sn/<serial number>...` <br> e.g. `unbookmark sn/China3`
 **Help** | `help`
 **Exit** | `exit`
 
@@ -162,7 +165,9 @@ Displays the list of command instructions for features in Warenager and how to u
 
 <h4>Format</h4>
 
-`help`
+```
+help
+```
 
 <h4>Expected Help Window</h4>
 ![expected_help](images/ExpectedHelp.png)
@@ -173,7 +178,9 @@ The optional field low quantity will be set to 0 if not present in the input.
 
 <h4>Format</h4>
 
-`add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]`
+```
+add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]
+```
 
 <h4>Examples</h4>
 
@@ -187,7 +194,9 @@ Lists all the stock(s) in the inventory.
 
 <h4>Format</h4>
 
-`list lt/<list type>`
+```
+list lt/<list type>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -220,7 +229,9 @@ Deletes the stock(s) using the stock's serial number from the inventory. Multipl
 
 <h4>Format</h4>
 
-`delete sn/<serial number>...`
+```
+delete sn/<serial number>...
+```
 
 <h4>Examples</h4>
 
@@ -235,7 +246,9 @@ specified in ANY one of fields searched.
 
 <h4>Format</h4> 
 
-`find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]`
+```
+find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]
+```
 
 <h4>Search criteria</h4>
 
@@ -280,7 +293,9 @@ Displays a list of stocks found in the inventory that contains all keywords spec
 
 <h4>Format</h4>
 
-`findexact [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]`
+```
+findexact [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]
+```
 
 <h4>Search criteria</h4>
 * Only stocks that contain all the search keywords for all fields will be displayed. <br>
@@ -328,7 +343,9 @@ Updates the details of the desired stock(s), requires the serial number of stock
 
 <h4>Format</h4>
 
-`update sn/<serial number>... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]`
+```
+update sn/<serial number>... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]
+```
 
 <div markdown="block" class="alert alert-warning">
 
@@ -386,7 +403,9 @@ To view full notes for the stock, use the `noteview` command.
 </div>
 
 <h4>Format</h4>
-`note sn/<serial number> nt/<note>`
+```
+note sn/<serial number> nt/<note>
+```
 
 <h4>Examples</h4>
 
@@ -429,7 +448,9 @@ To delete ALL notes from a stock, note index to specify is 0.
 
 <h4>Format</h4>
 
-`notedelete sn/<serial number> ni/<note index>`
+```
+notedelete sn/<serial number> ni/<note index>
+```
 
 <h4>Examples</h4>
 
@@ -456,7 +477,9 @@ Views all notes of the stock specified by its serial number.
 
 <h4>Format</h4>
 
-`noteview sn/<serial number>`
+```
+noteview sn/<serial number>
+```
 
 <h4>Examples</h4>
 
@@ -473,12 +496,12 @@ noteview sn/ntuc1
 
 ### Generating statistics: `stats`
 Generates a statistical view in a pie chart depicting the target fields.
-* Required fields:
-    1. Type of statistics to generate and display.
 
 <h4>Format</h4>
 
-`stats st/<statistics type>`
+```
+stats st/<statistics type>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -512,7 +535,9 @@ Bookmarking a stock pushes the stock to the top of the stock list.
 
 <h4>Format</h4>
 
-`bookmark sn/<serial number>...`
+```
+bookmark sn/<serial number>...
+```
 
 <h4>Examples</h4>
 
@@ -528,7 +553,9 @@ Removes bookmark from the desired stock(s).
 
 <h4>Format</h4>
 
-`unbookmark sn/<serial number>...`
+```
+unbookmark sn/<serial number>...
+```
 
 <h4>Examples</h4>
 
@@ -543,7 +570,9 @@ Sort the inventory by a specific field and order.
 
 <h4>Format</h4>
 
-`sort o/<order> by/<field>`
+```
+sort o/<order> by/<field>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -641,7 +670,9 @@ to `[root directory]/data/userInput.csv` after successfully executing the comman
 
 <h4>Format</h4>
 
-`print fn/<file name>`
+```
+print fn/<file name>
+```
 
 <h4>Examples</h4>
 
@@ -680,7 +711,9 @@ Terminates the program.
 
 <h4>Format</h4>
 
-`exit`
+```
+exit
+```
 
 --------------------------------------------------------------------------------------------------------------------
 ## FAQ
