@@ -82,7 +82,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         try {
-            LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, SessionDateTime.DATE_TIME_FORMAT);
+            LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, SessionDateTime.DATE_TIME_FORMATTER);
             return new SessionDateTime(localDateTime);
         } catch (DateTimeParseException dateTimeParseException) {
             throw new ParseException(SessionDateTime.MESSAGE_CONSTRAINTS);
