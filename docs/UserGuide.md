@@ -97,7 +97,7 @@ You can include `remind` when adding an assignment instead of using the `remind`
 For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
 simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
 
-   ![UserGuideAddCommand](images/UserGuideAddCommand.png)
+   ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
    *Figure 1: Information of the assignment added labelled*
 
 <div markdown="span" class="alert alert-success">
@@ -299,17 +299,17 @@ an example with steps to follow:
 1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
 the command line based on the indexes labelled in the figure.
 
-   ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.png)
+   ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
    *Figure 10a: `Indexes` of assignments labelled*
    
 2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.png)
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
    *Figure 10b: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
-   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.png)
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
    *Figure 10c: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
@@ -333,17 +333,17 @@ You can unmark `one` done assignment at a time. Here is an example with steps to
 1) If you have **accidentally** marked the assignment with the name "Essay" as done,
 you can simply enter `undone 2` into the command line based on the index labelled in the figure.
 
-   ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.png)
+   ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
    *Figure 11a: `Index` of assignment labelled*
 
 2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
 
-   ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.png)
+   ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
    *Figure 11b: Deleted green tick labelled*
 
 3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
 
-   ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.png)
+   ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
    *Figure 11c: Message shown in Command Box labelled*
    
 <div markdown="block" class="alert alert-primary">
@@ -371,7 +371,7 @@ Format: `help`
 
 If you are new to ProductiveNUS or want to have a quick overview of all the available commands, you can simply enter `help` and a Help Window will appear as shown in the labelled diagram below.
 
-   ![UserGuideHelpCommand](images/UserGuideHelpCommand.png)
+   ![UserGuideHelpCommand](images/UserGuideHelpCommand.PNG)
    *Figure 12: Help Window labelled*
 
 ### Exiting the program : `exit`
