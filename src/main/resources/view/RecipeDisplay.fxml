@@ -29,7 +29,7 @@
          </VBox>
       </ScrollPane>
    </VBox>
-   <ScrollPane styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0">
+   <ScrollPane styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0" fitToWidth="true">
       <VBox>
          <Label styleClass="recipe-steps-header" fx:id="stepHeader"/>
          <TextFlow styleClass="recipe-steps" fx:id="stepList"/>
