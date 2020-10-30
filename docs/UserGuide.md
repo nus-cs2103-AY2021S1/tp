@@ -143,11 +143,11 @@ Format: `help`
 
 ### 4.2 Module features
 
-#### 4.2.1 View all modules: `viewMod`
+#### 4.2.1 List all modules: `listMod`
 
 Shows all the modules you have added in the Module view.
 
-Format: `viewModule`
+Format: `listMod`
 
 > You should perform the following features while in the Module view.
 
