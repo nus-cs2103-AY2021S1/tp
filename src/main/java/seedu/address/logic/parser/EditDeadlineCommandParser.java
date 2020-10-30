@@ -56,7 +56,8 @@ public class EditDeadlineCommandParser implements Parser<EditDeadlineCommand> {
             editDeadlineDescriptor.setPriority(ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_DATE).isPresent()) {
-            editDeadlineDescriptor.setTaskDeadline(ParserUtil.parseTaskDate(argMultimap.getValue(PREFIX_TASK_DATE).get()));
+            editDeadlineDescriptor.setTaskDeadline(ParserUtil
+                    .parseTaskDate(argMultimap.getValue(PREFIX_TASK_DATE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editDeadlineDescriptor::setTagList);
 

@@ -18,12 +18,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDate;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.*;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -51,6 +46,7 @@ public class EditDeadlineCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
+    public static final String MESSAGE_WRONG_TYPE = "This task selected is not in the type Deadline.";
 
     private final Index index;
     private final EditDeadlineDescriptor editDeadlineDescriptor;
@@ -77,6 +73,11 @@ public class EditDeadlineCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
+
+        if(!(taskToEdit instanceof Deadline)) {
+            throw new CommandException(MESSAGE_WRONG_TYPE);
+        }
+
         Task editedTask = createEditedDeadline((Deadline) taskToEdit, editDeadlineDescriptor);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
