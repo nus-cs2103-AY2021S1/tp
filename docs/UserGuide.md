@@ -292,6 +292,69 @@ WIP as of v1.2
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
 Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
 
+### Clear all items: `cleari`
+
+**NAME:**
+- `cleari` - Deletes all items and recipes
+
+**SYNOPSIS:**
+- `cleari`
+
+**DESCRIPTION:**
+Deletes all items and recipes. Your inventory will be empty after
+executing this command.
+
+**EXAMPLE:**
+- `cleari` followed by `listi`
+    - `listi` will indicate "You have no items in your inventory now."
+
+### Clear all recipes: `clearr`
+
+**NAME:**
+- `clearr` - Deletes all recipes
+
+**SYNOPSIS:**
+- `clearr`
+
+**DESCRIPTION:**
+Deletes all recipes.
+
+**EXAMPLE:**
+- `clearr` followed by `listr`
+    - `listr` will indicate "You have no recipes in your inventory now."
+
+### Undo a command: `undo`
+
+**NAME:**
+- `undo` - Reverses the effect of the previous command
+
+**SYNOPSIS:**
+- `undo`
+
+**DESCRIPTION:**
+Reverses the effect of the previous command. This only
+considers commands that adds, removes, or changes an item or recipe.
+
+**EXAMPLE:**
+- `addq -n Apple -q 10` followed by `undo`
+    - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>.
+
+### Redo a command: `redo`
+
+**NAME:**
+- `redo` - Reverses the effect of the previous undone command
+
+**SYNOPSIS:**
+- `redo`
+
+**DESCRIPTION:**
+Reverses the effect of the previous undo command.
+
+**EXAMPLE:**
+- `addq -n Apple -q 10` followed by `undo` followed by `redo`
+    - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>,
+      `redo` re-adds the 10 <u>Apples</u>.
+
 ### Viewing help: `help`
 WIP as of v1.2
 
