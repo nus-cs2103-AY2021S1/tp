@@ -131,7 +131,7 @@ public class Log {
                 .append("Exercise: ")
                 .append(getExercise())
                 .append(" DateTime: ")
-                .append(getDateTime())
+                .append(getPrettyDateTime())
                 .append(" Rep: ")
                 .append(getReps())
                 .append(" Comments: ")

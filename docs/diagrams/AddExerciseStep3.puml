@@ -1,0 +1,15 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class AddExCommand {
++ execute(Model)
+}
+
+AddExCommand-->Model
+
+class Model {
++ addExercise(Exercise)
+}
+
+@enduml

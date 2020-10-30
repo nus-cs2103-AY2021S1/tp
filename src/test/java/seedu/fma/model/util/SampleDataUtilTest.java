@@ -32,7 +32,6 @@ class SampleDataUtilTest {
         };
 
         for (int i = 0; i < SampleDataUtil.getSampleLogs(logBook).length; i++) {
-            // TODO: Need to check date time for logs
             assertEquals(sampleLogs[i].getExercise(), SampleDataUtil.getSampleLogs(logBook)[i].getExercise());
         }
     }

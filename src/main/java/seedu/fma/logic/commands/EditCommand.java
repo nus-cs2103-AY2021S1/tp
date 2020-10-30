@@ -28,8 +28,8 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " <index> "
-            + PREFIX_R + "<reps> "
-            + PREFIX_C + "<comment>";
+            + PREFIX_R + "[reps] "
+            + PREFIX_C + "[comment]";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the log identified "
             + "by the index number used in the displayed log list. "
