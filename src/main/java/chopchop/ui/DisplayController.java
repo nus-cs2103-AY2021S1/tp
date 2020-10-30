@@ -71,8 +71,10 @@ public class DisplayController extends UiPart<Region> {
 
         logic.getFilteredIngredientList().addListener((ListChangeListener<Ingredient>) c ->
                 this.displayIngredientList());
+    }
 
-        if (!logic.getFilteredRecipeList().isEmpty()) {
+    public void initialLoad(boolean isPresent) {
+        if (isPresent) {
             this.displayRecipeList();
         } else {
             this.displayWelcomeMessage();
@@ -83,6 +85,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayWelcomeMessage() {
+        this.resetButtons();
         this.displayAreaPlaceholder.getChildren().setAll(this.textDisplay.getRoot());
     }
 

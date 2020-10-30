@@ -29,6 +29,7 @@ import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
+import chopchop.ui.DisplayNavigator;
 import chopchop.ui.Ui;
 import chopchop.ui.UiManager;
 import javafx.application.Application;
@@ -105,6 +106,8 @@ public class MainApp extends Application {
             this.storage::readIngredientUsages,
             this.storage.getIngredientUsageFilePath()
         ));
+
+        DisplayNavigator.initialLoad(this.model.getRecipeBook().getEntryList().size() > 0);
     }
 
     /**
