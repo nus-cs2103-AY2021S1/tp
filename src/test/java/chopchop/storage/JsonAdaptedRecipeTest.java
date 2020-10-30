@@ -54,7 +54,7 @@ public class JsonAdaptedRecipeTest {
                 new JsonAdaptedRecipe(VALID_NAME, Collections.singletonList(INVALID_REF), VALID_STEPS, null);
         String expectedMessage = String.format(
                 JsonAdaptedIngredientReference.INGREDIENT_REFERENCE_MISSING_FIELD_MESSAGE_FORMAT,
-                Name.class.getSimpleName());
+                "name");
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 

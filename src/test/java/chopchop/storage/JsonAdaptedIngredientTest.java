@@ -141,4 +141,21 @@ public class JsonAdaptedIngredientTest {
             assertEquals(true, false);
         }
     }
+
+
+    @Test
+    public void test_ingredientRefs() {
+        var m = JsonAdaptedIngredientReference.INGREDIENT_REFERENCE_MISSING_FIELD_MESSAGE_FORMAT;
+        assertThrows(IllegalValueException.class, String.format(m, "name"), () -> {
+            new JsonAdaptedIngredientReference(null, "asdf").toModelType();
+        });
+
+        assertThrows(IllegalValueException.class, String.format(m, "quantity"), () -> {
+            new JsonAdaptedIngredientReference("asdf", null).toModelType();
+        });
+
+        assertThrows(IllegalValueException.class, "Unknown unit 'asdf' (from '300asdf')", () -> {
+            new JsonAdaptedIngredientReference("asdf", "300asdf").toModelType();
+        });
+    }
 }

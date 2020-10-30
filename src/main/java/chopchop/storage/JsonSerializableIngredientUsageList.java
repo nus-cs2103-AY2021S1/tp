@@ -15,7 +15,7 @@ public class JsonSerializableIngredientUsageList {
     private final List<JsonAdaptedIngredientUsage> usages;
 
     /**
-     * Constructs a {@code JsonSerializableIngredientBook} with the given ingredients.
+     * Constructs a {@code JsonSerializableIngredientUsageList} with the given ingredients.
      */
     @JsonCreator
     public JsonSerializableIngredientUsageList(@JsonProperty("usages") List<JsonAdaptedIngredientUsage> u) {
@@ -23,7 +23,7 @@ public class JsonSerializableIngredientUsageList {
     }
 
     /**
-     * Converts a given {@code ReadOnlyIngredientBook} into this class for Jackson use.
+     * Converts a given {@code UsageList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableIngredientBook}.
      */
@@ -32,7 +32,7 @@ public class JsonSerializableIngredientUsageList {
     }
 
     /**
-     * Converts this ingredient book into the model's {@code IngredientBook} object.
+     * Converts this ingredient book into the model's {@code UsageList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

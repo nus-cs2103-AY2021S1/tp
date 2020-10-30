@@ -35,7 +35,7 @@ public class JsonAdaptedIngredientUsageTest {
     public void toModelType_nullQuantity_throwsIllegalValueException() {
         var usage = new JsonAdaptedIngredientUsage("name", "date", null);
 
-        var expectedMessage = String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "qty");
+        var expectedMessage = String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "quantity");
         assertThrows(IllegalValueException.class, expectedMessage, usage::toModelType);
     }
 

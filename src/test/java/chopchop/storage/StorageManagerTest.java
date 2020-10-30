@@ -34,6 +34,8 @@ public class StorageManagerTest {
         var ingredientUsageStorage = new JsonIngredientUsageStorage(getTempFilePath("dd"));
         storageManager = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
             ingredientUsageStorage, userPrefsStorage);
+
+        storageManager.getUserPrefsFilePath();
     }
 
     private Path getTempFilePath(String fileName) {
@@ -117,4 +119,35 @@ public class StorageManagerTest {
     public void getRecipeBookFilePath() {
         assertNotNull(storageManager.getRecipeBookFilePath());
     }
+
+
+
+
+    @Test
+    public void test_getIngredientUsageFilePath() {
+        assertNotNull(storageManager.getIngredientUsageFilePath());
+    }
+
+    @Test
+    public void test_getRecipeUsageFilePath() {
+        assertNotNull(storageManager.getRecipeUsageFilePath());
+    }
+
+
+    // @Test
+    // public void ingredientUsageReadSave() throws Exception {
+
+    //     EntryBook<Ingredient> original = getTypicalIngredientBook();
+    //     storageManager.saveIngredientBook(original);
+    //     ReadOnlyEntryBook<Ingredient> retrieved = storageManager.readIngredientBook().get();
+    //     assertEquals(original, new EntryBook<>(retrieved));
+    // }
+
+    // @Test
+    // public void recipeBookReadSave() throws Exception {
+    //     EntryBook<Recipe> original = getTypicalRecipeBook();
+    //     storageManager.saveRecipeBook(original);
+    //     ReadOnlyEntryBook<Recipe> retrieved = storageManager.readRecipeBook().get();
+    //     assertEquals(original, new EntryBook<>(retrieved));
+    // }
 }

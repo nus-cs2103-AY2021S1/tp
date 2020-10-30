@@ -48,7 +48,7 @@ public class JsonAdaptedIngredientUsage {
             throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "date"));
         }
         if (this.qty == null) {
-            throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "qty"));
+            throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "quantity"));
         }
 
         var result = Quantity.parse(qty);
