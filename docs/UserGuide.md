@@ -504,13 +504,15 @@ stats st/source-qd-abc
 Bookmarks the desired stock. 
 Bookmarking a stock pushes the stock to the top of the stocklist.
 
-* Required fields:
-    1. Serial number of stock
+<h4>Format</h4>
 
-<h5>Format</h5>
-`bookmark sn/<serial number>`
+`bookmark sn/<serial number>...`
 
-Command: `bookmark sn/<serial number>` will bookmark the stock with the given serial number.
+<h4>Examples</h4>
+
+```
+bookmark sn/China3
+```
 
 ![GUI_component](images/bookmark.png)
 
