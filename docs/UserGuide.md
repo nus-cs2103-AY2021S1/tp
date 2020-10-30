@@ -144,15 +144,17 @@ Format: `listpersons`
 
 Example: `listpersons` lists all persons in the catalogue to the user.
 
-### Start work on an existing project `start `
+# **Features** in project scope
+
+### Start work on an existing project `startproject `
 Initialises the project specified.
 
-Format: `start (INDEX)`
+Format: `startproject (INDEX)`
 - Initialises the project at the specified INDEX.
 - The index refers to the index number shown in the displayed project list.
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `start 2` Initialises the second project in the project list.
+Examples: `startproject 2` Initialises the second project in the project list.
 
 ### Add a new project to the catalogue `add `
 Adds a project to the project list.
