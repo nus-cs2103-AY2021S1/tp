@@ -9,10 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
@@ -28,11 +25,9 @@ public class AddEventParser implements Parser<AddEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddEventCommand.MESSAGE_USAGE));
         }
-        EventName name = new EventName(argMultiMap.getValue(PREFIX_NAME).get());
+        EventName name = ParserUtil.parseEventName(argMultiMap.getValue(PREFIX_NAME).get());
         String dateTime = argMultiMap.getValue(PREFIX_DATE).get();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
-        LocalDateTime dT = LocalDateTime.parse(dateTime, formatter);
-        EventTime time = new EventTime(dT);
+        EventTime time = ParserUtil.parseEventTime(dateTime);
         Event event = new Event(name, time);
         return new AddEventCommand(event);
     }
