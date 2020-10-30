@@ -8,6 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARCHIVE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientListWithArchive;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import java.util.Set;
 
@@ -27,6 +28,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code UnarchiveCommand}.
@@ -34,7 +36,7 @@ import seedu.address.model.person.Priority;
  */
 public class UnarchiveCommandTest {
 
-    private Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs(), getTypicalPolicyList());
 
     @BeforeEach
     public void setModelToArchiveMode() {
@@ -49,7 +51,7 @@ public class UnarchiveCommandTest {
 
         String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS, personToUnarchive);
 
-        ModelManager expectedModel = new ModelManager(model.getClientList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getClientList(), new UserPrefs(), model.getPolicyList());
         expectedModel.setIsArchiveMode(true);
         Person unarchivedPerson = createUnarchivedPerson(personToUnarchive);
         expectedModel.setPerson(personToUnarchive, unarchivedPerson);
@@ -107,6 +109,7 @@ public class UnarchiveCommandTest {
         Set<ClientSource> unarchivedClientSources = personToUnarchive.getClientSources();
         Note unarchivedNote = personToUnarchive.getNote();
         Priority unarchivedPriority = personToUnarchive.getPriority();
+        Policy unarchivedPolicy = personToUnarchive.getPolicy();
 
         boolean unarchivedIsArchive = false;
 
@@ -118,7 +121,8 @@ public class UnarchiveCommandTest {
                 unarchivedClientSources,
                 unarchivedNote,
                 unarchivedIsArchive,
-                unarchivedPriority);
+                unarchivedPriority,
+                unarchivedPolicy);
     }
 
 }

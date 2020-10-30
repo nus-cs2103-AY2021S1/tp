@@ -18,6 +18,7 @@ import static seedu.address.testutil.TypicalPersons.MONK;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientList;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientListOnlyArchive;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientListWithArchive;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import java.util.Arrays;
 
@@ -44,19 +45,22 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFilteredAndStaysInActiveMode_showsSameList() {
-        Model model = new ModelManager(getTypicalClientList(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalClientList(), new UserPrefs());
+        Model model = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
+        Model expectedModel = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
 
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS_ACTIVE, expectedModel);
     }
 
     @Test
     public void execute_listIsNotFilteredSwitchFromArchiveToActive_showsActiveOnly() {
-        Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs());
+        Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs(), getTypicalPolicyList());
         model.setIsArchiveMode(true);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 
-        Model expectedModel = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                getTypicalClientListWithArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
 
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS_ACTIVE, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE,
@@ -65,11 +69,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFilteredAndIsInArchiveMode_showsSameList() {
-        Model model = new ModelManager(getTypicalClientListOnlyArchive(), new UserPrefs());
+        Model model = new ModelManager(getTypicalClientListOnlyArchive(), new UserPrefs(), getTypicalPolicyList());
         model.setIsArchiveMode(true);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 
-        Model expectedModel = new ModelManager(getTypicalClientListOnlyArchive(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                getTypicalClientListOnlyArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
         expectedModel.setIsArchiveMode(true);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 
@@ -79,9 +86,15 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFilteredSwitchFromActiveToArchive_showsArchiveOnly() {
-        Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs());
+        Model model = new ModelManager(
+                getTypicalClientListWithArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
 
-        Model expectedModel = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                getTypicalClientListWithArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
         expectedModel.setIsArchiveMode(true);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 

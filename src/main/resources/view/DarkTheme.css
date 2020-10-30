@@ -367,6 +367,14 @@
     -fx-font-size: 12;
 }
 
+#policyName .label {
+    -fx-font-size: 12;
+}
+
+#policyDescription .label {
+    -fx-font-size: 12;
+}
+
 #priority .label {
     -fx-font-size: 12;
 }

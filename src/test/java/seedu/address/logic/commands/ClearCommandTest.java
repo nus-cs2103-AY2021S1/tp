@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientList;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,8 +23,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyClientList_success() {
-        Model model = new ModelManager(getTypicalClientList(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalClientList(), new UserPrefs());
+        Model model = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
+        Model expectedModel = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
         expectedModel.setClientList(new ClientList());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

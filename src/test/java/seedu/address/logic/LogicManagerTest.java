@@ -30,6 +30,7 @@ import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonClientListStorage;
+import seedu.address.storage.JsonPolicyListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -48,7 +49,9 @@ public class LogicManagerTest {
         JsonClientListStorage clientListStorage =
                 new JsonClientListStorage(temporaryFolder.resolve("clientList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage);
+        JsonPolicyListStorage policyListStorage =
+                new JsonPolicyListStorage(temporaryFolder.resolve("clientList.json"));
+        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage, policyListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,7 +80,9 @@ public class LogicManagerTest {
                 new JsonClientListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionClientList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage);
+        JsonPolicyListStorage policyListStorage =
+                new JsonPolicyListStorage(temporaryFolder.resolve("ioExceptionPolicyList.json"));
+        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage, policyListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -131,7 +136,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getClientList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientList(), new UserPrefs(), model.getPolicyList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

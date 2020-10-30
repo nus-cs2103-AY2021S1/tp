@@ -22,6 +22,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.PolicyDescription;
+import seedu.address.model.policy.PolicyName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -32,6 +34,8 @@ public class ParserUtilTest {
             "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
     private static final String INVALID_NOTE = " ";
     private static final String INVALID_PRIORITY = "x";
+    private static final String INVALID_POLICYNAME = "L!f3 T!me";
+    private static final String INVALID_POLICYDESCRIPTION = " ";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
@@ -41,6 +45,8 @@ public class ParserUtilTest {
     private static final String VALID_NOTE = "friend";
     private static final String VALID_SHORT_PRIORITY = "l";
     private static final String VALID_LONG_PRIORITY = "low";
+    private static final String VALID_POLICYNAME = "Life Time";
+    private static final String VALID_POLICYDESCRIPTION = "Covers death, serious illnesses, and disabilities.";
 
 
     private static final String WHITESPACE = " \t\r\n";
@@ -258,5 +264,54 @@ public class ParserUtilTest {
         String priorityShort = VALID_SHORT_PRIORITY;
         Priority expectedPriority = new Priority(VALID_LONG_PRIORITY);
         assertEquals(expectedPriority, ParserUtil.parsePriority(priorityShort));
+    }
+
+    @Test
+    public void parsePolicyName_null_returnsNull() throws Exception {
+        assertEquals(null, ParserUtil.parsePolicyName(null));
+    }
+
+    @Test
+    public void parsePolicyName_validValueWithWhitespace_returnsTrimmedPolicyName() throws Exception {
+        String policyNameWithWhiteSpace = WHITESPACE + VALID_POLICYNAME + WHITESPACE;
+        PolicyName expectedPolicyName = new PolicyName(VALID_POLICYNAME);
+        assertEquals(expectedPolicyName, ParserUtil.parsePolicyName(policyNameWithWhiteSpace));
+    }
+
+    @Test
+    public void parsePolicyName_validValueWithoutWhiteSpace_returnsPolicyName() throws Exception {
+        String policyNameWithoutWhiteSpace = VALID_POLICYNAME;
+        PolicyName expectedPolicyName = new PolicyName(VALID_POLICYNAME);
+        assertEquals(expectedPolicyName, ParserUtil.parsePolicyName(policyNameWithoutWhiteSpace));
+    }
+
+    @Test
+    public void parsePolicyName_invalidValue_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyName(INVALID_POLICYNAME));
+    }
+
+    //
+    @Test
+    public void parsePolicyDescription_null_returnsNull() throws Exception {
+        assertEquals(null, ParserUtil.parsePolicyDescription(null));
+    }
+
+    @Test
+    public void parsePolicyDescription_validValueWithWhitespace_returnsTrimmedPolicyDescription() throws Exception {
+        String policyDescriptionWithWhiteSpace = WHITESPACE + VALID_POLICYDESCRIPTION + WHITESPACE;
+        PolicyDescription expectedPolicyDescription = new PolicyDescription(VALID_POLICYDESCRIPTION);
+        assertEquals(expectedPolicyDescription, ParserUtil.parsePolicyDescription(policyDescriptionWithWhiteSpace));
+    }
+
+    @Test
+    public void parsePolicyDescription_validValueWithoutWhiteSpace_returnsPolicyDescription() throws Exception {
+        String policyDescriptionWithoutWhiteSpace = VALID_POLICYDESCRIPTION;
+        PolicyDescription expectedPolicyDescription = new PolicyDescription(VALID_POLICYDESCRIPTION);
+        assertEquals(expectedPolicyDescription, ParserUtil.parsePolicyDescription(policyDescriptionWithoutWhiteSpace));
+    }
+
+    @Test
+    public void parsePolicyDescription_invalidValue_throwsParseException() throws Exception {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePolicyDescription(INVALID_POLICYDESCRIPTION));
     }
 }

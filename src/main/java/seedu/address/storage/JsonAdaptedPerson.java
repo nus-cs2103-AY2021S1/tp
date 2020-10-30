@@ -18,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -34,6 +35,7 @@ class JsonAdaptedPerson {
     private final String note;
     private final boolean isArchive;
     private final String priority;
+    private final JsonAdaptedPolicy policy;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -44,7 +46,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
             @JsonProperty("note") String note, @JsonProperty("isArchive") boolean isArchive,
-            @JsonProperty("priority") String priority) {
+            @JsonProperty("priority") String priority, @JsonProperty("policy") JsonAdaptedPolicy policy) {
 
         this.name = name;
         this.phone = phone;
@@ -56,6 +58,7 @@ class JsonAdaptedPerson {
         this.note = note;
         this.isArchive = isArchive;
         this.priority = priority;
+        this.policy = policy;
     }
 
     /**
@@ -103,6 +106,12 @@ class JsonAdaptedPerson {
         priority = source.getPriority().value;
         assert priority != null : "Value stored in priority should not be null";
 
+        if (source.getPolicy() != null) {
+            policy = new JsonAdaptedPolicy(source.getPolicy());
+            assert policy != null : "Value stored in address should not be null";
+        } else {
+            policy = null;
+        }
     }
 
     /**
@@ -178,8 +187,16 @@ class JsonAdaptedPerson {
 
             modelPriority = new Priority(priority);
         }
+
+        final Policy modelPolicy;
+        if (policy != null) {
+            modelPolicy = policy.toModelType();
+        } else {
+            modelPolicy = null;
+        }
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
-                modelIsArchive, modelPriority);
+                modelIsArchive, modelPriority, modelPolicy);
     }
 
 }

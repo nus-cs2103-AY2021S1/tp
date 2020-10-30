@@ -7,7 +7,11 @@
     "clientSource": [ "friends" ],
     "note": "Fake fwen",
     "isArchive": false,
-    "priority": "high"
+    "priority": "high",
+    "policy" : {
+      "policyName" : "Life Time",
+      "description" : "Covers death, serious illnesses, and disabilities."
+    }
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -16,6 +20,10 @@
     "clientSource": [ "friends" ],
     "note": "real fwen",
     "isArchive": false,
-    "priority": "low"
+    "priority": "low",
+    "policy" : {
+      "policyName" : "Life Time",
+      "description" : "Covers death, serious illnesses, and disabilities."
+    }
   } ]
 }

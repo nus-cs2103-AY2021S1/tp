@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.policy.PolicyList;
 import seedu.address.testutil.PersonBuilder;
 
 public class ClientListTest {
@@ -100,6 +101,11 @@ public class ClientListTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public void updateClientListWithPolicyList(PolicyList policyList) {
+
         }
     }
 

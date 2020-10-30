@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_DESCRIPTION;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +14,10 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyDescription;
+import seedu.address.model.policy.PolicyName;
+import seedu.address.model.util.SampleClientDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -25,6 +31,9 @@ public class PersonBuilder {
     public static final String DEFAULT_NOTE = "sd";
     public static final boolean DEFAULT_IS_ARCHIVE = false;
     public static final String DEFAULT_PRIORITY = "u";
+    //PolicyName & PolicyDescription from typicalpolicies
+    public static final String DEFAULT_POLICY_NAME = LIFE_TIME_NAME;
+    public static final String DEFAULT_POLICY_DESCRIPTION = LIFE_TIME_DESCRIPTION;
 
     private Name name;
     private Phone phone;
@@ -34,6 +43,7 @@ public class PersonBuilder {
     private Note note;
     private boolean isArchive;
     private Priority priority;
+    private Policy policy;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,6 +57,7 @@ public class PersonBuilder {
         note = new Note(DEFAULT_NOTE);
         isArchive = DEFAULT_IS_ARCHIVE;
         priority = new Priority(DEFAULT_PRIORITY);
+        policy = new Policy(new PolicyName(DEFAULT_POLICY_NAME), new PolicyDescription(DEFAULT_POLICY_DESCRIPTION));
     }
 
     /**
@@ -61,6 +72,7 @@ public class PersonBuilder {
         note = personToCopy.getNote();
         isArchive = personToCopy.getIsArchive();
         priority = personToCopy.getPriority();
+        policy = personToCopy.getPolicy();
     }
 
     /**
@@ -76,7 +88,7 @@ public class PersonBuilder {
      * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withClientSources(String ... clientSources) {
-        this.clientSources = SampleDataUtil.getClientSourceSet(clientSources);
+        this.clientSources = SampleClientDataUtil.getClientSourceSet(clientSources);
         return this;
     }
 
@@ -168,8 +180,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Policy} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicy(String name, String description) {
+        policy = new Policy(new PolicyName(name), new PolicyDescription(description));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Policy} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withoutPolicy() {
+        policy = null;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, clientSources, note, isArchive, priority);
+        return new Person(name, phone, email, address, clientSources, note, isArchive, priority, policy);
     }
 
 }

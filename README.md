@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T16-2/tp/actions)
 
-![Ui](docs/images/UIdraft1.png)
+![Ui](docs/images/Ui.png)
 
 * This is **a CS2103 Project done by Wei Jie, Joven and Javier from NUS**. It is called Insurance4insurance and is targeted for insurance agents
  to save the details of the clients and connections that they meet.<br>
