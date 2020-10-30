@@ -310,7 +310,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
  
    * Task Name
  
-     * You are allowed to provide multiple search keywords.
+     * You are allowed to provide multiple name keywords.
      
      * Tasks with their name matching at least one of the name keywords provided will be considered to have fulfilled the task name search criteria.
      
@@ -338,6 +338,8 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
    * Tag
  
      * You are allowed to provide multiple tag keywords.
+     
+     * Task tags will be considered a match only if the tag words are an exact match.
      
      * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
        
