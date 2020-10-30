@@ -300,17 +300,6 @@ public class UpdateCommand extends Command {
         }
 
         @Override
-        public String toString() {
-            return "UpdateStockDescriptor:\n"
-                    + name + "\n"
-                    + serialNumbers.toString() + "\n"
-                    + source + "\n"
-                    + quantity + "\n"
-                    + location + "\n"
-                    + quantityAdder;
-        }
-
-        @Override
         public boolean equals(Object other) {
             // short circuit if same object
             if (other == this) {
