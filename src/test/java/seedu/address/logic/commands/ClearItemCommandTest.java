@@ -11,8 +11,8 @@ import seedu.address.model.ItemList;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
-
 
 public class ClearItemCommandTest {
 
@@ -32,6 +32,7 @@ public class ClearItemCommandTest {
                 getTypicalRecipeList(), new UserPrefs());
         expectedModel.setItemList(new ItemList());
         expectedModel.setLocationList(new LocationList());
+        expectedModel.setRecipeList(new RecipeList());
         assertCommandSuccess(new ClearItemCommand(), model, ClearItemCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

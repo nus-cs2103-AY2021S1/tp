@@ -133,7 +133,6 @@ public class ItemParserUtilTest {
 
     @Test
     public void parseMultiTag_validValue_returnsTags() {
-        System.out.println(ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));
         assertEquals(getTypicalTagSet(), ItemParserUtil.parseTags(VALID_TAG_MULTI_STRING));
     }
 }

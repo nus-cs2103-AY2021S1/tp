@@ -104,7 +104,6 @@ public class FindByTagCommandTest {
         String expectedMessage = String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, 2);
 
         TagMatchesKeywordsPredicate predicate = preparePredicate("abc,tuturu, bertmodel");
-        System.out.println(predicate.toString());
         FindByTagCommand command = new FindByTagCommand(predicate);
 
         expectedModel.updateFilteredItemList(predicate);
