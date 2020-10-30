@@ -1,15 +1,10 @@
 package seedu.resireg.model.semester;
 
-import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import seedu.resireg.model.allocation.Allocation;
 
 /**
  * Represents a Semester in ResiReg.
@@ -21,16 +16,12 @@ public class Semester {
     private final IntegerProperty academicYear = new SimpleIntegerProperty();
     private final IntegerProperty semesterNumber = new SimpleIntegerProperty();
 
-    // Data fields
-    private final List<Allocation> allocations;
-
     /**
      * SemesterNumber should be present and not null.
      */
     public Semester(int academicYear, int semesterNumber) {
         this.academicYear.set(academicYear);
         this.semesterNumber.set(semesterNumber);
-        allocations = new ArrayList<>();
     }
 
     /**
@@ -38,16 +29,6 @@ public class Semester {
      */
     public Semester() {
         this(LocalDate.now().getYear(), 1);
-    }
-
-    /**
-     * All fields should be present and not null.
-     */
-    public Semester(int academicYear, int semesterNumber, List<Allocation> allocations) {
-        requireAllNonNull(allocations);
-        this.academicYear.set(academicYear);
-        this.semesterNumber.set(semesterNumber);
-        this.allocations = allocations;
     }
 
     public int getAcademicYear() {
@@ -72,10 +53,6 @@ public class Semester {
 
     public int getSemesterNumber() {
         return semesterNumber.get();
-    }
-
-    public List<Allocation> getAllocations() {
-        return allocations;
     }
 
     /**
@@ -126,8 +103,7 @@ public class Semester {
 
         Semester otherSemester = (Semester) other;
         return otherSemester.getAcademicYear() == getAcademicYear()
-                && otherSemester.getSemesterNumber() == getSemesterNumber()
-                && Objects.equals(otherSemester.getAllocations(), getAllocations());
+                && otherSemester.getSemesterNumber() == getSemesterNumber();
     }
 
     @Override

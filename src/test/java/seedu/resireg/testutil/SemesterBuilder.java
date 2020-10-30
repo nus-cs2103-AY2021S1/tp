@@ -1,9 +1,5 @@
 package seedu.resireg.testutil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.semester.Semester;
 
 public class SemesterBuilder {
@@ -13,7 +9,6 @@ public class SemesterBuilder {
 
     private int academicYear;
     private int semesterNumber;
-    private List<Allocation> allocations;
 
     /**
      * Creates a {@code SemesterBuilder} with the default details.
@@ -21,7 +16,6 @@ public class SemesterBuilder {
     public SemesterBuilder() {
         academicYear = DEFAULT_ACADEMIC_YEAR;
         semesterNumber = DEFAULT_SEMESTER_NUMBER;
-        allocations = new ArrayList<>();
     }
 
     /**
@@ -30,7 +24,6 @@ public class SemesterBuilder {
     public SemesterBuilder(Semester semesterToCopy) {
         academicYear = semesterToCopy.getAcademicYear();
         semesterNumber = semesterToCopy.getSemesterNumber();
-        allocations = semesterToCopy.getAllocations();
     }
 
     /**
@@ -50,17 +43,9 @@ public class SemesterBuilder {
     }
 
     /**
-     * Sets the allocations of the {@code Semester} that we are building.
-     */
-    public SemesterBuilder withAllocations(List<Allocation> allocations) {
-        this.allocations = allocations;
-        return this;
-    }
-
-    /**
      * Returns a new {@code Semester} created.
      */
     public Semester build() {
-        return new Semester(academicYear, semesterNumber, allocations);
+        return new Semester(academicYear, semesterNumber);
     }
 }

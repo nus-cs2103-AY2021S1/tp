@@ -26,10 +26,7 @@ import seedu.resireg.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Semester getSampleSemester() {
-        return new Semester(
-            LocalDate.now().getYear(),
-            1,
-            Arrays.asList(getSampleAllocations()));
+        return new Semester(LocalDate.now().getYear(), 1);
     }
 
     public static Student[] getSampleStudents() {
