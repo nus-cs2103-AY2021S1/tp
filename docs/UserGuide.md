@@ -85,7 +85,7 @@ You can find out more about the command terminologies here:
 
 ### Adding an assignment: `add`
 
-Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[priority/PRIORITY] 
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[p/PRIORITY] 
 [remind]`
 
 You can add your assignments into your schedule so that you can manage all your assignments and
@@ -479,7 +479,7 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 | Action | Format | Examples |
 |-|-|-|
-| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [p/PRIORITY] [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
 | **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3`<br>`delete 2 3 4` |
 | **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
 | **list** | `list [NUMBER_OF_DAYS]` | `list 2`<br>`list` |
