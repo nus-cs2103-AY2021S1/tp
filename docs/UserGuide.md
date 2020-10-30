@@ -87,7 +87,7 @@ Expected Outcome:
 ```
 Opened help window.
 ```
-Message is displayed with a link to this User Guide.
+A message is displayed containing a link to this User Guide.
 
 ---
 
@@ -99,7 +99,7 @@ Format: `exit`
 
 Expected Outcome:
 
-Application closes.
+Your `ZooKeep` application closes.
 
 ---
 
@@ -111,8 +111,10 @@ as when you have finished filtering animals using the `find` command.
 Format: `list`
 
 Expected Outcome:
-
-All animals in your `ZooKeep` book are displayed
+```
+Listed all animals
+```
+All animals in your `ZooKeep` book are displayed.
 
 ---
 
@@ -123,8 +125,10 @@ You can use this to clear all the entries of your `ZooKeep` book and start the a
 Format: `clear`
 
 Expected Outcome:
-
-Clears all animals from your `ZooKeep` book
+```
+Zookeep book has been cleared!
+```
+All animals in your `ZooKeep` book are cleared.
 
 ---
 
@@ -165,9 +169,8 @@ Expected Outcome:
 ```
 New animal added: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feeding times: [1230][1400]
 ```
-
-Adds an animal with name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition of `Sunstroke`
-and feed times of `1230 hrs` and `1400 hrs` to your `ZooKeep` book.
+An animal with the name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition `Sunstroke`
+and feed times of `1230 hrs` and `1400 hrs` is added to your `ZooKeep` book.
 
 ---
 
@@ -195,7 +198,7 @@ Expected Outcome:
 ```
 Deleted Animal: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke]  Feeding times: [1230][1400]
 ```
-The animal with ID of `200` is deleted from your `ZooKeep` book.
+The animal with ID `200` is deleted from your `ZooKeep` book.
 
 ---
 
