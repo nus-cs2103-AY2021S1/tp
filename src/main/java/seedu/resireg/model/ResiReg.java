@@ -2,7 +2,6 @@ package seedu.resireg.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -71,7 +70,6 @@ public class ResiReg implements ReadOnlyResiReg {
         newResiReg.setStudents(toBeCopied.getStudentList());
         newResiReg.setRooms(toBeCopied.getRoomList());
         newResiReg.setBinItems(toBeCopied.getBinItemList());
-
         Semester currentSemester = toBeCopied.getSemester();
         newResiReg.setSemester(currentSemester.getNextSemester());
 

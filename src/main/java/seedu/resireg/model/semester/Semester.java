@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import seedu.resireg.model.allocation.Allocation;
 
 /**
@@ -16,8 +18,8 @@ import seedu.resireg.model.allocation.Allocation;
 public class Semester {
 
     // Identity fields
-    private final int academicYear;
-    private final int semesterNumber;
+    private final IntegerProperty academicYear = new SimpleIntegerProperty();
+    private final IntegerProperty semesterNumber = new SimpleIntegerProperty();
 
     // Data fields
     private final List<Allocation> allocations;
@@ -26,8 +28,8 @@ public class Semester {
      * SemesterNumber should be present and not null.
      */
     public Semester(int academicYear, int semesterNumber) {
-        this.academicYear = academicYear;
-        this.semesterNumber = semesterNumber;
+        this.academicYear.set(academicYear);
+        this.semesterNumber.set(semesterNumber);
         allocations = new ArrayList<>();
     }
 
@@ -43,13 +45,33 @@ public class Semester {
      */
     public Semester(int academicYear, int semesterNumber, List<Allocation> allocations) {
         requireAllNonNull(allocations);
-        this.academicYear = academicYear;
-        this.semesterNumber = semesterNumber;
+        this.academicYear.set(academicYear);
+        this.semesterNumber.set(semesterNumber);
         this.allocations = allocations;
     }
 
     public int getAcademicYear() {
+        return academicYear.get();
+    }
+
+    public IntegerProperty academicYearProperty() {
         return academicYear;
+    }
+
+    public IntegerProperty semesterNumberProperty() {
+        return semesterNumber;
+    }
+
+    public void setAcademicYear(int academicYear) {
+        this.academicYear.set(academicYear);
+    }
+
+    public void setSemesterNumber(int semesterNumber) {
+        this.semesterNumber.set(semesterNumber);
+    }
+
+    public int getSemesterNumber() {
+        return semesterNumber.get();
     }
 
     public List<Allocation> getAllocations() {
@@ -78,10 +100,10 @@ public class Semester {
      * @return the successor of this semester
      */
     public Semester getNextSemester() {
-        if (semesterNumber == 1) {
-            return new Semester(academicYear, 2);
+        if (semesterNumber.get() == 1) {
+            return new Semester(academicYear.get(), 2);
         } else {
-            return new Semester(academicYear + 1, 1);
+            return new Semester(academicYear.get() + 1, 1);
         }
     }
 
@@ -89,7 +111,7 @@ public class Semester {
      * @return a shortened String representation of the semester in form of "AY" + year + "S" + semesterNumber.
      */
     public String getShortRepresentation() {
-        return String.format("AY%sS%s", academicYear, semesterNumber);
+        return String.format("AY%sS%s", academicYear.get(), semesterNumber.get());
     }
 
     @Override
@@ -111,9 +133,5 @@ public class Semester {
     @Override
     public String toString() {
         return " Academic Year: " + getAcademicYear() + " Semester: " + getSemesterNumber();
-    }
-
-    public int getSemesterNumber() {
-        return semesterNumber;
     }
 }
