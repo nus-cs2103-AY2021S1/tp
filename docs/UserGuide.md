@@ -84,14 +84,17 @@ Action | Format
 **Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] \[-t \<tag1, tag2, …\>\]
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
 **Add Quantity to Item** | `addq` **-n \<item name\>** **-q \<qty\>**
-**Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>\**
-**List Items** | `listi`
-**List Recipes** | `listr`
+**Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>**
+**Craft Item** | `craft` **-n \<item name\>** **-q \<quantity\>** \[-r \<index\>\]
+**Check craft** | `check` **-n \<item name\>** **-q \<quantity\>** 
 **Delete Item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
+**Edit Item** | `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag1, tag2, …\>\]
 **Find Item by Name** | `find` **\<string1, string2\>**
 **Find Item by Tag** | `findt` **\<string1, string2\>**
-**View Detailed View of Item** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
+**List Items** | `listi`
+**List Recipes** | `listr`
+**View Detailed View of Item** | `view` **\<item name\>** 
 **Help** | `help` \[command\]
 **Exit** | `exit`
 
@@ -99,7 +102,7 @@ Action | Format
 ## Features
 // TODO add more to the preface under the features heading
 
-Inventoryinator's features and their descriptions, as of v1.2.
+Inventoryinator's features and their descriptions, as of v1.3.
 
 // TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does
 
@@ -155,7 +158,7 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **DESCRIPTION:**
 - **item name:** given name of the item in the system
-- **-q:** amount of that item to add
+- **qty:** amount of that item to add
 - Adds the quantity to the item in the inventory
 
 **EXAMPLE:**
@@ -171,10 +174,6 @@ Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 - `listi`
 
 **DESCRIPTION:**
-//TODO
-
-**EXAMPLE:**
-- `listi`
 Lists all items and their quantities
 
 ### Listing all recipes: `listr`
@@ -186,10 +185,6 @@ Lists all items and their quantities
 - `listr`
 
 **DESCRIPTION:**
-//TODO
-
-**EXAMPLE:**
-- `listr` 
 Lists all recipes, outputs, descriptions and their ingredients
 
 ### Deleting an item: `deli`
@@ -273,24 +268,73 @@ This command allows the user to search for items in `Inventoryinator` by tags,
   - Kim's Kiwi tags: [<u>yummy</u>, <u>delicious</u>]
   
 ### View item `view`
-WIP as of v1.2
 
 **NAME:**
 - `view` - view more details on an item
 
 **SYNOPSIS:**
-- `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
+- `view` **\<item name\>** 
 
 **DESCRIPTION:**
 - **item name:** item to view
-- **-d:** 	returns item details
-- **-c:** 	returns all recipes that create the item
-- **-r:** 	returns all recipes that use the item
-- **-all:**	returns everything above
 
 **EXAMPLE:**
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
-Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
+View all details of the item with the name <u>Bob’s bitten fingernail clipping</u>
+
+### Edit an item: `edit`
+
+**NAME:**
+- `edit` - edit 1 or more fields of an item
+
+**SYNOPSIS:**
+- `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag1, tag2, …\>\]
+
+**DESCRIPTION:**
+- **item name:** item name of the item to be edited
+- \[name:\] new name of edited item
+- \[qty:\] new quantity of edited item
+- \[desc:\] new description of edited item
+- \[tag1, tag2...\] new tags of edited item
+
+**EXAMPLE:**
+- `edit` -o <u> Iron Ore</u> -q <u>20</u> -d <u>mined</u>  
+Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u> and description of <u>mined</u>.
+
+### Craft an item: `craft`
+
+**NAME:**
+- `craft` - crafts a quantity of an item using materials in the inventory
+
+**SYNOPSIS:**
+- `craft` **-n \<item name\>** **-q \<quantity\>** \[-r \<index\>\]
+
+**DESCRIPTION:**
+- **item name:** name of the item to craft
+- **quantity:** desired quantity of the item to obtain  
+- **index:** uses the <u>recipe</u> numbered <u>index</u> for crafting (default: 1)
+Crafts quantity of a single specified item using the recipe
+
+**EXAMPLE:**
+- 'craft' -n <u>Iron Sword</u> -q <u>3</u> -r <u>2</u>  
+Crafts 3 <u>Iron Swords</u> using the 2nd recipe in the list which may craft it.
+
+### Check if crafting an item is possible: `check`
+
+**NAME:**
+- `check` - check if crafting an item with one recipe is possible based on the current inventory
+
+**SYNOPSIS:**
+- `check` **-n \<item name\>** **-q \<quantity\>** 
+
+**DESCRIPTION:**
+- **item name:** name of the item to check
+- **quantity:** desired quantity of the item to obtain from crafting 
+
+**EXAMPLE:**
+- 'check' -n <u>Iron Sword</u> -q <u>5</u>  
+Checks and displays if any recipe in the recipe list may be used to craft 5 (or more) <u>Iron Swords</u>
+based on the current inventory.
 
 ### Clear all items: `cleari`
 
@@ -356,7 +400,6 @@ Reverses the effect of the previous undo command.
       `redo` re-adds the 10 <u>Apples</u>.
 
 ### Viewing help: `help`
-WIP as of v1.2
 
 **NAME:** 
 - `help` - lists all commands and how to use them (Current implementation)
