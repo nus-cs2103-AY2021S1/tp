@@ -155,7 +155,7 @@ Format: `viewModule`
 
 Adds a module to the module list.
 
-Format: `addMod MODULE_CODE`
+Format: `addMod m/MODULE_CODE`
 
 Note: 
 
@@ -165,7 +165,7 @@ Note:
 Example:
 
 - Adds a module _CS2100_ to the module list.
-    - `addMod CS2100`
+    - `addMod m/CS2100`
 
 Expected Outcome:
 
@@ -218,10 +218,26 @@ Expected Outcome:
 
 - From the example given above, the Module view will display the modules matching the criteria:
 
-#### 4.2.5 Edit a module: `editMod` [coming in v1.4]
+#### 4.2.5 Edit a module: `editMod`
 
 Edits a module with the provided details.
 
+Format: `editMod INDEX m/MODULE_CODE`
+
+Note:
+
+- `INDEX` refers to the index number shown in the Module view.
+- `INDEX` must be a positive integer starting from 1.
+- New module code must be provided.
+- Existing values will be updated to the given values.
+- New module code should not already exist.
+
+Example:
+
+- Editing the module code of the first module to be _CS2020_.
+    
+    - `editMod 1 m/CS2020`
+    
 ### 4.3 Tutorial Group features
 
 #### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
