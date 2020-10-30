@@ -21,6 +21,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_DESC = new Prefix("desc/");
     public static final Prefix PREFIX_TITLE = new Prefix("ti/");
+    public static final Prefix PREFIX_APPLICATION_STATUS = new Prefix("as/");
     public static final Prefix PREFIX_ADD_COMMENT = new Prefix("-a");
     public static final Prefix PREFIX_DELETE_COMMENT = new Prefix("-d");
 }

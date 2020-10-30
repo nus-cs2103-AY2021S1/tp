@@ -10,18 +10,26 @@ import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static com.eva.model.util.SampleDataUtil.getCommentSet;
+import static com.eva.model.util.SampleDataUtil.getTagSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.eva.model.EvaDatabase;
+import com.eva.model.person.Address;
+import com.eva.model.person.Email;
+import com.eva.model.person.Name;
 import com.eva.model.person.Person;
+import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -113,9 +121,31 @@ public class TypicalPersons {
     }
 
     public static List<Applicant> getTypicalApplicants() {
-        ApplicationStatus status = new ApplicationStatus("received");
-        return getTypicalPersons().stream()
-                .map(person -> new Applicant(person, null, status))
-                .collect(Collectors.toList());
+        Applicant[] typicalApplicants = new Applicant[] {
+            new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                    new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet("applicant"),
+                    getCommentSet("Interests|2010-10-10|passionate about marketing"),
+                    new ApplicationStatus("received")),
+            new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet("applicant"),
+                    getCommentSet("Duration|2010-11-10|Internship from Jan to Jun"),
+                    Optional.of(new InterviewDate("02/11/2020")), new ApplicationStatus("processing")),
+            new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                    getTagSet("applicant"), getCommentSet(), new ApplicationStatus("received")),
+            new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("applicant"),
+                    getCommentSet("Review|2010-10-10|Have experience in marketing at big firm before"),
+                    Optional.of(new InterviewDate("02/11/2020")), new ApplicationStatus("processing")),
+            new Applicant(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                    new Address("Blk 47 Tampines Street 20, #17-35"),
+                    getTagSet("applicant", "business"), getCommentSet("title 7|2010-07-10|hi"),
+                    new ApplicationStatus("received")),
+            new Applicant(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
+                    getTagSet("applicant", "tech"), getCommentSet("title 8|2011-11-10|hi"),
+                    new ApplicationStatus("received"))
+        };
+        return Arrays.asList(typicalApplicants);
     }
 }
