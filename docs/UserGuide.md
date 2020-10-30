@@ -104,7 +104,7 @@ Archives the client at the given index.
 
 Format: `archive CLIENT_INDEX`
 
-Example: `list` followed by `archive 2` archives the 2nd client in I4I.
+Example: `list` followed by `archive 2` archives the 2nd active client in I4I.
 
 Notes: 
 
@@ -122,13 +122,13 @@ Lists the archived clients in I4I.
 
 Format: `list r/`
 
-### Unarchiving an active client : `unarchive`
+### Unarchiving an archived client : `unarchive`
 
 Unarchives the client at the given index.
 
 Format: `unarchive CLIENT_INDEX`
 
-Example: `list r/` followed by `unarchive 2` unarchives the 2nd client in I4I.
+Example: `list r/` followed by `unarchive 2` unarchives the 2nd archived client in I4I.
 
 Notes: 
 
