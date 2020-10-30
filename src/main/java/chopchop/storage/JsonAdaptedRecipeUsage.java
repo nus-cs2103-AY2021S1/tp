@@ -35,7 +35,7 @@ public class JsonAdaptedRecipeUsage {
     /**
      * Converts this Jackson-friendly adapted Recipe Usage into its original object.
      */
-    public RecipeUsage toType() throws IllegalValueException {
+    public RecipeUsage toModelType() throws IllegalValueException {
         if (this.name == null) {
             throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }

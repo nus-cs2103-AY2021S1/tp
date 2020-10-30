@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
+import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
 
 public class JsonAdaptedRecipeTest {
@@ -72,4 +73,11 @@ public class JsonAdaptedRecipeTest {
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
+
+    @Test
+    public void toModelType_nullTags_throwsIllegalValueException() {
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_REFS, VALID_STEPS, null);
+        String expectedMessage = String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
+    }
 }

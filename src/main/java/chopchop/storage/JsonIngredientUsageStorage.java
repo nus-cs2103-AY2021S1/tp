@@ -49,7 +49,7 @@ public class JsonIngredientUsageStorage implements UsageStorage<IngredientUsage>
         }
 
         try {
-            return Optional.of(jsonUsageList.get().toType());
+            return Optional.of(jsonUsageList.get().toModelType());
         } catch (IllegalValueException e) {
             logger.info(e.getMessage());
             throw new DataConversionException(e);

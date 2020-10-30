@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public abstract class Usage {
     private final String name;
@@ -67,5 +68,18 @@ public abstract class Usage {
 
     public boolean isSame(Usage u2) {
         return this.getName().equals(u2.getName());
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof Usage)) {
+            return false;
+        }
+
+        return Objects.equals(this.name, ((Usage) obj).name)
+            && Objects.equals(this.date, ((Usage) obj).date);
     }
 }

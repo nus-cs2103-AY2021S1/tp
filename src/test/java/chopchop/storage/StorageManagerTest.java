@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import chopchop.model.EntryBook;
 import chopchop.model.ReadOnlyEntryBook;
@@ -26,11 +27,11 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonIngredientBookStorage ingredientBookStorage = new JsonIngredientBookStorage(getTempFilePath("ab"));
-        JsonRecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(getTempFilePath("abc"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        JsonRecipeUsageStorage recipeUsageStorage = new JsonRecipeUsageStorage(getTempFilePath("cc"));
-        JsonIngredientUsageStorage ingredientUsageStorage = new JsonIngredientUsageStorage(getTempFilePath("dd"));
+        var ingredientBookStorage = new JsonIngredientBookStorage(getTempFilePath("ab"));
+        var recipeBookStorage = new JsonRecipeBookStorage(getTempFilePath("abc"));
+        var userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
+        var recipeUsageStorage = new JsonRecipeUsageStorage(getTempFilePath("cc"));
+        var ingredientUsageStorage = new JsonIngredientUsageStorage(getTempFilePath("dd"));
         storageManager = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
             ingredientUsageStorage, userPrefsStorage);
     }
@@ -51,6 +52,9 @@ public class StorageManagerTest {
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
+
+
+        assertEquals(Paths.get("owo"), new JsonUserPrefsStorage(Paths.get("owo")).getUserPrefsFilePath());
     }
 
     @Test

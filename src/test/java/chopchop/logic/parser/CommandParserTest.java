@@ -61,6 +61,9 @@ public class CommandParserTest {
         tests.put("undo", "Result(UndoCommand)");
         tests.put("redo", "Result(RedoCommand)");
 
+        tests.put("filter recipe /tag x", "Result(FilterRecipeCommand(...))");
+        tests.put("filter ingredient /tag x", "Result(FilterIngredientCommand(...))");
+
         tests.put("list recipe", "Result(ListRecipeCommand)");
         tests.put("list recipes", "Result(ListRecipeCommand)");
         tests.put("list ingredient", "Result(ListIngredientCommand)");

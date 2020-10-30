@@ -36,10 +36,10 @@ public class JsonSerializableRecipeUsageList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public UsageList<RecipeUsage> toType() throws IllegalValueException {
+    public UsageList<RecipeUsage> toModelType() throws IllegalValueException {
         List<RecipeUsage> recordList = new ArrayList<>();
         for (JsonAdaptedRecipeUsage jsonAdaptedRecord : this.usages) {
-            RecipeUsage record = jsonAdaptedRecord.toType();
+            RecipeUsage record = jsonAdaptedRecord.toModelType();
             recordList.add(record);
         }
         return new UsageList<RecipeUsage>(recordList);

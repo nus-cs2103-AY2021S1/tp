@@ -242,6 +242,71 @@ public class HelpCommandTest {
     }
 
     @Test
+    public void test_statsCommand() {
+
+        var cases = new HashMap<Pair<String, String>, String>();
+
+        var msg = "stats: Lists recipe and ingredient statistics; see 'stats recipe made' or 'stats ingredient used'";
+        cases.put(Pair.of("stats", ""), msg);
+        cases.put(Pair.of("stats", "recipe"), msg);
+        cases.put(Pair.of("stats", "recipes"), msg);
+        cases.put(Pair.of("stats", "ingredient"), msg);
+        cases.put(Pair.of("stats", "ingredients"), msg);
+
+        cases.put(Pair.of("stats", "recipe recent"),
+            String.format("%s: %s %s",
+                StatsRecipeRecentCommand.getCommandString(),
+                StatsRecipeRecentCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("stats", "recipe top"),
+            String.format("%s: %s %s",
+                StatsRecipeTopCommand.getCommandString(),
+                StatsRecipeTopCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("stats", "recipe made"),
+            String.format("%s: %s %s",
+                StatsRecipeMadeCommand.getCommandString(),
+                StatsRecipeMadeCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("stats", "recipe clear"),
+            String.format("%s: %s %s",
+                StatsRecipeClearCommand.getCommandString(),
+                StatsRecipeClearCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("stats", "ingredient recent"),
+            String.format("%s: %s %s",
+                StatsIngredientRecentCommand.getCommandString(),
+                StatsIngredientRecentCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("stats", "ingredient used"),
+            String.format("%s: %s %s",
+                StatsIngredientUsedCommand.getCommandString(),
+                StatsIngredientUsedCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("stats", "ingredient clear"),
+            String.format("%s: %s %s",
+                StatsIngredientClearCommand.getCommandString(),
+                StatsIngredientClearCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+
+        test(cases);
+    }
+
+    @Test
     public void test_badCommand() throws Exception {
         var cases = new HashMap<Pair<String, String>, String>();
 

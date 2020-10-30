@@ -1,18 +1,25 @@
 package chopchop.logic.commands;
 
+import chopchop.commons.util.Pair;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
-import chopchop.logic.parser.ItemReference;
+import chopchop.model.attributes.units.Mass;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
+import chopchop.logic.commands.exceptions.CommandException;
+import chopchop.logic.history.HistoryManager;
+import chopchop.logic.parser.CommandParser;
+import chopchop.logic.parser.ItemReference;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
@@ -104,4 +111,65 @@ public class DeleteIngredientCommandTest {
 
         assertTrue(model.getFilteredIngredientList().isEmpty());
     }
+
+
+
+    private Pair<Command, CommandResult> runCommand(Model m, String str) {
+        var parser = new CommandParser();
+        var c = parser.parse(str);
+
+        if (c.isError()) {
+            assertEquals(1, c.getError());
+        }
+
+        assertTrue(c.hasValue());
+        var cmd = c.getValue();
+
+        try {
+            return Pair.of(cmd, cmd.execute(m, new HistoryManager()));
+        } catch (CommandException e) {
+            return Pair.of(cmd, CommandResult.error(e.getMessage()));
+        }
+    }
+
+    @Test
+    public void test_deleteQuantity() {
+
+        runCommand(this.model, "add ingredient sprinkles /qty 400g");
+        var c1 = runCommand(this.model, "delete ingredient sprinkles /qty 200g").fst();
+
+        assertEquals(Mass.grams(200), this.model.findIngredientWithName("sprinkles").get().getQuantity());
+
+        var c2 = runCommand(this.model, "delete ingredient sprinkles /qty 200g").fst();
+        assertTrue(this.model.findIngredientWithName("sprinkles").isEmpty());
+
+        assertEquals(c1, c2);
+
+        runCommand(this.model, "add ingredient sprinkles /qty 400g");
+
+        var p = runCommand(this.model, "delete ingredient sprinkles /qty 999ml");
+        assertFalse(p.snd().didSucceed());
+
+        assertNotEquals(c1, p.fst());
+
+        var p2 = runCommand(this.model, "delete ingredient sprinkles /qty 30g");
+        assertTrue(p2.snd().didSucceed());
+        try {
+            assertTrue(((Undoable) p2.fst()).undo(this.model).didSucceed());
+        } catch (CommandException e) {
+            assertTrue(false);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+

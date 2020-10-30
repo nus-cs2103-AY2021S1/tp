@@ -7,6 +7,7 @@ import static chopchop.testutil.TypicalIngredients.BANANA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.TreeMap;
 
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Name;
+import chopchop.model.attributes.Tag;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.ingredient.Ingredient;
 
@@ -100,5 +102,43 @@ public class JsonAdaptedIngredientTest {
             ExpiryDate.class.getSimpleName());
 
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
+    }
+
+
+    @Test
+    public void toModelType_nullSets_throwsIllegalValueException() {
+        var ingredient = new JsonAdaptedIngredient(VALID_NAME, null, new ArrayList<>());
+
+        var expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, "sets");
+        assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullTags_throwsIllegalValueException() {
+        var ingredient = new JsonAdaptedIngredient(VALID_NAME,
+            new JsonAdaptedIngredientSet(Arrays.asList(
+                new JsonAdaptedIngredientSet.JsonAdaptedPair(VALID_QTY, null))), null);
+
+        var expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
+    }
+
+
+    @Test
+    public void toModelType_nullSets2_throwsIllegalValueException() {
+        var sets = new JsonAdaptedIngredientSet((List<JsonAdaptedIngredientSet.JsonAdaptedPair>) null);
+
+        var expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, "sets");
+        assertThrows(IllegalValueException.class, expectedMessage, sets::toModelType);
+    }
+
+    @Test
+    public void toModelType_emptyDate_throwsIllegalValueException() {
+        var pair = new JsonAdaptedIngredientSet.JsonAdaptedPair("300ml", "");
+        try {
+            assertEquals(true, pair.toModelType().fst().isEmpty());
+        } catch (IllegalValueException e) {
+            assertEquals(true, false);
+        }
     }
 }

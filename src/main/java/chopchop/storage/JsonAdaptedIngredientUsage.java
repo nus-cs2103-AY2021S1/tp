@@ -40,7 +40,7 @@ public class JsonAdaptedIngredientUsage {
     /**
      * Converts this Jackson-friendly adapted Ingredient Usage into its original object.
      */
-    public IngredientUsage toType() throws IllegalValueException {
+    public IngredientUsage toModelType() throws IllegalValueException {
         if (this.name == null) {
             throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
@@ -48,7 +48,7 @@ public class JsonAdaptedIngredientUsage {
             throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "date"));
         }
         if (this.qty == null) {
-            throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "date"));
+            throw new IllegalValueException(String.format(USAGE_MISSING_FIELD_MESSAGE_FORMAT, "qty"));
         }
 
         var result = Quantity.parse(qty);
