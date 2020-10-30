@@ -21,7 +21,7 @@ public class SortCommand extends Command {
             + NameComparator.USAGE + "\n"
             + ClassTimeComparator.USAGE + "\n"
             + YearComparator.USAGE + "\n\n"
-            + "Example: " + COMMAND_WORD + " year";
+            + "Example: " + COMMAND_WORD + " " + YearComparator.COMPARISON_MEANS;
 
     public static final String[] SUPPORTED_COMPARISON_MEANS = new String[] {NameComparator.COMPARISON_MEANS,
         ClassTimeComparator.COMPARISON_MEANS, YearComparator.COMPARISON_MEANS};
