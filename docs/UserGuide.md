@@ -214,8 +214,8 @@ Example:
 
 ### Policy Feature
 
-I4I allows for insurance policies that the user's company have to be added into a policy list.
-These policies can then be added into the client list as a person's field.
+Insurance policies belonging to the user's company can be added into I4I's policy list.
+A client can then be added with the corresponding policy.
 
 Policies have a name and a description.
 
@@ -225,7 +225,12 @@ Currently, 2 commands, `addp` & `clearp`, are used to control the policy list.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ [coming soon]
+## FAQ
+
+**Q**: How do I transfer my data to another computer?
+
+**A**: Install the app in the other computer, and overwrite the empty data files it creates with the files that contain 
+the data of your previous I4I home folder. By default, the 2 data files are named `clientlist.json` and `policylist.json`.
 
 --------------------------------------------------------------------------------------------------------------------
 
