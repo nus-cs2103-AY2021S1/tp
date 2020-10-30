@@ -5,7 +5,7 @@ title: Insurance4Insurance (I4I)
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103-T16-2/tp/actions)
 
-![Ui](images/UIdraft1.png)
+![Ui](images/Ui.png)
 
 **Insurance4Insurance (I4I) is an app for insurance agents to manage clients.** 
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
