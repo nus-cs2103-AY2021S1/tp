@@ -229,21 +229,18 @@ Example(s):
 
 ### Adding a meeting: `meeting add`
 
-Adds a meeting at a given date and time with specified members, and a provided meeting name
+Adds a meeting at a given date and time with specified participants, and a provided meeting name
 
-Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS [a/AGENDA] [no/NOTES]`
+Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS... [a/AGENDA]... [no/NOTES]...`
 
 Note(s):
 * All the fields must be provided except those in square brackets
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
-* There can be multiple members separated by a ","
-* There can be multiple agendas separated by a ","
-* There can be multiple notes separated by a ","
 * Participants added need to be contacts that exist in the given module
 
 Example(s):
-*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon,
-Ekam a/Discuss sequence diagram n/Revise page 2 of textbook beforehand`
+*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 p/Jay p/Roy p/Jerryl p/Yeeloon p/Ekam 
+a/Discuss sequence diagram no/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`
 
@@ -251,7 +248,7 @@ Deletes the specified meeting from Modduke.
 
 Format: `meeting delete m/MODULE n/MEETING_NAME`
 
-Examples:
+Example(s):
 * `meeting delete m/CS2103 n/Weekly Meeting` deletes `Weekly Meeting` meeting from the module `CS2103`.
 
 ### Editing a meeting: `meeting edit`
@@ -264,24 +261,23 @@ Edits a given meeting. Listed below are the meeting details that can be changed:
 5. Agenda
 6. Note
 
-Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [m/NEW_MEMBERS]… [a/AGENDA]…
- [no/NOTES]…`
+Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... 
+[a/AGENDA]... [no/NOTES]...`
 
-Note(s)
+Note(s):
 * At least one of the optional fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
-* If there is more than one member to edit, they should be separated by “,”
-* If there is more than one agenda to edit, they should be separated by “,”
-* If there is more than one note to edit, they should be separated by “,”
 * All the newly provided fields will override previous fields
 
 Example(s):
-* `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be `2020-09-27` and `14:00` respectively
-* `meeting edit m/CS2103 n/Meeting nN/Group Discussion' edits the name of Meeting to be `Group Discussion` in the module CS2103
+* `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be 
+`2020-09-27` and `14:00` respectively
+* `meeting edit m/CS2103 n/Meeting nN/Group Discussion` edits the name of Meeting to be `Group Discussion` in the 
+module CS2103
 
 ### Listing all meetings : `meeting list`
 
-Views all of the existing meetings.
+Views all the existing meetings.
 
 Format: `meeting list`
 
@@ -291,9 +287,10 @@ Views selected meeting details, showing meeting agendas and meeting notes.
 
 Format: `meeting view m/MODULE n/MEETING_NAME`
 
+Note(s):
 * Views the meeting with the specified meeting name in the given module.
 
-Examples:
+Example(s):
 * `meeting view n/CS2103 n/Weekly Meeting` views the `Weekly Meeting` meeting from the module `CS2103`.
 
 ### Copy email address of contacts : `copy email`
@@ -326,12 +323,15 @@ Example(s):
 
 ### Viewing the timeline : `timeline`
 
-Displays the timeline view of the application in a new window.
-
-* Meetings displayed in chronological order, with the earliest meeting on the left side of the window
-* Meetings that have passed the current date and time marked as red
+Displays the timeline in a new window.
 
 Format: `timeline`
+
+![Timeline Example](images/TimelineExample.gif)
+
+Note(s):
+* Meetings are displayed in chronological order, with the earliest meeting on the left side of the window
+* Meetings that have passed the current date and time are marked red
 
 ### Exiting the program : `exit`
 
@@ -399,10 +399,11 @@ Action | Format, Examples
 **Add Labels** | `label add CONTACT_NAME t/TAG_NAME...` <br> e.g., `label add Jay t/acquaintance`
 **Delete Labels** | `label delete CONTACT_NAME t/TAG_NAME...` <br> e.g., `label delete Jay t/friend`
 **Clear Labels** | `label clear CONTACT_NAME` <br> e.g., `label clear Jay`
-**Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
-**Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
+**Add Meeting** | `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting add m/CS2103 n/Meeting d/2020:09:23 t/10:00 p/Ekam p/Jay p/Jerryl p/Roy`
+**Delete Meeting** | `meeting delete m/MODULE n/MEETING_NAME` <br> e.g., `meeting delete m/CS2103 n/Weekly Meeting`
+**Edit Meeting** |  `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00`
 **List Meetings** | `meeting list`
 **View Meeting** | `meeting view m/MODULE n/MEETING_NAME`  <br> e.g., `meeting view m/CS2100 n/Report Discussion`
 **Copy Email** | `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Copy Phone** | `copy phone [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
-
+**Display Timeline** | `timeline`
