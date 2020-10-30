@@ -175,8 +175,60 @@ Edits an existing module in the displayed module list with new details.
    `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
    assignment name, `Quiz 1`. 
    `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
-   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
+   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.
+   
+#### Archiving a module: `archivemodule`
 
+Archives a module in the module list and moves it into archived storage.
+
+Format: `archivemodule` `INDEX`
+
+ * The module archived will be at the `INDEX` position of the currently displayed un-archived list.
+
+ * The index refers to the index number of the module shown on the displayed un-archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `archivemodule 1` Archives the first module in the displayed list.
+ 
+#### Un-archiving a module: `unarchivemodule`
+
+Un-Archives a module in the module list and moves it back into current module list storage.
+
+Format: `unarchivemodule` `INDEX`
+
+ * The module un-archived will be at the `INDEX` position of the currently displayed archived list.
+
+ * The index refers to the index number of the module shown on the displayed archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `unarchivemodule 1` Un-Archives the first module in the displayed archived module list.
+ * `unarchivemodule 2` Un-Archives the second module in the displayed archived module list.
+
+#### View-archived modules: `viewarchive`
+
+Allows you to view the archived module list on the display.
+
+Format: `viewarchive`
+
+ * Executing this command will remove the current un-archived module list from display if you are currently viewing it. You can use the `list` command to display the un-archived module list(See next section).
+
+ Examples:
+ * `viewarchive` Views the archived module list on the display.
+
+#### View un-archived modules: `list`
+
+Allows you to view the un-archived module list on the display.
+
+Format: `list`
+
+ * Executing this command will remove the current archived module list from display if you are currently viewing it. You can use the `viewarchive` command to display the archived module list(See previous section).
+
+ Examples:
+ * `list` Views the un-archived module list on the display.
 
 ### Todo List Features
 
@@ -735,6 +787,10 @@ Action | Format, Examples
 **Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
+**Archive** | `archivemodule MODULE_POSITION `<br> e.g. `archivemodule 3`
+**Un-archive** | `unarchivemodule MODULE_POSITION `<br> e.g. `unarchivemodule 3`
+**View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
+**View Un-archived Module List** | `list `<br> e.g. `list`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
