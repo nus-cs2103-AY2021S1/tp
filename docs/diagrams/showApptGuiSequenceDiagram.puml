@@ -1,0 +1,25 @@
+@startuml
+skinparam sequenceArrowThickness 2
+
+actor User
+participant "JohnCard:PatientCard" as A
+participant ":AppointmentWindow" as B <<Class>>
+participant "John:Patient" as C
+
+User -> A: onDoubleClick()
+
+
+A -> B: setAppointmentWindow(patient)
+activate B
+
+B -> C: getAppointments()
+activate C
+C --> B: Appointments
+deactivate C
+
+B --> User: Show()
+deactivate B
+
+
+
+@enduml

@@ -25,6 +25,8 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 1. **:bulb: Tip:** - represents a useful tip
 
+1. **:warning: Important:** - represents important information
+
 ## Quick start
 
 Ensure you have Java `11` or above installed in your Computer. If not, you may download Java `11`from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
@@ -35,7 +37,7 @@ Ensure you have Java `11` or above installed in your Computer. If not, you may d
 There are many versions of Java `11` listed. Select the correct version based on your computer's operating system.
 </div>
 
-1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3.trial). Click on `hospify.jar` to start the download as shown in figure 1.1 below. <br>
+1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases). Click on `hospify.jar` to start the download as shown in figure 1.1 below. <br>
     
     ![Hospify download page](images/Hospify%20download%20page.png)
     Figure 1.1 **Hospify** download page
@@ -49,7 +51,7 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
     
-    ![Help window](images/Help%20window.PNG)
+    ![Help window](images/cleanHelpWindow.PNG)
     Figure 1.3 Help window
     
    Now, you can try out some other commands:
@@ -87,13 +89,21 @@ There are many versions of Java `11` listed. Select the correct version based on
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
 </div>
 
-### Displaying usage instructions: `help`
+### Displaying usage instructions: `help` (By Peh Jun Siang)
 
-Shows a list of basic commands (and their usages) supported by **Hospify**.
+The `help` command shows a list of all the commands and their usages with examples supported by **Hospify**.
 
-![tp_help_command](images/helpMessage.png)
+![tp_help_command](images/helpWindow.png)
 
 Format: `help`
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
+
+**:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
+for the commands.
+
+</div>
 
 ### Adding a patient: `add` (by Cedric Lim Jun Wei)
 
@@ -168,17 +178,24 @@ Examples:
 
 ### Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
-Finds patients whose names contain any of the given keywords or NRICs.
+This command allows you to find patients whose names contain any of the given keywords or NRICs.
 
 Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`, and `s1234567a` will match `S1234567A`
 * The order of the keywords or NRICs does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Both the name and NRIC are searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
 * Patients matching at least one keyword or NRIC will be returned (i.e. `OR` search).
   e.g. `Hans Bo S7654321A` will return `Hans Gruber`, `Bo Yang`, `Tom Lee` (whose NRIC is S7654321A)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Only full words will be matched e.g. `Han` will not match `Hans`
+
+* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
+</div>
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -252,6 +269,127 @@ Examples:
 * `sort name` would result in the patients to be sorted by their name in ascending order.
 * `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
 
+### Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
+
+The `showAppt` command shows you all the appointments of a patient in a table for ease of viewing.
+Unlike other commands, you can click on the patient's information to show the appointments **without needing to enter any commands**.
+
+###### 1. Using the `GUI`
+You can simply **double click** on the patient to display all the appointments of that patient.
+
+![show appointments via gui](images/showAppt/showAppt_gui.PNG)
+
+###### 2. Using the `Command Line`
+If the number of patients is too large, it might be difficult to find the patient's information to click.
+In that case, you can use the command line to show the patient's appointments.
+
+![show appointments via gui](images/showAppt/showAppt_input.PNG)
+
+Format: `showAppt NRIC`
+
+Example: `showAppt S1234567A`
+
+The **Appointment window should pop up** after successfully running the command either through the `GUI` or the `Command Line` shown below.
+
+![Appointment Window](images/showAppt/showAppt_window.PNG)
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip:** You can **click on the headers** to sort the appointments from earliest to latest or latest to earliest.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+**:warning: Important:** Only **ONE** appointment window is allowed to be opened at any moment.
+</div>
+
+<div markdown="span" class="alert alert-info">
+**:information_source: Notes:** `showAppt` takes in only **ONE** NRIC of the patient to show.
+</div>
+
+### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to schedule an `Appointment` for a patient in **Hospify**.
+
+Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
+
+* `NRIC` represents the `NRIC` of the patient you are adding an `Appointment` to.
+* `DATE` and `TIME` represent the date and time of the `Appointment` respectively.
+* `DESCRIPTION` represents the name or brief description of the `Appointment`.
+  e.g. `Eye Check-up` or `Physiotherapy Session`
+
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Important:** `DATE` and `TIME` parameters must be specified in the following formats:
+
+</div>
+
+- **Date format:**
+
+Format | Example
+------ | -------
+dd/MM/yyyy | 28/09/2022
+
+- **Time format:**
+
+Format | Example
+------ | -------
+HH:mm | 20:00
+
+Examples:
+* `addAppt S1234567A appt/25/12/2020 15:00 d/Foot Therapy`
+* `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
+
+When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+
+![result for 'add appointment'](images/addAppt.png)
+
+### Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to edit an existing `Appointment` for a patient in **Hospify**.
+
+Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on different appointment parameters:**<br>
+
+* There are two separate `Appointment` timings specified in the format
+
+* The old `Appointment` timing is preceded by a `oldappt/` prefix
+
+* The new `Appointment` timing is preceded by a `newappt/` prefix
+</div>
+
+* The `Appointment` to edit must be an existing appointment of the patient.
+* Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
+* `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+
+Examples:
+* `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
+
+When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
+
+![result for 'edit appointment'](images/editAppt.png)
+
+### Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to delete an existing `Appointment` for a patient in **Hospify**.
+
+Format: `deleteAppt NRIC appt/DATE TIME`
+
+* The `Appointment` to delete must be an existing appointment of the patient.
+* The `Appointment` name/description does not need to be specified, since **Hospify** does not allow multiple appointments of the same timing for the same patient, and every appointment will have a unique timing.
+* `NRIC` represents the `NRIC` of the patient whose `Appointment` you are deleting.
+* `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+
+Examples:
+* `deleteAppt S0000001A appt/28/09/2022 20:00`
+
+When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+
+![result for 'delete appointment'](images/deleteAppt.png)
+
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
 By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
@@ -309,10 +447,45 @@ _{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ (Peh Jun Siang)
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
+
+**Q**: I cannot run the `JAR` file! How do I get the program to run?<br/>
+**A**: Check if you have at least `Java 11` installed on your Computer.
+* On **Windows**\
+Step 1. Open up **Command Prompt** by searching for **cmd** in the task bar.\
+Step 2. Type the command `java -version` to check for the version.
+![windows java version](images/faq/windows_javaVersion.PNG)
+
+<div markdown="block" class="alert alert-warning">
+**:warning: Important:** Ensure that the java version is at least **11**.
+</div>
+
+* On **MAC**\
+Step 1. Open up **Terminal** by searching for **terminal** in the search bar.\
+![mac search bar](images/faq/mac_search.PNG)
+Step 2. Type the command `java -version` to check for the version.
+![windows java version](images/faq/mac_javaVersion.PNG)
+
+<div markdown="block" class="alert alert-warning">
+**:warning: Important:** Ensure that the java version is at least **11**.
+</div>
+
+<div markdown="block" class="alert alert-primary">
+**:information_source: Notes:** If your java version is **less than 11**, visit
+ the official Java website [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+</div>
+
+**Q**: How do I get the latest version of **Hospify**?\
+**A**: As of the latest version, **Hospify** does not support updating within the application. In order to get the
+ latest version, go to the **GitHub releases** [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3) to download the latest version.\
+![download jar](images/faq/download_jar.PNG)
+
+**Q**: My question is not listed in the FAQ?\
+**A**: For inquires, please send email to our developer team at **hospify_enquiry@gmail.com**.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
