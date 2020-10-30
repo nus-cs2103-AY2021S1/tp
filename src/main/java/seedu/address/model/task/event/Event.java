@@ -147,7 +147,8 @@ public class Event extends Task {
                 .append(getEndDateTime())
                 .append(" Description: ")
                 .append(getDescription())
-                .append(" Tag: ");
+                .append(" Tag: ")
+                .append(getTag());
         return builder.toString();
     }
 
