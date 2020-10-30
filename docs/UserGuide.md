@@ -85,17 +85,31 @@ You can find out more about the command terminologies here:
 
 ### Adding an assignment: `add`
 
-Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
+Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​[priority/PRIORITY] 
+[remind]`
+
+You can add your assignments into your schedule so that you can manage all your assignments and
+ academic tasks conveniently. 
 
 <div markdown="span" class="alert alert-success">
-   
 **:bulb: Tip:**
 You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
 </div>
 
+For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
+simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
+
+   ![UserGuideAddCommand](images/UserGuideAddCommand.PNG)
+   *Figure 1: Information of the assignment added labelled*
+
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+If the lab report assignment is of **high priority**, you can enter `add n/Lab report d/23-04-2020 1230 mod/CS2100 p/HIGH`
+</div> 
+
 Examples:
-* `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
-* `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
+* `add n/Lab report d/23-04-2020 1230 mod/CS2100 remind`
+* `add n/Lab report d/30-04-2020 1230 mod/CS2100 remind p/LOW`
 
 ### Deleting assignments : `delete`
 
@@ -334,30 +348,96 @@ For example, `unprioritize 1` will remove the priority tag, if present, of the f
 
 ### Marking assignments as done : `done`
 
-Marks the specified assignment as done.
+Format: `done INDEX [MORE_INDEXES]`
 
-Format: `done INDEX`
+You can keep track of your uncompleted assignments by marking assignments that you've completed as done.
 
-* Marks the assignment at the specified `INDEX` as done.
-* The index refers to the index number shown in the displayed assignment list.
+You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. Here is
+an example with steps to follow:
+
+1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
+the command line based on the indexes labelled in the figure.
+
+   ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.PNG)
+   *Figure 10a: `Indexes` of assignments labelled*
+   
+2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
+
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.PNG)
+   *Figure 10b: Added ticks labelled*
+
+3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
+
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.PNG)
+   *Figure 10c: Message shown in Command Box labelled*
+   
+<div markdown="block" class="alert alert-primary">
+ **:clipboard: Pointers to note:**<br>
+* At least one index must be present. For example, `done` without any index will not work.
+* The indexes **must be a positive integer** 1, 2, 3, …​
+* The indexes **must be found in your assignment list**
+* The indexes **must not be duplicated**. For example, `done 4 4` will not work.
+</div>
+
 
 ### Marking assignments as not done : `undone`
 
-Marks the specified assignment as not done.
-
 Format: `undone INDEX`
 
-**Tip:**
-Assignments are marked as not done by default.
+You can unmark assignments that you have previously marked as done by specifying the assignment `INDEX` as shown in your
+ list.
 
-* Marks the assignment at the specified `INDEX` as not done.
-* The index refers to the index number shown in the displayed assignment list.
+You can unmark `one` done assignment at a time. Here is an example with steps to follow:
+
+1) If you have **accidentally** marked the assignment with the name "Essay" as done,
+you can simply enter `undone 2` into the command line based on the index labelled in the figure.
+
+   ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.PNG)
+   *Figure 11a: `Index` of assignment labelled*
+
+2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
+
+   ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.PNG)
+   *Figure 11b: Deleted green tick labelled*
+
+3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
+
+   ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.PNG)
+   *Figure 11c: Message shown in Command Box labelled*
+   
+<div markdown="block" class="alert alert-primary">
+ **:clipboard: Pointers to note:**<br>
+* Assignments are marked as not done**by default**
+* The index must be present. For example, `undone` without any index will not work.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be found in your assignment list**
+</div>
+
+### Clearing all assignments: `clear`
+
+Format: `clear`
+
+You can clear all your existing assignments and lessons at the start of every semester.
+
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+If you cleared all your assignments and lessons by accident, use `undo` to retrieve your deleted data.
+</div>
+
+### Accessing help: `help`
+
+Format: `help`
+
+If you are new to ProductiveNUS or want to have a quick overview of all the available commands, you can simply enter `help` and a Help Window will appear as shown in the labelled diagram below.
+
+   ![UserGuideHelpCommand](images/UserGuideHelpCommand.PNG)
+   *Figure 12: Help Window labelled*
 
 ### Exiting the program : `exit`
 
-Exits the program.
-
 Format: `exit`
+
+You can use this command to exit the program.
 
 ### Saving the data
 
@@ -394,3 +474,43 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
+
+**Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
+**A**:
+You can reschedule by using the schedule command on that assignment again.
+
+1. Find out the index of the assignment that you want to reschedule.
+
+DIAGRAM
+
+2. Type the schedule command with the correct index into the command box .
+
+DIAGRAM
+
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+You can copy the entire command if you intend to reschedule the assignment more than once. 
+You can paste the command into the command box after step 3 and repeat step 2-3 until you have obtain your
+ ideal schedule.
+</div>
+
+3. Press ENTER to reschedule your assignment.
+
+DIAGRAM
+
+**Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?
+**A**: 
+*For Windows Users:*
+1. Go to the folder where you have downloaded and saved the productivenus.jar file.
+2. Copy the file directory of the folder. The file directory is labelled in the diagram below.
+DIAGRAM
+3. Open your command interpreter. To do so, press the Windows key on your keyboard, type in `cmd` and press ENTER.
+4. Your command interpreter will start, and the command interpreter should look something similar to the diagram below.
+<br>
+DIAGRAM
+4. In the command interpreter, type `cd ` and paste the file directory that you have copied in step 2.
+<br>For example, `cd C:\Desktop\ProductiveNUS`.
+5. Press ENTER and the file directory will be shown in the command interpreter.
+<br>
+DIAGRAM
+6. Finally, type `java -jar productivenus.jar` and press ENTER to start the app.
