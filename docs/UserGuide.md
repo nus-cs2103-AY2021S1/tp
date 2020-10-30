@@ -756,8 +756,10 @@ Undoes the previous user command
 #### Redo previous user command: `redo`
 
 Redoes the previously undone user command
- * The `undo` feature currently has not been extended to Scheduler commands
+
  Format: `redo`
+ 
+  * The `redo` feature currently has not been extended to Scheduler commands
 
   Examples:
   * `redo`
@@ -783,12 +785,12 @@ Action | Format, Examples
 --------|------------------
 **Add Module** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
 **View Module** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
-**Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
+**Delete** | `deletemodule INDEX `<br> e.g. `deletemodule 3`
 **Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
-**Archive** | `archivemodule MODULE_POSITION `<br> e.g. `archivemodule 3`
-**Un-archive** | `unarchivemodule MODULE_POSITION `<br> e.g. `unarchivemodule 3`
+**Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
+**Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
 **View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
 **View Un-archived Module List** | `list `<br> e.g. `list`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
