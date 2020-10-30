@@ -11,8 +11,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY_DESCRIPTION;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;

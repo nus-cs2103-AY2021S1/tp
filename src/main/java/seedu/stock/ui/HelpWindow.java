@@ -37,42 +37,32 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_DESCRIPTION =
             "help";
 
-    public static final String ADD_DESCRIPTION =
-            "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse> \n"
-                    + "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse> lq/<low quantity>";
+    public static final String ADD_DESCRIPTION = "add n/<name> s/<source> q/<quantity>"
+            + " l/<location> [lq/<low quantity>]";
 
-    public static final String LIST_DESCRIPTION =
-            "list lt/all \nlist lt/bookmark \nlist lt/low";
+    public static final String LIST_DESCRIPTION = "list lt/<list type>";
 
-    public static final String DELETE_DESCRIPTION =
-            "delete sn/<serial number> \n" + "delete sn/<serial number> sn/<serial number 2>";
+    public static final String DELETE_DESCRIPTION = "delete sn/<serial number>...";
 
-    public static final String FIND_DESCRIPTION =
-            "find (followed by combination of any): \n"
-                    + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
+    public static final String FIND_DESCRIPTION = "find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]";
 
-    public static final String FINDEXACT_DESCRIPTION =
-            "findexact (followed by combination of any): \n"
-                    + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
+    public static final String FINDEXACT_DESCRIPTION = "findexact [n/<name>] [sn/<serial number>]"
+            + " [s/<source>] [l/<location>]";
 
-    public static final String UPDATE_DESCRIPTION =
-            "update sn/<serial number> (followed by combination of any):\n"
-                    + "iq/<+/-><quantity to increment/decrement> \nnq/<new quantity> \nn/<new name>\n"
-                    + "l/<new location in warehouse> \ns/<new source of stock>\n"
-                    + "lq/<low quantity>\n"
-                    + "NOTE: only either of iq/ or nq/ can be provided.\n";
+    public static final String UPDATE_DESCRIPTION = "update sn/<serial number>... [iq/<increment value> | "
+            + "nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]";
 
-    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note for stock>\n"
+    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note>\n"
             + "noteview sn/<serial number>\n"
             + "notedelete sn/<serial number> ni/<note index>";
 
-    public static final String STATISTICS_DESCRIPTION = "stats st/source\nstats st/source-qd-<source company>";
+    public static final String STATISTICS_DESCRIPTION = "stats st/<statistics type>";
 
     public static final String SORT_DESCRIPTION = "sort o/<order> by/<field>";
 
-    public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number>";
+    public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number>...";
 
-    public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number>";
+    public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number>...";
 
     public static final String PRINT_DESCRIPTION = "print fn/<file name>";
 
