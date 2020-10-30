@@ -134,7 +134,7 @@ The adding of Exercises is one of the core functionalities of FixMyAbs. Apart fr
 
 The mechanism is facilitated by an `Exercise` class. An `Exercise` class has `Name` and `Calories`. Calories represent the number of calories burnt per rep of the exercise.
 
-![AddLogClassDiagram](images/AddExerciseClassDiagram.png)
+![AddExClassDiagram](images/AddExerciseClassDiagram.png)
 
 A user can add an `Exercise`to the `LogBook` by executing the `addex` command.
 
@@ -145,15 +145,15 @@ Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsPars
 
 Step 2. The user input is passed into the `AddExCommandParser#parse()` method and instances of `Name` and `Calories` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Exercise` constructor, and a new `Exercise` object is created as a result.
 
-![AddLogClassDiagram](images/AddExerciseStep2.png)
+![AddExClassDiagram](images/AddExerciseStep2.png)
 
 Step 3. A new `AddExCommand` is returned with the created `Exercise` object as a parameter. The `Exercise` object is then added to the `Model`.
 
-![AddLogClassDiagram](images/AddExerciseStep3.png)
+![AddExClassDiagram](images/AddExerciseStep3.png)
 
 The following sequence diagram shows how the `Add Exercise` feature works:
 
-![AddLogClassDiagram](images/AddExerciseSequenceDiagram.png)
+![AddExClassDiagram](images/AddExerciseSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddExCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -192,7 +192,7 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 ### Find Log feature
 To find specific exercise logs, users are able to search for logs based on the exercise name. This will allow them to easily track the number of logs for a certain exercise, as well as its details.
 
-![AddLogClassDiagram](images/NameContainsKeywordsPredicate.png) 
+![FindLogClassDiagram](images/NameContainsKeywordsPredicate.png) 
 
 The mechanism is supported by the `NameContainsKeywordsPredicate`, which checks if the user keyword input is matches any name of the exercises in the list of exercise logs. The `NameContainsKeywordsPredicate#test()` method is used to check this.
 
@@ -209,7 +209,7 @@ Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindComman
 
 The following sequence diagram shows how the `Find Log` feature works:
 
-![AddLogClassDiagram](images/FindLogSequenceDiagram.png) 
+![FindLogClassDiagram](images/FindLogSequenceDiagram.png) 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -239,12 +239,6 @@ Step 4: `getAutoCompleteResult` computes the result to display to the user and r
 Step 5: `setText` method in `ResultDisplay` receives the `result` as a parameter and display the `result` for the user.
 
 ![AutocompleteSequenceDiagram](images/AutocompleteSequenceDiagram.png) 
-
-
-### Better user interface
-
-We improved the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
-
 
 
 #### Design consideration:
