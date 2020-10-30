@@ -3,6 +3,8 @@
 package chopchop.logic.edit;
 
 import chopchop.model.attributes.Tag;
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceContains;
 
 public class TagEditDescriptor extends EditDescriptor {
 
@@ -17,8 +19,8 @@ public class TagEditDescriptor extends EditDescriptor {
     public TagEditDescriptor(EditOperationType editType, String tag) {
         super(editType);
 
-        assert Tag.isValidTag(tag);
-        assert editType == EditOperationType.ADD || editType == EditOperationType.DELETE;
+        enforce(Tag.isValidTag(tag));
+        enforceContains(editType, EditOperationType.ADD, EditOperationType.DELETE);
 
         this.tagName = tag;
     }

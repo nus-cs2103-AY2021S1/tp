@@ -5,8 +5,8 @@ package chopchop.commons.util;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
-
 import java.util.NoSuchElementException;
+import static chopchop.commons.util.Enforce.enforceAny;
 
 /**
  * A container class that wraps a value of either type L (the 'left' value), or
@@ -22,7 +22,7 @@ public class Either<L, R> {
         this.leftValue = leftVal;
         this.rightValue = rightVal;
 
-        assert this.leftValue == null || this.rightValue == null;
+        enforceAny(this.leftValue == null, this.rightValue == null);
     }
 
     /**

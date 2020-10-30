@@ -277,6 +277,7 @@ public class AutoCompleterTest {
         cases.put("add owo /q",                             "add owo /q");
         cases.put("add owo",                                "add owo");
         cases.put("add recipe",                             "add recipe");
+        cases.put("add recipe ",                            "add recipe");
         cases.put("add recommendation owo",                 "add recommendation owo");
         cases.put("add recommendation owo /tag a",          "add recommendation owo /tag a");
         cases.put("add recipe /ingredient qqq",             "add recipe /ingredient qqq");

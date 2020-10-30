@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 import chopchop.commons.util.Pair;
+import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.commands.AddCommandParser;
 import chopchop.logic.parser.commands.DeleteCommandParser;
 import chopchop.logic.parser.commands.EditCommandParser;
@@ -92,6 +93,15 @@ public class CommandParserTest {
 
             System.err.println(x);
             assertEquals(v, x.toString());
+        });
+
+
+        assertThrows(CommandException.class, () -> {
+            throw new CommandException("asdf");
+        });
+
+        assertThrows(CommandException.class, () -> {
+            throw new CommandException("asdf", new RuntimeException("owo"));
         });
     }
 

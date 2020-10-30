@@ -5,6 +5,10 @@ package chopchop.logic.edit;
 import java.util.Optional;
 
 import chopchop.model.attributes.Quantity;
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceContains;
+import static chopchop.commons.util.Enforce.enforceEmpty;
+import static chopchop.commons.util.Enforce.enforcePresent;
 
 public class IngredientEditDescriptor extends EditDescriptor {
 
@@ -22,14 +26,13 @@ public class IngredientEditDescriptor extends EditDescriptor {
 
         super(editType);
 
-        assert editType == EditOperationType.ADD
-            || editType == EditOperationType.EDIT
-            || editType == EditOperationType.DELETE;
+        enforce(!name.isEmpty());
+        enforceContains(editType, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
 
         if (editType == EditOperationType.EDIT || editType == EditOperationType.ADD) {
-            assert qty.isPresent();
+            enforcePresent(qty);
         } else {
-            assert qty.isEmpty();
+            enforceEmpty(qty);
         }
 
         this.ingredientName = name;

@@ -4,6 +4,11 @@ package chopchop.logic.edit;
 
 import java.util.Optional;
 
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceContains;
+import static chopchop.commons.util.Enforce.enforceEmpty;
+import static chopchop.commons.util.Enforce.enforcePresent;
+
 public class StepEditDescriptor extends EditDescriptor {
 
     private final Optional<Integer> stepNumber;
@@ -21,14 +26,16 @@ public class StepEditDescriptor extends EditDescriptor {
 
         super(editType);
 
-        assert editType == EditOperationType.ADD
-            || editType == EditOperationType.EDIT
-            || editType == EditOperationType.DELETE;
+        enforceContains(editType, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
 
-        if (editType == EditOperationType.ADD || editType == EditOperationType.EDIT) {
-            assert !stepText.isEmpty();
+        if (editType == EditOperationType.ADD) {
+            enforce(!stepText.isEmpty());
+        } else if (editType == EditOperationType.EDIT) {
+            enforce(!stepText.isEmpty());
+            enforcePresent(stepNumber);
         } else {
-            assert stepText.isEmpty();
+            enforcePresent(stepNumber);
+            enforce(stepText.isEmpty());
         }
 
         this.stepNumber = stepNumber;
