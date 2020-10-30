@@ -2,6 +2,10 @@
 
 package chopchop.logic.autocomplete;
 
+import static chopchop.commons.util.Enforce.enforceGreaterThan;
+import static chopchop.commons.util.Enforce.enforceLessThan;
+import static chopchop.commons.util.Enforce.enforceNotEmpty;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,11 +23,6 @@ import chopchop.logic.parser.CommandParser;
 import chopchop.logic.parser.commands.CommandTarget;
 import chopchop.model.Entry;
 import chopchop.model.Model;
-
-import static chopchop.commons.util.Enforce.enforce;
-import static chopchop.commons.util.Enforce.enforceGreaterThan;
-import static chopchop.commons.util.Enforce.enforceLessThan;
-import static chopchop.commons.util.Enforce.enforceNotEmpty;
 
 public class AutoCompleter {
 

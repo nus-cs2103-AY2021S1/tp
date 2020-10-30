@@ -2,13 +2,14 @@
 
 package chopchop.logic.edit;
 
-import java.util.Optional;
-
-import chopchop.model.attributes.Quantity;
 import static chopchop.commons.util.Enforce.enforce;
 import static chopchop.commons.util.Enforce.enforceContains;
 import static chopchop.commons.util.Enforce.enforceEmpty;
 import static chopchop.commons.util.Enforce.enforcePresent;
+
+import java.util.Optional;
+
+import chopchop.model.attributes.Quantity;
 
 public class IngredientEditDescriptor extends EditDescriptor {
 

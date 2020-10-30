@@ -7,12 +7,18 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static chopchop.testutil.Assert.assertThrows;
-import static chopchop.commons.util.Enforce.*;
+import static chopchop.commons.util.Enforce.enforce;
+import static chopchop.commons.util.Enforce.enforceAll;
+import static chopchop.commons.util.Enforce.enforceAny;
+import static chopchop.commons.util.Enforce.enforceContains;
+import static chopchop.commons.util.Enforce.enforceEmpty;
+import static chopchop.commons.util.Enforce.enforceEqual;
+import static chopchop.commons.util.Enforce.enforceGreaterThan;
+import static chopchop.commons.util.Enforce.enforceLessThan;
+import static chopchop.commons.util.Enforce.enforceNonNull;
+import static chopchop.commons.util.Enforce.enforceNotEmpty;
+import static chopchop.commons.util.Enforce.enforcePresent;
 
 public class EnforceTest {
 

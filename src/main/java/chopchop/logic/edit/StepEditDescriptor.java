@@ -2,12 +2,12 @@
 
 package chopchop.logic.edit;
 
-import java.util.Optional;
-
 import static chopchop.commons.util.Enforce.enforce;
 import static chopchop.commons.util.Enforce.enforceContains;
-import static chopchop.commons.util.Enforce.enforceEmpty;
 import static chopchop.commons.util.Enforce.enforcePresent;
+
+import java.util.Optional;
+
 
 public class StepEditDescriptor extends EditDescriptor {
 

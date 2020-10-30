@@ -2,9 +2,10 @@
 
 package chopchop.logic.edit;
 
-import chopchop.model.attributes.Tag;
 import static chopchop.commons.util.Enforce.enforce;
 import static chopchop.commons.util.Enforce.enforceContains;
+
+import chopchop.model.attributes.Tag;
 
 public class TagEditDescriptor extends EditDescriptor {
 
