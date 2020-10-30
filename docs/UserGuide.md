@@ -413,6 +413,39 @@ you can simply enter `undone 2` into the command line based on the index labelle
 * The index **must be found in your assignment list**
 </div>
 
+### Scheduling assignments:
+
+Schedules the assignment identified by the `INDEX` number used in the displayed assignment list.
+The suggested schedule with start time and end time will be displayed in the assignment card.
+It is guaranteed that the suggested time slot will not class with any of your lessons or the suggested time
+slots of other assignments.
+
+Format: `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME`
+* Suggests a schedule for the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The expected number of hours for an assignment **must be a positive integer between `1` and `5`**.
+
+Examples:
+* `schedule 1 expected/2 before/23-12-2020 2359`
+* `schedule 2 expected/5 before/01-01-2021 0530`
+
+### Removing suggested time for assignments:
+
+Removes the suggested time slot of the assignment identified by the `INDEX` number used in the displayed assignment list.
+
+Format: `unschedule INDEX`
+
+* Removes the suggested time slot of the assignment at the specified `INDEX`.
+* The index refers to the index number shown in the displayed assignment list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+### Undoing commands:
+
+Undoes the most recent command.
+
+Format: `undo`
+
 ### Clearing all assignments: `clear`
 
 Format: `clear`
@@ -460,6 +493,9 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 | **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
 | **done** | `done INDEX` | `done 4` |
 | **undone** | `undone INDEX` | `undone 2` |
+| **schedule** | `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME` | `schedule 1 expected/2 before/23-12-2020 2359` |
+| **unschedule** | `unschedule INDEX` | `unschedule 1` |
+| **undo** | `undo` | `undo` |
 | **help** | `help` | `help` |
 | **exit** | `exit` | `exit` |
 
