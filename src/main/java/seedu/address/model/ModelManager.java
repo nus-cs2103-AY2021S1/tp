@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private Model previousModel;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given addressBook, userPrefs and previousModel.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Model previousModel) {
         super();
@@ -48,6 +48,30 @@ public class ModelManager implements Model {
         this.previousModel = previousModel;
     }
 
+    /**
+     * Initializes a ModelManager with the given addressBook, userPrefs, previousModel
+     * and filterAssignments.
+     */
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, Model previousModel,
+                        FilteredList<Assignment> filteredAssignments) {
+        super();
+        requireAllNonNull(addressBook, userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
+        this.addressBook = new AddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+
+        this.filteredAssignments = new FilteredList<>(this.addressBook.getAssignmentList(),
+                filteredAssignments.getPredicate());
+        remindedAssignments = new FilteredList<>(
+                this.addressBook.getAssignmentList(), PREDICATE_SHOW_ALL_REMINDED_ASSIGNMENTS);
+        //lessons = new FilteredList<>(this.addressBook.getLessonList());
+        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+
+        this.previousModel = previousModel;
+    }
+
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), null);
     }
@@ -56,13 +80,27 @@ public class ModelManager implements Model {
 
     @Override
     public void preUpdateModel() {
-        this.previousModel = new ModelManager(this.addressBook, this.userPrefs, this.previousModel);
+        this.previousModel = new ModelManager(this.addressBook, this.userPrefs, this.previousModel,
+                this.filteredAssignments);
     }
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
+    }
+
+    @Override
+    public void goToPreviousModel() {
+        setAddressBook(previousModel.getAddressBook());
+        setUserPrefs(previousModel.getUserPrefs());
+        filteredAssignments.setPredicate(previousModel.getFilteredAssignments().getPredicate());
+        setPreviousModel(previousModel.getPreviousModel());
+    }
+
+    @Override
+    public FilteredList<Assignment> getFilteredAssignments() {
+        return filteredAssignments;
     }
 
     @Override
@@ -82,7 +120,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
-        preUpdateModel();
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
@@ -102,7 +139,6 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        preUpdateModel();
         this.addressBook.resetData(addressBook);
     }
 
@@ -113,7 +149,6 @@ public class ModelManager implements Model {
 
     @Override
     public void importTimetable(TimetableData data) {
-        preUpdateModel();
         addressBook.importTimetable(data);
     }
 
@@ -125,20 +160,17 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteAssignment(Assignment target) {
-        preUpdateModel();
         addressBook.removeAssignment(target);
     }
 
     @Override
     public void addAssignment(Assignment assignment) {
-        preUpdateModel();
         addressBook.addAssignment(assignment);
         updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
     }
 
     @Override
     public void setAssignment(Assignment target, Assignment editedAssignment) {
-        preUpdateModel();
         requireAllNonNull(target, editedAssignment);
         addressBook.setAssignment(target, editedAssignment);
     }

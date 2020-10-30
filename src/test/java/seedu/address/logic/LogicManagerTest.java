@@ -16,6 +16,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -69,7 +70,8 @@ public class LogicManagerTest {
     @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        assertCommandSuccess(listCommand, String.format(
+                Messages.MESSAGE_ASSIGNMENTS_LISTED_OVERVIEW, model.getFilteredAssignmentList().size()), model);
     }
 
     @Test
@@ -86,6 +88,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_HW + DEADLINE_DESC_HW + MODULE_CODE_DESC_HW;
         Assignment expectedAssignment = new AssignmentBuilder(HW).build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.preUpdateModel();
         expectedModel.addAssignment(expectedAssignment);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
