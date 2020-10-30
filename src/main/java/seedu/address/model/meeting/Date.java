@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Meeting's Time in the Meeting book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
+ * Represents a Meeting's Date in the Meeting book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Time {
+public class Date {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should only contain numbers, and it should not be blank";
 
@@ -17,41 +17,41 @@ public class Time {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String time;
+    public final String date;
 
     /**
-     * Constructs an {@code Time}.
+     * Constructs an {@code Date}.
      *
-     * @param time A valid Time.
+     * @param date A valid Date.
      */
-    public Time(String time) {
-        requireNonNull(time);
-        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        this.time = time;
+    public Date(String date) {
+        requireNonNull(date);
+        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        this.date = date;
     }
 
     /**
-     * Returns true if a given string is a valid time.
+     * Returns true if a given string is a valid date.
      */
-    public static boolean isValidTime(String test) {
+    public static boolean isValidDate(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return this.time;
+        return this.date;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Time // instanceof handles nulls
-                && this.time.equals(((Time) other).time)); // state check
+                || (other instanceof Date // instanceof handles nulls
+                && this.date.equals(((Date) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
-        return this.time.hashCode();
+        return this.date.hashCode();
     }
 
 }

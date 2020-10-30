@@ -35,10 +35,13 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label propertyId;
     @FXML
-    private Label time;
+    private Label date;
     @FXML
     private Label venue;
-
+    @FXML
+    private Label startTime;
+    @FXML
+    private Label endTime;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -50,8 +53,10 @@ public class MeetingCard extends UiPart<Region> {
         typeOfMeeting.setText(getMeetingType(meeting));
         bidderId.setText("Bidder ID: " + meeting.getBidderId().toString());
         propertyId.setText("Property ID: " + meeting.getPropertyId().toString());
-        time.setText("Date: " + meeting.getTime().time);
+        date.setText("Date: " + meeting.getDate().date);
         venue.setText("Venue: " + meeting.getVenue().venue);
+        startTime.setText("Start Time: " + meeting.getStartTime().startTime);
+        endTime.setText("End Time: " + meeting.getEndTime().endTime);
     }
 
     public String getMeetingType(Meeting meeting) {

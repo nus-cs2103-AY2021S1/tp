@@ -3,7 +3,7 @@ layout: page
 title: "Tutorial: Tracing code"
 ---
 
-> Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. …​\[Therefore,\] making it easy to read makes it easier to write.
+> Indeed, the ratio of date spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. …​\[Therefore,\] making it easy to read makes it easier to write.
 >
 > —  Robert C. Martin Clean Code: A Handbook of Agile Software Craftsmanship
 
@@ -239,7 +239,7 @@ the given commands to find exactly what happens.
 
     1.  Make command words case-insensitive
 
-    2.  Allow `delete` to remove more than one index at a time
+    2.  Allow `delete` to remove more than one index at a date
 
     3.  Save the address book in the CSV format instead
 
