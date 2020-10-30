@@ -70,8 +70,7 @@ public class EditEventCommand extends Command {
         }
         model.setEvent(eventToEdit, updatedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        //TODO: Implement undo redo for scheduler
-        //model.commitEventList();
+        model.commitEventList();
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, updatedEvent));
     }
 

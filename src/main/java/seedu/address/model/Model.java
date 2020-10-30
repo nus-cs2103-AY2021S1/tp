@@ -343,17 +343,26 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered Event list */
     ObservableList<Event> getFilteredEventList();
-
     /**
      * Updates the filter of the filtered Event list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
-    ///**
-    // * Saves the current Event list state in history.
-    // */
-    //void commitEventList();
+    /**
+     * Saves the current event list state in history.
+     */
+    void commitEventList();
+
+    /**
+     * Restores the previous event list state from history.
+     */
+    void undoEventList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone event list state from history.
+     */
+    void redoEventList() throws VersionedListException;
     /**
      * Saves the current todo list state in history.
      */

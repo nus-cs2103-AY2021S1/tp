@@ -37,6 +37,7 @@ public class ModelManager implements Model {
     private final VersionedContactList versionedContactList;
     private final TodoList todoList;
     private final EventList eventList;
+    private final VersionedEventList versionedEventList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModulesDisplay;
@@ -73,6 +74,7 @@ public class ModelManager implements Model {
         this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
         this.eventList = new EventList(eventList);
+        this.versionedEventList = new VersionedEventList(eventList);
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModulesDisplay = new FilteredList<Module>(this.moduleListDisplay.getModuleList());
@@ -427,6 +429,8 @@ public class ModelManager implements Model {
             commitModuleList();
         } else if (type == 2) {
             commitContactList();
+        } else if (type == 4) {
+            commitEventList();
         } else {
             commitTodoList();
         }
@@ -442,6 +446,8 @@ public class ModelManager implements Model {
                 undoModuleList();
             } else if (pointer == 2) {
                 undoContactList();
+            } else if (pointer == 4) {
+                commitEventList();
             } else {
                 undoTodoList();
             }
@@ -461,6 +467,8 @@ public class ModelManager implements Model {
                 redoModuleList();
             } else if (pointer == 2) {
                 redoContactList();
+            } else if (pointer == 4) {
+                commitEventList();
             } else {
                 redoTodoList();
             }
@@ -469,7 +477,6 @@ public class ModelManager implements Model {
         }
         accessPointer += 1;
     }
-
     //=========== Filtered Module List Accessors =============================================================
 
     /**
@@ -620,8 +627,35 @@ public class ModelManager implements Model {
         this.eventList.setEvent(target, editedEvent);
     }
 
-    // TODO: Yet to be implemented
-    //@Override
-    //public void commitEventList() {}
+    @Override
+    public void commitEventList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
+        versionedEventList.commit(eventList);
+        accessSequence.add(4);
+        accessPointer += 1;
+    }
+
+    @Override
+    public void undoEventList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedEventList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setEventList(versionedEventList.getCurrentEventList());
+    }
+
+    @Override
+    public void redoEventList() throws VersionedListException {
+        assert accessPointer >= 0;
+        try {
+            versionedEventList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
+        setEventList(versionedEventList.getCurrentEventList());
+    }
 
 }

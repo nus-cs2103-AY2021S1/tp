@@ -34,7 +34,7 @@ public class DeleteEventCommand extends Command {
         }
         Event event = filteredList.get(this.index.getZeroBased());
         model.deleteEvent(event);
-        //model.commitEventList();
+        model.commitEventList();
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, event));
     }
 
