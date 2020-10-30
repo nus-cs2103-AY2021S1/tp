@@ -53,11 +53,11 @@ public class JsonAdaptedSemester {
      * Converts a given {@code Semester} into this class for Jackson use.
      */
     public JsonAdaptedSemester(Semester source) {
-        academicYear = source.getAcademicYear().value;
-        semesterNumber = source.getSemesterNumber().value;
+        academicYear = source.getAcademicYear();
+        semesterNumber = source.getSemesterNumber();
         allocations.addAll(source.getAllocations().stream()
-            .map(JsonAdaptedAllocation::new)
-            .collect(Collectors.toList()));
+                .map(JsonAdaptedAllocation::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -74,15 +74,11 @@ public class JsonAdaptedSemester {
         if (!AcademicYear.isValidAcademicYear(academicYear)) {
             throw new IllegalValueException(AcademicYear.MESSAGE_CONSTRAINTS);
         }
-        final AcademicYear modelAcademicYear = new AcademicYear(academicYear);
 
         if (!SemesterNumber.isValidSemesterNumber(semesterNumber)) {
             throw new IllegalValueException(SemesterNumber.MESSAGE_CONSTRAINTS);
         }
-        final SemesterNumber modelSemesterNumber = new SemesterNumber(semesterNumber);
 
-        final Map<RoomType, RoomRate> modelRoomFees = new HashMap<>(roomFees);
-
-        return new Semester(modelAcademicYear, modelSemesterNumber, modelSemesterAllocations, modelRoomFees);
+        return new Semester(academicYear, semesterNumber, modelSemesterAllocations);
     }
 }

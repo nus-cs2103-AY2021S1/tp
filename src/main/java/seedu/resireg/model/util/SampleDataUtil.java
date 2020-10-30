@@ -2,7 +2,6 @@ package seedu.resireg.model.util;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,8 +13,6 @@ import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.academicyear.AcademicYear;
-import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 import seedu.resireg.model.student.Email;
 import seedu.resireg.model.student.Name;
 import seedu.resireg.model.student.Phone;
@@ -30,10 +27,9 @@ import seedu.resireg.model.tag.Tag;
 public class SampleDataUtil {
     public static Semester getSampleSemester() {
         return new Semester(
-            new AcademicYear(LocalDate.now().getYear()),
-            new SemesterNumber(1),
-            Arrays.asList(getSampleAllocations()),
-            new HashMap<>());
+            LocalDate.now().getYear(),
+            1,
+            Arrays.asList(getSampleAllocations()));
     }
 
     public static Student[] getSampleStudents() {

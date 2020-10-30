@@ -16,8 +16,6 @@ import seedu.resireg.model.bin.UniqueBinItemList;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.UniqueRoomList;
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.academicyear.AcademicYear;
-import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.UniqueStudentList;
 
@@ -42,10 +40,7 @@ public class ResiReg implements ReadOnlyResiReg {
      *   among constructors.
      */
     {
-        semester = new Semester(
-                new AcademicYear(LocalDate.now().getYear()),
-                new SemesterNumber(1)
-        );
+        semester = new Semester();
         students = new UniqueStudentList();
         rooms = new UniqueRoomList();
         allocations = new UniqueAllocationList();
@@ -63,7 +58,7 @@ public class ResiReg implements ReadOnlyResiReg {
     }
 
     /**
-     *
+     * Sets the semester
      * @param semester
      */
     public void setSemester(Semester semester) {
@@ -78,7 +73,7 @@ public class ResiReg implements ReadOnlyResiReg {
         newResiReg.setBinItems(toBeCopied.getBinItemList());
 
         Semester currentSemester = toBeCopied.getSemester();
-        newResiReg.semester = currentSemester.getNextSemester();
+        newResiReg.setSemester(currentSemester.getNextSemester());
 
         return newResiReg;
     }
