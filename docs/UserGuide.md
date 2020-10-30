@@ -49,7 +49,7 @@ Click on the button with the name of the Session.
 ### Adding a student: `add`
 Adds a student into the student list.
 ```
-add n/NAME i/NUSNET_ID e/EMAIL
+add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]...
 ```
 
 ### Listing all students: `list`
@@ -129,7 +129,7 @@ exit
 
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
-| Add student       | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```  |
+| Add student       | ```add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add n/John Doe u/98765432 e/johnd@example.com```<br>```i/e0123456 t/friends```  |
 | List students     | ```list```                                                                                               |
 | Delete student    | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
 | Add session       | ```session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```session s/CS2103 Tutorial 1 dt/23-10-2020 0900```|
@@ -138,8 +138,6 @@ exit
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
 | Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
 | Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
-| Store Attendance  | ```store_record fn/FILENAME``` <br> e.g., `store_record tutorial01`                                |
-| Load Attendance   | ```load_record fn/FILENAME```
 | Clear             | ```clear```                                                                                              |
 
 ## Storage
