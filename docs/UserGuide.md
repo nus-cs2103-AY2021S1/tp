@@ -339,6 +339,7 @@ You can use this to make edits to any existing entries in the tracker when the d
 
 * Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified.
 * The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT.
+* When editing an entry’s tags, the existing tags of the entry will be removed i.e adding of tags is not cumulative.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries
 (e.g. if there are 10 entries, the `INDEX` given cannot be > 10).
 
