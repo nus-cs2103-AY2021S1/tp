@@ -494,7 +494,6 @@ Priorities: High (must have) - `☆ ☆ ☆`, Medium (nice to have) - `* *`, Low
 | \* \* \* | OHS admin                | edit the details of an existing student                  | easily correct any typos and update the student details in response to changes (e.g. faculty).            |
 | \* \* \* | OHS admin                | delete a student                                         | so that I can remove an erroneously added student.                                                        |
 
-_{More to be added}_
 
 ### Use cases
 
@@ -680,8 +679,9 @@ Use case ends.
    
       Use case ends.
       
-#### Use case: UC010 - View piechart of allocated and unallocated rooms
-1. OHS admin requests to view a piechart of allocated and unallocated room.
+#### Use case: UC10 - View piechart of allocated and unallocated rooms
+**MSS**
+1. OHS admin requests to view a piechart of allocated and unallocated rooms.
 1. ResiReg shows a piechart of allocated rooms and unallocated rooms on the Statistics tab.
 
 Use case ends.
