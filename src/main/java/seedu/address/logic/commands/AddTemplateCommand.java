@@ -37,7 +37,6 @@ public class AddTemplateCommand extends CommandForExercise {
     public CommandResult execute(ExerciseModel model) throws CommandException, IOException {
         requireNonNull(model);
 
-        TemplateList.load();
         if (TemplateList.checkEqual(toCreate)) {
             throw new CommandException("The template already exists.");
         }

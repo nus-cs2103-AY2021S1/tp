@@ -15,6 +15,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.8. Exiting the program : `exit`](#38-exiting-the-program--exit)
   - [3.9. Save](#39-save)
   - [3.10. Archive : `archive`](#310-archive--archive)
+  - [3.11. Recall : `recall`](#311-recall--recall)
   - [3.12. FAQ](#312-faq)
   - [3.13. Command summary](#313-command-summary)
 
@@ -111,15 +112,17 @@ Lists out all the exercises that the user has keyed in.
 Format: `list`
 
 ## 3.6. Find exercises: `find`
-Finds exercises whose name contain any of the given keywords.
+Finds an exercise that matches all the input fields.
 
 ![find command message](images/findCommandMessage.png)
 
-Format: `find KEYWORD`
-- The search is case-insensitive. e.g Squats will match squats.
+Format: `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
+- For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-sensitive. e.g. Run will not match run.
+- For keywords, exercises whose names contain any of the keywords will be listed. Keyword is case-insensitive. e.g Squats will match squats.
+- in v1.3, find command does not support muscles and tags.
 
 Example:
-- find Push up
+- find n/running
 
 ## 3.7. Clearing all entries : `clear`
 
@@ -171,6 +174,16 @@ Examples:<br>
 
 - `addt n/pushup at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020 and default calories 100.
 
+## 3.11. Recall : `recall`
+Recalls the most recent exercise with the specified name.
+
+![recall command message](images/recallCommandMessage.png)
+
+Format: `recall NAME`
+- the name is case-sensitive. e.g. Push up will not match push up.
+
+Example:
+- `recall run` finds the most recent exercise with the name "run".
 
 ---
 ## 3.12. FAQ
@@ -191,9 +204,10 @@ Examples:<br>
 *Clear* | `clear`
 | *Delete* | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
 | *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
-| *Find*  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| *Find*  | `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
 | *List*   | `list`                                                                                                                                                                |
 | *Archive*   | `archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
 *Help* | `help`
 *Exit* | `exit`
+| *Recall*   | `recall NAME`
 
