@@ -7,8 +7,6 @@ import chopchop.logic.Logic;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -25,10 +23,9 @@ public class DisplayController extends UiPart<Region> {
     private static final String NOTIFICATION_MESSAGE = "Feature will be coming soon!!";
 
     private final TextDisplay textDisplay;
-    private final ObservableList<Recipe> recipeObservableList;
-    private final ObservableList<Ingredient> ingredientObservableList;
-    private final FilteredList<Recipe> recommendedRecipeObservableList;
-    private final FilteredList<Recipe> expiringRecipeObservableList;
+    private final RecipeViewPanel recipeViewPanel;
+    private final IngredientViewPanel ingredientViewPanel;
+    private final RecommendationViewPanel recommendationViewPanel;
 
     @FXML
     private StackPane displayAreaPlaceholder;
@@ -49,19 +46,14 @@ public class DisplayController extends UiPart<Region> {
     public DisplayController(Logic logic) {
         super(FXML);
         this.textDisplay = new TextDisplay(WELCOME_MESSAGE);
-        this.recipeObservableList = logic.getFilteredRecipeList();
-        this.ingredientObservableList = logic.getFilteredIngredientList();
-        this.recommendedRecipeObservableList = logic.getRecommendedRecipeList();
-        this.expiringRecipeObservableList = logic.getExpiringRecipeList();
+        this.recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
+        this.ingredientViewPanel = new IngredientViewPanel(logic.getFilteredIngredientList());
+        this.recommendationViewPanel = new RecommendationViewPanel(logic.getRecommendedRecipeList(),
+                logic.getExpiringRecipeList());
 
         // TODO: Edit to account for loading of recipes/ingredients after UI
-        this.recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
-
-            // we don't actually care about the incremental changes, just
-            // the final state. so, exhaust all the things.
-            while (c.next()) {
-                // nothing
-            }
+        logic.getFilteredRecipeList().addListener((ListChangeListener<Recipe>) c -> {
+            c.next();
 
             /*
              * TODO: Make logic more robust
@@ -76,13 +68,9 @@ public class DisplayController extends UiPart<Region> {
                 this.displayRecipeList();
             }
         });
-        this.ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> {
 
-            while (c.next()) {
-            }
-
-            this.displayIngredientList();
-        });
+        logic.getFilteredIngredientList().addListener((ListChangeListener<Ingredient>) c ->
+                this.displayIngredientList());
 
         if (!logic.getFilteredRecipeList().isEmpty()) {
             this.displayRecipeList();
@@ -102,8 +90,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayRecipeList() {
-        var recipeViewPanel = new RecipeViewPanel(this.recipeObservableList);
-        this.displayAreaPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
+        this.displayAreaPlaceholder.getChildren().setAll(this.recipeViewPanel.getRoot());
         this.selectRecipeButton();
     }
 
@@ -120,8 +107,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the IngredientViewPanel on the swappable display region.
      */
     protected void displayIngredientList() {
-        var ingredientViewPanel = new IngredientViewPanel(this.ingredientObservableList);
-        this.displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
+        this.displayAreaPlaceholder.getChildren().setAll(this.ingredientViewPanel.getRoot());
         this.selectIngredientButton();
     }
 
@@ -129,9 +115,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecommendationViewPanel on the swappable display region.
      */
     protected void displayRecommendationList() {
-        var recommendationViewPanel = new RecommendationViewPanel(this.recommendedRecipeObservableList,
-                this.expiringRecipeObservableList);
-        this.displayAreaPlaceholder.getChildren().setAll(recommendationViewPanel.getRoot());
+        this.displayAreaPlaceholder.getChildren().setAll(this.recommendationViewPanel.getRoot());
         this.selectRecommendationButton();
     }
 

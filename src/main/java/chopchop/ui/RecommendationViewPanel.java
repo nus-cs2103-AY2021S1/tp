@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -16,8 +17,8 @@ public class RecommendationViewPanel extends UiPart<Region> {
     private static final String FXML = "RecommendationViewPanel.fxml";
     private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today!";
 
-    private FilteredList<Recipe> recommendedRecipeObservableList;
-    private FilteredList<Recipe> expiringRecipeObservableList;
+    private final ObservableList<Recipe> recommendedRecipeObservableList;
+    private final ObservableList<Recipe> expiringRecipeObservableList;
 
     @FXML
     private ScrollPane recommendationPanel;
@@ -28,22 +29,21 @@ public class RecommendationViewPanel extends UiPart<Region> {
     /**
      * Creates a {@code RecipeView} with the given {@code ObservableList}.
      */
-    public RecommendationViewPanel(FilteredList<Recipe> recommendationList,
-                                   FilteredList<Recipe> expiringList) {
+    public RecommendationViewPanel(ObservableList<Recipe> recommendationList, ObservableList<Recipe> expiringList) {
         super(FXML);
 
         this.recommendedRecipeObservableList = recommendationList;
         this.expiringRecipeObservableList = expiringList;
-        this.recommendedRecipeObservableList.addListener((ListChangeListener<Recipe>) c -> this.fillDisplay());
         this.fillDisplay();
+
+        this.recommendedRecipeObservableList.addListener((ListChangeListener<Recipe>) c -> this.fillDisplay());
+        this.expiringRecipeObservableList.addListener((ListChangeListener<Recipe>) c -> this.fillDisplay());
     }
 
     /**
      * Checks if the display contains any recipes, and fills the recipe grid view.
      */
     private void fillDisplay() {
-        this.recommendationGridView.getChildren().clear();
-
         this.getPlaceholderText().ifPresentOrElse(
             t -> this.recommendationPanel.setContent(new TextDisplay(t).getRoot()), this::populate
         );
@@ -54,19 +54,25 @@ public class RecommendationViewPanel extends UiPart<Region> {
      * Populates the gridPane with recipes stored.
      */
     private void populate() {
+        var expiringList = (FilteredList<?>) this.expiringRecipeObservableList;
+        var recommendedList = (FilteredList<?>) this.recommendedRecipeObservableList;
+        this.recommendationGridView.getChildren().clear();
+
         if (!this.expiringRecipeObservableList.isEmpty()) {
-            Recipe expiringRecipe = this.expiringRecipeObservableList.get(0);
-            RecommendationCard expiringCard = new RecommendationCard(expiringRecipe,
-                    this.expiringRecipeObservableList.getSourceIndex(this.expiringRecipeObservableList
+            var expiringRecipe = this.expiringRecipeObservableList.get(0);
+            var expiringCard = new RecommendationCard(expiringRecipe,
+                    expiringList.getSourceIndex(this.expiringRecipeObservableList
                             .indexOf(expiringRecipe)) + 1);
             this.recommendationGridView.getChildren().add(expiringCard.getRoot());
         }
 
         for (int i = 0; i < this.recommendedRecipeObservableList.size(); i++) {
             var recipe = this.recommendedRecipeObservableList.get(i);
-            var recipeCard = new RecipeCard(recipe, this.recommendedRecipeObservableList.getSourceIndex(i) + 1);
+            var recipeCard = new RecipeCard(recipe, recommendedList.getSourceIndex(i) + 1);
             this.recommendationGridView.getChildren().add(recipeCard.getRoot());
         }
+
+        this.recommendationPanel.setContent(this.recommendationGridView);
     }
 
     /**

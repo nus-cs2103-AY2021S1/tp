@@ -20,7 +20,6 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import chopchop.storage.Storage;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 
 /**
  * The main LogicManager governing the logic in the app.
@@ -133,12 +132,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public FilteredList<Recipe> getRecommendedRecipeList() {
+    public ObservableList<Recipe> getRecommendedRecipeList() {
         return this.recommendationManager.getRecommendedRecipeList();
     }
 
     @Override
-    public FilteredList<Recipe> getExpiringRecipeList() {
+    public ObservableList<Recipe> getExpiringRecipeList() {
         return this.recommendationManager.getExpiringRecipeList();
     }
 

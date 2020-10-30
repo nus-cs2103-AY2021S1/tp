@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Optional;
 
 import chopchop.commons.util.Pair;
-import chopchop.commons.util.Strings;
 import chopchop.model.ModelStub;
 import chopchop.logic.history.HistoryManager;
 
@@ -317,8 +316,7 @@ public class HelpCommandTest {
             "add: Adds an item; see 'add recipe' or 'add ingredient'");
 
         cases.put(Pair.of("owo", ""),
-            String.format("Error: Unknown command 'owo'; see the User Guide for a list of commands: %s",
-                Strings.USER_GUIDE_BASE_URL)
+            "Error: Unknown command 'owo'; see the User Guide for a list of commands"
         );
 
         test(cases);
