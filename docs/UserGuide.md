@@ -461,12 +461,16 @@ from 10 Aug 2020 to 10 Nov 2020, users can do the following:
 1) Type in the command box the following command:
 * `lesson title:Week 9 Tutorial tag:CS2101 desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:10-08-2020 end:10-11-2020`
 
-![add lesson](./images/AddLessonCommand.png)
+<p align="center">
+    <img src="./images/AddLessonCommand.png" alt="add lesson" width="1000" height="500">
+</p>
 
 2) This adds the corresponding lesson to PlaNus. You can see the added lesson in the lesson list, calendar view and 
 time analysis.
 
-![add lesson result](./images/AddLessonCommandResult.png)
+<p align="center">
+    <img src="./images/AddLessonCommandResult.png" alt="add lesson result" width="1000" height="500">
+</p>
 
 <br>
 
