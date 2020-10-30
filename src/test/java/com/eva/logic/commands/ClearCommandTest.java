@@ -29,6 +29,8 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
         expectedModel.setPersonDatabase(new EvaDatabase<>());
+        expectedModel.setApplicantDatabase(new EvaDatabase<>());
+        expectedModel.setStaffDatabase(new EvaDatabase<>());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
