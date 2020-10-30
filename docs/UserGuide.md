@@ -37,7 +37,7 @@ Ensure you have Java `11` or above installed in your Computer. If not, you may d
 There are many versions of Java `11` listed. Select the correct version based on your computer's operating system.
 </div>
 
-1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3.trial). Click on `hospify.jar` to start the download as shown in figure 1.1 below. <br>
+1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases). Click on `hospify.jar` to start the download as shown in figure 1.1 below. <br>
     
     ![Hospify download page](images/Hospify%20download%20page.png)
     Figure 1.1 **Hospify** download page
