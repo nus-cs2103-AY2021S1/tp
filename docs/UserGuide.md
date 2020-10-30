@@ -90,7 +90,6 @@ The hierarchy of command scoping is as follows:
 * `CATALOGUE` (i.e. global)
   * `PROJECT`
     * `TASK`
-    * `Meeting`
   * `TEAMMATE`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`

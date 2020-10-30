@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     * Added dependencies of it in and related collections;
     * Added related test cases.
 * **Model modification**: Update Participation class and create corresponding methods in Project. (Pull request: Pull request [\#71](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/71))
-  * What it means: Participation class is updated after creation of Meeting class and Task class
+  * What it means: Participation class is updated after creation of the Task class
   * What changes made:
     * Added more methods in Participation.
 * **New Feature**: Added task/meeting filter commands. 

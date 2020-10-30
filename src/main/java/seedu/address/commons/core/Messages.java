@@ -12,7 +12,6 @@ public class Messages {
         + "found in the project";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
     public static final String MESSAGE_INVALID_TEAMMATE_DISPLAYED_INDEX = "The teammate index provided is invalid";
-    public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
     public static final String MESSAGE_PROJECTS_LISTED_OVERVIEW = "%1$d projects listed!";
     public static final String MESSAGE_INVALID_SCOPE_COMMAND = "The scope status is expected to be %s but you are"
         + " now in %s";
