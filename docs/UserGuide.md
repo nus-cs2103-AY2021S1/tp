@@ -222,13 +222,13 @@ Expected Outcome:
 
 Edits a module with the provided details.
 
-Format: `editMod INDEX [m/MODULE_CODE]`
+Format: `editMod INDEX m/MODULE_CODE`
 
 Note:
 
 - `INDEX` refers to the index number shown in the Module view.
 - `INDEX` must be a positive integer starting from 1.
-- At least one of the optional fields must be provided.
+- New module code must be provided.
 - Existing values will be updated to the given values.
 - New module code should not already exist.
 
