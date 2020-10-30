@@ -153,11 +153,11 @@ Action | Format, Examples
 
 Displays the list of command instructions for features in Warenager and how to use the command.
 
-<h5>Format</h5>
+<h4>Format</h4>
 
 `help`
 
-#### Expected Help Window
+<h4>Expected Help Window</h4>
 ![expected_help](images/ExpectedHelp.png)
 
 ### Adding new stock: `add`
@@ -168,32 +168,45 @@ The optional field low quantity will be set to 0 if not present in the input.
 
 `add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]`
 
+<h5>Examples</h5>
+
+```
+add n/Banana cake s/Fairprice q/100 l/Food section
+add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
+```
+
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
 
 <h5>Format</h5>
 
-`list`, followed by one of the following:
+`list lt/<list type>`
 
-**Command to append** | **What the list shows**
+<div markdown="block" class="alert alert-info">
+
+The valid list types that can be provided and the respective list that it shows are
+
+**list type** | **What the list shows**
 ------| --------
 **lt/all** | All the stocks in the inventory.
 **lt/bookmark** | All the stocks in the inventory that is bookmarked.
 **lt/low** | All the stocks in the inventory that is low in quantity.
 
-e.g. `list lt/all`, `list lt/bookmark`, `list lt/low`
+</div>
 
-Command:`list lt/all` will list out all the stocks in the stocklist.
+<h5>Examples</h5>
 
-![list-all](images/list_all.png)
-
-Command:`list lt/bookmark` will list out all the stocks in the stocklist.
+```
+list lt/bookmark
+```
 
 ![list_bookmark](images/list_bookmark.png)
 
-Command:`list lt/low` will list out all the stocks in the stocklist.
+```
+list lt/all
+```
 
-![list_low](images/list_low.png)
+![list_all](images/list_all.png)
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
