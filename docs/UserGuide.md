@@ -645,11 +645,15 @@ This section contains a few frequently asked questions with regard to _Common Ce
 ## 6.1 General Inquiry
 This section features general questions about _Common Cents_ that are not specific to the features.
 
-1. **Question:** How do I transfer my data to another computer?<br>
-**Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that 
-contains the data of your previous _CommonCents_ home folder.
+1. **Question:** How do I save my data in _Common Cents_?<br>
+**Answer:** You do not need to do anything! Your data will be automatically saved in the `data` folder in the 
+_Common Cents_ home folder under the name of `CommonCents.json`.
 
-2. **Question:** What if I notice something wrong with the application?<br>
+2. **Question:** How do I transfer my data to another computer?<br>
+**Answer:** Install the app in the other computer and overwrite the default data file it creates with the file 
+`(CommonCents.json)` that contains the data of your previous _Common Cents_ home folder.
+
+3. **Question:** What if I notice something wrong with the application?<br>
 **Answer:** You may submit a bug report or send us a notice directly [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
 
 
