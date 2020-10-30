@@ -10,8 +10,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 import nustorage.logic.Logic;
@@ -38,7 +37,7 @@ public class InventoryWindow extends UiPart<Region> {
     /**
      * Sets the display for the InventoryWindow tab in the user interface.
      */
-    public InventoryWindow(Logic logic, UiLogic uiLogic) {
+    public InventoryWindow(Logic logic, UiLogic uiLogic, AnchorPane financePlaceholder) {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseInventoryList(logic));
@@ -74,13 +73,10 @@ public class InventoryWindow extends UiPart<Region> {
                                 } else {
                                     button.setOnAction(event -> {
                                         try {
-                                            uiLogic.execute("goto_finance");
+                                            uiLogic.execute("switch_finance");
 
-                                            // copy the command
-                                            final Clipboard clipboard = Clipboard.getSystemClipboard();
-                                            final ClipboardContent url = new ClipboardContent();
-                                            url.putString(String.format("find_finance id/%s", item));
-                                            clipboard.setContent(url);
+                                            FinanceWindow financeWindow = new FinanceWindow(logic, item);
+                                            financePlaceholder.getChildren().add(financeWindow.getRoot());
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
@@ -94,6 +90,10 @@ public class InventoryWindow extends UiPart<Region> {
                     }
                 };
         financeIdCol.setCellFactory(cellFactory);
+
+    }
+
+    private void findCommand(String format) {
 
     }
 

@@ -33,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
     private UiLogic uiLogic;
-    private String find;
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
@@ -87,6 +86,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
     }
 
+
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -97,6 +97,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -135,7 +136,7 @@ public class MainWindow extends UiPart<Stage> {
         financeWindow = new FinanceWindow(logic);
         financePlaceholder.getChildren().add(financeWindow.getRoot());
 
-        inventoryWindow = new InventoryWindow(logic, uiLogic);
+        inventoryWindow = new InventoryWindow(logic, uiLogic, financePlaceholder);
         inventoryPlaceholder.getChildren().add(inventoryWindow.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -192,20 +193,19 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult;
 
             if (isUiCommand(commandText)) {
-                commandResult = uiLogic.execute(commandText);
-                String[] userInput = commandText.split("_");
-                if (userInput[1].equals("inventory")) {
-                    commandResult = logic.execute("list_inventory");
+                if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Inventory")) {
+                    commandText = commandText + "_finance";
                 } else {
-                    commandResult = logic.execute("list_finance");
+                    commandText = commandText + "_inventory";
                 }
+                commandResult = uiLogic.execute(commandText);
             } else {
                 commandResult = logic.execute(commandText);
             }
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            inventoryWindow = new InventoryWindow(logic, uiLogic);
+            inventoryWindow = new InventoryWindow(logic, uiLogic, financePlaceholder);
             inventoryPlaceholder.getChildren().add(inventoryWindow.getRoot());
 
             financeWindow = new FinanceWindow(logic);
@@ -229,10 +229,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private boolean isUiCommand(String userInput) {
         userInput.trim();
-        String[] userInputArr = userInput.split("_");
-        if (userInputArr.length > 0) {
-            return userInput.split("_")[0].equals("goto");
-        }
-        return false;
+
+        return userInput.equals("switch");
+
     }
 }
