@@ -18,11 +18,9 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the list of students in Reeve by a given"
             + " sorting method.\n\n"
             + "Supported sorting methods: \n"
-            + NameComparator.COMPARISON_MEANS + ": Sorts students by their name (case insensitive)\n"
-            + ClassTimeComparator.COMPARISON_MEANS + ": Sorts students by the day followed by time"
-            + " of their class\n"
-            + YearComparator.COMPARISON_MEANS + ": Sorts students by the year they are in school, "
-            + "with Primary 1 coming first and JC 2 coming last.\n\n"
+            + NameComparator.USAGE + "\n"
+            + ClassTimeComparator.USAGE + "\n"
+            + YearComparator.USAGE + "\n\n"
             + "Example: " + COMMAND_WORD + " year";
 
     public static final String[] SUPPORTED_COMPARISON_MEANS = new String[] {NameComparator.COMPARISON_MEANS,
