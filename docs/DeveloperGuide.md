@@ -240,24 +240,6 @@ Step 5: `setText` method in `ResultDisplay` receives the `result` as a parameter
 
 ![AutocompleteSequenceDiagram](images/AutocompleteSequenceDiagram.png) 
 
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the log being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-
 ### Better user interface
 
 We plan to change and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
