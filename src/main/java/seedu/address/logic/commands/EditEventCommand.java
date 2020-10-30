@@ -83,7 +83,7 @@ public class EditEventCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
 
-        if(!(taskToEdit instanceof Event)) {
+        if (!(taskToEdit instanceof Event)) {
             throw new CommandException(MESSAGE_WRONG_TYPE);
         }
 

@@ -18,7 +18,12 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDate;
+import seedu.address.model.task.Title;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -74,7 +79,7 @@ public class EditDeadlineCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
 
-        if(!(taskToEdit instanceof Deadline)) {
+        if (!(taskToEdit instanceof Deadline)) {
             throw new CommandException(MESSAGE_WRONG_TYPE);
         }
 
