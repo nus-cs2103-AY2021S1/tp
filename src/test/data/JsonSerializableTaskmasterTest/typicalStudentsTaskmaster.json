@@ -2,43 +2,43 @@
   "_comment": "Taskmaster save file which contains the same Student values as in TypicalStudents#getTypicalTaskmaster()",
   "students" : [ {
     "name" : "Alice Pauline",
-    "telegram" : "94351253",
+    "telegram" : "alicepauline",
     "email" : "alice@example.com",
     "nusnetId" : "e0123456",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
-    "telegram" : "98765432",
+    "telegram" : "benson_m",
     "email" : "johnd@example.com",
     "nusnetId" : "e0456789",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
-    "telegram" : "95352563",
+    "telegram" : "kurzzz",
     "email" : "heinz@example.com",
     "nusnetId" : "e0312654",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
-    "telegram" : "87652533",
+    "telegram" : "dms_only",
     "email" : "cornelia@example.com",
     "nusnetId" : "e0987465",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "telegram" : "9482224",
+    "telegram" : "mellie",
     "email" : "werner@example.com",
     "nusnetId" : "e0946875",
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "telegram" : "9482427",
+    "telegram" : "fionakunz",
     "email" : "lydia@example.com",
     "nusnetId" : "e0319843",
     "tagged" : [ ]
   }, {
     "name" : "George Best",
-    "telegram" : "9482442",
+    "telegram" : "george_worst",
     "email" : "anna@example.com",
     "nusnetId" : "e0731894",
     "tagged" : [ ]

@@ -1,0 +1,71 @@
+{
+  "sessions" : [ {
+    "sessionName" : "Typical session",
+    "sessionDateTime" : "01-01-2020 12:00",
+    "records" : [ {
+      "name" : "Alex Yeoh",
+      "nusnetId" : "e0456456",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Bernice Yu",
+      "nusnetId" : "e0789789",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Charlotte Oliveiro",
+      "nusnetId" : "e0987897",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "David Li",
+      "nusnetId" : "e0321321",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Irfan Ibrahim",
+      "nusnetId" : "e0984984",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Roy Balakrishnan",
+      "nusnetId" : "e0984983",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    } ]
+  }, {
+    "sessionName" : "Typical session",
+    "sessionDateTime" : "01-01-2020 13:00",
+    "records" : [ {
+      "name" : "Alex Yeoh",
+      "nusnetId" : "e0456456",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Bernice Yu",
+      "nusnetId" : "e0789789",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Charlotte Oliveiro",
+      "nusnetId" : "e0987897",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "David Li",
+      "nusnetId" : "e0321321",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Irfan Ibrahim",
+      "nusnetId" : "e0984984",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "Roy Balakrishnan",
+      "nusnetId" : "e0984983",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    } ]
+  } ]
+}
