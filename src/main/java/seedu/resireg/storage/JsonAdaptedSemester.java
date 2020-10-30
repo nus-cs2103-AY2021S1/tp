@@ -11,10 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.allocation.Allocation;
-import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.semester.academicyear.AcademicYear;
-import seedu.resireg.model.semester.roomrate.RoomRate;
 import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 
 /**
@@ -25,7 +23,6 @@ public class JsonAdaptedSemester {
     private final int academicYear;
     private final int semesterNumber;
     private final List<JsonAdaptedAllocation> allocations = new ArrayList<>();
-    private final HashMap<RoomType, RoomRate> roomFees = new HashMap<>();
 
     /**
      * Constructs a {@code JsonAdaptedSemester} with the given student details.
@@ -33,19 +30,11 @@ public class JsonAdaptedSemester {
     @JsonCreator
     public JsonAdaptedSemester(@JsonProperty("academicYear") int academicYear,
                                @JsonProperty("semesterNumber") int semesterNumber,
-                               @JsonProperty("allocations") List<JsonAdaptedAllocation> allocations,
-                               @JsonProperty("roomFees") Map<String, Integer> roomFees) {
+                               @JsonProperty("allocations") List<JsonAdaptedAllocation> allocations) {
         this.academicYear = academicYear;
         this.semesterNumber = semesterNumber;
         if (allocations != null) {
             this.allocations.addAll(allocations);
-        }
-        if (roomFees != null) {
-            for (Map.Entry<String, Integer> entry : roomFees.entrySet()) {
-                RoomType roomType = new RoomType(entry.getKey());
-                RoomRate roomRate = new RoomRate(entry.getValue());
-                this.roomFees.put(roomType, roomRate);
-            }
         }
     }
 

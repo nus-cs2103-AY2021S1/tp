@@ -5,12 +5,9 @@ import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import seedu.resireg.model.allocation.Allocation;
-import seedu.resireg.model.room.roomtype.RoomType;
-import seedu.resireg.model.semester.roomrate.RoomRate;
 
 /**
  * Represents a Semester in ResiReg.
