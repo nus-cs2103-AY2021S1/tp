@@ -242,7 +242,10 @@ The following activity diagram summarizes the scoping features when a user execu
 * **Alternative 2:** Checks the validity of scope of a command upon execution.
   * Pros: Will not increase coupling with parser.
   * Cons: The scoping features of each command are not explicitly seen, and may increase coupling with command.
+  
 ### New Task feature
+
+#### Implementation
 
 The implementation of the task feature involves adding new tasks created in the 'Project' class and storing them with a JsonAdaptedTask class which is contained by the JsonAdaptedProject class.
 
