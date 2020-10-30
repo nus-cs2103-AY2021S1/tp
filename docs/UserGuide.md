@@ -223,6 +223,20 @@ The policy list is also saved to the hard disk.
 
 Currently, 2 commands, `addp` & `clearp`, are used to control the policy list.
 
+### Archive Feature
+
+The archive is meant as a way to store clients which may not be currently relevant to the user. 
+For example, clients which are no longer managed by the user can be stored in the archive, with the `archive` command. 
+The user may decide not to delete the client straight away, 
+in case they happen to start interacting again, so the users can store them in the archive.
+
+The archive has a separate view from the active list, so that the user would not be distracted by archived clients. 
+The default view upon starting up the app is the active list.
+The user has the option to switch the view to the archive if needed, with `list r/`. 
+They can also switch the view back to the active list with `list`.
+
+The user can unarchive an archived client, for which case the client would become active, with `unarchive`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
