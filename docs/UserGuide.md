@@ -153,6 +153,26 @@ Examples:<br>
 
 If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.
 
+#### Add templates : `create`
+Adds an exercise template.
+
+Format: `create n/NAME d/DESCRIPTION c/CALORIES`  
+
+Examples:<br>
+- `create n/pushup d/half an hour c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
+
+#### Add an exercise using template : `addt`
+Adds an exercise using template.
+
+Format: `addt n/NAME at/DATE [c/CALORIES]`  
+- The format for the DATE should be in the form of DD-MM-YYYY.     
+
+- The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
+
+Examples:<br>
+- `addt n/pushup at/09-07-2020 c/260` Creates the exercise using the template called pushup with the date 09-07-2020 and calories 260.
+
+- `addt n/pushup at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020 and default calories 100.
 
 ## 3.11. Recall : `recall`
 Recalls the most recent exercise with the specified name.
