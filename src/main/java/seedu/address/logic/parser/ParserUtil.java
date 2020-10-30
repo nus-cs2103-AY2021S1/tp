@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SEARCH_KEYWORD
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -342,10 +343,10 @@ public class ParserUtil {
      */
     public static EventTime parseEventTime(String date) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
-        if (EventTime.isValidDateTime(date)) {
+        try {
             LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
             return new EventTime(localDateTime);
-        } else {
+        } catch (DateTimeParseException e) {
             throw new ParseException("Invalid date and time entered. Please follow this format: "
                     + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
         }
