@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.task.Task;
@@ -36,6 +37,11 @@ public interface Model {
     void preUpdateModel();
 
     /**
+     * Goes to previous model
+     */
+    void goToPreviousModel();
+
+    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
@@ -49,6 +55,11 @@ public interface Model {
      * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the filtered assignment list
+     */
+    FilteredList<Assignment> getFilteredAssignments();
 
     /**
      * Returns the user prefs' address book file path.

@@ -10,6 +10,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -29,6 +33,9 @@ public class DoneCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
 
+    private List<Index> indexesToMarkDone = new ArrayList<>();
+    private List<Assignment> assignmentsToMarkDone = new ArrayList<>();
+
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new DoneCommand(null));
@@ -36,11 +43,14 @@ public class DoneCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
+
         Assignment assignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
+        assignmentsToMarkDone.add(assignmentToMarkDone);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
-                assignmentToMarkDone);
+                assignmentsToMarkDone);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);
@@ -51,7 +61,8 @@ public class DoneCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
-        DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
+        indexesToMarkDone.add(outOfBoundIndex);
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
 
         assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
@@ -59,12 +70,14 @@ public class DoneCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
 
         Assignment assignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
+        assignmentsToMarkDone.add(assignmentToMarkDone);
 
         String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS,
-                assignmentToMarkDone);
+                assignmentsToMarkDone);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToMarkDone);
@@ -77,25 +90,25 @@ public class DoneCommandTest {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
+        indexesToMarkDone.add(outOfBoundIndex);
 
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
 
-        DoneCommand doneCommand = new DoneCommand(outOfBoundIndex);
-
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
         assertCommandFailure(doneCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_alreadyMarkedDoneAssignmentUnfilteredList_failure() {
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
 
-        // TODO: Find out what exactly is unfilteredList
         // Set assignment in filtered list in address book as done
         Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment firstAssignmentMarkedDone = new AssignmentBuilder(firstAssignment).withDoneStatusSet().build();
         model.setAssignment(firstAssignment, firstAssignmentMarkedDone);
 
-        DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
 
         assertCommandFailure(doneCommand, model, DoneCommand.MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE);
     }
@@ -103,6 +116,7 @@ public class DoneCommandTest {
     @Test
     public void execute_alreadyMarkedDoneAssignmentFilteredList_failure() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
 
         // Set assignment in filtered list in address book as done
         Assignment assignmentInList = model.getAddressBook().getAssignmentList()
@@ -111,30 +125,43 @@ public class DoneCommandTest {
         model.setAssignment(assignmentInList, assignmentInListMarkedDone);
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
 
-        DoneCommand doneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
 
         assertCommandFailure(doneCommand, model, DoneCommand.MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE);
     }
 
     @Test
     public void equals() {
-        DoneCommand markFirstDoneCommand = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
-        DoneCommand markSecondDoneCommand = new DoneCommand(INDEX_SECOND_ASSIGNMENT);
+        List<Index> firstCommandIndexes = new ArrayList<>();
+        firstCommandIndexes.add(INDEX_FIRST_ASSIGNMENT);
+        firstCommandIndexes.add(INDEX_THIRD_ASSIGNMENT);
+
+        List<Index> secondCommandIndexes = new ArrayList<>();
+        secondCommandIndexes.add(INDEX_SECOND_ASSIGNMENT);
+
+        DoneCommand markFirstCommandDone = new DoneCommand(firstCommandIndexes);
+        DoneCommand markSecondCommandDone = new DoneCommand(secondCommandIndexes);
 
         // same object -> returns true
-        assertTrue(markFirstDoneCommand.equals(markFirstDoneCommand));
+        assertTrue(markFirstCommandDone.equals(markFirstCommandDone));
+        assertTrue(markSecondCommandDone.equals(markSecondCommandDone));
 
         // same values -> returns true
-        DoneCommand remindFirstCommandCopy = new DoneCommand(INDEX_FIRST_ASSIGNMENT);
-        assertTrue(markFirstDoneCommand.equals(remindFirstCommandCopy));
+        DoneCommand markFirstCommandDoneCopy = new DoneCommand(firstCommandIndexes);
+        assertTrue(markFirstCommandDone.equals(markFirstCommandDoneCopy));
+
+        DoneCommand markSecondCommandDoneCopy = new DoneCommand(secondCommandIndexes);
+        assertTrue(markSecondCommandDone.equals(markSecondCommandDoneCopy));
 
         // different types -> returns false
-        assertFalse(markFirstDoneCommand.equals(1));
+        assertFalse(markFirstCommandDone.equals(1));
+        assertFalse(markSecondCommandDone.equals(1));
 
         // null -> returns false
-        assertFalse(markFirstDoneCommand.equals(null));
+        assertFalse(markFirstCommandDone.equals(null));
+        assertFalse(markSecondCommandDone.equals(null));
 
         // different assignment -> returns false
-        assertFalse(markFirstDoneCommand.equals(markSecondDoneCommand));
+        assertFalse(markFirstCommandDone.equals(markSecondCommandDone));
     }
 }
