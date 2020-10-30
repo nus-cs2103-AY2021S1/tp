@@ -70,7 +70,7 @@ The sections below give more details of each component:
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProjectListPanel`, 
-`StatusBarFooter`, `ProjectDashboard`, `EmptyDashboard`, `TaskDashboard`, `TeammateDashboard`, `MeetingDashboard`
+`StatusBarFooter`, `ProjectDashboard`, `EmptyDashboard`, `TaskDashboard`, `TeammateDashboard`
  etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are 
@@ -110,7 +110,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the main catalogue data, which is essentially a list of `Project`s, each of which has a few `Participant`s who can do tasks and attend meetings.
+* stores the main catalogue data, which is essentially a list of `Project`s, each of which has a few `Participant`s who can do tasks.
 * exposes an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -125,7 +125,7 @@ The `Model`,
 
 The `Storage` component,
 
-* can save `Project` objects, `Person` objects, `Task` objects, `Meeting` objects and their details in json format and read it back.
+* can save `Project` objects, `Person` objects, `Task` objects and their details in json format and read it back.
 * can save the main catalogue data in json format and read it back.
 
 ### Common classes
@@ -282,7 +282,7 @@ The diagram below summarises the events above with the help of a sequence diagra
 
 #### Implementation
 
-The implementation of task filter and meeting filter is similar. We will use task filter as an example to explain how the filtering mechanism works. The task filtering mechanism is facilitated by the predicte `taskFilter` kept in the Project class. When `UI` component requested for the filtered and sorted task list, the task list filtered by the `taskFilter` will be returned. 
+We will use an example of task filter to explain how the filtering mechanism works. The task filtering mechanism is facilitated by the predicte `taskFilter` kept in the Project class. When `UI` component requested for the filtered and sorted task list, the task list filtered by the `taskFilter` will be returned. 
 
 Tasks can be filtered by following attributes of a Task (using command `filtert PREFIX/ATTRIBUTE`):
 
@@ -340,8 +340,8 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 ##### Aspect: Whether to clear filter when user re-enters the project
 
-* **Alternative 1 (current choice):** Keep filters and display filtered tasks/meetings when the user re-enters the project
-  * Pros: Task/meeting list remains unchanged (e.g. the user don't have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her ) .
+* **Alternative 1 (current choice):** Keep filters and display filtered tasks when the user re-enters the project
+  * Pros: Task list remains unchanged (e.g. the user don't have to filter everytime (s)he re-enters the same project if (s)he only wants to see tasks assigned to him/her ) .
   * Cons: Users might forget there are other tasks if they don't use `allt` to check.
 * **Alternative 2:** Clear filter when the user re-enters the project
   * Pros: The user always gets to see all the tasks every time (s)he enters the project.
@@ -398,7 +398,7 @@ The diagram below gives a short overview on what happens when a user's input is 
 
 ![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
 
-<!--TODO: Task and Meeting implementation-->
+<!--TODO: Task implementation-->
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -712,7 +712,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI contains of three columns. The leftmost column contains 
    command box, a result display box, and a set of sample projects. The middle column shows a project dashboard while
-   the rightmost column shows a task or teammate or meeting dashboard.
+   the rightmost column shows a task or teammate dashboard.
 
 1. Saving window preferences
 
