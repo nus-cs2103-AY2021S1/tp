@@ -653,10 +653,40 @@ Calculates helpful CAP details based on the target CAP you input
 Creates and add a new Event with the specified information from the user input
 
   Format: `addevent n/[event name] d/[date]`
-  
+
    Examples:
     * `addevent n/CS2103T exams d/12-12-2020` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
 
+#### Deleting an Event from the Scheduler: `deleteevent`
+
+You can delete an existing event from the list by specifying the index.
+
+  Format: `deleteevent index`
+
+   Examples:
+    * `deleteevent 1`
+    * `deleteevent 2`
+
+#### Editing an Event from the Scheduler: `editevent`
+
+You can select an existing event from the list and modify the information such
+as event name and the event date.
+
+  Format: `editevent index [n/new name] [d/new date]`<br>
+  **Note:** All fields are optional but at least 1 of them must be present.
+
+   Examples:
+    * `editevent 1 n/CS2103T assignment d/2-4-2020 1200`
+    * `editevent 1 n/CS2100 d/2-4-2020 1100`
+
+#### Viewing an Event from the Scheduler: `viewevent`
+
+You can choose to view a particular event from the list by entering the index.
+
+  Format: `viewevent index`
+
+   Example:
+    * `viewevent 1`
 
 ### General Features
 
@@ -690,6 +720,9 @@ Redoes the previously undone user command
 **Q**: How do you view the zoom links of a particular module?<br>
 **A**: When the program has started running, enter the following in the terminal : “view [CS2103T]” to view the zoom link for the module called CS2103T.
 
+**Q**: How do you edit a module's information?
+**A**: When the program is running, you can enter the edit command and enter whichever field you want to modify but at least
+1 field must be present.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -711,3 +744,12 @@ Action | Format, Examples
 **DeleteContact** | `deletcontact INDEX` <br> e.g. `deletecontact`
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`
+
+## Command Summary for Scheduler
+
+Action | Format, Examples
+-------|-------------------------
+**Add Event** | `addevent n/MODULE_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-2-2020`
+**Delete Event** | `deleteevent index` <br> e.g. `deleteevent 1`
+**Edit Event** | `editevent index n/MODULE_NAME d/DATE` <br> e.g. `editevent 1 n/CS2100 d/2-1-2020`
+**View Event** | `viewevent index` <br> e.g. `viewevent 1`
