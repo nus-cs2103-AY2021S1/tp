@@ -560,7 +560,7 @@ Examples:
  * `addcontact n/bob e/bob@gmail.com t/friend`
  
  
- #### Locating contacts: `findcontact`
+#### Locating contacts: `findcontact`
  
  Finds all contacts that fulfil all the provided search criteria.
  
@@ -604,7 +604,7 @@ Examples:
    * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
  
  
- #### Listing all contacts: `listcontact`
+#### Listing all contacts: `listcontact`
  
  Shows a list of all contacts in the contact list.
  
@@ -620,7 +620,7 @@ Examples:
  </div>
  
  
- #### Editing a contact: `editcontact`
+#### Editing a contact: `editcontact`
  
  Edits an existing contact in the contact list.
  
@@ -747,7 +747,7 @@ Creates and add a new Event with the specified information from the user input
   Format: `addevent n/[event name] d/[date]`
 
    Examples:
-    * `addevent n/CS2103T exams d/12-12-2020` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
+    * `addevent n/CS2103T exams d/12-12-2020 1200` adds an Event called CS2103T into the Scheduler with the date 12-12-2020.
 
 #### Deleting an Event from the Scheduler: `deleteevent`
 
