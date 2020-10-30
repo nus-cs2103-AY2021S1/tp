@@ -246,8 +246,8 @@ specified in ANY one of fields searched.
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
-**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+**Stock 1** | Name: Banana<br> Serial Number: NTUC1111<br> Source: Ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
+**Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1111<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
 
 ```
 find n/banana sn/SHENGSIONG
@@ -271,34 +271,15 @@ will match only Stock 1.
 
 ### Find exact stocks from inventory: `findexact`
 Displays a list of stocks found in the inventory that contains all keywords specified in ALL fields searched.
-* Fields that can be searched:
-    * Name
-    * Serial Number
-    * Location in warehouse
-    * Source of the stock
 
-<h5>Format</h5>
+<h4>Format</h4>
 
-Any combination of 1,2,3 or 4 of the fields: <br>
-* Single:
-    * `findexact n/<name keyword(s) to be searched in stock name>` <br>
-    *  `findexact sn/<serial numberto be searched in stock serial number>` <br>
-    * `findexact l/<location stored keyword(s) to be searched in stock location stored>` <br>
-    * `findexact s/<source keyword(s) to be searched in stock source>` <br>
-* Multiple:
-    * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
+`findexact [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]`
 
-<div markdown="block" class="alert alert-warning">
-
-**:warning:**
-Each specific fields specified in the `findexact` command should only be entered once.<br>
-e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
-</div>
-
-<h5>Search criteria</h5>
+<h4>Search criteria</h4>
 * Only stocks that contain all the search keywords for all fields will be displayed. <br>
     e.g. `findexact n/ChickenNuggets s/ntuc` 
-    will match stock with Name: Chick, Source: ntuc. <br>
+    will not match stock with Name: Chick, Source: ntuc. <br>
     e.g. `findexact n/Chicken sn/1111`
     will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
     e.g. `findexact n/ChickenNuggets abcdef l/section b`
@@ -308,17 +289,33 @@ e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid com
     e.g. `findexact n/ashLey s/nTuC` will match stock with Name: Ashley, Source: ntuc.
 
 * Any stock with fields containing all the search keywords in all the fields searched will be displayed.<br>
-    e.g.
+
+<h4>Examples</h4>
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
-**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+**Stock 1** | Name: Banana<br> Serial Number: NTUC1111<br> Source: Ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
+**Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1111<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
 
-`findexact n/banana sn/SHENGSIONG` will not match Stock 1 and Stock 2.<br>
-`findexact l/section` will match both Stock 1 and Stock 2. <br>
-`findexact n/chicken l/section` will match only Stock 2. <br>
-`findexact n/banana s/ntuc l/singapore` will not match Stock 1 and Stock 2.
+```
+findexact n/banana sn/SHENGSIONG
+```
+will not match Stock 1 and Stock 2.<br>
+
+```
+findexact l/section
+```
+will match both Stock 1 and Stock 2. <br>
+
+```
+findexact n/chicken l/section
+```
+will match only Stock 2. <br>
+
+```
+findexact n/banana s/ntuc l/singapore
+```
+will not match Stock 1 and Stock 2.
 
 ### Update inventory: `update`
 Updates the details of the desired stock, requires the serial number of products.
