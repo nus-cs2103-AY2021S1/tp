@@ -737,7 +737,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use case: UC11 - Find rooms which match a specific criteria
+#### Use case: UC12 - Find rooms which match a specific criteria
 
 **MSS**
 
@@ -758,11 +758,11 @@ Use case ends.
 
     Use case resumes at step 1.
     
-#### Use case: UC12 - Find students which match a specific criteria
+#### Use case: UC13 - Find students which match a specific criteria
 
-Similar to <u>UC11 - Find rooms which match a specific criteria</u>, just replace rooms with students.
+Similar to <u>UC12 - Find rooms which match a specific criteria</u>, just replace rooms with students.
 
-#### Use case: UC13 - Add a room
+#### Use case: UC14 - Add a room
 
 **MSS**
 
@@ -777,11 +777,11 @@ Use case ends.
   - ResiReg shows an error message.
   -  Use case starts over.
 
-#### Use case: UC14 - Delete a room
+#### Use case: UC15 - Delete a room
 
 Similar to <u>UC02 - delete a student</u>, just replace student with room.
 
-#### Use case: UC15 - Edit a room
+#### Use case: UC16 - Edit a room
 
 Similar to <u>UC03 - edit a student</u>, just replace student with room.
 
