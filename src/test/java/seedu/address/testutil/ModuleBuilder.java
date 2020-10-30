@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.model.module.ModularCredits;
@@ -10,31 +13,31 @@ import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
-
-
 /**
  * A utility class to help with building Module objects.
  */
 public class ModuleBuilder {
 
     public static final String DEFAULT_MODULENAME = "CS2103T";
+    public static final String DEFAULT_MODULELESSONTYPE = "tutorial";
     public static final String DEFAULT_ZOOMLINK = "www.zoom.us";
     public static final double DEFAULT_MODULARCREDITS = 4.0;
+    public static final String DEFAULT_TAGS = "";
 
     private ModuleName moduleName;
-    private ZoomLink zoomLink;
+    private Map<String, ZoomLink> zoomLinkMap;
     private ModularCredits modularCredits;
     private GradeTracker gradeTracker;
     private Set<Tag> tags;
-
     /**
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
         moduleName = new ModuleName(DEFAULT_MODULENAME);
-        zoomLink = new ZoomLink(DEFAULT_ZOOMLINK);
+        zoomLinkMap = new HashMap<String, ZoomLink>();
         modularCredits = new ModularCredits(DEFAULT_MODULARCREDITS);
         gradeTracker = new GradeTracker();
+        tags = new HashSet<Tag>();
     }
 
     /**
@@ -61,10 +64,11 @@ public class ModuleBuilder {
     }
 
     /**
-     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
+     * Adds the {@code ZoomLink} to the {@code Module} that we are building.
      */
-    public ModuleBuilder withZoomLink(String zoomLink) {
-        this.zoomLink = new ZoomLink(zoomLink);
+    public ModuleBuilder withZoomLink(String moduleLessonType, String zoomLink) {
+        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinkMap);
+        updatedLinks.put(moduleLessonType, new ZoomLink(zoomLink));
         return this;
     }
 
@@ -82,10 +86,22 @@ public class ModuleBuilder {
         this.modularCredits = new ModularCredits(value);
         return this;
     }
-    public Module build() {
-        return new Module(moduleName, zoomLink, modularCredits);
+
+    /**
+     * Adds the {@code Tag} to the {@code Module} that we are building.
+     */
+    public ModuleBuilder withTag(String tag) {
+        Set<Tag> updatedTag = new HashSet<Tag>(this.tags);
+        updatedTag.add(new Tag(tag));
+        return this;
     }
 
-
-
+    /**
+     * Builds the module.
+     *
+     * @return a module
+     */
+    public Module build() {
+        return new Module(moduleName, zoomLinkMap, gradeTracker, tags, modularCredits);
+    }
 }

@@ -41,7 +41,7 @@ public class DeleteContactCommand extends Command {
     public DeleteContactCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         assert targetIndex.getZeroBased() >= 0 : "zero based index must be non-negative";
-        logger.info("Deleting contact");
+        logger.info("Deleting contact at index " + targetIndex.getOneBased());
         this.targetIndex = targetIndex;
     }
 
@@ -56,6 +56,7 @@ public class DeleteContactCommand extends Command {
 
         Contact contactToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteContact(contactToDelete);
+        model.commitContactList();
         logger.info("Contact has been deleted");
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, contactToDelete));
     }

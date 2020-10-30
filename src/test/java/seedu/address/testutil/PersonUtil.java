@@ -41,7 +41,7 @@ public class PersonUtil {
     public static String getEditPersonDescriptorDetails(EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getModuleName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getZoomLink().ifPresent(zoomLink -> sb.append(PREFIX_EMAIL).append(zoomLink.value).append(" "));
+        // descriptor.getZoomLink().ifPresent(zoomLink -> sb.append(PREFIX_EMAIL).append(zoomLink.value).append(" "));
         //if (descriptor.getTags().isPresent()) {
         //    Set<Tag> tags = descriptor.getTags().get();
         //    if (tags.isEmpty()) {
