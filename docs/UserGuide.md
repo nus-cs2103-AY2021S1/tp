@@ -112,6 +112,7 @@ Action | Format, Examples
 **NoteView** | `noteview sn/<serial number>`
 **Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
 **Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
+**Sort** | `sort o/<order> by/<field>`
 **Print** | `print fn/<file name>`
 **Help** | `help`
 **Exit** | `exit`
