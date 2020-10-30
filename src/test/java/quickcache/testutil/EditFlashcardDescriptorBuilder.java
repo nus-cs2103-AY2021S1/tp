@@ -78,7 +78,10 @@ public class EditFlashcardDescriptorBuilder {
         return descriptor;
     }
 
-    public EditCommand.EditFlashcardDescriptor buildWithNoChoices(){
+    /**
+     * Returns an EditFlashcardDescriptor object with no choices for testiong of open ended question.
+     */
+    public EditCommand.EditFlashcardDescriptor buildWithNoChoices() {
         EditCommand.EditFlashcardDescriptor finalDescriptor = new EditCommand.EditFlashcardDescriptor();
         if (this.descriptor.getQuestion().isPresent()) {
             finalDescriptor.setQuestion(this.descriptor.getQuestion().get());
