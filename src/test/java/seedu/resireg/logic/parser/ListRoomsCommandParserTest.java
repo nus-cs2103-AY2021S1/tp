@@ -21,53 +21,53 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.resireg.logic.commands.ListRoomCommand;
-import seedu.resireg.logic.commands.ListRoomCommand.RoomFilter;
+import seedu.resireg.logic.commands.ListRoomsCommand;
+import seedu.resireg.logic.commands.ListRoomsCommand.RoomFilter;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.testutil.RoomFilterBuilder;
 
-class ListRoomCommandParserTest {
+class ListRoomsCommandParserTest {
 
     private static final String MESSAGE_INVALID_COMMAND =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomCommand.HELP.getFullMessage());
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListRoomsCommand.HELP.getFullMessage());
 
-    private final ListRoomCommandParser parser = new ListRoomCommandParser();
+    private final ListRoomsCommandParser parser = new ListRoomsCommandParser();
 
     @Test
     void parse_whitespaceOnlyArg_returnsListRoomCommand() {
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(new RoomFilter());
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(new RoomFilter());
 
         // empty input
-        assertParseSuccess(parser, "", expectedListRoomCommand);
+        assertParseSuccess(parser, "", expectedListRoomsCommand);
 
         // whitespace
-        assertParseSuccess(parser, "            ", expectedListRoomCommand);
+        assertParseSuccess(parser, "            ", expectedListRoomsCommand);
 
         // tabs
-        assertParseSuccess(parser, "\t", expectedListRoomCommand);
+        assertParseSuccess(parser, "\t", expectedListRoomsCommand);
 
         // tabs
-        assertParseSuccess(parser, "         \t       ", expectedListRoomCommand);
+        assertParseSuccess(parser, "         \t       ", expectedListRoomsCommand);
     }
 
     @Test
     void parse_validVacantCommand_returnsListRoomCommand() {
         RoomFilter filter = new RoomFilter();
         filter.onlyVacant();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
-        assertParseSuccess(parser, " " + PREFIX_KEYWORD + ListRoomCommand.COMMAND_VACANT_FLAG,
-                expectedListRoomCommand);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
+        assertParseSuccess(parser, " " + PREFIX_KEYWORD + ListRoomsCommand.COMMAND_VACANT_FLAG,
+                expectedListRoomsCommand);
     }
 
     @Test
     void parse_validAllocatedCommand_returnsListRoomCommand() {
         RoomFilter filter = new RoomFilter();
         filter.onlyAllocated();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
-        assertParseSuccess(parser, " " + PREFIX_KEYWORD + ListRoomCommand.COMMAND_ALLOCATED_FLAG,
-                expectedListRoomCommand);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
+        assertParseSuccess(parser, " " + PREFIX_KEYWORD + ListRoomsCommand.COMMAND_ALLOCATED_FLAG,
+                expectedListRoomsCommand);
     }
 
     @Test
@@ -84,8 +84,8 @@ class ListRoomCommandParserTest {
 
     @Test
     void parse_bothVacantAndAllocated_throwsParseException() {
-        assertParseFailure(parser, PREFIX_KEYWORD + ListRoomCommand.COMMAND_ALLOCATED_FLAG + " "
-                + PREFIX_KEYWORD + ListRoomCommand.COMMAND_VACANT_FLAG, MESSAGE_INVALID_COMMAND);
+        assertParseFailure(parser, PREFIX_KEYWORD + ListRoomsCommand.COMMAND_ALLOCATED_FLAG + " "
+                + PREFIX_KEYWORD + ListRoomsCommand.COMMAND_VACANT_FLAG, MESSAGE_INVALID_COMMAND);
     }
 
     // Floor
@@ -94,17 +94,17 @@ class ListRoomCommandParserTest {
     void parse_validFloor_returnListRoomCommand() {
         RoomFilter filter = new RoomFilter();
         filter.addFloors(Arrays.asList(new Floor(VALID_FLOOR_A)));
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
-        assertParseSuccess(parser, " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_A, expectedListRoomCommand);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
+        assertParseSuccess(parser, " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_A, expectedListRoomsCommand);
     }
 
     @Test
     void parse_validFloors_returnListRoomCommand() {
         RoomFilter filter = new RoomFilter();
         filter.addFloors(Arrays.asList(new Floor(VALID_FLOOR_A), new Floor(VALID_FLOOR_B)));
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
         assertParseSuccess(parser, " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_A + " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_B,
-                expectedListRoomCommand);
+                expectedListRoomsCommand);
     }
 
     @Test
@@ -118,17 +118,17 @@ class ListRoomCommandParserTest {
     @Test
     void parse_validRoomNumber_returnListRoomCommand() {
         RoomFilter filter = new RoomFilterBuilder().addRoomNumber(VALID_ROOM_NUMBER_A).build();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
-        assertParseSuccess(parser, " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_A, expectedListRoomCommand);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
+        assertParseSuccess(parser, " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_A, expectedListRoomsCommand);
     }
 
     @Test
     void parse_validRoomNumbers_returnListRoomCommand() {
         RoomFilter filter = new RoomFilterBuilder()
                 .addRoomNumber(VALID_ROOM_NUMBER_A).addRoomNumber(VALID_ROOM_NUMBER_B).build();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
         assertParseSuccess(parser, " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_A
-                + " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_B, expectedListRoomCommand);
+                + " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_B, expectedListRoomsCommand);
     }
 
     @Test
@@ -142,17 +142,17 @@ class ListRoomCommandParserTest {
     @Test
     void parse_validRoomType_returnListRoomCommand() {
         RoomFilter filter = new RoomFilterBuilder().addRoomType(VALID_ROOM_TYPE_A).build();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
-        assertParseSuccess(parser, " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_A, expectedListRoomCommand);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
+        assertParseSuccess(parser, " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_A, expectedListRoomsCommand);
     }
 
     @Test
     void parse_validRoomTypes_returnListRoomCommand() {
         RoomFilter filter = new RoomFilterBuilder()
                 .addRoomType(VALID_ROOM_TYPE_A).addRoomType(VALID_ROOM_TYPE_B).build();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
         assertParseSuccess(parser, " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_A
-                + " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_B, expectedListRoomCommand);
+                + " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_B, expectedListRoomsCommand);
     }
 
     @Test
@@ -165,9 +165,9 @@ class ListRoomCommandParserTest {
     void parse_multipleFilterTypes_returnListRoomCommand() {
         RoomFilter filter = new RoomFilterBuilder()
                 .onlyVacant().addRoomType(VALID_ROOM_TYPE_A).addFloor(VALID_FLOOR_A).addFloor(VALID_FLOOR_B).build();
-        ListRoomCommand expectedListRoomCommand = new ListRoomCommand(filter);
+        ListRoomsCommand expectedListRoomsCommand = new ListRoomsCommand(filter);
         assertParseSuccess(parser, " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_A + " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_A
-                + " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_B + " " + PREFIX_KEYWORD + ListRoomCommand.COMMAND_VACANT_FLAG,
-                expectedListRoomCommand);
+                + " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_B + " " + PREFIX_KEYWORD + ListRoomsCommand.COMMAND_VACANT_FLAG,
+                expectedListRoomsCommand);
     }
 }

@@ -116,7 +116,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_COMMAND_DESC = " " + PREFIX_COMMAND + "71ndn"; // command word doesn't exist
     // alias cant be a command word
-    public static final String INVALID_ALIAS_DESC = " " + PREFIX_ALIAS + ListRoomCommand.COMMAND_WORD;
+    public static final String INVALID_ALIAS_DESC = " " + PREFIX_ALIAS + ListRoomsCommand.COMMAND_WORD;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

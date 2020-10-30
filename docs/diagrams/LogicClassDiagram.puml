@@ -8,23 +8,21 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class AddressBookParser
+Class ResiRegParser
 Class XYZCommandParser
-Class CliSyntax
-Class ParserUtil
-Class ArgumentMultimap
-Class ArgumentTokenizer
-Class Prefix
 }
 
 package Command {
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
+Class Help
+Enum  CommandWordEnum <<enumeration>>
 }
 
 Interface Logic <<Interface>>
 Class LogicManager
+Class CommandHistory
 }
 
 package Model{
@@ -32,31 +30,35 @@ Class HiddenModel #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
+
 HiddenOutside ..> Logic
 
-LogicManager .up.|> Logic
-LogicManager -->"1" AddressBookParser
-AddressBookParser .left.> XYZCommandParser: creates >
-
-XYZCommandParser ..> XYZCommand : creates >
-XYZCommandParser ..|> Parser
-XYZCommandParser ..> ArgumentMultimap
-XYZCommandParser ..> ArgumentTokenizer
-ArgumentTokenizer .left.> ArgumentMultimap
-XYZCommandParser ..> CliSyntax
-CliSyntax ..> Prefix
-XYZCommandParser ..> ParserUtil
-ParserUtil .down.> Prefix
-ArgumentTokenizer .down.> Prefix
-XYZCommand -up-|> Command
-LogicManager .left.> Command : executes >
-
-LogicManager --> Model
-Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
-
+/'
+ ' Essentials
+ '/
 Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult
-CommandResult -[hidden]-> Parser
+
+LogicManager .up.|> Logic
+LogicManager --> Model
+LogicManager ..> CommandResult
+LogicManager ..> Command : executes >
+LogicManager --> CommandHistory : adds to >
+LogicManager ..> ResiRegParser : calls >
+LogicManager ..> CommandWordEnum
+
+CommandWordEnum ..> XYZCommand
+CommandWordEnum --> Help
+CommandWordEnum --> XYZCommandParser
+
+Command ..> Model
+Command ..> CommandResult
+
+XYZCommand --|> Command
+XYZCommand --> Help
+
+XYZCommandParser ..|> Parser
+XYZCommandParser ..> XYZCommand : creates >
+
+ResiRegParser ..> Parser : calls >
+
 @enduml

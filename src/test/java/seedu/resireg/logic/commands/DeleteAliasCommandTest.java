@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.resireg.testutil.TypicalCommandWordAliases.FIND_FI;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.ROOMS_R;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.ROOMS_RO;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.STUDENTS_STU;
@@ -30,8 +29,8 @@ public class DeleteAliasCommandTest {
 
     @Test
     public void execute_validAlias_success() {
-        CommandWordAlias aliasToDelete = FIND_FI;
-        DeleteAliasCommand deleteCommand = new DeleteAliasCommand(FIND_FI);
+        CommandWordAlias aliasToDelete = STUDENTS_STU;
+        DeleteAliasCommand deleteCommand = new DeleteAliasCommand(STUDENTS_STU);
 
         String expectedMessage = String.format(DeleteAliasCommand.MESSAGE_SUCCESS, aliasToDelete);
 

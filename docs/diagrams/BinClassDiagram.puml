@@ -1,31 +1,36 @@
 @startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
 
 scale 0.5
 interface Binnable
 
 class ResiReg
+class UserPrefs
 class BinItem
 class UniqueBinItemList
 class Student
 
+UserPrefs *--> DaysStoredInBin
+
 ResiReg *--> UniqueStudentList
+ResiReg *--> UniqueRoomList
 ResiReg *--> UniqueBinItemList
 
 UniqueBinItemList o--> "*" BinItem
 
 BinItem *--> "1" Binnable
+BinItem *--> "1" LocalDate
+
 
 Binnable <|.. Student
+Binnable <|.. Room
+
 
 UniqueStudentList o----> Student
-
-class ResiReg {
-+deleteExpiredItems()
-}
-
-class BinItem {
--dateDeleted:LocalDate
-+isExpired(daysStoredInBin:int)
-}
+UniqueRoomList o----> Room
 
 @enduml
