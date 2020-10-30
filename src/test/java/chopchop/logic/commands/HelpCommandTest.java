@@ -91,6 +91,22 @@ public class HelpCommandTest {
         test(cases);
     }
 
+
+    @Test
+    public void test_makeCommand() {
+
+        var cases = new HashMap<Pair<String, String>, String>();
+
+        cases.put(Pair.of("make", ""),
+            String.format("%s: %s %s",
+                MakeCommand.getCommandString(),
+                MakeCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        test(cases);
+    }
+
     @Test
     public void test_editCommand() {
 
@@ -150,7 +166,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void findCommand() {
+    public void test_findCommand() {
 
         var cases = new HashMap<Pair<String, String>, String>();
 
@@ -188,7 +204,7 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void filterCommand() {
+    public void test_filterCommand() {
 
         var cases = new HashMap<Pair<String, String>, String>();
 

@@ -26,6 +26,8 @@ test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 
+    // exclude '**/*ui*'
+
     testLogging {
         // showStandardStreams = true
         exceptionFormat "full"

@@ -3,6 +3,7 @@
 package chopchop.logic.edit;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class RecipeEditDescriptor {
@@ -43,5 +44,21 @@ public class RecipeEditDescriptor {
 
     public Optional<String> getNameEdit() {
         return this.nameEdit;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof RecipeEditDescriptor)) {
+            return false;
+        } else {
+            var other = (RecipeEditDescriptor) obj;
+
+            return Objects.equals(this.nameEdit, other.nameEdit)
+                && Objects.equals(this.tagEdits, other.tagEdits)
+                && Objects.equals(this.stepEdits, other.stepEdits)
+                && Objects.equals(this.ingredientEdits, other.ingredientEdits);
+        }
     }
 }

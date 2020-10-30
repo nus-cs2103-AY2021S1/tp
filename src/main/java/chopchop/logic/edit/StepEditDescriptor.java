@@ -42,5 +42,19 @@ public class StepEditDescriptor extends EditDescriptor {
     public Optional<Integer> getStepNumber() {
         return this.stepNumber;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof StepEditDescriptor)) {
+            return false;
+        } else {
+            var other = (StepEditDescriptor) obj;
+            return this.getEditType() == other.getEditType()
+                && this.stepNumber.equals(other.stepNumber)
+                && this.stepText.equals(other.stepText);
+        }
+    }
 }
 

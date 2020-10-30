@@ -43,4 +43,18 @@ public class IngredientEditDescriptor extends EditDescriptor {
     public Optional<Quantity> getIngredientQuantity() {
         return this.ingredientQuantity;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof IngredientEditDescriptor)) {
+            return false;
+        } else {
+            var other = (IngredientEditDescriptor) obj;
+            return this.getEditType() == other.getEditType()
+                && this.ingredientQuantity.equals(other.ingredientQuantity)
+                && this.ingredientName.equalsIgnoreCase(other.ingredientName);
+        }
+    }
 }

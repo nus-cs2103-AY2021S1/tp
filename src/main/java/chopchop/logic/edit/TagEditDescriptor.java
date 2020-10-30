@@ -26,4 +26,17 @@ public class TagEditDescriptor extends EditDescriptor {
     public String getTagName() {
         return this.tagName;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (!(obj instanceof TagEditDescriptor)) {
+            return false;
+        } else {
+            var other = (TagEditDescriptor) obj;
+            return this.getEditType() == other.getEditType()
+                && this.tagName.equalsIgnoreCase(other.tagName);
+        }
+    }
 }

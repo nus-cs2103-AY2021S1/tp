@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import chopchop.testutil.IngredientBuilder;
+import chopchop.testutil.TypicalRecipes;
 import org.junit.jupiter.api.Test;
 
 public class ExpiryDateMatchesKeywordsPredicateTest {
@@ -13,17 +14,14 @@ public class ExpiryDateMatchesKeywordsPredicateTest {
         ExpiryDate firstPredicateKeyword = new ExpiryDate("2020-12-31");
         ExpiryDate secondPredicateKeyword = new ExpiryDate("2021-01-01");
 
-        ExpiryDateMatchesKeywordsPredicate firstPredicate = new ExpiryDateMatchesKeywordsPredicate(
-            firstPredicateKeyword);
-        ExpiryDateMatchesKeywordsPredicate secondPredicate = new ExpiryDateMatchesKeywordsPredicate(
-            secondPredicateKeyword);
+        var firstPredicate = new ExpiryDateMatchesKeywordsPredicate(firstPredicateKeyword);
+        var secondPredicate = new ExpiryDateMatchesKeywordsPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ExpiryDateMatchesKeywordsPredicate firstPredicateCopy = new ExpiryDateMatchesKeywordsPredicate(
-            firstPredicateKeyword);
+        var firstPredicateCopy = new ExpiryDateMatchesKeywordsPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,8 +36,7 @@ public class ExpiryDateMatchesKeywordsPredicateTest {
 
     @Test
     public void test_expiryDateMatchesKeyword_returnsTrue() {
-        ExpiryDateMatchesKeywordsPredicate predicate = new ExpiryDateMatchesKeywordsPredicate(
-                new ExpiryDate("2020-12-31"));
+        var predicate = new ExpiryDateMatchesKeywordsPredicate(new ExpiryDate("2020-12-31"));
         assertTrue(predicate.test(new IngredientBuilder().withDate("2020-10-10").build()));
         assertTrue(predicate.test(new IngredientBuilder().withDate("2020-11-11").build()));
         assertTrue(predicate.test(new IngredientBuilder().withDate("2020-12-31").build()));
@@ -47,10 +44,10 @@ public class ExpiryDateMatchesKeywordsPredicateTest {
 
     @Test
     public void test_expiryDateNotMatchingKeyword_returnsFalse() {
-        ExpiryDateMatchesKeywordsPredicate predicate = new ExpiryDateMatchesKeywordsPredicate(
-                new ExpiryDate("2020-12-30"));
+        var predicate = new ExpiryDateMatchesKeywordsPredicate(new ExpiryDate("2020-12-30"));
         assertFalse(predicate.test(new IngredientBuilder().withDate("2020-12-31").build()));
         assertFalse(predicate.test(new IngredientBuilder().withDate("2021-01-01").build()));
         assertFalse(predicate.test(new IngredientBuilder().withDate("2103-10-03").build()));
+        assertFalse(predicate.test(TypicalRecipes.APRICOT_SALAD));
     }
 }

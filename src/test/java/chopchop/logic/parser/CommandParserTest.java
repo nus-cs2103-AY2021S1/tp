@@ -65,7 +65,7 @@ public class CommandParserTest {
         tests.put("list ingredient", "Result(ListIngredientCommand)");
         tests.put("list ingredients", "Result(ListIngredientCommand)");
 
-        tests.put("make cake", "Result(MakeRecipeCommand(cake))");
+        tests.put("make cake", "Result(MakeCommand(cake))");
         tests.put("view cake", "Result(ViewCommand(cake))");
         tests.put("filter recipe /tag owo", "Result(FilterRecipeCommand(...))");
         tests.put("edit recipe cake", "Result(EditRecipeCommand(cake))");
@@ -198,10 +198,20 @@ public class CommandParserTest {
         cases.put("filter ingredient /tag",                                             false);
         cases.put("filter ingredient /expiry a a a ",                                   false);
 
+        cases.put("add recommendation x",                                               false);
+        cases.put("edit recommendation",                                                false);
+        cases.put("find recommendation x",                                              false);
+        cases.put("filter recommendation /x",                                           false);
+        cases.put("delete recommendation x",                                            false);
+        cases.put("stats recommendation",                                               false);
+        cases.put("list",                                                               false);
+
         cases.put("help",                                                               true);
         cases.put("help add",                                                           true);
         cases.put("help add recipe",                                                    true);
         cases.put("add ingredient f",                                                   true);
+        cases.put("list recommendation",                                                true);
+        cases.put("list recommendations",                                               true);
 
         cases.put("filter recipe /tag x",                                               true);
         cases.put("filter recipe /tag x /ingredient x",                                 true);
