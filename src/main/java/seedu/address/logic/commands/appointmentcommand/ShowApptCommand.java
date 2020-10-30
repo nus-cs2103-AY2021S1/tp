@@ -16,7 +16,7 @@ public class ShowApptCommand extends Command {
     public static final String COMMAND_WORD = "showAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show Appointment(s) of a patient\n"
-            + "Parameters: KEYWORD [NRIC]\n"
+            + "Parameters: [NRIC]\n"
             + "Example: " + COMMAND_WORD + " S1234567A\n";
 
     private final NricPredicate predicate;
@@ -30,7 +30,7 @@ public class ShowApptCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPatientList(predicate);
-        assert model.getFilteredPatientList().size() == 1;
+        assert model.getFilteredPatientList().size() <= 1 : "Found more than 1 person for showAppt";
         return new CommandResult(
                 String.format(Messages.MESSAGE_PATIENTS_LISTED_OVERVIEW, model.getFilteredPatientList().size()),
                 false, false, true);

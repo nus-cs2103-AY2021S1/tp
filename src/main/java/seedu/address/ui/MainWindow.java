@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowAppointment()) {
                 if (logic.getFilteredPatientList().size() != 1) {
                     logger.info("Parse exception: Patient not found - " + commandText);
-                    throw new ParseException("Patient not found");
+                    throw new ParseException("Patient not found!");
                 } else {
                     handleShowAppt();
                 }
