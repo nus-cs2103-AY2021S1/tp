@@ -20,8 +20,8 @@ It helps you to centralize key module details, contacts and information while fo
 
 1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/OriginalImages/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. <br>
+   ![Ui](images/StartingApp.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -197,9 +197,62 @@ assignments will contain the following fields:
   Example of usage:
    * `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
    assignment name, `Quiz 1`. 
+
    * `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
    assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
+   
+#### Archiving a module: `archivemodule`
 
+Archives a module in the module list and moves it into archived storage.
+
+Format: `archivemodule` `INDEX`
+
+ * The module archived will be at the `INDEX` position of the currently displayed un-archived list.
+
+ * The index refers to the index number of the module shown on the displayed un-archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `archivemodule 1` Archives the first module in the displayed list.
+ 
+#### Un-archiving a module: `unarchivemodule`
+
+Un-Archives a module in the module list and moves it back into current module list storage.
+
+Format: `unarchivemodule` `INDEX`
+
+ * The module un-archived will be at the `INDEX` position of the currently displayed archived list.
+
+ * The index refers to the index number of the module shown on the displayed archived module list.
+
+ * The index **must be a positive integer** 1, 2, 3...
+
+ Examples:
+ * `unarchivemodule 1` Un-Archives the first module in the displayed archived module list.
+ * `unarchivemodule 2` Un-Archives the second module in the displayed archived module list.
+
+#### View-archived modules: `viewarchive`
+
+Allows you to view the archived module list on the display.
+
+Format: `viewarchive`
+
+ * Executing this command will remove the current un-archived module list from display if you are currently viewing it. You can use the `list` command to display the un-archived module list(See next section).
+
+ Examples:
+ * `viewarchive` Views the archived module list on the display.
+
+#### View un-archived modules: `list`
+
+Allows you to view the un-archived module list on the display.
+
+Format: `list`
+
+ * Executing this command will remove the current archived module list from display if you are currently viewing it. You can use the `viewarchive` command to display the archived module list(See previous section).
+
+ Examples:
+ * `list` Views the un-archived module list on the display.
 
 ### Todo List Features
 
@@ -333,7 +386,7 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
  
    * Task Name
  
-     * You are allowed to provide multiple search keywords.
+     * You are allowed to provide multiple name keywords.
      
      * Tasks with their name matching at least one of the name keywords provided will be considered to have fulfilled the task name search criteria.
      
@@ -361,6 +414,8 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
    * Tag
  
      * You are allowed to provide multiple tag keywords.
+     
+     * Task tags will be considered a match only if the tag words are an exact match.
      
      * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
        
@@ -727,8 +782,10 @@ Undoes the previous user command
 #### Redo previous user command: `redo`
 
 Redoes the previously undone user command
- * The `undo` feature currently has not been extended to Scheduler commands
+
  Format: `redo`
+ 
+  * The `redo` feature currently has not been extended to Scheduler commands
 
   Examples:
   * `redo`
@@ -758,6 +815,10 @@ Action | Format, Examples
 **Edit** | `editmodule INDEX n/NEW_NAME [mc/MODULAR_CREDITS] [gp/GRADE_POINT] [t/TAG]...`<br> e.g. `editmodule 2 n/CS2103T gp/4.5`
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5.0 r/0.80`
+**Archive** | `archivemodule INDEX `<br> e.g. `archivemodule 3`
+**Un-archive** | `unarchivemodule INDEX `<br> e.g. `unarchivemodule 3`
+**View Archived Module List** | `viewarchive `<br> e.g. `viewarchive`
+**View Un-archived Module List** | `list `<br> e.g. `list`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
 **Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
