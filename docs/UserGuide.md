@@ -633,24 +633,17 @@ can only contain alphanumeric characters. Users may want to sort the stocks usin
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
 to `[root directory]/data/userInput.csv` after successfully executing the command.
 
-* Required fields:
-    1. file name
+<h4>Format</h4>
 
-<h5>Format</h5>
-
-The header fields can be in any order:<br>
 `print fn/<file name>`
 
-<div markdown="block" class="alert alert-warning">
+<h4>Examples</h4>
 
-**:warning:**
-Each specific fields specified in the `print` command should only be entered once.<br>
-e.g. `print fn/stock fn/stock2` is not a valid command.
-</div>
 
-<h5>Example usages</h5>
-
-After executing the `print fn/stocks` command, proceed to the folder which contains Warenager. Click on the `data`
+```
+print fn/stocks
+```
+After executing the command, proceed to the folder which contains Warenager. Click on the `data`
 folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)
