@@ -72,7 +72,6 @@ public class DeleteRecipeCommandTest {
 
         assertCommandFailure(deleteCommand, model);
     }
-
     @Test
     public void equals() {
         var deleteFirstCommand = new DeleteRecipeCommand(INDEXED_FIRST);

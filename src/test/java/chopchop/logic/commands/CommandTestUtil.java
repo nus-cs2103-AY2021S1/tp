@@ -39,6 +39,11 @@ public class CommandTestUtil {
             assertTrue(result.didSucceed());
             assertEquals(expectedModel, model);
 
+            if (command instanceof Undoable) {
+                var r = ((Undoable) command).undo(model);
+                assertTrue(r.didSucceed());
+            }
+
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }

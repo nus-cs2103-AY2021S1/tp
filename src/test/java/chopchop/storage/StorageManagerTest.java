@@ -3,6 +3,7 @@ package chopchop.storage;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.nio.file.Path;
 
@@ -51,6 +52,31 @@ public class StorageManagerTest {
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
     }
+
+    @Test
+    public void test_guiSettings() {
+        var s1 = new GuiSettings(300, 600, 4, 6);
+        var s2 = new GuiSettings(300, 600, 4, 6);
+        var s3 = new GuiSettings(300, 6, 9, 12);
+        var s4 = new GuiSettings();
+        var s5 = new GuiSettings(300, 600, 1, 2);
+
+        // test GuiSettings
+        assertEquals(300, s1.getWindowWidth());
+        assertEquals(600, s1.getWindowHeight());
+        assertEquals(new java.awt.Point(4, 6), s1.getWindowCoordinates());
+
+        assertEquals(null, s4.getWindowCoordinates());
+
+        assertEquals(s1, s2);
+        assertEquals(s1.hashCode(), s2.hashCode());
+
+        assertNotEquals(s1, s4);
+        assertNotEquals(s1, s3);
+        assertNotEquals(s1, s5);
+        assertNotEquals(s1, "asdf");
+    }
+
 
     @Test
     public void ingredientBookReadSave() throws Exception {

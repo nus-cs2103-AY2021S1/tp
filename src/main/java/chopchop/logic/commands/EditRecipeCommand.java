@@ -166,10 +166,7 @@ public class EditRecipeCommand extends Command implements Undoable {
                 steps.add(numOpt.orElse(steps.size()), new Step(step));
 
             } else {
-
-                if (numOpt.isEmpty()) {
-                    return Result.error("Missing step number for %s", type);
-                }
+                enforcePresent(numOpt);
 
                 int index = numOpt.get();
                 if (index < 0 || index >= steps.size()) {
