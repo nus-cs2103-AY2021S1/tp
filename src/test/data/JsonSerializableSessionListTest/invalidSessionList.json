@@ -3,8 +3,8 @@
     "sessionName" : "Typical session",
     "sessionDateTime" : "01-01-2020 12:00",
     "records" : [ {
-      "name" : "Alex Yeoh",
-      "nusnetId" : "e045645@",
+      "name" : "Alice Pauline",
+      "nusnetId" : "e012345@",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     } ]

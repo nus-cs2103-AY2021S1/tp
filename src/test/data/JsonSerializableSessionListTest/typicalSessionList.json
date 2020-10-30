@@ -3,33 +3,38 @@
     "sessionName" : "Typical session",
     "sessionDateTime" : "01-01-2020 12:00",
     "records" : [ {
-      "name" : "Alex Yeoh",
-      "nusnetId" : "e0456456",
+      "name" : "Alice Pauline",
+      "nusnetId" : "e0123456",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Bernice Yu",
-      "nusnetId" : "e0789789",
+      "name" : "Benson Meier",
+      "nusnetId" : "e0456789",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Charlotte Oliveiro",
-      "nusnetId" : "e0987897",
+      "name" : "Carl Kurz",
+      "nusnetId" : "e0312654",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "David Li",
-      "nusnetId" : "e0321321",
+      "name" : "Daniel Meier",
+      "nusnetId" : "e0987465",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Irfan Ibrahim",
-      "nusnetId" : "e0984984",
+      "name" : "Elle Meyer",
+      "nusnetId" : "e0946875",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Roy Balakrishnan",
-      "nusnetId" : "e0984983",
+      "name" : "Fiona Kunz",
+      "nusnetId" : "e0319843",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "George Best",
+      "nusnetId" : "e0731894",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     } ]
@@ -37,33 +42,38 @@
     "sessionName" : "Typical session 2",
     "sessionDateTime" : "01-01-2020 13:00",
     "records" : [ {
-      "name" : "Alex Yeoh",
-      "nusnetId" : "e0456456",
+      "name" : "Alice Pauline",
+      "nusnetId" : "e0123456",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Bernice Yu",
-      "nusnetId" : "e0789789",
+      "name" : "Benson Meier",
+      "nusnetId" : "e0456789",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Charlotte Oliveiro",
-      "nusnetId" : "e0987897",
+      "name" : "Carl Kurz",
+      "nusnetId" : "e0312654",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "David Li",
-      "nusnetId" : "e0321321",
+      "name" : "Daniel Meier",
+      "nusnetId" : "e0987465",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Irfan Ibrahim",
-      "nusnetId" : "e0984984",
+      "name" : "Elle Meyer",
+      "nusnetId" : "e0946875",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     }, {
-      "name" : "Roy Balakrishnan",
-      "nusnetId" : "e0984983",
+      "name" : "Fiona Kunz",
+      "nusnetId" : "e0319843",
+      "classParticipation" : "0",
+      "attendanceType" : "NO_RECORD"
+    }, {
+      "name" : "George Best",
+      "nusnetId" : "e0731894",
       "classParticipation" : "0",
       "attendanceType" : "NO_RECORD"
     } ]

@@ -1,0 +1,40 @@
+{
+  "sessionName" : "Typical session",
+  "sessionDateTime" : "01-01-220 12:00",
+  "records" : [ {
+    "name" : "Alice Pauline",
+    "nusnetId" : "e0123456",
+    "classParticipation" : "0",
+    "attendanceType" : "PRESENT"
+  }, {
+    "name" : "Benson Meier",
+    "nusnetId" : "e0456789",
+    "classParticipation" : "5",
+    "attendanceType" : "NO_RECORD"
+  }, {
+    "name" : "Carl Kurz",
+    "nusnetId" : "e0312654",
+    "classParticipation" : "0",
+    "attendanceType" : "NO_RECORD"
+  }, {
+    "name" : "Daniel Meier",
+    "nusnetId" : "e0987465",
+    "classParticipation" : "0",
+    "attendanceType" : "NO_RECORD"
+  }, {
+    "name" : "Elle Meyer",
+    "nusnetId" : "e0946875",
+    "classParticipation" : "7",
+    "attendanceType" : "PRESENT"
+  }, {
+    "name" : "Fiona Kunz",
+    "nusnetId" : "e0319843",
+    "classParticipation" : "0",
+    "attendanceType" : "NO_RECORD"
+  }, {
+    "name" : "George Best",
+    "nusnetId" : "e0731894",
+    "classParticipation" : "0",
+    "attendanceType" : "NO_RECORD"
+  } ]
+} 

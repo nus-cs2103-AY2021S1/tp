@@ -19,7 +19,7 @@ public class JsonSerializableSessionListTest {
             "JsonSerializableSessionListTest");
     private static final Path TYPICAL_SESSION_LIST_FILE = TEST_DATA_FOLDER.resolve("typicalSessionList.json");
     private static final Path INVALID_SESSION_LIST_FILE = TEST_DATA_FOLDER.resolve("invalidSessionList.json");
-    private static final Path DUPLICATE_SESSION_FILE = TEST_DATA_FOLDER.resolve("duplicateSessionNameList.json");
+    private static final Path DUPLICATE_SESSION_FILE = TEST_DATA_FOLDER.resolve("duplicateNusnetIdSessionList.json");
 
     @Test
     public void toModelType_typicalSessionListFile_success() throws Exception {
