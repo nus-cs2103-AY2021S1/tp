@@ -5,8 +5,8 @@ title: User Guide
 
 FixMyAbs is a desktop app for managing exercises, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ---
 
@@ -14,7 +14,7 @@ FixMyAbs is a desktop app for managing exercises, optimized for use via a Comman
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `fixmyabs.jar`.
+1. Download the latest `fma.jar`.
 
 1. Copy the file to the folder you want to use as the home folder for your FixMyAbs.
 
@@ -92,7 +92,7 @@ Format: `list`
 
 Edits an existing log in the application.
 
-Format: `edit <index> r/[reps] c/[comment]]`
+Format: `edit <index> r/[reps] c/[comment]`
 
 - Edits the existing log at the specified `<index>`. The index refers to the index number shown in the displayed log list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -166,9 +166,6 @@ Exercise log data are saved in the hard disk automatically after any command tha
 ---
 
 ## FAQ
-
-**Q**: Why can I only track sit-ups?<br>
-**A**: first iteration of FixMyAbs and it only supports sit-ups. In future versions, more types of exercises will be supported.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FixMyAbs home folder.
