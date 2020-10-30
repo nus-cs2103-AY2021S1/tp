@@ -318,55 +318,23 @@ findexact n/banana s/ntuc l/singapore
 will not match Stock 1 and Stock 2.
 
 ### Update inventory: `update`
-Updates the details of the desired stock, requires the serial number of products.
-* Fields that can be updated:
-    * Name
-    * Quantity
-    * Location in warehouse
-    * Source of the stock
-    * Low quantity threshold
-* Required fields:
-    1. Serial number of product
+Updates the details of the desired stock(s), requires the serial number of stock(s).
 
-Prefixes:
-* `sn/<serial number>`
-* `n/<new name>`
-* `iq/<+/-><increment value>`
-* `nq/<new quantity>`
-* `l/<new location>`
-* `s/<new source>`
-* `lq/<low quantity>`
+<h4>Format</h4>
 
-<h5>Format</h5>
-
-* Any combination of the prefixes may be passed in and updated at once.
-* Only at most one of `iq/` or `nq/` may be passed.
-* User may pass in more than one serial number to update all at once.
-
-`update sn/<serial number> n/<new name>`
-
-`update sn/<serial number> iq/<+/-><increment value>`
-
-`update sn/<serial number> nq/<new quantity>`
-
-`update sn/<serial number> l/<new location>`
-
-`update sn/<serial number> s/<new source>`
-
-`update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>`
-
-`update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source> lq/<low quantity>`
+`update sn/<serial number>... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]`
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:**
-If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
+**:warning: In case one of serial numbers is invalid**
+If more than one serial number is passed and at least one of them is wrong (not found in the inventory list), then the command
 will not update anything and shows an error message.
+
 </div>
 
 Values to be updated are case-insensitive.
 
-<h5>Example usages</h5>
+<h4>Examples</h4>
 
 Stock | Details
 ------| --------
@@ -374,17 +342,30 @@ Stock | Details
 **Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
 **Stock 3** | Name: Guinness<br> Serial Number: COLDSTORAGE1<br> Source: Coldstorage<br> Quantity: 10<br> Location in warehouse: Drinks section
 
-`update sn/Ntuc1 n/Apple` will change **Stock 1** name to `Apple`.
+```
+update sn/Ntuc1 n/Apple
+```
+will change **Stock 1** name to `Apple`.
 
-`update sn/Shengsiong1 s/Coldstorage l/Meat section` will change **Stock 2** source to `Coldstorage` and location
-to `Meat section`.
+```
+update sn/Shengsiong1 s/Coldstorage l/Meat section
+```
+will change **Stock 2** source to `Coldstorage` and location to `Meat section`.
 
-`update sn/Ntuc1 iq/+50 n/heineken` will change **Stock 3** name to `heineken` and increment the quantity by `50`. **Stock 3** quantity changes to `60`.
+```
+update sn/Ntuc1 iq/+50 n/heineken
+```
+will change **Stock 3** name to `heineken` and increment the quantity by `50`. **Stock 3** quantity changes to `60`.
 
-`update sn/Shengsiong1 s/Coldstorage nq/50 lq/60` will change **Stock 2** source to `Coldstorage`, quantity
-to `50`, and low quantity threshold to `60` and therefore flagging the stock because `50 < 60`.
+```
+update sn/Shengsiong1 s/Coldstorage nq/50 lq/60
+```
+will change **Stock 2** source to `Coldstorage`, quantity to `50`, and low quantity threshold to `60` and therefore flagging the stock because `50 < 60`.
 
-`update sn/Ntuc1 sn/Coldstorage1 n/Apple juice` will change **Stock 1** and **Stock 3** name to `Apple juice`.
+```
+update sn/Ntuc1 sn/Coldstorage1 n/Apple juice
+```
+will change **Stock 1** and **Stock 3** name to `Apple juice`.
 
 ### Adding notes to stock: `note`
 Adds a note to the stock specified, displayed in the notes column for that stock.
