@@ -20,8 +20,8 @@ It helps you to centralize key module details, contacts and information while fo
 
 1. Copy the file to the folder you want to use as the _home folder_ Cap 5 Buddy application.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/OriginalImages/Ui.png)
+1. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. <br>
+   ![Ui](images/StartingApp.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
