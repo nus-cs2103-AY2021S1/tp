@@ -159,7 +159,9 @@ public class UpdateCommand extends Command {
             throws CommandException {
         assert stockToUpdate != null;
 
-        Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(stockToUpdate.getQuantity());
+        Quantity originalQuantity = stockToUpdate.getQuantity();
+        Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(originalQuantity);
+        String lowQuantity = updateStockDescriptor.getLowQuantity().orElse(originalQuantity.getLowQuantity());
         Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
         Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
@@ -173,9 +175,10 @@ public class UpdateCommand extends Command {
             updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS));
         }
 
+        updatedQuantity = updatedQuantity.updateLowQuantity(lowQuantity);
+
         Stock result = new Stock(updatedName, stockSerialNumber, updatedSource,
                 updatedQuantity, updatedLocation, noteList);
-
 
         if (stockToUpdate.getIsBookmarked()) {
             result.setBookmarked();
@@ -212,6 +215,7 @@ public class UpdateCommand extends Command {
         private Quantity quantity;
         private Location location;
         private QuantityAdder quantityAdder;
+        private String lowQuantity;
 
         public UpdateStockDescriptor() { }
 
@@ -285,6 +289,14 @@ public class UpdateCommand extends Command {
 
         public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
+        }
+
+        public void setLowQuantity(String lowQuantity) {
+            this.lowQuantity = lowQuantity;
+        }
+
+        public Optional<String> getLowQuantity() {
+            return Optional.ofNullable(lowQuantity);
         }
 
         @Override

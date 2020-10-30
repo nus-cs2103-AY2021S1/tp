@@ -14,7 +14,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.UpdateCommand;
@@ -101,16 +100,14 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         if (isNewQuantityPresent) {
             String newQuantityDescription = argMultimap.getValue(PREFIX_NEW_QUANTITY).get();
             Quantity newQuantity = ParserUtil.parseQuantity(newQuantityDescription);
-            Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
-            updateStockDescriptor.setQuantity(ParserUtil.parseLowQuantity(newQuantity, lowQuantity));
+            updateStockDescriptor.setQuantity(newQuantity);
         }
 
         // Increment quantity with increment value provided
         if (isIncrementQuantityPresent) {
             String incrementValue = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).get();
             QuantityAdder toIncrement = ParserUtil.parseQuantityAdder(incrementValue);
-            Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
-            updateStockDescriptor.setQuantityAdder(ParserUtil.parseLowQuantityAdder(toIncrement, lowQuantity));
+            updateStockDescriptor.setQuantityAdder(toIncrement);
         }
 
         // Update location with new location provided
@@ -119,11 +116,10 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             updateStockDescriptor.setLocation(ParserUtil.parseLocation(locationLowerCased));
         }
 
-        // Update low quantity if quantity unchanged
-        if (!isIncrementQuantityPresent && !isNewQuantityPresent && isLowQuantityPresent) {
-            QuantityAdder zeroAdder = ParserUtil.parseQuantityAdder("0");
-            Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
-            updateStockDescriptor.setQuantityAdder(ParserUtil.parseLowQuantityAdder(zeroAdder, lowQuantity));
+        // Update low quantity threshold with new value provided
+        if (isLowQuantityPresent) {
+            String lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY).get();
+            updateStockDescriptor.setLowQuantity(lowQuantity);
         }
 
         if (!updateStockDescriptor.isAnyFieldEdited()) {
