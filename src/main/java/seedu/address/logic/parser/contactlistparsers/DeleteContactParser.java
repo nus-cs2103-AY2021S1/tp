@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.contactlistparsers;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
@@ -19,6 +20,7 @@ public class DeleteContactParser implements Parser<DeleteContactCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public DeleteContactCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteContactCommand(index);

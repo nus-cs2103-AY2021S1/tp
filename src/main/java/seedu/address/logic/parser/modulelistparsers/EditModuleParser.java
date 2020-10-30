@@ -16,7 +16,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
-import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -45,7 +44,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditTaskCommand.MESSAGE_USAGE), pe);
+                    EditModuleCommand.MESSAGE_USAGE), pe);
         }
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
@@ -100,5 +99,4 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
-
 }
