@@ -447,7 +447,7 @@ public class ModelManager implements Model {
             } else if (pointer == 2) {
                 undoContactList();
             } else if (pointer == 4) {
-                commitEventList();
+                undoEventList();
             } else {
                 undoTodoList();
             }
@@ -468,7 +468,7 @@ public class ModelManager implements Model {
             } else if (pointer == 2) {
                 redoContactList();
             } else if (pointer == 4) {
-                commitEventList();
+                redoEventList();
             } else {
                 redoTodoList();
             }
