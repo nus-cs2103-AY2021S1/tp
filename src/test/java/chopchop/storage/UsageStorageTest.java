@@ -8,9 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
-import chopchop.commons.exceptions.DataConversionException;
 import org.junit.jupiter.api.Test;
 
 

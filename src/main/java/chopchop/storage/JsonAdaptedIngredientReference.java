@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import chopchop.commons.exceptions.IllegalValueException;
-import chopchop.commons.util.Result;
-import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.ingredient.IngredientReference;
 
