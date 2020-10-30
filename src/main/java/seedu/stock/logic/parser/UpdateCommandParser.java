@@ -45,14 +45,22 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_LOW_QUANTITY
                 );
         List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
+        boolean isSerialNumberPresent = argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent();
+        boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
+        boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
+        boolean isNamePresent = argMultimap.getValue(PREFIX_NAME).isPresent();
+        boolean isSourcePresent = argMultimap.getValue(PREFIX_SOURCE).isPresent();
+        boolean isLocationPresent = argMultimap.getValue(PREFIX_LOCATION).isPresent();
+        boolean isLowQuantityPresent = argMultimap.getValue(PREFIX_LOW_QUANTITY).isPresent();
+        boolean isQuantityPresent = argMultimap.getValue(PREFIX_QUANTITY).isPresent();
 
         // If unallowed prefixes are provided
-        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
+        if (isQuantityPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 
         // If serial number is not provided
-        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+        if (!isSerialNumberPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateCommand.MESSAGE_USAGE));
         }
 
@@ -64,8 +72,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         // If both increment and new quantity prefix provided
-        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()
-                && argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+        if (isIncrementQuantityPresent && isNewQuantityPresent) {
             throw new ParseException(MESSAGE_TOO_MANY_QUANTITY_PREFIXES + "\n" + UpdateCommand.MESSAGE_USAGE);
         }
 
@@ -79,19 +86,19 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         updateStockDescriptor.setSerialNumbers(serialNumbers);
 
         // Update name with new name provided
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+        if (isNamePresent) {
             String nameLowerCased = argMultimap.getValue(PREFIX_NAME).get().toLowerCase();
             updateStockDescriptor.setName(ParserUtil.parseName(nameLowerCased));
         }
 
         // Update source with new source provided
-        if (argMultimap.getValue(PREFIX_SOURCE).isPresent()) {
+        if (isSourcePresent) {
             String sourceLowerCased = argMultimap.getValue(PREFIX_SOURCE).get().toLowerCase();
             updateStockDescriptor.setSource(ParserUtil.parseSource(sourceLowerCased));
         }
 
         // Update quantity with new quantity provided
-        if (argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
+        if (isNewQuantityPresent) {
             String newQuantityDescription = argMultimap.getValue(PREFIX_NEW_QUANTITY).get();
             Quantity newQuantity = ParserUtil.parseQuantity(newQuantityDescription);
             Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
@@ -99,7 +106,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         // Increment quantity with increment value provided
-        if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()) {
+        if (isIncrementQuantityPresent) {
             String incrementValue = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).get();
             QuantityAdder toIncrement = ParserUtil.parseQuantityAdder(incrementValue);
             Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
@@ -107,14 +114,12 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         // Update location with new location provided
-        if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
+        if (isLocationPresent) {
             String locationLowerCased = argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase();
             updateStockDescriptor.setLocation(ParserUtil.parseLocation(locationLowerCased));
         }
 
-        boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
-        boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
-        boolean isLowQuantityPresent = argMultimap.getValue(PREFIX_LOW_QUANTITY).isPresent();
+        // Update low quantity if quantity unchanged
         if (!isIncrementQuantityPresent && !isNewQuantityPresent && isLowQuantityPresent) {
             QuantityAdder zeroAdder = ParserUtil.parseQuantityAdder("0");
             Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
