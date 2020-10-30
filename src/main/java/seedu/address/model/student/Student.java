@@ -109,7 +109,7 @@ public class Student {
         String result = "";
         int index = 1;
         for (Question question: questions) {
-            result = result + index + "." + question.toString() + "\n";
+            result = result + index + ". " + question.toString() + "\n";
             index++;
         }
         return result;
