@@ -162,8 +162,6 @@ Format: `reallocate si/<student_index> ri/<room_index>`
 Examples:
 * `reallocate si/1 ri/2` edits the allocation of the student with index 1's current room to the room with index 2.
 
-#### 8. Archiving a Semester: `archive`
-
 ##### Before reallocation
 Refer to "After allocation" above.
 
@@ -193,11 +191,20 @@ Format: `archive`
 - Moves the previous semester's allocation data to `AY[YEAR]S[SEMESTER]/archive.json`. For example, if the previous semester was 2019 Semester 2, the allocation data will be moved to `AY2019S2/archive.json`.
 - The rooms and students are still preserved in the system.
 
-### II. Student Management
+##### Before archival
+
+![UI before archiving](./images/BeforeArchive.png)
+
+##### After archival
+
+![UI after archiving](./images/AfterArchive.png)
+
+
+### Student Management
 
 > **ResiReg** allows you to manage students in the Residential College.
 
-#### 1. Listing all students : `students`
+#### Listing all students : `students`
 
 Shows a list of all students in ResiReg, optionally filtered by some parameters.
 
