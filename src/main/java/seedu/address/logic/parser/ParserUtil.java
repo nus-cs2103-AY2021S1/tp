@@ -340,9 +340,14 @@ public class ParserUtil {
      * @param date string to be parsed.
      * @return EventTime.
      */
-    public static EventTime parseEventTime(String date) {
+    public static EventTime parseEventTime(String date) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
-        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
-        return new EventTime(localDateTime);
+        if (EventTime.isValidDateTime(date)) {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return new EventTime(localDateTime);
+        } else {
+            throw new ParseException("Invalid date and time entered. Please follow this format: "
+                    + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
+        }
     }
 }
