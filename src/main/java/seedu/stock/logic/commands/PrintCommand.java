@@ -27,8 +27,9 @@ public class PrintCommand extends Command {
     public static final String MESSAGE_FAILURE = "Error occurred when generating the csv file. ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies all stocks in the inventory into a csv file.\n"
-            + "Parameters: " + PREFIX_FILE_NAME + PREFIX_FILE_NAME_DESCRIPTION
-            + "\nExample: " + COMMAND_WORD + " " + PREFIX_FILE_NAME + "stocks";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_FILE_NAME + PREFIX_FILE_NAME_DESCRIPTION;
 
     public static final char CSV_SEPARATOR = ',';
 
