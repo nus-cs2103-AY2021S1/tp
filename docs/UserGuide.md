@@ -17,6 +17,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   - Exit application `exit`
   - List all projects `listprojects `
   - List all person `listpersons `
+  - Leave a current page `leave`
 
 - **Features in project_list scope**
   - Start working on an existing project `startproject `
@@ -33,13 +34,11 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Filter tasks by various aspects `filtert `
     - View details of a task `viewtask `
     - List all tasks `allt `
-    - Return to project view from task view `leaveTaskView `
   - Teammate related features
     - Create a new teammate in a project `newteammate `
     - Edit a teammate's details `editteammate `
     - View a teammate's details `viewteammate `
     - Delete a teammate `deleteteammate`
-    - Return to project view from teammate view `leaveTeammateView `
     
 - **Features in person_list scope**
   - Start working on an existing person `startperson `
@@ -143,6 +142,14 @@ Format: `listpersons`
 - Lists all persons if there are persons in the catalogue
 
 Example: `listpersons` lists all persons in the catalogue to the user.
+
+### Leave a current page `leave`
+
+Leave the current page and go back to the parent scope (one level up).
+
+Format: `leave`
+- Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope.
+- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect.
 
 # **Features** in project scope
 
