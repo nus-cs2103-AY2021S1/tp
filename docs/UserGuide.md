@@ -300,14 +300,6 @@ Format: `allt `
 
 Example: `allt` displays all tasks in the task list.
 
-### Return to project view from task view `leaveTaskView`
-
-Change the view on the screen to project view, when previously on task view.
-
-Format: `leaveTaskView`
-
-Example: `leaveTaskView` leaves the view of tasks, and reenters the project view.
-
 ## **Teammate** related features
 
 ### Create a new teammate in a project `newteammate`
@@ -360,14 +352,6 @@ View all of a specific teammate's details
 Format: `deleteteammate GIT_USER_NAME`
 
 Example: `deleteteammate Lucas97` deletes the teammate 
-
-### Return to project view from teammate view `leaveTeammateView`
-
-Change the view on the screen to project view, when previously on teammate view.
-
-Format: `leaveTeammateView`
-
-Example: `leaveTeammateView` leaves the view of teammates, and reenters the project view.
 
 # **Features** in person scope
 
