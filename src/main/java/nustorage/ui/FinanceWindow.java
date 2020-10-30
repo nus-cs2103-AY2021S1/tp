@@ -52,7 +52,49 @@ public class FinanceWindow extends UiPart<Region> {
     }
 
     /**
+     * Sets the display for the FinanceWindow tab in the user interface.
+     */
+    public FinanceWindow(Logic logic, String financeId) {
+        super(FXML);
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
+        tableView.getItems().setAll(parseFinanceList(logic, financeId));
+        totalCostCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        idCol.setCellValueFactory(id -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue(String.valueOf(id.getValue().getUiUsableIndex()));
+            return property;
+        });
+        financeIdCol.setCellValueFactory(id -> {
+            SimpleStringProperty property = new SimpleStringProperty();
+            property.setValue(String.valueOf(id.getValue().getID()));
+            return property;
+        });
+    }
+
+    /**
+     * Parses the filtered list in model and finds a finance record that have the same finance ID
+     * as the inventory record.
+     *
+     * @param logic Logic
+     * @return List of Items.
+     */
+    private List<FinanceRecord> parseFinanceList(Logic logic, String financeId) {
+        List<FinanceRecord> list = new ArrayList<>();
+        int index = 0;
+        for (int i = 0; i < logic.getFilteredFinanceList().size(); i++) {
+            if (logic.getFilteredFinanceList().get(i).getID() == Integer.parseInt(financeId)) {
+                logic.getFilteredFinanceList().get(i).setUiUsableIndex(index + 1);
+                list.add(logic.getFilteredFinanceList().get(i));
+            }
+        }
+        return list;
+    }
+
+    /**
      * Parses the filtered list in model to update the indexes and put it into a list.
+     *
      * @param logic Logic
      * @return List of Items.
      */
