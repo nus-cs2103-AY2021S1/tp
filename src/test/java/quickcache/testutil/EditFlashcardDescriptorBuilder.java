@@ -74,8 +74,24 @@ public class EditFlashcardDescriptorBuilder {
         return this;
     }
 
-
     public EditCommand.EditFlashcardDescriptor build() {
         return descriptor;
+    }
+
+    public EditCommand.EditFlashcardDescriptor buildWithNoChoices(){
+        EditCommand.EditFlashcardDescriptor finalDescriptor = new EditCommand.EditFlashcardDescriptor();
+        if (this.descriptor.getQuestion().isPresent()) {
+            finalDescriptor.setQuestion(this.descriptor.getQuestion().get());
+        }
+        if (this.descriptor.getAnswer().isPresent()) {
+            finalDescriptor.setAnswer(this.descriptor.getAnswer().get());
+        }
+        if (this.descriptor.getDifficulty().isPresent()) {
+            finalDescriptor.setDifficulty(this.descriptor.getDifficulty().get());
+        }
+        if (this.descriptor.getTags().isPresent()) {
+            finalDescriptor.setTags(this.descriptor.getTags().get());
+        }
+        return finalDescriptor;
     }
 }
