@@ -23,7 +23,7 @@ public class AddCommand extends CommandForExercise {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_DATE + "DATE "
+            + "[" + PREFIX_DATE + "DATE]"
             + "[" + PREFIX_CALORIES + "CALORIES] "
             + "[" + PREFIX_MUSCLES + "MUSCLES_WORKED] "
             + "[" + PREFIX_TAG + "TAG]...\n"

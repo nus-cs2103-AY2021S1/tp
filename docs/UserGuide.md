@@ -27,8 +27,9 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Calo.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
-
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+   Note how the app contains some sample data.
+    ![Sample UI With Explanation](images/SampleUi.png)
 5. Type the command in the command box and press Enter to execute it. For the details of each command, refer to the Features below.
 
 ---
@@ -36,26 +37,25 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 # 3. Features
 
 <div markdown="block" class="alert alert-info">
+    <b>:information_source: Notes about the command format:</b>
 
-**:information_source: Notes about the command format:**<br>
+    - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
+    e.g. in `add e/EXERCISE c/CALORIES`, `NAME` is a parameter which can be used as `add e/Push Up c/1000`.
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add e/EXERCISE c/CALORIES`, `NAME` is a parameter which can be used as `add e/Push Up c/1000`.
+    - Items in square brackets are optional.  
+    e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
 
-- Items in square brackets are optional.<br>
-  e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
+    - Items with `…`​ after them can be used multiple times including zero times.  
+    e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/gym`, `t/school t/house` etc.
 
-- Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/gym`, `t/school t/house` etc.
-
-- Parameters can be in any order.<br>
-  e.g. if the command specifies `e/EXERCISE c/CALORIES`, `c/CALORIES e/EXERCISE` is also acceptable.
+    - Parameters can be in any order.  
+    e.g. if the command specifies `e/EXERCISE c/CALORIES`, `c/CALORIES e/EXERCISE` is also acceptable.
 
 </div>
 
 ## 3.1. Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message that explans how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -126,7 +126,7 @@ Example:
 
 ## 3.7. Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the Exercise book.
 
 ![clear command message](images/clearCommandMessage.png)
 
@@ -145,13 +145,19 @@ The application will save the data automatically to the default file path after 
 ## 3.10. Archive : `archive`
 Archive the data into a different file location.
 
-Format: `archive FILE_LOCATION`<br>
-The file location takes reference from the home folder that the .jar file is located at.
+Format: `archive f/FILE_LOCATION/FILE_NAME.json`<br>
+The file location takes reference from the home folder that the .jar file is located at, unless absolute filepath is specified.
+
 
 Examples:<br>
-`archive data\file_name.txt`<br>
+`archive f/data\file_name.json`<br>
 
 If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.
+
+<div markdown="block" class="alert alert-info">
+    <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json  
+    <b> Relative Path </b>: Path that are not absolute. E.g. FILE_LOCATION\FILE_NAME.json  
+</div>
 
 #### Add templates : `create`
 Adds an exercise template.
@@ -192,7 +198,7 @@ Example:
 *A*: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
 
 *Q*: How to load my archived file?<br>
-*A*: For now, you can delete the `entry.txt` file in the `data` folder and rename the archived file of your choices to `entry.txt`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
+*A*: For now, you can delete the `testing.json` file in the `data` folder and rename the archived file of your choices to `testing.json`. In subsequent updates, we will introduce a command to load archived files via Command Line Interface.
 
 ---
 
@@ -201,13 +207,13 @@ Example:
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | *Add*    | `add n/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]..` <br> e.g., `add n/running d/10 mins at/31-12-2020 c/100 m/chest,arm t/home t/gym` |
-*Clear* | `clear`
-| *Delete* | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
+| *Clear* | `clear`|
+| *Delete* | `delete INDEX`<br> e.g., `delete 2`     |                                                                                                                              |
 | *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
 | *Find*  | `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
-| *List*   | `list`                                                                                                                                                                |
-| *Archive*   | `archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
-*Help* | `help`
-*Exit* | `exit`
+| *List*   | `list`     |                                                                                                                                                           |
+| *Archive*   | `archive f/FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
+| *Help* | `help`|
+| *Exit* | `exit`|
 | *Recall*   | `recall NAME`
 
