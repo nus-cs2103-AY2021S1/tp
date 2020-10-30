@@ -15,10 +15,14 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 - **Features in global scope**
   - Get help `help` 
   - Exit application `exit`
-  - Start working on an existing project `start `
+  - List all projects `listprojects `
+  - List all person `listpersons `
+  - Leave a current page `leave`
+
+- **Features in project_list scope**
+  - Start working on an existing project `startproject `
   - Add a new project to the catalogue `add `
   - Delete a project from the catalogue `delete `
-  - List all projects `list `
   - Locate projects with matching keywords `find ` 
   - Edit details of a project `edit `
 
@@ -31,13 +35,15 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - List all tasks `alltasks`
     - Sort tasks by various attributes `sort`
     - View details of a task `viewtask `
-    - Return to project view from task view `leaveTaskView `
   - Teammate related features
     - Create a new teammate in a project `newteammate `
     - Edit a teammate's details `editteammate `
     - View a teammate's details `viewteammate `
     - Delete a teammate `deleteteammate`
-    - Return to project view from teammate view `leaveTeammateView `
+    
+- **Features in person_list scope**
+  - Start working on an existing person `startperson `
+    
 - **Summary**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -58,7 +64,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  open the help window.<br>
    Some commands you can try:
 
-   * **`start 1 `** : Opens the first project
+   * **`startproject 1 `** : Opens the first project
 
    * **`exit`** : Exits the app.
 
@@ -89,14 +95,16 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 **:information_source: Notes about scoping:**<br>
 
 The hierarchy of command scoping is as follows:
-* `CATALOGUE` (i.e. global)
-  * `PROJECT`
-    * `TASK`
-    * `Meeting`
-  * `TEAMMATE`
+* global
+    * `PROJECT_LIST`
+      * `PROJECT`
+        * `TASK`
+        * `TEAMMATE`
+    * `PERSON_LIST`
+      * `PERSON`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
-scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
+scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is
 a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
 </div>
@@ -119,15 +127,43 @@ Closes the application for the user.
 
 Format: `exit
 
-### Start work on an existing project `start `
+### List all projects in the catalogue `listprojects`
+
+List all projects currently in the project catalogue
+
+Format: `listprojects`
+- Lists all projects if there are projects in the catalogue
+
+Example: `listprojects` lists all projects in the catalogue to the user.
+
+### List all persons in the catalogue `listpersons`
+
+List all persons currently in the catalogue
+
+Format: `listpersons`
+- Lists all persons if there are persons in the catalogue
+
+Example: `listpersons` lists all persons in the catalogue to the user.
+
+### Leave a current page `leave`
+
+Leave the current page and go back to the parent scope (one level up).
+
+Format: `leave`
+- Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope.
+- If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect.
+
+# **Features** in project scope
+
+### Start work on an existing project `startproject `
 Initialises the project specified.
 
-Format: `start (INDEX)`
+Format: `startproject (INDEX)`
 - Initialises the project at the specified INDEX.
 - The index refers to the index number shown in the displayed project list.
 - The index must be a positive integer 1, 2, 3, …​
 
-Examples: `start 2` Initialises the second project in the project list.
+Examples: `startproject 2` Initialises the second project in the project list.
 
 ### Add a new project to the catalogue `add `
 Adds a project to the project list.
@@ -158,15 +194,6 @@ Format: `delete (INDEX) `
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `delete 2` deletes the second project from the catalogue.
-
-### List all projects in the catalogue `list `
-
-List all projects currently in the project catalogue
-
-Format: `list `
-- Lists all projects if there are projects in the catalogue
-
-Example: `list ` lists all projects in the catalogue to the user.
 
 #### Locate projects by keyword `find `
 
@@ -295,14 +322,6 @@ Format: `viewtask INDEX `
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
 
-### Return to project view from task view `leaveTaskView`
-
-Change the view on the screen to project view, when previously on task view.
-
-Format: `leaveTaskView`
-
-Example: `leaveTaskView` leaves the view of tasks, and reenters the project view.
-
 ## **Teammate** related features
 
 ### Create a new teammate in a project `newteammate`
@@ -356,13 +375,17 @@ Format: `deleteteammate GIT_USER_NAME`
 
 Example: `deleteteammate Lucas97` deletes the teammate 
 
-### Return to project view from teammate view `leaveTeammateView`
+# **Features** in person scope
 
-Change the view on the screen to project view, when previously on teammate view.
+### Start work on an existing person `startperson `
+Initialises the person specified.
 
-Format: `leaveTeammateView`
+Format: `startperson (INDEX)`
+- Initialises the person at the specified INDEX.
+- The index refers to the index number shown in the displayed person list.
+- The index must be a positive integer 1, 2, 3, …​
 
-Example: `leaveTeammateView` leaves the view of teammates, and reenters the project view.
+Examples: `startperson 2` Initialises the second person in the person list.
 
 ## FAQ
 
@@ -376,10 +399,13 @@ Action | Format, Examples | Scope
 --------|------------------|-------
 **Get Help** | `help` | global scope
 **Exit application** | `exit` | global scope
-**Start** | `start INDEX`<br> e.g., `start 3` | global scope
+**Show all projects** | `listprojects` | global scope 
+**Show all persons** | `listpersons` | global scope 
+**Leave a view** | `leave` | global scope
+**Start a project** | `startproject INDEX`<br> e.g., `startproject 3` | project_list scope
+**Start a person** | `startperson INDEX`<br> e.g., `startperson 3` | person_list scope
 **Add** | `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` | global scope
 **Delete project** | `delete INDEX` <br> eg. `delete 2` | global scope
-**Show all projects** | `list` | global scope 
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | global scope
 **edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
 **Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
@@ -389,9 +415,7 @@ Action | Format, Examples | Scope
 **Show all the tasks** | `alltasks` | project scope 
 **Sort tasks ** | `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
-**Leave Task view to go to Project view** | `leavetaskview` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
-**Leave Teammate view to go to Project view** | `leaveteammateview` | project scope
