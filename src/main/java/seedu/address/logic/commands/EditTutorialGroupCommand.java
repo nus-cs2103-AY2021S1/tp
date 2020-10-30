@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
-import java.time.LocalTime;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -13,6 +12,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.tutorialgroup.DayOfWeek;
+import seedu.address.model.tutorialgroup.TimeOfDay;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 
@@ -35,15 +36,15 @@ public class EditTutorialGroupCommand extends Command {
 
     private final Index index;
     private final TutorialGroupId tutorialGroupId;
-    private final String dayOfWeek;
-    private final LocalTime startTime;
-    private final LocalTime endTime;
+    private final DayOfWeek dayOfWeek;
+    private final TimeOfDay startTime;
+    private final TimeOfDay endTime;
 
     /**
      * Edits the selected {@code TutorialGroup}
      */
-    public EditTutorialGroupCommand(Index index, TutorialGroupId tutorialGroupId, String dayOfWeek,
-                                    LocalTime startTime, LocalTime endTime) {
+    public EditTutorialGroupCommand(Index index, TutorialGroupId tutorialGroupId, DayOfWeek dayOfWeek,
+                                    TimeOfDay startTime, TimeOfDay endTime) {
         requireNonNull(index);
         requireNonNull(tutorialGroupId);
 
@@ -69,8 +70,8 @@ public class EditTutorialGroupCommand extends Command {
 
         TutorialGroup tutorialGroupToEdit = model.getFilteredTutorialGroupList().get(index.getZeroBased());
         UniqueStudentList originalStudentList = tutorialGroupToEdit.getUniqueStudentList();
-        TutorialGroup editedTutorialGroup = new TutorialGroup(tutorialGroupId, originalStudentList,
-            dayOfWeek, startTime, endTime);
+        TutorialGroup editedTutorialGroup = new TutorialGroup(tutorialGroupId,
+            dayOfWeek, startTime, endTime, originalStudentList);
 
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
 
