@@ -16,7 +16,7 @@
    --- 4.2.2 [Add a module: `addMod`](#422-add-a-module-addmod)<br>
    --- 4.2.3 [Delete a module: `deleteMod`](#423-delete-a-module-deletemod)<br>
    --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [Edit a module: `editMod` [coming in v1.4]](#425-edit-a-module-editmod-coming-in-v14)<br>
+   --- 4.2.5 [Edit a module: `editMod`](#425-edit-a-module-editmod)<br>
    4.3 [Tutorial group features](#43-tutorial-group-features)<br>
    --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
    --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
