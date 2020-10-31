@@ -157,7 +157,8 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 :information_source:
- * The default value for protein, fats and carbs is 0. The default date is the day in which the food item is added.<br>
+ * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
+ * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
 
 </div>
@@ -275,6 +276,7 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
