@@ -10,13 +10,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-
 public class IngredientCard extends UiPart<Region> {
 
     private static final String FXML = "IngredientCard.fxml";
 
     public final Ingredient ingredient;
-
 
     @FXML
     private Label ingredientName;
@@ -60,19 +58,10 @@ public class IngredientCard extends UiPart<Region> {
             .forEach(this.tagList.getChildren()::add);
     }
 
-
     @Override
     public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-        // instanceof handles nulls
-        if (!(other instanceof IngredientCard)) {
-            return false;
-        }
-        // state check
-        IngredientCard card = (IngredientCard) other;
-        return ingredient.equals(card.ingredient);
+        return other == this
+                || (other instanceof IngredientCard
+                && this.ingredient.equals(((IngredientCard) other).ingredient));
     }
 }
