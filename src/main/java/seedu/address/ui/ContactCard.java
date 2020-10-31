@@ -19,7 +19,7 @@ public class ContactCard extends UiPart<Region> {
 
     public final Contact contact;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label name;
@@ -44,7 +44,12 @@ public class ContactCard extends UiPart<Region> {
         name.setText(contact.getName().fullName);
         email.setText(contact.getEmail().value);
         isImportant.setText(contact.getIsImportantForUi());
-        telegram.setText(contact.getTelegram().get().telegramUsername);
+        if (contact.getTelegram().isPresent()) {
+            telegram.setText(contact.getTelegram().get().telegramUsername);
+        } else {
+            telegram.setText("No telegram");
+        }
+
         contact.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
