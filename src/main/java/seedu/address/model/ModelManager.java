@@ -172,8 +172,6 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-
-
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -282,8 +280,6 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
-
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -310,11 +306,16 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProperty(Property target) {
+        PropertyId propertyId = target.getPropertyId();
+        bidBook.removeBidsByPropertyId(propertyId);
+        meetingBook.removeMeetingsByPropertyId(propertyId);
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void deletePropertyByPropertyId(PropertyId propertyId) {
+        bidBook.removeBidsByPropertyId(propertyId);
+        meetingBook.removeMeetingsByPropertyId(propertyId);
         propertyBook.removePropertyByPropertyId(propertyId);
     }
 
@@ -457,6 +458,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBidder(Bidder target) {
+        bidBook.removeByBidderId(target.getId());
+        meetingBook.removeMeetingByBidderId(target.getId());
         bidderAddressBook.removeBidder(target);
     }
 
@@ -520,6 +523,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSeller(Seller target) {
+        propertyBook.removePropertyBySellerId(target.getId());
         sellerAddressBook.removeSeller(target);
     }
 

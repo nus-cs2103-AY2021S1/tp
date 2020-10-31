@@ -28,7 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * UI component that is displayed. Heavily adapted from https://github.com/AY1920S2-CS2103T-T10-3/main
+ * UI component that is displayed. Adapted from https://github.com/SirGoose3432/javafx-calendar
  */
 public class CalendarView extends UiPart<Region> {
 
@@ -88,8 +88,8 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * It will update the attributes in the class according to the date parse in
-     * @param date the new date
+     * It will update the attributes in the class according to the meetingDate parse in
+     * @param date the new meetingDate
      */
     private void updateDayMonthYear(LocalDate date) {
         this.year = date.getYear();
@@ -167,7 +167,7 @@ public class CalendarView extends UiPart<Region> {
 
 
     /**
-     * Fill up the simulateGridPane[] with the date in order.
+     * Fill up the simulateGridPane[] with the meetingDate in order.
      */
     private void fill() {
         this.thisMonthBalance = findNumberOfDaysInTheMonth();
@@ -229,9 +229,9 @@ public class CalendarView extends UiPart<Region> {
         fill();
         int i = 0;
         this.weekDayGridPane.setBackground(new Background(
-                new BackgroundFill(Color.valueOf("383838"), CornerRadii.EMPTY, Insets.EMPTY)));
+                new BackgroundFill(Color.valueOf("#0f143c"), CornerRadii.EMPTY, Insets.EMPTY)));
         this.dateGridPane.setBackground(new Background(
-                new BackgroundFill(Color.valueOf("383838"), CornerRadii.EMPTY, Insets.EMPTY)));
+                new BackgroundFill(Color.valueOf("#0f143c"), CornerRadii.EMPTY, Insets.EMPTY)));
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 7; col++) {
                 VBox holder = placeHolderForLabel();
@@ -293,10 +293,10 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * generate a new local date according to input new date.
+     * generate a new local meetingDate according to input new meetingDate.
      *
-     * @param value date indicator.
-     * @return a new localDate object with that date.
+     * @param value meetingDate indicator.
+     * @return a new localDate object with that meetingDate.
      */
     private LocalDate getNewDate(int value) {
         if (value <= 31 && value >= 21) {
@@ -331,8 +331,8 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * This method will update the pivotDate to the new active date.
-     * @param date the new pivot date
+     * This method will update the pivotDate to the new active meetingDate.
+     * @param date the new pivot meetingDate
      */
     public void updateActiveDate(LocalDate date) {
         this.pivotDate = date;

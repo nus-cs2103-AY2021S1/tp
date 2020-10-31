@@ -22,9 +22,9 @@ import seedu.address.logic.parser.id.IdParserUtil;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Admin;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Paperwork;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
@@ -64,7 +64,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                     & argMultimap.getValue(PREFIX_MEETING_ENDTIME).isPresent()
             ) {
                 Venue venue = ParserUtil.parseMeetingVenue(argMultimap.getValue(PREFIX_MEETING_VENUE).get());
-                Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_MEETING_DATE).get());
+                MeetingDate meetingDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_MEETING_DATE).get());
                 PropertyId propertyId =
                         IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).get());
                 BidderId bidderId =
@@ -74,15 +74,15 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                 String type = ParserUtil.parseMeetingType(argMultimap.getValue(PREFIX_MEETING_TYPE).get());
                 if (type.contains("p")) {
                     Meeting meeting = new Paperwork(bidderId, propertyId,
-                            date, venue, startTime, endTime);
+                            meetingDate, venue, startTime, endTime);
                     return new AddMeetingCommand(meeting);
                 } else if (type.contains("a")) {
                     Meeting meeting = new Admin(bidderId, propertyId,
-                            date, venue, startTime, endTime);
+                            meetingDate, venue, startTime, endTime);
                     return new AddMeetingCommand(meeting);
                 } else if (type.contains("v")) {
                     Meeting meeting = new Viewing(bidderId, propertyId,
-                            date, venue, startTime, endTime);
+                            meetingDate, venue, startTime, endTime);
                     return new AddMeetingCommand(meeting);
                 }
             }
