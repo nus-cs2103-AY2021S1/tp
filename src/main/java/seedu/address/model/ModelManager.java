@@ -310,11 +310,16 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteProperty(Property target) {
+        PropertyId propertyId = target.getPropertyId();
+        bidBook.removeBidsByPropertyId(propertyId);
+        meetingBook.removeMeetingsByPropertyId(propertyId);
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void deletePropertyByPropertyId(PropertyId propertyId) {
+        bidBook.removeBidsByPropertyId(propertyId);
+        meetingBook.removeMeetingsByPropertyId(propertyId);
         propertyBook.removePropertyByPropertyId(propertyId);
     }
 
