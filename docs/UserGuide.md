@@ -177,7 +177,7 @@ Format: `tag INDEX -t TAG_NAME`
 * Tags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a non-negative integer** 1, 2, 3, …​
 
 </div>
 
@@ -196,7 +196,7 @@ Format: `untag INDEX -t TAG_NAME`
 * Untags `TAG_NAME` for food item at the specified `INDEX`.
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a non-negative integer** 1, 2, 3, …​
 
 </div>
 
@@ -273,7 +273,7 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 :information_source:
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a non-negative integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -298,7 +298,7 @@ Format: `delete INDEX`
 
 * Deletes the food at the specified `INDEX`.
 * The index refers to the index number shown in the displayed food list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a non-negative integer** 1, 2, 3, …​
 
 </div>
 
