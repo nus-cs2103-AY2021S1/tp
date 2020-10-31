@@ -316,6 +316,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPropertyExceptPropertyId(Property property, PropertyId excludedId) {
+        requireAllNonNull(property, excludedId);
+        return propertyBook.hasPropertyExceptPropertyId(property, excludedId);
+    }
+
+    @Override
     public void deleteProperty(Property target) {
         PropertyId propertyId = target.getPropertyId();
         bidBook.removeBidsByPropertyId(propertyId);

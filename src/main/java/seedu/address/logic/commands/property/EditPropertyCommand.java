@@ -82,7 +82,7 @@ public class EditPropertyCommand extends Command {
         Property propertyToEdit = lastShownList.get(index.getZeroBased());
         Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
 
-        if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
+        if (model.hasPropertyExceptPropertyId(editedProperty, propertyToEdit.getPropertyId())) {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
