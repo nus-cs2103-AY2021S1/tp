@@ -290,7 +290,11 @@ blah blah blah blah
 
 
 
+### Statistics feature
 
+This section details the design considerations of the 
+
+TODO: class diagram for the stats class (StatsBox, UsageList, JsonAdaptedUsage, etc)
 
 
 
