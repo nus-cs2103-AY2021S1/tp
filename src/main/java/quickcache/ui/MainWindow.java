@@ -288,6 +288,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             } else if (isOnChangedWindow) {
                 reverseWindowChange();
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
 
             return commandResult;
