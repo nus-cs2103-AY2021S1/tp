@@ -57,11 +57,12 @@ public class ResiReg implements ReadOnlyResiReg {
     }
 
     /**
-     * Sets the semester
-     * @param semester
+     * Updates the semester to a new Semester.
+     * @param newSemester the semester to update to
      */
-    public void setSemester(Semester semester) {
-        this.semester = semester;
+    public void setSemester(Semester newSemester) {
+        semester.setAcademicYear(newSemester.getAcademicYear());
+        semester.setSemesterNumber(newSemester.getSemesterNumber());
         indicateModified();
     }
 
