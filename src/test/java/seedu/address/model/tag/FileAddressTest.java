@@ -26,7 +26,7 @@ class FileAddressTest {
         String basePathWindows = "C:\\User\\";
         String basePathLinux = "/usr/";
 
-        // Exhaustively check for all possible valid path
+        // Exhaustively check for all possible invalid path
         for (char c : invalidChars) {
             assertThrows(IllegalArgumentException.class, () -> new FileAddress(basePathWindows + c));
             assertThrows(IllegalArgumentException.class, () -> new FileAddress(basePathLinux + c));
