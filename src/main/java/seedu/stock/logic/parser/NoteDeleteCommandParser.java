@@ -18,6 +18,7 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
     private static final String MESSAGE_INVALID_NOTE_INDEX =
             "Note index must be a valid positive integer.";
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForDeleteNote = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
     private static final Prefix[] invalidPrefixesForDeleteNote =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForDeleteNote);
@@ -25,7 +26,7 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
     @Override
     public NoteDeleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, validPrefixesForDeleteNote);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForDeleteNote)

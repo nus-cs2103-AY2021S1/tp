@@ -13,6 +13,7 @@ import seedu.stock.model.stock.SerialNumber;
 
 public class NoteViewCommandParser implements Parser<NoteViewCommand> {
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForNoteView = { PREFIX_SERIAL_NUMBER };
     private static final Prefix[] invalidPrefixesForNoteView =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNoteView);
@@ -20,7 +21,7 @@ public class NoteViewCommandParser implements Parser<NoteViewCommand> {
     @Override
     public NoteViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, validPrefixesForNoteView);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteView)

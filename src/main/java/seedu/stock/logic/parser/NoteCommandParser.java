@@ -14,6 +14,7 @@ import seedu.stock.model.stock.SerialNumber;
 
 public class NoteCommandParser implements Parser<NoteCommand> {
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForNote = { PREFIX_NOTE, PREFIX_SERIAL_NUMBER };
     private static final Prefix[] invalidPrefixesForNote =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNote);
@@ -21,7 +22,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
     @Override
     public NoteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, validPrefixesForNote);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNote)
