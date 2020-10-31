@@ -19,8 +19,6 @@ import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 @JsonRootName(value = "deliverybook")
 public class JsonSerializableDeliveryBook {
 
-    public static final String MESSAGE_DUPLICATE_ITEM = "Delivery list contains duplicate delivery(s).";
-
     private final List<JsonAdaptedDelivery> deliveries = new ArrayList<>();
 
     /**
@@ -49,9 +47,6 @@ public class JsonSerializableDeliveryBook {
         DeliveryBook deliveryBook = new DeliveryBook();
         for (JsonAdaptedDelivery jsonAdaptedDelivery : deliveries) {
             Delivery delivery = jsonAdaptedDelivery.toModelType();
-            if (deliveryBook.hasDelivery(delivery)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ITEM);
-            }
             deliveryBook.addDelivery(delivery);
         }
         return deliveryBook;

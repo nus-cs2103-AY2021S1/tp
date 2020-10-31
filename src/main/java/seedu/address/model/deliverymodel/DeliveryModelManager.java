@@ -96,12 +96,6 @@ public class DeliveryModelManager implements DeliveryModel {
     }
 
     @Override
-    public boolean hasDelivery(Delivery delivery) {
-        requireNonNull(delivery);
-        return deliveryBook.hasDelivery(delivery);
-    }
-
-    @Override
     public void deleteDelivery(Delivery target) {
         deliveryBook.removeDelivery(target);
     }

@@ -70,11 +70,6 @@ public class DeliveryModelManagerTest {
     }
 
     @Test
-    public void hasDelivery_nullDelivery_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasDelivery(null));
-    }
-
-    @Test
     public void getFilteredDeliveryList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(
                 UnsupportedOperationException.class, () -> modelManager.getFilteredAndSortedDeliveryList().remove(0));

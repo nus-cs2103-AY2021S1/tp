@@ -52,11 +52,6 @@ public interface DeliveryModel extends Model {
     void deleteDelivery(Delivery delivery);
 
     /**
-     * Returns true if a delivery with the same identity as {@code delivery} exists in the delivery book.
-     */
-    boolean hasDelivery(Delivery delivery);
-
-    /**
      * Replaces the given delivery {@code target} with {@code editedDelivery}.
      * {@code target} must exist in the delivery book.
      * The delivery identity of {@code editedDelivery} must not
