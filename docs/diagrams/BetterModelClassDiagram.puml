@@ -4,9 +4,9 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniqueAnimalList
-AddressBook *-right-> "1" UniqueMedicalConditionList
-AddressBook *-right-> "1" UniqueFeedTimeList
+ZooKeepBook *-right-> "1" UniqueAnimalList
+ZooKeepBook *-right-> "1" UniqueMedicalConditionList
+ZooKeepBook *-right-> "1" UniqueFeedTimeList
 
 UniqueMedicalConditionList -[hidden]down- UniqueAnimalList
 UniqueFeedTimeList -[hidden]down- UniqueAnimalList
