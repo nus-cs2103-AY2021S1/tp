@@ -42,8 +42,8 @@ public class HelpCommand extends Command {
         var cls = getCommandClassFor(cmd, this.helpTarget.orElse(""));
         if (cls == null) {
             return CommandResult.error("Unknown command '%s'; see the", cmd)
-                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL, /* newline: */ false)
-                .appending("for a list of commands", /* newline: */ false);
+                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#CommandSummary", false)
+                .appending("for a list of commands", false);
         }
 
         var cmdStr = invokeMethod(cls, METHOD_NAME_GET_CMD);
