@@ -30,21 +30,21 @@ public class AddCommand extends Command {
             ParserUtil::parseName
     );
     private OptionalParameter<Protein> proteinParameter = this.addOptionalParameter(
-            "protein value",
+            "protein",
             "p",
             "Protein value of food (g)",
             "10",
             ParserUtil::parseProtein
     );
     private OptionalParameter<Fat> fatParameter = this.addOptionalParameter(
-            "fat value",
+            "fat",
             "f",
             "Fat value of food (g)",
             "10",
             ParserUtil::parseFat
     );
     private OptionalParameter<Carbohydrate> carbParameter = this.addOptionalParameter(
-            "carb value",
+            "carb",
             "c",
             "Carbohydrate value of food (g)",
             "10",
