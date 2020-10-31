@@ -230,14 +230,14 @@ Example: `edit n/Resident Evil project /d new horror` changes the name of the pr
 
 Creates a new task and adds it to the current project.
 
-Format: `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) `
+Format: `addtask (tn/TASK NAME) (tp/TASK PROGRESS) (done/TASK STATUS) (td/TASK DEADLINE) `
   - All fields above are required
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
   - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
 
-Example: `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, is completed, and has a deadline of 29th Feb 2020, midnight.
+Example: `addtask tn/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, is completed, and has a deadline of 29th Feb 2020, midnight.
 
 ### Assign a task to a teammate `assign `
 
