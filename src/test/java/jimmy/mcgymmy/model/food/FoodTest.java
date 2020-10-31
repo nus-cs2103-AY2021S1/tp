@@ -40,7 +40,7 @@ public class FoodTest {
         }
     }
 
-    static void initialiseFoods() throws IllegalValueException{
+    static void initialiseFoods() throws IllegalValueException {
         validFoodName = new Name("test food");
         validFoodName2 = new Name("test food 2");
         protein = new Protein(2);
