@@ -1,10 +1,15 @@
 package seedu.stock.logic.commands;
 
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX_DESCRIPTION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.List;
 import java.util.Optional;
 
+import seedu.stock.commons.core.index.Index;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
@@ -20,12 +25,14 @@ public class NoteDeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a note,"
             + " specified by index of note shown in stock display, or all notes of the stock identified "
             + "by the serial number of the stock.\n"
-            + "Special note index to delete ALL notes from the stock is 0.\n"
-            + "Parameters:\n"
-            + "sn/ [SERIAL NUMBER]\n"
-            + "ni/ [NOTE INDEX]\n"
-            + "Example: " + COMMAND_WORD + " sn/111111"
-            + " ni/1 ";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " "
+            + PREFIX_NOTE_INDEX + PREFIX_NOTE_INDEX_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "ntuc1 "
+            + PREFIX_NOTE_INDEX + "1";
 
     private static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note(s) from Stock: %1$s";
     private static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND =
@@ -34,7 +41,7 @@ public class NoteDeleteCommand extends Command {
     private static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
 
     private final SerialNumber serialNumber;
-    private final int index;
+    private final Index index;
 
     /**
      * Constructs a NoteDeleteCommand
@@ -45,7 +52,7 @@ public class NoteDeleteCommand extends Command {
         requireAllNonNull(serialNumber, index);
 
         this.serialNumber = serialNumber;
-        this.index = index;
+        this.index = Index.fromOneBased(index);
     }
 
     /**
@@ -79,7 +86,7 @@ public class NoteDeleteCommand extends Command {
             throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
         }
 
-        if (index > stockToDeleteNote.get().getNotes().size()) {
+        if (index.getOneBased() > stockToDeleteNote.get().getNotes().size()) {
             throw new CommandException(MESSAGE_INVALID_NOTE_INDEX);
         }
 
@@ -96,7 +103,7 @@ public class NoteDeleteCommand extends Command {
      * @param index The index of note to delete from stock.
      * @return The stock with updated attributes.
      */
-    private static Stock createStockWithDeletedNote(Stock stockToDeleteNote, int index) {
+    private static Stock createStockWithDeletedNote(Stock stockToDeleteNote, Index index) {
         assert stockToDeleteNote != null;
         Stock stockWithDeletedNote = stockToDeleteNote.deleteNote(index);
 

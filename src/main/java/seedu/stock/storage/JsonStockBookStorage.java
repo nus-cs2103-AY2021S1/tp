@@ -53,7 +53,6 @@ public class JsonStockBookStorage implements StockBookStorage {
         try {
             return Optional.of(jsonStockBook.get().toModelType());
         } catch (IllegalValueException ive) {
-            System.out.println("failed here");
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }

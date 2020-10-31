@@ -53,6 +53,7 @@ import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -163,6 +164,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateStatisticsSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case TabCommand.COMMAND_WORD:
+            generateTabSuggestion(toBeDisplayed);
+            break;
+
         case FindCommand.COMMAND_WORD:
             generateFindSuggestion(toBeDisplayed, argMultimap);
             break;
@@ -218,6 +223,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         toBeDisplayed.append(CommandWords.CLEAR_COMMAND_WORD);
 
         generateBodyMessage(toBeDisplayed, ClearCommand.MESSAGE_USAGE);
+    }
+
+    /**
+     * Generates suggestion for faulty tab command.
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     */
+    private void generateTabSuggestion(StringBuilder toBeDisplayed) {
+        toBeDisplayed.append(CommandWords.CLEAR_COMMAND_WORD);
+
+        generateBodyMessage(toBeDisplayed, TabCommand.MESSAGE_USAGE);
     }
 
     /**

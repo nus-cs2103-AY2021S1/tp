@@ -10,6 +10,7 @@ import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.StockBookParser;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -40,7 +41,7 @@ public class LogicManager implements Logic {
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException,
-            SourceCompanyNotFoundException {
+            SourceCompanyNotFoundException, SerialNumberNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
@@ -80,5 +81,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public Model getModel() {
+        return model;
     }
 }
