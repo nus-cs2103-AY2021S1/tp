@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
+import java.util.Iterator;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -16,6 +18,8 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.property.Property;
 
 /**
  * Adds a meeting to the meeting book.
@@ -56,11 +60,44 @@ public class AddMeetingCommand extends Command {
     }
 
 
+    /**
+     * Checks if the property id for the meeting to be added exists in the property book.
+     * @param model Contains the property book.
+     * @return True if property id exists in the property book.
+     */
+    public boolean checkPid(Model model) {
+        Iterator<Property> propLs = model.getFilteredPropertyList().iterator();
+        while (propLs.hasNext()) {
+            if (toAdd.getPropertyId().equals(propLs.next().getPropertyId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if the bidder id for the meeting to be added exists in the bidder book.
+     * @param model Contains the bidder book.
+     * @return True if bidder id exists in the bidder book.
+     */
+    public boolean checkBid(Model model) {
+        Iterator<Bidder> bidLs = model.getFilteredBidderList().iterator();
+        while (bidLs.hasNext()) {
+            if (toAdd.getBidderId().equals(bidLs.next().getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_MEETING);
+        }
+        if (!checkBid(model) || !checkPid(model)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ID);
         }
 
         model.addMeeting(toAdd);

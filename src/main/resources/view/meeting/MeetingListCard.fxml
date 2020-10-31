@@ -112,7 +112,7 @@
                                        </ImageView>
                                     </graphic>
                                  </Label>
-                                    <Label fx:id="date" styleClass="cell_small_label" text="\$date" GridPane.rowIndex="1">
+                                    <Label fx:id="meetingDate" styleClass="cell_small_label" text="\$meetingDate" GridPane.rowIndex="1">
                                     <graphic>
                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                           <image>

@@ -25,7 +25,7 @@ public class Messages {
     // ------------------------- MEETING -------------------------
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";
     public static final String MESSAGE_MEETINGS_LISTED_OVERVIEW = "%1$d meetings listed!";
-
+    public static final String MESSAGE_INVALID_ID = "Either the bidder or the property id does not exist!";
     public static final String MESSAGE_DUPLICATE_MEETING = "An identical meeting already exists in the meeting book";
 
 

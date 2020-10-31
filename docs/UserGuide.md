@@ -561,7 +561,7 @@ add-m q/v b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
 
 💡 t/VENUE indicates the venue of the meeting.
 
-💡 t/DATE indicates the date of the meeting.
+💡 t/DATE indicates the meetingDate of the meeting.
 
 Expected Output:
 
@@ -591,7 +591,7 @@ add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
 
 💡 t/VENUE indicates the venue of the meeting.
 
-💡 t/DATE indicates the date of the meeting.
+💡 t/DATE indicates the meetingDate of the meeting.
 
 Expected Output:
 
@@ -621,7 +621,7 @@ add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
 
 💡 t/VENUE indicates the venue of the meeting.
 
-💡 t/DATE indicates the date of the meeting.
+💡 t/DATE indicates the meetingDate of the meeting.
 
 Expected Output:
 

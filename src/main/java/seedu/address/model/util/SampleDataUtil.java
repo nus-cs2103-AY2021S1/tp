@@ -18,9 +18,9 @@ import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.meeting.Admin;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Paperwork;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
@@ -166,13 +166,13 @@ public class SampleDataUtil {
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
             new Paperwork(new BidderId("B1"), new PropertyId("P2"),
-                        new Date("15 OCT 2020"), new Venue("Marina Bay"),
+                        new MeetingDate("15 OCT 2020"), new Venue("Marina Bay"),
                     new StartTime("12:00"), new EndTime("13:00")),
             new Admin(new BidderId("B5"), new PropertyId("P6"),
-                        new Date("19 OCT 2020"), new Venue("Bedok"),
+                        new MeetingDate("19 OCT 2020"), new Venue("Bedok"),
                     new StartTime("14:00"), new EndTime("15:00")),
             new Viewing(new BidderId("B11"), new PropertyId("P8"),
-                        new Date("21 OCT 2020"), new Venue("Tampines"),
+                        new MeetingDate("21 OCT 2020"), new Venue("Tampines"),
                     new StartTime("16:00"), new EndTime("17:00"))
         };
     }

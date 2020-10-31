@@ -3,15 +3,17 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.EndTime;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 import seedu.address.model.person.Name;
@@ -25,9 +27,10 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATE = "Date is not in valid format. dd-MM-yyy";
-    public static final String MESSAGE_INVALID_STARTTIME = "Start time is not in valid format. hh:mm";
-    public static final String MESSAGE_INVALID_ENDTIME = "End time is not in valid format. hh:mm";
+    public static final String MESSAGE_INVALID_DATE = "Meeting Date is not in valid format. dd-MM-yyy";
+    public static final String MESSAGE_INVALID_DATE_CURRENT = "Meeting Date keyed in has passed or is invalid.";
+    public static final String MESSAGE_INVALID_STARTTIME = "Start time is not in valid format. HH:mm";
+    public static final String MESSAGE_INVALID_ENDTIME = "End time is not in valid format. HH:mm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -114,18 +117,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code date}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code date} is invalid.
-     */
-    public static Date parseMeetingTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedTime = time.trim();
-        return new Date(trimmedTime);
-    }
-
-    /**
      * Parses a {@code String type} into a {@code type}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -138,18 +129,22 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code date} into an {@code Date} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code meetingDate} into an {@code MeetingDate} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
-     * @throws ParseException if the format of date is wrong.
+     * @throws ParseException if the format of meetingDate is wrong.
      */
-    public static Date parseDate(String date) throws ParseException {
+    public static MeetingDate parseDate(String date) throws ParseException {
         String trimmedTime = date.trim();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            java.util.Date dateObject = formatter.parse(trimmedTime);
+            Date dateObject = formatter.parse(trimmedTime);
+            Date currentActualDate = Calendar.getInstance().getTime();
+            if (dateObject.before(currentActualDate)) {
+                throw new ParseException(MESSAGE_INVALID_DATE_CURRENT);
+            }
             String dateString = formatter.format(dateObject);
-            return new Date(dateString);
+            return new MeetingDate(dateString);
         } catch (java.text.ParseException e) {
             throw new ParseException(MESSAGE_INVALID_DATE);
         }
