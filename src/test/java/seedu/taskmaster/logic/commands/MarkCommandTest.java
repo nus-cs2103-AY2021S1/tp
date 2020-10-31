@@ -16,8 +16,8 @@ import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.SessionName;
-import seedu.taskmaster.model.student.Student;
 
 
 public class MarkCommandTest {
@@ -27,26 +27,34 @@ public class MarkCommandTest {
     @Test
     public void execute_markPresentWithValidIndex_success() {
         model.changeSession(new SessionName("Typical session"));
+        StudentRecord firstStudentRecord = model
+                .getFilteredStudentRecordList()
+                .get(INDEX_FIRST_STUDENT.getZeroBased());
+
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.changeSession(new SessionName("Typical session"));
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_STUDENT, AttendanceType.PRESENT);
-        expectedModel.markStudent(firstStudent, AttendanceType.PRESENT);
+        expectedModel.markStudentRecord(firstStudentRecord, AttendanceType.PRESENT);
+
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_STUDENT_SUCCESS,
-                firstStudent, AttendanceType.PRESENT);
+                firstStudentRecord, AttendanceType.PRESENT);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_markAbsentWithValidIndex_success() {
-        Student secondStudent = model.getFilteredStudentList().get(INDEX_SECOND_STUDENT.getZeroBased());
-        MarkCommand markCommand = new MarkCommand(INDEX_SECOND_STUDENT, AttendanceType.ABSENT);
         model.changeSession(new SessionName("Typical session"));
+        StudentRecord secondStudentRecord = model
+                .getFilteredStudentRecordList()
+                .get(INDEX_SECOND_STUDENT.getZeroBased());
+
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.changeSession(new SessionName("Typical session"));
-        expectedModel.markStudent(secondStudent, AttendanceType.ABSENT);
+        MarkCommand markCommand = new MarkCommand(INDEX_SECOND_STUDENT, AttendanceType.ABSENT);
+        expectedModel.markStudentRecord(secondStudentRecord, AttendanceType.ABSENT);
+
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_STUDENT_SUCCESS,
-                secondStudent, AttendanceType.ABSENT);
+                secondStudentRecord, AttendanceType.ABSENT);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 

@@ -129,10 +129,10 @@ public interface Model {
     void updateFilteredSessionList(Predicate<Session> predicate);
 
     /**
-     * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
+     * Marks the attendance of the given student record {@code target} with the given {@code attendanceType}.
      * The student must exist in the student list.
      */
-    void markStudent(Student target, AttendanceType attendanceType);
+    void markStudentRecord(StudentRecord target, AttendanceType attendanceType);
 
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
 

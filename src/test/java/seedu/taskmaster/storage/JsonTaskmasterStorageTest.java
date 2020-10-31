@@ -70,10 +70,10 @@ public class JsonTaskmasterStorageTest {
     @Test
     public void readAndSaveTaskmaster_allInOrder_success() throws Exception {
         Path taskmasterFilePath = testFolder.resolve("TempTaskmaster.json");
-        Path sessionlistFilePath = testFolder.resolve("TempSessionList.json");
+        Path sessionListFilePath = testFolder.resolve("TempSessionList.json");
         Taskmaster original = getTypicalTaskmaster();
         JsonTaskmasterStorage jsonTaskmasterStorage = new JsonTaskmasterStorage(taskmasterFilePath,
-                sessionlistFilePath);
+                sessionListFilePath);
 
         // Save in new file and read back
         jsonTaskmasterStorage.saveTaskmaster(original, taskmasterFilePath);
@@ -100,9 +100,6 @@ public class JsonTaskmasterStorageTest {
         assertThrows(NullPointerException.class, () -> saveTaskmaster(null, "SomeFile.json", "SessionList.json"));
     }
 
-    /**
-     * Saves {@code taskmaster} at the specified {@code taskmasterFilePath}.
-     */
     private void saveTaskmaster(ReadOnlyTaskmaster taskmaster, String taskmasterFilePath, String sessionListFilePath) {
         try {
             new JsonTaskmasterStorage(Paths.get(taskmasterFilePath), Paths.get(sessionListFilePath))
@@ -114,6 +111,7 @@ public class JsonTaskmasterStorageTest {
 
     @Test
     public void saveTaskmaster_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveTaskmaster(new Taskmaster(), null, null));
+        assertThrows(NullPointerException.class, () -> saveTaskmaster(new Taskmaster(), "SomeFile.json", null));
+        assertThrows(NullPointerException.class, () -> saveTaskmaster(new Taskmaster(), null, "SessionList.json"));
     }
 }

@@ -52,7 +52,7 @@ class JsonSerializableSessionList {
         for (JsonSerializableSession jsonSerializableSession : sessions) {
             Session session = jsonSerializableSession.toModelType();
 
-            if (sessionList.contains(session)) {
+            if (sessionList.contains(session.getSessionName())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SESSION);
             }
             sessionList.add(session);

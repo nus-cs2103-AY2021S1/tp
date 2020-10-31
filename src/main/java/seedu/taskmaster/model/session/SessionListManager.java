@@ -124,4 +124,11 @@ public class SessionListManager implements SessionList {
     public Iterator<Session> iterator() {
         return internalList.iterator();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SessionListManager // instanceof handles nulls
+                && internalList.equals(((SessionListManager) other).internalList));
+    }
 }
