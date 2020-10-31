@@ -36,6 +36,10 @@ Given below are my contributions to the project.
 * **Project management**:
   * Ensured team meetings cover the requirements for the week.
   
+* **UI**: 
+  * Created base light theme for Warenager.
+  * Added tabbing feature.
+  
 * **Testing**:
   * Created unit tests for `delete`, `stats`, `clear` and `tab` parsers.
   * Created unit tests for `delete`, `stats` and `clear` features.
