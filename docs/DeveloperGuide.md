@@ -432,4 +432,129 @@ should be able to accomplish most of the tasks faster using commands than using 
 
 ## **Appendix: Instructions for manual testing**
 
-Coming soon.
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+
+### Launch and shutdown
+
+1. Initial launch
+
+   1. Download the jar file and copy into an empty folder.
+
+   2. Launch the app by using the `java -jar` command (do not use double-clicking). Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
+
+1. Saving window preferences
+
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+   2. Re-launch the app by using the `java -jar` command.<br>
+      Expected: The most recent window size and location is retained.
+      
+      
+ ### Listing all active clients
+ 
+ 1. Listing all active clients
+ 
+    1. Prerequisites: At least one active client (for easier comparison).
+ 
+    2. Test case: `list`<br>
+       Expected: All active clients listed. Success message shown. "Active Client List" is shown below the success message.
+       
+       ![List All Active Clients](images/listAllActiveClients.png)
+ 
+ 
+### Listing all archived clients
+ 
+ 1. Listing all archived clients
+ 
+    1. Prerequisites: At least one archived client (for easier comparison). See [Archiving a Client](#archiving-a-client) for details on how to archive a client.
+ 
+    2. Test case: `list r/`<br>
+       Expected: All archived clients listed. Success message shown. "Archived Client List" is shown below the success message.
+       
+       ![List All Archived Clients](images/listAllArchivedClients.png)
+
+### Archiving a client
+
+1. Archiving a client while active clients are being shown
+
+   1. Prerequisites: List all active clients (see [List Active Clients](#listing-all-active-clients)). At least one active client.
+
+   2. Test case: `archive 1`<br>
+      Expected: 
+      First client is archived, and is no longer shown in the active list. Details of the archived client shown in the status message.
+      Upon listing all archived clients (see [List Archived Clients](#listing-all-archived-clients)), the archived client can be seen.
+
+   3. Test case: `archive 0`<br>
+      Expected: No client is archived. Error details shown in the status message.
+
+   4. Other incorrect archive commands to try: `archive`, `archive x`, `...` (where x is larger than the active list size)<br>
+      Expected: Similar to previous.
+
+
+### Unarchiving a client
+
+1. Unarchiving a client while archived clients are being shown
+
+   1. Prerequisites: List all archived clients (see [List Archived Clients](#listing-all-archived-clients)). At least one archived client.
+
+   2. Test case: `unarchive 1`<br>
+      Expected: 
+      First client is unarchived, and is no longer shown in the archive. Details of the unarchived client shown in the status message.
+      Upon listing all active clients (see [List Active Clients](#listing-all-active-clients)), the unarchived client can be seen.
+
+   3. Test case: `unarchive 0`<br>
+      Expected: No client is unarchived. Error details shown in the status message.
+
+   4. Other incorrect unarchive commands to try: `unarchive`, `unarchive x`, `...` (where x is larger than the archive size)<br>
+      Expected: Similar to previous.
+
+
+### Deleting a client
+
+1. Deleting a client while active clients are being shown
+
+   1. Prerequisites: List all active clients (see [List Active Clients](#listing-all-active-clients)). At least one active client.
+
+   2. Test case: `delete 1`<br>
+      Expected: 
+      First client is deleted, and is no longer shown in the active list. Details of the deleted client shown in the status message.
+      
+   3. Test case: `delete 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the active list size)<br>
+      Expected: Similar to previous.
+   
+   5. Another similar test to try: Deleting a client while archived clients are being shown
+     
+
+### Displaying help
+ 
+ 1. Displaying help
+ 
+    1. Prerequisites: Internet access.
+
+    2. Test case: `help`<br>
+       Expected: Success message shown. Also shows a popup explaining how to access the help page (User Guide). The URL can be copied with "Copy URL".
+       
+       ![help message](images/helpMessage.png)
+       
+       Upon pasting the URL into the browser, the help page is displayed.
+       
+     
+**TO UPDATE BELOW**
+
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
