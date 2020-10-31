@@ -25,7 +25,8 @@ public class DeleteBidderCommand extends Command {
             + "\n\nParameters: \nINDEX (must be a positive integer)\n"
             + "\n\nExample: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_BIDDER_SUCCESS = "Deleted Bidder: %1$s";
+    public static final String MESSAGE_DELETE_BIDDER_SUCCESS = "Deleted Bidder: %1$s"
+            + "\nAll related bids and meetings have been deleted.";
 
     private final Index targetIndex;
 

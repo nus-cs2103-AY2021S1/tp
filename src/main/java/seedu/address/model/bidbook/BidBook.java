@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.UniqueBidList;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 public class BidBook implements ReadOnlyBidBook {
 
@@ -56,6 +58,15 @@ public class BidBook implements ReadOnlyBidBook {
     }
 
     /**
+     * Removes bid that corresponds with the bidder id.
+     *
+     * @param bidderId The bidder id specified.
+     */
+    public void removeByBidderId(BidderId bidderId) {
+        listOfBids.removeByBidderId(bidderId);
+    }
+
+    /**
      * checks if the listOfBods contains the specified bid
      * @param bid bid to be compared to the list
      * @return boolean value if the bid is in the list
@@ -80,6 +91,15 @@ public class BidBook implements ReadOnlyBidBook {
      */
     public void removeBid(Bid key) {
         listOfBids.remove(key);
+    }
+
+    /**
+     * Removes all bids with the specified propertyId.
+     *
+     * @param propertyId The propertyId of the property to be deleted.
+     */
+    public void removeBidsByPropertyId(PropertyId propertyId) {
+        listOfBids.removeByPropertyId(propertyId);
     }
 
     @Override
