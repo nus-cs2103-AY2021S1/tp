@@ -2,9 +2,15 @@ package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION_DESCRIPTION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE_DESCRIPTION;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
@@ -17,17 +23,20 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a stock to the stock book.\n"
-            + "Parameters: (any combination, in any order, of the following four fields)\n"
-            + PREFIX_NAME + "NAME "
-            + PREFIX_SOURCE + "SOURCE "
-            + PREFIX_QUANTITY + "QUANTITY "
-            + PREFIX_LOCATION + "LOCATION\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Umbrella "
-            + PREFIX_SOURCE + "Kc company "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a new stock into the inventory.\n"
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_NAME + PREFIX_NAME_DESCRIPTION + " "
+            + PREFIX_SOURCE + PREFIX_SOURCE_DESCRIPTION + " "
+            + PREFIX_QUANTITY + PREFIX_QUANTITY_DESCRIPTION + " "
+            + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + " "
+            + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_NAME + "Banana cake "
+            + PREFIX_SOURCE + "Fairprice "
             + PREFIX_QUANTITY + "100 "
-            + PREFIX_LOCATION + "section B ";
+            + PREFIX_LOCATION + "Food section ";
 
     public static final String MESSAGE_SUCCESS = "New stock added: %1$s";
     public static final String MESSAGE_DUPLICATE_STOCK = "This stock already exists in the stock book";
