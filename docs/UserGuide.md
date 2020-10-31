@@ -701,9 +701,10 @@ Examples:
 
 * `importantcontact 2` mark the second contact in the list as `Important`.
 
+
 #### Resetting contacts: `resetcontact`
 
-Removes a contact's impotant mark and replaces it with `Not Important` (default).
+Removes a contact's important mark and replaces it with `Not Important` (default).
 
 Format: `resetcontact` `INDEX`
 
@@ -716,6 +717,17 @@ Examples:
 * `resetcontact 1` marks the first contact in the list as `Not Important`.
 
 * `resetcontact 2` mark the second contact in the list as `Not Important`.
+
+
+#### Clearing the contact list: `clearcontact`
+
+Clears all contacts in the contact list.
+
+Format: `clearcontact`
+
+* _**Tips :**_ If you accidentally cleared the whole contact list, you can always use the `undo` command
+  to restore the list.
+
 
 ### CAP Calculator features
 

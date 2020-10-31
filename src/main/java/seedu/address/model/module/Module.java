@@ -195,6 +195,16 @@ public class Module {
     }
 
     /**
+     * Returns true if this module contains the specified module lesson.
+     *
+     * @param lesson The specified module lesson.
+     * @return True if this module contains the module lesson, false otherwise.
+     */
+    public boolean containsLesson(ModuleLesson lesson) {
+        return this.zoomLinks.containsKey(lesson);
+    }
+
+    /**
      * Adds the zoom link to this module for a specific lesson.
      *
      * @param lesson Module lesson which the zoom link belongs to.
@@ -216,6 +226,19 @@ public class Module {
     public Module deleteZoomLink(ModuleLesson lesson) {
         Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
         updatedLinks.remove(lesson);
+        return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
+    }
+
+    /**
+     * Edits the zoom link of the specified module lesson in this module.
+     *
+     * @param lesson Module lesson which contains the zoom link to be edited.
+     * @param editedLink Edited zoom link.
+     * @return Module containing the updated zoom links.
+     */
+    public Module editZoomLink(ModuleLesson lesson, ZoomLink editedLink) {
+        Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.replace(lesson, editedLink);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
