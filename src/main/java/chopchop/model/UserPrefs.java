@@ -10,12 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import chopchop.commons.core.GuiSettings;
-import chopchop.commons.util.FileUtil;
-import chopchop.commons.util.Result;
-import chopchop.ui.UiManager;
-import javafx.application.Platform;
-import javafx.scene.control.Alert.AlertType;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -26,6 +20,12 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+
+import chopchop.commons.core.GuiSettings;
+import chopchop.commons.util.FileUtil;
+import chopchop.commons.util.Result;
+import chopchop.ui.UiManager;
+import javafx.scene.control.Alert.AlertType;
 
 
 /**
@@ -45,8 +45,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private PathWithFallback ingredientUsageFilePath = new PathWithFallback(
         Paths.get("data" , "ingredientusage.json"));
-
-
 
 
     /**
@@ -240,6 +238,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      *
      * This is required so that, in the event we end up using a temp folder, we won't
      * save the path temp folder to the user preferences.
+     *
+     * We are using a custom json serialiser and deserialiser so that the 'usingFallback'
+     * option is saved -- since we always want to assume that the normal path is good to
+     * begin with.
      */
     @JsonDeserialize(using = PathWithFallbackDeserialiser.class)
     private static class PathWithFallback extends JsonSerializable.Base {
@@ -274,6 +276,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         PathWithFallback useFallback() {
             this.usingFallback = true;
             return this;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            } else if (!(obj instanceof PathWithFallback)) {
+                return false;
+            }
+
+            var other = (PathWithFallback) obj;
+            return this.normal.equals(other.normal)
+                && this.fallback.equals(other.fallback)
+                && this.usingFallback == other.usingFallback;
         }
 
         @Override

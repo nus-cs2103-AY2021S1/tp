@@ -3,9 +3,8 @@ package chopchop.storage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.logging.Logger;
 
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ReadOnlyUserPrefs;
@@ -20,7 +19,8 @@ import chopchop.model.usage.RecipeUsage;
  * Manages storage of IngredientBook and RecipeBook data in local storage.
  */
 public class StorageManager implements Storage {
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+    private static final Log logger = new Log(StorageManager.class);
+
     private final IngredientBookStorage ingredientBookStorage;
     private final RecipeBookStorage recipeBookStorage;
     private final UsageStorage<RecipeUsage> recipeUsageStorage;
@@ -77,7 +77,7 @@ public class StorageManager implements Storage {
      */
     @Override
     public Optional<ReadOnlyEntryBook<Recipe>> readRecipeBook(Path filePath) throws DataConversionException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.debug("Attempting to read data from file '%s'", filePath);
         return this.recipeBookStorage.readRecipeBook(filePath);
     }
 
@@ -99,7 +99,7 @@ public class StorageManager implements Storage {
      */
     @Override
     public Optional<ReadOnlyEntryBook<Ingredient>> readIngredientBook(Path filePath) throws DataConversionException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.debug("Attempting to read data from file '%s'", filePath);
         return this.ingredientBookStorage.readIngredientBook(filePath);
     }
 
@@ -117,7 +117,7 @@ public class StorageManager implements Storage {
      */
     @Override
     public void saveIngredientBook(ReadOnlyEntryBook<Ingredient> ingredientBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.debug("Attempting to write to data file '%s'", filePath);
         this.ingredientBookStorage.saveIngredientBook(ingredientBook, filePath);
     }
 
@@ -135,7 +135,7 @@ public class StorageManager implements Storage {
      */
     @Override
     public void saveRecipeBook(ReadOnlyEntryBook<Recipe> recipeBook, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.debug("Attempting to write to data file: '%s'", filePath);
         this.recipeBookStorage.saveRecipeBook(recipeBook, filePath);
     }
 
@@ -151,7 +151,7 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<UsageList<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException {
-        logger.fine("Attempting to read data from file: " + filePath);
+        logger.debug("Attempting to read data from file '%s'", filePath);
         return this.recipeUsageStorage.readUsages(filePath);
     }
 
@@ -162,7 +162,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveRecipeUsages(UsageList<RecipeUsage> usages, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.debug("Attempting to write to data file '%s'", filePath);
         this.recipeUsageStorage.saveUsages(usages, filePath);
     }
 
@@ -188,7 +188,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveIngredientUsages(UsageList<IngredientUsage> usages, Path filePath) throws IOException {
-        logger.fine("Attempting to write to data file: " + filePath);
+        logger.debug("Attempting to write to data file '%s'", filePath);
         this.ingredientUsageStorage.saveUsages(usages, filePath);
     }
 }

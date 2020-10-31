@@ -2,14 +2,11 @@
 
 package chopchop.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import chopchop.MainApp;
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
@@ -28,7 +25,7 @@ public class UiManager implements Ui {
     private static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
     private static final String APPLICATION_ICON = "/images/chopchop.png";
 
-    private static final Logger logger = LogsCenter.getLogger(UiManager.class);
+    private static final Log logger = new Log(UiManager.class);
     private static final List<DummyAlert> startupAlerts = new ArrayList<>();
 
 
@@ -47,7 +44,7 @@ public class UiManager implements Ui {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting UI...");
+        logger.log("Starting UI...");
 
         //Set the application icon.
         primaryStage.getIcons().add(this.getImage(APPLICATION_ICON));
@@ -62,7 +59,7 @@ public class UiManager implements Ui {
             }
 
         } catch (Throwable e) {
-            logger.severe(StringUtil.getDetails(e));
+            logger.error("Initialisation error: %s", StringUtil.getDetails(e));
             this.showFatalErrorDialogAndShutdown("Fatal error during initialisation", e);
         }
     }
@@ -106,7 +103,7 @@ public class UiManager implements Ui {
      * and exits the application after the user has closed the alert dialog.
      */
     private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
-        logger.severe(title + " " + e.getMessage() + StringUtil.getDetails(e));
+        logger.error("Fatal error: %s, %s, %s", title, e.getMessage(), StringUtil.getDetails(e));
 
         this.displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();

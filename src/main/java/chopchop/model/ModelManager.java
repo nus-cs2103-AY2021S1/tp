@@ -8,10 +8,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
@@ -24,7 +23,7 @@ import javafx.collections.transformation.FilteredList;
  * Represents the in-memory model of the recipe and ingredient book data.
  */
 public class ModelManager implements Model {
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final Log logger = new Log(ModelManager.class);
 
     private final UserPrefs userPrefs;
     private final EntryBook<Recipe> recipeBook;
@@ -43,14 +42,16 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(recipeBook, ingredientBook, userPrefs);
 
-        logger.fine("Initializing with recipe book: " + recipeBook + ", ingredient book: " + ingredientBook
-                + " and user prefs " + userPrefs);
+        logger.debug("recipe book: %s", recipeBook);
+        logger.debug("ingredient book: %s", ingredientBook);
+        logger.debug("user prefs: %s", userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.recipeBook = new EntryBook<>(recipeBook);
         this.ingredientBook = new EntryBook<>(ingredientBook);
         this.filteredRecipes = new FilteredList<>(this.recipeBook.getEntryList());
         this.filteredIngredients = new FilteredList<>(this.ingredientBook.getEntryList());
+
         this.recipeUsageList = recipeUsageList;
         this.ingredientUsageList = ingredientUsageList;
     }

@@ -6,9 +6,8 @@ import static java.util.Objects.requireNonNull;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.logging.Logger;
 
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.FileUtil;
@@ -17,7 +16,7 @@ import chopchop.model.UsageList;
 import chopchop.model.usage.RecipeUsage;
 
 public class JsonRecipeUsageStorage implements UsageStorage<RecipeUsage> {
-    private static final Logger logger = LogsCenter.getLogger(JsonIngredientUsageStorage.class);
+    private static final Log logger = new Log(JsonRecipeUsageStorage.class);
 
     private final Path filePath;
 
@@ -51,7 +50,7 @@ public class JsonRecipeUsageStorage implements UsageStorage<RecipeUsage> {
         try {
             return Optional.of(jsonUsageList.get().toModelType());
         } catch (IllegalValueException e) {
-            logger.info(e.getMessage());
+            logger.warn("json error ('%s'): %s", filePath, e.getMessage());
             throw new DataConversionException(e);
         }
     }

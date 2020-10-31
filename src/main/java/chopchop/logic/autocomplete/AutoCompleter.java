@@ -11,10 +11,9 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.parser.ArgName;
@@ -26,7 +25,7 @@ import chopchop.model.Model;
 
 public class AutoCompleter {
 
-    private static final Logger logger = LogsCenter.getLogger(AutoCompleter.class);
+    private static final Log logger = new Log(AutoCompleter.class);
 
     private int lastCompletionIndex = 0;
     private List<String> lastViableCompletions = null;
@@ -73,56 +72,73 @@ public class AutoCompleter {
 
         var args = res.getValue();
         var req = getRequiredCompletion(args, orig);
-        logger.info(String.format("completing: %s", req));
+        logger.debug(String.format("completing: %s", req));
 
-
+        var result = "";
         switch (req) {
 
         case COMMAND_NAME:
-            return completeCommand(args, orig, /* nested: */ false);
+            result = completeCommand(args, orig, /* nested: */ false);
+            break;
 
         case TARGET_NAME:
-            return completeTarget(args, orig, /* nested: */ false);
+            result = completeTarget(args, orig, /* nested: */ false);
+            break;
 
         case NESTED_COMMAND_NAME:
-            return completeCommand(args, orig, /* nested: */ true);
+            result = completeCommand(args, orig, /* nested: */ true);
+            break;
 
         case NESTED_TARGET_NAME:
-            return completeTarget(args, orig, /* nested: */ true);
+            result = completeTarget(args, orig, /* nested: */ true);
+            break;
 
         case ARGUMENT_NAME:
-            return completeArgument(args, orig);
+            result = completeArgument(args, orig);
+            break;
 
         case RECIPE_NAME: // fallthrough
         case RECIPE_NAME_IN_ARG:
-            return completeRecipe(req, model, args, orig);
+            result = completeRecipe(req, model, args, orig);
+            break;
 
         case INGREDIENT_NAME: // fallthrough
         case INGREDIENT_NAME_IN_ARG:
-            return completeIngredient(req, model, args, orig);
+            result = completeIngredient(req, model, args, orig);
+            break;
 
         case COMPONENT_NAME:
-            return completeArgComponent(args, orig);
+            result = completeArgComponent(args, orig);
+            break;
 
         case TAG_NAME:
-            return completeTag(model, args, orig);
+            result = completeTag(model, args, orig);
+            break;
 
         case STATS_RECIPE_KIND_NAME:
-            return completeStatsKind(args, orig, statsRecipeKinds, /* nested: */ false);
+            result = completeStatsKind(args, orig, statsRecipeKinds, /* nested: */ false);
+            break;
 
         case STATS_INGREDIENT_KIND_NAME:
-            return completeStatsKind(args, orig, statsIngredientKinds, /* nested: */ false);
+            result = completeStatsKind(args, orig, statsIngredientKinds, /* nested: */ false);
+            break;
 
         case NESTED_STATS_RECIPE_KIND_NAME:
-            return completeStatsKind(args, orig, statsRecipeKinds, /* nested: */ true);
+            result = completeStatsKind(args, orig, statsRecipeKinds, /* nested: */ true);
+            break;
 
         case NESTED_STATS_INGREDIENT_KIND_NAME:
-            return completeStatsKind(args, orig, statsIngredientKinds, /* nested: */ true);
+            result = completeStatsKind(args, orig, statsIngredientKinds, /* nested: */ true);
+            break;
 
         case NONE: // fallthrough
         default:
-            return orig;
+            result = orig;
+            break;
         }
+
+        logger.debug("completion: %s", result);
+        return result;
     }
 
 
