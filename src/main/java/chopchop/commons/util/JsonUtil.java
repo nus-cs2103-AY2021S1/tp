@@ -40,8 +40,8 @@ public class JsonUtil {
 
     static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
         var str = toJsonString(objectToSerialize);
-        if (!str.endsWith("\n")) {
-            str += "\n";
+        if (!str.endsWith(String.format("%n"))) {
+            str += String.format("%n");
         }
 
         FileUtil.writeToFile(jsonFile, str);
