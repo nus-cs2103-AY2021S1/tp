@@ -15,9 +15,9 @@ public class SortCommand extends Command {
     public static final String PRICE = "p";
 
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the current select menu. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the current selected menu. "
             + "Parameters: "
-            + " Sort by Price or Quantity "
+            + " Sort by Name or Price "
             + " [Ascending / Descending]";
 
     public static final String MESSAGE_SUCCESS = "Menu successfully sorted!";
