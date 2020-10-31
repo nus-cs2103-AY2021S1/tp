@@ -29,17 +29,18 @@ public class SampleDataUtil {
         Choice choice8 = new Choice("pepsi");
         return new Flashcard[]{
             new Flashcard(new OpenEndedQuestion("Complete the following sentence. "
-                    + "National University of ______ . (ans: Singapore)",
+                    + "National University of ______ . (Try sample ans: Singapore)",
                     new Answer("Singapore")
             ), getTagSet("OEQ", "General"), new Difficulty("low")),
-            new Flashcard(new MultipleChoiceQuestion("All mammals need ______ to survive. (option: 2)",
+            new Flashcard(new MultipleChoiceQuestion("All mammals need ______ to survive. "
+                    + "(Try sample option: 2)",
                     new Answer("oxygen"),
                     choice5,
                     choice6,
                     choice7,
                     choice8
             ), getTagSet("MCQ", "Biology"), new Difficulty("Medium")),
-            new Flashcard(new MultipleChoiceQuestion("What is CS2103? (option: 1)",
+            new Flashcard(new MultipleChoiceQuestion("What is CS2103? (Try sample option: 1)",
                     new Answer("Software Engineering module for NUS students"),
                     choice1,
                     choice2,
