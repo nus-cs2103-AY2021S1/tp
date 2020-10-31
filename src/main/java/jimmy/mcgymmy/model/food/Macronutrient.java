@@ -4,12 +4,12 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    public static final String MESSAGE_CONSTRAINTS = "values should only contain positive numbers";
+    public static final String MESSAGE_CONSTRAINTS =
+            "values should only contain positive numbers that is smaller than 2^31";
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
     private final int amount;
     private final int caloricMultiplier;
     private final int totalCalories;
-    private String type;
 
     /**
      * Represents macronutrients of 3 types
