@@ -5,7 +5,8 @@ title: Wincent's Project Portfolio Page
 
 ## Project: Inventory Book (OneShelf)
 
-OneShelf is an app designed to automate the managing of stock inventory for business owners which translates to savings in man-hours and minimal losses due to over stocking.
+OneShelf is an app designed as a one-stop platform for restaurant managers to handle their management needs such as having efficient inventory management 
+and up-to-date information on pending deliveries, which translates to savings in man-hours and minimal losses due to over stocking.
 
 Given below are my contributions to the project.
 
