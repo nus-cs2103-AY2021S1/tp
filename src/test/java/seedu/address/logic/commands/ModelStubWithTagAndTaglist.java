@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.explorer.CurrentPath;
 import seedu.address.model.explorer.FileList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.exceptions.DuplicateTagException;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 public class ModelStubWithTagAndTaglist extends ModelStub {
     private final List<Tag> tags;
@@ -31,6 +33,21 @@ public class ModelStubWithTagAndTaglist extends ModelStub {
     @Override
     public void deleteTag(Tag tag) {
         tags.remove(tag);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        int index = tags.indexOf(target);
+
+        if (index == -1) {
+            throw new TagNotFoundException();
+        }
+
+        if (!target.isSameTag(editedTag) && tags.contains(editedTag)) {
+            throw new DuplicateTagException();
+        }
+
+        tags.set(index, editedTag);
     }
 
     @Override
