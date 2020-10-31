@@ -72,9 +72,6 @@ public class UnlabelCommand extends Command {
         Tag tagToChange = tagList.get(0);
         FileAddress fileAddress = tagToChange.getFileAddress();
 
-        // Deletes the current tag from the model
-        model.deleteTag(tagToChange);
-
         // Deletes all the matching labels
         Set<Label> editedLabel = tagToChange.getLabels().stream()
                 .filter(label -> {
@@ -87,10 +84,10 @@ public class UnlabelCommand extends Command {
                 })
                 .collect(Collectors.toSet());
 
-        Tag editedTag = new Tag(tagName, fileAddress, editedLabel);
+        Tag newTag = new Tag(tagName, fileAddress, editedLabel);
 
-        // Adds the edited tag to the model
-        model.addTag(editedTag);
+        // Changes the old tag to the edited tag
+        model.setTag(tagToChange, newTag);
 
         model.commitAddressBook();
 
@@ -104,7 +101,7 @@ public class UnlabelCommand extends Command {
             return new CommandResult(builder.toString());
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedTag));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newTag));
 
     }
 

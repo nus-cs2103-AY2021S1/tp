@@ -34,7 +34,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Tags in the {@code toBeCopied}
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
@@ -44,8 +44,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the tag list with {@code tags}.
+     * {@code tags} must not contain duplicate tags.
      */
     public void setTags(List<Tag> tags) {
         this.tags.setTags(tags);
@@ -71,22 +71,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a tag to the address book.
+     * The tag must not already exist in the address book.
      */
     public void addTag(Tag p) {
         tags.add(p);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * Replaces the given tag {@code target} in the list with {@code editedTag}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The tag identity of {@code editedTag} must not be the same as another existing tag in the address book.
      */
-    public void setTag(Tag target, Tag editedPerson) {
-        requireNonNull(editedPerson);
+    public void setTag(Tag target, Tag editedTag) {
+        requireNonNull(editedTag);
 
-        tags.setTag(target, editedPerson);
+        tags.setTag(target, editedTag);
     }
 
     /**
