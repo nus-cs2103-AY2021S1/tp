@@ -35,7 +35,7 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label propertyId;
     @FXML
-    private Label date;
+    private Label meetingDate;
     @FXML
     private Label venue;
     @FXML
@@ -53,7 +53,7 @@ public class MeetingCard extends UiPart<Region> {
         typeOfMeeting.setText(getMeetingType(meeting));
         bidderId.setText("Bidder ID: " + meeting.getBidderId().toString());
         propertyId.setText("Property ID: " + meeting.getPropertyId().toString());
-        date.setText("Date: " + meeting.getDate().date);
+        meetingDate.setText("Date: " + meeting.getMeetingDate().date);
         venue.setText("Venue: " + meeting.getVenue().venue);
         startTime.setText("Start Time: " + meeting.getStartTime().startTime);
         endTime.setText("End Time: " + meeting.getEndTime().endTime);

@@ -18,7 +18,7 @@ public class Meeting {
     protected boolean isAdmin;
     protected final BidderId bidderId;
     protected final PropertyId propertyId;
-    protected final Date date;
+    protected final MeetingDate meetingDate;
     protected final Venue venue;
     protected final StartTime startTime;
     protected final EndTime endTime;
@@ -27,12 +27,12 @@ public class Meeting {
     /**
      * Every field must be present and not null.
      */
-    public Meeting(BidderId bidderId, PropertyId propertyId, Date date, Venue venue,
+    public Meeting(BidderId bidderId, PropertyId propertyId, MeetingDate meetingDate, Venue venue,
                    StartTime startTime, EndTime endTime) {
-        requireAllNonNull(bidderId, propertyId, date, venue, startTime, endTime);
+        requireAllNonNull(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         this.bidderId = bidderId;
         this.propertyId = propertyId;
-        this.date = date;
+        this.meetingDate = meetingDate;
         this.venue = venue;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -63,16 +63,16 @@ public class Meeting {
      * Creates the type of meeting based on the meeting type.
      * @return Meeting of the specific meeting type.
      */
-    public Meeting createMeeting(String type, BidderId bidderId, PropertyId propertyId, Date date, Venue venue,
-                                 StartTime startTime, EndTime endTime) {
+    public Meeting createMeeting(String type, BidderId bidderId, PropertyId propertyId, MeetingDate meetingDate,
+                                 Venue venue, StartTime startTime, EndTime endTime) {
         if (type.equalsIgnoreCase("Paperwork")) {
-            return new Paperwork(bidderId, propertyId, date, venue, startTime, endTime);
+            return new Paperwork(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         } else if (type.equalsIgnoreCase("Admin")) {
-            return new Admin(bidderId, propertyId, date, venue, startTime, endTime);
+            return new Admin(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         } else if (type.equalsIgnoreCase("Viewing")) {
-            return new Viewing(bidderId, propertyId, date, venue, startTime, endTime);
+            return new Viewing(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         } else {
-            return new Meeting(bidderId, propertyId, date, venue, startTime, endTime);
+            return new Meeting(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         }
     }
 
@@ -91,10 +91,10 @@ public class Meeting {
     }
 
     /**
-     * Getter for the date associated with the meeting.
+     * Getter for the meetingDate associated with the meeting.
      */
-    public Date getDate() {
-        return this.date;
+    public MeetingDate getMeetingDate() {
+        return this.meetingDate;
     }
 
     /**
@@ -140,7 +140,7 @@ public class Meeting {
     }
 
     /**
-     * Returns true if either the venue, date, bidderId and propertyId is the same.
+     * Returns true if either the venue, meetingDate, bidderId and propertyId is the same.
      *
      * @param other The other property.
      * @return True if both property objects represent the same meeting.
@@ -151,7 +151,7 @@ public class Meeting {
                 || (other instanceof Meeting // instanceof handles nulls
                 && this.bidderId.equals(((Meeting) other).getBidderId())
                 && this.propertyId.equals(((Meeting) other).getPropertyId())
-                && this.date.equals(((Meeting) other).getDate())
+                && this.meetingDate.equals(((Meeting) other).getMeetingDate())
                 && this.venue.equals(((Meeting) other).getVenue())
                 && this.startTime.equals(((Meeting) other).getStartTime())
                 && this.endTime.equals(((Meeting) other).getEndTime())); // state check
@@ -160,8 +160,7 @@ public class Meeting {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(checkMeetingType());
-
+        builder.append("\nMeeting Type:" + checkMeetingType());
         builder.append("\nBidder Id: ")
                 .append(getBidderId())
                 .append("\nProperty Id: ")
@@ -169,7 +168,7 @@ public class Meeting {
                 .append("\nVenue: ")
                 .append(getVenue())
                 .append("\nDate: ")
-                .append(getDate())
+                .append(getMeetingDate())
                 .append("\nStart Time: ")
                 .append(getStartTime())
                 .append("\nEnd Time: ")

@@ -7,9 +7,9 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Admin;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Paperwork;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
@@ -37,7 +37,7 @@ public class JsonAdaptedMeeting {
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("propertyId") String propertyId, @JsonProperty("bidderId") String bidderId,
-                              @JsonProperty("date") String date, @JsonProperty("venue") String venue,
+                              @JsonProperty("meetingDate") String date, @JsonProperty("venue") String venue,
                               @JsonProperty("typeOfMeeting") String typeOfMeeting,
                               @JsonProperty("startTime") String startTime,
                               @JsonProperty("endTime") String endTime) {
@@ -56,7 +56,7 @@ public class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Meeting source) {
         propertyId = source.getPropertyId().toString();
         bidderId = source.getBidderId().toString();
-        date = source.getDate().date;
+        date = source.getMeetingDate().date;
         venue = source.getVenue().venue;
         typeOfMeeting = source.checkMeetingType();
         startTime = source.getStartTime().startTime;
@@ -91,12 +91,12 @@ public class JsonAdaptedMeeting {
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Date.class.getSimpleName()));
+                    MeetingDate.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date)) {
+        if (!seedu.address.model.meeting.MeetingDate.isValidDate(date)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Date modelDate = new Date(date);
+        final MeetingDate modelMeetingDate = new MeetingDate(date);
 
         if (venue == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -126,11 +126,14 @@ public class JsonAdaptedMeeting {
         final EndTime modelEndTime = new EndTime(endTime);
 
         if (typeOfMeeting.contains("Paperwork")) {
-            return new Paperwork(modelBidderId, modelPropertyId, modelDate, modelVenue, modelStartTime, modelEndTime);
+            return new Paperwork(modelBidderId, modelPropertyId, modelMeetingDate,
+                    modelVenue, modelStartTime, modelEndTime);
         } else if (typeOfMeeting.contains("Viewing")) {
-            return new Viewing(modelBidderId, modelPropertyId, modelDate, modelVenue, modelStartTime, modelEndTime);
+            return new Viewing(modelBidderId, modelPropertyId, modelMeetingDate,
+                    modelVenue, modelStartTime, modelEndTime);
         } else if (typeOfMeeting.contains("Admin")) {
-            return new Admin(modelBidderId, modelPropertyId, modelDate, modelVenue, modelStartTime, modelEndTime);
+            return new Admin(modelBidderId, modelPropertyId, modelMeetingDate,
+                    modelVenue, modelStartTime, modelEndTime);
         } else {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Meeting.class.getSimpleName()));

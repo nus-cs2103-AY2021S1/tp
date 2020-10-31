@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Meeting's Date in the Meeting book.
+ * Represents a Meeting's MeetingDate in the Meeting book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
  */
 public class StartTime {

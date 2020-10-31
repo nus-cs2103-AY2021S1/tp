@@ -3,25 +3,25 @@ package seedu.address.model.meeting;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Meeting}'s {@code Date} matches any of the keywords given.
+ * Tests that a {@code Meeting}'s {@code MeetingDate} matches any of the keywords given.
  */
 public class DateContainsKeywordsPredicate implements Predicate<Meeting> {
-    private final Date date;
+    private final MeetingDate meetingDate;
 
-    public DateContainsKeywordsPredicate(Date date) {
-        this.date = date;
+    public DateContainsKeywordsPredicate(MeetingDate meetingDate) {
+        this.meetingDate = meetingDate;
     }
 
     @Override
     public boolean test(Meeting meeting) {
-        return meeting.getDate().equals(date);
+        return meeting.getMeetingDate().equals(meetingDate);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateContainsKeywordsPredicate // instanceof handles nulls
-                && date.equals(((DateContainsKeywordsPredicate) other).date)); // state check
+                && meetingDate.equals(((DateContainsKeywordsPredicate) other).meetingDate)); // state check
     }
 
 }
