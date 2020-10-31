@@ -18,12 +18,14 @@ public class Email {
             + "The domain name must:\n"
             + "    - be at least 2 characters long\n"
             + "    - start and end with alphanumeric characters\n"
-            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
+            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any."
+            + "3. Email should not be more than 50 characters in length.";
     // alphanumeric and special characters
     private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
     private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
     private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
+    private static final Integer MAX_EMAIL_LENGTH = 50;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
@@ -44,7 +46,8 @@ public class Email {
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX)
+            && test.length() <= MAX_EMAIL_LENGTH;
     }
 
     @Override
