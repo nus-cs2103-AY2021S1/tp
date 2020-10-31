@@ -778,7 +778,7 @@ clear
 <div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning: Warning for clearing data**<br>
-`clear` is an irreversible process. Do backup the data it might be needed again.
+`clear` is an irreversible process. Do backup the data it if might be needed again.
 
 </div>
 
