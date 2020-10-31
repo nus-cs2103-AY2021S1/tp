@@ -4,7 +4,7 @@ title: Warenager
 ---
 
 [![CI Status](https://github.com/AY2021S1-CS2103T-T15-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T15-3/tp/actions)
-[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-T15-3/tp//branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-T15-3/tp/actions)
+[![codecov](https://codecov.io/gh/AY2021S1-CS2103T-T15-3/tp//branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-T15-3/tp)
 
 **Warenager** is an **inventory application** to help tech-savvy warehouse managers
 to keep track of items in their warehouse. It **optimizes management tasks for warehouse
@@ -14,7 +14,7 @@ via Command Line Interface (CLI).
 ## User interface
 ![Ui](images/Ui.png)
 
-  Example usages:
+Example usages:
   * as an inventory manager (as opposed to physical tracking of your stocks on paper)
   * as a locator for items in inventory
 
