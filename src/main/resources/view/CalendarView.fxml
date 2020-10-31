@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="calenderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="calenderPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <GridPane fx:id="monthYearGridPane" alignment="CENTER" prefHeight="73.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <columnConstraints>
@@ -22,7 +22,7 @@
             <children>
                 <Text fx:id="monthYearText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
-                  <Font name="DengXian Light" size="22.0" />
+                  <Font name="Ubuntu Mono" size="22.0" />
                </font></Text>
                 <Button fx:id="leftButton" mnemonicParsing="false" onAction="#handleToPrev" text="PREV" textAlignment="CENTER" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                     <GridPane.margin>

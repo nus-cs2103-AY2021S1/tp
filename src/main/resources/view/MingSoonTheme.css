@@ -5,25 +5,20 @@
     -fx-background-color: #535386;
 }
 
-.personAndBidTab-pane {
-}
-
-.outerpersonAndBidTab-pane {
-}
-
 .innerCommandBox {
     -fx-background-color: #0f143c;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-border-color: white;
     -fx-border-width: 3px;
+    -fx-font-family: "Ubuntu Mono";
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
 .commandBox-TextField {
     -fx-background-insets: 0;
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Ubuntu Mono";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -34,7 +29,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #3d3770;/*black*/
+    -fx-background-color: black;
     -fx-border-color: transparent;
     -fx-background-radius: 0 ;
 }
@@ -46,7 +41,7 @@
 
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Ubuntu Mono";
     -fx-font-size: 10pt;
     -fx-text-fill: #90EE90;
     -fx-border-color: transparent;

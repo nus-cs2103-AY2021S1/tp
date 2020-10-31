@@ -16,7 +16,7 @@
     <TabPane fx:id="tabBar" stylesheets="@TabPane.css" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="propertyTab" text="Property Tab">
             <graphic>
-                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="32.5" fitWidth="32.5" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../images/property_icon.png" />
                 </ImageView>
             </graphic>
@@ -30,7 +30,7 @@
 
         <Tab fx:id="bidderTab" text="Bidder Tab">
             <graphic>
-                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="32.5" fitWidth="32.5" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../images/bidder_icon.png" />
                 </ImageView>
             </graphic>
@@ -46,7 +46,7 @@
 
         <Tab fx:id="sellerTab" text="Seller Tab">
             <graphic>
-                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="32.5" fitWidth="32.5" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../images/seller_icon.png" />
                 </ImageView>
             </graphic>
@@ -62,7 +62,7 @@
 
         <Tab fx:id="bidTab" text="Bid Tab">
             <graphic>
-                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="32.5" fitWidth="32.5" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../images/bid_icon.png" />
                 </ImageView>
             </graphic>
