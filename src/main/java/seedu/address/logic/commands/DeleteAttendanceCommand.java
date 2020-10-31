@@ -59,20 +59,22 @@ public class DeleteAttendanceCommand extends Command {
         }
 
         Student studentToDeleteAttendance = lastShownList.get(index.getZeroBased());
+        Student studentWithDeletedAttendance = lastShownList.get(index.getZeroBased());
         for (int i : weeksToDelete) {
             String weekNum = String.valueOf(i);
             try {
-                studentToDeleteAttendance.getAttendance().deleteAttendance(weekNum);
+                studentWithDeletedAttendance.getAttendance().deleteAttendance(weekNum);
             } catch (IllegalArgumentException e) {
                 throw new CommandException(e.getMessage());
             }
         }
 
+        model.setStudent(studentToDeleteAttendance, studentWithDeletedAttendance);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(
                 MESSAGE_DELETE_ATTENDANCE_SUCCESS,
-                studentToDeleteAttendance.getName().fullName,
-                studentToDeleteAttendance.getAttendance().listOutAttendedWeeks())
+                studentWithDeletedAttendance.getName().fullName,
+                studentWithDeletedAttendance.getAttendance().listOutAttendedWeeks())
         );
     }
 

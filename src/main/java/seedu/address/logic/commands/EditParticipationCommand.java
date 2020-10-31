@@ -58,18 +58,20 @@ public class EditParticipationCommand extends Command {
         }
 
         Student studentToEditParticipation = lastShownList.get(index.getZeroBased());
+        Student studentWithEditedParticipation = lastShownList.get(index.getZeroBased());
         try {
-            studentToEditParticipation.getAttendance().editParticipation(score);
+            studentWithEditedParticipation.getAttendance().editParticipation(score);
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
         }
 
+        model.setStudent(studentToEditParticipation, studentWithEditedParticipation);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(
                 MESSAGE_EDIT_PARTICIPATION_SUCCESS,
-                studentToEditParticipation.getName().fullName,
-                studentToEditParticipation.getAttendance().getParticipationScoreAsString(),
-                studentToEditParticipation.getAttendance().getMaxParticipationScore())
+                studentWithEditedParticipation.getName().fullName,
+                studentWithEditedParticipation.getAttendance().getParticipationScoreAsString(),
+                studentWithEditedParticipation.getAttendance().getMaxParticipationScore())
         );
     }
 

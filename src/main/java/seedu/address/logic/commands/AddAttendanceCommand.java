@@ -59,20 +59,22 @@ public class AddAttendanceCommand extends Command {
         }
 
         Student studentToAddAttendance = lastShownList.get(index.getZeroBased());
+        Student studentWithAddedAttendance = lastShownList.get(index.getZeroBased());
         for (int i : weeksToAdd) {
             String weekNum = String.valueOf(i);
             try {
-                studentToAddAttendance.getAttendance().addAttendance(weekNum);
+                studentWithAddedAttendance.getAttendance().addAttendance(weekNum);
             } catch (IllegalArgumentException e) {
                 throw new CommandException(e.getMessage());
             }
         }
 
+        model.setStudent(studentToAddAttendance, studentWithAddedAttendance);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(
                 MESSAGE_ADD_ATTENDANCE_SUCCESS,
-                studentToAddAttendance.getName().fullName,
-                studentToAddAttendance.getAttendance().listOutAttendedWeeks())
+                studentWithAddedAttendance.getName().fullName,
+                studentWithAddedAttendance.getAttendance().listOutAttendedWeeks())
         );
     }
 
