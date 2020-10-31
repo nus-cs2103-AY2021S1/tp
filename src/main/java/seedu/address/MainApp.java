@@ -119,7 +119,7 @@ public class MainApp extends Application {
         try {
             if (!FileUtil.isFileExists(storage.getPresetManagerFilePath())) {
                 storage.savePresetManager(new ArrayList<>(new ArrayList<>()));
-            };
+            }
         } catch (IOException e) {
             logger.warning("Something unexpected occurred!");
             assert false;
