@@ -59,16 +59,6 @@ public class EventName {
         }
     }
 
-    public boolean containsAnyPart(EventName eventName) {
-        String eventThisName = this.name;
-        String eventOtherName = eventName.getName();
-        if (eventThisName.contains(eventOtherName)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public int hashCode() {
         return this.name.hashCode();

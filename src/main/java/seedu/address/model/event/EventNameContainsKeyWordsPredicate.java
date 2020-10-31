@@ -1,11 +1,9 @@
 package seedu.address.model.event;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 public class EventNameContainsKeyWordsPredicate implements Predicate<Event> {
     private final List<String> keywords;

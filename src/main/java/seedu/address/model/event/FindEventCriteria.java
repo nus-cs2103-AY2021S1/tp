@@ -1,8 +1,5 @@
 package seedu.address.model.event;
 
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.FindContactCriteria;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;

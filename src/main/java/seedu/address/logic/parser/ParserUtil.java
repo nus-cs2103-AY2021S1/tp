@@ -352,6 +352,13 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Returns a LocalDateTime based on the given input.
+     *
+     * @param date date in string.
+     * @return LocalDateTime datetime object.
+     * @throws ParseException when the given string is in the wrong format.
+     */
     public static LocalDateTime parseDate(String date) throws ParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
         try {

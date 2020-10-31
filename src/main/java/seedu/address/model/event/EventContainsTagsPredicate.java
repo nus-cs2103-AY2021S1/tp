@@ -1,19 +1,22 @@
 package seedu.address.model.event;
 
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.ContactContainsTagsPredicate;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.tag.Tag;
 
 public class EventContainsTagsPredicate implements Predicate<Event> {
     /**
      * Tags provided by the user to search for contacts containing a matching tag.
      */
     private final Set<Tag> searchTags;
+
+    /**
+     * Represents the Predicate for Tags.
+     * @param searchTags the tags to search for.
+     */
     public EventContainsTagsPredicate(Set<Tag> searchTags) {
         assert !searchTags.isEmpty() : "At least one search tag must be present";
         this.searchTags = searchTags;

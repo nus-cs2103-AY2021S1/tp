@@ -1,22 +1,26 @@
 package seedu.address.logic.parser.schedulerparsers;
 
-import seedu.address.logic.commands.schedulercommands.FindEventCommand;
-import seedu.address.logic.parser.*;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.contact.ContactContainsTagsPredicate;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
-import seedu.address.model.event.EventContainsDatePredicate;
-import seedu.address.model.event.EventContainsTagsPredicate;
-import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
-import seedu.address.model.event.FindEventCriteria;
-import seedu.address.model.tag.Tag;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.logic.commands.schedulercommands.FindEventCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventContainsDatePredicate;
+import seedu.address.model.event.EventContainsTagsPredicate;
+import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
+import seedu.address.model.event.FindEventCriteria;
+import seedu.address.model.tag.Tag;
 
 public class FindEventParser implements Parser<FindEventCommand> {
     @Override

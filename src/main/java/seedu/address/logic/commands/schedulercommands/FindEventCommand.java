@@ -1,5 +1,8 @@
 package seedu.address.logic.commands.schedulercommands;
 
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -7,13 +10,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
 import seedu.address.model.event.FindEventCriteria;
-
-import java.util.function.Predicate;
-import java.util.logging.Logger;
 
 public class FindEventCommand extends Command {
 
@@ -28,6 +26,10 @@ public class FindEventCommand extends Command {
 
     private final Predicate<Event> predicate;
 
+    /**
+     * Represents the command container for the find event command.
+     * @param predicate the searching criteria.
+     */
     public FindEventCommand(FindEventCriteria predicate) {
         logger.info("The find event command is being executed");
         this.predicate = predicate.getFindEventPredicate();
