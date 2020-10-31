@@ -30,7 +30,7 @@ Thus, we recommend you to start by first understanding how McGymmy works at a hi
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
+:bulb: **Tip:** Press `Ctrl-F` for Windows and Other OSs and `CMD + F` for Mac OS to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
 
@@ -81,7 +81,7 @@ Each of the commands explained below will have an image which shows the output.
 ![Usage](images/CommandImagesForUG/Usage.png)
 
 If you are just looking for a particular command:
-1. Press `ctrl-f` 
+1. Press `Ctrl-F` for Windows and other operating systems, `CMD + F` for Mac OS.
 1. Search for the command in the search bar.
 
 If you want a table with all the commands:
@@ -145,13 +145,14 @@ Examples:
 
 You can add a food item to McGymmy.
 
-Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`
+Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]`
 
 Examples:
 * `add -n potato -p 100 -c 5 -f 0`
 * `add -n McSpicy`
 * `add -n Wonton Mee -c 10`
 * `add -n Sushi -d 20/04/2020`
+* `add -n Burger -t FastFood`
 
 <div markdown="block" class="alert alert-info">
 
@@ -177,6 +178,7 @@ Format: `tag INDEX -t TAG_NAME`
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Tags for food items must be less than 20 characters.
 
 </div>
 
@@ -503,6 +505,7 @@ McGymmy's data is saved in the hard disk automatically after any command that ch
 For those who prefer typing:
 1. Use the find command in section `5.5` and add the `-d` tag before specifying a date
 1. You will see the food you ate on that day
+<br>
 For those who prefer clicking:
 1. Click on `date` button at the file menu
 1. Click on the calendar icon
@@ -517,7 +520,7 @@ For those who prefer clicking:
 
 Action       | Format, Examples
 -------------|------------------
-**Add**      | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020`
+**Add**      | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020 -t Lunch`
 **Clear**    | `clear`
 **Delete**   | `delete INDEX`<br> e.g., `delete 3`
 **Edit**     | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
