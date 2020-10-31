@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
  */
 public class Price implements Comparable<Price> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0";
+    public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0 and less than 1 trillion";
 
     public final double price;
 
@@ -31,7 +31,7 @@ public class Price implements Comparable<Price> {
      * Returns true if a given integer is a valid price.
      */
     public static boolean isValidPrice(double test) {
-        return test > 0 && test < Double.MAX_VALUE;
+        return test > 0 && test <= Math.pow(10, 12);
     }
 
     /**
