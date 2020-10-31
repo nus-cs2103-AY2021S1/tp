@@ -522,10 +522,10 @@ Action       | Format, Examples
 **Delete**   | `delete INDEX`<br> e.g., `delete 3`
 **Edit**     | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
 **Exit**     | `exit`
-**Export**   | `import DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`
+**Export**   | `export DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`
 **Find**     | `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]` <br> e.g., `find chicken -t Dinner -d 28-10-2020`
 **Help**     | `help [COMMAND]` <br> e.g., `help add`
-**Import**   | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `import c:/mcgymmy/save_file.json`
+**Import**   | `import [FILEPATH]​` <br> e.g., `import c:/mcgymmy/save_file.json`
 **List**     | `list`
 **Macro**    | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`
 **RemMacro** | `remmacro MACRONAME` <br> e.g., `remmacro lunch`
