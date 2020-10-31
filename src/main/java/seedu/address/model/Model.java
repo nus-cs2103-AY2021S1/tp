@@ -181,7 +181,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addMeeting(Meeting meeting);
+    void addMeeting(Meeting meeting) throws CommandException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

@@ -16,8 +16,8 @@ import seedu.address.model.meeting.Meeting;
 public class TypicalMeeting {
 
     public static final Meeting MEETING01 = new MeetingBuilder().withPropertyId("P1")
-            .withBidderId("B1").withVenue("Alice's Wonderland")
-            .withTime("friends").build();
+            .withBidderId("B1").withVenue("33 Pasir Ris Drive").withTime("03-08-2021")
+            .withStartTime("12:30").withEndTime("15:30").build();
     public static final Meeting MEETING02 = new MeetingBuilder().withPropertyId("P2")
             .withTime("owesMoney").withVenue("Beverly Hills").build();
     public static final Meeting MEETING03 = new MeetingBuilder().withPropertyId("P3")
