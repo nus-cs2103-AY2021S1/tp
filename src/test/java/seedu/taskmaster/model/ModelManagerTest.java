@@ -157,7 +157,7 @@ public class ModelManagerTest {
         modelManager.changeSession(sName);
         modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT);
         assertTrue(s.getStudentRecords().toString().equals("[e0123456|PRESENT|Class Participation Score: 0]"));
-        
+
         modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.ABSENT);
         assertTrue(s.getStudentRecords().toString().equals("[e0123456|ABSENT|Class Participation Score: 0]"));
     }
@@ -167,7 +167,8 @@ public class ModelManagerTest {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        assertThrows(NoSessionException.class, () -> modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
+        assertThrows(NoSessionException.class, () ->
+                modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
 
     @Test
@@ -179,7 +180,8 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
-        assertThrows(NoSessionSelectedException.class, () -> modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
+        assertThrows(NoSessionSelectedException.class, () ->
+                modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
 
     @Test

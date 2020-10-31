@@ -18,7 +18,6 @@ import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.SessionName;
-import seedu.taskmaster.model.student.Student;
 
 
 public class MarkCommandTest {
@@ -53,7 +52,7 @@ public class MarkCommandTest {
         expectedModel.changeSession(new SessionName("Typical session"));
         MarkCommand markCommand = new MarkCommand(INDEX_SECOND_STUDENT, AttendanceType.ABSENT);
         expectedModel.markStudentRecord(secondStudentRecord, AttendanceType.ABSENT);
-        
+
         String expectedMessage = String.format(MarkCommand.MESSAGE_MARK_STUDENT_SUCCESS,
                 secondStudentRecord, AttendanceType.ABSENT);
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
