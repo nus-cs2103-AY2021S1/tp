@@ -30,6 +30,7 @@ import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTutorialGroupCommand;
 import seedu.address.logic.commands.PreviousViewCommand;
+import seedu.address.logic.commands.ViewAttendanceCommand;
 import seedu.address.logic.commands.ViewStudentCommand;
 import seedu.address.logic.commands.ViewTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -134,6 +135,9 @@ public class AddressBookParser {
 
         case EditParticipationCommand.COMMAND_WORD:
             return new EditParticipationCommandParser().parse(arguments);
+
+        case ViewAttendanceCommand.COMMAND_WORD:
+            return new ViewAttendanceCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
