@@ -46,6 +46,7 @@ public class CompleteTaskCommand extends Command {
         Task taskToComplete = lastShownList.get(targetIndex.getZeroBased());
         Task completedTask = taskToComplete.setStatus(Status.COMPLETED);
         model.setTask(taskToComplete, completedTask);
+        model.commitTodoList();
         return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, completedTask));
     }
 

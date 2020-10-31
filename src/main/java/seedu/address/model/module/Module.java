@@ -194,27 +194,27 @@ public class Module {
     }
 
     /**
-     * Adds the zoom link for this module.
+     * Adds the zoom link to this module for a specific lesson.
      *
-     * @param key name to indicate the zoom link
-     * @param link zoom link
-     * @return module containing the updated zoom links
+     * @param lesson Module lesson which the zoom link belongs to.
+     * @param link Zoom link.
+     * @return Module containing the updated zoom links.
      */
-    public Module addZoomLink(String key, ZoomLink link) {
+    public Module addZoomLink(ModuleLesson lesson, ZoomLink link) {
         Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
-        updatedLinks.put(key, link);
+        // updatedLinks.put(lesson, link);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
     /**
      * Deletes the zoom link based on the specified key.
      *
-     * @param key name of the zoom link to be deleted
+     * @param lesson Module lesson which the zoom link to be deleted belongs to.
      * @return module containing the updated zoom links
      */
-    public Module deleteZoomLink(String key) {
+    public Module deleteZoomLink(ModuleLesson lesson) {
         Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
-        updatedLinks.remove(key);
+        // updatedLinks.remove(key);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
@@ -250,7 +250,7 @@ public class Module {
      * @return Module a new module with the assignment added if it is different.
      */
     public Module addAssignment(Assignment assignment) {
-        if (!gradeTracker.isDuplicateAssignment(assignment)) {
+        if (!gradeTracker.containsDuplicateAssignment(assignment)) {
             gradeTracker.addAssignment(assignment);
             return new Module(name, zoomLinks, gradeTracker, tags);
         } else {
@@ -266,6 +266,20 @@ public class Module {
         return Collections.unmodifiableSet(tags);
     }
 
+    /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("TagNotProvided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
     /**
      * Adds a grade to the GradeTracker of the module.
      *
@@ -292,7 +306,6 @@ public class Module {
         return otherModule != null
                 && otherModule.getName().equals(getName());
     }
-
     /**
      * Returns true if module is completed by checking whether the module has a completed tag.
      */
@@ -300,7 +313,15 @@ public class Module {
         return this.tags.stream().map(x -> x.equals(new Tag("completed")))
                 .reduce(false, (x, y) -> x || y);
     }
-
+    /**
+     * Returns true if module has a grade point.
+     */
+    public boolean hasGradePoint() {
+        if (this.gradeTracker.getGradePoint().isPresent()) {
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getAllLinks(),

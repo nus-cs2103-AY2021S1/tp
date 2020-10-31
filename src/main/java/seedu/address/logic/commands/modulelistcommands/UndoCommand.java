@@ -6,6 +6,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.exceptions.VersionedListException;
 
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
@@ -20,7 +21,12 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.undoModuleList();
+        try {
+            model.undo();
+        } catch (VersionedListException versionedListException) {
+            throw new CommandException(versionedListException.getMessage());
+        }
+        //model.undoModuleList();
         return new CommandResult(MESSAGE_UNDO_COMMAND_SUCCESS);
     }
 

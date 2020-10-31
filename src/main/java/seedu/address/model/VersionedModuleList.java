@@ -3,12 +3,15 @@ package seedu.address.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.exceptions.VersionedListException;
+
 public class VersionedModuleList extends ModuleList {
+    private static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
+    private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Module List commands to undo";
     private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
     private int currentStatePointer;
-
     /**
-     * Creates a versioned module list using the module lists in the {@code toBeCopied}
+     * Creates a versioned module list using the module list in the {@code toBeCopied}
      * @param toBeCopied
      */
     public VersionedModuleList(ReadOnlyModuleList toBeCopied) {
@@ -19,7 +22,7 @@ public class VersionedModuleList extends ModuleList {
     /**
      * Saves the current module list state in history.
      */
-    public void commit(ModuleList moduleList) {
+    public void commit(ReadOnlyModuleList moduleList) {
         moduleListStateList.subList(this.currentStatePointer + 1, moduleListStateList.size()).clear();
         moduleListStateList.add(new ModuleList(moduleList));
         this.currentStatePointer += 1;
@@ -28,15 +31,21 @@ public class VersionedModuleList extends ModuleList {
     /**
      * Restores the previous module list state from history.
      */
-    public void undo() {
-        assert !isIndexZero() : "Assertion error, there are no instructions to undo";
+    public void undo() throws VersionedListException {
+        if (isIndexZero()) {
+            throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
+        }
+        //!isIndexZero() : "Assertion error, there are no instructions to undo";
         this.currentStatePointer -= 1;
     }
 
     /**
      * Restores the previously undone module list state from history.
      */
-    public void redo() {
+    public void redo() throws VersionedListException {
+        if (isLastIndex()) {
+            throw new VersionedListException(MESSAGE_NO_REDO_HISTORY);
+        }
         assert !isLastIndex() : "Assertion error, there are no instructions to redo";
         this.currentStatePointer += 1;
     }
