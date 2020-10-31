@@ -116,6 +116,34 @@ Adds a zoom link for a specific lesson to an existing module.
   * `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
    in the displayed module list for the lesson `lecture`.
   
+  
+#### Editing a zoom link of a specific lesson in a module: `editzoom`
+
+Edits a zoom link of a specific lesson in a module.
+
+  Format: `editzoom INDEX n/LESSON_NAME z/EDITED_ZOOM_LINK`
+
+   * Edits the zoom link of the specified `LESSON_NAME` in the module at the specified `INDEX`.
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+      
+   * The index **must be a positive integer** 1, 2, 3...
+   
+   * The edited zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
+     would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
+     
+   <div markdown="block" class="alert alert-info">
+   
+   **:information_source: Note:**<br>
+   This command only allows you to edit the zoom link of an existing lesson in a module, i.e.
+   it does not allow you to edit the name of that lesson.
+   
+   </div>
+     
+  Example:
+  * `editzoom 1 n/tutorial z/https://nus-sg.zoom.us/j/aad83sc63gdy` edits the zoom link of the lesson `tutorial`
+     in the first module to be `https://nus-sg.zoom.us/j/aad83sc63gdy` 
+
 
 #### Deleting a module: `deletemodule`
 
