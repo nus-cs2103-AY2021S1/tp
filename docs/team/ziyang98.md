@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 ### Project Design
 * ** Designed and implemented the model and code structure of the project.
-  * Justifiation: The model and code structure served as initial stages of the project, for example the structure of accounts, entries and the overall app, and
+  * Justification: The model and code structure served as initial stages of the project, for example the structure of accounts, entries and the overall app, and
   became the base foundation of the project. Hence, all the features were implemented based on the model and code structure.
   * Highlights: While the design was inspired by Addressbook-level3 as mentioned below, the implementation was not easy as there is
   a lot of content to be coded and integrated as a whole. Hence, a total of about 2 kLoC was written as the model of the project. 
