@@ -16,144 +16,45 @@ import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class FoodTest {
     public static final String INVALID_FOOD_NAME = "";
+
     private static Name validFoodName;
-
-    static {
-        try {
-            validFoodName = new Name("test food");
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Name validFoodName2;
-
-    static {
-        try {
-            validFoodName2 = new Name("test food 2");
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Protein protein;
-
-    static {
-        try {
-            protein = new Protein(2);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Protein protein1;
-
-    static {
-        try {
-            protein1 = new Protein(3);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Carbohydrate carbohydrate;
-
-    static {
-        try {
-            carbohydrate = new Carbohydrate(3);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Carbohydrate carbohydrate1;
-
-    static {
-        try {
-            carbohydrate1 = new Carbohydrate(4);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Fat fat;
-
-    static {
-        try {
-            fat = new Fat(4);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Fat fat1;
-
-    static {
-        try {
-            fat1 = new Fat(5);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Food comparedFood;
-
-    static {
-        try {
-            comparedFood = new Food(validFoodName, protein, fat, carbohydrate);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Food sameAsComparedFood;
-
-    static {
-        try {
-            sameAsComparedFood = new Food(validFoodName, protein, fat, carbohydrate);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Food foodWDifferentName;
-
-    static {
-        try {
-            foodWDifferentName = new Food(validFoodName2, protein, fat, carbohydrate);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Food foodWDifferentProtein;
-
-    static {
-        try {
-            foodWDifferentProtein = new Food(validFoodName, protein1, fat, carbohydrate);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Food foodWDifferentCarbs;
-
-    static {
-        try {
-            foodWDifferentCarbs = new Food(validFoodName, protein, fat1, carbohydrate);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food name";
-        }
-    }
-
     private static Food foodWDifferentFat;
 
     static {
         try {
-            foodWDifferentFat = new Food(validFoodName, protein, fat, carbohydrate1);
+            initialiseFoods();
         } catch (IllegalValueException e) {
             assert false : "Error in food name";
         }
+    }
+
+    static void initialiseFoods() throws IllegalValueException{
+        validFoodName = new Name("test food");
+        validFoodName2 = new Name("test food 2");
+        protein = new Protein(2);
+        protein1 = new Protein(3);
+        carbohydrate = new Carbohydrate(3);
+        carbohydrate1 = new Carbohydrate(4);
+        fat = new Fat(4);
+        fat1 = new Fat(5);
+        comparedFood = new Food(validFoodName, protein, fat, carbohydrate);
+        sameAsComparedFood = new Food(validFoodName, protein, fat, carbohydrate);
+        foodWDifferentName = new Food(validFoodName2, protein, fat, carbohydrate);
+        foodWDifferentProtein = new Food(validFoodName, protein1, fat, carbohydrate);
+        foodWDifferentCarbs = new Food(validFoodName, protein, fat1, carbohydrate);
+        foodWDifferentFat = new Food(validFoodName, protein, fat, carbohydrate1);
     }
 
     @Test
