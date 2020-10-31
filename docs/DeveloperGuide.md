@@ -6,18 +6,6 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## **How to navigate this Developer Guide**
-
-The target audience of this guide is anyone who wishes to extend or modify the functionality of ZooKeepBook. The guide is split into 3 sections, covering the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#design'>design of ZooKeepBook</a>, the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#implementation'>implementation of certain features</a> as well as how to <a href='https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops'>manage the development of ZooKeepBook</a>.
-
-The following symbols are used throughout this developer guide. They highlight important information that may be useful to you:
-|Symbol|Description|
-|------|:-------|
-|:bulb:|This block contains additional **tips** that may aid you|
-|:information_source:|This block contains additional **information** that may be used to elaborate on the content presented|
-|`text markup `|Indicates Java class and method names|
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -128,7 +116,7 @@ The Class Diagram for the Logic Component is shown below (*Figure 5*)
 
 Given below is the Sequence Diagram (*Figure 6*) for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-<p align="center"><img src="images/DeleteS:qaequenceDiagram.png"/></p>
+<p align="center"><img src="images/DeleteSequenceDiagram.png"/></p>
 
 <p align="center"><i>Figure 6: Sequence Diagram for delete command</i></p>
 
@@ -148,12 +136,12 @@ The Class Diagram for the Model Component is shown below (*Figure 7*)
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the ZooKeep book data.
+* stores the address book data.
 * exposes an unmodifiable `ObservableList<Animal>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `MedicalCondition` and `FeedTime` lists in the `ZooKeepBook`, which `Animal` references. This allows `ZooKeepBook` to only require one `MedicalCondition` or `FeedTime` object per unique `MedicalCondition` or `FeedTime`, instead of each `Animal` needing their own `MedicalCondition` or `FeedTime` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ZooKeepBook`, which `Animal` references. This allows `ZooKeepBook` to only require one `Tag` object per unique `Tag`, instead of each `Animal` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
