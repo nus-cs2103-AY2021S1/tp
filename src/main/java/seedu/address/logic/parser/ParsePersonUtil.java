@@ -15,7 +15,7 @@ import seedu.address.model.person.Phone;
  */
 public class ParsePersonUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_GIT_INDEX = "Git Username is not valid.";
 
     /**
      * Parses {@code gitUserName} into an {@code GitUserIndex} and returns it. Leading and trailing whitespaces will be
@@ -26,7 +26,7 @@ public class ParsePersonUtil {
         requireNonNull(gitUserName);
         String trimmedGitUserName = gitUserName.trim();
         if (!GitUserName.isValidGitUserName(trimmedGitUserName)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_GIT_INDEX);
         }
         return new GitUserIndex(trimmedGitUserName);
     }

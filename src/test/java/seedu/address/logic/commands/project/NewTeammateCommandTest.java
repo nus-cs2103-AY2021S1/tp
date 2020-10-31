@@ -42,7 +42,7 @@ public class NewTeammateCommandTest {
         NewTeammateCommand newTeammateCommand = new NewTeammateCommand(DESC_A);
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         model.updateProjectToBeDisplayedOnDashboard(AI);
-        String expectedResult = String.format(NewTeammateCommand.MESSAGE_ASSIGN_TEAMMATE_SUCCESS,
+        String expectedResult = String.format(NewTeammateCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
             DESC_A.getGitUserNameString());
 
         CommandResult commandResult = newTeammateCommand.execute(model);
