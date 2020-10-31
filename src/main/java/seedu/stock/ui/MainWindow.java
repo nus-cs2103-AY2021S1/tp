@@ -15,6 +15,7 @@ import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Note;
@@ -171,7 +172,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
-            SourceCompanyNotFoundException {
+            SourceCompanyNotFoundException, SerialNumberNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -203,7 +204,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException | SourceCompanyNotFoundException e) {
+        } catch (CommandException | ParseException | SourceCompanyNotFoundException
+                | SerialNumberNotFoundException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

@@ -10,7 +10,8 @@ import java.util.Objects;
 public class SerialNumberSet {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "SerialNumberSet should contain valid source and accumulated quantity.";
+            "Invalid serial number set!\n"
+            + "SerialNumberSet should contain valid source and accumulated quantity.";
 
     private Source source;
     private AccumulatedQuantity accumulatedQuantity;

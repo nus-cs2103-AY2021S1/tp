@@ -13,7 +13,6 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
-//import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.commons.core.index.Index;
@@ -25,10 +24,12 @@ import seedu.stock.model.StockBook;
 import seedu.stock.model.UserPrefs;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.testutil.StockBuilder;
+import seedu.stock.testutil.TypicalStocks;
 import seedu.stock.testutil.UpdateStockDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+  and unit tests for EditCommand.
  */
 public class UpdateCommandTest {
 
@@ -37,7 +38,7 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_onlyQuantityUpdated_success() {
-        Stock updatedStock = new StockBuilder().withQuantity("2103").build();
+        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withQuantity("2101").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -52,7 +53,7 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_onlySourceUpdated_success() {
-        Stock updatedStock = new StockBuilder().withSource("Value$").build();
+        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withSource("Value$").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -67,7 +68,7 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_onlyLocationUpdated_success() {
-        Stock updatedStock = new StockBuilder().withLocation("Discount section").build();
+        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withLocation("Discount section").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -82,7 +83,7 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_onlyNameUpdated_success() {
-        Stock updatedStock = new StockBuilder().withName("mochi").build();
+        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withName("mochi").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -92,14 +93,12 @@ public class UpdateCommandTest {
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
         expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
 
-        System.out.println(model.getStockBook());
-        System.out.println(expectedModel.getStockBook());
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Stock updatedStock = new StockBuilder().build();
+        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -168,13 +167,14 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_multipleStocksUpdated_success() {
-        Stock updatedStockApple = new StockBuilder().withName("Ice Cream")
+        Stock updatedStockApple = new StockBuilder(TypicalStocks.APPLE).withName("Ice Cream")
                 .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE)
                 .withQuantity("2000").build();
-        Stock updatedStockBanana = new StockBuilder().withName("Ice Cream")
+        Stock updatedStockBanana = new StockBuilder(TypicalStocks.BANANA).withName("Ice Cream")
                 .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
                 .withQuantity("2103").build();
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName("Ice Cream").withSource("Magnum")
+        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
+                .withName("Ice Cream").withSource("Magnum")
                 .withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
                 .build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
