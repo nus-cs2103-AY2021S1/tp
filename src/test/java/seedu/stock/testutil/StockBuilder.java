@@ -1,7 +1,11 @@
 package seedu.stock.testutil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
@@ -18,12 +22,14 @@ public class StockBuilder {
     public static final String DEFAULT_QUANTITY = "1000";
     public static final String DEFAULT_LOW_QUANTITY = "0";
     public static final String DEFAULT_LOCATION = "fruits section, subsection b";
+    public static final String DEFAULT_NOTE = "this is the default note.";
 
     private Name name;
     private SerialNumber serialNumber;
     private Source source;
     private Quantity quantity;
     private Location location;
+    private List<Note> notes;
 
     /**
      * Creates a {@code StockBuilder} with the default details.
@@ -34,6 +40,9 @@ public class StockBuilder {
         source = new Source(DEFAULT_SOURCE);
         quantity = new Quantity(DEFAULT_QUANTITY, DEFAULT_LOW_QUANTITY);
         location = new Location(DEFAULT_LOCATION);
+        Note note = new Note(DEFAULT_NOTE);
+        notes = new ArrayList<>();
+        notes.add(note);
     }
 
     /**
@@ -45,6 +54,7 @@ public class StockBuilder {
         source = stockToCopy.getSource();
         quantity = stockToCopy.getQuantity();
         location = stockToCopy.getLocation();
+        notes = stockToCopy.getNotes();
     }
 
     /**
@@ -95,8 +105,48 @@ public class StockBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code List<Note>} of the {@code Stock} that we are building.
+     */
+    public StockBuilder withNotes(String... notesList) {
+        this.notes = new ArrayList<>();
+        for (String noteText : notesList) {
+            Note note = new Note(noteText);
+            this.notes.add(note);
+        }
+        return this;
+    }
+
+    /**
+     * Adds the {@code Note} of the {@code Stock} that we are building.
+     */
+    public StockBuilder addNote(String noteText) {
+        Note noteToAdd = new Note(noteText);
+        this.notes.add(noteToAdd);
+        return this;
+    }
+
+    /**
+     * Produces a copy of the stockbuilder.
+     * @return StockBuilder copy of the stockbuilder
+     */
+    public StockBuilder copyOfStockBuilder() {
+        StockBuilder copy = new StockBuilder();
+        copy.name = new Name(this.name.fullName);
+        copy.serialNumber = new SerialNumber(this.serialNumber.getSerialNumberAsString());
+        copy.source = new Source(this.source.value);
+        copy.quantity = new Quantity(this.quantity.quantity);
+        copy.location = new Location(this.location.value);
+        List<Note> notesListCopy = new ArrayList<>();
+        for (Note note : this.notes) {
+            notesListCopy.add(note);
+        }
+        copy.notes = notesListCopy;
+        return copy;
+    }
+
     public Stock build() {
-        return new Stock(name, serialNumber, source, quantity, location);
+        return new Stock(name, serialNumber, source, quantity, location, notes);
     }
 
 }

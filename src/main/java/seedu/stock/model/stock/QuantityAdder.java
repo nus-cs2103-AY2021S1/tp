@@ -13,7 +13,8 @@ import java.util.Optional;
 public class QuantityAdder {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Increment value should be an integer";
+            "Invalid quantity adder!\n"
+            + "Increment value should be an integer";
     // Matches any signed integer
     public static final String VALIDATION_REGEX = "^(\\+|-)?\\d+$";
     public final String valueToBeAdded;
