@@ -79,7 +79,6 @@ class UnTagCommandTest {
         Food expFood = new FoodBuilder(foodToTag).build();
         expFood.removeTag(new Tag("lunch"));
         expectedModel.setFood(TypicalIndexes.INDEX_SECOND_FOOD, expFood);
-        CommandTestUtil.showFoodAtIndex(expectedModel, TypicalIndexes.INDEX_SECOND_FOOD);
 
         CommandTestUtil.assertCommandSuccess(unTagCommand, model, expectedMessage, expectedModel);
     }
