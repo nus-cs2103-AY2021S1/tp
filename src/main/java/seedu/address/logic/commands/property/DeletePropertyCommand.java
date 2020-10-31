@@ -26,7 +26,8 @@ public class DeletePropertyCommand extends Command {
             + "\n\nParameters: \nINDEX (must be a positive integer)\n"
             + "\n\nExample: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Deleted Property: %1$s";
+    public static final String MESSAGE_DELETE_PROPERTY_SUCCESS = "Deleted Property: %1$s\n"
+            + "All related bids and meetings have been deleted.";
 
     private final Index targetIndex;
     private final PropertyId targetId;
