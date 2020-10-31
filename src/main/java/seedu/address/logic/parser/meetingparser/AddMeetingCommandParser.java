@@ -2,8 +2,10 @@ package seedu.address.logic.parser.meetingparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_BIDDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PROPERTY_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
@@ -20,9 +22,11 @@ import seedu.address.logic.parser.id.IdParserUtil;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Admin;
+import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Paperwork;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 import seedu.address.model.meeting.Viewing;
 
@@ -40,10 +44,12 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MEETING_TYPE, PREFIX_MEETING_BIDDER_ID,
-                        PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_TIME);
+                        PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_DATE,
+                        PREFIX_MEETING_STARTTIME, PREFIX_MEETING_ENDTIME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MEETING_BIDDER_ID, PREFIX_MEETING_PROPERTY_ID,
-                PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_TIME)
+                PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_DATE,
+                PREFIX_MEETING_STARTTIME, PREFIX_MEETING_ENDTIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
@@ -53,33 +59,37 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                     & argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).isPresent()
                     & argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).isPresent()
                     & argMultimap.getValue(PREFIX_MEETING_VENUE).isPresent()
-                    & argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
+                    & argMultimap.getValue(PREFIX_MEETING_DATE).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_STARTTIME).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_ENDTIME).isPresent()
+            ) {
                 Venue venue = ParserUtil.parseMeetingVenue(argMultimap.getValue(PREFIX_MEETING_VENUE).get());
-                Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
+                MeetingDate meetingDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_MEETING_DATE).get());
                 PropertyId propertyId =
                         IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).get());
                 BidderId bidderId =
                         IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).get());
+                StartTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_MEETING_STARTTIME).get());
+                EndTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_MEETING_ENDTIME).get());
                 String type = ParserUtil.parseMeetingType(argMultimap.getValue(PREFIX_MEETING_TYPE).get());
-
                 if (type.contains("p")) {
                     Meeting meeting = new Paperwork(bidderId, propertyId,
-                            time, venue);
+                            meetingDate, venue, startTime, endTime);
                     return new AddMeetingCommand(meeting);
                 } else if (type.contains("a")) {
                     Meeting meeting = new Admin(bidderId, propertyId,
-                            time, venue);
+                            meetingDate, venue, startTime, endTime);
                     return new AddMeetingCommand(meeting);
                 } else if (type.contains("v")) {
                     Meeting meeting = new Viewing(bidderId, propertyId,
-                            time, venue);
+                            meetingDate, venue, startTime, endTime);
                     return new AddMeetingCommand(meeting);
                 }
             }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddMeetingCommand.MESSAGE_USAGE), pe);
+                    pe.getMessage()), pe);
         } catch (IllegalArgumentException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMeetingCommand.MESSAGE_USAGE), e);

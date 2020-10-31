@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.bid.exceptions.BidNotFoundException;
 import seedu.address.model.bid.exceptions.DuplicateBidException;
 import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 public class UniqueBidList implements Iterable<Bid> {
 
@@ -60,6 +61,15 @@ public class UniqueBidList implements Iterable<Bid> {
         }
     }
 
+    /**
+     * Removes all bids that have the same propertyId as the specified propertyId.
+     *
+     * @param propertyId The propertyId of the property to be deleted.
+     */
+    public void removeByPropertyId(PropertyId propertyId) {
+        requireNonNull(propertyId);
+        internalBidList.removeIf(bid -> bid.getPropertyId().equals(propertyId));
+    }
 
     /**
      * replaces a bid at the specific index in the list

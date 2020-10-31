@@ -11,26 +11,26 @@ import seedu.address.model.id.PropertyId;
 class MeetingTest {
 
     private Meeting firstMeeting = new Meeting(new BidderId("B1"),
-            new PropertyId("P1"), new Time("12 Oct 2020"),
-            new Venue("bedok"));
+            new PropertyId("P1"), new MeetingDate("12 Oct 2020"), new Venue("bedok"),
+            new StartTime("14:00"), new EndTime("14:45"));
     private Meeting firstMeetingIdentical = new Meeting(new BidderId("B1"),
-            new PropertyId("P1"), new Time("12 Oct 2020"),
-            new Venue("bedok"));
+            new PropertyId("P1"), new MeetingDate("12 Oct 2020"),
+            new Venue("bedok") , new StartTime("14:00"), new EndTime("14:45"));
     private Meeting firstMeetingDiff = new Meeting(new BidderId("B2"),
-            new PropertyId("P2"), new Time("15 Oct 2020"),
-            new Venue("tampines"));
+            new PropertyId("P2"), new MeetingDate("15 Oct 2020"),
+            new Venue("tampines"), new StartTime("14:00"), new EndTime("14:45"));
     private Viewing meetingDiffViewingType = new Viewing(new BidderId("B2"),
-            new PropertyId("P2"), new Time("15 Oct 2020"),
-            new Venue("tampines"));
+            new PropertyId("P2"), new MeetingDate("15 Oct 2020"),
+            new Venue("tampines"), new StartTime("14:00"), new EndTime("14:45"));
     private Admin meetingDiffAdminType = new Admin(new BidderId("B2"),
-            new PropertyId("P2"), new Time("15 Oct 2020"),
-            new Venue("tampines"));
+            new PropertyId("P2"), new MeetingDate("15 Oct 2020"),
+            new Venue("tampines"), new StartTime("14:00"), new EndTime("14:45"));
     private Paperwork meetingDiffPaperworkType = new Paperwork(new BidderId("B2"),
-            new PropertyId("P2"), new Time("15 Oct 2020"),
-            new Venue("tampines"));
+            new PropertyId("P2"), new MeetingDate("15 Oct 2020"),
+            new Venue("tampines"), new StartTime("14:00"), new EndTime("14:45"));
     private Paperwork meetingPaperworkType = new Paperwork(new BidderId("B2"),
-            new PropertyId("P2"), new Time("15 Oct 2020"),
-            new Venue("tampines"));
+            new PropertyId("P2"), new MeetingDate("15 Oct 2020"),
+            new Venue("tampines"), new StartTime("14:00"), new EndTime("14:45"));
 
     @Test
     void getMeetingBidderId() {
@@ -47,8 +47,8 @@ class MeetingTest {
 
     @Test
     void getMeetingTime() {
-        assertTrue(firstMeeting.getTime().equals(firstMeetingIdentical.getTime()));
-        assertFalse(firstMeeting.getTime().equals(firstMeetingDiff.getTime()));
+        assertTrue(firstMeeting.getMeetingDate().equals(firstMeetingIdentical.getMeetingDate()));
+        assertFalse(firstMeeting.getMeetingDate().equals(firstMeetingDiff.getMeetingDate()));
     }
 
     @Test

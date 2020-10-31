@@ -88,8 +88,8 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * It will update the attributes in the class according to the date parse in
-     * @param date the new date
+     * It will update the attributes in the class according to the meetingDate parse in
+     * @param date the new meetingDate
      */
     private void updateDayMonthYear(LocalDate date) {
         this.year = date.getYear();
@@ -167,7 +167,7 @@ public class CalendarView extends UiPart<Region> {
 
 
     /**
-     * Fill up the simulateGridPane[] with the date in order.
+     * Fill up the simulateGridPane[] with the meetingDate in order.
      */
     private void fill() {
         this.thisMonthBalance = findNumberOfDaysInTheMonth();
@@ -293,10 +293,10 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * generate a new local date according to input new date.
+     * generate a new local meetingDate according to input new meetingDate.
      *
-     * @param value date indicator.
-     * @return a new localDate object with that date.
+     * @param value meetingDate indicator.
+     * @return a new localDate object with that meetingDate.
      */
     private LocalDate getNewDate(int value) {
         if (value <= 31 && value >= 21) {
@@ -331,8 +331,8 @@ public class CalendarView extends UiPart<Region> {
     }
 
     /**
-     * This method will update the pivotDate to the new active date.
-     * @param date the new pivot date
+     * This method will update the pivotDate to the new active meetingDate.
+     * @param date the new pivot meetingDate
      */
     public void updateActiveDate(LocalDate date) {
         this.pivotDate = date;

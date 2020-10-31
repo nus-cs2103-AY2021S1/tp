@@ -5,28 +5,28 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-class TimeTest {
+class MeetingDateTest {
 
     @Test
     void testToString() {
-        Time time = new Time("12 Oct 2012");
+        MeetingDate meetingDate = new MeetingDate("12 Oct 2012");
         String timeTest = "12 Oct 2012";
-        assertTrue(timeTest.equals(time.toString()));
+        assertTrue(timeTest.equals(meetingDate.toString()));
 
-        Time timeError = new Time("14 Oct 2012");
+        MeetingDate meetingDateError = new MeetingDate("14 Oct 2012");
         String timeDiff = "12 Oct 2012";
-        assertFalse(timeDiff.equals(timeError.toString()));
+        assertFalse(timeDiff.equals(meetingDateError.toString()));
     }
 
     @Test
     void testEquals() {
-        Time time = new Time("12 Oct 2012");
-        Time timeSecond = new Time("12 Oct 2012");
-        assertTrue(time.equals(timeSecond));
+        MeetingDate meetingDate = new MeetingDate("12 Oct 2012");
+        MeetingDate meetingDateSecond = new MeetingDate("12 Oct 2012");
+        assertTrue(meetingDate.equals(meetingDateSecond));
 
-        Time timeDiff = new Time("12 Oct 2012");
-        Time timeDiffSecond = new Time("14 Oct 2012");
-        assertFalse(timeDiff.equals(timeDiffSecond));
+        MeetingDate meetingDateDiff = new MeetingDate("12 Oct 2012");
+        MeetingDate meetingDateDiffSecond = new MeetingDate("14 Oct 2012");
+        assertFalse(meetingDateDiff.equals(meetingDateDiffSecond));
     }
 
     @Test

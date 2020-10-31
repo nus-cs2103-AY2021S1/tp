@@ -14,18 +14,20 @@ public class Paperwork extends Meeting {
      * Constructor for paperwork meeting.
      * @param bidderId Bidder ID.
      * @param propertyId Property ID.
-     * @param time Time.
+     * @param meetingDate MeetingDate.
      * @param venue Venue.
+     * @param startTime Start Time.
+     * @param endTime End Time.
      */
     public Paperwork(BidderId bidderId, PropertyId propertyId,
-                     Time time, Venue venue) {
-        super(bidderId, propertyId, time, venue);
-        requireAllNonNull(bidderId, propertyId, time, venue);
+                     MeetingDate meetingDate, Venue venue, StartTime startTime, EndTime endTime) {
+        super(bidderId, propertyId, meetingDate, venue, startTime, endTime);
+        requireAllNonNull(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         super.isPaperWork = true;
     }
 
     /**
-     * Returns true if either the venue, time, bidderId and propertyId is the same.
+     * Returns true if either the venue, meetingDate, bidderId, start time, end time and propertyId is the same.
      *
      * @param other The other meeting.
      * @return True if both meeting objects represent the same meeting.
@@ -36,8 +38,10 @@ public class Paperwork extends Meeting {
                 || (other instanceof Paperwork // instanceof handles nulls
                 && this.bidderId.equals(((Paperwork) other).getBidderId())
                 && this.propertyId.equals(((Paperwork) other).getPropertyId())
-                && this.time.equals(((Paperwork) other).getTime())
-                && this.venue.equals(((Paperwork) other).getVenue())); // state check
+                && this.meetingDate.equals(((Paperwork) other).getMeetingDate())
+                && this.venue.equals(((Paperwork) other).getVenue())
+                && this.startTime.equals(((Paperwork) other).getStartTime())
+                && this.endTime.equals(((Paperwork) other).getEndTime())); // state check
     }
 
     @Override

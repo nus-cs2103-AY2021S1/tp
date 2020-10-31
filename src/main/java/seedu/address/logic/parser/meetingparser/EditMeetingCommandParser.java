@@ -3,8 +3,10 @@ package seedu.address.logic.parser.meetingparser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_BIDDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PROPERTY_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
@@ -32,7 +34,8 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MEETING_TYPE, PREFIX_MEETING_BIDDER_ID,
-                        PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_TIME);
+                        PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_DATE,
+                        PREFIX_MEETING_STARTTIME, PREFIX_MEETING_ENDTIME);
 
         Index index;
 
@@ -56,10 +59,21 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             editMeetingDescriptor.setMeetingVenue(ParserUtil.parseMeetingVenue(
                     argMultimap.getValue(PREFIX_MEETING_VENUE).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
-            editMeetingDescriptor.setMeetingTime(ParserUtil.parseMeetingTime(
-                    argMultimap.getValue(PREFIX_MEETING_TIME).get()));
+        if (argMultimap.getValue(PREFIX_MEETING_DATE).isPresent()) {
+            editMeetingDescriptor.setMeetingDate(ParserUtil.parseDate(
+                    argMultimap.getValue(PREFIX_MEETING_DATE).get()));
         }
+
+        if (argMultimap.getValue(PREFIX_MEETING_STARTTIME).isPresent()) {
+            editMeetingDescriptor.setMeetingStartTime(ParserUtil.parseStartTime(
+                    argMultimap.getValue(PREFIX_MEETING_STARTTIME).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_MEETING_ENDTIME).isPresent()) {
+            editMeetingDescriptor.setMeetingEndTime(ParserUtil.parseEndTime(
+                    argMultimap.getValue(PREFIX_MEETING_ENDTIME).get()));
+        }
+
 
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);

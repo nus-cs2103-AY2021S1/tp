@@ -15,7 +15,9 @@ public class CliSyntax {
 
     /* Calendar Prefix definitions */
     public static final Prefix PREFIX_MEETING_VENUE = new Prefix("v/");
-    public static final Prefix PREFIX_MEETING_TIME = new Prefix("t/");
+    public static final Prefix PREFIX_MEETING_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_MEETING_STARTTIME = new Prefix("s/");
+    public static final Prefix PREFIX_MEETING_ENDTIME = new Prefix("e/");
     public static final Prefix PREFIX_MEETING_PROPERTY_ID = new Prefix("p/");
     public static final Prefix PREFIX_MEETING_BIDDER_ID = new Prefix("b/");
     public static final Prefix PREFIX_MEETING_TYPE = new Prefix("q/");

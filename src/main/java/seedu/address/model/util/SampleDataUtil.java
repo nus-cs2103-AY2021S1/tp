@@ -18,9 +18,11 @@ import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.meeting.Admin;
+import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Paperwork;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 import seedu.address.model.meeting.Viewing;
 import seedu.address.model.person.Name;
@@ -82,12 +84,12 @@ public class SampleDataUtil {
     // ================= BIDS ==================
     public static Bid[] getSampleBids() {
         return new Bid[] {
-            new Bid(new PropertyId("P01"), new BidderId("B01"), new Price(45000)),
-            new Bid(new PropertyId("P02"), new BidderId("B23"), new Price(123456)),
-            new Bid(new PropertyId("P31"), new BidderId("B11"), new Price(42344)),
-            new Bid(new PropertyId("P01"), new BidderId("B02"), new Price(45100)),
-            new Bid(new PropertyId("P01"), new BidderId("B45"), new Price(65000)),
-            new Bid(new PropertyId("P12"), new BidderId("B22"), new Price(450002)),
+            new Bid(new PropertyId("P1"), new BidderId("B1"), new Price(45000)),
+            new Bid(new PropertyId("P2"), new BidderId("B2"), new Price(123456)),
+            new Bid(new PropertyId("P3"), new BidderId("B3"), new Price(42344)),
+            new Bid(new PropertyId("P4"), new BidderId("B4"), new Price(45100)),
+            new Bid(new PropertyId("P5"), new BidderId("B5"), new Price(65000)),
+            new Bid(new PropertyId("P6"), new BidderId("B6"), new Price(450002)),
         };
     }
 
@@ -102,12 +104,18 @@ public class SampleDataUtil {
     // ================= BIDDERS ==================
     public static Bidder[] getSampleBidders() {
         return new Bidder[] {
-            new Bidder(new Name("Kor Ming Soon"), new Phone("125678"), new HashSet<>(), new BidderId(1))
+            new Bidder(new Name("Kor Ming Soon"), new Phone("1253678"), new HashSet<>(), new BidderId("B1"))
                     .setBidderTag(),
-            new Bidder(new Name("Harsha"), new Phone("12345777"), new HashSet<>(), new BidderId(2))
+            new Bidder(new Name("Harsha"), new Phone("12345777"), new HashSet<>(), new BidderId("B2"))
                     .setBidderTag(),
-            new Bidder(new Name("Marcus"), new Phone("47876428"), new HashSet<>(), new BidderId(3))
-                .setBidderTag()
+            new Bidder(new Name("Marcus"), new Phone("47876428"), new HashSet<>(), new BidderId("B3"))
+                    .setBidderTag(),
+            new Bidder(new Name("Dianne Loh"), new Phone("1256781"), new HashSet<>(), new BidderId("B4"))
+                    .setBidderTag(),
+            new Bidder(new Name("Gandalf"), new Phone("1203577"), new HashSet<>(), new BidderId("B5"))
+                    .setBidderTag(),
+            new Bidder(new Name("Amos Yee"), new Phone("4072428"), new HashSet<>(), new BidderId("B6"))
+                    .setBidderTag()
         };
     }
 
@@ -122,9 +130,17 @@ public class SampleDataUtil {
     // ================= SELLERS ==================
     public static Seller[] getSampleSellers() {
         return new Seller[] {
-            new Seller(new Name("Dianne"), new Phone("7897456"), new HashSet<>(), new SellerId(1))
+            new Seller(new Name("Dianne"), new Phone("7897456"), new HashSet<>(), new SellerId("S1"))
                 .setSellerTag(),
-            new Seller(new Name("Christopher"), new Phone("12345777"), new HashSet<>(), new SellerId(2))
+            new Seller(new Name("Christopher"), new Phone("12345777"), new HashSet<>(), new SellerId("S2"))
+                .setSellerTag(),
+            new Seller(new Name("Peter Parker"), new Phone("7897456"), new HashSet<>(), new SellerId("S3"))
+                .setSellerTag(),
+            new Seller(new Name("Donald Trump"), new Phone("12345777"), new HashSet<>(), new SellerId("S4"))
+                .setSellerTag(),
+            new Seller(new Name("Derp"), new Phone("7897456"), new HashSet<>(), new SellerId("S5"))
+                .setSellerTag(),
+            new Seller(new Name("Thanos"), new Phone("12345777"), new HashSet<>(), new SellerId("S6"))
                 .setSellerTag(),
         };
     }
@@ -140,15 +156,25 @@ public class SampleDataUtil {
     // ================= PROPERTY ==================
     public static Property[] getSampleProperties() {
         return new Property[]{
-            new Property(new PropertyId("P1"), new PropertyName("Sunrise Condo"), new SellerId("S123"),
+            new Property(new PropertyId("P1"), new PropertyName("Sunrise Condo"), new SellerId("S1"),
                 new Address("Block 123"), new Price(100), new PropertyType("Condo"),
                 new IsRental("No"), new IsClosedDeal("Active")),
-            new Property(new PropertyId("P2"), new PropertyName("Sundown HDB"), new SellerId("S567"),
+            new Property(new PropertyId("P2"), new PropertyName("Sundown HDB"), new SellerId("S2"),
                 new Address("Block 456"), new Price(200), new PropertyType("HDB"),
                 new IsRental("No"), new IsClosedDeal("Active")),
-            new Property(new PropertyId("P3"), new PropertyName("Moonshine Mansion"), new SellerId("S789"),
+            new Property(new PropertyId("P3"), new PropertyName("Moonshine Mansion"), new SellerId("S3"),
                 new Address("Block 789"), new Price(1000), new PropertyType("Mansion"),
-                new IsRental("No"), new IsClosedDeal("Active"))
+                new IsRental("No"), new IsClosedDeal("Active")),
+            new Property(new PropertyId("P4"), new PropertyName("Nuclear Town"), new SellerId("S4"),
+                new Address("33 Hiroshima Street"), new Price(112000.15), new PropertyType("Mansion"),
+                new IsRental("No"), new IsClosedDeal("Active")),
+            new Property(new PropertyId("P5"), new PropertyName("Underground Dungeon"), new SellerId("S5"),
+                new Address("Jeffrey Epstein Hill"), new Price(69.99), new PropertyType("Dungeon"),
+                new IsRental("No"), new IsClosedDeal("Active")),
+            new Property(new PropertyId("P6"), new PropertyName("Hobbit Hole"), new SellerId("S6"),
+                new Address("Hobbit Lane"), new Price(101284684.12), new PropertyType("Hobbit Hole"),
+                new IsRental("Yes"), new IsClosedDeal("Active"))
+
         };
     }
 
@@ -164,11 +190,14 @@ public class SampleDataUtil {
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
             new Paperwork(new BidderId("B1"), new PropertyId("P2"),
-                        new Time("15 OCT 2020"), new Venue("Marina Bay")),
+                        new MeetingDate("15 OCT 2020"), new Venue("Marina Bay"),
+                    new StartTime("12:00"), new EndTime("13:00")),
             new Admin(new BidderId("B5"), new PropertyId("P6"),
-                        new Time("19 OCT 2020"), new Venue("Bedok")),
-            new Viewing(new BidderId("B11"), new PropertyId("P8"),
-                        new Time("21 OCT 2020"), new Venue("Tampines"))
+                        new MeetingDate("19 OCT 2020"), new Venue("Bedok"),
+                    new StartTime("14:00"), new EndTime("15:00")),
+            new Viewing(new BidderId("B3"), new PropertyId("P4"),
+                        new MeetingDate("21 OCT 2020"), new Venue("Tampines"),
+                    new StartTime("16:00"), new EndTime("17:00"))
         };
     }
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 
@@ -99,6 +100,14 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      */
     public void removeMeetingByBidderId(BidderId bidderId) {
         meetings.removeMeetingByBidderId(bidderId);
+    }
+  
+     * Removes all meetings with the specified propertyId.
+     *
+     * @param propertyId The propertyId of the property to be deleted.
+     */
+    public void removeMeetingsByPropertyId(PropertyId propertyId) {
+        meetings.removeByPropertyId(propertyId);
     }
 
     //// util methods

@@ -7,9 +7,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Admin;
+import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.Paperwork;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 import seedu.address.model.meeting.Viewing;
 import seedu.address.model.person.Phone;
@@ -24,22 +26,28 @@ public class JsonAdaptedMeeting {
 
     private final String propertyId;
     private final String bidderId;
-    private final String time;
+    private final String date;
     private final String venue;
     private final String typeOfMeeting;
+    private final String startTime;
+    private final String endTime;
 
     /**
      * Constructs a {@code JsonAdaptedMeeting} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("propertyId") String propertyId, @JsonProperty("bidderId") String bidderId,
-                             @JsonProperty("time") String time, @JsonProperty("venue") String venue,
-                              @JsonProperty("typeOfMeeting") String typeOfMeeting) {
+                              @JsonProperty("meetingDate") String date, @JsonProperty("venue") String venue,
+                              @JsonProperty("typeOfMeeting") String typeOfMeeting,
+                              @JsonProperty("startTime") String startTime,
+                              @JsonProperty("endTime") String endTime) {
         this.propertyId = propertyId;
         this.bidderId = bidderId;
-        this.time = time;
+        this.date = date;
         this.venue = venue;
         this.typeOfMeeting = typeOfMeeting;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     /**
@@ -48,9 +56,11 @@ public class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(Meeting source) {
         propertyId = source.getPropertyId().toString();
         bidderId = source.getBidderId().toString();
-        time = source.getTime().time;
+        date = source.getMeetingDate().date;
         venue = source.getVenue().venue;
         typeOfMeeting = source.checkMeetingType();
+        startTime = source.getStartTime().startTime;
+        endTime = source.getEndTime().endTime;
     }
 
 
@@ -79,14 +89,14 @@ public class JsonAdaptedMeeting {
         }
         final BidderId modelBidderId = new BidderId(bidderId);
 
-        if (time == null) {
+        if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Time.class.getSimpleName()));
+                    MeetingDate.class.getSimpleName()));
         }
-        if (!Time.isValidTime(time)) {
+        if (!seedu.address.model.meeting.MeetingDate.isValidDate(date)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
-        final Time modelTime = new Time(time);
+        final MeetingDate modelMeetingDate = new MeetingDate(date);
 
         if (venue == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -97,12 +107,33 @@ public class JsonAdaptedMeeting {
         }
         final Venue modelVenue = new Venue(venue);
 
+        if (startTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    StartTime.class.getSimpleName()));
+        }
+        if (!StartTime.isValidStartTime(startTime)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final StartTime modelStartTime = new StartTime(startTime);
+
+        if (endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    EndTime.class.getSimpleName()));
+        }
+        if (!EndTime.isValidEndTime(endTime)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final EndTime modelEndTime = new EndTime(endTime);
+
         if (typeOfMeeting.contains("Paperwork")) {
-            return new Paperwork(modelBidderId, modelPropertyId, modelTime, modelVenue);
+            return new Paperwork(modelBidderId, modelPropertyId, modelMeetingDate,
+                    modelVenue, modelStartTime, modelEndTime);
         } else if (typeOfMeeting.contains("Viewing")) {
-            return new Viewing(modelBidderId, modelPropertyId, modelTime, modelVenue);
+            return new Viewing(modelBidderId, modelPropertyId, modelMeetingDate,
+                    modelVenue, modelStartTime, modelEndTime);
         } else if (typeOfMeeting.contains("Admin")) {
-            return new Admin(modelBidderId, modelPropertyId, modelTime, modelVenue);
+            return new Admin(modelBidderId, modelPropertyId, modelMeetingDate,
+                    modelVenue, modelStartTime, modelEndTime);
         } else {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Meeting.class.getSimpleName()));

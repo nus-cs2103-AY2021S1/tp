@@ -16,17 +16,20 @@ public class Viewing extends Meeting {
      *  Constructor for viewing meeting.
      * @param bidderId Bidder ID.
      * @param propertyId Property ID.
-     * @param time Time.
+     * @param meetingDate MeetingDate.
      * @param venue Venue.
+     * @param startTime Start Time.
+     * @param endTime End Time.
      */
-    public Viewing(BidderId bidderId, PropertyId propertyId, Time time, Venue venue) {
-        super(bidderId, propertyId, time, venue);
-        requireAllNonNull(bidderId, propertyId, time, venue);
+    public Viewing(BidderId bidderId, PropertyId propertyId, MeetingDate meetingDate, Venue venue,
+                   StartTime startTime, EndTime endTime) {
+        super(bidderId, propertyId, meetingDate, venue, startTime, endTime);
+        requireAllNonNull(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         super.isViewing = true;
     }
 
     /**
-     * Returns true if either the venue, time, bidderId and propertyId is the same.
+     * Returns true if either the venue, meetingDate, bidderId, start time, end time and propertyId is the same.
      *
      * @param other The other property.
      * @return True if both property objects represent the same meeting.
@@ -37,8 +40,10 @@ public class Viewing extends Meeting {
                 || (other instanceof Viewing // instanceof handles nulls
                 && this.bidderId.equals(((Viewing) other).getBidderId())
                 && this.propertyId.equals(((Viewing) other).getPropertyId())
-                && this.time.equals(((Viewing) other).getTime())
-                && this.venue.equals(((Viewing) other).getVenue())); // state check
+                && this.meetingDate.equals(((Viewing) other).getMeetingDate())
+                && this.venue.equals(((Viewing) other).getVenue())
+                && this.startTime.equals(((Viewing) other).getStartTime())
+                && this.endTime.equals(((Viewing) other).getEndTime())); // state check
     }
 
     @Override

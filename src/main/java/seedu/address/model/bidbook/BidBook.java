@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.UniqueBidList;
 import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 
 public class BidBook implements ReadOnlyBidBook {
 
@@ -90,6 +91,15 @@ public class BidBook implements ReadOnlyBidBook {
      */
     public void removeBid(Bid key) {
         listOfBids.remove(key);
+    }
+
+    /**
+     * Removes all bids with the specified propertyId.
+     *
+     * @param propertyId The propertyId of the property to be deleted.
+     */
+    public void removeBidsByPropertyId(PropertyId propertyId) {
+        listOfBids.removeByPropertyId(propertyId);
     }
 
     @Override
