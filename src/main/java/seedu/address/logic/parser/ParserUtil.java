@@ -202,7 +202,7 @@ public class ParserUtil {
             }
             return new Price(doublePrice);
         } catch (NumberFormatException e) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Price.MESSAGE_NOT_NUMERIC);
         }
     }
 
