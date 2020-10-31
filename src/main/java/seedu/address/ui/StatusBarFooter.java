@@ -22,7 +22,7 @@ public class StatusBarFooter extends UiPart<Region> {
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
-        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        saveLocationStatus.setText("Welcome to PropertyFree, the one place to manage all your properties.");
     }
 
 }

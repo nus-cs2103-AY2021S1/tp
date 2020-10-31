@@ -24,90 +24,143 @@
             <stylesheets>
                 <URL value="@DarkTheme.css" />
                 <URL value="@Extensions.css" />
+                <URL value="@MingSoonTheme.css" />
             </stylesheets>
 
-            <VBox>
-                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-                    <Menu mnemonicParsing="false" text="File">
-                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                    </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
-                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                    </Menu>
-                </MenuBar>
+            <VBox styleClass="outerMostVBox">
 
                 <HBox VBox.vgrow="ALWAYS">
-
-                    <VBox maxWidth="200" prefHeight="200.0" prefWidth="100.0">
+   
+                       <VBox alignment="CENTER" maxWidth="200" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0f143c;">
                         <children>
-                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #12232E; -fx-border-radius: 0; -fx-border-width: 4; -fx-border-color: grey;">
+                            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="100.0" style="-fx-background-color: #0f143c;">
                                 <children>
-                                    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
-                                            <Image url="@../images/prompter_icon.png" />
+                                            <Image url="@../images/PropertyFree-Logo.png" />
                                         </image>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="PropertyFree Prompter" textAlignment="CENTER" translateX="-5.0" wrappingWidth="149.1969451904297">
-                                        <font>
-                                            <Font name="DengXian Regular" size="22.0" />
-                                        </font>
-                                    </Text>
                                 </children>
                             </HBox>
-                            <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                                <padding>
-                                    <Insets bottom="5" left="10" right="10" top="5" />
-                                </padding>
-                            </StackPane>
+                     <VBox maxWidth="180.0" prefWidth="180.0" style="-fx-background-radius: 20; -fx-background-color: #3d3770; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3),  10, 0.6, 0.0, 0.0);" translateY="-5.0" VBox.vgrow="ALWAYS">
+                        <children>
+                           <StackPane prefHeight="28.0" prefWidth="200.0">
+                              <children>
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Prompter">
+                                    <font>
+                                       <Font name="Century Gothic Bold" size="22.0" />
+                                    </font>
+                                    <StackPane.margin>
+                                       <Insets top="10.0" />
+                                    </StackPane.margin>
+                                 </Text>
+                              </children>
+                           </StackPane>
+                                  <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                      <padding>
+                                          <Insets bottom="5" left="10" right="10" top="5" />
+                                      </padding>
+                                  </StackPane>
+                        </children>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </VBox>
                         </children>
                         <stylesheets>
                             <URL value="@Extensions.css" />
                             <URL value="@DarkTheme.css" />
+                            <URL value="@MingSoonTheme.css" />
                         </stylesheets>
                     </VBox>
-
-                    <StackPane fx:id="personAndBidTabPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets bottom="5" left="10" right="10" top="5" />
-                        </padding>
-                    </StackPane>
-
-                    <VBox fx:id="calendarList" maxWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #12232E; -fx-border-radius: 0; -fx-border-width: 4; -fx-border-color: grey;">
-                            <children>
-                                <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/calendar_icon.png" />
-                                    </image>
-                                </ImageView>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeting Schedule">
-                                    <font>
-                                        <Font name="DengXian Regular" size="38.0" />
-                                    </font>
-                                </Text>
-                            </children>
-                        </HBox>
-                        <StackPane fx:id="calendarListPanePlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                            <padding>
-                                <Insets bottom="5" left="10" right="10" top="5" />
-                            </padding>
-                        </StackPane>
-                        <StackPane fx:id="calendar" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                            <padding>
-                                <Insets bottom="5" left="10" right="10" top="5" />
-                            </padding>
-                        </StackPane>
-                    </VBox>
+               <VBox maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+                  <children>
+                         <MenuBar fx:id="menuBar" style="-fx-background-color: #0f143c; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);">
+                             <Menu mnemonicParsing="false" text="File">
+                                 <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                             </Menu>
+                             <Menu mnemonicParsing="false" text="Help">
+                                 <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                             </Menu>
+                        <VBox.margin>
+                           <Insets left="10.0" right="5.0" top="5.0" />
+                        </VBox.margin>
+                         </MenuBar>
+                     <VBox VBox.vgrow="ALWAYS">
+                        <children>
+                           <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <children>
+                                      <StackPane fx:id="personAndBidTabPanePlaceholder" style="-fx-background-color: #0f143c; -fx-background-radius: 10; -fx-border-width: 0; -fx-border-color: black; -fx-border-radius: 5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);" styleClass="outterpersonAndBidTab-pane" HBox.hgrow="ALWAYS">
+                                          <padding>
+                                              <Insets bottom="5.0" left="2.5" top="5.0" />
+                                          </padding>
+                                    <HBox.margin>
+                                       <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
+                                    </HBox.margin>
+                                    <opaqueInsets>
+                                       <Insets />
+                                    </opaqueInsets>
+                                      </StackPane>
+                  
+                                      <VBox fx:id="calendarList" maxWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                                    <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0f143c; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);" VBox.vgrow="ALWAYS">
+                                       <children>
+                                                <HBox alignment="CENTER" prefHeight="41.0" prefWidth="304.0">
+                                                    <children>
+                                                        <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/calendar_icon.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeting Schedule">
+                                                            <font>
+                                                                <Font name="Century Gothic Bold" size="28.0" />
+                                                            </font>
+                                                   <HBox.margin>
+                                                      <Insets right="5.0" />
+                                                   </HBox.margin>
+                                                        </Text>
+                                                    </children>
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                                </HBox>
+                                                <StackPane fx:id="calendarListPanePlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                                    <padding>
+                                                        <Insets bottom="5" left="10" right="10" top="5" />
+                                                    </padding>
+                                                </StackPane>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" top="2.5" />
+                                       </VBox.margin>
+                                    </VBox>
+                                          <StackPane fx:id="calendar" maxHeight="300.0" prefHeight="100.0" style="-fx-background-color: #0f143c; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                              <padding>
+                                                  <Insets bottom="5" left="10" right="10" top="5" />
+                                              </padding>
+                                       <VBox.margin>
+                                          <Insets right="5.0" />
+                                       </VBox.margin>
+                                          </StackPane>
+                                    <HBox.margin>
+                                       <Insets bottom="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                      </VBox>
+                              </children>
+                           </HBox>
+               
+                               <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+                                   <padding>
+                                       <Insets bottom="5" left="10" right="10" top="5" />
+                                   </padding>
+                               </StackPane>
+                        </children>
+                     </VBox>
+                  </children>
+               </VBox>
                 </HBox>
-
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                    </padding>
-                </StackPane>
-
-                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-
+                <StackPane fx:id="statusbarPlaceholder" styleClass="statusBar-with-border" VBox.vgrow="NEVER" />
             </VBox>
         </Scene>
     </scene>

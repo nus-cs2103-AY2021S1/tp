@@ -1,8 +1,3 @@
-.background {
-    -fx-background-color: #12232E;
-    background-color: #383838; /* Used in the default.html file */
-}
-
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -38,25 +33,65 @@
     -fx-padding: 0 0 0 0;
     -fx-min-height: 0;
     -fx-max-height: 0;
+
+}
+
+.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #12232E;
+    -fx-background-color:  #12232E;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        derive(-fx-base, 80%)
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+    -fx-border-width: 20;
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
     -fx-border-color: transparent transparent transparent #4d4d4d;
+
 }
 
 .split-pane {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-view {
+    -fx-background-color: #0f143c;
+    -fx-background-radius: 10;
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .list-cell {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 1 1 1 1;
@@ -100,17 +135,13 @@
 }
 
 .stack-pane {
-     -fx-background-color: black;
+     -fx-background-color: transparent;
 }
 
 .pane-with-border {
-     -fx-background-color: black;
-     -fx-border-color: black;
+     -fx-background-color: transparent;
+     -fx-border-color: transparent;
      -fx-border-top-width: 1px;
-}
-
-.status-bar {
-    -fx-background-color: derive(black, 30%);
 }
 
 .result-display {
@@ -132,7 +163,7 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: transparent;
     /*-fx-border-color: derive(#1d1d1d, 25%);*/
     -fx-border-color: white;
 
@@ -144,19 +175,19 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: transparent;
     -fx-border-width: 5px;
     -fx-border-radius: 5px;
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: transparent;
 }
 
 .context-menu .label {
@@ -164,7 +195,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .menu-bar .label {
@@ -253,11 +284,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-background-insets: 3;
 }
 
@@ -289,9 +320,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: transparent;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Segoe UI Light";
@@ -304,7 +335,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent;
     -fx-background-radius: 0;
 }
 

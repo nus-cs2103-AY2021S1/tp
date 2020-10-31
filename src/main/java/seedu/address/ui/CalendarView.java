@@ -28,7 +28,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * UI component that is displayed. Heavily adapted from https://github.com/AY1920S2-CS2103T-T10-3/main
+ * UI component that is displayed. Adapted from https://github.com/SirGoose3432/javafx-calendar
  */
 public class CalendarView extends UiPart<Region> {
 
@@ -229,9 +229,9 @@ public class CalendarView extends UiPart<Region> {
         fill();
         int i = 0;
         this.weekDayGridPane.setBackground(new Background(
-                new BackgroundFill(Color.valueOf("383838"), CornerRadii.EMPTY, Insets.EMPTY)));
+                new BackgroundFill(Color.valueOf("#0f143c"), CornerRadii.EMPTY, Insets.EMPTY)));
         this.dateGridPane.setBackground(new Background(
-                new BackgroundFill(Color.valueOf("383838"), CornerRadii.EMPTY, Insets.EMPTY)));
+                new BackgroundFill(Color.valueOf("#0f143c"), CornerRadii.EMPTY, Insets.EMPTY)));
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 7; col++) {
                 VBox holder = placeHolderForLabel();
