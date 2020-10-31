@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
 import java.util.Iterator;
 
-import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -61,7 +60,12 @@ public class AddMeetingCommand extends Command {
     }
 
 
-    public boolean checkPID(Model model) {
+    /**
+     * Checks if the property id for the meeting to be added exists in the property book.
+     * @param model Contains the property book.
+     * @return True if property id exists in the property book.
+     */
+    public boolean checkPid(Model model) {
         Iterator<Property> propLs = model.getFilteredPropertyList().iterator();
         while (propLs.hasNext()) {
             if (toAdd.getPropertyId().equals(propLs.next().getPropertyId())) {
@@ -71,7 +75,12 @@ public class AddMeetingCommand extends Command {
         return false;
     }
 
-    public boolean checkBID(Model model) {
+    /**
+     * Checks if the bidder id for the meeting to be added exists in the bidder book.
+     * @param model Contains the bidder book.
+     * @return True if bidder id exists in the bidder book.
+     */
+    public boolean checkBid(Model model) {
         Iterator<Bidder> bidLs = model.getFilteredBidderList().iterator();
         while (bidLs.hasNext()) {
             if (toAdd.getBidderId().equals(bidLs.next().getId())) {
@@ -87,7 +96,7 @@ public class AddMeetingCommand extends Command {
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_MEETING);
         }
-        if (!checkBID(model) || !checkPID(model)) {
+        if (!checkBid(model) || !checkPid(model)) {
             throw new CommandException(Messages.MESSAGE_INVALID_ID);
         }
 
