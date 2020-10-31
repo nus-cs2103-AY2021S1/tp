@@ -64,7 +64,7 @@ public class MeetingBuilder {
     /**
      * Parses the {@code meetingDate} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
      */
-    public MeetingBuilder withTime(String time) {
+    public MeetingBuilder withDate(String time) {
         this.meetingDate = new MeetingDate(time);
         return this;
     }

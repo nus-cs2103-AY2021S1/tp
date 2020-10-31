@@ -16,31 +16,17 @@ import seedu.address.model.meeting.Meeting;
 public class TypicalMeeting {
 
     public static final Meeting MEETING01 = new MeetingBuilder().withPropertyId("P1")
-            .withBidderId("B1").withVenue("33 Pasir Ris Drive").withTime("03-08-2021")
+            .withBidderId("B1").withVenue("33 Pasir Ris Drive").withDate("03-08-2021")
             .withStartTime("12:30").withEndTime("15:30").build();
-    public static final Meeting MEETING02 = new MeetingBuilder().withPropertyId("P2")
-            .withTime("owesMoney").withVenue("Beverly Hills").build();
-    public static final Meeting MEETING03 = new MeetingBuilder().withPropertyId("P3")
-            .withBidderId("B2").withVenue("Carl Town").build();
-    public static final Meeting MEETING04 = new MeetingBuilder().withPropertyId("P4")
-            .withBidderId("B3").withTime("friends").withVenue("Dempsy hill").build();
-    public static final Meeting MEETING05 = new MeetingBuilder().withPropertyId("P5")
-            .withBidderId("B4").withVenue("Easton Avenue")
-            .build();
-    public static final Meeting MEETING06 = new MeetingBuilder().withPropertyId("P6")
-            .withBidderId("B5").withVenue("Fiona Road")
-            .build();
-    public static final Meeting MEETING07 = new MeetingBuilder()
-            .withPropertyId("P7").withBidderId("B6")
-            .withVenue("George Town")
-            .build();
+    public static final Meeting MEETING02 = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
+            .withDate("15-08-2021").withVenue("Beverly Hills").withStartTime("13:30").withEndTime("16:30").build();
 
     // Manually added - Meeting's details found in {@code CommandTestUtil}
     public static final Meeting AMY = new MeetingBuilder().withPropertyId("P1").withBidderId("B1")
-            .withTime(VALID_TIME_01).withVenue("S Avenue")
+            .withDate(VALID_TIME_01).withVenue("S Avenue")
             .build();
     public static final Meeting BOB = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
-            .withTime(VALID_TIME_02).withVenue("Serangoon")
+            .withDate(VALID_TIME_02).withVenue("Serangoon")
             .build();
 
     /**
@@ -55,7 +41,6 @@ public class TypicalMeeting {
     }
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(MEETING01, MEETING02, MEETING03,
-                MEETING04, MEETING05, MEETING06, MEETING07));
+        return new ArrayList<>(Arrays.asList(MEETING01, MEETING02));
     }
 }

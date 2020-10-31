@@ -29,7 +29,7 @@ public class BidCommandTestUtil {
     public static final double INVALID_BID_AMOUNT_BID_A = -10000.20;
     public static final double INVALID_BID_AMOUNT_BID_B = -123450.20;
 
-    public static final PropertyId DEFAULT_PROPERTY_ID = new PropertyId("P1");
+    public static final PropertyId DEFAULT_PROPERTY_ID = new PropertyId("P3");
 
     public static final String PROPERTY_ID_DESC_A = " " + PREFIX_PROPERTY_ID + VALID_PROPERTY_ID_BID_A;
     public static final String PROPERTY_ID_DESC_B = " " + PREFIX_PROPERTY_ID + VALID_PROPERTY_ID_BID_B;
