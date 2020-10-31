@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.BidderId;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
 import seedu.address.model.meeting.exceptions.MeetingNotFoundException;
 
@@ -51,6 +53,13 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Removes the meetings in the list that contains the bidder id.
+     */
+    public void removeMeetingByBidderId(BidderId bidderId) {
+        internalList.removeIf(meeting -> meeting.getBidderId().equals(bidderId));
+    }
+
+    /**
      * Replaces the Meeting {@code target} in the list with {@code editedMeeting}.
      * {@code target} must exist in the list.
      * The property identity of {@code editedMeeting} must not be the same as another
@@ -80,6 +89,16 @@ public class UniqueMeetingList implements Iterable<Meeting> {
         if (!internalList.remove(toRemove)) {
             throw new MeetingNotFoundException();
         }
+    }
+
+    /**
+     * Removes all meetings whose property id is equal to the specified propertyId.
+     *
+     * @param propertyId The propertyId of the property
+     */
+    public void removeByPropertyId(PropertyId propertyId) {
+        requireNonNull(propertyId);
+        internalList.removeIf(meeting -> meeting.getPropertyId().equals(propertyId));
     }
 
     public void setMeetings(seedu.address.model.meeting.UniqueMeetingList replacement) {

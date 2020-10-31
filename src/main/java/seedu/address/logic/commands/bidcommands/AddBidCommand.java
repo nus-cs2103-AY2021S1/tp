@@ -29,7 +29,7 @@ public class AddBidCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a bid to the bid book. "
             + "\n\nParameters: "
             + "\n" + PREFIX_PROPERTY_ID + "PROPERTY ID "
-            + "\n" + PREFIX_CLIENT + "CLIENT "
+            + "\n" + PREFIX_CLIENT + "BIDDER ID "
             + "\n" + PREFIX_MONEY + "MONEY "
             + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_PROPERTY_ID + "P12 "

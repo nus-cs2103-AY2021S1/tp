@@ -25,7 +25,8 @@ public class DeleteSellerCommand extends Command {
             + "\n\nParameters: \nINDEX (must be a positive integer)\n"
             + "\n\nExample: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_SELLER_SUCCESS = "Deleted Seller: %1$s";
+    public static final String MESSAGE_DELETE_SELLER_SUCCESS = "Deleted Seller: %1$s"
+            + "\nAll related properties and meetings have been deleted.\"";
 
     private final Index targetIndex;
 
