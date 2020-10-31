@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.BiFunction;
 
 import chopchop.commons.util.Result;
 import chopchop.logic.commands.exceptions.CommandException;
@@ -154,6 +155,13 @@ public class EditRecipeCommand extends Command implements Undoable {
 
         var steps = new ArrayList<>(this.recipe.getSteps());
 
+        var outOfRangeMsg = (BiFunction<Integer, Integer, String>) (idx, sz) -> {
+            return String.format("Step number '%d' is out of range%s", idx,
+                steps.isEmpty() ? " (recipe has no steps)" : String.format(" (should be between 1 and %d)", sz)
+            );
+        };
+
+
         for (var edit : edits) {
             var type = edit.getEditType();
             var step = edit.getStepText();
@@ -162,16 +170,31 @@ public class EditRecipeCommand extends Command implements Undoable {
             enforceContains(type, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
 
             if (type == EditOperationType.ADD) {
+                int idx = steps.size();
 
-                steps.add(numOpt.orElse(steps.size()), new Step(step));
+
+                if (numOpt.isPresent()) {
+                    // numOpt has already been converted to 0-index by this point.
+                    if (numOpt.get() <= steps.size()) {
+                        idx = numOpt.get();
+                    } else {
+                        // when adding steps, the "should be between" part needs to have the higher
+                        // bound raised by 1, since you should be allowed to /step:add:3 to a recipe
+                        // with 2 steps, for example.
+                        return Result.error(outOfRangeMsg.apply(1 + numOpt.get(), steps.size() + 1));
+                    }
+                }
+
+                steps.add(idx, new Step(step));
 
             } else {
                 enforcePresent(numOpt);
 
                 int index = numOpt.get();
-                if (index < 0 || index >= steps.size()) {
-                    return Result.error("Step number '%d' is out of range (should be between 1 and %d)",
-                        1 + index, steps.size());
+                enforce(index >= 0);
+
+                if (index >= steps.size()) {
+                    return Result.error(outOfRangeMsg.apply(1 + index, steps.size()));
                 }
 
                 if (type == EditOperationType.EDIT) {

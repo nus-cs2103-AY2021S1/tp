@@ -197,6 +197,19 @@ public class EditRecipeCommandTest {
         {
             var m = new StubbedModel();
 
+            var c1 = runCommand(m, "add recipe asdf salad");
+            assertTrue(c1.didSucceed());
+
+            var c2 = runCommand(m, "edit recipe asdf salad /step:add:7 asdfasdjf");
+            assertTrue(c2.isError());
+
+            var c3 = runCommand(m, "edit recipe custard salad /step:add:7 asdfasdjf");
+            assertTrue(c3.isError());
+        }
+
+        {
+            var m = new StubbedModel();
+
             {
                 var c = runCommand(m, "edit recipe custard salad /step:add:1 asdfasdjf");
                 assertTrue(c.didSucceed());
