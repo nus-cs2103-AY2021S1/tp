@@ -156,9 +156,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markStudent(Student target, AttendanceType attendanceType) {
+    public void markStudentRecord(StudentRecord target, AttendanceType attendanceType) {
         requireAllNonNull(target, attendanceType);
-        taskmaster.markStudent(target, attendanceType);
+        taskmaster.markStudentRecord(target, attendanceType);
     }
 
     @Override

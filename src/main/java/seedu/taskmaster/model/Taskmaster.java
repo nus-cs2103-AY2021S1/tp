@@ -164,7 +164,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markStudent(Student target, AttendanceType attendanceType)
+    public void markStudentRecord(StudentRecord target, AttendanceType attendanceType)
             throws NoSessionException, NoSessionSelectedException {
         assert target != null;
         assert attendanceType != null;
