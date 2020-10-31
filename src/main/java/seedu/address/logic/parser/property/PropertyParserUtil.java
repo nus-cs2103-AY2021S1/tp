@@ -110,7 +110,11 @@ public class PropertyParserUtil {
         if (!PriceFilter.isValidPriceFilter(trimmed)) {
             throw new ParseException(PriceFilter.MESSAGE_CONSTRAINTS);
         }
-        return new PriceFilter(trimmed);
+        try {
+            return new PriceFilter(trimmed);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**
