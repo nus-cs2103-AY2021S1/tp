@@ -189,12 +189,37 @@ Command:`list lt/low` will list out all the stocks in the stocklist.
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
 * Required fields:
-    1. Serial number of product
+    1. Serial number(s) of product
 
 <h5>Format</h5>
 
 * Single: `delete sn/<serial number>`
 * Multiple: `delete sn/<serial number> sn/<serial number 2> ...`
+
+Below is a step by step for deleting a stock:<br>
+<h6>Step 1</h6>
+Before you start any deletion, make sure to use the command `list lt/all` to list all
+the stocks you have in Warenager.
+//step 1 here
+
+Here, we noticed that `laptop` has been mistyped from stocks with No.5 to No.7
+//insert highlighted step 1 here
+
+You can delete the stock with No.5 by using the stock's serial number. In this case,
+the correct delete input would be `delete sn/courts5`. The fields are **not** case-sensitive.
+//show input
+
+Notice that the entry from No.5 is deleted from the list. The details of the deletion is shown
+in the status box highlighted.
+
+What if you wish to delete multiple stocks at the same time? Lets do this for stocks No.6 and No.7.
+You can do so by chaining their serial numbers. In this case, the correct delete input would be
+`delete sn/courts6 sn/courts7`.
+//show input
+
+Notice both entries are deleted from the list. Both of their details of the deletion are shown
+in the status box highlighted.
+
 
 ### Find stocks from inventory: `find`
 
