@@ -13,6 +13,8 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 - [Commands](#commands "Go to Commands")
     - [Adding a student: `add`](#adding-a-student-add "Go to Adding a student")
     - [Listing all students: `list`](#listing-all-students-list "Go to Listing all students")
+    - [Finding students by name: `find`](#finding-students-by-name-find "Go to Finding students by name")
+    - [Editing a student: `edit`](#editing-a-student-edit "Go to Editing a student")
     - [Deleting a student: `delete`](#deleting-a-student-delete "Go to Deleting a student")
     - [Adding a session: `session`](#adding-a-session-session "Go to Adding a session")
     - [Changing the current session: `goto`](#changing-the-current-session-goto "Go to Changing the current session")
@@ -80,6 +82,47 @@ Shows a list of all students in the student list.
 list
 ```
 
+### Finding students by name: `find`
+Finds students whose name contains any of the given keywords.
+```
+find KEYWORD [MORE_KEYWORDS]
+```
+- The search is case-insensitive (e.g. `hans` will match `Hans`).
+- The order of the keywords does not matter (e.g. `Hans Bo` will match `Bo Hans`).
+- Only the name is searched.
+- Only full names will be matched (e.g. `han` will NOT match `Hans`).
+- Students matching at least one keyword will be returned (e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`)
+
+Example usages:
+```
+// Returns 'john' and 'John Doe'
+find John
+
+// Returns 'Alex Yeoh', 'David Li'
+find alex david
+```
+
+### Editing a student: `edit`
+Edits an existing student in the student list.
+```
+edit INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...
+```
+- Edits the student at the specified `INDEX` number shown in the displayed student list. 
+- The `INDEX` **must be a positive integer** that exists in said list.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+
+Example usages:
+```
+// Edit the telegram and email of the first person
+edit 1 u/johntan98 e/johntan98@gmail.com
+
+// Edit the name of the second person and clear all existing tags
+edit 2 n/Rachel Lee t/
+```
+
 ### Deleting a student: `delete`
 Deletes the specified student from the student list.
 ```
@@ -98,7 +141,7 @@ Adds a session into the session list.
 ```
 session s/SESSION_NAME dt/SESSION_DATE_TIME
 ```
-- The `SESSION_DATE_TIME` must be of the format `dd-MM-yyyy HHmm`.
+- The `SESSION_DATE_TIME` must be a valid date of the format `dd-MM-yyyy HHmm`.
 
 Example usage:
 ```
@@ -141,7 +184,9 @@ mark all a/ATTENDANCE_TYPE
 
 Example Usage:
 ```
+// Mark all students as present except for student at index 2 who is absent
 mark all a/present
+mark 2 a/absent
 ```
 
 ### Scoring a student's participation: `score`
