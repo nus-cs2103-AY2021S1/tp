@@ -3,7 +3,7 @@ package chopchop.logic.parser.commands;
 import java.util.Optional;
 
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.ViewCommand;
+import chopchop.logic.commands.ViewRecipeCommand;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.logic.parser.ItemReference;
 import chopchop.commons.util.Result;
@@ -39,7 +39,7 @@ public class ViewCommandParser {
                     return Result.error("Recipe name cannot be empty");
                 }
 
-                return ItemReference.parse(target.snd()).map(ViewCommand::new);
+                return ItemReference.parse(target.snd()).map(ViewRecipeCommand::new);
             });
     }
 }

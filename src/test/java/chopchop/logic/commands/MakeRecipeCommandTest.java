@@ -1,4 +1,4 @@
-// MakeCommandTest.java
+// MakeRecipeCommandTest.java
 
 package chopchop.logic.commands;
 
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MakeCommandTest {
+public class MakeRecipeCommandTest {
 
     private CommandResult runCommand(Model m, String str) {
         var parser = new CommandParser();
@@ -75,7 +75,7 @@ public class MakeCommandTest {
             var r1 = runCommand(c, m);
             assertTrue(r1.didSucceed());
 
-            var u1 = ((MakeCommand) c).undo(m);
+            var u1 = ((MakeRecipeCommand) c).undo(m);
             assertTrue(u1.didSucceed());
 
             assertTrue(m.findIngredientWithName("rainbows").get().getQuantity().equals(Mass.grams(400)));
@@ -88,7 +88,7 @@ public class MakeCommandTest {
             var r1 = runCommand(c, m);
             assertTrue(r1.didSucceed());
 
-            var r2 = ((MakeCommand) c).undo(m);
+            var r2 = ((MakeRecipeCommand) c).undo(m);
             assertTrue(r2.didSucceed());
         }
 

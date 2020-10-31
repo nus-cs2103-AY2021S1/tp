@@ -69,8 +69,8 @@ public class CommandParserTest {
         tests.put("list ingredient", "Result(ListIngredientCommand)");
         tests.put("list ingredients", "Result(ListIngredientCommand)");
 
-        tests.put("make recipe cake", "Result(MakeCommand(cake))");
-        tests.put("view recipe cake", "Result(ViewCommand(cake))");
+        tests.put("make recipe cake", "Result(MakeRecipeCommand(cake))");
+        tests.put("view recipe cake", "Result(ViewRecipeCommand(cake))");
         tests.put("filter recipe /tag owo", "Result(FilterRecipeCommand(...))");
         tests.put("edit recipe cake", "Result(EditRecipeCommand(cake))");
 
@@ -81,9 +81,9 @@ public class CommandParserTest {
         tests.put("add recipe cake /", "Error(Expected argument name after '/')");
         tests.put("add recipe cake /   ", "Error(Expected argument name after '/')");
 
-        tests.put("view recipe cake cucumber", "Result(ViewCommand(cake cucumber))");
+        tests.put("view recipe cake cucumber", "Result(ViewRecipeCommand(cake cucumber))");
         tests.put("view recipe", "Error(Recipe name cannot be empty)");
-        tests.put("view recipe #1", "Result(ViewCommand(#1))");
+        tests.put("view recipe #1", "Result(ViewRecipeCommand(#1))");
         tests.put("view recipe #0", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("OWO", "Error(Unknown command 'OWO')");

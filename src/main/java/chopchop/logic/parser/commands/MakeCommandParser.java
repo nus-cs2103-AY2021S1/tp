@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import chopchop.commons.util.Result;
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.MakeCommand;
+import chopchop.logic.commands.MakeRecipeCommand;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.logic.parser.ItemReference;
 
@@ -39,7 +39,7 @@ public class MakeCommandParser {
                     return Result.error("Recipe name cannot be empty");
                 }
 
-                return ItemReference.parse(target.snd()).map(MakeCommand::new);
+                return ItemReference.parse(target.snd()).map(MakeRecipeCommand::new);
             });
     }
 }
