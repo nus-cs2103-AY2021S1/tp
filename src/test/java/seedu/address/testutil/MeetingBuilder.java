@@ -2,9 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
-import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 
@@ -24,7 +24,7 @@ public class MeetingBuilder {
 
     private PropertyId propertyId;
     private BidderId bidderId;
-    private Date date;
+    private MeetingDate meetingDate;
     private Venue venue;
     private StartTime startTime;
     private EndTime endTime;
@@ -36,7 +36,7 @@ public class MeetingBuilder {
         propertyId = new PropertyId(DEFAULT_PROPERTY_ID);
         bidderId = new BidderId(DEFAULT_BIDDER_ID);
         venue = new Venue(DEFAULT_VENUE);
-        date = new Date(DEFAULT_TIME);
+        meetingDate = new MeetingDate(DEFAULT_TIME);
         startTime = new StartTime(DEFAULT_STARTTIME);
         endTime = new EndTime(DEFAULT_ENDTIME);
     }
@@ -47,7 +47,7 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting bidderToCopy) {
         propertyId = bidderToCopy.getPropertyId();
         bidderId = bidderToCopy.getBidderId();
-        date = bidderToCopy.getDate();
+        meetingDate = bidderToCopy.getMeetingDate();
         venue = bidderToCopy.getVenue();
         startTime = bidderToCopy.getStartTime();
         endTime = bidderToCopy.getEndTime();
@@ -62,10 +62,10 @@ public class MeetingBuilder {
     }
 
     /**
-     * Parses the {@code date} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
+     * Parses the {@code meetingDate} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
      */
     public MeetingBuilder withTime(String time) {
-        this.date = new Date(time);
+        this.meetingDate = new MeetingDate(time);
         return this;
     }
 
@@ -102,7 +102,7 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(bidderId, propertyId, date, venue, startTime, endTime);
+        return new Meeting(bidderId, propertyId, meetingDate, venue, startTime, endTime);
     }
 
 }

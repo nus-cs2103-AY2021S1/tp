@@ -6,17 +6,17 @@ import java.util.Comparator;
 import java.util.Date;
 
 /**
- * Compares meetings based on date and sorts them chronologically.
+ * Compares meetings based on meetingDate and sorts them chronologically.
  */
 public class MeetingTimeComparator extends MeetingComparator implements Comparator<Meeting> {
 
-    public static final String SORT_CRITERIA = "date";
-    public static final String MESSAGE_INVALID_TIME = "Date is not in valid format.";
+    public static final String SORT_CRITERIA = "meetingDate";
+    public static final String MESSAGE_INVALID_TIME = "MeetingDate is not in valid format.";
 
     @Override
     public int compare(Meeting meeting1, Meeting meeting2) {
-        String time1 = meeting1.getDate().date;
-        String time2 = meeting2.getDate().date;
+        String time1 = meeting1.getMeetingDate().date;
+        String time2 = meeting2.getMeetingDate().date;
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
         try {
