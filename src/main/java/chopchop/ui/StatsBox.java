@@ -52,14 +52,7 @@ public class StatsBox extends UiPart<Region> {
         super(FXML);
 
         this.model = model;
-        this.model.getObservableRecipeUsages().addListener((ListChangeListener<RecipeUsage>) e -> {
-
-            // consume all
-            while (e.next()) {
-            }
-
-            this.clearMessage();
-        });
+        this.model.getObservableRecipeUsages().addListener((ListChangeListener<RecipeUsage>) e -> this.clearMessage());
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
@@ -69,11 +62,10 @@ public class StatsBox extends UiPart<Region> {
             outputList.add(records.remove(records.size() - 1));
             i++;
         }
-        String output = outputList.stream()
+        return outputList.stream()
             .map(x -> String.format("%s, %s", x.fst(),
                 x.snd().format(DateTimeFormatter.ofPattern("dd-MMM-yy hh:mm a"))))
             .collect(Collectors.joining("\n"));
-        return output.toString();
     }
 
     /**
