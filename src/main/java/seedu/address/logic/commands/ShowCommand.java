@@ -24,7 +24,7 @@ public class ShowCommand extends Command {
             + PREFIX_TAG_NAME + "cs2103 ";
     public static final String SHOW_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
     public static final String MESSAGE_SUCCESS = "%s's file path: %s";
-    public static final String NO_LABEL_IN_TAG = "\nYou haven't add any label to this tag!";
+    public static final String NO_LABEL_IN_TAG = "There is no label associated with this Tag.";
     private final TagNameEqualsKeywordPredicate predicate;
 
     /**
@@ -49,7 +49,7 @@ public class ShowCommand extends Command {
         builder.append(String.format(MESSAGE_SUCCESS, tag.getTagName(), tag.getFileAddress()));
 
         if (tag.getLabels().isEmpty()) {
-            builder.append(NO_LABEL_IN_TAG);
+            builder.append("\n").append(NO_LABEL_IN_TAG);
         } else {
             builder.append(tag.getLabels().size() == 1 ? "\nLabel: " : "\nLabels: ");
             tag.getLabels().forEach(builder::append);
