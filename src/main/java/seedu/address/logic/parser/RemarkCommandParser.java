@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
+import java.util.Optional;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.RemarkCommand;
@@ -34,9 +36,16 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
                     RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        if (argMultimap.getValue(PREFIX_REMARK).isEmpty()) {
+        Optional<String> remarkValue = argMultimap.getValue(PREFIX_REMARK);
+        String remarkStringValue = remarkValue.orElse("");
+
+        if (remarkValue.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     RemarkCommand.MESSAGE_USAGE));
+        }
+
+        if (!Remark.isValidRemark(remarkStringValue)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
         }
 
         Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
