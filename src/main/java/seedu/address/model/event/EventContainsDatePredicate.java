@@ -10,6 +10,7 @@ public class EventContainsDatePredicate implements Predicate<Event> {
 
     public EventContainsDatePredicate(List<String> dates) {
         this.dates = dates;
+        System.out.println(dates);
     }
 
     @Override

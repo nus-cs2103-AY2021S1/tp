@@ -11,6 +11,7 @@ import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
 import seedu.address.model.event.FindEventCriteria;
 import seedu.address.model.tag.Tag;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -32,10 +33,10 @@ public class FindEventParser implements Parser<FindEventCommand> {
             criteria.addPredicate(namePredicate);
         }
         if (argMultiMap.getValue(PREFIX_DATE).isPresent()) {
-            //TODO: most like won't work cos of format timing issues, need to test
-            List<String> keywordsAsList = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_DATE).get());
-            EventContainsDatePredicate namePredicate = new EventContainsDatePredicate(keywordsAsList);
-            criteria.addPredicate(namePredicate);
+            LocalDateTime toSearch = ParserUtil.parseDate(argMultiMap.getValue(PREFIX_DATE).get());
+            List<String> keywordsAsList = List.of(toSearch.toString());
+            EventContainsDatePredicate datePredicate = new EventContainsDatePredicate(keywordsAsList);
+            criteria.addPredicate(datePredicate);
         }
         if (argMultiMap.getValue(PREFIX_TAG).isPresent()) {
             List<String> tags = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_TAG).get());
