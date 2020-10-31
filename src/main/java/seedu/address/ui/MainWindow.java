@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
@@ -45,6 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private RevenueListPanel revenueListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private LabeledPieChart pieChart;
 
     @FXML
     private HBox accountNameBar;
@@ -66,8 +69,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane pieChartPlaceholder;
-
-    private LabeledPieChart pieChart;
 
     @FXML
     private StackPane expenseListPanelPlaceholder;
@@ -230,6 +231,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        resultDisplay.setFeedbackToUser(MESSAGE_EXIT_ACKNOWLEDGEMENT);
         PauseTransition pause = new PauseTransition(Duration.seconds(1.5f));
         pause.setOnFinished(event -> {
             GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),

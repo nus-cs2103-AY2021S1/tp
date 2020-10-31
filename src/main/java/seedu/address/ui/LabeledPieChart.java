@@ -11,10 +11,13 @@ import javafx.scene.shape.Arc;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-//@@author lettuceman4-reused
-//Reused from https://stackoverflow.com/questions/42065871/how-to-display-values-in-javafx-pie-chart
+// @@author lettuceman4-reused
+// Reused from https://stackoverflow.com/questions/42065871/how-to-display-values-in-javafx-pie-chart
 // with minor modifications
 public class LabeledPieChart extends PieChart {
+    private static final double FULL_CIRCLE_ANGLE = 360;
+    private static final String EMPTY_STRING = "";
+    private static final int OFFSET = 15;
     private final Map<Data, Text> labels = new HashMap<>();
 
     /**
@@ -49,7 +52,11 @@ public class LabeledPieChart extends PieChart {
         for (Data data : getData()) {
             final Text dataText;
             final double displayValue = data.getPieValue();
-            dataText = new Text(String.format("$%.2f", displayValue));
+            if (displayValue != 0) {
+                dataText = new Text(String.format("$%.2f", displayValue));
+            } else {
+                dataText = new Text(EMPTY_STRING);
+            }
             labels.put(data, dataText);
             this.getChartChildren().add(dataText);
         }
@@ -61,7 +68,7 @@ public class LabeledPieChart extends PieChart {
         for (Data d : this.getData()) {
             total += d.getPieValue();
         }
-        double scale = (total != 0) ? 360 / total : 0;
+        double scale = (total != 0) ? FULL_CIRCLE_ANGLE / total : 0;
 
         for (Map.Entry<Data, Text> entry : labels.entrySet()) {
             Data vData = entry.getKey();
@@ -79,7 +86,7 @@ public class LabeledPieChart extends PieChart {
             final double sproutY = calcY(angle, arc.getRadiusY() / 2, centerY);
 
             vText.relocate(
-                sproutX - vText.getBoundsInLocal().getWidth() + 15,
+                sproutX - vText.getBoundsInLocal().getWidth() + OFFSET,
                 sproutY - vText.getBoundsInLocal().getHeight());
             vText.setFont(Font.font("Century Gothic"));
             vText.setFill(Color.WHITE);
@@ -88,12 +95,12 @@ public class LabeledPieChart extends PieChart {
     }
 
     private static double normalizeAngle(double angle) {
-        double a = angle % 360;
-        if (a <= -180) {
-            a += 360;
+        double a = angle % FULL_CIRCLE_ANGLE;
+        if (a <= -(FULL_CIRCLE_ANGLE / 2)) {
+            a += FULL_CIRCLE_ANGLE;
         }
-        if (a > 180) {
-            a -= 360;
+        if (a > (FULL_CIRCLE_ANGLE / 2)) {
+            a -= FULL_CIRCLE_ANGLE;
         }
         return a;
     }
