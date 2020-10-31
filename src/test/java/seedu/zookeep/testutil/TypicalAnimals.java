@@ -22,28 +22,41 @@ import seedu.zookeep.model.animal.Animal;
 public class TypicalAnimals {
 
     public static final Animal AHMENG = new AnimalBuilder().withName("Ahmeng")
-            .withSpecies("Orangutan")
             .withId("123")
+            .withSpecies("Orangutan")
             .withMedicalConditions("Deceased").build();
-    public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup").withId("456")
+    public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup")
+            .withId("456")
             .withSpecies("Reticulated Python")
             .withMedicalConditions("Skin Infection", "Inclusion Body Disease")
-            .withFeedTimes("1300").build();
-    public static final Animal COCO = new AnimalBuilder().withName("Coco").withId("125")
-            .withSpecies("Chihuahua").build();
-    public static final Animal ESTHER = new AnimalBuilder().withName("Esther").withId("126")
-            .withSpecies("Pig").withMedicalConditions("Swine Flu").build();
-    public static final Animal GRECIA = new AnimalBuilder().withName("Grecia").withId("134")
-            .withSpecies("Toucan").build();
-    public static final Animal NEMO = new AnimalBuilder().withName("Nemo").withId("1212")
-            .withSpecies("Clownfish").build();
-    public static final Animal PASHA = new AnimalBuilder().withName("Pasha").withId("1234")
-            .withSpecies("White Tiger").build();
+            .withFeedTimes("1300", "1800").build();
+    public static final Animal COCO = new AnimalBuilder().withName("Coco")
+            .withId("125")
+            .withSpecies("Chihuahua")
+            .withFeedTimes("1200").build();
+    public static final Animal ESTHER = new AnimalBuilder().withName("Esther")
+            .withId("126")
+            .withSpecies("Pig")
+            .withMedicalConditions("Swine Flu").build();
+    public static final Animal GRECIA = new AnimalBuilder().withName("Grecia")
+            .withId("134")
+            .withSpecies("Toucan")
+            .withFeedTimes("0600", "1200", "1800").build();
+    public static final Animal NEMO = new AnimalBuilder().withName("Nemo")
+            .withId("1212")
+            .withSpecies("Clownfish")
+            .withFeedTimes("0800", "1300", "1900").build();
+    public static final Animal PASHA = new AnimalBuilder().withName("Pasha")
+            .withId("1234")
+            .withSpecies("White Tiger")
+            .withMedicalConditions("Obese").build();
 
     // Manually added
-    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia").withId("111")
+    public static final Animal JIAJIA = new AnimalBuilder().withName("JiaJia")
+            .withId("111")
             .withSpecies("Giant Panda").build();
-    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai").withId("233")
+    public static final Animal KAIKAI = new AnimalBuilder().withName("KaiKai")
+            .withId("233")
             .withSpecies("Giant Panda").build();
 
     // Manually added - Animal's details found in {@code CommandTestUtil}

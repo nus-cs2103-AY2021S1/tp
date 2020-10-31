@@ -92,7 +92,8 @@ public class Animal {
         return otherAnimal.getName().equals(getName())
                 && otherAnimal.getId().equals(getId())
                 && otherAnimal.getSpecies().equals(getSpecies())
-                && otherAnimal.getMedicalConditions().equals(getMedicalConditions());
+                && otherAnimal.getMedicalConditions().equals(getMedicalConditions())
+                && otherAnimal.getFeedTimes().equals(getFeedTimes());
     }
 
     @Override
