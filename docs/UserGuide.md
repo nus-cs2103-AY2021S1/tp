@@ -61,19 +61,31 @@ This diagram shows our interface.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add t>TAG`, `TAG` is a parameter, such as in the case `add t>Myfile`.
+  e.g. in `tag t>TAG`, `TAG` is a parameter, such as in the case `add t>Myfile`.
 
-* Items in square brackets are optional.<br>
+* Expressions in square brackets are optional.<br>
   e.g `t>TAG [f>FILE_PATH]` can be used as `t>Myfile f>C:\Users` or as `t>Myfile`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specify `t>TAG f>FILE_PATH`, `f>FILE_PATH t>TAG` is also an acceptable command.
 
+* Expressions with `...` at the end can be provided any number of times.<br>
+  e.g. `t>TAG [l>LABEL]...` can be used as `t>TAG`, `t>TAG l>label`, or `t>TAG l>label1 l>label2 l>label3`.
+  
 * Every tag name must be unique, but multiple tags can point to the same filepath.
 
 * Every tag name is case-sensitive. e.g tag name `notes` is different from tag name `Notes`.
 
 * Only the `cd` and `tag` command accepts relative file path, all other commands require absolute file path.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Warning for multiple expressions**
+
+Expressions without `...` at the end takes the last parameter as the argument when provided with multiple same expressions.<br>
+  e.g. `tag t>TAG1 t>TAG2` will take `TAG2` as the parameter, ignoring the parameter `TAG1`.
 
 </div>
 
