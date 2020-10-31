@@ -87,7 +87,7 @@ public class EditCommandParser {
                             var nextArg = args.getAllArguments().get(i + 1);
                             if (nextArg.fst().equals(ARG_QUANTITY)) {
 
-                                var q = Quantity.parse(nextArg.snd());
+                                var q = CommonParser.parseQuantity(nextArg.snd());
                                 if (q.isError()) {
                                     return Result.error(q.getError());
                                 } else {

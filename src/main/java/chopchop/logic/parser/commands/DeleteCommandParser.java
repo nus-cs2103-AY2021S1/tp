@@ -5,7 +5,6 @@ package chopchop.logic.parser.commands;
 import java.util.List;
 import java.util.Optional;
 
-import chopchop.model.attributes.Quantity;
 import chopchop.commons.util.Result;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.parser.CommandArguments;
@@ -72,7 +71,7 @@ public class DeleteCommandParser {
             .then(ref -> Result.transpose(qtys
                 .stream()
                 .findFirst()
-                .map(Quantity::parse))
+                .map(CommonParser::parseQuantity))
                 .map(qty -> new DeleteIngredientCommand(ref, qty)));
     }
 

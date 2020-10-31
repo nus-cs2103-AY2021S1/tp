@@ -11,6 +11,7 @@ import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
+import chopchop.model.attributes.Quantity;
 
 public class CommonParser {
 
@@ -56,7 +57,20 @@ public class CommonParser {
         return checkArguments(args, cmdname, List.of(), false);
     }
 
-
+    /**
+     * Parses a quantity, but since this is user-facing, also ensures that the quantity
+     * parsed is non-negative.
+     */
+    public static Result<Quantity> parseQuantity(String input) {
+        return Quantity.parse(input)
+            .then(q -> {
+                if (q.isNegative()) {
+                    return Result.error("Quantity cannot be negative (found '%s')", q.toString());
+                } else {
+                    return Result.of(q);
+                }
+            });
+    }
 
     /**
      * Gets the 'target' of a command, which is either 'ingredient' or 'recipe'. Returns either an error

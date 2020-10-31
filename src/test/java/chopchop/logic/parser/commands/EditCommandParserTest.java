@@ -28,6 +28,7 @@ public class EditCommandParserTest {
         cases.put("edit recipe x /ingredient:add y",                                    false);
         cases.put("edit recipe x /ingredient:delete y /qty 6",                          false);
         cases.put("edit recipe x /ingredient:delete y /qty z",                          false);
+        cases.put("edit recipe x /ingredient:delete y /qty -999",                       false);
 
         cases.put("edit recipe x /tag",                                                 false);
         cases.put("edit recipe x /tag:owo",                                             false);
@@ -64,6 +65,7 @@ public class EditCommandParserTest {
 
 
         cases.forEach((k, v) -> {
+            System.out.printf("** testing: %s\n", k);
             assertEquals(v, parser.parse(k).hasValue());
         });
 
