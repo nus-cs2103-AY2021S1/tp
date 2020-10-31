@@ -1,7 +1,6 @@
 package chopchop.ui;
 
 import java.util.Optional;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.jfoenix.controls.JFXMasonryPane;
 

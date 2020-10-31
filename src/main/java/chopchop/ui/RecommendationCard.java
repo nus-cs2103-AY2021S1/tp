@@ -24,6 +24,9 @@ public class RecommendationCard extends UiPart<Region> {
     @FXML
     private StackPane recipeCardContainer;
 
+    /**
+     * Creates a {@code RecommendationCard}.
+     */
     public RecommendationCard(String message) {
         super(FXML);
 
@@ -34,7 +37,7 @@ public class RecommendationCard extends UiPart<Region> {
     }
 
     /**
-     * Creates a {@code RecipeCard} with the given {@code Recipe}.
+     * Creates a {@code RecommendationCard} with the given {@code Recipe}.
      */
     public RecommendationCard(Recipe recipe, int id, String message) {
         super(FXML);
