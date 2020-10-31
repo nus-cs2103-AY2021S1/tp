@@ -25,7 +25,7 @@ import chopchop.model.usage.RecipeUsage;
 import java.util.Arrays;
 
 
-public class ViewCommandTest {
+public class ViewRecipeCommandTest {
 
     private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
             new UsageList<IngredientUsage>(), new UserPrefs());
@@ -33,7 +33,7 @@ public class ViewCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         var recToView = model.getFilteredRecipeList().get(INDEXED_FIRST.getZeroIndex());
-        var viewCommand = new ViewCommand(INDEXED_FIRST);
+        var viewCommand = new ViewRecipeCommand(INDEXED_FIRST);
 
         var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
                 new UsageList<IngredientUsage>(), new UserPrefs());
@@ -45,7 +45,7 @@ public class ViewCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         var outOfBoundIndex = ItemReference.ofOneIndex(model.getFilteredRecipeList().size() + 1);
-        var viewCommand = new ViewCommand(outOfBoundIndex);
+        var viewCommand = new ViewRecipeCommand(outOfBoundIndex);
 
         assertCommandFailure(viewCommand, model);
     }
@@ -55,7 +55,7 @@ public class ViewCommandTest {
         showRecipeAtIndex(model, INDEXED_FIRST);
 
         var recToView = model.getFilteredRecipeList().get(INDEXED_FIRST.getZeroIndex());
-        var viewCommand = new ViewCommand(INDEXED_FIRST);
+        var viewCommand = new ViewRecipeCommand(INDEXED_FIRST);
 
         var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
                 new UsageList<IngredientUsage>(), new UserPrefs());
@@ -73,21 +73,21 @@ public class ViewCommandTest {
         // ensures that outOfBoundIndex is still in bounds of recipe book list
         assertTrue(outOfBoundIndex.getZeroIndex() < model.getRecipeBook().getEntryList().size());
 
-        var viewCommand = new ViewCommand(outOfBoundIndex);
+        var viewCommand = new ViewRecipeCommand(outOfBoundIndex);
 
         assertCommandFailure(viewCommand, model);
     }
 
     @Test
     public void equals() {
-        var viewFirstCommand = new ViewCommand(INDEXED_FIRST);
-        var viewSecondCommand = new ViewCommand(INDEXED_SECOND);
+        var viewFirstCommand = new ViewRecipeCommand(INDEXED_FIRST);
+        var viewSecondCommand = new ViewRecipeCommand(INDEXED_SECOND);
 
         // same object -> returns true
         assertTrue(viewFirstCommand.equals(viewFirstCommand));
 
         // same values -> returns true
-        var viewFirstCommandCopy = new ViewCommand(INDEXED_FIRST);
+        var viewFirstCommandCopy = new ViewRecipeCommand(INDEXED_FIRST);
         assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
 
         // different types -> returns false

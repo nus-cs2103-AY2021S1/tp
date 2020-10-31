@@ -11,15 +11,15 @@ import chopchop.ui.DisplayNavigator;
 /**
  * Displays a recipe identified by the index number or its name from the recipe book.
  */
-public class ViewCommand extends Command {
+public class ViewRecipeCommand extends Command {
 
     private final ItemReference item;
 
     /**
-     * Constructs a {@code ViewCommand} from the given recipe item.
+     * Constructs a {@code ViewRecipeCommand} from the given recipe item.
      * @param item
      */
-    public ViewCommand(ItemReference item) {
+    public ViewRecipeCommand(ItemReference item) {
         requireNonNull(item);
         this.item = item;
     }
@@ -42,14 +42,14 @@ public class ViewCommand extends Command {
 
     @Override
     public String toString() {
-        return String.format("ViewCommand(%s)", this.item);
+        return String.format("ViewRecipeCommand(%s)", this.item);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof ViewCommand
-                && this.item.equals(((ViewCommand) other).item));
+                || (other instanceof ViewRecipeCommand
+                && this.item.equals(((ViewRecipeCommand) other).item));
     }
 
     public static String getCommandString() {

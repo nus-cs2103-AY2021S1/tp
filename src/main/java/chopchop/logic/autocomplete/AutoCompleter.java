@@ -203,12 +203,15 @@ public class AutoCompleter {
      */
     private String completeTarget(CommandArguments args, String orig, boolean nested) {
 
+        String cmd = args.getCommand();
         String partial = "";
+
         if (nested) {
             var words = new StringView(args.getRemaining()).words();
             enforceGreaterThan(words.size(), 1);
 
             partial = words.get(1);
+            cmd = words.get(0);
 
         } else {
             partial = args.getFirstWordFromRemaining();
@@ -217,11 +220,7 @@ public class AutoCompleter {
         var valids = new ArrayList<String>();
         for (var tgt : CommandTarget.values()) {
             if (tgt.toString().startsWith(partial)) {
-
-                // only suggest 'recommendation' for the 'list' command.
-                if (!tgt.equals(CommandTarget.RECOMMENDATION)
-                    || args.getCommand().equals(Strings.COMMAND_LIST)) {
-
+                if (commandSupportsTarget(cmd, tgt)) {
                     valids.add(tgt.toString());
                 }
             }
@@ -581,14 +580,6 @@ public class AutoCompleter {
 
                     }).orElse(RequiredCompletion.NONE);
 
-            } else if (commandRequiresItemReference(cmd)) {
-
-                if (cmd.equals(Strings.COMMAND_MAKE) || cmd.equals(Strings.COMMAND_VIEW)) {
-                    return RequiredCompletion.RECIPE_NAME;
-                } else {
-                    return RequiredCompletion.NONE;
-                }
-
             } else {
                 return RequiredCompletion.NONE;
             }
@@ -682,10 +673,33 @@ public class AutoCompleter {
             Strings.COMMAND_LIST,
             Strings.COMMAND_FIND,
             Strings.COMMAND_EDIT,
+            Strings.COMMAND_VIEW,
+            Strings.COMMAND_MAKE,
             Strings.COMMAND_STATS,
             Strings.COMMAND_FILTER,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
+    }
+
+    private boolean commandSupportsTarget(String command, CommandTarget target) {
+        // this is a pretty 3head solution, but it works
+        if (target == CommandTarget.RECIPE) {
+
+            // all commands that take a target will take recipes.
+            return commandRequiresTarget(command);
+
+        } else if (target == CommandTarget.INGREDIENT) {
+
+            // all commands that take a target will take ingredients, except MAKE, EDIT, and VIEW.
+            return commandRequiresTarget(command)
+                && !command.equals(Strings.COMMAND_VIEW)
+                && !command.equals(Strings.COMMAND_MAKE)
+                && !command.equals(Strings.COMMAND_EDIT);
+        } else {
+
+            // only list accepts recommendations.
+            return command.equals(Strings.COMMAND_LIST);
+        }
     }
 
     private boolean commandRequiresItemReference(String commandName) {

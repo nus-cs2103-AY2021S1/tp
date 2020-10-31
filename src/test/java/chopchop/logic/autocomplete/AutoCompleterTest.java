@@ -131,8 +131,8 @@ public class AutoCompleterTest {
 
         // recipe name completion
         cases.put("delete recipe a",                        "delete recipe Apricot Salad");
-        cases.put("make cus",                               "make Custard Salad");
-        cases.put("view b",                                 "view Banana Salad");
+        cases.put("make recipe cus",                        "make recipe Custard Salad");
+        cases.put("view recipe b",                          "view recipe Banana Salad");
 
         // this should not complete
         cases.put("add recipe a",                           "add recipe a");

@@ -294,16 +294,16 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 
 
-<a name="ViewCommand"></a>
-### 5.4. Viewing Recipes — **`view`**
+<a name="ViewRecipeCommand"></a>
+### 5.4. Viewing Recipes — **`view`**`recipe`
 This command opens the detailed recipe view, allowing you to see the steps, ingredients, and tags of the recipe.
 
-**Usage**: `view <#REF>`
+**Usage**: `view recipe <#REF>`
 
 Examples:
-- `view #4` <br />
+- `view recipe #4` <br />
 	This displays the fourth recipe currently shown in the GUI's recipe view.
-- `view pancakes` <br />
+- `view recipe pancakes` <br />
 	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
 
 To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:

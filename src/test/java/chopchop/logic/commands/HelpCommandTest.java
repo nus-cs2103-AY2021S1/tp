@@ -91,15 +91,38 @@ public class HelpCommandTest {
     }
 
 
+
+    @Test
+    public void test_viewCommand() {
+
+        var cases = new HashMap<Pair<String, String>, String>();
+
+        cases.put(Pair.of("view", ""),
+            "view: Views a recipe; see 'view recipe'");
+
+        cases.put(Pair.of("view", "recipe"),
+            String.format("%s: %s %s",
+                ViewRecipeCommand.getCommandString(),
+                ViewRecipeCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        test(cases);
+    }
+
+
     @Test
     public void test_makeCommand() {
 
         var cases = new HashMap<Pair<String, String>, String>();
 
         cases.put(Pair.of("make", ""),
+            "make: Makes a recipe; see 'make recipe'");
+
+        cases.put(Pair.of("make", "recipe"),
             String.format("%s: %s %s",
-                MakeCommand.getCommandString(),
-                MakeCommand.getCommandHelp(),
+                MakeRecipeCommand.getCommandString(),
+                MakeRecipeCommand.getCommandHelp(),
                 "see the User Guide")
         );
 
@@ -112,7 +135,7 @@ public class HelpCommandTest {
         var cases = new HashMap<Pair<String, String>, String>();
 
         cases.put(Pair.of("edit", ""),
-            "edit: Edits an item; see 'edit recipe' or 'edit ingredient'");
+            "edit: Edits an item; see 'edit recipe'");
 
         cases.put(Pair.of("edit", "recipe"),
             String.format("%s: %s %s",
@@ -130,7 +153,7 @@ public class HelpCommandTest {
         var cases = new HashMap<Pair<String, String>, String>();
 
         cases.put(Pair.of("list", ""),
-            "list: Lists items; see 'list recipes' or 'list ingredients'");
+            "list: Lists items; see 'list recipes', 'list ingredients', or 'list recommendations'");
 
         cases.put(Pair.of("list", "recipe"),
             String.format("%s: %s %s",
