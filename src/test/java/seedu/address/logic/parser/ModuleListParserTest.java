@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.modulelistcommands.ClearModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
@@ -74,9 +74,9 @@ public class ModuleListParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        FindModuleCommand command = (FindModuleCommand) parser.parseCommand(
+                FindModuleCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindModuleCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
