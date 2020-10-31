@@ -4,10 +4,9 @@ import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.expense.logic.commands.SortCommand.REVERSE_KEYWORD;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_SORT;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -50,7 +49,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         // filter and clean up repeats. Only take the latest entry if conflicting entries are found
-        Set<String> sortKeysUnique = getUniqueSortKeys(sortKeys);
+        List<String> sortKeysUnique = getUniqueSortKeys(sortKeys);
 
         DescriptionComparator descriptionComparator = new DescriptionComparator(false, false, -1);
         AmountComparator amountComparator = new AmountComparator(false, false, -1);
@@ -74,8 +73,8 @@ public class SortCommandParser implements Parser<SortCommand> {
         return new SortCommand(descriptionComparator, amountComparator, dateComparator);
     }
 
-    private static Set<String> getUniqueSortKeys(Collection<String> sortKeys) {
-        Set<String> sortKeysUnique = new HashSet<>();
+    private static List<String> getUniqueSortKeys(Collection<String> sortKeys) {
+        List<String> sortKeysUnique = new ArrayList<>();
         for (String sortKey : sortKeys) {
             Matcher m = Pattern.compile(VALIDATION_REGEX).matcher(sortKey);
             Matcher mReverse = Pattern.compile(VALIDATION_REGEX + REVERSE_KEYWORD).matcher(sortKey);
@@ -83,12 +82,16 @@ public class SortCommandParser implements Parser<SortCommand> {
                 if (sortKeysUnique.contains(sortKey + REVERSE_KEYWORD)) {
                     sortKeysUnique.remove(sortKey + REVERSE_KEYWORD);
                 }
-                sortKeysUnique.add(sortKey);
+                if (!sortKeysUnique.contains(sortKey)) {
+                    sortKeysUnique.add(sortKey);
+                }
             } else if (mReverse.matches()) {
                 if (sortKeysUnique.contains(mReverse.group("keyword"))) {
                     sortKeysUnique.remove(mReverse.group("keyword"));
                 }
-                sortKeysUnique.add(sortKey);
+                if (!sortKeysUnique.contains(sortKey)) {
+                    sortKeysUnique.add(sortKey);
+                }
             }
         }
         return sortKeysUnique;

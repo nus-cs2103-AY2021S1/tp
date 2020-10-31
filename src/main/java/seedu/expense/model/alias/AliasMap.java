@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import seedu.expense.logic.commands.AddCategoryCommand;
 import seedu.expense.logic.commands.AddCommand;
+import seedu.expense.logic.commands.AliasCommand;
 import seedu.expense.logic.commands.ClearCommand;
+import seedu.expense.logic.commands.DeleteCategoryCommand;
 import seedu.expense.logic.commands.DeleteCommand;
 import seedu.expense.logic.commands.EditCommand;
 import seedu.expense.logic.commands.ExitCommand;
@@ -17,6 +20,8 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SortCommand;
+import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.commands.TopupCommand;
 
 /**
@@ -39,7 +44,8 @@ public class AliasMap {
                         AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
                         EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
                         HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD,
-                        TopupCommand.COMMAND_WORD
+                        TopupCommand.COMMAND_WORD, AliasCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD,
+                        DeleteCategoryCommand.COMMAND_WORD, SwitchCommand.COMMAND_WORD, SortCommand.COMMAND_WORD
                 );
     }
 
@@ -99,8 +105,11 @@ public class AliasMap {
 
     public String getValue(String aliasString) throws IllegalArgumentException {
         requireNonNull(aliasString);
-        if (!this.aliasMap.containsKey(aliasString)) {
+        if (!this.aliasMap.containsKey(aliasString) && !RESERVED_KEYWORDS.contains(aliasString)) {
             throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, aliasString));
+        }
+        if (!this.aliasMap.containsKey(aliasString) && RESERVED_KEYWORDS.contains(aliasString)) {
+            return aliasString;
         }
         return this.aliasMap.get(aliasString);
     }
@@ -123,6 +132,10 @@ public class AliasMap {
         requireNonNull(prev);
         requireNonNull(update);
         assert (prev.getValue().equals(update.getValue())) : "Must replace the same value (command) alias";
+        if (!this.aliasMap.containsKey(prev.getKey()) && RESERVED_KEYWORDS.contains(prev.getKey())) {
+            addAlias(update);
+            return;
+        }
         if (!this.aliasMap.containsKey(prev.getKey())) {
             throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, prev.getKey()));
         }

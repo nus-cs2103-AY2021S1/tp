@@ -57,8 +57,6 @@ public class SortCommand extends Command {
         for (int i = 0; i < sortedSortKeyComparators.size(); i++) {
             SortKeyComparator current = sortedSortKeyComparators.get(i);
             if (current.isActive()) {
-                System.out.println("currentSort = " + current);
-                System.out.println("ExpenseComparator = " + expenseComparator);
                 if (expenseComparator == null) {
                     expenseComparator = current.isReverse() ? current.reversed() : current;
                 } else {
