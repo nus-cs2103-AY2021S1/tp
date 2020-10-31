@@ -7,6 +7,7 @@ import java.util.Set;
 
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
@@ -24,7 +25,7 @@ public class ModuleBuilder {
     public static final double DEFAULT_MODULARCREDITS = 4.0;
 
     private ModuleName moduleName;
-    private Map<String, ZoomLink> zoomLinkMap;
+    private Map<ModuleLesson, ZoomLink> zoomLinkMap;
     private ModularCredits modularCredits;
     private GradeTracker gradeTracker;
     private Set<Tag> tags;
@@ -33,7 +34,7 @@ public class ModuleBuilder {
      */
     public ModuleBuilder() {
         moduleName = new ModuleName(DEFAULT_MODULENAME);
-        zoomLinkMap = new HashMap<String, ZoomLink>();
+        zoomLinkMap = new HashMap<ModuleLesson, ZoomLink>();
         modularCredits = new ModularCredits(DEFAULT_MODULARCREDITS);
         gradeTracker = new GradeTracker();
         tags = new HashSet<Tag>();
@@ -70,7 +71,6 @@ public class ModuleBuilder {
      * Sets the {@code ZoomLinks} of the {@code Module} that we are building.
      */
     public ModuleBuilder withZoomLink(String moduleLessonType, String zoomLink) {
-        //Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinkMap);
         Map<String, ZoomLink> updatedLinks = new HashMap<>();
         updatedLinks.put(moduleLessonType, new ZoomLink(zoomLink));
         this.zoomLinkMap = updatedLinks;

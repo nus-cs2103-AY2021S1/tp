@@ -13,6 +13,7 @@ import java.util.List;
 
 import seedu.address.model.ModuleList;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 
 
 /**
