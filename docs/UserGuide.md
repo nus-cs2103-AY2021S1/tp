@@ -145,13 +145,14 @@ Examples:
 
 You can add a food item to McGymmy.
 
-Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`
+Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]`
 
 Examples:
 * `add -n potato -p 100 -c 5 -f 0`
 * `add -n McSpicy`
 * `add -n Wonton Mee -c 10`
 * `add -n Sushi -d 20/04/2020`
+* `add -n Burger -t FastFood`
 
 <div markdown="block" class="alert alert-info">
 
@@ -515,7 +516,7 @@ For those who prefer clicking:
 
 Action       | Format, Examples
 -------------|------------------
-**Add**      | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020`
+**Add**      | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020 -t Lunch`
 **Clear**    | `clear`
 **Delete**   | `delete INDEX`<br> e.g., `delete 3`
 **Edit**     | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
