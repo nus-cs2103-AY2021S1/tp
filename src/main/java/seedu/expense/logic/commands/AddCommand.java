@@ -55,7 +55,7 @@ public class AddCommand extends Command {
         if (!model.hasCategory(toAdd.getTag())) {
             Expense expense = toAdd.resetTag();
             model.addExpense(expense);
-            return new CommandResult(String.format(MESSAGE_DEFAULT, expense));
+            return new CommandResult(String.format(MESSAGE_DEFAULT, toAdd.getTag().tagName));
         }
 
         model.addExpense(toAdd);
