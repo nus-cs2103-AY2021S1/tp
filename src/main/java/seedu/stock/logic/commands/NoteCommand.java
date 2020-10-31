@@ -4,8 +4,11 @@ import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.commons.core.LogsCenter;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.SerialNumber;
@@ -29,6 +32,8 @@ public class NoteCommand extends Command {
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";
 
+    private static final Logger logger = LogsCenter.getLogger(NoteCommand.class);
+
     private final SerialNumber serialNumber;
     private final Note note;
 
@@ -49,10 +54,10 @@ public class NoteCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return The result of successful execution.
-     * @throws CommandException If there are any errors.
+     * @throws SerialNumberNotFoundException If there is any errors in getting serial number of stock.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws SerialNumberNotFoundException {
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> allStocks = model.getFilteredStockList();
@@ -68,12 +73,14 @@ public class NoteCommand extends Command {
         }
 
         if (stockToAddNote.isEmpty()) {
-            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+            logger.log(Level.WARNING, "Valid serial number input but serial number not found.");
+            throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
         Stock stockWithAddedNote = createStockWithAddedNote(stockToAddNote.get(), note);
         model.setStock(stockToAddNote.get(), stockWithAddedNote);
 
+        logger.log(Level.INFO, "Valid serial number and note input with note added to stock.");
         return new CommandResult(generateSuccessMessage(stockWithAddedNote));
     }
 
