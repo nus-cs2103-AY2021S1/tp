@@ -15,7 +15,7 @@ public class MedicalRecord {
             + "followed by any path (if applicable)\n"
             + "Sample format: (http:// or https://)(www.)domain_name.com/path123";
     public static final String VALIDATION_REGEX = "((http|https)://)?(www.)?"
-            + "[a-zA-Z0-9@:%._+~#?&=/]{2,256}.[a-z]{2,6}([-a-zA-Z0-9@:%._+~#?&=/]*)";
+            + "[a-zA-Z0-9@:%._+~#?&=/]{2,}\\.[a-z]{2,6}([-a-zA-Z0-9@:%._+~#?&=/]*)";
 
     public final String value;
 
