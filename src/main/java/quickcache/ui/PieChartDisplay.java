@@ -48,9 +48,11 @@ public class PieChartDisplay extends UiPart<Region> {
         pieChartDisplay.setTitle(feedbackToUser.getQuestion().map(Object::toString)
                 .orElseGet(() -> "No Question to display"));
 
-        PieChart.Data correctPie = new PieChart.Data("Correct (" + correctRate + "%)", timesTestedCorrect);
-        PieChart.Data wrongPie = new PieChart.Data(
-                "Incorrect (" + incorrectRate + "%)", timesTested - timesTestedCorrect);
+        String toDisplayCorrectRate = String.format("Correct (%.2f%%)", correctRate);
+        String toDisplayIncorrectRate = String.format("Incorrect (%.2f%%)", incorrectRate);
+
+        PieChart.Data correctPie = new PieChart.Data(toDisplayCorrectRate, timesTestedCorrect);
+        PieChart.Data wrongPie = new PieChart.Data(toDisplayIncorrectRate, timesTested - timesTestedCorrect);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(correctPie, wrongPie);
 
