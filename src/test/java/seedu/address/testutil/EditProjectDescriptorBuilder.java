@@ -88,7 +88,7 @@ public class EditProjectDescriptorBuilder {
      * that we are building.
      */
     public EditProjectDescriptorBuilder withTasks(String... tasks) {
-        Set<Task> taskSet = Stream.of(tasks).map(x -> new Task(x, null, null, 0, false))
+        Set<Task> taskSet = Stream.of(tasks).map(x -> new Task(x, null, null, 0))
                 .collect(Collectors.toSet());
         descriptor.setTasks(taskSet);
         return this;

@@ -43,8 +43,8 @@ public class Task implements Comparable<Task> {
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
      */
-    public Task(String taskName, String description, Deadline deadline, double progress, boolean isDone) {
-        requireAllNonNull(taskName, progress, isDone);
+    public Task(String taskName, String description, Deadline deadline, double progress) {
+        requireAllNonNull(taskName, progress);
         this.taskName = taskName;
         this.description = description;
         publishDate = LocalDate.now();
@@ -54,7 +54,11 @@ public class Task implements Comparable<Task> {
             this.deadline = deadline;
         }
         this.progress = progress;
-        this.isDone = isDone;
+        if (progress == 100.00) {
+            this.isDone = true;
+        } else {
+            this.isDone = false;
+        }
         this.assignees = new HashSet<>();
     }
 
@@ -96,6 +100,7 @@ public class Task implements Comparable<Task> {
 
     /**
      * Returns true if the task's due date is between the given start date and end date.
+     *
      * @param start the start date of the time range
      * @param end   the end date of the time range
      */
@@ -208,7 +213,6 @@ public class Task implements Comparable<Task> {
         return Double.compare(task.getProgress(), getProgress()) == 0
                 && getTaskName().equals(task.getTaskName())
                 && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
-                //            && getPublishDate().equals(task.getPublishDate())
                 && Objects.equals(getDeadline(), task.getDeadline());
         //        if (Double.compare(task.getProgress(), getProgress()) != 0) {
         //            return false;
@@ -257,7 +261,7 @@ public class Task implements Comparable<Task> {
         } else if ((day == 30 || day == 31) && month == 2) {
             return false;
         } else if (day == 31 && (month == 4 || month == 6
-            || month == 9 || month == 11)) {
+                || month == 9 || month == 11)) {
             return false;
         } else {
             return isValidDay && isValidMonth;
@@ -268,7 +272,8 @@ public class Task implements Comparable<Task> {
      * By default, two tasks are compared using their deadlines.
      * Tasks with no deadline are consider "larger",
      * so that they will be listed at the end when sorted by default.
-     * @param task  the task to compare with
+     *
+     * @param task the task to compare with
      */
     @Override
     public int compareTo(Task task) {

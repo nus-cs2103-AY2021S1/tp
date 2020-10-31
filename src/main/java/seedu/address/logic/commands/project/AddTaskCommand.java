@@ -24,12 +24,10 @@ public class AddTaskCommand extends Command {
             + "Parameters: "
             + PREFIX_TASK_NAME + "TASK NAME "
             + PREFIX_TASK_PROGRESS + "TASK PROGRESS PERCENT "
-            + PREFIX_TASK_IS_DONE + "TASK STATUS "
             + "[" + PREFIX_TASK_DEADLINE + "TASK DEADLINE] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_NAME + "Create new Person Class "
             + PREFIX_TASK_PROGRESS + "35 "
-            + PREFIX_TASK_IS_DONE + "true "
             + PREFIX_TASK_DEADLINE + "29-02-2020 00:00:00";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";

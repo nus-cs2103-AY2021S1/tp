@@ -161,8 +161,7 @@ public class SampleDataUtil {
         return new Task(s.get(0),
             s.get(1),
             s.get(2) == null ? null : new Deadline(s.get(2)),
-            Double.parseDouble(s.get(3)),
-            Boolean.parseBoolean(s.get(4)));
+            Double.parseDouble(s.get(3)));
     }
     /**
      * Returns a task set containing the list of strings given.

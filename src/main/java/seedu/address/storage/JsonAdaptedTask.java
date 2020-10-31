@@ -108,15 +108,13 @@ class JsonAdaptedTask {
             task = new Task(taskName,
                     description,
                     null,
-                    Double.parseDouble(progress),
-                    Boolean.parseBoolean(isDone));
+                    Double.parseDouble(progress));
 
         } else {
             task = new Task(taskName,
                     description,
                     new Deadline(deadline),
-                    Double.parseDouble(progress),
-                    Boolean.parseBoolean(isDone));
+                    Double.parseDouble(progress));
         }
 
 
