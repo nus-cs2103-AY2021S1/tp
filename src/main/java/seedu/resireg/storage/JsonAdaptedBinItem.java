@@ -19,7 +19,7 @@ class JsonAdaptedBinItem {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "BinItem's %s field is missing!";
     public static final String INVALID_DATE_DELETED_FORMAT = "The date of deletion in the file is corrupted!";
-    public static final String MULTIPLE_BINNABLE_ITEMS_FORMAT = "There are multiple binnable items: %s";
+    public static final String MULTIPLE_BINNABLE_ITEMS_MESSAGE = "There are multiple binnable items.";
 
     private final JsonAdaptedStudent studentItem;
     private final JsonAdaptedRoom roomItem;
@@ -74,7 +74,7 @@ class JsonAdaptedBinItem {
         }
 
         if (studentItem != null && roomItem != null) {
-            throw new IllegalValueException(String.format(MULTIPLE_BINNABLE_ITEMS_FORMAT, "student, room"));
+            throw new IllegalValueException(MULTIPLE_BINNABLE_ITEMS_MESSAGE);
         }
         if (studentItem == null && roomItem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Student.class.getSimpleName()
