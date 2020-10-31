@@ -17,5 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK = new Prefix("task/");
     public static final Prefix PREFIX_MODULE = new Prefix("m/");
     public static final Prefix PREFIX_STUDENT_ID = new Prefix("id/");
+    public static final Prefix PREFIX_WEEK = new Prefix("week/");
+    public static final Prefix PREFIX_PARTICIPATION = new Prefix("score/");
 
 }
