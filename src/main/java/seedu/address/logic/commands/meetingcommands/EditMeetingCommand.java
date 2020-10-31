@@ -2,8 +2,10 @@ package seedu.address.logic.commands.meetingcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_BIDDER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_PROPERTY_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
@@ -20,8 +22,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.meeting.Date;
+import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 
 /**
@@ -35,12 +39,15 @@ public class EditMeetingCommand extends Command {
             + "by the index number used in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
             + "\n\nParameters: \nINDEX (must be a positive integer) "
-            + "\n[" + PREFIX_MEETING_BIDDER_ID + "B-ID] "
-            + "\n[" + PREFIX_MEETING_PROPERTY_ID + "P-ID] "
-            + "\n[" + PREFIX_MEETING_TIME + "TIME] "
-            + "\n[" + PREFIX_MEETING_VENUE + "VENUE]...\n"
+            + "\n[" + PREFIX_MEETING_BIDDER_ID + "B12] "
+            + "\n[" + PREFIX_MEETING_PROPERTY_ID + "P14] "
+            + "\n[" + PREFIX_MEETING_DATE + "20-10-2020] "
+            + "\n[" + PREFIX_MEETING_VENUE + "bedok]\n"
+            + "\n[" + PREFIX_MEETING_STARTTIME + "12:30]\n"
+            + "\n[" + PREFIX_MEETING_ENDTIME + "13:30]\n"
             + "\nExample: " + COMMAND_WORD + " 1 "
-            + PREFIX_MEETING_VENUE + "EUNOS ";
+            + PREFIX_MEETING_VENUE + "eunos "
+            + PREFIX_MEETING_DATE + "20-10-2019 ";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -50,8 +57,8 @@ public class EditMeetingCommand extends Command {
     private final EditMeetingDescriptor editMeetingDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editMeetingDescriptor details to edit the person with
+     * @param index of the meeting in the filtered meeting list to edit
+     * @param editMeetingDescriptor details to edit the meeting with
      */
     public EditMeetingCommand(Index index, EditMeetingDescriptor editMeetingDescriptor) {
         requireNonNull(index);
@@ -97,11 +104,16 @@ public class EditMeetingCommand extends Command {
                 editMeetingDescriptor.getMeetingPropertyId().orElse(meetingToEdit.getPropertyId());
         Venue updatedVenue =
                 editMeetingDescriptor.getMeetingVenue().orElse(meetingToEdit.getVenue());
-        Time updatedTime =
-                editMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getTime());
+        Date updatedDate =
+                editMeetingDescriptor.getMeetingTime().orElse(meetingToEdit.getDate());
+        StartTime updatedStartTime =
+                editMeetingDescriptor.getMeetingStartTime().orElse(meetingToEdit.getStartTime());
+        EndTime updatedEndTime =
+                editMeetingDescriptor.getMeetingEndTime().orElse(meetingToEdit.getEndTime());
 
         String typeMeeting = meetingToEdit.checkMeetingType();
-        return meetingToEdit.createMeeting(typeMeeting, updatedBidderId, updatedPropertyId, updatedTime, updatedVenue);
+        return meetingToEdit.createMeeting(typeMeeting, updatedBidderId, updatedPropertyId, updatedDate, updatedVenue,
+                updatedStartTime, updatedEndTime);
     }
 
     @Override
@@ -129,8 +141,10 @@ public class EditMeetingCommand extends Command {
     public static class EditMeetingDescriptor {
         private BidderId bidderId;
         private PropertyId propertyId;
-        private Time time;
+        private Date date;
         private Venue venue;
+        private StartTime startTime;
+        private EndTime endTime;
 
         public EditMeetingDescriptor() {}
 
@@ -142,14 +156,16 @@ public class EditMeetingCommand extends Command {
             setMeetingBidderId(toCopy.bidderId);
             setMeetingPropertyId(toCopy.propertyId);
             setMeetingVenue(toCopy.venue);
-            setMeetingTime(toCopy.time);
+            setMeetingDate(toCopy.date);
+            setMeetingStartTime(toCopy.startTime);
+            setMeetingEndTime(toCopy.endTime);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(bidderId, propertyId, venue, time);
+            return CollectionUtil.isAnyNonNull(bidderId, propertyId, venue, date, startTime, endTime);
         }
 
         public void setMeetingBidderId(BidderId bidderId) {
@@ -176,12 +192,28 @@ public class EditMeetingCommand extends Command {
             return Optional.ofNullable(venue);
         }
 
-        public void setMeetingTime(Time time) {
-            this.time = time;
+        public void setMeetingDate(Date date) {
+            this.date = date;
         }
 
-        public Optional<Time> getMeetingTime() {
-            return Optional.ofNullable(time);
+        public Optional<Date> getMeetingTime() {
+            return Optional.ofNullable(date);
+        }
+
+        public void setMeetingStartTime(StartTime startTime) {
+            this.startTime = startTime;
+        }
+
+        public Optional<StartTime> getMeetingStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public void setMeetingEndTime(EndTime endTime) {
+            this.endTime = endTime;
+        }
+
+        public Optional<EndTime> getMeetingEndTime() {
+            return Optional.ofNullable(endTime);
         }
 
         @Override
@@ -202,7 +234,9 @@ public class EditMeetingCommand extends Command {
             return getMeetingBidderId().equals(e.getMeetingBidderId())
                     && getMeetingPropertyId().equals(e.getMeetingPropertyId())
                     && getMeetingVenue().equals(e.getMeetingVenue())
-                    && getMeetingTime().equals(e.getMeetingTime());
+                    && getMeetingTime().equals(e.getMeetingTime())
+                    && getMeetingStartTime().equals(e.getMeetingStartTime())
+                    && getMeetingEndTime().equals(e.getMeetingEndTime());
         }
     }
 }

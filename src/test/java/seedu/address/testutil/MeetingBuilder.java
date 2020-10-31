@@ -2,8 +2,10 @@ package seedu.address.testutil;
 
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.meeting.Date;
+import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 
 
@@ -17,12 +19,15 @@ public class MeetingBuilder {
     public static final String DEFAULT_BIDDER_ID = "B1";
     public static final String DEFAULT_VENUE = "Serangoon";
     public static final String DEFAULT_TIME = "10-12-2021";
-
+    public static final String DEFAULT_STARTTIME = "14:00";
+    public static final String DEFAULT_ENDTIME = "14:50";
 
     private PropertyId propertyId;
     private BidderId bidderId;
-    private Time time;
+    private Date date;
     private Venue venue;
+    private StartTime startTime;
+    private EndTime endTime;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -31,7 +36,9 @@ public class MeetingBuilder {
         propertyId = new PropertyId(DEFAULT_PROPERTY_ID);
         bidderId = new BidderId(DEFAULT_BIDDER_ID);
         venue = new Venue(DEFAULT_VENUE);
-        time = new Time(DEFAULT_TIME);
+        date = new Date(DEFAULT_TIME);
+        startTime = new StartTime(DEFAULT_STARTTIME);
+        endTime = new EndTime(DEFAULT_ENDTIME);
     }
 
     /**
@@ -40,8 +47,10 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting bidderToCopy) {
         propertyId = bidderToCopy.getPropertyId();
         bidderId = bidderToCopy.getBidderId();
-        time = bidderToCopy.getTime();
+        date = bidderToCopy.getDate();
         venue = bidderToCopy.getVenue();
+        startTime = bidderToCopy.getStartTime();
+        endTime = bidderToCopy.getEndTime();
     }
 
     /**
@@ -53,10 +62,10 @@ public class MeetingBuilder {
     }
 
     /**
-     * Parses the {@code time} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
+     * Parses the {@code date} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
      */
     public MeetingBuilder withTime(String time) {
-        this.time = new Time(time);
+        this.date = new Date(time);
         return this;
     }
 
@@ -76,8 +85,24 @@ public class MeetingBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code StartTime} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withStartTime(String startTime) {
+        this.startTime = new StartTime(startTime);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EndTime} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withEndTime(String endTime) {
+        this.endTime = new EndTime(endTime);
+        return this;
+    }
+
     public Meeting build() {
-        return new Meeting(bidderId, propertyId, time, venue);
+        return new Meeting(bidderId, propertyId, date, venue, startTime, endTime);
     }
 
 }

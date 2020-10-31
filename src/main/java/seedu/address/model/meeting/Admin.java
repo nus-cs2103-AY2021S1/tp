@@ -16,17 +16,20 @@ public class Admin extends Meeting {
      *  Constructor for admin meeting.
      * @param bidderId Bidder ID.
      * @param propertyId Property ID.
-     * @param time Calendar Time.
+     * @param date Calendar Date.
      * @param venue Calendar Venue.
+     * @param startTime Start Time.
+     * @param endTime End TIme.
      */
-    public Admin(BidderId bidderId, PropertyId propertyId, Time time, Venue venue) {
-        super(bidderId, propertyId, time, venue);
-        requireAllNonNull(bidderId, propertyId, time, venue);
+    public Admin(BidderId bidderId, PropertyId propertyId, Date date, Venue venue,
+                 StartTime startTime, EndTime endTime) {
+        super(bidderId, propertyId, date, venue, startTime, endTime);
+        requireAllNonNull(bidderId, propertyId, date, venue, startTime, endTime);
         super.isAdmin = true;
     }
 
     /**
-     * Returns true if either the venue, time, bidderId and propertyId is the same.
+     * Returns true if either the venue, date, bidderId, start time, end time and propertyId is the same.
      *
      * @param other The other property.
      * @return True if both property objects represent the same meeting.
@@ -37,8 +40,10 @@ public class Admin extends Meeting {
                 || (other instanceof Admin // instanceof handles nulls
                 && this.bidderId.equals(((Admin) other).getBidderId())
                 && this.propertyId.equals(((Admin) other).getPropertyId())
-                && this.time.equals(((Admin) other).getTime())
-                && this.venue.equals(((Admin) other).getVenue())); // state check
+                && this.date.equals(((Admin) other).getDate())
+                && this.venue.equals(((Admin) other).getVenue())
+                && this.startTime.equals(((Admin) other).getStartTime())
+                && this.endTime.equals(((Admin) other).getEndTime())); // state check
     }
 
 

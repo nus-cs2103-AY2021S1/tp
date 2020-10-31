@@ -6,15 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.bidcommands.AddBidCommand;
 import seedu.address.logic.commands.bidcommands.DeleteBidCommand;
 import seedu.address.logic.commands.bidcommands.EditBidCommand;
@@ -36,6 +30,7 @@ import seedu.address.logic.commands.meetingcommands.SortMeetingCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.EditPropertyCommand;
+import seedu.address.logic.commands.property.FindPropertyCommand;
 import seedu.address.logic.commands.property.ListPropertyCommand;
 import seedu.address.logic.commands.sellercommands.AddSellerCommand;
 import seedu.address.logic.commands.sellercommands.DeleteSellerCommand;
@@ -59,6 +54,7 @@ import seedu.address.logic.parser.meetingparser.SortMeetingCommandParser;
 import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.property.DeletePropertyCommandParser;
 import seedu.address.logic.parser.property.EditPropertyCommandParser;
+import seedu.address.logic.parser.property.FindPropertyCommandParser;
 import seedu.address.logic.parser.sellerparser.AddSellerCommandParser;
 import seedu.address.logic.parser.sellerparser.DeleteSellerCommandParser;
 import seedu.address.logic.parser.sellerparser.EditSellerCommandParser;
@@ -93,23 +89,7 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        // --------------------- MISC ---------------- //
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -163,6 +143,9 @@ public class AddressBookParser {
 
         case EditPropertyCommand.COMMAND_WORD:
             return new EditPropertyCommandParser().parse(arguments);
+
+        case FindPropertyCommand.COMMAND_WORD:
+            return new FindPropertyCommandParser().parse(arguments);
 
         // -------------------- BIDDER ------------------- //
         case AddBidderCommand.COMMAND_WORD:

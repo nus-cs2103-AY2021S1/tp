@@ -4,14 +4,15 @@ import static java.util.Objects.requireNonNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.Date;
+import seedu.address.model.meeting.EndTime;
+import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -24,7 +25,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_TIME = "Time is not in valid format.";
+    public static final String MESSAGE_INVALID_DATE = "Date is not in valid format. dd-MM-yyy";
+    public static final String MESSAGE_INVALID_STARTTIME = "Start time is not in valid format. hh:mm";
+    public static final String MESSAGE_INVALID_ENDTIME = "End time is not in valid format. hh:mm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -111,15 +114,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String time} into a {@code time}.
+     * Parses a {@code String date} into a {@code date}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code time} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Time parseMeetingTime(String time) throws ParseException {
+    public static Date parseMeetingTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        return new Time(trimmedTime);
+        return new Date(trimmedTime);
     }
 
     /**
@@ -135,20 +138,56 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code date} into an {@code Date} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if the format of date is wrong.
      */
-    public static Time parseTime(String time) throws ParseException {
-        String trimmedTime = time.trim();
+    public static Date parseDate(String date) throws ParseException {
+        String trimmedTime = date.trim();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            Date date = formatter.parse(trimmedTime);
-            String dateString = formatter.format(date);
-            return new Time(dateString);
+            java.util.Date dateObject = formatter.parse(trimmedTime);
+            String dateString = formatter.format(dateObject);
+            return new Date(dateString);
         } catch (java.text.ParseException e) {
-            throw new ParseException(MESSAGE_INVALID_TIME);
+            throw new ParseException(MESSAGE_INVALID_DATE);
+        }
+    }
+
+    /**
+     * Parses {@code startTime} into an {@code StartTime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the start time is of the wrong format.
+     */
+    public static StartTime parseStartTime(String startTime) throws ParseException {
+        String trimmedTime = startTime.trim();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        try {
+            java.util.Date startTimeObject = formatter.parse(trimmedTime);
+            String startString = formatter.format(startTimeObject);
+            return new StartTime(startString);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(MESSAGE_INVALID_STARTTIME);
+        }
+    }
+
+    /**
+     * Parses {@code endTime} into an {@code Endtime} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the end time is of the wrong format.
+     */
+    public static EndTime parseEndTime(String endTime) throws ParseException {
+        String trimmedTime = endTime.trim();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        try {
+            java.util.Date endTimeObject = formatter.parse(trimmedTime);
+            String endString = formatter.format(endTimeObject);
+            return new EndTime(endString);
+        } catch (java.text.ParseException e) {
+            throw new ParseException(MESSAGE_INVALID_ENDTIME);
         }
     }
 

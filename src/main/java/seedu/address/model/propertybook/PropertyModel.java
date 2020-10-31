@@ -40,8 +40,9 @@ public interface PropertyModel {
     /**
      * Adds the given property.
      * {@code property} must not already exist in the property book.
+     * @return
      */
-    void addProperty(Property property);
+    Property addProperty(Property property);
 
     /**
      * Gets the property with the given id.

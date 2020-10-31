@@ -52,7 +52,7 @@ public class JsonAdaptedBid {
 
         if (propertyId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "P12"));
+                    "propertyId"));
         }
         if (!PropertyId.isValidId(propertyId)) {
             throw new IllegalValueException(PropertyId.MESSAGE_CONSTRAINTS);
@@ -60,15 +60,15 @@ public class JsonAdaptedBid {
         PropertyId modelPropertyId = new PropertyId(propertyId);
 
         if (bidderId == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "B04"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "bidderId"));
         }
         if (!BidderId.isValidId(bidderId)) {
             throw new IllegalValueException(BidderId.MESSAGE_CONSTRAINTS);
         }
         BidderId modelBidderId = new BidderId(bidderId);
 
-        if (bidAmount == 0) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "450443"));
+        if (bidAmount <= 0) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "bidAmount"));
         }
         Price modelBidAmount = new Price(bidAmount);
         return new Bid(modelPropertyId, modelBidderId, modelBidAmount);

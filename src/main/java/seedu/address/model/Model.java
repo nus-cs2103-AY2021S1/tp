@@ -130,7 +130,9 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
 
     /**
      * adds a bid to the BidBook
-     * @param bid to add to the BidBook
+     *
+     * @param bid to add to the BidBook.
+     * @throws CommandException If the bid cannot be added.
      */
     void addBid(Bid bid) throws CommandException;
 
@@ -149,8 +151,10 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * Replaces the given bid {@code target} with {@code editedBid}.
      * {@code target} must exist in the bid book.
      * The bid identity of {@code editedBid} must not be the same as another existing bid in the bid book.
+     *
+     * @throws CommandException if the editedBid is invalid.
      */
-    void setBid(Bid target, Bid editedBid);
+    void setBid(Bid target, Bid editedBid) throws CommandException;
 
     //=========== MeetingManager ================================================================================
 

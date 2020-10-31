@@ -39,4 +39,13 @@ public class PriceTest {
         assertEquals("$10.22", price3.toString());
 
     }
+
+    @Test
+    void compareTo() {
+        Price small = new Price(99);
+        Price big = new Price(100);
+        assertTrue(small.compareTo(big) < 0);
+        assertTrue(small.compareTo(small) == 0);
+        assertTrue(big.compareTo(small) > 0);
+    }
 }

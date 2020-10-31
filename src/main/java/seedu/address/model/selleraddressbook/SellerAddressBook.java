@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.id.Id;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.seller.UniqueSellerList;
 
@@ -82,6 +83,17 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
         requireNonNull(editedSeller);
         sellers.setSeller(target, editedSeller);
     }
+
+    /**
+     * Checks if this {@code SellerAddressBook} contains a seller with the given {@code id}.
+     *
+     * @param sellerId The given id.
+     * @return True if a bidder with the given id exists in the list.
+     */
+    public boolean containsSellerId(SellerId sellerId) {
+        return sellers.containsSellerId(sellerId);
+    }
+
 
     /**
      * Removes {@code key} from this {@code SellerAddressBook}.

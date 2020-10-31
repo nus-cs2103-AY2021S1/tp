@@ -20,6 +20,7 @@ public class Messages {
 
     // ------------------------- PROPERTY -------------------------
     public static final String MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX = "The property index provided is invalid";
+    public static final String MESSAGE_PROPERTY_LISTED_OVERVIEW = "%1$d properties listed!";
 
     // ------------------------- MEETING -------------------------
     public static final String MESSAGE_INVALID_MEETING_DISPLAYED_INDEX = "The meeting index provided is invalid";

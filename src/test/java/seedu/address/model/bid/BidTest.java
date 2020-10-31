@@ -13,13 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.bids.BidBuilder;
 
 public class BidTest {
-    /*
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Bid bid = new BidBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> bid.getBidAmount().remove(0));
-    }
-*/
+
     @Test
     public void isSameBid() {
         // same object -> returns true

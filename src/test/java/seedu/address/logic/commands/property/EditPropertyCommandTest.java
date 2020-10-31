@@ -13,12 +13,14 @@ import static seedu.address.logic.commands.property.PropertyCommandTestUtil.show
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
+import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
@@ -29,7 +31,6 @@ import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 import seedu.address.model.propertybook.PropertyBook;
-import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.testutil.property.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.property.PropertyBuilder;
 
@@ -40,10 +41,10 @@ public class EditPropertyCommandTest {
 
     private Model model = new ModelManager(new AddressBook(), new UserPrefs(),
             new BidBook(), getTypicalPropertyBook(),
-            new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
+            new BidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Property editedProperty = new PropertyBuilder().build();
         EditPropertyCommand.EditPropertyDescriptor descriptor =
                 new EditPropertyDescriptorBuilder(editedProperty).build();
@@ -53,14 +54,14 @@ public class EditPropertyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
                 new BidBook(), new PropertyBook(model.getPropertyBook()),
-                new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
+                new BidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
         Index indexLastProperty = Index.fromOneBased(model.getFilteredPropertyList().size());
         Property lastProperty = model.getFilteredPropertyList().get(indexLastProperty.getZeroBased());
 
@@ -81,7 +82,7 @@ public class EditPropertyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
                 new BidBook(), new PropertyBook(model.getPropertyBook()),
-                new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
+                new BidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
         expectedModel.setProperty(lastProperty, editedProperty);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -97,13 +98,13 @@ public class EditPropertyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
                 new BidBook(), new PropertyBook(model.getPropertyBook()),
-                new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
+                new BidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
 
         Property propertyInFilteredList = model.getFilteredPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased());
@@ -117,7 +118,7 @@ public class EditPropertyCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(),
                 new BidBook(), new PropertyBook(model.getPropertyBook()),
-                new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
+                new BidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

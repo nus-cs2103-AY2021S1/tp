@@ -12,7 +12,7 @@ import seedu.address.ui.UiPart;
 
 public class BidderCard extends UiPart<Region> {
 
-    private static final String FXML = "BidderListCard.fxml";
+    private static final String FXML = "bidder/BidderListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.

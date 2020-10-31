@@ -53,10 +53,13 @@ public class UniqueBidList implements Iterable<Bid> {
 
     /**
      * replaces a bid at the specific index in the list
+     *
      * @param target bid to be replaced
      * @param editedBid bid to replace target
+     * @throws DuplicateBidException if editedBid already exists in the bid list.
+     * @throws BidNotFoundException if the target bid does not exist in the bid list.
      */
-    public void setBid(Bid target, Bid editedBid) {
+    public void setBid(Bid target, Bid editedBid) throws DuplicateBidException, BidNotFoundException {
         requireAllNonNull(target, editedBid);
 
         int index = internalBidList.indexOf(target);

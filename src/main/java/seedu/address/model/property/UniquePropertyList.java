@@ -45,17 +45,22 @@ public class UniquePropertyList implements Iterable<Property> {
     /**
      * Adds a property to the list.
      * The property must not already exist in the list.
+     *
+     * @return The added property.
      */
-    public void add(Property toAdd) {
+    public Property add(Property toAdd) {
         requireNonNull(toAdd);
+        Property added;
         if (contains(toAdd)) {
             throw new DuplicatePropertyException();
         }
         if (toAdd.getPropertyId().equals(DEFAULT_PROPERTY_ID)) {
-            internalList.add(toAdd.setId(getLastId().increment()));
+            added = toAdd.setId(getLastId().increment());
         } else {
-            internalList.add(toAdd);
+            added = toAdd;
         }
+        internalList.add(added);
+        return added;
     }
 
     /**

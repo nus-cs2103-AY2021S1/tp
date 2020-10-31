@@ -62,7 +62,6 @@ public interface BidderModel {
     /**
      * checks the list of bidders to see if the specific bidderId is in the list
      * @param bidderId the id to look for
-     * @return
      */
     boolean containsBidderId(BidderId bidderId);
 
