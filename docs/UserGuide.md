@@ -38,10 +38,11 @@ It helps you to centralize key module details, contacts and information while fo
   e.g. `addtask n/NAME [p/PRIORITY]` can be used as `addtask n/Week 11 quiz p/highest` or as `addtask n/Week 11 quiz`
   
 * Items with `...` after them can be used multiple times, including zero times. <br>
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/easy`, `t/friend t/important` etc.
+  e.g. `[t/TAG]...` can be used as `   ` (i.e. 0 times), `t/easy`, `t/friend t/important` etc.
   
-* Argument parameters can be provided in any order.
-  e.g. if the command specifies `addtask n/NAME [p/PRIORITY]`, `addtask [p/PRIORITY] n/NAME` is also acceptable.  
+* Argument parameters can be provided in any order, unless one of the parameter is `INDEX`, in which case `INDEX`has to be the first parameter.
+  e.g. if the command specifies `edittask INDEX [n/NAME] [p/PRIORITY]`, then `edittask INDEX [p/PRIORITY] [n/NAME]` is also acceptable, but
+  `edittask [n/NAME] INDEX [p/PRIORITY]` is not allowed.  
   
 * If you enter duplicate parameters when the command format does not expect multiple occurrence of the same parameter, i.e. 
   parameters without `...` at the back in the command format (e.g. n/NAME), the application will only consider the argument of the last 
