@@ -61,9 +61,9 @@ Refer to the features below for details of each command.
 
    * **`list`** : Lists all food items.
 
-   * **`add`**`-n potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100`g of proteins, `5`g of carbs, and `0`g of fats into current date.
+   * **`add`**` -n potato -p 100 -c 5 -f 0` : Adds a food item named `potato` with `100`g of proteins, `5`g of carbs, and `0`g of fats into current date.
 
-   * **`delete`**`3` : Deletes the 3rd food item (i.e. food item with index 3) shown in the current list.
+   * **`delete`**` 3` : Deletes the 3rd food item (i.e. food item with index 3) shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -157,9 +157,9 @@ Examples:
 <div markdown="block" class="alert alert-info">
 
 :information_source:
- * The default value for protein, fats and carbs is 0. The default date is the day in which the food item is added.<br>
+ * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
+ * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer that is smaller than 2^31.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
- * Protein, fats and carbs value must be an integer smaller than 2^31.<br>
 </div>
 
 ![add command example](images/CommandImagesForUG/Add.png)
@@ -275,9 +275,9 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
 * Edits the food item at the specified `INDEX`. The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​ that is smaller than 2^31
+* Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer that is smaller than 2^31.<br>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Protein, fats and carbs value must be an integer smaller than 2^31.<br>
 
 </div>
 
