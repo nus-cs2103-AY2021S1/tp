@@ -67,7 +67,8 @@ public class DeleteZoomLinkCommand extends Command {
         model.setModule(moduleContainingZoomLink, updatedModule);
         model.commitContactList();
         logger.info("Zoom Link has been deleted");
-        return new CommandResult(String.format(MESSAGE_DELETE_ZOOM_SUCCESS, lesson, moduleContainingZoomLink));
+        return new CommandResult(String.format(MESSAGE_DELETE_ZOOM_SUCCESS,
+                lesson, moduleContainingZoomLink.getName()));
     }
 
     @Override
