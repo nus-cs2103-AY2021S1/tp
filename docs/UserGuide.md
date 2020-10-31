@@ -97,9 +97,18 @@ Views a module stored in the system.
   Examples:
    * `viewmodule 1` views the first module in the displayed list.
 
+
 #### Adding a zoom link for a specific lesson to a module: `addzoom`
 
 Adds a zoom link for a specific lesson to an existing module.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:** <br>
+Each lesson in a module will only be allowed to have one zoom link,
+i.e. you will not be allowed to add multiple zoom links to the same lesson.
+
+</div>
 
   Format: `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK`
   
@@ -113,9 +122,27 @@ Adds a zoom link for a specific lesson to an existing module.
      would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
 
   Example:
-  * `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+  * `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
    in the displayed module list for the lesson `lecture`.
   
+  
+#### Deleting a zoom link for a specific lesson from a module: `deletezoom`
+
+Deletes a zoom link for a specific lesson from an existing module.
+
+  Format: `deletezoom INDEX n/LESSON_NAME`
+  
+   * Deletes a zoom link from the module at the specified `INDEX`.
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+      
+   * The index **must be a positive integer** 1, 2, 3...
+
+   * `LESSON_NAME` refers to the name of the lesson in the module which contains the zoom link to be deleted.
+
+  Example:
+  * `deletezoom 2 n/lecture` deletes the zoom link of the lesson `lecture` from the 2nd module in the displayed module list. 
+
 
 #### Deleting a module: `deletemodule`
 

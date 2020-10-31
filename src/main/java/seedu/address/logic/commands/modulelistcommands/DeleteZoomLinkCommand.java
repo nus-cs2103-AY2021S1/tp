@@ -30,6 +30,7 @@ public class DeleteZoomLinkCommand extends Command {
             + PREFIX_NAME + "lecture";
 
     public static final String MESSAGE_DELETE_ZOOM_SUCCESS = "Deleted Zoom from lesson %1$s in module %2$s";
+    public static final String MESSAGE_INVALID_ZOOM_LINK = "The zoom link for the specified lesson does not exist";
 
     private final Logger logger = LogsCenter.getLogger(DeleteZoomLinkCommand.class);
 
@@ -62,13 +63,18 @@ public class DeleteZoomLinkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Module moduleContainingZoomLink = lastShownList.get(targetIndex.getZeroBased());
-        Module updatedModule = moduleContainingZoomLink.deleteZoomLink(lesson);
-        model.setModule(moduleContainingZoomLink, updatedModule);
+        Module moduleToUpdate = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!moduleToUpdate.containsLesson(lesson)) {
+            throw new CommandException(MESSAGE_INVALID_ZOOM_LINK);
+        }
+
+        Module updatedModule = moduleToUpdate.deleteZoomLink(lesson);
+        model.setModule(moduleToUpdate, updatedModule);
         model.commitContactList();
         logger.info("Zoom Link has been deleted");
         return new CommandResult(String.format(MESSAGE_DELETE_ZOOM_SUCCESS,
-                lesson, moduleContainingZoomLink.getName()));
+                lesson, moduleToUpdate.getName()));
     }
 
     @Override
