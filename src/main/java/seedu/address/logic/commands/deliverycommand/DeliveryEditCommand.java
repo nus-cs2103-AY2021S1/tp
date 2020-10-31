@@ -70,7 +70,7 @@ public class DeliveryEditCommand extends DeliveryCommand {
         List<Delivery> lastShownList = deliveryModel.getFilteredAndSortedDeliveryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
         }
 
         Delivery deliveryToEdit = lastShownList.get(index.getZeroBased());

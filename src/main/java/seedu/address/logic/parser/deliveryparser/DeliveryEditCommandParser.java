@@ -2,6 +2,7 @@ package seedu.address.logic.parser.deliveryparser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
@@ -35,8 +36,7 @@ public class DeliveryEditCommandParser implements Parser<DeliveryEditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeliveryEditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
         }
 
         DeliveryEditCommand.EditDeliveryDescriptor editDeliveryDescriptor =
