@@ -30,6 +30,10 @@
     -fx-background-color: transparent;
 }
 
+.corner {
+    -fx-background-color: transparent;
+}
+
 /*----------scroll bar----------*/
 .scroll-bar {
     -fx-background-color: rgba(0, 0, 0, 0.3);

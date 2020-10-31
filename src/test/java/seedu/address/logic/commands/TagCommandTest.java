@@ -93,6 +93,4 @@ public class TagCommandTest {
         // different person -> returns false
         assertFalse(tagT1Command.equals(tagT2Command));
     }
-
-
 }

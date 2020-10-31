@@ -56,8 +56,8 @@ public class OpenCommandIntegrationTest {
         if (Desktop.isDesktopSupported()) {
             OpenCommand openCommand = new OpenCommand(invalidTag.getTagName());
             assertCommandFailure(openCommand, model,
-                    String.format(OpenCommand.MESSAGE_ERROR, invalidTag,
-                    String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND, invalidTag.getFileAddress())));
+                    String.format(OpenCommand.MESSAGE_ERROR + OpenCommand.MESSAGE_FILE_NOT_FOUND,
+                            invalidTag.getTagName(), invalidTag.getFileAddress()));
         }
     }
 }
