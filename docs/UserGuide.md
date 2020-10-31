@@ -69,7 +69,7 @@ This diagram shows our interface.
 * Parameters can be in any order.<br>
   e.g. if the command specify `t/TAG f/FILE_PATH`, `f/FILE_PATH t/TAG` is also an acceptable command.
   
-* Expressions with `...` at the end can be provided any number of times.
+* Expressions with `...` at the end can be provided any number of times.<br>
   e.g. `t/TAG [l/LABEL]...` can be used as `t/TAG`, `t/TAG l/label`, or `t/TAG l/label1 l/label2 l/label3`.
   
 * Every tag name must be unique, but multiple tags can point to the same filepath.
