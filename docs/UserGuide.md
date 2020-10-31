@@ -765,7 +765,7 @@ the latest update time for the `stocks.CSV`.
 
 ![stockCsvExample3](images/stockCsvExample3.png)
 
-### Clear
+### Clearing all data in Warenager: `clear`
 Clears all the existing data in Warenager.
 
 <h4>Format</h4>
@@ -792,7 +792,7 @@ Below is the expected outcome for clearing Warenager:<br>
 
 
 
-### Tab
+### Toggling tabs: `tab`
 Toggles between the tabs in Warenager.
 
 <h4>Format</h4>
