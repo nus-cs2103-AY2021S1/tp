@@ -20,7 +20,6 @@ public class AddBidderCommand extends Command {
             + "\n\nParameters: "
             + "\n" + PREFIX_NAME + "NAME "
             + "\n" + PREFIX_PHONE + "PHONE "
-            + "\n" + "[" + PREFIX_TAG + "TAG]...\n"
             + "\n" + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "

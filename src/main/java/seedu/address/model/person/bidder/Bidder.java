@@ -2,12 +2,9 @@ package seedu.address.model.person.bidder;
 
 import static seedu.address.model.id.BidderId.DEFAULT_BIDDER_ID;
 
-import java.util.Set;
-
 import seedu.address.model.id.BidderId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -16,57 +13,39 @@ import seedu.address.model.tag.Tag;
  */
 public class Bidder extends ClientPerson {
 
-    private BidderId bidderId;
+    public static final Tag BIDDER_TAG = new Tag("bidder");
 
     /**
      * Constructs the bidder with name, phone and tags.
      *
      * @param name The name of the bidder.
      * @param phone The phone number.
-     * @param tags Tags.
      */
-    public Bidder(Name name, Phone phone, Set<Tag> tags) {
-        super(name, phone, tags, DEFAULT_BIDDER_ID);
-        this.bidderId = DEFAULT_BIDDER_ID;
+    public Bidder(Name name, Phone phone) {
+        super(name, phone, BIDDER_TAG, DEFAULT_BIDDER_ID);
     }
+
     /**
      * Constructs the bidder with the name, phone, tags, and id.
      * @param name name of the bidder.
      * @param phone phone number.
-     * @param tags tags.
      * @param bidderId identifier.
      */
-    public Bidder(Name name, Phone phone, Set<Tag> tags, BidderId bidderId) {
-        super(name, phone, tags, bidderId);
-        this.bidderId = bidderId;
-    }
-
-    public Bidder setDefaultBidderId() {
-        return new Bidder(name, phone, tags , DEFAULT_BIDDER_ID);
-    }
-
-    public Bidder setBidderTag() {
-        tags.add(new Tag("bidder"));
-        return new Bidder(name, phone, tags, bidderId);
-    }
-
-    @Override
-    public BidderId getId() {
-        return bidderId;
+    public Bidder(Name name, Phone phone, BidderId bidderId) {
+        super(name, phone, BIDDER_TAG, bidderId);
     }
 
     public void setId(BidderId updatedId) {
         super.setId(updatedId);
-        this.bidderId = updatedId;
+        this.clientId = updatedId;
     }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof Bidder && super.isSamePerson(otherPerson);
+    public boolean isSameBidder(Bidder otherBidder) {
+        return otherBidder != null && super.isSamePerson(otherBidder);
     }
 
     /**
@@ -86,7 +65,8 @@ public class Bidder extends ClientPerson {
         Bidder otherBidder = (Bidder) other;
         return otherBidder.getName().equals(getName())
                 && otherBidder.getPhone().equals(getPhone())
-                && otherBidder.getTags().equals(getTags());
+                && otherBidder.getTag().equals(getTag())
+                && otherBidder.getId().equals(getId());
     }
 
 }

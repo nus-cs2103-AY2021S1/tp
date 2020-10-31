@@ -1,7 +1,5 @@
 package seedu.address.ui.seller;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -48,9 +46,7 @@ public class SellerCard extends UiPart<Region> {
         name.setText("Name: " + seller.getName().fullName);
         phone.setText("Phone: " + seller.getPhone().value);
         sellerId.setText("Seller Id: " + seller.getId());
-        seller.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().add(new Label(seller.getTag().tagName));
     }
 
     @Override

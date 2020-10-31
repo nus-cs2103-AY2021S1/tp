@@ -18,10 +18,11 @@ public class BidderBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
+    public static final Tag DEFAULT_BIDDER_TAG = new Tag("bidder");
 
     private Name name;
     private Phone phone;
-    private Set<Tag> tags;
+    private Tag tag;
     private BidderId id;
 
     /**
@@ -30,7 +31,7 @@ public class BidderBuilder {
     public BidderBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        tags = new HashSet<>();
+        tag = DEFAULT_BIDDER_TAG;
         id = DEFAULT_BIDDER_ID;
     }
 
@@ -40,7 +41,7 @@ public class BidderBuilder {
     public BidderBuilder(Bidder bidderToCopy) {
         name = bidderToCopy.getName();
         phone = bidderToCopy.getPhone();
-        tags = new HashSet<>(bidderToCopy.getTags());
+        tag = bidderToCopy.getTag();
         id = bidderToCopy.getId();
     }
 
@@ -56,7 +57,7 @@ public class BidderBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Bidder} that we are building.
      */
     public BidderBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tag = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
