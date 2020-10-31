@@ -28,47 +28,47 @@ import seedu.address.model.task.Task;
  */
 public class SampleDataUtil {
 
-    private static ArrayList<String> task1 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task1 = new ArrayList<>(Arrays.asList(
             "Refactor project class",
             "tedious :(",
             null,
             "25.0",
             "false"));
-    private static ArrayList<String> task2 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task2 = new ArrayList<>(Arrays.asList(
             "Brainstorm user stories",
             null,
             null,
             "100.0",
             "true"));
-    private static ArrayList<String> task3 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task3 = new ArrayList<>(Arrays.asList(
             "Refine data model",
             "so hard T.T",
             null,
             "0.0",
             "false"
     ));
-    private static ArrayList<String> task4 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task4 = new ArrayList<>(Arrays.asList(
             "Write UG",
             null,
             null,
             "50.0",
             "false"
     ));
-    private static ArrayList<String> task5 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task5 = new ArrayList<>(Arrays.asList(
             "Delete ProjectDescription attribute",
             "easy fast game",
             null,
             "0.0",
             "false"
     ));
-    private static ArrayList<String> task6 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task6 = new ArrayList<>(Arrays.asList(
             "Write DG",
             "barely done, how now brown cow",
             null,
             "15.0",
             "false"
     ));
-    private static ArrayList<String> VALID_TASK = new ArrayList<>(Arrays.asList(
+    private final static ArrayList<String> VALID_TASK = new ArrayList<>(Arrays.asList(
             "Write testcases",
             "testcases for storage, person and project class",
             "10-10-2020 23:59:00",
