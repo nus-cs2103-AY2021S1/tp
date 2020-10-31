@@ -62,7 +62,7 @@ public class SessionListPanel extends UiPart<Region> {
                 SessionName sessionName = session.getSessionName();
                 button.setText(sessionName.name + "\n" + session.getSessionDateTime().getDisplayDateTimeString());
                 button.setMinSize(100, 50);
-                button.setMaxWidth(100);
+                button.setMaxWidth(140);
                 button.setStyle("-fx-font-size:13; -fx-alignment: center-left;");
                 AnchorPane.setBottomAnchor(button, 0.0);
                 AnchorPane.setLeftAnchor(button, 0.0);
