@@ -59,8 +59,6 @@ public class SampleDataUtil {
         sampleEb.addCategory(new Tag("Transport"));
 
         sampleEb.getBudgets().topupBudget(new Amount("10"));
-
-        sampleAb.topupBudget(new Amount(500));
         for (Expense sampleExpense : getSampleExpenses()) {
             sampleEb.addExpense(sampleExpense);
         }
