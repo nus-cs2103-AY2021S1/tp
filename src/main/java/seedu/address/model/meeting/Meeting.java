@@ -10,7 +10,7 @@ import seedu.address.model.id.PropertyId;
  * Represents a meeting in the meeting book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Meeting {
+public abstract class Meeting {
 
     // Identity fields
     protected boolean isPaperWork;
@@ -72,7 +72,7 @@ public class Meeting {
         } else if (type.equalsIgnoreCase("Viewing")) {
             return new Viewing(bidderId, propertyId, meetingDate, venue, startTime, endTime);
         } else {
-            return new Meeting(bidderId, propertyId, meetingDate, venue, startTime, endTime);
+            throw new AssertionError("Invalid meeting type is keyed in.");
         }
     }
 
