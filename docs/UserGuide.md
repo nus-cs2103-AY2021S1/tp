@@ -241,7 +241,7 @@ delete sn/<serial number> [sn/<serial number>]...
 <h4>Examples</h4>
 
 ```
-delete sn/Fairprice1 sn/Ntuc1
+delete sn/courts1 sn/courts2
 ```
 
 Below is a guided example for deleting stocks:<br>
@@ -276,6 +276,7 @@ A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
 
 <div markdown="block" class="alert alert-warning" markdown="1">
 
+**:warning:**
 Stocks that do not exist in Warenager cannot be deleted. Using the same input in the previous step,
 `delete sn/courts3 sn/courts`, you should expect the following:
 
@@ -775,6 +776,7 @@ clear
 ```
 <div markdown="block" class="alert alert-warning" markdown="1">
 
+**:warning: Warning for clearing data**
 `clear` is an irreversible process. Do backup the data it might be needed again.
 
 </div>
