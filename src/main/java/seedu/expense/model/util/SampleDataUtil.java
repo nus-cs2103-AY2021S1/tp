@@ -1,5 +1,7 @@
 package seedu.expense.model.util;
 
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -36,7 +38,7 @@ public class SampleDataUtil {
             new Expense(new Description("Ramen with Tyler"), new Amount("18.50"), new Date("29-06-2020"),
                 new Remark("Tori King @ Tanjong Pagar"), new Tag("Food")),
             new Expense(new Description("Phone Bill Payment"), new Amount("35.90"), new Date("29-06-2020"),
-                EMPTY_REMARK, new Tag("Bills")),
+                EMPTY_REMARK, DEFAULT_TAG),
             new Expense(new Description("Grab to Supper"), new Amount("5"), new Date("28-06-2020"),
                 EMPTY_REMARK, new Tag("Food")),
             new Expense(new Description("Movie with Felicia"), new Amount("14"), new Date("26-06-2020"),
@@ -49,12 +51,20 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyExpenseBook getSampleExpenseBook() {
-        ExpenseBook sampleAb = new ExpenseBook();
+        ExpenseBook sampleEb = new ExpenseBook();
+
+        sampleEb.addCategory(new Tag("Girlfriend"));
+        sampleEb.addCategory(new Tag("Shopping"));
+        sampleEb.addCategory(new Tag("Food"));
+        sampleEb.addCategory(new Tag("Transport"));
+
+        sampleEb.getBudgets().topupBudget(new Amount("10"));
 
         for (Expense sampleExpense : getSampleExpenses()) {
-            sampleAb.addExpense(sampleExpense);
+            sampleEb.addExpense(sampleExpense);
         }
-        return sampleAb;
+
+        return sampleEb;
     }
 
     public static AliasMap getSampleAliasMap() {
