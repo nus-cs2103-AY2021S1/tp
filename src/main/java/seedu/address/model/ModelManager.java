@@ -269,6 +269,17 @@ public class ModelManager implements Model {
         bidBook.setBid(target, editedBid);
     }
 
+    @Override
+    public void setBidBookFilePath(Path bidBookFilePath) {
+        requireNonNull(bidBookFilePath);
+        userPrefs.setBidBookFilePath(bidBookFilePath);
+    }
+
+    @Override
+    public Path getBidBookFilePath() {
+        return userPrefs.getBidBookFilePath();
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

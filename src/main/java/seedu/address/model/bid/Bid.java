@@ -63,8 +63,7 @@ public class Bid {
 
         return otherBid != null
                 && otherBid.getPropertyId().equals(getPropertyId())
-                && (otherBid.getBidderId().equals(getBidderId()))
-                && ((otherBid.getBidAmount().equals(getBidAmount())));
+                && otherBid.getBidderId().equals(getBidderId());
     }
 
     @Override
