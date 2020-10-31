@@ -2,9 +2,11 @@ package quickcache.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static quickcache.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.QuickCache;
@@ -54,6 +56,54 @@ public class EditCommandTest {
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(6), editedMultipleChoice);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_answerLargerThanChoicesForMultipleChoiceUnfilteredList_throwsCommandException() {
+        String[] choices = {"First", "Second", "Third", "Fourth"};
+        Flashcard editedFlashcard = new FlashcardBuilder()
+                .withMultipleChoiceQuestion("Multiple Choice Question", choices).withAnswer("5").build();
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).build();
+        Flashcard editedMultipleChoice = new FlashcardBuilder()
+                .withMultipleChoiceQuestion("Multiple Choice Question", choices).withAnswer(choices[1]).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SEVENTH_FLASHCARD, descriptor);
+
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
+        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(6), editedMultipleChoice);
+
+        assertThrows(CommandException.class, "Answer must be smaller than number of choices", () ->
+                editCommand.execute(expectedModel));
+    }
+
+    @Test
+    public void execute_answerIsNotNumberMultipleChoiceUnfilteredList_throwsCommandException() {
+        String[] choices = {"First", "Second", "Third", "Fourth"};
+        Flashcard editedFlashcard = new FlashcardBuilder()
+                .withMultipleChoiceQuestion("Multiple Choice Question", choices).withAnswer("String").build();
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).build();
+        Flashcard editedMultipleChoice = new FlashcardBuilder()
+                .withMultipleChoiceQuestion("Multiple Choice Question", choices).withAnswer(choices[1]).build();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_SEVENTH_FLASHCARD, descriptor);
+
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
+        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(6), editedMultipleChoice);
+
+        assertThrows(CommandException.class, "Answer must be integer", () ->
+                editCommand.execute(expectedModel));
+    }
+
+    @Test
+    public void execute_sameFlashcardUnfilteredList_throwsCommandException() {
+        Flashcard editedFlashcard = model.getFilteredFlashcardList().get(0);
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard)
+                .buildWithNoChoices();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD, descriptor);
+
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
+        expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
+
+        assertThrows(CommandException.class, EditCommand.MESSAGE_DUPLICATE_FLASHCARD, () ->
+                editCommand.execute(expectedModel));
     }
 
     @Test
