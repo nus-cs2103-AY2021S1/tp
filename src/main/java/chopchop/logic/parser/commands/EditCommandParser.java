@@ -93,10 +93,10 @@ public class EditCommandParser {
                                 } else {
                                     qty = q.toOptional();
                                 }
-                            }
 
-                            // skip it on the next round
-                            i += 1;
+                                // skip it on the next turn.
+                                i += 1;
+                            }
                         }
 
                         ingrEdits.add(parseIngredientEdit(argName, argValue, qty));
