@@ -1,9 +1,8 @@
 @startuml
 hide empty description
 state "User executes command" as State1
-state "Purge redundant states" as State2
-state "Save command text and parsed command" as State3
-state "Save command text only" as State4
+state "Purge redundant commands" as State2
+state "Save the parsed command" as State3
 state c1 <<choice>>
 state c2 <<choice>>
 state c3 <<choice>>
@@ -11,11 +10,10 @@ state c3 <<choice>>
 [*] --> State1
 State1 --> c3
 c3 --> State2 : [command is successfully executed]
-c3 --> State4 : [else]
+c3 --> c2 : [else]
 State2 --> c1
 c1 --> State3 : [command is undoable]
-c1 --> State4 : [else]
+c1 --> c2 : [else]
 State3 --> c2
-State4 --> c2
 c2 --> [*]
 @enduml

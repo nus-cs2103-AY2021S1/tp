@@ -304,57 +304,53 @@ blah blah blah blah
 
 #### Proposed Implementation
 
-The undo/redo feature is facilitated by a `HistoryManager`, which keeps track of and stores the command history.
-It works by storing a list of `CommandHistory` containing every command text entered, and optionally the parsed command (if it is undoable).
-Every command that supports undoing/redoing will implement the `Undoable` interface, which requires the implementation of the `Undoable#undo()` operation.
-Optionally, custom behaviour for the `Undoable#redo()` operation can also be implemented, but it defaults to re-executing the command.
+The undo/redo feature is implemented using a `HistoryManager`, which keeps track of and stores the command history, along with a list of parsed undoable `Command`s.
+Every command that can be undone/redone implements the `Undoable` interface, which requires the implementation of the `Undoable#undo()` method.
+Optionally, the command can implement the `Undoable#redo()` method to customise the default behaviour, which is to re-execute the command.
 The `HistoryManager` then implements the following operations:
 
-* `HistoryManager#save()` — Saves the command text and the command (if it is undoable)
+* `HistoryManager#addInput()` — Saves the command history of the last input entered
+* `HistoryManager#addCommand()` — Saves the last parsed command (if it is undoable)
 * `HistoryManager#undo()` — Undo the last `Undoable` command
 * `HistoryManager#redo()` — Redo the last `Undoable` command
 
-The `HistoryManager#undo()` and `HistoryManager#redo()` operations move the current command history pointer and carries out the requested operation.
-Further details can be seen in the example usage scenario detailing the undo/redo mechanism below.
+The `HistoryManager#undo()` and `HistoryManager#redo()` methods move the current command history pointer and carries out the requested operation.
+Further details can be seen in the example usage scenario detailing the mechanism below.
 
 Step 1. The user launches the application for the first time.
-The `HistoryManager` is initialised with an empty list of `CommandHistory`, as no commands have been entered, and the `currentIndex` pointer is intialised to 0.
+The `HistoryManager` is initialised with an empty list of `CommandHistory`s, as no commands have been entered, and the `currentIndex` pointer is intialised to 0.
+
+![UndoRedoState0](images/UndoRedoState0.png)
 
 Step 2. The user executes `delete recipe #5` to delete the 5th recipe from the recipe book.
-The model is updated accordingly, and the `delete recipe` command is saved by the `HistoryManager` by adding to the `CommandHistory` list, as it implements the `Undoable` interface.
-The `currIndex` pointer is also incremented, as the application is currently at the state after the `delete recipe` command is executed.
+The model is updated accordingly, and the `DeleteRecipeCommand` is saved by the `HistoryManager` by adding to the `CommandHistory` list, as the command implements the `Undoable` interface.
+The `currentIndex` pointer is also incremented by one, as the application is currently at the state after the `DeleteRecipeCommand` is executed.
+
+![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add recipe beef noodles` to add a new recipe.
-Similarly, the model is updated accordingly, and the `add recipe` command is added to the `CommandHistory` list.
-The `currPointer` is once again incremented.
+Similarly, the model is updated accordingly, and the `AddRecipeCommand` is added to the `CommandHistory` list.
+The `currentIndex` pointer is once again incremented by one.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, the command text will be saved (to preserve the command text history), but no command will be saved.
-
-</div>
+![UndoRedoState2](images/UndoRedoState2.png)
 
 Step 4. The user now desires to undo the last action, and executes the `undo` command.
-The `undo` command will call `HistoryManager#undo()`, which will decrement the `currIndex` pointer and retrieve the command from the list using the specified index.
+The `undo` command will call `HistoryManager#undo()`, which will decrement the `currentIndex` pointer by one and retrieve the command from the list at the specified index.
 The command's `Undoable#undo()` operation will then be executed.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currIndex` points to a command that cannot be undone, `HistoryManager#undo()` will keep iterating through the command history to find the first `Undoable` command.
-If no such command is found, the user is notified.
-
-</div>
+![UndoRedoState3](images/UndoRedoState3.png)
 
 The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currIndex` is pointing to, and increments the `currIndex`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Similarly to the `HistoryManager#undo()` operation, `HistoryManager#redo()` will intelligently iterate through the command history to find the first redoable command.
-
-</div>
+The `redo` command does the opposite — it calls `HistoryManager#redo()`, which executes the command `currentIndex` is pointing to, and increments the `currentIndex` by one.
 
 Step 5. The user then decides to execute the command `list recipes`.
-Commands that do not modify the model, such as `list recipes`, will still be added to `HistoryManager`.
-However, only the command text will be stored, and not the parsed `Command`, as these commands cannot be undone.
-Since `currIndex` is not pointing to the end of the `CommandHistory` list, all commands after the `currIndex` will be cleared, which in this case is the `add recipe beef noodles` command.
+Commands that do not modify the model, such as `list recipes`, will not be stored by the `HistoryManager` as they cannot be undone.
+Since the `currentIndex` is not pointing to the end of the `CommandHistory` list, all commands starting from the `currentIndex` will be cleared, which in this case is the `add recipe beef noodles` command.
+
+![UndoRedoState4](images/UndoRedoState4.png)
 
 The following activity diagram summarises what happens when a user executes a new command:
 
@@ -364,8 +360,8 @@ The following activity diagram summarises what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Save each command as it is inputted. Each command implements its own undo/redo operation.
-  * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model is modified each time.
+* **Alternative 1 (current choice):** Save each undoable command as it is executed. Each command implements its own undo/redo operation.
+  * Pros: Uses less memory since the entire state of the application does not have to be saved, and is also faster since only a small part of the model needs to be modified each time.
   * Cons: All model changes need to be restricted to the command, as each command needs to be able to fully reverse any changes made to the model.
 
 * **Alternative 2:** Saves the entire recipe/ingredient book every time a change is made to the model.
