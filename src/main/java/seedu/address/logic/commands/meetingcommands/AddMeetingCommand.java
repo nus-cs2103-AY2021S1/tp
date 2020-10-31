@@ -9,6 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
+import java.util.Iterator;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -16,6 +19,8 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.property.Property;
 
 /**
  * Adds a meeting to the meeting book.
@@ -56,11 +61,34 @@ public class AddMeetingCommand extends Command {
     }
 
 
+    public boolean checkPID(Model model) {
+        Iterator<Property> propLs = model.getFilteredPropertyList().iterator();
+        while (propLs.hasNext()) {
+            if (toAdd.getPropertyId().equals(propLs.next().getPropertyId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkBID(Model model) {
+        Iterator<Bidder> bidLs = model.getFilteredBidderList().iterator();
+        while (bidLs.hasNext()) {
+            if (toAdd.getBidderId().equals(bidLs.next().getId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.hasMeeting(toAdd)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_MEETING);
+        }
+        if (!checkBID(model) || !checkPID(model)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ID);
         }
 
         model.addMeeting(toAdd);
