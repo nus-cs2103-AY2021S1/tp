@@ -26,7 +26,8 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedForOpenEndedUnfilteredList_success() {
         Flashcard editedFlashcard = new FlashcardBuilder().build();
-        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard).build();
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard)
+                .buildWithNoChoices();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
@@ -64,7 +65,8 @@ public class EditCommandTest {
             new FlashcardBuilder(flashcardInFilteredList).withQuestion(CommandTestUtil.VALID_QUESTION_THREE)
                 .build();
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_FLASHCARD,
-            new EditFlashcardDescriptorBuilder().withQuestion(CommandTestUtil.VALID_QUESTION_THREE).build());
+            new EditFlashcardDescriptorBuilder().withQuestion(CommandTestUtil.VALID_QUESTION_THREE)
+                    .buildWithNoChoices());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
