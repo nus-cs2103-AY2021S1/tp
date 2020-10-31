@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 public interface RecipeContainsKeywordsPredicate extends Predicate<Recipe> {
 
     @Override
-    public boolean test(Recipe recipe);
+    boolean test(Recipe recipe);
 
     @Override
-    public boolean equals(Object other);
+    boolean equals(Object other);
 }

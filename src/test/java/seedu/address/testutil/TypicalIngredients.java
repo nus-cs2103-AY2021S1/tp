@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.WishfulShrinking;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 
 /**
  * A utility class containing a list of {@code Ingredient} objects to be used in tests.

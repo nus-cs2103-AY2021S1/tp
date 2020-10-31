@@ -14,9 +14,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.logic.commands.EditRecipeCommand;
-import seedu.address.model.commons.Calories;
-import seedu.address.model.tag.Tag;
+import seedu.address.logic.commands.recipe.EditRecipeCommand;
+import seedu.address.model.ingredient.Ingredient;
 
 
 /**

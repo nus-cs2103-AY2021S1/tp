@@ -11,11 +11,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.ArrayList;
 import java.util.Set;
 
-import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.recipe.AddRecipeCommand;
+import seedu.address.logic.commands.recipe.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.recipe.Tag;
 
 /**
  * A utility class for Recipe.

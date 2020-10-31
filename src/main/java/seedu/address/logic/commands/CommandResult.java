@@ -4,6 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.logic.commands.consumption.ListConsumptionCommand;
+import seedu.address.logic.commands.ingredient.GetEditIngredientCommand;
+import seedu.address.logic.commands.ingredient.ListIngredientsCommand;
+import seedu.address.logic.commands.recipe.CloseCommand;
+import seedu.address.logic.commands.recipe.GetEditRecipeCommand;
+import seedu.address.logic.commands.recipe.ListRecipesCommand;
 import seedu.address.model.recipe.Recipe;
 
 /**

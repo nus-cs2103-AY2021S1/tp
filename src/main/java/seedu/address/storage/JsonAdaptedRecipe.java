@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commons.Calories;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.recipe.Calories;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipeImage;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.recipe.Tag;
 
 /**
  * Jackson-friendly version of {@link Recipe}.

@@ -6,9 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Name;
-//import seedu.address.model.tag.Tag;
+//import seedu.address.model.recipe.Tag;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.

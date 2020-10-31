@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 
 /**
  * A utility class to help with building Ingredient objects.

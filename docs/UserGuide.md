@@ -200,7 +200,7 @@ are relevant only to Recipes.
 Adds a recipe to Recipe List.
 
 <br>  The image below is what Wishful Shrinking looks like after you have added a recipe. <br><br>
-<img src="images/AddRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/AddRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst
@@ -246,7 +246,7 @@ Examples:
 Shows a list of all recipes in the Recipe List.
 
 <br>  The image below is what Wishful Shrinking looks like after you have listed all recipes. <br><br>
-<img src="images/ListRecipesImage.png" width="550" height="300">
+<img src="images/feature/recipe/ListRecipesImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `recipes`
@@ -257,7 +257,7 @@ Format: `recipes`
 Deletes the specified recipe from the Recipe List.
 
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe. <br><br>
-<img src="images/DeleteRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/DeleteRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `deleteR INDEX`
@@ -278,7 +278,7 @@ Examples:
 Edits the specified recipe from the Recipe List.
 
 <br>  The image below is what Wishful Shrinking looks like after you have edited a recipe. <br><br>
-<img src="images/EditRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/EditRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] 
@@ -324,7 +324,7 @@ Examples:
 Insert the information of the specified recipe to the edit into the command box for editing purposes.
 
 <br>  The image below is what Wishful Shrinking looks like after you have gotten a recipe to edit. <br><br>
-<img src="images/EditRecipeGetImage.png" width="550" height="300">
+<img src="images/feature/recipe/EditRecipeGetImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `editR INDEX`
@@ -342,7 +342,7 @@ Examples:
 Displays the information of a single recipe in full view.
 
 <br>  The image below is what Wishful Shrinking looks like after you have selected a specific recipe. <br><br>
-<img src="images/SelectRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/SelectRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `selectR INDEX`
@@ -359,7 +359,7 @@ Examples:
 Closes the left drawer if it has been opened by the select command.
 
 <br>  The image below is what Wishful Shrinking looks like after you have closed the left drawer. It should look similar to before you selected a recipe. <br><br>
-<img src="images/CloseRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/CloseRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `close`
@@ -373,7 +373,7 @@ Format: `close`
 Finds recipes in the Recipe List that contain all the specified ingredient(s), name or tag(s).
 
 <br>  The image below is what Wishful Shrinking looks like after you have searched for a recipe. In this case, the recipe is being searched by ingredients. <br><br>
-<img src="images/SearchRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/SearchRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]]`
@@ -399,7 +399,7 @@ Shows a list of all recipes in the Recipe List that can be made with the ingredi
 <br>  The image below is what Wishful Shrinking looks like after you have gotten the recommended recipes. In
  this case, `recommend` returns the recipe `salad` with ingredients `lettuce`, `olive oil` and `tomato` since
   the example user has all the ingredients: `lettuce`, `olive oil` and `tomato` in their Fridge.<br><br>
-<img src="images/RecommendImage.png" width="550" height="300">
+<img src="images/feature/recipe/RecommendImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `recommend`
@@ -420,7 +420,7 @@ Examples:
 Clears all the recipes in the Recipe List.
 
 <br>  The image below is what Wishful Shrinking looks like after you have cleared all recipes. <br><br>
-<img src="images/ClearRecipeImage.png" width="550" height="300">
+<img src="images/feature/recipe/ClearRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `clearR`
@@ -440,7 +440,7 @@ Adds an ingredient to the Fridge.
 
 <br>  The image below is what Wishful Shrinking looks like after you have added an ingredient to the Fridge. <br
 ><br>
-<img src="images/AddIngredientImage.png" width="550" height="300">
+<img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
@@ -467,7 +467,7 @@ Shows a list of all ingredients in the Fridge.
 
 <br>  The image below is what Wishful Shrinking looks like after you have listed all ingredients in the Fridge. <br
 ><br>
-<img src="images/ListIngredientsImage.png" width="550" height="300">
+<img src="images/feature/ingredient/ListIngredientsImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `fridge`
@@ -478,7 +478,7 @@ Format: `fridge`
 Deletes the specified ingredient from the Fridge.
 
 <br>  The image below is what Wishful Shrinking looks like after you have deleted an ingredient from the Fridge. <br><br>
-<img src="images/DeleteIngredientImage.png" width="550" height="300">
+<img src="images/feature/ingredient/DeleteIngredientImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `deleteF INDEX`
@@ -497,7 +497,7 @@ Edits the specified ingredient from Fridge.
 
 <br>  The image below is what Wishful Shrinking looks like after you have edited an ingredient in the Fridge. <br
 ><br>
-<img src="images/EditIngredientImage.png" width="550" height="300">
+<img src="images/feature/ingredient/EditIngredientImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
@@ -531,7 +531,7 @@ Adds the information of the specified ingredient to the edit command into the co
 <br>  The image below is what Wishful Shrinking looks like after you have gotten an ingredient in the Fridge to
  edit
 . <br><br>
-<img src="images/EditIngredientGetImage.png" width="550" height="300">
+<img src="images/feature/ingredient/EditIngredientGetImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `editF INDEX`
@@ -553,7 +553,7 @@ Finds ingredients in the Fridge that contain any of the given keywords.
 <br>  The image below is what Wishful Shrinking looks like after you have searched for ingredients in the Fridge
 . <br
 ><br>
-<img src="images/SearchIngredientImage.png" width="550" height="300">
+<img src="images/feature/ingredient/SearchIngredientImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `searchF KEYWORD [ MORE KEYWORDS]`
@@ -579,7 +579,7 @@ Clears all the ingredients in the Fridge.
 <br>  The image below is what Wishful Shrinking looks like after you have cleared all ingredients in the Fridge
 . <br
 ><br>
-<img src="images/ClearFridgeImage.png" width="550" height="300">
+<img src="images/feature/ingredient/ClearFridgeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `clearF`
@@ -597,7 +597,7 @@ and [`clearC`](#clear-consumption). These are the commands in Wishful Shrinking 
 Adds the specified recipe in the Recipe List into the Consumption list.
 
 <br>  The image below is what Wishful Shrinking looks like after you have eaten a recipe. <br><br>
-<img src="images/EatRecipeImage.png" width="550" height="300">
+<img src="images/feature/consumption/EatRecipeImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `eatR INDEX`
@@ -615,7 +615,7 @@ Examples:
 Shows the list of recipes that you have eaten, including the recipe's name and calorie. The total calories
  consumed so far is displayed in the command result.
 <br>  The image below is what Wishful Shrinking looks like after you have listed all recipes that you have eaten. <br><br>
-<img src="images/CaloriesImage.png" width="550" height="300">
+<img src="images/feature/consumption/CaloriesImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `calories`
@@ -631,7 +631,7 @@ Format: `calories`
 Deletes the specified recipe from consumption list.
 
 <br>  The image below is what Wishful Shrinking looks like after you have deleted a recipe from the consumption list. <br><br>
-<img src="images/DeleteCalorieImage.png" width="550" height="300">
+<img src="images/feature/consumption/DeleteCalorieImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `deleteC INDEX`
@@ -648,7 +648,7 @@ Examples:
 Clears all the recipes that have been eaten in the consumption list.
 
 <br>  The image below is what Wishful Shrinking looks like after you have cleared all recipes eaten from the consumption list. <br><br>
-<img src="images/ClearConsumptionImage.png" width="550" height="300">
+<img src="images/feature/consumption/ClearConsumptionImage.png" width="550" height="300">
 <br><br><br>
 
 Format: `clearC`

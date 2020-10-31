@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditIngredientCommand;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.logic.commands.ingredient.EditIngredientCommand;
+import seedu.address.model.ingredient.Ingredient;
 
 public class EditIngredientDescriptorBuilder {
     private EditIngredientCommand.EditIngredientDescriptor descriptor;

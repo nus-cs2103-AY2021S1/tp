@@ -10,14 +10,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.commons.Calories;
 import seedu.address.model.consumption.Consumption;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.recipe.Calories;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipeImage;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.recipe.Tag;
 
 public class JsonAdaptedConsumption {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Consumption's %s field is missing!";
