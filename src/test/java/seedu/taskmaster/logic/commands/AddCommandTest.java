@@ -197,7 +197,7 @@ public class AddCommandTest {
 
 
         @Override
-        public void markStudent(Student student, AttendanceType attendanceType) {
+        public void markStudentRecord(StudentRecord studentRecord, AttendanceType attendanceType) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_INT;
 import static seedu.taskmaster.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
+import static seedu.taskmaster.testutil.TypicalStudentRecords.ALICE_STUDENT_RECORD;
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
 import static seedu.taskmaster.testutil.TypicalStudents.BENSON;
 import static seedu.taskmaster.testutil.TypicalStudents.BOB;
@@ -145,7 +146,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    void markStudent_success() {
+    void markStudentRecord_success() {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
@@ -154,9 +155,10 @@ public class ModelManagerTest {
                 stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.markStudent(ALICE, AttendanceType.PRESENT);
+        modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT);
         assertTrue(s.getStudentRecords().toString().equals("[e0123456|PRESENT|Class Participation Score: 0]"));
-        modelManager.markStudent(ALICE, AttendanceType.ABSENT);
+        
+        modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.ABSENT);
         assertTrue(s.getStudentRecords().toString().equals("[e0123456|ABSENT|Class Participation Score: 0]"));
     }
 
@@ -165,7 +167,7 @@ public class ModelManagerTest {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        assertThrows(NoSessionException.class, () -> modelManager.markStudent(ALICE, AttendanceType.PRESENT));
+        assertThrows(NoSessionException.class, () -> modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
 
     @Test
@@ -177,7 +179,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
-        assertThrows(NoSessionSelectedException.class, () -> modelManager.markStudent(ALICE, AttendanceType.PRESENT));
+        assertThrows(NoSessionSelectedException.class, () -> modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
 
     @Test
