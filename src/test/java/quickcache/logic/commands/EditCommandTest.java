@@ -6,6 +6,7 @@ import static quickcache.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import quickcache.commons.core.Messages;
 import quickcache.logic.commands.exceptions.CommandException;
 import quickcache.model.Model;
 import quickcache.model.ModelManager;
@@ -103,6 +104,19 @@ public class EditCommandTest {
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertThrows(CommandException.class, EditCommand.MESSAGE_DUPLICATE_FLASHCARD, () ->
+                editCommand.execute(expectedModel));
+    }
+
+    @Test
+    public void execute_largeIndexUnfilteredList_throwsCommandException() {
+        Flashcard editedFlashcard = model.getFilteredFlashcardList().get(0);
+        EditCommand.EditFlashcardDescriptor descriptor = new EditFlashcardDescriptorBuilder(editedFlashcard)
+                .buildWithNoChoices();
+        EditCommand editCommand = new EditCommand(TypicalIndexes.VERY_BIG_INDEX_FLASHCARD, descriptor);
+
+        Model expectedModel = new ModelManager(new QuickCache(model.getQuickCache()), new UserPrefs());
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX, () ->
                 editCommand.execute(expectedModel));
     }
 
