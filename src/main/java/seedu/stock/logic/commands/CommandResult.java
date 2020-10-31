@@ -32,10 +32,11 @@ public class CommandResult {
     /** Other statistics data details to be shown to the user, if any. */
     private final String[] otherStatisticsDetails;
 
+    /** Tab is to be switched is true. */
+    private final boolean isSwitchTab;
+
     /** The application should exit. */
     private final boolean exit;
-
-
 
 
     /**
@@ -43,7 +44,8 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser, Map<String, Integer> statisticsData,
                          boolean showHelp, boolean showNotes, Stock stockToShowNotes,
-                         boolean showStatistics, String[] otherStatisticsDetails, boolean exit) {
+                         boolean showStatistics, String[] otherStatisticsDetails,
+                         boolean isSwitchTab, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showNotes = showNotes;
@@ -51,6 +53,7 @@ public class CommandResult {
         this.showStatistics = showStatistics;
         this.statisticsData = statisticsData;
         this.otherStatisticsDetails = otherStatisticsDetails;
+        this.isSwitchTab = isSwitchTab;
         this.exit = exit;
     }
 
@@ -59,7 +62,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, null, false, null, false);
+        this(feedbackToUser, null, false, false, null, false, null, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -88,6 +91,10 @@ public class CommandResult {
 
     public String[] getOtherStatisticsDetails() {
         return this.otherStatisticsDetails;
+    }
+
+    public boolean isSwitchTab() {
+        return isSwitchTab;
     }
 
     public boolean isExit() {

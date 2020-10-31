@@ -68,7 +68,7 @@ public class NoteViewCommand extends Command {
         }
 
         return new CommandResult(generateSuccessMessage(stockToViewNotes.get()), null,
-                false, true, stockToViewNotes.get(), false, null, false);
+                false, true, stockToViewNotes.get(), false, null, false, false);
     }
 
     /**
