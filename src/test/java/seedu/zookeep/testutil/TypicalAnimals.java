@@ -1,20 +1,13 @@
 package seedu.zookeep.testutil;
 
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_SPECIES_ARCHIE;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.zookeep.model.ZooKeepBook;
 import seedu.zookeep.model.animal.Animal;
+
+import static seedu.zookeep.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Animal} objects to be used in tests.
@@ -61,11 +54,12 @@ public class TypicalAnimals {
 
     // Manually added - Animal's details found in {@code CommandTestUtil}
     public static final Animal ARCHIE = new AnimalBuilder().withName(VALID_NAME_ARCHIE).withId(VALID_ID_ARCHIE)
-            .withSpecies(VALID_SPECIES_ARCHIE).withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
+            .withSpecies(VALID_SPECIES_ARCHIE).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS)
+            .withFeedTimes(VALID_FEED_TIME_MORNING).build();
     public static final Animal BAILEY = new AnimalBuilder().withName(VALID_NAME_BAILEY).withId(VALID_ID_BAILEY)
-            .withSpecies(VALID_SPECIES_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS,
-                    VALID_MEDICAL_CONDITION_OBESE)
-            .build();
+            .withSpecies(VALID_SPECIES_BAILEY)
+            .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS, VALID_MEDICAL_CONDITION_OBESE)
+            .withFeedTimes(VALID_FEED_TIME_MORNING, VALID_FEED_TIME_EVENING).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

@@ -2,12 +2,7 @@ package seedu.zookeep.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.zookeep.logic.commands.CommandTestUtil.DESC_ARCHIE;
-import static seedu.zookeep.logic.commands.CommandTestUtil.DESC_BAILEY;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
-import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
+import static seedu.zookeep.logic.commands.CommandTestUtil.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,7 +43,12 @@ public class EditAnimalDescriptorTest {
 
         // different medicalConditions -> returns false
         editedArchie = new EditAnimalDescriptorBuilder(DESC_ARCHIE)
-                .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS).build();
+                .withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
+        assertFalse(DESC_ARCHIE.equals(editedArchie));
+
+        // different feedTimes -> returns false
+        editedArchie = new EditAnimalDescriptorBuilder(DESC_ARCHIE)
+                .withFeedTimes(VALID_FEED_TIME_EVENING).build();
         assertFalse(DESC_ARCHIE.equals(editedArchie));
     }
 }
