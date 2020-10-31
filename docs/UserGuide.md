@@ -210,7 +210,7 @@ Format: `ls`
 ### Undoing command : `undo`
 
 Undo a recently executed command.<br>
-You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel` and `clear`.
+You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
 
 Format: `undo`
 
