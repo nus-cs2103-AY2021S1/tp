@@ -23,6 +23,7 @@ import seedu.address.logic.commands.modulelistcommands.ArchiveModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.CalculateCapCommand;
 import seedu.address.logic.commands.modulelistcommands.ClearModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteZoomLinkCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
@@ -42,6 +43,7 @@ import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.ArchiveModuleParser;
 import seedu.address.logic.parser.modulelistparsers.CalculateCapParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
+import seedu.address.logic.parser.modulelistparsers.DeleteZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.RedoParser;
 import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
@@ -102,6 +104,9 @@ public class ModuleListParser implements FeatureParser {
 
         case AddZoomLinkCommand.COMMAND_WORD:
             return new AddZoomLinkParser().parse(arguments);
+
+        case DeleteZoomLinkCommand.COMMAND_WORD:
+            return new DeleteZoomLinkParser().parse(arguments);
 
         case ViewModuleCommand.COMMAND_WORD:
             return new ViewModuleParser().parse(arguments);
