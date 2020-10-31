@@ -1,5 +1,11 @@
 package seedu.zookeep.testutil;
 
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_FEED_TIME;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_SPECIES;
+
 import java.util.Set;
 
 import seedu.zookeep.logic.commands.AddCommand;
@@ -8,11 +14,6 @@ import seedu.zookeep.model.animal.Animal;
 import seedu.zookeep.model.feedtime.FeedTime;
 import seedu.zookeep.model.medicalcondition.MedicalCondition;
 
-import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_FEED_TIME;
-import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_ID;
-import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
-import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_SPECIES;
 
 /**
  * A utility class for Animal.

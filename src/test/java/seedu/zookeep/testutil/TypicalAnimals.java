@@ -1,13 +1,22 @@
 package seedu.zookeep.testutil;
 
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_EVENING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_MORNING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_ARCHIE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_ARTHRITIS;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_ARCHIE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_SPECIES_ARCHIE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.zookeep.model.ZooKeepBook;
 import seedu.zookeep.model.animal.Animal;
-
-import static seedu.zookeep.logic.commands.CommandTestUtil.*;
 
 /**
  * A utility class containing a list of {@code Animal} objects to be used in tests.

@@ -2,7 +2,13 @@ package seedu.zookeep.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.zookeep.logic.commands.CommandTestUtil.*;
+import static seedu.zookeep.logic.commands.CommandTestUtil.DESC_ARCHIE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.DESC_BAILEY;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_FEED_TIME_EVENING;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_ID_BAILEY;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_MEDICAL_CONDITION_OBESE;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_NAME_BAILEY;
+import static seedu.zookeep.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
 
 import org.junit.jupiter.api.Test;
 

@@ -2,7 +2,11 @@ package seedu.zookeep.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.zookeep.logic.parser.CliSyntax.*;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_FEED_TIME;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.zookeep.logic.parser.CliSyntax.PREFIX_SPECIES;
 import static seedu.zookeep.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
