@@ -47,6 +47,7 @@ public class CommandWords {
         allCommandWords.add(NOTE_DELETE_COMMAND_WORD);
         allCommandWords.add(NOTE_VIEW_COMMAND_WORD);
         allCommandWords.add(SORT_COMMAND_WORD);
+        allCommandWords.add(PRINT_COMMAND_WORD);
         return allCommandWords;
     }
 }

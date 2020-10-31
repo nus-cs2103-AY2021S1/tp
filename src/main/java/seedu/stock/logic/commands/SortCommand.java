@@ -1,7 +1,9 @@
 package seedu.stock.logic.commands;
 
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER_DESCRIPTION;
 
 import java.util.Comparator;
 import java.util.logging.Level;
@@ -19,12 +21,14 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the inventory list according to "
             + "the given argument. \n"
-            + "Parameters: "
-            + PREFIX_SORT_ORDER + "ORDER "
-            + PREFIX_SORT_FIELD + "FIELD \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SORT_ORDER + "ascending "
-            + PREFIX_SORT_FIELD + "name";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SORT_ORDER + PREFIX_SORT_ORDER_DESCRIPTION + " "
+            + PREFIX_SORT_FIELD + PREFIX_SORT_FIELD_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SORT_ORDER + "descending "
+            + PREFIX_SORT_FIELD + "quantity";
 
     public static final String MESSAGE_SORT_STOCK_SUCCESS = "Sorted stock by %1$s";
     public static final String MESSAGE_INVALID_FIELD = "The field to be sorted by is not recognized.";
@@ -53,5 +57,22 @@ public class SortCommand extends Command {
         model.sortFilteredStockList(comparator);
         logger.log(Level.INFO, "Sorting successful");
         return new CommandResult(String.format(MESSAGE_SORT_STOCK_SUCCESS, SortUtil.getFieldDescription(fieldToSort)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        // state check
+        SortCommand castedOther = (SortCommand) other;
+        return fieldToSort.equals(castedOther.fieldToSort) && isReversed == castedOther.isReversed;
     }
 }

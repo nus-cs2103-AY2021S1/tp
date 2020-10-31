@@ -138,7 +138,13 @@ public class Stock {
         List<Note> notesToUpdate = this.notes;
         notesToUpdate.add(noteToAdd);
 
-        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+        Stock result = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+
+        if (this.isBookmarked) {
+            result.setBookmarked();
+        }
+
+        return result;
     }
 
     /**
@@ -162,6 +168,10 @@ public class Stock {
             updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
         }
 
+        if (this.isBookmarked) {
+            updatedStock.setBookmarked();
+        }
+
         return updatedStock;
 
     }
@@ -180,9 +190,9 @@ public class Stock {
         }
 
         return otherStock != null
-                && ((otherStock.getName().equals(getName())
+                && (otherStock.getName().equals(getName())
                 && otherStock.getSource().equals(getSource()))
-                || otherStock.getSerialNumber().equals(getSerialNumber()));
+                || otherStock != null && otherStock.getSerialNumber().equals(getSerialNumber());
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +24,12 @@ public class UnbookmarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes bookmarks from bookmarked stocks "
             + "the given serial number. \n"
-            + "Parameters: "
-            + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER \n"
-            + "You may provide more than one serial number \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + "CS2103 ";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "China3 ";
 
 
     public static final String MESSAGE_UNBOOKMARK_STOCK_SUCCESS = "Unbookmarked Stock: %1$s";
@@ -51,6 +53,7 @@ public class UnbookmarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
 
         List<SerialNumber> serialNumbers = targetSerialNumbers.stream().collect(Collectors.toList());
@@ -105,7 +108,6 @@ public class UnbookmarkCommand extends Command {
 
         }
 
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
         if (stocksNotFound.size() == serialNumbers.size()) {

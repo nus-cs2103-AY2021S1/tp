@@ -19,13 +19,8 @@ public class LowStocksPredicate implements Predicate<Stock> {
      */
     @Override
     public boolean test(Stock stock) {
-
-        if (stock.getQuantity().isLowOnQuantity()) {
-            // test returns true if stock is low in quantity
-            return true;
-        } else {
-            return false;
-        }
+        // test returns true if stock is low in quantity
+        return stock.getQuantity().isLowOnQuantity();
     }
 
 }

@@ -3,8 +3,8 @@ package seedu.stock.logic.commands;
 import static seedu.stock.commons.core.Messages.MESSAGE_SOURCE_COMPANY_NOT_FOUND;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailureForStatistics;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.RESERVED_NON_EXISTENCE_SOURCE;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import org.junit.jupiter.api.Test;

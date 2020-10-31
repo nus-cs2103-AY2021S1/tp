@@ -12,12 +12,12 @@ import seedu.stock.model.stock.Stock;
  */
 public class StockBuilder {
 
-    public static final String DEFAULT_NAME = "Banana Bun";
-    public static final String DEFAULT_SERIALNUMBER = "Fairprice1";
-    public static final String DEFAULT_SOURCE = "Fairprice";
+    public static final String DEFAULT_NAME = "banana bun";
+    public static final String DEFAULT_SERIALNUMBER = "fairprice1";
+    public static final String DEFAULT_SOURCE = "fairprice";
     public static final String DEFAULT_QUANTITY = "1000";
     public static final String DEFAULT_LOW_QUANTITY = "0";
-    public static final String DEFAULT_LOCATION = "Fruits section, Subsection B";
+    public static final String DEFAULT_LOCATION = "fruits section, subsection b";
 
     private Name name;
     private SerialNumber serialNumber;

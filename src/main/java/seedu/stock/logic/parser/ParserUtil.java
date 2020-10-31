@@ -22,7 +22,7 @@ import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
@@ -68,7 +68,6 @@ public class ParserUtil {
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-
         return new Quantity(trimmedQuantity);
     }
 
@@ -125,9 +124,7 @@ public class ParserUtil {
     }
 
     /**
-<<<<<<< HEAD
      * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
-=======
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -176,7 +173,6 @@ public class ParserUtil {
         List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
 
         if (values.isEmpty()) {
-
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 

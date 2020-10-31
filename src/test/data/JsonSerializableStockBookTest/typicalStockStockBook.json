@@ -1,0 +1,31 @@
+{
+  "_comment": "StockBook save file which contains the same Stock values as in TypicalStocks#getTypicalStockBook()",
+  "stocks" : [ {
+    "name" : "apple juice",
+    "serialNumber" : "ntuc1",
+    "source" : "ntuc",
+    "quantity" : "2000",
+    "lowQuantity" : "0",
+    "location" : "fruit section, subsection c",
+    "notes" : [ ],
+    "isBookmarked" : false
+  }, {
+    "name" : "banana cake",
+    "serialNumber" : "fairprice1",
+    "source" : "fairprice",
+    "quantity" : "2103",
+    "lowQuantity" : "2200",
+    "location" : "fruits section, subsection b",
+    "notes" : [ ],
+    "isBookmarked" : false
+  }, {
+    "name" : "orange",
+    "serialNumber" : "giant1",
+    "source" : "giant",
+    "quantity" : "111",
+    "lowQuantity" : "0",
+    "location" : "fruit section, subsection x",
+    "notes" : [ ],
+    "isBookmarked" : false
+  } ]
+}

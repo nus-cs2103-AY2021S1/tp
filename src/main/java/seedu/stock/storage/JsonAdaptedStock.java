@@ -33,7 +33,7 @@ class JsonAdaptedStock {
     private final boolean isBookmarked;
 
     /**
-     * Constructs a {@code JsonAdaptedStock} with the given person details.
+     * Constructs a {@code JsonAdaptedStock} with the given stock details.
      */
     @JsonCreator
     public JsonAdaptedStock(@JsonProperty("name") String name, @JsonProperty("serialNumber") String serialNumber,
@@ -75,16 +75,16 @@ class JsonAdaptedStock {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
-            System.out.println("donkey");
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
 
         if (serialNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Source.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SerialNumber.class.getSimpleName()));
         }
         if (!SerialNumber.isValidSerialNumber(serialNumber)) {
-            throw new IllegalValueException(Source.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(SerialNumber.MESSAGE_CONSTRAINTS);
         }
         final SerialNumber modelSerialNumber = new SerialNumber(serialNumber);
 
@@ -99,6 +99,10 @@ class JsonAdaptedStock {
         if (quantity == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
+        }
+        if (lowQuantity == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "lowQuantity"));
         }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);

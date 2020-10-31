@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_FILE_NAME;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import java.nio.file.Path;

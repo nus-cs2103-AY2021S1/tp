@@ -58,7 +58,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase());
 
         Stock stock = new Stock(name, serialNumber, source, updatedQuantity, location);
-
         return new AddCommand(stock);
     }
 

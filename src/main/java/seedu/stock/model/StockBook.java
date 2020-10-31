@@ -57,7 +57,7 @@ public class StockBook implements ReadOnlyStockBook {
         setStocks(newData.getStockList());
     }
 
-    //// person-level operations
+    //// stock-level operations
 
     /**
      * Returns true if a stock with the same identity as {@code stock} exists in the stock book.
@@ -76,7 +76,7 @@ public class StockBook implements ReadOnlyStockBook {
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedStock}.
+     * Replaces the given stock {@code target} in the list with {@code editedStock}.
      * {@code target} must exist in the stock book.
      * The stock identity of {@code editedStock} must not be the same as another existing stock in the stock book.
      */
@@ -98,8 +98,11 @@ public class StockBook implements ReadOnlyStockBook {
 
     @Override
     public String toString() {
-        return stocks.asUnmodifiableObservableList().size() + " stocks";
-        // TODO: refine later
+        String toReturn = "Stocks are:";
+        for (int i = 0; i < stocks.asUnmodifiableObservableList().size(); i++) {
+            toReturn += "\n" + stocks.asUnmodifiableObservableList().get(i);
+        }
+        return toReturn.equals("Stocks are:") ? "No stocks in stockbook" : toReturn;
     }
 
     @Override

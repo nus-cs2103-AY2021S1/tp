@@ -1,0 +1,21 @@
+{
+  "stocks": [ {
+    "name" : "ice cream",
+    "serialNumber" : "fairprice4",
+    "source" : "fairprice",
+    "quantity" : "-1000",
+    "lowQuantity" : "1",
+    "location" : "farm",
+    "notes" : [ ],
+    "isBookmarked" : false
+  }, {
+    "name" : "banana",
+    "serialNumber" : "fairprice1",
+    "source" : "fairprice",
+    "quantity" : "1000",
+    "lowQuantity" : "1",
+    "location" : "section b",
+    "notes" : [ "Not very fresh", "Not very nice", "CS not good", "CS smelly" ],
+    "isBookmarked" : false
+  } ]
+}

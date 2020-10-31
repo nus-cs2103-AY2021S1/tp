@@ -36,7 +36,13 @@ public class QuantityAdder {
      * @return A boolean value indicating if the test passes.
      */
     public static boolean isValidValue(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            //protective layer against huge string input.
+            Integer.parseInt(test);
+            return test.matches(VALIDATION_REGEX);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

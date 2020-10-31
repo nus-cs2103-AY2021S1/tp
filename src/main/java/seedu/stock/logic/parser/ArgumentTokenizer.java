@@ -17,6 +17,16 @@ public class ArgumentTokenizer {
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+     * respective argument values. Recognizes every prefixes used in Warenager.
+     * @return ArgumentMultimap object that maps prefixes to their arguments.
+     */
+    public static ArgumentMultimap tokenizeAllPrefixes(String argsString) {
+        List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
+        return tokenize(argsString, allPrefixes.toArray(new Prefix[0]));
+    }
+
+    /**
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
      * respective argument values. Only the given prefixes will be recognized in the arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}

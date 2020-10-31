@@ -59,7 +59,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         setSerialNumberSets(newData.getSerialNumberSetsList());
     }
 
-    //// person-level operations
+    //// serial number set-level operations
 
     /**
      * Returns true if a SerialNumberSet with the same identity as {@code serialNumberSet} exists
@@ -138,8 +138,12 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
 
     @Override
     public String toString() {
-        return serialNumberSets.asUnmodifiableObservableList().size() + " serial number sets";
-        // TODO: refine later
+        String toReturn = "Serial Number Sets are:";
+        for (int i = 0; i < serialNumberSets.asUnmodifiableObservableList().size(); i++) {
+            toReturn += "\n" + serialNumberSets.asUnmodifiableObservableList().get(i);
+        }
+        return toReturn.equals("Serial Number Sets are:") ? "No serial number sets in serialNumberSetsBook"
+                                                          : toReturn;
     }
 
     @Override
