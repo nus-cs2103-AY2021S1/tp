@@ -176,9 +176,12 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 | Action     | Format                                    | Examples                                  |
 | ---------- | ----------------------------------------- | ----------------------------------------- |
-| **Add**    | `add e/<exercise> r/<reps> c/<comments>` <br> | e.g. `add e/situp r/30 c/Send help`       |
-| **Delete** | `delete <index>`                            | <br> e.g. `delete 3`                      |
-| **Edit**   | `edit <index> r/[reps] c/[comment]`         | <br> e.g.`edit 1 r/20 c/no abs were hurt` |
+| **Add**    | `add e/<exercise> r/<reps> c/<comments>`  | e.g. `add e/situp r/30 c/Send help`       |
+| **Delete** | `delete <index>`                          | e.g. `delete 3`                      |
+| **Edit**   | `edit <index> r/[reps] c/[comment]`       | e.g.`edit 1 r/20 c/no abs were hurt` |
 | **List**   | `list`                                    |
-| **Find**   | `find`                                    | <br> e.g.`find pushups`                   |
+| **Add exercise**   | `addex e/<exercise name> c/<calories per rep>` | e.g. `addex e/Lunges c/5` |
+| **Edit exercise**   | `editex <index> e/[exercise name] c/[calories per rep]` | e.g. `editex 1 e/One-legged Lunges c/6` |
+| **Delete exercise**   | `deleteex <index>` | e.g. `deleteex 1` |
+| **Find**   | `find`                                    | e.g.`find pushups`                   |
 | **Exit**   | `exit`                                    |
