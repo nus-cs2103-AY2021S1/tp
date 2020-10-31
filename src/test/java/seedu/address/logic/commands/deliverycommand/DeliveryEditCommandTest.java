@@ -129,7 +129,7 @@ public class DeliveryEditCommandTest {
 
         DeliveryEditCommand editCommand = new DeliveryEditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
     }
 
     /**
@@ -146,7 +146,7 @@ public class DeliveryEditCommandTest {
         DeliveryEditCommand editCommand = new DeliveryEditCommand(outOfBoundIndex,
                 new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON).build());
 
-        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
     }
 
     @Test
