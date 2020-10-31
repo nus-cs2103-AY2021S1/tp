@@ -23,7 +23,7 @@ import seedu.address.logic.commands.modulelistcommands.ListModuleCommand;
 // import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.module.NameContainsKeywordsPredicate;
 // import seedu.address.model.module.Module;
 import seedu.address.testutil.ContactBuilder;
 // import seedu.address.testutil.ModuleBuilder;
