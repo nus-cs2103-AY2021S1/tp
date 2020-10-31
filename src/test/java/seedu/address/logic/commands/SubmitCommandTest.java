@@ -34,7 +34,6 @@ public class SubmitCommandTest {
             }
         }
         expectedMessage.append(String.format("Estimated total: $%.2f\n", calculatedTotal));
-        expectedMessage.append("Successfully copied to clipboard!");
         assertCommandSuccess(new SubmitCommand(), model, expectedMessage.toString(), expectedModel);
     }
 }

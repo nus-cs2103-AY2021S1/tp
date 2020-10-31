@@ -39,11 +39,9 @@ public class SubmitCommand extends Command {
             e.printStackTrace();
         }
         text.append(String.format("Estimated total: $%.2f\n", order.getTotal()));
-        if (copySuccess) {
-            text.append("Successfully copied to clipboard!");
-        } else {
-            text.append("Failure to copy to clipboard");
-        }
+        //        if (copySuccess) {
+        //            text.append("Successfully copied to clipboard!");
+        //        }
         return new CommandResult(text.toString());
     }
 }
