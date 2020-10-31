@@ -8,6 +8,7 @@ import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.Model;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.stock.Stock;
 
@@ -49,4 +50,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    Model getModel();
 }

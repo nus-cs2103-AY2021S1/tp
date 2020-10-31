@@ -66,7 +66,7 @@
 .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
      -fx-border-style: segments(0.166667em, 0.166667em);
      -fx-border-width: 1;
-     -fx-border-color: #3c3c3c;
+     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .table-view {

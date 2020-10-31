@@ -1,5 +1,8 @@
 package seedu.stock.ui;
 
+import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceQuantityDistributionStatisticsData;
+import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceStatisticsData;
+
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -14,11 +17,14 @@ import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.commands.CommandResult;
+import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
+import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Stock;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -132,16 +138,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @FXML
-    public void handleShowStockNotes(Stock stockToShowNotes) {
-
-    }
-
     /**
-     * Opens the statisticsWindow or focuses on it if it's already opened.
+     * Switches to and updates the statistics window.
      */
     @FXML
     public void handleStatistics(Map<String, Integer> statisticsData, String[] otherStatisticsDetails) {
+        //jump to statistics tab
+        tabPane.getSelectionModel().select(1);
+        statisticsWindow.updateData(statisticsData, otherStatisticsDetails);
+    }
+
+    /**
+     * Updates the statistics window.
+     */
+    @FXML
+    public void updateStatistics(Map<String, Integer> statisticsData, String[] otherStatisticsDetails) {
         statisticsWindow.updateData(statisticsData, otherStatisticsDetails);
     }
 
@@ -198,8 +209,6 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowStatistics()) {
-                //jump to statistics tab
-                tabPane.getSelectionModel().select(1);
                 String[] otherStatisticsDetails = commandResult.getOtherStatisticsDetails();
                 Map<String, Integer> statisticsData = commandResult.getStatisticsData();
                 handleStatistics(statisticsData, otherStatisticsDetails);
@@ -208,6 +217,29 @@ public class MainWindow extends UiPart<Stage> {
 
             //jump back to main tab
             tabPane.getSelectionModel().select(0);
+            String[] otherStatisticsDetails = statisticsWindow.getOtherStatisticsDetails();
+
+            //when statistics command has been called at least once
+            if (otherStatisticsDetails != null) {
+                String statisticsType = otherStatisticsDetails[0];
+                Map<String, Integer> data;
+                switch (statisticsType) {
+
+                case SourceStatisticsCommand.STATISTICS_TYPE:
+                    data = generateSourceStatisticsData(logic.getModel());
+                    updateStatistics(data, otherStatisticsDetails);
+                    break;
+
+                case SourceQuantityDistributionStatisticsCommand.STATISTICS_TYPE:
+                    String targetSource = otherStatisticsDetails[1];
+                    data = generateSourceQuantityDistributionStatisticsData(logic.getModel(), targetSource);
+                    updateStatistics(data, otherStatisticsDetails);
+                    break;
+
+                default:
+                    break;
+                }
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

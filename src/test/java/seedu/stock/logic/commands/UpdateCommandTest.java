@@ -92,8 +92,6 @@ public class UpdateCommandTest {
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
         expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
 
-        System.out.println(model.getStockBook());
-        System.out.println(expectedModel.getStockBook());
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
 

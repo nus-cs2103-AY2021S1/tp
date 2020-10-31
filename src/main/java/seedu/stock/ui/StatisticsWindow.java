@@ -20,6 +20,8 @@ public class StatisticsWindow extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(StatisticsWindow.class);
     private static final String FXML = "StatisticsWindow.fxml";
 
+    private String[] otherStatisticsDetails;
+
     @FXML
     private PieChart statisticsPieChart;
 
@@ -43,8 +45,15 @@ public class StatisticsWindow extends UiPart<Region> {
 
         statisticsPieChart.getData().clear();
         String type = otherStatisticsDetails[0];
+        this.otherStatisticsDetails = otherStatisticsDetails;
+
+        if (statisticsData.size() == 0) {
+            updateDataForNoStatistics();
+            return;
+        }
 
         switch (type) {
+
         case SourceStatisticsCommand.STATISTICS_TYPE:
             updateDataForSourceStatistics(statisticsData);
             break;
@@ -58,6 +67,15 @@ public class StatisticsWindow extends UiPart<Region> {
         default:
             break;
         }
+    }
+
+    /**
+     * Case if no statistics are found after updating.
+     */
+    public void updateDataForNoStatistics() {
+        logger.log(Level.INFO, "No statistics found");
+        statisticsPieChart.setTitle("No statistics found");
+        statisticsPieChart.layout();
     }
 
     /**
@@ -112,4 +130,7 @@ public class StatisticsWindow extends UiPart<Region> {
         statisticsPieChart.layout();
     }
 
+    public String[] getOtherStatisticsDetails() {
+        return otherStatisticsDetails;
+    }
 }
