@@ -79,8 +79,14 @@ public class ResultTest {
             throw new RuntimeException("");
         }));
 
-
         r1.perform(x -> {});
+
+
+        var a = r1.thenOrElseGet(x -> Result.of(x + x), () -> Result.error("owo"));
+        var b = e1.thenOrElseGet(x -> Result.of(x + x), () -> Result.error("uwu"));
+
+        assertEquals(Result.of(2468), a);
+        assertEquals(Result.error("uwu"), b);
     }
 
     @Test

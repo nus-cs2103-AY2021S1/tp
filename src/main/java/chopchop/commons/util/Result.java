@@ -139,6 +139,38 @@ public class Result<T> extends Either<String, T> {
     }
 
     /**
+     * Similar to {@code then()}, but it also takes in a supplier to retrive a value in
+     * the event this result is an error. This is •NOT* equivalent to {@code x.then(...).orElseGet(..)},
+     * since the result of {@code then()} might return an error. It is equivalent to the following
+     * imperative code:
+     * {@code
+     * var x = computeResult();
+     * if (x.isError()) {
+     *     return orElse.get();
+     * } else {
+     *     return fn.apply(x.getValue());
+     * }
+     * }
+     *
+     * @param fn     the function to bind; it should return a Result.
+     * @param orElse the supplier of a Result in the event {@code this} was an error.
+     * @return       the new result
+     */
+    public <R> Result<R> thenOrElseGet(Function<? super T, ? extends Result<? extends R>> fn,
+        Supplier<? extends Result<? extends R>> orElse) {
+
+        if (this.hasValue()) {
+            @SuppressWarnings("unchecked")
+            var ret = (Result<R>) fn.apply(this.getValue());
+            return ret;
+        } else {
+            @SuppressWarnings("unchecked")
+            var ret = (Result<R>) orElse.get();
+            return ret;
+        }
+    }
+
+    /**
      * If the Result contains a value, return it, otherwise return {@code other}.
      *
      * @param other the alternative value to use

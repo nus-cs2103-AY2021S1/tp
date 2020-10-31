@@ -79,6 +79,22 @@ For a more in-depth look at how ChopChop handles quantities, see [this section](
 A recipe consists of a list of used ingredients (and their quantities), as well as a list of steps.
 
 
+### 3.3. Name Constraints
+Recipe and ingredient names have the same constraints, of which there is only one — they cannot consist <i>only</i> of a `#` followed by digits, to diambiguate them from numbered references (for the tech savvy, the regular expression is `#[0-9]+`).
+
+Here are some examples of names that are valid and invalid:
+
+| name   | valid      |
+|--------|------------|
+| #1     | <b>no</b>  |
+| #1234  | <b>no</b>  |
+| #      | <b>yes</b> |
+| #asdf  | <b>yes</b> |
+| #1a    | <b>yes</b> |
+| #1 abc | <b>yes</b> |
+
+
+
 --------------------------------
 ## 4. Navigating the User Interface
 
@@ -111,10 +127,10 @@ Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
 </div>
 
 <a name="CommandBox"></a>
-### 4.1 Command Box 
+### 4.1 Command Box
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to input the command.
- 
+
 To learn about the commands you can perform, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed -.
 If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
 
@@ -182,13 +198,13 @@ Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
 
 <a name="RecipeName"></a>
 ### 4.10 Recipe Name and Tags
-ChopChop displays the name of the recipe, and the tags associated with it in this area. 
+ChopChop displays the name of the recipe, and the tags associated with it in this area.
 
 
 
 <a name="RecipeIngredients"></a>
 ### 4.11 Recipe Ingredients
-ChopChop displays the ingredients you need in the recipe here. The format of the display is the `Ingredient`, follow by the `(Quantity)`. 
+ChopChop displays the ingredients you need in the recipe here. The format of the display is the `Ingredient`, follow by the `(Quantity)`.
 
 
 
