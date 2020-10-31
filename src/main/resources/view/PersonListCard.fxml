@@ -16,7 +16,7 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.8000122070313" minWidth="10.0" prefWidth="240.0" />
          <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.60001220703126" minWidth="10.0" prefWidth="62.39999999999998" />
     </columnConstraints>
-   <Label fx:id="id" alignment="CENTER_RIGHT" contentDisplay="RIGHT" graphicTextGap="0.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" style="-fx-opacity: 0.1; -fx-font-size: 65pt;" styleClass="cell_big_label" textAlignment="RIGHT" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="1">
+   <Label fx:id="id" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" style="-fx-opacity: 0.1; -fx-font-size: 68px;" styleClass="cell_big_label" textOverrun="CLIP" wrapText="true" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
