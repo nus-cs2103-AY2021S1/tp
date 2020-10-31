@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 public class Price implements Comparable<Price> {
 
     public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0 and less than 1 trillion";
+    public static final String MESSAGE_NOT_NUMERIC = "Price should be a number";
 
     public final double price;
 
