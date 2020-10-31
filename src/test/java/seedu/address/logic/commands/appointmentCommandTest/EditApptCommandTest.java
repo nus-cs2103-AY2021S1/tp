@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.AppointmentCommandTest;
+package seedu.address.logic.commands.appointmentCommandTest;
 
 import static seedu.address.testutil.Assert.assertThrows;
 
