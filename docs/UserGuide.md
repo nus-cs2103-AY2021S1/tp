@@ -325,7 +325,8 @@ Format: `import FILEPATH`
 </div>
 
 Examples:
-* `import c:/mcgymmy/save_file.json` imports `save_file.json` into McGymmy
+* For Windows users: `import c:/mcgymmy/save_file.json` imports `save_file.json` from the `c:/mcgymmy` directory into McGymmy.
+* For Mac users: `import /Users/<username>/Desktop/save_file.json` imports `save_file.json` from the Desktop into McGymmy.
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
