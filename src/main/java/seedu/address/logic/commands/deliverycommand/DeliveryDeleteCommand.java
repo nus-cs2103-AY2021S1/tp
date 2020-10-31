@@ -39,8 +39,8 @@ public class DeliveryDeleteCommand extends DeliveryCommand {
         DeliveryModel deliveryModel = models.getDeliveryModel();
         List<Delivery> lastShownList = deliveryModel.getFilteredAndSortedDeliveryList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownList.size() || targetIndex.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
         }
 
         Delivery deliveryToDelete = lastShownList.get(targetIndex.getZeroBased());
