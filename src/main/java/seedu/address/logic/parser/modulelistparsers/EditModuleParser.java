@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -36,7 +35,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         Index index;
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK,
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
                 PREFIX_TAG, PREFIX_MODULAR_CREDITS, PREFIX_GRADE_POINT);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 

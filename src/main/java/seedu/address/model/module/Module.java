@@ -23,7 +23,7 @@ public class Module {
     private final ModularCredits modularCredits;
 
     // Data fields
-    private final Map<String, ZoomLink> zoomLinks = new HashMap<>();
+    private final Map<ModuleLesson, ZoomLink> zoomLinks = new HashMap<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -33,7 +33,7 @@ public class Module {
      * @param gradeTracker grade tracker attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, GradeTracker gradeTracker, Set<Tag> tags) {
+    public Module(ModuleName name, Map<ModuleLesson, ZoomLink> zoomLinks, GradeTracker gradeTracker, Set<Tag> tags) {
         this.name = name;
         this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = gradeTracker;
@@ -48,7 +48,7 @@ public class Module {
      * @param gradeTracker grade tracker attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, GradeTracker gradeTracker, Set<Tag> tags,
+    public Module(ModuleName name, Map<ModuleLesson, ZoomLink> zoomLinks, GradeTracker gradeTracker, Set<Tag> tags,
                   ModularCredits modularCredits) {
         this.name = name;
         this.zoomLinks.putAll(zoomLinks);
@@ -63,7 +63,8 @@ public class Module {
      * @param zoomLinks zoom links attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, Set<Tag> tags, ModularCredits modularCredits) {
+    public Module(ModuleName name, Map<ModuleLesson, ZoomLink> zoomLinks, Set<Tag> tags,
+                  ModularCredits modularCredits) {
         this.name = name;
         this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = new GradeTracker();
@@ -76,7 +77,7 @@ public class Module {
      * @param name name of module
      * @param zoomLinks zoom links attached to module
      */
-    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, ModularCredits modularCredits) {
+    public Module(ModuleName name, Map<ModuleLesson, ZoomLink> zoomLinks, ModularCredits modularCredits) {
         this.name = name;
         this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = new GradeTracker();
@@ -107,7 +108,7 @@ public class Module {
      * @param name name of module
      * @param zoomLinks zoom link attached to module
      */
-    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks) {
+    public Module(ModuleName name, Map<ModuleLesson, ZoomLink> zoomLinks) {
         this.name = name;
         this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = new GradeTracker();
@@ -178,7 +179,7 @@ public class Module {
      *
      * @return a Map containing all the zoom links
      */
-    public Map<String, ZoomLink> getAllLinks() {
+    public Map<ModuleLesson, ZoomLink> getAllLinks() {
         return Collections.unmodifiableMap(this.zoomLinks);
     }
 
@@ -201,8 +202,8 @@ public class Module {
      * @return Module containing the updated zoom links.
      */
     public Module addZoomLink(ModuleLesson lesson, ZoomLink link) {
-        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
-        // updatedLinks.put(lesson, link);
+        Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.put(lesson, link);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
@@ -213,8 +214,8 @@ public class Module {
      * @return module containing the updated zoom links
      */
     public Module deleteZoomLink(ModuleLesson lesson) {
-        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
-        // updatedLinks.remove(key);
+        Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.remove(lesson);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
