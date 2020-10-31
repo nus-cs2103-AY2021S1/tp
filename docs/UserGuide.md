@@ -129,7 +129,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal to add must not already exist in the zookeep book.
+* `ID` of animal to add must not already exist in the `ZooKeep` book.
 
 * `FEED_TIME` must be a valid time in 24 hour format.
 </div>
@@ -137,6 +137,14 @@ An animal can have any number of medical conditions and feed times (including 0)
 Examples:
 * `add n/Hershey s/Rufous Hummingbird i/193`
 * `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+
+You may refer to *Figure 3* to see how you can enter an add command. *Figure 4* then shows the result of adding that
+particular animal to the `ZooKeep` book.
+
+<p align="center"><img src="images/UndoCommandWithRedoActivityDiagram.png"/><img src="images/RedoCommandActivityDiagram.png"/></p>
+
+<p align="center"><i>Figure 3 (left): User typing `add n/Hershey s/Rufous Hummingbird i/193`</i></p>
+<p align="center"><i>Figure 4 (right): User executing the command and the resultant state of the ZooKeep book</i></p>
 
 ---
 
@@ -154,11 +162,19 @@ Format: `delete ID`
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the zookeep book.
+* `ID` of animal to delete must exist in the `ZooKeep` book.
 </div>
 
 Example:
 * `delete 193` deletes the individual animal with `ID` 193.
+
+*Figure 5* shows you how to enter a simple delete command into the interface, while *Figure 6* illustrates the
+result of doing so.
+
+<p align="center"><img src="images/UndoCommandWithRedoActivityDiagram.png"/><img src="images/RedoCommandActivityDiagram.png"/></p>
+
+<p align="center"><i>Figure 5 (left): User typing `delete 193`</i></p>
+<p align="center"><i>Figure 6 (right): User executes the command and Hershey is now removed from the ZooKeep book</i></p>
 
 ---
 
@@ -169,6 +185,12 @@ undoes the most recently used command. No changes will be made if no previous st
 undo if you just started up the application.
 
 Format: `undo`
+
+Example:
+
+Refer to the sample scenario in the `delete` section where you have just executed `delete 193` (as illustrated in
+Figures 5 and 6). You now type in undo as shown in *Figure 7* and press enter, and now you can see in *Figure 8* that Hershey
+has re-appeared in the `ZooKeep` book.
 
 ---
 
@@ -205,7 +227,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal must exist in the zookeep book.
+* `ID` of animal must exist in the `ZooKeep` book.
 
 * `FEED_TIME` must be a valid time in 24 hour format.
 </div>
@@ -235,7 +257,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal must exist in the zookeep book.
+* `ID` of animal must exist in the `ZooKeep` book.
 
 * `FEED_TIME` must be a valid time in 24 hour format.
 </div>
@@ -316,7 +338,7 @@ Format: `snap FILE_NAME`
 </div>
 
 Example:
-* `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
+* `snap zookeepbook_19-10-2020` saves the current state of the `ZooKeep` book data as a file named 
 `zookeepbook_19-10-2020.json`, located in the `data/snapshots` folder.
 
 ---
