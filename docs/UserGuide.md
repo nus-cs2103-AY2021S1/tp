@@ -88,7 +88,7 @@ Examples:
 
 ### Displaying supper menu: `menu`
 
-Lists the current menu from the currently selected vendor.
+Displays the current menu from the currently selected vendor.
 
 Format: `menu`
 
@@ -213,7 +213,7 @@ Format: `preset MODE [NAME]`
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
 * If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
 it will display all the saved presets under the current vendor to the user.
-* if `NAME` already exists, the new preset will overwrite the existing preset.
+* if `NAME` already exists and it is in `save` mode, the new saved preset will overwrite the existing saved preset.
 
 Examples:
 * `preset save` saves the user's supper order with the default preset name.
