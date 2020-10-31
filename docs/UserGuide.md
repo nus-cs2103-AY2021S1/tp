@@ -84,15 +84,15 @@ Recipe and ingredient names have the same constraints, of which there is only on
 
 Here are some examples of names that are valid and invalid:
 
-| name   | valid      |
-|--------|------------|
-| #1     | <b>no</b>  |
-| #1234  | <b>no</b>  |
-| #      | <b>yes</b> |
-| #asdf  | <b>yes</b> |
-| #1a    | <b>yes</b> |
-| #1 abc | <b>yes</b> |
-| #12 34 | <b>yes</b> |
+| name     | valid      |
+|----------|------------|
+| `#1`     | <b>no</b>  |
+| `#1234`  | <b>no</b>  |
+| `#`      | <b>yes</b> |
+| `#asdf`  | <b>yes</b> |
+| `#1a`    | <b>yes</b> |
+| `#1 abc` | <b>yes</b> |
+| `#12 34` | <b>yes</b> |
 
 
 
