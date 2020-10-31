@@ -73,14 +73,15 @@ public class RetagCommand extends Command {
 
         // Get oldTagName
         Tag tagToChange = oldTagList.get(0);
+
         // Get file path
         FileAddress fileAddress = tagToChange.getFileAddress();
-        // Delete old tag
-        model.deleteTag(tagToChange);
 
         // Add new tag
         Tag newTag = new Tag(newTagName, fileAddress, tagToChange.getLabels());
-        model.addTag(newTag);
+
+        // Changes the old tag to the edited tag
+        model.setTag(tagToChange, newTag);
 
         // Save commit for undo
         model.commitAddressBook();

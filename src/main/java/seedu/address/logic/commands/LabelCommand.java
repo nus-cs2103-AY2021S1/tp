@@ -78,15 +78,14 @@ public class LabelCommand extends Command {
         }
 
         Set<Label> previousLabels = tagToChange.getLabels();
-        // Delete old tag
-        model.deleteTag(tagToChange);
 
         // Append new labels into previous labels
         labels.addAll(previousLabels);
         // Create new tag
         Tag newTag = new Tag(tagName, fileAddress, labels);
-        // Place tag into AB3
-        model.addTag(newTag);
+
+        // Changes the old tag to the edited tag
+        model.setTag(tagToChange, newTag);
 
         // Save commit for undo
         model.commitAddressBook();
