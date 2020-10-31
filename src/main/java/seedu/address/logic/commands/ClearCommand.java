@@ -14,7 +14,7 @@ public class ClearCommand extends Command {
     public static final String CLEAR_COMMAND_USAGE = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clear the tag list. "
             + "\n\nExample: " + COMMAND_WORD;
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "HelloFile has been cleared!";
 
 
     @Override
