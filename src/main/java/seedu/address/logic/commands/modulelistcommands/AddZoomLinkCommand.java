@@ -16,6 +16,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
@@ -31,7 +32,7 @@ public class AddZoomLinkCommand extends Command {
             + PREFIX_NAME + "MODULE LESSON TYPE"
             + PREFIX_ZOOM_LINK + "ZOOM LINK "
             + "Example: " + COMMAND_WORD + " "
-            + "1" + PREFIX_NAME + "lecture"
+            + "1 " + PREFIX_NAME + "lecture "
             + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
 
     public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added Zoom Link: %1$s";
@@ -64,10 +65,10 @@ public class AddZoomLinkCommand extends Command {
         }
 
         ZoomLink zoomLink = descriptor.getZoomLink();
-        String moduleLessonType = descriptor.getModuleLessonType();
+        ModuleLesson moduleLesson = descriptor.getModuleLesson();
 
         Module moduleToAddLink = lastShownList.get(targetIndex.getZeroBased());
-        Module updatedModule = moduleToAddLink.addZoomLink(moduleLessonType, zoomLink);
+        Module updatedModule = moduleToAddLink.addZoomLink(moduleLesson, zoomLink);
 
         model.setModule(moduleToAddLink, updatedModule);
         logger.info("Zoom link added to the module");
