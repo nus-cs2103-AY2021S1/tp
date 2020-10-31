@@ -3,6 +3,7 @@ package nustorage.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static nustorage.logic.parser.CliSyntax.PREFIX_AFTER_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_BEFORE_DATETIME;
+import static nustorage.logic.parser.CliSyntax.PREFIX_HAS_INVENTORY;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ID;
 
 import java.time.LocalDate;
@@ -23,12 +24,18 @@ public class FindFinanceCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all finance records whose which ID contains "
             + "the specified ID string, or occurring before or after the given date times, "
+            + "or those tagged / not tagged to items "
             + "and displays them as a list with index numbers.\n"
             + "Parameters:  "
-            + "[" + PREFIX_ID + "ID]"
-            + "[" + PREFIX_AFTER_DATETIME + "[DATE]]"
-            + "[" + PREFIX_BEFORE_DATETIME + "[DATE]]\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "[" + PREFIX_ID + "ID] "
+            + "[" + PREFIX_AFTER_DATETIME + "[DATE]] "
+            + "[" + PREFIX_BEFORE_DATETIME + "[DATE]] "
+            + "[" + PREFIX_HAS_INVENTORY + "[YES/NO]]\n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_ID + "123 "
+            + PREFIX_AFTER_DATETIME + "2019-10-30 "
+            + PREFIX_BEFORE_DATETIME + "2020-03-20 "
+            + PREFIX_HAS_INVENTORY + "y";
 
     private Optional<String> idMatch;
     private Optional<LocalDate> afterDatetime;

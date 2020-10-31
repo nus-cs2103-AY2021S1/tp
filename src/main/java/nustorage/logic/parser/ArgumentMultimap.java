@@ -52,6 +52,21 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns true if input is parsed, else false.
+     */
+    public boolean hasValue() {
+        return !argMultimap.isEmpty();
+    }
+
+    /**
+     * Returns true if any prefix is stored, else false.
+     */
+    public boolean hasAnyPrefix() {
+        return ((argMultimap.containsKey(new Prefix("")) && argMultimap.size() > 1)
+                || (!argMultimap.containsKey(new Prefix("")) && hasValue()));
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
