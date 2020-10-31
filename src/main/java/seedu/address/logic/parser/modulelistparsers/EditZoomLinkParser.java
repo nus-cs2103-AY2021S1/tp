@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditZoomDescriptor;
+import seedu.address.logic.commands.modulelistcommands.EditZoomLinkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
