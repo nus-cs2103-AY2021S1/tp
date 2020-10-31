@@ -321,6 +321,7 @@ Format: `import FILEPATH`
 :information_source:
 
 * Imports the saved file at `FILEPATH`
+* Both relative and absolute paths work for the import feature.
 
 </div>
 
@@ -353,6 +354,8 @@ Format: `export DIRPATH [-o FILENAME]`
 
 * Exports the saved file to `DIRPATH` with `FILENAME`
 * Default filename is `mcgymmy.json`
+* Both relative and absolute paths work for the export feature.
+* Make sure to export only to valid paths that already exist. The examples below assume that the given paths already exist in your working space.
 
 </div>
 
