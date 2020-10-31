@@ -30,7 +30,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 3. Copy the file to the folder you want to use as the home folder for the application.
 4. Double-click the file to start the app. A GUI should appear, with the field bar to input commands. The list of commands are available below.
 
-## GUI
+## UI
 ![Ui](images/UiShowcase.png)
 
 ### Accessing the student lists
@@ -114,7 +114,7 @@ score all INDEX cp/SCORE
 - The `SCORE` **must be a positive integer**.
 
 ### Clearing all entries: `clear`
-Clears all students from the student list.
+Clears all saved data in taskmaster (both students and sessions).
 ```
 clear
 ```
