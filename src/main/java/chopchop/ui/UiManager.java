@@ -4,6 +4,8 @@ package chopchop.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import chopchop.MainApp;
@@ -22,11 +24,13 @@ import javafx.stage.Stage;
  * The manager of the UI component.
  */
 public class UiManager implements Ui {
-    public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
+
+    private static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
+    private static final String APPLICATION_ICON = "/images/chopchop.png";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/chopchop.png";
-    private static UiManager singletonInstance;
+    private static final List<DummyAlert> startupAlerts = new ArrayList<>();
+
 
     private Logic logic;
     private Model model;
@@ -39,17 +43,6 @@ public class UiManager implements Ui {
         super();
         this.logic = logic;
         this.model = model;
-
-        if (UiManager.singletonInstance == null) {
-            UiManager.singletonInstance = this;
-        } else {
-            throw new IllegalArgumentException("more than one UiManager was constructed!");
-        }
-    }
-
-    public UiManager the() {
-        requireNonNull(UiManager.singletonInstance);
-        return UiManager.singletonInstance;
     }
 
     @Override
@@ -57,15 +50,20 @@ public class UiManager implements Ui {
         logger.info("Starting UI...");
 
         //Set the application icon.
-        primaryStage.getIcons().add(this.getImage(ICON_APPLICATION));
+        primaryStage.getIcons().add(this.getImage(APPLICATION_ICON));
 
         try {
             mainWindow = new MainWindow(primaryStage, logic, model);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+
+            for (var alert : startupAlerts) {
+                this.displayModalDialog(alert.type, alert.title, alert.header, alert.content);
+            }
+
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
-            this.showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+            this.showFatalErrorDialogAndShutdown("Fatal error during initialisation", e);
         }
     }
 
@@ -82,19 +80,11 @@ public class UiManager implements Ui {
     }
 
     @Override
-    public void displayModalDialog(AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(this.mainWindow.getPrimaryStage(), type, title, headerText, contentText);
-    }
+    public void displayModalDialog(AlertType type, String title, String header, String content) {
 
-    /**
-     * Shows an alert dialog on {@code owner} with the given parameters.
-     * This method only returns after the user has closed the alert dialog.
-     */
-    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String header,
-                                               String content) {
         var alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("stylesheets/Style.css");
-        alert.initOwner(owner);
+        alert.initOwner(this.mainWindow.getPrimaryStage());
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
@@ -102,10 +92,14 @@ public class UiManager implements Ui {
         alert.showAndWait();
     }
 
-    private static void showAlertDialogAndWait(AlertType type, String title, String header, String content) {
-        showAlertDialogAndWait(/* owner: */ null, type, title, header, content);
+    /**
+     * Queues a startup alert to show up, without actually displaying it. When the UiManager starts
+     * (the {@code start()} method), it will display all alerts in order before continuing.
+     */
+    public static void enqueueStartupAlert(AlertType type, String title, String header, String content) {
+        var alert = new DummyAlert(type, title, header, content);
+        UiManager.startupAlerts.add(alert);
     }
-
 
     /**
      * Shows an error alert dialog with {@code title} and error message, {@code e},
@@ -117,5 +111,20 @@ public class UiManager implements Ui {
         this.displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
+    }
+
+
+    private static class DummyAlert {
+        final AlertType type;
+        final String title;
+        final String header;
+        final String content;
+
+        DummyAlert(AlertType type, String title, String header, String content) {
+            this.type = type;
+            this.title = title;
+            this.header = header;
+            this.content = content;
+        }
     }
 }
