@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.UniqueBidList;
+import seedu.address.model.id.BidderId;
 
 public class BidBook implements ReadOnlyBidBook {
 
@@ -53,6 +54,15 @@ public class BidBook implements ReadOnlyBidBook {
      */
     public void addBid(Bid b) {
         listOfBids.add(b);
+    }
+
+    /**
+     * Removes bid that corresponds with the bidder id.
+     *
+     * @param bidderId The bidder id specified.
+     */
+    public void removeByBidderId(BidderId bidderId) {
+        listOfBids.removeByBidderId(bidderId);
     }
 
     /**

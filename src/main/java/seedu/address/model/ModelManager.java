@@ -172,8 +172,6 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
-
-
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -281,8 +279,6 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
-
-
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -457,6 +453,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBidder(Bidder target) {
+        bidBook.removeByBidderId(target.getId());
+        meetingBook.removeMeetingByBidderId(target.getId());
         bidderAddressBook.removeBidder(target);
     }
 
@@ -520,6 +518,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSeller(Seller target) {
+        propertyBook.removePropertyBySellerId(target.getId());
         sellerAddressBook.removeSeller(target);
     }
 
