@@ -178,6 +178,7 @@ Format: `tag INDEX -t TAG_NAME`
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* Tags for food items must be less than 50 characters.
 
 </div>
 
