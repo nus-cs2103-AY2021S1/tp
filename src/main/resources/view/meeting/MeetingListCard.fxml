@@ -112,7 +112,7 @@
                                        </ImageView>
                                     </graphic>
                                  </Label>
-                                    <Label fx:id="meetingDate" styleClass="cell_small_label" text="\$meetingDate" GridPane.rowIndex="1">
+                                    <Label fx:id="meetingDate" style="-fx-font-size: inherit;" styleClass="cell_small_label" text="\$meetingDate" GridPane.rowIndex="1">
                                     <graphic>
                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
@@ -121,7 +121,7 @@
                                        </ImageView>
                                     </graphic>
                                  </Label>
-                                 <Label fx:id="endTime" layoutX="10.0" layoutY="25.0" styleClass="cell_small_label" text="\\endTime" GridPane.rowIndex="2">
+                                 <Label fx:id="endTime" layoutX="10.0" layoutY="25.0" style="-fx-font-size: inherit;" styleClass="cell_small_label" text="\\endTime" GridPane.rowIndex="2">
                                     <graphic>
                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                           <image>

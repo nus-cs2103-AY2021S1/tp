@@ -91,7 +91,7 @@
                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                  </rowConstraints>
                   <children>
-                         <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType" GridPane.rowIndex="2">
+                         <Label fx:id="propertyType" style="-fx-font-size: inherit;" styleClass="cell_small_label" text="\$propertyType" GridPane.rowIndex="2">
                         <graphic>
                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -100,7 +100,7 @@
                            </ImageView>
                         </graphic>
                      </Label>
-                         <Label fx:id="address" style="-fx-wrap-text: true;" styleClass="cell_small_label" text="\$address" GridPane.rowIndex="1">
+                         <Label fx:id="address" style="-fx-wrap-text: true; -fx-font-size: inherit;" styleClass="cell_small_label" text="\$address" GridPane.rowIndex="1">
                         <graphic>
                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                               <image>
