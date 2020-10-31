@@ -47,13 +47,20 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
+        // not an integer
         assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        // signed integer
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("+10"));
+        // negative integer
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("-10"));
+        // zero
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("0"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class,
-                ParserUtil.MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_INDEX_TOO_LARGE, () ->
+                ParserUtil.parseIndex(Long.toString((long) Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -63,6 +70,9 @@ public class ParserUtilTest {
 
         // Leading and trailing whitespaces
         assertEquals(TypicalIndexes.INDEX_FIRST_FOOD, ParserUtil.parseIndex("  1  "));
+
+        // long string
+        assertEquals(TypicalIndexes.INDEX_FIRST_FOOD, ParserUtil.parseIndex("00000000000000000000000000000000000001"));
     }
 
     @Test
