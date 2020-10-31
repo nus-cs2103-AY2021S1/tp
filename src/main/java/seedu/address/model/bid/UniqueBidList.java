@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.bid.exceptions.BidNotFoundException;
 import seedu.address.model.bid.exceptions.DuplicateBidException;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 
 public class UniqueBidList implements Iterable<Bid> {
@@ -28,6 +29,15 @@ public class UniqueBidList implements Iterable<Bid> {
             throw new DuplicateBidException();
         }
         internalBidList.add(toAdd);
+    }
+
+    /**
+     * Removes the bid with the corresponding bidder id.
+     *
+     * @param bidderId The bidder id specified.
+     */
+    public void removeByBidderId(BidderId bidderId) {
+        internalBidList.removeIf(bid -> bid.getBidderId().equals(bidderId));
     }
 
     /**

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" nodeOrientation="LEFT_TO_RIGHT" promptText="Your command results will be displayed here!" style="-fx-wrap-text: true;" styleClass="result-display" />
+<StackPane fx:id="placeHolder" styleClass="resultDisplayPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@MingSoonTheme.css" />
+  </stylesheets>
+  <TextArea fx:id="resultDisplay" editable="false" nodeOrientation="LEFT_TO_RIGHT" promptText="Your command results will be displayed here!" style="-fx-wrap-text: true;" styleClass="result-display">
+      <font>
+         <Font name="Bookman Old Style" size="12.0" />
+      </font></TextArea>
 </StackPane>

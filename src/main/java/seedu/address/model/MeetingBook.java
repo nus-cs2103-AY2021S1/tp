@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
@@ -91,6 +92,14 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
+    }
+
+    /**
+     * Removes meeting according to their bidder id.
+     *
+     */
+    public void removeMeetingByBidderId(BidderId bidderId) {
+        meetings.removeMeetingByBidderId(bidderId);
     }
 
     /**
