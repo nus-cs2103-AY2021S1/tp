@@ -40,9 +40,7 @@ public class StockBuilder {
         source = new Source(DEFAULT_SOURCE);
         quantity = new Quantity(DEFAULT_QUANTITY, DEFAULT_LOW_QUANTITY);
         location = new Location(DEFAULT_LOCATION);
-        Note note = new Note(DEFAULT_NOTE);
         notes = new ArrayList<>();
-        notes.add(note);
     }
 
     /**
@@ -121,28 +119,14 @@ public class StockBuilder {
      * Adds the {@code Note} of the {@code Stock} that we are building.
      */
     public StockBuilder addNote(String noteText) {
+        List<Note> updatedNotesList = new ArrayList<>();
         Note noteToAdd = new Note(noteText);
-        this.notes.add(noteToAdd);
-        return this;
-    }
-
-    /**
-     * Produces a copy of the stockbuilder.
-     * @return StockBuilder copy of the stockbuilder
-     */
-    public StockBuilder copyOfStockBuilder() {
-        StockBuilder copy = new StockBuilder();
-        copy.name = new Name(this.name.fullName);
-        copy.serialNumber = new SerialNumber(this.serialNumber.getSerialNumberAsString());
-        copy.source = new Source(this.source.value);
-        copy.quantity = new Quantity(this.quantity.quantity);
-        copy.location = new Location(this.location.value);
-        List<Note> notesListCopy = new ArrayList<>();
         for (Note note : this.notes) {
-            notesListCopy.add(note);
+            updatedNotesList.add(note);
         }
-        copy.notes = notesListCopy;
-        return copy;
+        updatedNotesList.add(noteToAdd);
+        this.notes = updatedNotesList;
+        return this;
     }
 
     public Stock build() {

@@ -30,6 +30,12 @@ public class TypicalStocks {
             .withNotes("Fresh from BananaLand.", "Tuesday")
             .build();
 
+    public static final Stock ORANGE = new StockBuilder().withName("orange")
+            .withSerialNumber("giant1")
+            .withSource("giant").withQuantity("111")
+            .withLocation("fruit section, subsection x")
+            .build();
+
     public static final Stock PINEAPPLE = new StockBuilder().withName("pineapple tart")
             .withSerialNumber("bengawansolo1")
             .withSource("bengawansolo").withQuantity("123")
@@ -37,20 +43,13 @@ public class TypicalStocks {
             .withNotes("Fresh from PineappleLand.", "Wednesday")
             .build();
 
-    public static final Stock ORANGE = new StockBuilder().withName("orange")
-            .withSerialNumber("giant1")
-            .withSource("giant").withQuantity("111")
-            .withLocation("fruit section, subsection x")
-            .withNotes("Fresh from OrangeLand.", "Thursday")
-            .build();
-
     public static final Note TYPICAL_NOTE_APPLE = APPLE.getNotes().get(0);
     public static final Index INDEX_FIRST_STOCK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_STOCK = Index.fromOneBased(2);
+    public static final Index INDEX_THIRD_STOCK = Index.fromOneBased(3);
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
-    public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
-    public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
+    public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = ORANGE.getSerialNumber();
     public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown1");
 
     public static final String RESERVED_NON_EXISTENCE_SOURCE = "$non-existent-source";
