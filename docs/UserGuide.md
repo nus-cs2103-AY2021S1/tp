@@ -442,7 +442,7 @@ Examples:
  **:clipboard: Pointers to note:**<br>
 * The index **must be found in your assignment list**.
 * The expected number of hours **must be a positive integer between `1` and `5`**.
-* `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in format `HHmm`.
+* `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in the format `HHmm`.
 
 </div>
 
