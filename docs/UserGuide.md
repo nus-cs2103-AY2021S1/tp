@@ -12,9 +12,36 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick Start [coming soon]
+## Quick start
+
+1. Ensure you have Java `11` installed in your Computer. 
+   You can check the version by opening a command window, and running the `java -version` command.
+
+2. Download the latest `[CS2103-T16-2][Insurance4Insurance].jar` from [here](https://github.com/AY2021S1-CS2103-T16-2/tp/releases).
+
+3. Copy the file to the **empty folder** you want to use as the _home folder_.
+
+4. Launch the app by using the `java -jar` command (do not use double-clicking). 
+   The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
+   ![Ui](images/Ui.png)
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * **`list`** : Lists all active clients.
+
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/h` : 
+   Adds a contact named `John Doe` to the client list.
+
+   * **`delete`**`3` : Deletes the 3rd client shown in the current list.
+
+   * **`exit`** : Exits the app.
+
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Commands
 
 <div markdown="block" class="alert alert-info">
