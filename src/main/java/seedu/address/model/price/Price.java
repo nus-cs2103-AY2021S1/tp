@@ -3,13 +3,16 @@ package seedu.address.model.price;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.DecimalFormat;
+
 /**
  * Represents a Price.
  * Guarantees: immutable; price is valid as declared in {@link #isValidPrice(double)}
  */
 public class Price implements Comparable<Price> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0";
+    public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0 and less than 1 trillion";
+    public static final String MESSAGE_NOT_NUMERIC = "Price should be a number";
 
     public final double price;
 
@@ -21,14 +24,15 @@ public class Price implements Comparable<Price> {
     public Price(double price) {
         requireNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
-        this.price = price;
+        DecimalFormat df = new DecimalFormat("#.##");
+        this.price = Double.parseDouble(df.format(price));
     }
 
     /**
      * Returns true if a given integer is a valid price.
      */
     public static boolean isValidPrice(double test) {
-        return test > 0;
+        return test > 0 && test <= Math.pow(10, 12);
     }
 
     /**

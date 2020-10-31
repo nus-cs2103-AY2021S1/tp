@@ -129,6 +129,17 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     void updateFilteredBidList(Predicate<Bid> predicate);
 
     /**
+     * sets the filepath for BidBook
+     * @param bidBookFilePath the file path to specify to
+     */
+    void setBidBookFilePath(Path bidBookFilePath);
+
+    /**
+     * retrieves the the filepath of BidBook
+     */
+    Path getBidBookFilePath();
+
+    /**
      * adds a bid to the BidBook
      *
      * @param bid to add to the BidBook.
@@ -181,7 +192,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
-    void addMeeting(Meeting meeting);
+    void addMeeting(Meeting meeting) throws CommandException;
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

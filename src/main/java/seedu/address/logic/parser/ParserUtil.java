@@ -124,7 +124,7 @@ public class ParserUtil {
             Date dateObject = formatter.parse(trimmedTime);
             Date currentActualDate = Calendar.getInstance().getTime();
             if (dateObject.before(currentActualDate)) {
-                throw new ParseException(MESSAGE_INVALID_DATE_CURRENT);
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
             }
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);
@@ -147,7 +147,7 @@ public class ParserUtil {
             String startString = formatter.format(startTimeObject);
             return new StartTime(startString);
         } catch (java.text.ParseException e) {
-            throw new ParseException(MESSAGE_INVALID_STARTTIME);
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -165,7 +165,7 @@ public class ParserUtil {
             String endString = formatter.format(endTimeObject);
             return new EndTime(endString);
         } catch (java.text.ParseException e) {
-            throw new ParseException(MESSAGE_INVALID_ENDTIME);
+            throw new ParseException(EndTime.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -185,7 +185,7 @@ public class ParserUtil {
             }
             return new Price(doublePrice);
         } catch (NumberFormatException e) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Price.MESSAGE_NOT_NUMERIC);
         }
     }
 

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBidAtIndex;
+import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BIDDER_ID_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BID_A;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_PROPERTY_ID_BID_A;
@@ -44,7 +45,8 @@ public class EditBidCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredBidList_success() throws CommandException {
-        Bid editedBid = new BidBuilder().build();
+        Bid editedBid = new BidBuilder().withPropertyId(VALID_PROPERTY_ID_BID_A)
+                .withBidderId(VALID_BIDDER_ID_BID_B).build();
         EditBidDescriptor descriptor = new EditBidDescriptorBuilder(editedBid).build();
         EditBidCommand editBidCommand = new EditBidCommand(INDEX_FIRST_BID, descriptor);
 
