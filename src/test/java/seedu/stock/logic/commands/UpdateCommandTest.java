@@ -28,7 +28,8 @@
 //import seedu.stock.testutil.UpdateStockDescriptorBuilder;
 //
 ///**
-// * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
+// * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+//  and unit tests for EditCommand.
 // */
 //public class UpdateCommandTest {
 //
@@ -172,7 +173,8 @@
 //        Stock updatedStockBanana = new StockBuilder().withName("Ice Cream")
 //                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
 //                .withQuantity("2103").build();
-//        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName("Ice Cream").withSource("Magnum")
+//        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
+//                .withName("Ice Cream").withSource("Magnum")
 //                .withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
 //                .build();
 //        UpdateCommand updateCommand = new UpdateCommand(descriptor);
