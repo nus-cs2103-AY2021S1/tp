@@ -68,8 +68,8 @@ public class KeywordsPredicateTest {
         assertFalse(predicate.test(new PatientBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and address, but does not match name
-        predicate = new KeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PatientBuilder().withName("Alice").withPhone("12345")
+        predicate = new KeywordsPredicate(Arrays.asList("12345678", "alice@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new PatientBuilder().withName("Alice").withPhone("12345678")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
@@ -101,8 +101,8 @@ public class KeywordsPredicateTest {
         assertFalse(predicate.test(new PatientBuilder().withNric("S0000002B").build()));
 
         // Keywords match phone, email and address, but does not match nric
-        predicate = new KeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PatientBuilder().withNric("S0000001A").withPhone("12345")
+        predicate = new KeywordsPredicate(Arrays.asList("12345678", "alice@email.com", "Main", "Street"));
+        assertFalse(predicate.test(new PatientBuilder().withNric("S0000001A").withPhone("12345678")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
 
