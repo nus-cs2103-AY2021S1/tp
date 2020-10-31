@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.module.Module;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 
@@ -23,7 +24,7 @@ public class FindModuleCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + "CS2101 CS2102 CS2103";
 
-    private final Predicate predicate;
+    private final Predicate<Module> predicate;
 
     public FindModuleCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
