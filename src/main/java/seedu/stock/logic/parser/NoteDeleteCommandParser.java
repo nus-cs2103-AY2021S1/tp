@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
@@ -19,9 +20,9 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
             "Note index must be a valid positive integer.";
 
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
-    private static final Prefix[] validPrefixesForDeleteNote = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
+    private static final Prefix[] validPrefixesForNoteDelete = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
     private static final Prefix[] invalidPrefixesForDeleteNote =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForDeleteNote);
+            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNoteDelete);
 
     @Override
     public NoteDeleteCommand parse(String args) throws ParseException {
@@ -29,11 +30,15 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
-        if (!areAllPrefixesPresent(argMultimap, validPrefixesForDeleteNote)
+        if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteDelete)
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForDeleteNote)
-                || isDuplicatePrefixPresent(argMultimap, validPrefixesForDeleteNote)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    NoteDeleteCommand.MESSAGE_USAGE));
+        }
+
+        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteDelete)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
                     NoteDeleteCommand.MESSAGE_USAGE));
         }
 

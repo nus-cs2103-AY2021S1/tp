@@ -80,6 +80,8 @@ public class CommandTestUtil {
     public static final String SORT_ORDER_DESCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_DESCENDING;
     public static final String SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + VALID_SORT_FIELD;
     public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
+    public static final String NOTE_DESC_APPLE = " " + PREFIX_NOTE + VALID_NOTE_APPLE;
+    public static final String NOTE_DESC_ORANGE = " " + PREFIX_NOTE + VALID_NOTE_ORANGE;
     public static final String NOTE_INDEX_DESC = " " + PREFIX_NOTE_INDEX + VALID_NOTE_INDEX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
@@ -97,6 +99,7 @@ public class CommandTestUtil {
     public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
     public static final String INVALID_LIST_TYPE_DESC = " " + PREFIX_LIST_TYPE + "a";
     public static final String INVALID_STATISTICS_TYPE_DESC = " " + PREFIX_STATISTICS_TYPE + "sour";
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE + "              ";
 
     public static final String INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC =
                                             " " + PREFIX_QUANTITY + "10000000000000000000000";

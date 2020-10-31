@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
@@ -26,10 +27,14 @@ public class NoteViewCommandParser implements Parser<NoteViewCommand> {
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteView)
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForNoteView)
-                || isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteView)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     NoteDeleteCommand.MESSAGE_USAGE));
+        }
+
+        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteView)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
+                    NoteViewCommand.MESSAGE_USAGE));
         }
 
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();

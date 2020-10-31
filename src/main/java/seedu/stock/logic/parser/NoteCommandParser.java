@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
@@ -27,9 +28,13 @@ public class NoteCommandParser implements Parser<NoteCommand> {
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNote)
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForNote)
-                || isDuplicatePrefixPresent(argMultimap, validPrefixesForNote)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    NoteCommand.MESSAGE_USAGE));
+        }
+
+        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForNote)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
                     NoteCommand.MESSAGE_USAGE));
         }
 
