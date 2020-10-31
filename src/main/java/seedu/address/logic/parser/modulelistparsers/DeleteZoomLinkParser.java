@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
-import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteZoomLinkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -37,19 +35,20 @@ public class DeleteZoomLinkParser implements Parser<DeleteZoomLinkCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteZoomLinkCommand.MESSAGE_USAGE));
         }
 
         assert argMultimap.getValue(PREFIX_NAME).isPresent() : "Argument for PREFIX_NAME must be present";
-
+        Index index;
         try {
-            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            ModuleLesson lesson = ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get());
-            return new DeleteZoomLinkCommand(index, lesson);
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteContactCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteZoomLinkCommand.MESSAGE_USAGE), pe);
+
         }
+        ModuleLesson lesson = ParserUtil.parseModuleLesson(argMultimap.getValue(PREFIX_NAME).get());
+        return new DeleteZoomLinkCommand(index, lesson);
     }
 
     /**

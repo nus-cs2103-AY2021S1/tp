@@ -111,18 +111,6 @@ public class ModuleListParser implements FeatureParser {
         case ViewModuleCommand.COMMAND_WORD:
             return new ViewModuleParser().parse(arguments);
 
-        case FindContactCommand.COMMAND_WORD:
-            return new FindContactParser().parse(arguments);
-
-        case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteContactParser().parse(arguments);
-
-        case EditContactCommand.COMMAND_WORD:
-            return new EditContactParser().parse(arguments);
-
-        case AddContactCommand.COMMAND_WORD:
-            return new AddContactParser().parse(arguments);
-
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
 
@@ -141,10 +129,13 @@ public class ModuleListParser implements FeatureParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoParser().parse(arguments);
+
         case ArchiveModuleCommand.COMMAND_WORD:
             return new ArchiveModuleParser().parse(arguments);
+
         case ViewArchivedModulesCommand.COMMAND_WORD:
             return new ViewArchivedModulesCommand();
+
         case UnarchiveModuleCommand.COMMAND_WORD:
             return new UnarchiveModuleParser().parse(arguments);
 

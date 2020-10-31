@@ -69,7 +69,6 @@ public class AddZoomLinkCommand extends Command {
 
         Module moduleToAddLink = lastShownList.get(targetIndex.getZeroBased());
         Module updatedModule = moduleToAddLink.addZoomLink(moduleLesson, zoomLink);
-
         model.setModule(moduleToAddLink, updatedModule);
         logger.info("Zoom link added to the module");
         model.commitModuleList();

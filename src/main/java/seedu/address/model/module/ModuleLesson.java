@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a lesson of a module.
+ * Represents the name of a lesson in a module.
  * Guarantees: immutable; is valid as declared in {@link #isValidLesson(String)}
  */
 public class ModuleLesson {
@@ -21,7 +21,7 @@ public class ModuleLesson {
     private final String lessonName;
 
     /**
-     * Creates and initialises a new {@code Lesson} object with a {@code lessonName}.
+     * Creates and initialises a new {@code ModuleLesson} object with a {@code lessonName}.
      *
      * @param lessonName String containing the lesson name.
      */
