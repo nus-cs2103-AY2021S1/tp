@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_CATEGORY + "revenue"
+            + PREFIX_CATEGORY + "revenue "
             + PREFIX_DESCRIPTION + "selling clothes "
             + PREFIX_AMOUNT + "20";
 
