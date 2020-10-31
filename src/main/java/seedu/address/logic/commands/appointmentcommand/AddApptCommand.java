@@ -55,6 +55,8 @@ public class AddApptCommand extends Command {
      * @param appointment the appointment to add to the patient
      */
     public AddApptCommand(Nric nric, Appointment appointment) {
+        requireNonNull(nric);
+        requireNonNull(appointment);
         this.nric = nric;
         this.appointment = appointment;
     }
