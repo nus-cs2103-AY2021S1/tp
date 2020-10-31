@@ -235,12 +235,12 @@ Format: `edit-student <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_ph
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-- You can remove all of the student’s tags by typing `t/` without specifying any tags after it.
+- You can remove all of the student’s tags by typing `tag/` without specifying any tags after it.
 
 Examples:
 
 - `edit-student 1 p/82462157 e/johnd@comp.nus.edu.sg` Edits the phone number and email address of the first student to be `82462157` and `johnd@comp.nus.edu.sg` respectively.
-- `edit-student 2 n/Alpha Queue/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
+- `edit-student 2 n/Alpha Queue tag/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
 
 #### 4. Deleting a student : `delete-student`
 
