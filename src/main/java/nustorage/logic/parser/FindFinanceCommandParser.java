@@ -9,7 +9,6 @@ import static nustorage.logic.parser.CliSyntax.PREFIX_ID;
 import java.time.LocalDateTime;
 
 import nustorage.logic.commands.FindFinanceCommand;
-import nustorage.logic.commands.FindInventoryRecordCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 
 /**
@@ -28,10 +27,9 @@ public class FindFinanceCommandParser implements Parser<FindFinanceCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_AFTER_DATETIME,
                         PREFIX_BEFORE_DATETIME, PREFIX_HAS_INVENTORY);
 
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        if (!argMultimap.hasAnyPrefix()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindInventoryRecordCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindFinanceCommand.MESSAGE_USAGE));
         }
 
         FindFinanceCommand command = new FindFinanceCommand();
