@@ -53,6 +53,8 @@ public class DeleteApptCommand extends Command {
      * @param appointment The appointment to delete from the patient.
      */
     public DeleteApptCommand(Nric nric, Appointment appointment) {
+        requireNonNull(nric);
+        requireNonNull(appointment);
         this.nric = nric;
         this.appointment = appointment;
     }

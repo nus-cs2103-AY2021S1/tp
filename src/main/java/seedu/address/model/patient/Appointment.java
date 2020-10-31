@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.time.LocalDateTime;
@@ -35,6 +36,7 @@ public class Appointment {
      * @param appointment A valid appointment time.
      */
     public Appointment(String description, LocalDateTime appointment) {
+        requireNonNull(description);
         this.description = description;
         time = appointment;
     }
