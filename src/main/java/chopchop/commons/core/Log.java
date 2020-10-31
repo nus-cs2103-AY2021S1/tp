@@ -3,17 +3,18 @@
 package chopchop.commons.core;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Formatter;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 import java.util.logging.StreamHandler;
+
+import chopchop.commons.util.FileUtil;
 
 /**
  * This functions as a simple wrapper class for the Java Logger class,
@@ -24,7 +25,7 @@ public class Log {
 
     private static final int maximumFileCount = 5;
     private static final int maximumLogSize = 2 * (1 << 20);
-    private static final String logFileLocation = "data/logs/chopchop.log";
+    private static final String logFileLocation = "data/logs/chopchop-%g%u.log";
 
     private static Level defaultLogLevel = Level.INFO;
     private static StreamHandler fileHandler;
@@ -90,11 +91,20 @@ public class Log {
         Log.defaultLogLevel = config.getLogLevel();
         System.out.printf("Default logging level: %s\n", Log.defaultLogLevel);
 
+        if (Log.fileHandler != null && Log.consoleHandler != null) {
+            Log.fileHandler.setLevel(Log.defaultLogLevel);
+            Log.consoleHandler.setLevel(Log.defaultLogLevel);
+
+            return;
+        }
+
         consoleHandler = new ConsoleHandler();
         consoleHandler.setLevel(Log.defaultLogLevel);
         consoleHandler.setFormatter(new LogFormatter());
 
         try {
+            FileUtil.createParentDirsOfFile(Paths.get(logFileLocation));
+
             fileHandler = new FileHandler(logFileLocation, maximumLogSize, maximumFileCount,
                 /* append: */ true);
             fileHandler.setLevel(Log.defaultLogLevel);
@@ -109,12 +119,7 @@ public class Log {
         @Override
         public String format(LogRecord rec) {
 
-            var timestamp = "";
-            try {
-                timestamp = new SimpleDateFormat("dd/MM HH:mm:ss.SSS").format(new Date(rec.getMillis()));
-            } catch (Exception e) {
-                System.err.printf("OWO: %s\n", e);
-            }
+            var timestamp = new SimpleDateFormat("dd/MM HH:mm:ss.SSS").format(new Date(rec.getMillis()));
 
             return String.format("[%s] %s (%s): %s\n",
                 timestamp,
@@ -122,16 +127,6 @@ public class Log {
                 rec.getLoggerName(),
                 rec.getMessage()
             );
-        }
-
-        @Override
-        public String getHead(Handler h) {
-            return "";
-        }
-
-        @Override
-        public String getTail(Handler h) {
-            return "";
         }
 
         private String levelToString(Level level) {
