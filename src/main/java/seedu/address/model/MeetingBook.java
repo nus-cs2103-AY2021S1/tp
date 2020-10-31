@@ -101,7 +101,8 @@ public class MeetingBook implements ReadOnlyMeetingBook {
     public void removeMeetingByBidderId(BidderId bidderId) {
         meetings.removeMeetingByBidderId(bidderId);
     }
-  
+
+    /**
      * Removes all meetings with the specified propertyId.
      *
      * @param propertyId The propertyId of the property to be deleted.
