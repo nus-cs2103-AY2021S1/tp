@@ -16,26 +16,17 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 
 class FridgeTest {
     private static Food chimken;
+    private static Food ramen;
+    private Fridge fridge;
 
     static {
         try {
             chimken = new Food("Chimken", 1, 2, 3);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
-    private static Food ramen;
-
-    static {
-        try {
             ramen = new Food("Ramen", 2, 3, 4);
         } catch (IllegalValueException e) {
             assert false : "Error in food";
         }
     }
-
-    private Fridge fridge;
 
     @BeforeEach
     public void beforeEachTestMethod() {
