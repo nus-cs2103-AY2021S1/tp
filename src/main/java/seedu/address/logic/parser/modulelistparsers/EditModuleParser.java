@@ -36,7 +36,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         Index index;
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK,
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME,
                 PREFIX_TAG, PREFIX_MODULAR_CREDITS, PREFIX_GRADE_POINT);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
