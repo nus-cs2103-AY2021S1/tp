@@ -167,7 +167,8 @@ add n/Kai Kai s/Giant Panda i/200 m/Sunstroke f/1230 f/1400
 
 Expected Outcome:
 ```
-New animal added: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feeding times: [1230][1400]
+New animal added
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
 ```
 An animal with the name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition `Sunstroke`
 and feed times of `1230 hrs` and `1400 hrs` is added to your `ZooKeep` book.
@@ -192,11 +193,14 @@ Format: `delete ID`
 </div>
 
 Example Usage:
-* `delete 200`
+```
+delete 200
+```
 
 Expected Outcome:
 ```
-Deleted Animal: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke]  Feeding times: [1230][1400]
+Deleted Animal
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
 ```
 The animal with ID `200` is deleted from your `ZooKeep` book.
 
@@ -273,7 +277,8 @@ append 200 m/Flu
 
 Expected Outcome:
 ```
-Appended Animal Details: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feeding times: [1230][1400]
+Appended Animal Details
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
 ```
 The medical condition "Flu" is appended to the medical conditions of the animal with `ID` 200.
 
@@ -316,7 +321,8 @@ replace 200 i/2910 n/Jirachi
 
 Expected Outcome:
 ```
-Replaced Animal Details: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feeding times: [1230][1400]
+Replaced Animal Details
+Name: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
 ```
 The animal with ID `200` has its ID replaced with `2910` its name with `Jirachi`.
 
