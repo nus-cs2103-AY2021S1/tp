@@ -77,7 +77,7 @@ public class SessionListPanel extends UiPart<Region> {
                 });
                 AnchorPane anchorPane = new AnchorPane();
                 anchorPane.getChildren().add(button);
-                anchorPane.setStyle("-fx-padding: 5 0 0 0; -fx-background-color: #383838; -fx-border-color: #383838");
+                anchorPane.setStyle("-fx-padding: 3 0 3 0; -fx-background-color: #383838; -fx-border-color: #383838");
                 setGraphic(anchorPane);
             }
         }
