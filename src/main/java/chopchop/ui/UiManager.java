@@ -2,6 +2,8 @@
 
 package chopchop.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import chopchop.MainApp;
@@ -24,6 +26,7 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/chopchop.png";
+    private static UiManager singletonInstance;
 
     private Logic logic;
     private Model model;
@@ -36,6 +39,17 @@ public class UiManager implements Ui {
         super();
         this.logic = logic;
         this.model = model;
+
+        if (UiManager.singletonInstance == null) {
+            UiManager.singletonInstance = this;
+        } else {
+            throw new IllegalArgumentException("more than one UiManager was constructed!");
+        }
+    }
+
+    public UiManager the() {
+        requireNonNull(UiManager.singletonInstance);
+        return UiManager.singletonInstance;
     }
 
     @Override
@@ -76,17 +90,22 @@ public class UiManager implements Ui {
      * Shows an alert dialog on {@code owner} with the given parameters.
      * This method only returns after the user has closed the alert dialog.
      */
-    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
-                                               String contentText) {
+    private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String header,
+                                               String content) {
         var alert = new Alert(type);
         alert.getDialogPane().getStylesheets().add("stylesheets/Style.css");
         alert.initOwner(owner);
         alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(contentText);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
         alert.getDialogPane().setId(ALERT_DIALOG_PANE_FIELD_ID);
         alert.showAndWait();
     }
+
+    private static void showAlertDialogAndWait(AlertType type, String title, String header, String content) {
+        showAlertDialogAndWait(/* owner: */ null, type, title, header, content);
+    }
+
 
     /**
      * Shows an error alert dialog with {@code title} and error message, {@code e},
