@@ -69,8 +69,8 @@ public class CommandParserTest {
         tests.put("list ingredient", "Result(ListIngredientCommand)");
         tests.put("list ingredients", "Result(ListIngredientCommand)");
 
-        tests.put("make cake", "Result(MakeCommand(cake))");
-        tests.put("view cake", "Result(ViewCommand(cake))");
+        tests.put("make recipe cake", "Result(MakeCommand(cake))");
+        tests.put("view recipe cake", "Result(ViewCommand(cake))");
         tests.put("filter recipe /tag owo", "Result(FilterRecipeCommand(...))");
         tests.put("edit recipe cake", "Result(EditRecipeCommand(cake))");
 
@@ -81,15 +81,18 @@ public class CommandParserTest {
         tests.put("add recipe cake /", "Error(Expected argument name after '/')");
         tests.put("add recipe cake /   ", "Error(Expected argument name after '/')");
 
-        tests.put("view cake cucumber", "Result(ViewCommand(cake cucumber))");
-        tests.put("view", "Error(Recipe name cannot be empty)");
-        tests.put("view #1", "Result(ViewCommand(#1))");
-        tests.put("view #0", "Error(Invalid index (cannot be zero or negative))");
+        tests.put("view recipe cake cucumber", "Result(ViewCommand(cake cucumber))");
+        tests.put("view recipe", "Error(Recipe name cannot be empty)");
+        tests.put("view recipe #1", "Result(ViewCommand(#1))");
+        tests.put("view recipe #0", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("OWO", "Error(Unknown command 'OWO')");
 
-        tests.put("list uwu", "Error(Unknown target 'uwu')");
-        tests.put("edit ingredients", "Error(Unknown target 'ingredients')");
+        tests.put("list uwu",
+            "Error(Unknown target 'uwu' (expected one of 'recipe', 'ingredient', or 'recommendation'))");
+
+        tests.put("edit ingredients",
+            "Error(Unknown target 'ingredients' (expected either 'recipe' or 'ingredient'))");
 
         tests.forEach((k, v) -> {
             var x = parser.parse(k);

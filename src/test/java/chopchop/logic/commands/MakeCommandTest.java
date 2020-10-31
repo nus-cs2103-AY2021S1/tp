@@ -52,25 +52,25 @@ public class MakeCommandTest {
         runCommand(m, "add recipe rainbow salad /ingredient rainbows /qty 400g /step uwu");
         runCommand(m, "delete ingredient sprinkles");
 
-        var c1 = runCommand(m, "make apricot salad");
+        var c1 = runCommand(m, "make recipe apricot salad");
         assertTrue(c1.didSucceed());
 
-        var c2 = runCommand(m, "make owo salad");
+        var c2 = runCommand(m, "make recipe owo salad");
         assertTrue(c2.isError());
         assertEquals("Error: No recipe named 'owo salad'", c2.toString());
 
-        var c3 = runCommand(m, "make uwu salad");
+        var c3 = runCommand(m, "make recipe uwu salad");
         assertTrue(c3.isError());
         assertEquals("Error: Missing ingredient 'sprinkles' (not found)", c3.toString());
 
-        var c4 = runCommand(m, "make asdf salad");
+        var c4 = runCommand(m, "make recipe asdf salad");
         assertTrue(c4.isError());
         assertEquals("Error: Could not make recipe 'asdf salad' (caused by ingredient 'rainbows'): "
             + "Cannot compare '50mL' with '400g' (incompatible units)", c4.toString());
 
         {
             var p = new CommandParser();
-            var c = p.parse("make rainbow salad").getValue();
+            var c = p.parse("make recipe rainbow salad").getValue();
 
             var r1 = runCommand(c, m);
             assertTrue(r1.didSucceed());
@@ -83,7 +83,7 @@ public class MakeCommandTest {
 
         {
             var p = new CommandParser();
-            var c = p.parse("make apricot salad").getValue();
+            var c = p.parse("make recipe apricot salad").getValue();
 
             var r1 = runCommand(c, m);
             assertTrue(r1.didSucceed());
@@ -94,10 +94,10 @@ public class MakeCommandTest {
 
         if (true) {
             var p = new CommandParser();
-            var cc1 = p.parse("make apricot salad").getValue();
-            var cc2 = p.parse("make uwu salad").getValue();
-            var cc3 = p.parse("make uwu salad").getValue();
-            var cc4 = p.parse("make apricot salad").getValue();
+            var cc1 = p.parse("make recipe apricot salad").getValue();
+            var cc2 = p.parse("make recipe uwu salad").getValue();
+            var cc3 = p.parse("make recipe uwu salad").getValue();
+            var cc4 = p.parse("make recipe apricot salad").getValue();
 
             runCommand(cc1, m);
             runCommand(cc2, m);

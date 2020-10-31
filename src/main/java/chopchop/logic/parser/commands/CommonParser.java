@@ -85,9 +85,15 @@ public class CommonParser {
 
         var str = args.getRemaining();
 
+        String valids = "";
+        if (args.getCommand().equals(Strings.COMMAND_LIST)) {
+            valids = String.format("one of 'recipe', 'ingredient', or 'recommendation'");
+        } else {
+            valids = String.format("either 'recipe' or 'ingredient'");
+        }
+
         if (str.isEmpty()) {
-            return Result.error("no target specified (either 'recipe', 'ingredient'%s)",
-                args.getCommand().equals(Strings.COMMAND_LIST) ?  ", or 'recommendation'" : "");
+            return Result.error("No target specified (expected %s)", valids);
         }
 
         var x = new StringView(str).bisect(' ').fst().trim();
@@ -97,7 +103,7 @@ public class CommonParser {
             CommandTarget.of(x.toString(), acceptsPlural)
                 .map(target -> Pair.of(target, xs.toString())),
 
-            String.format("Unknown target '%s'", x)
+            String.format("Unknown target '%s' (expected %s)", x, valids)
         );
     }
 
