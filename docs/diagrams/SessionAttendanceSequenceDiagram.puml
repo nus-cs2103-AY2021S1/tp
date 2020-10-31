@@ -5,7 +5,7 @@ Participant ":Taskmaster" as tm MODEL_COLOR
 Participant ":Session" as s MODEL_COLOR
 Participant ":StudentRecordListManager" as srlm MODEL_COLOR
 
-[-> tm : markStudentAttendance(\n nusnetId, attendanceType)
+[-> tm : markStudentWithNusnetId(\n nusnetId, attendanceType)
 activate tm
 tm -> s ++: markStudentAttendance(\n nusnetId, attendanceType)
 
