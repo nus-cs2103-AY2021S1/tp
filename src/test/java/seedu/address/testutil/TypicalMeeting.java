@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_01;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_02;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,19 +12,11 @@ import seedu.address.model.meeting.Meeting;
  */
 public class TypicalMeeting {
 
-    public static final Meeting MEETING01 = new MeetingBuilder().withPropertyId("P1")
+    public static final Meeting ADMINMEETING01 = new MeetingBuilder().withPropertyId("P1")
             .withBidderId("B1").withVenue("33 Pasir Ris Drive").withDate("03-08-2021")
-            .withStartTime("12:30").withEndTime("15:30").build();
-    public static final Meeting MEETING02 = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
-            .withDate("15-08-2021").withVenue("Beverly Hills").withStartTime("13:30").withEndTime("16:30").build();
-
-    // Manually added - Meeting's details found in {@code CommandTestUtil}
-    public static final Meeting AMY = new MeetingBuilder().withPropertyId("P1").withBidderId("B1")
-            .withDate(VALID_TIME_01).withVenue("S Avenue")
-            .build();
-    public static final Meeting BOB = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
-            .withDate(VALID_TIME_02).withVenue("Serangoon")
-            .build();
+            .withStartTime("12:30").withEndTime("15:30").buildAdmin();
+    public static final Meeting ADMINMEETING02 = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
+            .withDate("15-08-2021").withVenue("Beverly Hills").withStartTime("13:30").withEndTime("16:30").buildAdmin();
 
     /**
      * Returns an {@code MeetingBook} with all the meetings.
@@ -41,6 +30,6 @@ public class TypicalMeeting {
     }
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(MEETING01, MEETING02));
+        return new ArrayList<>(Arrays.asList(ADMINMEETING01, ADMINMEETING02));
     }
 }
