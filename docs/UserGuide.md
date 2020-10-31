@@ -69,7 +69,7 @@ This diagram shows our interface.
 * Parameters can be in any order.<br>
   e.g. if the command specify `t/TAG f/FILE_PATH`, `f/FILE_PATH t/TAG` is also an acceptable command.
 
-* Every tag name must be unique, but a file can have multiple tags.
+* Every tag name must be unique, but multiple tags can point to the same filepath.
 
 * Every tag name is case-sensitive. e.g tag name `notes` is different from tag name `Notes`.
 
@@ -210,7 +210,7 @@ Format: `ls`
 ### Undoing command : `undo`
 
 Undo a recently executed command.<br>
-You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel` and `clear`.
+You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
 
 Format: `undo`
 
