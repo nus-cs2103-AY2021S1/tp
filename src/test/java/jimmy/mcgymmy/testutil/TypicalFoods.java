@@ -17,135 +17,26 @@ public class TypicalFoods {
     public static final String KEYWORD_MATCHING_RICE = "Rice"; // A keyword that matches RICE
 
     private static Food chickenRice;
-
-    static {
-        try {
-            chickenRice = new FoodBuilder().withName(new Name("Chicken Rice"))
-                    .withProtein("253").withFat("123")
-                    .withCarb("456").withDate("20 Apr 2020")
-                    .withTags("lunch").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food nasiLemak;
-
-    static {
-        try {
-            nasiLemak = new FoodBuilder().withName(new Name("Nasi Alamak"))
-                    .withProtein("432").withFat("321")
-                    .withCarb("123").withDate("2 Sep 2020")
-                    .withTags("dinner", "lunch").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food crispyFriedFish;
-
-    static {
-        try {
-            crispyFriedFish = new FoodBuilder().withName(new Name("Crispy Fried Fish"))
-                    .withProtein("563").withFat("456").withCarb("654")
-                    .withDate("13 Oct 2020").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food danishCookies;
-
-    static {
-        try {
-            danishCookies = new FoodBuilder().withName(new Name("Danish Cookies"))
-                    .withProtein("533").withFat("654")
-                    .withCarb("456").withDate("1 Jan 2020")
-                    .withTags("lunch").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food eggs;
-
-    static {
-        try {
-            eggs = new FoodBuilder().withName(new Name("Eggs"))
-                    .withProtein("224").withFat("246").withCarb("810")
-                    .withDate("7 Mar 2019").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food fruitCake;
-
-    static {
-        try {
-            fruitCake = new FoodBuilder().withName(new Name("Fruit Cake"))
-                    .withProtein("427").withFat("987").withCarb("789")
-                    .withDate("3 Feb 1998").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food gingerbread;
-
-    static {
-        try {
-            gingerbread = new FoodBuilder().withName(new Name("Gingerbread"))
-                    .withProtein("442").withFat("789").withCarb("987")
-                    .withDate("5 May 1973").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
 
     // Manually added
     private static Food hotPlate;
-
-    static {
-        try {
-            hotPlate = new FoodBuilder().withName(new Name("Hot Plate")).withProtein("424")
-                    .withFat("234").withCarb("234").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food indomee;
-
-    static {
-        try {
-            indomee = new FoodBuilder().withName(new Name("Indomee")).withProtein("131")
-                    .withFat("234").withCarb("234").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
 
     // Manually added - Food's details found in {@code CommandTestUtil}
     private static Food apple;
-
-    static {
-        try {
-            apple = new FoodBuilder().withName(new Name("Apple")).withProtein("888")
-                    .withFat("234").withCarb("234").build();
-        } catch (IllegalValueException e) {
-            assert false : "Error in default food";
-        }
-    }
-
     private static Food beans;
 
     static {
         try {
-            beans = new FoodBuilder().withName(new Name("beans")).withProtein("888")
-                    .withFat("234").withCarb("234").build();
+            generateTypicalFoods();
         } catch (IllegalValueException e) {
-            assert false : "Error in default food";
+            assert false : "Error in Typical foods";
         }
     }
 
@@ -162,6 +53,42 @@ public class TypicalFoods {
             mg.addFood(food);
         }
         return mg;
+    }
+
+    private static void generateTypicalFoods() throws IllegalValueException {
+        //Generate all of the foods
+        chickenRice = new FoodBuilder().withName(new Name("Chicken Rice"))
+                .withProtein("253").withFat("123")
+                .withCarb("456").withDate("20 Apr 2020")
+                .withTags("lunch").build();
+        crispyFriedFish = new FoodBuilder().withName(new Name("Crispy Fried Fish"))
+                .withProtein("563").withFat("456").withCarb("654")
+                .withDate("13 Oct 2020").build();
+        nasiLemak = new FoodBuilder().withName(new Name("Nasi Alamak"))
+                .withProtein("432").withFat("321")
+                .withCarb("123").withDate("2 Sep 2020")
+                .withTags("dinner", "lunch").build();
+        danishCookies = new FoodBuilder().withName(new Name("Danish Cookies"))
+                .withProtein("533").withFat("654")
+                .withCarb("456").withDate("1 Jan 2020")
+                .withTags("lunch").build();
+        eggs = new FoodBuilder().withName(new Name("Eggs"))
+                .withProtein("224").withFat("246").withCarb("810")
+                .withDate("7 Mar 2019").build();
+        fruitCake = new FoodBuilder().withName(new Name("Fruit Cake"))
+                .withProtein("427").withFat("987").withCarb("789")
+                .withDate("3 Feb 1998").build();
+        gingerbread = new FoodBuilder().withName(new Name("Gingerbread"))
+                .withProtein("442").withFat("789").withCarb("987")
+                .withDate("5 May 1973").build();
+        hotPlate = new FoodBuilder().withName(new Name("Hot Plate")).withProtein("424")
+                .withFat("234").withCarb("234").build();
+        indomee = new FoodBuilder().withName(new Name("Indomee")).withProtein("131")
+                .withFat("234").withCarb("234").build();
+        apple = new FoodBuilder().withName(new Name("Apple")).withProtein("888")
+                .withFat("234").withCarb("234").build();
+        beans = new FoodBuilder().withName(new Name("beans")).withProtein("888")
+                .withFat("234").withCarb("234").build();
     }
 
     /**
