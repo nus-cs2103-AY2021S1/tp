@@ -195,9 +195,8 @@ public class SampleDataUtil {
             new Admin(new BidderId("B5"), new PropertyId("P6"),
                         new MeetingDate("19 OCT 2020"), new Venue("Bedok"),
                     new StartTime("14:00"), new EndTime("15:00")),
-
             new Viewing(new BidderId("B3"), new PropertyId("P4"),
-                        new Date("21 OCT 2020"), new Venue("Tampines"),
+                        new MeetingDate("21 OCT 2020"), new Venue("Tampines"),
                     new StartTime("16:00"), new EndTime("17:00"))
         };
     }
