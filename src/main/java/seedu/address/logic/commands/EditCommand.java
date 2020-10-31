@@ -86,11 +86,9 @@ public class EditCommand extends Command {
         activeAccount.setPreviousState();
         if (entryToEdit instanceof Expense) {
             activeAccount.setExpense((Expense) entryToEdit, (Expense) editedEntry);
-            activeAccount.updateFilteredExpenseList(ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES);
         } else {
             assert editedEntry instanceof Revenue;
             activeAccount.setRevenue((Revenue) entryToEdit, (Revenue) editedEntry);
-            activeAccount.updateFilteredRevenueList(ActiveAccount.PREDICATE_SHOW_ALL_REVENUE);
         }
 
         model.setAccount(activeAccount.getAccount());
