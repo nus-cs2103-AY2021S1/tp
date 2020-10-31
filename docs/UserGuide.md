@@ -24,7 +24,7 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 ## 2. A little note from the developers
 
-Thank you for using McGymmy. We sincerely hope that McGymmy plays apart to help you achieve a healthier lifestyle.
+Thank you for using McGymmy. We sincerely hope that McGymmy plays a part to help you achieve a healthier lifestyle.
 We understand that McGymmy may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
 Thus we recommend you to start by first understanding how McGymmy works at a high level at the Quick start section. Then, explore the Features section.
 
