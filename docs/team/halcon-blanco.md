@@ -74,4 +74,3 @@ Given below are my contributions to the project.
       [#187](https://github.com/AY2021S1-CS2103T-T17-3/tp/issues/187),
       [#188](https://github.com/AY2021S1-CS2103T-T17-3/tp/issues/188),
       [#189](https://github.com/AY2021S1-CS2103T-T17-3/tp/issues/189))
-      
