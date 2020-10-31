@@ -12,70 +12,16 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 class MacronutrientTest {
 
     private static Fat defaultFat1;
-
-    static {
-        try {
-            defaultFat1 = new Fat(1);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
     private static Fat defaultFat2;
-
-    static {
-        try {
-            defaultFat2 = new Fat(1);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
     private static Fat defaultFat3;
-
-    static {
-        try {
-            defaultFat3 = new Fat(2);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
     private static Protein defaultProtein1;
-
-    static {
-        try {
-            defaultProtein1 = new Protein(1);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
     private static Carbohydrate defaultCarbohydrate1;
-
-    static {
-        try {
-            defaultCarbohydrate1 = new Carbohydrate(1);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
     private static Macronutrient macronutrient1;
-
-    static {
-        try {
-            macronutrient1 = new MacronutrientStub(4, 9);
-        } catch (IllegalValueException e) {
-            assert false : "Error in food";
-        }
-    }
-
     private static Macronutrient macronutrient2;
 
     static {
         try {
-            macronutrient2 = new MacronutrientStub(9, 4);
+            initialiseVariables();
         } catch (IllegalValueException e) {
             assert false : "Error in food";
         }
@@ -86,6 +32,16 @@ class MacronutrientTest {
     private static final int CORRECT_FATS_MULTIPLIER = 9;
     private static final int INVALID_MULTIPLIER = 5;
     private static final int DEFAULT_AMOUNT = 10;
+
+    public static void initialiseVariables() throws IllegalValueException {
+        defaultFat1 = new Fat(1);
+        defaultFat2 = new Fat(1);
+        defaultFat3 = new Fat(2);
+        defaultProtein1 = new Protein(1);
+        defaultCarbohydrate1 = new Carbohydrate(1);
+        macronutrient1 = new MacronutrientStub(4, 9);
+        macronutrient2 = new MacronutrientStub(9, 4);
+    }
 
     @Test
     public void amount_lesserThanZero_throwIllegalValueException() {
