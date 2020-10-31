@@ -9,7 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindModuleCommand;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 public class FindModuleCommandParserTest {
 
@@ -17,7 +17,8 @@ public class FindModuleCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModuleCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FindModuleCommand.MESSAGE_USAGE));
     }
 
     @Test
