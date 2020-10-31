@@ -244,29 +244,43 @@ delete sn/<serial number> [sn/<serial number>]...
 delete sn/Fairprice1 sn/Ntuc1
 ```
 
-Below is a step by step for deleting a stock:<br>
-<h6>Step 1</h6>
+Below is a guided example for deleting stocks:<br>
 Before you start any deletion, make sure to use the command `list lt/all` to list all
-the stocks you have in Warenager.
-//step 1 here
+the stocks you have in Warenager. 
+![delete_step1](images/delete/delete_step1.png)
 
-Here, we noticed that `laptop` has been mistyped from stocks with No.5 to No.7
-//insert highlighted step 1 here
+Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
+A valid delete input would be `delete sn/courts2`.
 
-You can delete the stock with No.5 by using the stock's serial number. In this case,
-the correct delete input would be `delete sn/courts5`. The fields are **not** case-sensitive.
-//show input
+**Before input**:
 
-Notice that the entry from No.5 is deleted from the list. The details of the deletion is shown
-in the status box highlighted.
+![delete_step2](images/delete/delete_step2.png)
 
-What if you wish to delete multiple stocks at the same time? Lets do this for stocks No.6 and No.7.
-You can do so by chaining their serial numbers. In this case, the correct delete input would be
-`delete sn/courts6 sn/courts7`.
-//show input
 
-Notice both entries are deleted from the list. Both of their details of the deletion are shown
-in the status box highlighted.
+**After input**:
+
+![delete_step3](images/delete/delete_step3.png)
+
+Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
+and `COURTS4`. It can be done by chaining the serial numbers when deleting.<br>
+A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
+
+**Before input**:
+
+![delete_step4](images/delete/delete_step4.png)
+
+
+**After input**:
+
+![delete_step5](images/delete/delete_step5.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+Stocks that do not exist in Warenager cannot be deleted. Using the same input in the previous step,
+`delete sn/courts3 sn/courts`, you should expect the following:
+
+![delete_step6](images/delete/delete_step6.png)
+</div>
 
 
 ### Find stocks from inventory: `find`
@@ -547,17 +561,35 @@ stats st/<statistics type>
 <h4>Examples</h4>
 
 ```
-stats st/source
+stats st/source, stats st/source-qd-abc ("abc" is an existing source company)
 ```
 
-![SourceStatistics](images/SourceStatistics.png)
+Below is a guided example for displaying statistics:<br>
 
-```
-stats st/source-qd-abc
-```
-(`abc` exists with the shown items) <br>
+Start Warenager. Suppose you want to display source statistics.<br>
+The valid statistics input would be `stats st/source`.
 
-![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
+**Before input**:
+
+![statistics_step2](images/statistics/statistics_step2.png)
+
+
+**After input**:
+
+![statistics_step3](images/statistics/statistics_step3.png)
+
+Now suppose you want to display source statistics
+
+
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+If Warenager is first started up, you should expect the following in the **Statistics** tab:
+
+![statistics_step7](images/statistics/statistics_step7.png)
+</div>
+
+
 
 ### Bookmarking stocks in the list: `bookmark`
 Bookmarks the desired stock(s). 
