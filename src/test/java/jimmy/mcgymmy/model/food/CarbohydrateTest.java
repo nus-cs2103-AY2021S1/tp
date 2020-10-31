@@ -10,7 +10,7 @@ public class CarbohydrateTest {
 
 
     @Test
-    public void constructor_invalidCarbohydrate_throwsIllegalArgumentException() {
+    public void constructor_invalidCarbohydrate_throwsNumberFormatException() {
         String invalidCarb = "";
         assertThrows(NumberFormatException.class, () -> new Carbohydrate(Integer.parseInt(invalidCarb)));
     }

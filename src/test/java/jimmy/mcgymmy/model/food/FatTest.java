@@ -13,7 +13,7 @@ public class FatTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+    public void constructor_invalidEmail_throwsNumberFormatException() {
         String invalidFat = "12@123";
         assertThrows(NumberFormatException.class, () -> new Fat(Integer.parseInt(invalidFat)));
     }

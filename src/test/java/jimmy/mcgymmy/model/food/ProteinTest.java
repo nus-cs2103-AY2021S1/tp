@@ -13,9 +13,9 @@ public class ProteinTest {
     }
 
     @Test
-    public void constructor_invalidProtein_throwsIllegalArgumentException() {
+    public void constructor_invalidProtein_throwsNumberFormatException() {
         String invalidProtein = "";
-        assertThrows(IllegalArgumentException.class, () -> new Protein(invalidProtein));
+        assertThrows(NumberFormatException.class, () -> new Protein(invalidProtein));
     }
 
     @Test

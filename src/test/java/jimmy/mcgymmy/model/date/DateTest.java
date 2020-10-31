@@ -47,7 +47,7 @@ class DateTest {
     }
 
     @Test
-    void constructor_unsupportedFormat_throwsIllegalArgumentException() {
+    void constructor_unsupportedFormat_throwsIllegalValueException() {
         assertThrows(IllegalValueException.class, () -> new Date("31/13/2020"));
         assertThrows(IllegalValueException.class, () -> new Date("20/04/20"));
     }

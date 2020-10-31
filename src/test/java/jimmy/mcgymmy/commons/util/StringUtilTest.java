@@ -63,13 +63,13 @@ public class StringUtilTest {
     }
 
     @Test
-    public void containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+    public void containsWordIgnoreCase_emptyWord_throwsIllegalValueException() {
         assertThrows(IllegalValueException.class,
                 "Word parameter cannot be empty", () -> StringUtil.containsWordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
-    public void containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+    public void containsWordIgnoreCase_multipleWords_throwsIllegalValueException() {
         assertThrows(IllegalValueException.class,
                 "Word parameter should be a single word", () -> StringUtil.containsWordIgnoreCase(
                         "typical sentence", "aaa BBB"));

@@ -175,7 +175,7 @@ public class FoodTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructor_invalidName_throwsIllegalValueException() {
         assertThrows(IllegalValueException.class, () ->
                 new Food(new Name(INVALID_FOOD_NAME), protein, fat, carbohydrate));
     }

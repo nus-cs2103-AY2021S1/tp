@@ -16,7 +16,7 @@ public class TagTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
+    public void constructor_invalidTagName_throwsIllegalValueException() {
         String invalidTagName = "";
         assertThrows(IllegalValueException.class, () -> new Tag(invalidTagName));
     }

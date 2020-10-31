@@ -88,7 +88,7 @@ class MacronutrientTest {
     private static final int DEFAULT_AMOUNT = 10;
 
     @Test
-    public void amount_lesserThanZero_throwIllegalArgumentException() {
+    public void amount_lesserThanZero_throwIllegalValueException() {
         assertThrows(IllegalValueException.class, () ->
                 new MacronutrientStub(-1, 4));
     }
