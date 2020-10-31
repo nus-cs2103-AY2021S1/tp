@@ -31,8 +31,9 @@ public class LabelCommand extends Command {
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_LABEL_NAME + "notes "
             + PREFIX_LABEL_NAME + "CS2103T";
-    public static final String LABEL_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>"
-            + " " + PREFIX_LABEL_NAME + "<LABEL>";
+    public static final String LABEL_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "TAG_NAME"
+            + " " + PREFIX_LABEL_NAME + "LABEL1"
+            + " [" + PREFIX_LABEL_NAME + "LABEL2]...";
     public static final String MESSAGE_SUCCESS = "Tag successfully updated: %1$s!";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag: %s not found!"
             + " Please make sure that Tag is present before labeling.";

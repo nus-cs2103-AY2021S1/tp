@@ -22,7 +22,7 @@ public class UntagCommand extends Command {
             + ": Untags the tagged file identified by the unique tag used in the displayed Tag list.\n\n"
             + "Parameters: " + PREFIX_TAG_NAME + "TAG_NAME (Must be an existing tag)\n\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_TAG_NAME + "HelloFile.txt";
-    public static final String UNTAG_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
+    public static final String UNTAG_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "TAG_NAME";
     public static final String MESSAGE_UNTAG_TAG_SUCCESS = "Untagged Tag: %s";
     public static final String MESSAGE_TAG_NOT_FOUND = " %s tag not found!"
             + " Please make sure that the tag is present before untagging.";

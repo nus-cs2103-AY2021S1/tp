@@ -28,7 +28,7 @@ public class RetagCommand extends Command {
             + PREFIX_OLD_TAG_NAME + "my_files "
             + PREFIX_TAG_NAME + "my_old_files ";
     public static final String RETAG_COMMAND_USAGE = COMMAND_WORD + " "
-            + PREFIX_OLD_TAG_NAME + "<OLD_TAG_NAME> " + PREFIX_TAG_NAME + "<NEW_TAG_NAME>";
+            + PREFIX_OLD_TAG_NAME + "OLD_TAG_NAME " + PREFIX_TAG_NAME + "NEW_TAG_NAME";
     public static final String MESSAGE_RETAG_TAG_SUCCESS = "Retagged Tag: %s to Tag: %s";
     public static final String MESSAGE_OLD_TAG_NOT_FOUND = " %s tag not found!"
             + " Please make sure that the old tag is present before retagging.";
