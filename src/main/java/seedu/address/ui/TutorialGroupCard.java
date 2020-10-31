@@ -26,6 +26,8 @@ public class TutorialGroupCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label totalStudents;
+    @FXML
     private Label startTime;
     @FXML
     private Label endTime;
@@ -42,6 +44,7 @@ public class TutorialGroupCard extends UiPart<Region> {
         this.tutorialGroup = tutorialGroup;
         id.setText(displayedIndex + ". ");
         groupId.setText(tutorialGroup.getId().toString());
+        totalStudents.setText("Total Students: " + tutorialGroup.getTotalStudents());
         dayOfWeek.setText("Day: " + tutorialGroup.getDayOfWeek());
         startTime.setText("Start Time: " + tutorialGroup.getStartTime().toString().substring(0, 5));
         endTime.setText("End Time: " + tutorialGroup.getEndTime().toString().substring(0, 5));
