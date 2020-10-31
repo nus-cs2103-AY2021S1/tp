@@ -244,7 +244,7 @@ delete sn/<serial number> [sn/<serial number>]...
 delete sn/courts1 sn/courts2
 ```
 
-Below is a guided example for deleting stocks:<br>
+<h4>Below is a guided example for deleting stocks:</h4><br>
 Before you start any deletion, make sure to use the command `list lt/all` to list all
 the stocks you have in Warenager. 
 ![delete_step1](images/delete/delete_step1.png)
@@ -565,7 +565,7 @@ stats st/<statistics type>
 stats st/source, stats st/source-qd-abc ("abc" is an existing source company)
 ```
 
-Below is a guided example for displaying statistics:<br>
+<h4>Below is a guided example for displaying statistics:</h4><br>
 
 Start Warenager. Suppose you want to display source statistics. After the input, you should notice that
 the title in the statistics window as highlighted corresponds to the type of statistics shown.<br>
@@ -595,6 +595,7 @@ The valid statistics input would be `stats st/source-qd-courts`.
 
 <div markdown="block" class="alert alert-warning" markdown="1">
 
+**:warning:**
 If Warenager is first started up, you should expect the following in the **Statistics** tab,
 and this is intended:
 
@@ -781,7 +782,7 @@ clear
 
 </div>
 
-Below is the expected outcome for clearing Warenager:<br>
+<h4>Below is the expected outcome for clearing Warenager:</h4><br>
 
 **Before input**:
 
