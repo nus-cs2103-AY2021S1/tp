@@ -57,7 +57,7 @@
                 <padding>
                   <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
-                <Label styleClass="label-header">Exercise Logs</Label>
+                <Label styleClass="label-header">Logs</Label>
                 <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                   <padding>
                     <Insets top="20" right="10" bottom="10" left="10" />
@@ -75,7 +75,7 @@
                 <padding>
                   <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
-                <Label styleClass="label-header">Exercises List</Label>
+                <Label styleClass="label-header">Exercises</Label>
                 <VBox VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                   <padding>
                     <Insets top="20" right="10" bottom="10" left="10" />
