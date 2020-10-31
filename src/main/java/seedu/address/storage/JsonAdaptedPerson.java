@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -17,17 +18,17 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
-    private final String tagged;
+    private final String tag;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("tagged") String tagged) {
+            @JsonProperty("tag") String tag) {
         this.name = name;
         this.phone = phone;
-        this.tagged = tagged;
+        this.tag = tag;
     }
 
     /**
@@ -36,7 +37,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        tagged = source.getTag().tagName;
+        tag = source.getTag().tagName;
     }
 
     /**
@@ -62,7 +63,15 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        return new Person(modelName, modelPhone, null);
+        if (tag == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+        }
+        if (!Tag.isValidTagName(tag)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        final Tag modelTag = new Tag(tag);
+
+        return new Person(modelName, modelPhone, modelTag);
     }
 
 }

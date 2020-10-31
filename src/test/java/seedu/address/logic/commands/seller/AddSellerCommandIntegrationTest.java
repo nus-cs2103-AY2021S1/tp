@@ -31,7 +31,7 @@ public class AddSellerCommandIntegrationTest {
 
     @Test
     public void execute_newSeller_success() {
-        Seller validSeller = new SellerBuilder().build().setSellerTag();
+        Seller validSeller = new SellerBuilder().build();
 
         Model expectedModel = new ModelManager(
                 model.getAddressBook(),

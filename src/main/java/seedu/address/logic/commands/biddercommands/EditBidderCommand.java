@@ -167,7 +167,7 @@ public class EditBidderCommand extends Command {
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Tag> getTag() {
-            return Optional.of(tag);
+            return Optional.ofNullable(tag);
         }
 
         public void setBidderId(BidderId id) {

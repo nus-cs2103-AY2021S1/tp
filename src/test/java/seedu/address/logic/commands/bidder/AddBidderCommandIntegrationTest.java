@@ -45,7 +45,7 @@ public class AddBidderCommandIntegrationTest {
 
         expectedModel.addBidder(validBidder);
 
-        assertBidderCommandSuccess(new AddBidderCommand(validBidder.setDefaultBidderId()), model,
+        assertBidderCommandSuccess(new AddBidderCommand(validBidder), model,
                 String.format(AddBidderCommand.MESSAGE_SUCCESS, validBidder), expectedModel);
     }
 

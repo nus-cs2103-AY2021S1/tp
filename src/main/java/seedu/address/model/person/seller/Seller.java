@@ -69,8 +69,7 @@ public class Seller extends ClientPerson {
         Seller otherSeller = (Seller) other;
         return otherSeller.getName().equals(getName())
                 && otherSeller.getPhone().equals(getPhone())
-                && otherSeller.getTag().equals(getTag())
-                && otherSeller.getId().equals(getId());
+                && otherSeller.getTag().equals(getTag());
     }
 
 }

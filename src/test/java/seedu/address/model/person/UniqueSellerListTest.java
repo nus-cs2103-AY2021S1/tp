@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.seller.TypicalSeller.ALICE;
 import static seedu.address.testutil.seller.TypicalSeller.BOB;
@@ -43,8 +42,7 @@ public class UniqueSellerListTest {
     @Test
     public void contains_bidderWithSameIdentityFieldsInList_returnsTrue() {
         uniqueSellerList.add(ALICE);
-        Seller editedAlice = new SellerBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Seller editedAlice = new SellerBuilder(ALICE).build();
         assertTrue(uniqueSellerList.contains(editedAlice));
     }
 
@@ -86,8 +84,7 @@ public class UniqueSellerListTest {
     @Test
     public void setSeller_editedPersonHasSameIdentity_success() {
         uniqueSellerList.add(ALICE);
-        Seller editedAlice = new SellerBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Seller editedAlice = new SellerBuilder(ALICE).build();
         uniqueSellerList.setSeller(ALICE, editedAlice);
         UniqueSellerList expectedUniqueSellerList = new UniqueSellerList();
         expectedUniqueSellerList.add(editedAlice);

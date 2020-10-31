@@ -159,7 +159,7 @@ public class EditSellerCommand extends Command {
         }
 
         public Optional<Tag> getTag() {
-            return Optional.of(tag);
+            return Optional.ofNullable(tag);
         }
 
         public void setId(SellerId id) {
