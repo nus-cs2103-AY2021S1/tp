@@ -92,6 +92,7 @@ Here are some examples of names that are valid and invalid:
 | #asdf  | <b>yes</b> |
 | #1a    | <b>yes</b> |
 | #1 abc | <b>yes</b> |
+| #12 34 | <b>yes</b> |
 
 
 

@@ -16,7 +16,6 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.logic.parser.CommandArguments;
-import chopchop.logic.parser.ItemReference;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.AddRecipeCommand;
 import chopchop.logic.commands.AddIngredientCommand;
