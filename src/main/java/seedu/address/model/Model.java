@@ -65,6 +65,8 @@ public interface Model {
 
     void setViewToModule();
 
+    void setCurrentViewToModule();
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in trackr.
      */
@@ -101,6 +103,8 @@ public interface Model {
      */
     void setViewToTutorialGroup(Module target);
 
+    void setCurrentViewToTutorialGroup();
+
     /**
      * Adds the given module.
      * {@code module} must not already exist in trackr.
@@ -121,6 +125,8 @@ public interface Model {
      * @param target
      */
     void setViewToStudent(TutorialGroup target);
+
+    void setCurrentViewToStudent();
 
     TutorialGroup getCurrentTgInView();
 
