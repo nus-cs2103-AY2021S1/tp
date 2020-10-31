@@ -2,14 +2,15 @@ package seedu.address.logic.commands.project;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 
@@ -51,7 +52,6 @@ public class AddTeammateParticipationCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-//        model.addPerson(toAdd);
         toAdd.addProject(project);
         project.addParticipation(toAdd);
         model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));

@@ -14,6 +14,10 @@ import seedu.address.model.person.GitUserName;
 public class GitUserIndex {
     private String uniqueGitUserIndex;
 
+    /**
+     * Constructor for GitUserIndex
+     * @param uniqueGitUserIndex taken in as a string
+     */
     public GitUserIndex(String uniqueGitUserIndex) {
         if (isValidGitUserIndex(uniqueGitUserIndex)) {
             this.uniqueGitUserIndex = uniqueGitUserIndex;
