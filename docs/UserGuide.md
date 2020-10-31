@@ -30,7 +30,7 @@ Thus we recommend you to start by first understanding how McGymmy works at a hig
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:** Press Ctrl-F to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
+:bulb: **Tip:** Press `Ctrl-F` for Windows and Other OSs and `CMD + F` for Mac OS to open the find prompt in your browser. You can type in keywords such as `add` or `edit` to quickly navigate to those parts of the document.
 
 </div>
 
@@ -81,7 +81,7 @@ Each of the commands explained below will have an image which shows the output.
 ![Usage](images/CommandImagesForUG/Usage.png)
 
 If you are just looking for a particular command:
-1. Press `ctrl-f` 
+1. Press `Ctrl-F` for Windows and other operating systems, `CMD + F` for Mac OS.
 1. Search for the command in the search bar.
 
 If you want a table with all the commands:
