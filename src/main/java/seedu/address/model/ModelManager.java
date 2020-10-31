@@ -147,6 +147,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ReadOnlyModuleList getModuleListDisplayed() {
+        return moduleListDisplay;
+    }
+
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return moduleList.hasModule(module);
@@ -623,5 +628,27 @@ public class ModelManager implements Model {
     // TODO: Yet to be implemented
     //@Override
     //public void commitEventList() {}
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return moduleList.equals(other.moduleList)
+                && contactList.equals(other.contactList)
+                && todoList.equals(other.todoList)
+                && eventList.equals(other.eventList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredModules.equals(other.filteredModules);
+    }
 
 }

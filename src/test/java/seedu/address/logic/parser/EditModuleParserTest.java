@@ -1,11 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADEPOINT_4;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_4;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -89,7 +86,7 @@ public class EditModuleParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660)
-                .withZoomLink(VALID_ZOOMLINK_ES2660).build();
+                .withZoomLinks(VALID_ZOOMLINKS_ES2660).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_NAME, expectedCommand);
     }

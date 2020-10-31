@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,6 +16,7 @@ import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 
 
@@ -50,11 +52,14 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
 
-    public static final String VALID_MODULELESSONTYPE_CS2103T = "Lecture";
+    public static final String VALID_MODULELESSONTYPE = "Lecture";
     public static final String VALID_MODULELESSONTYPE_ES2660 = "Tutorial";
-    public static final String VALID_ZOOMLINK_CS2030 = "https://nus-sg.zoom.us/cs2030";
-    public static final String VALID_ZOOMLINK_CS2103T = "https://nus-sg.zoom.us/cs2103t";
-    public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/es2660";
+    public static final String VALID_ZOOMLINK_CS2030 = "https://nus-sg.zoom.us/CS2030";
+    public static final String VALID_ZOOMLINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
+    public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/ES2660";
+    public static final HashMap<String, ZoomLink> VALID_ZOOMLINKS_CS2030 = new HashMap<>();
+    public static final HashMap<String, ZoomLink> VALID_ZOOMLINKS_CS2103T = new HashMap<>();
+    public static final HashMap<String, ZoomLink> VALID_ZOOMLINKS_ES2660 = new HashMap<>();
 
     public static final double VALID_MC_4 = 4.0;
     public static final double VALID_MC_2 = 2.0;
@@ -78,17 +83,14 @@ public class CommandTestUtil {
     //public static final EditCommand.EditModuleDescriptor DESC_BOB;
 
     static {
-        //DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-        //        .withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND)
-        //        .build();
-        //DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-        //       .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-        //       .build();
+        VALID_ZOOMLINKS_CS2030.put((VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2030));
+        VALID_ZOOMLINKS_CS2103T.put(VALID_MODULELESSONTYPE, new ZoomLink(VALID_ZOOMLINK_CS2103T));
+        VALID_ZOOMLINKS_ES2660.put(VALID_MODULELESSONTYPE, new ZoomLink(VALID_ZOOMLINK_ES2660));
         DESC_CS2030 = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2030)
-                .withZoomLink(VALID_ZOOMLINK_CS2030).withTags(VALID_TAG_CORE_MODULE)
+                .withZoomLinks(VALID_ZOOMLINKS_CS2030).withTags(VALID_TAG_CORE_MODULE)
                 .build();
         DESC_CS2103T = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2103T)
-                .withZoomLink(VALID_ZOOMLINK_CS2103T).withTags(VALID_TAG_CORE_MODULE)
+                .withZoomLinks(VALID_ZOOMLINKS_CS2103T).withTags(VALID_TAG_CORE_MODULE)
                 .build();
     }
 

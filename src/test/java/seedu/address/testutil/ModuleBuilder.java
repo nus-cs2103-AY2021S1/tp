@@ -20,9 +20,8 @@ public class ModuleBuilder {
 
     public static final String DEFAULT_MODULENAME = "CS2103T";
     public static final String DEFAULT_MODULELESSONTYPE = "tutorial";
-    public static final String DEFAULT_ZOOMLINK = "www.zoom.us";
+    public static final String DEFAULT_ZOOMLINK = "https://nus-sg.zoom.us/defaultlink";
     public static final double DEFAULT_MODULARCREDITS = 4.0;
-    public static final String DEFAULT_TAGS = "";
 
     private ModuleName moduleName;
     private Map<String, ZoomLink> zoomLinkMap;
@@ -45,6 +44,10 @@ public class ModuleBuilder {
      */
     public ModuleBuilder(Module moduleToCopy) {
         moduleName = moduleToCopy.getName();
+        zoomLinkMap = new HashMap<>(moduleToCopy.getAllLinks());
+        modularCredits = moduleToCopy.getModularCredits();
+        gradeTracker = moduleToCopy.getGradeTracker();
+        tags = new HashSet<>(moduleToCopy.getTags());
     }
 
     /**
@@ -64,11 +67,13 @@ public class ModuleBuilder {
     }
 
     /**
-     * Adds the {@code ZoomLink} to the {@code Module} that we are building.
+     * Sets the {@code ZoomLinks} of the {@code Module} that we are building.
      */
     public ModuleBuilder withZoomLink(String moduleLessonType, String zoomLink) {
-        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinkMap);
+        //Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinkMap);
+        Map<String, ZoomLink> updatedLinks = new HashMap<>();
         updatedLinks.put(moduleLessonType, new ZoomLink(zoomLink));
+        this.zoomLinkMap = updatedLinks;
         return this;
     }
 

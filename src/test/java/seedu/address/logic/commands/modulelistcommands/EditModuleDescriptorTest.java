@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2103T;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +38,7 @@ public class EditModuleDescriptorTest {
 
         // different zoom link -> returns false
         editedCS2030 = new EditModuleDescriptorBuilder(DESC_CS2030)
-                .withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+                .withZoomLinks(VALID_ZOOMLINKS_CS2103T).build();
         assertFalse(DESC_CS2030.equals(editedCS2030));
 
         // different tags -> returns false
