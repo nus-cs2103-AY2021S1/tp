@@ -23,7 +23,7 @@ public class Module {
     private final ModularCredits modularCredits;
 
     // Data fields
-    public final Map<ModuleLesson, ZoomLink> zoomLinks = new HashMap<>();
+    private final Map<ModuleLesson, ZoomLink> zoomLinks = new HashMap<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
