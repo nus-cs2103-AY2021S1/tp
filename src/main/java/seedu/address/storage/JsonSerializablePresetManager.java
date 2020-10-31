@@ -30,7 +30,7 @@ public class JsonSerializablePresetManager {
     /**
      * Converts a given {@code ReadOnlyOrderManager} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableOrderManager}.
+     * @param allPresets future changes to this will not affect the created {@code JsonSerializableOrderManager}.
      */
     public JsonSerializablePresetManager(List<List<Preset>> allPresets, boolean bool) {
         if (!bool) {

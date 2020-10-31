@@ -1,18 +1,19 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.preset.Preset;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class PresetBuilder {
 
     public static final String DEFAULT_NAME = "Default Preset";
     public static final List<OrderItem> TYPICAL_ORDER_ITEMS = TypicalOrderItems.getTypicalOrderItems();
 
-    public String name;
-    public List<OrderItem> orderItems;
+    private String name;
+    private List<OrderItem> orderItems;
 
     /**
      * Creates a {@code PresetBuilder} with the default details.

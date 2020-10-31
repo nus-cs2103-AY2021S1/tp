@@ -1,0 +1,34 @@
+{
+  "presets" : [ [ {
+    "name" : "preset1",
+    "orderItems" : [ {
+      "name" : "Milo",
+      "price" : 0.9,
+      "tagged" : [ ],
+      "quantity" : 1
+    }, {
+      "name" : "Fries",
+      "price" : 1.5,
+      "tagged" : [ ],
+      "quantity" : 3
+    }, {
+      "name" : "Lemonade",
+      "price" : 2.0,
+      "tagged" : [ ],
+      "quantity" : 2
+    } ]
+  }, {
+    "name" : "preset2",
+    "orderItems" : [ {
+      "name" : "Milo",
+      "price" : 0.9,
+      "tagged" : [ ],
+      "quantity" : 6
+    }, {
+      "name" : "Fries",
+      "price" : 1.5,
+      "tagged" : [ ],
+      "quantity" : 3
+    } ]
+  } ] ]
+}

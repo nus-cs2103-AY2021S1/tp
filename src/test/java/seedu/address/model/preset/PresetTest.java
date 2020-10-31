@@ -6,6 +6,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalOrderItems.CHEESE_PRATA;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.testutil.OrderItemBuilder;
@@ -14,6 +15,7 @@ import seedu.address.testutil.PresetBuilder;
 public class PresetTest {
 
     private final Preset preset = new PresetBuilder().build();
+
     @Test
     public void contains_nullFood_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> preset.contains(null));
@@ -36,6 +38,12 @@ public class PresetTest {
         preset.addOrderItem(CHEESE_PRATA);
         OrderItem editedCheesePrata = new OrderItemBuilder(CHEESE_PRATA).build();
         assertTrue(preset.contains(editedCheesePrata));
+    }
+
+    @Test
+    public void addOrderItem_duplicateOrderItem_throwsException() throws IllegalValueException {
+        preset.addOrderItem(CHEESE_PRATA);
+        assertThrows(IllegalValueException.class, () -> preset.addOrderItem(CHEESE_PRATA));
     }
 
     @Test

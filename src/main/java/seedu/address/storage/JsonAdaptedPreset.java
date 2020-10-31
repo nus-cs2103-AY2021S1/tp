@@ -1,9 +1,7 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,10 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.preset.Preset;
-import seedu.address.model.tag.Tag;
-
-import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
-import static seedu.address.storage.JsonAdaptedOrderItem.MISSING_FIELD_MESSAGE_FORMAT;
 
 public class JsonAdaptedPreset {
 
@@ -56,13 +50,6 @@ public class JsonAdaptedPreset {
     }
 
     /**
-     * Appends all of a given {@code orderItems} into the orderItems in this class
-     */
-    public void addAllOrderItems(List<JsonAdaptedOrderItem> orderItems) {
-        this.orderItems.addAll(orderItems);
-    }
-
-    /**
      * Converts this Jackson-friendly adapted orderItem object into the model's {@code OrderItem} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted orderItem.
@@ -85,6 +72,6 @@ public class JsonAdaptedPreset {
             }
             return null;
         }).collect(Collectors.toList());
-        return new Preset(name,  newOrderItems);
+        return new Preset(name, newOrderItems);
     }
 }
