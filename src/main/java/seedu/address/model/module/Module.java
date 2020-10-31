@@ -194,27 +194,27 @@ public class Module {
     }
 
     /**
-     * Adds the zoom link for this module.
+     * Adds the zoom link to this module for a specific lesson.
      *
-     * @param key name to indicate the zoom link
-     * @param link zoom link
-     * @return module containing the updated zoom links
+     * @param lesson Module lesson which the zoom link belongs to.
+     * @param link Zoom link.
+     * @return Module containing the updated zoom links.
      */
-    public Module addZoomLink(String key, ZoomLink link) {
+    public Module addZoomLink(ModuleLesson lesson, ZoomLink link) {
         Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
-        updatedLinks.put(key, link);
+        // updatedLinks.put(lesson, link);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
     /**
      * Deletes the zoom link based on the specified key.
      *
-     * @param key name of the zoom link to be deleted
+     * @param lesson Module lesson which the zoom link to be deleted belongs to.
      * @return module containing the updated zoom links
      */
-    public Module deleteZoomLink(String key) {
+    public Module deleteZoomLink(ModuleLesson lesson) {
         Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
-        updatedLinks.remove(key);
+        // updatedLinks.remove(key);
         return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
