@@ -156,7 +156,7 @@ __Result:__ updated corresponding finance record with a total cost of `20000`.
 
 #### 5.1.4. Find record in inventory: `find_inventory`
 
-Edits the item name, quantity or unit cost of the specified record in the inventory list.
+Searches and lists all inventory records that contain the keyword in the item name.
 
 __Format:__ `find_inventory KEYWORD`
 
