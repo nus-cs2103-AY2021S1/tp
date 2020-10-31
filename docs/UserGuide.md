@@ -254,8 +254,8 @@ Format: `delete-student <index>`
 
 Examples:
 
-- `list` followed by `delete-student 2` deletes the 2nd student in ResiReg.
-- `find-students Betsy` followed by `delete-student 1` deletes the 1st student in the results of the `find` command.
+- `students` followed by `delete-student 2` deletes the 2nd student in ResiReg.
+- `students n/Roy` followed by `delete-student 1` deletes the 1st student (if any) in the results of the `students` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you delete a student erroneously, you should undo the command immediately. However, if you deleted the student a while ago, and wish to restore it, then you should use the restore command (see below).
