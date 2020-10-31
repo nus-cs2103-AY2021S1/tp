@@ -21,6 +21,7 @@ import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
+import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -105,6 +106,13 @@ public class StockBookParser {
         case StatisticsCommand.COMMAND_WORD:
             try {
                 return new StatisticsCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case TabCommand.COMMAND_WORD:
+            try {
+                return new TabCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }

@@ -1,17 +1,17 @@
 package seedu.stock.logic.commands;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_SOURCE_COMPANY_NOT_FOUND;
+import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData
+        .generateSourceQuantityDistributionStatisticsData;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.collections.ObservableList;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.model.Model;
-import seedu.stock.model.stock.Stock;
+
 
 public class SourceQuantityDistributionStatisticsCommand extends StatisticsCommand {
 
@@ -35,14 +35,7 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
 
     @Override
     public CommandResult execute(Model model) throws SourceCompanyNotFoundException {
-        ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
-        Map<String, Integer> nameQuantityTable = new HashMap<>();
-        stockBookList.forEach(stock -> {
-            String sourceString = stock.getSource().value;
-            if (sourceString.equals(targetSource)) {
-                nameQuantityTable.put(stock.getName().fullName, Integer.parseInt(stock.getQuantity().quantity));
-            }
-        });
+        Map<String, Integer> nameQuantityTable = generateSourceQuantityDistributionStatisticsData(model, targetSource);
 
         if (nameQuantityTable.size() == 0) {
             logger.log(Level.WARNING, "Valid input but source company not found.");
@@ -53,7 +46,7 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
         String[] otherStatisticsDetails = {"source-qd-", targetSource};
         logger.log(Level.INFO, "Valid input with found source company.");
         return new CommandResult(MESSAGE_SUCCESS, nameQuantityTable, false,
-                false, null, true, otherStatisticsDetails, false);
+                false, null, true, otherStatisticsDetails, false, false);
     }
 
     public String getTargetSource() {
