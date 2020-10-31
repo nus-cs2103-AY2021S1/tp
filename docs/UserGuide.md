@@ -9,7 +9,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 - [Quick Start](#quick-start "Go to Quick Start")
     - [Installation](#installation "Go to Installation")
     - [Usage](#usage "Go to Usage")
-- [GUI](#gui "Go to GUI")
+- [UI](#ui "Go to UI")
 - [Commands](#commands "Go to Commands")
     - [Adding a student: `add`](#adding-a-student-add "Go to Adding a student")
     - [Listing all students: `list`](#listing-all-students-list "Go to Listing all students")
@@ -46,7 +46,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 3. Mark your students' attendance and award them class participation marks with the `mark` and `score` commands respectively.
     * Note that you will not be allowed to use these commands outside of a session.
 
-## GUI
+## UI
 ![Ui](images/UiShowcase.png)
 
 ### Accessing the student lists
@@ -217,7 +217,7 @@ score all cp/10
 ```
 
 ### Clearing all entries: `clear`
-Clears all data from TAskmaster.
+Clears all saved data in taskmaster (both students and sessions).
 ```
 clear
 ```
@@ -236,6 +236,8 @@ exit
 |-------------------|---------------------------------------------------------------------------------------------------------------|
 | Add student       | ```add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add n/John Tan u/johntan98```<br>```e/johntan98@gmail.com i/e0012345 t/tardy```  |
 | List students     | ```list```                                                                                               |
+| Find students     | ```find KEYWORD [MORE_KEYWORDS]``` <br> e.g., ```find alex david```                                      |
+| Edit student      | ```edit INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...```<br> e.g., ```edit 1 u/johntan98 e/johntan98@gmail.com```                                                           |
 | Delete student    | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
 | Add session       | ```session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 9```
