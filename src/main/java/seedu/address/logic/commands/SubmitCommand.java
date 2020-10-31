@@ -29,15 +29,21 @@ public class SubmitCommand extends Command {
         for (OrderItem orderItem: order) {
             text.append(String.format("%s x %d\n", orderItem.getName(), orderItem.getQuantity()));
         }
-        text.append(String.format("Estimated total: $%.2f", order.getTotal()));
+        boolean copySuccess = true;
         try {
             StringSelection stringSelection = new StringSelection(text.toString());
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, null);
         } catch (HeadlessException e) {
+            copySuccess = false;
             e.printStackTrace();
         }
-
+        text.append(String.format("Estimated total: $%.2f\n", order.getTotal()));
+        if (copySuccess) {
+            text.append("Successfully copied to clipboard!");
+        } else {
+            text.append("Failure to copy to clipboard");
+        }
         return new CommandResult(text.toString());
     }
 }
