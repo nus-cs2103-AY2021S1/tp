@@ -29,8 +29,8 @@ public class AddZoomLinkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a zoom link for a specific lesson to the module. "
             + "Parameters: " + "INDEX (must be a positive integer) "
-            + PREFIX_NAME + "MODULE LESSON TYPE"
-            + PREFIX_ZOOM_LINK + "ZOOM LINK "
+            + PREFIX_NAME + "MODULE_LESSON "
+            + PREFIX_ZOOM_LINK + "ZOOM_LINK "
             + "Example: " + COMMAND_WORD + " "
             + "1 " + PREFIX_NAME + "lecture "
             + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
