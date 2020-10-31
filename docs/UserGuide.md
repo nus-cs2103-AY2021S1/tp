@@ -147,13 +147,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long.
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal to add must not already exist in your `ZooKeep` book.
 
-* `FEED_TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
 </div>
 
 Examples:
@@ -185,9 +185,9 @@ Format: `delete ID`
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long.
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal to delete must exist in your `ZooKeep` book.
 </div>
@@ -257,13 +257,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long.
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal must exist in your `ZooKeep` book.
 
-* `FEED_TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
 </div>
 
 Examples:
@@ -301,13 +301,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long.
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal must exist in your `ZooKeep` book.
 
-* `FEED_TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
 </div>
 
 Examples:
