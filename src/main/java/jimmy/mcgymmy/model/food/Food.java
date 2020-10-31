@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import jimmy.mcgymmy.commons.core.LogsCenter;
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 import jimmy.mcgymmy.model.date.Date;
@@ -38,7 +39,8 @@ public class Food {
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags, Date date) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags, Date date) throws
+            IllegalValueException {
         CollectionUtil.requireAllNonNull(name, protein, carbs, fat, date);
         AppUtil.checkArgument(isValidName(name.toString()), FOOD_NAME_MESSAGE_CONSTRAINT);
         this.name = name;
@@ -68,28 +70,28 @@ public class Food {
      * A Constructor made for convenience
      */
 
-    public Food(String name, int proteinAmount, int fatAmount, int carbsAmount) {
+    public Food(String name, int proteinAmount, int fatAmount, int carbsAmount) throws IllegalValueException {
         this(new Name(name), new Protein(proteinAmount), new Fat(fatAmount), new Carbohydrate(carbsAmount));
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs) throws IllegalValueException {
         this(name, protein, fat, carbs, new HashSet<Tag>());
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Date date) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Date date) throws IllegalValueException {
         this(name, protein, fat, carbs, new HashSet<Tag>(), date);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) {
+    public Food(Name name, Protein protein, Fat fat, Carbohydrate carbs, Set<Tag> tags) throws IllegalValueException {
         this(name, protein, fat, carbs, tags, Date.currentDate());
     }
 
@@ -130,7 +132,7 @@ public class Food {
      * Adds a new tag to food
      * @return A new Food with the tag
      */
-    public Food addTag(Tag tag) {
+    public Food addTag(Tag tag) throws IllegalValueException {
         Set<Tag> newTags = new HashSet<>(tags);
         newTags.add(tag);
         return new Food(name, protein, fat, carbs, newTags, date);
@@ -140,7 +142,7 @@ public class Food {
      * Removes a tag from food
      * @return A new Food without the tag
      */
-    public Food removeTag(Tag tag) {
+    public Food removeTag(Tag tag) throws IllegalValueException {
         Set<Tag> newTags = new HashSet<>(tags);
         newTags.remove(tag);
         return new Food(name, protein, fat, carbs, newTags, date);

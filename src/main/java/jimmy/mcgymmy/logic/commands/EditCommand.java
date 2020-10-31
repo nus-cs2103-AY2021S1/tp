@@ -7,6 +7,7 @@ import java.util.Set;
 
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
@@ -86,7 +87,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, IllegalValueException {
         requireNonNull(model);
         List<Food> lastShownList = model.getFilteredFoodList();
         Index index = indexParameter.consume();

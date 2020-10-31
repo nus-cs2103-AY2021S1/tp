@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 
@@ -39,28 +40,28 @@ class FoodContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameFoundTagNotFound_returnsTrue() {
+    public void test_nameFoundTagNotFound_returnsTrue() throws IllegalValueException {
         FoodContainsKeywordsPredicate predicate =
                 new FoodContainsKeywordsPredicate(Arrays.asList("Chicken", "Dinner"));
         assertTrue(predicate.test(new FoodBuilder().withName(new Name("Chicken McWing")).withTags("Lunch").build()));
     }
 
     @Test
-    public void test_nameFoundTagFound_returnsTrue() {
+    public void test_nameFoundTagFound_returnsTrue() throws IllegalValueException {
         FoodContainsKeywordsPredicate predicate =
                 new FoodContainsKeywordsPredicate(Arrays.asList("Chicken", "Dinner"));
         assertTrue(predicate.test(new FoodBuilder().withName(new Name("Chicken McWing")).withTags("Dinner").build()));
     }
 
     @Test
-    public void test_nameNotFoundTagFound_returnsTrue() {
+    public void test_nameNotFoundTagFound_returnsTrue() throws IllegalValueException {
         FoodContainsKeywordsPredicate predicate =
                 new FoodContainsKeywordsPredicate(Arrays.asList("Chicken", "Dinner"));
         assertTrue(predicate.test(new FoodBuilder().withName(new Name("Big Mac")).withTags("Dinner").build()));
     }
 
     @Test
-    public void test_nameNotFoundTagNotFound_returnsFalse() {
+    public void test_nameNotFoundTagNotFound_returnsFalse() throws IllegalValueException {
         FoodContainsKeywordsPredicate predicate =
                 new FoodContainsKeywordsPredicate(Arrays.asList("Chicken", "Lunch"));
         assertFalse(predicate.test(new FoodBuilder().withName(new Name("Big Mac")).withTags("Dinner").build()));

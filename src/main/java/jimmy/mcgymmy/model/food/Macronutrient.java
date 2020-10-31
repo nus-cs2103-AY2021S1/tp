@@ -1,5 +1,6 @@
 package jimmy.mcgymmy.model.food;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
@@ -17,7 +18,7 @@ public abstract class Macronutrient {
      * @param amount            The amount of the macronutrient
      * @param caloricMultiplier This value varies for each macronutrient type
      */
-    public Macronutrient(int amount, int caloricMultiplier) {
+    public Macronutrient(int amount, int caloricMultiplier) throws IllegalValueException {
         CollectionUtil.requireAllNonNull(amount, caloricMultiplier);
 
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault

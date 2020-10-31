@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -46,6 +47,8 @@ public class MacroRunner {
                 messagesToUser.add(result.getFeedbackToUser());
             }
             return new CommandResult(String.join("\n", messagesToUser));
+        } catch (IllegalValueException e) {
+            throw new CommandException(e.getMessage());
         } catch (CommandException e) {
             /* note: not factoring out code below because its only used here and its
                purpose/what it's doing is obvious, and factoring it out will be very messy. */

@@ -7,15 +7,80 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
+
 class MacronutrientTest {
 
-    private static final Fat DEFAULT_FAT_1 = new Fat(1);
-    private static final Fat DEFAULT_FAT_2 = new Fat(1);
-    private static final Fat DEFAULT_FAT_3 = new Fat(2);
-    private static final Protein DEFAULT_PROTEIN_1 = new Protein(1);
-    private static final Carbohydrate DEFAULT_CARBOHYDRATE_1 = new Carbohydrate(1);
-    private static final Macronutrient MACRONUTRIENT_1 = new MacronutrientStub(4, 9);
-    private static final Macronutrient MACRONUTRIENT_2 = new MacronutrientStub(9, 4);
+    private static Fat defaultFat1;
+
+    static {
+        try {
+            defaultFat1 = new Fat(1);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
+    private static Fat defaultFat2;
+
+    static {
+        try {
+            defaultFat2 = new Fat(1);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
+    private static Fat defaultFat3;
+
+    static {
+        try {
+            defaultFat3 = new Fat(2);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
+    private static Protein defaultProtein1;
+
+    static {
+        try {
+            defaultProtein1 = new Protein(1);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
+    private static Carbohydrate defaultCarbohydrate1;
+
+    static {
+        try {
+            defaultCarbohydrate1 = new Carbohydrate(1);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
+    private static Macronutrient macronutrient1;
+
+    static {
+        try {
+            macronutrient1 = new MacronutrientStub(4, 9);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
+    private static Macronutrient macronutrient2;
+
+    static {
+        try {
+            macronutrient2 = new MacronutrientStub(9, 4);
+        } catch (IllegalValueException e) {
+            assert false : "Error in food";
+        }
+    }
+
     private static final int CORRECT_CARBOHYDRATE_MULTIPLIER = 4;
     private static final int CORRECT_PROTEIN_MULTIPLIER = 4;
     private static final int CORRECT_FATS_MULTIPLIER = 9;
@@ -24,43 +89,43 @@ class MacronutrientTest {
 
     @Test
     public void amount_lesserThanZero_throwIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalValueException.class, () ->
                 new MacronutrientStub(-1, 4));
     }
 
     @Test
     public void equals() {
         // identical -> return true
-        assertTrue(DEFAULT_FAT_1.equals(DEFAULT_FAT_1)); // identical
+        assertTrue(defaultFat1.equals(defaultFat1)); // identical
 
         // same type same amount -> return true
-        assertTrue(DEFAULT_FAT_1.equals(DEFAULT_FAT_2)); // same type same amount
+        assertTrue(defaultFat1.equals(defaultFat2)); // same type same amount
 
         // same type different amount -> return false
-        assertFalse(DEFAULT_FAT_1.equals(DEFAULT_FAT_3));
+        assertFalse(defaultFat1.equals(defaultFat3));
 
         // different type -> return false
-        assertFalse(DEFAULT_FAT_1.equals(DEFAULT_PROTEIN_1));
+        assertFalse(defaultFat1.equals(defaultProtein1));
 
         // not instanceof Macronutrient -> return false
-        assertFalse(DEFAULT_FAT_1.equals("dummy string object"));
+        assertFalse(defaultFat1.equals("dummy string object"));
 
         // same type, same totalCalories, different amount -> return false
-        assertFalse(MACRONUTRIENT_1.equals(MACRONUTRIENT_2));
+        assertFalse(macronutrient1.equals(macronutrient2));
     }
 
     @Test
-    public void getTotalCalories() {
+    public void getTotalCalories() throws IllegalValueException {
         assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CORRECT_CARBOHYDRATE_MULTIPLIER).getTotalCalories(), 40);
     }
 
     @Test
-    public void getCaloricMultiplierReturnsCorrectMultiplier() {
+    public void getCaloricMultiplierReturnsCorrectMultiplier() throws IllegalValueException {
         assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CORRECT_PROTEIN_MULTIPLIER).getCaloricMultiplier(),
                 CORRECT_PROTEIN_MULTIPLIER);
-        assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), CORRECT_FATS_MULTIPLIER);
-        assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CORRECT_CARBOHYDRATE_MULTIPLIER);
-        assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), CORRECT_PROTEIN_MULTIPLIER);
+        assertEquals(defaultFat1.getCaloricMultiplier(), CORRECT_FATS_MULTIPLIER);
+        assertEquals(defaultCarbohydrate1.getCaloricMultiplier(), CORRECT_CARBOHYDRATE_MULTIPLIER);
+        assertEquals(defaultProtein1.getCaloricMultiplier(), CORRECT_PROTEIN_MULTIPLIER);
     }
 
     @Test
@@ -69,13 +134,13 @@ class MacronutrientTest {
     }
 
     private static class MacronutrientStub extends Macronutrient {
-        MacronutrientStub(int amount, int caloricMultiplier) {
+        MacronutrientStub(int amount, int caloricMultiplier) throws IllegalValueException {
             super(amount, caloricMultiplier);
         }
     }
 
     private static class InvalidMacronutrientStub extends Macronutrient {
-        InvalidMacronutrientStub() {
+        InvalidMacronutrientStub() throws IllegalValueException {
             super(1, INVALID_MULTIPLIER);
         }
     }

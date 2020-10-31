@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.parser.CommandParserTestUtil;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ModelManager;
@@ -19,7 +20,7 @@ class UnTagCommandTest {
     private final Model model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws IllegalValueException {
         Index index = TypicalIndexes.INDEX_FIRST_FOOD;
         Food foodToRmTag = model.getFilteredFoodList().get(index.getZeroBased());
         UnTagCommand unTagCommand = new UnTagCommand();
@@ -39,7 +40,7 @@ class UnTagCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredList_throwsCommandException() throws IllegalValueException {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFoodList().size() + 1);
         UnTagCommand unTagCommand = new UnTagCommand();
         unTagCommand.setParameters(
@@ -50,7 +51,7 @@ class UnTagCommandTest {
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_throwsCommandException() {
+    public void execute_validIndexUnfilteredList_throwsCommandException() throws IllegalValueException {
         UnTagCommand unTagCommand = new UnTagCommand();
         unTagCommand.setParameters(
                 new CommandParserTestUtil.ParameterStub<>("", TypicalIndexes.INDEX_FIRST_FOOD),
@@ -63,7 +64,7 @@ class UnTagCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws IllegalValueException {
 
         CommandTestUtil.showFoodAtIndex(model, TypicalIndexes.INDEX_SECOND_FOOD);
 

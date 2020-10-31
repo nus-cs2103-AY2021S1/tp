@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 
 public class Date {
@@ -44,7 +45,7 @@ public class Date {
      *
      * @param date A valid date string.
      */
-    public Date(String date) {
+    public Date(String date) throws IllegalValueException {
         requireNonNull(date);
         boolean canParse = false;
         for (String format : SUPPORTED_FORMATS) {

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
+
 public class NameTest {
 
     @Test
@@ -16,7 +18,7 @@ public class NameTest {
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Name(invalidName));
+        assertThrows(IllegalValueException.class, () -> new Name(invalidName));
     }
 
     @Test

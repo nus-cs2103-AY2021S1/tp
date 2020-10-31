@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.scene.image.Image;
 import jimmy.mcgymmy.MainApp;
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 
 /**
  * A container for App specific utility functions
@@ -23,9 +24,9 @@ public class AppUtil {
      *
      * @throws IllegalArgumentException if {@code condition} is false.
      */
-    public static void checkArgument(Boolean condition) {
+    public static void checkArgument(Boolean condition) throws IllegalValueException {
         if (!condition) {
-            throw new IllegalArgumentException();
+            throw new IllegalValueException("Error");
         }
     }
 
@@ -34,9 +35,9 @@ public class AppUtil {
      *
      * @throws IllegalArgumentException with {@code errorMessage} if {@code condition} is false.
      */
-    public static void checkArgument(Boolean condition, String errorMessage) {
+    public static void checkArgument(Boolean condition, String errorMessage) throws IllegalValueException {
         if (!condition) {
-            throw new IllegalArgumentException(errorMessage);
+            throw new IllegalValueException(errorMessage);
         }
     }
 }
