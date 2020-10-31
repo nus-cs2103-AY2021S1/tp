@@ -27,8 +27,8 @@ public class TagCommand extends Command {
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
             + PREFIX_LABEL_NAME + "CS2103T";
-    public static final String TAG_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>"
-            + " " + PREFIX_FILE_ADDRESS + "<FILEPATH>" + " " + PREFIX_LABEL_NAME + "<LABEL>";
+    public static final String TAG_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "TAG_NAME"
+            + " " + PREFIX_FILE_ADDRESS + "FILEPATH" + " [" + PREFIX_LABEL_NAME + "LABEL]";
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
     public static final String MESSAGE_FILE_NOT_FOUND = "File not found at %s!"
             + " Please make sure that file is present before adding a tag.";
