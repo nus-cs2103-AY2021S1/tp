@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
@@ -25,6 +29,9 @@ public class SubmitCommand extends Command {
             text.append(String.format("%s x %d\n", orderItem.getName(), orderItem.getQuantity()));
         }
         text.append(String.format("Estimated total: $%.2f", order.getTotal()));
+        StringSelection stringSelection = new StringSelection(text.toString());
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
         return new CommandResult(text.toString());
     }
 }
