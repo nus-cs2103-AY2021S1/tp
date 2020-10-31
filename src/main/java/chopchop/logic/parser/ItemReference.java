@@ -101,13 +101,13 @@ public class ItemReference {
             return new StringView(input)
                 .drop(1)
                 .parseInt()
-                .then(i -> {
+                .thenOrElseGet(i -> {
                     if (i <= 0) {
                         return Result.error("Invalid index (cannot be zero or negative)");
                     } else {
                         return Result.of(ItemReference.ofOneIndex(i));
                     }
-                });
+                }, () -> Result.of(ItemReference.ofName(input)));
         } else {
             return Result.of(ItemReference.ofName(input));
         }

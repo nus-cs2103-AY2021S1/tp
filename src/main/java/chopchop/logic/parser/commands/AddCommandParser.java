@@ -50,12 +50,18 @@ public class AddCommandParser {
                     return Result.error("Recipe or ingredient name cannot be empty");
                 }
 
+                // check whether the name can be parsed as an indexed ItemReference.
+                var name = target.snd().strip();
+                if (name.matches("#[0-9]+")) {
+                    return Result.error("Item name cannot start with a '#' and consist of only numbers");
+                }
+
                 switch (target.fst()) {
                 case RECIPE:
-                    return parseAddRecipeCommand(target.snd().strip(), args);
+                    return parseAddRecipeCommand(name, args);
 
                 case INGREDIENT:
-                    return parseAddIngredientCommand(target.snd().strip(), args);
+                    return parseAddIngredientCommand(name, args);
 
                 default:
                     return Result.error("Can only add recipes or ingredients ('%s' invalid)", target.fst());
