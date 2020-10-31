@@ -11,6 +11,7 @@ import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.bin.Binnable;
+import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
 
@@ -21,7 +22,9 @@ public class RestoreCommand extends Command {
 
     public static final String COMMAND_WORD = "restore";
 
-    public static final String MESSAGE_RESTORE_STUDENT_SUCCESS = "Restored Student: %1$s";
+    public static final String MESSAGE_RESTORE_SUCCESS = "Restored %1$s: %2$s";
+    public static final String MESSAGE_UNRECOGNIZED_BIN_ITEM_TYPE =
+            "Unrecognized type of item in bin! Please report this to the developers!";
 
     public static final Help HELP = new Help(COMMAND_WORD,
         "Restores the bin item.",
@@ -53,8 +56,16 @@ public class RestoreCommand extends Command {
         if (itemToRestore instanceof Student) {
             Student studentToAdd = (Student) itemToRestore;
             model.addStudent(studentToAdd);
-            successMessage = String.format(MESSAGE_RESTORE_STUDENT_SUCCESS, studentToAdd.getNameAsString());
+            successMessage = String.format(MESSAGE_RESTORE_SUCCESS, "Student", studentToAdd.getNameAsString());
+        } else if (itemToRestore instanceof Room) {
+            Room roomToAdd = (Room) itemToRestore;
+            model.addRoom(roomToAdd);
+            successMessage = String.format(MESSAGE_RESTORE_SUCCESS, "Room", roomToAdd.toString());
+        } else {
+            throw new CommandException(MESSAGE_UNRECOGNIZED_BIN_ITEM_TYPE);
         }
+
+        assert !successMessage.isBlank() : "success message for RestoreCommand should not be blank.";
 
         model.saveStateResiReg();
         return new CommandResult(successMessage);
