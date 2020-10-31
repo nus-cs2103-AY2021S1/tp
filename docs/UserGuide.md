@@ -411,37 +411,66 @@ you can simply enter `undone 2` into the command line based on the index labelle
 * The index **must be found in your assignment list**
 </div>
 
-### Scheduling assignments:
-
-Schedules the assignment identified by the `INDEX` number used in the displayed assignment list.
-The suggested schedule with start time and end time will be displayed in the assignment card.
-It is guaranteed that the suggested time slot will not class with any of your lessons or the suggested time
-slots of other assignments.
+### Scheduling assignments: `schedule`
 
 Format: `schedule INDEX expected/EXPECTED_HOUR dobefore/BEFORE_DATE BEFORE_TIME`
-* Suggests a schedule for the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The expected number of hours for an assignment **must be a positive integer between `1` and `5`**.
+
+You can schedule your assignments from the assignment list by specifying the assignment `INDEX` as shown in your assignment list, 
+the expected hours to finish the assignment and the specific time by which you want the assignment to be done.
+
+The suggested schedule with start time and end time will be displayed in the assignment card (Highlighted
+in red in the figure below).
+
+You can be ensured that the suggested time slot will not clash with any of your lessons or the suggested time
+slots of other assignments.
+
+Here is an example with steps to follow:
+
+1) You want to schedule assignments with the name "CS2106 Lab" as shown in the figure below with an expected hour of 5 hours
+and need to be done by a week from now (although the actual deadline is longer).
+
+2) You can simply enter `schedule 3 expected/5 before/07-12-2020 2359` into the command box.
+
+3) The suggested time slot will be displayed in the assignment card.
 
 Examples:
 * `schedule 1 expected/2 before/23-12-2020 2359`
 * `schedule 2 expected/5 before/01-01-2021 0530`
 
-### Removing suggested time for assignments:
+<div markdown="block" class="alert alert-primary">
 
-Removes the suggested time slot of the assignment identified by the `INDEX` number used in the displayed assignment list.
+ **:clipboard: Pointers to note:**<br>
+* The index **must be found in your assignment list**.
+* The expected number of hours **must be a positive integer between `1` and `5`**.
+* `BEFORE_DATE` is in the format dd-MM-yyyy and `BEFORE_TIME` is in format `HHmm`.
+
+</div>
+
+### Removing suggested time for assignments: `unschedule`
 
 Format: `unschedule INDEX`
 
-* Removes the suggested time slot of the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
+You can remove the suggested time slot of your assignments from the assignment list by specifying the 
+assignment `INDEX` as shown in your assignment list.
 
-### Undoing commands:
+For example, `unschedule 1` will remove the suggested time slot of your first assignment.
 
-Undoes the most recent command.
+Examples:
+* `unschedule 1`
+* `unschedule 3`
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* The index **must be found in your assignment list**.
+
+</div>
+
+### Undoing commands: `undo`
 
 Format: `undo`
+
+You can undo the most recent command.
 
 ### Clearing all assignments: `clear`
 
