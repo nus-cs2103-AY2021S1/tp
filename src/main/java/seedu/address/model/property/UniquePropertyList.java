@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.id.Id;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
 import seedu.address.model.property.exceptions.PropertyNotFoundException;
 
@@ -102,6 +103,15 @@ public class UniquePropertyList implements Iterable<Property> {
     public void removeByPropertyId(Id id) {
         requireNonNull(id);
         remove(getPropertyById(id));
+    }
+
+    /**
+     * Removes the property with the corresponding seller id.
+     *
+     * @param sellerId The seller id specified.
+     */
+    public void removeBySellerId(SellerId sellerId) {
+        internalList.removeIf(property -> property.getSellerId().equals(sellerId));
     }
 
     /**

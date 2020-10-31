@@ -28,7 +28,7 @@ the commands we are aspiring toward creating for Property Agents.
 # CS2103-W14-1: PropertyFree User Guide
 
 **PropertyFree is a management system for property agents to track and manage their property listing 
-details.** It **a**llows users to easily take control of their bookkeeping matters inclusive of seller ask prices, 
+details.** It allows users to easily take control of their bookkeeping matters inclusive of seller ask prices, 
 bidder buy prices, key details of properties and record keeping of past properties. 
 
 PropertyFree also provides a 
@@ -185,22 +185,22 @@ Seller id: S2
 Adds a bidder to the bidder list.
 
 - Command: `add-b`
-- Format: `add-b n/BIDDER_NAME p/PHONE_NUMBER`
+- Format: `add-b n/BIDDER_NAME p/PHONE_NUMBER t/TAG`
 
 Example:
 
 ```java
-add-b n/Marcus Duigan p/12345678 
+add-b n/Marcus Duigan p/12345678
 ```
 
 Expected Output:
 
 ```java
-New bidder added: 
-	Name: Marcus Duigan 
+New bidder added:   
+    Name: Marcus Duigan 
     Phone number: 12345678
-	Id: B1
-	Tags: [bidder]
+    Id: B1
+    Tags: [bidder]
 ```
 
 ## Searching for **Bidder**
@@ -298,7 +298,7 @@ The index will only correspond to the original list, NOT the filtered list (when
 Adds a seller to the seller list.
 
 - Command: `add-s`
-- Format: `add-s n/SELLER_NAME p/PHONE_NUMBER`
+- Format: `add-s n/SELLER_NAME p/PHONE_NUMBER t/TAGS`
 
 Example:
 
@@ -309,11 +309,11 @@ add-s n/Kor Ming Soon p/12345778
 Expected Output:
 
 ```java
-New seller added: 
-	Name: Kor Ming Soon
+New seller added:
+    Name: Kor Ming Soon
     Phone number: 12345778 
     Id: S1
-	Tags: [seller]
+    Tags: [seller]
 ```
 
 ## Searching for **Seller**

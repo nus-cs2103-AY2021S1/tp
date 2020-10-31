@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
-
+<StackPane styleClass="personAndBidTab-pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@MingSoonTheme.css" />
+    </stylesheets>
     <TabPane fx:id="tabBar" stylesheets="@TabPane.css" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="propertyTab" text="Property Tab">
             <graphic>
@@ -19,7 +22,7 @@
             </graphic>
             <VBox fx:id="propertyList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
                 <StackPane fx:id="propertyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
@@ -65,11 +68,17 @@
             </graphic>
             <VBox fx:id="bidList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                 <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
+                    <Insets bottom="10.0" left="10.0" right="10.0" />
                 </padding>
                 <StackPane fx:id="bidListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
         </Tab>
+      <StackPane.margin>
+         <Insets />
+      </StackPane.margin>
 
     </TabPane>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
 </StackPane>
