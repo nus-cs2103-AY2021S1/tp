@@ -94,7 +94,7 @@ public class FoodListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Food} using a {@code FoodCard}.
      */
-    class FoodListViewCell extends ListCell<Food> {
+    static class FoodListViewCell extends ListCell<Food> {
 
         @Override
         protected void updateItem(Food food, boolean empty) {
