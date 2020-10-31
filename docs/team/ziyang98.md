@@ -71,7 +71,7 @@ Given below are my contributions to the project.
 * Added `How to identify notations` section and the relevant notations: [#2](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#2-how-to-identify-notations) 
 * Added documentation for the `undo` command and all the account-level commands:  
 [#528](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#528-undoing-entry-level-commands-undo), 
-[#53](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#53-account-level-commands)
+[#53](https://ay2021s1-cs2103t-t13-4.github.io/tp/UserGuide.html#53-account-level-commands)****
 
 #### Developer Guide:
   * Added implementation details of the `delete` feature.
