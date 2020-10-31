@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.AppointmentCommandParser;
+package seedu.address.logic.parser.appointmentCommandParser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
