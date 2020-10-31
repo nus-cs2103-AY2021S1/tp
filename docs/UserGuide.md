@@ -72,6 +72,7 @@ Adds a session into the session list.
 session s/SESSION_NAME dt/SESSION_DATE_TIME
 ```
 - The `SESSION_DATE_TIME` must be of the format `dd-MM-yyyy HHmm`.
+- Duplicate session names are not allowed.
 
 ### Changing the current session: `goto`
 Changes the current session to the session with the specified name.

@@ -316,14 +316,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to add a new student
 2.  System shows the added student
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 1a. The given input is invalid.
-
     * 1a1. System shows an error message.
-
       Use case resumes at step 1.
 <br>
 
@@ -334,14 +332,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to view a student's details
 2.  System shows the student's details
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
 * 1a. The given input is invalid.
-
     * 1a1. System shows an error message.
-
       Use case resumes at step 1.
 <br>
 
@@ -356,7 +352,6 @@ Use case ends.
 **Extensions**
 
 * 1a. The given input is invalid.
-
     * 1a1. System shows an error message.
       Use case resumes at step 1.
 <br>
@@ -366,6 +361,8 @@ Use case ends.
 **MSS**
 1. User requests to view all students' details
 2. System shows all students' details.
+
+Use case ends.
 <br>
 
 **Use Case: Delete a student**
@@ -376,15 +373,125 @@ Use case ends.
 3. User requests to delete a specific student in the list
 4. System deletes student
 
-Extensions
-* 2a. The list is empty.
 Use case ends.
+
+Extensions
+* 2a. The list is empty. <br>
+    Use case ends.
+    
 * 3a. The given input is invalid.
     * 3a1. System shows an error message.
         Use case resumes at step 2.
 <br>
 
+**Use Case: Add a session**
+
+**MSS**
+1. User requests to add a session
+2. System adds the session and shows the student records for that session with default fields
+
+Extensions
+* 1a. The given input is invalid.
+    * 1a1. System shows an error message.
+        Use case resumes at step 1.
+        
+* 1b. The name of the session given by the user is already in use.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
 <br>
+
+**Use Case: Change view to a session**
+
+**MSS**
+1. User requests to view information (student records) of a session
+2. System displays student records of that session
+
+Extensions
+* 1a. The given input is invalid.
+    * 1a1. System shows an error message.
+        Use case resumes at step 1.
+        
+<br>
+
+**Use Case: Delete a session**
+
+**MSS**
+1. User requests to delete a session
+2. System deletes the session
+
+Extensions
+* 1a. The given input is invalid.
+    * 1a1. System shows an error message.
+        Use case resumes at step 1.
+
+<br>
+
+**Use Case: Mark a student's attendance**
+
+**MSS**
+1. User requests to mark student attendance.
+2. System marks the student's attendance within the context of that session.
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
+<br>
+
+**Use Case: Mark all students attendance**
+
+**MSS**
+1. User requests to mark all students' attendance.
+2. System marks all student attendances within the context of that session.
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
+<br>
+
+**Use Case: Score student's participation**
+
+**MSS**
+1. User requests to score participation.
+2. System scores the student's participation within the context of that session.
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
+
+<br>
+
+**Use Case: Score all students' participation**
+
+**MSS**
+1. User requests to score all students' participation.
+2. System scores all student participation within the context of that session.
+
+Extensions
+* 1a. System is not within the context of a session.
+    * 1a1. System shows an error message.
+    Use case ends.
+    
+* 1b. The given input is invalid.
+    * 1b1. System shows an error message.
+        Use case resumes at step 1.
 
 
 *{More to be added}*
