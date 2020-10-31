@@ -57,4 +57,18 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Checks if any of the prefixes exist as a key.
+     * @param prefixes The list of prefixes to be checked.
+     * @return A boolean value indicating if any exists.
+     */
+    public boolean checkIfAnyExist(List<Prefix> prefixes) {
+        for (Prefix prefix : prefixes) {
+            if (getValue(prefix).isPresent()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

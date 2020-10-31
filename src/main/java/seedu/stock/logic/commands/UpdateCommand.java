@@ -2,11 +2,19 @@ package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION_DESCRIPTION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +26,7 @@ import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
@@ -34,25 +43,20 @@ public class UpdateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the details of the stock with "
             + "the given serial number. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: "
-            + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER "
-            + PREFIX_INCREMENT_QUANTITY + "QUANTITY "
-            + PREFIX_NEW_QUANTITY + "NEW QUANTITY "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_SOURCE + "SOURCE "
-            + PREFIX_LOCATION + "LOCATION \n"
-            + "Note that only one of " + PREFIX_INCREMENT_QUANTITY
-            + "and " + PREFIX_NEW_QUANTITY
-            + "can be specified. \n"
-            + "Note that quantities should only have values from 0"
-            + "and 2,147,483,647\n"
-            + "You may provide more than one serial number \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + "CS2103 "
-            + PREFIX_INCREMENT_QUANTITY + "2103 "
-            + PREFIX_NAME + "CS2103 "
-            + PREFIX_SOURCE + "National University of Singapore "
-            + PREFIX_LOCATION + "Group 3 ";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "... "
+            + "[" + PREFIX_INCREMENT_QUANTITY + PREFIX_INCREMENT_QUANTITY_DESCRIPTION + " | "
+            + PREFIX_NEW_QUANTITY + PREFIX_NEW_QUANTITY_DESCRIPTION + "] "
+            + "[" + PREFIX_NAME + PREFIX_NAME_DESCRIPTION + "] "
+            + "[" + PREFIX_SOURCE + PREFIX_SOURCE_DESCRIPTION + "] "
+            + "[" + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + "] "
+            + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "ntuc1 "
+            + PREFIX_INCREMENT_QUANTITY + "+50 "
+            + PREFIX_NAME + "heineken";
 
     public static final String MESSAGE_UPDATE_STOCK_SUCCESS = "Updated Stock: %1$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one field to update must be provided.";
@@ -158,12 +162,15 @@ public class UpdateCommand extends Command {
             throws CommandException {
         assert stockToUpdate != null;
 
-        Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(stockToUpdate.getQuantity());
+        Quantity originalQuantity = stockToUpdate.getQuantity();
+        Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(originalQuantity);
+        String lowQuantity = updateStockDescriptor.getLowQuantity().orElse(originalQuantity.getLowQuantity());
         Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
         Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
         SerialNumber stockSerialNumber = stockToUpdate.getSerialNumber();
         Optional<QuantityAdder> quantityAdder = updateStockDescriptor.getQuantityAdder();
+        List<Note> noteList = stockToUpdate.getNotes();
 
         if (!quantityAdder.isEmpty()) {
             QuantityAdder valueToBeAdded = quantityAdder.get();
@@ -171,7 +178,16 @@ public class UpdateCommand extends Command {
             updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS));
         }
 
-        return new Stock(updatedName, stockSerialNumber, updatedSource, updatedQuantity, updatedLocation);
+        updatedQuantity = updatedQuantity.updateLowQuantity(lowQuantity);
+
+        Stock result = new Stock(updatedName, stockSerialNumber, updatedSource,
+                updatedQuantity, updatedLocation, noteList);
+
+        if (stockToUpdate.getIsBookmarked()) {
+            result.setBookmarked();
+        }
+
+        return result;
     }
 
     @Override
@@ -202,6 +218,7 @@ public class UpdateCommand extends Command {
         private Quantity quantity;
         private Location location;
         private QuantityAdder quantityAdder;
+        private String lowQuantity;
 
         public UpdateStockDescriptor() { }
 
@@ -277,15 +294,12 @@ public class UpdateCommand extends Command {
             return Optional.ofNullable(location);
         }
 
-        @Override
-        public String toString() {
-            return "UpdateStockDescriptor:\n"
-                    + name + "\n"
-                    + serialNumbers.toString() + "\n"
-                    + source + "\n"
-                    + quantity + "\n"
-                    + location + "\n"
-                    + quantityAdder;
+        public void setLowQuantity(String lowQuantity) {
+            this.lowQuantity = lowQuantity;
+        }
+
+        public Optional<String> getLowQuantity() {
+            return Optional.ofNullable(lowQuantity);
         }
 
         @Override

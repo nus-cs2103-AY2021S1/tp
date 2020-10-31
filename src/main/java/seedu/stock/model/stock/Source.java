@@ -10,7 +10,8 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 public class Source {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "A source can take any values, and it should not be blank";
+            "Invalid source entered!\n"
+            + "A source can take any values, and it should not be blank";
 
     /*
      * The first character of the source must not be a whitespace,
