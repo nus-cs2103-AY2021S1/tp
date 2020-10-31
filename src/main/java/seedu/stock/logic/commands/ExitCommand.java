@@ -9,8 +9,8 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exits Warenager.\n"
-            + "Parameters: No parameters\n"
-            + "Example: " + COMMAND_WORD;
+            + "Format "
+            + COMMAND_WORD;
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Stock Book as requested ...";
 
