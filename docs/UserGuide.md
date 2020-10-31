@@ -503,6 +503,7 @@ McGymmy's data is saved in the hard disk automatically after any command that ch
 For those who prefer typing:
 1. Use the find command in section `5.5` and add the `-d` tag before specifying a date
 1. You will see the food you ate on that day
+<br>
 For those who prefer clicking:
 1. Click on `date` button at the file menu
 1. Click on the calendar icon
