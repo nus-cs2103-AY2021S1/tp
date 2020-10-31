@@ -3,10 +3,9 @@ package chopchop.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.logging.Logger;
 
 import chopchop.commons.core.GuiSettings;
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.logic.autocomplete.AutoCompleter;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.Undoable;
@@ -28,7 +27,7 @@ import javafx.collections.transformation.FilteredList;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
-    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    private final Log logger = new Log(LogicManager.class);
 
     private final Model model;
     private final Storage storage;
@@ -56,7 +55,7 @@ public class LogicManager implements Logic {
      */
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        logger.log("command: '%s'", commandText);
 
         this.historyManager.addInput(commandText);
         var res = this.parser.parse(commandText);
