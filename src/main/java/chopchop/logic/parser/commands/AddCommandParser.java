@@ -106,7 +106,7 @@ public class AddCommandParser {
         return Result.transpose(qtys
             .stream()
             .findFirst()
-            .map(Quantity::parse))
+            .map(CommonParser::parseQuantity))
             .then(qty -> Result.transpose(exps
                 .stream()
                 .findFirst()
@@ -172,7 +172,7 @@ public class AddCommandParser {
                 if (i + 1 < arglist.size()) {
                     var q = arglist.get(i + 1);
                     if (q.fst().equals(ARG_QUANTITY)) {
-                        var qty = Quantity.parse(q.snd());
+                        var qty = CommonParser.parseQuantity(q.snd());
                         if (qty.isError()) {
                             return Result.error(qty.getError());
                         } else {
