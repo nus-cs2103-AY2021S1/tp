@@ -215,6 +215,11 @@ public class MainWindow extends UiPart<Stage> {
      * @see seedu.taskmaster.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+        if (commandText.equals("")) {
+            logger.info("User input is empty");
+            throw new ParseException("");
+        }
+
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
