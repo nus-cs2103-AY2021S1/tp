@@ -408,6 +408,8 @@ This command is useful for storing important archives in the `data/snapshots` fo
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
 
+Please refer to the [FAQs](#faq) to find out how to load a snapshot that you have saved.
+
 Format: `snap FILE_NAME`
 
 <div markdown="block" class="alert alert-warning">
@@ -450,6 +452,12 @@ was executed.
        automatically as a file named `zookeepbook.json` after any command that changes the data. 
        Please do not manually edit this file as it may result in loss of data or unexpected 
        behaviour when running the application.
+
+**Q**: How can I load a snapshot that I created using the `snap` command?<br>
+**A**: First, go to your `data` folder and rename your `zookeepbook.json` file into something else,
+       such as `zookeepbook_current.json`. Next, copy the snapshot you wish to load, paste it into
+       the `data` folder and rename this snapshot to `zookeepbook.json`. The next time you launch
+       `ZooKeep`, your snapshot will be loaded.
 
 **Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
 **A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
