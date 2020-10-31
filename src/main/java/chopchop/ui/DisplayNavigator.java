@@ -21,6 +21,10 @@ public class DisplayNavigator {
         DisplayNavigator.displayController = displayController;
     }
 
+    public static void initialLoad(boolean isPresent) {
+        displayController.initialLoad(isPresent);
+    }
+
     /**
      * Loads the RecipeDisplay onto the swappable display region.
      * @param recipe

@@ -23,6 +23,8 @@ public class AddCommandParserTest {
         cases.put("add recipe f /ingredient x /ingredient",                             false);
         cases.put("add recipe f /ingredient x /ingredient y /qty zzz",                  false);
         cases.put("add recipe f /qty 700",                                              false);
+        cases.put("add recipe f /qty -700",                                             false);
+        cases.put("add recipe #123",                                                    false);
 
         cases.put("add ingredient",                                                     false);
         cases.put("add ingredient f /name",                                             false);
@@ -31,9 +33,13 @@ public class AddCommandParserTest {
         cases.put("add ingredient f /qty /qty",                                         false);
         cases.put("add ingredient f /qty 1 /qty 2",                                     false);
         cases.put("add ingredient f /qty x",                                            false);
+        cases.put("add ingredient f /qty -1",                                           false);
         cases.put("add ingredient f /qty x y /qty zzz",                                 false);
         cases.put("add ingredient f /expiry",                                           false);
         cases.put("add ingredient f /expiry /expiry",                                   false);
+
+        cases.put("add recipe #123 a",                                                  true);
+        cases.put("add recipe #123 123",                                                true);
 
         cases.forEach((k, v) -> {
             assertEquals(v, parser.parse(k).hasValue());

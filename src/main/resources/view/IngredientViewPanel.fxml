@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXMasonryPane?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.FlowPane?>
 
 <ScrollPane fx:id="ingredientPanel" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1">
-    <FlowPane fx:id="ingredientGridView" orientation="VERTICAL" hgap="12" vgap="12"/>
+    <JFXMasonryPane fx:id="ingredientGridView" VSpacing="12" HSpacing="12" cellHeight="126.0" cellWidth="148.0"/>
 </ScrollPane>

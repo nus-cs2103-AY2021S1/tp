@@ -2,10 +2,8 @@
 
 package chopchop.ui;
 
-import java.util.logging.Logger;
-
 import chopchop.commons.core.GuiSettings;
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
@@ -25,7 +23,7 @@ import javafx.stage.Stage;
 public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
+    private final Log logger = new Log(MainWindow.class);
 
     private Stage primaryStage;
     private Logic logic;
@@ -69,8 +67,8 @@ public class MainWindow extends UiPart<Stage> {
 
         this.setAccelerators();
 
-        this.primaryStage.setMinWidth(820);
-        this.primaryStage.setMinHeight(520);
+        this.primaryStage.setMinWidth(814);
+        this.primaryStage.setMinHeight(510);
     }
 
     public Stage getPrimaryStage() {
@@ -134,7 +132,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             var result = this.logic.execute(commandText);
-            logger.info("Result: " + result.toString());
+            logger.log("command result: %s", result.toString());
 
             if (result.isStatsOutput()) {
 
@@ -152,7 +150,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return result;
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
+            logger.warn("invalid command '%s'", commandText);
 
             this.commandOutput.setFeedbackToUser(CommandResult.error(e.getMessage()));
             throw e;
@@ -176,8 +174,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(this.primaryStage.getWidth(), this.primaryStage.getHeight(),
-                (int) this.primaryStage.getX(), (int) this.primaryStage.getY());
+        var guiSettings = new GuiSettings(this.primaryStage.getWidth(), this.primaryStage.getHeight(),
+            (int) this.primaryStage.getX(), (int) this.primaryStage.getY());
         this.logic.setGuiSettings(guiSettings);
         this.primaryStage.hide();
     }

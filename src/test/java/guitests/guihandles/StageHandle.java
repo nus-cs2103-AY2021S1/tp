@@ -4,20 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import guitests.GuiRobot;
 import guitests.guihandles.exceptions.NodeNotFoundException;
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 
 /**
  * Provides access to a stage in a JavaFx application for GUI testing purposes.
  */
 public abstract class StageHandle {
     protected final GuiRobot guiRobot = new GuiRobot();
-    private final Logger logger = LogsCenter.getLogger(getClass());
+    private final Log logger = new Log(StageHandle.class);
 
     private final Stage stage;
 
@@ -38,9 +37,9 @@ public abstract class StageHandle {
      */
     public void focus() {
         String windowTitle = stage.getTitle();
-        logger.info("Focusing on" + windowTitle);
+        logger.log("Focusing on '%s'", windowTitle);
         guiRobot.interact(stage::requestFocus);
-        logger.info("Finishing focus on" + windowTitle);
+        logger.log("Finishing focus on '%s'", windowTitle);
     }
 
     /**

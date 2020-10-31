@@ -10,6 +10,7 @@ import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 
@@ -31,17 +32,17 @@ public class RecommendationManager {
                 this.getExpiringRecipesPredicate(model));
         this.oldRecipes = new FilteredList<>(model.getRecipeBook().getEntryList());
 
-        model.getIngredientBook().getEntryList().addListener((ListChangeListener<Ingredient>) ingredient -> {
+        model.getIngredientBook().getEntryList().addListener((ListChangeListener<Ingredient>) c -> {
             this.recommendedRecipes.setPredicate(this.getRecommendedRecipesPredicate(model));
             this.expiringRecipes.setPredicate(this.getExpiringRecipesPredicate(model));
         });
     }
 
-    public FilteredList<Recipe> getRecommendedRecipeList() {
+    public ObservableList<Recipe> getRecommendedRecipeList() {
         return this.recommendedRecipes;
     }
 
-    public FilteredList<Recipe> getExpiringRecipeList() {
+    public ObservableList<Recipe> getExpiringRecipeList() {
         return this.expiringRecipes;
     }
 

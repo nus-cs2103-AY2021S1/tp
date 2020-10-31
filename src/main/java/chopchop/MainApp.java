@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 import chopchop.commons.core.Config;
-import chopchop.commons.core.LogsCenter;
+import chopchop.commons.core.Log;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.util.ConfigUtil;
 import chopchop.commons.util.StringUtil;
@@ -30,6 +29,7 @@ import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
+import chopchop.ui.DisplayNavigator;
 import chopchop.ui.Ui;
 import chopchop.ui.UiManager;
 import javafx.application.Application;
@@ -40,7 +40,7 @@ import javafx.stage.Stage;
  * Runs the application.
  */
 public class MainApp extends Application {
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static final Log logger = new Log(MainApp.class);
     private static MainApp singletonInstance;
 
     protected Ui ui;
@@ -53,10 +53,10 @@ public class MainApp extends Application {
     public void init() throws Exception {
         MainApp.singletonInstance = this;
 
-        logger.info("=============================[ Initializing ChopChop ]===========================");
+        logger.log("ChopChop Initialisation");
         super.init();
 
-        AppParameters appParameters = AppParameters.parse(getParameters());
+        var appParameters = AppParameters.parse(getParameters());
         this.config = initConfig(appParameters.getConfigPath());
         initLogging(config);
 
@@ -106,6 +106,8 @@ public class MainApp extends Application {
             this.storage::readIngredientUsages,
             this.storage.getIngredientUsageFilePath()
         ));
+
+        DisplayNavigator.initialLoad(this.model.getRecipeBook().getEntryList().size() > 0);
     }
 
     /**
@@ -120,8 +122,7 @@ public class MainApp extends Application {
             var opt = loader.get();
             if (opt.isEmpty()) {
 
-                logger.info(String.format("Data file for %s book not found; starting with sample recipes",
-                    kind));
+                logger.log("Data file for %s book not found; starting with sample recipes", kind);
 
                 this.ui.showCommandOutput(
                     String.format("Could not find existing %ss, loading sample data", kind),
@@ -134,8 +135,7 @@ public class MainApp extends Application {
             }
 
         } catch (DataConversionException e) {
-            logger.severe(String.format("Data file for %s book was invalid; starting with an empty book",
-                kind));
+            logger.error("Data file for %s book was invalid; starting with an empty book", kind);
 
             this.ui.showCommandOutput(
                 String.format("Existing %ss were corrupted; starting with empty data.", kind),
@@ -156,16 +156,14 @@ public class MainApp extends Application {
             var opt = loader.get();
             if (opt.isEmpty()) {
 
-                logger.info(String.format("Data file for %s usage list not found", kind));
-
+                logger.log("Data file for %s usage list not found", kind);
                 return new UsageList<>();
             } else {
                 return opt.get();
             }
 
         } catch (DataConversionException e) {
-            logger.severe(String.format("Data file for %s usage list was invalid; starting with an empty list",
-                kind));
+            logger.error("Data file for %s usage list was invalid; starting with an empty list", kind);
 
             this.ui.showCommandOutput(
                 String.format("Existing %s usages were corrupted; starting with empty data.", kind),
@@ -181,7 +179,7 @@ public class MainApp extends Application {
     }
 
     private void initLogging(Config config) {
-        LogsCenter.init(config);
+        Log.init(config);
     }
 
     /**
@@ -190,35 +188,34 @@ public class MainApp extends Application {
      * if {@code configFilePath} is null.
      */
     protected Config initConfig(Path configFilePath) {
-        Config initializedConfig;
+        Config initialisedConfig;
         Path configFilePathUsed;
 
         configFilePathUsed = Config.DEFAULT_CONFIG_FILE;
 
         if (configFilePath != null) {
-            logger.info("Custom Config file specified " + configFilePath);
+            logger.log("Using custom config file '%s'", configFilePath);
             configFilePathUsed = configFilePath;
         }
 
-        logger.info("Using config file : " + configFilePathUsed);
+        logger.log("Using config file '%s'", configFilePathUsed);
 
         try {
-            Optional<Config> configOptional = ConfigUtil.readConfig(configFilePathUsed);
-            initializedConfig = configOptional.orElse(new Config());
+            var configOptional = ConfigUtil.readConfig(configFilePathUsed);
+            initialisedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
-            logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
-            initializedConfig = new Config();
+            logger.warn("Config file at '%s' is not in the correct format, using default values", configFilePathUsed);
+            initialisedConfig = new Config();
         }
 
-        //Update config file in case it was missing to begin with or there are new/unused fields
+        // Update config file in case it was missing to begin with or there are new/unused fields
         try {
-            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);
+            ConfigUtil.saveConfig(initialisedConfig, configFilePathUsed);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            logger.warn("Failed to save config file: %s", StringUtil.getDetails(e));
         }
 
-        return initializedConfig;
+        return initialisedConfig;
     }
 
     /**
@@ -228,32 +225,31 @@ public class MainApp extends Application {
      */
     protected UserPrefs initPrefs(UserPrefsStorage storage) {
         Path prefsFilePath = storage.getUserPrefsFilePath();
-        logger.info("Using prefs file : " + prefsFilePath);
+        logger.log("Using prefs file '%s'", prefsFilePath);
 
-        UserPrefs initializedPrefs;
+        UserPrefs initialisedPrefs;
 
         try {
-            Optional<UserPrefs> prefsOptional = storage.readUserPrefs();
-            initializedPrefs = prefsOptional.orElse(new UserPrefs());
+            var prefsOptional = storage.readUserPrefs();
+            initialisedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
-            logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
-            initializedPrefs = new UserPrefs();
+            logger.warn("UserPrefs file at '%s' is not in the correct format, using default values", prefsFilePath);
+            initialisedPrefs = new UserPrefs();
         }
 
-        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        // Update prefs file in case it was missing to begin with or there are new/unused fields
         try {
-            storage.saveUserPrefs(initializedPrefs);
+            storage.saveUserPrefs(initialisedPrefs);
         } catch (IOException e) {
-            logger.warning("Failed to save config file : " + StringUtil.getDetails(e));
+            logger.warn("Failed to save config file: %s", StringUtil.getDetails(e));
         }
 
-        return initializedPrefs;
+        return initialisedPrefs;
     }
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ChopChop");
+        logger.log("Starting ChopChop");
         this.ui.start(primaryStage);
 
         // we can only load entries after the UI starts!!!!
@@ -263,11 +259,11 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping ChopChop ] =============================");
+        logger.log("ChopChop Shutdown");
         try {
             this.storage.saveUserPrefs(this.model.getUserPrefs());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.error("Failed to save preferences: ", StringUtil.getDetails(e));
         }
     }
 

@@ -11,6 +11,7 @@ import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
+import chopchop.model.attributes.Quantity;
 
 public class CommonParser {
 
@@ -56,7 +57,20 @@ public class CommonParser {
         return checkArguments(args, cmdname, List.of(), false);
     }
 
-
+    /**
+     * Parses a quantity, but since this is user-facing, also ensures that the quantity
+     * parsed is non-negative.
+     */
+    public static Result<Quantity> parseQuantity(String input) {
+        return Quantity.parse(input)
+            .then(q -> {
+                if (q.isNegative()) {
+                    return Result.error("Quantity cannot be negative (found '%s')", q.toString());
+                } else {
+                    return Result.of(q);
+                }
+            });
+    }
 
     /**
      * Gets the 'target' of a command, which is either 'ingredient' or 'recipe'. Returns either an error
@@ -71,9 +85,15 @@ public class CommonParser {
 
         var str = args.getRemaining();
 
+        String valids = "";
+        if (args.getCommand().equals(Strings.COMMAND_LIST)) {
+            valids = String.format("one of 'recipe', 'ingredient', or 'recommendation'");
+        } else {
+            valids = String.format("either 'recipe' or 'ingredient'");
+        }
+
         if (str.isEmpty()) {
-            return Result.error("no target specified (either 'recipe', 'ingredient'%s)",
-                args.getCommand().equals(Strings.COMMAND_LIST) ?  ", or 'recommendation'" : "");
+            return Result.error("No target specified (expected %s)", valids);
         }
 
         var x = new StringView(str).bisect(' ').fst().trim();
@@ -83,7 +103,7 @@ public class CommonParser {
             CommandTarget.of(x.toString(), acceptsPlural)
                 .map(target -> Pair.of(target, xs.toString())),
 
-            String.format("Unknown target '%s'", x)
+            String.format("Unknown target '%s' (expected %s)", x, valids)
         );
     }
 

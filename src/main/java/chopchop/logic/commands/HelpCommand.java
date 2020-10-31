@@ -41,8 +41,9 @@ public class HelpCommand extends Command {
 
         var cls = getCommandClassFor(cmd, this.helpTarget.orElse(""));
         if (cls == null) {
-            return CommandResult.error("Unknown command '%s'; see the User Guide for a list of commands: %s",
-                cmd, Strings.USER_GUIDE_BASE_URL);
+            return CommandResult.error("Unknown command '%s'; see the", cmd)
+                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#CommandSummary", false)
+                .appending("for a list of commands", false);
         }
 
         var cmdStr = invokeMethod(cls, METHOD_NAME_GET_CMD);
@@ -190,7 +191,7 @@ public class HelpCommand extends Command {
             return "list";
         }
         public static String getCommandHelp() {
-            return "Lists items; see 'list recipes' or 'list ingredients'";
+            return "Lists items; see 'list recipes', 'list ingredients', or 'list recommendations'";
         }
     }
 
@@ -212,12 +213,30 @@ public class HelpCommand extends Command {
         }
     }
 
+    private static class ViewCommandDummy {
+        public static String getCommandString() {
+            return "view";
+        }
+        public static String getCommandHelp() {
+            return "Views a recipe; see 'view recipe'";
+        }
+    }
+
+    private static class MakeCommandDummy {
+        public static String getCommandString() {
+            return "make";
+        }
+        public static String getCommandHelp() {
+            return "Makes a recipe; see 'make recipe'";
+        }
+    }
+
     private static class EditCommandDummy {
         public static String getCommandString() {
             return "edit";
         }
         public static String getCommandHelp() {
-            return "Edits an item; see 'edit recipe' or 'edit ingredient'";
+            return "Edits an item; see 'edit recipe'";
         }
     }
 

@@ -6,9 +6,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <Button fx:id="recipeButton" mnemonicParsing="false" onAction="#handleSelectRecipe" prefHeight="126.0"
-            prefWidth="148.0" styleClass="recipe-card-button">
+<StackPane prefWidth="148.0" prefHeight="126.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+           xmlns:fx="http://javafx.com/fxml/1">
+    <Button fx:id="recipeButton" mnemonicParsing="false" onAction="#handleSelectRecipe" wrapText="true"
+            textAlignment="CENTER" prefHeight="126.0" prefWidth="148.0" styleClass="recipe-card-button">
         <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../images/meal.png"/>

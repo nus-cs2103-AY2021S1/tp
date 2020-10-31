@@ -41,10 +41,10 @@ public class EditCommandParser {
 
         return getCommandTarget(args)
             .then(target -> {
-                if (target.snd().isEmpty()) {
-                    return Result.error("Recipe name cannot be empty");
-                } else if (target.fst() != CommandTarget.RECIPE) {
+                if (target.fst() != CommandTarget.RECIPE) {
                     return Result.error("Only recipes can be edited");
+                } else if (target.snd().isEmpty()) {
+                    return Result.error("Recipe name cannot be empty");
                 }
 
                 return ItemReference.parse(target.snd());
@@ -87,7 +87,7 @@ public class EditCommandParser {
                             var nextArg = args.getAllArguments().get(i + 1);
                             if (nextArg.fst().equals(ARG_QUANTITY)) {
 
-                                var q = Quantity.parse(nextArg.snd());
+                                var q = CommonParser.parseQuantity(nextArg.snd());
                                 if (q.isError()) {
                                     return Result.error(q.getError());
                                 } else {

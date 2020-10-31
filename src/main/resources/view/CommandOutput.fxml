@@ -3,7 +3,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.text.TextFlow?>
 
-<ScrollPane minHeight="120" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fitToWidth="true">
+<ScrollPane minHeight="120" styleClass="edge-to-edge" fitToWidth="true" hbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <TextFlow fx:id="displayBox"/>
 </ScrollPane>

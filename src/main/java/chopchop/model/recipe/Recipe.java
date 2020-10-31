@@ -20,7 +20,6 @@ import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
 
-
 public class Recipe extends Entry {
     private final List<IngredientReference> ingredients;
     private final List<Step> steps;

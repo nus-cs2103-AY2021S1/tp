@@ -178,20 +178,20 @@ public class CommandBoxTest extends GuiUnitTest {
         // one arg starting with char
         String firstCommand = "add recipe ";
         String firstArg = "duck soup";
-        String secondCommand = "view ";
+        String secondCommand = "view recipe ";
         commandBoxHandle.run(firstCommand + firstArg);
-        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.D);
+        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.R, KeyCode.TAB, KeyCode.D);
         assertInputHistory(KeyCode.TAB, secondCommand + firstArg + " ");
 
         // two args in history with same prefix get second
         String secondArg = "duck pudding";
         commandBoxHandle.run(firstCommand + secondArg);
-        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.D, KeyCode.TAB);
+        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.R, KeyCode.TAB, KeyCode.D, KeyCode.TAB);
         assertInputHistory(KeyCode.TAB, secondCommand + secondArg + " ");
 
         // two args in history with same prefix get first
         commandBoxHandle.clearInput();
-        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.D, KeyCode.TAB, KeyCode.TAB);
+        executeKeyCodes(KeyCode.V, KeyCode.TAB, KeyCode.R, KeyCode.TAB, KeyCode.D, KeyCode.TAB, KeyCode.TAB);
         assertInputHistory(KeyCode.TAB, secondCommand + firstArg + " ");
     }
 
