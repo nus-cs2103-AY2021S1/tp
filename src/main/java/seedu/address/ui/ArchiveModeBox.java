@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -19,6 +21,8 @@ public class ArchiveModeBox extends UiPart<Region> {
      */
     public ArchiveModeBox(BooleanProperty isArchiveModeProperty) {
         super(FXML);
+
+        requireNonNull(isArchiveModeProperty);
         this.isArchiveModeProperty = isArchiveModeProperty;
 
         archiveMode.setText(archiveTextDisplay(isArchiveModeProperty.get())); // set initial value
