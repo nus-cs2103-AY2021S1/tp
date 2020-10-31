@@ -47,13 +47,16 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     * Note that you will not be allowed to use these commands outside of a session.
 
 ## UI
-![Ui](images/UiShowcase.png)
 
 ### Accessing the student lists
 Click on the button titled "Students".
+![UiShowcase](images/UiShowcase.png)
 
 ### Accessing a session
 Click on the button with the name of the Session.
+![Ui](images/Ui.png)
+The number below the attendance of the student is their current class participation score for the selected session.
+
 
 ## Commands
 > Command format:
