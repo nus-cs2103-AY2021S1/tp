@@ -1,6 +1,10 @@
 package seedu.stock.logic.commands;
 
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX_DESCRIPTION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +25,14 @@ public class NoteDeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a note,"
             + " specified by index of note shown in stock display, or all notes of the stock identified "
             + "by the serial number of the stock.\n"
-            + "Special note index to delete ALL notes from the stock is 0.\n"
-            + "Parameters:\n"
-            + "sn/ [SERIAL NUMBER]\n"
-            + "ni/ [NOTE INDEX]\n"
-            + "Example: " + COMMAND_WORD + " sn/111111"
-            + " ni/1 ";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " "
+            + PREFIX_NOTE_INDEX + PREFIX_NOTE_INDEX_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "ntuc1 "
+            + PREFIX_NOTE_INDEX + "1";
 
     private static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note(s) from Stock: %1$s";
     private static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND =

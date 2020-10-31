@@ -1,6 +1,10 @@
 package seedu.stock.logic.commands;
 
 import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_DESCRIPTION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +27,14 @@ public class NoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a note to the stock identified "
             + "by the serial number of the stock.\n"
-            + "Parameters:\n"
-            + "sn/ [SERIAL NUMBER]\n"
-            + "nt/ [NOTE]\n"
-            + "Example: " + COMMAND_WORD + " sn/111111"
-            + " nt/ Arrives every thursday 6pm.";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " "
+            + PREFIX_NOTE + PREFIX_NOTE_DESCRIPTION + "\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "shengsiong1 "
+            + PREFIX_NOTE + "chicken will expire soon";
 
     public static final String MESSAGE_ADD_NOTE_SUCCESS = "Added note to Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists";

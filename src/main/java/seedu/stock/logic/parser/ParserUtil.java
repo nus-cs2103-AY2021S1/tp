@@ -22,7 +22,7 @@ import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
@@ -199,29 +199,6 @@ public class ParserUtil {
             throw new ParseException(QuantityAdder.MESSAGE_CONSTRAINTS);
         }
         return new QuantityAdder(trimmedValue);
-    }
-
-    /**
-     * Parses a {@code Optional<String> lowQuantity} into a {@code QuantityAdder}.
-     * Updates lowQuantity in quantity adder if lowQuantity is present and returns original
-     * quantity adder otherwise.
-     * Leading and trailing whitespaces will be trimmed if lowQuantity is present.
-     *
-     * @throws ParseException if the given {@code lowQuantity} is invalid.
-     */
-    public static QuantityAdder parseLowQuantityAdder(QuantityAdder quantityAdder,
-            Optional<String> lowQuantity) throws ParseException {
-        if (lowQuantity.isEmpty()) {
-            return quantityAdder;
-        }
-
-        String trimmedLowQuantity = lowQuantity.get().trim();
-
-        if (!Quantity.isValidQuantity(trimmedLowQuantity)) {
-            throw new ParseException(Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
-        }
-
-        return quantityAdder.updateLowQuantity(trimmedLowQuantity);
     }
 
     /**

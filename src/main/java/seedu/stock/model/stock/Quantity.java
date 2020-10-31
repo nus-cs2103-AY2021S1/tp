@@ -78,6 +78,10 @@ public class Quantity {
         return new Quantity(quantity, newLowQuantity);
     }
 
+    public String getLowQuantity() {
+        return lowQuantity;
+    }
+
     @Override
     public String toString() {
         return quantity;
