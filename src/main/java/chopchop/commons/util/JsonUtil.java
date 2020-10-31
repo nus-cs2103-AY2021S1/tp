@@ -39,7 +39,12 @@ public class JsonUtil {
                     .addDeserializer(Level.class, new LevelDeserializer(Level.class)));
 
     static <T> void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
-        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));
+        var str = toJsonString(objectToSerialize);
+        if (!str.endsWith("\n")) {
+            str += "\n";
+        }
+
+        FileUtil.writeToFile(jsonFile, str);
     }
 
     static <T> T deserializeObjectFromJsonFile(Path jsonFile, Class<T> classOfObjectToDeserialize)
