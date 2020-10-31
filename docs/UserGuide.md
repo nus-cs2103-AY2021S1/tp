@@ -404,11 +404,13 @@ Format: `find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]`
 * The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
 * `Name`, `Phone`, `Address`, `Order` can be searched
 * Only full words for name will be matched e.g. `Bob` will not match `Bobby`
-* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
-* Items matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
+* Any phone/address/order containing the search string within them will be matched. 
+  * searching for "a/Holland V" will match "Holland Village"
+  * searching for "p/123" will match "12345678"
+* Items matching at least one word in the search query will be returned.
+  e.g. `find-d n/Bernice Adam` will return deliveries with names `Bernice Yeo`, `Adam Tan`
 * More than one Prefix can be specified (i.e. `AND` search).
-  e.g. `find-d n/Bernice p/85783742` will return delivery matching name and phone.
+  e.g. `find-d n/Bernice p/85783742` will return delivery matching *both* name and phone.
  
 Example:
 * `find-d n/alex aileen` using [Figure 1](#uiwithannotationpng) as the starting point.
