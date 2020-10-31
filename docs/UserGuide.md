@@ -6,20 +6,23 @@ title: User Guide
 TAskmaster is a **desktop app for managing students, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are a CS Teaching Assistant who can type fast, TAskmaster can help you track your students' attendance and class participation faster than traditional GUI apps.
 
 ## Contents:
-- [Quick Start](#Quick-Start "Goto Quick Start")
-- [Commands](#Commands "Goto Commands")
-    - [Adding a student: `add`](#Adding-a-student-add "Goto Adding-a-student-add")
-    - [Listing all students: `list`](#Listing-all-students-list "Goto Listing-all-students-list")
-    - [Deleting a student: `delete`](#Deleting-a-student-delete "Goto Deleting-a-student-delete")
-    - [Adding a session: `session`](#Adding-a-session-session "Goto Adding-a-session-session")
-    - [Changing the current session: `goto`](#Changing-the-current-session-goto "Goto Changing-the-current-session-goto")
-    - [Marking a student's attendance: `mark`](#Marking-a-student’s-attendance-mark "Goto Marking-a-students-attendance-mark")
-    - [Marking all students' attendance: `mark all`](#Marking-all-students'-attendance "Goto Marking-all-students'-attendance")
-    - [Clear all students: `clear`](#Clearing-all-entries-clear "Goto Clearing-all-entries-clear")
-    - [Exit the program: `exit`](#Exiting-the-program-exit "Goto Exiting-the-program-exit")
-- [Command Summary](#Command-Summary "Goto Command-Summary")
-- [Storage](#Storage "Goto Storage")
-- [FAQ](#Frequently-Asked-Questions-FAQ "Goto Frequently-Asked-Questions-FAQ")
+- [Quick Start](#quick-start "Go to Quick Start")
+- [GUI](#gui "Go to GUI")
+- [Commands](#commands "Go to Commands")
+    - [Adding a student: `add`](#adding-a-student-add "Go to Adding a student")
+    - [Listing all students: `list`](#listing-all-students-list "Go to Listing all students")
+    - [Deleting a student: `delete`](#deleting-a-student-delete "Go to Deleting a student")
+    - [Adding a session: `session`](#adding-a-session-session "Go to Adding a session")
+    - [Changing the current session: `goto`](#changing-the-current-session-goto "Go to Changing the current session")
+    - [Marking a student's attendance: `mark`](#marking-a-students-attendance-mark "Go to Marking a student's attendance")
+    - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
+    - [Scoring a student's participation: `score`](#scoring-a-students-participation-score "Go to Scoring a student's participation mark")
+    - [Scoring all students' participation: `score all`](#scoring-all-students-participation-score-all "Go to Scoring all students' participation marks")
+    - [Clear all students: `clear`](#clearing-all-entries-clear "Go to Clearing all entries")
+    - [Exit the program: `exit`](#exiting-the-program-exit "Go to Exiting the program")
+- [Command Summary](#command-summary "Go to Command Summary")
+- [Storage](#storage "Go to Storage")
+- [FAQ](#frequently-asked-questions-faq "Go to Frequently Asked Questions (FAQ)")
 
 ## Quick Start
 1. Ensure you have Java 11 or later installed.
@@ -27,6 +30,14 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 3. Copy the file to the folder you want to use as the home folder for the application.
 4. Double-click the file to start the app. A GUI should appear, with the field bar to input commands. The list of commands are available below.
 
+## UI
+![Ui](images/UiShowcase.png)
+
+### Accessing the student lists
+Click on the button titled "Students".
+
+### Accessing a session
+Click on the button with the name of the Session.
 
 ## Commands
 > Command format:
@@ -38,7 +49,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 ### Adding a student: `add`
 Adds a student into the student list.
 ```
-add n/NAME i/NUSNET_ID e/EMAIL
+add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]...
 ```
 
 ### Listing all students: `list`
@@ -61,6 +72,7 @@ Adds a session into the session list.
 session s/SESSION_NAME dt/SESSION_DATE_TIME
 ```
 - The `SESSION_DATE_TIME` must be of the format `dd-MM-yyyy HHmm`.
+- Duplicate session names are not allowed.
 
 ### Changing the current session: `goto`
 Changes the current session to the session with the specified name.
@@ -86,8 +98,24 @@ mark all a/ATTENDANCE_TYPE
 - Marks the attendances of all students shown in the displayed student list.
 - The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
+### Scoring a student's participation: `score`
+Scores the participation of the specified student from the student list.
+```
+score INDEX cp/SCORE
+```
+- Scores the participation of the student associated with the specified `INDEX` number shown in the displayed student list.
+- The `INDEX` and `SCORE` **must be positive integers**.
+
+### Scoring all students' participation: `score all`
+Scores the participation of all students from the student list.
+```
+score all INDEX cp/SCORE
+```
+- Scores the participation of all students shown in the displayed student list.
+- The `SCORE` **must be a positive integer**.
+
 ### Clearing all entries: `clear`
-Clears all students from the student list.
+Clears all saved data in taskmaster (both students and sessions).
 ```
 clear
 ```
@@ -99,17 +127,18 @@ exit
 ```
 
 ## Command Summary
+
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
-| Add student       | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```  |
+| Add student       | ```add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add n/John Doe u/98765432 e/johnd@example.com```<br>```i/e0123456 t/friends```  |
 | List students     | ```list```                                                                                               |
 | Delete student    | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
 | Add session       | ```session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```session s/CS2103 Tutorial 1 dt/23-10-2020 0900```|
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 1```
 | Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/present`                                             |
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
-| Store Attendance  | ```store_record fn/FILENAME``` <br> e.g., `store_record tutorial01`                                |
-| Load Attendance   | ```load_record fn/FILENAME```
+| Score             | ```score INDEX cp/SCORE``` <br> e.g., `score 1 cp/5`                                             |
+| Score all         | ```score all cp/SCORE``` <br> e.g., `score all cp/10`
 | Clear             | ```clear```                                                                                              |
 
 ## Storage

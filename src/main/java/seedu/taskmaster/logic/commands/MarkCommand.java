@@ -10,8 +10,8 @@ import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.exceptions.SessionException;
-import seedu.taskmaster.model.student.Student;
 
 /**
  * Marks the attendance of a student identified using its displayed index from the student list.
@@ -25,7 +25,6 @@ public class MarkCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_ATTENDANCE_TYPE + "ATTENDANCE_TYPE (must be 'present' or 'absent') \n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ATTENDANCE_TYPE + "present";
-
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as %2$s";
 
     protected final AttendanceType attendanceType;
@@ -43,20 +42,22 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int index = targetIndex.getZeroBased();
-        List<Student> lastShownList = model.getFilteredStudentList();
+        StudentRecord studentRecordToMark = null;
 
-        if (index >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-
-        Student studentToMark = lastShownList.get(index);
         try {
-            model.markStudent(studentToMark, attendanceType);
+            int index = targetIndex.getZeroBased();
+            List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
+
+            if (index >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            }
+
+            studentRecordToMark = lastShownList.get(index);
+            model.markStudentRecord(studentRecordToMark, attendanceType);
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());
         }
-        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, attendanceType));
+        return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentRecordToMark, attendanceType));
     }
 
     @Override

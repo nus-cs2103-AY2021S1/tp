@@ -2,6 +2,10 @@ package seedu.taskmaster.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_NONINTEGER;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_SCORE;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_INT;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_STRING;
 import static seedu.taskmaster.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
@@ -192,5 +196,17 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    void parseScore_invalidInput() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseScore(INVALID_PARTICIPATION_SCORE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseScore(INVALID_PARTICIPATION_NONINTEGER));
+    }
+
+    @Test
+    void parseScore_validInput() throws Exception {
+        int res = ParserUtil.parseScore(VALID_SCORE_STRING);
+        assertEquals(VALID_SCORE_INT, res);
     }
 }

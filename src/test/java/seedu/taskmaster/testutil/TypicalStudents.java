@@ -19,6 +19,8 @@ import java.util.List;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
+import seedu.taskmaster.model.session.SessionList;
+import seedu.taskmaster.model.session.SessionListManager;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 
@@ -32,7 +34,7 @@ public class TypicalStudents {
             .withName("Alice Pauline")
             .withNusnetId("e0123456")
             .withEmail("alice@example.com")
-            .withTelegram("94351253")
+            .withTelegram("alicepauline")
             .withTags("friends").build();
 
     public static final Student BENSON =
@@ -40,39 +42,39 @@ public class TypicalStudents {
             .withName("Benson Meier")
             .withNusnetId("e0456789")
             .withEmail("johnd@example.com")
-            .withTelegram("98765432")
+            .withTelegram("benson_m")
             .withTags("owesMoney", "friends").build();
 
     public static final Student CARL =
             new StudentBuilder()
                     .withName("Carl Kurz")
-                    .withTelegram("95352563")
+                    .withTelegram("kurzzz")
                     .withEmail("heinz@example.com")
                     .withNusnetId("e0312654").build();
 
     public static final Student DANIEL =
             new StudentBuilder()
                     .withName("Daniel Meier")
-                    .withTelegram("87652533")
+                    .withTelegram("dms_only")
                     .withEmail("cornelia@example.com")
                     .withNusnetId("e0987465")
                     .withTags("friends").build();
 
     public static final Student ELLE = new StudentBuilder()
             .withName("Elle Meyer")
-            .withTelegram("9482224")
+            .withTelegram("mellie")
             .withEmail("werner@example.com")
             .withNusnetId("e0946875").build();
 
     public static final Student FIONA = new StudentBuilder()
             .withName("Fiona Kunz")
-            .withTelegram("9482427")
+            .withTelegram("fionakunz")
             .withEmail("lydia@example.com")
             .withNusnetId("e0319843").build();
 
     public static final Student GEORGE = new StudentBuilder()
             .withName("George Best")
-            .withTelegram("9482442")
+            .withTelegram("george_worst")
             .withEmail("anna@example.com")
             .withNusnetId("e0731894").build();
 
@@ -110,7 +112,7 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code Taskmaster} with all the typical students.
+     * Returns an {@code Taskmaster} with all the typical students and 1 session.
      */
     public static Taskmaster getTypicalTaskmaster() {
         Taskmaster typicalTaskmaster = new Taskmaster();
@@ -122,7 +124,32 @@ public class TypicalStudents {
                 new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
                 getTypicalStudents());
         typicalTaskmaster.addSession(typicalSession);
+
         return typicalTaskmaster;
+    }
+
+    /**
+     * Returns an {@code SessionList} with all the typical students and a SessionList
+     * @return
+     */
+    public static SessionList getTypicalSessionList() {
+        SessionList sessionList = new SessionListManager();
+
+        Session typicalSession = new Session(
+                new SessionName("Typical session"),
+                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
+                getTypicalStudents());
+
+        sessionList.add(typicalSession);
+
+        Session typicalSession2 = new Session(
+                new SessionName("Typical session 2"),
+                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 13, 0)),
+                getTypicalStudents());
+
+        sessionList.add(typicalSession2);
+
+        return sessionList;
     }
 
     public static List<Student> getTypicalStudents() {

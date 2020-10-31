@@ -2,6 +2,7 @@ package seedu.taskmaster.storage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -66,6 +67,8 @@ class JsonSerializableSession {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Session toModelType() throws IllegalValueException {
+        SessionDateTime newDateTime;
+
         List<StudentRecord> studentRecords = new ArrayList<>();
         List<NusnetId> nusnetIds = new ArrayList<>();
 
@@ -85,8 +88,13 @@ class JsonSerializableSession {
         StudentRecordList newRecordList = new StudentRecordListManager();
         newRecordList.setStudentRecords(studentRecords);
         SessionName newSessionName = new SessionName(sessionName);
-        SessionDateTime newDateTime = new SessionDateTime(
-                LocalDateTime.parse(sessionDateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
+
+        try {
+            newDateTime = new SessionDateTime(
+                    LocalDateTime.parse(sessionDateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)));
+        } catch (DateTimeParseException dtpe) {
+            throw new IllegalValueException("Error when parsing SessionDateTime.");
+        }
 
         return new Session(newSessionName, newDateTime, newRecordList);
     }

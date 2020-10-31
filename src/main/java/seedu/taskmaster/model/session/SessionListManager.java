@@ -73,7 +73,7 @@ public class SessionListManager implements SessionList {
     @Override
     public void add(Session toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (contains(toAdd.getSessionName())) {
             throw new DuplicateSessionException();
         }
         internalList.add(toAdd);
@@ -123,5 +123,12 @@ public class SessionListManager implements SessionList {
     @Override
     public Iterator<Session> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SessionListManager // instanceof handles nulls
+                && internalList.equals(((SessionListManager) other).internalList));
     }
 }

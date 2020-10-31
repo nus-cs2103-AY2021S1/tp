@@ -1,11 +1,8 @@
 package seedu.taskmaster.model.record;
 
-import java.util.logging.Level;
-import java.util.logging.Logger; // to test logging
 
 public class ClassParticipation {
     public static final String MESSAGE_CONSTRAINTS = "The score of a student needs to be a positive integer.";
-    private static final Logger logger = Logger.getLogger("LoggingTest");
 
     private int score = 0;
 
@@ -15,7 +12,7 @@ public class ClassParticipation {
      * The initial score is set to 0
      */
     public ClassParticipation() {
-        logger.log(Level.INFO, "Making Class Participation");
+
     }
 
     /**
@@ -24,7 +21,6 @@ public class ClassParticipation {
      * The score is set to the wanted score
      */
     public ClassParticipation(int score) {
-        logger.log(Level.INFO, "Making Class Participation");
         assert score >= 0;
         this.score = score;
     }

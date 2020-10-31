@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
@@ -22,6 +23,7 @@ import seedu.taskmaster.logic.commands.ExitCommand;
 import seedu.taskmaster.logic.commands.FindCommand;
 import seedu.taskmaster.logic.commands.HelpCommand;
 import seedu.taskmaster.logic.commands.ListCommand;
+import seedu.taskmaster.logic.commands.ParticipationCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 import seedu.taskmaster.model.student.NameContainsKeywordsPredicate;
 import seedu.taskmaster.model.student.Student;
@@ -86,6 +88,14 @@ public class TaskmasterParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_participation() throws Exception {
+        assertTrue(
+                parser.parseCommand(
+                        ParticipationCommand.COMMAND_WORD + " 1 " + PREFIX_CLASS_PARTICIPATION + "1")
+                        instanceof ParticipationCommand);
     }
 
     @Test
