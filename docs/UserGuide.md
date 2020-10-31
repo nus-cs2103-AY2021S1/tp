@@ -261,6 +261,10 @@ Examples :
 **Q**: Can I contribute to the project?<br>
 **A**: Sorry, as this is a school project, we are not accepting any contributors at this period.
 
+**Q**: Why does list command use `ls` as the keyword instead of `list`?
+**A**: In most command lines, `ls` is the default keyword for listing files and folders. We would like the transition 
+from command line to HelloFile to be as smooth as possible for our target users.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
