@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Amount {
     public static final String MESSAGE_CONSTRAINTS = "Amount should be of format Dollar.Cents and adhere "
             + "to the following constraints: \n"
-            + "1. The Dollars part should be all numbers and should not start with the digit 0\n"
+            + "1. The Dollars part should be all numbers and should not start with the digit 0 if there is no decimal\n"
             + "2. The . between Dollars and Cents is optional\n"
             + "3. The Cents part should be all numbers and can only contain 0-2 digits\n"
             + "4. The input value should not be more than 1,000,000.00.";
