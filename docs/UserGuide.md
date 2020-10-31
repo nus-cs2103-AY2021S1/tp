@@ -174,6 +174,7 @@ Format: `tag INDEX -t TAG_NAME`
 :information_source:
 
 * Tags `TAG_NAME` for food item at the specified `INDEX`.
+* `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -192,6 +193,7 @@ Format: `untag INDEX -t TAG_NAME`
 :information_source:
 
 * Untags `TAG_NAME` for food item at the specified `INDEX`.
+* `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
