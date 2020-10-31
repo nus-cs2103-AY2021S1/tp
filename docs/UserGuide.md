@@ -319,8 +319,6 @@ __Format:__ `find_finance [id/ID] [aft/AFTDATE] [bef/BEFDATE] [item/YESNO]`:
 
 This allows us to find finance records with a Finance ID that contains `ID` if the `ID` field is filled, that were made after `AFTDATE` if the `AFTDATE` field is filled, but before `BEFDATE` if the `BEFDATE` field is filled, and is linked to an inventory record if the `YESNO` field is filled with the `yes` parameter or stand-alone finance records if the `YESNO` field is filled with the `no` parameter.
 
-**NOTE** If every optional field is not filled, NUStorage will simply display every finance record stored upon entering the command.
-
 __Example:__ `find_finance id/8 aft/2019-10-20 bef/2020-12-30 item/no`
 
 This allows us to find records with a Finance ID containing "8", took place between 20th Oct 2019 to 30th Dec 2020 (inclusive), and does not have a linked inventory record.
