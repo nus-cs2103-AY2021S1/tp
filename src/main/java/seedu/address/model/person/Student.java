@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,23 +13,70 @@ import seedu.address.model.tag.Tag;
  * Represents a Student in the app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Student extends Person {
+public class Student {
 
+    // Identity fields
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
     private final StudentId studentId;
+    private final Attendance attendance;
+
+    // Data fields
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Constructor for StudentId.
-     * @param studentId a valid string representing a Student's id.
+     * Constructor for Student.
      */
     public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId) {
-        super(name, phone, email, tags);
-        requireAllNonNull(studentId);
-        assert studentId != null;
+        requireAllNonNull(name, phone, email, tags, studentId);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.tags.addAll(tags);
         this.studentId = studentId;
+        this.attendance = new Attendance();
+    }
+
+    /**
+     * Constructor for Student.
+     */
+    public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId, Attendance attendance) {
+        requireAllNonNull(name, phone, email, tags, studentId);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.tags.addAll(tags);
+        this.studentId = studentId;
+        this.attendance = attendance;
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public Email getEmail() {
+        return email;
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     public StudentId getStudentId() {
         return studentId;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
     }
 
     /**
@@ -62,13 +111,14 @@ public class Student extends Person {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTags().equals(getTags())
-                && otherStudent.getStudentId().equals(getStudentId());
+                && otherStudent.getStudentId().equals(getStudentId())
+                && otherStudent.getAttendance().equals(getAttendance());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(getName(), getPhone(), getEmail(), getTags(), studentId);
+        return Objects.hash(name, phone, email, tags, studentId, attendance);
     }
 
     @Override
@@ -80,6 +130,7 @@ public class Student extends Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Student ID: ")
+                .append(" Attendance: ")
                 .append(getStudentId())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
