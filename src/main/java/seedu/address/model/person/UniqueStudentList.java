@@ -104,6 +104,10 @@ public class UniqueStudentList implements Iterable<Student> {
                 && internalList.equals(((UniqueStudentList) other).internalList));
     }
 
+    public int count() {
+        return this.internalList.size();
+    }
+
     @Override
     public int hashCode() {
         return internalList.hashCode();

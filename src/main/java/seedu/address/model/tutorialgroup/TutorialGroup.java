@@ -65,6 +65,10 @@ public class TutorialGroup {
         return students;
     }
 
+    public int getTotalStudents() {
+        return this.students.count();
+    }
+
 
     //SETTERS
     public void setLessonTime(TimeOfDay startTime, TimeOfDay endTime) {

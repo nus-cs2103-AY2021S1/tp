@@ -26,6 +26,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_STUDENT_ID + "A1234567X "
             + PREFIX_TAG + "CS2103T "
             + PREFIX_TAG + "CS2100";
 
