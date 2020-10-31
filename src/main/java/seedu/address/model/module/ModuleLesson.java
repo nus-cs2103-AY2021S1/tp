@@ -46,6 +46,11 @@ public class ModuleLesson {
     }
 
     @Override
+    public int hashCode() {
+        return this.lessonName.hashCode();
+    }
+
+    @Override
     public String toString() {
         return this.lessonName;
     }
