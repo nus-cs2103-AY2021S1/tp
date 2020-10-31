@@ -11,8 +11,8 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.testutil.Assert.assertThrows;
+import static seedu.resireg.testutil.TypicalRooms.ROOM_A;
 import static seedu.resireg.testutil.TypicalStudents.AMY;
-import static seedu.resireg.testutil.TypicalStudents.BOB;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -73,8 +73,10 @@ public class CommandTestUtil {
     // Valid bin items
     public static final String VALID_DATE_DELETED_A = "2020-10-26";
     public static final String VALID_DATE_DELETED_B = "2019-10-21";
+    /** Student */
     public static final Binnable VALID_ITEM_A = AMY;
-    public static final Binnable VALID_ITEM_B = BOB;
+    /** Room */
+    public static final Binnable VALID_ITEM_B = ROOM_A;
 
     // Valid command word aliases
     public static final String VALID_COMMAND_ROOMS_RO = "rooms";
