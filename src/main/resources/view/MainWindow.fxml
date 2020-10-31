@@ -30,7 +30,6 @@
             <VBox styleClass="outerMostVBox">
 
                 <HBox VBox.vgrow="ALWAYS">
-   
                        <VBox alignment="CENTER" maxWidth="200" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0f143c;">
                         <children>
                             <HBox alignment="CENTER" prefHeight="41.0" prefWidth="100.0" style="-fx-background-color: #0f143c;">
@@ -101,7 +100,6 @@
                                        <Insets />
                                     </opaqueInsets>
                                       </StackPane>
-                  
                                       <VBox fx:id="calendarList" maxWidth="450.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                                     <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0f143c; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 10, 0, 0, 0);" VBox.vgrow="ALWAYS">
                                        <children>
@@ -149,10 +147,9 @@
                                       </VBox>
                               </children>
                            </HBox>
-               
                                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                                    <padding>
-                                       <Insets bottom="5" left="10" right="10" top="5" />
+                                       <Insets bottom="5" left="10" right="10" top="5"/>
                                    </padding>
                                </StackPane>
                         </children>
