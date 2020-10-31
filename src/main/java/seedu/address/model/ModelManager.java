@@ -393,9 +393,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addMeeting(Meeting meeting) {
+    public void addMeeting(Meeting meeting) throws CommandException {
+        checkIsValidMeeting(meeting);
         meetingBook.addMeeting(meeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+    }
+
+    /**
+     * checks a bid against the property and bidder list to see if the ids exists and if bid amount is valid
+     * @param  meeting meeting to validate
+     * @throws CommandException
+     */
+    private void checkIsValidMeeting(Meeting meeting) throws CommandException {
+        requireNonNull(meeting);
+        if (!containsPropertyId(meeting.getPropertyId())) {
+            throw new CommandException(MESSAGE_INVALID_PROPERTY_ID);
+        }
+        if (!containsBidderId(meeting.getBidderId())) {
+            throw new CommandException(MESSAGE_INVALID_BIDDER_ID);
+        }
     }
 
     @Override
