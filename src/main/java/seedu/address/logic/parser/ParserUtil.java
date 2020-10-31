@@ -21,6 +21,7 @@ import seedu.address.model.contact.Telegram;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModularCredits;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
@@ -178,6 +179,21 @@ public class ParserUtil {
             throw new ParseException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
         return new ZoomLink(trimmedZoomLink);
+    }
+
+    /**
+     * Parses a {@code String lesson} into a {@code ModuleLesson}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lesson} is invalid.
+     */
+    public static ModuleLesson parseModuleLesson(String lesson) throws ParseException {
+        requireNonNull(lesson);
+        String trimmedLesson = lesson.trim();
+        if (!ModuleLesson.isValidLesson(trimmedLesson)) {
+            throw new ParseException(ModuleLesson.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleLesson(trimmedLesson);
     }
 
     /**

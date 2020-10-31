@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
@@ -84,15 +86,18 @@ public class EditModuleCommand extends Command {
         assert moduleToEdit != null;
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
-        Map<String, ZoomLink> updatedLinks = editModuleDescriptor.getZoomLinks().orElse(moduleToEdit.getAllLinks());
         GradeTracker gradeTracker = moduleToEdit.getGradeTracker();
+        Map<ModuleLesson, ZoomLink> zoomLinks = new HashMap<>();
+        if (editModuleDescriptor.getZoomLinks().isPresent()) {
+            zoomLinks.putAll(editModuleDescriptor.getZoomLinks().get());
+        }
 
         if (editModuleDescriptor.getGradePoint().isPresent()) {
             gradeTracker.setGradePoint(editModuleDescriptor.getGradePoint().get());
         }
         ModularCredits modularCredits = editModuleDescriptor
                 .getModularCredits().orElse((moduleToEdit.getModularCredits()));
-        return new Module(moduleName, updatedLinks, gradeTracker, updatedTags, modularCredits);
+        return new Module(moduleName, zoomLinks, gradeTracker, updatedTags, modularCredits);
 
     }
 

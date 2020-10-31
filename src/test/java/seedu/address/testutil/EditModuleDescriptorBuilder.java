@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradePoint;
@@ -54,7 +55,7 @@ public class EditModuleDescriptorBuilder {
     /**
      * Sets the {@code ZoomLink} of the {@code EditModuleDescriptor} that we are building.
      */
-    public EditModuleDescriptorBuilder withZoomLinks(HashMap<String, ZoomLink> zoomLinks) {
+    public EditModuleDescriptorBuilder withZoomLinks(HashMap<ModuleLesson, ZoomLink> zoomLinks) {
         descriptor.setZoomLinks(zoomLinks);
         return this;
     }

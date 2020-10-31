@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -21,7 +20,7 @@ import seedu.address.model.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
-public class ListCommandTest {
+public class ListModuleCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -41,7 +40,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_archivedListDisplayed_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

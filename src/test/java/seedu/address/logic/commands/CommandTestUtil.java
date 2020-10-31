@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
@@ -57,9 +58,9 @@ public class CommandTestUtil {
     public static final String VALID_ZOOMLINK_CS2030 = "https://nus-sg.zoom.us/CS2030";
     public static final String VALID_ZOOMLINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
     public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/ES2660";
-    public static final HashMap<String, ZoomLink> VALID_ZOOMLINKS_CS2030 = new HashMap<>();
-    public static final HashMap<String, ZoomLink> VALID_ZOOMLINKS_CS2103T = new HashMap<>();
-    public static final HashMap<String, ZoomLink> VALID_ZOOMLINKS_ES2660 = new HashMap<>();
+    public static final HashMap<ModuleLesson, ZoomLink> VALID_ZOOMLINKS_CS2030 = new HashMap<>();
+    public static final HashMap<ModuleLesson, ZoomLink> VALID_ZOOMLINKS_CS2103T = new HashMap<>();
+    public static final HashMap<ModuleLesson, ZoomLink> VALID_ZOOMLINKS_ES2660 = new HashMap<>();
 
     public static final double VALID_MC_4 = 4.0;
     public static final double VALID_MC_2 = 2.0;
@@ -83,9 +84,9 @@ public class CommandTestUtil {
     //public static final EditCommand.EditModuleDescriptor DESC_BOB;
 
     static {
-        VALID_ZOOMLINKS_CS2030.put((VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2030));
-        VALID_ZOOMLINKS_CS2103T.put(VALID_MODULELESSONTYPE, new ZoomLink(VALID_ZOOMLINK_CS2103T));
-        VALID_ZOOMLINKS_ES2660.put(VALID_MODULELESSONTYPE, new ZoomLink(VALID_ZOOMLINK_ES2660));
+        VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2030));
+        VALID_ZOOMLINKS_CS2103T.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2103T));
+        VALID_ZOOMLINKS_ES2660.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_ES2660));
         DESC_CS2030 = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2030)
                 .withZoomLinks(VALID_ZOOMLINKS_CS2030).withTags(VALID_TAG_CORE_MODULE)
                 .build();
