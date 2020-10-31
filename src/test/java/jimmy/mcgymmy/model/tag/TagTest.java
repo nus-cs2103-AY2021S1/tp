@@ -24,7 +24,7 @@ public class TagTest {
 
         //Invalid testcases
         assertThrows(NullPointerException.class, () -> new Tag(null)); // null tag name
-        assertFalse(Tag.isValidTagName("123456789012345678901234567890123456789012345678901")); // 51 chars
+        assertFalse(Tag.isValidTagName("123456789012345678901")); // 21 chars
         assertFalse(Tag
                 .isValidTagName("123456789012345678901234567890123456789012345678901234567890")); // 60 chars
         assertFalse(Tag.isValidTagName("asdsafdfs12345$$$@#$!^#$")); //Alphanumeric with symbol
@@ -33,6 +33,7 @@ public class TagTest {
         //ValidTagNames
         assertTrue(Tag.isValidTagName("asdsafdfs")); //Alphabets
         assertTrue(Tag.isValidTagName("asdsafdfs12345")); //Alphanumeric
+        assertTrue(Tag.isValidTagName("12345678901234567890")); //20 chars
 
     }
 
