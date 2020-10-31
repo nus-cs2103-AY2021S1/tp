@@ -108,7 +108,7 @@ This section provides support for the commands required to perform desired actio
 * Multiple prefixes combined with `|` means only one of them can be provided at a single command. <br>
   For example, in `update sn/<serial number> [iq/<increment value> | nq/<new quantity>]`, at most one of `iq/<increment value>`
   or `nq/<new quantity>` may be provided. <br>
-  `update sn/Fairprice iq/+10 nq/100` is an invalid command format, but `update sn/Fairprice1 iq/+10`, 
+  `update sn/Fairprice1 iq/+10 nq/100` is an invalid command format, but `update sn/Fairprice1 iq/+10`, 
   `update sn/Fairprice1 nq/100`, `update sn/Fairprice1` are all valid command formats.
 
 * Prefixes given can be in any order. <br>
