@@ -30,6 +30,9 @@ public class Attendance {
     private boolean[] isPresent = new boolean[MAX_WEEK];
     private int value;
 
+    /**
+     * Constructor for Attendance.
+     */
     public Attendance() {
         this.value = 0;
     }

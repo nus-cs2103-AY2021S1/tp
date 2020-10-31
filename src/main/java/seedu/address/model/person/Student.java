@@ -130,8 +130,9 @@ public class Student {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Student ID: ")
-                .append(" Attendance: ")
                 .append(getStudentId())
+                .append(" Attendance: ")
+                .append(getAttendance())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
