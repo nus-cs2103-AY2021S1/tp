@@ -566,7 +566,8 @@ stats st/source, stats st/source-qd-abc ("abc" is an existing source company)
 
 Below is a guided example for displaying statistics:<br>
 
-Start Warenager. Suppose you want to display source statistics.<br>
+Start Warenager. Suppose you want to display source statistics. After the input, you should notice that
+the title in the statistics window as highlighted corresponds to the type of statistics shown.<br>
 The valid statistics input would be `stats st/source`.
 
 **Before input**:
@@ -578,18 +579,26 @@ The valid statistics input would be `stats st/source`.
 
 ![statistics_step3](images/statistics/statistics_step3.png)
 
-Now suppose you want to display source statistics
+Now suppose you want to display source statistics for the source company `courts`. After the input, you
+should notice that the title in the statistics window as highlighted now corresponds to the source company `courts`.<br>
+The valid statistics input would be `stats st/source-qd-courts`.
+
+**Before input**:
+
+![statistics_step4](images/statistics/statistics_step4.png)
 
 
+**After input**:
+
+![statistics_step5](images/statistics/statistics_step5.png)
 
 <div markdown="block" class="alert alert-warning" markdown="1">
 
-If Warenager is first started up, you should expect the following in the **Statistics** tab:
+If Warenager is first started up, you should expect the following in the **Statistics** tab,
+and this is intended:
 
 ![statistics_step7](images/statistics/statistics_step7.png)
 </div>
-
-
 
 ### Bookmarking stocks in the list: `bookmark`
 Bookmarks the desired stock(s). 
@@ -757,13 +766,31 @@ the latest update time for the `stocks.CSV`.
 ![stockCsvExample3](images/stockCsvExample3.png)
 
 ### Clear
-Clears all the existing data in Warenager. This is an **irreversible** command.
+Clears all the existing data in Warenager.
 
 <h4>Format</h4>
 
 ```
 clear
 ```
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+`clear` is an irreversible process. Do backup the data it might be needed again.
+
+</div>
+
+Below is the expected outcome for clearing Warenager:<br>
+
+**Before input**:
+
+![clear_step1](images/clear/clear_step1.png)
+
+
+**After input**:
+
+![clear_step2](images/clear/clear_step2.png)
+
+
 
 ### Tab
 Toggles between the tabs in Warenager.
