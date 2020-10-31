@@ -63,7 +63,7 @@ public class DeleteAccountCommand extends Command {
 
         model.deleteAccount(toBeDeleted);
         return CommandResultFactory
-            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ACCOUNT_SUCCESS, toBeDeleted));
+            .createDefaultCommandResult(String.format(MESSAGE_DELETE_ACCOUNT_SUCCESS, toBeDeleted));
     }
 
     @Override
