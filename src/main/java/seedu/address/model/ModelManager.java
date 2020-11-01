@@ -145,10 +145,6 @@ public class ModelManager implements Model {
     }
 
     //=========== schedule ================================================================================
-    @Override
-    public void setSchedulerWithEvents(ReadOnlyEvent events) {
-        this.scheduler.resetData(events);
-    }
 
     @Override
     public ReadOnlyEvent getSchedule() {
@@ -224,4 +220,10 @@ public class ModelManager implements Model {
         updateClassTimesToEvent();
         return scheduler.getVEvents();
     }
+
+    @Override
+    public boolean isClashingClassTime(Student toCheck) {
+        return scheduler.isClashingClassTime(toCheck, reeve.getStudentList());
+    }
 }
+

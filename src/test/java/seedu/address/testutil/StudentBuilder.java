@@ -36,7 +36,7 @@ public class StudentBuilder {
     public static final SchoolType DEFAULT_SCHOOL_TYPE = SchoolType.SECONDARY;
     public static final Integer DEFAULT_SCHOOL_LEVEL = 4;
     public static final String DEFAULT_CLASS_VENUE = "311, Clementi Ave 2, #02-25";
-    public static final String DEFAULT_CLASS_TIME = "1 1500-1700";
+    public static final String DEFAULT_CLASS_TIME = "1 2100-2200";
     public static final String DEFAULT_FEE = "21";
     public static final String DEFAULT_PAYMENT_DATE = "21/05/2020";
     public static final String DEFAULT_ADDITIONAL_DETAILS_MONEY = "owesMoney";

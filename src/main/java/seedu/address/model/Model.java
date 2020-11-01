@@ -99,11 +99,6 @@ public interface Model {
     // =========== schedule ================================================================================
 
     /**
-     * Sets the scheduler with {@code events}.
-     */
-    void setSchedulerWithEvents(ReadOnlyEvent events);
-
-    /**
      * Returns the current schedule.
      */
     ReadOnlyEvent getSchedule();
@@ -149,5 +144,6 @@ public interface Model {
 
     ObservableList<VEvent> getLessonEventsList();
 
+    boolean isClashingClassTime(Student toCheck);
 
 }

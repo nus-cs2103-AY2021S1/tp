@@ -111,11 +111,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setSchedulerWithEvents(ReadOnlyEvent events) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ReadOnlyEvent getSchedule() {
         throw new AssertionError("This method should not be called.");
     }
@@ -142,6 +137,11 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<VEvent> getVEventList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isClashingClassTime(Student toCheck) {
         throw new AssertionError("This method should not be called.");
     }
 

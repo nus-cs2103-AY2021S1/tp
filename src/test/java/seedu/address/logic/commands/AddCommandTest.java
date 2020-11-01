@@ -112,6 +112,11 @@ public class AddCommandTest {
         public ReadOnlyReeve getReeve() {
             return new Reeve();
         }
+
+        @Override
+        public boolean isClashingClassTime(Student toCheck) {
+            return false;
+        }
     }
 
 }
