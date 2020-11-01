@@ -7,7 +7,19 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Table of Contents
+* [Quick Start](#quick-start)
+* [Features](#features)
+    * [General Features](#general-features)
+    * [Contact Management](#contact-management)
+    * [Module Management](#module-management)
+    * [Instructor Assignment](#instructor-assignment)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -44,7 +56,69 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 
 </div>
 
-### Adding a contact: `add`
+### General Features
+
+#### Listing all contacts and modules: `list`
+
+Shows a list of all contacts in FaculType and all modules in the active semester.
+
+Format: `list`
+
+#### Listing all contacts : `clist`
+
+Shows a list of all contacts in FaculType.
+
+Format: `clist`
+
+#### Listing all modules : `mlist`
+
+Shows a list of all modules in the active semester.
+
+Format: `mlist`
+
+#### Switching the active semester : `switch`
+
+Switches the active semester from Semester 1 to Semester 2 and vice versa.
+
+Format: `switch`
+
+#### Reseting FaculType : `reset`
+
+Resets FaculType to its initial state by clearing all entries of persons and modules.
+
+Format: `reset`
+
+#### Clearing all contacts : `cclear`
+
+Clears all entries of contacts in FaculType.
+
+Format : `cclear`
+
+#### Clearing all modules : `mclear`
+
+Clears all entries of modules in the active semester.
+
+Format : `mclear`
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+#### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### Saving the data
+
+FaculType data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Contact Management
+
+#### Adding a contact: `add`
 
 Adds a contact to FaculType.
 
@@ -59,7 +133,7 @@ Examples:
 * `add n/Janson Garrick p/98765432 e/jansongarrick@example.com d/Computer Science o/B01-A3`
 * `add n/Amanda Holt p/98765431 e/amanda123@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
-### Deleting a contact : `delete`
+#### Deleting a contact : `delete`
 
 Deletes the specified contact from FaculType.
 
@@ -73,7 +147,7 @@ Examples:
 * `clist` followed by `delete 2` deletes the 2nd contact in FaculType.
 * `find n/Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-### Editing a contact : `edit`
+#### Editing a contact : `edit`
 
 Edits an existing contact in FaculType.
 
@@ -90,7 +164,7 @@ Examples:
 *  `edit 1 d/Computing o/COM2-01-02` edits the department and office of the 1st contact to be `Computing` and `COM2-01-02` respectively.
 *  `edit 2 n/Brenda Chan t/` edits the name of the 2nd contact to be `Brenda Chan` and clears all existing tags.
 
-### Adding or updating a remark : `remark`
+#### Adding or updating a remark : `remark`
 
 Adds or updates the remark of an existing contact in FaculType.
 
@@ -103,7 +177,7 @@ Examples:
 *  `remark 1 r/Wears red glasses` adds the remark “Wears red glasses” to the 1st contact in the list.
 *  `remark 2 r/` erases the remark of the 2nd contact in the list.
 
-### Locating contacts by attributes: `find`
+#### Locating contacts by attributes: `find`
 
 Finds all contacts that match the given fields.
 
@@ -121,7 +195,9 @@ Examples:
 * `find n/victor tan d/computing` returns all contacts with names containing `victor` and `tan` and with departments
 containing `computing`.
  
-### Adding a module: `addmod`
+### Module Management
+ 
+#### Adding a module: `addmod`
 
 Adds a new module to the active semester.
 
@@ -130,10 +206,10 @@ Format : `addmod m/MODULE_CODE n/MODULE_NAME`
 * Adds the `MODULE_CODE` specified to the active semester. The `MODULE_CODE` must not exist in the active semester in the first place.
 
 Examples:
-* `addmod m/CS2040S n/Data Structures and Algorithms` adds a module named `Data Structures and Algorithms` with code `CS2040S` to the active semester.
+* `addmod m/CS50 n/Introduction to Computer Science` adds a module named `Introduction to Computer Science` with code `CS50` to the active semester.
 * `addmod m/CS2102 n/Database Systems` adds a module named `Database Systems` with code `CS2102` to the active semester.
 
-### Deleting a module: `delmod`
+#### Deleting a module: `delmod`
 
 Deletes a module from the active semester.
 
@@ -142,16 +218,16 @@ Format: `delmod m/MODULE_CODE`
 * Deletes the `MODULE_CODE` specified from the active semester. The `MODULE_CODE` **must exist** in the active semester in the first place.
 
 Examples:
-* `delmod m/CS2040S` deletes the existing module with code `CS2040S` from the active semester.
+* `delmod m/CS50` deletes the existing module with code `CS50` from the active semester.
 * `delmod m/CS2102` deletes the existing module with code `CS2102` from the active semester.
 
-### Finding modules : `findmod`
+#### Finding modules : `findmod`
 
 Finds all modules in the active semester that match the given fields.
 
 Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]`
 
-* The search is insensitive. e.g. `cs2103` will match `CS2103`.
+* The search is case-insensitive. e.g. `cs50` will match `CS50`.
 * Partial words will be matched. e.g. `database` will match `Database Systems`.
 * The order of the keywords do not matter. e.g. `Statistics and Probability` will match `Probability and Statistics`.
 * At least one of the optional fields must be provided.
@@ -163,25 +239,9 @@ Examples :
 * `findmod m/CS2 n/security i/Alex` returns all modules with codes containing `CS2`, names containing `programming`,
 and instructors with names containing `Alex`.
 
-### Listing all contacts and modules: `list`
+### Instructor Assignment
 
-Shows a list of all contacts in FaculType and all modules in the active semester.
-
-Format: `list`
-
-### Listing all contacts : `clist`
-
-Shows a list of all contacts in FaculType.
-
-Format: `clist`
-
-### Listing all modules : `mlist`
-
-Shows a list of all modules in the active semester.
-
-Format: `mlist`
-
-### Assigning an instructor to modules : `assign`
+#### Assigning an instructor to modules : `assign`
 
 Assigns a contact to one or more modules in the active semester. The contact will be an instructor in those modules.
 
@@ -194,7 +254,7 @@ Examples :
 * `assign 2 m/CS2030S` Assigns the contact at index 2 to the existing module with code `CS2030S`.
 * `assign 3 m/CS2100 m/CS2106` Assigns the contact at index 3 to the existing modules with codes `CS2100` and `CS2106`.
 
-### Unassigning an instructor from modules : `unassign`
+#### Unassigning an instructor from modules : `unassign`
 
 Unassigns a contact from one or more modules in the active semester. The contact will no longer be an instructor in those modules.
 
@@ -209,51 +269,11 @@ Examples :
 * `unassign 3 m/CS2100 m/CS2106` Unassigns the contact at from 3 to the existing modules with codes `CS2100` and `CS2106`.
 * `unassign 2 m/` Unassigns the contact at index 2 from all modules in the active semester.
 
-### Clearing all assignments : `unassignall`
+#### Clearing all assignments : `unassignall`
 
 Unassigns all contacts from all modules in the active semester.
 
 Format: `unassignall`
-
-### Switching the active semester : `switch`
-
-Switches the active semester from Semester 1 to Semester 2 and vice versa.
-
-Format: `switch`
-
-### Reseting FaculType : `reset`
-
-Resets FaculType to its initial state by clearing all entries of persons and modules.
-
-Format: `reset`
-
-### Clearing all contacts : `cclear`
-
-Clears all entries of contacts in FaculType.
-
-Format : `cclear`
-
-### Clearing all modules : `mclear`
-
-Clears all entries of modules in the active semester.
-
-Format : `mclear`
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format: `help`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Saving the data
-
-FaculType data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,12 +282,22 @@ FaculType data is saved in the hard disk automatically after any command that ch
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FaculType home folder.
 
+**Q**: What are instructors?<br>
+**A**: Instructors are contacts that have been assigned to one or more modules.
+
+**Q**: Can I directly assign a contact to a module in the non-active semester?<br>
+**A**: No. Use `switch` to switch the active semester first and then use `assign`.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 Action | Format, Examples
 --------|------------------
+**List all contacts and modules** | `list`
+**List all contacts** | `clist`
+**List all modules** | `mlist`
+**Switch active semester** | `switch`
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​` <br> e.g. `edit 1 d/Information Systems o/COM2-01-02`
@@ -276,13 +306,9 @@ Action | Format, Examples
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
 **Find modules** | `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]` <br> e.g. `findmod m/CS2`
-**List all contacts and modules** | `list`
-**List all contacts** | `clist`
-**List all modules** | `mlist`
 **Assign a contact** | `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `assign 3 m/CS2100 m/CS2106`
 **Unassign a contact** | `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​` <br> e.g. `unassign 3 m/CS2100 m/CS2106`
 **Unassign all contacts** | `unassignall`
-**Switch active semester** | `switch`
 **Clear all data** | `reset`
 **Clear all contacts** | `cclear`
 **Clear all modules** | `mclear`
