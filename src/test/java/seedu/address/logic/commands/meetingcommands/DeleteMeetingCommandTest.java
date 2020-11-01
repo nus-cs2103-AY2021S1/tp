@@ -7,7 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SIXTH_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MEETING;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
