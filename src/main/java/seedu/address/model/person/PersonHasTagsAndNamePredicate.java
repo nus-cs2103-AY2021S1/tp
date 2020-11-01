@@ -26,7 +26,7 @@ public class PersonHasTagsAndNamePredicate implements PersonPredicate {
     @Override
     public boolean test(Person person) {
         return names.stream()
-                .anyMatch(keyword -> person.getName().fullName.toLowerCase().equals(keyword.toLowerCase()))
+                .anyMatch(keyword -> person.getName().fullName.equals(keyword))
                 ||
                 tags.stream()
                 .anyMatch(tag -> person.getTags().contains(tag));

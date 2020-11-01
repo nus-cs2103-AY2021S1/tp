@@ -66,8 +66,11 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 personToDelete.getName().toString());
 
-        Model expectedModel = model;
-        model.deletePerson(personToDelete);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(),
+                getTypicalMeetingBookWithMember(), getTypicalModuleBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        expectedModel.updatePersonInModuleBook(personToDelete);
+        expectedModel.updatePersonInMeetingBook(personToDelete);
 
         assertCommandSuccess(deleteCommand, modelWithMembersInMeetings, expectedMessage, expectedModel);
     }
@@ -75,9 +78,9 @@ public class DeleteCommandTest {
     @Test
     public void equals() {
         ArrayList<String> nameOne = new ArrayList<>();
-        nameOne.add(ALICE.getName().getFirstName());
+        nameOne.add(ALICE.getName().fullName);
         ArrayList<String> nameTwo = new ArrayList<>();
-        nameTwo.add(BOB.getName().getFirstName());
+        nameTwo.add(BOB.getName().fullName);
         DeleteCommand deleteFirstCommand = new DeleteCommand(
                 new FullNameMatchesKeywordPredicate(nameOne), new ArrayList<>());
         DeleteCommand deleteSecondCommand = new DeleteCommand(
