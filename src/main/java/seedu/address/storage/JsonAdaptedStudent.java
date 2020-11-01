@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
@@ -137,7 +136,7 @@ class JsonAdaptedStudent {
         if (!Year.isValidYear(year)) {
             throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
         }
-        return ParserUtil.parseYear(year);
+        return new Year(year);
     }
 
 }
