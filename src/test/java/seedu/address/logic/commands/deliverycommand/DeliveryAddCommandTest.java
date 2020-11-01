@@ -141,11 +141,6 @@ public class DeliveryAddCommandTest {
         }
 
         @Override
-        public boolean hasDelivery(Delivery delivery) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void deleteDelivery(Delivery target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -170,12 +165,6 @@ public class DeliveryAddCommandTest {
      */
     private class DeliveryModelStubAcceptingDeliveriesAdded extends DeliveryAddCommandTest.DeliveryModelStub {
         final ArrayList<Delivery> deliveryAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasDelivery(Delivery delivery) {
-            requireNonNull(delivery);
-            return deliveryAdded.stream().anyMatch(delivery::equals);
-        }
 
         @Override
         public void addDelivery(Delivery delivery) {
