@@ -12,7 +12,7 @@ import seedu.zookeep.model.animal.Animal;
 import seedu.zookeep.model.animal.Id;
 
 /**
- * Deletes an animal identified using it's displayed index from the zookeep book.
+ * Deletes an animal identified using it's displayed index from the ZooKeepBook.
  */
 public class DeleteCommand extends Command {
 

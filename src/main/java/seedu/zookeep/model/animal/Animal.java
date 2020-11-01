@@ -15,7 +15,7 @@ import seedu.zookeep.model.feedtime.FeedTimeComparator;
 import seedu.zookeep.model.medicalcondition.MedicalCondition;
 
 /**
- * Represents an Animal in the zookeep book.
+ * Represents an Animal in the ZooKeepBook.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Animal {

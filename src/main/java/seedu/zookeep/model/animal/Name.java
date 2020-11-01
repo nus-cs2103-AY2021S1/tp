@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.zookeep.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Animal's name in the zookeep book.
+ * Represents an Animal's name in the ZooKeepBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

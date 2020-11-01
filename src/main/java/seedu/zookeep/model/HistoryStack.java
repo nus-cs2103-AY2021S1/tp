@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.Stack;
 
 /**
- * Encapsulates 2 stacks, with one containing past states of the ZooKeep book while the other contains the
- * future states of the ZooKeep book.
+ * Encapsulates 2 stacks, with one containing past states of the ZooKeepBook while the other contains the
+ * future states of the ZooKeepBook.
  * This is a singleton.
  */
 public class HistoryStack {
@@ -29,9 +29,9 @@ public class HistoryStack {
     }
 
     /**
-     * Checks if the 2 given ZooKeep books have the same content.
-     * @param before the state of the ZooKeep book before an unknown command was executed
-     * @param after the state of the ZooKeep book after command execution
+     * Checks if the 2 given ZooKeepBooks have the same content.
+     * @param before the state of the ZooKeepBook before an unknown command was executed
+     * @param after the state of the ZooKeepBook after command execution
      */
     public void checkEdit(ReadOnlyZooKeepBook before, ReadOnlyZooKeepBook after) {
         if (!before.equals(after)) {

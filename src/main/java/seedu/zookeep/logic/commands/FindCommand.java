@@ -7,7 +7,7 @@ import seedu.zookeep.model.Model;
 import seedu.zookeep.model.animal.AnimalContainsKeywordsPredicate;
 
 /**
- * Finds and lists all animals in zookeep book whose fields contains any of the argument keywords.
+ * Finds and lists all animals in ZooKeepBook whose fields contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

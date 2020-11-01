@@ -15,13 +15,13 @@ import seedu.zookeep.storage.StorageManager;
 import seedu.zookeep.storage.ZooKeepBookStorage;
 
 /**
- * Saves a snapshot of the current zookeep book with a specified file name.
+ * Saves a snapshot of the current ZooKeepBook with a specified file name.
  */
 public class SnapCommand extends Command {
     public static final String COMMAND_WORD = "snap";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Saves a snapshot of the current ZooKeep Book with the specified file name\n"
+            + ": Saves a snapshot of the current ZooKeepBook with the specified file name\n"
             + "Parameters: " + COMMAND_WORD + " FILE_NAME\n"
             + "Example: " + COMMAND_WORD + " zookeepbook_19-10-2020";
 
@@ -29,7 +29,7 @@ public class SnapCommand extends Command {
             "File name must contain only alphanumeric characters, \"_\" and \"-\".\n"
             + "File name must not be empty and must be at most 100 characters long.";
 
-    public static final String MESSAGE_SUCCESS = "Current ZooKeep Book saved as %s";
+    public static final String MESSAGE_SUCCESS = "Current ZooKeepBook saved as %s";
 
     public static final String MESSAGE_ERROR = "Could not save data to file: ";
 
@@ -41,7 +41,7 @@ public class SnapCommand extends Command {
     private Path savePath;
 
     /**
-     * Creates a SnapCommand to save the current state of the ZooKeep Book to the specified path
+     * Creates a SnapCommand to save the current state of the ZooKeepBook to the specified path
      */
     public SnapCommand(Path savePath, String fileName) {
         requireNonNull(savePath);

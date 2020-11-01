@@ -19,7 +19,7 @@ import seedu.zookeep.model.feedtime.FeedTime;
 import seedu.zookeep.model.medicalcondition.MedicalCondition;
 
 /**
- * Appends additional details to the fields of an existing animal in the zookeep book.
+ * Appends additional details to the fields of an existing animal in the ZooKeepBook.
  */
 public class AppendCommand extends Command {
 

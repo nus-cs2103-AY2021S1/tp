@@ -17,7 +17,7 @@ import seedu.zookeep.model.animal.AnimalComparator;
 import seedu.zookeep.model.animal.Id;
 
 /**
- * Represents the in-memory model of the zookeep book data.
+ * Represents the in-memory model of the ZooKeepBook data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(zooKeepBook, userPrefs);
 
-        logger.fine("Initializing with zookeep book: " + zooKeepBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ZooKeepBook: " + zooKeepBook + " and user prefs " + userPrefs);
 
         this.zooKeepBook = new ZooKeepBook(zooKeepBook);
         this.userPrefs = new UserPrefs(userPrefs);
