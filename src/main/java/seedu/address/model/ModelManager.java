@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " , user prefs " + userPrefs + "and "
+        logger.fine("Initializing with reeve: " + addressBook + " , user prefs " + userPrefs + "and "
             + "notebook: " + notebook);
 
         this.reeve = new Reeve(addressBook);
