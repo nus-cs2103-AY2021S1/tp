@@ -104,7 +104,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
    * **`exit`** : Exits **Reeve**.
 
-1. Refer to the [Features](#features) section below for details of each command.
+1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of **Reeve**'s layout
 (to be added when GUI is finalised)
@@ -464,12 +464,12 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of FEEDBACK is as follows:
-* attended or unattended.
+* present or absent.
 </div>
 
 Examples:
-* `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
-status of attended and feedback of attentive, to the 2nd student in **Reeve**.
+* `attendance add 2 d/08/12/2020 s/present f/attentive` adds the attendance record with the date 8 Dec 2020,
+status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
 ##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`
 
@@ -492,7 +492,7 @@ Examples:
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
-Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
+Format: `schedule view [mode/VIEW_MODE] [date/DATE_TO_VIEW]`
 
 * mode can be either **weekly** or **daily**. The case of the letters does not matter.
 * Date must be in the format of **yyyy-mm-dd**.

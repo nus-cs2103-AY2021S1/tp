@@ -29,7 +29,7 @@ public class AcademicTest {
 
         // different attendance list returns false
         Academic editedAliceAcademic = new StudentBuilder(ALICE).withAttendances(new Attendance("12/02/2020",
-                "attended", new Feedback("sleeping"))).build().getAcademic();
+                "present", new Feedback("sleeping"))).build().getAcademic();
         assertFalse(aliceAcademic.equals(editedAliceAcademic));
     }
 }

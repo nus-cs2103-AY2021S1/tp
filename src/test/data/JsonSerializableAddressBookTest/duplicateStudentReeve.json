@@ -23,7 +23,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -60,7 +60,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {

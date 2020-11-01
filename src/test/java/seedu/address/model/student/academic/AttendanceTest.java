@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class AttendanceTest {
 
-    static final Attendance VALID_ATTENDANCE = new Attendance("14/04/1998", "attended",
+    static final Attendance VALID_ATTENDANCE = new Attendance("14/04/1998", "present",
             new Feedback("sleepy"));
     static final String VALID_DATE_DEF = "13/03/2020";
     static final String VALID_DATE_ALT = "13/3/20";
@@ -25,15 +25,15 @@ public class AttendanceTest {
         // All but one null
         assertThrows(NullPointerException.class, () -> new Attendance("14/04/1998", null,
                 new Feedback(null)));
-        assertThrows(NullPointerException.class, () -> new Attendance(null, "attended",
+        assertThrows(NullPointerException.class, () -> new Attendance(null, "present",
                 new Feedback(null)));
         assertThrows(NullPointerException.class, () -> new Attendance(null, null,
                 new Feedback("sleepy")));
 
         // Only one null
-        assertThrows(NullPointerException.class, () -> new Attendance("14/04/1998", "attended",
+        assertThrows(NullPointerException.class, () -> new Attendance("14/04/1998", "present",
                 new Feedback(null)));
-        assertThrows(NullPointerException.class, () -> new Attendance(null, "attended",
+        assertThrows(NullPointerException.class, () -> new Attendance(null, "present",
                 new Feedback("sleepy")));
         assertThrows(NullPointerException.class, () -> new Attendance("14/04/1998", null,
                 new Feedback("sleepy")));
@@ -53,15 +53,15 @@ public class AttendanceTest {
         assertThrows(IllegalArgumentException.class, () -> new Attendance("12/02/2020",
                 invalidAttendanceStatus, new Feedback(invalidAttendanceFeedback)));
         assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidAttendanceDate,
-                "attended", new Feedback(invalidAttendanceFeedback)));
+                "present", new Feedback(invalidAttendanceFeedback)));
         assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidAttendanceDate,
                 invalidAttendanceStatus, new Feedback("attentive")));
 
         // 1 invalid
         assertThrows(IllegalArgumentException.class, () -> new Attendance("12/02/2020",
-                "attended", new Feedback(invalidAttendanceFeedback)));
+                "present", new Feedback(invalidAttendanceFeedback)));
         assertThrows(IllegalArgumentException.class, () -> new Attendance(invalidAttendanceDate,
-                "attended", new Feedback("sleepy")));
+                "present", new Feedback("sleepy")));
         assertThrows(IllegalArgumentException.class, () -> new Attendance("12/02/2020",
                 invalidAttendanceStatus, new Feedback("attentive")));
     }
@@ -87,18 +87,18 @@ public class AttendanceTest {
         assertNotEquals(VALID_ATTENDANCE, "hey");
 
         // diff fields
-        assertNotEquals(VALID_ATTENDANCE, new Attendance("17/04/1998", "attended",
+        assertNotEquals(VALID_ATTENDANCE, new Attendance("17/04/1998", "present",
                 new Feedback("sleepy")));
-        assertNotEquals(VALID_ATTENDANCE, new Attendance("14/04/1998", "unattended",
+        assertNotEquals(VALID_ATTENDANCE, new Attendance("14/04/1998", "absent",
                 new Feedback("sleepy")));
-        assertNotEquals(VALID_ATTENDANCE, new Attendance("14/04/1998", "attended",
+        assertNotEquals(VALID_ATTENDANCE, new Attendance("14/04/1998", "present",
                 new Feedback("sleepayy son")));
 
         // same object
         assertEquals(VALID_ATTENDANCE, VALID_ATTENDANCE);
 
         // same fields
-        assertEquals(VALID_ATTENDANCE, new Attendance("14/04/1998", "attended",
+        assertEquals(VALID_ATTENDANCE, new Attendance("14/04/1998", "present",
                 new Feedback("sleepy")));
 
     }

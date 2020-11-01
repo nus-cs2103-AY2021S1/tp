@@ -44,7 +44,7 @@ public class Academic {
         String result = "";
         int index = 1;
         for (Attendance singleAttendance : attendance) {
-            result = result + index + ". " + singleAttendance.getFormattedAttendance() + "\n";
+            result = result + index + ". " + singleAttendance + "\n";
             index++;
         }
         return result;
