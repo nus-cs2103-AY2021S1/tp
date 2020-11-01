@@ -49,7 +49,9 @@ public class AnimalComparator {
     private static final Comparator<Animal> ANIMAL_NAME_COMPARATOR = new Comparator<Animal>() {
         @Override
         public int compare(Animal o1, Animal o2) {
-            return o1.getName().fullName.compareTo(o2.getName().fullName);
+            String animalName1 = o1.getName().fullName;
+            String animalName2 = o2.getName().fullName;
+            return animalName1.toLowerCase().compareTo(animalName2.toLowerCase());
         }
     };
 

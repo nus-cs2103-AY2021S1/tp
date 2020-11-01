@@ -21,7 +21,12 @@ public class SortCommand extends Command {
 
     private final AnimalComparator animalComparator;
 
+    /**
+     * Creates a SortCommand to sort all animals based on a category.
+     * @param animalComparator animalComparator with specific comparator for a category
+     */
     public SortCommand(AnimalComparator animalComparator) {
+        requireNonNull(animalComparator);
         this.animalComparator = animalComparator;
     }
 
