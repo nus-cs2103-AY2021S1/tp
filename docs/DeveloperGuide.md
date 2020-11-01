@@ -793,13 +793,13 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.1. Launch and shutdown
 
-1. Initial launch
+#### 7.1.1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+#### 7.1.2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -808,27 +808,25 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.2. Deleting an animal
 
-1. Deleting an animal
-
    1. Test case: `delete 123`<br>
       Expected: The animal with an ID of 123 deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than all 3 digit numbers)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than all 3 digit numbers or larger than all 6 digit numbers)<br>
       Expected: Similar to previous.
 
 ### 7.3. Saving data
 
-1. Dealing with missing/corrupted data files
+#### 7.3.1. Dealing with missing/corrupted data files
 
    1. To simulate a missing/corrupted data file, delete the `data/zookeepbook.json` file.
    
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The sample ZooKeepBook will be loaded as the new `data/zookeepbook.json` file.
 
-1. Auto-saving feature
+#### 7.3.2. Auto-saving feature
 
    1. After launching the application, perform actions that edit the ZooKeepBook, such as `add` or `delete`. Close
       the window.
