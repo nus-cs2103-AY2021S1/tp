@@ -41,6 +41,7 @@ public class ArchiveCommand extends Command {
 
         // Update the model, after keeping an archive of the previous semester.
         model.setResiReg(newResiReg);
+        model.updateSemester(newResiReg.getSemester());
         model.saveStateResiReg();
 
         return new CommandResult(MESSAGE_SUCCESS);
