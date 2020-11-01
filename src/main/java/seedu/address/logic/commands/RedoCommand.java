@@ -18,6 +18,14 @@ public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String REDO_COMMAND_USAGE = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Redo the recent command. "
+            + "\nCommands that can be redone:"
+            + "\n1. tag"
+            + "\n2. retag"
+            + "\n3. untag"
+            + "\n4. label"
+            + "\n5. unlabel"
+            + "\n6. clear"
+            + "\n7. undo"
             + "\n\nExample: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Redo success!";
     public static final String MESSAGE_FAILURE = "Unable to redo! No more commands to redo!";
