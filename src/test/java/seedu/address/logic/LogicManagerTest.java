@@ -23,10 +23,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.contact.Contact;
+// import seedu.address.model.contact.Contact;
 import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.testutil.ContactBuilder;
+// import seedu.address.testutil.ContactBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -77,7 +77,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddModuleCommand.COMMAND_WORD + NAME_DESC_AMY + EMAIL_DESC_AMY;
         //Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        Contact expectedPerson = new ContactBuilder(AMY).withTags().build();
+        // Contact expectedPerson = new ContactBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         //  expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

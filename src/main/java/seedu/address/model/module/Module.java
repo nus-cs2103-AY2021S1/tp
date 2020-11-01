@@ -230,6 +230,19 @@ public class Module {
     }
 
     /**
+     * Edits the zoom link of the specified module lesson in this module.
+     *
+     * @param lesson Module lesson which contains the zoom link to be edited.
+     * @param editedLink Edited zoom link.
+     * @return Module containing the updated zoom links.
+     */
+    public Module editZoomLink(ModuleLesson lesson, ZoomLink editedLink) {
+        Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.replace(lesson, editedLink);
+        return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
+    }
+
+    /**
      * Returns the grades being tracked for this module.
      *
      * @return grade tracker.
