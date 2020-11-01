@@ -14,7 +14,7 @@ import javafx.scene.layout.Region;
 
 public class RecommendationViewPanel extends UiPart<Region> {
     private static final String FXML = "RecommendationViewPanel.fxml";
-    private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today!";
+    private static final String EMPTY_PROMPT = "You do not have any recipes yet, add one today!";
     private static final String INSTRUCTION_MESSAGE = "These recipes all make use of ingredients that you currently "
             + "have in stock.";
     private static final String EXPIRING_MESSAGE = "Consider cooking this recipe to use ingredients that are about to "
