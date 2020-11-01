@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
@@ -21,8 +23,8 @@ public class DeleteTeammateParticipationCommand extends Command {
         + "Parameters: Git UserName (must be a single word)\n"
         + "Example: " + COMMAND_WORD + " LucasTai98";
 
-    public static final String MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS = "Deleted" +
-        " Teammate from project: %1$s";
+    public static final String MESSAGE_DELETE_TEAMMATE_PARTICIPATION_SUCCESS = "Deleted"
+        + " Teammate from project: %1$s";
 
     private final GitUserIndex gitUserIndex;
 

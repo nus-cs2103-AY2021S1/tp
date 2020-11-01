@@ -14,7 +14,7 @@ public class DeleteTeammateParticipationParser implements Parser<DeleteTeammateP
      */
     @Override
     public DeleteTeammateParticipationCommand parse(String userInput) throws ParseException {
-            GitUserIndex gitUserIndex = ParsePersonUtil.parseGitUserIndex(userInput);
-            return new DeleteTeammateParticipationCommand(gitUserIndex);
+        GitUserIndex gitUserIndex = ParsePersonUtil.parseGitUserIndex(userInput);
+        return new DeleteTeammateParticipationCommand(gitUserIndex);
     }
 }
