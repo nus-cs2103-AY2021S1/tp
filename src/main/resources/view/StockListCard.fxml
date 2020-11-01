@@ -15,8 +15,8 @@
     <columnConstraints>
         <!--      bookmark-->
         <ColumnConstraints hgrow="NEVER"  minWidth="30" maxWidth="30" />
-        <!--      id-->
-        <ColumnConstraints hgrow="NEVER"  minWidth="30" maxWidth="30" />
+        <!--      no-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="50" maxWidth="50" />
         <!--      name-->
         <ColumnConstraints hgrow="NEVER"  minWidth="175" maxWidth="175" />
         <!--      serial number-->
@@ -24,7 +24,7 @@
         <!--      source-->
         <ColumnConstraints hgrow="NEVER"  minWidth="150" maxWidth="150" />
         <!--      quantity-->
-        <ColumnConstraints hgrow="NEVER"  minWidth="75" maxWidth="75" />
+        <ColumnConstraints hgrow="NEVER"  minWidth="100" maxWidth="100" />
         <!--      location-->
         <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
         <!--      notes-->
