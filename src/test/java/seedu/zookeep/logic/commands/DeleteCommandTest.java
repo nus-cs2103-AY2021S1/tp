@@ -24,8 +24,8 @@ import seedu.zookeep.model.animal.Id;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
-    private Id invalidId = new Id("113"); // No animal in zookeep book has this id
-    private Id validId = new Id("123"); // Animal with this id exists in the zookeep book
+    private Id invalidId = new Id("113"); // No animal in ZooKeepBook has this id
+    private Id validId = new Id("123"); // Animal with this id exists in the ZooKeepBook
 
     @Test
     public void execute_validIdUnfilteredList_success() {

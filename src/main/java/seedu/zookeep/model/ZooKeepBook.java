@@ -60,7 +60,7 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
     //// animal-level operations
 
     /**
-     * Returns true if an animal with the same identity as {@code animal} exists in the zookeep book.
+     * Returns true if an animal with the same identity as {@code animal} exists in the ZooKeepBook.
      */
     public boolean hasAnimal(Animal animal) {
         requireNonNull(animal);
@@ -68,8 +68,8 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
     }
 
     /**
-     * Adds an animal to the zookeep book.
-     * The animal must not already exist in the zookeep book.
+     * Adds an animal to the ZooKeepBook.
+     * The animal must not already exist in the ZooKeepBook.
      */
     public void addAnimal(Animal p) {
         animals.add(p);
@@ -77,8 +77,8 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
 
     /**
      * Replaces the given animal {@code target} in the list with {@code editedAnimal}.
-     * {@code target} must exist in the zookeep book.
-     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the zookeep book.
+     * {@code target} must exist in the ZooKeepBook.
+     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the ZooKeepBook.
      */
     public void setAnimal(Animal target, Animal editedAnimal) {
         requireNonNull(editedAnimal);
@@ -88,7 +88,7 @@ public class ZooKeepBook implements ReadOnlyZooKeepBook {
 
     /**
      * Removes {@code key} from this {@code ZooKeepBook}.
-     * {@code key} must exist in the zookeep book.
+     * {@code key} must exist in the ZooKeepBook.
      */
     public void removeAnimal(Animal key) {
         animals.remove(key);

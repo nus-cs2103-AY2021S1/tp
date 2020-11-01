@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Animal> getFilteredAnimalList();
 
     /**
-     * Returns the user prefs' zookeep book file path.
+     * Returns the user prefs' ZooKeepBook file path.
      */
     Path getZooKeepBookFilePath();
 

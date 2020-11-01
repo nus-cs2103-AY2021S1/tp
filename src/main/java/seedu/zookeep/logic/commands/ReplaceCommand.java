@@ -23,7 +23,7 @@ import seedu.zookeep.model.medicalcondition.MedicalCondition;
 
 
 /**
- * Replaces the details in the fields of an existing animal in the zookeep book.
+ * Replaces the details in the fields of an existing animal in the ZooKeepBook.
  */
 public class ReplaceCommand extends Command {
 

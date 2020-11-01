@@ -155,7 +155,7 @@ Format: `clear`
 
 Expected Outcome:
 ```
-Zookeep book has been cleared!
+ZooKeepBook has been cleared!
 ```
 All animals in your `ZooKeep` book are cleared.
 
@@ -554,7 +554,7 @@ snap zookeepbook_19-10-2020
 
 Expected Outcome:
 ```
-Current ZooKeep Book saved as zookeepbook_19-10-2020.json
+Current ZooKeepBook saved as zookeepbook_19-10-2020.json
 ```
 
 <p align="center"><img src="images/user-guide/aftersnap.png"/></p>

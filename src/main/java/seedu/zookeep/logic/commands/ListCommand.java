@@ -6,7 +6,7 @@ import static seedu.zookeep.model.Model.PREDICATE_SHOW_ALL_ANIMALS;
 import seedu.zookeep.model.Model;
 
 /**
- * Lists all animals in the zookeep book to the user.
+ * Lists all animals in the ZooKeepBook to the user.
  */
 public class ListCommand extends Command {
 
