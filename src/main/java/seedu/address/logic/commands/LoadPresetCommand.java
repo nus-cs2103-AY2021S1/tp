@@ -77,5 +77,10 @@ public class LoadPresetCommand extends PresetCommand {
                 false, false, true);
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LoadPresetCommand // instanceof handles nulls
+                && this.presetName.equals(((LoadPresetCommand) other).presetName));
+    }
 }

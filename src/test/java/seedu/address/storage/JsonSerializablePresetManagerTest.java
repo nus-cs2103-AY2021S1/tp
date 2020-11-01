@@ -41,7 +41,7 @@ public class JsonSerializablePresetManagerTest {
                 JsonSerializablePresetManager.class).get();
         IllegalValueException illegalValueException = assertThrows(IllegalValueException.class,
                 dataFromFile::toModelType);
-        assertEquals(illegalValueException.getMessage(),"Duplicate Preset Name for the same vendor.");
+        assertEquals(illegalValueException.getMessage(), "Duplicate Preset Name for the same vendor.");
     }
 
     @Test
