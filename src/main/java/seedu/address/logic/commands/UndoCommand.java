@@ -17,6 +17,14 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
     public static final String UNDO_COMMAND_USAGE = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undo a recent command"
+            + "\nCommands that can be undone:"
+            + "\n1. tag"
+            + "\n2. retag"
+            + "\n3. untag"
+            + "\n4. label"
+            + "\n5. unlabel"
+            + "\n6. clear"
+            + "\n7. redo"
             + "\n\nExample: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Undo success!";
     public static final String MESSAGE_FAILURE = "Unable to undo! No more commands that are undo-able!";
