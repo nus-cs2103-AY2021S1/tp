@@ -13,13 +13,14 @@ public class DeleteTeammateCommandParser implements Parser<DeleteTeammateCommand
 
     /**
      * Parses {@code userInput} into a command and returns it.
-     * @param args input after "deleteteammate" command from user
+     * @param userInput input after "deleteteammate" command from user
      * @return instance of DeleteTeammateCommandParser
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
-    public DeleteTeammateCommand parse(String args) throws ParseException {
+    @Override
+    public DeleteTeammateCommand parse(String userInput) throws ParseException {
         try {
-            GitUserIndex gitUserIndex = ParsePersonUtil.parseGitUserIndex(args);
+            GitUserIndex gitUserIndex = ParsePersonUtil.parseGitUserIndex(userInput);
             return new DeleteTeammateCommand(gitUserIndex);
         } catch (ParseException e) {
             throw new ParseException(
