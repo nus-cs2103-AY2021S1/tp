@@ -1,17 +1,10 @@
 package seedu.address.storage;
 
-/*import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;*/
 import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static seedu.address.storage.JsonAdaptedGradeTrackerTest.INVALID_ASSIGNMENT;
-//import static seedu.address.storage.JsonAdaptedGradeTrackerTest.INVALID_ASSIGNMENT_LIST;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2030;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 
-//import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +23,6 @@ public class JsonAdaptedModuleTest {
     //private static final JsonAdaptedGradeTracker INVALID_GRADE_TRACKER;
 
     private static final String VALID_NAME = CS2030.getName().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final List<JsonAdaptedZoomLink> VALID_ZOOM_LINKS = new ArrayList<>();
     private static final JsonAdaptedGradeTracker VALID_GRADE_TRACKER = new JsonAdaptedGradeTracker(
             CS2030.getGradeTracker());
