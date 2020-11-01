@@ -22,7 +22,7 @@ public class DescriptionTest {
 
         // More than 80 characters
         assertThrows(IllegalArgumentException.class, () -> new Description("Lorem ipsum dolor"
-                + " sit amet, consectetur adipiscing elit. Integer dapibus sapiena"));
+                + " sit amet, consectetur adipiscing elit. Integer dapibus sapienar"));
 
     }
 
