@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -84,7 +83,6 @@ public class EditZoomLinkCommand extends Command {
 
         Module updatedModule = moduleToEdit.editZoomLink(lesson, editedLink);
         model.setModule(moduleToEdit, updatedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         model.commitModuleList();
         logger.info("Zoom link has been edited");
         return new CommandResult(String.format(MESSAGE_EDIT_ZOOM_SUCCESS, editedLink, lesson));

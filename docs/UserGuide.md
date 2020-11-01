@@ -138,6 +138,10 @@ Edits a zoom link of a specific lesson in a module.
    This command only allows you to edit the zoom link of an existing lesson in a module, i.e.
    it does not allow you to edit the name of that lesson.
    
+   If you wish you to edit the lesson name while keeping the same zoom link, you can try the following:
+     1. Delete the zoom link that belongs to the lesson which you wish to edit.
+     2. Add the same zoom link with the edited lesson name.
+   
    </div>
      
   Example:
