@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.exceptions.TagNotFoundException;
 
 /**
  * A Model stub that contains a single tag.
@@ -43,6 +44,15 @@ class ModelStubWithTag extends ModelStub {
     @Override
     public void addTag(Tag tag) {
         this.tag = tag;
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        if (!this.tag.equals(target)) {
+            throw new TagNotFoundException();
+        }
+
+        this.tag = editedTag;
     }
 
     @Override
