@@ -41,7 +41,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_NAME + "MEETING NAME "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME "
-            + "[" + PREFIX_PARTICIPANT + "PARTICIPANTS]... "
+            + PREFIX_PARTICIPANT + "PARTICIPANTS... "
             + "[" + PREFIX_AGENDA + "AGENDAS]... "
             + "[" + PREFIX_NOTE + "NOTES]...\n"
             + "Example: " + COMMAND_WORD + " "

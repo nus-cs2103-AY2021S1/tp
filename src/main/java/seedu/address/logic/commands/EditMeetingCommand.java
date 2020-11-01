@@ -51,8 +51,8 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_NOTE + "NEW_NOTE]...\n"
             + "Example: " + COMMAND_WORD + " m/CS2103 n/Project Meeting "
             + PREFIX_DATE + "2020-10-10 "
-            + PREFIX_TIME + "11:30"
-            + PREFIX_AGENDA + "Discuss project direction"
+            + PREFIX_TIME + "11:30 "
+            + PREFIX_AGENDA + "Discuss project direction "
             + PREFIX_NOTE + "Alex will be coming late";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";

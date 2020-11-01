@@ -237,6 +237,7 @@ Note(s):
 * All the fields must be provided except those in square brackets
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * Participants added need to be contacts that exist in the given module
+* The combination of module and meeting name must be unique
 
 Example(s):
 *  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 p/Jay p/Roy p/Jerryl p/Yeeloon p/Ekam 
@@ -267,6 +268,8 @@ Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_
 Note(s):
 * At least one of the optional fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
+* Participants added need to be contacts that exist in the given module
+* The combination of module and meeting name must be unique
 * All the newly provided fields will override previous fields
 
 Example(s):
