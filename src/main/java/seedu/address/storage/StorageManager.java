@@ -18,16 +18,16 @@ import seedu.address.model.module.Module;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private ModuleStorage moduleStorage;
+    private ModuleListStorage moduleListStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
      * Creates a {@code StorageManager} with the given storages.
      */
-    public StorageManager(ModuleStorage moduleStorage,
+    public StorageManager(ModuleListStorage moduleListStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-        this.moduleStorage = moduleStorage;
+        this.moduleListStorage = moduleListStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -83,29 +83,29 @@ public class StorageManager implements Storage {
 
     @Override
     public Path getModuleFilePath() {
-        return moduleStorage.getModuleFilePath();
+        return moduleListStorage.getModuleFilePath();
     }
 
     @Override
     public Optional<ReadOnlyTrackr<Module>> readModuleList() throws DataConversionException, IOException {
-        return readModuleList(moduleStorage.getModuleFilePath());
+        return readModuleList(moduleListStorage.getModuleFilePath());
     }
 
     @Override
     public Optional<ReadOnlyTrackr<Module>> readModuleList(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read module data from file: " + filePath);
-        return moduleStorage.readModuleList(filePath);
+        return moduleListStorage.readModuleList(filePath);
     }
 
     @Override
     public void saveModuleList(ReadOnlyTrackr<Module> moduleList) throws IOException {
-        saveModuleList(moduleList, moduleStorage.getModuleFilePath());
+        saveModuleList(moduleList, moduleListStorage.getModuleFilePath());
     }
 
     @Override
     public void saveModuleList(ReadOnlyTrackr<Module> moduleList, Path filePath) throws IOException {
         logger.fine("Attempting to write to module data file: " + filePath);
-        moduleStorage.saveModuleList(moduleList, filePath);
+        moduleListStorage.saveModuleList(moduleList, filePath);
     }
 
 }

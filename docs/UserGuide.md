@@ -12,11 +12,11 @@
 4. [Features](#4-features)<br>
    4.1 [View help: `help`](#41-view-help-help)<br>
    4.2 [Module features](#42-module-features)<br>
-   --- 4.2.1 [View all modules: `viewMod`](#421-view-all-modules-viewmod)<br>
+   --- 4.2.1 [List all modules: `listMod`](#421-list-all-modules-listmod)<br>
    --- 4.2.2 [Add a module: `addMod`](#422-add-a-module-addmod)<br>
    --- 4.2.3 [Delete a module: `deleteMod`](#423-delete-a-module-deletemod)<br>
    --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [Edit a module: `editMod` [coming in v1.4]](#425-edit-a-module-editmod-coming-in-v14)<br>
+   --- 4.2.5 [Edit a module: `editMod`](#425-edit-a-module-editmod)<br>
    4.3 [Tutorial group features](#43-tutorial-group-features)<br>
    --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
    --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
@@ -143,11 +143,11 @@ Format: `help`
 
 ### 4.2 Module features
 
-#### 4.2.1 View all modules: `viewMod`
+#### 4.2.1 List all modules: `listMod`
 
 Shows all the modules you have added in the Module view.
 
-Format: `viewModule`
+Format: `listMod`
 
 > You should perform the following features while in the Module view.
 
@@ -155,7 +155,7 @@ Format: `viewModule`
 
 Adds a module to the module list.
 
-Format: `addMod MODULE_CODE`
+Format: `addMod m/MODULE_CODE`
 
 Note: 
 
@@ -165,7 +165,7 @@ Note:
 Example:
 
 - Adds a module _CS2100_ to the module list.
-    - `addMod CS2100`
+    - `addMod m/CS2100`
 
 Expected Outcome:
 
@@ -218,10 +218,26 @@ Expected Outcome:
 
 - From the example given above, the Module view will display the modules matching the criteria:
 
-#### 4.2.5 Edit a module: `editMod` [coming in v1.4]
+#### 4.2.5 Edit a module: `editMod`
 
 Edits a module with the provided details.
 
+Format: `editMod INDEX m/MODULE_CODE`
+
+Note:
+
+- `INDEX` refers to the index number shown in the Module view.
+- `INDEX` must be a positive integer starting from 1.
+- New module code must be provided.
+- Existing values will be updated to the given values.
+- New module code should not already exist.
+
+Example:
+
+- Editing the module code of the first module to be _CS2020_.
+    
+    - `editMod 1 m/CS2020`
+    
 ### 4.3 Tutorial Group features
 
 #### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
@@ -436,10 +452,11 @@ for MacOS and Linux users.
 
 Command | Summary
 --------|--------
-`viewMod` | Views all modules in __Trackr__.
-`addMod MODULE_CODE` | Adds a new module to the current Module view. 
+`listMod` | Views all modules in __Trackr__.
+`addMod m/MODULE_CODE` | Adds a new module to the current Module view. 
 `deleteMod INDEX` | Deletes a module from the current Module view. 
 `findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view. 
+`editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code. 
 
 ### 6.2 Tutorial Group commands
 

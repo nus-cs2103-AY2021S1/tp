@@ -2,7 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**

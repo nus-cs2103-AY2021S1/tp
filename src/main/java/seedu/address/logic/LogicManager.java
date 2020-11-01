@@ -10,12 +10,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.TrackrParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.storage.Storage;
 
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser; //This is ModuleListParser, for simplicity I did not change it
+    private final TrackrParser trackrParser; //This is ModuleListParser, for simplicity I did not change it
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,7 +36,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        trackrParser = new TrackrParser();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = trackrParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

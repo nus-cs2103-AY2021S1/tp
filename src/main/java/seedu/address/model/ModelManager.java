@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -120,6 +120,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setCurrentViewToModule() {
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
+    }
+
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return moduleList.hasModule(module);
@@ -165,6 +172,13 @@ public class ModelManager implements Model {
         this.isInStudentView = false;
         currentModuleInView = target;
         filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(target));
+    }
+
+    @Override
+    public void setCurrentViewToTutorialGroup() {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = true;
+        this.isInStudentView = false;
     }
 
     @Override
@@ -214,6 +228,13 @@ public class ModelManager implements Model {
         currentTgInView = target;
         filteredStudents =
                 new FilteredList<>(moduleList.getStudentListOfTutorialGroup(currentModuleInView, target));
+    }
+
+    @Override
+    public void setCurrentViewToStudent() {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = true;
     }
 
     @Override

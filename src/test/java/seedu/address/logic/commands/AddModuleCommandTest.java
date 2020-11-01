@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
 
@@ -134,6 +134,11 @@ public class AddModuleCommandTest {
         }
 
         @Override
+        public void setCurrentViewToTutorialGroup() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTutorialGroup(TutorialGroup tutorialGroup) {
             throw new AssertionError("This method should not be called.");
         }
@@ -160,6 +165,11 @@ public class AddModuleCommandTest {
 
         @Override
         public void setViewToStudent(TutorialGroup target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentViewToStudent() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,6 +216,11 @@ public class AddModuleCommandTest {
 
         @Override
         public void setViewToModule() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentViewToModule() {
             throw new AssertionError("This method should not be called.");
         }
 

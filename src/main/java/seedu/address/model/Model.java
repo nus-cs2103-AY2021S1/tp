@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -65,6 +65,8 @@ public interface Model {
 
     void setViewToModule();
 
+    void setCurrentViewToModule();
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in trackr.
      */
@@ -101,6 +103,8 @@ public interface Model {
      */
     void setViewToTutorialGroup(Module target);
 
+    void setCurrentViewToTutorialGroup();
+
     /**
      * Adds the given module.
      * {@code module} must not already exist in trackr.
@@ -121,6 +125,8 @@ public interface Model {
      * @param target
      */
     void setViewToStudent(TutorialGroup target);
+
+    void setCurrentViewToStudent();
 
     TutorialGroup getCurrentTgInView();
 

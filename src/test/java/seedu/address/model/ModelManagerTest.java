@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
 import seedu.address.testutil.TrackrBuilder;
 
