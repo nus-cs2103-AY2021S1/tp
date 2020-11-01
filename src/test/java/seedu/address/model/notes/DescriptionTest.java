@@ -44,7 +44,7 @@ public class DescriptionTest {
                 + " adipiscing elit. Integer dapibus sapiena")); // 80 char
 
         // EP: 81 char
-        assertTrue(Description.isValidDescription("Lorem ipsum dolor sit amet, consectetur"
+        assertFalse(Description.isValidDescription("Lorem ipsum dolor sit amet, consectetur"
                 + " adipiscing elit. Integer dapibus sapienar")); // 80 char
 
         // EP: special characters
