@@ -100,14 +100,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseProtein_validValueWithoutWhitespace_returnsProtein() throws Exception {
-        Protein expectedProtein = new Protein(VALID_PROTEIN);
+        Protein expectedProtein = new Protein(Integer.parseInt(VALID_PROTEIN));
         assertEquals(expectedProtein, ParserUtil.parseProtein(VALID_PROTEIN));
     }
 
     @Test
     public void parseProtein_validValueWithWhitespace_returnsTrimmedProtein() throws Exception {
         String proteinWithWhitespace = WHITESPACE + VALID_PROTEIN + WHITESPACE;
-        Protein expectedProtein = new Protein(VALID_PROTEIN);
+        Protein expectedProtein = new Protein(Integer.parseInt(VALID_PROTEIN));
         assertEquals(expectedProtein, ParserUtil.parseProtein(proteinWithWhitespace));
     }
 
@@ -123,14 +123,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCarb_validValueWithoutWhitespace_returnsCarbohydrate() throws Exception {
-        Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_FAT);
-        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarb(VALID_FAT));
+        Carbohydrate expectedCarbohydrate = new Carbohydrate(Integer.parseInt(VALID_CARB));
+        Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarb(VALID_CARB));
     }
 
     @Test
     public void parseCarb_validValueWithWhitespace_returnsTrimmedCarbohydrate() throws Exception {
-        String carbohydrateWithWhitespace = WHITESPACE + VALID_FAT + WHITESPACE;
-        Carbohydrate expectedCarbohydrate = new Carbohydrate(VALID_FAT);
+        String carbohydrateWithWhitespace = WHITESPACE + VALID_CARB + WHITESPACE;
+        Carbohydrate expectedCarbohydrate = new Carbohydrate(Integer.parseInt(VALID_CARB));
         Assertions.assertEquals(expectedCarbohydrate, ParserUtil.parseCarb(carbohydrateWithWhitespace));
     }
 
@@ -146,14 +146,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseFat_validValueWithoutWhitespace_returnsFat() throws Exception {
-        Fat expectedFat = new Fat(VALID_CARB);
-        assertEquals(expectedFat, ParserUtil.parseFat(VALID_CARB));
+        Fat expectedFat = new Fat(Integer.parseInt(VALID_FAT));
+        assertEquals(expectedFat, ParserUtil.parseFat(VALID_FAT));
     }
 
     @Test
     public void parseFat_validValueWithWhitespace_returnsTrimmedFat() throws Exception {
-        String fatWithWhitespace = WHITESPACE + VALID_CARB + WHITESPACE;
-        Fat expectedFat = new Fat(VALID_CARB);
+        String fatWithWhitespace = WHITESPACE + VALID_FAT + WHITESPACE;
+        Fat expectedFat = new Fat(Integer.parseInt(VALID_FAT));
         assertEquals(expectedFat, ParserUtil.parseFat(fatWithWhitespace));
     }
 
