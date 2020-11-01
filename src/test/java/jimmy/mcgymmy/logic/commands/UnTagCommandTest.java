@@ -78,7 +78,7 @@ class UnTagCommandTest {
         ModelManager expectedModel = new ModelManager(model.getMcGymmy(), new UserPrefs());
         Food expFood = new FoodBuilder(foodToTag).build();
         expFood.removeTag(new Tag("lunch"));
-        expectedModel.setFood(TypicalIndexes.INDEX_FIRST_FOOD, expFood);
+        expectedModel.setFood(TypicalIndexes.INDEX_SECOND_FOOD, expFood);
 
         CommandTestUtil.assertCommandSuccess(unTagCommand, model, expectedMessage, expectedModel);
     }

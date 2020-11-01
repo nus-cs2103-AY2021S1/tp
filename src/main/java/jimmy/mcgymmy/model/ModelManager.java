@@ -167,7 +167,9 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(index, editedFood);
         logger.fine("Change food at index " + index.getOneBased() + "to food:\n" + editedFood.toString());
         saveCurrentStateToHistory();
-        mcGymmy.setFood(index, editedFood);
+        Food food = getFilteredFoodList().get(index.getZeroBased());
+        Index index1 = Index.fromZeroBased(mcGymmy.getFoodList().indexOf(food));
+        mcGymmy.setFood(index1, editedFood);
         updateFilterPredicate(PREDICATE_SHOW_ALL_FOODS);
     }
 
@@ -208,7 +210,6 @@ public class ModelManager implements Model {
             }
         }
         mcGymmy.setFoodItems(lst);
-
         filteredFoodItems.clear();
     }
 
