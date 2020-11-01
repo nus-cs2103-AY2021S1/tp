@@ -180,6 +180,7 @@ Format: `tag INDEX -t TAG_NAME`
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Tags for food items must be less than 20 characters.
+* The list will show all items after tagging
 
 </div>
 
@@ -199,6 +200,7 @@ Format: `untag INDEX -t TAG_NAME`
 * `TAG_NAME` is case-sensitive.
 * The index refers to the index number shown in the displayed food list.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The list will show all items after untagging
 
 </div>
 
