@@ -220,7 +220,7 @@ focus traversals commands. We have to disable it using the `AutocompleteCommandB
 
 The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends `Command` and implements the following methods:
 
-* `ClearCommand#execute` - Resets the AddressBook to a new empty AddressBook.
+* `ClearCommand#execute` - Clears the Selected Meeting and resets the AddressBook, ModuleBook and MeetingBook to a new empty AddressBook, ModuleBook and MeetingBook respectively.
 
 This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
@@ -228,9 +228,17 @@ This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
 Execution Code Snippet :
 
-`model.setAddressBook(new AddressBook());`
+```
+model.setSelectedMeeting(null);
+model.setAddressBook(new AddressBook());
+model.setMeetingBook(new MeetingBook());
+model.setModuleBook(new ModuleBook());
+```
 
 The above code snippet sets the AddressBook in the `model` to a new `AddressBook` object. Thus, resetting the AddressBook.
+As modules and meetings cannot exist without contacts, the code also sets the MeetingBook and ModuleBook in the `model`
+to a new `MeetingBook` and `ModuleBook` object respectively, which resets both books. As there are no existing meetings,
+the SelectedMeeting is set to `null`.
 
 Given below is the sequence diagram of how the mechanism behaves when called using the `contact clear` command.
 
