@@ -2,8 +2,11 @@ package seedu.stock.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.stock.logic.commands.CommandTestUtil.*;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailureForNote;
+import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber;
+import static seedu.stock.logic.commands.CommandTestUtil.isSerialNumberInStockBook;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;

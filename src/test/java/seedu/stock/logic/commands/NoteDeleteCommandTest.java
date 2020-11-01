@@ -2,7 +2,12 @@ package seedu.stock.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.stock.logic.commands.CommandTestUtil.*;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_NOTE_INDEX;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_NOTE_INDEX_FIRST_NOTE_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_NOTE_INDEX_OUT_OF_BOUNDS;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailureForNote;
+import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;

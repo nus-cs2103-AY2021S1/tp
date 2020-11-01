@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.stock.commons.core.index.Index;
-
 /**
  * Represents a Stock in the stock book.
  * Guarantees: details are present and not null, field values are validated, immutable.
