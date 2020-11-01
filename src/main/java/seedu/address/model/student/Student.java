@@ -31,40 +31,68 @@ public class Student {
     private final Year year;
     private final Admin admin;
     private final List<Question> questions = new ArrayList<>();
-    private final List<Exam> exams = new ArrayList<>();
     private final Academic academic;
 
     /**
-     *  name, phone, school, year, must be present and not null.
-     *  exams is empty when a student is first initialised.
+     *  alternate constructor where admin and academic details need not be changed
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions, List<Exam> exams, Academic academic) {
-        requireAllNonNull(name, phone, school, year, admin, questions, exams, academic);
+                   Admin admin, List<Question> questions, Academic academic) {
+        requireAllNonNull(name, phone, school, year, admin, questions, academic);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.admin = admin;
         this.questions.addAll(questions);
-        this.exams.addAll(exams);
         this.academic = academic;
     }
 
     /**
-     * alternate constructor
+     * default constructor for when all fields are added
      */
     public Student(Name name, Phone phone, School school, Year year,
                    ClassVenue venue, ClassTime time, Fee fee, PaymentDate date, List<Detail> details,
-                   List<Question> questions, List<Exam> exams, Academic academic) {
-        requireAllNonNull(name, phone, school, year, venue, time, fee, date, details, questions, exams, academic);
+                   List<Question> questions, List<Exam> exams, List<Attendance> attendances) {
+        requireAllNonNull(name, phone, school, year, venue, time, fee, date, details, questions, exams, attendances);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.admin = new Admin(venue, time, fee, date, details);
         this.questions.addAll(questions);
-        this.exams.addAll(exams);
+        this.academic = new Academic(attendances, exams);
+    }
+
+    /**
+     * alternate constructor for when admin need not be changed
+     */
+    public Student(Name name, Phone phone, School school, Year year,
+                   Admin admin, List<Question> questions,
+                   List<Exam> exams, List<Attendance> attendances) {
+        requireAllNonNull(name, phone, school, year, admin, questions, exams, attendances);
+        this.name = name;
+        this.phone = phone;
+        this.school = school;
+        this.year = year;
+        this.admin = admin;
+        this.questions.addAll(questions);
+        this.academic = new Academic(attendances, exams);
+    }
+
+    /**
+     * alternate constructor for when academic need not be changed
+     */
+    public Student(Name name, Phone phone, School school, Year year,
+                   ClassVenue venue, ClassTime time, Fee fee, PaymentDate date, List<Detail> details,
+                   List<Question> questions, Academic academic) {
+        requireAllNonNull(name, phone, school, year, venue, time, fee, date, details, questions, academic);
+        this.name = name;
+        this.phone = phone;
+        this.school = school;
+        this.year = year;
+        this.admin = new Admin(venue, time, fee, date, details);
+        this.questions.addAll(questions);
         this.academic = academic;
     }
 
@@ -76,7 +104,6 @@ public class Student {
         this.year = copy.year;;
         this.admin = copy.admin;
         this.questions.addAll(copy.questions);
-        this.exams.addAll(copy.exams);
         this.academic = copy.academic;
     }
 
@@ -96,34 +123,8 @@ public class Student {
         return year;
     }
 
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public Academic getAcademic() {
-        return academic;
-    }
-
     public List<Question> getQuestions() {
         return List.copyOf(questions);
-    }
-
-    public List<Exam> getExams() {
-        return List.copyOf(exams);
-    }
-
-    /**
-     * Get exams of student formatted for GUI use.
-     * @return formatted exams.
-     */
-    public String getFormattedExams() {
-        String result = "";
-        int index = 1;
-        for (Exam exam : exams) {
-            result = result + index + "." + exam.toString() + "\n";
-            index++;
-        }
-        return result;
     }
 
     /**
@@ -185,8 +186,7 @@ public class Student {
                 .append(getSchool())
                 .append("\nYear: ")
                 .append(getYear())
-                .append(getAdmin())
-                .append(getAcademic());
+                .append(getAdmin());
 
         if (!questions.isEmpty()) {
             builder.append("\nQuestions:\n");
@@ -196,17 +196,14 @@ public class Student {
             builder.append(questionList);
         }
 
-        if (!exams.isEmpty()) {
-            builder.append("\nExams:\n");
-            exams.forEach(builder::append);
-        }
-
-
-
-        return builder.toString();
+        return builder.append(getAcademic()).toString();
     }
 
     //==============QUESTION ACCESSORS==============//
+    public Admin getAdmin() {
+        return admin;
+    }
+
     public boolean containsQuestion(Question question) {
         return questions.stream().anyMatch(question::isSameQuestion);
     }
@@ -277,8 +274,24 @@ public class Student {
     }
 
     //==============ACADEMIC ACCESSORS==============//
+    public Academic getAcademic() {
+        return academic;
+    }
+
     public List<Attendance> getAttendance() {
         return academic.getAttendance();
+    }
+
+    public List<Exam> getExams() {
+        return academic.getExams();
+    }
+
+    /**
+     * Get exams of student formatted for GUI use.
+     * @return formatted exams.
+     */
+    public String getFormattedExams() {
+        return academic.getFormattedExams();
     }
 
 }

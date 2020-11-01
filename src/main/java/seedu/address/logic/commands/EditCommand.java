@@ -134,10 +134,10 @@ public class EditCommand extends Command {
             // Additional Details cannot be edited through this channel
             return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
                     updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate, studentToEdit.getDetails(),
-                    questions, exams, academic);
+                    questions, academic);
         } else {
             return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, studentToEdit.getAdmin(),
-                    questions, exams, academic);
+                    questions, academic);
         }
     }
 

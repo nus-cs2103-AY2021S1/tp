@@ -229,8 +229,7 @@ public class StudentBuilder {
     public Student build() {
         return new Student(name, phone, school, year,
                 venue, time, fee, paymentDate, details,
-                questions, exams,
-                new Academic(attendances));
+                questions, exams, attendances);
     }
 
 }

@@ -23,7 +23,7 @@ public abstract class DetailCommand extends Command {
                 studentToAddDetail.getSchool(), studentToAddDetail.getYear(),
                 studentToAddDetail.getClassVenue(), studentToAddDetail.getClassTime(),
                 studentToAddDetail.getFee(), studentToAddDetail.getPaymentDate(), details,
-                studentToAddDetail.getQuestions(), studentToAddDetail.getExams(), studentToAddDetail.getAcademic());
+                studentToAddDetail.getQuestions(), studentToAddDetail.getAcademic());
 
         return updatedStudent;
     }

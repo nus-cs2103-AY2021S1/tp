@@ -15,7 +15,6 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
-import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.question.Question;
 
@@ -37,9 +36,6 @@ class JsonAdaptedStudent {
     @JsonProperty("questions")
     private final List<JsonAdaptedQuestion> jsonAdaptedQuestions = new ArrayList<>();
 
-    @JsonProperty("exams")
-    private final ArrayList<JsonAdaptedExam> jsonAdaptedExams = new ArrayList<>();
-
     @JsonProperty("academic")
     private final JsonAdaptedAcademic jsonAdaptedAcademic;
 
@@ -51,7 +47,6 @@ class JsonAdaptedStudent {
                               @JsonProperty("school") String school, @JsonProperty("year") String year,
                               @JsonProperty("admin") JsonAdaptedAdmin admin,
                               @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
-                              @JsonProperty("exams") ArrayList<JsonAdaptedExam> exams,
                               @JsonProperty("academic") JsonAdaptedAcademic academic) {
         this.name = name;
         this.phone = phone;
@@ -60,9 +55,6 @@ class JsonAdaptedStudent {
         this.jsonAdaptedAdmin = admin;
         if (questions != null) {
             this.jsonAdaptedQuestions.addAll(questions);
-        }
-        if (exams != null) {
-            this.jsonAdaptedExams.addAll(exams);
         }
         this.jsonAdaptedAcademic = academic;
     }
@@ -81,11 +73,7 @@ class JsonAdaptedStudent {
                 .map(JsonAdaptedQuestion::new)
                 .collect(Collectors.toList()));
 
-        jsonAdaptedExams.addAll(source.getExams().stream()
-                .map(JsonAdaptedExam::new)
-                .collect(Collectors.toList()));
-
-        jsonAdaptedAcademic = new JsonAdaptedAcademic(source.getAcademic());
+        jsonAdaptedAcademic = new JsonAdaptedAcademic(source);
     }
 
     /**
@@ -94,40 +82,10 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Student toModelType() throws IllegalValueException {
-
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(name);
-
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (school == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    School.class.getSimpleName()));
-        }
-        if (!School.isValidSchool(school)) {
-            throw new IllegalValueException(School.MESSAGE_CONSTRAINTS);
-        }
-        final School modelSchool = new School(school);
-
-        if (year == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Year.class.getSimpleName()));
-        }
-        if (!Year.isValidYear(year)) {
-            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
-        }
-        final Year modelYear = ParserUtil.parseYear(year);
+        final Name modelName = getModelName();
+        final Phone modelPhone = getModelPhone();
+        final School modelSchool = getModelSchool();
+        final Year modelYear = getModelYear();
 
         Admin admin = jsonAdaptedAdmin.toModelType();
 
@@ -136,13 +94,50 @@ class JsonAdaptedStudent {
             questions.add(question.toModelType());
         }
 
-        ArrayList<Exam> exams = new ArrayList<>();
-        for (JsonAdaptedExam exam : jsonAdaptedExams) {
-            exams.add(exam.toModelType());
-        }
-
         Academic academic = jsonAdaptedAcademic.toModelType();
-        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, exams, academic);
+        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, academic);
+    }
+
+    private Name getModelName() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(name);
+    }
+
+    private Phone getModelPhone() throws IllegalValueException {
+        if (phone == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(phone);
+    }
+
+    private School getModelSchool() throws IllegalValueException {
+        if (school == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    School.class.getSimpleName()));
+        }
+        if (!School.isValidSchool(school)) {
+            throw new IllegalValueException(School.MESSAGE_CONSTRAINTS);
+        }
+        return new School(school);
+    }
+
+    private Year getModelYear() throws IllegalValueException {
+        if (year == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Year.class.getSimpleName()));
+        }
+        if (!Year.isValidYear(year)) {
+            throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
+        }
+        return ParserUtil.parseYear(year);
     }
 
 }
