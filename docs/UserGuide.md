@@ -5,16 +5,16 @@ title: User Guide
 
 # Welcome to QuickCache User Guide
 
-**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+This User Guide is co-written by Josiah, Joshua, Gilbert, Francis and Xingjian. We are computer science students from National University of Singapore, and members of AY2021S1-CS2103T-T13-2.
 
-If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
+--------------------------------------------------------------------------------------------------------------------
 
-The **QuickCache User Guide** helps you get started with using **QuickCache**. This user guide aims to walk you through the robust features that **QuickCache** has to offer and take you from zero to hero. Don't like reading? A summary is available at the end for your reference.
+##Table of Contents
 
-**Table of Contents**
-
-1. [Quick start](#quickstart)
-2. [Features](#features)
+1. [Introduction](#intro)
+2. [Using this guide](#using-this-guide)
+3. [Quick start](#quickstart)
+4. [Features](#features)
     1. [Viewing help](#help)
     2. [Creating a new flashcard](#creating-a-new-flashcard)
         1. [Open ended question](#oeq)
@@ -41,8 +41,32 @@ The **QuickCache User Guide** helps you get started with using **QuickCache**. T
         2. [Importing a set of flashcards](#import)
     12. [Exiting the program](#exit)
     13. [Saving the data](#save)
-3. [FAQ](#faq)
-4. [Command summary](#command-summary)
+5. [FAQ](#faq)
+6. [Command summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction to QuickCache <a name="intro"></a>
+
+**QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
+If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
+
+The **QuickCache User Guide** helps you get started with using **QuickCache**. This user guide aims to walk you through the robust features that **QuickCache** has to offer and take you from zero to hero. Don't like reading? A summary is available at the end for your reference.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Using this guide <a name="using-this-guide"></a>
+
+Before diving into **QuickCache** and getting to know its features, lets get familiar with the symbols used in this user guide.
+
+:information_source: This symbol represents important information
+
+:exclamation: This symbol represents warnings
+
+:bulb: This symbol represents additional information
+
 
 --------------------------------------------------------------------------------------------------------------------
 
