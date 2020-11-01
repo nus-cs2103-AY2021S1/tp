@@ -127,7 +127,7 @@ Finds and lists all food items containing any of the specified keywords in their
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- `KEYWORD` are NOT Case-Sensitive
+- `KEYWORD` are NOT **Case-Sensitive**.
 - `KEYWORD` filters tags as well.
 
 Examples:
@@ -162,7 +162,7 @@ Format: `add INDEX [QUANTITY]`
 
 * The `INDEX` refers to the index number shown on the displayed menu list.
 * `INDEX` must be a positive integer and must not exceed the size of the menu list.
-* `Quantity` can be specified to indicate the number of item to be added. Otherwise, it adds one quantity of the item at the specified index.
+* `QUANTITY` can be specified to indicate the number of item to be added. Otherwise, it adds one quantity of the item at the specified index.
 
 Examples:
 * `add 1 1`: add item at INDEX 1, of QUANTITY 1.
@@ -191,6 +191,8 @@ Examples:
 Removes everything from the order.
 
 Format: `clear`
+
+- Note that anything written after the `clear` command will be ignored.
 
 Example:
 
@@ -229,6 +231,7 @@ Displays a copy-paste-able text of the order.
 Format: `submit`
 
 - Text obtained is automatically copied to clipboard.
+- Note that anything written after the `submit` command will be ignored.
 
 Example:
 
