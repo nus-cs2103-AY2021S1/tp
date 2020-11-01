@@ -3,8 +3,6 @@
 
 package chopchop.ui;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +13,6 @@ import chopchop.logic.commands.CommandResult;
 import chopchop.model.Model;
 import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -28,7 +25,6 @@ import javafx.scene.layout.VBox;
 public class StatsBox extends UiPart<Region> {
 
     private static final String SUBTITLE_NO_RECIPES = "No recipes were made recently";
-    private static final String SUBTITLE_NO_INGREDIENTS = "No ingredients were made recently";
     private static final String SUBTITLE_DEFAULT = "Showing recently made recipes";
 
     private static final ArrayList<Pair<String, String>> EMPTY_RESULT =
@@ -53,19 +49,6 @@ public class StatsBox extends UiPart<Region> {
 
         this.model = model;
         this.model.getObservableRecipeUsages().addListener((ListChangeListener<RecipeUsage>) e -> this.clearMessage());
-    }
-
-    private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
-        List<Pair<String, LocalDateTime>> outputList = new ArrayList<>();
-        int i = 0;
-        while (i < 3 && records.size() != 0) {
-            outputList.add(records.remove(records.size() - 1));
-            i++;
-        }
-        return outputList.stream()
-            .map(x -> String.format("%s, %s", x.fst(),
-                x.snd().format(DateTimeFormatter.ofPattern("dd-MMM-yy hh:mm a"))))
-            .collect(Collectors.joining("\n"));
     }
 
     /**

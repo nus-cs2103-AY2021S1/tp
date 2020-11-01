@@ -292,10 +292,10 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 
 
-
+### 5.4. Recipe Commands
 
 <a name="ViewRecipeCommand"></a>
-### 5.4. Viewing Recipes — **`view`**`recipe`
+#### 5.4.1 Viewing Recipes — **`view`**`recipe`
 This command opens the detailed recipe view, allowing you to see the steps, ingredients, and tags of the recipe.
 
 **Usage**: `view recipe <#REF>`
@@ -325,7 +325,7 @@ Figure 3.2: <i>The detailed recipe view</i>
 
 
 <a name="ListRecipeCommand"></a>
-### 5.5. Listing Recipes — **`list`**`recipes`
+#### 5.4.2 Listing Recipes — **`list`**`recipes`
 This command shows a list of all recipes in ChopChop. You can use this to switch panes (between recipes and ingredients) without using the mouse, as well as to clear any filters that might have been applied due to previous commands (eg. `find` and `filter`).
 
 **Usage**: `list recipes`
@@ -346,7 +346,7 @@ Figure 4: <i>The recipe list view</i>
 
 
 <a name="AddRecipeCommand"></a>
-### 5.6. Adding Recipes — **`add`**`recipe`
+#### 5.4.3 Adding Recipes — **`add`**`recipe`
 This command adds a recipe to ChopChop, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
 
 **Usage**:
@@ -408,10 +408,10 @@ Figure 5.3: <i>The newly created recipe in the recipe list</i>
 
 
 <a name="EditRecipeCommand"></a>
-### 5.7. Editing Recipes — **`edit`**`recipe`
+#### 5.4.4 Editing Recipes — **`edit`**`recipe`
 This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
-To accomodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
+To accommodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
 
 - For ingredients and steps, it can either be `add`, `edit`, or `delete`.
 - For tags, it can be either `add` or `delete`.
@@ -561,7 +561,7 @@ And now the pancake recipe is complete!
 
 
 <a name="DeleteRecipeCommand"></a>
-### 5.8. Deleting Recipes — **`delete`**`recipe`
+#### 5.4.5 Deleting Recipes — **`delete`**`recipe`
 This command deletes a specific recipe from ChopChop. Don't worry if you did this accidentally, because commands can be undone! (see: [undo](#UndoCommand)).
 
 **Usage**: `delete recipe <#REF>`
@@ -577,7 +577,7 @@ Examples:
 
 
 <a name="FindRecipeCommand"></a>
-### 5.9. Finding Recipes — **`find`**`recipe`
+#### 5.4.6 Finding Recipes — **`find`**`recipe`
 This command finds all recipes containing the given keywords in the name.
 
 **Usage**: `find recipe <keyword> [<keyword>]...`
@@ -619,7 +619,7 @@ Figure 8.3: <i>Back to the main recipe list</i>
 
 
 <a name="FilterRecipeCommand"></a>
-### 5.10. Filtering Recipes — **`filter`**`recipe`
+#### 5.4.7 Filtering Recipes — **`filter`**`recipe`
 This command filters all recipes and lists those containing all ingredients and tags specified in the command.
 
 **Usage**:
@@ -665,10 +665,10 @@ Again, to reset the search filter or go back to the full recipe view, you can cl
 
 
 
-
+### 5.5. Ingredient commands
 
 <a name="ListIngredientCommand"></a>
-### 5.11. Listing Ingredients — **`list`**`ingredients`
+#### 5.5.1 Listing Ingredients — **`list`**`ingredients`
 This command shows a list of all recipes in ChopChop. As with the `list recipes` command, you can use this command to switch between panes without clicking, or to reset any filters.
 
 **Usage**: `list ingredients`
@@ -687,7 +687,7 @@ Figure 9: <i>The ingredient list view</i>
 
 
 <a name="AddIngredientCommand"></a>
-### 5.12. Adding Ingredients — **`add`**`ingredient`
+#### 5.5.2 Adding Ingredients — **`add`**`ingredient`
 This command adds an ingredient to ChopChop, with an optional quantity and expiry date:
 - If the quantity is not specified, ChopChop will infer a counted quantity, like eggs.
 - If the expiry date is not specified, it is assumed that the ingredient (eg. salt) does not expire.
@@ -755,7 +755,7 @@ Figure 10.5: <i>Ingredients must have compatible units to be combined</i>
 
 
 <a name="DeleteIngredientCommand"></a>
-### 5.13. Deleting Ingredients — **`delete`**`ingredient`
+#### 5.5.3 Deleting Ingredients — **`delete`**`ingredient`
 
 This command deletes a specific ingredient from ChopChop. Similar to the `add ingredient` command, this command also allows you to delete quantities of ingredients instead of the whole ingredient. In this scenario, ChopChop will intelligently remove the earliest-expiring ingredients first.
 
@@ -798,7 +798,7 @@ Figure 11.2: <i>You now only have 1.75 litres of milk left</i>
 
 
 <a name="FindIngredientCommand"></a>
-### 5.14. Finding Ingredients — **`find`**`ingredient`
+#### 5.5.4 Finding Ingredients — **`find`**`ingredient`
 This command finds all ingredients containing the given keywords in the name, and it works identically to the `find recipe` command [above](#FindRecipeCommand).
 
 Constraints:
@@ -830,7 +830,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 
 <a name="FilterIngredientCommand"></a>
-### 5.15. Filtering Ingredients — **`filter`**`ingredient`
+#### 5.5.6 Filtering Ingredients — **`filter`**`ingredient`
 This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
 
 **Usage**: `filter ingredient [/expiry <expiry-date>] [/tag <tag-keywords>]...`
@@ -870,27 +870,11 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 
 
-
-<a name="UndoCommand"></a>
-### 5.16. Undoing Commands — **`undo`**
-Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
-
-**Usage**: `undo`
-
-
-
-
-
-<a name="RedoCommand"></a>
-### 5.17. Redoing Commands — **`redo`**
-Redoes the last redoable command. All undoable commands (as described [above](#UndoCommand)) can be redone.
-
-**Usage**: `redo`
-
-
+### 5.6. Statistics command
+Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You view these records with the commands below.
 
 <a name="StatsRecipeTopCommand"></a>
-### 5.18. Listing top Recipes -- **`stats recipe top`**
+#### 5.6.1 Listing top Recipes -- **`stats recipe top`**
 Shows a list of recipes that were made the most. The list is sorted in descending order by the number of times it was made; the first recipe in the list is the recipe that was made the most number of times. The number of usages is calculated from based on current records. So, if you have just cleared your recipe usage records,
 you will see that all recipes were made 0 times.
 Even after you delete a recipe is deleted, its past usages are still saved within ChopChop.
@@ -901,12 +885,12 @@ Example:
 Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
 
 <a name="StatsRecipeRecentCommand"></a>
-### 5.19. Listing recently made Recipes— **`stats recipe recent`**
+#### 5.6.2 Listing recently made Recipes— **`stats recipe recent`**
 Shows a list of most recently made recipes. The list is arranged in descending chronological order; the recipe most recently made is the first item on the list.
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
 
 <a name="StatsRecipeMadeCommand"></a>
-### 5.20. Listing Recipes made within a given time frame — **`stats recipe made`**
+#### 5.6.3 Listing Recipes made within a given time frame — **`stats recipe made`**
 Shows a list of recipes that were made within the given time frame. The list is arranged in descending chronological order.
 
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will see the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
@@ -935,7 +919,7 @@ If you enter `stats recipe` into the command box without either `[/before <DATE>
 
 
 <a name="StatsRecipeClearCommand"></a>
-### 5.21. Clearing Recipe usage records -- **`stats recipe clear`**
+#### 5.6.4 Clearing Recipe usage records -- **`stats recipe clear`**
 After you execute this command, the records of recipes that were made are deleted from ChopChop.
 
 **Usage**: `stats recipe clear`
@@ -945,7 +929,7 @@ After you execute this command, the records of recipes that were made are delete
 
 
 <a name="StatsIngredientRecentCommand"></a>
-### 5.22. Listing recently used Ingredients— **`stats ingredient recent`**
+#### 5.6.5 Listing recently used Ingredients— **`stats ingredient recent`**
 Shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
@@ -954,7 +938,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 
 <a name="StatsIngredientUsedCommand"></a>
-### 5.23. Listing Ingredients used within a given time frame — **`stats ingredient used`**
+#### 5.6.6 Listing Ingredients used within a given time frame — **`stats ingredient used`**
 Shows a list of ingredients that were used by recipes made recently within the given time frame.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
@@ -963,13 +947,35 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 
 <a name="StatsIngredientClearCommand"></a>
-### 5.24. Clearing Ingredient usage records -- **`stats ingredient clear`**
+#### 5.6.7 Clearing Ingredient usage records -- **`stats ingredient clear`**
 After you execute this command, the records of ingredients that were used are deleted from ChopChop.
 
 **Usage**: `stats ingredient clear`
 
+
+
+
+<a name="UndoCommand"></a>
+### 5.7. Undoing Commands — **`undo`**
+Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
+
+**Usage**: `undo`
+
+
+
+
+
+<a name="RedoCommand"></a>
+### 5.8. Redoing Commands — **`redo`**
+Redoes the last redoable command. All undoable commands (as described [above](#UndoCommand)) can be redone.
+
+**Usage**: `redo`
+
+
+
+
 <a name="CommandSummary"></a>
-### 5.25. Command Summary
+### 5.9. Command Summary
 
 For easy reference, here are the commands that ChopChop supports, listed in alphabetical order. You can click on the name of the command to go to its section in the User Guide.
 
@@ -991,8 +997,6 @@ For easy reference, here are the commands that ChopChop supports, listed in alph
 | [make](#MakeRecipeCommand)                   | Makes a recipe, consuming ingredients and recording statistics             | **YES**  |
 | [quit](#QuitCommand)                         | Exits ChopChop                                                             | **NO**   |
 | [redo](#RedoCommand)                         | Redoes a command that was previously undone                                | **NO**   |
-| [undo](#UndoCommand)                         | Undoes a command that was previously executed                              | **NO**   |
-| [view](#ViewCommand)                         | Opens the detailed view for a recipe                                       | **NO**   |
 | [stats recipe top](#StatsRecipeTopCommand)              | Shows the top recipes                                           | **NO**   |
 | [stats recipe recent](#StatsRecipeRecentCommand)        | Shows the recently made recipes                                 | **NO**   |
 | [stats recipe made](#StatsRecipeMadeCommand)            | Shows the recipes made within the given time frame              | **NO**   |
@@ -1000,6 +1004,8 @@ For easy reference, here are the commands that ChopChop supports, listed in alph
 | [stats ingredient recent](#StatsIngredientRecentCommand)| Shows the recently used ingredients                             | **NO**   |
 | [stats ingredient made](#StatsIngredientUsedCommand)    | Shows the ingredient used within the given time frame           | **NO**   |
 | [stats ingredient clear](#StatsIngredientClearCommand)  | Clear ingredient usage records                                  | **YES**  |
+| [undo](#UndoCommand)                         | Undoes a command that was previously executed                              | **NO**   |
+| [view](#ViewCommand)                         | Opens the detailed view for a recipe                                       | **NO**   |
 
 
 

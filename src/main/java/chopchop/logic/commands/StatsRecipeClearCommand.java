@@ -46,7 +46,7 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
         requireNonNull(model);
         try {
             model.setRecipeUsageList(this.usages);
-            this.usages.setAll(new UsageList<>()); //don't think need to clear but just in case
+            this.usages.setAll(new UsageList<>());
         } catch (Exception e) {
             return CommandResult.error("Unable to restore records of recipes made");
         }

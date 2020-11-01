@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import chopchop.commons.core.GuiSettings;
+import chopchop.commons.util.Pair;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
@@ -155,6 +156,9 @@ public interface Model {
 
     /** Returns the UsageList of recipe */
     UsageList<RecipeUsage> getRecipeUsageList();
+
+    /** Return the List sorted by most made recipe. */
+    List<Pair<String, String>> getMostMadeRecipeList();
 
     /** Returns the UsageList of ingredient */
     UsageList<IngredientUsage> getIngredientUsageList();
