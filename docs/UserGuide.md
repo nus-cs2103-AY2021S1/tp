@@ -144,7 +144,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
-* Specifying empty values to note or rating eg. `r/` will remove the corresponding field in the flashcard.
+* Specifying empty values to note, rating or diagram eg. `r/` will remove the corresponding field in the flashcard.
 * Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
 
 Examples:
