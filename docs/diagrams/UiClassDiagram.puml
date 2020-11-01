@@ -29,10 +29,6 @@ package BinItem <<Rectangle>>{
 Class BinItemListPanel
 }
 
-package Piechart <<Rectangle>> {
-Class PiechartPanel
-}
-
 Class StudentListPanel
 }
 
@@ -57,17 +53,14 @@ MainWindow *-down-> StatusBarFooter
 
 MainPanel *-down-> RoomListPanel
 MainPanel *-down-> BinItemListPanel
-MainPanel *-down-> PiechartPanel
 MainPanel *-down-> StudentListPanel
 
 RoomListPanel --|> UiPart
 BinItemListPanel --|> UiPart
-PiechartPanel --|> UiPart
 StudentListPanel --|> UiPart
 
 RoomListPanel ..down.> Model
 StudentListPanel ..down.> Model
-PiechartPanel ..down.> Model
 
 MainWindow --left|> UiPart
 
@@ -83,7 +76,6 @@ MainWindow -left-> Logic
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
-StudentListPanel -[hidden]right- PiechartPanel
 RoomListPanel -[hidden]left- BinItemListPanel
 
 MainWindow -[hidden]-|> UiPart
