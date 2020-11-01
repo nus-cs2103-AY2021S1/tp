@@ -143,14 +143,15 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 - `addr` - adds a new recipe
 
 **SYNOPSIS:**
-- `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
+- `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num\>\] \[-d \<desc\>\]
 
 **DESCRIPTION:**
 - **product name:**	name of the item created by the recipe
 - **-items:** specify the list of material items used
 - **-pc:** quantity of product produced in a craft (default: 1)
 - **-d:** description of recipe (default: “No description given”)
-- Adds a recipe to the inventory, with the given fields
+- Adds a recipe to the inventory, with the given fields,
+ do note that all items mentioned in the command must exist in the item listing.
 
 **EXAMPLE:**
 - `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
@@ -224,7 +225,8 @@ Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 **DESCRIPTION:**
 - **item name:** name of the item associated with the recipe to be deleted
 - **index:** deletes the <u>recipe</u> numbered <u>index</u>
-- Deletes the recipe in the inventory with the corresponding recipe index in the given item
+- Deletes the recipe in the inventory with the corresponding recipe index in the given item,
+ do note that this listing of item recipes is not designed to take input index beyond `2,147,483,647`. 
 
 **EXAMPLE:**
 - `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
