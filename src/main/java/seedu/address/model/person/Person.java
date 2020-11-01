@@ -130,7 +130,7 @@ public class Person {
      */
     public List<Task> getTasks() {
         System.out.println(listOfParticipations);
-        List<Task> tasks = Collections.emptyList();
+        List<Task> tasks = new ArrayList<>();
         listOfParticipations.values().forEach(p -> tasks.addAll(p.getTasks()));
         return tasks;
     }
@@ -157,7 +157,10 @@ public class Person {
     public void addProject(Project p) {
         listOfParticipations.put(p.getProjectName(),
                 new Participation(personName.toString(), p.getProjectName().toString()));
-        System.out.println("added: " + p);
+    }
+
+    public void addExistingParticipation(Participation p) {
+        listOfParticipations.put(p.getProject().getProjectName(), p);
     }
 
     /**
