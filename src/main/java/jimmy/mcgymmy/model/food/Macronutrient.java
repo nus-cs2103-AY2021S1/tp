@@ -4,12 +4,11 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    public static final String MESSAGE_CONSTRAINTS = "values should only contain non-negative integer values.";
+    public static final String MESSAGE_CONSTRAINTS = " amount can only take in value larger than 0 and less than 1000";
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
     private final int amount;
     private final int caloricMultiplier;
     private final int totalCalories;
-    private String type;
 
     /**
      * Represents macronutrients of 3 types
@@ -45,8 +44,8 @@ public abstract class Macronutrient {
         return amount >= 0 && amount < 1000;
     }
 
-    private String getMessageConstraint() {
-        return this.getMacronutrientType() + " amount can only take in value larger than 0 and less than 1000";
+    public String getMessageConstraint() {
+        return this.getMacronutrientType() + MESSAGE_CONSTRAINTS;
     }
 
     @Override
