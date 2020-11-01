@@ -27,7 +27,6 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
         return new FindModuleCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-
     }
 
 }
