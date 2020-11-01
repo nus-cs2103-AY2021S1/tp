@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Participation;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 
 /**

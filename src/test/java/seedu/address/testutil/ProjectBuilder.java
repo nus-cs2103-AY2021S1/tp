@@ -8,7 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;

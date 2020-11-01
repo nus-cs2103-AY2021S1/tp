@@ -25,7 +25,7 @@ import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
-import seedu.address.model.project.Participation;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 

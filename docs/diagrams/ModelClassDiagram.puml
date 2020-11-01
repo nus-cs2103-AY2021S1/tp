@@ -14,6 +14,7 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Interface ReadOnlyUserPrefs <<Interface>>
+Enum Status <<Enumeration>>
 
 Package Project {
 Class Project
@@ -22,6 +23,12 @@ Class Email
 Class Name
 Class Phone
 Class UniqueProjectList
+Class UniqueParticipationList
+}
+
+Package Person {
+Class Person
+Class UniquePersonList
 }
 
 Package Tag {
@@ -41,6 +48,9 @@ ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 MainCatalogue *--> "1" UniqueProjectList
+MainCatalogue *--> "1" UniquePersonList
+MainCatalogue *--> "1" UniqueParticipationList
+MainCatalogue *--> Status
 UniqueProjectList o--> "*" Project
 Project *--> Name
 Project *--> Phone

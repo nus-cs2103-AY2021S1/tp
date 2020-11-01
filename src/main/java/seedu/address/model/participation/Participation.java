@@ -1,10 +1,12 @@
-package seedu.address.model.project;
+package seedu.address.model.participation;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
+import seedu.address.model.project.Role;
 import seedu.address.model.task.Task;
 
 /**
