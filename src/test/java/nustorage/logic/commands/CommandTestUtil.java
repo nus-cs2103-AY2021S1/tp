@@ -16,18 +16,7 @@ import nustorage.model.Model;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
     public static final double VALID_AMOUNT = 0.10;
-
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 
     /*
@@ -36,6 +25,10 @@ public class CommandTestUtil {
     public static final String ITEM_NAME_1 = "ITEM_NAME_1";
     public static final String ITEM_NAME_2 = "ITEM_NAME_2";
     public static final String ITEM_NAME_3 = "ITEM_NAME_3";
+
+    public static final double COST_1 = 0;
+    public static final double COST_2 = 13.7;
+    public static final double COST_3 = 27.5;
 
     public static final int QUANTITY_1 = 10;
     public static final int QUANTITY_2 = 0;

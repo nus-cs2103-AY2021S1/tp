@@ -2,19 +2,20 @@ package nustorage.model.record;
 
 import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
 
     private final int id;
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     private final boolean hasInventory;
     private double amount;
     private String uiUsableIndex;
-    private double cost;
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      */
@@ -27,7 +28,7 @@ public class FinanceRecord {
     }
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      */
@@ -40,7 +41,7 @@ public class FinanceRecord {
     }
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
      * @param dateTime Date of the transaction.
@@ -54,7 +55,7 @@ public class FinanceRecord {
     }
 
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
      * @param id ID of the transaction.
      * @param amount Amount of the transaction.
@@ -67,19 +68,17 @@ public class FinanceRecord {
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
-
     /**
-     * Constructs a {@code Finance Record}.
+     * Constructs a {@code FinanceWindow Record}.
      *
-     * @param amount the amount of the transaction
-     * @param cost the cost of each item
+     * @param amount Amount of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(double amount, double cost) {
+    public FinanceRecord(double amount, LocalDateTime dateTime, boolean hasInventory) {
+        this.id = this.hashCode();
         this.amount = amount;
-        this.id = this.hashCode();;
-        this.dateTime = LocalDateTime.now();
-        this.cost = cost;
-        this.hasInventory = true;
+        this.dateTime = dateTime;
+        this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
 
@@ -91,16 +90,21 @@ public class FinanceRecord {
         return amount;
     }
 
-    public double getCost() {
-        return cost;
-    }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public LocalDate getDate() {
+        return this.dateTime.toLocalDate();
+    }
+
+    public String getTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+        return this.dateTime.toLocalTime().format(dtf);
     }
 
     public String getDatetimeString() {
@@ -120,10 +124,10 @@ public class FinanceRecord {
     }
 
     /**
-     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * Compares if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      *
      * @param obj Object to compare with
-     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * @return True if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      */
     public boolean hasSameData(Object obj) {
         if (obj instanceof FinanceRecord) {
@@ -134,10 +138,10 @@ public class FinanceRecord {
     }
 
     /**
-     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * Compares if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      *
      * @param obj Object to compare with
-     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     * @return True if {@code obj} is a {@code FinanceWindow Record} and has the same amount and datetime value.
      */
     public boolean isSameRecord(Object obj) {
         if (obj instanceof FinanceRecord) {

@@ -16,7 +16,7 @@ import nustorage.model.record.InventoryRecord;
 
 
 /**
- * An Immutable Inventory that's serializable to the JSON format.
+ * An Immutable InventoryWindow that's serializable to the JSON format.
  */
 @JsonRootName("inventory")
 class JsonSerializableInventory {

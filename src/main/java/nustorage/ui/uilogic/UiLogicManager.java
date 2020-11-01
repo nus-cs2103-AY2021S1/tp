@@ -9,7 +9,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 
 public class UiLogicManager implements UiLogic {
 
-    public static final String COMMAND_WORD_NAVIGATION = "goto";
+    public static final String COMMAND_WORD_NAVIGATION = "switch";
     public static final String INVENTORY_TAB = "inventory";
     public static final String FINANCE_TAB = "finance";
 
@@ -36,7 +36,10 @@ public class UiLogicManager implements UiLogic {
         }
     }
 
-    private CommandResult goToTab(String param) throws ParseException {
+    /**
+     * Switches to the specified tab given the specified parameters
+     */
+    public CommandResult goToTab(String param) throws ParseException {
 
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
 

@@ -18,7 +18,7 @@ import nustorage.model.ReadOnlyInventory;
 
 
 /**
- * A class to access Inventory data stored as a json file on the hard disk.
+ * A class to access InventoryWindow data stored as a json file on the hard disk.
  */
 public class JsonInventoryStorage implements InventoryStorage {
 
@@ -47,7 +47,7 @@ public class JsonInventoryStorage implements InventoryStorage {
 
     @Override
     public Optional<ReadOnlyInventory> readInventory() throws DataConversionException {
-        // assert filePath != null : "Inventory file path is null!";
+        // assert filePath != null : "InventoryWindow file path is null!";
         return readInventory(filePath);
     }
 
@@ -74,7 +74,7 @@ public class JsonInventoryStorage implements InventoryStorage {
 
     @Override
     public void saveInventory(ReadOnlyInventory inventory) throws IOException {
-        // assert inventory != null : "Inventory is null!";
+        // assert inventory != null : "InventoryWindow is null!";
         saveInventory(inventory, filePath);
     }
 

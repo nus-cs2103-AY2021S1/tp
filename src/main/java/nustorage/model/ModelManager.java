@@ -87,7 +87,7 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    //=========== Inventory ================================================================================
+    //=========== InventoryWindow ================================================================================
 
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
@@ -98,9 +98,9 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Applies a predicate to the Inventory and returns those that pass it.
+     * Applies a predicate to the InventoryWindow and returns those that pass it.
      *
-     * @param predicate the predicate used to filter Inventory
+     * @param predicate the predicate used to filter InventoryWindow
      */
     public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
         requireNonNull(predicate);

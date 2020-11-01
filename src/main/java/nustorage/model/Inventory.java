@@ -31,7 +31,7 @@ public class Inventory implements ReadOnlyInventory {
     }
 
     /**
-     * Creates an Inventory using the InventoryRecord in the {@code toBeCopied}
+     * Creates an InventoryWindow using the InventoryRecord in the {@code toBeCopied}
      */
     public Inventory(ReadOnlyInventory toBeCopied) {
         this();
@@ -49,7 +49,7 @@ public class Inventory implements ReadOnlyInventory {
     }
 
     /**
-     * Resets the existing data of this {@code Inventory} with {@code newData}.
+     * Resets the existing data of this {@code InventoryWindow} with {@code newData}.
      */
     public void resetData(ReadOnlyInventory newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class Inventory implements ReadOnlyInventory {
     }
 
     /**
-     * Removes {@code key} from this {@code Inventory}.
+     * Removes {@code key} from this {@code InventoryWindow}.
      * {@code key} must exist in the inventory.
      */
     public void removeInventoryRecord(InventoryRecord key) {

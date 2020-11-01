@@ -18,14 +18,15 @@ import nustorage.model.record.InventoryRecord;
 public class CreateInventoryRecordCommandParser implements Parser<CreateInventoryRecordCommand> {
 
     /**
-     * Parses Inventory commands arguments from the user.
+     * Parses InventoryWindow commands arguments from the user.
      * @param args User arguments.
      * @return An AddInventoryCommand.
      * @throws ParseException When user arguments results in a parsing error.
      */
     public CreateInventoryRecordCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION, PREFIX_ITEM_COST);
+                ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION,
+                        PREFIX_ITEM_COST);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -36,15 +37,16 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
         String itemDescription = ParserUtil.parseItemDescription(argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get());
         int quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
 
-        InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity);
-
-        double cost;
+        double unitCost;
         if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
-            cost = ParserUtil.parseItemCost(argMultimap.getValue(PREFIX_ITEM_COST).get());
+            unitCost = ParserUtil.parseItemCost(argMultimap.getValue(PREFIX_ITEM_COST).get());
         } else {
-            cost = 0;
+            unitCost = 0;
         }
-        FinanceRecord financeRecord = new FinanceRecord(cost * quantity, true);
+
+        FinanceRecord financeRecord = new FinanceRecord(unitCost * quantity, true);
+        InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity, unitCost);
+
         return new CreateInventoryRecordCommand(inventoryRecord, financeRecord);
     }
 

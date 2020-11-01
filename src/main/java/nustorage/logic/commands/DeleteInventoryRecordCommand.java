@@ -16,11 +16,11 @@ public class DeleteInventoryRecordCommand extends Command {
     public static final String COMMAND_WORD = "delete_inventory";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the inventory record identified by the index number used in Inventory.\n"
+            + ": Deletes the inventory record identified by the index number used in InventoryWindow.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_INVENTORY_RECORD_SUCCESS = "Deleted InventoryRecord: %1$s";
+    public static final String MESSAGE_DELETE_INVENTORY_RECORD_SUCCESS = "Deleted Inventory record: %1$s";
 
     private final Index targetIndex;
 
@@ -31,10 +31,9 @@ public class DeleteInventoryRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        assert !model.getFilteredInventory().isEmpty();
         List<InventoryRecord> lastShownList = model.getFilteredInventory();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX);
         }
 
         InventoryRecord inventoryRecordToDelete = lastShownList.get(targetIndex.getZeroBased());

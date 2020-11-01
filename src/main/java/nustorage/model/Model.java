@@ -49,7 +49,7 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    // --------- Finance Account ---------
+    // --------- FinanceWindow Account ---------
     void deleteFinanceRecord(FinanceRecord target);
 
     ReadOnlyFinanceAccount getFinanceAccount();
@@ -68,20 +68,20 @@ public interface Model {
     ObservableList<FinanceRecord> getFilteredFinanceList();
 
 
-    // --------- Inventory ---------
+    // --------- InventoryWindow ---------
 
     void addInventoryRecord(InventoryRecord inventoryRecord);
 
     /**
      * Replaces the given InventoryRecord {@code target} with {@code editedInventoryRecord}.
-     * {@code target} must exist in the Inventory.
+     * {@code target} must exist in the InventoryWindow.
      * The description of {@code editedInventoryRecord} must not be the same as another existing InventoryRecord.
      */
     void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord);
 
 
     /**
-     * Returns true if a record with the same identity as {@code InventoryRecord} exists in the Inventory.
+     * Returns true if a record with the same identity as {@code InventoryRecord} exists in the InventoryWindow.
      */
     boolean hasInventoryRecord(InventoryRecord inventoryRecord);
 

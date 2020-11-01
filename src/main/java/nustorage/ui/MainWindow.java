@@ -37,8 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private Inventory inventory;
-    private Finance finance;
+    private InventoryWindow inventoryWindow;
+    private FinanceWindow financeWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -86,6 +86,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
     }
 
+
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -96,6 +97,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -128,18 +130,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     public void fillInnerParts() {
-        finance = new Finance(logic);
-        financePlaceholder.getChildren().add(finance.getRoot());
-
-        inventory = new Inventory(logic);
-        inventoryPlaceholder.getChildren().add(inventory.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
+        financeWindow = new FinanceWindow(logic);
+        financePlaceholder.getChildren().add(financeWindow.getRoot());
+
+        inventoryWindow = new InventoryWindow(logic, uiLogic, financePlaceholder);
+        inventoryPlaceholder.getChildren().add(inventoryWindow.getRoot());
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
     }
 
     /**
@@ -192,25 +193,23 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult;
 
             if (isUiCommand(commandText)) {
-                commandResult = uiLogic.execute(commandText);
-                String userInput = commandText.trim();
-                if (userInput.split("_")[1].equals("inventory")) {
-                    logic.execute("list_inventory");
+                if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Inventory")) {
+                    commandText = commandText + "_finance";
                 } else {
-                    logic.execute("list_finance");
+                    commandText = commandText + "_inventory";
                 }
+                commandResult = uiLogic.execute(commandText);
             } else {
                 commandResult = logic.execute(commandText);
             }
-
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            inventory = new Inventory(logic);
-            inventoryPlaceholder.getChildren().add(inventory.getRoot());
+            inventoryWindow = new InventoryWindow(logic, uiLogic, financePlaceholder);
+            inventoryPlaceholder.getChildren().add(inventoryWindow.getRoot());
 
-            finance = new Finance(logic);
-            financePlaceholder.getChildren().add(finance.getRoot());
+            financeWindow = new FinanceWindow(logic);
+            financePlaceholder.getChildren().add(financeWindow.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -230,10 +229,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private boolean isUiCommand(String userInput) {
         userInput.trim();
-        String[] userInputArr = userInput.split("_");
-        if (userInputArr.length > 0) {
-            return userInput.split("_")[0].equals("goto");
-        }
-        return false;
+
+        return userInput.equals("switch");
+
     }
 }

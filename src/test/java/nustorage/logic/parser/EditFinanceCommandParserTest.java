@@ -27,7 +27,7 @@ public class EditFinanceCommandParserTest {
         assertParseFailure(parser, String.valueOf(VALID_AMOUNT), MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditFinanceCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditFinanceCommand.MESSAGE_AMT_MISSING);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -50,12 +50,12 @@ public class EditFinanceCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC_A, "Amount if not a decimal value."); // invalid name
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC_A, "Amount is not a decimal value."); // invalid name
 
         // invalid amount followed by valid date
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC_A + DATE_STRING_A, "Amount if not a decimal value.");
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC_A + DATE_STRING_A, "Amount is not a decimal value.");
 
         // invalid amount followed by valid date and time
-        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC_A + DATE_TIME_DESC_A, "Amount if not a decimal value.");
+        assertParseFailure(parser, "1" + INVALID_AMOUNT_DESC_A + DATE_TIME_DESC_A, "Amount is not a decimal value.");
     }
 }

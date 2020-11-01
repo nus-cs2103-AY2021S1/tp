@@ -17,19 +17,20 @@ import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * Edits the details of an existing item in the Inventory
+ * Edits the details of an existing item in the InventoryWindow
  */
 public class EditFinanceCommand extends Command {
     public static final String COMMAND_WORD = "edit_finance";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the Finance Record specified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the FinanceWindow Record specified "
             + "by the index number used in the displayed inventory. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
-    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_AMT_MISSING = "'amt/' tag must be used.";
+    public static final String MESSAGE_EDIT_FINANCE_SUCCESS = "Edited finance record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
@@ -53,7 +54,7 @@ public class EditFinanceCommand extends Command {
         List<FinanceRecord> lastShownList = model.getFilteredFinanceList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX);
         }
 
         FinanceRecord financeRecordToEdit = lastShownList.get(index.getZeroBased());
@@ -67,7 +68,7 @@ public class EditFinanceCommand extends Command {
 
         model.setFinanceRecord(financeRecordToEdit, editedFinanceRecord);
         model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
-        return new CommandResult(String.format(MESSAGE_EDIT_INVENTORY_SUCCESS, editedFinanceRecord));
+        return new CommandResult(String.format(MESSAGE_EDIT_FINANCE_SUCCESS, editedFinanceRecord));
     }
 
     /**

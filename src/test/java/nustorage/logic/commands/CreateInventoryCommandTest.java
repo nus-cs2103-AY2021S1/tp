@@ -3,7 +3,7 @@ package nustorage.logic.commands;
 // import static java.util.Objects.requireNonNull;
 import static nustorage.testutil.Assert.assertThrows;
 
-/*import nustorage.model.Inventory;
+/*import nustorage.model.InventoryWindow;
 import nustorage.model.ReadOnlyInventory;
 import nustorage.model.record.InventoryRecord;
 import nustorage.testutil.stub.ModelStub; */

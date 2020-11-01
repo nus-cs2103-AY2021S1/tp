@@ -36,7 +36,7 @@ public class InventoryRecordList implements Iterable<InventoryRecord> {
     }
 
     /**
-     * Edit target with edited Inventory record
+     * Edit target with edited InventoryWindow record
      */
     public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
         requireAllNonNull(target, editedInventoryRecord);
@@ -66,7 +66,7 @@ public class InventoryRecordList implements Iterable<InventoryRecord> {
     }
 
     /**
-     * Removes the equivalent Inventory record from the list.
+     * Removes the equivalent InventoryWindow record from the list.
      * The inventory record must exist in the list.
      */
     public void remove(InventoryRecord toRemove) {
