@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-    public static final String VALIDATION_REGEX_WITH_SPACES ="^[a-zA-Z\\s]*$"; // incase tags should now contain spaces
+    public static final String VALIDATION_REGEX_WITH_SPACES = "^[a-zA-Z\\s]*$"; // incase tags should now contain spaces
 
     public final String tagName;
 
