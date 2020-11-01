@@ -1,13 +1,10 @@
 package seedu.address.ui;
 
-import java.util.stream.Collectors;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.question.Question;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -56,10 +53,7 @@ public class StudentAcademicCard extends UiPart<Region> {
         phone.setText("Phone: " + student.getPhone().value);
         school.setText("School: " + student.getSchool().school);
         year.setText("Year: " + student.getYear());
-        questions.setText("Questions:\n" + student.getQuestions()
-                .stream()
-                .map(Question::toString)
-                .collect(Collectors.joining("\n")));
+        questions.setText("Questions:\n" + student.getFormattedQuestions());
         exams.setText("Examinations: \n" + student.getFormattedExams());
         attendance.setText("Attendance:\n" + student.getAcademic().getFormattedAttendance());
     }
