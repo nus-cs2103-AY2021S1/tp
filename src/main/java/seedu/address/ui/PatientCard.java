@@ -2,7 +2,6 @@ package seedu.address.ui;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
@@ -20,7 +19,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.logic.Logic;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.ProfilePicture;
