@@ -101,29 +101,44 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasModule_moduleNotInAddressBook_returnsFalse() {
+    public void hasModule_moduleNotInActiveSemester_returnsFalse() {
+        assertFalse(modelManager.hasModule(CS1101S));
+        modelManager.addModule(CS1101S);
+        modelManager.switchModuleList();
         assertFalse(modelManager.hasModule(CS1101S));
     }
 
     @Test
-    public void hasModule_moduleInAddressBook_returnsTrue() {
+    public void hasModule_moduleInActiveSemester_returnsTrue() {
+        modelManager.addModule(CS1101S);
+        assertTrue(modelManager.hasModule(CS1101S));
+        modelManager.switchModuleList();
         modelManager.addModule(CS1101S);
         assertTrue(modelManager.hasModule(CS1101S));
     }
 
     @Test
-    public void isEmptyModuleList_moduleListNotEmpty_returnsFalse() {
+    public void hasModule_moduleInActiveSemesterDoubleSwitch_returnsTrue() {
         modelManager.addModule(CS1101S);
-        assertFalse(modelManager.isEmptyModuleList());
+        modelManager.switchModuleList();
+        modelManager.switchModuleList();
+        assertTrue(modelManager.hasModule(CS1101S));
     }
 
     @Test
-    public void isEmptyModuleList_moduleListEmpty_returnsTrue() {
+    public void isEmptyModuleList_activeSemesterEmpty_returnsTrue() {
+        assertTrue(modelManager.isEmptyModuleList());
+        modelManager.addModule(CS1101S);
+        modelManager.switchModuleList();
         assertTrue(modelManager.isEmptyModuleList());
     }
 
     @Test
     public void clearModules_returnsTrue() {
+        modelManager.addModule(CS1101S);
+        modelManager.clearMod();
+        assertTrue(modelManager.isEmptyModuleList());
+        modelManager.switchModuleList();
         modelManager.addModule(CS1101S);
         modelManager.clearMod();
         assertTrue(modelManager.isEmptyModuleList());
@@ -141,7 +156,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void isEmptyPersonList_persontListEmpty_returnsTrue() {
+    public void isEmptyPersonList_personListEmpty_returnsTrue() {
         assertTrue(modelManager.isEmptyPersonList());
     }
 
@@ -150,6 +165,18 @@ public class ModelManagerTest {
         modelManager.addPerson(ALICE);
         modelManager.clearContacts();
         assertTrue(modelManager.isEmptyPersonList());
+    }
+
+    @Test
+    public void getSemester_returnsSemester() {
+
+        // before switch -> returns 1
+        assertEquals(modelManager.getSemester(), 1);
+
+        modelManager.switchModuleList();
+
+        // after switch -> returns 2
+        assertEquals(modelManager.getSemester(), 2);
     }
 
     @Test
