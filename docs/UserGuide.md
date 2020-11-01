@@ -340,7 +340,7 @@ The animal with ID `200` has its ID replaced with `2910` its name with `Jirachi`
 
 ---
 
-### 4.3. Finding animals by their fields: `find`
+### 5.3. Finding animals by their fields: `find`
 
 You may find yourself in situations where you need to retrieve a specific group of animals from your `ZooKeep` book. For
 example, you may need to find animals with the same feed times or similar medical conditions.
@@ -370,7 +370,7 @@ The animal with name `Kai Kai` is displayed.
 
 ---
 
-### 4.4. Sorting animals: `sort`
+### 5.4. Sorting animals: `sort`
 
 If you need to create some sort of ordering in your `ZooKeep` book, such as a chronological order by feed times to organise
 your feeding schedule, this feature helps to sort the animals by the given category and updates the list of animals accordingly.
@@ -414,7 +414,7 @@ The animals in your `ZooKeep` book are sorted by their ID, in ascending order.
 
 ---
 
-### 4.5. Saving a snapshot of animal data: `snap`
+### 5.5. Saving a snapshot of animal data: `snap`
 
 This command is useful for storing important archives in the `data/snapshots` folder of your `ZooKeep` application, in case you need
 to refer to the information of animals that have been deleted long ago. When executed, this command will
@@ -453,7 +453,7 @@ was executed.
 
 ---
 
-## 5. FAQ
+## 6. FAQ
 This section lists some of the frequently asked questions.
 
 **Q**: How do I transfer my data to a new computer?<br>
@@ -478,7 +478,7 @@ This section lists some of the frequently asked questions.
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
-## 6. Command summary
+## 7. Command summary
 If you need a quick reference guide, the following tables should help.
 
 **Basic commands**
