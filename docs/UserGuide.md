@@ -215,6 +215,25 @@ Adds a student to ResiReg. The following student details are stored: name, stude
 Format: `add-student n/<student_name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [tag/<tag_name>]...`
 
 - The student ID must be a 8-digit alphanumeric string, starting with `EO` and ending with 6 digits. It must be unique (no two students in ResiReg can share the same student ID). Otherwise, an error message is displayed accordingly.
+- The phone number should be exactly 8 digits
+- The faculty should be a case-sensitive code. Refer to the following list for the faculty codes and their corresponding faculty names
+    - `FASS` (Arts and Social Sciences)
+    - `BIZ` (Business)
+    - `SOC` (Computing)
+    - `CLE` (Continuing & Lifelong Education)
+    - `DEN` (Dentistry)
+    - `SDE` (Design & Environment)
+    - `DNUS` (Duke-NUS)
+    - `ENG` (Engineering)
+    - `ISE` (Integrative Sciences & Engineering)
+    - `LAW` (Law)
+    - `MED` (Medicine)
+    - `MUS` (Music)
+    - `PH` (Public Health)
+    - `PP` (Public Policy)
+    - `FOS` (Science)
+    - `USP` (University Scholars Programme)
+    - `YNUS` (Yale-NUS)
 - The pairs of type-prefixes and data (eg. `n/<student_name>`) may given be in any order.
 - The student will not be added if some pieces of information is missing. An error message will be displayed instead.
 
@@ -222,7 +241,7 @@ Examples:
 
 - `add-student n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` successfully creates a new student named Jet New whose student ID is E0407889, phone number is 82462157,
   email is jn@u.nus.edu, and faculty is Computing (SOC).
-- `add-student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing):
+- `add student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing):
   `Invalid command format! add-student: Adds a student to ResiReg. Parameters: n/NAME i/STUDENT_ID p/PHONE e/EMAIL f/FACULTY [tag/TAG]... Example: add-student n/John Doe s/E0123456 p/98765432 e/johndoe@u.nus.edu f/FASS`
 
 #### 3. Editing a student : `edit-student`
@@ -233,6 +252,7 @@ Format: `edit-student <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_ph
 
 - Edits the person at the specified `index`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
+- All inputs must satisfy the constraints listed for the `edit-student` command
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 - You can remove all of the student’s tags by typing `t/` without specifying any tags after it.
