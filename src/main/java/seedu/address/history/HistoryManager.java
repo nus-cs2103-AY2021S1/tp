@@ -87,22 +87,11 @@ public class HistoryManager implements History {
     @Override
     public void addToHistory(String command) {
         hasReturnedCurrentCommandBefore = false;
-        if (hasNextCommand()) {
-            // if there exist a next command,
-            // copy commandHistory[0] to commandHistory[currentCommandIndex],
-            // store it as the new commandHistory
-            // and append the new command.
-            commandHistory = commandHistory.subList(0, currentCommandIndex + 1);
-            this.currentCommandIndex++;
-            this.commandHistory.add(command);
-        } else if (isLimitReached()) {
+        if (isLimitReached()) {
             this.commandHistory.remove(0);
-            this.commandHistory.add(command);
-        } else {
-            // when there is sufficient space for nextCommand to be added to history
-            this.currentCommandIndex++;
-            this.commandHistory.add(command);
         }
+        this.commandHistory.add(command);
+        this.currentCommandIndex = commandHistory.size() - 1;
     }
 
     @Override

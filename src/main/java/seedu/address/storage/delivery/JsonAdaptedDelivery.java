@@ -1,5 +1,9 @@
 package seedu.address.storage.delivery;
 
+/*import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;*/
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -9,6 +13,7 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
 
 public class JsonAdaptedDelivery {
 
@@ -18,6 +23,7 @@ public class JsonAdaptedDelivery {
     private final String phone;
     private final String address;
     private final String order;
+    private final String endTime;
 
     /**
      * Constructs a {@code JsonAdaptedDelivery} with the given Delivery details.
@@ -26,11 +32,13 @@ public class JsonAdaptedDelivery {
     public JsonAdaptedDelivery(@JsonProperty("name") String name,
                                @JsonProperty("phone") String phone,
                                @JsonProperty("address") String address,
-                               @JsonProperty("order") String order) {
+                               @JsonProperty("order") String order,
+                               @JsonProperty("time") String endTime) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.order = order;
+        this.endTime = endTime;
     }
 
     /**
@@ -41,6 +49,7 @@ public class JsonAdaptedDelivery {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         order = source.getOrder().value;
+        endTime = source.getTime().toString();
     }
 
     /**
@@ -82,7 +91,13 @@ public class JsonAdaptedDelivery {
         }
         final Order modelOrder = new Order(order);
 
-        return new Delivery(modelName, modelPhone, modelAddress, modelOrder);
+        if (endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+        }
+
+        final Time modelTime = new Time("0", endTime);
+
+        return new Delivery(modelName, modelPhone, modelAddress, modelOrder, modelTime);
 
     }
 

@@ -24,7 +24,7 @@ public class ItemDeleteCommand extends ItemCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item: %1$s";
+    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Item: \n%1$s";
 
     private final Index targetIndex;
 
@@ -39,7 +39,7 @@ public class ItemDeleteCommand extends ItemCommand {
         InventoryModel inventoryModel = models.getInventoryModel();
         List<Item> lastShownList = inventoryModel.getFilteredAndSortedItemList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size() || targetIndex.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }
 

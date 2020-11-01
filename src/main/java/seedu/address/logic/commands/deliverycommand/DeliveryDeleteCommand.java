@@ -24,7 +24,7 @@ public class DeliveryDeleteCommand extends DeliveryCommand {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Delivery: %1$s";
+    public static final String MESSAGE_DELETE_ITEM_SUCCESS = "Deleted Delivery: \n%1$s";
 
     private final Index targetIndex;
 
@@ -37,10 +37,10 @@ public class DeliveryDeleteCommand extends DeliveryCommand {
         requireNonNull(models);
         requireNonNull(models.getDeliveryModel());
         DeliveryModel deliveryModel = models.getDeliveryModel();
-        List<Delivery> lastShownList = deliveryModel.getFilteredDeliveryList();
+        List<Delivery> lastShownList = deliveryModel.getFilteredAndSortedDeliveryList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownList.size() || targetIndex.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
         }
 
         Delivery deliveryToDelete = lastShownList.get(targetIndex.getZeroBased());

@@ -14,19 +14,27 @@ Given below are my contributions to the project.
   * Justification: To allow our application to make more sense with class names and method names.
   * Credits: *AB3 from CS2103T [Repo link](https://github.com/nus-cs2103-AY2021S1/tp)*
 
+* **Added Storage for Deliveries** Added Storage (Pull Request [\#107](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/107))
+  * What it does: convert a delivery into json and to be stored locally
+  * Justification: Allows the user to be able to save their deliveries.
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=zeranium97&tabRepo=AY2021S1-CS2103T-T12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code)
 
 * **Enhancements to existing features**:
   * Remove Supplier as a mandatory field. It will display "NO SUPPLIER" if input is empty. (Pull Request [\#43](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/43))
   * Twerk test's data and method to suit our program (Pull Request [\#52](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/52))
   * Modify `find` to support finding based on different data fields (Pull Request [\#86](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/86))
+  * Further enhance `find` to search a combination of fields (Pull Request [\#171](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/86))
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `delete` and `Coming Soon`
     * Updated documentation for `find` feature
+
   * Developer Guide:
     * Added Use Cases.
+    * Modified Model and Storage section.
+    * Added `edit` and `find` implementation
 
 * **Community**
    * Reported bugs (such as: [Unhandled Exceptions](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/78)

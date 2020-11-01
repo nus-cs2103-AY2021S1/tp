@@ -8,6 +8,7 @@ public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The item index provided is invalid";
+    public static final String MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX = "The delivery index provided is invalid";
     public static final String MESSAGE_UNDO_LIMIT_REACHED = "No more commands to undo";
     public static final String MESSAGE_REDO_LIMIT_REACHED = "No more commands to redo";
     public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d items listed!";
@@ -59,8 +60,8 @@ public class Messages {
                         + "Adding a pending delivery is very similar to this,\n"
                         + "with just a slight difference in the command. You can enter the following "
                         + "command to add a delivery:\n"
-                        + "`add-d n/NAME p/PHONE a/ADDRESS o/ORDER`\n"
-                        + "Example: `add-d n/DAMITH p/91231231 a/Jln Burong no 92 o/Mie Rebus`\n")
+                        + "`add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`\n"
+                        + "Example: `add-d n/DAMITH p/91231231 a/Jln Burong no 92 o/Mee Rebus by/15`\n")
                 .append(DIVIDER)
                 .append("GREAT JOB! Seems like you are getting the hang of it. If you have not seen the "
                         + "effect of clear-i and clear-d\n"
@@ -123,20 +124,21 @@ public class Messages {
                 .append(DIVIDER)
                 .append("INVENTORY SPECIFIC COMMANDS\n")
                 .append(DIVIDER)
-                .append("Add inventory: add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
+                .append("Add inventory: add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG] "
+                        + "[metric/METRIC]\n")
                 .append("Delete an inventory item: delete-i INDEX\n")
                 .append("Edit an inventory item: edit-i INDEX [n/NAME] [q/QUANTITY]"
-                        + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
+                        + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG] [metric/METRIC]\n")
                 .append("Find an inventory item: find-i [n/NAME | s/SUPPLIER | "
-                        + "t/TAG]\n")
+                        + "t/TAG] [metric/METRIC]\n")
                 .append("Clear all inventory items: clear-i\n")
                 .append("List all inventory items: list-i\n")
                 .append(DIVIDER)
                 .append("DELIVERY SPECIFIC COMMANDS\n")
                 .append(DIVIDER)
-                .append("Add delivery: add-d n/NAME p/PHONE a/ADDRESS o/ORDER\n")
+                .append("Add delivery: add-d n/NAME p/PHONE a/ADDRESS o/ORDER by/TIME\n")
                 .append("Delete a delivery: delete-d INDEX\n")
-                .append("Edit a delivery: edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]\n")
+                .append("Edit a delivery: edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER] [by/TIME]\n")
                 .append("Find a delivery: find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]\n")
                 .append("Clear all deliveries: clear-d\n")
                 .append("List all deliveries: list-d\n");

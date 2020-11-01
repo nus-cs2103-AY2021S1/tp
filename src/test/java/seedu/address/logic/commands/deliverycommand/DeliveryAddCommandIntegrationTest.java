@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.deliverycommand;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 
@@ -31,11 +30,5 @@ public class DeliveryAddCommandIntegrationTest {
 
         assertCommandSuccess(new DeliveryAddCommand(validDelivery), model,
                 String.format(DeliveryAddCommand.MESSAGE_SUCCESS, validDelivery), expectedModel);
-    }
-
-    @Test
-    public void execute_duplicateDelivery_throwsCommandException() {
-        Delivery delivery = model.getDeliveryBook().getDeliveryList().get(0);
-        assertCommandFailure(new DeliveryAddCommand(delivery), model, DeliveryAddCommand.MESSAGE_DUPLICATE_DELIVERY);
     }
 }

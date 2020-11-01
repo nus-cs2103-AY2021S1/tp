@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * What it does: Allows users to have easy reference when they want to start learning OneShelf.
   * Justification: As OneShelf have a relatively steep learning curve, it is good to have a good guidance at the
   start to ensure that user can get accustomed to the features easily.
-  * (Pull Request [#80](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/80), 
+  * (Pull Request [#80](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/80),
   [#81](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/81), [#90](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/90))
 
 * **Added dynamic clock**: Allows user to see clock instead of storage on bottom left corner of application.
@@ -41,33 +41,45 @@ Given below are my contributions to the project.
 
 
 * **Documentation**:
-  * General: 
+  * General:
     * Initial Project Readme set up to match our project
     * Planned and wireframed UI Mock Up using Figma ([\#63](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/63))
+    * Updated Ui.png in v1.3
   * User Guide:
     * Added documentation for the features `clear`, `edit`, `help` in v1.1
     * Updated documentation for the features `clear-i`, `clear-d`, `list-i`, `list-d` in v1.2
+    * Added numberings, introduction, GUI annotated diagram, quick start installation guide video, FAQ in v1.3
+    * Updated documentation for `add-i`, `add-d`, `help start` and `help summary`, `delete-i`, `delete-d` in v1.3
   * Developer Guide:
+    * Added introduction with target audience, purpose of document and summary of document
+    * Added Use Cases and Manual Testing
     * Updated UI Class Diagram and description
-    * Added Glossary
+    * Updated Glossary
+    * Provided description for all components before Diagrams and standardize Figure numbers
+    * Added description for structures of `Item` and `Delivery`
+    * Added Help Window implementation with description, code snippet and Activity diagram
+    * Restructure DG: Logging, configuration, appendices
 
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 
-    * [\#71](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/71)
-    * [#106](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/106)
-    * [#115](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/115)
-    * [#159](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/159)
-    * [#166](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/166)
+  * PRs reviewed (with non-trivial review comments):
+     [\#71](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/71),
+     [#106](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/106),
+     [#115](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/115),
+     [#159](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/159),
+     [#166](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/166),
+     [#196](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/194),
+     [#199](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/199),
+     [#201](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/201)
   * Contributed to forum discussions (examples: 
-    * [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/193),
-    * [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/150),
-    * [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/47#issuecomment-678718187),
-    * [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/86#issuecomment-681816644),
-    * [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/110#issuecomment-683312239),
-    * [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502),
-    * [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/278),
-    * [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/328))
+     [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/193),
+     [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/150),
+     [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/47#issuecomment-678718187),
+     [4](https://github.com/nus-cs2103-AY2021S1/forum/issues/86#issuecomment-681816644),
+     [5](https://github.com/nus-cs2103-AY2021S1/forum/issues/110#issuecomment-683312239),
+     [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502),
+     [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/278),
+     [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/328))
   * Reported bugs and suggestions for other teams in the class (examples: )
   * Some parts of the history feature I added was adopted by several other class mates ()
 
