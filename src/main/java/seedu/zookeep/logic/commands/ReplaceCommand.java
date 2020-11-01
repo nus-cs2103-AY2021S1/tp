@@ -42,7 +42,7 @@ public class ReplaceCommand extends Command {
 
     public static final String MESSAGE_REPLACE_ANIMAL_SUCCESS = "Replaced Animal Details\n%1$s";
     public static final String MESSAGE_NOT_REPLACED = "At least one field to replace must be provided.";
-    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal ID already exists in the ZooKeep book.";
+    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal ID already exists in the ZooKeepBook.";
     public static final String MESSAGE_FIELDS_UNCHANGED =
             "The specified fields are unchanged from the existing animal.";
 
