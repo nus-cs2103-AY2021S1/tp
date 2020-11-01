@@ -2,6 +2,7 @@ package seedu.address.model.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Year {
@@ -25,15 +26,24 @@ public class Year {
 
     /**
      * Constructs a {@code Year}.
-     *
-     * @param schoolType A valid school type
-     * @param level A valid level
      */
-    public Year(SchoolType schoolType, Integer level) {
-        requireNonNull(schoolType);
-        requireNonNull(level);
+    public Year(String year) {
+        requireNonNull(year);
+        final Matcher matcher = YEAR_FORMAT.matcher(year.trim());
+        assert matcher.matches();
+        String schoolTypeString = matcher.group("school").trim().toLowerCase();
+        String levelString = matcher.group("level").trim().toLowerCase();
+
+        SchoolType schoolType = getSchoolType(schoolTypeString);
+        Integer level = Integer.parseInt(levelString);
         this.schoolType = schoolType;
         this.level = level;
+    }
+
+    private static SchoolType getSchoolType(String schoolTypeString) {
+        String trimmedSchool = schoolTypeString.trim();
+        assert SchoolType.isValidSchoolType(trimmedSchool);
+        return SchoolType.LOOKUP_TABLE.get(trimmedSchool);
     }
 
     /**

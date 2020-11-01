@@ -10,7 +10,7 @@ public class YearTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Year(null, null));
+        assertThrows(NullPointerException.class, () -> new Year(null));
     }
 
     @Test

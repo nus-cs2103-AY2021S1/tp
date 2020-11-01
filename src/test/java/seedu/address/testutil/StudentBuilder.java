@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
-import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
@@ -32,8 +31,7 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
-    public static final SchoolType DEFAULT_SCHOOL_TYPE = SchoolType.SECONDARY;
-    public static final Integer DEFAULT_SCHOOL_LEVEL = 4;
+    public static final String DEFAULT_YEAR = "Sec 4";
     public static final String DEFAULT_CLASS_VENUE = "311, Clementi Ave 2, #02-25";
     public static final String DEFAULT_CLASS_TIME = "1 1500-1700";
     public static final String DEFAULT_FEE = "21";
@@ -76,7 +74,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         school = new School(DEFAULT_SCHOOL);
-        year = new Year(DEFAULT_SCHOOL_TYPE, DEFAULT_SCHOOL_LEVEL);
+        year = new Year(DEFAULT_YEAR);
 
         venue = new ClassVenue(DEFAULT_CLASS_VENUE);
         time = new ClassTime(DEFAULT_CLASS_TIME);
@@ -146,8 +144,8 @@ public class StudentBuilder {
     /**
      * Sets the {@code Year} of the {@code Student} that we are building.
      */
-    public StudentBuilder withYear(SchoolType schoolType, Integer level) {
-        this.year = new Year(schoolType, level);
+    public StudentBuilder withYear(String year) {
+        this.year = new Year(year);
         return this;
     }
 
