@@ -27,7 +27,12 @@ public class AddTutorialGroupCommand extends Command {
         + PREFIX_TUTORIAL_GRP + "TUTORIAL_GROUP_CODE "
         + PREFIX_TUTORIAL_GRP_DAY + "DAY_OF_WEEK "
         + PREFIX_TUTORIAL_GRP_START_TIME + "START_TIME "
-        + PREFIX_TUTORIAL_GRP_END_TIME + "END_TIME ";
+        + PREFIX_TUTORIAL_GRP_END_TIME + "END_TIME \n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_TUTORIAL_GRP + "T03 "
+        + PREFIX_TUTORIAL_GRP_DAY + "MON "
+        + PREFIX_TUTORIAL_GRP_START_TIME + "11:00 "
+        + PREFIX_TUTORIAL_GRP_END_TIME + "13:00";
 
     private final TutorialGroup toAdd;
 
