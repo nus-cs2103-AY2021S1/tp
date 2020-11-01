@@ -2,18 +2,20 @@
 layout: page
 title: User Guide
 ---
-// TODO ** add authorship for grading purposes **
+
+<img align="right" height="170" src="images/inventoryinator.jpg">
+
+[//]: # (// TODO ** add authorship for grading purposes **)
+
 
 ## Introduction
-// TODO shift to the right
-![inventoryinator](images/inventoryinator.jpg)
 
-// TODO longer intro
+**Inventoryinator** is a **desktop app for managing game inventories**, and can be used for **any generic game** where 
+you have a need for sorting and collating resources. If you find yourself ever wondering how much resources you have
+back at home base, or are unsure whether you can craft your next upgrade, then this is the app for you.
 
-// TODO personalise intro, don't bother with CLI GUI copypasta
-
-**Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
+Our app is optimized for use via the **typing** of commands, while your inventory is visually represented on our 
+**Graphical User Interface (GUI)**. If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
 This User Guide will help you get started with the setup of Inventoryinator and provide a quick reference of
@@ -34,9 +36,13 @@ in this document.
 1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
-   //TODO smaller diagram for quickstart, taking up too much space
+   
+   [//]: # (//TODO smaller diagram for quickstart, taking up too much space)
+   
    ![Ui](images/Ui.png)
-// TODO better use of whitespaces
+   
+[//]: # (// TODO better use of whitespaces)
+
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
    Some example commands you can try:
@@ -72,8 +78,8 @@ term | Command/variable term<br>
 default | If no parameter is given as input, this will be the input parameter.
 
 ___________________________________________________________________
-// TODO made Recipe definition clear, add glossary?
 
+[//]: # (// TODO made Recipe definition clear, add glossary?)
 
 ## Command summary
 
@@ -100,11 +106,14 @@ Action | Format
 
 
 ## Features
-// TODO add more to the preface under the features heading
+[//]: # (// TODO add more to the preface under the features heading)
 
 Inventoryinator's features and their descriptions, as of v1.3.
 
-// TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does
+[//]: # (Command writeups are structured with a written description of the command's functions for non-technical users,
+ then a **Name**, **Synopsis**, **Description** and **Example** for those familiar with CLI Syntax) 
+
+[//]: # (// TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does)
 
 ### Adding an item: `addi`
 
@@ -436,4 +445,4 @@ Reverses the effect of the previous undo command.
         There is no need to save manually. The format of save data is via `json file format`
 --------------------------------------------------------------------------------------------------------------------
 
-// TODO Add Glossary of Terms.
+[//]: # (// TODO Add Glossary of Terms.)
