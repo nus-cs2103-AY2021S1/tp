@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_YEAR + "YEAR "
             + PREFIX_VENUE + "CLASS_VENUE "
             + PREFIX_TIME + "CLASS_TIME "
-            + PREFIX_FEE + "FEE "
+            + "[" + PREFIX_FEE + "FEE] "
             + "[" + PREFIX_PAYMENT + "LAST_PAYMENT_DATE] "
             + "[" + PREFIX_DETAILS + "ADDITIONAL_DETAILS]\n\n"
             + "Example: " + COMMAND_WORD + " "
