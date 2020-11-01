@@ -81,7 +81,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `EvaParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a staff).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -214,11 +214,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### 3.2 \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
@@ -256,10 +251,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Director of Human Resources                | I want to have quick and easy access to all HR information|                                               |
 | `* * *`  | organised HR manager                       | add data of applicants           | have these data at one place in a neat manner                          |
 | `* *`    | organised HR manager                       | delete data of applicants        | have these data at one place in a neat manner                          |
-| `*`      |                                            |                                  |                                                  |
-
-*{More to be added}*
-
+| `* *`    | busy HR staff with a lot of things to do  |  know my interview appointments with the applicants quickly| I will not forget any such appointments and attend necessary interviews |
+| `* *`    | HR manager                                 | easily keep track of applicant’s application status |clear understanding of the recruitment process at any given point of time |
+ 
 ### 5.3 Use cases
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
@@ -501,7 +495,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User types in delete <applicant_name>
+1. User navigates to applicant list by command 'list -applicants'.
+2. Eva shows a list of applicants with indexes beside each applicant. 
+3. User types in delapplicant INDEX.
+4. Eva deletes the applicant record and all related information permanently.
+5. Eva displays the confirmed message of deletion of that applicant record.  
+    Use case ends.
+
+**Extensions**
+
+* 2a. Eva does not have any applicant records.
+
+    * 2a1. Eva shows error message if user types delapplication 1 as there are no applciant records.
+    Use case ends.
+
+* 3a. Eva does not detect any input for index.
+
+    * 3b1. Eva requests the user to type the command in again in the correct format.  
+    * 3b2. User types in the new applicant_name of delete 1.    
+    Steps 3b1-3b2 are repeated until the data entered are correct.
+    Use case resumes from step 4.
+    
+***Use Case UC10 - Edit a Record of applicant***
+
+
+***Use Case UC11 - Set the application status of an applicant***
+
+**MSS**
+1. User types in setappstatus 1 as/<appstatus>
 2. Eva shows all matched staff records to the <applicant_name> with indexes beside.
 3. User types in the index to delete
 4. Eva deletes the applicant record and all related information permanently.
@@ -510,26 +531,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Eva does not find any staff record with the keyed in staff_name .
+* 1b. Eva does not detect any input for index or appstatus.
 
-    * 1a1. Eva informs the user that there are no such records.
-    * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in the new applicant_name of delete <applicant_name>.
-    Steps 1a1-1a3 are repeated until the data entered are correct.
-    Use case resumes from step 2.
-
-* 1b. Eva does not detect any input for <applicant_name>.
-
-    * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new applicant_name of delete <applicant_name>.    
+    * 1b1. Eva requests the user to type the command in again in the correct format. 
+    * 1b2. User types in the setappstatus INDEX <app_status>.    
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
-    
-***Use Case UC10 - Edit a Record of applicant***
-
-
-***Use Case UC11 - Set the application status of an applicant***
-
 
 ***Use case: UC12 - Adding an applicant to record quickly***
 
