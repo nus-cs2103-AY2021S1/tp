@@ -68,10 +68,19 @@ public class NewSessionCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof NewSessionCommand // instanceof handles nulls
-                && sessionName.equals(((NewSessionCommand) other).sessionName)
-                && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
-                && studentRecordList.equals(((NewSessionCommand) other).studentRecordList));
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+        if (studentRecordList == null) {
+            return other instanceof NewSessionCommand
+                    && sessionName.equals(((NewSessionCommand) other).sessionName)
+                    && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
+                    && ((NewSessionCommand) other).studentRecordList == null;
+        } else {
+            return other instanceof NewSessionCommand // instanceof handles nulls
+                    && sessionName.equals(((NewSessionCommand) other).sessionName)
+                    && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
+                    && studentRecordList.equals(((NewSessionCommand) other).studentRecordList);
+        }
     }
 }

@@ -117,7 +117,7 @@ public class Session {
     }
 
     /**
-     * Returns true if both sessions have the same name.
+     * Returns true if both sessions have the identical attributes.
      */
     @Override
     public boolean equals(Object other) {
