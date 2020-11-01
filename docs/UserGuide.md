@@ -51,7 +51,7 @@ Interested? Read on to get [started](#3-quick-start-guide)!
     * Here are some sample commands you can try out to get started:
         * `create_inventory i/Logitech G400 q/20 c/69` to add 20 Logitech G400 gaming mouse that cost $69 to the inventory
         * `add_finance amt/120.17` to add an inbound transaction of $120.17
-        * `bye` to exit programme
+        * `exit` to exit programme
     * Refer to the [list of commands](#5-commands) below for details of each command.
 
 ---
