@@ -58,7 +58,6 @@ class AssignCommandTest {
         assertThrows(NullPointerException.class, () -> new AssignCommand(null, moduleCodes));
     }
 
-
     @Test
     public void constructor_nullModuleCodes_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AssignCommand(Index.fromZeroBased(0), null));
