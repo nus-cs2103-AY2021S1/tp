@@ -36,8 +36,6 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private FlowPane instructors;
 
-    private Number width;
-
     /**
      * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
      */
