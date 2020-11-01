@@ -2,12 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.commands.enums.Inequality;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.ParseIndexException;
@@ -203,23 +206,30 @@ public class ParserUtil {
     /**
      * Parses and validates the string for Preset Command.
      */
-    public static String[] checkPresetSyntax(String saveLoad) throws ParseException {
-        requireNonNull(saveLoad);
-        String trimArgs = saveLoad.trim();
+    public static String[] checkPresetSyntax(String modeType) throws ParseException {
+        requireNonNull(modeType);
+        String trimArgs = modeType.trim();
         int firstSpace = trimArgs.indexOf(' ');
         String[] argsArr = new String[2];
 
         argsArr[0] = trimArgs;
         argsArr[1] = "";
         if (firstSpace != -1) {
-            argsArr[0] = trimArgs.substring(0, firstSpace).trim().toLowerCase();
+            argsArr[0] = trimArgs.substring(0, firstSpace).trim();
             argsArr[1] = trimArgs.substring(firstSpace + 1).trim();
         }
 
-        if (!argsArr[0].equals("save") && !argsArr[0].equals("load")
-                && !argsArr[0].equals("s") && !argsArr[0].equals("l")) {
-            throw new ParseException(MESSAGE_INVALID_PRESET_ARGUMENT);
+        String[] commands = {
+                "save",
+                "load",
+                "delete"
+        };
+        ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
+        matchingCommands.removeIf(s -> !s.startsWith(argsArr[0]));
+        if (matchingCommands.size() == 0) {
+            throw new ParseException(PresetCommand.MESSAGE_USAGE);
         }
+
         return argsArr;
     }
 
