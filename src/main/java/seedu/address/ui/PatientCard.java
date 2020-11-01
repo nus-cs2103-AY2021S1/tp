@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -40,7 +41,8 @@ public class PatientCard extends UiPart<Region> {
      */
 
     public final Patient patient;
-    private final Logic logic;
+    private final int index;
+    private final Consumer<String> executor;
 
     @FXML
     private HBox cardPane;
@@ -70,10 +72,11 @@ public class PatientCard extends UiPart<Region> {
     /**
      * Creates a {@code PatientCode} with the given {@code Patient} and index to display.
      */
-    public PatientCard(Patient patient, int displayedIndex, Logic logic) {
+    public PatientCard(Patient patient, int displayedIndex, Consumer<String> executor) {
         super(FXML);
         this.patient = patient;
-        this.logic = logic;
+        this.index = displayedIndex;
+        this.executor = executor;
 
         ProfilePicture thisProfilePic = patient.getProfilePicture();
         File profilePic = new File(thisProfilePic.toString());
@@ -126,15 +129,12 @@ public class PatientCard extends UiPart<Region> {
     }
 
     @FXML
-    private void dropPicture(DragEvent event) throws FileNotFoundException, CommandException, IllegalValueException {
+    private void dropPicture(DragEvent event) throws IOException, CommandException, IllegalValueException {
         Dragboard dragboard = event.getDragboard();
         List<File> fileToTransfer = dragboard.getFiles();
         File imageFile = fileToTransfer.get(0);
         assert imageFile != null : "Profile picture cannot be null";
-        FileInputStream fileInputStream = new FileInputStream(imageFile);
-        Image image = new Image(fileInputStream);
-        setupImageView(image, profilePicture);
-        logic.runImageTransfer(patient, imageFile);
+        executor.accept("addpicture " + index + " f/" + imageFile.getCanonicalPath());
     }
 
     @Override
