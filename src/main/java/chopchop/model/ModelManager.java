@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.Log;
+import chopchop.commons.util.Pair;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
@@ -235,6 +236,14 @@ public class ModelManager implements Model {
     @Override
     public UsageList<RecipeUsage> getRecipeUsageList() {
         return new UsageList<>(this.recipeUsageList.getUsageList());
+    }
+
+    /**
+     * Return the UsageList sorted by most used recipe.
+     */
+    @Override
+    public List<Pair<String, String>> getMostUsedRecipeList() {
+        return this.recipeUsageList.getMostUsed();
     }
 
     /**
