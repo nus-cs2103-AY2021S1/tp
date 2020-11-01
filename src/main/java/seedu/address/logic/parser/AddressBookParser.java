@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
+import seedu.address.logic.commands.AttendanceBelowCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAttendanceCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTutorialGroupCommand;
+import seedu.address.logic.commands.ParticipationBelowCommand;
 import seedu.address.logic.commands.PreviousViewCommand;
 import seedu.address.logic.commands.ViewAttendanceCommand;
 import seedu.address.logic.commands.ViewStudentCommand;
@@ -139,6 +141,11 @@ public class AddressBookParser {
         case ViewAttendanceCommand.COMMAND_WORD:
             return new ViewAttendanceCommandParser().parse(arguments);
 
+        case AttendanceBelowCommand.COMMAND_WORD:
+            return new AttendanceBelowCommandParser().parse(arguments);
+
+        case ParticipationBelowCommand.COMMAND_WORD:
+            return new ParticipationBelowCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -190,4 +190,20 @@ public class ParserUtil {
         }
         return new StudentId(trimmedStudentId);
     }
+
+    /**
+     * Parses a {@code String studentId} into a {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code studentId} is invalid.
+     */
+    public static int parseUpperBound(String upperBoundString) throws ParseException {
+        requireNonNull(upperBoundString);
+        String trimmedUpperBound = upperBoundString.trim();
+        int upperBoundInt = Integer.parseInt(trimmedUpperBound);
+        if (upperBoundInt <= 0) {
+            throw new ParseException("Upper bound must be a positive integer.");
+        }
+        return upperBoundInt;
+    }
 }
