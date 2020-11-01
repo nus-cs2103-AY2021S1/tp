@@ -13,7 +13,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.model.ReadOnlyVEvent;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.ClassTime;
 

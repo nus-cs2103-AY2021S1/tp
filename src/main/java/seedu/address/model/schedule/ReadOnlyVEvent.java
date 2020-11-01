@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.schedule;
 
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
