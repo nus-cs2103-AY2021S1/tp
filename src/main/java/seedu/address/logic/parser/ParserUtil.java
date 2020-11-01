@@ -146,7 +146,7 @@ public class ParserUtil {
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);
         } catch (java.text.ParseException e) {
-            throw new ParseException(MESSAGE_INVALID_DATE);
+            throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
         }
     }
 

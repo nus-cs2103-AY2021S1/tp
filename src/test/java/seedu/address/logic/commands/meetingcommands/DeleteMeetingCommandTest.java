@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SIXTH_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MEETING;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -69,11 +71,11 @@ class DeleteMeetingCommandTest {
 
         assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
-    /*
+
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showSellerAtIndex(model, INDEX_FIRST_MEETING);
+        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         Meeting meetingToDelete = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
@@ -90,7 +92,7 @@ class DeleteMeetingCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showSellerAtIndex(model, INDEX_FIRST_MEETING);
+        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         Index outOfBoundIndex = INDEX_SIXTH_MEETING;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -100,7 +102,7 @@ class DeleteMeetingCommandTest {
 
         assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
-    */
+
 
     @Test
     public void equals() {
