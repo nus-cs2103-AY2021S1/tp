@@ -85,16 +85,6 @@ public interface Logic {
     Status getStatus();
 
     /**
-     * Enters the designated project.
-     */
-    void enter(Project project);
-
-    /**
-     * Quits the current project view.
-     */
-    void quit();
-
-    /**
      * Checks whether the app is viewing list of projects.
      */
     boolean isProjectsView();

@@ -115,16 +115,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void enter(Project project) {
-        model.enter(project);
-    }
-
-    @Override
-    public void quit() {
-        model.quit();
-    }
-
-    @Override
     public boolean isProjectsView() {
         switch (getStatus()) {
         case PROJECT_LIST:
