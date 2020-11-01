@@ -44,8 +44,8 @@ public class FindEventParser implements Parser<FindEventCommand> {
         }
         if (argMultiMap.getValue(PREFIX_TAG).isPresent()) {
             List<String> tags = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_TAG).get());
-            Set<Tag> taskTags = ParserUtil.parseTags(tags);
-            EventContainsTagsPredicate tagsPredicate = new EventContainsTagsPredicate(taskTags);
+            Set<Tag> eventTags = ParserUtil.parseTags(tags);
+            EventContainsTagsPredicate tagsPredicate = new EventContainsTagsPredicate(eventTags);
             criteria.addPredicate(tagsPredicate);
         }
         return new FindEventCommand(criteria);

@@ -9,7 +9,7 @@ import seedu.address.model.tag.Tag;
 
 public class EventContainsTagsPredicate implements Predicate<Event> {
     /**
-     * Tags provided by the user to search for contacts containing a matching tag.
+     * Tags provided by the user to search for events containing a matching tag.
      */
     private final Set<Tag> searchTags;
 
@@ -27,9 +27,9 @@ public class EventContainsTagsPredicate implements Predicate<Event> {
         requireNonNull(event);
         boolean isEventTagPresent = !event.getTags().isEmpty();
         if (isEventTagPresent) {
-            Set<Tag> taskTags = event.getTags();
+            Set<Tag> eventTags = event.getTags();
             return searchTags.stream()
-                    .anyMatch(tag -> taskTags.contains(tag));
+                    .anyMatch(tag -> eventTags.contains(tag));
         }
         return false;
     }

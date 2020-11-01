@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public class FindEventCriteria {
     /**
-     * List of predicates to be used to test for matching contacts.
+     * List of predicates to be used to test for matching events.
      */
     private final List<Predicate<Event>> predicateList = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class FindEventCriteria {
 
     /**
      * Composes all the predicates in the predicateList field into one predicate to
-     * be used to test for matching contacts.
+     * be used to test for matching events.
      *
      * @return Predicate composed of each individual predicate in predicateList.
      */
