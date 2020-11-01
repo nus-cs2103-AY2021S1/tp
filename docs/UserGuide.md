@@ -115,7 +115,7 @@ We will follow the following convention for each command's format:
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
   
-* Prefixes that precede parameters represent flags that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as flag-less parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
+* Prefixes that precede parameters represent *flags* that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as *flag-less* parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
   e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
 * Items in square brackets are optional.<br>
@@ -415,6 +415,8 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 :information_source:
 
+* If any of the jargon below seem unclear, refer to *How to intepret the each command's format* under section *5. Features* above.
+
 * Create a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
 
 * Parameters to the macro can be substituted in the `PARAMETERS_TO_COMMAND` using the syntax: `\FLAG_NAME`.
@@ -429,9 +431,9 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 Examples:
 * `macro addWith100cal p ; add -n \$ -c 100 -p \p`
-    * Example usage of this macro: `addWith100cal Banana -p 2000`
-    * The following command will be executed by the macro: `add -n Banana -c 100 -p 2000`
-    * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 2000 respectively.
+    * Example usage of this macro: `addWith100cal Banana -p 200`
+    * The following command will be executed by the macro: `add -n Banana -c 100 -p 200`
+    * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 200 respectively.
 
 * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
     * Example usage of this macro: `addFoodWithFries Ice Cream`
