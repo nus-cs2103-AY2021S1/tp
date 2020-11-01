@@ -171,20 +171,6 @@ Refer to "After allocation" above.
 
 <img src="images/AfterReallocation.png">
 
-#### Visualising a Piechart of Allocated Rooms
-
-Visualises a piechart of allocated and unallocated rooms by switching to the `Statistics` tab, and updates upon a change in room allocation.
-
-Example:
-* `allocate si/1 ri/1` allocates a room to a student, updating the piechart.
-
-##### Before a room allocation
-
-<img src="images/BeforeAllocationPiechart.png">
-
-##### After a room allocation
-<img src="images/AfterAllocationPiechart.png">
-
 ### Data Management
 
 > **ResiReg** allows you to manage allocations on a per-Semester basis.
