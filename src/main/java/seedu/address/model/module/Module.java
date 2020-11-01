@@ -44,7 +44,7 @@ public class Module {
     }
 
     /**
-     * Returns true if both modules have the same name, date and time.
+     * Returns true if both modules have the same name and members.
      */
     public boolean isSameModule(Module otherModule) {
         if (otherModule == this) {

@@ -55,7 +55,7 @@ public class AddModuleCommand extends Command {
      */
     public AddModuleCommand(Module module) {
         requireNonNull(module);
-        this.moduleName =module.getModuleName();
+        this.moduleName = module.getModuleName();
         this.nameList = module.getClassmates().stream().map(Person::getName).collect(Collectors.toSet());
     }
 
