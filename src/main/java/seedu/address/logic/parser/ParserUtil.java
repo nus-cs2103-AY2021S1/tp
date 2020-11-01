@@ -200,7 +200,12 @@ public class ParserUtil {
     public static int parseUpperBound(String upperBoundString) throws ParseException {
         requireNonNull(upperBoundString);
         String trimmedUpperBound = upperBoundString.trim();
-        int upperBoundInt = Integer.parseInt(trimmedUpperBound);
+        int upperBoundInt;
+        try {
+            upperBoundInt = Integer.parseInt(trimmedUpperBound);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Upper bound must be a positive integer.");
+        }
         if (upperBoundInt <= 0) {
             throw new ParseException("Upper bound must be a positive integer.");
         }
