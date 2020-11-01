@@ -64,7 +64,7 @@ public class FindSellerCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noSellerFound() {
+    public void execute_zeroKeywords_noFound() {
         String expectedMessage = String.format(MESSAGE_SELLERS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindSellerCommand command = new FindSellerCommand(predicate);
