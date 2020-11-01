@@ -429,7 +429,7 @@ It is possible to add more realistic records for `Participation`. They would bas
 1. Single attribute for each `Participation`, such as `Role`.
 2. Collective attribute for each `Participation`, such as `Meetings`.
 
-**Extension guidelines**
+**Extension guidelines:**
 For single attributes, future developers may simply add a field in the `Participation` class and add relevant manipulation methods.
 They can also create a new class for this attribute if it is complicated.
 
@@ -438,6 +438,17 @@ Basically, it would require future developers to create a new class of this attr
 Other relevant tasks would need to be done, including adding commands (and parsers if needed), creating dashboards of these attributes, and making higher-level commands (such as filter, edit, etc.) to accommodate the new attributes.
 
 ### More task implementation
+
+**Current implementation in the project:**
+The implementation of task is very fundamental currently, and are mostly very general such as add, edit, view, delete, and filter.
+The attributes of `Task` are very simple, too, which includes only a deadline and progress in addition to basic information such as name and description.
+
+**Extension features:**
+It is possible to allow advanced `Task` management, such as allowing recurring of tasks.
+This may also be done for other collective attributes that are newly added.
+
+**Extension guidelines:**
+Create new fields and methods in `Task` class and implement relevant commands.
 
 ### Custom attributes for projects and persons
 
