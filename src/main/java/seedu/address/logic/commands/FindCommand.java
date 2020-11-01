@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.vendor.NameContainsKeywordsPredicate;
 import seedu.address.storage.Storage;
@@ -17,10 +16,14 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all vendors whose names contain any of "
-            + "the specified keywords and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and lists all food items containing "
+            + "any of the specified keywords in their name\n"
+            + "Format: find KEYWORD [MORE_KEYWORDS]\n"
+            + "- KEYWORD are NOT Case-Sensitive\n"
+            + "- KEYWORD filters tags as well.\n"
+            + "Examples:\n"
+            + "find milo: lists all food items containing the word 'milo' in their name.\n"
+            + "find milo dinosaur: lists all food items containing the word 'milo' or 'dinosaur' in their name.";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -33,7 +36,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
 
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
         model.updateFilteredFoodList(predicate);

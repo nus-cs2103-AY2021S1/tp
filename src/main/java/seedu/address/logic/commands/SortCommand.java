@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.storage.Storage;
 
@@ -15,10 +15,19 @@ public class SortCommand extends Command {
     public static final String PRICE = "p";
 
     public static final String COMMAND_WORD = "sort";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the current selected menu. "
-            + "Parameters: "
-            + " Sort by Name or Price "
-            + " [Ascending / Descending]";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the menu by either price or name.\n"
+            + "Format: sort MODE [DIRECTION]\n"
+            + "- MODE dictates which mode it will sort by, with format:\n"
+            + "     - name: sorts by name.\n"
+            + "     - price: sorts by price.\n"
+            + "- DIRECTION dictates which direction it will sort by, with format:\n"
+            + "     ascending: sort in ascending order.\n"
+            + "     descending: sort in descending order.\n"
+            + "- If DIRECTION is not specified, it will be treated as a toggle,"
+                + " and ascending direction will be sorted as descending order and vice versa.\n"
+            + "Examples:\n"
+            + "sort name ascending: sorts the menu by name in ascending direction.\n"
+            + "sort price: sorts the menu by price in opposite direction as last sorted.";
 
     public static final String MESSAGE_SUCCESS = "Menu successfully sorted!";
 
@@ -48,7 +57,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
         model.sortFoodBy(sortedBy, ascending, toggle);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);

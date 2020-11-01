@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,9 +31,10 @@ public class JsonSerializablePresetManager {
     /**
      * Converts a given {@code ReadOnlyOrderManager} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableOrderManager}.
+     * @param allPresets future changes to this will not affect the created {@code JsonSerializableOrderManager}.
      */
     public JsonSerializablePresetManager(List<List<Preset>> allPresets, boolean bool) {
+        // Added extra parameter to this constructor to avoid same signature.
         if (!bool) {
 
         }
@@ -58,11 +60,17 @@ public class JsonSerializablePresetManager {
         List<List<Preset>> vendorPresetList = new ArrayList<>();
         for (List<JsonAdaptedPreset> jsonAdaptedPresetList: presets) {
             List<Preset> presetsList = new ArrayList<>();
+            HashSet<String> presetNames = new HashSet<>();
             for (JsonAdaptedPreset jsonAdaptedPreset: jsonAdaptedPresetList) {
                 String presetName = jsonAdaptedPreset.getName();
+                if (presetNames.contains(presetName)) {
+                    throw new IllegalValueException("Duplicate Preset Name for the same vendor.");
+                }
+
                 List<JsonAdaptedOrderItem> jsonAdaptedOrderItems = jsonAdaptedPreset.getOrderItems();
 
                 Preset preset = new Preset(presetName, new ArrayList<>());
+                presetNames.add(presetName);
 
                 for (JsonAdaptedOrderItem jsonAdaptedOrderItem : jsonAdaptedOrderItems) {
                     OrderItem orderItem = jsonAdaptedOrderItem.toModelType();

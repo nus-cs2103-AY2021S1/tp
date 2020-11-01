@@ -1,5 +1,7 @@
 package seedu.address.model.preset;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -41,13 +43,29 @@ public class Preset {
         orderItems.add(orderItem);
     }
 
-    /////// Methods below are not in use
-    public boolean contains(OrderItem orderItem) {
-        return this.orderItems.contains(orderItem);
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Preset)) {
+            return false;
+        }
+
+        Preset otherPreset = (Preset) other;
+        return otherPreset.getName().equals(getName())
+                && otherPreset.getOrderItems().equals(getOrderItems());
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    /////// Methods below are not in use
+
+    /**
+     * Checks whether {@code orderItem} exists in Preset
+     */
+    public boolean contains(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        return this.orderItems.contains(orderItem);
     }
 
     public void addAllOrderItems(List<OrderItem> orderItems) {

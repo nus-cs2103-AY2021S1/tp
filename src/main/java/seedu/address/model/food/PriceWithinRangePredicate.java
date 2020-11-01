@@ -2,8 +2,8 @@ package seedu.address.model.food;
 
 import java.util.function.Predicate;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.enums.Inequality;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class PriceWithinRangePredicate implements Predicate<Food> {
@@ -17,7 +17,7 @@ public class PriceWithinRangePredicate implements Predicate<Food> {
     public PriceWithinRangePredicate(Inequality inequality, double price) throws ParseException {
         this.inequality = inequality;
         if (price < 0) {
-            throw new ParseException(String.format(ParserUtil.MESSAGE_INVALID_PRICE, price));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_PRICE, price));
         }
         this.price = price;
     }

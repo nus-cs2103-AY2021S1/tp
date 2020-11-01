@@ -9,7 +9,6 @@ import java.util.Optional;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.preset.Preset;
@@ -34,7 +33,7 @@ public class LoadPresetCommand extends PresetCommand {
     public CommandResult execute(Model model, Storage storage) throws CommandException {
 
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
         try {
@@ -48,7 +47,7 @@ public class LoadPresetCommand extends PresetCommand {
             if (displayAllPresets) {
                 List<Preset> vendorPresets = allLists.get(currentIndex);
                 if (vendorPresets.isEmpty()) {
-                    throw new CommandException(ParserUtil.MESSAGE_PRESET_NO_SAVED_PRESETS);
+                    throw new CommandException(Messages.MESSAGE_PRESET_NO_SAVED_PRESETS);
                 }
                 StringBuilder message = new StringBuilder();
                 for (Preset preset:vendorPresets) {
@@ -77,5 +76,10 @@ public class LoadPresetCommand extends PresetCommand {
                 false, false, true);
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof LoadPresetCommand // instanceof handles nulls
+                && this.presetName.equals(((LoadPresetCommand) other).presetName));
+    }
 }
