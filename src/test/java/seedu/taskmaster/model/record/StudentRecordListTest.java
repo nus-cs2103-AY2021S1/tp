@@ -45,7 +45,7 @@ public class StudentRecordListTest {
 
     @Test
     public void markAllStudents_idsInList_success() {
-        studentRecordList.markAllStudents(
+        studentRecordList.markAllStudentAttendances(
                 Collections.singletonList(studentInList.getNusnetId()), AttendanceType.PRESENT);
 
         List<StudentRecord> expectedStudentRecords =
@@ -63,7 +63,7 @@ public class StudentRecordListTest {
     @Test
     public void markAllStudents_idsNotInList_failure() {
         assertThrows(StudentNotFoundException.class, ()
-            -> studentRecordList.markAllStudents(
+            -> studentRecordList.markAllStudentAttendances(
                     Collections.singletonList(studentNotInList.getNusnetId()), AttendanceType.PRESENT));
     }
 

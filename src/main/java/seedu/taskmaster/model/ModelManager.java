@@ -190,13 +190,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void markAllStudents(List<Student> students, AttendanceType attendanceType) {
-        List<NusnetId> nusnetIds = students
+    public void markAllStudentRecords(List<StudentRecord> studentRecords, AttendanceType attendanceType) {
+        List<NusnetId> nusnetIds = studentRecords
                 .stream()
-                .map(Student::getNusnetId)
+                .map(StudentRecord::getNusnetId)
                 .collect(Collectors.toList());
 
-        taskmaster.markAllStudents(nusnetIds, attendanceType);
+        taskmaster.markAllStudentRecords(nusnetIds, attendanceType);
     }
 
     @Override

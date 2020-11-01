@@ -7,6 +7,7 @@ import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_INT;
 import static seedu.taskmaster.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalStudentRecords.ALICE_STUDENT_RECORD;
+import static seedu.taskmaster.testutil.TypicalStudentRecords.BENSON_STUDENT_RECORD;
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
 import static seedu.taskmaster.testutil.TypicalStudents.BENSON;
 import static seedu.taskmaster.testutil.TypicalStudents.BOB;
@@ -22,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
@@ -405,18 +407,21 @@ public class ModelManagerTest {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        stds.add(BOB);
+        stds.add(BENSON);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.markAllStudents(stds, AttendanceType.PRESENT);
+        modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT);
 
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|PRESENT|Class Participation Score: 0,"
                         + " e0456789|PRESENT|Class Participation Score: 0]"));
-        modelManager.markAllStudents(stds, AttendanceType.ABSENT);
+        modelManager.markAllStudentRecords(studentRecords, AttendanceType.ABSENT);
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|ABSENT|Class Participation Score: 0,"
                         + " e0456789|ABSENT|Class Participation Score: 0]"));
@@ -426,8 +431,12 @@ public class ModelManagerTest {
     void markAllStudents_noSession_failure() {
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        stds.add(BOB);
-        assertThrows(NoSessionException.class, () -> modelManager.markAllStudents(stds, AttendanceType.PRESENT));
+        stds.add(BENSON);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
+        assertThrows(NoSessionException.class, () ->
+                modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
     }
 
     @Test
@@ -435,12 +444,15 @@ public class ModelManagerTest {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        stds.add(BOB);
+        stds.add(BENSON);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
-                .markAllStudents(stds, AttendanceType.PRESENT));
+                .markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
     }
 }
