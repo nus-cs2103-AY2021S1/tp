@@ -115,7 +115,7 @@ The `Model`,
 
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+![Structure of the Storage Component](images/ExerciseStorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -213,9 +213,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Aspect: How to archive Data
 
-_{Explain here how the data archiving feature will be implemented}_
+* **Current Choice:** Using Archive Command.
+  * Implementation: Have a separate Archive Command to let the User specify the file location.
+  * Pros: The user can specify the location where users want to save the data.
+  * Cons: Error prone. The user need to enter the file location specification which may be difficult for users who are not used to command prompt.
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -236,13 +240,13 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage their workouts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage workouts faster than a typical mouse/GUI driven desktop/mobile app
 
 
 ### User stories
@@ -251,57 +255,102 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* * *`  | user                                       | add an exercise                | keep track of calories burnt through the day                           |
+| `* * *`  | user                                       | have a system that tolerate invalid/incomplete command      |                                                                        |
+| `* * *`  | data conscious user                        | list down all the exercises for the day       | monitor the calories burned accurately                                   |
+| `* * *`  | user                                       | delete an exercise in case I key in wrongly          |  |
+| `* *`    | user                                       | update an exercise             |                 |
+| `* *`    | user                                       | save my data in a file         | import the saved data into the new computer                                                 |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Calo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+  #### **Use case: add an exercise**
 
-**MSS**
+  *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to add an exercise
+
+2.  Calo adds the exercise
+  Use case ends.
+
+#### **Use case: Find exercises with a keyword**
+
+*MSS*
+
+1.  User requests to find exercises with a keyword
+2.  Calo shows a list of exercises which contain the keyword
+    Use case ends.
+
+*Extensions*
+<p>
+    The list is empty <br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
+
+#### **Use case: Update an exercise**
+
+*MSS*
+
+1.  User requests to update a specific exercise in the list
+2.  Calo updates the exercise
+    Use case ends.<br>
+*Extensions*
+<p>
+    1a. The index is invalid<br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
+
+#### **Use case: Delete an exercise**
+
+*MSS*
+
+1.  User requests to delete a specific exercise in the list.
+2.  Calo deletes the exercise
 
     Use case ends.
 
-**Extensions**
+*Extensions*
+<p>
+    1a. The index is invalid<br>
+      1a1. Calo shows a message indicating that no such exercise exists.<br>
+    Use case ends.
+</p>
 
-* 2a. The list is empty.
+  #### **Use case: Archive data**
+  *MSS*
+  1.  User requests to archive data to a different file location
+  2.  Calo archives data to the specified location
+    Use case ends.
 
-  Use case ends.
+*Extensions*
+<p>
+    1a. User does not have permission to create file at specified location <br>
+      1a1. Calo shows a message indicating that file cannot be created at specified file.<br>
+    Use case ends.
+</p>
 
-* 3a. The given index is invalid.
+  #### **Use case: List exercises**
 
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
-
-*{More to be added}*
+  *MSS*<br>
+  1.  User requests to list exercises
+  2.  Calo shows a list of exercises
+      Use case ends.
 
 ### Non-Functional Requirements
-
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 exercise items without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Exercise**: an exercise record entered by the user, consisting of exercise name, description, and date (optionally calories)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -314,43 +363,29 @@ testers are expected to do more *exploratory* testing.
 </div>
 
 ### Launch and shutdown
-
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
-
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
 1. Saving window preferences
-
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
 1. _{ more test cases …​ }_
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
+### Deleting an exercise
+1. Deleting an exercise while all exercises are being shown
+   1. Prerequisites: List all exercises using the `list` command. Multiple exercises in the list.
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
+      Expected: No exercise is deleted. Error details shown in the status message. Status bar remains the same.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
 1. _{ more test cases …​ }_
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 1. _{ more test cases …​ }_
