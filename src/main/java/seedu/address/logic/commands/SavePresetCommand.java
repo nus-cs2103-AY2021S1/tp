@@ -60,4 +60,11 @@ public class SavePresetCommand extends PresetCommand {
         return new CommandResult(String.format(Messages.MESSAGE_PRESET_SAVE_SUCCESS, presetName), false, false, true);
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SavePresetCommand // instanceof handles nulls
+                && presetName.equals(((SavePresetCommand) other).presetName));
+    }
 }
