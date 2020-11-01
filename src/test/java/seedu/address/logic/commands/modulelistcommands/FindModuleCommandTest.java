@@ -3,8 +3,11 @@ package seedu.address.logic.commands.modulelistcommands;
 // import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
+
+//import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+//import static org.junit.jupiter.api.Assertions.assertFalse;
+//import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.commons.core.Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW;
-//import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
 // import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 // import static seedu.address.testutil.TypicalPersons.CARL;
 // import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -19,7 +22,9 @@ package seedu.address.logic.commands.modulelistcommands;
 // import seedu.address.model.Model;
 // import seedu.address.model.ModelManager;
 // import seedu.address.model.UserPrefs;
-//import seedu.address.model.module.NameContainsKeywordsPredicate;
+//import seedu.address.logic.commands.FindCommand;
+
+
 
 //not implemented yet
 /**

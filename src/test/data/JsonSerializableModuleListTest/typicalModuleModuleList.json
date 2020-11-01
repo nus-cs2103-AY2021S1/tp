@@ -1,46 +1,68 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
-  "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
-    "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
-    "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
-  }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
-    "email" : "heinz@example.com",
-    "address" : "wall street",
+  "modules" : [ {
+    "name" : "CS2030",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS2030"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
-    "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
-  }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
-    "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "name" : "CS2101",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS2101"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
-    "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "name" : "CS2105",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS2105"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
     "tagged" : [ ]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
-    "email" : "anna@example.com",
-    "address" : "4th street",
+    "name" : "CS1101S",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS1101S"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
     "tagged" : [ ]
-  } ]
+  }, {
+    "name" : "IS1103",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/IS1103"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }]
 }

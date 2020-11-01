@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,8 +87,8 @@ public class EditModuleCommand extends Command {
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         GradeTracker gradeTracker = moduleToEdit.getGradeTracker();
-        Map<ModuleLesson, ZoomLink> zoomLinks = moduleToEdit.getAllLinks();
-
+        Map<ModuleLesson, ZoomLink> zoomLinks = new HashMap<>();
+        zoomLinks.putAll(editModuleDescriptor.getZoomLinks().orElse(moduleToEdit.getAllLinks()));
         if (editModuleDescriptor.getGradePoint().isPresent()) {
             gradeTracker.setGradePoint(editModuleDescriptor.getGradePoint().get());
         }

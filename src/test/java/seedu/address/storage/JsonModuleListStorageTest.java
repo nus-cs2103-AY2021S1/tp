@@ -3,10 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 import static seedu.address.testutil.TypicalModules.CS2030;
-import static seedu.address.testutil.TypicalModules.CS2103;
+import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.ES2660;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -47,7 +47,7 @@ public class JsonModuleListStorageTest {
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readModuleList("notJsonFormatAddressBook.json"));
+        assertThrows(DataConversionException.class, () -> readModuleList("notJsonFormatModuleList.json"));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class JsonModuleListStorageTest {
         assertEquals(original, new ModuleList(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addModule(CS2103);
+        original.addModule(CS2103T);
         original.removeModule(CS2030);
         jsonModuleListStorage.saveModuleList(original, filePath);
         readBack = jsonModuleListStorage.readModuleList(filePath).get();

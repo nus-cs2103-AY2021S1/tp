@@ -25,10 +25,13 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonModuleListStorage moduleListStorage = new JsonModuleListStorage(getTempFilePath("ab"));
+        JsonModuleListStorage archivedModuleListStorage = new JsonModuleListStorage(getTempFilePath("ar"));
         JsonContactListStorage contactListStorage = new JsonContactListStorage(getTempFilePath("cd"));
         JsonTodoListStorage todoListStorage = new JsonTodoListStorage(getTempFilePath("ef"));
+        JsonEventListStorage eventListStorage = new JsonEventListStorage(getTempFilePath("gh"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, userPrefsStorage);
+        storageManager = new StorageManager(moduleListStorage, archivedModuleListStorage, contactListStorage,
+                todoListStorage, eventListStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
