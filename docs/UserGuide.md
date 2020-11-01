@@ -108,6 +108,10 @@ Adds a zoom link for a specific lesson to an existing module.
 Each lesson in a module will only be allowed to have one zoom link,
 i.e. you will not be allowed to add multiple zoom links to the same lesson.
 
+_**Tips :**_ If you have 2 or more types of lectures in the same module, e.g. lecture on Monday and 
+Wednesday, and they have **different zoom links**, you can add 2 zoom links with different lesson names 
+e.g. `Mon-Lecture` and `Wed-Lecture`.
+
 </div>
 
   Format: `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK`
@@ -122,7 +126,7 @@ i.e. you will not be allowed to add multiple zoom links to the same lesson.
      would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
 
   Example:
-  * `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+  * `addzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
    in the displayed module list for the lesson `lecture`.
   
   
