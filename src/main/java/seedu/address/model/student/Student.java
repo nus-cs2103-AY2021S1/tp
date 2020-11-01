@@ -248,6 +248,16 @@ public class Student {
         return replacement;
     }
 
+    public String getFormattedQuestions() {
+        String result = "";
+        int index = 1;
+        for (Question question : questions) {
+            result = result + index + ". " + question.toString() + "\n";
+            index++;
+        }
+        return result;
+    }
+
     //==============ADMIN ACCESSORS==============//
     public Fee getFee() {
         return admin.getFee();
