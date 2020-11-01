@@ -55,20 +55,6 @@ public class TypicalPersons {
         .withEmail(VALID_TEAMMATE_EMAIL_C)
         .withAddress(VALID_TEAMMATE_ADDRESS_C).build();
 
-    /**
-     * Returns an {@code MainCatalogue} with all the typical projects.
-     */
-    public static MainCatalogue getTypicalMainCatalogue() {
-        MainCatalogue ab = new MainCatalogue();
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
-        for (Project project : getTypicalProjects()) {
-            ab.addProject(project);
-        }
-        return ab;
-    }
-
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, DESC_A, DESC_B, DESC_C));
     }

@@ -5,7 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+import static seedu.address.testutil.TypicalMainCatalogue.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 

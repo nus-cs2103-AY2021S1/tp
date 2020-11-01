@@ -96,9 +96,6 @@ public class TypicalProjects {
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
         }
-        for (Person person : getTypicalPersons()) {
-            ab.addPerson(person);
-        }
         return ab;
     }
 
