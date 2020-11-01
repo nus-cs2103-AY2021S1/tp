@@ -235,12 +235,12 @@ Format: `edit-student <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_ph
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-- You can remove all of the student’s tags by typing `t/` without specifying any tags after it.
+- You can remove all of the student’s tags by typing `tag/` without specifying any tags after it.
 
 Examples:
 
 - `edit-student 1 p/82462157 e/johnd@comp.nus.edu.sg` Edits the phone number and email address of the first student to be `82462157` and `johnd@comp.nus.edu.sg` respectively.
-- `edit-student 2 n/Alpha Queue/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
+- `edit-student 2 n/Alpha Queue tag/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
 
 #### 4. Deleting a student : `delete-student`
 
@@ -254,8 +254,8 @@ Format: `delete-student <index>`
 
 Examples:
 
-- `list` followed by `delete-student 2` deletes the 2nd student in ResiReg.
-- `find-students Betsy` followed by `delete-student 1` deletes the 1st student in the results of the `find` command.
+- `students` followed by `delete-student 2` deletes the 2nd student in ResiReg.
+- `students n/Roy` followed by `delete-student 1` deletes the 1st student (if any) in the results of the `students` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you delete a student erroneously, you should undo the command immediately. However, if you deleted the student a while ago, and wish to restore it, then you should use the restore command (see below).
@@ -450,7 +450,7 @@ Just type in the `help` command!
 
 | Action                | Format, Examples                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _list rooms_          | `rooms [--allocated or --vacant]... [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
+| _list rooms_          | `rooms [--allocated or --vacant] [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
 | _add room_            | `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...` e.g.`add-room fl/11 n/101 t/CN` |
 | _edit room_           | `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<tag_name>]...` e.g.`edit-room 1 n/100`                        |
 | _delete room_         | `delete-room <index>` e.g.`delete-room 1`                        |
