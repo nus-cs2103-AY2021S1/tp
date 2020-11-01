@@ -418,9 +418,24 @@ The behaviors of managing persons would be similar to the behaviors of managing 
 1. Duplicate the relevant commands in `PROJECT` scope to make them available in `PERSON` scope.
 2. Change the scoping requirement of existing `PROJECT` scope commands and change the behavior to accommodate both scopes.
 
-### More scopes
+### More records for projects and persons
 
-### More attributes for projects and persons
+**Current implementation in the project:**
+The key of the application lies in `Participation`, the association class of `Person` and `Project`.
+The app now allows a list of `Tasks` for each `Participation`, but there are many other attributes possible for `Participation`.
+
+**Extension features:**
+It is possible to add more realistic records for `Participation`. They would basically fall in the two categories:
+1. Single attribute for each `Participation`, such as `Role`.
+2. Collective attribute for each `Participation`, such as `Meetings`.
+
+**Extension guidelines**
+For single attributes, future developers may simply add a field in the `Participation` class and add relevant manipulation methods.
+They can also create a new class for this attribute if it is complicated.
+
+For collective attributes, future developers may refer to how `Task` is implemented. 
+Basically, it would require future developers to create a new class of this attribute and keep a list in either the `Participation`, `Person` or `Project`.
+Other relevant tasks would need to be done, including adding commands (and parsers if needed), creating dashboards of these attributes, and making higher-level commands (such as filter, edit, etc.) to accommodate the new attributes.
 
 ### More task implementation
 
