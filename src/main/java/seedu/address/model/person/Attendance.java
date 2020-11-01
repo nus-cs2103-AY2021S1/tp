@@ -120,6 +120,16 @@ public class Attendance {
         return result.toString();
     }
 
+    public int getAttendanceScore() {
+        int score = 0;
+        for (int i = 0; i < isPresent.length; i++) {
+            if (isPresent[i]) {
+                score = score + 1;
+            }
+        }
+        return score;
+    }
+
     public int getParticipationScore() {
         return value;
     }
