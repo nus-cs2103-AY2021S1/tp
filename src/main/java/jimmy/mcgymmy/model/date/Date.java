@@ -10,18 +10,6 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 
 public class Date {
-    public static final String MESSAGE_CONSTRAINTS = "Date string should be in one of the following formats:\n"
-            + "yyyy-M-dd\n"
-            + "yyyy-M-d\n"
-            + "dd-MM-yyyy\n"
-            + "dd-M-yyyy\n"
-            + "d-M-yyyy\n"
-            + "yyyy/MM/dd\n"
-            + "dd/MM/yyyy\n"
-            + "dd/M/yyyy\n"
-            + "d/M/yyyy\n"
-            + "d MMM yyyy\n";
-
     private static final String[] SUPPORTED_FORMATS = {
         "yyyy-MM-dd",
         "yyyy-M-dd",
@@ -35,6 +23,9 @@ public class Date {
         "d/M/yyyy",
         "d MMM yyyy"
     };
+
+    public static final String MESSAGE_CONSTRAINTS = "Date string should be in one of the following formats:\n"
+            + String.join("\n", SUPPORTED_FORMATS);
 
     private static final String OUTPUT_FORMAT = "d MMM yyyy";
 
@@ -55,8 +46,11 @@ public class Date {
                 canParse = true;
                 break;
             } catch (DateTimeParseException e) {
-                // exception is thrown means that cannot parse date in that format
-                // if cannot parse date in any format, throw IllegalArgumentException
+                /* exception is thrown means that cannot parse date in that format
+                 if cannot parse date in any format, throw IllegalArgumentException
+                 using checkArgument below.
+                 implicit `continue;` here
+                 */
             }
         }
         AppUtil.checkArgument(canParse, MESSAGE_CONSTRAINTS);
