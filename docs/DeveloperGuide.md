@@ -290,15 +290,51 @@ blah blah blah blah
 
 
 
-### Statistics feature
+### UsageList model
 
-This section details the design considerations of the 
+This section details the design considerations of the statistics feature.
+
+#### Implementation
+
 
 TODO: class diagram for the stats class (StatsBox, UsageList, JsonAdaptedUsage, etc)
 
 
 
+#### Design considerations
 
+Aspect 1: The data to store for statistics feature
+* Consideration 1: todo
+* Consideration 2: todo
+
+Aspect 2: `getMostMadeRecipeList` return a List of `Pair<String, String>` or `UsageList`
+* Consideration 1: todo
+* Consideration 2: todo
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/StatsRecipeTopSequenceDiagram.png"> <br />
+Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
+</div>
+
+### View top recipes feature
+The view top recipes feature allows the user to see the recipes that were made the most number of times based on saved records.
+It is executed with StatsRecipeTopCommand.
+
+#### Implementation
+
+The sequence diagram below shows the sequence of interactions between `Model` where the UsageList is contained in and the `Logic` components after the user executes StatsRecipeTopCommand with the user input `stats recipe top`.
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/StatsRecipeTopSequenceDiagram.png"> <br />
+Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
+</div>
+
+1. `Logic` uses `CommandParser` to parse the user input.
+2. `CommandParser` calls on the static method `parseStatsCommand` of `StatsCommandParser` class.
+3. `StatsCommandParser` then calls on methods `getCommandTarget` and `parseRecipeStatsCommand` to determine which command object should be instantiated.
+4. An instance of `StatsRecipeTopCommand` is instantiated. by `StatsCommandParser`.
+5. This instance is returned to the `Logic`.
+6. `Logic` calls the `execute` method of `StatsRecipeTopCommand`
+7. `StatsRecipeTopCommand` calls `getMostMadeRecipeList` of `Model` and a list of String pairs is returned. This list is encapsulated in `CommandResult` which is then returned to `Logic`.
 
 
 <h2 style="background-color: #1077ff">TODO: stuff below isn't done</h2>
