@@ -73,8 +73,8 @@ public class EditNoteCommand extends NoteCommand {
     }
 
     /**
-     * Creates and returns a {@code Student} with the details of {@code studenttoEdit}
-     * edited with {@code editStudentDescriptor} and {@code editAdminDescriptor}.
+     * Creates and returns a {@code Note} with the details of {@code noteToEdit}
+     * edited with {@code editNoteDescriptor}.
      */
     private static Note createEditedNote(Note noteToEdit, EditNoteCommand.EditNoteDescriptor editNoteDescriptor) {
         assert noteToEdit != null;

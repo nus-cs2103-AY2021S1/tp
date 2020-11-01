@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.time.LocalDate;
@@ -37,7 +38,12 @@ import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.notes.AddNoteCommand;
+import seedu.address.logic.commands.notes.DeleteNoteCommand;
+import seedu.address.logic.commands.notes.EditNoteCommand;
+import seedu.address.logic.commands.notes.NoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.notes.note.Note;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.question.UnsolvedQuestion;
@@ -46,6 +52,9 @@ import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
+import seedu.address.testutil.notes.EditNoteDescriptorBuilder;
+import seedu.address.testutil.notes.NoteBuilder;
+import seedu.address.testutil.notes.NoteUtil;
 
 public class ReeveParserTest {
 
@@ -161,6 +170,31 @@ public class ReeveParserTest {
         assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD) instanceof OverdueCommand);
         assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD + " 3") instanceof OverdueCommand);
     }
+
+    @Test
+    public void parseCommand_note() throws Exception {
+        // add notes command
+        assertTrue(parser.parseCommand(NoteCommand.COMMAND_WORD + " " + AddNoteCommand.COMMAND_WORD
+                + " " + "t/hi d/hehe") instanceof NoteCommand);
+
+        // edit notes command
+        Note note = new NoteBuilder().build();
+        EditNoteCommand.EditNoteDescriptor editNoteDescriptor =
+                new EditNoteDescriptorBuilder(note).build();
+        EditNoteCommand command = (EditNoteCommand) parser.parseCommand(
+                NoteCommand.COMMAND_WORD + " " + EditNoteCommand.COMMAND_WORD + " "
+                + INDEX_FIRST.getOneBased() + " "
+                + NoteUtil.getEditNoteDescriptorDetails(editNoteDescriptor));
+        assertEquals(new EditNoteCommand(INDEX_FIRST, editNoteDescriptor), command);
+
+        // delete notes command
+        DeleteNoteCommand deleteNoteCommand = (DeleteNoteCommand) parser.parseCommand(
+                NoteCommand.COMMAND_WORD + " " + DeleteNoteCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new DeleteNoteCommand(INDEX_FIRST), deleteNoteCommand);
+    }
+
+
 
     @Test
     public void parseCommand_attendance() throws Exception {
