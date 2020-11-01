@@ -36,7 +36,10 @@ public enum FacultyEnum {
         return abbreviation;
     }
 
-    public static String toItemizedString() {
+    /**
+     * Returns all values of the enum as a string in list form.
+     */
+    public static String toListString() {
         return Arrays.asList(FacultyEnum.values()).toString();
 
     }
