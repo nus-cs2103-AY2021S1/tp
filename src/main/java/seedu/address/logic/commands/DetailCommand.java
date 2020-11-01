@@ -20,9 +20,8 @@ public abstract class DetailCommand extends Command {
      * @return updated Student.
      */
     public Student updateStudentDetail(Student studentToAddDetail, List<Detail> details) {
-        Admin adminToAddDetail = studentToAddDetail.getAdmin();
-        Admin updatedAdmin = new Admin(adminToAddDetail.getClassVenue(), adminToAddDetail.getClassTime(),
-                adminToAddDetail.getFee(), adminToAddDetail.getPaymentDate(), details);
+        Admin updatedAdmin = new Admin(studentToAddDetail.getClassVenue(), studentToAddDetail.getClassTime(),
+                studentToAddDetail.getFee(), studentToAddDetail.getPaymentDate(), details);
         Student updatedStudent = new Student(studentToAddDetail.getName(), studentToAddDetail.getPhone(),
                 studentToAddDetail.getSchool(), studentToAddDetail.getYear(), updatedAdmin,
                 studentToAddDetail.getQuestions(), studentToAddDetail.getExams(), studentToAddDetail.getAcademic());

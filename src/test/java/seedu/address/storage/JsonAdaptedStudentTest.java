@@ -29,7 +29,7 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_SCHOOL = BOB.getSchool().toString();
     private static final String VALID_YEAR = BOB.getYear().toString();
 
-    private static final JsonAdaptedAdmin JSON_ADAPTED_ADMIN = new JsonAdaptedAdmin(BOB.getAdmin());
+    private static final JsonAdaptedAdmin JSON_ADAPTED_ADMIN = new JsonAdaptedAdmin(BOB);
     private static final List<JsonAdaptedQuestion> QUESTION_LIST = BOB.getQuestions()
             .stream()
             .map(JsonAdaptedQuestion::new)

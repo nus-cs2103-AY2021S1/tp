@@ -118,17 +118,17 @@ public class EditCommand extends Command {
         Admin updatedAdmin;
         if (editAdminDescriptor.isAnyFieldEdited()) {
             ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
-                    .orElse(studentToEdit.getAdmin().getClassTime());
+                    .orElse(studentToEdit.getClassTime());
             ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
-                    .orElse(studentToEdit.getAdmin().getClassVenue());
+                    .orElse(studentToEdit.getClassVenue());
             Fee updatedFee = editAdminDescriptor.getFee()
-                    .orElse(studentToEdit.getAdmin().getFee());
+                    .orElse(studentToEdit.getFee());
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
-                    .orElse(studentToEdit.getAdmin().getPaymentDate());
+                    .orElse(studentToEdit.getPaymentDate());
 
             // Additional Details cannot be edited through this channel
             updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
-                    studentToEdit.getAdmin().getDetails());
+                    studentToEdit.getDetails());
         } else {
             updatedAdmin = studentToEdit.getAdmin();
         }

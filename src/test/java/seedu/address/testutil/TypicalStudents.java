@@ -49,7 +49,6 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
-import seedu.address.model.student.admin.Admin;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -152,7 +151,6 @@ public class TypicalStudents {
             .withAttendances(new Attendance(VALID_ATTENDANCE_DATE_BOB, VALID_ATTENDANCE_STATUS_BOB,
                     new Feedback(VALID_ATTENDANCE_FEEDBACK_BOB)))
             .build();
-    public static final Admin BOB_ADMIN = BOB.getAdmin();
 
     private TypicalStudents() {
     } // prevents instantiation

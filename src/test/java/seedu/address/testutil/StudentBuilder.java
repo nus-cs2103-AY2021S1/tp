@@ -106,12 +106,11 @@ public class StudentBuilder {
         school = studentToCopy.getSchool();
         year = studentToCopy.getYear();
 
-        Admin studentAdmin = studentToCopy.getAdmin();
-        venue = studentAdmin.getClassVenue();
-        time = studentAdmin.getClassTime();
-        fee = studentAdmin.getFee();
-        paymentDate = studentAdmin.getPaymentDate();
-        details.addAll(studentAdmin.getDetails());
+        venue = studentToCopy.getClassVenue();
+        time = studentToCopy.getClassTime();
+        fee = studentToCopy.getFee();
+        paymentDate = studentToCopy.getPaymentDate();
+        details.addAll(studentToCopy.getDetails());
 
         questions.addAll(studentToCopy.getQuestions());
         exams.addAll(studentToCopy.getExams());

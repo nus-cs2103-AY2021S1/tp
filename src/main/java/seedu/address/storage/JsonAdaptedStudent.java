@@ -75,7 +75,7 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         school = source.getSchool().school;
         year = String.valueOf(source.getYear().toString());
-        jsonAdaptedAdmin = new JsonAdaptedAdmin(source.getAdmin());
+        jsonAdaptedAdmin = new JsonAdaptedAdmin(source);
 
         jsonAdaptedQuestions.addAll(source.getQuestions().stream()
                 .map(JsonAdaptedQuestion::new)

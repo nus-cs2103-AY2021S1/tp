@@ -12,7 +12,11 @@ import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.ClassTime;
+import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
+import seedu.address.model.student.admin.Fee;
+import seedu.address.model.student.admin.PaymentDate;
 import seedu.address.model.student.question.Question;
 
 /**
@@ -36,7 +40,7 @@ public class Student {
      */
     public Student(Name name, Phone phone, School school, Year year,
                    Admin admin, List<Question> questions, List<Exam> exams, Academic academic) {
-        requireAllNonNull(name, phone, school, year, admin, academic);
+        requireAllNonNull(name, phone, school, year, admin, questions, exams, academic);
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -88,7 +92,7 @@ public class Student {
     }
 
     public List<Exam> getExams() {
-        return exams;
+        return List.copyOf(exams);
     }
 
     /**
@@ -105,14 +109,6 @@ public class Student {
         return result;
     }
 
-    public List<Detail> getDetails() {
-        return admin.getDetails();
-    }
-
-    public List<Attendance> getAttendance() {
-        return academic.getAttendance();
-    }
-
     /**
      * Returns true if both student of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two students.
@@ -127,50 +123,6 @@ public class Student {
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getSchool().toString().toLowerCase().equals(getSchool().toString().toLowerCase())
                 && otherStudent.getYear().equals(getYear());
-    }
-
-    public boolean containsQuestion(Question question) {
-        return questions.stream().anyMatch(question::isSameQuestion);
-    }
-
-    /***
-     * Creates a new student object with a newly added question at the end of the questions list.
-     * This operation preserves the immutability of the Student class.
-     */
-    public Student addQuestion(Question question) {
-        assert !containsQuestion(question);
-
-        requireNonNull(question);
-        Student replacement = new Student(this);
-        replacement.questions.add(question);
-        return replacement;
-    }
-
-    /**
-     * Creates a new student object with a modified question replacing the previous question in the list.
-     * This operation preserves the immutability of the Student class.
-     */
-    public Student setQuestion(Question target, Question newQuestion) {
-        assert questions.contains(target);
-        requireAllNonNull(target, newQuestion);
-
-        Student replacement = new Student(this);
-        int location = replacement.questions.indexOf(target);
-        replacement.questions.set(location, newQuestion);
-        return replacement;
-    }
-
-    /**
-     * Creates a new student object with the specified question removed from the list.
-     * This operation preserves the immutability of the Student class.
-     */
-    public Student deleteQuestion(Question target) {
-        assert questions.contains(target);
-        requireNonNull(target);
-
-        Student replacement = new Student(this);
-        replacement.questions.remove(target);
-        return replacement;
     }
 
     /**
@@ -235,6 +187,81 @@ public class Student {
 
 
         return builder.toString();
+    }
+
+    //==============QUESTION ACCESSORS==============//
+    public boolean containsQuestion(Question question) {
+        return questions.stream().anyMatch(question::isSameQuestion);
+    }
+
+    /***
+     * Creates a new student object with a newly added question at the end of the questions list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student addQuestion(Question question) {
+        assert !containsQuestion(question);
+
+        requireNonNull(question);
+        Student replacement = new Student(this);
+        replacement.questions.add(question);
+        return replacement;
+    }
+
+    /**
+     * Creates a new student object with a modified question replacing the previous question in the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student setQuestion(Question target, Question newQuestion) {
+        assert questions.contains(target);
+        requireAllNonNull(target, newQuestion);
+
+        Student replacement = new Student(this);
+        int location = replacement.questions.indexOf(target);
+        replacement.questions.set(location, newQuestion);
+        return replacement;
+    }
+
+    /**
+     * Creates a new student object with the specified question removed from the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student deleteQuestion(Question target) {
+        assert questions.contains(target);
+        requireNonNull(target);
+
+        Student replacement = new Student(this);
+        replacement.questions.remove(target);
+        return replacement;
+    }
+
+    //==============ADMIN ACCESSORS==============//
+    public Fee getFee() {
+        return admin.getFee();
+    }
+
+    public PaymentDate getPaymentDate() {
+        return admin.getPaymentDate();
+    }
+
+    public ClassVenue getClassVenue() {
+        return admin.getClassVenue();
+    }
+
+    public ClassTime getClassTime() {
+        return admin.getClassTime();
+    }
+
+    public List<Detail> getDetails() {
+        return admin.getDetails();
+    }
+
+    public String getFormattedDetails() {
+        return admin.getFormattedDetails();
+    }
+
+    //==============ACADEMIC ACCESSORS==============//
+    public List<Attendance> getAttendance() {
+        return academic.getAttendance();
     }
 
 }

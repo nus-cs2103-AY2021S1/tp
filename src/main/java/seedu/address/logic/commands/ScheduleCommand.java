@@ -43,7 +43,7 @@ public class ScheduleCommand extends Command {
         assert day != null;
 
         // checks which student has the same day as the one given extracted out
-        Predicate<Student> predicate = student -> student.getAdmin().getClassTime().isSameDay(day);
+        Predicate<Student> predicate = student -> student.getClassTime().isSameDay(day);
 
         // updates the list that is currently showed in the ui
         model.updateFilteredStudentList(predicate);
