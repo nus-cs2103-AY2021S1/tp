@@ -29,8 +29,8 @@
 }
 
 .tab-pane {
-    -fx-tab-min-width: 50px;
-    -fx-tab-min-height: 30px;
+    -fx-tab-min-width:130px;
+    -fx-tab-min-height: 40px;
 }
 
 .tab {
@@ -40,6 +40,7 @@
 .tab-pane .tab {
     -fx-background-color: #e6e6e6;
     -fx-padding: 4 10 5 10;
+    -fx-width: 10;
     -fx-border-color: #c2c2c2 #c2c2c2 #c2c2c2;
     -fx-border-radius: 5 5 0 0;
 }
