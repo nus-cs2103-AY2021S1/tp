@@ -102,6 +102,9 @@ public class ModelManager implements Model {
 
     @Override
     public void setModuleList(ReadOnlyTrackr<Module> moduleList) {
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
         this.moduleList.resetData(moduleList);
     }
 
