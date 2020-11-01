@@ -11,7 +11,7 @@ public class FileAddress {
 
     public static final String MESSAGE_CONSTRAINTS = "File address can only take a valid file path!";
 
-    public static final String VALIDATION_REGEX = "([a-zA-z]:)?([()&%$#@!^\\-_\\\\/\\sa-zA-Z0-9+.]*)?";
+    public static final String VALIDATION_REGEX = "([a-zA-z]:)?([!@#$%^&()\\[\\]{}`~\\-_';=+.,\\\\/\\sa-zA-Z0-9]*)?";
 
     public final String value;
 
