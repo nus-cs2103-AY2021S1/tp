@@ -44,4 +44,8 @@ public class SuggestionCommand extends Command {
         SuggestionCommand castedOther = (SuggestionCommand) other;
         return toBeDisplayed.equals(castedOther.toBeDisplayed);
     }
+
+    public String getToBeDisplayed() {
+        return toBeDisplayed;
+    }
 }

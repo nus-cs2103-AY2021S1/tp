@@ -1,5 +1,6 @@
 package seedu.stock.logic.parser;
 
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandTestUtil.FILE_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
@@ -118,7 +119,7 @@ public class SuggestionCommandParserTest {
         // EP: incorrect command word
         String userInput = SERIAL_NUMBER_DESC_APPLE;
         SuggestionCommandParser parser = new SuggestionCommandParser("delet");
-        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+        String expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
                 + "\n" + DeleteCommand.MESSAGE_USAGE;
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
@@ -126,7 +127,7 @@ public class SuggestionCommandParserTest {
 
         // EP: correct command word
         parser = new SuggestionCommandParser("delete", "error message");
-        expectedSuggestionMessage = "error message" + "\n"
+        expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
                 + "\n" + DeleteCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
