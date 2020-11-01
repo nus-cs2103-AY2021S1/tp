@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -166,7 +167,7 @@ public class Task implements Comparable<Task> {
      * Returns true if a given string is a valid publish date.
      */
     public static boolean isValidPublishDate(String test) {
-        return Task.isValidDate(test);
+        return Date.isValidDate(test);
     }
 
     /**
@@ -237,35 +238,6 @@ public class Task implements Comparable<Task> {
 
     public void setPublishDate(LocalDate publishDate) {
         this.publishDate = publishDate;
-    }
-
-    /**
-     * Return true if a given string is a valid date.
-     */
-    public static boolean isValidDate(String date) {
-        String[] strings = date.split("-");
-        int year = Integer.parseInt(strings[0]);
-        int month = Integer.parseInt(strings[1]);
-        int day = Integer.parseInt(strings[2]);
-        boolean isValidDay = day <= 31 && day >= 1;
-        boolean isValidMonth = month <= 12 && month >= 1;
-        //year is always valid because it matches the regex as 4 digits of integers (1000 - 9999)
-        if (day == 29 && month == 2) {
-            if (year % 400 == 0) {
-                return true;
-            } else if (year % 100 == 0) {
-                return false;
-            } else {
-                return year % 4 == 0;
-            }
-        } else if ((day == 30 || day == 31) && month == 2) {
-            return false;
-        } else if (day == 31 && (month == 4 || month == 6
-                || month == 9 || month == 11)) {
-            return false;
-        } else {
-            return isValidDay && isValidMonth;
-        }
     }
 
     /**
