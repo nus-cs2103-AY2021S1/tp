@@ -31,9 +31,10 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Add a task to a project `addtask `
     - Assign a task to a teammate `assign `
     - Edit a task `edittask `
-    - Filter tasks by various aspects `filtert `
+    - Filter tasks by various attributes `filter `
+    - List all tasks `alltasks`
+    - Sort tasks by various attributes `sort`
     - View details of a task `viewtask `
-    - List all tasks `allt `
   - Teammate related features
     - Create a new teammate in a project `newteammate `
     - Edit a teammate's details `editteammate `
@@ -90,6 +91,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
+
 **:information_source: Notes about scoping:**<br>
 
 The hierarchy of command scoping is as follows:
@@ -264,21 +266,51 @@ Example: `edittask 3 tn/Finish project status/true` changes the name of task 3 i
 
 Filters tasks in the task list by various predicates:
   - by assignee's name
-  - by deadline
+  - by deadline (either a specific deadline or a time range for the deadline)
   - by done status
   - by progress
   - by task's name
 
-Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(done/DONE_STATUS)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
+Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(done/DONE_STATUS)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
+  - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
+  - Start date and end date in the time range follows the format *DD-MM-YYYY*
+  - Task status is simply *true* to signify the task is completed or *false* otherwise.
+  - Task progress is a percentage value indicating how much of the task is done.
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
+
+Example: `filter done/true` filters all the tasks that are done, and displays the done tasks to the user.
+
+### List all tasks `alltasks `
+
+List all tasks in the task list of a project
+
+Enters the Task scope.
+
+Format: `alltasks `
+
+Example: `alltasks` displays all tasks in the task list.
+
+### Sort tasks `sort `
+
+Sorts tasks in the task list in ascending/descending order:
+
+  - by deadline (either a specific deadline or a time range for the deadline)
+  - by done status
+  - by progress
+  - by task's name
+
+Format: `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)` 
+
+  - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
+  - User may choose one attribute of task to sort the task list
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
   - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
--  
 
-Example: `filter done/true` filters all the tasks that are done, and displays the done tasks to the user.
+Example: `sort sa/ td/` sorts the task list by task deadline in ascending order. Then the tasks on the top of the list are those with imminent deadlines.
 
 ### View details of a task `viewtask `
 
@@ -289,16 +321,6 @@ Format: `viewtask INDEX `
   - Index has to be a valid number that is in the range of tasks displayed on screen.
 
 Example: `viewtask 4` displays all information from task number 4 in the list.
-
-### List all tasks `allt `
-
-List all tasks in the task list of a project
-
-Enters the Task scope.
-
-Format: `allt `
-
-Example: `allt` displays all tasks in the task list.
 
 ## **Teammate** related features
 
@@ -321,7 +343,7 @@ Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/1
   - phone number of 93824823
   - email of lucas@gmail.com
   - address of 18 Evelyn road
-  
+
 ### Edit a teammate’s details `editteammate`
 
 Update the information of a teammate.
@@ -389,10 +411,11 @@ Action | Format, Examples | Scope
 **Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
 **Edit task details** | `edittask (INDEX) [n/TASK_NAME[ [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
-**Filter Tasks by Assignee/Deadline/Task Name** | ``filtert (ta/ASSIGNEE NAME) **OR** (td/DEADLINE) **OR** (tn/TASK NAME) **OR** (tp/PROGRESS) **OR** (done/ISDONE)``<br>e.g. `filtert ta/Alice` | project scope
+**Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS)||(done/ISDONE)``<br>e.g. `filter ta/Alice` | project scope
+**Show all the tasks** | `alltasks` | project scope 
+**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
-**Show all the tasks** | `allt` | project scope 
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
-**Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`
+**Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
