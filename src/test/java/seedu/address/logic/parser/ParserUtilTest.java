@@ -330,21 +330,24 @@ public class ParserUtilTest {
     // Test for error in date.
     @Test
     public void parseDateTime_invalidDateTime_throwsParseException() {
-        assertThrows(ParseException.class, "Times should be entered in the format: yyyy-MM-dd HH:mm", ()
-            -> ParserUtil.parseDateTime("test"));
+        assertThrows(ParseException.class,
+                "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.", ()
+                -> ParserUtil.parseDateTime("test"));
     }
 
     // Test for error in date time.
     @Test
     public void parseDuration_invalidDateTime_throwsParseException() {
-        assertThrows(ParseException.class, "Times should be entered in the format: yyyy-MM-dd HH:mm", ()
-            -> ParserUtil.parseDurationWithStart("test", "30"));
+        assertThrows(ParseException.class,
+                "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.", ()
+                -> ParserUtil.parseDurationWithStart("test", "30"));
     }
 
     // Test for error in duration.
     @Test
     public void parseDuration_invalidDuration_throwsParseException() {
-        assertThrows(ParseException.class, "Times should be entered in the format: yyyy-MM-dd HH:mm", ()
-            -> ParserUtil.parseDurationWithStart("2020-10-10", "test"));
+        assertThrows(ParseException.class,
+                "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.", ()
+                -> ParserUtil.parseDurationWithStart("2020-10-10", "test"));
     }
 }
