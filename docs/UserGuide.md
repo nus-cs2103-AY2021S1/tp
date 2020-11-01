@@ -88,11 +88,10 @@ Examples:
 
 ### Displaying supper menu: `menu`
 
-Displays the current menu from the currently selected vendor.
+Shows the menu from the currently selected vendor.
 
 Format: `menu`
 
-- Can be used to display the menu after a `sort` / `find` / `price` command
 
 ### Sorting the menu: `sort`
 
@@ -101,16 +100,16 @@ Sorts the menu by either price or name.
 Format: `sort MODE [DIRECTION]`
 
 * `MODE` dictates which mode it will sort by, with format:
-  * `name`: sorts by name
-  * `price`: sorts by price
+  * `n`: sorts by name
+  * `p`: sorts by price
 * `DIRECTION` dictates which direction it will sort by, with format:
-  * `ascending`: sort in ascending order
-  * `descending`: sort in descending order
+  * `a`: sort in ascending order
+  * `d`: sort in descending order
 * If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa
 
 Examples:
-* `sort name ascending` sorts the menu by name in ascending direction.
-* `sort price` sorts the menu by price in opposite direction as last sorted.
+* `sort n a` sorts the menu by name in ascending direction.
+* `sort p` sorts the menu by price in opposite direction as last sorted.
 
 
 ### Find food item: `find`
@@ -121,7 +120,6 @@ case-sensitive.
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
-* `find milo` lists all food items containing the word 'milo' in their name.
 * `find milo dinosaur` lists all food items containing the word 'milo' or 'dinosaur' in their name.
 
 
@@ -131,11 +129,8 @@ Finds all food item within a specified price range.
 
 Format: `price INEQUALITY PRICE`
 
-* `INEQUALITY` is an inequality sign, of the below formats:
-  * `<`: Strictly less than
-  * `<=`: Less than or Equal to
-  * `>`: Greater than
-  * `>=`: Greater than or Equal to
+* `INEQUALITY` is an inequality sign, and must be either '<' (strictly less than), '<=' (less than or equal to),
+'>' (greater than), or '>=' (greater than or equal to).
 * `PRICE` must be a non-negative real number.
 
 Examples:
@@ -209,11 +204,10 @@ Saves or Loads a preset of the user's supper order.
 
 Format: `preset MODE [NAME]`
 
-* `MODE` must be either `save` or `load`, which dictates what the system will perform for the user's supper orders.
+* `MODE` must be either 'save' or 'load', which dictates what the system will perform for the user's supper orders.
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
 * If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
 it will display all the saved presets under the current vendor to the user.
-* if `NAME` already exists and it is in `save` mode, the new saved preset will overwrite the existing saved preset.
 
 Examples:
 * `preset save` saves the user's supper order with the default preset name.
