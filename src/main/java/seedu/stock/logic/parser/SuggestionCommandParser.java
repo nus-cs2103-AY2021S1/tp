@@ -638,6 +638,9 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 description = argMultimap.getValue(currentPrefix).get();
             }
+            if (!checkIfParameterValid(currentPrefix, description)) {
+                description = "";
+            }
             boolean isEmpty = description.equals("");
             if (isEmpty) {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
