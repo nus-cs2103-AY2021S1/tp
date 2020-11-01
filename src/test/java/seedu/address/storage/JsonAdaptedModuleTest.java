@@ -77,14 +77,7 @@ public class JsonAdaptedModuleTest {
         String expectedMessage = ModularCredits.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
     }
-    /*
-    @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedModule person = new JsonAdaptedModule(VALID_NAME, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }*/
-
+    
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
