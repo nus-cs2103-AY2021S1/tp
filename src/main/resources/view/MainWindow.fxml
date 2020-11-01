@@ -27,47 +27,40 @@
         <URL value="@Extensions.css" />
       </stylesheets>
     <BorderPane fx:id="container" prefWidth="600" prefHeight="500">
-            <left>
+        <top>
+            <HBox fx:id="nav">
                 <HBox>
-                    <VBox fx:id="nav">
-                        <HBox>
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10" />
-                            </padding>
-                            <Label text="Recipes"/>
-                        </HBox>
-                        <HBox>
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10" />
-                            </padding>
-                            <Label text="Fridge"/>
-                        </HBox>
-                        <HBox>
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10" />
-                            </padding>
-                            <Label text="Consumptions"/>
-                        </HBox>
-                    </VBox>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <Label fx:id="recipeOption" text="Recipes"/>
+                </HBox>
+                <HBox>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <Label fx:id="fridgeOption" text="Fridge"/>
+                </HBox>
+                <HBox>
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <Label fx:id="consumptionOption" text="Consumptions"/>
+                </HBox>
+            </HBox>
+        </top>
+            <left>
+
             <VBox fx:id="leftPanel" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
                 <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS" minHeight="500"/>
             </VBox>
-                </HBox>
             </left>
           <center>
-      <VBox VBox.vgrow="ALWAYS" fx:id="messageArea" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
-       <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-        <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border">
+      <VBox VBox.vgrow="ALWAYS" fx:id="messageArea" >
+        <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder">
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>

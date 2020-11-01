@@ -52,7 +52,7 @@ public class SelectRecipeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SELECT_RECIPE_SUCCESS, selectedRecipe), recipeToSelect);
     }
 
-    private String separateRecipeString(Recipe recipe) {
+    public String separateRecipeString(Recipe recipe) {
         String recipeString = recipe.toString();
         String recipeStringSeparated;
         recipeStringSeparated = recipeString.replace("Ingredient:", "\n" + "Ingredient:")
