@@ -568,19 +568,18 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generateDeleteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER);
         toBeDisplayed.append(DELETE_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            if (!argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
-            }
-            List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
-            for (String serialNumber : keywords) {
-                boolean isEmpty = serialNumber.equals("");
-                String description = isEmpty ? CliSyntax.getDefaultDescription(currentPrefix) : serialNumber;
-                toBeDisplayed.append(" " + currentPrefix + description);
+        String defaultDescriptionSerialNumber = CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER);
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
+        }
+        for (String serialNumber : keywords) {
+            if (checkIfParameterValid(PREFIX_SERIAL_NUMBER, serialNumber)) {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            } else {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
             }
         }
 
