@@ -34,7 +34,9 @@ You may refer to [Quick Start](#quick-start) for a short tutorial on how to run 
 
 ## Quick Start
 
-1. Ensure that Java 11 or above is installed in your computer
+> **ResiReg** runs on Windows, Linux, and OS-X.
+
+1. Ensure that Java 11 or above is installed in your computer.
 2. Download the latest `ResiReg.jar` here.
 3. Copy the file to the folder you want to use as the home folder for your **ResiReg**.
 4. Double-click the file to start the app. The app window should open in a few seconds.
