@@ -3,6 +3,7 @@ package seedu.zookeep.model.animal;
 import static seedu.zookeep.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,7 +93,8 @@ public class Animal {
         return otherAnimal.getName().equals(getName())
                 && otherAnimal.getId().equals(getId())
                 && otherAnimal.getSpecies().equals(getSpecies())
-                && otherAnimal.getMedicalConditions().equals(getMedicalConditions());
+                && otherAnimal.getMedicalConditions().equals(getMedicalConditions())
+                && otherAnimal.getFeedTimes().equals(getFeedTimes());
     }
 
     @Override
@@ -104,14 +106,17 @@ public class Animal {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("Name: ")
+                .append(getName())
                 .append(" ID: ")
                 .append(getId())
                 .append(" Species: ")
                 .append(getSpecies())
                 .append(" Medical conditions: ");
-        getMedicalConditions().forEach(builder::append);
-        builder.append(" Feeding times: ");
+        getMedicalConditions().stream().sorted(Comparator.comparing(medicalCondition ->
+                medicalCondition.medicalConditionName.toLowerCase()))
+                .forEach(builder::append);
+        builder.append(" Feed times: ");
         getFeedTimes().forEach(builder::append);
         return builder.toString();
     }

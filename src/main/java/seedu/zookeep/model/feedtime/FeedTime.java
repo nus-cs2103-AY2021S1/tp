@@ -7,16 +7,16 @@ import static seedu.zookeep.commons.util.AppUtil.checkArgument;
  * Represents a FeedTime in the ZooKeep Book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidFeedTime(String)}
  */
-public class FeedTime {
+public class FeedTime implements Comparable<FeedTime> {
     public static final String MESSAGE_CONSTRAINTS =
             "Feed times should be in the format HHmm, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[0-2][0-9][0-5][0-9]";
+    public static final String VALIDATION_REGEX = "([01][0-9]|2[0-3])[0-5][0-9]";
     public final String feedTime;
 
     /**
      * Constructs a {@code FeedTime}.
      *
-     * @param feedTimeText A valid feeding time.
+     * @param feedTimeText A valid feed time.
      */
     public FeedTime(String feedTimeText) {
         requireNonNull(feedTimeText);
@@ -25,7 +25,7 @@ public class FeedTime {
     }
 
     /**
-     * Returns true if a given string is a valid feeding time.
+     * Returns true if a given string is a valid feed time.
      */
     public static boolean isValidFeedTime(String feedTimeText) {
         return feedTimeText.matches(VALIDATION_REGEX);
@@ -41,6 +41,13 @@ public class FeedTime {
     @Override
     public int hashCode() {
         return feedTime.hashCode();
+    }
+
+    @Override
+    public int compareTo(FeedTime ft) {
+        return Integer.compare(
+                Integer.parseInt(this.feedTime),
+                Integer.parseInt(ft.feedTime));
     }
 
     /**

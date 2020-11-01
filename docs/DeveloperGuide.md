@@ -6,6 +6,19 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **How to navigate this Developer Guide**
+
+The target audience of this guide is for anyone who wishes to extend or modify the functionality of ZooKeepBook. The guide is split into 3 sections, covering the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#design'>design of ZooKeepBook</a>, the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#implementation'>implementation of certain features</a> as well as how to <a href='https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops'>manage the development of ZooKeepBook</a>.
+
+The following symbols are used throughout this developer guide. They highlight important information that may be useful to you:
+
+|Symbol|Description|
+|------|:-------|
+|:bulb:|This block contains additional **tips** that may aid you|
+|:information_source:|This block contains additional **information** that may be used to elaborate on the content presented|
+|`text markup `|Indicates Java class and method names|
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -108,7 +121,7 @@ The Class Diagram for the Logic Component is shown below (*Figure 5*)
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ZooKeepBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding an animal).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -136,12 +149,12 @@ The Class Diagram for the Model Component is shown below (*Figure 7*)
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
+* stores the ZooKeep book data.
 * exposes an unmodifiable `ObservableList<Animal>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ZooKeepBook`, which `Animal` references. This allows `ZooKeepBook` to only require one `Tag` object per unique `Tag`, instead of each `Animal` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has `MedicalCondition` and `FeedTime` lists in the `ZooKeepBook`, which `Animal` references. This allows `ZooKeepBook` to only require one `MedicalCondition` or `FeedTime` object per unique `MedicalCondition` or `FeedTime`, instead of each `Animal` needing their own `MedicalCondition` or `FeedTime` objects.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>

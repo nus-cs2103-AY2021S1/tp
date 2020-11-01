@@ -8,9 +8,12 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 {:toc}
 
 ## Introduction
+This section gives you a quick overview about ZooKeep.
+
 `ZooKeep` is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `ZooKeep` can get your management tasks done faster than traditional GUI apps.
 
 ## Legend
+The following are symbols you should look out for when using this guide.
 
 <div markdown="span" class="alert alert-info">
 
@@ -31,6 +34,7 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 </div>
 
 ## Quick start
+You can follow the steps below to get started with ZooKeep.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -53,6 +57,7 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
 
 ## Basic features
+This section provides you with the most basic features to get you started with ZooKeep.
 
 <div markdown="block" class="alert alert-info">
 
@@ -147,13 +152,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long.
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal to add must not already exist in your `ZooKeep` book.
 
-* `FEED_TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
 </div>
 
 Examples:
@@ -171,7 +176,8 @@ add n/Kai Kai s/Giant Panda i/200 m/Sunstroke f/1230 f/1400
 
 Expected Outcome:
 ```
-New animal added: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feeding times: [1230][1400]
+New animal added
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
 ```
 
 <p align="center"><img src="images/user-guide/addedanimal.png"/></p>
@@ -193,15 +199,17 @@ Format: `delete ID`
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long.
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal to delete must exist in your `ZooKeep` book.
 </div>
 
 Example Usage:
-* `delete 200`
+```
+delete 200
+```
 
 <p align="center"><img src="images/user-guide/deletinganimal.png"/></p>
 
@@ -209,7 +217,8 @@ Example Usage:
 
 Expected Outcome:
 ```
-Deleted Animal: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke]  Feeding times: [1230][1400]
+Deleted Animal
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
 ```
 
 <p align="center"><img src="images/user-guide/deletedanimal.png"/></p>
@@ -281,7 +290,7 @@ The undone command is redone. It will show Kai Kai deleted from your `ZooKeep` b
 
 ## Advanced features
 
-The following features are additional ones that advanced users may find useful.
+When you are comfortable with the basic features, you can try the follow advanced features to achieve more.
 
 ### Appending information to an animal's fields: `append`
 
@@ -298,13 +307,15 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* At least one medical condition or feed time must be specified.
 
-* `ID` should be at least 3 digits long.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
+
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal must exist in your `ZooKeep` book.
 
-* `FEED_TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
 </div>
 
 Examples:
@@ -322,7 +333,8 @@ append 200 m/Flu
 
 Expected Outcome:
 ```
-Appended Animal Details: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feeding times: [1230][1400]
+Appended Animal Details
+Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
 ```
 
 <p align="center"><img src="images/user-guide/appendedmedical.png"/></p>
@@ -351,13 +363,15 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes.
+* At least one field to replace must be specified.
 
-* `ID` should be at least 3 digits long.
+* If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
+
+* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
 
 * `ID` of animal must exist in your `ZooKeep` book.
 
-* `FEED_TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format *(HHmm)*.
 </div>
 
 Examples:
@@ -375,7 +389,8 @@ replace 200 i/2910 n/Jirachi
 
 Expected Outcome:
 ```
-Replaced Animal Details: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feeding times: [1230][1400]
+Replaced Animal Details
+Name: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
 ```
 
 <p align="center"><img src="images/user-guide/replacedfields.png"/></p>
@@ -486,6 +501,8 @@ This command is useful for storing important archives in the `data/snapshots` fo
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
 
+Please refer to the [FAQs](#faq) to find out how to load a snapshot that you have saved.
+
 Format: `snap FILE_NAME`
 
 <div markdown="block" class="alert alert-warning">
@@ -531,6 +548,7 @@ was executed.
 ---
 
 ## FAQ
+This section lists some of the frequently asked questions.
 
 **Q**: How do I transfer my data to a new computer?<br>
 **A**: First, install the app on your new computer. Next, copy over the `zookeepbook.json` file
@@ -542,6 +560,12 @@ was executed.
        Please do not manually edit this file as it may result in loss of data or unexpected 
        behaviour when running the application.
 
+**Q**: How can I load a snapshot that I created using the `snap` command?<br>
+**A**: First, go to your `data` folder and rename your `zookeepbook.json` file into something else,
+       such as `zookeepbook_current.json`. Next, copy the snapshot you wish to load, paste it into
+       the `data` folder and rename this snapshot to `zookeepbook.json`. The next time you launch
+       `ZooKeep`, your snapshot will be loaded.
+
 **Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
 **A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
 
@@ -549,6 +573,9 @@ was executed.
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
 ## Command summary
+If you need a quick reference guide, the following tables should help.
+
+**Basic commands**
 
 Action | Format, Examples
 --------|------------------
@@ -560,6 +587,11 @@ Action | Format, Examples
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
+
+**Advanced commands**
+
+Action | Format, Examples
+--------|------------------
 **Append** | `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `append 1307 f/1900`
 **Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
 **Find** | `find KEYWORD [MORE KEYWORDS]…` <br> e.g. `find Ahmeng Buttercup Coco`
