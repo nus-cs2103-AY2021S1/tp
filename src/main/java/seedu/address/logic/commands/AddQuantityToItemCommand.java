@@ -40,8 +40,10 @@ public class AddQuantityToItemCommand extends Command {
 
     private final String itemName;
     private final int quantity; // store as int to support negative
+    private boolean hasCommit; // determines if model.commit should be called in edit item command
 
     /**
+     * Constructor for add quantity to item command.
      * @param quantity quantity to add to the item, can be negative
      */
     public AddQuantityToItemCommand(String itemName, int quantity) {
@@ -49,6 +51,20 @@ public class AddQuantityToItemCommand extends Command {
 
         this.itemName = itemName;
         this.quantity = quantity;
+        this.hasCommit = true;
+    }
+
+    /**
+     * Constructor used when add quantity to item command is part of crafting
+     * @param quantity quantity to add to the item, can be negative
+     */
+    public AddQuantityToItemCommand(String itemName, int quantity, boolean hasCommit) {
+        requireNonNull(itemName);
+        assert !hasCommit;
+
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.hasCommit = false;
     }
 
     @Override
@@ -80,11 +96,9 @@ public class AddQuantityToItemCommand extends Command {
         editItemDescriptor.setQuantity(updatedQuantity);
         editItemDescriptor.setTags(itemToEdit.getTags());
 
-        EditItemCommand editItemCommand = new EditItemCommand(itemName, editItemDescriptor);
+        EditItemCommand editItemCommand = new EditItemCommand(itemName, editItemDescriptor, hasCommit);
 
         logger.info(itemToEdit.getName() + "'s quantity changed to " + updatedQuantity + ".");
-
-        model.commitInventory();
 
         return editItemCommand.execute(model);
     }
@@ -101,9 +115,10 @@ public class AddQuantityToItemCommand extends Command {
             return false;
         }
 
-        // check if itemName and quantity are the same
+        // check if itemName and quantity and hasCommit are the same
         AddQuantityToItemCommand a = (AddQuantityToItemCommand) other;
         return itemName.equals(a.itemName)
-                && quantity == a.quantity;
+                && quantity == a.quantity
+                && hasCommit == a.hasCommit;
     }
 }
