@@ -122,18 +122,20 @@ Shows a list of all contacts in the address book.
 
 Format: `contact list`
 
-### Finding contacts: `find`
+### Finding contacts: `contact find`
 
 Shows a list of all contacts in the address book that have the given keywords in their name and/or the given tags.
 
-Format: `find [n/KEYWORD]... [t/TAG_NAME]...`
+Format: `contact find [n/KEYWORD]... [t/TAG_NAME]...`
 
 Note(s):
 * At least one optional field must be provided.
+* KEYWORD is CASE-INSENSITIVE
+* KEYWORD can be the initials of the full name (first letter of each word in their full name) of the contact
 
 Example(s):
-*   `find n/Tan` Shows all contacts with `Tan` in their name.
-*   `find n/Jay t/classmates` Shows all contacts with `Jay` in their name and persons with the `classmates` tag.
+*   `find n/Tan` Shows all contacts with `tan` (case-insensitive) in their name or have initials `tan`.
+*   `find n/jcyy t/classmates` Shows all contacts with `jcyy` in their name or have initials `jcyy` and persons with the `classmates` tag.
 
 ### Adding a tag to a user : `label add`
 

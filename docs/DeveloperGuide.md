@@ -474,6 +474,7 @@ The parsing of user input for `FindCommand` is facilitated by `FindCommandParser
 
 The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `FindCommandParser`
 does not look for the `m/` prefix when parsing the arguments. So it does not pass a List of Modules into the `FindCommand`.
+It also uses the `NameContainsKeywordPredicate` and `PersonHasTagsAndKeywordInNamePredicate` instead.
 
 #### Displaying the Filtered Persons
 
@@ -488,7 +489,7 @@ to the given predicate. Doing so will display the Persons who satisfy the condit
 
 #### Activity Diagram
 
-Given below is the activity diagram of how the mechanism behaves when called using the `find` command.
+Given below is the activity diagram of how the mechanism behaves when called using the `contact find` command.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 

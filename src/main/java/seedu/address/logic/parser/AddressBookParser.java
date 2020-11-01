@@ -62,9 +62,6 @@ public class AddressBookParser {
         case ToggleCommand.COMMAND_WORD:
             return new ToggleCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(commandVerb + arguments);
-
         case CopyCommand.COMMAND_WORD:
             return new CopyCommandParser().parse(commandVerb + arguments);
 
@@ -97,6 +94,9 @@ public class AddressBookParser {
 
         case ClearLabelCommand.COMMAND_WORD:
             return new ClearLabelCommandParser().parse(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(commandVerb + arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
