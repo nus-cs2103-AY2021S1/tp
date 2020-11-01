@@ -17,6 +17,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.SwitchCommand;
 import seedu.address.logic.commands.UnassignallCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -54,6 +55,15 @@ public class OneWordCommandParser implements Parser<Command> {
             }
 
             return new ResetCommand();
+
+        case SwitchCommand.COMMAND_WORD:
+            if (!arguments.isEmpty()) {
+                throw new ParseException(
+                    String.format(MESSAGE_NON_EMPTY_ARGUMENT, SwitchCommand.COMMAND_WORD)
+                        + SwitchCommand.MESSAGE_USAGE);
+            }
+
+            return new SwitchCommand();
 
         case ListCommand.COMMAND_WORD:
             if (!arguments.isEmpty()) {

@@ -7,8 +7,7 @@
 **FaculType** is a desktop app for managing faculty members and their modules, optimized for use via a Command Line
  Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
  
- In the current version, **FaculType** targets deans of universities who are responsible for managing professors and
-  the module they teach.
+ In the current version, **FaculType** targets faculty leaders of universities who are responsible for managing faculty members and modules.
 
 # Site Map
 * [User Guide](https://github.com/AY2021S1-CS2103-T14-1/tp/blob/master/docs/UserGuide.md)

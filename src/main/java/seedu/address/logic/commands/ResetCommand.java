@@ -12,8 +12,8 @@ public class ResetCommand extends Command {
 
     public static final String COMMAND_WORD = "reset";
     public static final String MESSAGE_SUCCESS = "FaculType has been reset!";
-    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + " : Resets FaculType"
-        + "\nExample: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + " : Resets FaculType\n"
+        + "Example: " + COMMAND_WORD;
 
 
     @Override
