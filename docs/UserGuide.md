@@ -34,11 +34,10 @@
         + [3.3.3.1 Adding an attendance record to a student: `attendance add`](#3331-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.3.3.2 Deleting an attendance record for a student: `attendance delete`](#3332-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.4 Miscellaneous Features](#34-miscellaneous-features)
-    + [3.4.1 Scheduling: `schedule`](#341-scheduling-schedule)
-        + [3.4.1.1. Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#3411-viewing-personal-schedule-on-a-timetable-schedule-view--by-alex)
-        + [3.4.1.2. Adding events to the schedule: `schedule add`](#3412-adding-events-to-the-schedule-schedule-add)
-        + [3.4.1.3. List events: `schedule list`](#3413-list-events-schedule-list)
-        + [3.4.1.4. Delete events on the schedule: `schedule delete`](#3414-delete-events-on-the-schedule-schedule-delete)
+    + [3.4.1 Scheduling: `schedule`](#341-scheduling-schedule-coming-soon)
+        + [3.4.1.1. Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#3411-viewing-personal-schedule-on-a-timetable-schedule-view--by-alex-coming-soon)
+        + [3.4.1.2. Adding events to the schedule: `schedule add`](#3412-adding-events-to-the-schedule-schedule-add-coming-soon)
+        + [3.4.1.3. Delete events on the schedule: `schedule delete`](#3413-delete-events-on-the-schedule-schedule-delete-coming-soon)
     + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan)
     + [3.4.3 Viewing help: `help`](#343-viewing-help-help)
     + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program-exit)
@@ -105,7 +104,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
    * **`exit`** : Exits **Reeve**.
 
-1. Refer to the [Features](#features) section below for details of each command.
+1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of **Reeve**'s layout
 (to be added when GUI is finalised)
@@ -265,7 +264,7 @@ Examples:
 
 You can find all students whose date of last payment is more than a month ago.
 
-Format: `overdue unpaid`
+Format: `overdue`
 
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
@@ -455,7 +454,7 @@ General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 You can add an attendance record to a specified student in **Reeve**.
 
-Format: `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`
+Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`
 
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
@@ -487,9 +486,9 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule`
+#### 3.4.1 Scheduling: `schedule` (COMING SOON)
 
-##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
+##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex) (COMING SOON)
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
@@ -497,41 +496,33 @@ Format: `schedule view [mode/VIEW_MODE] [date/DATE_TO_VIEW]`
 
 * mode can be either **weekly** or **daily**. The case of the letters does not matter.
 * Date must be in the format of **yyyy-mm-dd**.
-* Both mode and date are optional. If it is not provided, the timetable would be dafult in the weekly mode and showing the current date.
+* Both mode and date are optional. If it is not provided, the timetable would be default in the weekly mode and showing the current date.
 
-Example: (To include screenshot)
+Example: `schedule view mode/weekly date/2020-11-25` Shows the schedule in the week of 2020-11-25 (To include screenshot)
 
-##### 3.4.1.2 Adding events to the schedule: `schedule add`
+##### 3.4.1.2 Adding events to the schedule: `schedule add` (COMING SOON)
 
 Adds a new event to the schedule.
 
-Format: `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [description/Event_Description] [recurrence/Event_recurrence]`
+Format: `schedule add [n/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [r/Event_recurrence]`
 
 * All fields are compulsory.
 * Event_Name has no restriction and can be of any form.
 * Start_Date_Time and End_Date_Time must be of the format yyyy-mm-ddTHH:mm
+* The Time portion HH:mm must be in 24-hr format.
 * Event_recurrence can only be one of these cases: `none`, `daily`, or `weekly`
 
 Example:
-`schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
+`schedule add n/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 r/none`
 creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
 
-##### 3.4.1.3 List events: `schedule list`
-
-Lists events.
-
-Format: `schedule list`
-
-* Outputs a list of events on the same panel as the student list. 
-
-##### 3.4.1.4 Delete events on the schedule: `schedule delete`
+##### 3.4.1.3 Delete events on the schedule: `schedule delete` (COMING SOON)
 
 Deletes an event on the schedule.
 
-Format: `schedule delete EVENT_INDEX`
+Format: `schedule delete n/eventName start/eventStartDateTime end/eventEndDateTime`
 
-* EVENT_INDEX is the index of the event to be deleted.
-* User has to first call the `schedule list` command in order to find out the index of the event being deleted.
+* The event's name, start date time and end date time identifies an event to be deleted
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -579,12 +570,8 @@ Action | Format, Examples
 **Delete Question** | `question delete STUDENT_INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
 **Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
-**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
+**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
-**View Schedule** | `schedule view [mode/View_Mode] [date/Date_To_View]`
-**Add Schedule Event** | `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [description/Event_Description] [recurrence/Event_recurrence]`<br> e.g. `schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
-**List Schedule Events** | `schedule list`
-**Delete Schedule Event** | `schedule delete EVENT_INDEX`
 **Toggle View** | `toggle`
 **Help** | `help`
 **Exit** | `exit`
