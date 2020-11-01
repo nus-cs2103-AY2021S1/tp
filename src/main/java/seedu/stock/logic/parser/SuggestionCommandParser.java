@@ -458,12 +458,17 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE);
         toBeDisplayed.append(NOTE_COMMAND_WORD);
 
+        String defaultDescriptionSerialNumber = CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER);
         if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
-            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
         }
         List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
         for (String serialNumber : keywords) {
-            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            if (checkIfParameterValid(PREFIX_SERIAL_NUMBER, serialNumber)) {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            } else {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
+            }
         }
 
         for (int i = 1; i < allowedPrefixes.size(); i++) {
@@ -471,6 +476,9 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             String description = "";
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 description = argMultimap.getValue(currentPrefix).get();
+            }
+            if (!checkIfParameterValid(currentPrefix, description)) {
+                description = "";
             }
             boolean isEmpty = description.equals("");
             if (isEmpty) {
