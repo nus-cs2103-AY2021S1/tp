@@ -8,9 +8,12 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 {:toc}
 
 ## Introduction
+This section gives you a quick overview about ZooKeep.
+
 `ZooKeep` is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `ZooKeep` can get your management tasks done faster than traditional GUI apps.
 
 ## Legend
+The following are symbols you should look out for when using this guide.
 
 <div markdown="span" class="alert alert-info">
 
@@ -31,6 +34,7 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 </div>
 
 ## Quick start
+You can follow the steps below to get started with ZooKeep.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -53,6 +57,7 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
 
 ## Basic features
+This section provides you with the most basic features to get you started with ZooKeep.
 
 <div markdown="block" class="alert alert-info">
 
@@ -240,7 +245,7 @@ The undone command is redone.
 
 ## Advanced features
 
-The following features are additional ones that advanced users may find useful.
+When you are comfortable with the basic features, you can try the follow advanced features to achieve more.
 
 ### Appending information to an animal's fields: `append`
 
@@ -442,6 +447,7 @@ was executed.
 ---
 
 ## FAQ
+This section lists some of the frequently asked questions.
 
 **Q**: How do I transfer my data to a new computer?<br>
 **A**: First, install the app on your new computer. Next, copy over the `zookeepbook.json` file
@@ -466,6 +472,7 @@ was executed.
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
 ## Command summary
+If you need a quick reference guide, the following table should help.
 
 Action | Format, Examples
 --------|------------------
