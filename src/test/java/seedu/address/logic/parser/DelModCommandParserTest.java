@@ -1,11 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_CS1010S;
 import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_CS50;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DELMOD_MISSING_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS1010S;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS50;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -37,6 +40,13 @@ class DelModCommandParserTest {
         String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelModCommand.MESSAGE_USAGE);
         //"CS2103"
         assertParseFailure(parser, VALID_MODULE_CODE_CS1010S, expectedErrorMessage);
+    }
+
+    @Test
+    void parse_duplicatePrefix_failure() {
+        String expectedErrorMessage = String.format(MESSAGE_DUPLICATE_PREFIX, PREFIX_MODULE_CODE);
+        //"m/CS50 m/CS1101S"
+        assertParseFailure(parser, CODE_DESC_CS50 + CODE_DESC_CS1010S, expectedErrorMessage);
     }
 
     @Test

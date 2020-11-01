@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimap.checkDuplicatePrefix;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import seedu.address.commons.core.index.Index;
@@ -25,6 +26,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         if (argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE));
         }
+
+        checkDuplicatePrefix(argMultimap, PREFIX_REMARK);
 
         Index index;
         try {

@@ -49,6 +49,4 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
             return new UnassignCommand(index, moduleCodes);
         }
     }
-
-
 }
