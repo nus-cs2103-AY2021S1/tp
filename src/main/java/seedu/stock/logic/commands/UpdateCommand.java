@@ -175,7 +175,7 @@ public class UpdateCommand extends Command {
         if (!quantityAdder.isEmpty()) {
             QuantityAdder valueToBeAdded = quantityAdder.get();
             Optional<Quantity> result = valueToBeAdded.incrementQuantity(updatedQuantity);
-            updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS));
+            updatedQuantity = result.orElseThrow(() -> new CommandException(Quantity.MESSAGE_CONSTRAINTS_INCREMENT));
         }
 
         updatedQuantity = updatedQuantity.updateLowQuantity(lowQuantity);
