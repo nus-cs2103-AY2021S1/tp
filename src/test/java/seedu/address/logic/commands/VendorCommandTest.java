@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.OrderManager;
+import seedu.address.model.vendor.Vendor;
 import seedu.address.testutil.TypicalVendors;
 
 /**
@@ -36,7 +37,11 @@ public class VendorCommandTest {
 
         Model expectedModel = initialiseModel();
         expectedModel.selectVendor(first.getZeroBased());
-        String expectedMessage = String.format(SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
+        Vendor expectedVendor = expectedModel.getObservableVendorList().get(first.getZeroBased());
+        String expectedMessage = String.format(
+                SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS,
+                expectedVendor.getName()
+        );
         assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
     }
 
@@ -48,7 +53,11 @@ public class VendorCommandTest {
 
         Model expectedModel = initialiseModel();
         expectedModel.selectVendor(third.getZeroBased());
-        String expectedMessage = String.format(SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
+        Vendor expectedVendor = expectedModel.getObservableVendorList().get(third.getZeroBased());
+        String expectedMessage = String.format(
+                SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS,
+                expectedVendor.getName()
+        );
         assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
     }
 

@@ -22,7 +22,7 @@ public class SavePresetCommand extends PresetCommand {
     private final Name presetName;
 
     public SavePresetCommand(Optional<Name> presetName) {
-        this.presetName = presetName.orElseGet(() -> new Name("Default Preset"));
+        this.presetName = presetName.orElseGet(() -> new Name("MyPreset"));
     }
 
     @Override
@@ -44,20 +44,27 @@ public class SavePresetCommand extends PresetCommand {
             }
             // check entire menu???? whether order is valid
             List<Preset> currentVendorPresets = allLists.get(model.getVendorIndex());
+
             Preset newPreset = new Preset(presetName.toString(),
                     model.getObservableOrderItemList());
+
             Optional<Preset> preset = currentVendorPresets.stream()
                     .filter(x -> x.getName().equals(presetName.toString()))
                     .findFirst();
-            preset.ifPresent(currentVendorPresets::remove);
+
+            String message = Messages.MESSAGE_PRESET_SAVE_SUCCESS;
+            if (preset.isPresent()) {
+                currentVendorPresets.remove(preset.get());
+                message = Messages.MESSAGE_PRESET_OVERWRITE_SUCCESS;
+            }
+
             currentVendorPresets.add(newPreset);
 
-
             storage.savePresetManager(allLists);
+
+            return new CommandResult(message, false, false, true);
         } catch (IOException | DataConversionException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-        return new CommandResult(Messages.MESSAGE_PRESET_SAVE_SUCCESS, false, false, true);
-
     }
 }

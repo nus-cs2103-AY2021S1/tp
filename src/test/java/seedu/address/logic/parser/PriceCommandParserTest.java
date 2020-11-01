@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.PriceWithinRangePredicate;
@@ -28,7 +29,7 @@ public class PriceCommandParserTest {
 
     @Test
     public void parse_fieldsMissing_failure() {
-        String format = String.format(ParserUtil.MESSAGE_INVALID_COMMAND_FORMAT,
+        String format = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 String.format(ParserUtil.MESSAGE_INSUFFICENT_ARGUMENTS, PriceCommand.COMMAND_WORD, 2,
                         PriceCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "", format);

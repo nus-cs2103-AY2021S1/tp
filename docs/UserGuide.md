@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-**Supper Strikers is a desktop application for managing your supper orders.** While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
+**Supper Strikers is a desktop application for managing your supper orders.** It is targeted at students living in NUS for ordering delivery from supper stretch.  While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
 * Table of Contents
 {:toc}
@@ -36,18 +36,14 @@ title: User Guide
 ## Features
 
 <div markdown="block" class="alert alert-info">
-
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
-
+  E.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
 * Items in square brackets are optional.<br>
-  e.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
-  
-* Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless
-there is any ambiguity. For example, `help` only requires the user to type `h` to be recognized, while `sort` will
-require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
+  E.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
+* Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless there is any ambiguity. 
+* E.g. `help` only requires the user to type `h` to be recognized, while `sort` will require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
 will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.)
 
 </div>
@@ -116,9 +112,11 @@ Examples:
 ### Find food item: `find`
 
 Finds and lists all food items containing any of the specified keywords in their name.
-case-sensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- `KEYWORD` are NOT Case-Sensitive
+- `KEYWORD` filters tags as well.
 
 Examples:
 * `find milo` lists all food items containing the word 'milo' in their name.
@@ -209,14 +207,19 @@ Saves or Loads a preset of the user's supper order.
 
 Format: `preset MODE [NAME]`
 
-* `MODE` must be either `save` or `load`, which dictates what the system will perform for the user's supper orders.
+* `MODE` dictates what the system will perform for the user's supper orders, represented by the formats:
+  * `save`: Used to save a preset
+  * `load`: Used to load a preset
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
-* If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
-it will display all the saved presets under the current vendor to the user.
-* if `NAME` already exists, the new preset will overwrite the existing preset.
+  * if `NAME` already exists, the new preset will overwrite the existing preset.
+  * `NAME` is **Case-Sensitive**.
+  * `NAME` is Vendor Specific, and is unique to each vendor.
+* `preset save` on its own without `[NAME]` will save the current order with a default preset name of "MyPreset"
+* `preset load` on its own without `[NAME]` will give the current list of presets
 
 Examples:
-* `preset save` saves the user's supper order with the default preset name.
+* `preset save` saves the user's supper order with the default preset name, which can be loaded with `preset load MyPreset`
+* `preset save vegan` save the user's supper order with a preset name of "vegan"
 * `preset load vegan` loads the preset supper order with the preset name "vegan".
 
 
