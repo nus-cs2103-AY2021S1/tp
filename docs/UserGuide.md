@@ -516,10 +516,13 @@ Expected Outcome:
 Current ZooKeep Book saved as zookeepbook_19-10-2020.json
 ```
 
-<p align="center"><img src="images/user-guide/aftersnap.png"/><img src="images/user-guide/snapresult.png"/></p>
+<p align="center"><img src="images/user-guide/aftersnap.png"/></p>
 
-<p align="center"><i>Figure 20 (left): User executing snap command</i></p>
-<p align="center"><i>Figure 21 (right): The directory where the archived file is located</i></p>
+<p align="center"><i>Figure 20: User executing snap command</i></p>
+
+<p align="center"><img src="images/user-guide/snapresult.png"/></p>
+
+<p align="center"><i>Figure 21: The directory where the archived file is located</i></p>
 
 A file named `zookeepbook_19-10-2020.json` is created in the `data/snapshots` directory as seen in *Figure 21*.
 This file contains the state of your `ZooKeep` book data at the point in time when the command
