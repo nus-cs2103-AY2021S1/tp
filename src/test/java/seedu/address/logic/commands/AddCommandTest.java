@@ -21,6 +21,7 @@ import seedu.address.model.HospifyBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHospifyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.patient.MedicalRecord;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
@@ -146,6 +147,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPatientWithMrUrl(MedicalRecord url) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePatient(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -206,6 +212,12 @@ public class AddCommandTest {
         public boolean hasPatientWithNric(Nric nric) {
             requireNonNull(nric);
             return personsAdded.stream().anyMatch(patient -> hasPatientWithNric(patient.getNric()));
+        }
+
+        @Override
+        public boolean hasPatientWithMrUrl(MedicalRecord url) {
+            requireNonNull(url);
+            return personsAdded.stream().anyMatch(patient -> hasPatientWithMrUrl(patient.getMedicalRecord()));
         }
 
         @Override

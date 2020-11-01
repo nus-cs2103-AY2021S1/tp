@@ -42,6 +42,8 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Hospify";
     public static final String MESSAGE_DUPLICATE_NRIC = "This NRIC already belongs to an existing patient in Hospify";
+    public static final String MESSAGE_DUPLICATE_MR_URL = "This Medial Record URL already belongs to an existing "
+            + "patient in Hospify";
 
     private final Patient toAdd;
 
@@ -59,8 +61,14 @@ public class AddCommand extends Command {
 
         if (model.hasPatient(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
-        } else if (model.hasPatientWithNric(toAdd.getNric())) {
+        }
+
+        if (model.hasPatientWithNric(toAdd.getNric())) {
             throw new CommandException(MESSAGE_DUPLICATE_NRIC);
+        }
+
+        if (model.hasPatientWithMrUrl(toAdd.getMedicalRecord())) {
+            throw new CommandException(MESSAGE_DUPLICATE_MR_URL);
         }
 
         model.addPatient(toAdd);
