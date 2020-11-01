@@ -28,7 +28,7 @@ public class SampleDataUtil {
     }
 
     private static Exercise[] getSampleExercises() {
-        ArrayList<Muscle> musclesWorked = new ArrayList<Muscle>(Arrays.asList(Muscle.CHEST, Muscle.LEGS));
+        ArrayList<Muscle> musclesWorked = new ArrayList<Muscle>(Arrays.asList(Muscle.CHEST, Muscle.LEG));
         return new Exercise[]{
             new Exercise(new seedu.address.model.exercise.Name("Push Up"), new Description("Did 52 within 60 seconds"),
                     new Date("01-10-2020"), new Calories("100"), musclesWorked, getExerciseTagSet("gym")),

@@ -18,7 +18,7 @@ public enum Muscle {
     ARMS("arm"),
     BACK("back"),
     ABDOMINALS("ab"),
-    LEGS("leg");
+    LEG("leg");
 
     public static final String DELIMITER = ",";
     public static final String MESSAGE_CONSTRAINTS;
