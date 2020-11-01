@@ -51,6 +51,23 @@ public class Student {
         this.academic = academic;
     }
 
+    /**
+     * alternate constructor
+     */
+    public Student(Name name, Phone phone, School school, Year year,
+                   ClassVenue venue, ClassTime time, Fee fee, PaymentDate date, List<Detail> details,
+                   List<Question> questions, List<Exam> exams, Academic academic) {
+        requireAllNonNull(name, phone, school, year, venue, time, fee, date, details, questions, exams, academic);
+        this.name = name;
+        this.phone = phone;
+        this.school = school;
+        this.year = year;
+        this.admin = new Admin(venue, time, fee, date, details);
+        this.questions.addAll(questions);
+        this.exams.addAll(exams);
+        this.academic = academic;
+    }
+
     private Student(Student copy) {
         requireNonNull(copy);
         this.name = copy.name;

@@ -15,7 +15,6 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
-import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
@@ -229,7 +228,7 @@ public class StudentBuilder {
      */
     public Student build() {
         return new Student(name, phone, school, year,
-                new Admin(venue, time, fee, paymentDate, details),
+                venue, time, fee, paymentDate, details,
                 questions, exams,
                 new Academic(attendances));
     }

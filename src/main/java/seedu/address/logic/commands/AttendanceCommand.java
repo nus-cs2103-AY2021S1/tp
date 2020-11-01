@@ -19,7 +19,6 @@ public abstract class AttendanceCommand extends Command {
      * @return updated Student.
      */
     public Student updateStudentAttendance(Student studentToAddAttendance, List<Attendance> attendanceList) {
-        Academic academicToAddAttendance = studentToAddAttendance.getAcademic();
         Academic updatedAcademic = new Academic(attendanceList);
         Student updatedStudent = new Student(studentToAddAttendance.getName(), studentToAddAttendance.getPhone(),
                 studentToAddAttendance.getSchool(), studentToAddAttendance.getYear(), studentToAddAttendance.getAdmin(),

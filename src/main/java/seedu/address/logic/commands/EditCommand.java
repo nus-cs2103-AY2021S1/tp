@@ -26,7 +26,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.exam.Exam;
-import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
@@ -115,7 +114,13 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        Admin updatedAdmin;
+        // Questions should not be edited through this command
+        List<Question> questions = studentToEdit.getQuestions();
+        // Exams should not be edited through this command
+        List<Exam> exams = studentToEdit.getExams();
+        // Academic should not be edited through this command
+        Academic academic = studentToEdit.getAcademic();
+
         if (editAdminDescriptor.isAnyFieldEdited()) {
             ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
                     .orElse(studentToEdit.getClassTime());
@@ -127,20 +132,13 @@ public class EditCommand extends Command {
                     .orElse(studentToEdit.getPaymentDate());
 
             // Additional Details cannot be edited through this channel
-            updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
-                    studentToEdit.getDetails());
+            return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
+                    updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate, studentToEdit.getDetails(),
+                    questions, exams, academic);
         } else {
-            updatedAdmin = studentToEdit.getAdmin();
+            return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, studentToEdit.getAdmin(),
+                    questions, exams, academic);
         }
-
-        // Questions should not be edited through this command
-        List<Question> questions = studentToEdit.getQuestions();
-        // Exams should not be edited through this command
-        List<Exam> exams = studentToEdit.getExams();
-        // Academic should not be edited through this command
-        Academic academic = studentToEdit.getAcademic();
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions, exams,
-                academic);
     }
 
     @Override
