@@ -23,16 +23,19 @@ public class Price implements Comparable<Price> {
      */
     public Price(double price) {
         requireNonNull(price);
-        checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         DecimalFormat df = new DecimalFormat("#.##");
-        this.price = Double.parseDouble(df.format(price));
+        double truncated = Double.parseDouble(df.format(price));
+        checkArgument(isValidPrice(truncated), MESSAGE_CONSTRAINTS);
+        this.price = truncated;
     }
 
     /**
      * Returns true if a given integer is a valid price.
      */
     public static boolean isValidPrice(double test) {
-        return test > 0 && test <= Math.pow(10, 12);
+        DecimalFormat df = new DecimalFormat("#.##");
+        double truncated = Double.parseDouble(df.format(test));
+        return truncated > 0 && truncated <= Math.pow(10, 12);
     }
 
     /**
