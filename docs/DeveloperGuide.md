@@ -110,8 +110,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the main catalogue data, which is essentially a list of `Project`s, each of which has a few `Participant`s who can do tasks and attend meetings.
-* exposes an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the main catalogue data, which is essentially a list of `Project`s, a list of `Person`s, and a list of their associations `Participation`s.
+* exposes unmodifiable `ObservableList<Project>` and `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -183,7 +183,7 @@ Step 1. The user launches the application. The default status of scope is `CATAL
 </div>
 The following sequence diagram shows how scoping works in the application.
 
-![ScopingSequence](images/ScopeSequence.png)
+![ScopingSequence](images/ScopingSequenceDiagram.png)
 
 Step 2. The user executes `start 3` command to view the details of the project of index 3 in the main catalogue. The `start` command
 calls `enter`, causing a switch of scoping status and assignment of `project` of focus in `MainCatalogue`.
