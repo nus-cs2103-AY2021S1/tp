@@ -36,7 +36,7 @@ make your life easier one file at a time, and free up your precious time to spen
 3. Type `help` into the command box, followed by pressing the `Enter` key to view the supported features. Alternatively, click the help button in the menu bar to access our webpage.
 
 ### User Interface
-![Illustration](images/Illustrations.PNG)
+![Illustration](images/screenshots/Illustrations.PNG)
 
 This diagram shows our interface.
 1. The left panel is the *Tag Panel*. It contains the list of tags that you have created.
@@ -257,6 +257,27 @@ Format: (All command) `help` or (Certain command) `help COMMAND`
 Examples : 
 * `help` (Shows all command and its format)
 * `help tag` (shows tag command description, format and examples usage)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Customisation
+
+### Changing themes
+HelloFile comes in light and dark themes. To change the theme, navigate to the top left-hand corner of the application,
+and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
+ as illustrated below.
+![Fig. 1](images/screenshots/changing_themes.png)
+![Fig. 2](images/screenshots/changing_themes2.png)
+
+### Changing view sizes
+HelloFile allows you to resize the view of each sub components for a clearer view of tags and folders. You can simply
+ drag each view to the size desired.
+![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
+![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
+
+### Persistent customisation
+All of your customisation options are saved and persists even when you close the application. HelloFile remembers your choices
+ so you can your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
 
