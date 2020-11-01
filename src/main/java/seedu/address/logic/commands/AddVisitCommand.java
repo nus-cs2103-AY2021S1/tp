@@ -24,7 +24,7 @@ public class AddVisitCommand extends Command {
             + PREFIX_VISIT_DATE + "DATE]\n"
             + "Input DATE as DD/MM/YYYY. Input YYYY as 19xx to 2xxx.\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + "[" + PREFIX_VISIT_DATE + "10/10/2020]";
+            + PREFIX_VISIT_DATE + "06/10/2020";
 
     public static final String MESSAGE_POPUP_PROMPT = "Please refer to the popup window and enter visitation log.";
 
