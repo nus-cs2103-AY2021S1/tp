@@ -44,9 +44,9 @@ public abstract class Command {
             var lastShownList = model.getFilteredIngredientList();
 
             if (ref.getZeroIndex() >= lastShownList.size()) {
-                return Result.error("Ingredient index '%d' is out of range (should be between 1 and %d)",
-                    ref.getOneIndex(), lastShownList.size()
-                );
+                var between = lastShownList.isEmpty() ? "there are no ingredients"
+                    : String.format("should be between 1 and %d", lastShownList.size());
+                return Result.error("Ingredient index '%d' is out of range (%s)", ref.getOneIndex(), between);
             }
 
             return Result.of(lastShownList.get(ref.getZeroIndex()));
@@ -71,9 +71,9 @@ public abstract class Command {
             var lastShownList = model.getFilteredRecipeList();
 
             if (ref.getZeroIndex() >= lastShownList.size()) {
-                return Result.error("Recipe index '%d' is out of range (should be between 1 and %d)",
-                    ref.getOneIndex(), lastShownList.size()
-                );
+                var between = lastShownList.isEmpty() ? "there are no recipes"
+                    : String.format("should be between 1 and %d", lastShownList.size());
+                return Result.error("Recipe index '%d' is out of range (%s)", ref.getOneIndex(), between);
             }
 
             return Result.of(lastShownList.get(ref.getZeroIndex()));

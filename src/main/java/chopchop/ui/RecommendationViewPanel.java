@@ -45,6 +45,14 @@ public class RecommendationViewPanel extends UiPart<Region> {
     }
 
     /**
+     * Forces a refresh on the ScrollPane, which causes it to recompute its size
+     * and show a scrollbar if necessary.
+     */
+    public void refresh() {
+        this.recommendationPanel.layout();
+    }
+
+    /**
      * Checks if the display contains any recipes, and fills the recipe grid view.
      */
     private void fillDisplay() {
