@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -43,6 +44,8 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        checkDuplicatePrefix(argMultimap, PREFIX_NAME, PREFIX_DEPARTMENT, PREFIX_OFFICE, PREFIX_PHONE, PREFIX_EMAIL);
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
@@ -64,4 +67,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Throws a {@code ParseException} if there is a duplicate prefix.
+     */
+    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
+        for (Prefix p : prefixes) {
+            if (argumentMultimap.getAllValues(p).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
+            }
+        }
+    }
 }

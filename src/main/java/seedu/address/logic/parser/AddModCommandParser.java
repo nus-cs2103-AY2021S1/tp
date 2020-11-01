@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
@@ -40,6 +41,8 @@ public class AddModCommandParser implements Parser<AddModCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModCommand.MESSAGE_USAGE));
         }
 
+        checkDuplicatePrefix(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_NAME);
+
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MODULE_NAME).get());
 
@@ -49,5 +52,15 @@ public class AddModCommandParser implements Parser<AddModCommand> {
         return new AddModCommand(module);
     }
 
+    /**
+     * Throws a {@code ParseException} if there is a duplicate prefix.
+     */
+    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
+        for (Prefix p : prefixes) {
+            if (argumentMultimap.getAllValues(p).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
+            }
+        }
+    }
 }
 

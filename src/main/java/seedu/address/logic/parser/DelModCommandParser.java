@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
@@ -32,6 +33,8 @@ public class DelModCommandParser implements Parser<DelModCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelModCommand.MESSAGE_USAGE));
         }
 
+        checkDuplicatePrefix(argMultimap, PREFIX_MODULE_CODE);
+
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
 
         try {
@@ -41,4 +44,16 @@ public class DelModCommandParser implements Parser<DelModCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DelModCommand.MESSAGE_USAGE), e);
         }
     }
+
+    /**
+     * Throws a {@code ParseException} if there is a duplicate prefix.
+     */
+    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
+        for (Prefix p : prefixes) {
+            if (argumentMultimap.getAllValues(p).size() > 1) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
+            }
+        }
+    }
+
 }

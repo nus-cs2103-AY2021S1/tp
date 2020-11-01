@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_CS1010S;
 import static seedu.address.logic.commands.CommandTestUtil.CODE_DESC_CS2103;
@@ -11,6 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS50;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS50;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CS50;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalModules.CS1010S;
@@ -71,5 +74,23 @@ public class AddModCommandParserTest {
         assertParseFailure(parser, INVALID_MODULE_CODE_DESC + NAME_DESC_CS50,
                 ModuleCode.MESSAGE_CONSTRAINTS);
 
+    }
+
+    @Test
+    public void parse_duplicateModuleField_failure() {
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_PREFIX, PREFIX_MODULE_CODE);
+        String userInput = CODE_DESC_CS50 + CODE_DESC_CS1010S + NAME_DESC_CS50;
+
+        assertParseFailure(parser, userInput,
+                expectedMessage);
+    }
+
+    @Test
+    public void parse_duplicateNAmeField_failure() {
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_PREFIX, PREFIX_MODULE_NAME);
+        String userInput = CODE_DESC_CS50 + NAME_DESC_CS50 + NAME_DESC_CS1010S;
+
+        assertParseFailure(parser, userInput,
+                expectedMessage);
     }
 }
