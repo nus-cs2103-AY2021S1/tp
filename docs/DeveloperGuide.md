@@ -304,6 +304,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Add a deadline**
 
+**Guarantees**
+
+* A deadline will be added only if there is no duplicate deadline existing in PlaNus.
+
 **MSS**
 
 1. User requests to add a deadline to the list.
@@ -329,6 +333,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 **Use case: UC02 - Add an event**
+
+**Guarantees**
+
+* A deadline will be added only if there is no duplicate deadline existing in PlaNus.
 
 **MSS**
 
@@ -400,7 +408,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 3b1. PlaNus shows an error message.
 
-    Use case resumes at step 3. 
+    Use case resumes at step 3.
+
+- 3c. Deadlines represented by some indexes are already marked as completed.
+
+  - 3c.1 PlaNus shows an error message.
+
+    Use case resumes at step 3.
 
 <br>
 
@@ -437,6 +451,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 **Use case: UC06 - Edit a task**
+
+**Guarantees**
+
+* A task will be edited only if the edited task is still valid.
 
 **MSS**
 
@@ -490,6 +508,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 **Use case: UC08 - Add a lesson**
+
+**Guarantees**
+
+* A new lesson will be added only there is no duplicate lesson already existing in PlaNus.
 
 **MSS**
 
@@ -549,6 +571,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 **Use case: UC10 - Edit a lesson**
+
+**Guarantees**
+
+* A lesson will be edited only if the edited lesson is still valid.
 
 **MSS**
 
