@@ -24,7 +24,7 @@ import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.DeleteTeammateCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
-import seedu.address.logic.commands.project.LeaveCommand;
+import seedu.address.logic.commands.global.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.TaskSorterCommand;
