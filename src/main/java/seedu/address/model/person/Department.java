@@ -9,16 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Department {
 
-    public static final String MESSAGE_CONSTRAINTS = "Departments can take any values, and it should not be blank.\n"
-        + "Departments should not be more than 30 characters in length.";
+    public static final String MESSAGE_CONSTRAINTS = "Departments can take any values, and it should not be blank";
 
     /*
      * The first character of the department must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    private static final Integer MAX_DEPARTMENT_LENGTH = 30;
 
     public final String value;
 
@@ -37,8 +34,7 @@ public class Department {
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidDepartment(String test) {
-        return test.matches(VALIDATION_REGEX)
-            && test.length() <= MAX_DEPARTMENT_LENGTH;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
