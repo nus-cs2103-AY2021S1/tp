@@ -12,7 +12,7 @@ public class AppointmentDateTime {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
-            "Times should be entered in the format: yyyy-MM-dd HH:mm";
+            "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
     // rather than a regex.
 
@@ -55,8 +55,8 @@ public class AppointmentDateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, DATE_TIME_FORMATTER);
-            return true;
+            LocalDateTime parsed = LocalDateTime.parse(test, DATE_TIME_FORMATTER);
+            return parsed.format(DATE_TIME_FORMATTER).equals(test);
         } catch (DateTimeParseException e) {
             return false;
         }
