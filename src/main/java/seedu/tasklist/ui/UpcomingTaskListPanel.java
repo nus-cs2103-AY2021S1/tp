@@ -17,8 +17,8 @@ import javafx.scene.layout.Region;
 import seedu.tasklist.commons.core.LogsCenter;
 import seedu.tasklist.model.assignment.Assignment;
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.Task;
+import seedu.tasklist.model.task.Time;
 
 /**
  * Panel containing the list of tasks.

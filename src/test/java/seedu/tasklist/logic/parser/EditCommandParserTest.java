@@ -25,9 +25,9 @@ import org.junit.jupiter.api.Test;
 import seedu.tasklist.commons.core.index.Index;
 import seedu.tasklist.logic.commands.EditCommand;
 import seedu.tasklist.logic.commands.EditCommand.EditAssignmentDescriptor;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.testutil.EditAssignmentDescriptorBuilder;
 
 public class EditCommandParserTest {

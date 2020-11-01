@@ -4,10 +4,10 @@ import static seedu.tasklist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 import seedu.tasklist.model.task.Task;
+import seedu.tasklist.model.task.Time;
 
 /**
  * Represents an Assignment in ProductiveNus.

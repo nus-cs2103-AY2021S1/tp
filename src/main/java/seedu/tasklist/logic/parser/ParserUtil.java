@@ -10,9 +10,9 @@ import seedu.tasklist.commons.util.StringUtil;
 import seedu.tasklist.logic.commands.ScheduleCommand;
 import seedu.tasklist.logic.parser.exceptions.ParseException;
 import seedu.tasklist.model.assignment.Priority;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

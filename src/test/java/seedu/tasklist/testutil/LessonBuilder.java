@@ -1,9 +1,9 @@
 package seedu.tasklist.testutil;
 
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 
 /**
  * A utility class to help with building Lesson objects.

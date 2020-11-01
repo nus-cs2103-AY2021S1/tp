@@ -16,9 +16,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 
 public class TimetableRetriever {
     private static final String JSON_API = "https://api.nusmods.com/v2/2020-2021/modules/";

@@ -2,9 +2,9 @@ package seedu.tasklist.testutil;
 
 import seedu.tasklist.logic.commands.EditCommand;
 import seedu.tasklist.model.assignment.Assignment;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 
 /**
  * A utility class to help with building EditAssignmentDescriptor objects.

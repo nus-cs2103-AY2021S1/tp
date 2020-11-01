@@ -32,9 +32,9 @@ import seedu.tasklist.logic.commands.AddCommand;
 import seedu.tasklist.logic.commands.CommandTestUtil;
 import seedu.tasklist.model.assignment.Assignment;
 import seedu.tasklist.model.assignment.Priority;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.testutil.AssignmentBuilder;
 
 public class AddCommandParserTest {

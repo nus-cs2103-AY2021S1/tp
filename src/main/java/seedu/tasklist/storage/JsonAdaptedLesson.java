@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.tasklist.commons.exceptions.IllegalValueException;
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 
 public class JsonAdaptedLesson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Lesson's %s field is missing!";

@@ -8,9 +8,9 @@ import static seedu.tasklist.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.tasklist.logic.parser.exceptions.ParseException;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
+import seedu.tasklist.model.task.Time;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

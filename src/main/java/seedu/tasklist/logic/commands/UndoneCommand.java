@@ -14,10 +14,9 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
-
+import seedu.tasklist.model.task.Time;
 
 /**
  * Removes done status for an assignment identified using it's displayed index from ProductiveNus.
