@@ -15,7 +15,7 @@ public class FullNameMatchesKeywordPredicate implements PersonPredicate {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> person.getName().fullName.toLowerCase().equals(keyword.toLowerCase()));
+                .anyMatch(keyword -> person.getName().fullName.equals(keyword));
     }
 
     @Override

@@ -26,13 +26,13 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
    * **`contact list`** : Lists all contacts.
 
-   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
+   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to Modduke.
 
-   * **`contact delete`** `n/John Doe` : Deletes `John Doe` from the contact list.
+   * **`contact delete`** `n/John Doe` : Deletes `John Doe` from the Modduke.
 
    * **`contact clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits Modduke.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -85,11 +85,12 @@ Example(s):
 
 Delete contacts with the given criteria from Modduke.
 
-Format: `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
+Format: `contact delete [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
+* If there are no more members in a meeting or module after they are deleted, then the meeting or module will be deleted as well.
 
 Example(s):
 * `contact delete n/Roy Chan n/Jake Ng` delete contacts `Roy Chan` and `Jake Ng` from Modduke.
@@ -390,7 +391,7 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
 **Clear Contacts** | `contact clear`
-**Delete Contacts** | `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
+**Delete Contacts** | `contact delete [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
 **Edit Contacts** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
 **List Contacts** | `contact list`
 **Find Contacts** | `find [n/KEYWORD]... [t/TAG_NAME]...` <br> e.g.,`find n/Roy t/friend`

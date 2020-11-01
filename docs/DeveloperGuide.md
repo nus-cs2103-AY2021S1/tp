@@ -375,6 +375,8 @@ people.stream().forEach(p -> {
 });
 ```
 The above code snippet will iterate through all Persons in the `FilteredList` and delete them from the `AddressBook`, `MeetingBook` and `ModuleBook`.
+If any Meeting or Module does not have any more members as a result of this deletion, then they will be deleted as well.
+If a Module is deleted, all Meetings of that Module are also deleted.
 
 #### Activity Diagram
 
