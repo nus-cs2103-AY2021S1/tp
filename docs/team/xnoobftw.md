@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     * Added CommandHistoryTraversalSequenceDiagram
     * Added "Adding an item manual test cases"
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=AY2021S1-CS2103T-T12-1&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=xnoobftw&zR=AY2021S1-CS2103T-T12-1%2Ftp%5Bmaster%5D&zACS=156.8695652173913&zS=2020-08-14&zFS=AY2021S1-CS2103T-T12&zU=2020-09-26&zMG=false&zFTF=commit&zFGS=groupByRepos)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=xnoobftw&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
@@ -63,4 +63,6 @@ Given below are my contributions to the project.
   [\#141](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/141) 
   [\#147](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/147) 
   [\#163](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/163)
+  [\#192](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/192)
+  [\#207](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/207)
   * Reported bugs (such as: [GUI bug](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/47))
