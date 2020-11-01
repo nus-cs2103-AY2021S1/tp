@@ -27,7 +27,6 @@ public class RedoCommand extends Command {
         } catch (VersionedListException versionedListException) {
             throw new CommandException(versionedListException.getMessage());
         }
-        //model.redoModuleList();
         return new CommandResult(MESSAGE_REDO_COMMAND_SUCCESS);
     }
 

@@ -44,11 +44,10 @@ public class ModuleList implements ReadOnlyModuleList {
      */
     public void resetData(ReadOnlyModuleList newData) {
         requireNonNull(newData);
-
         setModule(newData.getModuleList());
     }
 
-    //// module-level operations
+    //// Module-level operations
 
     /**
      * Returns true if a module with the same identity as {@code module} exists in the module list.
