@@ -3,12 +3,13 @@ package seedu.address.model.contact;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.ContactBuilder;
-
-import java.util.Set;
 
 public class ContactContainsTagsPredicateTest {
 

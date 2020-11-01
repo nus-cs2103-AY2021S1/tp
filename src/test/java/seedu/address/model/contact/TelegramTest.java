@@ -29,7 +29,7 @@ public class TelegramTest {
         assertFalse(Telegram.isValidTelegram(" ")); // spaces only
         assertFalse(Telegram.isValidTelegram("@^")); // contains non-alphanumeric characters only
         assertFalse(Telegram.isValidTelegram("@peter*")); // contains non-alphanumeric characters
-        assertFalse(Telegram.isValidTelegram("@test")); // contains less than 5 characters after "@"
+        assertFalse(Telegram.isValidTelegram("@pete")); // contains less than 5 characters after "@"
         assertFalse(Telegram.isValidTelegram("peterjack")); // missing "@" character
         assertFalse(Telegram.isValidTelegram("@peter jack")); // contains white space
 
