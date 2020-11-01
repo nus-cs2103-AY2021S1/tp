@@ -57,12 +57,13 @@ public class AddContactParser implements Parser<AddContactCommand> {
         ContactName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        boolean isContactImportant = false;
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-            contact = new Contact(name, email, telegram, tagList, false);
+            contact = new Contact(name, email, telegram, tagList, isContactImportant);
         } else {
-            contact = new Contact(name, email, tagList, false);
+            contact = new Contact(name, email, tagList, isContactImportant);
         }
 
         requireNonNull(contact);
