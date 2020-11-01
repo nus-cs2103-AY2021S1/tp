@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
-import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -54,11 +53,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         CommandExecutable executable = mcGymmyParser.parse(commandText);
-        try {
-            commandResult = executable.execute(model);
-        } catch (IllegalValueException e) {
-            throw new CommandException(e.getMessage());
-        }
+        commandResult = executable.execute(model);
         mcGymmyParser.setMacroList(model.getMacroList());
 
         try {

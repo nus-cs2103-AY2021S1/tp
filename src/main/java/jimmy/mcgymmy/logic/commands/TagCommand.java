@@ -6,7 +6,6 @@ import java.util.List;
 
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.commons.core.index.Index;
-import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
@@ -43,7 +42,7 @@ public class TagCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException, IllegalValueException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Food> lastShownList = model.getFilteredFoodList();
         Index index = indexParameter.consume();

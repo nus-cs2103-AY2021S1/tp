@@ -47,8 +47,6 @@ public class MacroRunner {
                 messagesToUser.add(result.getFeedbackToUser());
             }
             return new CommandResult(String.join("\n", messagesToUser));
-        } catch (IllegalValueException e) {
-            throw new CommandException(e.getMessage());
         } catch (CommandException e) {
             /* note: not factoring out code below because its only used here and its
                purpose/what it's doing is obvious, and factoring it out will be very messy. */
