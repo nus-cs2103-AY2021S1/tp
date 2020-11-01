@@ -70,10 +70,14 @@ public class QuantityAdder {
      * @return The quantity result after being incremented.
      */
     public Optional<Quantity> incrementQuantity(Quantity toBeAddedInto) {
+        BigInteger limit = new BigInteger("2147483647");
         BigInteger incrementValue = new BigInteger(valueToBeAdded);
         BigInteger currentQuantity = new BigInteger(toBeAddedInto.quantity);
         currentQuantity = currentQuantity.add(incrementValue);
         if (currentQuantity.signum() == -1) {
+            return Optional.empty();
+        }
+        if (currentQuantity.compareTo(limit) > 0) {
             return Optional.empty();
         }
         return Optional.of(new Quantity(currentQuantity.toString()));
