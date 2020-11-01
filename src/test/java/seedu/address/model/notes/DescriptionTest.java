@@ -20,8 +20,9 @@ public class DescriptionTest {
         // Empty string
         assertThrows(IllegalArgumentException.class, () -> new Description(""));
 
-        // More than 20 characters
-        assertThrows(IllegalArgumentException.class, () -> new Description("What is the meaning of life?"));
+        // More than 80 characters
+        assertThrows(IllegalArgumentException.class, () -> new Description("Lorem ipsum dolor"
+                + " sit amet, consectetur adipiscing elit. Integer dapibus sapiena"));
 
     }
 
