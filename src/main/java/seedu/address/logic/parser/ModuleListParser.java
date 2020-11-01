@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
@@ -82,8 +82,8 @@ public class ModuleListParser implements FeatureParser {
         case ClearModuleCommand.COMMAND_WORD:
             return new ClearModuleCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindModuleCommand.COMMAND_WORD:
+            return new FindModuleCommandParser().parse(arguments);
 
         case ListModuleCommand.COMMAND_WORD:
             return new ListModuleCommand();
