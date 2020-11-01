@@ -11,7 +11,8 @@ public class Id {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID numbers should only contain numbers with no leading zeroes, and it should be at least 3 digits long";
+            "ID numbers should only contain numbers with no leading zeroes, and it should be at least 3 digits "
+                    + "and at most 6 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,6}";
     public final String value;
 
