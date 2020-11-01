@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_NOTE_EVENTS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_NOTE_TODO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_RANDOM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_RANDOM;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -52,15 +52,16 @@ public class EditNoteCommandTest {
         Note lastNote = model.getNotebook().getNotesList().get(indexLastNote.getZeroBased());
 
         NoteBuilder noteInList = new NoteBuilder(lastNote);
-        Note editedNote = noteInList.withTitle(VALID_TITLE).withDescription(VALID_DESCRIPTION)
-                .build();
+        Note editedNote = noteInList.withTitle(VALID_TITLE_RANDOM)
+                .withDescription(VALID_DESCRIPTION_RANDOM).build();
 
         EditNoteCommand.EditNoteDescriptor editNoteDescriptor = new EditNoteDescriptorBuilder()
-                .withTitle(VALID_TITLE).withDescription(VALID_DESCRIPTION).build();
+                .withTitle(VALID_TITLE_RANDOM).withDescription(VALID_DESCRIPTION_RANDOM).build();
 
         EditNoteCommand editNoteCommand = new EditNoteCommand(indexLastNote, editNoteDescriptor);
 
-        String expectedMessage = String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS, editedNote);
+        String expectedMessage = String.format(EditNoteCommand.MESSAGE_EDIT_NOTE_SUCCESS,
+                editedNote);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
                 new Notebook(model.getNotebook()));
