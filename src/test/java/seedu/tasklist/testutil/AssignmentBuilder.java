@@ -5,7 +5,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -18,13 +18,13 @@ public class AssignmentBuilder {
     public static final String DEFAULT_DEADLINE = "01-02-2020 1800";
     public static final String DEFAULT_MODULE_CODE = "CS2103T";
     public static final boolean DEFAULT_REMIND = false;
-    public static final Deadline DEFAULT_SUGGESTED_START_TIME = new Deadline("01-02-2020 1800");
-    public static final Deadline DEFAULT_SUGGESTED_END_TIME = new Deadline("01-02-2020 2100");
+    public static final Time DEFAULT_SUGGESTED_START_TIME = new Time("01-02-2020 1800");
+    public static final Time DEFAULT_SUGGESTED_END_TIME = new Time("01-02-2020 2100");
     public static final String DEFAULT_PRIORITY = "None";
     public static final boolean DEFAULT_DONE = false;
 
     private Name name;
-    private Deadline deadline;
+    private Time deadline;
     private ModuleCode moduleCode;
     private Remind remind;
     private Schedule schedule;
@@ -36,7 +36,7 @@ public class AssignmentBuilder {
      */
     public AssignmentBuilder() {
         name = new Name(DEFAULT_NAME);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        deadline = new Time(DEFAULT_DEADLINE);
         moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         remind = new Remind(DEFAULT_REMIND);
         schedule = new Schedule(DEFAULT_SUGGESTED_START_TIME, DEFAULT_SUGGESTED_END_TIME);
@@ -75,10 +75,10 @@ public class AssignmentBuilder {
     }
 
     /**
-     * Sets the {@code Deadline} of the {@code Assignment} that we are building.
+     * Sets the deadline of the {@code Assignment} that we are building.
      */
     public AssignmentBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
+        this.deadline = new Time(deadline);
         return this;
     }
 
@@ -93,7 +93,7 @@ public class AssignmentBuilder {
     /**
      * Sets the {@code Schedule} of the {@code Assignment} that we are building.
      */
-    public AssignmentBuilder withSchedule(Deadline suggestedStartTime, Deadline suggestedEndTime) {
+    public AssignmentBuilder withSchedule(Time suggestedStartTime, Time suggestedEndTime) {
         this.schedule = new Schedule(suggestedStartTime, suggestedEndTime);
         return this;
     }

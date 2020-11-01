@@ -1,7 +1,7 @@
 package seedu.tasklist.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tasklist.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

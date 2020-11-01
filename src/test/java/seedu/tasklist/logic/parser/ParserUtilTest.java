@@ -8,7 +8,7 @@ import static seedu.tasklist.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import org.junit.jupiter.api.Test;
 
 import seedu.tasklist.logic.parser.exceptions.ParseException;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -76,14 +76,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsDeadline() throws Exception {
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        Time expectedDeadline = new Time(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
-        Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
+        Time expectedDeadline = new Time(VALID_DEADLINE);
         assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 

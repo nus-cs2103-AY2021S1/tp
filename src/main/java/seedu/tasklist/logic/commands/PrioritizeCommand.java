@@ -15,7 +15,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -75,7 +75,7 @@ public class PrioritizeCommand extends Command {
         assert assignmentToPrioritize != null;
 
         Name updatedName = assignmentToPrioritize.getName();
-        Deadline updatedDeadline = assignmentToPrioritize.getDeadline();
+        Time updatedDeadline = assignmentToPrioritize.getDeadline();
         ModuleCode updatedModuleCode = assignmentToPrioritize.getModuleCode();
         Remind updatedRemind = assignmentToPrioritize.getRemind();
         Schedule updatedSchedule = assignmentToPrioritize.getSchedule();

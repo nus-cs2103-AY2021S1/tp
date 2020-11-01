@@ -32,7 +32,7 @@ import seedu.tasklist.logic.commands.AddCommand;
 import seedu.tasklist.logic.commands.CommandTestUtil;
 import seedu.tasklist.model.assignment.Assignment;
 import seedu.tasklist.model.assignment.Priority;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 import seedu.tasklist.testutil.AssignmentBuilder;
@@ -127,7 +127,7 @@ public class AddCommandParserTest {
 
         // invalid deadline
         assertParseFailure(parser, NAME_DESC_LAB + INVALID_DEADLINE_DESC + MODULE_CODE_DESC_LAB,
-                Deadline.MESSAGE_CONSTRAINTS);
+                Time.MESSAGE_CONSTRAINTS);
 
         // invalid module code
         assertParseFailure(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + INVALID_MODULE_CODE_DESC,

@@ -21,7 +21,7 @@ import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 import seedu.tasklist.model.task.Task;
@@ -49,14 +49,14 @@ public class ScheduleCommand extends Command {
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
 
     private final Index targetIndex;
-    private final Deadline doBefore;
+    private final Time doBefore;
     private final int expectedHours;
 
     /**
      * Constructs a ScheduleCommand to set reminders to the specified assignment.
      * @param targetIndex index of the assignment in the filtered assignment list to edit
      */
-    public ScheduleCommand(Index targetIndex, int expectedHours, Deadline doBefore) {
+    public ScheduleCommand(Index targetIndex, int expectedHours, Time doBefore) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.doBefore = doBefore;
@@ -107,8 +107,8 @@ public class ScheduleCommand extends Command {
 
     private Schedule getRandom(List<LocalDateTime> list) {
         int rnd = new Random().nextInt(list.size());
-        Deadline suggestedStartTime = new Deadline(list.get(rnd));
-        Deadline suggestedEndTime = new Deadline(list.get(rnd).plusHours(expectedHours));
+        Time suggestedStartTime = new Time(list.get(rnd));
+        Time suggestedEndTime = new Time(list.get(rnd).plusHours(expectedHours));
         return new Schedule(suggestedStartTime, suggestedEndTime);
     }
 
@@ -157,7 +157,7 @@ public class ScheduleCommand extends Command {
         assert assignmentToSchedule != null;
 
         Name updatedName = assignmentToSchedule.getName();
-        Deadline updatedDeadline = assignmentToSchedule.getDeadline();
+        Time updatedDeadline = assignmentToSchedule.getDeadline();
         ModuleCode updatedModuleCode = assignmentToSchedule.getModuleCode();
         Remind updatedRemind = assignmentToSchedule.getRemind();
         Priority priority = assignmentToSchedule.getPriority();

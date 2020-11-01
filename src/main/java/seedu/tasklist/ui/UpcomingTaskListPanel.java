@@ -1,6 +1,6 @@
 package seedu.tasklist.ui;
 
-import static seedu.tasklist.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -17,7 +17,7 @@ import javafx.scene.layout.Region;
 import seedu.tasklist.commons.core.LogsCenter;
 import seedu.tasklist.model.assignment.Assignment;
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.Task;
 
 /**
@@ -48,7 +48,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
         upcomingTaskListView.setCellFactory(listView -> new UpcomingTaskListViewCell());
     }
 
-    public static void getDueDate(Label label, Deadline deadline) {
+    public static void getDueDate(Label label, Time deadline) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
         String formattedDue = due.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));

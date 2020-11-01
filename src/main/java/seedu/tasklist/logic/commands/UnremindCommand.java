@@ -14,7 +14,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -70,7 +70,7 @@ public class UnremindCommand extends NegateCommand {
         assert assignmentToUnremind != null;
 
         Name updatedName = assignmentToUnremind.getName();
-        Deadline updatedDeadline = assignmentToUnremind.getDeadline();
+        Time updatedDeadline = assignmentToUnremind.getDeadline();
         ModuleCode updatedModuleCode = assignmentToUnremind.getModuleCode();
         Remind updatedRemind = new Remind();
         Schedule updatedSchedule = assignmentToUnremind.getSchedule();

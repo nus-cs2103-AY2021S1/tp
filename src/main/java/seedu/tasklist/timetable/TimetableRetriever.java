@@ -16,7 +16,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import seedu.tasklist.model.lesson.Lesson;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -182,7 +182,7 @@ public class TimetableRetriever {
             if (date.isAfter(LocalDate.now())) {
                 String startTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("startTime");
                 String endTime = date.format(LOCAL_DATE_FORMATTER) + " " + (String) currentData.get("endTime");
-                lessons.add(new Lesson(new Name(name), new Deadline(startTime), new Deadline(endTime),
+                lessons.add(new Lesson(new Name(name), new Time(startTime), new Time(endTime),
                         new ModuleCode(module)));
             }
         }

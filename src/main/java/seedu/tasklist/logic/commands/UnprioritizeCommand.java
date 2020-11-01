@@ -14,7 +14,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -73,7 +73,7 @@ public class UnprioritizeCommand extends NegateCommand {
         assert assignmentToUnprioritize != null;
 
         Name updatedName = assignmentToUnprioritize.getName();
-        Deadline updatedDeadline = assignmentToUnprioritize.getDeadline();
+        Time updatedDeadline = assignmentToUnprioritize.getDeadline();
         ModuleCode updatedModuleCode = assignmentToUnprioritize.getModuleCode();
         Remind updatedRemind = assignmentToUnprioritize.getRemind();
         Schedule updatedSchedule = assignmentToUnprioritize.getSchedule();

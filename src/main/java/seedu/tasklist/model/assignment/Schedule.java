@@ -1,11 +1,11 @@
 package seedu.tasklist.model.assignment;
 
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 
 public class Schedule {
     private final boolean schedule;
-    private final Deadline suggestedStartTime;
-    private final Deadline suggestedEndTime;
+    private final Time suggestedStartTime;
+    private final Time suggestedEndTime;
 
     /**
      * Constructs a false schedule
@@ -19,7 +19,7 @@ public class Schedule {
     /**
      * Constructs a suggested schedule
      */
-    public Schedule(Deadline suggestedStartTime, Deadline suggestedEndTime) {
+    public Schedule(Time suggestedStartTime, Time suggestedEndTime) {
         schedule = true;
         this.suggestedStartTime = suggestedStartTime;
         this.suggestedEndTime = suggestedEndTime;
@@ -29,11 +29,11 @@ public class Schedule {
         return schedule;
     }
 
-    public Deadline getSuggestedStartTime() {
+    public Time getSuggestedStartTime() {
         return suggestedStartTime;
     }
 
-    public Deadline getSuggestedEndTime() {
+    public Time getSuggestedEndTime() {
         return suggestedEndTime;
     }
 }

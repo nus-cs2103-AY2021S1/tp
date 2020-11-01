@@ -4,7 +4,7 @@ import static seedu.tasklist.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 import seedu.tasklist.model.task.Task;
@@ -22,7 +22,7 @@ public class Assignment extends Task {
     /**
      * Every field must be present and not null.
      */
-    public Assignment(Name name, Deadline deadline, ModuleCode moduleCode, Remind remind, Schedule schedule,
+    public Assignment(Name name, Time deadline, ModuleCode moduleCode, Remind remind, Schedule schedule,
                       Priority priority, Done done) {
         super(name, deadline, moduleCode);
         requireAllNonNull(name, deadline, moduleCode, remind);
@@ -36,7 +36,7 @@ public class Assignment extends Task {
         return schedule;
     }
 
-    public Deadline getDeadline() {
+    public Time getDeadline() {
         return super.getTime();
     }
 

@@ -19,7 +19,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -88,7 +88,7 @@ public class EditCommand extends Command {
                                                      EditAssignmentDescriptor editAssignmentDescriptor) {
         assert assignmentToEdit != null;
         Name updatedName = editAssignmentDescriptor.getName().orElse(assignmentToEdit.getName());
-        Deadline updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
+        Time updatedDeadline = editAssignmentDescriptor.getDeadline().orElse(assignmentToEdit.getDeadline());
         ModuleCode updatedModuleCode = editAssignmentDescriptor.getModuleCode()
                 .orElse(assignmentToEdit.getModuleCode());
         Remind updatedRemind = assignmentToEdit.getRemind();
@@ -124,7 +124,7 @@ public class EditCommand extends Command {
      */
     public static class EditAssignmentDescriptor {
         private Name name;
-        private Deadline deadline;
+        private Time deadline;
         private ModuleCode moduleCode;
 
         public EditAssignmentDescriptor() {}
@@ -153,11 +153,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setDeadline(Deadline deadline) {
+        public void setDeadline(Time deadline) {
             this.deadline = deadline;
         }
 
-        public Optional<Deadline> getDeadline() {
+        public Optional<Time> getDeadline() {
             return Optional.ofNullable(deadline);
         }
 

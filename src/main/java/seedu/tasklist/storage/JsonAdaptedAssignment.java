@@ -9,7 +9,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -95,12 +95,12 @@ class JsonAdaptedAssignment {
 
         if (deadline == null) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final Time modelDeadline = new Time(deadline);
 
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(
@@ -117,17 +117,17 @@ class JsonAdaptedAssignment {
 
         if ((suggestedStartTime.equals("") || suggestedEndTime.equals("")) && isScheduled) {
             throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!suggestedStartTime.equals("") && !Deadline.isValidDeadline(suggestedStartTime)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!suggestedStartTime.equals("") && !Time.isValidDeadline(suggestedStartTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        if (!suggestedEndTime.equals("") && !Deadline.isValidDeadline(suggestedEndTime)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!suggestedEndTime.equals("") && !Time.isValidDeadline(suggestedEndTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         if (isScheduled) {
-            final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
-                    new Deadline(suggestedEndTime));
+            final Schedule modelSchedule = new Schedule(new Time(suggestedStartTime),
+                    new Time(suggestedEndTime));
             return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority,
                     modelDone);
         } else {

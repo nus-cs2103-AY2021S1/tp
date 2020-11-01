@@ -2,7 +2,7 @@ package seedu.tasklist.testutil;
 
 import seedu.tasklist.logic.commands.EditCommand;
 import seedu.tasklist.model.assignment.Assignment;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -40,10 +40,10 @@ public class EditAssignmentDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Deadline} of the {@code EditAssignmentDescriptor} that we are building.
+     * Sets the deadline of the {@code EditAssignmentDescriptor} that we are building.
      */
     public EditAssignmentDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+        descriptor.setDeadline(new Time(deadline));
         return this;
     }
 

@@ -12,7 +12,7 @@ import java.time.format.ResolverStyle;
  * Represents the deadline of an assignment in the assignment list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
-public class Deadline {
+public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should only be in the format 'dd-MM-uuuu HHmm', and contain a valid date and time";
     public static final String DEADLINE_DATE_TIME_FORMAT = "dd-MM-uuuu HHmm";
@@ -21,22 +21,22 @@ public class Deadline {
             .withResolverStyle(ResolverStyle.STRICT);
 
     /**
-     * Constructs a {@code Deadline}.
+     * Constructs a {@code Time}.
      *
      * @param deadline A valid deadline.
      */
-    public Deadline(String deadline) {
+    public Time(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         value = deadline;
     }
 
     /**
-     * Constructs a {@code Deadline}.
+     * Constructs a {@code Time}.
      *
      * @param deadline A valid deadline with format LocalDateTime.
      */
-    public Deadline(LocalDateTime deadline) {
+    public Time(LocalDateTime deadline) {
         requireNonNull(deadline);
         value = deadline.format(inputFormat);
     }
@@ -59,7 +59,7 @@ public class Deadline {
     /**
      * Returns true if the deadline is before another deadline
      */
-    public boolean isBefore(Deadline other) {
+    public boolean isBefore(Time other) {
         LocalDateTime thisTime = LocalDateTime.parse(value, inputFormat);
         LocalDateTime thatTime = LocalDateTime.parse(other.value, inputFormat);
         return thisTime.isBefore(thatTime);
@@ -77,8 +77,8 @@ public class Deadline {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Deadline // instanceof handles nulls
-                && value.equals(((Deadline) other).value)); // state check
+                || (other instanceof Time // instanceof handles nulls
+                && value.equals(((Time) other).value)); // state check
     }
 
     @Override

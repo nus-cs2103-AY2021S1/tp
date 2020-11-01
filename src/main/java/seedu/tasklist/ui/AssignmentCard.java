@@ -1,6 +1,6 @@
 package seedu.tasklist.ui;
 
-import static seedu.tasklist.model.task.Deadline.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import seedu.tasklist.model.assignment.Assignment;
 import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 
 /**
  * An UI component that displays information of a {@code Assignment}.
@@ -173,7 +173,7 @@ public class AssignmentCard extends UiPart<Region> {
         styleClass.add(NONE_PRIORITY_STYLE_CLASS);
     }
 
-    public void getDueDate(Label label, Deadline deadline) {
+    public void getDueDate(Label label, Time deadline) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime due = LocalDateTime.parse(deadline.value, inputFormat);
         String formattedDue = due.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));

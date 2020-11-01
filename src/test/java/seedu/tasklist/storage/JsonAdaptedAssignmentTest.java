@@ -8,7 +8,7 @@ import static seedu.tasklist.testutil.TypicalAssignments.CS2103T_TUT;
 import org.junit.jupiter.api.Test;
 
 import seedu.tasklist.commons.exceptions.IllegalValueException;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -61,7 +61,7 @@ public class JsonAdaptedAssignmentTest {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(VALID_NAME, INVALID_DEADLINE, VALID_MODULE_CODE,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
                 NO_PRIORITY, VALID_IS_MARKED_DONE);
-        String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Time.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
 
@@ -70,7 +70,7 @@ public class JsonAdaptedAssignmentTest {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(VALID_NAME, null, VALID_MODULE_CODE,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
                 NO_PRIORITY, VALID_IS_MARKED_DONE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
 

@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 import seedu.tasklist.commons.core.index.Index;
 import seedu.tasklist.logic.commands.EditCommand;
 import seedu.tasklist.logic.commands.EditCommand.EditAssignmentDescriptor;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 import seedu.tasklist.testutil.EditAssignmentDescriptorBuilder;
@@ -67,14 +67,14 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS); // invalid deadline
         assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC,
                 ModuleCode.MESSAGE_CONSTRAINTS); // invalid module code
 
         // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(
-                parser, "1" + DEADLINE_DESC_LAB + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+                parser, "1" + DEADLINE_DESC_LAB + INVALID_DEADLINE_DESC, Time.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + VALID_MODULE_CODE_HW

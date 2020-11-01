@@ -19,7 +19,7 @@ import seedu.tasklist.model.Model;
 import seedu.tasklist.model.ModelManager;
 import seedu.tasklist.model.UserPrefs;
 import seedu.tasklist.model.assignment.Assignment;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 
 
 /**
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Deadline.DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.DEADLINE_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();

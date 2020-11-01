@@ -10,7 +10,7 @@ import seedu.tasklist.commons.util.StringUtil;
 import seedu.tasklist.logic.commands.ScheduleCommand;
 import seedu.tasklist.logic.parser.exceptions.ParseException;
 import seedu.tasklist.model.assignment.Priority;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -84,18 +84,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String deadline} into a {@code Time}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
+     * @throws ParseException if the given deadline is invalid.
      */
-    public static Deadline parseDeadline(String deadline) throws ParseException {
+    public static Time parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!Deadline.isValidDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Time.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
-        return new Deadline(trimmedDeadline);
+        return new Time(trimmedDeadline);
     }
 
     /**

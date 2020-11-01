@@ -14,7 +14,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -74,7 +74,7 @@ public class UndoneCommand extends NegateCommand {
         assert assignmentToMarkUndone != null;
 
         Name updatedName = assignmentToMarkUndone.getName();
-        Deadline updatedDeadline = assignmentToMarkUndone.getDeadline();
+        Time updatedDeadline = assignmentToMarkUndone.getDeadline();
         ModuleCode updatedModuleCode = assignmentToMarkUndone.getModuleCode();
         Remind updatedRemind = assignmentToMarkUndone.getRemind();
         Schedule updatedSchedule = assignmentToMarkUndone.getSchedule();

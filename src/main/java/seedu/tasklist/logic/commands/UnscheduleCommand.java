@@ -14,7 +14,7 @@ import seedu.tasklist.model.assignment.Done;
 import seedu.tasklist.model.assignment.Priority;
 import seedu.tasklist.model.assignment.Remind;
 import seedu.tasklist.model.assignment.Schedule;
-import seedu.tasklist.model.task.Deadline;
+import seedu.tasklist.model.task.Time;
 import seedu.tasklist.model.task.ModuleCode;
 import seedu.tasklist.model.task.Name;
 
@@ -75,7 +75,7 @@ public class UnscheduleCommand extends NegateCommand {
         assert assignmentToUnschedule != null;
 
         Name updatedName = assignmentToUnschedule.getName();
-        Deadline updatedDeadline = assignmentToUnschedule.getDeadline();
+        Time updatedDeadline = assignmentToUnschedule.getDeadline();
         ModuleCode updatedModuleCode = assignmentToUnschedule.getModuleCode();
         Remind updatedRemind = assignmentToUnschedule.getRemind();
         Schedule updatedSchedule = new Schedule();
