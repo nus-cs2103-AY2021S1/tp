@@ -21,6 +21,7 @@ import seedu.address.model.task.Task;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
      * @throws CommandException If an error occurs during command execution.
@@ -43,6 +44,7 @@ public interface Logic {
 
     /**
      * Gets the project to be displayed on dashboard.
+     *
      * @return the project to be displayed on dashboard.
      */
     Optional<Project> getProjectToBeDisplayedOnDashBoard();
@@ -97,9 +99,3 @@ public interface Logic {
      */
     boolean isProjectsView();
 }
-
-///** Returns an unmodifiable view of the filtered list of tasks */
-//List<Task> getFilteredTaskList();
-
-///** Returns an unmodifiable view of the filtered list of teammates */
-//List<Person> getFilteredTeammateList();
