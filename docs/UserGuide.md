@@ -10,12 +10,12 @@ title: User Guide
 
 ## Introduction
 
-[//]: # (// TODO longer intro)
+**Inventoryinator** is a **desktop app for managing game inventories**, and can be used for **any generic game** where 
+you have a need for sorting and collating resources. If you find yourself ever wondering how much resources you have
+back at home base, or are unsure whether you can craft your next upgrade, then this is the app for you.
 
-[//]: # (// TODO personalise intro, don't bother with CLI GUI copypasta)
-
-**Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
+Our app is optimized for use via the **typing** of commands, while your inventory is visually represented on our 
+**Graphical User Interface (GUI)**. If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
 This User Guide will help you get started with the setup of Inventoryinator and provide a quick reference of
