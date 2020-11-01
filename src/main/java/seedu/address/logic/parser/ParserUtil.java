@@ -367,4 +367,22 @@ public class ParserUtil {
                     + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
         }
     }
+
+    /**
+     * Returns a LocalDateTime based on the given input.
+     *
+     * @param date date in string.
+     * @return LocalDateTime datetime object.
+     * @throws ParseException when the given string is in the wrong format.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return localDateTime;
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date and time entered. Please follow this format: "
+                    + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
+        }
+    }
 }
