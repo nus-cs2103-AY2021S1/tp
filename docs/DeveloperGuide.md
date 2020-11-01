@@ -403,6 +403,20 @@ The diagram below gives a short overview on what happens when a user's input is 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Extension Suggestions**
+
+### Person management
+
+### More scopes
+
+### More attributes for projects and persons
+
+### More task implementation
+
+### Custom attributes for projects and persons
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
