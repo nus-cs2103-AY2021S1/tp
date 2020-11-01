@@ -50,8 +50,7 @@ public class Person {
      * Overloaded constructor to take in listOfParticipations
      */
     public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address,
-                  HashMap<ProjectName,
-                          Participation> listOfParticipations) {
+                  HashMap<ProjectName, Participation> listOfParticipations) {
         requireAllNonNull(personName, gitUserName, phone, email, address);
         this.personName = personName;
         this.gitUserName = gitUserName;
@@ -107,7 +106,7 @@ public class Person {
      * Gets all projects that this person participates in.
      */
     public List<Project> getProjects() {
-        List<Project> projects = Collections.emptyList();
+        List<Project> projects = new ArrayList<>();
         listOfParticipations.values().forEach(p -> projects.add(p.getProject()));
         return projects;
     }
@@ -130,6 +129,7 @@ public class Person {
      * Gets all tasks that this person participates in.
      */
     public List<Task> getTasks() {
+        System.out.println(listOfParticipations);
         List<Task> tasks = Collections.emptyList();
         listOfParticipations.values().forEach(p -> tasks.addAll(p.getTasks()));
         return tasks;
@@ -157,6 +157,7 @@ public class Person {
     public void addProject(Project p) {
         listOfParticipations.put(p.getProjectName(),
                 new Participation(personName.toString(), p.getProjectName().toString()));
+        System.out.println("added: " + p);
     }
 
     /**

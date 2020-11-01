@@ -83,6 +83,7 @@ class JsonSerializableMainCatalogue {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPATION);
             }
             participation.getProject().addExistingParticipation(participation);
+            participation.getPerson().addProject(participation.getProject());
 
             mainCatalogue.addParticipation(participation);
         }
