@@ -739,7 +739,7 @@ list lt/all
 Generates a CSV file that contains all stocks. Csv file will be named according to the user input, and the file name
 can only contain alphanumeric characters. Users may want to sort the stocks using `sort` command
 to sort the stock in their preferred order before converting it into the CSV file. The CSV file is saved
-to `[root directory]/data/userInput.CSV` after successfully executing the command.
+to `[root directory]/data/userInput.csv` after successfully executing the command.
 
 <h4>Format</h4>
 
@@ -758,12 +758,12 @@ folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)
  
-Open `stocks.CSV` folder circled in red with excel.
+Open `stocks.csv` folder circled in red with excel.
 
 ![stockCsvExample2](images/stockCsvExample2.png)
 
 The stocks in your inventory will be listed according the to format shown below. The file also includes
-the latest update time for the `stocks.CSV`.
+the latest update time for the `stocks.csv`.
 
 ![stockCsvExample3](images/stockCsvExample3.png)
 
@@ -806,7 +806,7 @@ tab
 
 ### Saving data
 Data (all stocks in inventory in JSON) is automatically saved to
-`[root directory]/data/stockbook.JSON` when any of these commands are executed:
+`[root directory]/data/stockbook.json` when any of these commands are executed:
 * add
 * delete
 * note
@@ -814,7 +814,7 @@ Data (all stocks in inventory in JSON) is automatically saved to
 * clear
 
 The set of used serial number sources is automatically saved to
-`[root directory]/data/serialnumbers.JSON` when any of these commands is executed:
+`[root directory]/data/serialnumbers.json` when any of these commands is executed:
 * add
 
 ### Exiting Warenager: `exit`

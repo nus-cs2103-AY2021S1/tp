@@ -31,6 +31,7 @@ public class StatisticsWindow extends UiPart<Region> {
     public StatisticsWindow() {
         super(FXML);
         statisticsPieChart.setTitle("No statistics shown");
+        statisticsPieChart.setLegendVisible(false);
     }
 
     /**

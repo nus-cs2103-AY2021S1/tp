@@ -329,14 +329,21 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+.pane-with-border-chart {
+     -fx-background-color: derive(#F1F1F1, 0%);
+     -fx-border-color: derive(#F1F1F1, 0%);
+     -fx-border-top-width: 0px;
+}
+
 .chart {
-    -fx-padding: 0 5 20 5;
+    -fx-padding: 0 5 0 5;
     -fx-font-family: "Quicksand", Aileron, Arial, sans-serif;
     -fx-background-color: #F1F1F1;
+     -fx-alignment: center;
 }
 
 .chart-content {
-    -fx-padding: 0 5 20 5;
+    -fx-padding: 0 5 0 5;
 }
 
 .chart-pie-label {
@@ -354,7 +361,7 @@
 }
 
 .chart-title {
-    -fx-padding: 30 0 0 0;
+    -fx-padding: 15 0 0 0;
     -fx-font-size: 25;
     -fx-text-fill: #000000;
     -fx-underline: true;
