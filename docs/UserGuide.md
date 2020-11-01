@@ -10,12 +10,12 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
   {:toc}
 </div>
 
-## Introduction
+## 1. Introduction
 This section gives you a quick overview about ZooKeep.
 
 `ZooKeep` is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `ZooKeep` can get your management tasks done faster than traditional GUI apps.
 
-## Legend
+## 2. Legend
 The following are symbols you should look out for when using this guide.
 
 <div markdown="span" class="alert alert-info">
@@ -36,7 +36,7 @@ The following are symbols you should look out for when using this guide.
 
 </div>
 
-## Quick start
+## 3. Quick start
 You can follow the steps below to get started with ZooKeep.
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -59,7 +59,7 @@ You can follow the steps below to get started with ZooKeep.
 
 1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
 
-## Basic features
+## 4. Basic features
 This section provides you with the most basic features to get you started with ZooKeep.
 
 <div markdown="block" class="alert alert-info">
@@ -80,7 +80,7 @@ This section provides you with the most basic features to get you started with Z
 
 </div>
 
-### Viewing help: `help`
+### 4.1. Viewing help: `help`
 
 If you ever need any help on how to use `ZooKeep` or want to see what features it supports, type `help` into the
 input box, and `ZooKeep` will show a message as shown in *Figure 2* below explaining how you can access the help page.
@@ -99,7 +99,7 @@ A message is displayed containing a link to this User Guide.
 
 ---
 
-### Exiting the program: `exit`
+### 4.2. Exiting the program: `exit`
 
 After you finish using `ZooKeep`, you can use this command to close it.
 
@@ -111,7 +111,7 @@ Your `ZooKeep` application closes.
 
 ---
 
-### Listing all animals: `list`
+### 4.3. Listing all animals: `list`
 
 This command is used when you need to display all the animals stored in your `ZooKeep` book, such
 as when you have finished filtering animals using the `find` command.
@@ -126,7 +126,7 @@ All animals in your `ZooKeep` book are displayed.
 
 ---
 
-### Clearing all entries: `clear`
+### 4.4. Clearing all entries: `clear`
 
 You can use this to clear all the entries of your `ZooKeep` book and start the application with a clean slate.
 
@@ -140,7 +140,7 @@ All animals in your `ZooKeep` book are cleared.
 
 ---
 
-### Adding an animal: `add`
+### 4.5. Adding an animal: `add`
 
 When you get new animals assigned to you, you can use `add` to make new entries for them to keep track of any
 important information. Compulsory entries you need to add are the animals' names, species and ID number.
@@ -183,7 +183,7 @@ and feed times of `1230 hrs` and `1400 hrs` is added to your `ZooKeep` book.
 
 ---
 
-### Deleting an animal: `delete`
+### 4.6. Deleting an animal: `delete`
 
 When a particular animal in your `ZooKeep` book is no longer under your care, you can use this command to 
 delete that animal by entering its `ID`. `ID` refers to the id number shown in the displayed animal list.
@@ -214,7 +214,7 @@ The animal with ID `200` is deleted from your `ZooKeep` book.
 
 ---
 
-### Undoing a command: `undo`
+### 4.7. Undoing a command: `undo`
 
 When you make a mistake in your `ZooKeep` book, such as an accidental `delete`, you can perform this operation which
 undoes the most recently used command. No changes will be made if no previous state exists, meaning that you cannot
@@ -230,7 +230,7 @@ The previous command is undone.
 
 ---
 
-### Redoing an undo: `redo`
+### 4.8. Redoing an undo: `redo`
 
 You can use this command to quickly redo a command that was just undone by undo. For example, after you `undo` an
 accidental `delete`, you can use `redo` to perform the delete again. You can only use redo if `undo`
@@ -246,11 +246,11 @@ The undone command is redone.
 
 ---
 
-## Advanced features
+## 5. Advanced features
 
 When you are comfortable with the basic features, you can try the follow advanced features to achieve more.
 
-### Appending information to an animal's fields: `append`
+### 5.1. Appending information to an animal's fields: `append`
 
 If you forgot to add the medical conditions and/or feed times for a particular animal, you can use this feature to
 append the missing information to the respective fields of the animal with the specified `ID` instead of deleting and adding
@@ -294,7 +294,7 @@ The medical condition "Flu" is appended to the medical conditions of the animal 
 
 ---
 
-### Replacing an animal's fields: `replace`
+### 5.2. Replacing an animal's fields: `replace`
 
 If you made a mistake while entering the information of an animal in your `ZooKeep` book, instead of deleting the animal
 and entering all the information again, you can use this command to replace only the incorrect fields
@@ -340,7 +340,7 @@ The animal with ID `200` has its ID replaced with `2910` its name with `Jirachi`
 
 ---
 
-### Finding animals by their fields: `find`
+### 4.3. Finding animals by their fields: `find`
 
 You may find yourself in situations where you need to retrieve a specific group of animals from your `ZooKeep` book. For
 example, you may need to find animals with the same feed times or similar medical conditions.
@@ -370,7 +370,7 @@ The animal with name `Kai Kai` is displayed.
 
 ---
 
-### Sorting animals: `sort`
+### 4.4. Sorting animals: `sort`
 
 If you need to create some sort of ordering in your `ZooKeep` book, such as a chronological order by feed times to organise
 your feeding schedule, this feature helps to sort the animals by the given category and updates the list of animals accordingly.
@@ -414,7 +414,7 @@ The animals in your `ZooKeep` book are sorted by their ID, in ascending order.
 
 ---
 
-### Saving a snapshot of animal data: `snap`
+### 4.5. Saving a snapshot of animal data: `snap`
 
 This command is useful for storing important archives in the `data/snapshots` folder of your `ZooKeep` application, in case you need
 to refer to the information of animals that have been deleted long ago. When executed, this command will
@@ -453,7 +453,7 @@ was executed.
 
 ---
 
-## FAQ
+## 5. FAQ
 This section lists some of the frequently asked questions.
 
 **Q**: How do I transfer my data to a new computer?<br>
@@ -478,7 +478,7 @@ This section lists some of the frequently asked questions.
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
-## Command summary
+## 6. Command summary
 If you need a quick reference guide, the following tables should help.
 
 **Basic commands**
