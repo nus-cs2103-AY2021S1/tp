@@ -4,7 +4,7 @@ title: User Guide
 ---
 If this is your first time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
 
-* Table of Contents
+1. Table of Contents
 {:toc}
 
 ## Introduction
