@@ -262,6 +262,8 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
+* At least one medical condition or feed time must be specified.
+
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
 * `ID` should be at least 3 digits long (not counting leading zeroes, if any).
@@ -305,6 +307,8 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
+
+* At least one field to replace must be specified.
 
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
