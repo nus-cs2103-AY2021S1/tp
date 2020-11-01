@@ -93,7 +93,7 @@ Note how the app contains some sample data.<br>
 
    * **`deleteleave`**`1 10/10/2020` : Deletes the leave record containing the date `10/10/2020` from the 1st person in the current list.
 
-   * **`find`**`-s Doe` : Finds the staff whose name contains "Doe".
+   * **`find`**`-staff Doe` : Finds the staff whose name contains "Doe".
    
    * **`clear`** : Clears the database.
 
@@ -236,7 +236,7 @@ Format: `addleave INDEX l/d/DATE [d/DATE]`
 
 Examples:
 * `list` followed by `addleave 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
-* `find Betsy` followed by `addleave 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find` command.
+* `find -staff Betsy` followed by `addleave 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find` command.
 * `addleave 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addleave 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
 
@@ -247,7 +247,7 @@ Format: `deleteleave INDEX d/DATE`
 
 Examples:
 * `list` followed by `deleteleave 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
-* `find Betsy` followed by `deleteleave 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find` command.
+* `find -staff Betsy` followed by `deleteleave 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find` command.
 * `deleteleave 2 d/09/09/2020`
 
 #### 3.3.6. Edit leave taken by staff: `editleave`

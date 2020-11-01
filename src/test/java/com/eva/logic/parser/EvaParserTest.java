@@ -3,7 +3,6 @@ package com.eva.logic.parser;
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static com.eva.testutil.Assert.assertThrows;
-//import static com.eva.testutil.PersonUtil.getEditPersonDescriptorDetails;
 import static com.eva.testutil.StaffUtil.getAddStaffCommand;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +20,9 @@ import com.eva.logic.commands.DeleteStaffCommand;
 //import com.eva.logic.commands.EditCommand;
 //import com.eva.logic.commands.EditCommand.EditPersonDescriptor;
 import com.eva.logic.commands.ExitCommand;
+import com.eva.logic.commands.FindApplicantCommand;
 import com.eva.logic.commands.FindCommand;
+import com.eva.logic.commands.FindStaffCommand;
 import com.eva.logic.commands.HelpCommand;
 // import com.eva.logic.commands.ListCommand;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -75,11 +75,19 @@ public class EvaParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findStaff() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
+        FindStaffCommand command = (FindStaffCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " s- " + String.join(" ", keywords));
+        assertEquals(new FindStaffCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findApplicant() throws Exception {
+        List<String> keywords = Arrays.asList("one", "two", "three");
+        FindApplicantCommand command = (FindApplicantCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " a- " + String.join(" ", keywords));
+        assertEquals(new FindApplicantCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
     }
 
     @Test
