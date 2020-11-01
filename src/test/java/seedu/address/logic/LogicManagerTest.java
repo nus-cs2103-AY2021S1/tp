@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -67,7 +67,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String removeCommand = "remove 9";
-        assertCommandException(removeCommand, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        assertCommandException(removeCommand, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
     //TODO: pass

@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
@@ -79,7 +79,7 @@ public class AddCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(menu.size() + 1);
         AddCommand addCommand = new AddCommand(outOfBoundIndex);
 
-        assertCommandFailure(addCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+        assertCommandFailure(addCommand, model, Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
 
     }
 

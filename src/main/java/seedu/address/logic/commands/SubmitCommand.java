@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderItem;
@@ -18,11 +18,11 @@ public class SubmitCommand extends Command {
         order.setOrderItems(model.getObservableOrderItemList());
 
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
         if (order.getTotal() == 0.0) {
-            throw new CommandException(ParserUtil.MESSAGE_EMPTY_ORDER);
+            throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
         }
 
         StringBuilder text = new StringBuilder();

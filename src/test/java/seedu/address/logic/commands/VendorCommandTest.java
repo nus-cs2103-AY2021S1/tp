@@ -9,8 +9,8 @@ import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -67,7 +67,7 @@ public class VendorCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getObservableVendorList().size() + 1);
         VendorCommand vendorCommand = new SwitchVendorCommand(outOfBoundIndex);
 
-        assertCommandFailure(vendorCommand, model, ParserUtil.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
+        assertCommandFailure(vendorCommand, model, Messages.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
     }
 
     @Test

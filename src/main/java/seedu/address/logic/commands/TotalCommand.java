@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.storage.Storage;
@@ -16,7 +16,7 @@ public class TotalCommand extends Command {
     public CommandResult execute(Model model, Storage storage) throws CommandException {
 
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
         Order order = new Order();

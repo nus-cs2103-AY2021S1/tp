@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.OrderItem;
 import seedu.address.storage.Storage;
@@ -59,16 +59,16 @@ public class RemoveCommand extends Command {
         requireNonNull(model);
 
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
         ObservableList<OrderItem> order = model.getObservableOrderItemList();
         int index = targetIndex.getZeroBased();
 
         if (order.size() <= index) {
-            throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
         } else if (model.getOrderItemQuantity(index) < quantity && specified) {
-            throw new CommandException(ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
+            throw new CommandException(Messages.MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY);
         }
         OrderItem oldItem = order.get(index);
 
