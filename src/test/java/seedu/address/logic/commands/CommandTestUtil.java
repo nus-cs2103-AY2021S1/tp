@@ -20,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -83,19 +82,11 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditStudentCommand.EditStudentDescriptor DESC_ALEX;
     public static final EditStudentCommand.EditStudentDescriptor DESC_BENG;
 
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_ALEX = new EditStudentDescriptorBuilder().withName(VALID_NAME_ALEX)
                 .withPhone(VALID_PHONE_ALEX).withEmail(VALID_EMAIL_ALEX)
                 .withTags(VALID_TAG_FRIEND).build();

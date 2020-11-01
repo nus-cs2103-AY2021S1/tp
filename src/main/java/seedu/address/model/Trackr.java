@@ -9,8 +9,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
 import seedu.address.model.module.UniqueModuleList;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**

@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.model.person.Attendance.MAX_WEEK;
+import static seedu.address.model.student.Attendance.MAX_WEEK;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,12 +12,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Attendance;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.StudentId;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**

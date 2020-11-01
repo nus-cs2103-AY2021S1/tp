@@ -1,8 +1,8 @@
 package seedu.address.model.tutorialgroup;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Student;
-import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.UniqueStudentList;
 
 public class TutorialGroup {
 
