@@ -22,7 +22,7 @@ public class AppUtil {
     /**
      * Checks that {@code condition} is true. Used for validating arguments to methods.
      *
-     * @throws IllegalArgumentException if {@code condition} is false.
+     * @throws IllegalValueException if {@code condition} is false.
      */
     public static void checkArgument(Boolean condition) throws IllegalValueException {
         if (!condition) {
@@ -33,7 +33,7 @@ public class AppUtil {
     /**
      * Checks that {@code condition} is true. Used for validating arguments to methods.
      *
-     * @throws IllegalArgumentException with {@code errorMessage} if {@code condition} is false.
+     * @throws IllegalValueException with {@code errorMessage} if {@code condition} is false.
      */
     public static void checkArgument(Boolean condition, String errorMessage) throws IllegalValueException {
         if (!condition) {

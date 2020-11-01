@@ -113,11 +113,7 @@ class JsonAdaptedFood {
         }
 
         final Date modelDate;
-        try {
-            modelDate = new Date(date);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-        }
+        modelDate = new Date(date);
 
         final Set<Tag> modelTags = new HashSet<>(foodTags);
         return new Food(modelName, modelProtein, modelFat, modelCarbohydrate, modelTags, modelDate);
