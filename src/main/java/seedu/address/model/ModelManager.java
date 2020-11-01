@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -49,7 +50,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.reeve.getStudentList());
         this.scheduler = new Scheduler();
-        this.schedulePrefs = new SchedulePrefs(ScheduleViewMode.WEEKLY, LocalDateTime.now());
+        this.schedulePrefs = new SchedulePrefs(ScheduleViewMode.WEEKLY, LocalDate.now());
         sortedStudents = new SortedList<>(this.filteredStudents, new NameComparator());
     }
 
@@ -157,8 +158,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setScheduleViewDateTime(LocalDateTime viewDateTime) {
-        schedulePrefs.setViewDateTime(viewDateTime);
+    public void setScheduleViewDate(LocalDate viewDate) {
+        schedulePrefs.setViewDateTime(viewDate);
     }
 
     @Override

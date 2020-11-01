@@ -3,21 +3,24 @@ package seedu.address.model.schedule;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class SchedulePrefs {
+    private static final LocalTime DEFAULT_TIME = LocalTime.of(12, 0);
     private ScheduleViewMode viewMode;
     private LocalDateTime viewDateTime;
 
     /**
      * Creates a schedule preferences which encompass the user's preferred view mode and view date time.
      * @param viewMode
-     * @param viewDateTime
+     * @param viewDate
      */
-    public SchedulePrefs(ScheduleViewMode viewMode, LocalDateTime viewDateTime) {
-        requireAllNonNull(viewMode, viewDateTime);
+    public SchedulePrefs(ScheduleViewMode viewMode, LocalDate viewDate) {
+        requireAllNonNull(viewMode, viewDate);
         this.viewMode = viewMode;
-        this.viewDateTime = viewDateTime;
+        this.viewDateTime = LocalDateTime.of(viewDate, DEFAULT_TIME);
     }
 
     public ScheduleViewMode getViewMode() {
@@ -33,9 +36,9 @@ public class SchedulePrefs {
         return viewDateTime;
     }
 
-    public void setViewDateTime(LocalDateTime viewDateTime) {
-        requireNonNull(viewDateTime);
-        this.viewDateTime = viewDateTime;
+    public void setViewDateTime(LocalDate viewDate) {
+        requireNonNull(viewDate);
+        this.viewDateTime = LocalDateTime.of(viewDate, DEFAULT_TIME);
     }
 
     /**

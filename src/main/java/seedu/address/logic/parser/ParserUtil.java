@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -44,10 +44,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-            .appendPattern("yyyy-MM-dd[ HH:mm:ss]")
-            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
-            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
-            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+            .appendPattern("yyyy-MM-dd")
             .toFormatter();
 
     /**
@@ -284,9 +281,9 @@ public class ParserUtil {
      * Parses a {@code dateToViewSchedule} into a LocalDateTime object.
      * @throws ParseException when input string does not follow the format
      */
-    public static LocalDateTime parseViewDate(String dateToViewSchedule) throws ParseException {
+    public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
         try {
-            return LocalDateTime.parse(dateToViewSchedule, DATE_TIME_FORMATTER);
+            return LocalDate.parse(dateToViewSchedule, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE_FORMAT);
         }

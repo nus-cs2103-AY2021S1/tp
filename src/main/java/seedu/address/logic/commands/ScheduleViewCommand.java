@@ -1,8 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,19 +18,19 @@ public class ScheduleViewCommand extends ScheduleCommand {
             + "date/[yyyy-mm-dd]\n"
             + "Example: event view mode/weekly date/2020-11-22";
 
-    private final LocalDateTime viewDateTime;
+    private final LocalDate viewDate;
     private final ScheduleViewMode viewMode;
 
     /**
      * Creates a command to view schedule.
      * @param scheduleViewMode mode to view either weekly or daily.
-     * @param viewDateTime the date time to view.
+     * @param viewDate the date to view.
      */
-    public ScheduleViewCommand(ScheduleViewMode scheduleViewMode, LocalDateTime viewDateTime) {
-
+    public ScheduleViewCommand(ScheduleViewMode scheduleViewMode, LocalDate viewDate) {
         super();
+        requireAllNonNull(scheduleViewMode, viewDate);
         this.viewMode = scheduleViewMode;
-        this.viewDateTime = viewDateTime;
+        this.viewDate = viewDate;
     }
 
     /**
@@ -39,18 +40,24 @@ public class ScheduleViewCommand extends ScheduleCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
-        if (viewDateTime != null) {
-            model.setScheduleViewDateTime(viewDateTime);
-        }
-
-        if (viewMode != null) {
-            model.setScheduleViewMode(viewMode);
-        }
+        model.setScheduleViewDate(viewDate);
+        model.setScheduleViewMode(viewMode);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.updateClassTimesToEvent();
         return new CommandResult(COMMAND_SUCCESS_MESSAGE, false, false, true, false);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true; // short circuit if same object
+        }
 
+        if (obj instanceof ScheduleViewCommand) {
+            ScheduleViewCommand other = (ScheduleViewCommand) obj;
+            return other.viewDate.equals(viewDate) && other.viewMode.equals(viewMode);
+        }
+        return false;
+
+    }
 }

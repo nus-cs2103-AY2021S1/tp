@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -121,7 +122,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setScheduleViewDateTime(LocalDateTime targetDateTime) {
+    public void setScheduleViewDate(LocalDate targetDate) {
         throw new AssertionError("This method should not be called.");
     }
 

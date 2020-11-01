@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -111,7 +112,7 @@ public interface Model {
     /**
      * Set the viewing date time of the schedule.
      */
-    void setScheduleViewDateTime(LocalDateTime targetDateTime);
+    void setScheduleViewDate(LocalDate targetDate);
 
     /**
      * Returns the current schedule view mode
