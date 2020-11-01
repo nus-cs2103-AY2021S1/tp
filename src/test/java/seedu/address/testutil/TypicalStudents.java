@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 
 /**
  * A utility class containing a list of {@code Student} objects to be used in tests.
@@ -60,6 +61,17 @@ public class TypicalStudents {
             .build();
 
     private TypicalStudents() {} // prevents instantiation
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons.
+     */
+    public static UniqueStudentList getTypicalStudentList() {
+        UniqueStudentList sl = new UniqueStudentList();
+        for (Student student : getTypicalStudents()) {
+            sl.addStudent(student);
+        }
+        return sl;
+    }
 
     public static List<Student> getTypicalStudents() {
         return new ArrayList<>(Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH));
