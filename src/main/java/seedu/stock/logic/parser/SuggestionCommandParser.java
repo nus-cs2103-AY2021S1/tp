@@ -59,7 +59,6 @@ import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-import seedu.stock.model.stock.SerialNumber;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
