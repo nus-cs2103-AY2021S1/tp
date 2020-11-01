@@ -2,8 +2,6 @@ package seedu.address.logic.commands.global;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import seedu.address.model.project.Participation;
-import seedu.address.model.task.Task;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -16,6 +14,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_NAME_
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_A;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_B;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_PHONE_C;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +24,6 @@ import java.util.List;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
-import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 /**
  * A utility class containing a list of {@code Persons} objects to be used in tests.
