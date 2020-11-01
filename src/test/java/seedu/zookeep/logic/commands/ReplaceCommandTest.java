@@ -74,15 +74,9 @@ public class ReplaceCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecified_success() {
+    public void execute_noFieldSpecified_failure() {
         ReplaceCommand replaceCommand = new ReplaceCommand(AHMENG.getId(), new EditAnimalDescriptor());
-        Animal editedAnimal = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
-
-        String expectedMessage = String.format(ReplaceCommand.MESSAGE_REPLACE_ANIMAL_SUCCESS, editedAnimal);
-
-        Model expectedModel = new ModelManager(new ZooKeepBook(model.getZooKeepBook()), new UserPrefs());
-
-        assertCommandSuccess(replaceCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(replaceCommand, model, ReplaceCommand.MESSAGE_FIELDS_UNCHANGED);
     }
 
     @Test
