@@ -22,6 +22,8 @@ import java.util.List;
 
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Project;
+import static seedu.address.testutil.TypicalProjects.getTypicalProjects;
 
 /**
  * A utility class containing a list of {@code Persons} objects to be used in tests.
@@ -60,6 +62,9 @@ public class TypicalPersons {
         MainCatalogue ab = new MainCatalogue();
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
+        }
+        for (Project project : getTypicalProjects()) {
+            ab.addProject(project);
         }
         return ab;
     }

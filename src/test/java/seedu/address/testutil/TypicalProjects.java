@@ -16,8 +16,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.MainCatalogue;
+import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 /**
  * A utility class containing a list of {@code Project} objects to be used in tests.
@@ -93,6 +95,9 @@ public class TypicalProjects {
         MainCatalogue ab = new MainCatalogue();
         for (Project project : getTypicalProjects()) {
             ab.addProject(project);
+        }
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
         }
         return ab;
     }
