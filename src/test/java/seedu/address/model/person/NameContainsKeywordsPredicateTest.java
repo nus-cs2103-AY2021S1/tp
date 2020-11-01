@@ -63,10 +63,6 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("ab"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
-        // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("a", "b"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
-
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("ab", "ac"));
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
@@ -90,5 +86,24 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").build()));
+    }
+
+    @Test
+    public void test_initialsDoesNotContainKeywords_returnsFalse() {
+        // Not initials of full name keywords
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("ab"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob Charles").build()));
+
+        // Non-matching initials
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("ac"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Space between initials
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("a b"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Period between initials
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("a.b"));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
     }
 }

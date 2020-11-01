@@ -33,7 +33,7 @@ public class NameContainsKeywordsPredicate implements PersonPredicate {
         String fullName = person.getName().fullName;
         String[] splitName = fullName.split("\\s");
         String initials = Arrays.stream(splitName).reduce("", (x, y) -> x + y.substring(0, 1));
-        return initials.toLowerCase().contains(keyword.toLowerCase());
+        return initials.toLowerCase().equals(keyword.toLowerCase());
     }
 
 }
