@@ -37,7 +37,7 @@ public class EditRecipeCommandTest {
     }
 
     private CommandResult runCommand(String str) {
-        return runCommand(new StubbedModel(), str);
+        return runCommand(StubbedModel.filled(), str);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /name owo salad");
             assertTrue(c.didSucceed());
@@ -64,7 +64,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /name apricot salad");
             assertTrue(c.isError());
@@ -76,7 +76,7 @@ public class EditRecipeCommandTest {
     @Test
     void test_ingredientEdits() {
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /ingredient:edit custard /qty 69");
             assertTrue(c.didSucceed());
@@ -90,7 +90,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /ingredient:add milk /qty 400ml");
             assertTrue(c.didSucceed());
@@ -104,7 +104,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /ingredient:add custard /qty 4");
             assertTrue(c.isError());
@@ -112,7 +112,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /ingredient:delete custard");
             assertTrue(c.didSucceed());
@@ -125,7 +125,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /ingredient:edit monkaS /qty 1");
             assertTrue(c.isError());
@@ -151,7 +151,7 @@ public class EditRecipeCommandTest {
 
     @Test
     void test_undo() {
-        var m = new StubbedModel();
+        var m = StubbedModel.filled();
         var p = new CommandParser();
         p.parse("edit recipe custard salad /name owo salad")
             .map(c -> Pair.of(c, c.execute(m, new HistoryManager())))
@@ -171,7 +171,7 @@ public class EditRecipeCommandTest {
     @Test
     void test_editSteps() {
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /step:add asdfasdjf");
             assertTrue(c.didSucceed());
@@ -184,7 +184,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c1 = runCommand(m, "add recipe asdf salad");
             assertTrue(c1.didSucceed());
@@ -197,7 +197,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             {
                 var c = runCommand(m, "edit recipe custard salad /step:add:1 asdfasdjf");
@@ -237,7 +237,7 @@ public class EditRecipeCommandTest {
         }
 
         {
-            var m = new StubbedModel();
+            var m = StubbedModel.filled();
 
             var c = runCommand(m, "edit recipe custard salad /step:edit:99999 owowowo");
             assertTrue(c.isError());
@@ -247,7 +247,7 @@ public class EditRecipeCommandTest {
 
     @Test
     void test_tagEdits() {
-        var m = new StubbedModel();
+        var m = StubbedModel.filled();
 
         {
             var c = runCommand(m, "edit recipe custard salad /tag:add tag 1");

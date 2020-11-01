@@ -23,35 +23,34 @@ public class StubbedModel extends chopchop.model.ModelStub {
     private final EntryBook<Recipe> recipes;
     private final EntryBook<Ingredient> ingredients;
 
-    /**
-     * Makes a new stubbed model that has some functionality to contain and replace recipes.
-     */
-    public StubbedModel() {
+    private StubbedModel(boolean isEmpty) {
         this.recipes = new EntryBook<>();
         this.ingredients = new EntryBook<>();
 
-        this.recipes.setAll(List.of(
-            TypicalRecipes.APRICOT_SALAD,
-            TypicalRecipes.BANANA_SALAD,
-            TypicalRecipes.CUSTARD_SALAD
-        ));
+        if (!isEmpty) {
+            this.recipes.setAll(List.of(
+                TypicalRecipes.APRICOT_SALAD,
+                TypicalRecipes.BANANA_SALAD,
+                TypicalRecipes.CUSTARD_SALAD
+            ));
 
-        this.recipes.add(new Recipe(
-            "Peanut Salad", List.of(TypicalIngredients.APRICOT_REF), List.of(new Step("mix")),
-            Set.of(new Tag("gross"), new Tag("round"))
-        ));
+            this.recipes.add(new Recipe(
+                "Peanut Salad", List.of(TypicalIngredients.APRICOT_REF), List.of(new Step("mix")),
+                Set.of(new Tag("gross"), new Tag("round"))
+            ));
 
-        this.ingredients.setAll(List.of(
-            TypicalIngredients.APRICOT,
-            TypicalIngredients.BANANA,
-            TypicalIngredients.CUSTARD,
-            TypicalIngredients.BAKED_BEANS
-        ));
+            this.ingredients.setAll(List.of(
+                TypicalIngredients.APRICOT,
+                TypicalIngredients.BANANA,
+                TypicalIngredients.CUSTARD,
+                TypicalIngredients.BAKED_BEANS
+            ));
 
-        this.ingredients.add(new Ingredient(
-            "Peanut", Optional.empty(), Optional.empty(),
-            Set.of(new Tag("brown"), new Tag("round"))
-        ));
+            this.ingredients.add(new Ingredient(
+                "Peanut", Optional.empty(), Optional.empty(),
+                Set.of(new Tag("brown"), new Tag("round"))
+            ));
+        }
     }
 
     @Override
@@ -153,5 +152,20 @@ public class StubbedModel extends chopchop.model.ModelStub {
 
     @Override
     public void setIngredientUsageList(UsageList<IngredientUsage> ul) {
+    }
+
+
+    /**
+     * Returns an empty stubbed model.
+     */
+    public static StubbedModel empty() {
+        return new StubbedModel(/* isEmpty: */ true);
+    }
+
+    /**
+     * Returns a stubbed model filled with stuff.
+     */
+    public static StubbedModel filled() {
+        return new StubbedModel(/* isEmpty: */ false);
     }
 }

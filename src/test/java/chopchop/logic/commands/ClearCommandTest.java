@@ -5,12 +5,10 @@ package chopchop.logic.commands;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.model.Model;
-import chopchop.model.attributes.units.Mass;
 import chopchop.testutil.StubbedModel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ClearCommandTest {
@@ -29,15 +27,15 @@ public class ClearCommandTest {
 
     @Test
     void test() {
-        var m = new StubbedModel();
+        var m = StubbedModel.empty();
         runCommand(m, "add ingredient sprinkles /qty 400g");
         runCommand(m, "add ingredient rainbows /qty 400g");
         runCommand(m, "add recipe uwu salad /ingredient sprinkles /qty 50g /step sprinkle it");
         runCommand(m, "add recipe asdf salad /ingredient rainbows /qty 50ml /step uwu");
         runCommand(m, "add recipe rainbow salad /ingredient rainbows /qty 400g /step uwu");
 
-        assertFalse(m.getRecipeBook().getEntryList().isEmpty());
-        assertFalse(m.getIngredientBook().getEntryList().isEmpty());
+        assertEquals(3, m.getRecipeBook().getEntryList().size());
+        assertEquals(2, m.getIngredientBook().getEntryList().size());
 
         var c1 = (Undoable) new CommandParser().parse("clear").getValue();
         var r1 = c1.execute(m, new HistoryManager());
@@ -49,7 +47,7 @@ public class ClearCommandTest {
         var r2 = c1.undo(m);
         assertTrue(r2.didSucceed());
 
-        assertFalse(m.getRecipeBook().getEntryList().isEmpty());
-        assertFalse(m.getIngredientBook().getEntryList().isEmpty());
+        assertEquals(3, m.getRecipeBook().getEntryList().size());
+        assertEquals(2, m.getIngredientBook().getEntryList().size());
     }
 }

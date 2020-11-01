@@ -32,7 +32,7 @@ public class MakeRecipeCommandTest {
 
     @Test
     void test() {
-        var m = new StubbedModel();
+        var m = StubbedModel.filled();
         runCommand(m, "add ingredient sprinkles /qty 400g");
         runCommand(m, "add ingredient rainbows /qty 400g");
         runCommand(m, "add recipe uwu salad /ingredient sprinkles /qty 50g /step sprinkle it");
