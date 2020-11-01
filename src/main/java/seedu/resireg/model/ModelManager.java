@@ -310,6 +310,12 @@ public class ModelManager implements Model {
         return semester;
     }
 
+    @Override
+    public void updateSemester(Semester newSemester) {
+        requireNonNull(newSemester);
+        semester.setSemesterNumber(newSemester.getSemesterNumber());
+        semester.setAcademicYear(newSemester.getAcademicYear());
+    }
     //=========== Filtered Student List Accessors =============================================================
 
     /**

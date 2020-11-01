@@ -1,18 +1,10 @@
 package seedu.resireg.model.semester;
 
-import static seedu.resireg.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
 import java.util.Objects;
 
-import seedu.resireg.model.allocation.Allocation;
-import seedu.resireg.model.room.roomtype.RoomType;
-import seedu.resireg.model.semester.academicyear.AcademicYear;
-import seedu.resireg.model.semester.roomrate.RoomRate;
-import seedu.resireg.model.semester.semesternumber.SemesterNumber;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * Represents a Semester in ResiReg.
@@ -21,46 +13,46 @@ import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 public class Semester {
 
     // Identity fields
-    private final AcademicYear academicYear;
-    private final SemesterNumber semesterNumber;
-
-    // Data fields
-    private final List<Allocation> allocations;
-    private final Map<RoomType, RoomRate> roomFees;
+    private final IntegerProperty academicYear = new SimpleIntegerProperty();
+    private final IntegerProperty semesterNumber = new SimpleIntegerProperty();
 
     /**
      * SemesterNumber should be present and not null.
      */
-    public Semester(AcademicYear academicYear, SemesterNumber semesterNumber) {
-        requireAllNonNull(academicYear, semesterNumber);
-        this.academicYear = academicYear;
-        this.semesterNumber = semesterNumber;
-        allocations = new ArrayList<>();
-        roomFees = new HashMap<>();
+    public Semester(int academicYear, int semesterNumber) {
+        this.academicYear.set(academicYear);
+        this.semesterNumber.set(semesterNumber);
     }
 
     /**
-     * All fields should be present and not null.
+     * Helper constructor for initializing a new semester.
      */
-    public Semester(AcademicYear academicYear, SemesterNumber semesterNumber,
-                    List<Allocation> allocations, Map<RoomType, RoomRate> roomFees) {
-        requireAllNonNull(academicYear, semesterNumber, allocations, roomFees);
-        this.academicYear = academicYear;
-        this.semesterNumber = semesterNumber;
-        this.allocations = allocations;
-        this.roomFees = roomFees;
+    public Semester() {
+        this(LocalDate.now().getYear(), 1);
     }
 
-    public AcademicYear getAcademicYear() {
+    public int getAcademicYear() {
+        return academicYear.get();
+    }
+
+    public IntegerProperty academicYearProperty() {
         return academicYear;
     }
 
-    public List<Allocation> getAllocations() {
-        return allocations;
+    public IntegerProperty semesterNumberProperty() {
+        return semesterNumber;
     }
 
-    public Map<RoomType, RoomRate> getRoomFees() {
-        return roomFees;
+    public void setAcademicYear(int academicYear) {
+        this.academicYear.set(academicYear);
+    }
+
+    public void setSemesterNumber(int semesterNumber) {
+        this.semesterNumber.set(semesterNumber);
+    }
+
+    public int getSemesterNumber() {
+        return semesterNumber.get();
     }
 
     /**
@@ -74,8 +66,8 @@ public class Semester {
         }
 
         return otherSemester != null
-            && Objects.equals(otherSemester.getAcademicYear(), getAcademicYear())
-            && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
+                && Objects.equals(otherSemester.getAcademicYear(), getAcademicYear())
+                && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
     }
 
     /**
@@ -85,10 +77,10 @@ public class Semester {
      * @return the successor of this semester
      */
     public Semester getNextSemester() {
-        if (semesterNumber.value == 1) {
-            return new Semester(academicYear, new SemesterNumber(2));
+        if (semesterNumber.get() == 1) {
+            return new Semester(academicYear.get(), 2);
         } else {
-            return new Semester(new AcademicYear(academicYear.value + 1), new SemesterNumber(1));
+            return new Semester(academicYear.get() + 1, 1);
         }
     }
 
@@ -96,7 +88,7 @@ public class Semester {
      * @return a shortened String representation of the semester in form of "AY" + year + "S" + semesterNumber.
      */
     public String getShortRepresentation() {
-        return String.format("AY%sS%s", academicYear, semesterNumber);
+        return String.format("AY%sS%s", academicYear.get(), semesterNumber.get());
     }
 
     @Override
@@ -110,31 +102,12 @@ public class Semester {
         }
 
         Semester otherSemester = (Semester) other;
-        return otherSemester.getAcademicYear().equals(getAcademicYear())
-            && otherSemester.getSemesterNumber().equals(getSemesterNumber())
-            && Objects.equals(otherSemester.getRoomFees(), getRoomFees())
-            && Objects.equals(otherSemester.getAllocations(), getAllocations());
+        return otherSemester.getAcademicYear() == getAcademicYear()
+                && otherSemester.getSemesterNumber() == getSemesterNumber();
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(" Academic Year: ")
-            .append(getAcademicYear())
-            .append(" Semester: ")
-            .append(getSemesterNumber())
-            .append(" Room Fees: (");
-        getRoomFees().forEach((roomType, fee) ->
-            builder.append(" Room type: ")
-                .append(roomType.toString())
-                .append(", Fee: ")
-                .append(fee)
-                .append(" "));
-        builder.append(") ");
-        return builder.toString();
-    }
-
-    public SemesterNumber getSemesterNumber() {
-        return semesterNumber;
+        return " Academic Year: " + getAcademicYear() + " Semester: " + getSemesterNumber();
     }
 }

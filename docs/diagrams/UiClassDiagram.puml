@@ -53,12 +53,11 @@ MainPanel *-down-> StudentListPanel
 MainPanel *-down-> BinItemListPanel
 
 RoomListPanel --|> UiPart
-StudentListPanel --|> UiPart
 BinItemListPanel --|> UiPart
+StudentListPanel --|> UiPart
 
 StudentListPanel ..right.> Model
 BinItemListPanel ..[hidden]right.> Model
-
 RoomListPanel ..right.> Model
 
 MainWindow --left|> UiPart

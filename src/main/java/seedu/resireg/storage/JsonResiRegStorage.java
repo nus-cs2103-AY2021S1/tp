@@ -81,10 +81,12 @@ public class JsonResiRegStorage implements ResiRegStorage {
 
     @Override
     public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+        requireNonNull(resiReg);
         Path currentPath = filePath.subpath(0, filePath.getNameCount() - 1).toAbsolutePath();
         Path newPath = Paths.get(currentPath.toString(), resiReg.getSemesterString(), ARCHIVE_FILENAME);
 
-        saveResiReg(resiReg, newPath);
+        FileUtil.createIfMissing(newPath);
+        JsonUtil.saveJsonFile(new JsonSerializableResiReg(resiReg), newPath);
     }
 
 }

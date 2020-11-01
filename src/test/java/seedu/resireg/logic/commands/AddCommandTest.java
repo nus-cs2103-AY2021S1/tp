@@ -265,7 +265,8 @@ public class AddCommandTest {
 
         @Override
         public boolean hasDuplicateBinnedItem(Binnable itemToRestore) {
-            throw new AssertionError("This method should not be called.");        }
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void restoreItem(Binnable itemToRestore) {
@@ -279,6 +280,11 @@ public class AddCommandTest {
 
         @Override
         public Semester getSemester() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSemester(Semester newSemester) {
             throw new AssertionError("This method should not be called.");
         }
 

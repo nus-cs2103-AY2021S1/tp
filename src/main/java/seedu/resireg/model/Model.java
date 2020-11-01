@@ -247,12 +247,15 @@ public interface Model {
      */
     void restoreItem(Binnable itemToRestore);
 
-    // Semester
-
     void deleteExpiredBinItems();
 
-    /** Returns the current semester */
+    // Semester
+
+    /** Returns the current semester the UI*/
     Semester getSemester();
+
+    /** Updates the current semester in the UI. */
+    void updateSemester(Semester newSemester);
 
     // Lists for UI
     /** Returns an unmodifiable view of the filtered student list */
