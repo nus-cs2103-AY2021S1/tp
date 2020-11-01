@@ -30,7 +30,7 @@ public class RecipeListPanel extends UiPart<Region> {
         recipeListView.setCellFactory(listView -> new RecipeListViewCell());
         //Responsive resizing and increase list view performance
         ChangeListener<Number> recipeListSizeListener = (observable, oldValue, newValue) -> {
-            recipeListView.setFixedCellSize(recipeListView.getWidth() / 1.5);
+            recipeListView.setFixedCellSize(recipeListView.getWidth() / 1.4);
         };
         recipeListView.widthProperty().addListener(recipeListSizeListener);
 

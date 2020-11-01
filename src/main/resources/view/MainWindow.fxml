@@ -13,6 +13,8 @@
 
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Wishful Shrinking" minWidth="600" minHeight="500" onCloseRequest="#handleExit">
   <icons>
@@ -26,12 +28,34 @@
       </stylesheets>
     <BorderPane fx:id="container" prefWidth="600" prefHeight="500">
             <left>
+                <HBox>
+                    <VBox fx:id="nav">
+                        <HBox>
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10" />
+                            </padding>
+                            <Label text="Recipes"/>
+                        </HBox>
+                        <HBox>
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10" />
+                            </padding>
+                            <Label text="Fridge"/>
+                        </HBox>
+                        <HBox>
+                            <padding>
+                                <Insets top="10" right="10" bottom="10" left="10" />
+                            </padding>
+                            <Label text="Consumptions"/>
+                        </HBox>
+                    </VBox>
             <VBox fx:id="leftPanel" VBox.vgrow="ALWAYS">
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
                 <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS" minHeight="500"/>
             </VBox>
+                </HBox>
             </left>
           <center>
       <VBox VBox.vgrow="ALWAYS" fx:id="messageArea" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">

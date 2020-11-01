@@ -29,7 +29,10 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" />
+      <HBox>
+        <Label text="Ingredients:" styleClass="cell_medium_label"/>
+        <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" />
+      </HBox>
       <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />
       <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" wrapText="true"/>
     </VBox>

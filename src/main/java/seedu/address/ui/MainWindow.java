@@ -75,6 +75,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
     @FXML
     private VBox leftPanel;
+    @FXML
+    private VBox nav;
 
     private JFXDrawersStack drawersStack;
     private JFXDrawer leftDrawer;
@@ -203,9 +205,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.setX(500);
         primaryStage.setY(100);
         leftPanel.setPrefWidth(500);
+        nav.setPrefWidth(150);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             leftPanel.setPrefWidth(primaryStage.getWidth() / 2);
+            //nav.setPrefWidth(primaryStage.getWidth() / 10);
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 

@@ -84,9 +84,10 @@ public class RecipeCard extends UiPart<Region> {
         };
         getRoot().widthProperty().addListener(stageSizeListener);
 
-        ingredients.setText(recipe.getIngredient().stream()
+        String ingredientsData = recipe.getIngredient().stream()
                 .map(item -> item.getQuantity() + " " + item.getValue())
-                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));
+                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a);
+        ingredients.setText(ingredientsData.substring(0, ingredientsData.length() - 2));
         calories.setText(recipe.getCalories().value.toString() + " cal");
 
         this.recipe.getTags().stream()
