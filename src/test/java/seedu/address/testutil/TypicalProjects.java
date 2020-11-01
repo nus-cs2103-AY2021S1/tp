@@ -10,14 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_A;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOURL_B;
-import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.MainCatalogue;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
 import seedu.address.model.util.SampleDataUtil;
 
