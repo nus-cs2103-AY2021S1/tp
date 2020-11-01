@@ -36,6 +36,8 @@ public class AppendCommand extends Command {
 
     public static final String MESSAGE_APPEND_ANIMAL_SUCCESS = "Appended Animal Details\n%1$s";
     public static final String MESSAGE_NOT_APPENDED = "At least one field to append must be provided.";
+    public static final String MESSAGE_FIELDS_EXIST =
+            "The fields provided are identical to the animal's existing fields.";
 
     private final Id id;
     private final EditAnimalDescriptor editAnimalDescriptor;
@@ -60,6 +62,10 @@ public class AppendCommand extends Command {
         );
 
         Animal editedAnimal = createEditedAnimal(animalToEdit, editAnimalDescriptor);
+
+        if (editedAnimal.equals(animalToEdit)) {
+            throw new CommandException(MESSAGE_FIELDS_EXIST);
+        }
 
         model.setAnimal(animalToEdit, editedAnimal);
         model.updateFilteredAnimalList(PREDICATE_SHOW_ALL_ANIMALS);
