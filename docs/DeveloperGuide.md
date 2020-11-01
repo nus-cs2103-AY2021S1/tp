@@ -345,7 +345,7 @@ Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from re
 
 <p align="center"><i>Figure 19: State of both stacks after executing redo command</i></p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the
 ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
 immediate future has been altered and the future states previously stored in the redo stack are now invalid. Hence 
 executing redo now will do nothing.
