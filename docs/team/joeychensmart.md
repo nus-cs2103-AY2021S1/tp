@@ -42,22 +42,23 @@ Given below are my contributions to the project.
   bugs due to code duplication.
   * Credits: The idea, design and implementation were all carried out by me.
   
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=joeychensmart&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=joeychensmart&tabRepo=AY2021S1-CS2103T-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
-TODO
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=joeychensmart&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=joeychensmart&tabRepo=AY2021S1-CS2103T-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
-* **Project management**: TODO
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Project management**:
+  * Created the github organization for the group and project repository.
+  * Created the issue label `code quality improvements` and several issues related to it (e.g. [214](https://github.com/AY2021S1-CS2103T-W17-3/tp/issues/214), [215](https://github.com/AY2021S1-CS2103T-W17-3/tp/issues/215).
+  * Copied over draft UG from google docs to the repo. [\#22](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/22).
 
-* **Enhancements to existing features**: TODO
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+* **Enhancements to existing features**:
+  * Fixed bug related to `RuntimeExceptions` with Jun Hua [216](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/216).
 
-* **Documentation**: TODO
+* **Documentation**:
   * User Guide:
-    * Add documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Add documentation for the features `macro` [\#63](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/63), `listmacro` and `remmacro` [\#142](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/142)
+    * * Note: I wrote the documentation for macro in the PR comment [\#63](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/63), and Jun Hua helped me copy it into the UG in another PR.
+    * Added reader-friendly elaboration on command format: [\#93](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/93)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `macro` feature, and updated the section on the `logic` component under project architecture.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#49](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/49), [\#53](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/53),
