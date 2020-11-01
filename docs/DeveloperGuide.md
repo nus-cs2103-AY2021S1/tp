@@ -22,7 +22,7 @@ Another major goal is to better help developers extend McGymmy to improve on its
 
 ## 3. A little note from the developers
 
-Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
+Thank you for using MG. We sincerely hope that MG plays a part to help you achieve a healthier lifestyle.
 We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
 Thus, we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
 
