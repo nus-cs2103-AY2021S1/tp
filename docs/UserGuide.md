@@ -9,6 +9,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 * Table of Contents
     - Quick start
     - Features
+        - Viewing help: `help`
         - Adding a flashcard: `add`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
@@ -93,6 +94,12 @@ must be specified exactly.
 
 </div>
 
+### Viewing help : `help`
+
+Opens a window with a link that directs you to our user guide.
+
+Format: `help`
+
 ### Adding a flashcard : `add`
 
 Adds a flashcard.
@@ -138,6 +145,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * The index **must be a positive integer** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note or rating eg. `r/` will remove the corresponding field in the flashcard.
+* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
 
 Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
@@ -209,6 +217,8 @@ Shows a list of all flashcards.
 
 Format: `list`
 
+* All additional input after the command word `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
+
 ### Reviewing all flashcards: `review`
 
 Reviews the current list of flashcards. This puts the user in review mode and the user can no 
@@ -252,7 +262,7 @@ Sorts a list of all flashcards according to the criteria given.
 Format: `sort <success|reviewed> <-a|-d>`
 
 Examples: 
-* sort followed by:
+* `sort` followed by:
     - `reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
     - `reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
     - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
