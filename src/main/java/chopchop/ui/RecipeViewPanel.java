@@ -16,7 +16,7 @@ import javafx.scene.layout.Region;
 
 public class RecipeViewPanel extends UiPart<Region> {
     private static final String FXML = "RecipeViewPanel.fxml";
-    private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today!";
+    private static final String EMPTY_PROMPT = "You do not have any recipes yet, add one today!";
     private static final String FILTER_NO_MATCH = "No matching recipes found";
 
     private final ObservableList<Recipe> recipeObservableList;
@@ -37,6 +37,14 @@ public class RecipeViewPanel extends UiPart<Region> {
         this.fillDisplay();
 
         this.recipeObservableList.addListener((ListChangeListener<Recipe>) c -> this.fillDisplay());
+    }
+
+    /**
+     * Forces a refresh on the ScrollPane, which causes it to recompute its size
+     * and show a scrollbar if necessary.
+     */
+    public void refresh() {
+        this.recipePanel.layout();
     }
 
     /**
