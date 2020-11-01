@@ -57,6 +57,13 @@ import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.Location;
+import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
+import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.QuantityAdder;
+import seedu.stock.model.stock.SerialNumber;
+import seedu.stock.model.stock.Source;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
@@ -101,13 +108,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     @Override
     public SuggestionCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(
-                        args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_FILE_NAME,
-                        PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX,
-                        PREFIX_STATISTICS_TYPE, PREFIX_LIST_TYPE, PREFIX_LOW_QUANTITY
-                );
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefixes(args);
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
 
@@ -322,8 +323,6 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         generateBodyMessage(toBeDisplayed, UnbookmarkCommand.MESSAGE_USAGE);
     }
-
-
 
     /**
      * Generates suggestion for faulty find exact command.
@@ -696,6 +695,49 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
             toBeDisplayed.append("\n" + messageUsage);
+        }
+    }
+
+    /**
+     * Checks if the given input by user is valid.
+     *
+     * @param prefix The prefix the parameter is in.
+     * @param parameter The user input value.
+     * @return A boolean which indicates if the user input is valid.
+     */
+    private boolean checkIfParameterValid(Prefix prefix, String parameter) {
+        if (prefix.equals(PREFIX_NAME)) {
+            return Name.isValidName(parameter);
+        } else if (prefix.equals(PREFIX_SOURCE)) {
+            return Source.isValidSource(parameter);
+        } else if (prefix.equals(PREFIX_QUANTITY)) {
+            return Quantity.isValidQuantity(parameter);
+        } else if (prefix.equals(PREFIX_LOW_QUANTITY)) {
+            return Quantity.isValidQuantity(parameter);
+        } else if (prefix.equals(PREFIX_LOCATION)) {
+            return Location.isValidLocation(parameter);
+        } else if (prefix.equals(PREFIX_LIST_TYPE)) {
+            return true;
+        } else if (prefix.equals(PREFIX_SERIAL_NUMBER)) {
+            return SerialNumber.isValidSerialNumber(parameter);
+        } else if (prefix.equals(PREFIX_NEW_QUANTITY)) {
+            return Quantity.isValidQuantity(parameter);
+        } else if (prefix.equals(PREFIX_INCREMENT_QUANTITY)) {
+            return QuantityAdder.isValidValue(parameter);
+        } else if (prefix.equals(PREFIX_NOTE)) {
+            return Note.isValidNote(parameter);
+        } else if (prefix.equals(PREFIX_NOTE_INDEX)) {
+            return parameter.matches("[0-9]+");
+        } else if (prefix.equals(PREFIX_STATISTICS_TYPE)) {
+            return true;
+        } else if (prefix.equals(PREFIX_SORT_FIELD)) {
+            return true;
+        } else if (prefix.equals(PREFIX_SORT_ORDER)) {
+            return true;
+        } else if (prefix.equals(PREFIX_FILE_NAME)) {
+            return parameter.matches(PrintCommandParser.VALIDATION_REGEX);
+        } else {
+            return false;
         }
     }
 }
