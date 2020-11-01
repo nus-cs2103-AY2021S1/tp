@@ -43,7 +43,8 @@ public class TypicalStocks {
             .withNotes("Fresh from PineappleLand.", "Wednesday")
             .build();
 
-    public static final Note TYPICAL_NOTE_APPLE = APPLE.getNotes().get(0);
+    public static final Note FIRST_NOTE_APPLE = APPLE.getNotes().get(0);
+    public static final Note SECOND_NOTE_APPLE = APPLE.getNotes().get(1);
     public static final Index INDEX_FIRST_STOCK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_STOCK = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_STOCK = Index.fromOneBased(3);

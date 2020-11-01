@@ -13,8 +13,6 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.NoteIndex;
 import seedu.stock.model.stock.SerialNumber;
 
-
-
 public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
 
     private static final String MESSAGE_INVALID_NOTE_INDEX =
@@ -46,11 +44,6 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
         SerialNumber serialNumber = ParserUtil.parseSerialNumber(serialNumberInput);
         String noteIndexInput = argMultimap.getValue(PREFIX_NOTE_INDEX).get();
-        if (!noteIndexInput.matches("[0-9]+") || noteIndexInput.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_NOTE_INDEX,
-                    NoteDeleteCommand.MESSAGE_USAGE));
-        }
-
         NoteIndex noteIndex = ParserUtil.parseNoteIndex(noteIndexInput);
 
         return new NoteDeleteCommand(serialNumber, noteIndex);

@@ -1,10 +1,11 @@
 package seedu.stock.model.stock;
 
-import seedu.stock.commons.core.index.Index;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a one-based note index which can be converted to zero based.
+ */
 public class NoteIndex {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -57,16 +58,16 @@ public class NoteIndex {
      * Creates a new {@code NoteIndex} using a zero-based index.
      */
     public static NoteIndex fromZeroBased(String zeroBasedIndex) {
-        return new NoteIndex(zeroBasedIndex);
+        NoteIndex zeroBasedNoteIndex = new NoteIndex(zeroBasedIndex);
+        int zeroBased = zeroBasedNoteIndex.getOneBased();
+        return new NoteIndex(String.valueOf(zeroBased + 1));
     }
 
     /**
      * Creates a new {@code NoteIndex} using a one-based index.
      */
     public static NoteIndex fromOneBased(String oneBasedIndex) {
-        NoteIndex oneBasedNoteIndex = new NoteIndex(oneBasedIndex);
-        int oneBased = oneBasedNoteIndex.getZeroBased();
-        return new NoteIndex(String.valueOf(oneBased - 1));
+        return new NoteIndex(oneBasedIndex);
     }
 
 

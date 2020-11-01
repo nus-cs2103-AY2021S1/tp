@@ -165,7 +165,7 @@ public class NoteCommandTest {
         assertFalse(standardCommand.equals(new NoteCommand(SERIAL_NUMBER_THIRD_STOCK,
                 new Note(VALID_NOTE_APPLE))));
 
-        // different remark -> returns false
+        // different note -> returns false
         assertFalse(standardCommand.equals(new NoteCommand(SERIAL_NUMBER_FIRST_STOCK,
                 new Note(VALID_NOTE_ORANGE))));
     }

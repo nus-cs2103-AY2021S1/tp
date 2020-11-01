@@ -129,6 +129,16 @@ public class StockBuilder {
         return this;
     }
 
+    /**
+     * Removes notes from stock builder.
+     * @return StockBuilder without notes.
+     */
+    public StockBuilder withoutNotes() {
+        List<Note> noNotes = new ArrayList<>();
+        this.notes = noNotes;
+        return this;
+    }
+
     public Stock build() {
         return new Stock(name, serialNumber, source, quantity, location, notes);
     }

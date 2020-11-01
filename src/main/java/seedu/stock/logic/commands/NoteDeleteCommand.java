@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.NoteIndex;
 import seedu.stock.model.stock.SerialNumber;
@@ -63,7 +64,7 @@ public class NoteDeleteCommand extends Command {
      * @throws CommandException If there are any errors.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, SerialNumberNotFoundException {
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
@@ -79,7 +80,7 @@ public class NoteDeleteCommand extends Command {
         }
 
         if (stockToDeleteNote.isEmpty()) {
-            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+            throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
         if (stockToDeleteNote.get().getNotes().size() == 0) {
@@ -125,12 +126,12 @@ public class NoteDeleteCommand extends Command {
             return true;
         }
         // instanceof handles nulls
-        if (!(other instanceof NoteCommand)) {
+        if (!(other instanceof NoteDeleteCommand)) {
             return false;
         }
         // state check
         NoteDeleteCommand otherNoteDeleteCommand = (NoteDeleteCommand) other;
         return serialNumber.equals(otherNoteDeleteCommand.serialNumber)
-                && noteIndex == otherNoteDeleteCommand.noteIndex;
+                && noteIndex.equals(otherNoteDeleteCommand.noteIndex);
     }
 }
