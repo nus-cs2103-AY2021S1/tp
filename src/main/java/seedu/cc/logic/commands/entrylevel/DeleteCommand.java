@@ -32,7 +32,7 @@ public class DeleteCommand extends Command {
 
     public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
 
-    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Entry deleted!\n(%1$s)";
+    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Entry deleted!\n%1$s";
 
     private final Index targetIndex;
     private final Category category;
