@@ -45,7 +45,7 @@ FixMyAbs is a desktop app for managing exercises, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 - Words in `<>` are the parameters to be supplied by the user.<br>
-  e.g. in `add e/<exercise>`, `exercise` is a parameter which can be used as `add e/push dow`.
+  e.g. in `add e/<exercise>`, `exercise` is a parameter which can be used as `add e/Sit ups`.
 
 - Items in square brackets are optional.<br>
   e.g `e/<exercise> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
