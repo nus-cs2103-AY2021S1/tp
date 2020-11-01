@@ -146,7 +146,7 @@ public class ParserUtil {
         for (String taskName : tasks) {
             taskSet.add(parseTask(taskName));
         }
-        return taskSet; //TODO: parse tasks in a more meaningful way
+        return taskSet;
     }
 
     /**
