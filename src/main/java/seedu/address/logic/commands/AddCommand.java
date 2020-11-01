@@ -7,7 +7,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
 import seedu.address.storage.Storage;
 
@@ -60,7 +60,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
         // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
         assert model != null;
-        ObservableList<Food> menu = model.getFilteredFoodList();
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
         int index = addIndex.getZeroBased();
 
         if (!model.isSelected()) {

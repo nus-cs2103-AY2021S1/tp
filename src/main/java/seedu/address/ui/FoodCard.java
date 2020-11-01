@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 
 
 /**
@@ -25,7 +25,7 @@ public class FoodCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Food food;
+    public final MenuItem item;
 
     @FXML
     private HBox cardPane;
@@ -41,13 +41,13 @@ public class FoodCard extends UiPart<Region> {
     /**
      * Creates a {@code FoodCode} with the given {@code Food} and index to display.
      */
-    public FoodCard(Food food, int displayedIndex) {
+    public FoodCard(MenuItem item, int displayedIndex) {
         super(FXML);
-        this.food = food;
+        this.item = item;
         id.setText(displayedIndex + ". ");
-        name.setText(food.getName());
-        price.setText(food.getPriceString());
-        food.getTags().stream()
+        name.setText(item.getName());
+        price.setText(item.getPriceString());
+        item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -67,6 +67,6 @@ public class FoodCard extends UiPart<Region> {
         // state check
         FoodCard card = (FoodCard) other;
         return id.getText().equals(card.id.getText())
-                && food.equals(card.food);
+                && item.equals(card.item);
     }
 }

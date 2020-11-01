@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
+import static seedu.address.storage.JsonAdaptedMenuItem.INVALID_PRICE_FORMAT;
 
 import java.util.ArrayList;
 import java.util.HashSet;

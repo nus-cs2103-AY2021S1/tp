@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.enums.Inequality;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class PriceWithinRangePredicate implements Predicate<Food> {
+public class PriceWithinRangePredicate implements Predicate<MenuItem> {
     private final double price;
     private final Inequality inequality;
 
@@ -23,16 +23,16 @@ public class PriceWithinRangePredicate implements Predicate<Food> {
     }
 
     @Override
-    public boolean test(Food food) {
+    public boolean test(MenuItem item) {
         switch (inequality) {
         case LESSER_THAN:
-            return food.getPrice() < price;
+            return item.getPrice() < price;
         case LESSER_THAN_OR_EQUAL_TO:
-            return food.getPrice() <= price;
+            return item.getPrice() <= price;
         case GREATER_THAN:
-            return food.getPrice() > price;
+            return item.getPrice() > price;
         case GREATER_THAN_OR_EQUAL_TO:
-            return food.getPrice() >= price;
+            return item.getPrice() >= price;
         default:
             assert (false);
             return false;

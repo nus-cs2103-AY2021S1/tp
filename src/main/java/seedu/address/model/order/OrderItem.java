@@ -2,10 +2,12 @@ package seedu.address.model.order;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,10 +28,19 @@ public class OrderItem extends Food {
     }
 
     /**
-     * Alternative constructor that takes in a food item and quantity. Every field must be present and not null.
+     * Alternative constructor that takes in a menu item and quantity. Every field must be present and not null.
      */
-    public OrderItem(Food food, int quantity) {
-        super(food.getName(), food.getPrice(), food.getTags());
+    public OrderItem(MenuItem menuItem, int quantity) {
+        super(menuItem.getName(), menuItem.getPrice(), menuItem.getTags());
+        requireAllNonNull(quantity);
+        this.quantity = quantity;
+    }
+
+    /**
+     * Alternative constructor that takes in a order item. Every field must be present and not null.
+     */
+    public OrderItem(OrderItem orderItem, int quantity) {
+        super(orderItem.getName(), orderItem.getPrice(), orderItem.getTags());
         requireAllNonNull(quantity);
         this.quantity = quantity;
     }
@@ -78,6 +89,14 @@ public class OrderItem extends Food {
                 && orderItem.getName().equals(getName())
                 && (orderItem.getPrice() == (getPrice()))
                 && (orderItem.getTags().equals(getTags()));
+    }
+
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(tags);
     }
 
     //    @Override

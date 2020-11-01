@@ -59,7 +59,7 @@ public class SortCommand extends Command {
         if (!model.isSelected()) {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
-        model.sortFoodBy(sortedBy, ascending, toggle);
+        model.sortMenuItemBy(sortedBy, ascending, toggle);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }

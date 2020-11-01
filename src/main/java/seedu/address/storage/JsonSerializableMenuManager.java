@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 
@@ -22,14 +22,14 @@ class JsonSerializableMenuManager {
 
     public static final String MESSAGE_DUPLICATE_FOOD = "Menu contains duplicate foods.";
 
-    private final List<JsonAdaptedFood> foods = new ArrayList<>();
+    private final List<JsonAdaptedMenuItem> menuItems = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMenuManager} with the given foods.
+     * Constructs a {@code JsonSerializableMenuManager} with the given menu items.
      */
     @JsonCreator
-    public JsonSerializableMenuManager(@JsonProperty("foods") List<JsonAdaptedFood> foods) {
-        this.foods.addAll(foods);
+    public JsonSerializableMenuManager(@JsonProperty("foods") List<JsonAdaptedMenuItem> menuItems) {
+        this.menuItems.addAll(menuItems);
     }
 
     /**
@@ -38,7 +38,7 @@ class JsonSerializableMenuManager {
      * @param source future changes to this will not affect the created {@code JsonSerializableMenuManager}.
      */
     public JsonSerializableMenuManager(ReadOnlyMenuManager source) {
-        foods.addAll(source.getFoodList().stream().map(JsonAdaptedFood::new).collect(Collectors.toList()));
+        menuItems.addAll(source.getMenuItemList().stream().map(JsonAdaptedMenuItem::new).collect(Collectors.toList()));
     }
 
     /**
@@ -48,12 +48,12 @@ class JsonSerializableMenuManager {
      */
     public MenuManager toModelType() throws IllegalValueException {
         MenuManager menuManager = new MenuManager();
-        for (JsonAdaptedFood jsonAdaptedFood : foods) {
-            Food food = jsonAdaptedFood.toModelType();
-            if (menuManager.hasFood(food)) {
+        for (JsonAdaptedMenuItem jsonAdaptedMenuItem : menuItems) {
+            MenuItem item = jsonAdaptedMenuItem.toModelType();
+            if (menuManager.hasMenuItem(item)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_FOOD);
             }
-            menuManager.addFood(food);
+            menuManager.addMenuItem(item);
         }
         return menuManager;
     }

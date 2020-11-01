@@ -5,8 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.food.Food;
-
+import seedu.address.model.food.MenuItem;
 
 
 /**
@@ -48,11 +47,11 @@ public class MenuManager implements ReadOnlyMenuManager {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the food list with {@code foods}.
-     * {@code foods} must not contain duplicate foods.
+     * Replaces the contents of the menu item list with {@code items}.
+     * {@code items} must not contain duplicate items.
      */
-    public void setMenu(List<Food> foods) {
-        this.menu.setFoods(foods);
+    public void setMenu(List<MenuItem> items) {
+        this.menu.setMenuItems(items);
     }
 
     /**
@@ -61,7 +60,7 @@ public class MenuManager implements ReadOnlyMenuManager {
     public void resetData(ReadOnlyMenuManager newData) {
         requireNonNull(newData);
 
-        setMenu(newData.getFoodList());
+        setMenu(newData.getMenuItemList());
     }
 
     //// food-level operations
@@ -69,43 +68,44 @@ public class MenuManager implements ReadOnlyMenuManager {
     /**
      * Returns true if a food with the same identity as {@code food} exists in the menu manager.
      */
-    public boolean hasFood(Food food) {
-        requireNonNull(food);
-        return menu.contains(food);
+    public boolean hasMenuItem(MenuItem item) {
+        requireNonNull(item);
+        return menu.contains(item);
     }
 
     /**
-     * Adds a food to the address book.
-     * The food must not already exist in the address book.
+     * Adds a menuItem to the address book.
+     * The menuItem must not already exist in the address book.
      */
-    public void addFood(Food f) {
+    public void addMenuItem(MenuItem f) {
         menu.add(f);
     }
 
     /**
-     * Replaces the given food {@code target} in the list with {@code editedFood}.
+     * Replaces the given menuItem {@code target} in the list with {@code editedMenuItem}.
      * {@code target} must exist in the address book.
-     * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
+     * The menuItem identity of {@code editedMenuItem} must not be the same as another existing menu item in the
+     * address book.
      */
-    public void setFood(Food target, Food editedFood) {
-        requireNonNull(editedFood);
+    public void setMenuItem(MenuItem target, MenuItem editedItem) {
+        requireNonNull(editedItem);
 
-        menu.setFood(target, editedFood);
+        menu.setMenuItem(target, editedItem);
     }
 
-    public void sortFoodByName(boolean ascending) {
-        menu.sortFoodByName(ascending);
+    public void sortMenuItemByName(boolean ascending) {
+        menu.sortMenuItemByName(ascending);
     }
 
-    public void sortFoodByPrice(boolean ascending) {
-        menu.sortFoodByPrice(ascending);
+    public void sortMenuItemByPrice(boolean ascending) {
+        menu.sortMenuItemByPrice(ascending);
     }
 
     /**
      * Removes {@code key} from this {@code MenuManager}.
      * {@code key} must exist in the address book.
      */
-    public void removeFood(Food key) {
+    public void removeMenuItem(MenuItem key) {
         menu.remove(key);
     }
 
@@ -118,7 +118,7 @@ public class MenuManager implements ReadOnlyMenuManager {
     }
 
     @Override
-    public ObservableList<Food> getFoodList() {
+    public ObservableList<MenuItem> getMenuItemList() {
         return menu.asUnmodifiableObservableList();
     }
 

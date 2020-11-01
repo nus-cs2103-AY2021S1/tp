@@ -30,7 +30,7 @@ class JsonAdaptedVendor {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private List<JsonAdaptedFood> menu = new ArrayList<>();
+    private List<JsonAdaptedMenuItem> menu = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedVendor} with the given vendor details.
@@ -38,7 +38,8 @@ class JsonAdaptedVendor {
     @JsonCreator
     public JsonAdaptedVendor(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("menu") List<JsonAdaptedFood> foodList) {
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("menu") List<JsonAdaptedMenuItem> menuItemList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -46,8 +47,8 @@ class JsonAdaptedVendor {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (foodList != null) {
-            this.menu.addAll(foodList);
+        if (menuItemList != null) {
+            this.menu.addAll(menuItemList);
         }
     }
 
@@ -62,7 +63,7 @@ class JsonAdaptedVendor {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        menu.addAll(source.getMenu().getFoods());
+        menu.addAll(source.getMenu().getMenuItems());
         //TODO add a value in menu
     }
 
@@ -77,8 +78,8 @@ class JsonAdaptedVendor {
             vendorTags.add(tag.toModelType());
         }
         final Menu vendorMenu = new Menu();
-        for (JsonAdaptedFood food : menu) {
-            vendorMenu.add(food.toModelType());
+        for (JsonAdaptedMenuItem menuItem : menu) {
+            vendorMenu.add(menuItem.toModelType());
         }
 
         if (name == null) {

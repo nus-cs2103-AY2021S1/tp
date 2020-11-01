@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
         setFoodListDisplay(false);
 
@@ -175,7 +175,7 @@ public class MainWindow extends UiPart<Stage> {
     void updateMenu() {
         boolean bool = logic.isSelected();
 
-        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
 
         setVendorListDisplay(!bool);
