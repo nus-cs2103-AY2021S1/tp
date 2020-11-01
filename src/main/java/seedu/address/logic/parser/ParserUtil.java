@@ -11,10 +11,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.StudentId;
+import seedu.address.model.student.Email;
+import seedu.address.model.student.Name;
+import seedu.address.model.student.Phone;
+import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
@@ -200,7 +200,12 @@ public class ParserUtil {
     public static int parseUpperBound(String upperBoundString) throws ParseException {
         requireNonNull(upperBoundString);
         String trimmedUpperBound = upperBoundString.trim();
-        int upperBoundInt = Integer.parseInt(trimmedUpperBound);
+        int upperBoundInt;
+        try {
+            upperBoundInt = Integer.parseInt(trimmedUpperBound);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Upper bound must be a positive integer.");
+        }
         if (upperBoundInt <= 0) {
             throw new ParseException("Upper bound must be a positive integer.");
         }
