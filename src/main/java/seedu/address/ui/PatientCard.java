@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -81,7 +82,7 @@ public class PatientCard extends UiPart<Region> {
             assert profilePic != null : "Profile picture cannot be null";
             FileInputStream fileInputStream = new FileInputStream(profilePic);
             Image finalProfilePic = new Image(fileInputStream);
-            profilePicture.setImage(finalProfilePic);
+            setupImageView(finalProfilePic, profilePicture);
         } catch (IOException error) {
             error.getMessage();
         }
@@ -99,6 +100,19 @@ public class PatientCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.allergyName))
                 .forEach(tag -> allergies.getChildren().add(new Label(tag.allergyName)));
         cardPane.setStyle("-fx-background-color: " + patient.getColorTag().cssColor + ";");
+    }
+
+    private static void setupImageView(Image img, ImageView imgView) {
+        // Adopted from https://stackoverflow.com/a/43669816
+        double width = img.getWidth();
+        double height = img.getHeight();
+        double newMeasure = Math.min(width, height);
+        double x = (width - newMeasure) / 2;
+        double y = (height - newMeasure) / 2;
+
+        Rectangle2D rect = new Rectangle2D(x, y, newMeasure, newMeasure);
+        imgView.setViewport(rect);
+        imgView.setImage(img);
     }
 
     @FXML
@@ -119,7 +133,7 @@ public class PatientCard extends UiPart<Region> {
         assert imageFile != null : "Profile picture cannot be null";
         FileInputStream fileInputStream = new FileInputStream(imageFile);
         Image image = new Image(fileInputStream);
-        profilePicture.setImage(image);
+        setupImageView(image, profilePicture);
         logic.runImageTransfer(patient, imageFile);
     }
 
