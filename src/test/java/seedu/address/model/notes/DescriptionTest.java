@@ -37,7 +37,7 @@ public class DescriptionTest {
         assertFalse(Description.isValidDescription("")); // empty string
 
         // EP: 1 char
-        assertTrue(Description.isValidDescription("peter jack")); // alphabets only
+        assertTrue(Description.isValidDescription("p")); // alphabets only
 
         // EP: 80 char
         assertTrue(Description.isValidDescription("Lorem ipsum dolor sit amet, consectetur"
