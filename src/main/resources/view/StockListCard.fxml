@@ -35,38 +35,41 @@
 
     <VBox styleClass="list-cell-element" prefHeight="30"  GridPane.columnIndex="1">
 
-      <Label fx:id="id" styleClass="list-cell-text" wrapText="true">
-      </Label>
+      <Label fx:id="id" styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
     <VBox  styleClass="list-cell-element"  GridPane.columnIndex="2">
-      <Label fx:id="serialNumber"  text="\$serialNumber" styleClass="list-cell-text" wrapText="true">
-      </Label>
+      <Label fx:id="serialNumber"  text="\$serialNumber" styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
     <VBox   styleClass="list-cell-element" GridPane.columnIndex="3">
-      <Label fx:id="name" text="\$first" styleClass="list-cell-text" wrapText="true">
-      </Label>
+      <Label fx:id="name" text="\$first" styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
     <VBox   styleClass="list-cell-element" GridPane.columnIndex="4">
-        <Label fx:id="source" text="\$first"  styleClass="list-cell-text" wrapText="true">
-        </Label>
+        <Label fx:id="source" text="\$first"  styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
     <VBox   styleClass="list-cell-element" GridPane.columnIndex="5">
-      <Label fx:id="quantity"  text="\$quantity" styleClass="list-cell-text" wrapText="true">
-      </Label>
+        <VBox styleClass="list-cell-quantity">
+            <Label fx:id="quantity"  text="\$quantity" styleClass="list-cell-text" wrapText="true"/>
+        </VBox>
+        <Label fx:id="lowQuantity" text="\$lowQuantity" styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
     <VBox   styleClass="list-cell-element" GridPane.columnIndex="6">
-      <Label fx:id="locationStored"  text="\$locationStored" styleClass="list-cell-text" wrapText="true">
-      </Label>
+      <Label fx:id="locationStored"  text="\$locationStored" styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
     <VBox   styleClass="list-cell-element" GridPane.columnIndex="7">
-      <Label fx:id="notes"  styleClass="list-cell-text" wrapText="true" >
-      </Label>
+      <Label fx:id="notes"  styleClass="list-cell-text" wrapText="true"/>
+
     </VBox>
 
 

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="stock-list-panel-vbox">
   <HBox>
-    <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS" minHeight="40" maxHeight="40" styleClass="list-header">
+    <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS" minHeight="50" maxHeight="40" styleClass="list-header">
       <columnConstraints>
         <ColumnConstraints hgrow="NEVER"  minWidth="31" maxWidth="31" />
         <!--      id-->
@@ -29,35 +29,43 @@
         <ColumnConstraints hgrow="ALWAYS"  minWidth="300" />
       </columnConstraints>
 
-      <VBox fx:id="bookmark" styleClass="list-cell-header" minHeight="40" GridPane.columnIndex="0" />
+      <VBox fx:id="bookmark" styleClass="list-cell-header" minHeight="50" GridPane.columnIndex="0" />
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="1">
+      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="1">
         <Label fx:id="id" styleClass="list-cell-header-text" text="No." wrapText="true" />
       </HBox>
 
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="2">
+      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="2">
         <Label fx:id="serialNumberHeader" styleClass="list-cell-header-text" text="S/N" wrapText="true" />
 
       </HBox>
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="3">
+      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="3">
         <Label fx:id="name" styleClass="list-cell-header-text" text="Name" wrapText="true" />
       </HBox>
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="4">
+      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="4">
         <Label fx:id="source" styleClass="list-cell-header-text" text="Source" wrapText="true"/>
       </HBox>
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="5">
-        <Label fx:id="quantity" styleClass="list-cell-header-text" text="Quantity" wrapText="true"/>
-      </HBox>
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="6">
+      <VBox GridPane.columnIndex="5" styleClass="list-cell-header" alignment="BOTTOM_LEFT">
+        <HBox styleClass="list-cell-header-quantity"  minHeight="20" alignment="BOTTOM_LEFT">
+          <Label fx:id="quantity" styleClass="list-cell-header-text" text="Quantity" wrapText="true"/>
+        </HBox>
+
+        <HBox minHeight="20" alignment="BOTTOM_LEFT" >
+          <Label fx:id="lowQuantity" styleClass="list-cell-header-text" text="Low Quantity" wrapText="true"/>
+        </HBox>
+      </VBox>
+
+
+      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="6">
         <Label fx:id="locationStored" styleClass="list-cell-header-text" text="Location" wrapText="true"/>
       </HBox>
 
-      <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="7">
+      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="7">
         <Label fx:id="notes" styleClass="list-cell-header-text" text="Notes" wrapText="true" />
       </HBox>
 
