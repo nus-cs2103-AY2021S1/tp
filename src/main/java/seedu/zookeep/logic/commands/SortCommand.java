@@ -7,7 +7,7 @@ import seedu.zookeep.model.animal.AnimalComparator;
 
 
 /**
- * Sorts all animals in the zookeep book based on the user specified parameter.
+ * Sorts all animals in the ZooKeepBook based on the user specified parameter.
  */
 public class SortCommand extends Command {
 

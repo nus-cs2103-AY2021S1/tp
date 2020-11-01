@@ -6,12 +6,12 @@ import seedu.zookeep.model.Model;
 import seedu.zookeep.model.ZooKeepBook;
 
 /**
- * Clears the zookeep book.
+ * Clears the ZooKeepBook.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Zookeep book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "ZooKeepBook has been cleared!";
 
 
     @Override

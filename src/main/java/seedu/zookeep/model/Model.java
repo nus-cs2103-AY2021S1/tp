@@ -39,17 +39,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' zookeep book file path.
+     * Returns the user prefs' ZooKeepBook file path.
      */
     Path getZooKeepBookFilePath();
 
     /**
-     * Sets the user prefs' zookeep book file path.
+     * Sets the user prefs' ZooKeepBook file path.
      */
     void setZooKeepBookFilePath(Path zooKeepBookFilePath);
 
     /**
-     * Replaces zookeep book data with the data in {@code ZooKeepBook}.
+     * Replaces ZooKeepBook data with the data in {@code ZooKeepBook}.
      */
     void setZooKeepBook(ReadOnlyZooKeepBook zooKeepBook);
 
@@ -57,7 +57,7 @@ public interface Model {
     ReadOnlyZooKeepBook getZooKeepBook();
 
     /**
-     * Returns true if an animal with the same identity as {@code animal} exists in the zookeep book.
+     * Returns true if an animal with the same identity as {@code animal} exists in the ZooKeepBook.
      */
     boolean hasAnimal(Animal animal);
 
@@ -68,20 +68,20 @@ public interface Model {
 
     /**
      * Deletes the given animal.
-     * The animal must exist in the zookeep book.
+     * The animal must exist in the ZooKeepBook.
      */
     void deleteAnimal(Animal target);
 
     /**
      * Adds the given animal.
-     * {@code animal} must not already exist in the zookeep book.
+     * {@code animal} must not already exist in the ZooKeepBook.
      */
     void addAnimal(Animal animal);
 
     /**
      * Replaces the given animal {@code target} with {@code editedAnimal}.
-     * {@code target} must exist in the zookeep book.
-     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the zookeep book.
+     * {@code target} must exist in the ZooKeepBook.
+     * The animal identity of {@code editedAnimal} must not be the same as another existing animal in the ZooKeepBook.
      */
     void setAnimal(Animal target, Animal editedAnimal);
 

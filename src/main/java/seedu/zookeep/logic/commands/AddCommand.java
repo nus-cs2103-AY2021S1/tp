@@ -12,13 +12,13 @@ import seedu.zookeep.model.Model;
 import seedu.zookeep.model.animal.Animal;
 
 /**
- * Adds an animal to the zookeep book.
+ * Adds an animal to the ZooKeepBook.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an animal to the zookeep book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an animal to the ZooKeepBook.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_ID + "ID "

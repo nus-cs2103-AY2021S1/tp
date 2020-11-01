@@ -136,7 +136,7 @@ The Class Diagram for the Model Component is shown below (*Figure 7*)
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the ZooKeep book data.
+* stores the ZooKeepBook data.
 * exposes an unmodifiable `ObservableList<Animal>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -159,7 +159,7 @@ The Class Diagram for the Storage Component is shown below (*Figure 8*)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the ZooKeep book data in json format and read it back.
+* can save the ZooKeepBook data in json format and read it back.
 
 ### Common classes
 
@@ -258,7 +258,7 @@ The following 2 Activity Diagrams (*Figures 14.1 & 14.2*) summarize what happens
 
 ##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire ZooKeep book as a state.
+* **Alternative 1 (current choice):** Saves the entire ZooKeepBook as a state.
   * Pros: Easy to implement, works with all commands immediately.
   * Cons: May have performance issues in terms of memory usage as product scales.
 
@@ -276,15 +276,15 @@ The Redo feature was added as a complement to the Undo feature which was done ea
 feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
 The `HistoryStack` class also has new key features to support the `redo` command:
 
-* `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` - Adds a given state of the ZooKeep book into the redo stack.
-* `HistoryStack#removeRecentRedo()` - Removes the most 'recent' update of the ZooKeep book from the redo stack.
-* `HistoryStack#viewRecentRedo()` - Returns (but does not remove) the most 'recent' update of the ZooKeep book.
-* `HistoryStack#clearRedo()` - Clears the future updates of the ZooKeep book stored in the redo stack.
+* `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` - Adds a given state of the ZooKeepBook into the redo stack.
+* `HistoryStack#removeRecentRedo()` - Removes the most 'recent' update of the ZooKeepBook from the redo stack.
+* `HistoryStack#viewRecentRedo()` - Returns (but does not remove) the most 'recent' update of the ZooKeepBook.
+* `HistoryStack#clearRedo()` - Clears the future updates of the ZooKeepBook stored in the redo stack.
 
 The `RedoCommand` class references some of these methods to accomplish the feature required. Given below is an example
 usage scenario and how the redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The ZooKeep book is initialised with the initial state
+Step 1. The user launches the application for the first time. The ZooKeepBook is initialised with the initial state
 given in `data/zookeepbook.json`, and the `HistoryStack` consists of 2 stacks; the history stack and the redo stack,
 each in their respective initial states (*Figure 15*).
 
@@ -292,7 +292,7 @@ each in their respective initial states (*Figure 15*).
 
 <p align="center"><i>Figure 15: State of both stacks during initialization</i></p>
 
-Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeep book. The `LogicManager` calls
+Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeepBook. The `LogicManager` calls
 `Model#getZooKeepBook()` to retrieve the new state of the book and calls `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`
 as per normal undo protocol (*Figure 16*).
 
@@ -324,7 +324,7 @@ the stack for retrieval.
 </div>
 
 Step 5. However, now the user decides that deleting that animal was the correct decision after all, and now executes 
-`redo` which calls `HistoryStack#viewRecentRedo()` to retrieve the future state of the ZooKeep book where the animal
+`redo` which calls `HistoryStack#viewRecentRedo()` to retrieve the future state of the ZooKeepBook where the animal
 was deleted. The future state is then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
 Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from redo stack (*Figure 19*). 
 
@@ -333,7 +333,7 @@ Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from re
 <p align="center"><i>Figure 19: State of both stacks after executing redo command</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
-ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
+ZooKeepBook (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
 immediate future has been altered and the future states previously stored in the redo stack are now invalid. Hence 
 executing redo now will do nothing.
 
@@ -362,7 +362,7 @@ The following 2 Activity Diagrams (*Figures 21.1 & 21.2*) summarise what happens
 
 ##### Aspect: How redo executes
 
-* **Alternative 1 (current choice):** Saves the entire ZooKeep book as a state.
+* **Alternative 1 (current choice):** Saves the entire ZooKeepBook as a state.
   * Pros: Easy to implement, works with all commands immediately.
   * Cons: May have performance issues in terms of memory usage as product scales.
 
@@ -380,8 +380,8 @@ The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser`
 `SnapCommandParser` parses the user's input as a file name and then creates a `SnapCommand` 
 object with a `Path` object representing the save destination and file name as parameters.
 
-`SnapCommand` executes by copying the current state of the zookeep book and then utilising
-`StorageManager`'s save method to save the copied zookeep book with the user specified file name.
+`SnapCommand` executes by copying the current state of the ZooKeepBook and then utilising
+`StorageManager`'s save method to save the copied ZooKeepBook with the user specified file name.
 
 The following Sequence Diagram (*Figure 22*) illustrates the creation and execution of a `SnapCommand`:
 

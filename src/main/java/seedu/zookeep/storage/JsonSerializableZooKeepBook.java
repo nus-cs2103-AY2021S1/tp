@@ -41,7 +41,7 @@ class JsonSerializableZooKeepBook {
     }
 
     /**
-     * Converts this zookeep book into the model's {@code ZooKeepBook} object.
+     * Converts this ZooKeepBook into the model's {@code ZooKeepBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

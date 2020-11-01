@@ -23,7 +23,7 @@ import seedu.zookeep.model.medicalcondition.MedicalCondition;
 
 
 /**
- * Replaces the details in the fields of an existing animal in the zookeep book.
+ * Replaces the details in the fields of an existing animal in the ZooKeepBook.
  */
 public class ReplaceCommand extends Command {
 
@@ -42,7 +42,7 @@ public class ReplaceCommand extends Command {
 
     public static final String MESSAGE_REPLACE_ANIMAL_SUCCESS = "Replaced Animal Details\n%1$s";
     public static final String MESSAGE_NOT_REPLACED = "At least one field to replace must be provided.";
-    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal ID already exists in the zookeep book.";
+    public static final String MESSAGE_DUPLICATE_ANIMAL = "This animal ID already exists in the ZooKeepBook.";
 
     private final Id id;
     private final EditAnimalDescriptor editAnimalDescriptor;

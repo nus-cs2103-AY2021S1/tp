@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.zookeep.model.animal.Animal;
 
 /**
- * Unmodifiable view of a ZooKeep book
+ * Unmodifiable view of a ZooKeepBook
  */
 public interface ReadOnlyZooKeepBook {
 

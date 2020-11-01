@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.zookeep.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a FeedTime in the ZooKeep Book.
+ * Represents a FeedTime in the ZooKeepBook.
  * Guarantees: immutable; name is valid as declared in {@link #isValidFeedTime(String)}
  */
 public class FeedTime implements Comparable<FeedTime> {

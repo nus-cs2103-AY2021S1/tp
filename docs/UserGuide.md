@@ -131,7 +131,7 @@ Format: `clear`
 
 Expected Outcome:
 ```
-Zookeep book has been cleared!
+ZooKeepBook has been cleared!
 ```
 All animals in your `ZooKeep` book are cleared.
 
@@ -438,7 +438,7 @@ snap zookeepbook_19-10-2020
 
 Expected Outcome:
 ```
-Current ZooKeep Book saved as zookeepbook_19-10-2020.json
+Current ZooKeepBook saved as zookeepbook_19-10-2020.json
 ```
 A file named `zookeepbook_19-10-2020.json` is created in the `data/snapshots` directory.
 This file contains the state of your `ZooKeep` book data at the point in time when the command

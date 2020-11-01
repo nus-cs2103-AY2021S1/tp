@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.zookeep.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a MedicalCondition in the ZooKeep Book.
+ * Represents a MedicalCondition in the ZooKeepBook.
  * Guarantees: immutable; name is valid as declared in {@link #isValidMedicalConditionName(String)}
  */
 public class MedicalCondition {

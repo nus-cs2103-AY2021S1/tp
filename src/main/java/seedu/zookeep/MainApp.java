@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s zookeep book and {@code userPrefs}. <br>
-     * The data from the sample zookeep book will be used instead if {@code storage}'s zookeep book is not found,
-     * or an empty zookeep book will be used instead if errors occur when reading {@code storage}'s zookeep book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s ZooKeepBook and {@code userPrefs}. <br>
+     * The data from the sample ZooKeepBook will be used instead if {@code storage}'s ZooKeepBook is not found,
+     * or an empty ZooKeepBook will be used instead if errors occur when reading {@code storage}'s ZooKeepBook.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyZooKeepBook> zooKeepBookOptional;
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping ZooKeep Book ] =============================");
+        logger.info("============================ [ Stopping ZooKeepBook ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
