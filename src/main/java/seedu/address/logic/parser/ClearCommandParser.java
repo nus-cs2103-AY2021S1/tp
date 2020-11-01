@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -15,7 +16,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
     @Override
     public ClearCommand parse(String args) throws ParseException {
         String trimArgs = args.trim();
-        String errorMessage = String.format(ParserUtil.MESSAGE_INVALID_COMMAND_FORMAT,
+        String errorMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                 ClearCommand.MESSAGE_USAGE);
         if (trimArgs.length() != 0) {
             throw new ParseException(errorMessage);

@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_QUANTITY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +10,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.PresetCommand;
@@ -25,24 +28,6 @@ import seedu.address.model.vendor.Phone;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "%s is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_QUANTITY = "Quantity given is invalid.";
-    public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid";
-    public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX = "The order item index provided is invalid";
-    public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
-            + "provided is invalid";
-    public static final String MESSAGE_VENDOR_NOT_SELECTED = "A vendor has not been selected yet,"
-            + " please choose a vendor.";
-    public static final String MESSAGE_INSUFFICENT_ARGUMENTS = "%s command requires at least %s argument(s). \n %s";
-    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments. \n %s";
-    public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
-    public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
-    public static final String MESSAGE_INVALID_PRESET_ARGUMENT = "Save or Load preset command was not specified.";
-    public static final String MESSAGE_PRESET_SAVE_NO_ORDER = "You have not added any items to your order to be saved!";
-    public static final String MESSAGE_PRESET_NO_SAVED_PRESETS = "You have not saved any presets for this vendor!";
-
     /**
      * Parses {@code inequality} into an {@code Inequality} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -53,7 +38,7 @@ public class ParserUtil {
         String trimmedInequality = inequality.trim();
 
         if (!StringUtil.isInequality(trimmedInequality)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_INEQUALITY, trimmedInequality));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_INEQUALITY, trimmedInequality));
         }
 
         return Inequality.get(trimmedInequality);
@@ -68,7 +53,7 @@ public class ParserUtil {
     public static double parsePrice(String price) throws ParseException {
         String trimmedPrice = price.trim();
         if (!StringUtil.isNonNegativeUnsignedDouble(trimmedPrice)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_PRICE, trimmedPrice));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_PRICE, trimmedPrice));
         }
         return Double.parseDouble(trimmedPrice);
     }
@@ -241,11 +226,11 @@ public class ParserUtil {
                                        int min, int max) throws ParseException {
         // Check for empty String
         if (argsArr.length == 1 && argsArr[0].equals("") || argsArr.length < min) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    String.format(MESSAGE_INSUFFICENT_ARGUMENTS, commandWord, min, messageUsage)));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    String.format(Messages.MESSAGE_INSUFFICIENT_ARGUMENTS, commandWord, min, messageUsage)));
         } else if (argsArr.length > max) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    String.format(MESSAGE_TOO_MANY_ARGUMENTS, commandWord, max, messageUsage)));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    String.format(Messages.MESSAGE_TOO_MANY_ARGUMENTS, commandWord, max, messageUsage)));
         }
     }
 

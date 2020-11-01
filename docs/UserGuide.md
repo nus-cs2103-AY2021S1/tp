@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-**Supper Strikers is a desktop application for managing your supper orders.** While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
+**Supper Strikers is a desktop application for managing your supper orders.** It is targeted at students living in NUS for ordering delivery from supper stretch.  While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
 * Table of Contents
 {:toc}
@@ -36,18 +36,14 @@ title: User Guide
 ## Features
 
 <div markdown="block" class="alert alert-info">
-
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
-
+  E.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
 * Items in square brackets are optional.<br>
-  e.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
-  
-* Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless
-there is any ambiguity. For example, `help` only requires the user to type `h` to be recognized, while `sort` will
-require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
+  E.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
+* Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless there is any ambiguity. 
+* E.g. `help` only requires the user to type `h` to be recognized, while `sort` will require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
 will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.)
 
 </div>
@@ -62,10 +58,17 @@ related commands can be executed. In menu mode, both vendor and menu commands ca
 
 Shows the user instructions on how to use the application.
 
+Format: `help`
+
+- Note that anything written after the `help` command will be ignored.
 
 ### Exit application: `exit`
 
 See you next time! 
+
+Format: `exit`
+
+- Note that anything written after the `exit` command will be ignored.
 
 ## Vendor related commands
 
@@ -88,11 +91,16 @@ Examples:
 
 ### Displaying supper menu: `menu`
 
-Displays the current menu from the currently selected vendor.
+Displays the menu from the selected vendor.
 
-- Can be used to display the menu after a `sort` / `find` / `price` command
+- Can be used to display the menu after a `sort` / `find` / `price` command.
+- Note that anything written after the `menu` command will be ignored, and menu will be listed as intended.
 
 Format: `menu`
+
+Example:
+
+- `menu`: Displays the menu of the selected vendor.
 
 
 ### Sorting the menu: `sort`
@@ -117,18 +125,20 @@ Examples:
 ### Find food item: `find`
 
 Finds and lists all food items containing any of the specified keywords in their name.
-case-sensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
+- `KEYWORD` are NOT **Case-Sensitive**.
+- `KEYWORD` filters tags as well.
+
 Examples:
-* `find milo` lists all food items containing the word 'milo' in their name.
-* `find milo dinosaur` lists all food items containing the word 'milo' or 'dinosaur' in their name.
+* `find milo`: lists all food items containing the word 'milo' in their name.
+* `find milo dinosaur`: lists all food items containing the word 'milo' or 'dinosaur' in their name.
 
 
 ### Filter food item by price: `price`
 
-Finds all food item within a specified price range.
+Filters all food item within a specified price range.
 
 Format: `price INEQUALITY PRICE`
 
@@ -140,25 +150,25 @@ Format: `price INEQUALITY PRICE`
 * `PRICE` must be a non-negative real number.
 
 Examples:
-* `price < 3` lists all food item with price less than $3.
-* `price >= 2` lists all food item with price from $2.
+* `price < 3`: lists all food item with price less than $3.
+* `price >= 2`: lists all food item with price from $2.
 
 ## Order related commands
 
 ### Adding a food item: `add`
 
-Adds a new food item for the user according to the index from the menu.
+Adds an OrderItem for the user according to the index from the menu to the OrderManager.
 
 Format: `add INDEX [QUANTITY]`
 
-* The `INDEX` refers to the index number shown in the displayed menu list.
+* The `INDEX` refers to the index number shown on the displayed menu list.
 * `INDEX` must be a positive integer and must not exceed the size of the menu list.
-* Quantity can be specified to indicate the number of item to be added. Otherwise, it adds one quantity of the item at the specified index.
+* `QUANTITY` can be specified to indicate the number of item to be added. Otherwise, it adds one quantity of the item at the specified index.
 
 Examples:
-* `add 1 1` add 1 quantity of item at index 1.
-* `add 2 3` add 3 quantity of item at index 2.
-* `add 1` add 1 quantity of item at index 1.
+* `add 1 1`: add item at INDEX 1, of QUANTITY 1.
+* `add 2 3`: add item at INDEX 2, of QUANTITY 3.
+* `add 1`: add item at INDEX 1, of default QUANTITY 1.
 
 
 ### Removing an item : `remove`
@@ -167,13 +177,14 @@ Removes the specified item from the supper order.
 
 Format: `remove INDEX [QUANTITY]`
 
-* The `INDEX` refers to the index number shown in the displayed supper order list.
+- `INDEX` refers to the index number shown in the displayed supper order list.
+
 * `INDEX` must be a positive integer and must not exceed the size of the supper order list.
-* Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item at the specified index.
+* `QUANTITY` can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item at the specified index.
 
 Examples:
-* `remove 2` deletes the 2<sup>nd</sup> item in the supper order.
-* `remove 1 2` deletes 2 instances of the 1<sup>st</sup> item in the supper order.
+* `remove 2`: remove item at INDEX 2.
+* `remove 1 2`: remove item at INDEX 1, of quantity 2.
 
 
 ### Clearing the order: `clear`
@@ -182,6 +193,12 @@ Removes everything from the order.
 
 Format: `clear`
 
+- Note that anything written after the `clear` command will be ignored.
+
+Example:
+
+- `clear`: clears all items on current order.
+
 
 ### Undo changes to order: `undo`
 
@@ -189,12 +206,23 @@ Undoes last change to the order.
 
 Format: `undo`
 
+- Note that anything written after the `undo` command will be ignored.
+
+Example:
+
+- `undo`: undoes previous command and returns order back to its previous state.
 
 ### Calculate total: `total`
 
 Displays the total cost of the order currently.
 
 Format: `total`
+
+- Note that anything written after the `total` command will be ignored.
+
+Example:
+
+- `total`: returns the total cost of all items from current order.
 
 
 ### Generate order text: `submit`
@@ -203,6 +231,12 @@ Displays a copy-paste-able text of the order.
 
 Format: `submit`
 
+- Text obtained is automatically copied to clipboard.
+- Note that anything written after the `submit` command will be ignored.
+
+Example:
+
+- `submit`: returns a text form of the order
 
 ### Preset supper orders: `preset`
 
@@ -210,16 +244,21 @@ Saves or Loads a preset of the user's supper order.
 
 Format: `preset MODE [NAME]`
 
-* `MODE` must be either 'save' or 'load' or 'delete', which dictates what the system will perform for the user's supper orders.
+* `MODE` dictates what the system will perform for the user's supper orders, represented by the formats:
+  * `save`: Used to save a preset. (If used without a `NAME`, will save with a default preset name of 'MyPreset')
+  * `load`: Used to load a preset. (If used without a `NAME`, will list all saved presets)
+  * `delete`: Used to delete a preset. (`NAME` must be specified)
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
-* If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
-it will display all the saved presets under the current vendor to the user.
-* For `delete` mode, `NAME` must be specified.
+  * if `NAME` already exists and in save mode, the new preset will overwrite the existing preset.
+  * `NAME` is **Case-Sensitive**.
+  * `NAME` is Vendor Specific, and is unique to each vendor.
 
 Examples:
-* `preset save` saves the user's supper order with the default preset name.
-* `preset load vegan` loads the preset supper order with the preset name "vegan".
-* `preset delete my favs` deletes the preset supper order with the preset name "my favs".
+* `preset save`: saves the user's supper order with the default preset name.
+* `preset load MyPreset`: loads the current default preset if it exists.
+* `preset save vegan`: save the user's supper order with a preset name of 'vegan'.
+* `preset load vegan`: loads the preset supper order with the preset name 'vegan'.
+* `preset delete vegan` deletes the preset supper order with the preset name "vegan".
 
 
 

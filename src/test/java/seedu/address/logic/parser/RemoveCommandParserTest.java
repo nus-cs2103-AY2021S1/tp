@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INSUFFICIENT_ARGUMENTS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_QUANTITY;
+import static seedu.address.commons.core.Messages.MESSAGE_TOO_MANY_ARGUMENTS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INSUFFICENT_ARGUMENTS;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_QUANTITY;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_TOO_MANY_ARGUMENTS;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,7 +41,7 @@ public class RemoveCommandParserTest {
     public void parse_invalidValues_failure() {
         // empty String
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                String.format(MESSAGE_INSUFFICENT_ARGUMENTS,
+                String.format(MESSAGE_INSUFFICIENT_ARGUMENTS,
                         RemoveCommand.COMMAND_WORD, 1, RemoveCommand.MESSAGE_USAGE)));
 
         // More than 2 arguments
