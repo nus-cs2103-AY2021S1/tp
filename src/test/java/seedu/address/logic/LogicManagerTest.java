@@ -24,7 +24,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.storage.JsonModuleStorage;
+import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.ModuleBuilder;
@@ -40,8 +40,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonModuleStorage moduleStorage =
-                new JsonModuleStorage(temporaryFolder.resolve("modulelist.json"));
+        JsonModuleListStorage moduleStorage =
+                new JsonModuleListStorage(temporaryFolder.resolve("modulelist.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(moduleStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -68,8 +68,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonModuleStorage moduleStorage =
-                new JsonModuleIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionModuleList.json"));
+        JsonModuleListStorage moduleStorage =
+                new JsonModuleListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionModuleList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(moduleStorage, userPrefsStorage);
@@ -147,8 +147,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonModuleIoExceptionThrowingStub extends JsonModuleStorage {
-        private JsonModuleIoExceptionThrowingStub(Path filePath) {
+    private static class JsonModuleListIoExceptionThrowingStub extends JsonModuleListStorage {
+        private JsonModuleListIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 

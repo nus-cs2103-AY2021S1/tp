@@ -1,8 +1,5 @@
 package seedu.address;
 
-import static seedu.address.model.util.SampleDataUtil.getSampleModuleList;
-//import static seedu.address.model.util.SampleDataUtil.getSampleStudentList;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -26,9 +23,9 @@ import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.JsonModuleStorage;
+import seedu.address.storage.JsonModuleListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.ModuleStorage;
+import seedu.address.storage.ModuleListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -60,9 +57,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        ModuleStorage moduleStorage = new JsonModuleStorage(userPrefs.getModuleListFilePath());
+        ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
 
-        storage = new StorageManager(moduleStorage, userPrefsStorage);
+        storage = new StorageManager(moduleListStorage, userPrefsStorage);
 
         initLogging(config);
 
