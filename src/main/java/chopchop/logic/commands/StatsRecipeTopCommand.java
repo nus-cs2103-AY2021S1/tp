@@ -16,12 +16,6 @@ public class StatsRecipeTopCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof StatsRecipeTopCommand);
-    }
-
-    @Override
     public String toString() {
         return "StatsRecipeTopCommand";
     }

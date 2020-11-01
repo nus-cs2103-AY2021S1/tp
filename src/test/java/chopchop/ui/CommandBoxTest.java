@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import chopchop.logic.LogicManager;
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.ModelManager;
 import chopchop.storage.JsonIngredientBookStorage;
 import chopchop.storage.JsonRecipeBookStorage;
@@ -60,8 +59,9 @@ public class CommandBoxTest extends GuiUnitTest {
             logic.execute(commandText);
             if (commandText.equals(COMMAND_THAT_SUCCEEDS)) {
                 return CommandResult.message("Command successful");
+            } else {
+                return CommandResult.error("Command failed");
             }
-            throw new CommandException("Command failed");
         }, logic);
         commandBoxHandle = new CommandBoxHandle(getChildNode(commandBox.getRoot(),
                 CommandBoxHandle.COMMAND_INPUT_FIELD_ID));

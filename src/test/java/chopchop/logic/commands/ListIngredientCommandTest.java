@@ -4,12 +4,11 @@ import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import chopchop.model.EntryBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UsageList;
@@ -40,14 +39,5 @@ public class ListIngredientCommandTest {
 
         showIngredientAtIndex(model, INDEXED_FIRST);
         assertCommandSuccess(new ListIngredientCommand(), model, expectedModel);
-    }
-
-    @Test
-    public void test_equals() {
-        var c1 = new ListIngredientCommand();
-        var c2 = new ListIngredientCommand();
-        assertEquals(c1, c1);
-        assertEquals(c1, c2);
-        assertNotEquals(c1, "owo");
     }
 }

@@ -2,7 +2,6 @@
 
 package chopchop.logic.commands;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.model.Model;
@@ -10,8 +9,6 @@ import chopchop.model.attributes.units.Mass;
 import chopchop.testutil.StubbedModel;
 import org.junit.jupiter.api.Test;
 
-
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,20 +23,11 @@ public class MakeRecipeCommandTest {
         }
 
         assertTrue(c.hasValue());
-
-        try {
-            return c.getValue().execute(m, new HistoryManager());
-        } catch (CommandException e) {
-            return CommandResult.error(e.getMessage());
-        }
+        return c.getValue().execute(m, new HistoryManager());
     }
 
     private CommandResult runCommand(Command c, Model m) {
-        try {
-            return c.execute(m, new HistoryManager());
-        } catch (CommandException e) {
-            return CommandResult.error(e.getMessage());
-        }
+        return c.execute(m, new HistoryManager());
     }
 
     @Test
@@ -90,26 +78,6 @@ public class MakeRecipeCommandTest {
 
             var r2 = ((MakeRecipeCommand) c).undo(m);
             assertTrue(r2.didSucceed());
-        }
-
-        if (true) {
-            var p = new CommandParser();
-            var cc1 = p.parse("make recipe apricot salad").getValue();
-            var cc2 = p.parse("make recipe uwu salad").getValue();
-            var cc3 = p.parse("make recipe uwu salad").getValue();
-            var cc4 = p.parse("make recipe apricot salad").getValue();
-
-            runCommand(cc1, m);
-            runCommand(cc2, m);
-            runCommand(cc3, m);
-            runCommand(cc4, m);
-
-            assertEquals(cc1, cc1);
-            assertEquals(cc2, cc3);
-
-            assertNotEquals(cc1, "asdf");
-            assertNotEquals(cc1, cc3);
-            assertNotEquals(cc1, cc4);
         }
     }
 }

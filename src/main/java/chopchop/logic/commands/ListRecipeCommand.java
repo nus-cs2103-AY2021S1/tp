@@ -25,11 +25,6 @@ public class ListRecipeCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this || (other instanceof ListRecipeCommand);
-    }
-
-    @Override
     public String toString() {
         return String.format("ListRecipeCommand");
     }

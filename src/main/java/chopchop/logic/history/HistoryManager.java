@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.Undoable;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
 
 /**
@@ -50,9 +49,8 @@ public class HistoryManager {
      *
      * @param model {@code Model} which the undo should operate on.
      * @return feedback message of the operation result for display.
-     * @throws CommandException If an error occurs during undo execution.
      */
-    public CommandResult undo(Model model) throws CommandException {
+    public CommandResult undo(Model model) {
         if (this.currentIndex == 0) {
             return CommandResult.error("No commands to undo");
         }
@@ -66,9 +64,8 @@ public class HistoryManager {
      *
      * @param model {@code Model} which the redo should operate on.
      * @return feedback message of the operation result for display.
-     * @throws CommandException If an error occurs during redo execution.
      */
-    public CommandResult redo(Model model) throws CommandException {
+    public CommandResult redo(Model model) {
         if (this.currentIndex == this.commandHistory.size()) {
             return CommandResult.error("No commands to redo");
         }

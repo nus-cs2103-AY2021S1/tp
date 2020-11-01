@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.function.BiFunction;
 
 import chopchop.commons.util.Result;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.edit.EditOperationType;
 import chopchop.logic.edit.IngredientEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
@@ -49,7 +48,7 @@ public class EditRecipeCommand extends Command implements Undoable {
 
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         enforceNonNull(model);
 
         var res = resolveRecipeReference(this.item, model);
@@ -252,14 +251,6 @@ public class EditRecipeCommand extends Command implements Undoable {
 
         model.setRecipe(this.editedRecipe, this.recipe);
         return CommandResult.message("Undo: un-edited recipe '%s'", this.recipe.getName());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof EditRecipeCommand
-                && this.item.equals(((EditRecipeCommand) other).item)
-                && this.recipeEditDescriptor.equals(((EditRecipeCommand) other).recipeEditDescriptor));
     }
 
     @Override

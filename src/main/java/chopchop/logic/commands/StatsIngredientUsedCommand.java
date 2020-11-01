@@ -3,7 +3,6 @@ package chopchop.logic.commands;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
@@ -51,17 +50,9 @@ public class StatsIngredientUsedCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         var output = model.getIngredientUsageList().getUsagesBetween(after, before);
         return CommandResult.statsMessage(output, getMessage());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof StatsIngredientUsedCommand
-            && this.before.equals(((StatsIngredientUsedCommand) other).before)
-            && this.after.equals(((StatsIngredientUsedCommand) other).after));
     }
 
     @Override

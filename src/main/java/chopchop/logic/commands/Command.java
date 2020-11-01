@@ -3,7 +3,6 @@
 package chopchop.logic.commands;
 
 import chopchop.commons.util.Result;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
@@ -27,9 +26,8 @@ public abstract class Command {
      * @param model {@code Model} which the command should operate on.
      * @param historyManager {@code History} which the command should record to.
      * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model, HistoryManager historyManager) throws CommandException;
+    public abstract CommandResult execute(Model model, HistoryManager historyManager);
 
     /**
      * Resolves the ingredient reference, or returns an error message.
@@ -83,5 +81,10 @@ public abstract class Command {
             return Result.ofOptional(model.findRecipeWithName(ref.getName()),
                 String.format("No recipe named '%s'", ref.getName()));
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        throw new UnsupportedOperationException("internal error: equals() called on Command");
     }
 }

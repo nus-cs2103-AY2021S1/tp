@@ -5,11 +5,8 @@ import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
@@ -27,40 +24,6 @@ public class FilterRecipeCommandTest {
         new UsageList<IngredientUsage>(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(),
         new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
-
-    @Test
-    public void equals() {
-        var firstTagPredicate = new TagContainsKeywordsPredicate(Collections.singletonList("firstTag"));
-        var secondTagPredicate = new TagContainsKeywordsPredicate(Collections.singletonList("secondTag"));
-
-        var firstIngredientPredicate = new IngredientsContainsKeywordsPredicate(
-            Collections.singletonList("firstIngredient"));
-        var secondIngredientPredicate = new IngredientsContainsKeywordsPredicate(
-            Collections.singletonList("secondIngredient"));
-
-        var filterFirstCommand = new FilterRecipeCommand(firstTagPredicate, firstIngredientPredicate);
-        var filterSecondCommand = new FilterRecipeCommand(firstTagPredicate, secondIngredientPredicate);
-        var filterThirdCommand = new FilterRecipeCommand(secondTagPredicate, firstIngredientPredicate);
-        var filterFourthCommand = new FilterRecipeCommand(secondTagPredicate, secondIngredientPredicate);
-
-        // same object -> returns true
-        assertTrue(filterFirstCommand.equals(filterFirstCommand));
-
-        // same value -> returns true
-        var filterFirstCommandCopy = new FilterRecipeCommand(firstTagPredicate, firstIngredientPredicate);
-        assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(filterFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(filterFirstCommand.equals(null));
-
-        // different values -> returns false
-        assertFalse(filterFirstCommand.equals(filterSecondCommand));
-        assertFalse(filterFirstCommand.equals(filterThirdCommand));
-        assertFalse(filterFirstCommand.equals(filterFourthCommand));
-    }
 
     @Test
     public void execute_multipleTags_noRecipeFound() {

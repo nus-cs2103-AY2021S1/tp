@@ -2,7 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
@@ -25,7 +24,7 @@ public class ViewRecipeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
 
         var recipe = resolveRecipeReference(this.item, model);
         if (recipe.isError()) {
@@ -43,13 +42,6 @@ public class ViewRecipeCommand extends Command {
     @Override
     public String toString() {
         return String.format("ViewRecipeCommand(%s)", this.item);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof ViewRecipeCommand
-                && this.item.equals(((ViewRecipeCommand) other).item));
     }
 
     public static String getCommandString() {

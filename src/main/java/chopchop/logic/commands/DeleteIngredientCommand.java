@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.Optional;
 
 import chopchop.commons.exceptions.IllegalValueException;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
@@ -38,7 +37,7 @@ public class DeleteIngredientCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
         var res = resolveIngredientReference(this.item, model);
@@ -86,14 +85,6 @@ public class DeleteIngredientCommand extends Command implements Undoable {
         }
 
         return CommandResult.message("Undo: %s ingredient '%s'", action, this.ingredient.getName());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof DeleteIngredientCommand
-                && this.item.equals(((DeleteIngredientCommand) other).item)
-                && this.quantity.equals(((DeleteIngredientCommand) other).quantity));
     }
 
     @Override
