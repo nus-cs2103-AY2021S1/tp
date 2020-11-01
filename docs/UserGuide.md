@@ -51,7 +51,7 @@
 ### 1.1 About Reeve
 Are you looking for a one-stop application that can handle all your private tutoring needs? Then you are in luck!
 
-**Reeve** is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
+**Reeve** is a desktop application for **private tutors to better manage both administrative and academic details of their students**, optimised for use via a
 **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. In addition, **Reeve** comes with a customisable personal scheduler to assist you keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself. 
 
 Get to experience all the above without even having to move your mouse at all! 
