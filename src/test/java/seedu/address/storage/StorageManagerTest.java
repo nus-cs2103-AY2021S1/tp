@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
@@ -16,7 +17,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
@@ -171,24 +174,21 @@ public class StorageManagerTest {
     public void getSellerAddressBookFilePath() {
         assertNotNull(storageManager.getSellerAddressBookFilePath());
     }
-
-    // ------------------- MEETING STORAGE -------------------
-
-    // @Test
-    // public void meetingBookReadSave() throws Exception {
-    /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-    */
-    //     MeetingBook original = getTypicalMeetingAddressBook();
-    //    storageManager.saveMeetingBook(original);
-    //     ReadOnlyMeetingBook retrieved = storageManager.readMeetingBook().get();
-    //    assertEquals(original, new MeetingBook(retrieved));
-    // }
-
     @Test
     public void getMeetingAddressBookFilePath() {
         assertNotNull(storageManager.getMeetingBookFilePath());
+    }
+
+    @Test
+    public void meetingBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonAddressBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         */
+        MeetingBook original = getTypicalMeetingAddressBook();
+        storageManager.saveMeetingBook(original);
+        ReadOnlyMeetingBook retrieved = storageManager.readMeetingBook().get();
+        assertEquals(original, new MeetingBook(retrieved));
     }
 }

@@ -63,111 +63,38 @@ class FindMeetingCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
+    /*
     @Test
     public void execute_zeroKeywords_noMeetingFound() {
-        /*
+        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 0);
+        FindMeetingDescriptor descriptor = new FindMeetingDescriptor();
 
-            String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 0);
-            FindMeetingCommand.FindMeetingDescriptor descriptor = new FindMeetingCommand.FindMeetingDescriptor();
-
-            // BidderId
-            BidderIdContainsKeywordsPredicate meetingBidderIdPredicate = prepareBidderIdPredicate(" ");
-            descriptor.setBidderIdContainsKeywordsPredicate(meetingBidderIdPredicate);
-            FindMeetingCommand command = new FindMeetingCommand(descriptor);
-            expectedModel.updateFilteredMeetingList(meetingBidderIdPredicate);
-            assertCommandSuccess(command, model, expectedMessage, expectedModel);
-            assertEquals(Collections.emptyList(), model.getFilteredMeetingList());
-         */
+        // BidderId
+        BidderIdContainsKeywordsPredicate bidderIdPredicate = prepareBidderIdPredicate(" ");
+        descriptor.setBidderIdContainsKeywordsPredicate(bidderIdPredicate);
+        FindMeetingCommand command = new FindMeetingCommand(descriptor);
+        expectedModel.updateFilteredMeetingList(bidderIdPredicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredMeetingList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePropertiesFound() {
-        /*
-
-        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 2);
+    public void execute_multipleKeywords_multipleMeetingFound() {
+        String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 3);
         FindMeetingDescriptor descriptor = new FindMeetingDescriptor();
 
         // property name
-        PropertyIdContainsKeywordsPredicate namePredicate =
-                preparePropertyIdPredicate("P1");
-        descriptor.setPropertyIdContainsKeywordsPredicate(namePredicate);
+        BidderIdContainsKeywordsPredicate namePredicate =
+                prepareBidderIdPredicate("B1");
+        descriptor.setBidderIdContainsKeywordsPredicate(namePredicate);
         FindMeetingCommand command = new FindMeetingCommand(descriptor);
         expectedModel.updateFilteredMeetingList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(MEETING01, MEETING02), model.getFilteredMeetingList());
-
-        // property address
-        PropertyAddressContainsKeywordsPredicate propertyAddressPredicate =
-                prepareAddressPredicate("Aljunied Bayfront");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setPropertyAddressContainsKeywordsPredicate(propertyAddressPredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(propertyAddressPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
-        // property type
-        PropertyTypeContainsKeywordsPredicate propertyTypePredicate =
-                prepareTypePredicate("HDB Condo");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setPropertyTypeContainsKeywordsPredicate(propertyTypePredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(propertyTypePredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
-        // property id
-        PropertyIdContainsKeywordsPredicate propertyIdPredicate =
-                preparePropertyIdPredicate("P1 P2");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setPropertyIdPredicate(propertyIdPredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(propertyIdPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
-        // seller id
-        SellerIdContainsKeywordsPredicate sellerIdPredicate =
-                prepareSellerIdPredicate("S1 S2");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setSellerIdContainsKeywordsPredicate(sellerIdPredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(sellerIdPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
-        // is rental - only one keyword
-        PropertyIsRentalPredicate isRentalPredicate =
-                prepareIsRentalPredicate("no");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setIsRentalPredicate(isRentalPredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(isRentalPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
-        // is closed deal - only one keyword
-        PropertyIsClosedDealPredicate isClosedDealPredicate =
-                prepareIsClosedDealPredicate("active");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setIsClosedDealPredicate(isClosedDealPredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(isClosedDealPredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A, PROPERTY_B), model.getFilteredPropertyList());
-
-        // asking price - only one keyword
-        expectedMessage = String.format(MESSAGE_PROPERTY_LISTED_OVERVIEW, 1);
-        AskingPricePredicate askingPricePredicate =
-                prepareAskingPricePredicate("< 1000");
-        descriptor = new FindPropertyCommand.FindPropertyDescriptor();
-        descriptor.setAskingPricePredicate(askingPricePredicate);
-        command = new FindPropertyCommand(descriptor);
-        expectedModel.updateFilteredPropertyList(askingPricePredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(PROPERTY_A), model.getFilteredPropertyList());
-         */
+        assertEquals(Arrays.asList(ADMINMEETING01, VIEWINGMEETING03, PAPERWORKMEETING05),
+         model.getFilteredMeetingList());
     }
+
+    */
 
     /**
      * Parses {@code userInput} into a {@code BidderIdContainsKeywordsPredicate}.
@@ -182,5 +109,6 @@ class FindMeetingCommandTest {
     private PropertyIdContainsKeywordsPredicate preparePropertyIdPredicate(String userInput) {
         return new PropertyIdContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
 }
 

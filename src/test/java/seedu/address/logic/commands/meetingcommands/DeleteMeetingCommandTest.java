@@ -72,7 +72,6 @@ class DeleteMeetingCommandTest {
         assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
 
-
     @Test
     public void execute_validIndexFilteredList_success() {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
@@ -94,7 +93,7 @@ class DeleteMeetingCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
-        Index outOfBoundIndex = INDEX_SIXTH_MEETING;
+        Index outOfBoundIndex = INDEX_SECOND_MEETING;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMeetingBook().getMeetingList().size());
 
@@ -102,7 +101,6 @@ class DeleteMeetingCommandTest {
 
         assertCommandFailure(deleteMeetingCommand, model, Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
     }
-
 
     @Test
     public void equals() {
