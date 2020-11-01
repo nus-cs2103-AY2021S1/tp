@@ -162,9 +162,8 @@ public class Flashcard {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Question: ")
-                .append(getQuestion())
-                .append(" Answer: ")
-                .append(getAnswer());
+                .append(getQuestion());
+
         return builder.toString();
     }
 
