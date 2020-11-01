@@ -712,21 +712,20 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generatePrintSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_FILE_NAME);
         toBeDisplayed.append(PRINT_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            if (!argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+        String defaultFileNameDescription = CliSyntax.getDefaultDescription(PREFIX_FILE_NAME);
+        if (!argMultimap.getValue(PREFIX_FILE_NAME).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_FILE_NAME + defaultFileNameDescription);
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_FILE_NAME);
+        for (String fileName : keywords) {
+            if (checkIfParameterValid(PREFIX_FILE_NAME, fileName)) {
+                toBeDisplayed.append(" " + PREFIX_FILE_NAME + fileName);
+            } else {
+                toBeDisplayed.append(" " + PREFIX_FILE_NAME + defaultFileNameDescription);
             }
-            List<String> keywords = argMultimap.getAllValues(PREFIX_FILE_NAME);
-
-            if (keywords.size() == 0) {
-                continue;
-            }
-
-            toBeDisplayed.append(" " + currentPrefix + keywords.get(0));
+            break;
         }
 
         generateBodyMessage(toBeDisplayed, PrintCommand.MESSAGE_USAGE);
