@@ -195,6 +195,16 @@ public class Module {
     }
 
     /**
+     * Returns true if this module contains the specified module lesson.
+     *
+     * @param lesson The specified module lesson.
+     * @return True if this module contains the module lesson, false otherwise.
+     */
+    public boolean containsLesson(ModuleLesson lesson) {
+        return this.zoomLinks.containsKey(lesson);
+    }
+
+    /**
      * Adds the zoom link to this module for a specific lesson.
      *
      * @param lesson Module lesson which the zoom link belongs to.
