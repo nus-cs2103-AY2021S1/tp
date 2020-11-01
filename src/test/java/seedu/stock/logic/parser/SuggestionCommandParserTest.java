@@ -3,14 +3,13 @@ package seedu.stock.logic.parser;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandTestUtil.FILE_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
-import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOW_QUANTITY_DESC;
-import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.stock.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_STATISTICS_TYPE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_INDEX_DESC;
+import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SORT_FIELD_DESC;
@@ -98,8 +97,8 @@ public class SuggestionCommandParserTest {
     @Test
     public void parse_addCommandSuggestion_success() {
         // EP: incorrect command word
-        String userInput = INVALID_NAME_DESC + SOURCE_DESC_APPLE + INVALID_QUANTITY_DESC + LOCATION_DESC_APPLE
-                + INVALID_LOW_QUANTITY_DESC;
+        String userInput = NAME_DESC_APPLE + SOURCE_DESC_APPLE + QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE
+                + LOW_QUANTITY_DESC_APPLE;
         SuggestionCommandParser parser = new SuggestionCommandParser("ad");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.ADD_COMMAND_WORD + userInput + "\n" + AddCommand.MESSAGE_USAGE;
