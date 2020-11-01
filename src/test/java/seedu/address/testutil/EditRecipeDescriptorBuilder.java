@@ -8,8 +8,10 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -84,7 +86,7 @@ public class EditRecipeDescriptorBuilder {
      * Parses the {@code image} of a {@code EditRecipeDescriptorBuilder} that we are building.
      */
     public EditRecipeDescriptorBuilder withImage(String image) {
-        descriptor.setRecipeImage(image);
+        descriptor.setRecipeImage(new RecipeImage(image));
         return this;
     }
 
@@ -92,7 +94,12 @@ public class EditRecipeDescriptorBuilder {
      * Parses the {@code instruction} of a {@code EditRecipeDescriptorBuilder} that we are building.
      */
     public EditRecipeDescriptorBuilder withInstruction(String instruction) {
-        descriptor.setInstruction(instruction);
+        String[] instructionsToken = instruction.split("\\.");
+        ArrayList<Instruction> instructions = new ArrayList<>();
+        for (int i = 0; i < instructionsToken.length; i++) {
+            instructions.add(new Instruction((i + 1) + ") " + instructionsToken[i].trim()));
+        }
+        descriptor.setInstruction(instructions);
         return this;
     }
 

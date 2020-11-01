@@ -27,8 +27,9 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
-    private final String instruction;
-    private final String recipeImage;
+    private final ArrayList<Instruction> instructions;
+    private RecipeImage recipeImage;
+
     // Data fields
     private final ArrayList<Ingredient> ingredients;
     private final Calories calories;
@@ -37,12 +38,12 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, String instruction, String recipeImage,
+    public Recipe(Name name, ArrayList<Instruction> instructions, RecipeImage recipeImage,
                   ArrayList<Ingredient> ingredients, Calories calories,
                   Set<Tag> tags) {
-        requireAllNonNull(name, ingredients, calories, instruction, tags);
+        requireAllNonNull(name, ingredients, calories, instructions, tags);
         this.name = name;
-        this.instruction = instruction;
+        this.instructions = instructions;
         this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
@@ -53,11 +54,11 @@ public class Recipe {
         return name;
     }
 
-    public String getInstruction() {
-        return instruction;
+    public ArrayList<Instruction> getInstruction() {
+        return instructions;
     }
 
-    public String getRecipeImage() {
+    public RecipeImage getRecipeImage() {
         return recipeImage;
     }
 
@@ -77,6 +78,10 @@ public class Recipe {
         return Collections.unmodifiableSet(tags);
     }
 
+
+    public void setDefaultImage() {
+        this.recipeImage = new RecipeImage("images/default.jpg");
+    }
     /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two recipes.
@@ -104,8 +109,8 @@ public class Recipe {
         String recipeName = PREFIX_NAME.toString() + name;
         String ingredients = PREFIX_INGREDIENT.toString() + stringifyIngredients(this.ingredients);
         String calories = PREFIX_CALORIES.toString() + this.calories.getValue();
-        String instructions = PREFIX_INSTRUCTION + this.instruction;
-        String image = PREFIX_RECIPE_IMAGE + this.recipeImage;
+        String instructions = PREFIX_INSTRUCTION.toString() + stringifyInstructions(this.instructions);
+        String image = PREFIX_RECIPE_IMAGE + this.recipeImage.getValue();
         String tags = stringifyTags(this.tags);
         return commandWord + " " + position + " " + recipeName + " " + ingredients + " " + calories
                 + " " + instructions + " " + image + " " + tags;
@@ -139,6 +144,23 @@ public class Recipe {
         return tags;
     }
 
+    private String stringifyInstructions(ArrayList<Instruction> instructions) {
+        int len = instructions.size();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            Instruction instruction = instructions.get(i);
+            String instrStr = instruction.toString();
+            int firstBracket = instrStr.indexOf(")");
+            instrStr = instrStr.substring(firstBracket + 1);
+            if (i == len - 1) {
+                sb.append(instrStr);
+            } else {
+                sb.append(instrStr + ". ");
+            }
+        }
+        return sb.toString();
+    }
+
     /**
      * Returns true if both recipes have the same identity and data fields.
      * This defines a stronger notion of equality between two recipes.
@@ -165,7 +187,7 @@ public class Recipe {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, instruction, recipeImage, ingredients, calories, tags);
+        return Objects.hash(name, instructions, recipeImage, ingredients, calories, tags);
     }
 
     @Override
@@ -179,7 +201,9 @@ public class Recipe {
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")
-                .append(getInstruction())
+                .append(getInstruction().stream()
+                        .map(item -> item.toString() + ". ")
+                        .reduce("", (a, b) -> a + " " + b).trim())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

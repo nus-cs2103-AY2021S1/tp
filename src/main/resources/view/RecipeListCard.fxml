@@ -9,18 +9,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import com.jfoenix.controls.JFXChipView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
+  <GridPane>
     <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
+      <ColumnConstraints minWidth="10" prefWidth="200" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox VBox.vgrow="ALWAYS" alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
         <Insets top="5" right="5" bottom="5" left="5" />
       </padding>
-      <ImageView fx:id="recipeImage" pickOnBounds="true">
-      </ImageView>
+      <ImageView fx:id="recipeImage" pickOnBounds="true" />
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
@@ -33,9 +31,7 @@
       <FlowPane fx:id="tags" />
       <Label fx:id="ingredients" styleClass="cell_small_label" text="\$ingredients" />
       <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />
-      <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" />
-
+      <Label fx:id="instruction" styleClass="cell_small_label" text="\$instruction" wrapText="true"/>
     </VBox>
-
   </GridPane>
 </HBox>

@@ -34,6 +34,8 @@ public class IngredientCard extends UiPart<Region> {
     private Label quantity;
     @FXML
     private Label ingredients;
+    @FXML
+    private Label id;
 
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
@@ -44,6 +46,7 @@ public class IngredientCard extends UiPart<Region> {
         this.displayIndex = displayedIndex;
         name.setText(ingredient.getValue());
         quantity.setText(ingredient.getQuantity());
+        id.setText(displayedIndex + ". ");
     }
 
     @Override

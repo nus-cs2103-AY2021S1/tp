@@ -13,8 +13,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,8 +27,8 @@ class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
-    private final String instruction;
-    private final String recipeImage;
+    private final ArrayList<Instruction> instruction;
+    private final RecipeImage recipeImage;
     private final ArrayList<Ingredient> ingredients;
     private final Integer calories;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -36,8 +38,8 @@ class JsonAdaptedRecipe {
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
-                             @JsonProperty("instruction") String instruction,
-                             @JsonProperty("recipeImage") String recipeImage,
+                             @JsonProperty("instruction") ArrayList<Instruction> instruction,
+                             @JsonProperty("recipeImage") RecipeImage recipeImage,
                              @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
                              @JsonProperty("calories") Integer calories,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -88,13 +90,18 @@ class JsonAdaptedRecipe {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     String.class.getSimpleName()));
         }
-        final String modelInstruction = instruction;
+        for (Instruction instr : instruction) {
+            if (!Instruction.isValidInstruction(instr)) {
+                throw new IllegalValueException(Instruction.MESSAGE_CONSTRAINTS);
+            }
+        }
+        final ArrayList<Instruction> modelInstruction = new ArrayList<>(instruction);
 
         if (recipeImage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     String.class.getSimpleName()));
         }
-        final String modelRecipeImage = recipeImage;
+        final RecipeImage modelRecipeImage = recipeImage;
 
         if (ingredients == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

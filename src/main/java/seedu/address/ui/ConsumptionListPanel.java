@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -26,6 +27,11 @@ public class ConsumptionListPanel extends UiPart<Region> {
         super(FXML);
         consumptionListView.setItems(consumptionList);
         consumptionListView.setCellFactory(listView -> new ConsumptionListViewCell());
+        //Responsive resizing and increase list view performance
+        ChangeListener<Number> consumptionListSizeListener = (observable, oldValue, newValue) -> {
+            consumptionListView.setFixedCellSize(consumptionListView.getWidth() / 1.8);
+        };
+        consumptionListView.widthProperty().addListener(consumptionListSizeListener);
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
@@ -57,13 +58,25 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        instruction.setText(recipe.getInstruction());
+        instruction.setText(recipe.getInstruction().stream()
+                    .map(item -> item.toString() + ".\n")
+                .reduce("", (a, b) -> a + b).trim());
 
-        Image rawImage = new Image(recipe.getRecipeImage(), 340, 0, true, true);
-        PixelReader reader = rawImage.getPixelReader();
-        WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
-        recipeImage.setImage(newImage);
-        recipeImage.setPreserveRatio(true);
+        try {
+            Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
+            PixelReader reader = rawImage.getPixelReader();
+            WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
+            recipeImage.setImage(newImage);
+            recipeImage.setPreserveRatio(true);
+        } catch (IllegalArgumentException | NoSuchElementException | NullPointerException ex) {
+            recipe.setDefaultImage();
+        } finally {
+            Image rawImage = new Image(recipe.getRecipeImage().getValue(), 340, 0, true, true);
+            PixelReader reader = rawImage.getPixelReader();
+            WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
+            recipeImage.setImage(newImage);
+            recipeImage.setPreserveRatio(true);
+        }
 
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {

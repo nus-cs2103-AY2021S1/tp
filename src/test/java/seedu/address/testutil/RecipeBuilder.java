@@ -7,8 +7,10 @@ import java.util.Set;
 
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -21,19 +23,24 @@ public class RecipeBuilder {
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
             new ArrayList<>(List.of(new Ingredient("Kaiser Rolls Or Other Bread", "2 whole")));
     public static final Integer DEFAULT_CALORIES = 70;
-    public static final String DEFAULT_INSTRUCTION =
-            "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
-            + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise. "
-            + "Sprinkle the mayonnaise-spread half with salt and pepper. "
-            + "Lay cheese and ham on the mustard half; "
-            + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.";
-    public static final String DEFAULT_RECIPE_IMAGE = "images/sandwich.jpeg";
+    public static final ArrayList<Instruction> DEFAULT_INSTRUCTION =
+            new ArrayList<>(List.of(new Instruction("1) Make egg salad by chopping the hard boiled eggs "
+                            + "and mixing in a bowl with mayonnaise, Dijon"),
+                    new Instruction("2) Make egg salad by chopping the hard boiled eggs and mixing in a "
+                            + "bowl with mayonnaise, Dijon"),
+                    new Instruction("3) Halve the rolls and spread one half with Dijon, the other half "
+                            + "with mayonnaise"),
+                    new Instruction("4) Sprinkle the mayonnaise-spread half with salt and pepper"),
+                    new Instruction("5) Lay cheese and ham on the mustard half; lay avocado, onion slices, "
+                            + "tomato slices, egg salad, and lettuce on the other half")));
+
+    public static final RecipeImage DEFAULT_RECIPE_IMAGE = new RecipeImage("images/sandwich.jpeg");
 
     private Name name;
     private ArrayList<Ingredient> ingredients;
+    private ArrayList<Instruction> instructions;
     private Calories calories;
-    private String instruction;
-    private String recipeImage;
+    private RecipeImage recipeImage;
     private Set<Tag> tags;
 
     /**
@@ -42,8 +49,8 @@ public class RecipeBuilder {
     public RecipeBuilder() {
         name = new Name(DEFAULT_NAME);
         ingredients = DEFAULT_INGREDIENTS;
+        instructions = DEFAULT_INSTRUCTION;
         calories = new Calories(DEFAULT_CALORIES);
-        instruction = DEFAULT_INSTRUCTION;
         recipeImage = DEFAULT_RECIPE_IMAGE;
         tags = new HashSet<>();
     }
@@ -54,8 +61,8 @@ public class RecipeBuilder {
     public RecipeBuilder(Recipe recipeToCopy) {
         name = recipeToCopy.getName();
         ingredients = recipeToCopy.getIngredient();
+        instructions = recipeToCopy.getInstruction();
         calories = recipeToCopy.getCalories();
-        instruction = recipeToCopy.getInstruction();
         recipeImage = recipeToCopy.getRecipeImage();
         tags = new HashSet<>(recipeToCopy.getTags());
     }
@@ -95,7 +102,12 @@ public class RecipeBuilder {
      * Sets the instruction of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withInstruction(String instruction) {
-        this.instruction = instruction;
+        String[] instructionsToken = instruction.split("\\.");
+        ArrayList<Instruction> instructions = new ArrayList<>();
+        for (int i = 0; i < instructionsToken.length; i++) {
+            instructions.add(new Instruction((i + 1) + ") " + instructionsToken[i].trim()));
+        }
+        this.instructions = instructions;
         return this;
     }
 
@@ -103,7 +115,7 @@ public class RecipeBuilder {
      * Sets the recipe image of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withRecipeImage(String recipeImage) {
-        this.recipeImage = recipeImage;
+        this.recipeImage = new RecipeImage(recipeImage);
         return this;
     }
 
@@ -120,7 +132,7 @@ public class RecipeBuilder {
      * @return built Recipe
      */
     public Recipe build() {
-        return new Recipe(name, instruction, recipeImage, ingredients, calories, tags);
+        return new Recipe(name, instructions, recipeImage, ingredients, calories, tags);
     }
 
 }

@@ -17,7 +17,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
+import seedu.address.model.recipe.RecipeImage;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "R@chel";
@@ -29,8 +31,8 @@ public class JsonAdaptedRecipeTest {
     private static final String VALID_NAME = PASTA.getName().toString();
     private static final ArrayList<Ingredient> VALID_INGREDIENT = PASTA.getIngredient();
     private static final int VALID_CALORIES = PASTA.getCalories().value;
-    private static final String VALID_INSTRUCTION = PASTA.getInstruction();
-    private static final String VALID_RECIPE_IMAGE = PASTA.getRecipeImage();
+    private static final ArrayList<Instruction> VALID_INSTRUCTION = PASTA.getInstruction();
+    private static final RecipeImage VALID_RECIPE_IMAGE = PASTA.getRecipeImage();
     private static final List<JsonAdaptedTag> VALID_TAGS = PASTA.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

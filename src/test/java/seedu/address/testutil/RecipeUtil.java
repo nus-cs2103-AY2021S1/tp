@@ -8,10 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.EditRecipeCommand.EditRecipeDescriptor;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
@@ -43,8 +45,20 @@ public class RecipeUtil {
                 })
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a) + " ");
         sb.append(PREFIX_CALORIES + String.valueOf(recipe.getCalories().value) + " ");
-        sb.append(PREFIX_INSTRUCTION + recipe.getInstruction() + " ");
-        sb.append(PREFIX_RECIPE_IMAGE + recipe.getRecipeImage() + " ");
+        ArrayList<Instruction> oriInstrList = recipe.getInstruction();
+        ArrayList<Instruction> newInstrList = new ArrayList<>();
+        for (Instruction instr : oriInstrList) {
+            for (int i = 0; i < instr.toString().length(); i++) {
+                if (instr.toString().charAt(i) == ')') {
+                    newInstrList.add(new Instruction(instr.toString().substring(i + 2)));
+                    break;
+                }
+            }
+        }
+        sb.append(PREFIX_INSTRUCTION + newInstrList.stream()
+                .map(item -> item.toString() + ". ")
+                .reduce("", (a, b) -> a + b).trim() + " ");
+        sb.append(PREFIX_RECIPE_IMAGE + recipe.getRecipeImage().getValue() + " ");
         recipe.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
@@ -60,6 +74,11 @@ public class RecipeUtil {
                         .append(ingredients.stream()
                                 .map(item -> item.getValue())
                                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a)).append(" "));
+        descriptor.getInstruction()
+                .ifPresent(instr -> sb.append(PREFIX_INSTRUCTION)
+                        .append(instr.stream()
+                                .map(item -> item.toString() + ". ")
+                                .reduce("", (a, b) -> a + b).trim()).append(" "));
         descriptor.getInstruction().ifPresent(instr -> sb.append(PREFIX_INSTRUCTION).append(" "));
         descriptor.getRecipeImage().ifPresent(img -> sb.append(PREFIX_RECIPE_IMAGE).append(" "));
         descriptor.getCalories().ifPresent(cal -> sb.append(PREFIX_CALORIES).append(cal.value).append(" "));

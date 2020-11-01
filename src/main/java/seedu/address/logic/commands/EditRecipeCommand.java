@@ -27,8 +27,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 //import seedu.address.model.tag.Tag;
 
@@ -44,12 +46,13 @@ public class EditRecipeCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
+            + "[" + PREFIX_INGREDIENT + "INGREDIENT "
+            + "[ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] "
             + "[" + PREFIX_CALORIES + "CALORIES] "
-            + "[" + PREFIX_INSTRUCTION + "INSTRUCTIONS]"
-            + "[" + PREFIX_RECIPE_IMAGE + "RECIPE IMAGE]"
+            + "[" + PREFIX_INSTRUCTION + "INSTRUCTIONS] "
+            + "[" + PREFIX_RECIPE_IMAGE + "RECIPE IMAGE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + "13 "
+            + "Example: " + COMMAND_WORD + " 13 "
             + PREFIX_NAME + "Chicken salad "
             + PREFIX_INGREDIENT + "chicken - 100g, lettuce - a bit, tomato "
             + PREFIX_CALORIES + "100 "
@@ -113,8 +116,10 @@ public class EditRecipeCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        String updatedInstruction = editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
-        String updatedRecipeImage = editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
+        RecipeImage updatedRecipeImage =
+                editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
+        ArrayList<Instruction> updatedInstruction =
+                editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
         ArrayList<Ingredient> updatedIngredient =
                 editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
         Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());
@@ -148,8 +153,8 @@ public class EditRecipeCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
-        private String instruction;
-        private String recipeImage;
+        private ArrayList<Instruction> instruction;
+        private RecipeImage recipeImage;
         private ArrayList<Ingredient> ingredients;
         private Calories calories;
         private Set<Tag> tags;
@@ -183,17 +188,17 @@ public class EditRecipeCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setInstruction(String instruction) {
+        public void setInstruction(ArrayList<Instruction> instruction) {
             this.instruction = instruction;
         }
-        public Optional<String> getInstruction() {
+        public Optional<ArrayList<Instruction>> getInstruction() {
             return Optional.ofNullable(instruction);
         }
 
-        public void setRecipeImage(String recipeImage) {
+        public void setRecipeImage(RecipeImage recipeImage) {
             this.recipeImage = recipeImage;
         }
-        public Optional<String> getRecipeImage() {
+        public Optional<RecipeImage> getRecipeImage() {
             return Optional.ofNullable(recipeImage);
         }
 

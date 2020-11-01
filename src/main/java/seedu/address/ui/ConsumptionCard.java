@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -47,10 +48,16 @@ public class ConsumptionCard extends UiPart<Region> {
         this.consumption = consumption;
         id.setText(displayedIndex + ". ");
         name.setText(consumption.getRecipe().getName().fullName);
-        Image rawImage = new Image(consumption.getRecipe().getRecipeImage(), 340, 0, true, true);
+        Image rawImage = new Image(consumption.getRecipe().getRecipeImage().getValue(), 340, 0, true, true);
         PixelReader reader = rawImage.getPixelReader();
         WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
         recipeImageView.setImage(newImage);
+        //Responsive resizing
+        recipeImageView.setPreserveRatio(true);
+        ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
+            recipeImageView.setFitWidth(getRoot().getWidth() - 10);
+        };
+        getRoot().widthProperty().addListener(stageSizeListener);
         calories.setText(consumption.getRecipe().getCalories().value.toString() + " cal");
     }
 
