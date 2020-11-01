@@ -23,7 +23,7 @@ public class Answer {
     public Answer(String answer) {
         requireNonNull(answer);
         AppUtil.checkArgument(isValidAnswer(answer), MESSAGE_CONSTRAINTS);
-        this.value = normalizeAnswer(answer);
+        this.value = answer;
     }
 
     /**
@@ -69,7 +69,7 @@ public class Answer {
             return true;
         } else if (object instanceof Answer) {
             Answer temp = (Answer) object;
-            return this.toString().equals(temp.toString());
+            return normalizeAnswer(this.toString()).equals(normalizeAnswer(temp.toString()));
         }
         return false;
     }
