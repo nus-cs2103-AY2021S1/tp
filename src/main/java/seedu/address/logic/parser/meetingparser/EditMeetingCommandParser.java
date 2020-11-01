@@ -47,13 +47,13 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         }
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
-        if (argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).isPresent()) {
-            editMeetingDescriptor.setMeetingBidderId(IdParserUtil.parseBidderId(
-                    argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).get()));
-        }
         if (argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).isPresent()) {
             editMeetingDescriptor.setMeetingPropertyId(IdParserUtil.parsePropertyId(
                     argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).isPresent()) {
+            editMeetingDescriptor.setMeetingBidderId(IdParserUtil.parseBidderId(
+                    argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_MEETING_VENUE).isPresent()) {
             editMeetingDescriptor.setMeetingVenue(ParserUtil.parseMeetingVenue(
