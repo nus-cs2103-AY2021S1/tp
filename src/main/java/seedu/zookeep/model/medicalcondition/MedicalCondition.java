@@ -38,13 +38,13 @@ public class MedicalCondition {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MedicalCondition // instanceof handles nulls
-                && medicalConditionName.toLowerCase().equals(
-                        ((MedicalCondition) other).medicalConditionName.toLowerCase())); // state check
+                && medicalConditionName.toLowerCase().equals(((MedicalCondition) other)
+                .medicalConditionName.toLowerCase())); // state check
     }
 
     @Override
     public int hashCode() {
-        return medicalConditionName.hashCode();
+        return medicalConditionName.toLowerCase().hashCode();
     }
 
     /**

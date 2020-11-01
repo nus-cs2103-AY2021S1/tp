@@ -85,15 +85,15 @@ public class AppendCommand extends Command {
         Set<MedicalCondition> updatedMedicalConditions = editAnimalDescriptor.getMedicalConditions()
                 .map(updatedMedical -> {
                     Set<MedicalCondition> combinedMedicalConditions = new HashSet<>();
-                    combinedMedicalConditions.addAll(updatedMedical);
                     combinedMedicalConditions.addAll(animalToEdit.getMedicalConditions());
+                    combinedMedicalConditions.addAll(updatedMedical);
                     return combinedMedicalConditions;
                 }).orElse(animalToEdit.getMedicalConditions());
         Set<FeedTime> updatedFeedTimes = editAnimalDescriptor.getFeedTimes()
                 .map(updatedFeed -> {
                     Set<FeedTime> combinedFeedTimes = new HashSet<>();
-                    combinedFeedTimes.addAll(updatedFeed);
                     combinedFeedTimes.addAll(animalToEdit.getFeedTimes());
+                    combinedFeedTimes.addAll(updatedFeed);
                     return combinedFeedTimes;
                 }).orElse(animalToEdit.getFeedTimes());
 
