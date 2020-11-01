@@ -67,15 +67,9 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecified_success() {
+    public void execute_noFieldSpecified_failure() {
         AppendCommand appendCommand = new AppendCommand(AHMENG.getId(), new EditAnimalDescriptor());
-        Animal editedAnimal = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
-
-        String expectedMessage = String.format(AppendCommand.MESSAGE_APPEND_ANIMAL_SUCCESS, editedAnimal);
-
-        Model expectedModel = new ModelManager(new ZooKeepBook(model.getZooKeepBook()), new UserPrefs());
-
-        assertCommandSuccess(appendCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(appendCommand, model, AppendCommand.MESSAGE_FIELDS_EXIST);
     }
 
     @Test
