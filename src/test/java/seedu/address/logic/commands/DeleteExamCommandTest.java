@@ -20,7 +20,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
@@ -30,7 +29,7 @@ public class DeleteExamCommandTest {
     private static final Index TEST_INDEX_FIRST_EXAM = INDEX_FIRST_PERSON;
     private static final Index TEST_INDEX_SECOND_EXAM = INDEX_SECOND_PERSON;
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Exam dummyExam = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
 
     @Test
@@ -59,7 +58,7 @@ public class DeleteExamCommandTest {
         String expectedMessage = String.format(DeleteExamCommand.MESSAGE_EXAM_DELETED_SUCCESS,
                 expectedStudent.getName(), dummyExam);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(deleteExamCommand, model, expectedMessage, expectedModel);
@@ -97,7 +96,7 @@ public class DeleteExamCommandTest {
         String expectedMessage = String.format(DeleteExamCommand.MESSAGE_EXAM_DELETED_SUCCESS,
                 clone.getName(), dummyExam);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

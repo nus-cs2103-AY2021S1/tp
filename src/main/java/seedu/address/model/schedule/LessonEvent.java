@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.schedule;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -70,4 +70,5 @@ public class LessonEvent extends Event {
         }
         return LocalDateTime.from(adjuster.adjustInto(dateCreated));
     }
+
 }

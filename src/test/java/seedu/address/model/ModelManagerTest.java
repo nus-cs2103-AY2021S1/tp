@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
@@ -16,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.event.Scheduler;
+import seedu.address.model.schedule.Scheduler;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.testutil.ReeveBuilder;
 
@@ -101,11 +100,10 @@ public class ModelManagerTest {
         Reeve reeve = new ReeveBuilder().withPerson(AMY).withPerson(BOB).build();
         Reeve differentReeve = new Reeve();
         UserPrefs userPrefs = new UserPrefs();
-        Scheduler scheduler = new Scheduler();
 
         // same values -> returns true
-        modelManager = new ModelManager(reeve, userPrefs, scheduler);
-        ModelManager modelManagerCopy = new ModelManager(reeve, userPrefs, scheduler);
+        modelManager = new ModelManager(reeve, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(reeve, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -118,13 +116,13 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentReeve, userPrefs, scheduler)));
+        assertFalse(modelManager.equals(new ModelManager(differentReeve, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = AMY.getName().fullName.split("\\s+");
 
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(reeve, userPrefs, scheduler)));
+        assertFalse(modelManager.equals(new ModelManager(reeve, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -132,36 +130,8 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(reeve, differentUserPrefs, scheduler)));
+        assertFalse(modelManager.equals(new ModelManager(reeve, differentUserPrefs)));
 
-    }
-
-    @Test
-    public void setScheduleFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setScheduleFilePath(null));
-    }
-
-    @Test
-    public void setScheduleFilePath_validPath_setsScheduleFilePath() {
-        Path path = Paths.get("schedule/file/path");
-        modelManager.setScheduleFilePath(path);
-        assertEquals(path, modelManager.getScheduleFilePath());
-    }
-
-    @Test
-    public void hasEvent_nullEvent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
-    }
-
-    @Test
-    public void hasEvent_eventNotInSchedule_returnsFalse() {
-        assertFalse(modelManager.hasEvent(ALICE_CLASS_EVENT));
-    }
-
-    @Test
-    public void hasEvent_eventInSchedule_returnsTrue() {
-        modelManager.addEvent(ALICE_CLASS_EVENT);
-        assertTrue(modelManager.hasEvent(ALICE_CLASS_EVENT));
     }
 
     @Test

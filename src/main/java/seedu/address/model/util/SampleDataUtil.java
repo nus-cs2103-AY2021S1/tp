@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventRecurrence;
-import seedu.address.model.event.ReadOnlyEvent;
-import seedu.address.model.event.Scheduler;
+import seedu.address.model.schedule.Event;
+import seedu.address.model.schedule.EventRecurrence;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.Scheduler;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;

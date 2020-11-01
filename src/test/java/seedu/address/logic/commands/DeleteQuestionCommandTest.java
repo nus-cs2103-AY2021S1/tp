@@ -24,14 +24,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.question.Question;
 import seedu.address.testutil.StudentBuilder;
 
 public class DeleteQuestionCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -56,7 +55,7 @@ public class DeleteQuestionCommandTest {
 
         Student expected = deleteQuestion(questionIndex, clone);
 
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
@@ -75,7 +74,7 @@ public class DeleteQuestionCommandTest {
 
         Student expected = deleteQuestion(questionIndex, clone);
 
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expected);
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
@@ -95,7 +94,7 @@ public class DeleteQuestionCommandTest {
 
         Student expected = deleteQuestion(questionIndex, clone);
 
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expected);
 
 

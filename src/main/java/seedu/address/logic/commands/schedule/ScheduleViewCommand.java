@@ -1,11 +1,13 @@
 package seedu.address.logic.commands.schedule;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
 import java.time.LocalDateTime;
 
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.schedule.ScheduleViewMode;
 
 public class ScheduleViewCommand extends ScheduleCommand {
     public static final String COMMAND_WORD = "schedule";
@@ -45,6 +47,8 @@ public class ScheduleViewCommand extends ScheduleCommand {
         if (viewMode != null) {
             model.setScheduleViewMode(viewMode);
         }
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateClassTimesToEvent();
         return new CommandResult(COMMAND_SUCCESS_MESSAGE, false, false, true, false);
     }
 

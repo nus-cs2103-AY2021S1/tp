@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.schedule;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -53,9 +53,5 @@ public enum EventRecurrence {
 
     public String getVEventRecurRule() {
         return this.vEventRecurRule;
-    }
-
-    public String getRecurrenceString() {
-        return this.recurrenceString;
     }
 }

@@ -8,9 +8,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.ReadOnlyEvent;
-import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.NameComparator;
 import seedu.address.model.student.Student;
 
@@ -110,16 +109,6 @@ public interface Model {
     ReadOnlyEvent getSchedule();
 
     /**
-     * Gets the schedule storage file path.
-     */
-    Path getScheduleFilePath();
-
-    /**
-     * Sets the file path of schedule. This is the storage path for the events.
-     */
-    void setScheduleFilePath(Path scheduleFilePath);
-
-    /**
      * Gets the current schedule viewing date time.
      */
     LocalDateTime getScheduleViewDateTime();
@@ -140,31 +129,9 @@ public interface Model {
     void setScheduleViewMode(ScheduleViewMode viewMode);
 
     /**
-     * Adds an {@code eventToAdd} to the schedule.
-     */
-    void addEvent(Event eventToAdd);
-
-    /**
-     * Checks if schedule has {@code eventToCheck}
-     */
-    boolean hasEvent(Event eventToCheck);
-
-    /**
      * Returns the VEvent list used for jfxtras iCalendar.
      */
     ObservableList<VEvent> getVEventList();
-
-    /**
-     * Checks if an event clashes with another event already in the schedule.
-     * Clashing events are events that occur during the same time.
-     */
-    boolean isClashingEvent(Event event);
-
-    /**
-     * Remove the given event.
-     * The event must exist in the schedule.
-     */
-    void removeEvent(Event event);
 
     void updateFilteredStudentList(Predicate<Student> predicate);
 
@@ -177,5 +144,10 @@ public interface Model {
      * Sorts the internal list in reeve by the given {@code comparator}
      */
     void updateSortedStudentList(Comparator<? super Student> cmp);
+
+    void updateClassTimesToEvent();
+
+    ObservableList<VEvent> getLessonEventsList();
+
 
 }

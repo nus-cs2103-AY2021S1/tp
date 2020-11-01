@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.address.testutil.TypicalEvents.getTypicalScheduler;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -15,9 +14,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.ReadOnlyEvent;
-import seedu.address.model.event.Scheduler;
-import seedu.address.storage.schedule.JsonScheduleStorage;
 
 public class StorageManagerTest {
 
@@ -30,8 +26,7 @@ public class StorageManagerTest {
     public void setUp() {
         JsonReeveStorage addressBookStorage = new JsonReeveStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        JsonScheduleStorage scheduleStorage = new JsonScheduleStorage(getTempFilePath("schedule"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, scheduleStorage);
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -66,22 +61,8 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void scheduleReadSave() throws Exception {
-        Scheduler scheduler = getTypicalScheduler();
-
-        storageManager.saveSchedule(scheduler);
-        ReadOnlyEvent retrieved = storageManager.readSchedule().get();
-        assertEquals(scheduler, new Scheduler(retrieved));
-    }
-
-    @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
-    }
-
-    @Test
-    public void getScheduleFilePath() {
-        assertNotNull(storageManager.getScheduleFilePath());
     }
 
 }

@@ -1,19 +1,20 @@
-package seedu.address.model.event;
+package seedu.address.model.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.ReadOnlyVEvent;
-import seedu.address.model.event.exceptions.DuplicateEventException;
-import seedu.address.model.event.exceptions.EventNotFoundException;
+import seedu.address.model.student.Student;
 
 /**
  * This class provides the basic functionalities of event operations.
@@ -28,14 +29,6 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
     public Scheduler() {}
 
     /**
-     * Creates a Scheduler using the events in the {@code toBeCopied}
-     */
-    public Scheduler(ReadOnlyEvent toBeCopied) {
-        this();
-        resetData(toBeCopied);
-    }
-
-    /**
      * Creates a Scheduler using the list of events in the {@code lstOfEvents}
      */
     public Scheduler(List<Event> lstOfEvents) {
@@ -43,52 +36,12 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
         resetData(lstOfEvents);
     }
 
-    /**
-     * Returns true if {@code event} contains only unique events.
-     */
-    private boolean vEventsAreUnique(List<VEvent> vEvents) {
-        for (int i = 0; i < vEvents.size() - 1; i++) {
-            for (int j = i + 1; j < vEvents.size(); j++) {
-                if (isSameVEvent(vEvents.get(i), vEvents.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private boolean isSameVEvent(VEvent e1, VEvent e2) {
-        return e1.getSummary().equals(e2.getSummary()) // check name of event
-                && e1.getDateTimeStart().equals(e2.getDateTimeStart()) // start time
-                && e1.getDateTimeEnd().equals(e2.getDateTimeEnd()); // end time
-    }
-
-    private boolean isSameEvent(Event e1, Event e2) {
-        return e1.isSameEvent(e2);
-    }
-
-    /**
-     * Checks if there are events in the current schedule that clashes with the {@code eventToCheck}
-     */
-    public boolean isClashingEvents(Event eventToCheck) {
-        List<Event> events = getEventsList();
-        for (int i = 0; i < events.size(); i++) {
-            Event currentEvent = events.get(i);
-            if (currentEvent.isOverlapping(eventToCheck)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     /** Replaces the contents of this list with {@code vEvents}.
      * {@code vEvents} must not contain duplicate VEvent.
      */
     public void setVEvents(List<VEvent> vEvents) {
         requireAllNonNull(vEvents);
-        if (!vEventsAreUnique(vEvents)) {
-            throw new DuplicateEventException();
-        }
         this.internalList.setAll(vEvents);
     }
 
@@ -109,50 +62,30 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
     }
 
     /**
-     * Returns true if a Event with the same identity as {@code eventToCheck} exists in Scheduler.
-     */
-    public boolean hasEvent(Event eventToCheck) {
-        requireNonNull(eventToCheck);
-        return internalList.stream().map(Mapper::mapVEventToEvent).anyMatch(Event -> isSameEvent(eventToCheck,
-                Event));
-    }
-
-    /**
      * Adds a {@code eventToAdd} to Scheduler.
      * The {@code eventToAdd} must not already exist in Scheduler.
      */
     public void addEvent(Event eventToAdd) {
         requireNonNull(eventToAdd);
-        if (hasEvent(eventToAdd)) {
-            throw new DuplicateEventException();
-        }
         internalList.add(Mapper.mapEventToVEvent(eventToAdd));
     }
 
     /**
-     * Removes {@code toRemove} from this Scheduler.
-     * {@code toRemove} must exist in Scheduler.
+     * Adds a list of events to the scheduler's list
+     * @param lst
      */
-    public void removeEvent(Event toRemove) {
-        requireNonNull(toRemove);
-        Index eventToRemoveIndex = getEventIndex(toRemove).orElseThrow(EventNotFoundException::new);
-        internalList.remove(eventToRemoveIndex.getZeroBased());
-    }
-
-    private Optional<Index> getEventIndex(Event event) {
-        List<Event> events = getEventsList();
-        for (int i = 0; i < events.size(); i++) {
-            Event currEvent = events.get(i);
-            if (currEvent.isSameEvent(event)) {
-                return Optional.ofNullable(Index.fromZeroBased(i));
-            }
+    public void addListOfEvents(List<Event> lst) {
+        requireNonNull(lst);
+        List<Event> classList = new ArrayList<>();
+        for (Event e : lst) {
+            classList.add(e);
         }
-        return Optional.empty();
+        resetData(classList);
     }
 
     @Override
     public String toString() {
-        return internalUnmodifiableList.size() + " Events in Schedule";
+        return internalUnmodifiableList.size() + " Lessons in Schedule";
     }
 
     @Override
@@ -187,6 +120,22 @@ public class Scheduler implements ReadOnlyEvent, ReadOnlyVEvent {
     @Override
     public List<Event> getEventsList() {
         return Mapper.mapListOfVEventsToEvent(this.internalList);
+    }
+
+    /**
+     * Given a list of students, creates a list of Lesson events based on class time
+     * @param studentList
+     */
+    public void mapClassTimesToLessonEvent(List<Student> studentList) {
+        List<Event> listOfEvents = new ArrayList<>();
+        for (Student student: studentList) {
+            LocalDate date = student.getAdmin().getPaymentDate().lastPaid;
+
+            // date of lesson event will be recorded from latest payment date onwards
+            LocalDateTime ld = LocalDateTime.of(date, LocalTime.now());
+            listOfEvents.add(LessonEvent.createLessonEvent(student, ld));
+        }
+        this.resetData(listOfEvents);
     }
 
 }

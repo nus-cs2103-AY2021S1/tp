@@ -24,7 +24,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Reeve;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditAdminDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -35,7 +34,7 @@ import seedu.address.testutil.StudentBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -46,7 +45,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
         expectedModel.setStudent(model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), editedStudent);
 
 
@@ -70,7 +69,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -84,7 +83,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -102,7 +101,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
         expectedModel.setStudent(model.getSortedStudentList().get(0), editedStudent);
 
 

@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.schedule;
 
 /**
  * View mode for the jfxtras icalendar

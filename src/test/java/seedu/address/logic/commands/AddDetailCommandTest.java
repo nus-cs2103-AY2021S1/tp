@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.Detail;
 import seedu.address.testutil.StudentBuilder;
@@ -29,7 +28,7 @@ public class AddDetailCommandTest {
     //@@author VaishakAnand
     private static final String TEST_DETAIL = "eats flies";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -59,7 +58,7 @@ public class AddDetailCommandTest {
         String expectedMessage = String.format(AddDetailCommand.MESSAGE_SUCCESS, clone.getName(),
                 detail);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addAdditionalDetailCommand, model, expectedMessage, expectedModel);
@@ -89,7 +88,7 @@ public class AddDetailCommandTest {
         String expectedMessage = String.format(AddDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), detail);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

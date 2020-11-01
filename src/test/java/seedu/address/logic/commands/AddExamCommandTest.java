@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
@@ -30,7 +29,7 @@ import seedu.address.testutil.StudentBuilder;
  * and unit tests for ExamCommand
  */
 public class AddExamCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Exam dummyExam = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
 
     @Test
@@ -67,7 +66,7 @@ public class AddExamCommandTest {
         String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS, expectedStudent.getName(),
                 dummyExam);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addExamCommand, model, expectedMessage, expectedModel);
@@ -96,7 +95,7 @@ public class AddExamCommandTest {
         String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS,
                 expectedStudent.getName(), dummyExam);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

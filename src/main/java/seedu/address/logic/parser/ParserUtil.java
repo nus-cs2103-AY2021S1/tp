@@ -18,7 +18,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.schedule.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;

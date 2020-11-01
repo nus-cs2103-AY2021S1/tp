@@ -13,7 +13,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Reeve;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.OverdueFeePredicate;
 import seedu.address.testutil.StudentBuilder;
@@ -29,7 +28,7 @@ public class OverdueCommandTest {
         Model model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
 
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -39,7 +38,7 @@ public class OverdueCommandTest {
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
 
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -49,7 +48,7 @@ public class OverdueCommandTest {
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
 
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -73,7 +72,7 @@ public class OverdueCommandTest {
             Student replacement = new StudentBuilder(toReplace).withPaymentDate(date.format(FORMAT)).build();
             reeve.setStudent(toReplace, replacement);
         }
-        return new ModelManager(reeve, new UserPrefs(), new Scheduler());
+        return new ModelManager(reeve, new UserPrefs());
     }
 
 }

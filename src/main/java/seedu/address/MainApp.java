@@ -21,8 +21,6 @@ import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Reeve;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.ReadOnlyEvent;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonReeveStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -30,8 +28,6 @@ import seedu.address.storage.ReeveStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
-import seedu.address.storage.schedule.JsonScheduleStorage;
-import seedu.address.storage.schedule.ScheduleStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -61,8 +57,7 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ReeveStorage reeveStorage = new JsonReeveStorage(userPrefs.getAddressBookFilePath());
-        ScheduleStorage scheduleStorage = new JsonScheduleStorage(userPrefs.getScheduleFilePath());
-        storage = new StorageManager(reeveStorage, userPrefsStorage, scheduleStorage);
+        storage = new StorageManager(reeveStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -80,9 +75,8 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyReeve> addressBookOptional;
-        Optional<ReadOnlyEvent> scheduleOptional;
         ReadOnlyReeve initialData;
-        ReadOnlyEvent initialSchedule;
+
         try {
             addressBookOptional = storage.readAddressBook();
 
@@ -99,20 +93,7 @@ public class MainApp extends Application {
             initialData = new Reeve();
         }
 
-        try {
-            scheduleOptional = storage.readSchedule();
-            if (!scheduleOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample schedule");
-            }
-            initialSchedule = scheduleOptional.orElseGet(SampleDataUtil::getSampleSchedule);
-
-        } catch (DataConversionException e) {
-            initialSchedule = new Scheduler();
-        } catch (IOException e) {
-            initialSchedule = new Scheduler();
-        }
-
-        return new ModelManager(initialData, userPrefs, initialSchedule);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

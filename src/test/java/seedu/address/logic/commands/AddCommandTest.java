@@ -15,7 +15,6 @@ import seedu.address.logic.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
-import seedu.address.model.event.Event;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
@@ -113,22 +112,6 @@ public class AddCommandTest {
         public ReadOnlyReeve getReeve() {
             return new Reeve();
         }
-
-
-        // Schedule =================================
-        @Override
-        public boolean isClashingEvent(Event event) {
-            return false;
-        }
-
-        @Override
-        public boolean hasEvent(Event eventToCheck) {
-            return false;
-        }
-
-        @Override
-        public void addEvent(Event eventToAdd) {};
-        //=========================================================
     }
 
 }

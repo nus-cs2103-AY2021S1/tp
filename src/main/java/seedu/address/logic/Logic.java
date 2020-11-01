@@ -10,7 +10,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyReeve;
-import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Student;
 
 /**
@@ -65,7 +65,7 @@ public interface Logic {
     ScheduleViewMode getScheduleViewMode();
 
     /**
-     * Returns unmodifiable view of VEvent.
+     * Returns unmodifiable view of VEvent lesson.
      */
     ObservableList<VEvent> getVEventList();
 

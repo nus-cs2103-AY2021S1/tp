@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventRecurrence;
-import seedu.address.model.event.Scheduler;
+import seedu.address.model.schedule.Event;
+import seedu.address.model.schedule.EventRecurrence;
+import seedu.address.model.schedule.Scheduler;
 
 public class TypicalEvents {
 

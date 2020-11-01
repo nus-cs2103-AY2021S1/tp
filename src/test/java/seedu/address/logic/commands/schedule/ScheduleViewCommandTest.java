@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.schedule.ScheduleViewMode;
 
 public class ScheduleViewCommandTest {
 

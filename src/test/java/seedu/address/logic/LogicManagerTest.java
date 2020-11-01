@@ -31,12 +31,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.storage.JsonReeveStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.schedule.JsonScheduleStorage;
 import seedu.address.testutil.StudentBuilder;
 
 public class LogicManagerTest {
@@ -53,8 +51,7 @@ public class LogicManagerTest {
         JsonReeveStorage addressBookStorage =
                 new JsonReeveStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        JsonScheduleStorage scheduleStorage = new JsonScheduleStorage(temporaryFolder.resolve("schedule.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, scheduleStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -83,8 +80,7 @@ public class LogicManagerTest {
                 new JsonReeveIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        JsonScheduleStorage scheduleStorage = new JsonScheduleStorage(temporaryFolder.resolve("schedule.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, scheduleStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -145,7 +141,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

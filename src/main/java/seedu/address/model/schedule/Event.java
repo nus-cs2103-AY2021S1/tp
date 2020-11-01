@@ -1,6 +1,5 @@
-package seedu.address.model.event;
+package seedu.address.model.schedule;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
@@ -13,11 +12,6 @@ import java.util.Objects;
  * This will be mapped to iCalendarFx's VEvent to be displayed in the iCalendar graphical user interface.
  */
 public class Event {
-
-    public static final String INVALID_EVENT_NAME_MSG = "Event name cannot be blank";
-    public static final String INVALID_EVENT_START_END_TIME_MSG = "Event start time is after end time";
-    public static final String INCORRECT_DATE_TIME_MESSAGE = "Event date time is in incorrect format!";
-
 
     private String eventName;
     private LocalDateTime eventStartDateTime;
@@ -37,27 +31,11 @@ public class Event {
     public Event(String eventName, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                  String uniqueIdentifier, EventRecurrence recurrence) {
         requireAllNonNull(eventName, eventStartDateTime, eventEndDateTime, uniqueIdentifier, recurrence);
-        checkArgument(isValidEventName(eventName));
-        checkArgument(isValidEventStartAndEndTime(eventStartDateTime, eventEndDateTime));
         this.eventName = eventName;
         this.eventStartDateTime = eventStartDateTime;
         this.eventEndDateTime = eventEndDateTime;
         this.uniqueIdentifier = uniqueIdentifier;
         this.recurrence = recurrence;
-    }
-
-    /**
-     * Validates an event name to ensure it is not blank
-     *
-     * @param eventName
-     * @return
-     */
-    public static boolean isValidEventName(String eventName) {
-        return !eventName.isBlank();
-    }
-
-    public static boolean isValidEventStartAndEndTime(LocalDateTime eventStartTime, LocalDateTime eventEndTime) {
-        return eventStartTime.isBefore(eventEndTime);
     }
 
     public String getEventName() {
@@ -83,16 +61,6 @@ public class Event {
     @Override
     public int hashCode() {
         return Objects.hash(eventName, eventStartDateTime, eventEndDateTime, uniqueIdentifier, recurrence);
-    }
-
-    /**
-     * This method checks if events are the same based on event name, start and end date time.
-     * This is a weaker notion of equality between events.
-     */
-    public boolean isSameEvent(Event otherEvent) {
-        return otherEvent.eventName.equals(eventName)
-                && otherEvent.eventStartDateTime.equals(eventStartDateTime)
-                && otherEvent.eventEndDateTime.equals(eventEndDateTime);
     }
 
     /**
@@ -132,19 +100,4 @@ public class Event {
 
         return builder.toString();
     }
-
-    /**
-     * Returns true if this event overlaps with another event.
-     *
-     * @param otherEvent the event to be compared
-     */
-    public boolean isOverlapping(Event otherEvent) {
-        return eventStartDateTime.isBefore(otherEvent.eventEndDateTime)
-                && otherEvent.eventStartDateTime.isBefore(eventEndDateTime);
-    }
-
-    public boolean isSameName(Event otherEvent) {
-        return otherEvent.eventName.equals(eventName);
-    }
-
 }

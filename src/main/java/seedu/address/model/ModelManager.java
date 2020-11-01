@@ -15,11 +15,10 @@ import javafx.collections.transformation.SortedList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.ReadOnlyEvent;
-import seedu.address.model.event.SchedulePrefs;
-import seedu.address.model.event.ScheduleViewMode;
-import seedu.address.model.event.Scheduler;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.SchedulePrefs;
+import seedu.address.model.schedule.ScheduleViewMode;
+import seedu.address.model.schedule.Scheduler;
 import seedu.address.model.student.NameComparator;
 import seedu.address.model.student.Student;
 
@@ -39,23 +38,23 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyReeve addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyEvent schedule) {
+    public ModelManager(ReadOnlyReeve addressBook, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs, schedule);
+        requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook
-                + ", schedule : " + schedule + " and user prefs " + userPrefs);
+                 + " and user prefs " + userPrefs);
 
         this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.reeve.getStudentList());
-        this.scheduler = new Scheduler(schedule);
+        this.scheduler = new Scheduler();
         this.schedulePrefs = new SchedulePrefs(ScheduleViewMode.WEEKLY, LocalDateTime.now());
         sortedStudents = new SortedList<>(this.filteredStudents, new NameComparator());
     }
 
     public ModelManager() {
-        this(new Reeve(), new UserPrefs(), new Scheduler());
+        this(new Reeve(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -91,17 +90,6 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    @Override
-    public Path getScheduleFilePath() {
-        return userPrefs.getScheduleFilePath();
-    }
-
-    @Override
-    public void setScheduleFilePath(Path scheduleFilePath) {
-        requireNonNull(scheduleFilePath);
-        userPrefs.setScheduleFilePath(scheduleFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -188,21 +176,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addEvent(Event eventToAdd) {
-        scheduler.addEvent(eventToAdd);
-    }
-
-    @Override
-    public boolean hasEvent(Event eventToCheck) {
-        return scheduler.hasEvent(eventToCheck);
-    }
-
-    @Override
-    public void removeEvent(Event toRemove) {
-        scheduler.removeEvent(toRemove);
-    }
-
-    @Override
     public ObservableList<VEvent> getVEventList() {
         return scheduler.getVEvents();
     }
@@ -242,7 +215,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean isClashingEvent(Event event) {
-        return scheduler.isClashingEvents(event);
+    public void updateClassTimesToEvent() {
+        scheduler.mapClassTimesToLessonEvent(reeve.getStudentList());
+    }
+
+    @Override
+    public ObservableList<VEvent> getLessonEventsList() {
+        updateClassTimesToEvent();
+        return scheduler.getVEvents();
     }
 }

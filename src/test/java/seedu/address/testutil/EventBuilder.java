@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventRecurrence;
+import seedu.address.model.schedule.Event;
+import seedu.address.model.schedule.EventRecurrence;
 
 /**
  * A utility class to help with building Event objects.

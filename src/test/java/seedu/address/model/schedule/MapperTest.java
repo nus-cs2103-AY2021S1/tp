@@ -1,4 +1,4 @@
-package seedu.address.model.event;
+package seedu.address.model.schedule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;

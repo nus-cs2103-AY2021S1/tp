@@ -8,12 +8,11 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.storage.schedule.ScheduleStorage;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends ReeveStorage, UserPrefsStorage, ScheduleStorage {
+public interface Storage extends ReeveStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;

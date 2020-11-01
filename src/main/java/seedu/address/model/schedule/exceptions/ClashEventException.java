@@ -1,4 +1,4 @@
-package seedu.address.model.event.exceptions;
+package seedu.address.model.schedule.exceptions;
 
 /**
  * Signals that the operation will result in clashing Events (Events are considered clash if they have the same

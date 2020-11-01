@@ -11,9 +11,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.ReadOnlyEvent;
-import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Student;
 
 /**
@@ -102,22 +101,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateClassTimesToEvent() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<VEvent> getLessonEventsList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setSchedulerWithEvents(ReadOnlyEvent events) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public ReadOnlyEvent getSchedule() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public Path getScheduleFilePath() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setScheduleFilePath(Path scheduleFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -142,27 +141,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addEvent(Event eventToAdd) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean hasEvent(Event eventToCheck) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ObservableList<VEvent> getVEventList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public boolean isClashingEvent(Event event) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void removeEvent(Event event) {
         throw new AssertionError("This method should not be called.");
     }
 

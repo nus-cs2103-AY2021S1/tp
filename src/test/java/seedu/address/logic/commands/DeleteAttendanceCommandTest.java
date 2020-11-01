@@ -22,7 +22,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
@@ -30,7 +29,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class DeleteAttendanceCommandTest {
 
-    private static Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private static Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final Index TEST_INDEX_FIRST_STUDENT = INDEX_FIRST_PERSON;
     private static final LocalDate TEST_DATE = model.getFilteredStudentList().get(0)
             .getAttendance().get(0).getLessonDate();
@@ -65,7 +64,7 @@ public class DeleteAttendanceCommandTest {
         String expectedMessage = String.format(DeleteAttendanceCommand.MESSAGE_SUCCESS,
                 clone.getName(), USER_INPUT_DATE);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(deleteAttendanceCommand, model, expectedMessage, expectedModel);
@@ -90,7 +89,7 @@ public class DeleteAttendanceCommandTest {
 
     @Test
     public void execute_validStudentIndexFilteredList_success() {
-        Model newModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+        Model newModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         showPersonAtIndex(newModel, INDEX_SECOND_PERSON);
 
         Student asker = newModel.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -104,7 +103,7 @@ public class DeleteAttendanceCommandTest {
         String expectedMessage = String.format(DeleteAttendanceCommand.MESSAGE_SUCCESS,
                 clone.getName(), USER_INPUT_DATE);
 
-        ModelManager expectedModel = new ModelManager(newModel.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(newModel.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, newModel, expectedMessage, expectedModel);
@@ -123,7 +122,7 @@ public class DeleteAttendanceCommandTest {
 
     @Test
     public void execute_invalidDateFilteredList_throwsCommandException() {
-        Model newModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+        Model newModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         showPersonAtIndex(newModel, INDEX_SECOND_PERSON);
 
         LocalDate invalidDate = TEST_DATE.minusMonths(1);

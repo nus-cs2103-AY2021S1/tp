@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
@@ -27,7 +26,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class AddAttendanceCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Attendance validAttendance = new Attendance("12/02/2020", "attended",
             new Feedback("sleepy"));
 
@@ -58,7 +57,7 @@ public class AddAttendanceCommandTest {
         String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
                 validAttendance);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addAttendanceCommand, model, expectedMessage, expectedModel);
@@ -88,7 +87,7 @@ public class AddAttendanceCommandTest {
         String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
                 validAttendance);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
