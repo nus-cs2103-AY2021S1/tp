@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_QUANTITY;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -189,23 +191,30 @@ public class ParserUtil {
     /**
      * Parses and validates the string for Preset Command.
      */
-    public static String[] checkPresetSyntax(String saveLoad) throws ParseException {
-        requireNonNull(saveLoad);
-        String trimArgs = saveLoad.trim();
+    public static String[] checkPresetSyntax(String modeType) throws ParseException {
+        requireNonNull(modeType);
+        String trimArgs = modeType.trim();
         int firstSpace = trimArgs.indexOf(' ');
         String[] argsArr = new String[2];
 
         argsArr[0] = trimArgs;
         argsArr[1] = "";
         if (firstSpace != -1) {
-            argsArr[0] = trimArgs.substring(0, firstSpace).trim().toLowerCase();
+            argsArr[0] = trimArgs.substring(0, firstSpace).trim();
             argsArr[1] = trimArgs.substring(firstSpace + 1).trim();
         }
 
-        if (!argsArr[0].equals("save") && !argsArr[0].equals("load")
-                && !argsArr[0].equals("s") && !argsArr[0].equals("l")) {
+        String[] commands = {
+            "save",
+            "load",
+            "delete"
+        };
+        ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
+        matchingCommands.removeIf(s -> !s.startsWith(argsArr[0]));
+        if (matchingCommands.size() == 0) {
             throw new ParseException(PresetCommand.MESSAGE_USAGE);
         }
+
         return argsArr;
     }
 

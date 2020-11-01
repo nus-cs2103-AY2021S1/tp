@@ -93,14 +93,15 @@ Examples:
 
 Displays the menu from the selected vendor.
 
-Format: `menu`
-
 - Can be used to display the menu after a `sort` / `find` / `price` command.
 - Note that anything written after the `menu` command will be ignored, and menu will be listed as intended.
+
+Format: `menu`
 
 Example:
 
 - `menu`: Displays the menu of the selected vendor.
+
 
 ### Sorting the menu: `sort`
 
@@ -109,16 +110,16 @@ Sorts the menu by either price or name.
 Format: `sort MODE [DIRECTION]`
 
 * `MODE` dictates which mode it will sort by, with format:
-  * `name`: sorts by name.
-  * `price`: sorts by price.
+  * `n`: sorts by name
+  * `p`: sorts by price
 * `DIRECTION` dictates which direction it will sort by, with format:
-  * `ascending`: sort in ascending order.
-  * `descending`: sort in descending order.
-* If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa.
+  * `a`: sort in ascending order
+  * `d`: sort in descending order
+* If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending order and vice versa
 
 Examples:
-* `sort name ascending`: sorts the menu by name in ascending direction.
-* `sort price`: sorts the menu by price in opposite direction as last sorted.
+* `sort n a` sorts the menu by name in ascending direction.
+* `sort p` sorts the menu by price in opposite direction as last sorted.
 
 
 ### Find food item: `find`
@@ -144,7 +145,7 @@ Format: `price INEQUALITY PRICE`
 * `INEQUALITY` is an inequality sign, of the below formats:
   * `<`: Strictly less than
   * `<=`: Less than or Equal to
-  * `>`: Greater than
+  * `>`: Strictly Greater than
   * `>=`: Greater than or Equal to
 * `PRICE` must be a non-negative real number.
 
@@ -246,8 +247,9 @@ Format: `preset MODE [NAME]`
 * `MODE` dictates what the system will perform for the user's supper orders, represented by the formats:
   * `save`: Used to save a preset. (If used without a `NAME`, will save with a default preset name of 'MyPreset')
   * `load`: Used to load a preset. (If used without a `NAME`, will list all saved presets)
+  * `delete`: Used to delete a preset. (`NAME` must be specified)
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
-  * if `NAME` already exists, the new preset will overwrite the existing preset.
+  * if `NAME` already exists and in save mode, the new preset will overwrite the existing preset.
   * `NAME` is **Case-Sensitive**.
   * `NAME` is Vendor Specific, and is unique to each vendor.
 
@@ -256,6 +258,7 @@ Examples:
 * `preset load MyPreset`: loads the current default preset if it exists.
 * `preset save vegan`: save the user's supper order with a preset name of 'vegan'.
 * `preset load vegan`: loads the preset supper order with the preset name 'vegan'.
+* `preset delete vegan` deletes the preset supper order with the preset name "vegan".
 
 
 
