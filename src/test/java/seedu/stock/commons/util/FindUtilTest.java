@@ -1,19 +1,20 @@
 package seedu.stock.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 import seedu.stock.testutil.StockBuilder;
 import seedu.stock.testutil.TypicalStocks;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FindUtilTest {
 

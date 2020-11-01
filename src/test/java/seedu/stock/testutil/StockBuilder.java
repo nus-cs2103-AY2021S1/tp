@@ -150,7 +150,7 @@ public class StockBuilder {
     public StockBuilder deleteNote(int index) {
         assert(index > 0);
         List<Note> noteList = new ArrayList<>();
-        for(Note note : this.notes) {
+        for (Note note : this.notes) {
             noteList.add(note);
         }
         noteList.remove(index - 1);
