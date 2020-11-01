@@ -78,7 +78,7 @@ public class EvaParserTest {
     public void parseCommand_findStaff() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindStaffCommand command = (FindStaffCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " -staff " + String.join(" ", keywords));
+                FindCommand.COMMAND_WORD + " s- " + String.join(" ", keywords));
         assertEquals(new FindStaffCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
     }
 
@@ -86,7 +86,7 @@ public class EvaParserTest {
     public void parseCommand_findApplicant() throws Exception {
         List<String> keywords = Arrays.asList("one", "two", "three");
         FindApplicantCommand command = (FindApplicantCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " -applicant " + String.join(" ", keywords));
+                FindCommand.COMMAND_WORD + " a- " + String.join(" ", keywords));
         assertEquals(new FindApplicantCommand(new NameContainsKeywordsPredicate<>(keywords)), command);
     }
 

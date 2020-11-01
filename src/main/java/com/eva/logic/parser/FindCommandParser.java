@@ -1,5 +1,8 @@
 package com.eva.logic.parser;
 
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
+
 import java.util.Arrays;
 
 import com.eva.commons.core.Messages;
@@ -20,19 +23,20 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_STAFF, PREFIX_APPLICANT);
+        if (argMultimap.isEmpty()
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-        String[] shiftedNameKeywords = Arrays.copyOfRange(nameKeywords, 1, nameKeywords.length);
-        switch (nameKeywords[0]) {
-        case "-applicant":
-            return new FindApplicantCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
-        case "-staff":
-            return new FindStaffCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
-        default:
+        if (argMultimap.getValue(PREFIX_STAFF).isPresent()) {
+            String[] keywords = argMultimap.getValue(PREFIX_STAFF).get().split("\\s+");
+            return new FindStaffCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
+        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent()) {
+            String[] keywords = argMultimap.getValue(PREFIX_APPLICANT).get().split("\\s+");
+            return new FindApplicantCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(keywords)));
+        } else {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

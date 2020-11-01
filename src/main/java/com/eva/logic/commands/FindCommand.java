@@ -19,7 +19,7 @@ public abstract class FindCommand extends Command {
             + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: [-applicant|-staff] KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " -staff alice bob charlie";
 
     private final NameContainsKeywordsPredicate<Person> predicate;
 
