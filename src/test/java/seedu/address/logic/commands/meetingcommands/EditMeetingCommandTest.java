@@ -2,17 +2,14 @@ package seedu.address.logic.commands.meetingcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_MEETING_A;
 import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_MEETING_B;
 import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_VENUE_A;
-import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSellerCommandFailure;
-import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSellerCommandSuccess;
-import static seedu.address.logic.commands.seller.SellerCommandTestUtil.showSellerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
@@ -22,19 +19,14 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.sellercommands.EditSellerCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.seller.Seller;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.seller.EditSellerDescriptorBuilder;
-
-
 
 class EditMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
@@ -56,7 +48,7 @@ class EditMeetingCommandTest {
 
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedAdminMeeting);
 
-        assertSellerCommandSuccess(editAdminMeetingCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editAdminMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -100,6 +92,7 @@ class EditMeetingCommandTest {
 
     @Test
     public void execute_filteredList_success() {
+        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         Meeting meetingInFilteredList = model.getFilteredMeetingList().get(INDEX_FIRST_MEETING.getZeroBased());
         Meeting editedMeeting = new MeetingBuilder(meetingInFilteredList).withVenue(VALID_VENUE_A).buildAdmin();
@@ -123,18 +116,18 @@ class EditMeetingCommandTest {
                 new EditMeetingDescriptorBuilder(firstMeeting).build();
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_SECOND_MEETING, meetingDescriptor);
 
-        assertSellerCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
+        assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
     }
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showSellerAtIndex(model, INDEX_FIRST_PERSON);
+        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
 
         // edit seller in filtered list into a duplicate in address book
-        Seller sellerInList = model.getSellerAddressBook().getSellerList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditSellerCommand editSellerCommand = new EditSellerCommand(INDEX_FIRST_PERSON,
-                new EditSellerDescriptorBuilder(sellerInList).build());
-        assertSellerCommandFailure(editSellerCommand, model, EditSellerCommand.MESSAGE_DUPLICATE_SELLER);
+        Meeting meetingInList = model.getMeetingBook().getMeetingList().get(INDEX_SECOND_MEETING.getZeroBased());
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(INDEX_FIRST_MEETING,
+                new EditMeetingDescriptorBuilder(meetingInList).build());
+        assertCommandFailure(editMeetingCommand, model, EditMeetingCommand.MESSAGE_DUPLICATE_MEETING);
     }
 
     @Test
