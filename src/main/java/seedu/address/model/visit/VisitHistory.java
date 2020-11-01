@@ -37,6 +37,7 @@ public class VisitHistory {
     public VisitHistory addVisit(Visit toAdd) {
         this.visits.add(toAdd);
         Collections.sort(this.visits);
+        Collections.reverse((this.visits));
         return this;
     }
 

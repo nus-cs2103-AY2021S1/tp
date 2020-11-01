@@ -336,6 +336,9 @@ Display a new window to add a new visitation log for the specified patient.
 Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_DATE` refers to the date of visitation.
+    * It follows the format of `dd/MM/yyyy`.
+    * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
 * `VISIT_DATE`is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
 
 **Example**: You want to add a visitation log to the 1st patient on the list.
@@ -411,7 +414,7 @@ Format: `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
-* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment.
+* `APPOINTMENT_DATETIME` refers to the date and starting time of the appointment.
     * It follows the format of `yyyy-MM-dd HH:mm`.
     * Do note that you will need to input the hour (`HH`) in  the 24-hour format.
 
