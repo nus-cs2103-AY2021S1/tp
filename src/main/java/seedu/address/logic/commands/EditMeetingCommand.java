@@ -117,16 +117,16 @@ public class EditMeetingCommand extends Command {
                     meetingToEdit.getMeetingName()));
         }
 
-            if (editMeetingDescriptor.getDate().isPresent() || editMeetingDescriptor.getTime().isPresent()) {
+        if (editMeetingDescriptor.getDate().isPresent() || editMeetingDescriptor.getTime().isPresent()) {
             for (Meeting meeting : model.getFilteredMeetingList()) {
-                if (((editMeetingDescriptor.getDate().isPresent()) &&
-                        (meeting.getDate().equals(editMeetingDescriptor.getDate().get())
+                if (((editMeetingDescriptor.getDate().isPresent())
+                        && (meeting.getDate().equals(editMeetingDescriptor.getDate().get())
                                 && meeting.getTime().equals(editedMeeting.getTime())))
-                    || ((editMeetingDescriptor.getTime().isPresent()) &&
-                        (meeting.getDate().equals(editedMeeting.getDate())
+                    || ((editMeetingDescriptor.getTime().isPresent())
+                        && (meeting.getDate().equals(editedMeeting.getDate())
                                 && meeting.getTime().equals(editMeetingDescriptor.getTime().get())))
-                    || ((editMeetingDescriptor.getDate().isPresent() && editMeetingDescriptor.getTime().isPresent()) &&
-                        (meeting.getDate().equals(editMeetingDescriptor.getDate().get())
+                    || ((editMeetingDescriptor.getDate().isPresent() && editMeetingDescriptor.getTime().isPresent())
+                        && (meeting.getDate().equals(editMeetingDescriptor.getDate().get())
                                 && meeting.getTime().equals(editMeetingDescriptor.getTime().get())))) {
                     throw new CommandException(
                             String.format(MESSAGE_CONFLICTING_MEETING_TIMES, meeting.getModule().getModuleName(),
@@ -136,7 +136,7 @@ public class EditMeetingCommand extends Command {
         }
 
 
-            model.setMeeting(meetingToEdit, editedMeeting);
+        model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting), false,
                 false, true, false);

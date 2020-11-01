@@ -11,8 +11,8 @@ import java.time.format.DateTimeParseException;
 public class Date {
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates should be in the format yyyy-mm-dd";
     public static final String MESSAGE_DATE_CONSTRAINTS = "The date given should be a valid date";
-    public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format yyyy-mm-dd and " +
-            "the date given should be a valid date";
+    public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format yyyy-mm-dd and "
+            + "the date given should be a valid date";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("d LLL (EEE)");
