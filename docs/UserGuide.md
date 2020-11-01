@@ -145,18 +145,21 @@ The application will save the data automatically to the default file path after 
 ## 3.10. Archive : `archive`
 Archive the data into a different file location.
 
-Format: `archive f/FILE_LOCATION/FILE_NAME.json`<br>
-The file location takes reference from the home folder that the .jar file is located at, unless absolute filepath is specified.
+Format: `archive f/FILE_LOCATION\FILE_NAME.json`  
+The format of the file location accept both Absolute and Relative Path.  
+The file name must ends with the extension `.json`   
 
 
-Examples:<br>
-`archive f/data\file_name.json`<br>
+Examples:  
+- `archive f/data\file_name.json`  
+- `archive f/C:\Users\user_name\Desktop\FILE_NAME.json`  
 
-If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.
 
 <div markdown="block" class="alert alert-info">
-    <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json  
-    <b> Relative Path </b>: Path that are not absolute. E.g. FILE_LOCATION\FILE_NAME.json  
+    <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json<br>
+    <b> Relative Path </b>: Path will take reference from the file that contains <b>Calo.jar</b> For example, if Calo is inside
+    the <mark>C:\Users\UserName\App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
+    at <mark>C:\Users\UserName\App\data\archived_file.json</mark>  
 </div>
 
 #### Add templates : `create`
