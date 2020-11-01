@@ -9,8 +9,6 @@ public class MenuCommand extends Command {
 
     public static final String COMMAND_WORD = "menu";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the whole menu again.";
-
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         if (!model.isSelected()) {

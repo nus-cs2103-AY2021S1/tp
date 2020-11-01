@@ -5,7 +5,7 @@ package seedu.address.commons.core;
  */
 public class Messages {
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
+    public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format!\n%1$s";
     public static final String MESSAGE_INVALID_INDEX = "%s is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_QUANTITY = "Quantity given is invalid.";
     public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid";
@@ -14,14 +14,13 @@ public class Messages {
             + "provided is invalid";
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
     public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
-    public static final String MESSAGE_INVALID_PRESET_ARGUMENT = "Save or Load preset command was not specified.";
 
     public static final String MESSAGE_VENDOR_NOT_SELECTED = "A vendor has not been selected yet,"
             + " please choose a vendor.";
     public static final String MESSAGE_EMPTY_ORDER = "The order is currently empty,"
-            + " please add an order before submitting.";
-    public static final String MESSAGE_INSUFFICIENT_ARGUMENTS = "%s command requires at least %s argument(s). \n %s";
-    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments. \n %s";
+            + " please add an order.";
+    public static final String MESSAGE_INSUFFICIENT_ARGUMENTS = "%s command requires at least %s argument(s).\n%s";
+    public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments.\n%s";
     public static final String MESSAGE_FOOD_LISTED_OVERVIEW = "%1$d food listed!\n"
             + "1. You can further chain the current filter with another `find` or `price` command.\n"
             + "2. Filters can be reset with the `menu` command.";

@@ -23,9 +23,9 @@ public class SwitchVendorCommand extends VendorCommand {
 
     public static final String MESSAGE_SELECT_VENDOR_SUCCESS = "The vendor %s, has been selected.";
     public static final String MESSAGE_SELECT_VENDOR_SAME = "You are already on the vendor %s,\n"
-            + "1. Use the `clear` command if you wish to clear your current order.\n"
-            + "2. Use the `menu` command if you wish to reset to the original menu.\n"
-            + "3. Use the `vendor` command if you wish to reselect vendors";
+            + "1. Use the clear command if you wish to clear your current order.\n"
+            + "2. Use the menu command if you wish to reset to the original menu.\n"
+            + "3. Use the vendor command if you wish to reselect vendors";
 
     private final Index vendorIndex;
 

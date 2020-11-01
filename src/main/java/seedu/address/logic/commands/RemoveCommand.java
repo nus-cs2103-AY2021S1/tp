@@ -18,13 +18,15 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the order item identified by the index number used in the displayed menu list.\n"
-            + "Parameters: \n"
-            + "1. INDEX (must be a positive integer)\n"
-            + "2. INDEX (must be a positive integer) QUANTITY (must be a positive integer)\n"
-            + "Example: \n"
-            + "1. " + COMMAND_WORD + " 1\n"
-            + "2. " + COMMAND_WORD + " 1 2";
+            + ": Removes the specified item from the supper order.\n"
+            + "Format: remove INDEX [QUANTITY]\n"
+            + "- INDEX refers to the index number shown in the displayed supper order list.\n"
+            + "- INDEX must be a positive integer and must not exceed the size of the supper order list.\n"
+            + "- QUANTITY can be specified to indicate the number of item to be deleted."
+                + " Otherwise, it deletes all quantities of the item at the specified index.\n"
+            + "Examples:\n"
+            + "remove 2: remove item at INDEX 2.\n"
+            + "remove 1 2: remove item at INDEX 1, of quantity 2.\n";
 
     public static final String MESSAGE_REMOVE_ORDERITEM_SUCCESS = "Removed order item: %1$s";
 

@@ -16,10 +16,14 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all vendors whose names contain any of "
-            + "the specified keywords and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and lists all food items containing "
+            + "any of the specified keywords in their name\n"
+            + "Format: find KEYWORD [MORE_KEYWORDS]\n"
+            + "- KEYWORD are NOT Case-Sensitive\n"
+            + "- KEYWORD filters tags as well.\n"
+            + "Examples:\n"
+            + "find milo: lists all food items containing the word 'milo' in their name.\n"
+            + "find milo dinosaur: lists all food items containing the word 'milo' or 'dinosaur' in their name.";
 
     private final NameContainsKeywordsPredicate predicate;
 

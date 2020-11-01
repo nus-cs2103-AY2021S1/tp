@@ -16,12 +16,13 @@ public class SubmitCommand extends Command {
 
         Order order = new Order();
         order.setOrderItems(model.getObservableOrderItemList());
+        double total = order.getTotal();
 
         if (!model.isSelected()) {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
-        if (order.getTotal() == 0.0) {
+        if (total == 0.0) {
             throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
         }
 

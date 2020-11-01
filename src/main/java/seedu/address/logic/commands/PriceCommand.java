@@ -12,8 +12,18 @@ public class PriceCommand extends Command {
 
     public static final String COMMAND_WORD = "price";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists Food in within price range.\n"
-        + "Parameters: INEQUALITY PRICE";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Filters all food item within a specified price range.\n"
+            + "Format: price INEQUALITY PRICE\n"
+            + "- INEQUALITY is an inequality sign, of the below formats:\n"
+            + "   <: Strictly less than\n"
+            + "   <=: Less than or Equal to\n"
+            + "   >: Greater than\n"
+            + "   >=: Greater than or Equal to\n"
+            + "- PRICE must be a non-negative real number.\n"
+            + "Examples:\n"
+            + "price < 3: lists all food item with price less than $3.\n"
+            + "price >= 2: lists all food item with price from $2.";
 
     private final PriceWithinRangePredicate predicate;
 

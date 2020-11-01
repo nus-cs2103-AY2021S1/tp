@@ -20,10 +20,16 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
 
     //TODO: Update message to be closer to user guide
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a OrderItem to the OrderManager. "
-            + "Parameters: "
-            + " Index of FoodItem in Menu "
-            + " [Quantity of Food to add]";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an OrderItem to the OrderManager.\n"
+            + "Format: add INDEX [QUANTITY]\n"
+            + "- The INDEX refers to the index number shown on the displayed menu list.\n"
+            + "- INDEX must be a positive integer and must not exceed the size of the menu list.\n"
+            + "- Quantity can be specified to indicate the number of item to be added.\n"
+                + "     Otherwise, it adds one quantity of the item at the specified index.\n"
+            + "Examples:\n"
+            + "add 1 1: add item at INDEX 1, of QUANTITY 1\n"
+            + "add 2 3: add item at INDEX 2, of QUANTITY 3\n"
+            + "add 1: add item at INDEX 1, of default QUANTITY 1";
 
     public static final String MESSAGE_ADD_SUCCESS = "%1$s has been added to your Order";
 

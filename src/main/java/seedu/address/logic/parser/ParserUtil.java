@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.commands.enums.Inequality;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.ParseIndexException;
@@ -203,7 +204,7 @@ public class ParserUtil {
 
         if (!argsArr[0].equals("save") && !argsArr[0].equals("load")
                 && !argsArr[0].equals("s") && !argsArr[0].equals("l")) {
-            throw new ParseException(Messages.MESSAGE_INVALID_PRESET_ARGUMENT);
+            throw new ParseException(PresetCommand.MESSAGE_USAGE);
         }
         return argsArr;
     }

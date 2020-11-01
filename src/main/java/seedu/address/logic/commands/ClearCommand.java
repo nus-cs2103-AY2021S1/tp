@@ -13,7 +13,10 @@ import seedu.address.storage.Storage;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the Order.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes everything from the Order.\n"
+            + "Format: clear\n"
+            + "Examples:\n"
+            + "clear: clears all items on current order";
     public static final String MESSAGE_SUCCESS = "Order has been cleared!";
     public static final String MESSAGE_EMPTY_ORDER = "Order is still empty!";
 
