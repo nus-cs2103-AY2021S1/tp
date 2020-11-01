@@ -88,9 +88,11 @@ Examples:
 
 ### Displaying supper menu: `menu`
 
-Shows the menu from the currently selected vendor.
+Displays the current menu from the currently selected vendor.
 
 Format: `menu`
+
+- Can be used to display the menu after a `sort` / `find` / `price` command	
 
 
 ### Sorting the menu: `sort`
@@ -120,6 +122,7 @@ case-sensitive.
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
+* `find milo` lists all food items containing the word 'milo' in their name.
 * `find milo dinosaur` lists all food items containing the word 'milo' or 'dinosaur' in their name.
 
 
@@ -129,8 +132,11 @@ Finds all food item within a specified price range.
 
 Format: `price INEQUALITY PRICE`
 
-* `INEQUALITY` is an inequality sign, and must be either '<' (strictly less than), '<=' (less than or equal to),
-'>' (greater than), or '>=' (greater than or equal to).
+* `INEQUALITY` is an inequality sign, of the below formats:
+  * `<`: Strictly less than
+  * `<=`: Less than or Equal to
+  * `>`: Strictly greater than
+  * `>=`: Greater than or Equal to
 * `PRICE` must be a non-negative real number.
 
 Examples:
