@@ -47,11 +47,11 @@ in this document.
    
    Some example commands you can try:
 
-   * **`list`** : Lists all items stored in Inventoryinator.
+   * **`listi`** : Lists all items stored in Inventoryinator.
 
    * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to the Inventoryinator
 
-   * **`add`**`banana -q 10` Adds a quantity of 10 to the banana
+   * **`addq`**`banana -q 10` Adds a quantity of 10 to the entry for the banana
 
    * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 

@@ -15,8 +15,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_DESC_APP
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_INGREDIENTS_APPLE_PIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_PRODUCT_NAME_APPLE_PIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_QUANTITY_APPLE_PIE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.RecipeParserUtil.DEFAULT_DESCRIPTION;
+import static seedu.address.logic.parser.RecipeParserUtil.DEFAULT_PRODUCT_QUANTITY;
+import static seedu.address.testutil.TypicalIngredientPrecursors.getTypicalIngredientList;
 import static seedu.address.testutil.TypicalRecipePrecursors.APPLE_PIE_PRECURSOR;
 
 import org.junit.jupiter.api.Test;
@@ -77,6 +81,36 @@ public class AddRecipeCommandParserTest {
                 new AddRecipeCommand(expectedItem));
     }
 
+    @Test
+    public void parse_optionalFieldsMissing_success() {
+        RecipePrecursor expectedItem = new RecipePrecursorBuilder(APPLE_PIE_PRECURSOR)
+                .withIngredients(getTypicalIngredientList())
+                .withDescription(DEFAULT_DESCRIPTION)
+                .withQuantity(DEFAULT_PRODUCT_QUANTITY)
+                .build();
+
+        // Missing description field
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + RECIPE_QUANTITY_APPLE_PIE
+                        + RECIPE_PRODUCT_NAME_APPLE_PIE
+                        + RECIPE_INGREDIENTS_APPLE_PIE,
+                new AddRecipeCommand(expectedItem));
+
+        // Missing quantity field
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + RECIPE_PRODUCT_NAME_APPLE_PIE
+                        + RECIPE_INGREDIENTS_APPLE_PIE + " "
+                        + PREFIX_RECIPE_PRODUCT_QUANTITY
+                        + DEFAULT_PRODUCT_QUANTITY,
+                new AddRecipeCommand(expectedItem));
+
+        // Missing both fields
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE
+                        + RECIPE_PRODUCT_NAME_APPLE_PIE
+                        + RECIPE_INGREDIENTS_APPLE_PIE,
+                new AddRecipeCommand(expectedItem));
+    }
+
     /**
      * Tests for compulsory fields.
      */
@@ -88,20 +122,6 @@ public class AddRecipeCommandParserTest {
         assertParseFailure(parser, VALID_RECIPE_PRODUCT_NAME_APPLE_PIE
                         + RECIPE_QUANTITY_APPLE_PIE
                         + RECIPE_DESCRIPTION_APPLE_PIE
-                        + RECIPE_INGREDIENTS_APPLE_PIE,
-                expectedMessage);
-
-        // missing quantity prefix
-        assertParseFailure(parser, RECIPE_PRODUCT_NAME_APPLE_PIE
-                        + VALID_RECIPE_QUANTITY_APPLE_PIE
-                        + RECIPE_DESCRIPTION_APPLE_PIE
-                        + RECIPE_INGREDIENTS_APPLE_PIE,
-                expectedMessage);
-
-        // missing description prefix
-        assertParseFailure(parser, RECIPE_PRODUCT_NAME_APPLE_PIE
-                        + RECIPE_QUANTITY_APPLE_PIE
-                        + VALID_RECIPE_DESC_APPLE_PIE
                         + RECIPE_INGREDIENTS_APPLE_PIE,
                 expectedMessage);
 
