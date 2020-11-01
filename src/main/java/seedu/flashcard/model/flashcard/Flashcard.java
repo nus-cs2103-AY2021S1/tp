@@ -161,29 +161,10 @@ public class Flashcard {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Category: ")
-                .append(getCategory())
-                .append(" Question: ")
+        builder.append(" Question: ")
                 .append(getQuestion())
                 .append(" Answer: ")
                 .append(getAnswer());
-        if (getNote().toString().length() > 0) {
-            builder.append(" Note: ")
-                    .append(getNote());
-        }
-        if (getRating().toString().length() > 0) {
-            builder.append(" Rating: ")
-                    .append(getRating());
-        }
-        if (getTags().size() > 0) {
-            builder.append(" Tags: ");
-            getTags().forEach(builder::append);
-        }
-
-        builder.append(" Diagram: ").append(getDiagram());
-        builder.append(" Statistics: ").append(getStatistics());
-        builder.append(" Favourite: ")
-                .append(isFavourite());
         return builder.toString();
     }
 
