@@ -51,7 +51,7 @@ public class Contact {
      * @param tags Set of tags of the Contact object.
      */
     public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
-        requireAllNonNull(name, email, telegram, tags);
+        requireAllNonNull(name, email, tags);
         this.name = name;
         this.email = email;
         this.telegram = telegram;
