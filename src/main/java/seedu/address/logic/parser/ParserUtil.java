@@ -220,9 +220,9 @@ public class ParserUtil {
         }
 
         String[] commands = {
-                "save",
-                "load",
-                "delete"
+            "save",
+            "load",
+            "delete"
         };
         ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
         matchingCommands.removeIf(s -> !s.startsWith(argsArr[0]));

@@ -33,8 +33,8 @@ public class PresetCommandParser implements Parser<PresetCommand> {
             throw new ParseException(Messages.NO_INPUT_NAME);
         }
 
-        return save ? new SavePresetCommand(presetName) :
-                load ? new LoadPresetCommand(presetName) :
-                        new DeletePresetCommand(presetName);
+        return save ? new SavePresetCommand(presetName)
+                : load ? new LoadPresetCommand(presetName)
+                : new DeletePresetCommand(presetName);
     }
 }
