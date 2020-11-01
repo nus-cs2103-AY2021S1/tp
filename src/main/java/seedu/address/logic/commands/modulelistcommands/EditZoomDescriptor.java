@@ -5,8 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
-import java.util.Optional;
-
 /**
  * Stores the details to edit the zoom link with.
  */

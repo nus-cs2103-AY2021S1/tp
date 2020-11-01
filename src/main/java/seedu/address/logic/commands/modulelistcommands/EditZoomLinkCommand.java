@@ -46,6 +46,13 @@ public class EditZoomLinkCommand extends Command {
     private final Index index;
     private final EditZoomDescriptor editZoomDescriptor;
 
+    /**
+     * Creates and initialises a new EditZoomLinkCommand object.
+     *
+     * @param index Index of the module containing the zoom link to be edited.
+     * @param editZoomDescriptor EditZoomDescriptor object that stores details of the edited zoom link
+     *                           and the module lesson that the zoom link to be edited belongs to.
+     */
     public EditZoomLinkCommand(Index index, EditZoomDescriptor editZoomDescriptor) {
         requireAllNonNull(index, editZoomDescriptor);
         assert index.getZeroBased() >= 0 : "zero based index must be non-negative";
