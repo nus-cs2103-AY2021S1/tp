@@ -123,7 +123,6 @@ Examples:
 
 - `allocate ri/1 si/1` allocates the room at `room_index` 1 to the student at `student_index` 1.
 
-#### Deallocating a room for a student : `deallocate`
 ##### Before allocation
 
 <img src="images/BeforeAllocation.png">
@@ -132,6 +131,7 @@ Examples:
 
 <img src="images/AfterAllocation.png">
 
+#### Deallocating a room for a student : `deallocate`
 
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
 
