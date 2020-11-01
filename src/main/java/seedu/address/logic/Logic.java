@@ -9,7 +9,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import seedu.address.model.Status;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -78,11 +77,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
-
-    /**
-     * Gets the current status for valid scope.
-     */
-    Status getStatus();
 
     /**
      * Checks whether the app is viewing list of projects.
