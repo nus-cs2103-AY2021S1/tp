@@ -26,9 +26,9 @@ FixMyAbs is a desktop app for managing exercises, optimized for use via a Comman
 
    - **`list`** : List the exercises
 
-   - **`add e/situp r/10 c/this is a comment`** : Adds a sit-up exercise log of 10 reps, with a comment of "this is a comment", to the FitMyAbs record.
+   - **`add e/Sit ups r/10 c/this is a comment`** : Adds a "Sit ups" exercise log of 10 reps, with a comment of "this is a comment", to the FitMyAbs record.
 
-   - **`edit`**`4 c/no abs were hurt` : Edits the log at index 4, with a comment of no abs were hurt.
+   - **`edit`**`4 c/no abs were hurt` : Edits the log at index 4, with a comment of "no abs were hurt".
 
    - **`delete 3`** : Deletes the 3rd workout.
 
@@ -48,10 +48,10 @@ FixMyAbs is a desktop app for managing exercises, optimized for use via a Comman
   e.g. in `add e/<exercise>`, `exercise` is a parameter which can be used as `add e/push dow`.
 
 - Items in square brackets are optional.<br>
-  e.g `e/<exercise> c/[comments]` can be used as `e/situp c/my abs hurt` or as `e/situp`.
+  e.g `e/<exercise> c/[comments]` can be used as `e/Sit ups c/my abs hurt` or as `e/Sit ups c/`.
 
 - Parameters can be in any order.<br>
-  e.g. if the command specifies `e/<exercise> r/<rep>`, `r/<rep>`, `e/<exercise>` is also acceptable.
+  e.g. if the command specifies `e/<exercise> r/<rep>`, `r/<rep> e/<exercise>` is also acceptable.
 
 </div>
 
@@ -73,7 +73,7 @@ Format: `add e/<exercise> r/<reps> c/<comment>`
 
 Examples:
 
-- `add e/situp r/1 c/my abs hurt :(`
+- `add e/Sit ups r/1 c/my abs hurt :(`
 
 ![Ui](images/screenshots/v1.3add.png)
 
@@ -176,7 +176,7 @@ Exercise log data are saved in the hard disk automatically after any command tha
 
 | Action     | Format                                    | Examples                                  |
 | ---------- | ----------------------------------------- | ----------------------------------------- |
-| **Add**    | `add e/<exercise> r/<reps> c/<comments>`  | e.g. `add e/situp r/30 c/Send help`       |
+| **Add**    | `add e/<exercise> r/<reps> c/<comments>`  | e.g. `add e/Sit ups r/30 c/Send help`       |
 | **Delete** | `delete <index>`                          | e.g. `delete 3`                      |
 | **Edit**   | `edit <index> r/[reps] c/[comment]`       | e.g.`edit 1 r/20 c/no abs were hurt` |
 | **List**   | `list`                                    |
