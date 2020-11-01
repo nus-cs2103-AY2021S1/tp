@@ -30,7 +30,7 @@
 
 .tab-pane {
     -fx-tab-min-width: 50px;
-    -fx-tab-min-height: 20px;
+    -fx-tab-min-height: 30px;
 }
 
 .tab {
@@ -40,15 +40,14 @@
 .tab-pane .tab {
     -fx-background-color: #e6e6e6;
     -fx-padding: 0 10 0 10;
-    -fx-border-width: 0 0 5 0;
-    -fx-border-color: #F1F1F1 #F1F1F1 #F1F1F1 #F1F1F1;
+    -fx-border-width: 0 0 0 0;
     -fx-border-radius: 5 5 0 0;
 }
 
 .tab-pane .tab:selected {
     -fx-background-color: #29292d;
     -fx-border-width: 0 0 3 0;
-    -fx-border-color: #29292d #29292d #29292d #29292d;
+    -fx-border-color: #29292d #29292d #f67915 #f67915;
     -fx-border-radius: 5 5 0 0;
 }
 
