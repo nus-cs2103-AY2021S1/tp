@@ -194,7 +194,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public boolean isAllocated(Student student) {
         requireNonNull(student);
-        return allocations.contains(student);
+        return allocations.hasStudent(student);
     }
 
     /**
@@ -202,7 +202,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public boolean isAllocated(Room room) {
         requireNonNull(room);
-        return allocations.contains(room);
+        return allocations.hasRoom(room);
     }
 
 

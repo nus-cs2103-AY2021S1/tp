@@ -42,7 +42,7 @@ public class UniqueAllocationList implements Iterable<Allocation> {
     /**
      * Returns true if the allocation list contains the {@code student} identifier.
      */
-    public boolean contains(Student student) {
+    public boolean hasStudent(Student student) {
         for (Allocation allocation : internalList) {
             if (allocation.getStudentId().equals(student.getStudentId())) {
                 return true;
@@ -54,7 +54,7 @@ public class UniqueAllocationList implements Iterable<Allocation> {
     /**
      * Returns true if the allocation list contains the {@code room} identifier.
      */
-    public boolean contains(Room room) {
+    public boolean hasRoom(Room room) {
         for (Allocation allocation : internalList) {
             if (allocation.getFloor().equals(room.getFloor())
                     && allocation.getRoomNumber().equals(room.getRoomNumber())) {

@@ -33,6 +33,8 @@ public class ReallocateCommand extends Command {
     public static final String MESSAGE_STUDENT_NOT_ALLOCATED =
             "This student has not been allocated a room. Please use allocate instead.";
     public static final String MESSAGE_SAME_ROOM_ALLOCATED = "This room has already been allocated to the student.";
+    public static final String MESSAGE_ROOM_ALREADY_ALLOCATED =
+            "This room has already been allocated to another student.";
 
     private final Index studentIndex;
     private final Index roomIndex;
@@ -81,12 +83,16 @@ public class ReallocateCommand extends Command {
             throw new CommandException(MESSAGE_STUDENT_NOT_ALLOCATED);
         } else if (toReallocate.isRelatedTo(roomToReallocate)) {
             throw new CommandException(MESSAGE_SAME_ROOM_ALLOCATED);
+        } else if (model.isAllocated(roomToReallocate)) {
+            throw new CommandException(MESSAGE_ROOM_ALREADY_ALLOCATED);
         }
 
-        Allocation editedAllocation = new Allocation(roomToReallocate.getFloor(), roomToReallocate.getRoomNumber(),
-                        studentToReallocate.getStudentId());
-        model.setAllocation(toReallocate, editedAllocation);
+        Allocation editedAllocation = new Allocation(
+            roomToReallocate.getFloor(),
+            roomToReallocate.getRoomNumber(),
+            studentToReallocate.getStudentId());
 
+        model.setAllocation(toReallocate, editedAllocation);
         model.saveStateResiReg();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToReallocate.getNameAsString(),
