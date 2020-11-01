@@ -18,21 +18,36 @@ Enum Status <<Enumeration>>
 
 Package Project {
 Class Project
-Class Address
-Class Email
-Class Name
-Class Phone
+Class ProjectName
+Class Deadline
+Class RepoUrl
+Class ProjectDescription
 Class UniqueProjectList
-Class UniqueParticipationList
 }
 
 Package Person {
 Class Person
+Class GitUserName
+Class PersonName
+Class Address
+Class Email
+Class Phone
 Class UniquePersonList
 }
 
+Package Participation {
+Class Participation
+Class UniqueParticipationList
+Class Role
+Participation .up (Project, Person)
+}
+
 Package Tag {
-Class Tag
+Class ProjectTag
+}
+
+Package Task {
+Class Task
 }
 }
 
@@ -47,20 +62,31 @@ ModelManager o--> "1" MainCatalogue
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+Project -- Person
 MainCatalogue *--> "1" UniqueProjectList
 MainCatalogue *--> "1" UniquePersonList
 MainCatalogue *--> "1" UniqueParticipationList
-MainCatalogue *--> Status
+MainCatalogue *-right-> Status
 UniqueProjectList o--> "*" Project
-Project *--> Name
-Project *--> Phone
-Project *--> Email
-Project *--> Address
-Project *--> "*" Tag
+UniquePersonList o--> "*" Person
+UniqueParticipationList o--> "*" Participation
+Project *--> ProjectName
+Project *--> Deadline
+Project *--> RepoUrl
+Project *--> ProjectDescription
+Project *--> "*" ProjectTag
+Project *--> "*" Task
+Person *--> GitUserName
+Person *--> PersonName
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Participation *--> Role
+Participation *--> "*" Task
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueProjectList -[hidden]right- UniqueParticipationList
+Task -[hidden]up- RepoUrl
+Tag -[hidden]left- Task
+UniqueParticipationList -[hidden]left- UniquePersonList
 
-ModelManager -->"1" Project : filtered list
 @enduml
