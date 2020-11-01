@@ -31,6 +31,6 @@ public class DepartmentTest {
         // valid department
         assertTrue(Department.isValidDepartment("Computer Science"));
         assertTrue(Department.isValidDepartment("-")); // one character
-        assertTrue(Department.isValidDepartment("THIRTY CHARACTERS DEPARTMENT ")); // 30 characters department name
+        assertTrue(Department.isValidDepartment("THE DEPARTMENT OF COMPUTER SCIENCE STUDIES")); // long department name
     }
 }

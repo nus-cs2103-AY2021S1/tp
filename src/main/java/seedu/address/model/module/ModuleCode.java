@@ -10,16 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Codes should only contain alphanumeric characters, and it should not be blank.\n"
-                + "Codes should not be more than 15 characters in length.";
+            "Codes should only contain alphanumeric characters, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
-    private static final Integer MAX_MODULE_CODE_LENGTH = 15;
 
     public final String moduleCode;
 
@@ -38,8 +35,7 @@ public class ModuleCode {
      * Returns true if a given string is a valid code.
      */
     public static boolean isValidCode(String test) {
-        return test.matches(VALIDATION_REGEX)
-            && test.length() <= MAX_MODULE_CODE_LENGTH;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
