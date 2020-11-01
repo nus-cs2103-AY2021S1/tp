@@ -129,7 +129,39 @@ e.g. `Mon-Lecture` and `Wed-Lecture`.
   * `addzoom 1 n/lecture-weds z/https://nus-sg.zoom.us/j/auya7164hg` adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
    in the displayed module list for the lesson `lecture`.
   
-  
+
+#### Editing a zoom link of a specific lesson in a module: `editzoom`
+
+Edits a zoom link of a specific lesson in a module.
+
+  Format: `editzoom INDEX n/LESSON_NAME z/EDITED_ZOOM_LINK`
+
+   * Edits the zoom link of the specified `LESSON_NAME` in the module at the specified `INDEX`.
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+         
+   * The index **must be a positive integer** 1, 2, 3...
+   
+   * The edited zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
+     would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
+        
+      <div markdown="block" class="alert alert-info">
+      
+      **:information_source: Note:**<br>
+      This command only allows you to edit the zoom link of an existing lesson in a module, i.e.
+      it does not allow you to edit the name of that lesson.
+      
+      If you wish you to edit the lesson name while keeping the same zoom link, you can try the following: <br>
+        1. Delete the zoom link that belongs to the lesson which you wish to edit. <br>
+        2. Add the same zoom link with the edited lesson name.
+      
+      </div>
+        
+     Example:
+     * `editzoom 1 n/tutorial z/https://nus-sg.zoom.us/j/aad83sc63gdy` edits the zoom link of the lesson `tutorial`
+        in the first module to be `https://nus-sg.zoom.us/j/aad83sc63gdy` 
+   
+   
 #### Deleting a zoom link for a specific lesson from a module: `deletezoom`
 
 Deletes a zoom link for a specific lesson from an existing module.
@@ -139,13 +171,13 @@ Deletes a zoom link for a specific lesson from an existing module.
    * Deletes a zoom link from the module at the specified `INDEX`.
    
    * The index refers to the index number of the module shown on the displayed module list. 
-      
+            
    * The index **must be a positive integer** 1, 2, 3...
 
    * `LESSON_NAME` refers to the name of the lesson in the module which contains the zoom link to be deleted.
 
   Example:
-  * `deletezoom 2 n/lecture` deletes the zoom link of the lesson `lecture` from the 2nd module in the displayed module list. 
+   * `deletezoom 2 n/lecture` deletes the zoom link of the lesson `lecture` from the 2nd module in the displayed module list. 
 
 
 #### Deleting a module: `deletemodule`
@@ -732,9 +764,10 @@ Examples:
 
 * `importantcontact 2` mark the second contact in the list as `Important`.
 
+
 #### Resetting contacts: `resetcontact`
 
-Removes a contact's impotant mark and replaces it with `Not Important` (default).
+Removes a contact's important mark and replaces it with `Not Important` (default).
 
 Format: `resetcontact` `INDEX`
 
@@ -747,6 +780,17 @@ Examples:
 * `resetcontact 1` marks the first contact in the list as `Not Important`.
 
 * `resetcontact 2` mark the second contact in the list as `Not Important`.
+
+
+#### Clearing the contact list: `clearcontact`
+
+Clears all contacts in the contact list.
+
+Format: `clearcontact`
+
+* _**Tips :**_ If you accidentally cleared the whole contact list, you can always use the `undo` command
+  to restore the list.
+
 
 ### CAP Calculator features
 
