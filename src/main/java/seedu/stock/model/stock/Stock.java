@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.stock.commons.core.index.Index;
-
 /**
  * Represents a Stock in the stock book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -153,7 +151,7 @@ public class Stock {
      * @param indexOfNoteToDelete the index of the note to delete
      * @return stock with deleted note
      */
-    public Stock deleteNote(Index indexOfNoteToDelete) {
+    public Stock deleteNote(NoteIndex indexOfNoteToDelete) {
         Name name = this.name;
         SerialNumber serialNumber = this.serialNumber;
         Source source = this.source;
