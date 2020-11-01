@@ -16,8 +16,8 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.9. Save](#39-save)
   - [3.10. Archive : `archive`](#310-archive--archive)
   - [3.11. Recall : `recall`](#311-recall--recall)
-  - [3.12. FAQ](#312-faq)
-  - [3.13. Command summary](#313-command-summary)
+- [4. FAQ](#4-faq)
+- [5. Command summary](#5-command-summary)
 
 # 2. Quick start
 
@@ -195,7 +195,7 @@ Example:
 - `recall run` finds the most recent exercise with the name "run".
 
 ---
-## 3.12. FAQ
+## 4. FAQ
 
 *Q*: How do I transfer my data to another Computer?<br>
 *A*: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
@@ -205,7 +205,7 @@ Example:
 
 ---
 
-## 3.13. Command summary
+## 5. Command summary
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
