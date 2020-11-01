@@ -1,16 +1,18 @@
 @startuml
 start
-:User inputs find command;
+:User inputs contact find command;
 :FindCommandParser checks input;
 if() then ([input has name and tag prefix])
 :Create predicate that checks if
-Person has any of the given names or
-tags;
+Person's name has any of the given
+keywords or initials or Person has
+any of the given tags;
 :Create FindCommand with created
 predicate;
 elseif() then ([input only has name prefix])
 :Create predicate that checks if
-Person has any of the given names;
+Person's name has any of the given
+keywords or initials;
 :Create FindCommand with created
 predicate;
 elseif() then ([input only has tag prefix])
