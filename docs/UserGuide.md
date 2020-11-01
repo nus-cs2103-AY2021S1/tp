@@ -260,7 +260,7 @@ Unassigns a contact from one or more modules in the active semester. The contact
 
 Format: `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​`
 
-* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. The contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
+* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. All `MODULE_CODE` **must be unique** and the contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
 * You can unassign the contact from all modules in the active semester by typing `m/`
         without specifying any module codes after it.
     
