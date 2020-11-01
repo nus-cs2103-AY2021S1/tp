@@ -18,6 +18,10 @@ public class Carbohydrate extends Macronutrient {
         super(amount, CARBOHYDRATE_MULTIPLIER);
     }
 
+    public Carbohydrate(String amount) throws IllegalValueException {
+        this(Integer.parseInt(amount));
+    }
+
     /**
      * Create a new Carbohydrate using the default value.
      * Mostly boilerplate code.
@@ -30,10 +34,6 @@ public class Carbohydrate extends Macronutrient {
             assert false : "Error in creation of default";
             throw new IllegalArgumentException("Error in creation using default values.");
         }
-    }
-
-    public Carbohydrate(String amount) throws IllegalValueException {
-        this(Integer.parseInt(amount));
     }
 
 }

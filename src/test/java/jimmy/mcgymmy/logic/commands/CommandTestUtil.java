@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import jimmy.mcgymmy.commons.core.index.Index;
-import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.predicate.FoodContainsKeywordsPredicate;
 import jimmy.mcgymmy.model.McGymmy;
@@ -33,7 +32,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException | IllegalValueException ce) {
+        } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }

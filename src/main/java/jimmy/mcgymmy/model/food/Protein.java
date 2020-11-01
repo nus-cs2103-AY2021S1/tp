@@ -18,6 +18,10 @@ public class Protein extends Macronutrient {
         super(amount, MULTIPLIER);
     }
 
+    public Protein(String amount) throws IllegalValueException {
+        this(Integer.parseInt(amount));
+    }
+
     /**
      * Create a new Protein using the default value.
      * Mostly boilerplate code.
@@ -31,9 +35,4 @@ public class Protein extends Macronutrient {
             throw new IllegalArgumentException("Error in creation using default values.");
         }
     }
-
-    public Protein(String amount) throws IllegalValueException {
-        this(Integer.parseInt(amount));
-    }
-
 }
