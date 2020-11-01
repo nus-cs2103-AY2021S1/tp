@@ -41,7 +41,7 @@ public class AddCommand extends Command {
 
     public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY\n" + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + PREFIX_AMOUNT + "AMOUNT";
-    public static final String MESSAGE_SUCCESS = "New entry added! %1$s";
+    public static final String MESSAGE_SUCCESS = "New entry added!\n(%1$s)";
 
     private final Entry entry;
 

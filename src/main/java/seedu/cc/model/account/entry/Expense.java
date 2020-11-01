@@ -32,12 +32,12 @@ public class Expense extends Entry {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Expense: ")
+        builder.append("Expense Description: ")
                 .append(getDescription())
-                .append(" Amount: ")
+                .append("\nAmount: ")
                 .append(getAmount());
         if (hasTags()) {
-            builder.append(" Tags: ");
+            builder.append("\nTags: ");
             getTags().forEach(builder::append);
         }
         return builder.toString();
