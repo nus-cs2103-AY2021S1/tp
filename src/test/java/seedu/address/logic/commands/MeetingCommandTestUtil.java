@@ -21,7 +21,7 @@ public class MeetingCommandTestUtil {
     public static final String VALID_PROPERTY_ID_B = "P2";
 
     public static final String INVALID_PROPERTY_ID_A = "P*(";
-    public static final String INVALID_PROPERTY_ID_B = "P$0";
+    public static final String INVALID_PROPERTY_ID_B = "P$@";
 
     public static final String VALID_BIDDER_ID_A = "B1";
     public static final String VALID_BIDDER_ID_B = "B2";

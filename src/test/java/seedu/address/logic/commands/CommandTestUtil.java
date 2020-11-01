@@ -175,8 +175,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
 
         Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
-        final String[] splitName = meeting.getVenue().venue.split("\\s+");
-        model.updateFilteredMeetingList(new VenueContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        String splitInt = meeting.getVenue().venue;
+        final String[] splitName = splitInt.split("\\s+");
+        model.updateFilteredMeetingList(new VenueContainsKeywordsPredicate((Arrays.asList(splitName[0]))));
 
         assertEquals(1, model.getFilteredMeetingList().size());
     }
