@@ -251,12 +251,12 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * NUS Student
-* has a lot of projects
+* has a lot of projects and modules
 * can type fast
-* wants to track productivity
-* wants to track workload
+* wants to track productivity and workload
 
-**Value proposition**: Allows NUS students to manage their tasks and schedule faster than a typical mouse/GUI driven app
+**Value proposition**: Allows NUS students to manage their tasks and visualize 
+their workload and productivity.
 
 
 ### User stories
@@ -269,48 +269,227 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | add new task to my list                    |                                     |
 | `* * *`  | student                 | know when my tasks are due                 |                                     |
 | `* * *`  | user                    | maintain a list of tasks I currently have  |                                     |
-| `* * *`  | user with a lot of tasks| delete my task after it is not relevant   | be focused on the unfinished tasks. |
-| `* * *`  | user                    | mark my task as done after it is completed | track the status of the task        |
-| `* *  `  | user                    | find tasks by module                       |                                     |
-| `* *  `  | user                    | find tasks by due date                     |                                     |
+| `* * *`  | user with a lot of tasks| delete my task after it is not relevant   | focus on only the unfinished tasks.  |
+| `* * *`  | user                    | mark my task as done after it is completed | track the status of the task.       |
+| `* *  `  | user                    | find tasks by date                         | easily know what events or deadlines are on that date. |
 | `* * *`  | user                    | find tasks by title                        |                                     |
-| `* *  `  | user                    | find tasks by tag                          |                                     |
+| `* *  `  | user                    | find tasks by description                  |                                     |
+| `* *  `  | user                    | find tasks by module it is associated      |                                     |
+| `* *  `  | user                    | find completed and uncompleted deadlines   | have a quick glance of what are to be completed. |
 | `* * *`  | user                    | edit my tasks                              |                                     |
+| `* * *`  | user                    | maintain a list of lessons I currently have  | track  my lessons.                |
+| `* * *`  | user with a lot of tasks| delete my lesson after it is not relevant   | focus on only the lessons I currently take. |
+| `* *  `  | user                    | find lesson by module code                 | easily know what lessons are associated with a particular module |
+| `* *  `  | user                    | find lesson by date                        | easily know what lessons I have on a particular date.            |
+| `* *  `  | user                    | find lesson by time                        | easily know what lessons I have on a particular time.            |
+| `* * *`  | user                    | find tasks by title                        |                                     |
+| `* * *`  | user                    | edit my lessons                            |                                     |
+| `* * *`  | user who is interested in tracking my productivity | have a visualisation of my workload in the past week | have a sense of how productive I was in the past week |
+| `* * *`  | user who likes visualisations much better | have a calendar view of my tasks/lessons   | have a clear view of what I need to do. |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is `PlaNus` and the **Actor** is the `user`, unless specified otherwise)
+<div markdown="block" class="alert alert-info">
 
-**Use case 01: Add a task**
+**:information_source: Notes**<br>
+
+* For all use cases below, the **System** is `PlaNus` and the **Actor** is the `user`, unless specified otherwise.
+
+* A **task** is either an **event** or a **deadline**.
+
+</div>
+
+
+**Use case: UC01 - Add a deadline**
 
 **MSS**
 
-1. User requests to add a specific task to the list.
+1. User requests to add a deadline to the list.
 
-2. PlaNus adds the task.
-
-  Use case ends.
-
-
+2. PlaNus adds the deadline to the list.
+    
+    Use case ends.
+    
 **Extensions**
 
 - 1a. The given input is invalid.
+    
+    - 1a1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+- 1b. The deadline already exists in the list.
 
-  - 1a1. PlaNus shows an error message.
+    - 1b1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+<br>
+
+**Use case: UC02 - Add an event**
+
+**MSS**
+
+1. User requests to add an event to the list.
+
+2. PlaNus adds the event to the list.
+    
+    Use case ends.
+    
+**Extensions**
+
+- 1a. The given input is invalid.
+    
+    - 1a1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+- 1b. The event already exists in the list.
+
+    - 1b1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+<br>
+
+
+
+**Use case: UC03 - List all tasks**
+
+**MSS**
+
+1. User requests to list tasks.
+
+2. PlaNus shows a list of tasks.
+
+  Use case ends.
+
+**Extensions**
+
+  - 2a. The list is empty.
+
+    Use case ends.
+
+<br>
+
+**Use case: UC04 - Mark deadlines as done**
+
+**MSS**
+
+1. User requests to list tasks.
+
+2. PlaNus shows a list of tasks.
+
+3. User requests to mark certain deadlines in the list as done.
+
+4. PlaNus marks the deadline as done.
+
+  Use case ends.
+
+**Extensions**
+
+- 3a. The given index is invalid.
+
+  - 3a1. PlaNus shows an error message.
+
+    Use case resumes at step 3.
+
+- 3b. Some indexes given are not of a deadline.
+
+  - 3b1. PlaNus shows an error message.
+
+    Use case resumes at step 3. 
+
+<br>
+
+**Use case: UC05 - Find tasks**
+
+**MSS**
+
+1. User <ins>lists a set of tasks (UC03 or UC05)</ins>
+
+2. User requests to find tasks with specified search phrase(s) in specified attribute(s).
+
+3. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
+
+  Use case ends.
+
+**Extensions**
+
+- 2a. The search phrase is empty or consists of only white spaces.
+
+  - 2a1. PlaNus shows an error message.
+
+    Use case ends.
+
+- 2b. The search phrase is in invalid format or includes invalid characters.
+
+    - 2b1. PlaNus shows an error message.
+
+    Use case ends.
+
+- 3a. The list is empty.
+
+  Use case ends.
+
+<br>
+
+**Use case: UC06 - Edit a task**
+
+**MSS**
+
+1. User <ins>lists a set of tasks (UC03 or UC05)</ins>
+
+2. User requests to edit values of specified attribute(s) of a task.
+
+3. PlaNus shows task with updated attribute(s).
+
+  Use case ends.
+
+**Extensions**
+- 2a. The given index is invalid.
+
+  - 2a1. PlaNus shows an error message.
 
     Use case resumes at step 1.
 
-- 1b. The task already exists.
+- 2b. The given value of an attribute is invalid.
 
-  - 1b1. PlaNus shows an error message.
+  - 2b1. PlaNus shows an error message.
 
     Use case resumes at step 1.
 
 <br>
 
-**Use case 02: Add a lesson**
+**Use case: UC07 - Delete tasks**
+
+**MSS**
+
+1. User <ins>lists a set of tasks (UC03 or UC05)</ins>
+
+2. User requests to delete certain tasks from the list.
+
+3. PlaNus deletes the tasks.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+  Use case ends.
+
+- 2a. Some indexes given are invalid.
+
+  - 3a1. PlaNus shows an error message.
+
+    Use case resumes at step 3.
+
+<br>
+
+**Use case: UC08 - Add a lesson**
 
 **MSS**
 
@@ -337,79 +516,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 03: Add a deadline**
+**Use case: UC09 - Find lessons**
 
 **MSS**
 
-1. User requests to add a deadline to the list.
+1. User <ins>lists a set of lessons (UC08 or UC09)</ins>
 
-2. PlaNus adds the deadline to the list.
-    
-    Use case ends.
-    
-**Extensions**
+2. User requests to find lessons with specified search phrase(s) in specified attribute(s).
 
-- 1a. The given input is invalid.
-    
-    - 1a1. PlaNus shows an error message.
-    
-    Use case resumes at step 1.
-    
-- 1b. The deadline already exists in the list.
-
-    - 1b1. PlaNus shows an error message.
-    
-    Use case resumes at step 1.
-    
-<br>
-
-**Use case 04: Add an event**
-
-**MSS**
-
-1. User requests to add an event to the list.
-
-2. PlaNus adds the event to the list.
-    
-    Use case ends.
-    
-**Extensions**
-
-- 1a. The given input is invalid.
-    
-    - 1a1. PlaNus shows an error message.
-    
-    Use case resumes at step 1.
-    
-- 1b. The event already exists in the list.
-
-    - 1b1. PlaNus shows an error message.
-    
-    Use case resumes at step 1.
-    
-<br>
-
-**Use case 05: Delete a task**
-
-**MSS**
-
-1. User requests to list tasks.
-
-2. PlaNus shows a list of tasks.
-
-3. User requests to delete a specific task from the list.
-
-4. PlaNus deletes the task.
+3. PlaNus shows a list of lessons that match the specified search phrase(s) in the specified attribute(s).
 
   Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 2a. The search phrase is empty or consists of only white spaces.
+
+  - 2a1. PlaNus shows an error message.
+
+    Use case ends.
+
+- 2b. The search phrase is in invalid format or includes invalid characters.
+
+    - 2b1. PlaNus shows an error message.
+
+    Use case ends.
+
+- 3a. The list is empty.
 
   Use case ends.
 
-- 3a. The given index is invalid.
+<br>
+
+**Use case: UC10 - Edit a lesson**
+
+**MSS**
+
+1. User <ins>lists a set of lessons (UC08 or UC09)</ins>
+
+2. User requests to edit values of specified attribute(s) of a lesson.
+
+3. PlaNus shows task with updated attribute(s).
+
+  Use case ends.
+
+**Extensions**
+- 2a. The given index is invalid.
+
+  - 2a1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The given value of an attribute is invalid.
+
+  - 2b1. PlaNus shows an error message.
+
+    Use case resumes at step 1.
+
+<br>
+
+**Use case: UC11 - Delete lessons**
+
+**MSS**
+
+1. User <ins>lists a set of lessons (UC08 or UC09)</ins>
+
+2. User requests to delete certain lessons from the list.
+
+3. PlaNus deletes the lessons.
+
+  Use case ends.
+
+**Extensions**
+
+- 1a. The list is empty.
+
+  Use case ends.
+
+- 2a. Some indexes given are invalid.
 
   - 3a1. PlaNus shows an error message.
 
@@ -417,25 +601,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 06: List all tasks**
-
-**MSS**
-
-1. User requests to list tasks.
-
-2. PlaNus shows a list of tasks.
-
-  Use case ends.
-
-**Extensions**
-
-  - 2a. The list is empty.
-
-    Use case ends.
-
-<br>
-
-**Use case 07: Request help**
+**Use case: UC12 - Request help**
 
 **MSS**
 
@@ -447,86 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 08: Mark a task as done**
-
-**MSS**
-
-1. User requests to list tasks.
-
-2. PlaNus shows a list of tasks.
-
-3. User requests to mark a specific tasks in the list as done.
-
-4. PlaNus marks the task as done.
-
-  Use case ends.
-
-**Extensions**
-
-- 3a. The given index is invalid.
-
-  - 3a1. PlaNus shows an error message.
-
-    Use case resumes at step 3.
-
-<br>
-
-**Use case 09: Find a task**
-
-**MSS**
-
-1. User requests to find task with specified search phrase(s) in specified attribute(s).
-
-2. PlaNus shows a list of tasks that match the specified search phrase(s) in the specified attribute(s).
-
-  Use case ends.
-
-**Extensions**
-
-- 1a. The search phrase is empty or consists of only white spaces.
-
-  - 1a1. PlaNus shows an error message.
-
-    Use case ends.
-
-- 1b. The search phrase is in invalid format or includes invalid characters.
-
-    - 1b1. PlaNus shows an error message.
-
-    Use case ends.
-
-- 2a. The list is empty.
-
-  Use case ends.
-
-<br>
-
-**Use case 10: Edit a task**
-
-**MSS**
-
-1. User requests to edit values of specified attribute(s) of a task.
-
-2. PlaNus shows task with updated attribute(s).
-
-  Use case ends.
-
-**Extensions**
-- 1a. The given index is invalid.
-
-  - 1a1. PlaNus shows an error message.
-
-    Use case resumes at step 1.
-
-- 1b. The given value of an attribute is invalid.
-
-  - 1b1. PlaNus shows an error message.
-
-    Use case resumes at step 1.
-
-<br>
-
-**Use case 11: Exit application**
+**Use case: UC13 - Exit application**
 
 **MSS**
 
@@ -543,15 +630,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
-2. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 tasks (including recurring lessons) without a noticeable sluggishness in performance for typical usage.
 
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
 
 4. The product should be easy to use by a novice with no experience of using a task management application.
 
-5. The size of built-in module data should not exceed 10mb.
+5. The product should be lightweight and should not exceed 20mb in size.
 
-6. Documentation should be easy to read with proper highlighting.
+6. Documentation should be easy to read and user-centric with proper highlighting.
 
 7. The source code should be open source.
 
@@ -560,7 +647,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Task**: A task is a collection of details about a specific task that needs to be done, including description, title, tag, date and time.
+* **Task**: A task is a collection of details about a specific task that needs to be done. A task can either be an **event**
+or a **deadline**.
+* **lesson**: A lesson is a collection of details of a specific lesson which happens in a recurring
+manner with a specified start and end date and a start and end time.
 
 --------------------------------------------------------------------------------------------------------------------
 
