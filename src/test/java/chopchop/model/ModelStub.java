@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import chopchop.commons.core.GuiSettings;
+import chopchop.commons.util.Pair;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 
@@ -156,6 +157,14 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    /**
+     * Return the List sorted by most made recipe.
+     */
+    @Override
+    public List<Pair<String, String>> getMostMadeRecipeList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
     @Override
     public UsageList<IngredientUsage> getIngredientUsageList() {
         throw new AssertionError("This method should not be called.");
@@ -188,7 +197,8 @@ public class ModelStub implements Model {
 
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError("This method should not be cal" +
+            "ed.");
     }
 
     @Override
