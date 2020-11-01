@@ -1,5 +1,7 @@
 package seedu.taskmaster.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
@@ -66,5 +68,72 @@ public class NewSessionCommandTest {
                 existingSession.getSessionName(), existingSession.getSessionDateTime());
         newSessionCommand.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
         assertCommandFailure(newSessionCommand, model, NewSessionCommand.MESSAGE_DUPLICATE_SESSION);
+    }
+
+    @Test
+    public void equals_sameCommand_returnsTrue() {
+        NewSessionCommand newSessionCommand = new NewSessionCommand(newSessionName, newSessionDateTime);
+        newSessionCommand.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        assertEquals(newSessionCommand, newSessionCommand);
+    }
+
+    @Test
+    public void equals_sameAttributes_returnsTrue() {
+        NewSessionCommand newSessionCommand1 = new NewSessionCommand(newSessionName, newSessionDateTime);
+        NewSessionCommand newSessionCommand2 = new NewSessionCommand(newSessionName, newSessionDateTime);
+        newSessionCommand1.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        newSessionCommand2.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        assertEquals(newSessionCommand1, newSessionCommand2);
+    }
+
+    @Test
+    public void equals_differentSessionName_returnsFalse() {
+        NewSessionCommand newSessionCommand1 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        newSessionCommand1.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        NewSessionCommand newSessionCommand2 =
+                new NewSessionCommand(new SessionName("Different name"), newSessionDateTime);
+        newSessionCommand2.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        assertNotEquals(newSessionCommand2, newSessionCommand1);
+    }
+
+    @Test
+    public void equals_differentSessionDateTime_returnsFalse() {
+        NewSessionCommand newSessionCommand1 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        newSessionCommand1.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        NewSessionCommand newSessionCommand2 =
+                new NewSessionCommand(newSessionName,
+                        new SessionDateTime(LocalDateTime.of(2019, 11, 1, 10, 30)));
+        newSessionCommand2.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        assertNotEquals(newSessionCommand2, newSessionCommand1);
+    }
+
+    @Test
+    public void equals_oneHasNullStudentRecordList_returnsFalse() {
+        NewSessionCommand newSessionCommand1 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        NewSessionCommand newSessionCommand2 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        newSessionCommand2.setStudentRecords(StudentRecordListManager.of(getTypicalStudents()));
+        assertNotEquals(newSessionCommand2, newSessionCommand1);
+    }
+
+    @Test
+    public void equals_sameAttributesWithNullRecordLists_returnsTrue() {
+        NewSessionCommand newSessionCommand1 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        NewSessionCommand newSessionCommand2 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        assertEquals(newSessionCommand2, newSessionCommand1);
+    }
+
+    @Test
+    public void equals_differentAttributesWithNullRecordLists_returnsFalse() {
+        NewSessionCommand newSessionCommand1 =
+                new NewSessionCommand(newSessionName, newSessionDateTime);
+        NewSessionCommand newSessionCommand2 =
+                new NewSessionCommand(new SessionName("Different name"), newSessionDateTime);
+        assertNotEquals(newSessionCommand2, newSessionCommand1);
     }
 }
