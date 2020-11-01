@@ -231,7 +231,7 @@ __Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
 
 This creates a new finance record of amount `AMOUNT`. If `DATE` and `TIME` are specified, the finance record would reflect that `DATE` and `TIME` in the record.
 
-**Note** If the Date and Time fields are not specified, they will default to the current location's Date and Time.
+**NOTE:** If the Date and Time fields are not specified, they will default to the current location's Date and Time.
 
 __Example:__ `add_finance amt/30000 at/2020-03-03`
 
@@ -251,7 +251,7 @@ __Expected Result:__ Finance record of amount `$30000` on `3rd March 2020` is ad
 
 Previously, in the [Add Finance Records](#521-add-finance-records-add_finance) section, we have created a finance record. Now, lets try to delete it from NUStorage using `delete_finance`.
 
-**NOTE** If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one finance record stored. If you are unclear on how to do so, refer to the [Adding finance records](#521-add-finance-records-add_finance) section.
+If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one finance record stored. If you are unclear on how to do so, refer to the [Adding finance records](#521-add-finance-records-add_finance) section.
 
 **:information_source: Using the command:** Below are instructions on how to use the `delete_finance` command.
 
@@ -337,7 +337,7 @@ __Result:__ finance records that fit the parameters are listed. Below shows the 
 
 ![Find Finance Result](images/commands/find_finance_result.jpg)
 
-**NOTE** Do not worry if your resulting display does not match the image above. If the records you added is not exactly the same as the ones shown above, the output would likely not be the same as well.
+**NOTE:** Do not worry if your resulting display does not match the image above. If the records you added is not exactly the same as the ones shown above, the output would likely not be the same as well.
 
 ---
 
