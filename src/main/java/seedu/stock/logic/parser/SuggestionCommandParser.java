@@ -502,28 +502,30 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX);
         toBeDisplayed.append(NOTE_DELETE_COMMAND_WORD);
 
+        String defaultDescriptionSerialNumber = CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER);
         if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
             toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
         }
         List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
         for (String serialNumber : keywords) {
-            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            if (checkIfParameterValid(PREFIX_SERIAL_NUMBER, serialNumber)) {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            } else {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
+            }
         }
 
         for (int i = 1; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             String description = "";
-            boolean isValidInteger = true;
             if (argMultimap.getValue(currentPrefix).isPresent()) {
                 description = argMultimap.getValue(currentPrefix).get();
             }
-            try {
-                Integer.parseInt(description);
-            } catch (NumberFormatException ex) {
-                isValidInteger = false;
+            if (!checkIfParameterValid(currentPrefix, description)) {
+                description = "";
             }
             boolean isEmpty = description.equals("");
-            if (isEmpty || !isValidInteger) {
+            if (isEmpty) {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             } else {
                 toBeDisplayed.append(" " + currentPrefix + description);
