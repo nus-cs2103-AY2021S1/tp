@@ -317,13 +317,18 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateUnbookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(UNBOOKMARK_COMMAND_WORD);
+        String defaultDescriptionSerialNumber = CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER);
 
         if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
-            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
         }
         List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
         for (String serialNumber : keywords) {
-            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            if (checkIfParameterValid(PREFIX_SERIAL_NUMBER, serialNumber)) {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+            } else {
+                toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + defaultDescriptionSerialNumber);
+            }
         }
 
         generateBodyMessage(toBeDisplayed, UnbookmarkCommand.MESSAGE_USAGE);
