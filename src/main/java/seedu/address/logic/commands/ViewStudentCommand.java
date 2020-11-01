@@ -37,7 +37,7 @@ public class ViewStudentCommand extends Command {
         List<TutorialGroup> lastShownList = model.getFilteredTutorialGroupList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_GROUP_DISPLAYED_INDEX);
         }
 
         TutorialGroup tutorialGroupToViewStudents = lastShownList.get(targetIndex.getZeroBased());
