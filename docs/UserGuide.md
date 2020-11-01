@@ -265,6 +265,8 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
+* At least one medical condition or feed time must be specified.
+
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
 * `ID` should be at least 3 digits long (not counting leading zeroes, if any).
@@ -308,6 +310,8 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
+
+* At least one field to replace must be specified.
 
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
@@ -477,7 +481,7 @@ This section lists some of the frequently asked questions.
 ## Command summary
 If you need a quick reference guide, the following tables should help.
 
-Basic commands
+**Basic commands**
 
 Action | Format, Examples
 --------|------------------
@@ -490,7 +494,7 @@ Action | Format, Examples
 **Undo** | `undo`
 **Redo** | `redo`
 
-Advanced commands
+**Advanced commands**
 
 Action | Format, Examples
 --------|------------------

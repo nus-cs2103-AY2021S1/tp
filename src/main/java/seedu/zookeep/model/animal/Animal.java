@@ -3,6 +3,7 @@ package seedu.zookeep.model.animal;
 import static seedu.zookeep.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -112,7 +113,9 @@ public class Animal {
                 .append(" Species: ")
                 .append(getSpecies())
                 .append(" Medical conditions: ");
-        getMedicalConditions().forEach(builder::append);
+        getMedicalConditions().stream().sorted(Comparator.comparing(medicalCondition ->
+                medicalCondition.medicalConditionName.toLowerCase()))
+                .forEach(builder::append);
         builder.append(" Feed times: ");
         getFeedTimes().forEach(builder::append);
         return builder.toString();
