@@ -19,16 +19,12 @@ public class AnimalContainsKeywordsPredicate implements Predicate<Animal> {
     }
 
     /**
-     * Checks if the keyword matches any of the strings in an animal's feed times.
+     * Checks if the keyword partially or fully matches any of the strings in an animal's feed times.
      * @param feedTimes A set containing all of the animal's feed times.
      * @param word A given keyword.
      * @return The boolean that checks if the keyword matches.
      */
     public boolean containsFeedTime(Set<FeedTime> feedTimes, String word) {
-        if (!FeedTime.isValidFeedTime(word)) {
-            return false;
-        }
-
         String concat = "";
         for (FeedTime time : feedTimes) {
             concat += time.feedTime + " ";
@@ -37,7 +33,7 @@ public class AnimalContainsKeywordsPredicate implements Predicate<Animal> {
     }
 
     /**
-     * Checks if the keyword matches any of the strings in an animal's medical conditions
+     * Checks if the keyword partially or fully matches any of the strings in an animal's medical conditions
      * @param medicalConditions A set containing all of the animal's medical conditions.
      * @param word A given keyword.
      * @return The boolean that checks if the keyword matches.
