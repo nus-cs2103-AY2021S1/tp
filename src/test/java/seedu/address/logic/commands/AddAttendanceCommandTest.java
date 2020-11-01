@@ -28,7 +28,7 @@ import seedu.address.testutil.StudentBuilder;
 public class AddAttendanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
-    private final Attendance validAttendance = new Attendance("12/02/2020", "present", 
+    private final Attendance validAttendance = new Attendance("12/02/2020", "present",
             new Feedback("sleepy"));
 
     @Test

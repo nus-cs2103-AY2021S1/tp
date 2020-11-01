@@ -58,7 +58,7 @@ public class OverdueCommandTest {
         Model model = getFeeAdjustedModel(freeloaders);
         int studentsWhoHaveNotPaid = model.getSortedStudentList().size() - freeloaders;
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
@@ -66,7 +66,7 @@ public class OverdueCommandTest {
         model = getFeeAdjustedModel(freeloaders);
         studentsWhoHaveNotPaid = model.getSortedStudentList().size() - freeloaders;
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
@@ -111,7 +111,7 @@ public class OverdueCommandTest {
             Student replacement = new StudentBuilder(toReplace).withFee(fee).withPaymentDate(date).build();
             reeve.setStudent(toReplace, replacement);
         }
-        return new ModelManager(reeve, new UserPrefs());
+        return new ModelManager(reeve, new UserPrefs(), getTypicalNotebook());
 
     }
 
