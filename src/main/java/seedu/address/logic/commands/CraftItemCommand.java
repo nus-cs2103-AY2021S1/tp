@@ -152,7 +152,8 @@ public class CraftItemCommand extends Command {
         // update ingredients, decrease each by quantity required since ingredients are consumed
         requiredIngredients.forEach((itemName, quantityRequired) -> {
             try {
-                new AddQuantityToItemCommand(itemName, -quantityRequired).execute(model);
+                new AddQuantityToItemCommand(itemName,
+                        new Quantity(-quantityRequired + "", true)).execute(model);
             } catch (CommandException e) {
                 // change of quantity should never fail
                 logger.info("error in changing quantity of item " + itemName);
@@ -160,7 +161,7 @@ public class CraftItemCommand extends Command {
         });
 
         // update the quantity of the item crafted
-        new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
+        new AddQuantityToItemCommand(itemName, new Quantity(productQuantity + "")).execute(model);
 
         // indicate if crafted more than intended due to recipe
         if (hasCraftedExcess) {

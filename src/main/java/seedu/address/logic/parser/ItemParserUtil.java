@@ -73,6 +73,19 @@ public class ItemParserUtil {
     }
 
     /**
+     * Same as parseQuantity, except it allows negative numbers
+     * @throws ParseException
+     */
+    public static Quantity parseQuantityAllowNegative(String quantity) throws ParseException {
+        requireNonNull(quantity);
+        String trimmedQuantity = quantity.trim();
+        if (!Quantity.isValidQuantityAllowNegative(trimmedQuantity)) {
+            throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
+        }
+        return new Quantity(trimmedQuantity);
+    }
+
+    /**
      * Parses a {@code String description} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -110,5 +123,6 @@ public class ItemParserUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
+
 }
 

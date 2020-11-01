@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditItemCommandTest.ModelStubWithItemList;
 import seedu.address.model.ItemList;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddQuantityToItemCommandTest {
@@ -31,6 +32,10 @@ public class AddQuantityToItemCommandTest {
     private Item apple;
     private ItemList itemList;
     private ItemList expectedItemList;
+    private Quantity incrementedQuantity = new Quantity(VALID_QUANTITY_INCREMENT + "");
+    private Quantity decrementedQuantity = new Quantity(VALID_QUANTITY_DECREMENT + "", true);
+    private Quantity validQuantity = new Quantity(VALID_QUANTITY_INT + "");
+    private Quantity validQuantityAlt = new Quantity(VALID_QUANTITY_INT_ALT + "");
 
     @BeforeEach
     public void setUp() {
@@ -41,7 +46,8 @@ public class AddQuantityToItemCommandTest {
 
     @Test
     public void constructor_throwsNullException() {
-        assertThrows(NullPointerException.class, () -> new AddQuantityToItemCommand(null, 0));
+        assertThrows(NullPointerException.class, () ->
+                new AddQuantityToItemCommand(null, new Quantity(0 + "")));
     }
 
     /**
@@ -52,7 +58,7 @@ public class AddQuantityToItemCommandTest {
         itemList.addItem(apple);
         modelStub = new ModelStubWithItemList(itemList);
 
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INCREMENT);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, incrementedQuantity);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(apple).withQuantity(VALID_INCREASED_QUANTITY).build();
@@ -72,7 +78,7 @@ public class AddQuantityToItemCommandTest {
         itemList.addItem(apple);
         modelStub = new ModelStubWithItemList(itemList);
 
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_DECREMENT);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, decrementedQuantity);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_DECREASED_QUANTITY).build();
@@ -87,8 +93,8 @@ public class AddQuantityToItemCommandTest {
 
     @Test
     public void equals() {
-        AddQuantityToItemCommand aic1 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INT);
-        AddQuantityToItemCommand aic2 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INT);
+        AddQuantityToItemCommand aic1 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, validQuantity);
+        AddQuantityToItemCommand aic2 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, validQuantity);
 
         // same values -> returns true
         assertEquals(aic1, aic2);
@@ -103,11 +109,11 @@ public class AddQuantityToItemCommandTest {
         assertNotEquals(aic1, new ListItemCommand());
 
         // different quantity -> returns false
-        AddQuantityToItemCommand aic3 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INT_ALT);
+        AddQuantityToItemCommand aic3 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, validQuantityAlt);
         assertNotEquals(aic1, aic3);
 
         // different name -> returns false
-        AddQuantityToItemCommand aic4 = new AddQuantityToItemCommand(VALID_ITEM_NAME_BANANA, VALID_QUANTITY_INT);
+        AddQuantityToItemCommand aic4 = new AddQuantityToItemCommand(VALID_ITEM_NAME_BANANA, validQuantity);
         assertNotEquals(aic1, aic4);
     }
 }

@@ -39,12 +39,12 @@ public class AddQuantityToItemCommand extends Command {
     private static final Logger logger = LogsCenter.getLogger(AddQuantityToItemCommand.class);
 
     private final String itemName;
-    private final int quantity; // store as int to support negative
+    private final Quantity quantity;
 
     /**
      * @param quantity quantity to add to the item, can be negative
      */
-    public AddQuantityToItemCommand(String itemName, int quantity) {
+    public AddQuantityToItemCommand(String itemName, Quantity quantity) {
         requireNonNull(itemName);
 
         this.itemName = itemName;
@@ -57,7 +57,7 @@ public class AddQuantityToItemCommand extends Command {
 
         List<Item> itemList = new ArrayList<>(model.getFilteredItemList());
 
-        // filter to only get matching and not deleted items
+        // filter to only get matching items
         itemList.removeIf(x -> !x.getName().equals(itemName));
 
         Item itemToEdit = itemList.stream()
@@ -66,11 +66,12 @@ public class AddQuantityToItemCommand extends Command {
         assert(itemToEdit != null);
         assert(itemToEdit.getQuantity() != null);
 
-        if ((itemToEdit.getQuantity().getNumber() + quantity) < 0) {
+        if ((itemToEdit.getQuantity().getNumber() + quantity.toInt()) < 0) {
             throw new CommandException(MESSAGE_NEGATIVE_QUANTITY);
         }
 
-        Quantity updatedQuantity = new Quantity(Integer.toString((itemToEdit.getQuantity().getNumber() + quantity)));
+        Quantity updatedQuantity = new Quantity(Integer.toString((itemToEdit.getQuantity().getNumber()
+                + quantity.toInt())));
         assert updatedQuantity.getNumber() >= 0;
 
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
@@ -104,6 +105,6 @@ public class AddQuantityToItemCommand extends Command {
         // check if itemName and quantity are the same
         AddQuantityToItemCommand a = (AddQuantityToItemCommand) other;
         return itemName.equals(a.itemName)
-                && quantity == a.quantity;
+                && quantity.toInt() == a.quantity.toInt();
     }
 }
