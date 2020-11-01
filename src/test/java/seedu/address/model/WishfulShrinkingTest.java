@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.consumption.Consumption;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.address.testutil.RecipeBuilder;
