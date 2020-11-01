@@ -1,0 +1,149 @@
+{
+  "contacts": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "tagged": [
+        "owesMoney",
+        "friends"
+      ]
+    },
+    {
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "tagged": []
+    },
+    {
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "tagged": [
+        "friends"
+      ]
+    },
+    {
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "tagged": []
+    },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "tagged": []
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "tagged": []
+    }
+  ],
+  "modules": [
+    {
+      "code": "CS1231S",
+      "name": "Discrete Structures"
+    },
+    {
+      "code": "CS3233",
+      "name": "Competitive Programming"
+    },
+    {
+      "code": "CFG1002",
+      "name": "Career Catalyst"
+    }
+  ],
+  "tasks": [
+    {
+      "name": "Do assignment 1",
+      "date": "23/10/2020",
+      "code": "CS1231S",
+      "remark": "Sample Remark",
+      "isDone": false
+    },
+    {
+      "name": "Solve tutorial questions",
+      "date": "24/11/2020",
+      "code": "CS3233",
+      "remark": "Sample Remark",
+      "isDone": true
+    },
+    {
+      "name": "Copy Nick's code xD",
+      "date": "09/12/2020",
+      "code": "CFG1002",
+      "remark": "",
+      "isDone": false
+    },
+    {
+      "name": "Solve tutorial questions",
+      "date": "09/12/2020",
+      "code": null,
+      "remark": "",
+      "isDone": false
+    }
+  ],
+  "lessons": [
+    {
+      "code": "CFG1002",
+      "type": "LEC",
+      "date": "Mon 8:00-10:00"
+    },
+    {
+      "code": "CFG1002",
+      "type": "REC",
+      "date": "Mon 8:00-10:00"
+    },
+    {
+      "code": "CS1231S",
+      "type": "LAB",
+      "date": "Mon 8:00-10:00"
+    },
+    {
+      "code": "CS3233",
+      "type": "LAB",
+      "date": "Mon 8:00-10:00"
+    },
+    {
+      "code": "CFG1002",
+      "type": "REC",
+      "date": "Mon 10:00-12:00"
+    },
+    {
+      "code": "CS1231S",
+      "type": "REC",
+      "date": "Mon 10:00-12:00"
+    },
+    {
+      "code": "CS1231S",
+      "type": "TUT",
+      "date": "Mon 10:00-12:00"
+    },
+    {
+      "code": "CFG1002",
+      "type": "SEC",
+      "date": "Mon 12:00-15:00"
+    },
+    {
+      "code": "CS3233",
+      "type": "LEC",
+      "date": "Mon 12:00-15:00"
+    },
+    {
+      "code": "CS3233",
+      "type": "REC",
+      "date": "Mon 12:00-15:00"
+    }
+  ]
+}

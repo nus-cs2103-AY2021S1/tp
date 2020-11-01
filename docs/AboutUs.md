@@ -9,51 +9,46 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Simon Teo
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/simonteozw.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[homepage](https://www.linkedin.com/in/simon-teo-94a4a158/)]
+[[github](https://github.com/simonteozw)]
+[[portfolio](https://github.com/simonteozw/tp)]
 
-* Role: Project Advisor
+* Role: Documentation Master
 
-### Jane Doe
+### Ng Wei Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/justweihong.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/justweihong)]
+[[portfolio](https://github.com/justweihong/tp)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: UI
 
-### Johnny Doe
+### Tiffany Chan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nottiffchan.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nottiffchan)] [[portfolio](https://github.com/nottiffchan/tp)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and Deadlines
 
-### Jean Doe
+### Vuong Hoang Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/unclegrandpa925.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/UncleGrandpa925)] [[portfolio](https://github.com/UncleGrandpa925)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team Leader
 
-### James Doe
+### Nguyen Dinh Quang Minh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nguyendqminh.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nguyendqminh)]
+[[portfolio](https://github.com/nguyendqminh/tp)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Testing Master

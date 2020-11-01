@@ -7,4 +7,7 @@
 <suppressions>
   <suppress checks="JavadocType" files=".*Test\.java"/>
   <suppress checks="MissingJavadocMethodCheck" files=".*Test\.java"/>
+  <suppress checks="CommentsIndentation" files=".*\.java"/>
+  <suppress checks="DeclarationOrder" files=".*\.java"/>
+  <suppress checks="OperatorWrap" files=".*\.java"/>
 </suppressions>
