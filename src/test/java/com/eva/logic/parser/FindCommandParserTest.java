@@ -24,7 +24,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        // no "-staff" or "-applicant"
+        // no "s-" or "a-"
         assertParseFailure(parser, "Alice Bob",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
