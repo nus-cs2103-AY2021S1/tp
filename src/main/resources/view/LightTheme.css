@@ -39,34 +39,38 @@
 
 .tab-pane .tab {
     -fx-background-color: #e6e6e6;
-    -fx-padding: 0 0 10 0;
+    -fx-padding: 4   10 5 10;
     -fx-border-color: #c2c2c2 #c2c2c2 #c2c2c2;
     -fx-border-radius: 5 5 0 0;
 }
 
 .tab-pane .tab:selected {
-    -fx-background-color: #3c3c3c;
+    -fx-background-color: #29292d;
     -fx-border-width: 0 0 3 0;
-    -fx-border-color: #c2c2c2 #c2c2c2 #ff9500 #c2c2c2;
+    -fx-border-color: #29292d #29292d #f67915 #f67915;
     -fx-border-radius: 5 5 0 0;
 }
 
 .tab .tab-label {
-    -fx-alignment: CENTER;
     -fx-text-fill: #828282;
     -fx-font-size: 19px;
     -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
 }
 
 .tab:selected .tab-label {
     -fx-alignment: CENTER;
-    -fx-text-fill: #96b946;
+    -fx-text-fill: #FFFFFF;
 }
 
 .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
      -fx-border-style: segments(0.166667em, 0.166667em);
      -fx-border-width: 1;
      -fx-border-color: transparent transparent transparent #4d4d4d;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
 }
 
 .table-view {
