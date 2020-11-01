@@ -26,12 +26,14 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.notes.EditNoteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.notes.EditNoteDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -74,6 +76,8 @@ public class CommandTestUtil {
     public static final String VALID_ATTENDANCE_STATUS_BOB = "absent";
     public static final String VALID_ATTENDANCE_FEEDBACK_AMY = "attentive";
     public static final String VALID_ATTENDANCE_FEEDBACK_BOB = "sick";
+    public static final String VALID_TITLE = "leftover tasks";
+    public static final String VALID_DESCRIPTION = "ask students for marks";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -151,12 +155,18 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_NOTE_TODO;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_NOTE_EVENTS;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
+        DESC_NOTE_TODO = new EditNoteDescriptorBuilder().withTitle("todo")
+                .withDescription("watch youtube").build();
+        DESC_NOTE_EVENTS = new EditNoteDescriptorBuilder().withTitle("events")
+                .withDescription("attend practical exam").build();
     }
 
     /**
