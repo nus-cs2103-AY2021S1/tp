@@ -145,7 +145,7 @@ Format: `price INEQUALITY PRICE`
 * `INEQUALITY` is an inequality sign, of the below formats:
   * `<`: Strictly less than
   * `<=`: Less than or Equal to
-  * `>`: Strictly Greater than
+  * `>`: Strictly greater than
   * `>=`: Greater than or Equal to
 * `PRICE` must be a non-negative real number.
 
