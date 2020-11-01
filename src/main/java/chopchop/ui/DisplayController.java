@@ -10,6 +10,7 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -22,7 +23,7 @@ public class DisplayController extends UiPart<Region> {
     private static final String WELCOME_MESSAGE = "Welcome to ChopChop, a food recipe management system!";
     private static final String NOTIFICATION_MESSAGE = "Feature will be coming soon!!";
 
-    private final TextDisplay textDisplay;
+    private final Region welcomeMessage;
     private final RecipeViewPanel recipeViewPanel;
     private final IngredientViewPanel ingredientViewPanel;
     private final RecommendationViewPanel recommendationViewPanel;
@@ -45,14 +46,14 @@ public class DisplayController extends UiPart<Region> {
      */
     public DisplayController(Logic logic) {
         super(FXML);
-        this.textDisplay = new TextDisplay(WELCOME_MESSAGE);
         this.recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
         this.ingredientViewPanel = new IngredientViewPanel(logic.getFilteredIngredientList());
         this.recommendationViewPanel = new RecommendationViewPanel(logic.getRecommendedRecipeList(),
                 logic.getExpiringRecipeList());
 
         logic.getFilteredRecipeList().addListener((ListChangeListener<Recipe>) c -> {
-            c.next();
+            while (c.next()) {
+            }
 
             /*
              * Check if a recipe was replaced in the recipe book, with an extra check to account for
@@ -67,8 +68,22 @@ public class DisplayController extends UiPart<Region> {
             }
         });
 
-        logic.getFilteredIngredientList().addListener((ListChangeListener<Ingredient>) c ->
-                this.displayIngredientList());
+        logic.getFilteredIngredientList().addListener((ListChangeListener<Ingredient>) c -> {
+            while (c.next()) {
+            }
+
+            this.displayIngredientList();
+        });
+
+
+        {
+            var container = new ScrollPane();
+            container.setFitToWidth(true);
+            container.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            container.setContent(new TextDisplay(WELCOME_MESSAGE).getRoot());
+
+            this.welcomeMessage = container;
+        }
     }
 
     /**
@@ -87,15 +102,7 @@ public class DisplayController extends UiPart<Region> {
      */
     protected void displayWelcomeMessage() {
         this.resetButtons();
-        this.displayAreaPlaceholder.getChildren().setAll(this.textDisplay.getRoot());
-    }
-
-    /**
-     * Displays the RecipeViewPanel on the swappable display region.
-     */
-    protected void displayRecipeList() {
-        this.displayAreaPlaceholder.getChildren().setAll(this.recipeViewPanel.getRoot());
-        this.selectRecipeButton();
+        this.displayAreaPlaceholder.getChildren().setAll(this.welcomeMessage);
     }
 
     /**
@@ -108,10 +115,20 @@ public class DisplayController extends UiPart<Region> {
     }
 
     /**
+     * Displays the RecipeViewPanel on the swappable display region.
+     */
+    protected void displayRecipeList() {
+        this.displayAreaPlaceholder.getChildren().setAll(this.recipeViewPanel.getRoot());
+        this.recipeViewPanel.refresh();
+        this.selectRecipeButton();
+    }
+
+    /**
      * Displays the IngredientViewPanel on the swappable display region.
      */
     protected void displayIngredientList() {
         this.displayAreaPlaceholder.getChildren().setAll(this.ingredientViewPanel.getRoot());
+        this.ingredientViewPanel.refresh();
         this.selectIngredientButton();
     }
 
@@ -120,6 +137,7 @@ public class DisplayController extends UiPart<Region> {
      */
     protected void displayRecommendationList() {
         this.displayAreaPlaceholder.getChildren().setAll(this.recommendationViewPanel.getRoot());
+        this.recommendationViewPanel.refresh();
         this.selectRecommendationButton();
     }
 
