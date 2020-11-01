@@ -8,6 +8,7 @@ import static seedu.address.model.propertybook.PropertyModel.PREDICATE_SHOW_ALL_
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.bids.TypicalBid.BID_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
@@ -110,6 +111,41 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    }
+
+    // ------------------- BID BOOK -------------------
+
+    @Test
+    public void setBidBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setBidBookFilePath(null));
+    }
+
+    @Test
+    public void setBidBookFilePath_validPath_setsBidBookFilePath() {
+        Path path = Paths.get("bid/book/file/path");
+        modelManager.setBidBookFilePath(path);
+        assertEquals(path, modelManager.getBidBookFilePath());
+    }
+
+    @Test
+    public void hasBid_nullBid_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasBid(null));
+    }
+
+    @Test
+    public void hasBid_bidNotInBidBook_returnsFalse() {
+        assertFalse(modelManager.hasBid(BID_A));
+    }
+
+    @Test
+    public void hasBid_bidInBidBook_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void getFilteredBidList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBidList().remove(0));
     }
 
     // ------------------- PROPERTY BOOK -------------------

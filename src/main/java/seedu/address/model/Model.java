@@ -129,6 +129,17 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     void updateFilteredBidList(Predicate<Bid> predicate);
 
     /**
+     * sets the filepath for BidBook
+     * @param bidBookFilePath the file path to specify to
+     */
+    void setBidBookFilePath(Path bidBookFilePath);
+
+    /**
+     * retrieves the the filepath of BidBook
+     */
+    Path getBidBookFilePath();
+
+    /**
      * adds a bid to the BidBook
      *
      * @param bid to add to the BidBook.

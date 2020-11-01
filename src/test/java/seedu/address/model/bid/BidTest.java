@@ -30,9 +30,9 @@ public class BidTest {
         editedBid = new BidBuilder(BID_A).withBidderId(VALID_BIDDER_ID_BID_B).build();
         assertFalse(BID_A.isSameBid(editedBid));
 
-        // different bidAmount -> returns false
+        // different bidAmount -> returns true
         editedBid = new BidBuilder(BID_A).withBidAmount(VALID_BID_AMOUNT_BID_B).build();
-        assertFalse(BID_A.isSameBid(editedBid));
+        assertTrue(BID_A.isSameBid(editedBid));
 
     }
 

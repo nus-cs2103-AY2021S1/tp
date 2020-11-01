@@ -2,12 +2,14 @@ package seedu.address.testutil;
 
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.meeting.Admin;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingDate;
+import seedu.address.model.meeting.Paperwork;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
-
+import seedu.address.model.meeting.Viewing;
 
 
 /**
@@ -64,7 +66,7 @@ public class MeetingBuilder {
     /**
      * Parses the {@code meetingDate} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
      */
-    public MeetingBuilder withTime(String time) {
+    public MeetingBuilder withDate(String time) {
         this.meetingDate = new MeetingDate(time);
         return this;
     }
@@ -102,8 +104,16 @@ public class MeetingBuilder {
         return this;
     }
 
-    public Meeting build() {
-        return new Meeting(bidderId, propertyId, meetingDate, venue, startTime, endTime);
+    public Meeting buildAdmin() {
+        return new Admin(bidderId, propertyId, meetingDate, venue, startTime, endTime);
+    }
+
+    public Meeting buildPaperwork() {
+        return new Paperwork(bidderId, propertyId, meetingDate, venue, startTime, endTime);
+    }
+
+    public Meeting buildViewing() {
+        return new Viewing(bidderId, propertyId, meetingDate, venue, startTime, endTime);
     }
 
 }
