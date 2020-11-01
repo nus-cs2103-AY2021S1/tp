@@ -59,7 +59,6 @@ public class PrintCommandTest {
 
         @Override
         public Path getCsvFilePath() {
-            System.out.println(csvFilePath);
             return csvFilePath;
         }
     }

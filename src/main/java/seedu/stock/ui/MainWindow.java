@@ -1,6 +1,8 @@
 package seedu.stock.ui;
 
-import java.util.Arrays;
+import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceQuantityDistributionStatisticsData;
+import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceStatisticsData;
+
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -8,18 +10,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.Logic;
 import seedu.stock.logic.commands.CommandResult;
+import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
+import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Stock;
+
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -45,11 +51,16 @@ public class MainWindow extends UiPart<Stage> {
     private Scene scene;
 
     @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private StackPane statisticsWindowPlaceHolder;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane stockListPanelPlaceholder;
-
 
     @FXML
     private StackPane noteListPanelPlaceholder;
@@ -74,7 +85,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
-        statisticsWindow = new StatisticsWindow();
         //custom fonts
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
     }
@@ -91,7 +101,6 @@ public class MainWindow extends UiPart<Stage> {
         stockListPanel = new StockListPanel(logic.getFilteredStockList());
         stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -100,6 +109,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        statisticsWindow = new StatisticsWindow();
+        statisticsWindowPlaceHolder.getChildren().add(statisticsWindow.getRoot());
 
     }
 
@@ -127,20 +139,33 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    @FXML
-    public void handleShowStockNotes(Stock stockToShowNotes) {
-
-    }
-
     /**
-     * Opens the statisticsWindow or focuses on it if it's already opened.
+     * Switches to and updates the statistics window.
      */
     @FXML
     public void handleStatistics(Map<String, Integer> statisticsData, String[] otherStatisticsDetails) {
-        if (!statisticsWindow.isShowing()) {
-            statisticsWindow.show(statisticsData, otherStatisticsDetails);
+        //jump to statistics tab
+        tabPane.getSelectionModel().select(1);
+        statisticsWindow.updateData(statisticsData, otherStatisticsDetails);
+    }
+
+    /**
+     * Updates the statistics window.
+     */
+    @FXML
+    public void updateStatistics(Map<String, Integer> statisticsData, String[] otherStatisticsDetails) {
+        statisticsWindow.updateData(statisticsData, otherStatisticsDetails);
+    }
+
+    /**
+     * Toggles the tabs in Warenager.
+     */
+    @FXML
+    public void handleTab() {
+        if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
+            tabPane.getSelectionModel().select(0);
         } else {
-            statisticsWindow.focus();
+            tabPane.getSelectionModel().selectNext();
         }
     }
 
@@ -157,7 +182,6 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
-        statisticsWindow.hide();
         primaryStage.hide();
     }
 
@@ -180,6 +204,44 @@ public class MainWindow extends UiPart<Stage> {
             stockListPanel = new StockListPanel(logic.getFilteredStockList());
             stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
+            if (commandResult.isSwitchTab()) {
+                handleTab();
+                return commandResult;
+            }
+
+            if (commandResult.isShowStatistics()) {
+                String[] otherStatisticsDetails = commandResult.getOtherStatisticsDetails();
+                Map<String, Integer> statisticsData = commandResult.getStatisticsData();
+                handleStatistics(statisticsData, otherStatisticsDetails);
+                return commandResult;
+            }
+
+            //jump back to main tab
+            tabPane.getSelectionModel().select(0);
+            String[] otherStatisticsDetails = statisticsWindow.getOtherStatisticsDetails();
+
+            //when statistics command has been called at least once
+            if (otherStatisticsDetails != null) {
+                String statisticsType = otherStatisticsDetails[0];
+                Map<String, Integer> data;
+                switch (statisticsType) {
+
+                case SourceStatisticsCommand.STATISTICS_TYPE:
+                    data = generateSourceStatisticsData(logic.getModel());
+                    updateStatistics(data, otherStatisticsDetails);
+                    break;
+
+                case SourceQuantityDistributionStatisticsCommand.STATISTICS_TYPE:
+                    String targetSource = otherStatisticsDetails[1];
+                    data = generateSourceQuantityDistributionStatisticsData(logic.getModel(), targetSource);
+                    updateStatistics(data, otherStatisticsDetails);
+                    break;
+
+                default:
+                    break;
+                }
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -192,13 +254,6 @@ public class MainWindow extends UiPart<Stage> {
                 stockListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
             }
 
-            if (commandResult.isShowStatistics()) {
-                String[] otherStatisticsDetails = commandResult.getOtherStatisticsDetails();
-                Map<String, Integer> statisticsData = commandResult.getStatisticsData();
-                System.out.println(Arrays.toString(otherStatisticsDetails));
-                handleStatistics(statisticsData, otherStatisticsDetails);
-            }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
@@ -206,6 +261,8 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException | SourceCompanyNotFoundException
                 | SerialNumberNotFoundException e) {
+
+            tabPane.getSelectionModel().select(0);
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
