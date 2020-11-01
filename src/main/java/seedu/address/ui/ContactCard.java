@@ -41,7 +41,7 @@ public class ContactCard extends UiPart<Region> {
         super(FXML);
         this.contact = contact;
         id.setText(displayedIndex + ". ");
-        name.setText(contact.getName().fullName);
+        name.setText(contact.getName().getName());
         email.setText(contact.getEmail().value);
         isImportant.setText(contact.getIsImportantForUi());
         if (contact.getTelegram().isPresent()) {
