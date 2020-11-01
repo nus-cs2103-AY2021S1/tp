@@ -292,7 +292,7 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 
 
-### 5.4 Recipe Commands
+### 5.4. Recipe Commands
 
 <a name="ViewRecipeCommand"></a>
 #### 5.4.1 Viewing Recipes — **`view`**`recipe`
@@ -665,7 +665,7 @@ Again, to reset the search filter or go back to the full recipe view, you can cl
 
 
 
-### Ingredient commands
+### 5.5. Ingredient commands
 
 <a name="ListIngredientCommand"></a>
 #### 5.5.1 Listing Ingredients — **`list`**`ingredients`
@@ -870,7 +870,7 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 
 
-### 5.6 Statistics command
+### 5.6. Statistics command
 Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You view these records with the commands below.
 
 <a name="StatsRecipeTopCommand"></a>
@@ -919,7 +919,7 @@ If you enter `stats recipe` into the command box without either `[/before <DATE>
 
 
 <a name="StatsRecipeClearCommand"></a>
-#### 5.6.4. Clearing Recipe usage records -- **`stats recipe clear`**
+#### 5.6.4 Clearing Recipe usage records -- **`stats recipe clear`**
 After you execute this command, the records of recipes that were made are deleted from ChopChop.
 
 **Usage**: `stats recipe clear`
@@ -929,7 +929,7 @@ After you execute this command, the records of recipes that were made are delete
 
 
 <a name="StatsIngredientRecentCommand"></a>
-#### 5.6.5. Listing recently used Ingredients— **`stats ingredient recent`**
+#### 5.6.5 Listing recently used Ingredients— **`stats ingredient recent`**
 Shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
@@ -938,7 +938,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 
 <a name="StatsIngredientUsedCommand"></a>
-#### 5.6.6. Listing Ingredients used within a given time frame — **`stats ingredient used`**
+#### 5.6.6 Listing Ingredients used within a given time frame — **`stats ingredient used`**
 Shows a list of ingredients that were used by recipes made recently within the given time frame.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
@@ -947,7 +947,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 
 <a name="StatsIngredientClearCommand"></a>
-#### 5.6.7. Clearing Ingredient usage records -- **`stats ingredient clear`**
+#### 5.6.7 Clearing Ingredient usage records -- **`stats ingredient clear`**
 After you execute this command, the records of ingredients that were used are deleted from ChopChop.
 
 **Usage**: `stats ingredient clear`
@@ -956,7 +956,7 @@ After you execute this command, the records of ingredients that were used are de
 
 
 <a name="UndoCommand"></a>
-### 5.7 Undoing Commands — **`undo`**
+### 5.7. Undoing Commands — **`undo`**
 Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
 
 **Usage**: `undo`
@@ -966,7 +966,7 @@ Undoes the last undoable command. Undoable commands are commands that involve ch
 
 
 <a name="RedoCommand"></a>
-### 5.8 Redoing Commands — **`redo`**
+### 5.8. Redoing Commands — **`redo`**
 Redoes the last redoable command. All undoable commands (as described [above](#UndoCommand)) can be redone.
 
 **Usage**: `redo`
