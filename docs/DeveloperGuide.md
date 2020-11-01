@@ -11,6 +11,7 @@ title: Developer Guide
 The target audience of this guide is for anyone who wishes to extend or modify the functionality of ZooKeepBook. The guide is split into 3 sections, covering the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#design'>design of ZooKeepBook</a>, the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#implementation'>implementation of certain features</a> as well as how to <a href='https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops'>manage the development of ZooKeepBook</a>.
 
 The following symbols are used throughout this developer guide. They highlight important information that may be useful to you:
+
 |Symbol|Description|
 |------|:-------|
 |:bulb:|This block contains additional **tips** that may aid you|
