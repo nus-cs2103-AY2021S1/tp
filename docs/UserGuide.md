@@ -226,7 +226,7 @@ Format: `ls`
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
 <div markdown="block" class="alert alert-info">
-**Warning: Command history would be deleted once the app is close!
+**Warning: Command history will be deleted once the app is close!
 </div>
 
 Format: `undo`
@@ -236,7 +236,7 @@ Format: `undo`
 Redo a recently executed command.<br>
 Redo only exists when undo has been executed.
 <div markdown="block" class="alert alert-info">
-**Warning: Command history would be deleted once the app is close!
+**Warning: Command history will be deleted once the app is close!
 </div>
 
 Format: `redo`
