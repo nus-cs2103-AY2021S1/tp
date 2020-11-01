@@ -58,7 +58,7 @@ public class NoteCommandTest {
 
         Stock firstStock = model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased());
 
-        Stock firstStockWithAddedNote = new StockBuilder(firstStock).addNote(NOTE_STUB).build();
+        Stock firstStockWithAddedNote = new StockBuilder(firstStock).copyOfStockBuilder().addNote(NOTE_STUB).build();
 
         NoteCommand noteCommand = new NoteCommand(SERIAL_NUMBER_FIRST_STOCK, new Note(NOTE_STUB));
 
@@ -72,31 +72,13 @@ public class NoteCommandTest {
     }
 
     @Test
-    public void execute_addNoteToStockWithoutNotesUnfilteredList_success() {
-
-        Stock thirdStock = model.getFilteredStockList().get(INDEX_THIRD_STOCK.getZeroBased());
-
-        Stock thirdStockWithAddedNote = new StockBuilder(thirdStock).addNote(NOTE_STUB).build();
-
-        NoteCommand noteCommand = new NoteCommand(SERIAL_NUMBER_THIRD_STOCK, new Note(NOTE_STUB));
-
-        String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, thirdStockWithAddedNote);
-
-        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-                getTypicalSerialNumberSetsBook());
-        expectedModel.setStock(thirdStock, thirdStockWithAddedNote);
-
-        assertCommandSuccess(noteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_addNoteFilteredList_success() {
 
         showStockAtSerialNumber(model, SERIAL_NUMBER_FIRST_STOCK);
 
         Stock firstStock = model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased());
 
-        Stock firstStockWithAddedNote = new StockBuilder(firstStock).addNote(NOTE_STUB).build();
+        Stock firstStockWithAddedNote = new StockBuilder(firstStock).copyOfStockBuilder().addNote(NOTE_STUB).build();
 
         String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, firstStockWithAddedNote);
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
@@ -129,7 +111,7 @@ public class NoteCommandTest {
 
         Stock secondStock = model.getStockBook().getStockList().get(INDEX_SECOND_STOCK.getZeroBased());
 
-        Stock secondStockWithAddedNote = new StockBuilder(secondStock).addNote(VALID_NOTE).build();
+        Stock secondStockWithAddedNote = new StockBuilder(secondStock).copyOfStockBuilder().addNote(VALID_NOTE).build();
 
         String expectedMessage = String.format(NoteCommand.MESSAGE_ADD_NOTE_SUCCESS, secondStockWithAddedNote);
 

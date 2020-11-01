@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.*;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
-import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;
-import static seedu.stock.testutil.TypicalStocks.INDEX_SECOND_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 import static seedu.stock.testutil.TypicalStocks.UNKNOWN_SERIAL_NUMBER;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
@@ -48,36 +45,20 @@ public class NoteDeleteCommandTest {
     }
 
     @Test
-    public void execute_noteDeleteLastNoteUnfilteredList_success() {
+    public void execute_noteDeleteUnfilteredList_success() {
 
-        Stock firstStockWithDeletedNote = new StockBuilder(TypicalStocks.APPLE).withNotes(FIRST_NOTE_APPLE).build();
+        SerialNumber serialNumberBanana = new SerialNumber("fairprice1");
+        NoteIndex noteIndex = new NoteIndex("1");
+        Stock secondStockWithDeletedNote = new StockBuilder(TypicalStocks.BANANA)
+                .copyOfStockBuilder().deleteNote(1).build();
 
-        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(SERIAL_NUMBER_FIRST_STOCK,
-                new NoteIndex(VALID_NOTE_INDEX_SECOND_NOTE_APPLE));
-
-        String expectedMessage = String.format(Messages.MESSAGE_DELETE_NOTE_SUCCESS, firstStockWithDeletedNote);
-
-        Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
-                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased()),
-                firstStockWithDeletedNote);
-
-        assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noteDeleteFirstNoteUnfilteredList_success() {
-
-        Stock secondStockWithDeletedNote = new StockBuilder(TypicalStocks.BANANA).withNotes(SECOND_NOTE_BANANA).build();
-
-        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(SERIAL_NUMBER_SECOND_STOCK,
-                new NoteIndex(VALID_NOTE_INDEX_FIRST_NOTE_BANANA));
+        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(serialNumberBanana, noteIndex);
 
         String expectedMessage = String.format(Messages.MESSAGE_DELETE_NOTE_SUCCESS, secondStockWithDeletedNote);
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(INDEX_SECOND_STOCK.getZeroBased()),
+        expectedModel.setStock(model.getFilteredStockList().get(1),
                 secondStockWithDeletedNote);
 
         assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
@@ -86,41 +67,24 @@ public class NoteDeleteCommandTest {
     @Test
     public void execute_noteDeleteAllNotesUnfilteredList_success() {
 
-        Stock firstStockWithAllNotesDeleted = new StockBuilder(TypicalStocks.APPLE).withoutNotes().build();
+        SerialNumberSetsBook serialNumbers = getTypicalSerialNumberSetsBook();
+        Model model = new ModelManager(getTypicalStockBook(), new UserPrefs(), serialNumbers);
 
-        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(SERIAL_NUMBER_FIRST_STOCK,
-                new NoteIndex(VALID_NOTE_INDEX));
+        Stock firstStockWithAllNotesDeleted = new StockBuilder(TypicalStocks.APPLE)
+                .copyOfStockBuilder().withoutNotes().build();
+        SerialNumber serialNumberBanana = new SerialNumber("ntuc1");
+        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(serialNumberBanana,
+                new NoteIndex("0"));
 
         String expectedMessage = String.format(Messages.MESSAGE_DELETE_NOTE_SUCCESS,
                 firstStockWithAllNotesDeleted);
 
         Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased()),
+        expectedModel.setStock(model.getFilteredStockList().get(0),
                 firstStockWithAllNotesDeleted);
 
         assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_deleteNoteFilteredList_success() {
-
-        showStockAtSerialNumber(model, SERIAL_NUMBER_FIRST_STOCK);
-
-        Stock firstStockWithDeletedNote = new StockBuilder(TypicalStocks.APPLE).withNotes(FIRST_NOTE_APPLE).build();
-
-        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(SERIAL_NUMBER_FIRST_STOCK,
-                new NoteIndex(VALID_NOTE_INDEX_SECOND_NOTE_APPLE));
-
-        String expectedMessage = String.format(Messages.MESSAGE_DELETE_NOTE_SUCCESS, firstStockWithDeletedNote);
-
-        Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
-                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased()),
-                firstStockWithDeletedNote);
-
-        assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
-
     }
 
     @Test
@@ -150,36 +114,9 @@ public class NoteDeleteCommandTest {
         assertCommandFailureForNote(noteDeleteCommand, model, NoteCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
     }
 
-    /**
-     * Edit filtered list where only shows the first stock of the stock book.
-     */
-    @Test
-    public void execute_validSerialNumberNotInFilteredList_success() {
-
-        showStockAtSerialNumber(model, SERIAL_NUMBER_FIRST_STOCK);
-
-        SerialNumber serialNumberNotInFilteredList = SERIAL_NUMBER_SECOND_STOCK;
-        // ensures that serial number not in filtered list is still in stock book
-        assertTrue(isSerialNumberInStockBook(model, serialNumberNotInFilteredList));
-
-        Stock secondStock = model.getStockBook().getStockList().get(INDEX_SECOND_STOCK.getZeroBased());
-
-        Stock secondStockWithDeletedNote = new StockBuilder(secondStock).withNotes(SECOND_NOTE_BANANA).build();
-
-        String expectedMessage = String.format(Messages.MESSAGE_DELETE_NOTE_SUCCESS, secondStockWithDeletedNote);
-
-        Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
-                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(secondStock, secondStockWithDeletedNote);
-
-        NoteDeleteCommand noteDeleteCommand = new NoteDeleteCommand(serialNumberNotInFilteredList,
-                new NoteIndex(VALID_NOTE_INDEX_FIRST_NOTE_BANANA));
-
-        assertCommandSuccess(noteDeleteCommand, model, expectedMessage, expectedModel);
-    }
-
     @Test
     public void equals() {
+
         final NoteDeleteCommand standardCommand = new NoteDeleteCommand(SERIAL_NUMBER_FIRST_STOCK,
                 new NoteIndex(VALID_NOTE_INDEX));
 

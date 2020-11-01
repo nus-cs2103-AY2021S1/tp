@@ -61,7 +61,7 @@ public class CommandTestUtil {
     public static final String VALID_NOTE_INDEX_SECOND_NOTE_APPLE = "2";
     public static final String SECOND_NOTE_BANANA = "Tuesday";
     public static final String VALID_NOTE_INDEX_FIRST_NOTE_BANANA = "1";
-    public static final String VALID_NOTE_INDEX_OUT_OF_BOUNDS = "3";
+    public static final String VALID_NOTE_INDEX_OUT_OF_BOUNDS = "99";
 
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;

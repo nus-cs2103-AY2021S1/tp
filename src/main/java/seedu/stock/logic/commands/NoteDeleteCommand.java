@@ -43,6 +43,7 @@ public class NoteDeleteCommand extends Command {
 
     private final SerialNumber serialNumber;
     private final NoteIndex noteIndex;
+    private static Stock stock;
 
     /**
      * Constructs a NoteDeleteCommand
@@ -94,6 +95,8 @@ public class NoteDeleteCommand extends Command {
         Stock stockWithDeletedNote = createStockWithDeletedNote(stockToDeleteNote.get(), noteIndex);
         model.setStock(stockToDeleteNote.get(), stockWithDeletedNote);
 
+        stock = stockToDeleteNote.get();
+
         return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
     }
 
@@ -133,5 +136,10 @@ public class NoteDeleteCommand extends Command {
         NoteDeleteCommand otherNoteDeleteCommand = (NoteDeleteCommand) other;
         return serialNumber.equals(otherNoteDeleteCommand.serialNumber)
                 && noteIndex.equals(otherNoteDeleteCommand.noteIndex);
+    }
+
+    @Override
+    public String toString() {
+        return stock.toString();
     }
 }
