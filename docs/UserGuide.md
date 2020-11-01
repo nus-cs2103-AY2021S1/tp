@@ -230,7 +230,7 @@ Format: `undo`
 
 Example usage:
 Refer to the scenario in the `delete` section above as illustrated in *Figure 5 & 6*, where you just deleted
-Kai Kai from your `ZooKeep` book. Now you decide to use undo to bring Kai Kai back into your book by typing undo
+Kai Kai from your `ZooKeep` book. Now you decide to use undo to bring Kai Kai back into your book by typing `undo`
 as seen in *Figure 7* below:
 
 <p align="center"><img src="images/user-guide/undoingcommand.png"/></p>
