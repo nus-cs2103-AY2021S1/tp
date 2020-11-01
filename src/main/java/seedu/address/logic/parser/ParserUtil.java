@@ -26,6 +26,7 @@ import seedu.address.model.tutorialgroup.TutorialGroupId;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_UPPER_BOUND = "Upper bound must be a positive integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -204,10 +205,10 @@ public class ParserUtil {
         try {
             upperBoundInt = Integer.parseInt(trimmedUpperBound);
         } catch (NumberFormatException e) {
-            throw new ParseException("Upper bound must be a positive integer.");
+            throw new ParseException(MESSAGE_INVALID_UPPER_BOUND);
         }
         if (upperBoundInt <= 0) {
-            throw new ParseException("Upper bound must be a positive integer.");
+            throw new ParseException(MESSAGE_INVALID_UPPER_BOUND);
         }
         return upperBoundInt;
     }
