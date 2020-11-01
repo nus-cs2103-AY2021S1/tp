@@ -403,6 +403,63 @@ The diagram below gives a short overview on what happens when a user's input is 
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Extension Suggestions**
+
+### Person management
+
+**Current implementation in the project:**
+Call `listpersons` and `startperson` command can start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
+
+**Extension features:**
+Allow more manipulations on persons after entered the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
+
+**Extension guidelines:**
+The behaviors of managing persons would be similar to the behaviors of managing projects. Thus, it is possible to reuse the commands that are set for `PROJECT` or lower scope. There are two suggested approaches:
+1. Duplicate the relevant commands in `PROJECT` scope to make them available in `PERSON` scope.
+2. Change the scoping requirement of existing `PROJECT` scope commands and change the behavior to accommodate both scopes.
+
+### More records for projects and persons
+
+**Current implementation in the project:**
+The key of the application lies in `Participation`, the association class of `Person` and `Project`.
+The app now allows a list of `Tasks` for each `Participation`, but there are many other attributes possible for `Participation`.
+
+**Extension features:**
+It is possible to add more realistic records for `Participation`. They would basically fall in the two categories:
+1. Single attribute for each `Participation`, such as `Role`.
+2. Collective attribute for each `Participation`, such as `Meetings`.
+
+**Extension guidelines:**
+For single attributes, future developers may simply add a field in the `Participation` class and add relevant manipulation methods.
+They can also create a new class for this attribute if it is complicated.
+
+For collective attributes, future developers may refer to how `Task` is implemented. 
+Basically, it would require future developers to create a new class of this attribute and keep a list in either the `Participation`, `Person` or `Project`.
+Other relevant tasks would need to be done, including adding commands (and parsers if needed), creating dashboards of these attributes, and making higher-level commands (such as filter, edit, etc.) to accommodate the new attributes.
+
+### More task implementation
+
+**Current implementation in the project:**
+The implementation of task is very fundamental currently, and are mostly very general such as add, edit, view, delete, and filter.
+The attributes of `Task` are very simple, too, which includes only a deadline and progress in addition to basic information such as name and description.
+
+**Extension features:**
+It is possible to allow advanced `Task` management, such as allowing recurring of tasks.
+This may also be done for other collective attributes that are newly added.
+
+**Extension guidelines:**
+Create new fields and methods in `Task` class and implement relevant commands.
+
+### Custom attributes for projects and persons
+
+**Current implementation in the project:**
+All attributes are hardcoded in the app, and are determined by developers.
+
+**Extension feature:**
+It is possible to allow the users to create custom attributes for projects and persons.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
