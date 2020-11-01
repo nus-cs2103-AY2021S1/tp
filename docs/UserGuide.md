@@ -210,10 +210,11 @@ Saves or Loads a preset of the user's supper order.
 
 Format: `preset MODE [NAME]`
 
-* `MODE` must be either 'save' or 'load', which dictates what the system will perform for the user's supper orders.
+* `MODE` must be either `save` or `load`, which dictates what the system will perform for the user's supper orders.
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
 * If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
 it will display all the saved presets under the current vendor to the user.
+* if `NAME` already exists and it is in `save` mode, the new saved preset will overwrite the existing saved preset.
 
 Examples:
 * `preset save` saves the user's supper order with the default preset name.
