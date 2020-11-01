@@ -116,6 +116,7 @@ Format: `contact clear`
 
 Note(s):
 * Once cleared, contacts are permanently deleted.
+* This command will also clear all meetings and modules.
 
 ### Viewing all contacts : `contact list`
 

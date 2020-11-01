@@ -31,7 +31,25 @@ deactivate AddressBookParser
 LogicManager -> ClearCommand : execute()
 activate ClearCommand
 
+ClearCommand -> Model : setSelectedMeeting(null)
+activate Model
+
+Model -> ClearCommand
+deactivate Model
+
 ClearCommand -> Model : setAddressBook(new AddressBook())
+activate Model
+
+Model -> ClearCommand
+deactivate Model
+
+ClearCommand -> Model : setMeetingBook(new MeetingBook())
+activate Model
+
+Model -> ClearCommand
+deactivate Model
+
+ClearCommand -> Model : setModuleBook(new ModuleBook())
 activate Model
 
 Model -> ClearCommand
