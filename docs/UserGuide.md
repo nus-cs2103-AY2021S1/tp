@@ -417,7 +417,7 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 * If any of the jargon below seem unclear, refer to *How to intepret the each command's format* under section *5. Features* above.
 
-* Create a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
+* Creates a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
 
 * Parameters to the macro can be substituted in the `PARAMETERS_TO_COMMAND` using the syntax: `\FLAG_NAME`.
 
@@ -438,6 +438,15 @@ Examples:
 * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
     * Example usage of this macro: `addFoodWithFries Ice Cream`
     * The following commands will be executed by the macro: `add -n Ice Cream` and `add -n Ice Cream With Fries`.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Be careful when creating a macro!
+* It is possible to create a macro with errors!
+* The commands in the macro will only be checked for errors when you run the macro itself.
+* e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
+
+</div>
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
