@@ -88,7 +88,9 @@ Examples:
 
 ### Displaying supper menu: `menu`
 
-Shows the menu from the currently selected vendor.
+Displays the current menu from the currently selected vendor.
+
+- Can be used to display the menu after a `sort` / `find` / `price` command
 
 Format: `menu`
 
@@ -120,6 +122,7 @@ case-sensitive.
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
+* `find milo` lists all food items containing the word 'milo' in their name.
 * `find milo dinosaur` lists all food items containing the word 'milo' or 'dinosaur' in their name.
 
 
@@ -129,8 +132,11 @@ Finds all food item within a specified price range.
 
 Format: `price INEQUALITY PRICE`
 
-* `INEQUALITY` is an inequality sign, and must be either '<' (strictly less than), '<=' (less than or equal to),
-'>' (greater than), or '>=' (greater than or equal to).
+* `INEQUALITY` is an inequality sign, of the below formats:
+  * `<`: Strictly less than
+  * `<=`: Less than or Equal to
+  * `>`: Strictly Greater than
+  * `>=`: Greater than or Equal to
 * `PRICE` must be a non-negative real number.
 
 Examples:
@@ -204,14 +210,16 @@ Saves or Loads a preset of the user's supper order.
 
 Format: `preset MODE [NAME]`
 
-* `MODE` must be either 'save' or 'load', which dictates what the system will perform for the user's supper orders.
+* `MODE` must be either 'save' or 'load' or 'delete', which dictates what the system will perform for the user's supper orders.
 * `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
 * If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
 it will display all the saved presets under the current vendor to the user.
+* For `delete` mode, `NAME` must be specified.
 
 Examples:
 * `preset save` saves the user's supper order with the default preset name.
 * `preset load vegan` loads the preset supper order with the preset name "vegan".
+* `preset delete my favs` deletes the preset supper order with the preset name "my favs".
 
 
 
