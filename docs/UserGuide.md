@@ -95,9 +95,9 @@ Accompanying the details of each command are figures that show an example of the
 
 ### 5.1. Inventory Commands
 
-NUStorage supports manipulation of inventory records. The following are commands related to inventory storage.
+NUStorage supports the storage and manipulation of inventory records. The following sections detail the commands related to inventory storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the inventory tab. If you don't know how to switch to the inventory tab, please refer to the [switch to inventory](#531-switch-to-inventory-goto_inventory) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch to inventory](#531-switch-to-inventory-goto_inventory) section for more information.
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
@@ -213,17 +213,23 @@ __Result:__ Updated corresponding finance record.
 
 ### 5.2. Finance Commands
 
-NUStorage supports the manipulation of finance records. The following are commands related to the finance account storage.
+NUStorage supports the storage and manipulation of finance records. The following sections detail the commands related to finance storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the finance tab. If you don't know how to switch to the finance tab, please refer to the [switch to finance tab](#532-switch-to-finance-goto_finance) section for more information.
+Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch to finance](#532-switch-to-finance-goto_finance) section for more information.
+
+**NOTE:** that some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
 #### 5.2.1. Add finance records: `add_finance`
-
-**:information_source: Notes about the command:**
 
 NUStorage allows you to add and save a new finance record into the account. In the [Add Inventory Record](#511-add-items-to-inventory-create_inventory) section, we have seen how a finance record is added when an inventory record is created to reflect the changes in the finance account. However, there are times that you want to create a finance record independent of any inventory records to record an influx/outflow of funds for example.
 
 This is where `add_finance` comes in handy.
+
+**:information_source: What this command does:**
+
+`add_finance` allows us to add a stand-alone finance record into NUStorage's.
+
+Note that this command **can only add a stand-alone finance record**.
 
 **:information_source: Using the command:** Below are instructions on how to use the `add_finance` command.
 
@@ -247,11 +253,15 @@ __Expected Result:__ Finance record of amount `$30000` on `3rd March 2020` is ad
 
 #### 5.2.2. Delete finance records: `delete_finance`
 
-**:information_source: Notes about the command:**
-
 Previously, in the [Add Finance Records](#521-add-finance-records-add_finance) section, we have created a finance record. Now, lets try to delete it from NUStorage using `delete_finance`.
 
 If you are reading this section without having read the previous section, please ensure that your NUStorage application has at least one finance record stored. If you are unclear on how to do so, refer to the [Adding finance records](#521-add-finance-records-add_finance) section.
+
+**:information_source: What this command does:**
+
+`delete_finance` allows us to delete a stand-alone finance record currently stored within NUStorage.
+
+Note that this command **can only delete a stand-alone finance record**.
 
 **:information_source: Using the command:** Below are instructions on how to use the `delete_finance` command.
 
@@ -274,13 +284,13 @@ __Expected Result:__ record at index `1` is removed from the finance account rec
 
 #### 5.2.3. Edit a finance record: `edit_finance`
 
-**:information_source: Notes about the command:**
-
 Previously, in the [Delete finance records](#522-delete-finance-records-delete_finance) section, we have deleted our only finance record in our application. For this section, ensure you have at least one **stand-alone** finance record (i.e not attached to any inventory records) stored in the application and that you are on the finance tab.
 
 Your NUStorage application should currently look something like this:
 
 ![finance with one record](images/finance_withOneRecord.jpg)
+
+**:information_source: What this command does:**
 
 `edit_finance` allows us to edit details of the stand-alone finance records currently stored within NUStorage. Currently, with `edit_finance`, we are able to edit a finance record's amount and date.
 
@@ -500,5 +510,6 @@ Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result 
 1. `CLI`: command line interface.
 2. `GUI`: graphical user interface.
 3. `.jar`: The file type that NUStorage is released in. This is similar to the `.exe` files in Windows and `.app` files in MacOS.
+4. `stand-alone finance records`: Finance records that are not attached to any inventory records.
 
 ---
