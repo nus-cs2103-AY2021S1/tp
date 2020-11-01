@@ -34,7 +34,7 @@ public class Contact {
      * @param tags Set of tags of the Contact object.
      */
     public Contact(ContactName name, Email email, Set<Tag> tags, boolean isImportant) {
-        requireAllNonNull(name, email);
+        requireAllNonNull(name, email, tags, isImportant);
         this.name = name;
         this.email = email;
         this.telegram = null;
@@ -51,7 +51,7 @@ public class Contact {
      * @param tags Set of tags of the Contact object.
      */
     public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
-        requireAllNonNull(name, email, telegram, tags);
+        requireAllNonNull(name, email, telegram, tags, isImportant);
         this.name = name;
         this.email = email;
         this.telegram = telegram;

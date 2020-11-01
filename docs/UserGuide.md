@@ -430,12 +430,13 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
  
      * You are allowed to provide multiple tag keywords.
      
-     * Task tags will be considered a match only if the tag words are an exact match.
+     * Task tags will be considered a match only if the tag words are an exact match (case-insensitive),
+       e.g. a tag with the word `hard` will match a tag with the word `HARD`, but a tag with the word `hard` will not match a tag with the word `harder`. 
      
      * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
        
  * Only tasks matching all search parameters provided will be returned.      
- 
+
  Examples:
  
   * `findtask n/lab` returns all tasks with the word `lab` in their name
@@ -576,8 +577,6 @@ Examples:
   * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
     e.g. `findcontact n/bob abraham` will search for contacts using the 2 distinct keywords `bob` and `abraham`.
     
-  * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
-    
   * You should ensure that keywords are not be blank and at least one search parameter should be provided.
   
   * Search Parameters:
@@ -586,9 +585,14 @@ Examples:
   
       * Contact with a name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
       
+      * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
+      
     * Tag
   
       * Contacts containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the contact tag search criteria.
+      
+      * Contact tags will be considered a match only if the tag words are an exact match (case-insensitive),
+        e.g. a tag with the word `friend` will match a tag with the word `FRIEND`, but a tag with the word `friend` will not match a tag with the word `friendly`. 
         
   * Only contacts matching all search parameters provided will be returned.      
   
