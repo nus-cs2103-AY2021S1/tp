@@ -194,12 +194,21 @@ Example Usage:
 add n/Kai Kai s/Giant Panda i/200 m/Sunstroke f/1230 f/1400
 ```
 
+<p align="center"><img src="images/user-guide/addinganimal.png"/></p>
+
+<p align="center"><i>Figure 3: User entering add command</i></p>
+
 Expected Outcome:
 ```
 New animal added
 Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
 ```
-An animal with the name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition `Sunstroke`
+
+<p align="center"><img src="images/user-guide/addedanimal.png"/></p>
+
+<p align="center"><i>Figure 4: User executing add command</i></p>
+
+As illustrated in *Figure 4* above, an animal with the name `Kai Kai`, ID `200`, species `Giant Panda`, medical condition `Sunstroke`
 and feed times of `1230 hrs` and `1400 hrs` is added to your `ZooKeep` book.
 
 ---
@@ -226,12 +235,21 @@ Example Usage:
 delete 200
 ```
 
+<p align="center"><img src="images/user-guide/deletinganimal.png"/></p>
+
+<p align="center"><i>Figure 5: User entering delete command</i></p>
+
 Expected Outcome:
 ```
 Deleted Animal
 Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke] Feed times: [1230][1400]
 ```
-The animal with ID `200` is deleted from your `ZooKeep` book.
+
+<p align="center"><img src="images/user-guide/deletedanimal.png"/></p>
+
+<p align="center"><i>Figure 6: User executing delete command</i></p>
+
+The animal with ID `200` is deleted from your `ZooKeep` book, as shown in *Figure 6* above.
 
 ---
 
@@ -243,11 +261,25 @@ undo if you just started up the application.
 
 Format: `undo`
 
+Example usage:
+Refer to the scenario in the `delete` section above as illustrated in *Figure 5 & 6*, where you just deleted
+Kai Kai from your `ZooKeep` book. Now you decide to use undo to bring Kai Kai back into your book by typing `undo`
+as seen in *Figure 7* below:
+
+<p align="center"><img src="images/user-guide/undoingcommand.png"/></p>
+
+<p align="center"><i>Figure 7: User entering undo command</i></p>
+
 Expected Outcome:
 ```
 Undo successful
 ```
-The previous command is undone.
+
+<p align="center"><img src="images/user-guide/undonecommand.png"/></p>
+
+<p align="center"><i>Figure 8: User executing undo command</i></p>
+
+The previous command is undone, and as seen in *Figure 8* above, Kai Kai is now back in your `ZooKeep` book!
 
 ---
 
@@ -259,11 +291,24 @@ was used before and no edit to your `ZooKeep` book was made in between, otherwis
 
 Format: `redo`
 
+Example usage:
+Refer to *Figures 7 & 8* above where you just executed the undo command. You decide to delete Kai Kai from your
+`ZooKeep` book after all, and type redo into the interface as shown in *Figure 9*:
+
+<p align="center"><img src="images/user-guide/redoingcommand.png"/></p>
+
+<p align="center"><i>Figure 9: User entering redo command</i></p>
+
 Expected Outcome:
 ```
 Redo successful
 ```
-The undone command is redone.
+
+<p align="center"><img src="images/user-guide/redidcommand.png"/></p>
+
+<p align="center"><i>Figure 10: User executing redo command</i></p>
+
+The undone command is redone. It will show Kai Kai deleted from your `ZooKeep` book as seen in *Figure 10*.
 
 ---
 
@@ -306,12 +351,22 @@ Example Usage:
 append 200 m/Flu
 ```
 
+<p align="center"><img src="images/user-guide/appendingmedical.png"/></p>
+
+<p align="center"><i>Figure 11: User entering append command</i></p>
+
 Expected Outcome:
 ```
 Appended Animal Details
 Name: Kai Kai ID: 200 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
 ```
-The medical condition "Flu" is appended to the medical conditions of the animal with `ID` 200.
+
+<p align="center"><img src="images/user-guide/appendedmedical.png"/></p>
+
+<p align="center"><i>Figure 12: User executing append command</i></p>
+
+The medical condition "Flu" is appended to the medical conditions of the animal with `ID` 200. *Figure 12* above
+reflects what you will see in your `ZooKeep` book.
 
 ---
 
@@ -352,12 +407,22 @@ Example Usage:
 replace 200 i/2910 n/Jirachi
 ```
 
+<p align="center"><img src="images/user-guide/replacingfields.png"/></p>
+
+<p align="center"><i>Figure 13: User entering replace command</i></p>
+
 Expected Outcome:
 ```
 Replaced Animal Details
 Name: Jirachi ID: 2910 Species: Giant Panda Medical conditions: [Sunstroke][Flu] Feed times: [1230][1400]
 ```
-The animal with ID `200` has its ID replaced with `2910` its name with `Jirachi`.
+
+<p align="center"><img src="images/user-guide/replacedfields.png"/></p>
+
+<p align="center"><i>Figure 14: User executing replace command</i></p>
+
+*Figure 14* above shows the animal with ID `200` having its ID replaced with `2910` and its name 
+replaced with `Jirachi`.
 
 ---
 
@@ -383,11 +448,20 @@ Example Usage:
 find Kai Kai
 ```
 
+<p align="center"><img src="images/user-guide/findinganimal.png"/></p>
+
+<p align="center"><i>Figure 15: User entering find command</i></p>
+
 Example Outcome:
 ```
 1 animals listed!
 ```
-The animal with name `Kai Kai` is displayed.
+
+<p align="center"><img src="images/user-guide/foundanimal.png"/></p>
+
+<p align="center"><i>Figure 16: User executing find command</i></p>
+
+The animal with name `Kai Kai` is displayed as seen in *Figure 16* above.
 
 ---
 
@@ -427,11 +501,21 @@ Example Usage:
 sort id
 ```
 
+<p align="center"><img src="images/user-guide/sortinglist.png"/></p>
+
+<p align="center"><i>Figure 17: User entering sort command</i></p>
+
 Example Outcome:
 ```
 Sorted all animals by id
 ```
-The animals in your `ZooKeep` book are sorted by their ID, in ascending order.
+
+<p align="center"><img src="images/user-guide/sortedlist.png"/></p>
+
+<p align="center"><i>Figure 18: User executing sort command</i></p>
+
+The animals in your `ZooKeep` book are sorted by their ID, in ascending order. *Figure 18* above should correspond
+with what you see.
 
 ---
 
@@ -464,11 +548,24 @@ Example Usage:
 snap zookeepbook_19-10-2020
 ```
 
+<p align="center"><img src="images/user-guide/beforesnap.png"/></p>
+
+<p align="center"><i>Figure 19: User entering snap command</i></p>
+
 Expected Outcome:
 ```
 Current ZooKeep Book saved as zookeepbook_19-10-2020.json
 ```
-A file named `zookeepbook_19-10-2020.json` is created in the `data/snapshots` directory.
+
+<p align="center"><img src="images/user-guide/aftersnap.png"/></p>
+
+<p align="center"><i>Figure 20: User executing snap command</i></p>
+
+<p align="center"><img src="images/user-guide/snapresult.png"/></p>
+
+<p align="center"><i>Figure 21: The directory where the archived file is located</i></p>
+
+A file named `zookeepbook_19-10-2020.json` is created in the `data/snapshots` directory as seen in *Figure 21*.
 This file contains the state of your `ZooKeep` book data at the point in time when the command
 was executed.
 
