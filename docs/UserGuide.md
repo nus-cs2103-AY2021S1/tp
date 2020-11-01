@@ -61,16 +61,16 @@ This diagram shows our interface.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `tag t/TAG`, `TAG` is a parameter, such as in the case `add t/Myfile`.
+  e.g. in `tag t>TAG`, `TAG` is a parameter, such as in the case `add t>Myfile`.
 
 * Expressions in square brackets are optional.<br>
-  e.g `t/TAG [f/FILE_PATH]` can be used as `t/Myfile f/C:\Users` or as `t/Myfile`.
+  e.g `t>TAG [f>FILE_PATH]` can be used as `t>Myfile f>C:\Users` or as `t>Myfile`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specify `t/TAG f/FILE_PATH`, `f/FILE_PATH t/TAG` is also an acceptable command.
-  
+  e.g. if the command specify `t>TAG f>FILE_PATH`, `f>FILE_PATH t>TAG` is also an acceptable command.
+
 * Expressions with `...` at the end can be provided any number of times.<br>
-  e.g. `t/TAG [l/LABEL]...` can be used as `t/TAG`, `t/TAG l/label`, or `t/TAG l/label1 l/label2 l/label3`.
+  e.g. `t>TAG [l>LABEL]...` can be used as `t>TAG`, `t>TAG l>label`, or `t>TAG l>label1 l>label2 l>label3`.
   
 * Every tag name must be unique, but multiple tags can point to the same filepath.
 
@@ -85,7 +85,7 @@ This diagram shows our interface.
 **:warning: Warning for multiple expressions**
 
 Expressions without `...` at the end takes the last parameter as the argument when provided with multiple same expressions.<br>
-  e.g. `tag t/TAG1 t/TAG2` will take `TAG2` as the parameter, ignoring the parameter `TAG1`.
+  e.g. `tag t>TAG1 t>TAG2` will take `TAG2` as the parameter, ignoring the parameter `TAG1`.
 
 </div>
 
@@ -95,13 +95,13 @@ Tags a file with a unique tag name.<br>
 You can add a nickname to a file. Optionally, you can add some labels to the tag for categorisation.
 The `FILE_PATH` field can accept both absolute and relative file path from your current directory in HelloFile.
 
-Format: `tag t/TAG_NAME f/FILE_PATH [l/LABEL]...`
+Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
 
 Examples:
-* `tag t/Users f/C:\Users` (Adds a tag with tag name `Users`,absolute file path `C:\Users`, and no label)
-* `tag t/Users f/C:\Users l/Important` (Adds a tag with tag name `Users`, absolute file path `C:\Users`, and label name `Important`)
-* `tag t/Users f/.\Users` (Adds a tag with tag name `Users`, relative file path `Users`, and no label)
-* `tag t/Users f/.\Users l/folder l/readonly` (Adds a tag with tag name `Users`, relative file path `Users`, and multiple lables
+* `tag t>Users f>C:\Users` (Adds a tag with tag name `Users`,absolute file path `C:\Users`, and no label)
+* `tag t>Users f>C:\Users l>Important` (Adds a tag with tag name `Users`, absolute file path `C:\Users`, and label name `Important`)
+* `tag t>Users f>.\Users` (Adds a tag with tag name `Users`, relative file path `Users`, and no label)
+* `tag t>Users f>.\Users l>folder l>readonly` (Adds a tag with tag name `Users`, relative file path `Users`, and multiple lables
 with label name `folder` and `readonly`)
 
 ### Displaying information of a tagged file : `show`
@@ -110,11 +110,11 @@ Displays the information of the tagged file.<br>
 You can see some basic information of a tagged file by using this command.
 It will show you the tag's file path and label information.
 
-Format: `show t/TAG_NAME`
+Format: `show t>TAG_NAME`
 
 Examples:
-* `show t/my_research` (show you the details of a tag name `my_research`)
-* `show t/file2020` (show you the details of a tag name `file2020`)
+* `show t>my_research` (show you the details of a tag name `my_research`)
+* `show t>file2020` (show you the details of a tag name `file2020`)
 
 ### Accessing a tagged file : `open`
 
@@ -126,32 +126,32 @@ This command only accepts one tag or one label but not both.
 Tip: You can tag many files that you want to open at the same time with the same label, so you can open them at once.
 </div>
 
-Format: `open t/TAG_NAME` or `open l/LABEL`
+Format: `open t>TAG_NAME` or `open l>LABEL`
 
 Examples:
-* `open t/my_research` (open the file with tag name `my_research`)
-* `open l/notes` (open all the files with label `notes`)
+* `open t>my_research` (open the file with tag name `my_research`)
+* `open l>notes` (open all the files with label `notes`)
 
 ### Removing a tag : `untag`
 
 Removes the tag from the list of tags.<br>
 You can delete a tag by using this command.
 
-Format: `untag t/TAG_NAME`
+Format: `untag t>TAG_NAME`
 
 Examples:
-* `untag t/notes` (delete tag with tag name `notes`)
-* `untag t/secret_file` (delete tag with tag name `secret_file`)
+* `untag t>notes` (delete tag with tag name `notes`)
+* `untag t>secret_file` (delete tag with tag name `secret_file`)
 
 ### Renaming a tag : `retag`
 
 Renames a tag.
 
-Format: `retag o/OLD_TAG_NAME t/NEW_TAG_NAME`
+Format: `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
 
 Examples:
-* `retag o/notes t/secret` (Rename an old tag name `notes` to new tag name `secret`)
-* `retag o/examfiles t/oldexamfiles` (Rename an old tag name `examfiles` to new tag name `oldexamfiles`)
+* `retag o>notes t>secret` (Rename an old tag name `notes` to new tag name `secret`)
+* `retag o>examfiles t>oldexamfiles` (Rename an old tag name `examfiles` to new tag name `oldexamfiles`)
 
 
 ### Adding a label to a tag : `label`
@@ -162,21 +162,21 @@ You can use label to categorise tags.
 Warning: Duplicated labels will only be added once. 
 </div>
 
-Format: `label t/TAG_NAME l/LABEL1 [l/LABEL2]...`
+Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
 Examples:
-* `label t/file1 l/important` (Add a label of tag name `file1` with label name `important`) 
-* `label t/file2 l/important l/exam` (Add a label of tag name `file2` with multiple labels of label name `important` and `exam`)
+* `label t>file1 l>important` (Add a label of tag name `file1` with label name `important`) 
+* `label t>file2 l>important l>exam` (Add a label of tag name `file2` with multiple labels of label name `important` and `exam`)
 
 ### Deleting multiple labels from a tag : `unlabel`
 
 Delete one or more label from a tag.
 
-Format: ` unlabel t/TAG_NAME l/LABEL1 [l/LABEL2]...`
+Format: ` unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
 Examples:
-* `unlabel t/notes l/secret` (Deletes a label of label name `secret` that has tag name `notes`)
-* `unlabel t/file1 l/important l/exams` (Deletes labels of label name `important` and `exams` from tag name `file1`)
+* `unlabel t>notes l>secret` (Deletes a label of label name `secret` that has tag name `notes`)
+* `unlabel t>file1 l>important l>exams` (Deletes labels of label name `important` and `exams` from tag name `file1`)
 
 ### Finding a tag : `find`
 
@@ -197,19 +197,19 @@ Examples:
 
 Changes the current directory of the HelloFile internal File Explorer. <br>
 You can change the current directory in 3 ways:
-By using `f/` to go to a folder using an absolute path,
+By using `f>` to go to a folder using an absolute path,
 by using `./` to go to a folder using a relative path,
 or using '../' to go to the parent folder.
 Alternative, you can click on the folder in the *File Explorer Panel* to navigate.
 
-Format 1: `cd f/ABSOLUTE_FILE_PATH`
+Format 1: `cd f>ABSOLUTE_FILE_PATH`
 
 Format 2: `cd ./RELATIVE_FILE_PATH`
 
 Format 3: `cd ../`
 
 Examples:
-* `cd f/C:\Users` (Changes the current directory to `C:\Users`)
+* `cd f>C:\Users` (Changes the current directory to `C:\Users`)
 * `cd ./tp` (Changes the current directory to the child directory `tp`)
 * `cd ../` (Changes the current directory to the parent directory)
 
@@ -283,16 +283,16 @@ from command line to HelloFile to be as smooth as possible for our target users.
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag t/TAG_NAME f/FILE_PATH , [l/LABEL]` <br> e.g., `tag t/newTag f/c:/myfolder/file.jpg l/MyFile` or `tag t/newTag f/c:/myfolder/file.jpg` 
-**Show** | `show t/TAG_NAME`
-**Untag** | `untag t/TAG_NAME`
-**Retag** | `retag o/OLD_TAG_NAME t/NEW_TAG_NAME` <br> e.g., `retag o/mytag t/newtag`
+**Tag** | `tag t>TAG_NAME f>FILE_PATH , [l>LABEL]` <br> e.g., `tag t>newTag f>c:>myfolder>file.jpg l>MyFile` or `tag t>newTag f>c:/myfolder/file.jpg` 
+**Show** | `show t>TAG_NAME`
+**Untag** | `untag t>TAG_NAME`
+**Retag** | `retag o>OLD_TAG_NAME t>NEW_TAG_NAME` <br> e.g., `retag o>mytag t>newtag`
 **Find** | `find KEYWORD` <br> e.g., `find newtag` or  `find newlabel`
-**Open** | `open t/TAG_NAME` or `open l/LABEL` <br> e.g., `open t/newTag` or `open l/newlabel`
-**Label** | `label t/TAG_NAME l/LABEL1 [l/LABEL2...]` <br> e.g., `label t/newtag l/new` or `label t/myFile l/important l/exclusive`
-**Unlabel** | `unlabel t/TAG_NAME l/LABEL1 [l/LABEL2...]` <br> e.g., `unlabel t/newtag l/new` or `unlabel t/myFile l/important l/exclusive`
+**Open** | `open t>TAG_NAME` or `open l>LABEL` <br> e.g., `open t>newTag` or `open l>newlabel`
+**Label** | `label t>TAG_NAME l>LABEL1 [l>LABEL2...]` <br> e.g., `label t>newtag l>new` or `label t>myFile l>important l>exclusive`
+**Unlabel** | `unlabel t>TAG_NAME l>LABEL1 [l>LABEL2...]` <br> e.g., `unlabel t>newtag l>new` or `unlabel t>myFile l>important l>exclusive`
 **List** | `ls`
-**Cd to an absolute file Path**| `cd f/ABSOLUTE_FILE_PATH` <br> e.g., `cd f/C:\Users`
+**Cd to an absolute file Path**| `cd f>ABSOLUTE_FILE_PATH` <br> e.g., `cd f>C:\Users`
 **Cd to a relative file Path**| `cd ./RELATIVE_FILE_PATH` <br> e.g., `cd ./project01`
 **Cd to the parent file Path**| `cd ../`
 **Undo** | `undo`
