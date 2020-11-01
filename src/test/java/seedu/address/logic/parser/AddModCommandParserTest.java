@@ -86,7 +86,7 @@ public class AddModCommandParserTest {
     }
 
     @Test
-    public void parse_duplicateNAmeField_failure() {
+    public void parse_duplicateNameField_failure() {
         String expectedMessage = String.format(MESSAGE_DUPLICATE_PREFIX, PREFIX_MODULE_NAME);
         String userInput = CODE_DESC_CS50 + NAME_DESC_CS50 + NAME_DESC_CS1010S;
 

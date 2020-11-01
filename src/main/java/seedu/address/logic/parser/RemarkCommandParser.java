@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimap.checkDuplicatePrefix;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import java.util.Optional;
@@ -54,16 +54,5 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
 
         return new RemarkCommand(index, remark);
-    }
-
-    /**
-     * Throws a {@code ParseException} if there is a duplicate prefix.
-     */
-    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
-        for (Prefix p : prefixes) {
-            if (argumentMultimap.getAllValues(p).size() > 1) {
-                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
-            }
-        }
     }
 }
