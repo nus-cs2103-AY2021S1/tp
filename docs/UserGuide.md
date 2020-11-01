@@ -264,7 +264,7 @@ Examples:
 
 You can find all students whose date of last payment is more than a month ago.
 
-Format: `overdue unpaid`
+Format: `overdue`
 
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
