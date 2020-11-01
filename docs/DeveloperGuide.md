@@ -452,6 +452,12 @@ Create new fields and methods in `Task` class and implement relevant commands.
 
 ### Custom attributes for projects and persons
 
+**Current implementation in the project:**
+All attributes are hardcoded in the app, and are determined by developers.
+
+**Extension feature:**
+It is possible to allow the users to create custom attributes for projects and persons.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
