@@ -124,8 +124,14 @@ We will follow the following convention for each command's format:
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
 
-* Parameters and optional parameters can be in any order.<br>
+* Parameters and optional parameters with flags can be in any order.<br>
   e.g. if the command specifies `-c CARBS -p PROTEIN [-f FATS]`, `-p PROTEIN [-f FATS] -c CARBS` is also acceptable.
+
+* Flag-less parameters always have to be the first parameter after the command word.<br>
+  e.g. in `edit 1 -n chicken`, the flag-less parameter is `1` and the `n` parameter is `chicken`. However for `edit -n chicken 1`, there is no flag-less parameter, and the `n` parameter is `chicken 1`.
+  
+* Entering the same parameter twice will concatenate the inputs.<br>
+  e.g. in `add -n potato -n chip`, the `n` parameters will be concatenated to `potato chip`, and a new item with the name `potato chip` will be created.
 
 </div>
 
