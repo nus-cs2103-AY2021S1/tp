@@ -32,8 +32,7 @@ public class Messages {
             + "prefix: %s";
     public static final String MESSAGE_PRESET_SAVE_NO_ORDER = "You have not added any items to your order to be saved!";
     public static final String MESSAGE_PRESET_NO_SAVED_PRESETS = "You have not saved any presets for this vendor!";
-    public static final String MESSAGE_PRESET_OVERWRITE_SUCCESS = "Preset has been overwritten.";
-    public static final String MESSAGE_ORDERITEM_QUANTITY_EXCEED = "Cannot have more than 100 of the an order item.";
+    public static final String MESSAGE_PRESET_OVERWRITE_SUCCESS = "Preset %s has been overwritten.";
     public static final String MESSAGE_PRESET_SAVE_SUCCESS = "Preset %s has been saved.";
     public static final String MESSAGE_PRESET_LOAD_SUCCESS = "Preset %s has been loaded.";
     public static final String MESSAGE_PRESET_DELETE_SUCCESS = "Preset %s has been deleted.";

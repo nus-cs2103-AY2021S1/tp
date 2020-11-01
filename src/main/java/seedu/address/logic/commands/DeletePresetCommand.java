@@ -11,7 +11,6 @@ import java.util.stream.IntStream;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.preset.Preset;
 import seedu.address.model.vendor.Name;
@@ -33,7 +32,7 @@ public class DeletePresetCommand extends PresetCommand {
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
         try {
             List<List<Preset>> allLists = storage.readPresetManager()

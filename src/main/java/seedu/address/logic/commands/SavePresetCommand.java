@@ -61,11 +61,10 @@ public class SavePresetCommand extends PresetCommand {
 
             storage.savePresetManager(allLists);
 
-            return new CommandResult(message, false, false, true);
+            return new CommandResult(String.format(message, presetName), false, false, true);
         } catch (IOException | DataConversionException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-        return new CommandResult(String.format(Messages.MESSAGE_PRESET_SAVE_SUCCESS, presetName), false, false, true);
     }
 
     @Override

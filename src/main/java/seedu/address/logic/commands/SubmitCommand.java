@@ -13,11 +13,9 @@ public class SubmitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
-
         if (!model.isSelected()) {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
-        
         Order order = new Order();
         order.setOrderItems(model.getObservableOrderItemList());
         double total = order.getTotal();
