@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_CODE_KEYWORD;
+import static seedu.address.logic.parser.ArgumentMultimap.checkDuplicatePrefix;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_INSTRUCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
@@ -59,17 +59,6 @@ public class FindModCommandParser implements Parser<FindModCommand> {
      */
     private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Throws a {@code ParseException} if there is a duplicate prefix.
-     */
-    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
-        for (Prefix p : prefixes) {
-            if (argumentMultimap.getAllValues(p).size() > 1) {
-                throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
-            }
-        }
     }
 
     /**

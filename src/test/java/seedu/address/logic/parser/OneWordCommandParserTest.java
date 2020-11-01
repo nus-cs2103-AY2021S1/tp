@@ -14,6 +14,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MclearCommand;
 import seedu.address.logic.commands.MlistCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.SwitchCommand;
 import seedu.address.logic.commands.UnassignallCommand;
 
 public class OneWordCommandParserTest {
@@ -68,6 +69,10 @@ public class OneWordCommandParserTest {
         assertParseFailure(parser, "unassignall 1",
             String.format(MESSAGE_NON_EMPTY_ARGUMENT, UnassignallCommand.COMMAND_WORD)
                 + UnassignallCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, "switch !",
+            String.format(MESSAGE_NON_EMPTY_ARGUMENT, SwitchCommand.COMMAND_WORD)
+                + SwitchCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "help 112",
             String.format(MESSAGE_NON_EMPTY_ARGUMENT, HelpCommand.COMMAND_WORD)
