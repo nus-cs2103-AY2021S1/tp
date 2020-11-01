@@ -19,6 +19,14 @@ public class TypicalPresets {
             .withOrderItems(ORDER_ITEMS).build();
 
     public static List<List<Preset>> getTypicalPresets() {
-        return new ArrayList<>();
+        List<List<Preset>> presets = new ArrayList<>();
+        List<Preset> presets1 = new ArrayList<>();
+        presets1.add(PRESET);
+        List<Preset> presets2 = new ArrayList<>();
+        presets2.add(PRESET_2);
+        presets.add(presets1);
+        presets.add(presets2);
+
+        return presets;
     }
 }
