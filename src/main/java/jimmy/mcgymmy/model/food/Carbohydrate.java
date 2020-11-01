@@ -15,8 +15,4 @@ public class Carbohydrate extends Macronutrient {
         super(amount, CARBOHYDRATE_MULTIPLIER);
     }
 
-    public Carbohydrate(String amount) {
-        this(Integer.parseInt(amount));
-    }
-
 }

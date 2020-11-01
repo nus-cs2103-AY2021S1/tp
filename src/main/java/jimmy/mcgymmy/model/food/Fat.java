@@ -16,7 +16,4 @@ public class Fat extends Macronutrient {
         super(amount, FAT_MULTIPLIER);
     }
 
-    public Fat(String amount) {
-        this(Integer.parseInt(amount));
-    }
 }
