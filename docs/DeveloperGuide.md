@@ -406,6 +406,8 @@ The diagram below gives a short overview on what happens when a user's input is 
 ## **Extension Suggestions**
 
 ### Person management
+**Current implementation in the project:**
+
 
 ### More scopes
 
