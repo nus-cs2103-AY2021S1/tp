@@ -36,6 +36,9 @@ public class AllocateCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Room %1$s allocated to %2$s.";
     public static final String MESSAGE_ROOM_NOT_FOUND = "This room does not exist in ResiReg";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "This student is not registered in ResiReg";
+    public static final String MESSAGE_STUDENT_ALREADY_ALLOCATED =
+            "This student has already been allocated in Resireg.";
+    public static final String MESSAGE_ROOM_ALREADY_ALLOCATED = "This room has already been allocated in Resireg.";
     public static final String MESSAGE_ALLOCATION_EXISTS = "This allocation has already been registered in ResiReg.";
 
     private final Index studentIndex;
@@ -59,6 +62,7 @@ public class AllocateCommand extends Command {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Room> lastShownListRoom = model.getFilteredRoomList();
+        List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
 
         if (studentIndex.getZeroBased() >= lastShownListStudent.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -75,6 +79,10 @@ public class AllocateCommand extends Command {
             throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         } else if (!model.hasRoom(roomToAllocate)) {
             throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
+        } else if (model.isAllocated(studentToAllocate)) {
+            throw new CommandException(MESSAGE_STUDENT_ALREADY_ALLOCATED);
+        } else if (model.isAllocated(roomToAllocate)) {
+            throw new CommandException(MESSAGE_ROOM_ALREADY_ALLOCATED);
         } else if (model.hasAllocation(toAllocate)) {
             throw new CommandException(MESSAGE_ALLOCATION_EXISTS);
         }

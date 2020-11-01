@@ -62,6 +62,23 @@ public class Allocation {
     }
 
     /**
+     * Returns true if both allocations have the same student.
+     */
+    public boolean hasSameStudent(Allocation otherAllocation) {
+        return otherAllocation != null
+                && otherAllocation.getStudentId().equals(getStudentId());
+    }
+
+    /**
+     * Returns true if both allocations have the same room.
+     */
+    public boolean hasSameRoom(Allocation otherAllocation) {
+        return otherAllocation != null
+                && otherAllocation.getFloor().equals(getFloor())
+                && otherAllocation.getRoomNumber().equals(getFloor());
+    }
+
+    /**
      * Returns true if both allocations have the same room identification (floor and roomNumber).
      * This defines a weaker notion of equality between two allocations
      */
