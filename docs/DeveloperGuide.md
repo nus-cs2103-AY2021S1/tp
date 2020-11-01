@@ -585,7 +585,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `ZooKeepBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an animal**
+**Use case: UC01 - Add an animal**
 
 **MSS**
 
@@ -613,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
 
-**Use case: Delete an animal**
+**Use case: UC02 - Delete an animal**
 
 **MSS**
 
@@ -635,13 +635,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
 
-* 2a. The given ID does not exist
+* 2a. The given ID does not exist or is out of range
 
   * 2a1. ZooKeepBook shows an error message
 
   * Use case resumes at step 1
 
-**Use case: List all animals**
+**Use case: UC03 - List all animals**
 
 **MSS**
 
@@ -651,7 +651,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Use case: Exit program**
+**Use case: UC04 - Exit program**
 
 **MSS**
 
@@ -661,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Use case: View available commands**
+**Use case: UC05 - View available commands**
 
 **MSS**
 
@@ -672,11 +672,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends
    
 
-**Use case: Find animals based on keywords**
+**Use case: UC06 - Find animals based on keywords**
 
 **MSS**
 
-1. User specifies the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
+1. User specifies the find command with the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
 
 2. ZooKeepBook searches for all animals with any of the exact keywords
 
@@ -693,11 +693,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Use case resumes at step 1
   
 
-**Use case: Sort all animals**
+**Use case: UC07 - Sort all animals**
 
 **MSS**
 
-1. User specifies the sort command and the specific category (name, id or feedtime)
+1. User specifies the sort command and the specific category (name, id, feedtime or medical)
 
 2. ZooKeepBook sorts the animals according to the category
 
@@ -715,13 +715,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
 
-**Use case: Undo last command**
+**Use case: UC08 - Undo last command**
 
 **MSS**
 
-1. User enters undo command.
+1. User specifies the undo command
 
-2. ZooKeepBook reverts to the state before last command was made.
+2. ZooKeepBook reverts to the state before last command was made
 
 3. ZooKeepBook shows a success message
 
@@ -729,19 +729,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. There is no previous state to revert to.
+* 2a. There is no previous state to revert to
 
   * 2a1. ZooKeepBook shows an error message
 
   * Use case ends
 
-**Use case: Redo last undo**
+**Use case: UC09 - Redo last undo**
 
 **MSS**
 
-1. User enters redo command.
+1. User specifies the redo command
 
-2. ZooKeepBook reverts to the state before undo command was made.
+2. ZooKeepBook reverts to the state before undo command was made
 
 3. ZooKeepBook shows a success message
 
@@ -749,11 +749,104 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. There is no previous state to revert to.
+* 2a. There is no previous state to revert to
 
   * 2a1. ZooKeepBook shows an error message
 
   * Use case ends
+  
+**Use case: UC10 - Save current animal data**
+
+**MSS**
+
+1. User specifies the snap command with the appropriate file name
+
+2. ZooKeepBook creates a snapshot of the current ZooKeep book data which is saved as a file with the user specified file name
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+* 1b. An invalid file name is entered
+
+  * 1b1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+**Use case: UC11 - Append data to an animal**
+
+**MSS**
+
+1. User specifies the append command with the animal ID and any relevant medical conditions and/or feed times to be added
+
+2. ZooKeepBook appends the entered animal conditions and/or feed times to the specific animal
+
+3. ZooKeepBook shows the edited animal details
+
+4. ZooKeepBook refreshes to show the updated list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+* 2a. The given ID does not exist or is out of range
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+* 2b. No details are entered or the appended details result in no change to the animal
+
+  * 2b1. ZooKeepBook shows an error message
+  
+  * Use case resumes at step 1
+
+**Use case: UC12 - Replace the data of an animal**
+
+**MSS**
+
+1. User specifies the replace command with the animal ID and any intended changes in the animal details
+
+2. ZooKeepBook replaces the current animal details with the entered changes
+
+3. ZooKeepBook shows the updated animal details
+
+4. ZooKeepBook refreshes to show the updated list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+* 2a. The given ID does not exist or is out of range
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+* 2b. No details are entered or the entered details result in no change to the animal
+
+  * 2b1. ZooKeepBook shows an error message
+  
+  * Use case resumes at step 1
+
   
 ### 6.4. Non-Functional Requirements
 
