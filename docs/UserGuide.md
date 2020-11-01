@@ -262,7 +262,7 @@ Edits a given meeting. Listed below are the meeting details that can be changed:
 5. Agenda
 6. Note
 
-Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... 
+Format: `meeting edit m/MODULE n/MEETING_NAME [nn/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... 
 [a/AGENDA]... [no/NOTES]...`
 
 Note(s):
@@ -275,7 +275,7 @@ Note(s):
 Example(s):
 * `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be 
 `2020-09-27` and `14:00` respectively
-* `meeting edit m/CS2103 n/Meeting nN/Group Discussion` edits the name of Meeting to be `Group Discussion` in the 
+* `meeting edit m/CS2103 n/Meeting nn/Group Discussion` edits the name of Meeting to be `Group Discussion` in the 
 module CS2103
 
 ### Listing all meetings : `meeting list`
@@ -404,7 +404,7 @@ Action | Format, Examples
 **Clear Labels** | `label clear CONTACT_NAME` <br> e.g., `label clear Jay`
 **Add Meeting** | `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting add m/CS2103 n/Meeting d/2020:09:23 t/10:00 p/Ekam p/Jay p/Jerryl p/Roy`
 **Delete Meeting** | `meeting delete m/MODULE n/MEETING_NAME` <br> e.g., `meeting delete m/CS2103 n/Weekly Meeting`
-**Edit Meeting** |  `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00`
+**Edit Meeting** |  `meeting edit m/MODULE n/MEETING_NAME [nn/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00`
 **List Meetings** | `meeting list`
 **View Meeting** | `meeting view m/MODULE n/MEETING_NAME`  <br> e.g., `meeting view m/CS2100 n/Report Discussion`
 **Copy Email** | `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`

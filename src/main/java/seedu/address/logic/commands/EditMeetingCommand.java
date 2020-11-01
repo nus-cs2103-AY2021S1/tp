@@ -57,9 +57,9 @@ public class EditMeetingCommand extends Command {
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
-    public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts";
-
+    public static final String MESSAGE_DUPLICATE_MEETING =
+            "The meeting [%s] %s already exists in the meeting book";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts.";
     private final ModuleName targetModuleName;
     private final MeetingName targetMeetingName;
     private final EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor;
@@ -108,6 +108,14 @@ public class EditMeetingCommand extends Command {
         assert meetingToEdit != null;
 
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model);
+
+        for (Meeting meeting : model.getFilteredMeetingList()) {
+            if (meeting.getModule().equals(module)
+                    && meeting.getMeetingName().equals(editedMeeting.getMeetingName())) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_MEETING, module.getModuleName(),
+                        editedMeeting.getMeetingName()));
+            }
+        }
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
