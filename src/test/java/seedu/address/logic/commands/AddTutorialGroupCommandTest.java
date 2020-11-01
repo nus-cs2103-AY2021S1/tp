@@ -5,15 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
-
 import org.junit.jupiter.api.Test;
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -24,65 +23,63 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TutorialGroupBuilder;
 
-public class AddModuleCommandTest {
+public class AddTutorialGroupCommandTest {
+
     @Test
-    public void constructor_nullModule_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddModuleCommand(null));
+    public void constructor_nullTutorialGroup_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddTutorialGroupCommand(null));
     }
 
     @Test
-    public void execute_moduleAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingModuleAdded modelStub = new ModelStubAcceptingModuleAdded();
-        Module validModule = new ModuleBuilder().build();
+    public void execute_tutorialGroupAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTutorialGroupAdded modelStub = new ModelStubAcceptingTutorialGroupAdded();
+        TutorialGroup validTutorialGroup = new TutorialGroupBuilder().build();
 
-        CommandResult commandResult = new AddModuleCommand(validModule).execute(modelStub);
+        CommandResult commandResult = new AddTutorialGroupCommand(validTutorialGroup).execute(modelStub);
 
-        assertEquals(String.format(AddModuleCommand.MESSAGE_SUCCESS, validModule), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validModule), modelStub.modulesAdded);
+        assertEquals(String.format(AddTutorialGroupCommand.MESSAGE_SUCCESS, validTutorialGroup), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTutorialGroup), modelStub.tutorialGroupsAdded);
     }
 
     @Test
-    public void execute_duplicateModule_throwsCommandException() {
-        Module validModule = new ModuleBuilder().build();
-        AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
-        ModelStub modelStub = new ModelStubWithModule(validModule);
+    public void execute_duplicateTutorialGroup_throwsCommandException() {
+        TutorialGroup validTutorialGroup = new TutorialGroupBuilder().build();
+        AddTutorialGroupCommand addTutorialGroupCommand = new AddTutorialGroupCommand(validTutorialGroup);
+        ModelStub modelStub = new ModelStubWithTutorialGroup(validTutorialGroup);
 
-        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE, ()
-                -> addModuleCommand.execute(modelStub)
+        assertThrows(CommandException.class, AddTutorialGroupCommand.MESSAGE_DUPLICATE_TUTGRP, ()
+            -> addTutorialGroupCommand.execute(modelStub)
         );
     }
 
     @Test
     public void equals() {
-        Module cs2103t = new ModuleBuilder().withModuleId("CS2103T").build();
-        Module cs3243 = new ModuleBuilder().withModuleId("CS3243").build();
-        AddModuleCommand addCs2103tCommand = new AddModuleCommand(cs2103t);
-        AddModuleCommand addCs3243Command = new AddModuleCommand(cs3243);
+        TutorialGroup b014 = new TutorialGroupBuilder().withTutorialGroupId("B014").build();
+        TutorialGroup t003 = new TutorialGroupBuilder().withTutorialGroupId("T003").build();
+        AddTutorialGroupCommand addb014Command = new AddTutorialGroupCommand(b014);
+        AddTutorialGroupCommand addt003Command = new AddTutorialGroupCommand(t003);
 
         // same object -> returns true
-        assertTrue(addCs2103tCommand.equals(addCs2103tCommand));
+        assertTrue(addb014Command.equals(addb014Command));
 
         // same values -> returns true
-        AddModuleCommand addCs2103tCommandCopy = new AddModuleCommand(cs2103t);
-        assertTrue(addCs2103tCommand.equals(addCs2103tCommandCopy));
+        AddTutorialGroupCommand addb014CommandCopy = new AddTutorialGroupCommand(b014);
+        assertTrue(addb014Command.equals(addb014CommandCopy));
 
         // different types -> returns false
-        assertFalse(addCs2103tCommand.equals(1));
+        assertFalse(addb014Command.equals(1));
 
         // null -> returns false
-        assertFalse(addCs2103tCommand.equals(null));
+        assertFalse(addb014Command.equals(null));
 
         // different person -> returns false
-        assertFalse(addCs2103tCommand.equals(addCs3243Command));
+        assertFalse(addb014Command.equals(addt003Command));
     }
 
-    /*
-     * A default model stub that have all of the methods failing.
-     */
-
     public static class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -120,7 +117,7 @@ public class AddModuleCommandTest {
 
         @Override
         public boolean isInModuleView() {
-            return true;
+            return false;
         }
 
         @Override
@@ -159,9 +156,7 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public boolean isInTutorialGroupView() {
-            throw new AssertionError("This method should not be called.");
-        }
+        public boolean isInTutorialGroupView() { return true; }
 
         @Override
         public void setViewToStudent(TutorialGroup target) {
@@ -200,7 +195,7 @@ public class AddModuleCommandTest {
 
         @Override
         public boolean isInStudentView() {
-            throw new AssertionError("This method should not be called.");
+            return false;
         }
 
 
@@ -270,31 +265,38 @@ public class AddModuleCommandTest {
         }
     }
 
-    /*
-     * A Model stub that contains a single person.
-     */
+    private class ModelStubWithTutorialGroup extends ModelStub {
+        private final TutorialGroup tutorialGroup;
+        ObservableList<TutorialGroup> tutorialGroupsList = FXCollections.observableArrayList();
 
-    private class ModelStubWithModule extends ModelStub {
-        private final Module module;
-
-        ModelStubWithModule(Module module) {
-            requireNonNull(module);
-            this.module = module;
+        ModelStubWithTutorialGroup(TutorialGroup tutorialGroup) {
+            requireNonNull(tutorialGroup);
+            this.tutorialGroup = tutorialGroup;
+            tutorialGroupsList.add(tutorialGroup);
+            tutorialGroupsList = new FilteredList<>(tutorialGroupsList);
         }
 
         @Override
-        public boolean hasModule(Module module) {
-            requireNonNull(module);
-            return this.module.isSame(module);
+        public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
+            requireNonNull(tutorialGroup);
+            return this.tutorialGroup.isSame(tutorialGroup);
+        }
+
+
+
+        @Override
+        public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+            return tutorialGroupsList;
         }
     }
 
     /*
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the Module being added.
      */
-    private class ModelStubAcceptingModuleAdded extends ModelStub {
+    private class ModelStubAcceptingTutorialGroupAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
         final ArrayList<TutorialGroup> tutorialGroupsAdded = new ArrayList<>();
+        final ObservableList<TutorialGroup> tutorialGroupsList = new FilteredList<TutorialGroup>(FXCollections.observableArrayList());
 
         public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
             requireNonNull(tutorialGroup);
@@ -305,6 +307,11 @@ public class AddModuleCommandTest {
         public void addTutorialGroup(TutorialGroup tutorialGroup) {
             requireNonNull(tutorialGroup);
             tutorialGroupsAdded.add(tutorialGroup);
+        }
+
+        @Override
+        public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+            return tutorialGroupsList;
         }
 
         @Override
@@ -324,5 +331,4 @@ public class AddModuleCommandTest {
             return new Trackr();
         }
     }
-
 }
