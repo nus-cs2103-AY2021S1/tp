@@ -2,6 +2,30 @@
 layout: page
 title: User Guide
 ---
+<pre>
+                                    *Brings food over*
+            
+             ----------------  /'--.._ `'-="""=-'` _..--'\
+             | my lunch? :D |  |   ~. )  _     _  ( .~   |
+             ----------------   \  '~/   a  _  a   \~'  /
+                             \   \  `|     / \     |`  /
+                              \___`'--\    \_/    /--'`
+                                      .'._  J__.-'.
+                                      / /  '-/_ `-  \
+                                     / -"-'-.  '-.__/
+                                     \__,-.\/     | `\
+                                     /  ;---.  .--'   |
+                                    |     /\'-'      /
+                                    '.___.\   _.--;'`)
+                                    
+            
+            Welcome to ZooKeep! We know your zookeeping duties are hard,
+            so we're here to make your life easier with some automation!
+            
+            
+            ASCII art by Joan G. Stark.
+</pre>
+
 If this is your first time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
 
 * Table of Contents
