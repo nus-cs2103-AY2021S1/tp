@@ -15,7 +15,7 @@ import seedu.address.model.notes.note.Note;
  */
 public class Notebook extends UiPart<Region> {
     private static final String FXML = "Notebook.fxml";
-    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(Notebook.class);
 
     @FXML
     private ListView<Note> notebook;
