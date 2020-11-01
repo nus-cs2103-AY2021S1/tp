@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.module.Module;
 
-public interface ModuleStorage {
+public interface ModuleListStorage {
 
     Path getModuleFilePath();
 

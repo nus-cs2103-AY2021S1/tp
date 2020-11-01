@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonModuleStorage moduleListStorage = new JsonModuleStorage(getTempFilePath("ab"));
+        JsonModuleListStorage moduleListStorage = new JsonModuleListStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(moduleListStorage, userPrefsStorage);
     }

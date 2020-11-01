@@ -16,7 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddStudentTest {

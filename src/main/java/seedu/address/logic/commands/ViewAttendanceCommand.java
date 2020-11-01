@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 
 public class ViewAttendanceCommand extends Command {
     public static final String COMMAND_WORD = "viewAttendance";

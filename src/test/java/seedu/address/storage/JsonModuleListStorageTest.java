@@ -15,7 +15,7 @@ import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 
-public class JsonModuleStorageTest {
+public class JsonModuleListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleStorageTest");
 
     @TempDir
@@ -27,7 +27,7 @@ public class JsonModuleStorageTest {
     }
 
     private java.util.Optional<ReadOnlyTrackr<Module>> readAddressBook(String filePath) throws Exception {
-        return new JsonModuleStorage(Paths.get(filePath)).readModuleList(addToTestDataPathIfNotNull(filePath));
+        return new JsonModuleListStorage(Paths.get(filePath)).readModuleList(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -92,7 +92,7 @@ public class JsonModuleStorageTest {
      */
     private void saveModuleList(ReadOnlyTrackr<Module> moduleList, String filePath) {
         try {
-            new JsonModuleStorage(Paths.get(filePath))
+            new JsonModuleListStorage(Paths.get(filePath))
                     .saveModuleList(moduleList, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

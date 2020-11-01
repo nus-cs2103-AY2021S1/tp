@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.person.Attendance.MAX_SCORE;
-import static seedu.address.model.person.Attendance.MIN_SCORE;
-import static seedu.address.model.person.Attendance.MIN_VALUE;
+import static seedu.address.model.student.Attendance.MAX_SCORE;
+import static seedu.address.model.student.Attendance.MIN_SCORE;
+import static seedu.address.model.student.Attendance.MIN_VALUE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;

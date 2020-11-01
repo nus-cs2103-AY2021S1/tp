@@ -14,7 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.person.Student;
+import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**

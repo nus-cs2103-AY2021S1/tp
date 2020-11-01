@@ -16,13 +16,13 @@ import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.module.Module;
 
 // TODO better JavaDocs
-public class JsonModuleStorage implements ModuleStorage {
+public class JsonModuleListStorage implements ModuleListStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonModuleStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonModuleListStorage.class);
 
     private Path filePath;
 
-    public JsonModuleStorage(Path filePath) {
+    public JsonModuleListStorage(Path filePath) {
         this.filePath = filePath;
     }
 
