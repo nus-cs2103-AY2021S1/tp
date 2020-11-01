@@ -88,10 +88,7 @@ public class EditModuleCommand extends Command {
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         GradeTracker gradeTracker = moduleToEdit.getGradeTracker();
         Map<ModuleLesson, ZoomLink> zoomLinks = new HashMap<>();
-        if (editModuleDescriptor.getZoomLinks().isPresent()) {
-            zoomLinks.putAll(editModuleDescriptor.getZoomLinks().get());
-        }
-
+        zoomLinks.putAll(editModuleDescriptor.getZoomLinks().orElse(moduleToEdit.getAllLinks()));
         if (editModuleDescriptor.getGradePoint().isPresent()) {
             gradeTracker.setGradePoint(editModuleDescriptor.getGradePoint().get());
         }

@@ -91,9 +91,11 @@ public class EditModuleCommandTest {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
         Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_MODULENAME_CS2030)
-                .withZoomLink(new ModuleLesson(VALID_TAG_LECTURE), VALID_ZOOMLINK_CS2030).withModularCredits(4.0).build();
+                .withZoomLink(new ModuleLesson(VALID_TAG_LECTURE), VALID_ZOOMLINK_CS2030)
+                .withModularCredits(4.0).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE,
-                new EditModuleDescriptorBuilder().withZoomLinks(VALID_ZOOMLINKS_CS2030).withName(VALID_MODULENAME_CS2030).build());
+                new EditModuleDescriptorBuilder().withZoomLinks(VALID_ZOOMLINKS_CS2030)
+                        .withName(VALID_MODULENAME_CS2030).withMc(4.0).build());
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
         Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());

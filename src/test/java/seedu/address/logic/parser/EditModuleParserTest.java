@@ -89,7 +89,7 @@ public class EditModuleParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660)
-                .withZoomLinks(VALID_ZOOMLINKS_ES2660).build();
+                .build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_EDIT_NAME, expectedCommand);
     }

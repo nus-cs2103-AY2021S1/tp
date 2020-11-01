@@ -35,7 +35,7 @@ public class ModuleBuilder {
     public ModuleBuilder() {
         moduleName = new ModuleName(DEFAULT_MODULENAME);
         zoomLinkMap = new HashMap<ModuleLesson, ZoomLink>();
-        zoomLinkMap.put(new ModuleLesson(DEFAULT_MODULELESSONTYPE), new ZoomLink(DEFAULT_ZOOMLINK));
+        //zoomLinkMap.put(new ModuleLesson(DEFAULT_MODULELESSONTYPE), new ZoomLink(DEFAULT_ZOOMLINK));
         modularCredits = new ModularCredits(DEFAULT_MODULARCREDITS);
         gradeTracker = new GradeTracker();
         tags = new HashSet<Tag>();
