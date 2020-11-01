@@ -60,6 +60,9 @@ public class EditMeetingCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MEETING =
             "The meeting [%s] %s already exists in the meeting book";
     public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts.";
+    public static final String MESSAGE_CONFLICTING_MEETING_TIMES =
+            "The meeting [%s] %s is already occurring at the same date and time";
+
     private final ModuleName targetModuleName;
     private final MeetingName targetMeetingName;
     private final EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor;
@@ -109,19 +112,31 @@ public class EditMeetingCommand extends Command {
 
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model);
 
-        for (Meeting meeting : model.getFilteredMeetingList()) {
-            if (meeting.getModule().equals(module)
-                    && meeting.getMeetingName().equals(editedMeeting.getMeetingName())) {
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_MEETING, module.getModuleName(),
-                        editedMeeting.getMeetingName()));
+        if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_MEETING, module.getModuleName(),
+                    meetingToEdit.getMeetingName()));
+        }
+
+            if (editMeetingDescriptor.getDate().isPresent() || editMeetingDescriptor.getTime().isPresent()) {
+            for (Meeting meeting : model.getFilteredMeetingList()) {
+                if (((editMeetingDescriptor.getDate().isPresent()) &&
+                        (meeting.getDate().equals(editMeetingDescriptor.getDate().get())
+                                && meeting.getTime().equals(editedMeeting.getTime())))
+                    || ((editMeetingDescriptor.getTime().isPresent()) &&
+                        (meeting.getDate().equals(editedMeeting.getDate())
+                                && meeting.getTime().equals(editMeetingDescriptor.getTime().get())))
+                    || ((editMeetingDescriptor.getDate().isPresent() && editMeetingDescriptor.getTime().isPresent()) &&
+                        (meeting.getDate().equals(editMeetingDescriptor.getDate().get())
+                                && meeting.getTime().equals(editMeetingDescriptor.getTime().get())))) {
+                    throw new CommandException(
+                            String.format(MESSAGE_CONFLICTING_MEETING_TIMES, meeting.getModule().getModuleName(),
+                                    meeting.getMeetingName()));
+                }
             }
         }
 
-        if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
-            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
-        }
 
-        model.setMeeting(meetingToEdit, editedMeeting);
+            model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting), false,
                 false, true, false);

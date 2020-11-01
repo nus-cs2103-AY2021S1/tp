@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 public class Time {
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Times should be in the format hh:mm";
     public static final String MESSAGE_TIME_CONSTRAINTS = "The time given should be a valid time";
-    public static final String MESSAGE_CONSTRAINTS = "Times should be in the format HHmm " +
+    public static final String MESSAGE_CONSTRAINTS = "Times should be in the format hh:mm " +
             "the time given should be a valid time";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("kk:mm");
