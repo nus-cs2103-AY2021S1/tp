@@ -19,5 +19,10 @@ public class Messages {
             "No serial numbers are provided";
     public static final String MESSAGE_STOCKS_LISTED_OVERVIEW = "%1$d stock listed!";
     public static final String MESSAGE_SOURCE_COMPANY_NOT_FOUND = "Source company not found!";
+    public static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "Note at index specified is not found.";
+    public static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
+    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND_FOR_NOTE_DELETE =
+            "No note is deleted. Stock with given serial number does not exists";
+    public static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note(s) from Stock: %1$s";
 
 }
