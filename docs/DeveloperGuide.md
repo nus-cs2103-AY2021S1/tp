@@ -488,7 +488,7 @@ to the given predicate. Doing so will display the Persons who satisfy the condit
 
 #### Activity Diagram
 
-Given below is the activity diagram of how the mechanism behaves when called using the `find` command.
+Given below is the activity diagram of how the mechanism behaves when called using the `contact find` command.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 

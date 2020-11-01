@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,7 +16,10 @@ public class NameContainsKeywordsPredicate implements PersonPredicate {
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> person.getName().fullName.toLowerCase().contains(keyword.toLowerCase()));
+                .anyMatch(keyword -> (
+                        person.getName().fullName.toLowerCase().contains(keyword.toLowerCase())
+                        || hasInitials(person, keyword)
+                ));
     }
 
     @Override
@@ -23,6 +27,13 @@ public class NameContainsKeywordsPredicate implements PersonPredicate {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    private boolean hasInitials(Person person, String keyword) {
+        String fullName = person.getName().fullName;
+        String[] splitName = fullName.split("\\s");
+        String initials = Arrays.stream(splitName).reduce("", (x, y) -> x + y.substring(0, 1));
+        return initials.toLowerCase().contains(keyword.toLowerCase());
     }
 
 }
