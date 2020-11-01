@@ -16,11 +16,14 @@ import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.schedulerparsers.SchedulerParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
@@ -39,6 +42,7 @@ public class LogicManager implements Logic {
     private final TodoListParser todoListParser;
     private final GradeTrackerParser gradeTrackerParser;
     private final ParserManager parserManager;
+    private final SchedulerParser schedulerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -50,7 +54,9 @@ public class LogicManager implements Logic {
         contactListParser = new ContactListParser();
         todoListParser = new TodoListParser();
         gradeTrackerParser = new GradeTrackerParser();
-        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser, gradeTrackerParser);
+        schedulerParser = new SchedulerParser();
+        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser,
+                gradeTrackerParser, schedulerParser);
     }
 
     @Override
@@ -64,8 +70,10 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
         try {
             storage.saveModuleList(model.getModuleList());
+            storage.saveArchivedModuleList(model.getArchivedModuleList());
             storage.saveContactList(model.getContactList());
             storage.saveTodoList(model.getTodoList());
+            storage.saveEventList(model.getEventList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -79,6 +87,15 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
+        return model.getFilteredModuleList();
+        //return model.getFilteredModuleList();
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleListDisplay() {
+        if (model.getModuleListDisplay()) {
+            return model.getFilteredArchivedModuleList();
+        }
         return model.getFilteredModuleList();
     }
 
@@ -120,5 +137,20 @@ public class LogicManager implements Logic {
     @Override
     public Path getContactListFilePath() {
         return model.getModuleListFilePath();
+    }
+
+    @Override
+    public ReadOnlyEventList getEventList() {
+        return model.getEventList();
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
+
+    @Override
+    public Path getEventListFilePath() {
+        return model.getContactListFilePath();
     }
 }

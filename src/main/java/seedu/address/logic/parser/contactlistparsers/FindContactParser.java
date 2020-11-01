@@ -1,11 +1,9 @@
 package seedu.address.logic.parser.contactlistparsers;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -37,7 +35,7 @@ public class FindContactParser implements Parser<FindContactCommand> {
                 PREFIX_NAME, PREFIX_TAG);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
         if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_TAG)
-                || !argMultiMap.getPreamble().isEmpty()) {
+                || !argMultiMap.getPreamble().isBlank()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
         }
@@ -45,38 +43,19 @@ public class FindContactParser implements Parser<FindContactCommand> {
         FindContactCriteria findContactCriteria = new FindContactCriteria();
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
-            List<String> keywordsAsList = parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
+            List<String> keywordsAsList = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
             NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywordsAsList);
             findContactCriteria.addPredicate(namePredicate);
         }
 
         if (argMultiMap.getValue(PREFIX_TAG).isPresent()) {
-            Set<Tag> taskTags = ParserUtil.parseTags(argMultiMap.getAllValues(PREFIX_TAG));
+            List<String> tags = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_TAG).get());
+            Set<Tag> taskTags = ParserUtil.parseTags(tags);
             ContactContainsTagsPredicate tagsPredicate = new ContactContainsTagsPredicate(taskTags);
             findContactCriteria.addPredicate(tagsPredicate);
         }
 
         return new FindContactCommand(findContactCriteria);
-    }
-
-    /**
-     * Parses the String containing the search keywords provided by the user into a list of keywords.
-     *
-     * @param keywords String containing search keywords provided by the user.
-     * @return List of search keywords.
-     * @throws ParseException If no valid keyword was provided by the user.
-     */
-    private List<String> parseSearchKeywords(String keywords) throws ParseException {
-        requireNonNull(keywords);
-        String trimmedKeywords = keywords.trim();
-        if (trimmedKeywords.isBlank()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
-        } else {
-            String[] keywordArray = keywords.split("\\s+");
-            assert keywordArray.length > 0 : "There must be at least one search keyword provided";
-            return Arrays.asList(keywordArray);
-        }
     }
 
     /**
