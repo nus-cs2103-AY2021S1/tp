@@ -2,6 +2,20 @@
 layout: page
 title: User Guide
 ---
+<pre>
+_________________________
+| Oh hey there, is it my |
+| lunch time already?    |     
+-------------------------
+                      \   |\__/,|   (`\
+                       \  |_ _  |.--.) )
+                        \ ( T   )     /
+                         (((^_(((/(((_/
+
+Welcome to ZooKeep! We know your zookeeping duties are hard, so we're here to make
+your life easier with some automation!
+</pre>
+
 If this is your first time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
 
 * Table of Contents
