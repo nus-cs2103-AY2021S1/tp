@@ -47,10 +47,10 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
 
-    public static final String VALID_MODULELESSONTYPE_CS2103T = "Lecture";
-    public static final String VALID_MODULELESSONTYPE_ES2660 = "Tutorial";
-    public static final String VALID_ZOOMLINK_CS2103T = "https://nus-sg.zoom.us/cs2103t";
-    public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/es2660";
+    public static final String VALID_MODULE_LESSON_CS2103T = "Lecture";
+    public static final String VALID_MODULE_LESSON_ES2660 = "Tutorial";
+    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/cs2103t";
+    public static final String VALID_ZOOM_LINK_ES2660 = "https://nus-sg.zoom.us/es2660";
 
     public static final double VALID_MC_4 = 4.0;
     public static final double VALID_MC_2 = 2.0;
@@ -60,9 +60,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_TUTORIAL = "Tutorial";
 
     public static final String NAME_DESC_CS2103T = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
-    public static final String ZOOMLINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T;
+    public static final String ZOOMLINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_CS2103T;
     public static final String NAME_DESC_ES2660 = " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-    public static final String ZOOMLINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_ES2660;
+    public static final String ZOOMLINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_ES2660;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

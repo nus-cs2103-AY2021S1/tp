@@ -60,9 +60,9 @@ public class ModuleBuilder {
     /**
      * Adds the {@code ZoomLink} to the {@code Module} that we are building.
      */
-    public ModuleBuilder withZoomLink(ModuleLesson moduleLessonType, String zoomLink) {
+    public ModuleBuilder withZoomLink(String moduleLesson, String zoomLink) {
         Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinkMap);
-        updatedLinks.put(moduleLessonType, new ZoomLink(zoomLink));
+        updatedLinks.put(new ModuleLesson(moduleLesson), new ZoomLink(zoomLink));
         return this;
     }
 

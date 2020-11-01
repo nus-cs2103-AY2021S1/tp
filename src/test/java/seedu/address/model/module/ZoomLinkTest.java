@@ -24,17 +24,19 @@ public class ZoomLinkTest {
         // null zoom link
         assertThrows(NullPointerException.class, () -> ZoomLink.isValidZoomLink(null));
 
-        // blank zoom link
+        // invalid zoom link
         assertFalse(ZoomLink.isValidZoomLink("")); // empty string
         assertFalse(ZoomLink.isValidZoomLink(" ")); // spaces only
-
-        // missing parts
-        assertFalse(ZoomLink.isValidZoomLink("/j/6396489185?pwd=a")); // missing front part
+        assertFalse(ZoomLink.isValidZoomLink("/j/6396489185?pwd=a")); // missing NUS domain
         assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/")); // missing path
+        assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/^&*")); // path with only invalid special characters
+        assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/hasuch83ru^$#")); // path with invalid special characters
+        assertFalse(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/832gfweyf  73rgcyc")); // path with whitespace
 
-        // valid name
-        assertTrue(ZoomLink.isValidZoomLink(
-                "https://nus-sg.zoom.us/j/63nakassdvb"));
+        // valid zoom link
+        assertTrue(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/j/63nakassdvb")); // path with only alphanumeric characters
+        assertTrue(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/=?")); // path with only valid special characters
+        assertTrue(ZoomLink.isValidZoomLink("https://nus-sg.zoom.us/j/6g23d=9?/87ashcu3r3fnajdscd=?nhusac8")); // long path
 
     }
 }

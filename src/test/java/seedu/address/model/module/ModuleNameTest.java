@@ -29,15 +29,15 @@ public class ModuleNameTest {
         assertFalse(ModuleName.isValidName("")); // empty string
         assertFalse(ModuleName.isValidName(" ")); // spaces only
         assertFalse(ModuleName.isValidName("^")); // contains non-alphanumeric characters only
-        assertFalse(ModuleName.isValidName("cs")); // contains alphabetic characters only
-        assertFalse(ModuleName.isValidName("cs201*")); // contains non-alphanumeric characters
+        assertFalse(ModuleName.isValidName("CS")); // contains alphabetic characters only
+        assertFalse(ModuleName.isValidName("CS201*")); // contains non-alphanumeric characters
         assertFalse(ModuleName.isValidName("2030")); // contains numeric characters only
-        assertFalse(ModuleName.isValidName("c200")); // does not fulfil the 2 alphabet criteria
-        assertFalse(ModuleName.isValidName("cs2")); // does not fulfil the numeric criteria
+        assertFalse(ModuleName.isValidName("C200")); // does not fulfil the alphabet criteria
+        assertFalse(ModuleName.isValidName("CS2")); // does not fulfil the numeric criteria
 
         // valid name
         assertTrue(ModuleName.isValidName("CS2030")); // normal module code
-        assertTrue(ModuleName.isValidName("FSC5201")); // 3 alphabet character code
+        assertTrue(ModuleName.isValidName("FSC5201")); // 3 alphabet module code
         assertTrue(ModuleName.isValidName("CS1101S")); // module code with alphabet at the end
     }
 }
