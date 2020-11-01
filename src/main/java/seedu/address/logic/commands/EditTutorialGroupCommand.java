@@ -81,7 +81,6 @@ public class EditTutorialGroupCommand extends Command {
 
         model.setTutorialGroup(tutorialGroupToEdit, editedTutorialGroup);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup),
-                false, false, true, false, false);
+        return new CommandResult(String.format(MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup));
     }
 }
