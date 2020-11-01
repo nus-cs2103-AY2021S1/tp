@@ -76,7 +76,7 @@ public class EditModuleCommand extends Command {
 
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor, model);
 
-        if (moduleToEdit.isSameModule(editedModule)) {
+        if (moduleToEdit.isSameModule(editedModule) || model.hasModuleName(editedModule.getModuleName())) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
         model.setModule(moduleToEdit, editedModule);

@@ -180,12 +180,13 @@ Example(s):
 
 Creates a Module with a given name and members .
 
-Format: `module add n/MODULE_NAME [p/MEMBER_NAME]...`
+Format: `module add n/MODULE_NAME p/MEMBER_NAME [p/MEMBER_NAME]...`
 
 Note(s): 
 * A Module can have more than 1 member but can only have one name. 
-* Members can be optional.
+* Need at least 1 member.
 * Professors and TA's can also be added in the same format as other contacts.
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module add n/CS2103 p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -197,7 +198,8 @@ Finds and displays all the contacts of the module specified.
 Format: `module list m/MODULE_NAME`
 
 Note(s): 
-* The command `module list m/clean` will restore the module UI to show all contacts again.
+* To reset the contacts list in the gui you can do the contact list command
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module list m/CS2103`
@@ -206,14 +208,16 @@ Example(s):
 
 Edits a Module based on the inputted details.
 
-Format: `module edit m/MODULE_NAME n/NEW_MODULE_NAME [p/MEMBER_NAME]...`
+Format: `module edit m/MODULE_NAME [n/NEW_MODULE_NAME] [p/MEMBER_NAME]...`
 
 Note(s): 
+* At least one change has to be present (either the module name or the participants or both)
 * Note that if you change the participants, the old participants will be overwritten and replaced by the newly
 added participants. 
 * You can change either the module name, the participants or both. 
 * Changes to module will affect meetings based on that module, so if the meeting does not include any of the new module
 participants, it will be deleted. 
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module edit m/CS2103 n/CS2103T p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -227,6 +231,7 @@ Format: `module delete m/MODULE_NAME`
 Note(s): 
 * All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module 
 carefully.
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module delete m/CS2103`

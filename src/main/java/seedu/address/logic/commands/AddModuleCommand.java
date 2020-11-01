@@ -42,13 +42,21 @@ public class AddModuleCommand extends Command {
     private final Set<Name> nameList;
 
     /**
-     * Creates an AddMeetingCommand to add the specified {@code Meeting}
+     * Creates an AddModuleCommand to add the specified {@code Module}
      */
     public AddModuleCommand(ModuleName moduleName, Set<Name> nameList) {
         requireNonNull(moduleName);
         requireNonNull(nameList);
         this.moduleName = moduleName;
         this.nameList = nameList;
+    }
+    /**
+     * Creates an AddModuleCommand to add the specified {@code Module}
+     */
+    public AddModuleCommand(Module module) {
+        requireNonNull(module);
+        this.moduleName =module.getModuleName();
+        this.nameList = module.getClassmates().stream().map(Person::getName).collect(Collectors.toSet());
     }
 
     @Override
@@ -94,7 +102,7 @@ public class AddModuleCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddMeetingCommand // instanceof handles nulls
+                || (other instanceof AddModuleCommand // instanceof handles nulls
                 && moduleName.equals(((AddModuleCommand) other).moduleName)
                 && nameList.equals(((AddModuleCommand) other).nameList));
     }
