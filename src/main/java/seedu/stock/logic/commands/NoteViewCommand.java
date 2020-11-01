@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
@@ -49,7 +50,7 @@ public class NoteViewCommand extends Command {
      * @throws CommandException If there are any errors.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, SerialNumberNotFoundException {
 
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
@@ -65,7 +66,7 @@ public class NoteViewCommand extends Command {
         }
 
         if (stockToViewNotes.isEmpty()) {
-            throw new CommandException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
+            throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
         if (stockToViewNotes.get().getNotes().size() == 0) {
@@ -82,6 +83,21 @@ public class NoteViewCommand extends Command {
      */
     private String generateSuccessMessage(Stock stockToViewNotes) {
         return String.format(MESSAGE_NOTE_DISPLAY_SUCCESS, stockToViewNotes);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof NoteViewCommand)) {
+            return false;
+        }
+        // state check
+        NoteViewCommand otherNoteViewCommand = (NoteViewCommand) other;
+        return serialNumber.equals(otherNoteViewCommand.serialNumber);
     }
 
 }

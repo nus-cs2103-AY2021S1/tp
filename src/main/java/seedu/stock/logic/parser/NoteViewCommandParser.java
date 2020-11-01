@@ -7,7 +7,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 import java.util.stream.Stream;
 
-import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
@@ -29,7 +28,7 @@ public class NoteViewCommandParser implements Parser<NoteViewCommand> {
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForNoteView)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    NoteDeleteCommand.MESSAGE_USAGE));
+                    NoteViewCommand.MESSAGE_USAGE));
         }
 
         if (isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteView)) {
