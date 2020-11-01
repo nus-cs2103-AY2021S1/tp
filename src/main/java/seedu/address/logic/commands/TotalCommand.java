@@ -15,13 +15,13 @@ public class TotalCommand extends Command {
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
 
-        Order order = new Order();
-        order.setOrderItems(model.getObservableOrderItemList());
-        double total = order.getTotal();
-
         if (!model.isSelected()) {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
+        
+        Order order = new Order();
+        order.setOrderItems(model.getObservableOrderItemList());
+        double total = order.getTotal();
 
         if (total == 0.0) {
             throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
