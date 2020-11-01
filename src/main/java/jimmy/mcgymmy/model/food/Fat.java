@@ -10,12 +10,27 @@ public class Fat extends Macronutrient {
     public static final String MESSAGE_CONSTRAINTS =
             "Fat " + Macronutrient.MESSAGE_CONSTRAINTS;
     private static final int FAT_MULTIPLIER = 9;
+    private static final int DEFAULT_FAT = 0;
 
     /**
      * @param amount A valid amount.
      */
     public Fat(int amount) throws IllegalValueException {
         super(amount, FAT_MULTIPLIER);
+    }
+
+    /**
+     * Create a new Fat using the default value.
+     * Mostly boilerplate code.
+     * @return new Fat with default value.
+     */
+    public static Fat newDefault() {
+        try {
+            return new Fat(DEFAULT_FAT);
+        } catch (IllegalValueException e) {
+            assert false : "Error in creation of default";
+            throw new IllegalArgumentException("Error in creation using default values.");
+        }
     }
 
     public Fat(String amount) throws IllegalValueException {

@@ -8,6 +8,11 @@ import org.junit.jupiter.api.Test;
 
 public class CarbohydrateTest {
 
+    @Test
+    public void newDefault_works() {
+        // If it doesnt, the thrown runtime exception will break this test.
+        Carbohydrate.newDefault();
+    }
 
     @Test
     public void constructor_invalidCarbohydrate_throwsNumberFormatException() {

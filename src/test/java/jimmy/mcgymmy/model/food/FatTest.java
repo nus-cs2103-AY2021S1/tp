@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 public class FatTest {
 
     @Test
+    public void newDefault_works() {
+        // If it doesnt, the thrown runtime exception will break this test.
+        Fat.newDefault();
+    }
+
+    @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NumberFormatException.class, () -> new Fat(null));
     }
