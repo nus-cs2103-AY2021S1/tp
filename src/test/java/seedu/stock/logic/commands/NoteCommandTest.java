@@ -13,7 +13,6 @@ import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.INDEX_SECOND_STOCK;
-import static seedu.stock.testutil.TypicalStocks.INDEX_THIRD_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
