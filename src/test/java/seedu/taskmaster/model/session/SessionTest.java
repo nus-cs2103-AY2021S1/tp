@@ -22,18 +22,18 @@ import seedu.taskmaster.testutil.TypicalStudents;
 
 public class SessionTest {
 
-    private List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
-    private Student firstStudent = typicalStudents.get(INDEX_FIRST_STUDENT.getZeroBased());
-    private Student lastStudent = typicalStudents.get(typicalStudents.size() - 1);
+    private final List<Student> typicalStudents = TypicalStudents.getTypicalStudents();
+    private final Student firstStudent = typicalStudents.get(INDEX_FIRST_STUDENT.getZeroBased());
+    private final Student lastStudent = typicalStudents.get(typicalStudents.size() - 1);
 
-    private StudentRecordList typicalClearStudentRecordList = StudentRecordListManager.of(typicalStudents);
+    private final StudentRecordList typicalClearStudentRecordList = StudentRecordListManager.of(typicalStudents);
 
-    private Session typicalSessionByStudentList = new Session(
+    private final Session typicalSessionByStudentList = new Session(
             new SessionName("Typical Session"),
             new SessionDateTime(LocalDateTime.of(2020, 11, 1, 10, 30)),
             typicalStudents);
 
-    private Session typicalSessionByStudentRecordList = new Session(
+    private final Session typicalSessionByStudentRecordList = new Session(
             new SessionName("Typical Session"),
             new SessionDateTime(LocalDateTime.of(2020, 11, 1, 10, 30)),
             typicalClearStudentRecordList);
