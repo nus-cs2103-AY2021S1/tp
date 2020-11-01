@@ -472,7 +472,9 @@ This section lists some of the frequently asked questions.
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
 ## Command summary
-If you need a quick reference guide, the following table should help.
+If you need a quick reference guide, the following tables should help.
+
+**Basic commands**
 
 Action | Format, Examples
 --------|------------------
@@ -484,6 +486,11 @@ Action | Format, Examples
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
+
+**Advanced commands**
+
+Action | Format, Examples
+--------|------------------
 **Append** | `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `append 1307 f/1900`
 **Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
 **Find** | `find KEYWORD [MORE KEYWORDS]…` <br> e.g. `find Ahmeng Buttercup Coco`
