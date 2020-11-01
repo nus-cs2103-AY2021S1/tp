@@ -9,12 +9,12 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 * Table of Contents
     - Quick start
     - Features
-        - Viewing help: `help`
         - Adding a flashcard: `add`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
         - Favourite a flashcard : `fav`
         - Unfavourite a flashcard: `unfav`
+        - Viewing help: `help`
         - Find flashcards: `find`
         - Listing all flashcards: `list`
         - Review all flashcards : `review`
@@ -93,12 +93,6 @@ must be specified exactly.
   e.g `<success|reviewed>` can be used as `success` or `reviewed` but not both.
 
 </div>
-
-### Viewing help : `help`
-
-Opens a window with a link that directs you to our user guide.
-
-Format: `help`
 
 ### Adding a flashcard : `add`
 
@@ -210,6 +204,11 @@ Examples:
 * `find general important` 
 * `find GENERAL object`
 
+### Viewing help : `help`
+
+Opens a window with a link that directs you to our user guide.
+
+Format: `help`
 
 ### Listing all flashcards : `list`
 
