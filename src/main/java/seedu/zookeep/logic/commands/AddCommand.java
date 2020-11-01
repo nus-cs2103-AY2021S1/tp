@@ -24,7 +24,7 @@ public class AddCommand extends Command {
             + PREFIX_ID + "ID "
             + PREFIX_SPECIES + "SPECIES "
             + "[" + PREFIX_MEDICAL_CONDITION + "MEDICAL CONDITION] "
-            + "[" + PREFIX_FEED_TIME + "FEEDING TIME]\n"
+            + "[" + PREFIX_FEED_TIME + "FEED TIME]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Thomas "
             + PREFIX_ID + "0000237 "
