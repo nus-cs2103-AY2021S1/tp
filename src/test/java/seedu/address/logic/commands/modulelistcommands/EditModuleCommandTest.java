@@ -9,9 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS20
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CORE_MODULE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2030;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;

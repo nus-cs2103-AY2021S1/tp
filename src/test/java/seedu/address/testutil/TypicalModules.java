@@ -30,7 +30,6 @@ public class TypicalModules {
         .withZoomLink(new ModuleLesson("Lecture"), "https://nus-sg.zoom.us/CS1101S").build();
     public static final Module IS1103 = new ModuleBuilder().withName("IS1103")
         .withZoomLink(new ModuleLesson("Lecture"), "https://nus-sg.zoom.us/IS1103").build();
-
     // Manually added
     public static final Module CS1231S = new ModuleBuilder().withName("CS1231S")
         .withZoomLink(new ModuleLesson("Lecture"), "https://nus-sg.zoom.us/CS1231S").build();
@@ -43,7 +42,6 @@ public class TypicalModules {
     public static final Module ES2660 = new ModuleBuilder().withName(VALID_MODULENAME_ES2660)
         .withZoomLink(new ModuleLesson(VALID_MODULELESSONTYPE_ES2660), VALID_ZOOMLINK_ES2660).build();
     private TypicalModules() {} //prevents instantiation
-
     /**
      * Returns an {@code ModuleList} with all the typical modules.
      */
