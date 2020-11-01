@@ -12,6 +12,7 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 1215;
     private static final double DEFAULT_WIDTH = 990;
+    private static final double MINIMUM_WIDTH = 920;
 
     private final double windowWidth;
     private final double windowHeight;
@@ -33,6 +34,10 @@ public class GuiSettings implements Serializable {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
         windowCoordinates = new Point(xPosition, yPosition);
+    }
+
+    public static double getMinimumWidth() {
+        return MINIMUM_WIDTH;
     }
 
     public double getWindowWidth() {
