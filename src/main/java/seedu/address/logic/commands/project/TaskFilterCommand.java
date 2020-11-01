@@ -25,7 +25,7 @@ public class TaskFilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Filter and show tasks with given predicate\n"
+        + ": Filters and shows tasks with given predicate\n"
         + "Parameters: ("
         + PREFIX_TASK_ASSIGNEE + "ASSIGNEE GITHUB USERNAME)||("
         + PREFIX_TASK_DEADLINE + "DEADLINE)||("
