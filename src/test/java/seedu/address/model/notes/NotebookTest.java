@@ -76,8 +76,8 @@ public class NotebookTest {
 
     @Test
     public void getNoteList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> notebook.getNotesList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                notebook.getNotesList().remove(0));
     }
 
     /**
