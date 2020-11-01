@@ -474,7 +474,7 @@ This section lists some of the frequently asked questions.
 ## Command summary
 If you need a quick reference guide, the following tables should help.
 
-Basic commands
+**Basic commands**
 
 Action | Format, Examples
 --------|------------------
@@ -487,7 +487,7 @@ Action | Format, Examples
 **Undo** | `undo`
 **Redo** | `redo`
 
-Advanced commands
+**Advanced commands**
 
 Action | Format, Examples
 --------|------------------
