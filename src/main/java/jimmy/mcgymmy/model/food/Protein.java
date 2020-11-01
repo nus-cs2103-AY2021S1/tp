@@ -5,8 +5,7 @@ package jimmy.mcgymmy.model.food;
  */
 public class Protein extends Macronutrient {
     public static final int MULTIPLIER = 4;
-    public static final String MESSAGE_CONSTRAINTS =
-            "Protein " + Macronutrient.MESSAGE_CONSTRAINTS;
+    public static final String MESSAGE_CONSTRAINTS = "Protein" + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * @param amount A valid amount.
