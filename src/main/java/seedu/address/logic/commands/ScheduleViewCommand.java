@@ -1,10 +1,9 @@
-package seedu.address.logic.commands.schedule;
+package seedu.address.logic.commands;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDateTime;
 
-import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.schedule.ScheduleViewMode;
@@ -12,6 +11,7 @@ import seedu.address.model.schedule.ScheduleViewMode;
 public class ScheduleViewCommand extends ScheduleCommand {
     public static final String COMMAND_WORD = "schedule";
     public static final String MESSAGE_INVALID_VIEW_MODE = "invalid view mode!";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "Date should be in the format yyyy-mm-dd";
     public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
             + "mode/[weekly / daily]\n"
             + "date/[yyyy-mm-dd]\n"

@@ -1,10 +1,12 @@
-package seedu.address.logic.commands.schedule;
+package seedu.address.logic.commands;
 
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandTestUtil;
+import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.schedule.ScheduleViewMode;

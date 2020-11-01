@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.SCHEDULE_COMMAND_PREFIXES;
 
 import java.time.LocalDateTime;
 
-import seedu.address.logic.commands.schedule.ScheduleCommand;
-import seedu.address.logic.commands.schedule.ScheduleViewCommand;
+import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.schedule.ScheduleViewMode;
 

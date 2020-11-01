@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddExamCommand;
-import seedu.address.logic.commands.schedule.ScheduleViewCommand;
+import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
@@ -288,7 +288,7 @@ public class ParserUtil {
         try {
             return LocalDateTime.parse(dateToViewSchedule, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new ParseException(e.getMessage());
+            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE_FORMAT);
         }
     }
 

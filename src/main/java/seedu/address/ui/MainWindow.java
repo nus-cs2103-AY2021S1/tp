@@ -180,7 +180,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleCalendar() {
-        schedulePanel.updateSchedule();
+        schedulePanel = new SchedulePanel(logic.getVEventList());
+        personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
         if (logic.getScheduleViewMode().equals(ScheduleViewMode.WEEKLY)) {
             schedulePanel.setWeekView();
         }
@@ -236,8 +237,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             // closes schedule if other command is called
-            schedulePanel.getRoot().toBack();
-
+            closeSchedule();
 
             if (commandResult.isToggleStudentCard()) {
                 handleAcademicPanel();
