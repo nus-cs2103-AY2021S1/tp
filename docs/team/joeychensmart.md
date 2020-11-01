@@ -43,15 +43,16 @@ Given below are my contributions to the project.
   * Credits: The idea, design and implementation were all carried out by me.
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=joeychensmart&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=joeychensmart&tabRepo=AY2021S1-CS2103T-W17-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+TODO
 
-* **Project management**:
+* **Project management**: TODO
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
-* **Enhancements to existing features**:
+* **Enhancements to existing features**: TODO
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
   * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
-* **Documentation**:
+* **Documentation**: TODO
   * User Guide:
     * Add documentation for the features `delete` and `find` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
@@ -59,13 +60,12 @@ Given below are my contributions to the project.
     * Added implementation details of the `delete` feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#49](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/49), [\#53](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/53),
+  [\#56](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/56), [\#97](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/97), 
+  [\#104](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/104), [\#105](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/105), 
+  [\#106](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/106)
+  * Contributed to forum discussions: [Discussion on CI](https://github.com/nus-cs2103-AY2021S1/forum/issues/264)
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/JoeyChenSmart/ped/issues/1), [2](https://github.com/JoeyChenSmart/ped/issues/2), [3](https://github.com/JoeyChenSmart/ped/issues/3), [4](https://github.com/JoeyChenSmart/ped/issues/4))
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * Integrated a third party library [Apache commons-cli](https://github.com/apache/commons-cli) to the project ([\#39](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/39))
