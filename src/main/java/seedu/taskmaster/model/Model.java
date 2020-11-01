@@ -137,9 +137,9 @@ public interface Model {
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
 
     /**
-     * Marks the attendances of all {@code students} with the given {@code attendanceType}
+     * Marks the attendances of all {@code studentRecords} with the given {@code attendanceType}
      */
-    void markAllStudents(List<Student> students, AttendanceType attendanceType);
+    void markAllStudentRecords(List<StudentRecord> studentRecords, AttendanceType attendanceType);
 
     /**
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
