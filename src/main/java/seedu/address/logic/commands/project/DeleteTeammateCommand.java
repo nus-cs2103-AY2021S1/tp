@@ -57,7 +57,7 @@ public class DeleteTeammateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteTeammateCommand // instanceof handles nulls
-            && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex)); // state check
+            || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
+            && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
     }
 }
