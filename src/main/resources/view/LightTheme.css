@@ -39,8 +39,8 @@
 
 .tab-pane .tab {
     -fx-background-color: #e6e6e6;
-    -fx-padding: 0 10 0 10;
-    -fx-border-width: 0 0 0 0;
+    -fx-padding: 4 10 5 10;
+    -fx-border-color: #c2c2c2 #c2c2c2 #c2c2c2;
     -fx-border-radius: 5 5 0 0;
 }
 
@@ -52,21 +52,25 @@
 }
 
 .tab .tab-label {
-    -fx-alignment: BOTTOM;
     -fx-text-fill: #828282;
     -fx-font-size: 19px;
     -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI";
 }
 
 .tab:selected .tab-label {
-    -fx-alignment: BOTTOM;
-    -fx-text-fill: #ffffff;
+    -fx-alignment: CENTER;
+    -fx-text-fill: #FFFFFF;
 }
 
 .tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
      -fx-border-style: segments(0.166667em, 0.166667em);
      -fx-border-width: 1;
      -fx-border-color: transparent transparent transparent #4d4d4d;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
 }
 
 .table-view {
@@ -347,14 +351,21 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+.pane-with-border-chart {
+     -fx-background-color: derive(#F1F1F1, 0%);
+     -fx-border-color: derive(#F1F1F1, 0%);
+     -fx-border-top-width: 0px;
+}
+
 .chart {
-    -fx-padding: 0 5 20 5;
+    -fx-padding: 0 5 0 5;
     -fx-font-family: "Quicksand", Aileron, Arial, sans-serif;
     -fx-background-color: #F1F1F1;
+     -fx-alignment: center;
 }
 
 .chart-content {
-    -fx-padding: 0 5 20 5;
+    -fx-padding: 0 5 0 5;
 }
 
 .chart-pie-label {
@@ -372,7 +383,7 @@
 }
 
 .chart-title {
-    -fx-padding: 30 0 0 0;
+    -fx-padding: 15 0 0 0;
     -fx-font-size: 25;
     -fx-text-fill: #000000;
     -fx-underline: true;

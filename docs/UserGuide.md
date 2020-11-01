@@ -42,7 +42,8 @@ To get started using Warenager,
 Term | Definition
 --------|------------------
 **Parameters** | Parameters are additional fields to key in during user input. e.g. `q/<source of stock>`, `n/<name>`
-**CSV File** | Comma-separated values File. It contains data separated by commas.
+**CSV File** | Comma-Separated Values File. It contains data separated by commas.
+**JSON File** | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Labels
@@ -75,7 +76,9 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * Viewing all notes of a stock
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
 * **Print** to generate file for printing of stock list.
-* **Storage** into csv and json files.
+* **Clear** to clear **all** existing data in Warenager.
+* **Tab** to toggle between tabs in Warenager.
+* **Storage** into CSV and JSON files.
 
 * Upon start up of the Warenager application, stocks are by default displayed
 in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks
@@ -151,6 +154,8 @@ Action | Format, Examples
 **Bookmark** | `bookmark sn/<serial number>...` <br> e.g. `bookmark sn/China3`
 **Unbookmark** | `unbookmark sn/<serial number>...` <br> e.g. `unbookmark sn/China3`
 **Help** | `help`
+**Clear**| `clear`
+**Tab** | `tab`
 **Exit** | `exit`
 
 --------------------------------------------------------------------------------------------------------------------
@@ -230,14 +235,54 @@ Deletes the stock(s) using the stock's serial number from the inventory. Multipl
 <h4>Format</h4>
 
 ```
-delete sn/<serial number>...
+delete sn/<serial number> [sn/<serial number>]...
 ```
 
 <h4>Examples</h4>
 
 ```
-delete sn/Fairprice1 sn/Ntuc1
+delete sn/courts1 sn/courts2
 ```
+
+<h4>Below is a guided example for deleting stocks:</h4>
+Before you start any deletion, make sure to use the command `list lt/all` to list all
+the stocks you have in Warenager. 
+![delete_step1](images/delete/delete_step1.png)
+
+Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
+A valid delete input would be `delete sn/courts2`.
+
+**Before input**:
+
+![delete_step2](images/delete/delete_step2.png)
+
+
+**After input**:
+
+![delete_step3](images/delete/delete_step3.png)
+
+Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
+and `COURTS4`. It can be done by chaining the serial numbers when deleting.<br>
+A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
+
+**Before input**:
+
+![delete_step4](images/delete/delete_step4.png)
+
+
+**After input**:
+
+![delete_step5](images/delete/delete_step5.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**
+Stocks that do not exist in Warenager cannot be deleted. Using the same input in the previous step,
+`delete sn/courts3 sn/courts`, you should expect the following:
+
+![delete_step6](images/delete/delete_step6.png)
+</div>
+
 
 ### Find stocks from inventory: `find`
 
@@ -517,17 +562,45 @@ stats st/<statistics type>
 <h4>Examples</h4>
 
 ```
-stats st/source
+stats st/source, stats st/source-qd-abc ("abc" is an existing source company)
 ```
 
-![SourceStatistics](images/SourceStatistics.png)
+<h4>Below is a guided example for displaying statistics:</h4>
 
-```
-stats st/source-qd-abc
-```
-(`abc` exists with the shown items) <br>
+Start Warenager. Suppose you want to display source statistics. After the input, you should notice that
+the title in the statistics window as highlighted corresponds to the type of statistics shown.<br>
+The valid statistics input would be `stats st/source`.
 
-![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
+**Before input**:
+
+![statistics_step2](images/statistics/statistics_step2.png)
+
+
+**After input**:
+
+![statistics_step3](images/statistics/statistics_step3.png)
+
+Now suppose you want to display source statistics for the source company `courts`. After the input, you
+should notice that the title in the statistics window as highlighted now corresponds to the source company `courts`.<br>
+The valid statistics input would be `stats st/source-qd-courts`.
+
+**Before input**:
+
+![statistics_step4](images/statistics/statistics_step4.png)
+
+
+**After input**:
+
+![statistics_step5](images/statistics/statistics_step5.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**
+If Warenager is first started up, you should expect the following in the **Statistics** tab,
+and this is **intended**:
+
+![statistics_step7](images/statistics/statistics_step7.png)
+</div>
 
 ### Bookmarking stocks in the list: `bookmark`
 Bookmarks the desired stock(s). 
@@ -662,10 +735,10 @@ Warenager will suggest:
 list lt/all
 ```
 
-### Generates a csv file that contains all stocks: `print`
-Generates a csv file that contains all stocks. Csv file will be named according to the user input, and the file name
+### Generates a CSV file that contains all stocks: `print`
+Generates a CSV file that contains all stocks. Csv file will be named according to the user input, and the file name
 can only contain alphanumeric characters. Users may want to sort the stocks using `sort` command
-to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
+to sort the stock in their preferred order before converting it into the CSV file. The CSV file is saved
 to `[root directory]/data/userInput.csv` after successfully executing the command.
 
 <h4>Format</h4>
@@ -694,13 +767,51 @@ the latest update time for the `stocks.csv`.
 
 ![stockCsvExample3](images/stockCsvExample3.png)
 
+### Clearing all data in Warenager: `clear`
+Clears all the existing data in Warenager.
+
+<h4>Format</h4>
+
+```
+clear
+```
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning: Warning for clearing data**<br>
+`clear` is an irreversible process. Do backup the data it if might be needed again.
+
+</div>
+
+<h4>Below is the expected outcome for clearing Warenager:</h4>
+
+**Before input**:
+
+![clear_step1](images/clear/clear_step1.png)
+
+
+**After input**:
+
+![clear_step2](images/clear/clear_step2.png)
+
+
+
+### Toggling tabs: `tab`
+Toggles between the tabs in Warenager.
+
+<h4>Format</h4>
+
+```
+tab
+```
+
 ### Saving data
-Data (all stocks in inventory in json) is automatically saved to
-`[root directory]/data/stockbook.json` when any of these commands is executed:
+Data (all stocks in inventory in JSON) is automatically saved to
+`[root directory]/data/stockbook.json` when any of these commands are executed:
 * add
 * delete
 * note
 * update
+* clear
 
 The set of used serial number sources is automatically saved to
 `[root directory]/data/serialnumbers.json` when any of these commands is executed:
@@ -722,7 +833,7 @@ exit
 **A**: Yes. Warenager is supported by Windows, Mac and Linux.
 
 **Q**: Can I use Warenager on another device?<br>
-**A**: Yes. Simply transfer the data files under `/data` and copy over to the same directory `/data` in the Warenager of your
+**A**: Yes. Simply transfer the JSON data files under `/data` and copy over to the same directory `/data` in the Warenager of your
 other device.
 
 --------------------------------------------------------------------------------------------------------------------

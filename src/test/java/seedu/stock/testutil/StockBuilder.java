@@ -40,21 +40,23 @@ public class StockBuilder {
         source = new Source(DEFAULT_SOURCE);
         quantity = new Quantity(DEFAULT_QUANTITY, DEFAULT_LOW_QUANTITY);
         location = new Location(DEFAULT_LOCATION);
-        Note note = new Note(DEFAULT_NOTE);
         notes = new ArrayList<>();
-        notes.add(note);
     }
 
     /**
      * Initializes the StockBuilder with the data of {@code stockToCopy}.
      */
     public StockBuilder(Stock stockToCopy) {
-        name = stockToCopy.getName();
-        serialNumber = stockToCopy.getSerialNumber();
-        source = stockToCopy.getSource();
-        quantity = stockToCopy.getQuantity();
-        location = stockToCopy.getLocation();
-        notes = stockToCopy.getNotes();
+        name = new Name(stockToCopy.getName().fullName);
+        serialNumber = new SerialNumber(stockToCopy.getSerialNumber().getSerialNumberAsString());
+        source = new Source(stockToCopy.getSource().value);
+        quantity = new Quantity(stockToCopy.getQuantity().quantity);
+        location = new Location(stockToCopy.getLocation().value);
+        List<Note> noteListCopy = new ArrayList<>();
+        for (Note note : stockToCopy.getNotes()) {
+            noteListCopy.add(note);
+        }
+        notes = noteListCopy;
     }
 
     /**
@@ -121,8 +123,38 @@ public class StockBuilder {
      * Adds the {@code Note} of the {@code Stock} that we are building.
      */
     public StockBuilder addNote(String noteText) {
+        List<Note> updatedNotesList = new ArrayList<>();
         Note noteToAdd = new Note(noteText);
-        this.notes.add(noteToAdd);
+        for (Note note : this.notes) {
+            updatedNotesList.add(note);
+        }
+        updatedNotesList.add(noteToAdd);
+        this.notes = updatedNotesList;
+        return this;
+    }
+
+    /**
+     * Removes notes from stock builder.
+     * @return StockBuilder without notes.
+     */
+    public StockBuilder withoutNotes() {
+        List<Note> noNotes = new ArrayList<>();
+        this.notes = noNotes;
+        return this;
+    }
+
+    /**
+     * Delete a note from stock builder.
+     * @return StockBuilder without notes.
+     */
+    public StockBuilder deleteNote(int index) {
+        assert(index > 0);
+        List<Note> noteList = new ArrayList<>();
+        for (Note note : this.notes) {
+            noteList.add(note);
+        }
+        noteList.remove(index - 1);
+        this.notes = noteList;
         return this;
     }
 
