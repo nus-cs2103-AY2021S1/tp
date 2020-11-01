@@ -134,6 +134,11 @@ public class AddModuleCommandTest {
         }
 
         @Override
+        public ReadOnlyModuleList getModuleListDisplayed() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasModule(Module person) {
             throw new AssertionError("This method should not be called.");
         }

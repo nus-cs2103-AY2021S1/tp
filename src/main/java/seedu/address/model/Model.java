@@ -67,6 +67,9 @@ public interface Model {
     /** Returns the ModuleList */
     ReadOnlyModuleList getModuleList();
 
+    /** Returns the ModuleList Displayed */
+    ReadOnlyModuleList getModuleListDisplayed();
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in the module list.
      */

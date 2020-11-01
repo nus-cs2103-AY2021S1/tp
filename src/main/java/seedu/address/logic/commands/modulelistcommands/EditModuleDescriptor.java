@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.module.ModularCredits;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradePoint;
@@ -22,7 +23,7 @@ import seedu.address.model.tag.Tag;
 public class EditModuleDescriptor {
     private Set<Tag> tags;
     private ModuleName moduleName;
-    private Map<String, ZoomLink> zoomLinks;
+    private Map<ModuleLesson, ZoomLink> zoomLinks;
     private GradeTracker gradeTracker;
     private ModularCredits modularCredits;
     private GradePoint gradePoint;
@@ -71,7 +72,7 @@ public class EditModuleDescriptor {
      * Sets {@code zoomLinks} to this object's {@code zoomLinks}.
      * A defensive copy of {@code zoomLinks} is used internally.
      */
-    public void setZoomLinks(Map<String, ZoomLink> zoomLinks) {
+    public void setZoomLinks(Map<ModuleLesson, ZoomLink> zoomLinks) {
         this.zoomLinks = (zoomLinks != null) ? new HashMap<>(zoomLinks) : null;
     }
 
@@ -80,7 +81,7 @@ public class EditModuleDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code zoomLinks} is null.
      */
-    public Optional<Map<String, ZoomLink>> getZoomLinks() {
+    public Optional<Map<ModuleLesson, ZoomLink>> getZoomLinks() {
         return (zoomLinks != null) ? Optional.of(Collections.unmodifiableMap(zoomLinks)) : Optional.empty();
     }
 
@@ -136,6 +137,7 @@ public class EditModuleDescriptor {
         return getModuleName().equals(e.getModuleName())
                 && getZoomLinks().equals(e.getZoomLinks())
                 && getGradeTracker().equals(e.getGradeTracker())
-                && getModularCredits().equals(e.getModularCredits());
+                && getModularCredits().equals(e.getModularCredits())
+                && getTags().equals(e.getTags());
     }
 }
