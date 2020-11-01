@@ -9,9 +9,9 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTIO
 import java.util.List;
 import java.util.Optional;
 
-import seedu.stock.commons.core.index.Index;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
+import seedu.stock.model.stock.NoteIndex;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 
@@ -37,22 +37,22 @@ public class NoteDeleteCommand extends Command {
     private static final String MESSAGE_DELETE_NOTE_SUCCESS = "Deleted note(s) from Stock: %1$s";
     private static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND =
             "Stock with given serial number does not exists";
-    private static final String MESSAGE_INVALID_NOTE_INDEX = "Note at index specified is not found.";
+    private static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "Note at index specified is not found.";
     private static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
 
     private final SerialNumber serialNumber;
-    private final Index index;
+    private final NoteIndex noteIndex;
 
     /**
      * Constructs a NoteDeleteCommand
      * @param serialNumber of the stock in the stock book
-     * @param index of note to delete from the stock
+     * @param noteIndex of note to delete from the stock
      */
-    public NoteDeleteCommand(SerialNumber serialNumber, int index) {
-        requireAllNonNull(serialNumber, index);
+    public NoteDeleteCommand(SerialNumber serialNumber, NoteIndex noteIndex) {
+        requireAllNonNull(serialNumber, noteIndex);
 
         this.serialNumber = serialNumber;
-        this.index = Index.fromOneBased(index);
+        this.noteIndex = noteIndex;
     }
 
     /**
@@ -86,11 +86,11 @@ public class NoteDeleteCommand extends Command {
             throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
         }
 
-        if (index.getOneBased() > stockToDeleteNote.get().getNotes().size()) {
-            throw new CommandException(MESSAGE_INVALID_NOTE_INDEX);
+        if (noteIndex.getOneBased() > stockToDeleteNote.get().getNotes().size()) {
+            throw new CommandException(MESSAGE_NOTE_INDEX_NOT_FOUND);
         }
 
-        Stock stockWithDeletedNote = createStockWithDeletedNote(stockToDeleteNote.get(), index);
+        Stock stockWithDeletedNote = createStockWithDeletedNote(stockToDeleteNote.get(), noteIndex);
         model.setStock(stockToDeleteNote.get(), stockWithDeletedNote);
 
         return new CommandResult(generateSuccessMessage(stockWithDeletedNote));
@@ -103,7 +103,7 @@ public class NoteDeleteCommand extends Command {
      * @param index The index of note to delete from stock.
      * @return The stock with updated attributes.
      */
-    private static Stock createStockWithDeletedNote(Stock stockToDeleteNote, Index index) {
+    private static Stock createStockWithDeletedNote(Stock stockToDeleteNote, NoteIndex index) {
         assert stockToDeleteNote != null;
         Stock stockWithDeletedNote = stockToDeleteNote.deleteNote(index);
 
@@ -129,8 +129,8 @@ public class NoteDeleteCommand extends Command {
             return false;
         }
         // state check
-        NoteDeleteCommand otherNoteCommand = (NoteDeleteCommand) other;
-        return serialNumber.equals(otherNoteCommand.serialNumber)
-                && index == otherNoteCommand.index;
+        NoteDeleteCommand otherNoteDeleteCommand = (NoteDeleteCommand) other;
+        return serialNumber.equals(otherNoteDeleteCommand.serialNumber)
+                && noteIndex == otherNoteDeleteCommand.noteIndex;
     }
 }

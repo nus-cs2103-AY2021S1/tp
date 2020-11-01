@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.NoteIndex;
 import seedu.stock.model.stock.SerialNumber;
 
 
@@ -49,7 +50,8 @@ public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_NOTE_INDEX,
                     NoteDeleteCommand.MESSAGE_USAGE));
         }
-        int noteIndex = Integer.parseInt(noteIndexInput);
+
+        NoteIndex noteIndex = ParserUtil.parseNoteIndex(noteIndexInput);
 
         return new NoteDeleteCommand(serialNumber, noteIndex);
     }

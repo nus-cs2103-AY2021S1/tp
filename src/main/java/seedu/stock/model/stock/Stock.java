@@ -153,7 +153,7 @@ public class Stock {
      * @param indexOfNoteToDelete the index of the note to delete
      * @return stock with deleted note
      */
-    public Stock deleteNote(Index indexOfNoteToDelete) {
+    public Stock deleteNote(NoteIndex indexOfNoteToDelete) {
         Name name = this.name;
         SerialNumber serialNumber = this.serialNumber;
         Source source = this.source;
