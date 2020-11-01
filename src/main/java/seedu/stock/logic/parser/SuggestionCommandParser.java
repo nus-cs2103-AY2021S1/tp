@@ -1,5 +1,6 @@
 package seedu.stock.logic.parser;
 
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.BOOKMARK_COMMAND_WORD;
@@ -29,6 +30,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
+import static seedu.stock.model.stock.SerialNumber.isValidSerialNumber;
 
 import java.util.List;
 import java.util.Random;
@@ -57,6 +59,7 @@ import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.SerialNumber;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
@@ -157,6 +160,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             break;
 
         case DeleteCommand.COMMAND_WORD:
+            toBeDisplayed = new StringBuilder();
+            toBeDisplayed.append(MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n" + MESSAGE_SUGGESTION);
             generateDeleteSuggestion(toBeDisplayed, argMultimap);
             break;
 
@@ -450,7 +455,6 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + description);
             }
         }
-
         generateBodyMessage(toBeDisplayed, NoteCommand.MESSAGE_USAGE);
     }
 
@@ -532,9 +536,12 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
             }
             List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
-            for (String serialNumber : keywords) {
+            for (int j = 1; j <= keywords.size(); j++) {
+                String serialNumber = keywords.get(j - 1);
+                boolean isValid = isValidSerialNumber(serialNumber);
                 boolean isEmpty = serialNumber.equals("");
-                String description = isEmpty ? CliSyntax.getDefaultDescription(currentPrefix) : serialNumber;
+                String description = isValid ? serialNumber : isEmpty
+                            ? CliSyntax.getDefaultDescription(currentPrefix) : serialNumber + j;
                 toBeDisplayed.append(" " + currentPrefix + description);
             }
         }
