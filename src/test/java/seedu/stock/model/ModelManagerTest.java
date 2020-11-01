@@ -7,6 +7,7 @@ import static seedu.stock.model.Model.PREDICATE_SHOW_ALL_STOCKS;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
+import static seedu.stock.testutil.TypicalStocks.ORANGE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,6 +33,18 @@ public class ModelManagerTest {
         assertEquals(new StockBook(), new StockBook(modelManager.getStockBook()));
         assertEquals(new SerialNumberSetsBook(),
                 new SerialNumberSetsBook(modelManager.getSerialNumberSetsBook()));
+    }
+
+    @Test
+    public void setStockBook() {
+        StockBook newStockBook = new StockBook();
+        newStockBook.addStock(ORANGE);
+        modelManager.addStock(APPLE);
+        modelManager.addStock(BANANA);
+        modelManager.setStockBook(newStockBook);
+        assertTrue(modelManager.hasStock(ORANGE));
+        assertFalse(modelManager.hasStock(BANANA));
+        assertFalse(modelManager.hasStock(APPLE));
     }
 
     @Test
