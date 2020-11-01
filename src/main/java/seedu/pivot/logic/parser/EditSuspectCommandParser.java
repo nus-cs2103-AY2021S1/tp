@@ -42,7 +42,8 @@ public class EditSuspectCommandParser implements Parser<EditSuspectCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
                 arguments, PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        EditPersonDescriptor editPersonDescriptor = ParserUtil.parseEditedPersonFields(argMultimap);
+        EditPersonDescriptor editPersonDescriptor =
+                ParserUtil.parseEditedPersonFields(argMultimap, EditSuspectCommand.MESSAGE_USAGE);
 
         return new EditSuspectCommand(caseIndex, suspectIndex, editPersonDescriptor);
     }
