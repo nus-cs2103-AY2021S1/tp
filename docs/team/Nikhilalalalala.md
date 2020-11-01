@@ -38,7 +38,6 @@ Enhancements to existing features:
     - Adapt certain section of the codebase to Eva's name
 
 
-
 Documentation:
 - User Guide
     - Added documentation for commands: addstaff addapplication setappstatus
@@ -48,6 +47,7 @@ Documentation:
     - Write about Use Case 
     
 Community:
-- Non trivial Code Reviews here: 
+- Non trivial Code Reviews here: [#51](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/51) , [#63](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/63),
+[#89](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/89), [#57](https://github.com/AY2021S1-CS2103T-W13-1/tp/pull/57)
 
 Tools:
