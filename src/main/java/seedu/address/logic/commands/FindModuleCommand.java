@@ -37,8 +37,7 @@ public class FindModuleCommand extends Command {
         }
         model.updateFilteredModuleList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()),
-                false, false, false, false, true);
+                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
     }
 
     @Override

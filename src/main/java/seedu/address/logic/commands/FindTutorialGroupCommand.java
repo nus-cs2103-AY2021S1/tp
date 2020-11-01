@@ -40,8 +40,7 @@ public class FindTutorialGroupCommand extends Command {
         model.updateFilteredTutorialGroupList(predicate);
         return new CommandResult(
             String.format(Messages.MESSAGE_TUTORIAL_GROUPS_LISTED_OVERVIEW,
-                    model.getFilteredTutorialGroupList().size()),
-                false, false, true, false, false);
+                    model.getFilteredTutorialGroupList().size()));
     }
 
     @Override

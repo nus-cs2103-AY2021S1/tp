@@ -24,8 +24,7 @@ public class ListTutorialGroupCommand extends Command {
         }
         model.updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
         Module mod = model.getCurrentModuleInView();
-        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS, mod),
-                false, false, true, false, false);
+        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS, mod));
     }
 
     @Override

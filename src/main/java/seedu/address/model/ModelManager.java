@@ -184,7 +184,7 @@ public class ModelManager implements Model {
     @Override
     public void addTutorialGroup(TutorialGroup target) {
         moduleList.addTutorialGroup(target, currentModuleInView);
-        filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
+        updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
     }
 
     @Override
@@ -194,8 +194,8 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTutorialGroup(TutorialGroup toCheck) {
-        filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
-        return filteredTutorialGroup.contains(toCheck);
+        requireNonNull(toCheck);
+        return moduleList.getUniqueTutorialGroupList(currentModuleInView).contains(toCheck);
     }
 
     @Override
@@ -255,8 +255,7 @@ public class ModelManager implements Model {
     @Override
     public void addStudent(Student student) {
         moduleList.addStudent(currentModuleInView, currentTgInView, student);
-        filteredStudents =
-                new FilteredList<>(moduleList.getStudentListOfTutorialGroup(currentModuleInView, currentTgInView));
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
