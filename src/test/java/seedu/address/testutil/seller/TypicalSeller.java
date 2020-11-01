@@ -4,8 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,32 +18,24 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
 public class TypicalSeller {
 
     public static final Seller ALICE = new SellerBuilder().withName("Alice Pauline")
-            .withPhone("94351253").withId(1)
-            .withTags("friends").build();
-    public static final Seller BENSON = new SellerBuilder().withName("Benson Meier")
-            .withTags("owesMoney", "friends").withId(2).build();
+            .withPhone("94351253").withId(1).build();
+    public static final Seller BENSON = new SellerBuilder().withName("Benson Meier").withId(2).build();
     public static final Seller CARL = new SellerBuilder().withName("Carl Kurz")
             .withPhone("95352563").withPhone("9482442").withId(3).build();
     public static final Seller DANIEL = new SellerBuilder().withName("Daniel Meier")
-            .withPhone("87652533").withTags("friends").withId(4).build();
+            .withPhone("87652533").withId(4).build();
     public static final Seller ELLE = new SellerBuilder().withName("Elle Meyer")
-            .withPhone("9482224").withId(5)
-            .build();
+            .withPhone("9482224").withId(5).build();
     public static final Seller FIONA = new SellerBuilder().withName("Fiona Kunz")
-            .withPhone("9482427").withId(6)
-            .build();
+            .withPhone("9482427").withId(6).build();
     public static final Seller GEORGE = new SellerBuilder()
-            .withName("George Best").withPhone("9482442")
-            .withId(7)
-            .build();
+            .withName("George Best").withPhone("9482442").withId(7).build();
 
     // Manually added - Seller's details found in {@code CommandTestUtil}
     public static final Seller AMY = new SellerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withTags(VALID_TAG_FRIEND).withId(12)
-            .build();
+            .withId(12).build();
     public static final Seller BOB = new SellerBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withId(13)
-            .build();
+            .withId(13).build();
 
     /**
      * Returns an {@code SellerAddressBook} with all the typical persons.

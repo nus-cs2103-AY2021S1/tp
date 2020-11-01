@@ -53,11 +53,9 @@ public class SellerCommandTestUtil {
 
     static {
         DESC_AMY = new EditSellerDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_SELLER)
-                .withId(VALID_ID_SELLER).build();
+                .withPhone(VALID_PHONE_AMY).withId(VALID_ID_SELLER).build();
         DESC_BOB = new EditSellerDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_SELLER)
-                .withId(VALID_ID_SELLER).build();
+                .withPhone(VALID_PHONE_BOB).withId(VALID_ID_SELLER).build();
     }
 
     /**

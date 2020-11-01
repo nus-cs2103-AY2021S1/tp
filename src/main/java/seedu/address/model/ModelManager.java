@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.bidcommands.AddBidCommand.MESSAGE_INV
 import static seedu.address.model.price.Price.isValidPrice;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -42,6 +43,7 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private static final BidComparator bidComparator = new BidComparator();
 
@@ -434,7 +436,6 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         meetingBook.setMeeting(target, editedMeeting);
     }
 
@@ -491,8 +492,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBidder(Bidder target) {
-        bidBook.removeByBidderId(target.getId());
-        meetingBook.removeMeetingByBidderId(target.getId());
+        bidBook.removeByBidderId((BidderId) target.getId());
+        meetingBook.removeMeetingByBidderId((BidderId) target.getId());
         bidderAddressBook.removeBidder(target);
     }
 
@@ -556,7 +557,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSeller(Seller target) {
-        propertyBook.removePropertyBySellerId(target.getId());
+        ArrayList<Property> propertiesToRemove = propertyBook.getPropertyIdBySellerId((SellerId) target.getId());
+        propertiesToRemove.forEach(this::deleteProperty);
+        propertyBook.removePropertyBySellerId((SellerId) target.getId());
         sellerAddressBook.removeSeller(target);
     }
 

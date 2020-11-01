@@ -3,14 +3,10 @@ package seedu.address.logic.commands.sellercommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SELLERS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -36,7 +32,6 @@ public class EditSellerCommand extends Command {
             + "\n\nParameters: \nINDEX (must be a positive integer) "
             + "\n[" + PREFIX_NAME + "NAME] "
             + "\n[" + PREFIX_PHONE + "PHONE] "
-            + "\n[" + PREFIX_TAG + "TAG]...\n"
             + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
 
@@ -88,9 +83,8 @@ public class EditSellerCommand extends Command {
         assert sellerToEdit != null;
         Name updatedName = editSellerDescriptor.getName().orElse(sellerToEdit.getName());
         Phone updatedPhone = editSellerDescriptor.getPhone().orElse(sellerToEdit.getPhone());
-        Set<Tag> updatedTags = editSellerDescriptor.getTags().orElse(sellerToEdit.getTags());
-        SellerId updatedId = editSellerDescriptor.getId().orElse(sellerToEdit.getId());
-        return new Seller(updatedName, updatedPhone, updatedTags, updatedId);
+        SellerId updatedId = editSellerDescriptor.getId().orElse((SellerId) sellerToEdit.getId());
+        return new Seller(updatedName, updatedPhone, updatedId);
     }
 
 
@@ -121,19 +115,19 @@ public class EditSellerCommand extends Command {
 
         private Name name;
         private Phone phone;
-        private Set<Tag> tags;
+        private Tag tag;
         private SellerId id;
 
         public EditSellerDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code tag} is used internally.
          */
         public EditSellerDescriptor(EditSellerDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
             setId(toCopy.id);
         }
 
@@ -141,7 +135,7 @@ public class EditSellerCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, tags, id);
+            return CollectionUtil.isAnyNonNull(name, phone, tag, id);
         }
 
         public void setName(Name name) {
@@ -160,21 +154,12 @@ public class EditSellerCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
         }
 
         public void setId(SellerId id) {
@@ -202,7 +187,7 @@ public class EditSellerCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getTags().equals(e.getTags())
+                    && getTag().equals(e.getTag())
                     && getId().equals(e.getId());
         }
     }

@@ -2,7 +2,6 @@ package seedu.address.logic.commands.bidder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.VALID_NAME_BOB;
@@ -65,11 +64,11 @@ public class EditBidderCommandTest {
         Bidder lastBidder = model.getFilteredBidderList().get(indexLastBidder.getZeroBased());
 
         BidderBuilder bidderInList = new BidderBuilder(lastBidder);
-        Bidder editedBidder = bidderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+
+        Bidder editedBidder = bidderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).build();
 
         EditBidderCommand editBidderCommand = new EditBidderCommand(indexLastBidder, bidderDescriptor);
 
@@ -169,6 +168,8 @@ public class EditBidderCommandTest {
         // same values -> returns true
         EditBidderDescriptor copyDescriptor = new EditBidderDescriptor(DESC_AMY);
         EditBidderCommand commandWithSameValues = new EditBidderCommand(INDEX_FIRST_PERSON, copyDescriptor);
+
+        System.out.print((standardBidderCommand.equals(commandWithSameValues)));
         assertTrue(standardBidderCommand.equals(commandWithSameValues));
 
         // same object -> returns true

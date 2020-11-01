@@ -59,7 +59,7 @@ public class UniqueBidderList implements Iterable<Bidder> {
         if (internalList.size() == 0) {
             return new BidderId(0);
         }
-        return this.internalList.get(internalList.size() - 1).getId();
+        return (BidderId) this.internalList.get(internalList.size() - 1).getId();
     }
 
     /**

@@ -3,14 +3,10 @@ package seedu.address.logic.commands.biddercommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BIDDERS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -36,7 +32,6 @@ public class EditBidderCommand extends Command {
             + "\n\nParameters: \nINDEX (must be a positive integer) "
             + "\n[" + PREFIX_NAME + "NAME] "
             + "\n[" + PREFIX_PHONE + "PHONE] "
-            + "\n[" + PREFIX_TAG + "TAG]...\n"
             + "\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 ";
 
@@ -88,11 +83,9 @@ public class EditBidderCommand extends Command {
         assert bidderToEdit != null;
         Name updatedName = editBidderDescriptor.getName().orElse(bidderToEdit.getName());
         Phone updatedPhone = editBidderDescriptor.getPhone().orElse(bidderToEdit.getPhone());
-        Set<Tag> updatedTags = editBidderDescriptor.getTags().orElse(bidderToEdit.getTags());
-        BidderId updatedBidderId = editBidderDescriptor.getId().orElse(bidderToEdit.getId());
-        return new Bidder(updatedName, updatedPhone, updatedTags, updatedBidderId);
+        BidderId updatedBidderId = editBidderDescriptor.getId().orElse((BidderId) bidderToEdit.getId());
+        return new Bidder(updatedName, updatedPhone, updatedBidderId);
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -121,7 +114,7 @@ public class EditBidderCommand extends Command {
 
         private Name name;
         private Phone phone;
-        private Set<Tag> tags;
+        private Tag tag;
         private BidderId id;
 
         public EditBidderDescriptor() {}
@@ -133,7 +126,7 @@ public class EditBidderCommand extends Command {
         public EditBidderDescriptor(EditBidderDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
-            setTags(toCopy.tags);
+            setTag(toCopy.tag);
             setBidderId(toCopy.id);
         }
 
@@ -141,7 +134,7 @@ public class EditBidderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, tags, id);
+            return CollectionUtil.isAnyNonNull(name, phone, tag, id);
         }
 
         public void setName(Name name) {
@@ -161,11 +154,11 @@ public class EditBidderCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code tag} to this object's {@code tag}.
+         * A defensive copy of {@code tag} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTag(Tag tag) {
+            this.tag = tag;
         }
 
         /**
@@ -173,8 +166,8 @@ public class EditBidderCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
         }
 
         public void setBidderId(BidderId id) {
@@ -202,7 +195,7 @@ public class EditBidderCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
-                    && getTags().equals(e.getTags())
+                    && getTag().equals(e.getTag())
                     && getId().equals(e.getId());
         }
     }

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.bidder.TypicalBidder.ALICE;
 import static seedu.address.testutil.bidder.TypicalBidder.BOB;
 
@@ -17,36 +15,28 @@ import seedu.address.testutil.bidder.BidderBuilder;
 public class BidderTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Bidder bidder = new BidderBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> bidder.getTags().remove(0));
-    }
-
-    @Test
-    public void isSamePerson() {
+    public void isSameBidder() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameBidder(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameBidder(null));
 
         // different phone and email -> returns false
         Bidder editedAlice = new BidderBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameBidder(editedAlice));
 
         // different name -> returns false
         editedAlice = new BidderBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameBidder(editedAlice));
 
         // same name, same phone, different attributes -> returns true
-        editedAlice = new BidderBuilder(ALICE)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        editedAlice = new BidderBuilder(ALICE).build();
+        assertTrue(ALICE.isSameBidder(editedAlice));
 
         // same name, same phone, different attributes -> returns true
-        editedAlice = new BidderBuilder(ALICE)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        editedAlice = new BidderBuilder(ALICE).build();
+        assertTrue(ALICE.isSameBidder(editedAlice));
     }
 
     @Test
@@ -75,8 +65,5 @@ public class BidderTest {
         editedAlice = new BidderBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns false
-        editedAlice = new BidderBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
     }
 }

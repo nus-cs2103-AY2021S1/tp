@@ -1,14 +1,9 @@
 package seedu.address.testutil.seller;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.seller.Seller;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -21,7 +16,6 @@ public class SellerBuilder {
 
     private Name name;
     private Phone phone;
-    private Set<Tag> tags;
     private SellerId id;
 
     /**
@@ -30,18 +24,16 @@ public class SellerBuilder {
     public SellerBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        tags = new HashSet<>();
         id = DEFAULT_SELLER_ID;
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PersonBuilder with the data of {@code sellerToCopy}.
      */
-    public SellerBuilder(Seller bidderToCopy) {
-        name = bidderToCopy.getName();
-        phone = bidderToCopy.getPhone();
-        tags = new HashSet<>(bidderToCopy.getTags());
-        id = bidderToCopy.getId();
+    public SellerBuilder(Seller sellerToCopy) {
+        name = sellerToCopy.getName();
+        phone = sellerToCopy.getPhone();
+        id = (SellerId) sellerToCopy.getId();
     }
 
     /**
@@ -49,14 +41,6 @@ public class SellerBuilder {
      */
     public SellerBuilder withName(String name) {
         this.name = new Name(name);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Seller} that we are building.
-     */
-    public SellerBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -77,7 +61,7 @@ public class SellerBuilder {
     }
 
     public Seller build() {
-        return new Seller(name, phone, tags, id);
+        return new Seller(name, phone, id);
     }
 
 }

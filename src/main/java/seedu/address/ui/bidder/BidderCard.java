@@ -1,7 +1,5 @@
 package seedu.address.ui.bidder;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -50,9 +48,7 @@ public class BidderCard extends UiPart<Region> {
         name.setText("Name: " + bidder.getName().fullName);
         phone.setText("Phone: " + bidder.getPhone().value);
         bidderId.setText("Bidder Id: " + bidder.getId());
-        bidder.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().add(new Label(bidder.getTag().tagName));
     }
 
     @Override

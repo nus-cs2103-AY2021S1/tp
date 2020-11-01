@@ -126,6 +126,7 @@ public class UniquePropertyList implements Iterable<Property> {
      */
     public void removeBySellerId(SellerId sellerId) {
         internalList.removeIf(property -> property.getSellerId().equals(sellerId));
+
     }
 
     /**

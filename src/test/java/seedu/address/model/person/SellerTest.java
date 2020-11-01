@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.seller.TypicalSeller.ALICE;
 import static seedu.address.testutil.seller.TypicalSeller.BOB;
 
@@ -16,11 +14,6 @@ import seedu.address.testutil.seller.SellerBuilder;
 
 public class SellerTest {
 
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Seller person = new SellerBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> person.getTags().remove(0));
-    }
 
     @Test
     public void isSamePerson() {
@@ -39,13 +32,11 @@ public class SellerTest {
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // same name, same phone, different attributes -> returns true
-        editedAlice = new SellerBuilder(ALICE)
-                .withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new SellerBuilder(ALICE).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, same phone, different attributes -> returns true
-        editedAlice = new SellerBuilder(ALICE)
-                .withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new SellerBuilder(ALICE).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
     }
 
@@ -73,10 +64,6 @@ public class SellerTest {
 
         // different phone -> returns false
         editedAlice = new SellerBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new SellerBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

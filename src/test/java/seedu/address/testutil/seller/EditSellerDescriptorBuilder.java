@@ -1,15 +1,10 @@
 package seedu.address.testutil.seller;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.sellercommands.EditSellerCommand.EditSellerDescriptor;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.seller.Seller;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditSellerDescriptor objects.
@@ -33,8 +28,8 @@ public class EditSellerDescriptorBuilder {
         descriptor = new EditSellerDescriptor();
         descriptor.setName(seller.getName());
         descriptor.setPhone(seller.getPhone());
-        descriptor.setTags(seller.getTags());
-        descriptor.setId(seller.getId());
+        descriptor.setTag(seller.getTag());
+        descriptor.setId((SellerId) seller.getId());
     }
 
     /**
@@ -50,16 +45,6 @@ public class EditSellerDescriptorBuilder {
      */
     public EditSellerDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditSellerDescriptor}
-     * that we are building.
-     */
-    public EditSellerDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
         return this;
     }
 

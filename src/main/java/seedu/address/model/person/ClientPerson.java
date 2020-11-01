@@ -2,8 +2,6 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Set;
-
 import seedu.address.model.id.Id;
 import seedu.address.model.tag.Tag;
 
@@ -20,11 +18,11 @@ public class ClientPerson extends Person {
      *
      * @param name name of client.
      * @param phone phone number of client.
-     * @param tags tags.
+     * @param tag tag.
      * @param id identifier.
      */
-    protected ClientPerson(Name name, Phone phone, Set<Tag> tags, Id id) {
-        super(name, phone, tags);
+    protected ClientPerson(Name name, Phone phone, Tag tag, Id id) {
+        super(name, phone, tag);
         requireAllNonNull(id);
         this.clientId = id;
     }
@@ -46,8 +44,8 @@ public class ClientPerson extends Person {
                 .append(getPhone())
                 .append("\nId: ")
                 .append(getId())
-                .append("\nTags: ");
-        getTags().forEach(builder::append);
+                .append("\nTags: ")
+                .append(getId());
         return builder.toString();
     }
 }

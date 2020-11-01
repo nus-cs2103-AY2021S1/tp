@@ -2,7 +2,6 @@ package seedu.address.logic.commands.seller;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.seller.SellerCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.seller.SellerCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.seller.SellerCommandTestUtil.VALID_NAME_BOB;
@@ -66,10 +65,10 @@ public class EditSellerCommandTest {
 
         SellerBuilder sellerInList = new SellerBuilder(lastSeller);
         Seller editedSeller = sellerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .build();
 
         EditSellerDescriptor sellerDescriptor = new EditSellerDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).build();
 
         EditSellerCommand editSellerCommand = new EditSellerCommand(indexLastSeller, sellerDescriptor);
 
