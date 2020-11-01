@@ -25,6 +25,12 @@ public interface PropertyModel {
     boolean hasProperty(Property property);
 
     /**
+     * Returns true if a property with the same identity as {@code property} exists in the property book,
+     * except if has {@code excludedId}.
+     */
+    boolean hasPropertyExceptPropertyId(Property property, PropertyId excludedId);
+
+    /**
      * Deletes the given property.
      * The property must exist in the property book.
      */
