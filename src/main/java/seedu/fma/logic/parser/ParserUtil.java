@@ -93,11 +93,15 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        // remove leading and trailing spaces
+        String parsedName = name.trim();
+        // convert to Sentence case
+        parsedName = parsedName.substring(0, 1).toUpperCase() + parsedName.substring(1).toLowerCase();
+
+        if (!Name.isValidName(parsedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Name(parsedName);
     }
 
     /**
