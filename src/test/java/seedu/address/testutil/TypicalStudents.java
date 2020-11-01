@@ -63,7 +63,7 @@ public class TypicalStudents {
             .withDetails("owesMoney", "friends")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
@@ -71,7 +71,7 @@ public class TypicalStudents {
             .withClassTime("2 1230-1430")
             .withExams(new Exam("CA2", "19/9/2020", new Score("73/100")),
                     new Exam("CA1", "2/3/2020", new Score("21/40")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
@@ -80,7 +80,7 @@ public class TypicalStudents {
             .withClassTime("1 1500-1700")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
@@ -88,7 +88,7 @@ public class TypicalStudents {
             .withPaymentDate("28/2/2018").withClassTime("1 1700-1900")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
@@ -96,7 +96,7 @@ public class TypicalStudents {
             .withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH).withClassTime("1 1900-2100")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -104,7 +104,7 @@ public class TypicalStudents {
             .withClassTime("3 1200-1430")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
@@ -112,7 +112,7 @@ public class TypicalStudents {
             .withClassTime("2 1000-1230")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
-            .withAttendances(new Attendance("14/04/1998", "attended",
+            .withAttendances(new Attendance("14/04/1998", "present",
                     new Feedback("sleepy during lesson")))
             .build();
 
