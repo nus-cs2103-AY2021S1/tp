@@ -58,6 +58,7 @@ public class CommandParserTest {
         tests.put("quit", "Result(QuitCommand)");
         tests.put("undo", "Result(UndoCommand)");
         tests.put("redo", "Result(RedoCommand)");
+        tests.put("clear", "Result(ClearCommand)");
 
         tests.put("quit a", "Error('quit' command takes no arguments)");
         tests.put("undo /asdf", "Error('undo' command takes no arguments)");
@@ -214,6 +215,7 @@ public class CommandParserTest {
         cases.put("list",                                                               false);
 
         cases.put("help",                                                               true);
+        cases.put("clear",                                                              true);
         cases.put("help add",                                                           true);
         cases.put("help add recipe",                                                    true);
         cases.put("add ingredient f",                                                   true);

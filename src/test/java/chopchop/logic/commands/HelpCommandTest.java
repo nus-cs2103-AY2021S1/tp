@@ -328,6 +328,37 @@ public class HelpCommandTest {
         test(cases);
     }
 
+
+    @Test
+    public void test_miscCommands() {
+
+        var cases = new HashMap<Pair<String, String>, String>();
+
+        cases.put(Pair.of("clear", ""),
+            String.format("%s: %s %s",
+                ClearCommand.getCommandString(),
+                ClearCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("undo", ""),
+            String.format("%s: %s %s",
+                UndoCommand.getCommandString(),
+                UndoCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        cases.put(Pair.of("redo", ""),
+            String.format("%s: %s %s",
+                RedoCommand.getCommandString(),
+                RedoCommand.getCommandHelp(),
+                "see the User Guide")
+        );
+
+        test(cases);
+    }
+
+
     @Test
     public void test_badCommand() throws Exception {
         var cases = new HashMap<Pair<String, String>, String>();

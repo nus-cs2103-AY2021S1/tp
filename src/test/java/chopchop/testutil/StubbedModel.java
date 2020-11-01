@@ -13,6 +13,10 @@ import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.UsageList;
+import chopchop.model.usage.RecipeUsage;
+import chopchop.model.usage.IngredientUsage;
+import javafx.collections.ObservableList;
 
 public class StubbedModel extends chopchop.model.ModelStub {
 
@@ -61,6 +65,16 @@ public class StubbedModel extends chopchop.model.ModelStub {
     }
 
     @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return this.recipes.getEntryList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return this.ingredients.getEntryList();
+    }
+
+    @Override
     public Optional<Recipe> findRecipeWithName(String name) {
         return this.recipes.getEntryList()
             .stream()
@@ -82,13 +96,18 @@ public class StubbedModel extends chopchop.model.ModelStub {
     }
 
     @Override
-    public void setIngredient(Ingredient target, Ingredient edited) {
-        this.ingredients.set(target, edited);
+    public void addRecipe(Recipe target) {
+        this.recipes.add(target);
     }
 
     @Override
-    public void addRecipe(Recipe target) {
-        this.recipes.add(target);
+    public void deleteRecipe(Recipe target) {
+        this.recipes.remove(target);
+    }
+
+    @Override
+    public void setIngredient(Ingredient target, Ingredient edited) {
+        this.ingredients.set(target, edited);
     }
 
     @Override
@@ -116,5 +135,23 @@ public class StubbedModel extends chopchop.model.ModelStub {
 
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
+    }
+
+    @Override
+    public UsageList<RecipeUsage> getRecipeUsageList() {
+        return new UsageList<>();
+    }
+
+    @Override
+    public UsageList<IngredientUsage> getIngredientUsageList() {
+        return new UsageList<>();
+    }
+
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> ul) {
+    }
+
+    @Override
+    public void setIngredientUsageList(UsageList<IngredientUsage> ul) {
     }
 }
