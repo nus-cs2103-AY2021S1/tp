@@ -16,7 +16,7 @@ public class Description {
      * The first character of the description must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^(\\S.{1,79})";
+    public static final String VALIDATION_REGEX = "^(\\S.{0,79})";
 
     public final String description;
 
