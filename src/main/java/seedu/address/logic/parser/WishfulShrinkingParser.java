@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -70,6 +69,7 @@ public class WishfulShrinkingParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
         case AddRecipeCommand.COMMAND_WORD:
@@ -104,44 +104,69 @@ public class WishfulShrinkingParser {
         case DeleteConsumptionCommand.COMMAND_WORD:
             return new DeleteConsumptionCommandParser().parse(arguments);
 
-        case ClearIngredientCommand.COMMAND_WORD:
-            return new ClearIngredientCommand();
-
-        case ClearRecipeCommand.COMMAND_WORD:
-            return new ClearRecipeCommand();
-
-        case ClearConsumptionCommand.COMMAND_WORD:
-            return new ClearConsumptionCommand();
-
         case SearchRecipeCommand.COMMAND_WORD:
             return new SearchRecipeCommandParser().parse(arguments);
 
         case SearchIngredientCommand.COMMAND_WORD:
             return new SearchIngredientCommandParser().parse(arguments);
 
-        case ListIngredientsCommand.COMMAND_WORD:
-            return new ListIngredientsCommand();
-
-        case ListRecipesCommand.COMMAND_WORD:
-            return new ListRecipesCommand();
-
-        case ListConsumptionCommand.COMMAND_WORD:
-            return new ListConsumptionCommand();
-
-        case RecommendCommand.COMMAND_WORD:
-            return new RecommendCommand();
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
         case SelectRecipeCommand.COMMAND_WORD:
             return new SelectRecipeCommandParser().parse(arguments);
 
+        // Command with Empty Argument
+        case ListIngredientsCommand.COMMAND_WORD:
+        case ListConsumptionCommand.COMMAND_WORD:
+        case ListRecipesCommand.COMMAND_WORD:
+        case ClearRecipeCommand.COMMAND_WORD:
+        case ClearIngredientCommand.COMMAND_WORD:
+        case ClearConsumptionCommand.COMMAND_WORD:
         case CloseCommand.COMMAND_WORD:
-            return new CloseCommand();
+        case RecommendCommand.COMMAND_WORD:
+        case ExitCommand.COMMAND_WORD:
+        case HelpCommand.COMMAND_WORD:
+            if (!arguments.isEmpty()) {
+
+                String noArgumentCommandUsage = commandWord
+                        + ": should not have any arguments\n"
+                        + "Example: " + commandWord;
+
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        noArgumentCommandUsage));
+            }
+            switch (commandWord) {
+            case ListRecipesCommand.COMMAND_WORD:
+                return new ListRecipesCommand();
+
+            case ListIngredientsCommand.COMMAND_WORD:
+                return new ListIngredientsCommand();
+
+            case ListConsumptionCommand.COMMAND_WORD:
+                return new ListConsumptionCommand();
+
+            case ClearIngredientCommand.COMMAND_WORD:
+                return new ClearIngredientCommand();
+
+            case ClearRecipeCommand.COMMAND_WORD:
+                return new ClearRecipeCommand();
+
+            case ClearConsumptionCommand.COMMAND_WORD:
+                return new ClearConsumptionCommand();
+
+            case CloseCommand.COMMAND_WORD:
+                return new CloseCommand();
+
+            case RecommendCommand.COMMAND_WORD:
+                return new RecommendCommand();
+
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
+
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
+
+            default:
+                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            }
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

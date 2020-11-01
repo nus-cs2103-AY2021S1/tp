@@ -215,7 +215,7 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 Multiple ingredients are separated by `,`.
 </div> 
 
-* `CALORIES` **must be a positive integer** e.g. 150, 200...
+* `CALORIES` **must be a positive integer** and not bigger than 2146483627 e.g. 150, 200... 2147483647
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
     * If you don't input the image field, Wishful Shrinking will add a default image to the recipe.
     * If you want to use an image that has been saved in your computer, you have to specify the **absolute path** of the image, and add file:// in front of the file path. Then, replace IMAGE in img/IMAGE with the file path of your image, e.g. img/file:///D:/myimages/wishful/data/myimage.png.
@@ -295,7 +295,7 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 Multiple ingredients are separated by `,`.
 </div> 
 
-* `CALORIES` **must be a positive integer** e.g. 150, 200...
+* `CALORIES` **must be a positive integer** and not bigger than 2146483627 e.g. 150, 200... 2147483647
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
     * If you don't input the image field, Wishful Shrinking will add a default image to the recipe.
     * If you want to use an image that has been saved in your computer, you have to specify the **absolute path** of the image, and add file:// in front of the file path. Then, replace IMAGE in img/IMAGE with the file path of your image, e.g. img/file:///D:/myimages/wishful/data/myimage.png.
@@ -715,6 +715,7 @@ Term | Explanation
 **Drawer** | Page that layers above left section of the window when the `selectR` command runs and closes when the `close` command runs.
 **CLI** | A Command Line Interface (CLI) is a text-based user interface that allows users to type text commands instructing the program to do specific tasks.
 **GUI** | A Graphical User Interface (GUI) is a form of user interface that allows users to interact with the program through graphical icons instead of text-based user interfaces.
+**Absolute Path** | The complete details needed to locate a file or folder, starting from the root element.
 
 --------------------------------------------------------------------------------------------------------------------
 
