@@ -1,4 +1,4 @@
-package seedu.resireg.model.student.exceptions;
+package seedu.resireg.model.bin.exceptions;
 
 /**
  * Signals that the operation will result in duplicate Students (Students are considered duplicates if they have the
