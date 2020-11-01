@@ -119,7 +119,7 @@ We will follow the following convention for each command's format:
   e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
 * Items in square brackets are optional.<br>
-  e.g `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
+  e.g. `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
@@ -214,7 +214,7 @@ Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
 
 Examples:
 * `find` - finds all food items
-* `find -n Sushi -d 20/04/2020` - finds all food items with name "Sushi" and date "20/04/2020"
+* `find -n Sushi -d 20/04/2020` - finds all food items with the word "Sushi" in it's name and date "20/04/2020"
 * `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
 * `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
 
@@ -223,7 +223,9 @@ Examples:
 :information_source:
 
 * Filters the displayed list of food items to only include food items corresponding to the provided parameters.
-* `KEYWORDS` and `WORDS_IN_NAME` are nor case sensitive but `WORDS_IN_TAG` is case sensitive.
+* The `[KEYWORDS]`, `[WORDS_IN_NAME]` and `[WORDS_IN_TAG]` parameters will only find food items that contain at least one of the complete words specified.<br>
+  e.g. `find chick` will not return the food item with the name "Chicken Rice" but `find chicken lemak` will return both the food items "Chicken Rice" and "Nasi Lemak".
+* `KEYWORDS` and `WORDS_IN_NAME` are not case sensitive but `WORDS_IN_TAG` is case sensitive.
 
 </div>
 
@@ -323,11 +325,13 @@ Format: `import FILEPATH`
 :information_source:
 
 * Imports the saved file at `FILEPATH`
+* Both relative and absolute paths work for the import feature.
 
 </div>
 
 Examples:
-* `import c:/mcgymmy/save_file.json` imports `save_file.json` into McGymmy
+* For Windows users: `import c:/mcgymmy/save_file.json` imports `save_file.json` from the `c:/mcgymmy` directory into McGymmy.
+* For Mac users: `import /Users/<username>/Desktop/save_file.json` imports `save_file.json` from the Desktop into McGymmy.
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
@@ -354,6 +358,8 @@ Format: `export DIRPATH [-o FILENAME]`
 
 * Exports the saved file to `DIRPATH` with `FILENAME`
 * Default filename is `mcgymmy.json`
+* Both relative and absolute paths work for the export feature.
+* Make sure to export only to valid paths that already exist. The examples below assume that the given paths already exist in your working space.
 
 </div>
 
