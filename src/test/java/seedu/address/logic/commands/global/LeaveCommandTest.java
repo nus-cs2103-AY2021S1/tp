@@ -2,8 +2,11 @@ package seedu.address.logic.commands.global;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import seedu.address.model.project.Participation;
+import seedu.address.model.task.Task;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
@@ -38,18 +41,27 @@ public class LeaveCommandTest {
         LeaveCommand leaveCommand = new LeaveCommand();
 
         String expectedMessage = LeaveCommand.MESSAGE_LEAVE_SUCCESS;
-
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-
         assertCommandSuccess(leaveCommand, model, expectedMessage, expectedModel);
 
         Person personToStart = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        System.out.println(personToStart);
-
         model.enter(personToStart);
+
         expectedMessage = LeaveCommand.MESSAGE_LEAVE_SUCCESS;
         expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
+        assertCommandSuccess(leaveCommand, model, expectedMessage, expectedModel);
+    }
 
+    @Test
+    public void execute_onTaskLevel_toProjectLevel() {
+        Project projectToStart = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(projectToStart);
+        Task taskToStart = projectToStart.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        model.enterTask(taskToStart);
+        LeaveCommand leaveCommand = new LeaveCommand();
+
+        String expectedMessage = LeaveCommand.MESSAGE_LEAVE_SUCCESS;
+        ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
         assertCommandSuccess(leaveCommand, model, expectedMessage, expectedModel);
     }
 
