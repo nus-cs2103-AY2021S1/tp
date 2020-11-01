@@ -406,8 +406,17 @@ The diagram below gives a short overview on what happens when a user's input is 
 ## **Extension Suggestions**
 
 ### Person management
-**Current implementation in the project:**
 
+**Current implementation in the project:**
+Call `listpersons` and `startperson` command can start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
+
+**Extension features:**
+Allow more manipulations on persons after entered the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
+
+**Extension guidelines:**
+The behaviors of managing persons would be similar to the behaviors of managing projects. Thus, it is possible to reuse the commands that are set for `PROJECT` or lower scope. There are two suggested approaches:
+1. Duplicate the relevant commands in `PROJECT` scope to make them available in `PERSON` scope.
+2. Change the scoping requirement of existing `PROJECT` scope commands and change the behavior to accommodate both scopes.
 
 ### More scopes
 
