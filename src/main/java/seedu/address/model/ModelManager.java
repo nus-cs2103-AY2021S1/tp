@@ -194,8 +194,8 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasTutorialGroup(TutorialGroup toCheck) {
-        filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
-        return filteredTutorialGroup.contains(toCheck);
+        requireNonNull(toCheck);
+        return moduleList.getUniqueTutorialGroupList(currentModuleInView).contains(toCheck);
     }
 
     @Override
