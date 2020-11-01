@@ -12,7 +12,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":UsageList" as UsageList MODEL_COLOR
 end box
 
 [-> LogicManager : execute("stats recipe top")
@@ -56,17 +55,11 @@ deactivate CommandParser
 LogicManager -> StatsRecipeTopCommand : execute()
 activate StatsRecipeTopCommand
 
-StatsRecipeTopCommand -> Model : getRecipeUsageList()
+StatsRecipeTopCommand -> Model : getMostMadeRecipeList()
 activate Model
 
 Model --> StatsRecipeTopCommand
 deactivate Model
-
-StatsRecipeTopCommand -> UsageList : getMostUsed()
-activate UsageList
-
-UsageList --> StatsRecipeTopCommand
-deactivate UsageList
 
 create CommandResult
 StatsRecipeTopCommand -> CommandResult

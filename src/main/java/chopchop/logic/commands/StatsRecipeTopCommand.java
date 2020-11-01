@@ -11,7 +11,7 @@ public class StatsRecipeTopCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
-        var output = model.getMostUsedRecipeList();
+        var output = model.getMostMadeRecipeList();
         return CommandResult.statsMessage(output, "Here are the top recipes");
     }
 

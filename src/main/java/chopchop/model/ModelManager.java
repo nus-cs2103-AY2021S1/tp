@@ -242,7 +242,7 @@ public class ModelManager implements Model {
      * Return the UsageList sorted by most used recipe.
      */
     @Override
-    public List<Pair<String, String>> getMostUsedRecipeList() {
+    public List<Pair<String, String>> getMostMadeRecipeList() {
         return this.recipeUsageList.getMostUsed();
     }
 

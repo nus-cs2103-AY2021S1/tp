@@ -157,8 +157,8 @@ public interface Model {
     /** Returns the UsageList of recipe */
     UsageList<RecipeUsage> getRecipeUsageList();
 
-    /** Return the List sorted by most used recipe. */
-    List<Pair<String, String>> getMostUsedRecipeList();
+    /** Return the List sorted by most made recipe. */
+    List<Pair<String, String>> getMostMadeRecipeList();
 
     /** Returns the UsageList of ingredient */
     UsageList<IngredientUsage> getIngredientUsageList();
