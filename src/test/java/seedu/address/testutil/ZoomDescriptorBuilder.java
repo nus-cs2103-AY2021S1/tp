@@ -5,38 +5,38 @@ import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
 /**
- * A utility class to help with building AddZoomDescriptor objects.
+ * A utility class to help with building ZoomDescriptor objects.
  */
-public class AddZoomDescriptorBuilder {
+public class ZoomDescriptorBuilder {
 
     private ZoomDescriptor descriptor;
 
-    public AddZoomDescriptorBuilder() {
+    public ZoomDescriptorBuilder() {
         this.descriptor = new ZoomDescriptor();
     }
 
-    public AddZoomDescriptorBuilder(ZoomDescriptor descriptor) {
+    public ZoomDescriptorBuilder(ZoomDescriptor descriptor) {
         this.descriptor = new ZoomDescriptor(descriptor);
     }
 
     /**
-     * Sets the {@code ZoomLink} of the {@code AddZoomDescriptor} that we are building.
+     * Sets the {@code ZoomLink} of the {@code ZoomDescriptor} that we are building.
      */
-    public AddZoomDescriptorBuilder withZoomLink(String zoomLink) {
+    public ZoomDescriptorBuilder withZoomLink(String zoomLink) {
         descriptor.setZoomLink(new ZoomLink(zoomLink));
         return this;
     }
 
     /**
-     * Sets the {@code ModuleLesson} of the {@code AddZoomDescriptor} that we are building.
+     * Sets the {@code ModuleLesson} of the {@code ZoomDescriptor} that we are building.
      */
-    public AddZoomDescriptorBuilder withModuleLesson(String lesson) {
+    public ZoomDescriptorBuilder withModuleLesson(String lesson) {
         descriptor.setModuleLesson(new ModuleLesson(lesson));
         return this;
     }
 
     /**
-     * Returns the newly built {@code AddZoomDescriptor} object.
+     * Returns the newly built {@code ZoomDescriptor} object.
      */
     public ZoomDescriptor build() {
         return descriptor;
