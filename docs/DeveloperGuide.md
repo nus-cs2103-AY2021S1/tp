@@ -695,10 +695,19 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
 **MSS**
 
-  1. User wants to search for recipes by their title in the recipe collection.
-  1. Wishful Shrinking lists the recipes that has the specified title, if present.
+  1. User wants to search for recipes by their title, ingredients or tags in the recipe collection.
+  1. Wishful Shrinking lists the recipes that has the specified title, ingredients or tags, if present.
 
-  Use case ends. 
+     Use case ends. 
+  
+**Use case: Recommend recipes**
+
+**MSS**
+
+  1. User wants to get recommended recipes based on the ingredients in their fridge.
+  1. Wishful Shrinking lists the recipes whose ingredients the user has, if present.
+
+     Use case ends. 
 
 **Use case: Clear all recipes in recipe list**
 
@@ -717,7 +726,7 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. User chooses to add ingredients into the fridge.
   1. Wishful Shrinking adds the specified ingredients into the fridge.
 
-   Use case ends.
+     Use case ends.
 	  
 **Use case: View ingredients**
 
@@ -813,6 +822,32 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 * 2a. The consumption list is empty.
 
     Use case ends.  
+
+
+**Use case: Delete a recipe in the consumption list**
+
+**MSS**
+
+  1. User requests to view the consumption list.
+  1. Wishful Shrinking shows a list of recipes that are in the consumption list.
+  1. User requests to delete a specific recipe in the list.
+  1. Wishful Shrinking deletes the consumed recipe.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The consumption list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Wishful Shrinking shows an error message.
+
+      Use case resumes at step 2.
+
+
 
 **Use case: Clear all recipes in consumption list**
 
