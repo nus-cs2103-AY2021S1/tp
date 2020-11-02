@@ -118,9 +118,11 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 Updates the number of drinks sold for each drink type as given in the user input.
 
 
-Format: `s-update A/NUM B/NUM C/NUM ...`
+Format: `s-update A/NUM [B/NUM] [C/NUM] ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
+* `NUM` refers to the number of drinks sold. It should be a non-negative integer that is 
+less than 99999999.
+* You must record the sales of at least one drink item when using this command.
 
 Example:
 * `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
@@ -128,7 +130,7 @@ Example:
  
  <div markdown="span" class="alert alert-primary">
  
-:information_source: Note about the update: <br>
+:information_source: **Note about the update:** <br>
 
 The record in tCheck will be overwritten by the input that you provide. <br>
  
@@ -460,7 +462,7 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 Action | Format, Examples
 -------|------------------------------
-**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**Update**| `s-update A/NUM [B/NUM] [C/NUM] ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS] ...` <br> e.g., `s-find BSBM BSBBT`
 **Rank**| `s-rank`

@@ -18,10 +18,16 @@ public class SalesUpdateCommand extends Command {
 
     public static final String COMMAND_WORD = "s-update";
 
+    public static final int MAX_NUM_ALLOWED = 9999999;
+
+    public static final String MESSAGE_MAX_NUM_ALLOWED_EXCEEDED = "Number of a drink sold should be less than "
+            + "or equal to " + MAX_NUM_ALLOWED + ".";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the sales of the drinks as entered. "
             + "Existing sales record will be overwritten by the input.\n"
-            + "Parameters: A/NUM B/NUM ... where A, B refers to the drink abbreviation. "
-            + "You must record the sales of at least one item, as a non-negative unsigned integer.\n"
+            + "Parameters: A/NUM [B/NUM] ... where A, B refers to the drink abbreviation.\n"
+            + "You must record the sales of at least one item, as a non-negative unsigned integer"
+            + String.format(" that is less than %d.\n", MAX_NUM_ALLOWED)
             + "Example: " + COMMAND_WORD + " " + PREFIX_BSBM + "100" + " " + PREFIX_BSPM + "0";
 
     public static final String MESSAGE_SUCCESS = "Added sales to the record. You may use "
@@ -44,6 +50,7 @@ public class SalesUpdateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.overwrite(sales);
+        model.updateFilteredSalesList(Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

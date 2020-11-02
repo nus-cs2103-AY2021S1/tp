@@ -83,4 +83,21 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} will cause integer overflow. Otherwise, returns false.
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isIntegerOverflow(String s) {
+        requireNonNull(s);
+
+        try {
+            int value = Integer.parseInt(s);
+            return value > (Integer.MAX_VALUE - 1);
+        } catch (NumberFormatException nfe) {
+            return true;
+        }
+    }
+
 }
