@@ -12,7 +12,7 @@ import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
 import com.eva.model.person.staff.leave.Leave;
-import com.eva.model.person.staff.leave.LeaveBalance;
+import com.eva.model.person.staff.leave.LeaveTaken;
 import com.eva.model.tag.Tag;
 
 
@@ -20,7 +20,7 @@ public class Staff extends Person {
     /**
      * Leave balance is set to DEFAULT
      */
-    private final LeaveBalance leaveBalance = new LeaveBalance();
+    private final LeaveTaken leaveTaken;
     private final Set<Leave> leaves = new HashSet<>();
 
 
@@ -35,6 +35,7 @@ public class Staff extends Person {
      */
     public Staff(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Comment> comments) {
         super(name, phone, email, address, tags, comments);
+        leaveTaken = new LeaveTaken();
     }
 
     /**
@@ -52,6 +53,25 @@ public class Staff extends Person {
         super(name, phone, email, address, tags, comments);
         requireNonNull(leaves);
         this.leaves.addAll(leaves);
+        leaveTaken = new LeaveTaken();
+    }
+
+    /**
+     * Every field must be present and not null.
+     * @param name
+     * @param phone
+     * @param email
+     * @param address
+     * @param tags
+     * @param leaves
+     */
+
+    public Staff(Name name, Phone phone, Email email, Address address, LeaveTaken leaveTaken,
+                 Set<Tag> tags, Set<Leave> leaves, Set<Comment> comments) {
+        super(name, phone, email, address, tags, comments);
+        requireNonNull(leaves);
+        this.leaves.addAll(leaves);
+        this.leaveTaken = leaveTaken;
     }
 
     /**
@@ -68,8 +88,8 @@ public class Staff extends Person {
         return leaves;
     }
 
-    public LeaveBalance getLeaveBalance() {
-        return leaveBalance;
+    public LeaveTaken getLeaveTaken() {
+        return leaveTaken;
     }
 
 }

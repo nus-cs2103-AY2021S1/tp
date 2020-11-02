@@ -1,9 +1,11 @@
 package com.eva.ui.profile.applicant.view;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 import com.eva.commons.core.index.Index;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
@@ -55,12 +57,17 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
         phone.setText(this.applicant.getPhone().value);
         address.setText(this.applicant.getAddress().value);
         email.setText(this.applicant.getEmail().value);
-        interviewDate.setText(this.applicant.getInterviewDate().toString());
+        interviewDate.setText(interviewDateToDisplay(this.applicant.getInterviewDate()));
         applicationStatus.setText(this.applicant.getApplicationStatus().toString());
         tags.getChildren().add(new Label("Applicant"));
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private String interviewDateToDisplay(Optional<InterviewDate> interviewDateOptional) {
+        return interviewDateOptional.map(date -> "Interview on: " + date.toString())
+                .orElse("Interview Date not set yet.");
     }
 
     @Override
