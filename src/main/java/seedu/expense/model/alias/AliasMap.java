@@ -36,7 +36,7 @@ public class AliasMap {
     public static final String UNCHANGED_ALIAS = "Previous and updated alias must not be the same.";
     public static final String ALIAS_NOT_FOUND = "The [%s] alias cannot be found.";
     public static final String ALIAS_ALPHABETS_ONLY = "Only case-sensitive alphabets can be used as aliases.";
-    public static final String ALIAS_COMMAND_UNALIASABLE = "AliasCommand and ResetAliasCommand cannot have aliases.";
+    public static final String ALIAS_COMMAND_UNALIASABLE = "`alias` and `reset alias` commands cannot have aliases.";
     public static final IntPredicate IS_ALPHABET_ASCII = x -> (x > 96 && x < 123 || x > 64 && x < 91);
     public static final Set<String> RESERVED_KEYWORDS = Set.of(
             AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
@@ -168,6 +168,14 @@ public class AliasMap {
      */
     public void removeAlias(AliasEntry alias) {
         aliasMap.remove(alias.getKey());
+    }
+
+    public void removeAllAliases() {
+        aliasMap.clear();
+    }
+
+    public boolean isEmpty() {
+        return this.aliasMap.isEmpty();
     }
 
     @Override
