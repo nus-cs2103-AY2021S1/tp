@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
@@ -21,9 +23,11 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.ContactBuilder;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -76,7 +80,7 @@ public class AddContactCommandTest {
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAliceCommand.equals(8));
 
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
