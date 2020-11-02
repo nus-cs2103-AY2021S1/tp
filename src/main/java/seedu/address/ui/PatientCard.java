@@ -91,7 +91,7 @@ public class PatientCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(patient.getName().fullName);
         phone.setText("Phone: " + patient.getPhone().value);
-        icNumber.setText("IC Number: " + patient.getIcNumber().value);
+        icNumber.setText("NRIC: " + patient.getIcNumber().value);
         address.setText("Address: " + patient.getAddress().value);
         email.setText("Email: " + patient.getEmail().value);
         sex.setText("Sex: " + patient.getSex().value);
