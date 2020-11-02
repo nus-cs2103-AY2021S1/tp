@@ -104,7 +104,7 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
 * `RATING` must be a number between 1 and 5 inclusive.
 * `DIAGRAM` can be defined by a valid relative or absolute path.
 * `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
-     It can consists of multiple words but there should only be 1 space between words.
+     It can consist of multiple words but there should only be 1 space between words.
 * `TAGS` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
