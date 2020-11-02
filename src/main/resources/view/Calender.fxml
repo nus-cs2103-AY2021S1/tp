@@ -25,7 +25,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="monthYearInput" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="273.0" text="Label" textAlignment="CENTER" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label fx:id="monthYearInput" alignment="CENTER" contentDisplay="CENTER" prefHeight="41.0" prefWidth="273.0" text="Label" textAlignment="CENTER" textFill="WHITE" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font size="27.0" />
                            </font>
@@ -66,37 +66,37 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Monday" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Monday" textFill="WHITE" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Tuesday" underline="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Tuesday" textFill="WHITE" underline="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Wednesday" underline="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Wednesday" textFill="WHITE" underline="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Thursday" underline="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Thursday" textFill="WHITE" underline="true" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Friday" underline="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Friday" textFill="WHITE" underline="true" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Saturday" underline="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Saturday" textFill="WHITE" underline="true" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label text="Sunday" underline="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Label text="Sunday" textFill="WHITE" underline="true" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

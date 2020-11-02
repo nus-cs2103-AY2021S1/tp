@@ -1,11 +1,12 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.lang.management.ClassLoadingMXBean;
 import java.time.LocalDate;
@@ -91,10 +92,18 @@ public class Calender extends UiPart<Region> {
         for (int i = first; i < first + numOfDays(); i++) {
             Label label = new Label();
             label.setText(Integer.toString(count));
+            label.setStyle("-fx-text-fill: white");
             count++;
             VBox box = new VBox();
             box.setAlignment(Pos.CENTER);
             box.getChildren().add(label);
+            if (count % 2 == 0) {
+                box.setBackground(new Background(
+                        new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+            box.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
+
             int col = parseCol(i);
             int row = parseRow(i);
 //            System.out.println(String.format("Value: %d, Col: %d, Row: %d",i,col,row));
@@ -108,14 +117,6 @@ public class Calender extends UiPart<Region> {
 
     private int parseRow(int value) {
         return (value - 1) / 7 + 1;
-    }
-
-    private void nextPage() {
-
-    }
-
-    private void previousPage() {
-
     }
 
     private void emptyCal() {
@@ -150,6 +151,7 @@ public class Calender extends UiPart<Region> {
         Label label = new Label();
         label.setText(day);
         label.setUnderline(true);
+        label.setStyle("-fx-text-fill: white");
         box.setAlignment(Pos.CENTER);
         box.getChildren().add(label);
         fillCalender(box, col, 0);
