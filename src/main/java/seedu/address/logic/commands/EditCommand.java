@@ -25,8 +25,6 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
-import seedu.address.model.student.academic.exam.Exam;
-import seedu.address.model.student.academic.question.Question;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
@@ -120,10 +118,6 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        // Questions should not be edited through this command
-        List<Question> questions = studentToEdit.getQuestions();
-        // Exams should not be edited through this command
-        List<Exam> exams = studentToEdit.getExams();
         // Academic should not be edited through this command
         Academic academic = studentToEdit.getAcademic();
 

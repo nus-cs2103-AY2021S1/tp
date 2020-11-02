@@ -146,8 +146,9 @@ public class Academic {
         return questions.stream().anyMatch(question::isSameQuestion);
     }
 
-    /***
+    /**
      * Creates a new academic object with a newly added question at the end of the questions list.
+     * The newly added question must not already be present in the list.
      * This operation preserves the immutability of the academic class.
      */
     public Academic addQuestion(Question question) {
@@ -161,10 +162,11 @@ public class Academic {
 
     /**
      * Creates a new academic object with a modified question replacing the previous question in the list.
+     * The question to be replaced must be already present in the list, and the replacement must be absent.
      * This operation preserves the immutability of the Academic class.
      */
     public Academic setQuestion(Question target, Question newQuestion) {
-        assert questions.contains(target);
+        assert questions.contains(target) && !questions.contains(newQuestion);
         requireAllNonNull(target, newQuestion);
 
         Academic replacement = new Academic(this);
@@ -175,6 +177,7 @@ public class Academic {
 
     /**
      * Creates a new academic object with the specified question removed from the list.
+     * The question to delete must already be in the list.
      * This operation preserves the immutability of the Academic class.
      */
     public Academic deleteQuestion(Question target) {

@@ -15,7 +15,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -149,7 +148,7 @@ public class DeleteQuestionCommandTest {
     }
 
     private Student deleteQuestion(Index index, Student toCopy) {
-        List<Question> questions = new ArrayList<>(toCopy.getQuestions());
+        List<Question> questions = toCopy.getQuestions();
         questions.remove(index.getZeroBased());
         return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(), toCopy.getYear(),
                 toCopy.getAdmin(), questions, toCopy.getExams(), toCopy.getAttendance());

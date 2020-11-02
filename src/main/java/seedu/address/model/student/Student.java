@@ -174,8 +174,9 @@ public class Student {
         return academic.containsQuestion(question);
     }
 
-    /***
+    /**
      * Creates a new student object with a newly added question at the end of the questions list.
+     * The newly added question must not already be present in the list.
      * This operation preserves the immutability of the Student class.
      */
     public Student addQuestion(Question question) {
@@ -186,10 +187,11 @@ public class Student {
 
     /**
      * Creates a new student object with a modified question replacing the previous question in the list.
+     * The question to be replaced must be already present in the list, and the replacement must be absent.
      * This operation preserves the immutability of the Student class.
      */
     public Student setQuestion(Question target, Question newQuestion) {
-        assert getQuestions().contains(target);
+        assert getQuestions().contains(target) && !getQuestions().contains(newQuestion);
         requireAllNonNull(target, newQuestion);
 
         return new Student(name, phone, school, year, admin, academic.setQuestion(target, newQuestion));
@@ -197,6 +199,7 @@ public class Student {
 
     /**
      * Creates a new student object with the specified question removed from the list.
+     * The question to delete must already be in the list.
      * This operation preserves the immutability of the Student class.
      */
     public Student deleteQuestion(Question target) {
