@@ -36,6 +36,8 @@ public class AddZoomLinkCommand extends Command {
             + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
 
     public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added Zoom Link: %1$s";
+    public static final String MESSAGE_LESSON_CONTAINS_ZOOM_LINK = "This lesson already contains a zoom link";
+    public static final String MESSAGE_DUPLICATE_ZOOM_LINK = "This zoom link already exists in the module";
 
     private final Logger logger = LogsCenter.getLogger(AddZoomLinkCommand.class);
 
@@ -64,12 +66,19 @@ public class AddZoomLinkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
+        Module moduleToAddLink = lastShownList.get(targetIndex.getZeroBased());
         ZoomLink zoomLink = descriptor.getZoomLink();
         ModuleLesson moduleLesson = descriptor.getModuleLesson();
 
-        Module moduleToAddLink = lastShownList.get(targetIndex.getZeroBased());
-        Module updatedModule = moduleToAddLink.addZoomLink(moduleLesson, zoomLink);
+        if (moduleToAddLink.containsLink(zoomLink)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ZOOM_LINK);
+        }
 
+        if (moduleToAddLink.containsLesson(moduleLesson)) {
+            throw new CommandException(MESSAGE_LESSON_CONTAINS_ZOOM_LINK);
+        }
+
+        Module updatedModule = moduleToAddLink.addZoomLink(moduleLesson, zoomLink);
         model.setModule(moduleToAddLink, updatedModule);
         logger.info("Zoom link added to the module");
         model.commitModuleList();
