@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.AddTutorialGroupCommand.MESSAGE_DUPLICATE_TUTGRP;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -53,7 +54,7 @@ public class AddTutorialGroupCommandTest {
         AddTutorialGroupCommand addTutorialGroupCommand = new AddTutorialGroupCommand(validTutorialGroup);
         ModelStub modelStub = new ModelStubWithTutorialGroup(validTutorialGroup);
 
-        assertThrows(CommandException.class, AddTutorialGroupCommand.MESSAGE_DUPLICATE_TUTGRP, ()
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_TUTGRP, ()
             -> addTutorialGroupCommand.execute(modelStub)
         );
     }
