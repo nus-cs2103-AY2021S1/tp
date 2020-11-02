@@ -155,17 +155,26 @@ Lastly, TagCommand checks if the file is present using `java.io.File.exists()` b
 ### Opening of Tags: OpenCommand
 
 [OpenCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/OpenCommand.java)
-searches the list of Tags stored in `AddressBook` and opens the file located at the tag's `FileAddress`
-if the file is present. `CommandException` is thrown if tag is not present or if the file cannot be found.
+accepts either a `Tag` or a `Label`.
+It filters the list of `Tags` stored in `AddressBook` by the `Tag` or `Label` supplied, and generate a list of `Tag`
+to be opened.
+After that, it opens the files located at the `Tag`'s `FileAddress` if the file is present and user has read permission.
+`CommandException` is thrown if tag is not present, the file cannot be found or no read permission.
 
 We implemented OpenCommand using `java.awt.Desktop`,
 which supports various desktop capabilities such as `open()`. `Desktop` ensures that our application can operation across
-most java-supported platforms.
+most java-supported platforms, hence fulfilling our product's requirement to be platform independent.
 
-However, there is one significant draw back of using `java.awt.Desktop`. The platform that HelloFile operates on must
+However, there are some significant drawback of using `java.awt.Desktop`. The platform that HelloFile operates on must
 support `Desktop`. This means that our application will never work on a headless environment. 
 As a developer, you can check whether the environment supports `Desktop`
 using the library method `java.awt.Desktop.isDesktopSupported()`.
+
+Another drawback is that `java.awt.Desktop.open()` blocks the JavaFX thread and causes the UI to freeze in non-Windows
+environment. We believe this is due to concurrency issue related to JavaFX.
+Regretfully, we have yet to find an elegant solution for this problem after consulting our professor.
+The current solution is running `Desktop.open()` on a separate thread, which solves the problem.
+We have tested this command under Windows and Ubuntu Linux.
 
 ### Deleting Tags: UntagCommand
 
