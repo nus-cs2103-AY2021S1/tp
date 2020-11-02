@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.participation.Participation;
+import seedu.address.model.participation.UniqueParticipationList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
-import seedu.address.model.project.UniqueParticipationList;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.task.Task;
 

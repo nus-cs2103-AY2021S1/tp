@@ -110,8 +110,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the main catalogue data, which is essentially a list of `Project`s, each of which has a few `Participant`s who can do tasks.
-* exposes an unmodifiable `ObservableList<Project>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the main catalogue data, which is essentially a list of `Project`s, a list of `Person`s, and a list of their associations `Participation`s.
+* exposes unmodifiable `ObservableList<Project>` and `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* keeps a status about the current status of the application which may affect the execution of commands.
 * does not depend on any of the other three components.
 
 
@@ -142,50 +143,63 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The scoping mechanism is facilitated by an `enum` class `Status` in `MainCatalogue`. Possible values of `Status` are `CATALOGUE`, `PROJECT`, `PERSON`, and `TASK`.
+The scoping mechanism is facilitated by an `enum` class `Status` in `MainCatalogue`. Possible values of `Status` are `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, and `TEAMMATE`.
 The possible values of `Status` form a hierarchy structure as follows. 
 
-* `CATALOGUE`
-  * `PROJECT`
-    * `TASK`
-  * `PERSON`
+* global
+  * `PROJECT_LIST`
+    * `PROJECT`
+      * `TASK`
+      * `TEAMMATE`
+  * `PERSON_LIST`
+    * `PERSON`
 
-A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
-The `status` of `MainCatalogue` is open to be accessed in other `Model` components and `Logic` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
+The `Status` of `MainCatalogue` is open to be accessed in other `Model` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
 This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status. Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
-The switch of `status` is implemented by the following operations:
+The switch of `Status` is implemented by the following operations:
 
 * `MainCatalogue#enter(Project project)` — Switches to `PROJECT` status and updates the project on view to the given project.
+* `MainCatalogue#enter(Person person)` — Switches to `PRERSON` status and updates the project on view to the given project.
 * `MainCatalogue#enterTask(Task task)` — Switches to `TASK` status and updates the task on view to the given task.
+* `MainCatalogue#enterTeammate(Participation teammate)` — Switches to `TEAMMATE` status and updates the teammate on view to the given teammate (participation).
 * `MainCatalogue#quit()` — Switches to the parent status, and clear the lower-level pointer.
 
-These operations are exposed in `Model` and `Logic` interfaces with the same name.
+These operations are exposed in `Model` interface with the same name.
 
-In the GUI design of the application, the three columns correspond to three levels of the status. The left column refers to the top level, which is `CATALOGUE`, and it thus consists of a list of projects. The middle column refers to the middle level, which can be `PROJECT` or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. The right column refers to the bottom level, which can be `TASK`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (project or person).
+In the GUI design of the application, the three columns correspond to three levels of the status. 
+The left column refers to the top level, which is `PROJECT_LIST` or `PERSON_LIST`, and it thus consists of a list of projects or persons.
+The middle column refers to the middle level, which can be `PROJECT` or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. 
+The right column refers to the bottom level, which can be `TASK` or `TEAMMATE`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (project or person).
 
 Users are allowed to switch the scoping status while using the app using user input commands. Relevant commands include:
 
-* `StartCommand` — Enters a project with its index in the current filtered list of projects and switches to `PROJECT` status. This corresponds to `enter` method.
+* `ListProjectsCommand` — Requests to view the list of `Project`s.
+* `ListPersonsCommand` — Requests to view the list of `Person`s.
+* `StartProjectCommand` — Enters a project with its index in the current filtered list of projects and switches to `PROJECT` status. This corresponds to `enter` method with input type `Project`.
+* `StartPersonCommand` — Enters a person with its index in the current filtered list of persons and switches to `PERSON` status. This corresponds to `enter` method with input type `Person`.
 * `ViewTaskCommand` — Requests to view the detailed information of a task. This corresponds to `enterTask` method.
+* `ViewTeammateCommand` — Requests to view the detailed information of a teammate (which is represented by participation). This corresponds to `enterTeammate` method.
 * `LeaveCommand` — Leaves the current object of focus, i.e. Switches to the parent status and clear the lower-level pointer. This corresponds to `quit` method.
 
 All commands have a restriction on the scope. This is seen in `CommandParser`. If a command is invoked but the application is not in the correct scoping status, an `InvalidScopeException`
 would be thrown and an error message would be shown on the GUI.
 
-Step 1. The user launches the application. The default status of scope is `CATALOGUE`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
+Step 1. The user launches the application. The default status of scope is `PROJECT_LIST`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
+(The `person` in `MainCatalogue` is also initialized to be empty, and all behaviors under `PERSON_LIST` scope would be very similar to `PROJECT_LIST`, so relevant behaviors will not be repeated in this document.)
 
 ![ScopingStep1](images/ScopingStep1.png)
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** At this stage, commands at non-`CATALOGUE` level cannot be executed.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** At this stage, commands at non-`PROJECT_LIST` level cannot be executed.
 
 </div>
 The following sequence diagram shows how scoping works in the application.
 
-![ScopingSequence](images/ScopeSequence.png)
+![ScopingSequence](images/ScopingSequenceDiagram.png)
 
-Step 2. The user executes `start 3` command to view the details of the project of index 3 in the main catalogue. The `start` command
+Step 2. The user executes `startproject 3` command to view the details of the project of index 3 in the main catalogue. The `startproject` command
 calls `enter`, causing a switch of scoping status and assignment of `project` of focus in `MainCatalogue`.
 
 ![ScopingStep2](images/ScopingStep2.png)
@@ -193,12 +207,13 @@ calls `enter`, causing a switch of scoping status and assignment of `project` of
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `start` command calls `enter` method in model, causing a switching of level and updates the project of focus.
 
 </div>
-The following sequence diagram shows the execution of start command.
+The following sequence diagram shows the execution of startproject command.
 
-![StartCommandSequence](images/StartCommandSequence.png)
+![StartProjectSequenceDiagram](images/StartProjectSequenceDiagram.png)
 
 Step 3. The user executes `viewtask 5` command to view the details of the task of index 5 in the filtered task list of current project.
 The `viewtask` command calls `enterTask`, causing a switch of scoping status and assignment of `taskOnView` in the current project.
+(`viewteammate` command is executed similarly.)
 
 ![ScopingStep3](images/ScopingStep3.png)
 
@@ -207,7 +222,7 @@ The `viewtask` command calls `enterTask`, causing a switch of scoping status and
 </div>
 The following sequence diagram shows the execution of view task command.
 
-![ViewTaskCommandSequence](images/ViewTaskCommandSequence.png)
+![ViewTaskSequenceDiagram](images/ViewTaskSequenceDiagram.png)
 
 Step 4. The user executes `start 2` command to view details of project of index 2 in the current list of projects instead.
 The scope is switched to `PROJECT`, project of focus is updated to a new project and the task on view is updated to empty.
@@ -215,7 +230,7 @@ The scope is switched to `PROJECT`, project of focus is updated to a new project
 ![ScopingStep4](images/ScopingStep4.png)
 
 Step 5. The user executes `leave` command to go to the parent status.
-Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `CATALOGUE`.
+Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `PROJECT_LIST`.
 The `leave` command calls `quit` method.
 
 ![ScopingStep5](images/ScopingStep5.png)
@@ -223,9 +238,9 @@ The `leave` command calls `quit` method.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `leave` command calls `quit` method in model, causing a switching of level and updates the project and task of focus.
 
 </div>
-The following sequence diagram shows the execution of leave command. Note that the leave command will do nothing if the application is already in the `CATALOGUE` scope.
+The following sequence diagram shows the execution of leave command. Note that the leave command will do nothing if the application is already in the `PROJECT_LIST` scope.
 
-![LeaveCommandSequence](images/LeaveCommandSequence.png)
+![LeaveSequenceDiagram](images/LeaveSequenceDiagram.png)
 
 The following activity diagram summarizes the scoping features when a user executes a new command:
 
@@ -233,7 +248,7 @@ The following activity diagram summarizes the scoping features when a user execu
 
 #### Design consideration:
 
-##### Aspect: How the scope is checked
+##### Aspect: How to check scope
 
 * **Alternative 1 (current choice):** Parses a command only if the scoping is valid.
   * Pros: Easy to implement.
@@ -242,6 +257,16 @@ The following activity diagram summarizes the scoping features when a user execu
 * **Alternative 2:** Checks the validity of scope of a command upon execution.
   * Pros: Will not increase coupling with parser.
   * Cons: The scoping features of each command are not explicitly seen, and may increase coupling with command.
+  
+##### Aspect: How to establish hierarchy of scopes
+
+* **Alternative 1 (current choice):** Use a hierarchy scheme to define scopes, and all scoping status at the same level are strictly restricted to its parent scope.
+  * Pros: Only need one status field in `Model`, and easy to extend.
+  * Cons: When lower levels of `PERSON` is implemented, child scopes of `PROJECT` like `TASK` might be reused, but it is not easy to implement this.
+
+* **Altertative 2:** Keeps a status for every level.
+  * Pros: Do not need a hierarchy understanding of all scopes anymore, and will solve the duplication problem in alternative 1.
+  * Cons: Need several status field in `Model`, which may make the code more complicated and harder to extend. 
   
 ### New Task feature
 
@@ -400,6 +425,63 @@ The diagram below summarises what is happening above with the help of a sequence
 The diagram below gives a short overview on what happens when a user's input is received:
 
 ![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Extension Suggestions**
+
+### Person management
+
+**Current implementation in the project:**
+Call `listpersons` and `startperson` command can start the view of `Person` dashboard, which summarizes the information of this person, including the projects, tasks that this person involved in.
+
+**Extension features:**
+Allow more manipulations on persons after entered the view of `Person` dashboard, including filtering tasks, viewing task dashboards, etc.
+
+**Extension guidelines:**
+The behaviors of managing persons would be similar to the behaviors of managing projects. Thus, it is possible to reuse the commands that are set for `PROJECT` or lower scope. There are two suggested approaches:
+1. Duplicate the relevant commands in `PROJECT` scope to make them available in `PERSON` scope.
+2. Change the scoping requirement of existing `PROJECT` scope commands and change the behavior to accommodate both scopes.
+
+### More records for projects and persons
+
+**Current implementation in the project:**
+The key of the application lies in `Participation`, the association class of `Person` and `Project`.
+The app now allows a list of `Tasks` for each `Participation`, but there are many other attributes possible for `Participation`.
+
+**Extension features:**
+It is possible to add more realistic records for `Participation`. They would basically fall in the two categories:
+1. Single attribute for each `Participation`, such as `Role`.
+2. Collective attribute for each `Participation`, such as `Meetings`.
+
+**Extension guidelines:**
+For single attributes, future developers may simply add a field in the `Participation` class and add relevant manipulation methods.
+They can also create a new class for this attribute if it is complicated.
+
+For collective attributes, future developers may refer to how `Task` is implemented. 
+Basically, it would require future developers to create a new class of this attribute and keep a list in either the `Participation`, `Person` or `Project`.
+Other relevant tasks would need to be done, including adding commands (and parsers if needed), creating dashboards of these attributes, and making higher-level commands (such as filter, edit, etc.) to accommodate the new attributes.
+
+### More task implementation
+
+**Current implementation in the project:**
+The implementation of task is very fundamental currently, and are mostly very general such as add, edit, view, delete, and filter.
+The attributes of `Task` are very simple, too, which includes only a deadline and progress in addition to basic information such as name and description.
+
+**Extension features:**
+It is possible to allow advanced `Task` management, such as allowing recurring of tasks.
+This may also be done for other collective attributes that are newly added.
+
+**Extension guidelines:**
+Create new fields and methods in `Task` class and implement relevant commands.
+
+### Custom attributes for projects and persons
+
+**Current implementation in the project:**
+All attributes are hardcoded in the app, and are determined by developers.
+
+**Extension feature:**
+It is possible to allow the users to create custom attributes for projects and persons.
 
 --------------------------------------------------------------------------------------------------------------------
 

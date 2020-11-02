@@ -14,8 +14,14 @@ import seedu.address.model.person.GitUserName;
 public class GitUserIndex {
     private String uniqueGitUserIndex;
 
+    /**
+     * Constructor for GitUserIndex
+     * @param uniqueGitUserIndex taken in as a string
+     */
     public GitUserIndex(String uniqueGitUserIndex) {
-        this.uniqueGitUserIndex = uniqueGitUserIndex;
+        if (isValidGitUserIndex(uniqueGitUserIndex)) {
+            this.uniqueGitUserIndex = uniqueGitUserIndex;
+        }
     }
 
     public String getGitUserName() {
@@ -30,7 +36,6 @@ public class GitUserIndex {
     public boolean isValidGitUserIndex(String gitUserName) {
         String trimmedGitUserName = gitUserName.trim();
         return GitUserName.isValidGitUserName(trimmedGitUserName);
-
     }
 
     @Override
