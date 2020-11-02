@@ -26,6 +26,8 @@ public class Ingredient {
                     + "or a single forward slash.\n"
                     + "3. Ingredient quantity should be a number greater than 0 and is only accurate up to 45 "
                     + "decimal places.";
+    public static final String HYPHEN_CONSTRAINTS = "Each ingredient has an optional field quantity that is "
+            + "separated by a spaced followed by a hyphen.";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
