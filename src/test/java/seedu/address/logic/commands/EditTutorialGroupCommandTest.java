@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,14 +18,9 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TutorialGroupBuilder;
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 public class EditTutorialGroupCommandTest {
 
@@ -50,7 +43,6 @@ public class EditTutorialGroupCommandTest {
     @Test
     public void execute_duplicateTutorialUnfilteredList_failure() throws CommandException {
         ModelStubWithTwoTutorialGroup modelStub = new ModelStubWithTwoTutorialGroup();
-        TutorialGroup toEdit = new TutorialGroupBuilder().build();
         TutorialGroup editedTutorialGroup = new TutorialGroupBuilder().withTutorialGroupId("T003").build();
         EditTutorialGroupCommand editCommand = new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editedTutorialGroup.getId()
         , editedTutorialGroup.getDayOfWeek(), editedTutorialGroup.getStartTime(), editedTutorialGroup.getEndTime());
