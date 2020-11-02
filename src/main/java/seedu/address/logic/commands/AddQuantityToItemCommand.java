@@ -35,7 +35,7 @@ public class AddQuantityToItemCommand extends Command {
     public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name must be provided.";
     public static final String MESSAGE_QUANTITY_NOT_PROVIDED = "Quantity must be provided.";
     public static final String MESSAGE_NEGATIVE_QUANTITY = "Quantity will become negative.";
-    private static final String MESSAGE_OVERFLOW_QUANTITY = "Quantity will overflow.";
+    public static final String MESSAGE_OVERFLOW_QUANTITY = "Quantity will overflow.";
     private static final Logger logger = LogsCenter.getLogger(AddQuantityToItemCommand.class);
     private final String itemName;
     private final Quantity quantity;

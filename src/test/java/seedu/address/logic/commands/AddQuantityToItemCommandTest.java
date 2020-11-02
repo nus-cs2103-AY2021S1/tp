@@ -19,9 +19,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditItemCommandTest.ModelStubWithItemList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
+import seedu.address.testutil.Assert;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddQuantityToItemCommandTest {
@@ -36,6 +38,8 @@ public class AddQuantityToItemCommandTest {
     private Quantity decrementedQuantity = new Quantity(VALID_QUANTITY_DECREMENT + "", true);
     private Quantity validQuantity = new Quantity(VALID_QUANTITY_INT + "");
     private Quantity validQuantityAlt = new Quantity(VALID_QUANTITY_INT_ALT + "");
+    private Quantity invalidIncrementedQuantity = new Quantity(Integer.MAX_VALUE + "");
+    private Quantity invalidDecrementedQuantity = new Quantity(Integer.MIN_VALUE + "", true);
 
     @BeforeEach
     public void setUp() {
@@ -89,6 +93,35 @@ public class AddQuantityToItemCommandTest {
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
         assertCommandSuccess(aic, modelStub, expectedMessage, expectedModelStub);
+    }
+
+
+    /**
+     * Tests for unsuccessful increase of an item's quantity found in the item list due to overflow.
+     */
+    @Test
+    public void execute_increaseQuantity_throwsSomething() {
+        itemList.addItem(apple);
+        modelStub = new ModelStubWithItemList(itemList);
+
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, invalidIncrementedQuantity);
+
+        Assert.assertThrows(CommandException.class,
+                AddQuantityToItemCommand.MESSAGE_OVERFLOW_QUANTITY, () -> aic.execute(modelStub));
+    }
+
+    /**
+     * Tests for unsuccessful decrease of an item's quantity found in the item list to confirm underflow(?) not possible
+     */
+    @Test
+    public void execute_decreaseQuantity_throwsSomething() {
+        itemList.addItem(apple);
+        modelStub = new ModelStubWithItemList(itemList);
+
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, invalidDecrementedQuantity);
+
+        Assert.assertThrows(CommandException.class,
+                AddQuantityToItemCommand.MESSAGE_NEGATIVE_QUANTITY, () -> aic.execute(modelStub));
     }
 
     @Test
