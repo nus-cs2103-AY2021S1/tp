@@ -57,7 +57,8 @@ class DeleteCategoryCommandTest {
         DeleteCategoryCommandTest.ModelStub modelStub = new DeleteCategoryCommandTest.ModelStubWithTag(validTag);
 
         assertThrows(CommandException.class,
-            DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY, () -> deleteCategoryCommand.execute(modelStub));
+            String.format(DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY, invalidTag),
+                () -> deleteCategoryCommand.execute(modelStub));
     }
 
     @Test

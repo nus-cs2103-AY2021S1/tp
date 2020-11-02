@@ -59,8 +59,8 @@ public class Expense {
     }
 
     /**
-     * Returns true if both expenses of the same description have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two expenses.
+     * Returns true if both expenses have the same description, amount and date.
+     * The same level of equality is defined as the this#equals method.
      */
     public boolean isSameExpense(Expense otherExpense) {
         if (otherExpense == this) {
@@ -69,12 +69,13 @@ public class Expense {
 
         return otherExpense != null
                 && otherExpense.getDescription().equals(getDescription())
-                && (otherExpense.getAmount().equals(getAmount()) || otherExpense.getDate().equals(getDate()));
+                && (otherExpense.getAmount().equals(getAmount())
+                && otherExpense.getDate().equals(getDate()));
     }
 
     /**
-     * Returns true if both expenses have the same identity and data fields.
-     * This defines a stronger notion of equality between two expenses.
+     * Returns true if both expenses have the same description, amount and date.
+     * This defines a strong notion of equality between two expenses.
      */
     @Override
     public boolean equals(Object other) {
@@ -102,7 +103,7 @@ public class Expense {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getDescription())
-                .append(" Amount: ")
+                .append(" Amount: $")
                 .append(getAmount())
                 .append(" Date: ")
                 .append(getDate())
