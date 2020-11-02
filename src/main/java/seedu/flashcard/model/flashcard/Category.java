@@ -7,7 +7,8 @@ import static seedu.flashcard.commons.util.AppUtil.checkArgument;
  * Represents the Category the Flashcard is in.
  */
 public class Category {
-    public static final String MESSAGE_CONSTRAINTS = "Categories names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Categories names should be alphanumeric and "
+                                                        + "not more than 50 characters";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
     private String category;
 
@@ -26,7 +27,7 @@ public class Category {
      * Returns true if a given string is a valid category.
      */
     public static boolean isValidCategory(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.length() <= 50 && test.matches(VALIDATION_REGEX);
     }
 
     @Override
