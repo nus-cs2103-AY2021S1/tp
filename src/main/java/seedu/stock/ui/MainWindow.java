@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
             stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
 
         } else {
-            
+
             stockViewWindow = new StockViewWindow();
             stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
 
@@ -294,7 +294,7 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
-            if (commandResult.isShowNotes()) {
+            if (commandResult.isShowStockView()) {
                 Stock stockToView = commandResult.getStockToShowNotes();
                 handleStockView(Optional.of(stockToView));
             } else {
