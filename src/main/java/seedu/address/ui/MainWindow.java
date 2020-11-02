@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private EventListPanel eventListPanel;
     private TodoListPanel todoListPanel;
     private DetailDisplay detailDisplay;
+    private Calender calender;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +68,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane viewItemDisplayPanel;
+
+    @FXML
+    private AnchorPane calenderPlaceHolder;
 
 
     /**
@@ -149,6 +154,9 @@ public class MainWindow extends UiPart<Stage> {
         // StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         // statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
+        calender = new Calender();
+        calenderPlaceHolder.getChildren().add(calender.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
@@ -213,6 +221,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             if (commandText.contains("view")) {
                 detailDisplay.setDisplay(commandResult);
+                resultDisplay.setFeedbackToUser("ViewModule has been successfully executed!");
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
