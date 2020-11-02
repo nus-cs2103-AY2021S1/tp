@@ -64,7 +64,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing PropertyFree ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -139,14 +139,14 @@ public class MainApp extends Application {
             initialPropertyData = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
 
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty PropertyFree");
             initialBidData = new BidBook();
             initialPropertyData = new PropertyBook();
             initialBidderData = new BidderAddressBook();
             initialSellerData = new SellerAddressBook();
             initialMeetingData = new MeetingBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty PropertyFree");
             initialBidData = new BidBook();
             initialPropertyData = new PropertyBook();
             initialBidderData = new BidderAddressBook();
@@ -215,7 +215,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty PropertyFree");
             initializedPrefs = new UserPrefs();
         }
 
@@ -231,13 +231,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting PropertyFree " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping PropertyFree ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
             storage.savePropertyBook(model.getPropertyBook());

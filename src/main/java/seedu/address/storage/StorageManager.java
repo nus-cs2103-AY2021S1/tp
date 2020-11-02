@@ -21,7 +21,7 @@ import seedu.address.storage.property.PropertyBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of book data in local storage.
  */
 public class StorageManager implements Storage {
 

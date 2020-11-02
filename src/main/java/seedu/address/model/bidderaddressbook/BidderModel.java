@@ -24,11 +24,11 @@ public interface BidderModel {
     void setBidderAddressBookFilePath(Path bidderAddressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces bidder address book data with the data in {@code bidderAddressBook}.
      */
     void setBidderAddressBook(ReadOnlyBidderAddressBook bidderAddressBook);
 
-    /** Returns the AddressBook */
+    /** Returns the BidderAddressBook */
     ReadOnlyBidderAddressBook getBidderAddressBook();
 
     /**

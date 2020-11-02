@@ -24,11 +24,11 @@ public interface SellerModel {
     void setSellerAddressBookFilePath(Path sellerAddressBookFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces seller address book data with the data in {@code sellerAddressBook}.
      */
     void setSellerAddressBook(ReadOnlySellerAddressBook sellerAddressBook);
 
-    /** Returns the AddressBook */
+    /** Returns the SellerAddressBook */
     ReadOnlySellerAddressBook getSellerAddressBook();
 
     /**

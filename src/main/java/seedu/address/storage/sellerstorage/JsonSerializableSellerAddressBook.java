@@ -14,7 +14,7 @@ import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable SellerAddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "selleraddressbook")
 public class JsonSerializableSellerAddressBook {
@@ -32,16 +32,16 @@ public class JsonSerializableSellerAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlySellerAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableSellerAddressBook}.
      */
     public JsonSerializableSellerAddressBook(ReadOnlySellerAddressBook source) {
         sellers.addAll(source.getSellerList().stream().map(JsonAdaptedSeller::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this seller address book into the model's {@code SellerAddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

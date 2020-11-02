@@ -24,7 +24,7 @@ public class JsonSerializableBidderAddressBook {
     private final List<JsonAdaptedBidder> bidders = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given bidders.
+     * Constructs a {@code JsonSerializableBidderAddressBook} with the given bidders.
      */
     @JsonCreator
     public JsonSerializableBidderAddressBook(@JsonProperty("bidders") List<JsonAdaptedBidder> bidders) {
@@ -32,16 +32,16 @@ public class JsonSerializableBidderAddressBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyBidderAddressBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableBidderAddressBook}.
      */
     public JsonSerializableBidderAddressBook(ReadOnlyBidderAddressBook source) {
         bidders.addAll(source.getBidderList().stream().map(JsonAdaptedBidder::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code BidderAddressBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
