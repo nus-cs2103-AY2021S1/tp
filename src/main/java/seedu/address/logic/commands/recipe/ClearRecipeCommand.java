@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 public class ClearRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "clearR";
+
     public static final String MESSAGE_SUCCESS = "Recipe has been cleared!";
 
     private static final Logger logger = Logger.getLogger("ClearRecipeLogger");

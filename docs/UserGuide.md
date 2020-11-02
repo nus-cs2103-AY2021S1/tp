@@ -215,6 +215,7 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 Multiple ingredients are separated by `,`.
 </div> 
 
+
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be in two formats:
     * Local path e.g. images/healthy1.jpg 
@@ -239,7 +240,7 @@ Multiple ingredients are separated by `,`.
      <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
      <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
      
-     
+
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
  step of the instruction based on the end of a sentence, indicated by a `.`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
@@ -306,6 +307,7 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 Multiple ingredients are separated by `,`.
 </div> 
 
+
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be in two formats:
     * Local path e.g. images/healthy1.jpg 
@@ -321,6 +323,7 @@ Multiple ingredients are separated by `,`.
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
   
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
 </div> 
@@ -735,6 +738,7 @@ Term | Explanation
 **Drawer** | Page that layers above left section of the window when the `selectR` command runs and closes when the `close` command runs.
 **CLI** | A Command Line Interface (CLI) is a text-based user interface that allows users to type text commands instructing the program to do specific tasks.
 **GUI** | A Graphical User Interface (GUI) is a form of user interface that allows users to interact with the program through graphical icons instead of text-based user interfaces.
+**Absolute Path** | The complete details needed to locate a file or folder, starting from the root element.
 
 --------------------------------------------------------------------------------------------------------------------
 
