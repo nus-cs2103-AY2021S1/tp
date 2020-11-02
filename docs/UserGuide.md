@@ -238,8 +238,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     Figure 5: Add new item of duck
     <br>
 
-4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
-through as you are not allowed to add with max quantity and metric. You should receive an error message, refer to Figure 6:
+4. Press key arrow up on your keyboard to toggle to previous command and press Enter. 
+   You should receive an error message, refer to Figure 6:
     <br>
 
     ![add-i_step_2](images/add-i_eg1.2.PNG)
@@ -248,17 +248,22 @@ through as you are not allowed to add with max quantity and metric. You should r
     Figure 6: Error for invalid input
     <br>
  
+    Your command should not pass through as you are not allowed to add an existing item with max quantity and metric.
+    
    *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
 
-5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
-are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
-You can refer to Figure 7 for the expected result:
+5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. 
+   You can refer to Figure 7 for the expected result:
     <br>
     
     ![add-i_step3](images/add-i_eg1.3.PNG)
     <br>
     
     Figure 7: Successfully added quantity with new tag
+    
+    Notice that you 
+    are adding to an existing `item` DUCK which was just added. A new tag of perishable should also appear.
+    
     
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
