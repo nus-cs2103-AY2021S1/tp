@@ -168,11 +168,12 @@ public class Patient {
                 .append(getSex() + "\n")
                 .append("Blood Type: ")
                 .append(getBloodType() + "\n")
-                .append("ColorTag: ")
+                .append("Color Tag: ")
                 .append(getColorTag() + "\n")
                 .append(getVisitHistory() + "\n")
-                .append("Allergies: ");
+                .append("Allergies: [ ");
         getAllergies().forEach(builder::append);
+        builder.append(" ]");
         return builder.toString();
     }
 

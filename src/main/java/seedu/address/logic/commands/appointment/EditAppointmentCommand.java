@@ -42,7 +42,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_APP_STARTTIME + "2020-10-23 11:00 "
             + PREFIX_APP_DURATION + "40";
 
-    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s\n\n"
+    public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited appointment:\n%1$s\n\n"
             + "WARNING : If you have edited patient name or patient NRIC, "
             + "please make sure to update the relevant changes to the patient, using the 'edit' command.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

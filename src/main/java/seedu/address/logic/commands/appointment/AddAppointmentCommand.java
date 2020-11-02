@@ -32,7 +32,7 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_APP_STARTTIME + "2020-10-10 10:00 "
             + PREFIX_APP_DURATION + "15";
 
-    public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New appointment added:\n%1$s";
     public static final String MESSAGE_CONFLICTING_APP =
             "This appointment clashes with another appointment in your schedule.";
 

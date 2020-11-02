@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive number)\n\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient:\n%1$s\n\n"
+    public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted patient:\n%1$s\n\n"
             + "WARNING : Please make sure to delete any appointments related to the deleted patient, "
             + "using the 'deleteappt' command.";
 
