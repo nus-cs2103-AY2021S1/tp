@@ -177,11 +177,6 @@ public class TestCommand extends Command {
                     && Objects.equals(option, that.option);
         }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(answer, option);
-        }
-
         public boolean isAnyFieldPresent() {
             return answer != null || option != null;
         }
