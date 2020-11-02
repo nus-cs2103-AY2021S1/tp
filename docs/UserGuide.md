@@ -26,13 +26,13 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
    * **`contact list`** : Lists all contacts.
 
-   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the Address Book.
+   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to Modduke.
 
-   * **`contact delete`** `n/John Doe` : Deletes `John Doe` from the contact list.
+   * **`contact delete`** `n/John Doe` : Deletes `John Doe` from the Modduke.
 
    * **`contact clear`** : Deletes all contacts.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits Modduke.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -85,11 +85,12 @@ Example(s):
 
 Delete contacts with the given criteria from Modduke.
 
-Format: `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
+Format: `contact delete [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields.
 * At least one of the optional fields must be provided.
+* If there are no more members in a meeting or module after they are deleted, then the meeting or module will be deleted as well.
 
 Example(s):
 * `contact delete n/Roy Chan n/Jake Ng` delete contacts `Roy Chan` and `Jake Ng` from Modduke.
@@ -115,6 +116,7 @@ Format: `contact clear`
 
 Note(s):
 * Once cleared, contacts are permanently deleted.
+* This command will also clear all meetings and modules.
 
 ### Viewing all contacts : `contact list`
 
@@ -122,18 +124,20 @@ Shows a list of all contacts in the address book.
 
 Format: `contact list`
 
-### Finding contacts: `find`
+### Finding contacts: `contact find`
 
 Shows a list of all contacts in the address book that have the given keywords in their name and/or the given tags.
 
-Format: `find [n/KEYWORD]... [t/TAG_NAME]...`
+Format: `contact find [n/KEYWORD]... [t/TAG_NAME]...`
 
 Note(s):
 * At least one optional field must be provided.
+* KEYWORD is CASE-INSENSITIVE
+* KEYWORD can be the initials of the full name (first letter of each word in their full name) of the contact
 
 Example(s):
-*   `find n/Tan` Shows all contacts with `Tan` in their name.
-*   `find n/Jay t/classmates` Shows all contacts with `Jay` in their name and persons with the `classmates` tag.
+*   `find n/Tan` Shows all contacts with `tan` (case-insensitive) in their name or have initials `tan`.
+*   `find n/jcyy t/classmates` Shows all contacts with `jcyy` in their name or have initials `jcyy` and persons with the `classmates` tag.
 
 ### Adding a tag to a user : `label add`
 
@@ -176,12 +180,13 @@ Example(s):
 
 Creates a Module with a given name and members .
 
-Format: `module add n/MODULE_NAME [p/MEMBER_NAME]...`
+Format: `module add n/MODULE_NAME p/MEMBER_NAME [p/MEMBER_NAME]...`
 
 Note(s): 
 * A Module can have more than 1 member but can only have one name. 
-* Members can be optional.
+* Need at least 1 member.
 * Professors and TA's can also be added in the same format as other contacts.
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module add n/CS2103 p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -193,7 +198,8 @@ Finds and displays all the contacts of the module specified.
 Format: `module list m/MODULE_NAME`
 
 Note(s): 
-* The command `module list m/clean` will restore the module UI to show all contacts again.
+* To reset the contacts list in the gui you can do the contact list command
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module list m/CS2103`
@@ -202,14 +208,16 @@ Example(s):
 
 Edits a Module based on the inputted details.
 
-Format: `module edit m/MODULE_NAME n/NEW_MODULE_NAME [p/MEMBER_NAME]...`
+Format: `module edit m/MODULE_NAME [n/NEW_MODULE_NAME] [p/MEMBER_NAME]...`
 
 Note(s): 
+* At least one change has to be present (either the module name or the participants or both)
 * Note that if you change the participants, the old participants will be overwritten and replaced by the newly
 added participants. 
 * You can change either the module name, the participants or both. 
 * Changes to module will affect meetings based on that module, so if the meeting does not include any of the new module
 participants, it will be deleted. 
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module edit m/CS2103 n/CS2103T p/Roy p/Jerryl p/Yeeloon p/Jay p/Ekam`
@@ -223,6 +231,7 @@ Format: `module delete m/MODULE_NAME`
 Note(s): 
 * All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module 
 carefully.
+* Note that module names are case-sensitive.
 
 Example(s):
 * `module delete m/CS2103`
@@ -393,7 +402,7 @@ Action | Format, Examples
 --------|------------------
 **Add Contact** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
 **Clear Contacts** | `contact clear`
-**Delete Contacts** | `contact delete [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
+**Delete Contacts** | `contact delete [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
 **Edit Contacts** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
 **List Contacts** | `contact list`
 **Find Contacts** | `find [n/KEYWORD]... [t/TAG_NAME]...` <br> e.g.,`find n/Roy t/friend`

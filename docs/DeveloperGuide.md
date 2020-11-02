@@ -220,7 +220,7 @@ focus traversals commands. We have to disable it using the `AutocompleteCommandB
 
 The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends `Command` and implements the following methods:
 
-* `ClearCommand#execute` - Resets the AddressBook to a new empty AddressBook.
+* `ClearCommand#execute` - Clears the Selected Meeting and resets the AddressBook, ModuleBook and MeetingBook to a new empty AddressBook, ModuleBook and MeetingBook respectively.
 
 This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
@@ -228,9 +228,17 @@ This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
 Execution Code Snippet :
 
-`model.setAddressBook(new AddressBook());`
+```
+model.setSelectedMeeting(null);
+model.setAddressBook(new AddressBook());
+model.setMeetingBook(new MeetingBook());
+model.setModuleBook(new ModuleBook());
+```
 
 The above code snippet sets the AddressBook in the `model` to a new `AddressBook` object. Thus, resetting the AddressBook.
+As modules and meetings cannot exist without contacts, the code also sets the MeetingBook and ModuleBook in the `model`
+to a new `MeetingBook` and `ModuleBook` object respectively, which resets both books. As there are no existing meetings,
+the SelectedMeeting is set to `null`.
 
 Given below is the sequence diagram of how the mechanism behaves when called using the `contact clear` command.
 
@@ -375,6 +383,8 @@ people.stream().forEach(p -> {
 });
 ```
 The above code snippet will iterate through all Persons in the `FilteredList` and delete them from the `AddressBook`, `MeetingBook` and `ModuleBook`.
+If any Meeting or Module does not have any more members as a result of this deletion, then they will be deleted as well.
+If a Module is deleted, all Meetings of that Module are also deleted.
 
 #### Activity Diagram
 
@@ -474,6 +484,7 @@ The parsing of user input for `FindCommand` is facilitated by `FindCommandParser
 
 The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `FindCommandParser`
 does not look for the `m/` prefix when parsing the arguments. So it does not pass a List of Modules into the `FindCommand`.
+It also uses the `NameContainsKeywordPredicate` and `PersonHasTagsAndKeywordInNamePredicate` instead.
 
 #### Displaying the Filtered Persons
 
@@ -488,7 +499,7 @@ to the given predicate. Doing so will display the Persons who satisfy the condit
 
 #### Activity Diagram
 
-Given below is the activity diagram of how the mechanism behaves when called using the `find` command.
+Given below is the activity diagram of how the mechanism behaves when called using the `contact find` command.
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 

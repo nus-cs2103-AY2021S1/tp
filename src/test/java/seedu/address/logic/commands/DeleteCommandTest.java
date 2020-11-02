@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FullNameMatchesKeywordPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,9 +37,9 @@ public class DeleteCommandTest {
     public void execute_validNameUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ArrayList<String> nameOne = new ArrayList<>();
-        nameOne.add(personToDelete.getName().getFirstName());
+        nameOne.add(personToDelete.getName().fullName);
         DeleteCommand deleteCommand = new DeleteCommand(
-                new NameContainsKeywordsPredicate(nameOne), new ArrayList<>()
+                new FullNameMatchesKeywordPredicate(nameOne), new ArrayList<>()
         );
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
@@ -59,15 +59,18 @@ public class DeleteCommandTest {
     public void execute_validNameAndNameInOneMeeting_success() {
         Person personToDelete = ALICE;
         ArrayList<String> nameOne = new ArrayList<>();
-        nameOne.add(personToDelete.getName().getFirstName());
+        nameOne.add(personToDelete.getName().fullName);
         DeleteCommand deleteCommand = new DeleteCommand(
-                new NameContainsKeywordsPredicate(nameOne), new ArrayList<>()
+                new FullNameMatchesKeywordPredicate(nameOne), new ArrayList<>()
         );
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 personToDelete.getName().toString());
 
-        Model expectedModel = model;
-        model.deletePerson(personToDelete);
+        Model expectedModel = new ModelManager(getTypicalAddressBook(),
+                getTypicalMeetingBookWithMember(), getTypicalModuleBook(), new UserPrefs());
+        expectedModel.deletePerson(personToDelete);
+        expectedModel.updatePersonInModuleBook(personToDelete);
+        expectedModel.updatePersonInMeetingBook(personToDelete);
 
         assertCommandSuccess(deleteCommand, modelWithMembersInMeetings, expectedMessage, expectedModel);
     }
@@ -75,20 +78,20 @@ public class DeleteCommandTest {
     @Test
     public void equals() {
         ArrayList<String> nameOne = new ArrayList<>();
-        nameOne.add(ALICE.getName().getFirstName());
+        nameOne.add(ALICE.getName().fullName);
         ArrayList<String> nameTwo = new ArrayList<>();
-        nameTwo.add(BOB.getName().getFirstName());
+        nameTwo.add(BOB.getName().fullName);
         DeleteCommand deleteFirstCommand = new DeleteCommand(
-                new NameContainsKeywordsPredicate(nameOne), new ArrayList<>());
+                new FullNameMatchesKeywordPredicate(nameOne), new ArrayList<>());
         DeleteCommand deleteSecondCommand = new DeleteCommand(
-                new NameContainsKeywordsPredicate(nameTwo), new ArrayList<>());
+                new FullNameMatchesKeywordPredicate(nameTwo), new ArrayList<>());
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(
-                new NameContainsKeywordsPredicate(nameOne), new ArrayList<>());
+                new FullNameMatchesKeywordPredicate(nameOne), new ArrayList<>());
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

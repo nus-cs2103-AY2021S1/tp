@@ -236,8 +236,8 @@ public class ModelManager implements Model {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
-
-        filteredMeetings.stream().filter(meeting -> meeting.getParticipants()
+        List<Meeting> meetings = new ArrayList<>(filteredMeetings);
+        meetings.stream().filter(meeting -> meeting.getParticipants()
                 .contains(personToUpdate)).forEach(meeting -> {
                     Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
                     logger.fine("Removing contact from relevant meeting.");
@@ -248,10 +248,14 @@ public class ModelManager implements Model {
                         logger.fine("Adding edited contact to relevant meeting.");
                         updatedMembers.add(editedPerson);
                     }
-                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
-                            meeting.getDate(), meeting.getTime(), updatedMembers, meeting.getAgendas(),
-                            meeting.getNotes());
-                    setMeeting(meeting, updatedMeeting);
+                    if (updatedMembers.size() == 0) {
+                        deleteMeeting(meeting);
+                    } else {
+                        Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
+                                meeting.getDate(), meeting.getTime(), updatedMembers, meeting.getAgendas(),
+                                meeting.getNotes());
+                        setMeeting(meeting, updatedMeeting);
+                    }
                 });
     }
 
@@ -286,7 +290,8 @@ public class ModelManager implements Model {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
-        filteredModules.stream()
+        List<Module> modules = new ArrayList<>(filteredModules);
+        modules.stream()
                 .filter(module -> module.getClassmates().contains(personToUpdate))
                 .forEach(module -> {
                     Set<Person> updatedClassmates = new HashSet<>(module.getClassmates());
@@ -298,8 +303,12 @@ public class ModelManager implements Model {
                         logger.fine("Adding edited contact to relevant module.");
                         updatedClassmates.add(editedPerson);
                     }
-                    Module updatedModule = new Module(module.getModuleName(), updatedClassmates);
-                    moduleBook.setModule(module, updatedModule);
+                    if (updatedClassmates.size() == 0) {
+                        deleteModule(module);
+                    } else {
+                        Module updatedModule = new Module(module.getModuleName(), updatedClassmates);
+                        moduleBook.setModule(module, updatedModule);
+                    }
                 });
     }
 
@@ -336,13 +345,17 @@ public class ModelManager implements Model {
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
         moduleBook.setModule(target, editedModule);
     }
 
     @Override
     public void deleteModule(Module target) {
         moduleBook.removeModule(target);
+        List<Meeting> meetingList = filteredMeetings.stream().filter(meeting -> meeting.getModule()
+                .equals(target)).collect(Collectors.toList());
+        for (Meeting m : meetingList) {
+            deleteMeeting(m);
+        }
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -371,7 +384,7 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        return new FilteredList(filteredPersons, predicate);
+        return new FilteredList<>(filteredPersons, predicate);
     }
 
     /**
@@ -395,7 +408,7 @@ public class ModelManager implements Model {
         Predicate<Person> combined = x -> predicate.test(x)
                 || moduleList.stream()
                 .anyMatch(m -> m.getClassmates().contains(x));
-        return new FilteredList(filteredPersons, combined);
+        return new FilteredList<>(filteredPersons, combined);
     }
 
     //=========== Filtered Meeting List Accessors =============================================================

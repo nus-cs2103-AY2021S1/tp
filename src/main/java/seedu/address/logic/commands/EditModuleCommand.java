@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,10 +16,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
@@ -62,7 +65,6 @@ public class EditModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         boolean isValidModule = model.hasModuleName(targetModuleName);
         if (!isValidModule) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED);
@@ -71,16 +73,25 @@ public class EditModuleCommand extends Command {
         List<Module> filteredModuleList = model.getFilteredModuleList().stream()
                 .filter(module -> module.isSameName(targetModuleName)).collect(Collectors.toList());
         Module moduleToEdit = filteredModuleList.get(0);
-
         assert moduleToEdit != null;
 
         Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor, model);
-
         if (moduleToEdit.isSameModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
+        ReadOnlyModuleBook moduleBook = model.getModuleBook();
+        ObservableList<Module> moduleList = moduleBook.getModuleList();
+        List<Module> modules = moduleList.stream().filter(module-> module.getModuleName()
+                .equals(editedModule.getModuleName())).collect(Collectors.toList());
+        assert modules.size() < 2;
+        if (modules.size() == 1) {
+            if (!modules.get(0).getModuleName().equals(moduleToEdit.getModuleName())) {
+                throw new CommandException(MESSAGE_DUPLICATE_MODULE);
+            }
+        }
         model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateModuleInMeetingBook(moduleToEdit, editedModule);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule), false, false,

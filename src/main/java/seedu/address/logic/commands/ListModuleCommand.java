@@ -28,11 +28,7 @@ public class ListModuleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        if (moduleName.getModuleName().equals("clean")) {
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        } else {
-            model.getPersonsInModule(moduleName);
-        }
+        model.getPersonsInModule(moduleName);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
