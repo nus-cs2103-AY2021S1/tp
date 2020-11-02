@@ -142,6 +142,7 @@ public class EditIngredientCommand extends Command {
         public void setIngredient(Ingredient ingredient) {
             this.ingredient = ingredient;
         }
+
         public Optional<Ingredient> getIngredient() {
             return Optional.ofNullable(ingredient);
         }
