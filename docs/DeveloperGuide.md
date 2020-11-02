@@ -282,6 +282,104 @@ The following activity diagram summarizes what happens when a user adds a new pa
   * Pros: Independent from external and online platforms (fully integrated within the application).
   * Cons: Harder to implement and less freedom to edit medical records.
 
+### Sort Feature (by Chong Jia Le)
+
+#### Implementation
+
+This feature enables the user to sort medical records of patients in ascending order based on : **name** or **NRIC**. The following are the additions required for this feature:
+
+* A `SortBy` class, which is a custom comparator, is added under the `commands` package.
+* A `SortCommand` class is added under the `commands` package.
+* A `SortCommmandParser` class is added under the `parser` package to parse the sort command and recognize how patients are to be sorted.
+
+Given below is an example usage scenario.
+
+The sequence diagram below illustrates Logic and Model Components when the user executes `sort name` command to sort patients in Hospify alphabetically. 
+
+<div markdown="block" class="alert alert-info">
+ 
+**:information_source: Note on sequence diagram:**<br>
+ 
+* The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+In the **Logic** Component, after user inputs "sort name", these key methods:
+* `LogicManager#execute("sort name")` : The `LogicManager` takes in a command text string ("sort name/nric").
+* `HospifyParser#parseCommand("sort name")` : The `HospifyParser` parses the users input as a command word, "sort", and predicate,
+"name". Using the command word, a `SortCommandParser` is created.
+* `SortCommandParser#parse("name")` : The `SortCommandParser` takes in the predicate, "name", and parses it to create a `SortCommand`, with a specific predicate. A custom comparator, `SortBy`, is created
+based on the predicate.
+* `SortCommand#execute(model)` : The `SortCommand` uses the `SortBy` to sort the patients and returns a `CommandResult` object which represents the result of a
+command execution.
+
+In the **Model** Component, the following key methods are used:
+* `Model#sort(sortBy)` : sorts the patients in `Hospify` using the given `sortBy` comparator.
+* `HospifyBook#sort(sortBy)` : sorts patients stored in a `UniquePatientList` using the given `sortBy` comparator.
+* `UniquePatientList#sort(sortBy)` : sorts the patients stores in a stream using sort function.
+
+After the command is executed, a success message is displayed and the sorted list is shown in the application.
+
+The following activity diagram summarizes what happens when the user inputs a sort command.
+
+#### Design consideration:
+
+##### Aspect: How sort is implemented
+
+* **Alternative 1 (current choice):** The list is only sorted at the moment when user inputs sort command
+  * Pros : Easy to implement and quick to add new patients.
+  * Cons : Cumbersome for users to repeatedly input sort command after each addition of new patients.
+* **Alternative 2:** The list remains sorted once user inputs sort command
+  * Pros : More convenient for user as list will sort itself after every addition of patient.
+  * Cons : Harder to implement and might make the app slower.
+  
+  
+### Count Feature (by Chong Jia Le)
+
+#### Implementation
+
+This feature enables the user to count the number of patients in Hospify. The following are the additions required for this feature:
+
+* A `CountCommand` class is added under the `commands` package.
+
+Given below is an example usage scenario.
+
+The sequence diagram below illustrates Logic and Model Components when the user executes `count` command to sort patients in Hospify alphabetically. 
+
+<div markdown="block" class="alert alert-info">
+ 
+**:information_source: Note on sequence diagram:**<br>
+ 
+* The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+In the **Logic** Component, after user inputs "count", these key methods:
+* `LogicManager#execute("count")` : The `LogicManager` takes in the command text string ("count").
+* `HospifyParser#parseCommand("count")` : The `HospifyParser` parses the users input and recognizes the command word, "count", and a `CountCommand` is created.
+* `CountCommand#execute(model)` : The `CountCommand` uses the count method of `Model` to count the number of patients and returns a `CommandResult` object which represents the result of a
+command execution.
+
+In the **Model** Component, the following key methods are used:
+* `Model#count()` : counts the patients in `Hospify` using the count method in `HospifyBook`.
+* `HospifyBook#scount()` : counts patients using the count method in `UniquePatientList`.
+* `UniquePatientList#count()` : counts the patients using the count function of Streams.
+
+After the command is executed, a success message is displayed in the application. (i.e. There are 10 patients.)
+
+The following activity diagram summarizes what happens when the user inputs a count command.
+
+#### Design consideration:
+
+##### Aspect: How count is implemented
+
+* **Alternative 1 (current choice):** Count command only counts the total patients in record
+  * Pros : Easy to implement and quick to count.
+  * Cons : User is unable to count number of search results.
+* **Alternative 2:** Count command can count number of results after find is executed.
+  * Pros : User is able to count number of search results.
+  * Cons : Harder to implement.
+
 ### \[Proposed\] Appointment feature
 
 #### Proposed Implementation
