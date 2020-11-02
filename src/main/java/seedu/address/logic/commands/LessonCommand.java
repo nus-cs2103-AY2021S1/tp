@@ -62,7 +62,6 @@ public class LessonCommand extends Command {
         requireNonNull(model);
         ObservableList<Task> existingTasks = model.getFilteredTaskList();
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
-        
         ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
         boolean isTaskInModel = tasksToAdd.stream()
                 .anyMatch(model::hasTask);
