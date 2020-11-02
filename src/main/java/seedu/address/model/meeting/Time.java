@@ -12,7 +12,7 @@ public class Time {
     public static final String MESSAGE_TIME_CONSTRAINTS = "The time given should be a valid time";
     public static final String MESSAGE_CONSTRAINTS = "Times should be in the format hh:mm "
             + "the time given should be a valid time";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "[0-9]{2}[:]{1}[0-9]{2}";
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("kk:mm");
     public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("h:mm a");
 
@@ -40,14 +40,14 @@ public class Time {
     /**
      * Returns true if a given string is in a valid time format.
      */
-    private static boolean isValidFormat(String test) {
-        return test.length() == 5 && test.charAt(2) == ':';
+    public static boolean isValidFormat(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if a given string is a valid time.
      */
-    private static boolean isValidTime(String test) {
+    public static boolean isValidTime(String test) {
         try {
             LocalTime.parse(test);
         } catch (DateTimeParseException e) {

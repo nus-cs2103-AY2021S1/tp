@@ -3,7 +3,15 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalMeetings.CS2100_MEETING;
+import static seedu.address.testutil.TypicalMeetings.CS2101_MEETING;
+import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -17,16 +25,19 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
 
@@ -52,7 +63,6 @@ public class AddMeetingCommandTest {
         assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
-    @Test
     public void execute_duplicateMeeting_throwsCommandException() {
         Meeting validMeeting = new MeetingBuilder().build();
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting);
@@ -61,20 +71,27 @@ public class AddMeetingCommandTest {
         assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () ->
                 addMeetingCommand.execute(modelStub));
     }
+
+    @Test
+    public void execute_duplicateMeeting_throwsCommandException() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
+        EditCommand editCommand = new EditCommand(BENSON.getName(), descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
      */
 
     @Test
     public void equals() {
-        Meeting cs2103 = new MeetingBuilder().withName("CS2103").build();
-        Meeting cs3234 = new MeetingBuilder().withName("CS3234").build();
-        AddMeetingCommand meetingCommand1 = new AddMeetingCommand(cs2103);
-        AddMeetingCommand meetingCommand2 = new AddMeetingCommand(cs3234);
+        AddMeetingCommand meetingCommand1 = new AddMeetingCommand(CS2100_MEETING);
+        AddMeetingCommand meetingCommand2 = new AddMeetingCommand(CS2101_MEETING);
 
         // same object -> returns true
         assertTrue(meetingCommand2.equals(meetingCommand2));
 
         // same values -> returns true
-        AddMeetingCommand meetingCommand1Copy = new AddMeetingCommand(cs2103);
+        AddMeetingCommand meetingCommand1Copy = new AddMeetingCommand(CS2100_MEETING);
         assertTrue(meetingCommand1.equals(meetingCommand1Copy));
 
         // different types -> returns false
