@@ -22,9 +22,9 @@ public class AddVisitCommand extends Command {
             + "by specifying the patient's index in the list of patients. \n"
             + "Parameters: INDEX (must be a positive number) ["
             + PREFIX_VISIT_DATE + "DATE]\n"
-            + "Input DATE as DD/MM/YYYY. Input YYYY as 19xx to 2xxx.\n\n"
+            + "Input DATE as dd/MM/yyyy. Visit date can be any date up till and including today.\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_VISIT_DATE + "06/10/2020";
+            + PREFIX_VISIT_DATE + "30/10/2020";
 
     public static final String MESSAGE_POPUP_PROMPT = "Please refer to the popup window and enter visitation log.";
 
