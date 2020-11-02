@@ -3,9 +3,10 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg) mentored
+by Professor Damith.
 
-You can reach us at the email `jordany@comp.nus.edu.sg`
+You can reach us at the email `jordany@comp.nus.edu.sg` or our supervisor at `damithc@gmail.comp.nus.edu.sg`
 
 ## Project team
 
@@ -15,7 +16,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg`
 
 [[homepage](https://limziyang.com/)]
 [[github](http://github.com/Ziyang-98)]
-[[portfolio](https://limziyang.com)]
+[[portfolio](team/ziyang98.md)]
 
 * Role: Team Lead
 * Responsibilities: Responsible for overall project coordination
