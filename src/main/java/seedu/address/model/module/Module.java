@@ -350,9 +350,8 @@ public class Module {
     /**
      * Returns the module for the view command.
      */
-    public String toView() {
-        return String.format("Module Name: %s \nZoomLink: %s \nMCs: %s", getName(), getAllLinks(),
-                getModularCredits().toString());
+    public String toViewTextArea() {
+        return String.format("Module Name: %s \nMCs: %s", getName(), getModularCredits().toString());
     }
     @Override
     public String toString() {
