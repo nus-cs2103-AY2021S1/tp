@@ -120,35 +120,6 @@ public class DeliveryEditCommandTest {
     }
 
     @Test
-    public void execute_duplicateDeliveryUnfilteredList_failure() {
-        Delivery firstDelivery = deliveryModel.getFilteredAndSortedDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
-
-        DeliveryEditCommand.EditDeliveryDescriptor descriptor =
-                new EditDeliveryDescriptorBuilder(firstDelivery)
-                        .build();
-
-        DeliveryEditCommand editCommand = new DeliveryEditCommand(INDEX_SECOND_ITEM, descriptor);
-
-        assertCommandFailure(editCommand, deliveryModel, DeliveryEditCommand.MESSAGE_DUPLICATE_ITEM);
-    }
-
-    @Test
-    public void execute_duplicateDeliveryFilteredList_failure() {
-        showDeliveryAtIndex(deliveryModel, INDEX_FIRST_ITEM);
-
-        // edit Delivery in filtered list into a duplicate in inventory book
-        Delivery deliveryInList = deliveryModel
-                .getDeliveryBook()
-                .getDeliveryList()
-                .get(INDEX_SECOND_ITEM.getZeroBased());
-
-        DeliveryEditCommand editCommand = new DeliveryEditCommand(INDEX_FIRST_ITEM,
-                new EditDeliveryDescriptorBuilder(deliveryInList).build());
-
-        assertCommandFailure(editCommand, deliveryModel, DeliveryEditCommand.MESSAGE_DUPLICATE_ITEM);
-    }
-
-    @Test
     public void execute_invalidDeliveryIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(deliveryModel.getFilteredAndSortedDeliveryList().size() + 1);
 
@@ -158,7 +129,7 @@ public class DeliveryEditCommandTest {
 
         DeliveryEditCommand editCommand = new DeliveryEditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
     }
 
     /**
@@ -175,7 +146,7 @@ public class DeliveryEditCommandTest {
         DeliveryEditCommand editCommand = new DeliveryEditCommand(outOfBoundIndex,
                 new EditDeliveryDescriptorBuilder().withName(VALID_NAME_AARON).build());
 
-        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, deliveryModel, Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
     }
 
     @Test

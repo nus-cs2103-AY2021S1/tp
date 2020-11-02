@@ -45,7 +45,6 @@ public class DeliveryEditCommand extends DeliveryCommand {
 
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Delivery: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ITEM = "This delivery already exists in the delivery book.";
 
     private final Index index;
     private final EditDeliveryDescriptor editDeliveryDescriptor;
@@ -69,8 +68,8 @@ public class DeliveryEditCommand extends DeliveryCommand {
         DeliveryModel deliveryModel = models.getDeliveryModel();
         List<Delivery> lastShownList = deliveryModel.getFilteredAndSortedDeliveryList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
         }
 
         Delivery deliveryToEdit = lastShownList.get(index.getZeroBased());

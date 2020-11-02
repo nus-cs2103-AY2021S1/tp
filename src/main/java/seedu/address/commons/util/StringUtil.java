@@ -85,4 +85,21 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} represents an integer
+     * @param s String to test if integer
+     * @return true if s is an integer, false otherwise
+     */
+    public static boolean isInteger(String s) {
+        if (s == null) {
+            return false;
+        }
+        try {
+            int i = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 }

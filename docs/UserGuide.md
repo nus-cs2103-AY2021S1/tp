@@ -217,7 +217,9 @@ Pointers to take note when adding an item:
 * If similar inventory item already exist, then the `QUANTITY` of that particular item will be increased.
 * An item which has the same `NAME` and `SUPPLIER` is considered similar.
 * `MAX_QUANTITY` denotes the ideal stock level of that particular item.
-* `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
+* `TAG` could be used to categorise items. EG: Duck can be tagged as meat.
+
+*Note: `MAX_QUANTITY` is not a hard cap on the amount of an item you can store in the inventory.* 
 
 <a name="addexample1"></a>
 Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the starting point.
@@ -332,7 +334,7 @@ Edits an existing item in the Inventory book or an existing pending delivery in 
 
 ##### 3.1.4a `edit-i`
 
-Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
+Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG…​]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:** <br>
 The `|` symbol means the user must provide at least one of the fields
@@ -382,7 +384,7 @@ fields as shown in Figure 11.
 
 ##### 3.1.4b `edit-d`
 
-Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER] [by/TIME]`
+Format: `edit-d INDEX [n/NAME | p/PHONE | a/ADDRESS | o/ORDER | by/TIME]`
 
 Examples:
 * `edit-d 1 n/AARON p/91111233` <br>
@@ -396,7 +398,7 @@ Finds items or deliveries whose attributes contain any of the given keywords.
 
 ##### 3.1.5a `find-i`
 
-Format: `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`
+Format: `find-i [n/NAME | s/SUPPLIER | t/TAG…​]`
 
 Pointers to take note when finding an item:
 
@@ -429,7 +431,7 @@ Figure 12:
 
 ##### 3.1.5b `find-d`
 
-Format: `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
+Format: `find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]`
 
 Pointers to take note when finding a delivery:
 
@@ -437,11 +439,13 @@ Pointers to take note when finding a delivery:
 * The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
 * `Name`, `Phone`, `Address`, `Order` can be searched
 * Only full words for name will be matched e.g. `Bob` will not match `Bobby`
-* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
-* Items matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
+* Any phone/address/order containing the search string within them will be matched. 
+  * searching for "a/Holland V" will match "Holland Village"
+  * searching for "p/123" will match "12345678"
+* Items matching at least one word in the search query will be returned.
+  e.g. `find-d n/Bernice Adam` will return deliveries with names `Bernice Yeo`, `Adam Tan`
 * More than one Prefix can be specified (i.e. `AND` search).
-  e.g. `find-d n/Bernice p/85783742` will return delivery matching name and phone.
+  e.g. `find-d n/Bernice p/85783742` will return delivery matching *both* name and phone.
  
 Example:
 * `find-d n/alex aileen` using [Figure 1](#uiwithannotationpng) as the starting point.
@@ -689,8 +693,8 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
 |**Clear from Inventory**  | `clear-i`            |
 |**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`         |
-|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`    |
-|**Find in Inventory**   | `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`<br> e.g., `find-i s/ntuc t/meat`     |
+|**Edit Inventory**   | `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG…​]` <br> e.g.,`edit 1 n/Chicken q/50`    |
+|**Find in Inventory**   | `find-i [n/NAME | s/SUPPLIER | t/TAG…​]` <br> e.g., `find-i s/ntuc t/meat`     |
 |**List Inventory**   | `list-i` |
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
 
@@ -702,9 +706,9 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Add to Delivery**    | `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo by/15` |
 |**Clear from Delivery**  | `clear-d`               |
 |**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`     |
-|**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
+|**Edit Delivery**   | `edit-d INDEX [n/NAME | p/PHONE | a/ADDRESS | o/ORDER | by/TIME]` <br> e.g.,`edit 3 n/AARON p/91111233`   |
 |**List Delivery**   | `list-d` |
-|**Find in Delivery**  | `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]` <br> e.g., `find-d n/alex aileen`   |
+|**Find in Delivery**  | `find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]` <br> e.g., `find-d n/alex aileen`   |
 
 --------------------------------------------------------------------------------------------------------------------
 

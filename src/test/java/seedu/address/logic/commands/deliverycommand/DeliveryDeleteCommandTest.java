@@ -46,7 +46,7 @@ public class DeliveryDeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(deliveryModel.getFilteredAndSortedDeliveryList().size() + 1);
         DeliveryDeleteCommand deleteCommand = new DeliveryDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, deliveryModel, Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class DeliveryDeleteCommandTest {
 
         DeliveryDeleteCommand deleteCommand = new DeliveryDeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, deliveryModel, Messages.MESSAGE_INVALID_DELIVERY_DISPLAYED_INDEX);
     }
 
     @Test
