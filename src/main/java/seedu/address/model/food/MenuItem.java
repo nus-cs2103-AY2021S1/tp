@@ -28,7 +28,4 @@ public class MenuItem extends Food {
         return filePath;
     }
 
-    public Image getImage() throws FileNotFoundException {
-        return new Image(new FileInputStream(filePath));
-    }
 }

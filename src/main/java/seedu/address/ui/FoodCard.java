@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -57,16 +58,9 @@ public class FoodCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        try {
-            imageView.setImage(item.getImage());
-            imageView.setFitHeight(150);
-            imageView.setFitWidth(150);
-            imageView.setTranslateX(30);
-            tags.setTranslateY(-60);
-        } catch (FileNotFoundException e) {
-            System.out.println(item.getName());
-            System.out.println(item.getFilePath());
-        }
+        imageView.setImage(new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath())));
+        imageView.setFitHeight(150);
+        imageView.setFitWidth(150);
     }
 
     @Override

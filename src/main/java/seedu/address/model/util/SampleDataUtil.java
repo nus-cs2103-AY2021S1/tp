@@ -22,7 +22,6 @@ import seedu.address.model.vendor.Vendor;
  */
 //todo: Add the image urls under the file path parameter here
 public class SampleDataUtil {
-    private static final String FOOD_FOLDER_PATH = System.getProperty("user.dir") + "/src/main/resources/images/food/%s";
 
     public static Vendor[] getSampleVendors() {
         HashSet<Tag> starters = new HashSet<>();
@@ -38,36 +37,30 @@ public class SampleDataUtil {
         burgers.add(new Tag("Burger"));
 
         Menu menu1 = new Menu();
-        menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(),
-                String.format(FOOD_FOLDER_PATH, "butter_chicken.png")));
-        menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), String.format(FOOD_FOLDER_PATH,
-                "pattaya.png")));
+        menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(), "butter_chicken.png"));
+        menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), "pattaya.png"));
         HashSet<Tag> vegTags = new HashSet<>();
         HashSet<Tag> spicyTags = new HashSet<>();
         spicyTags.add(new Tag("Spicy"));
         vegTags.add(new Tag("Vegetarian"));
         menu1.add(new MenuItem("Veg Briyani", 5, new HashSet<>(vegTags),
-                String.format(FOOD_FOLDER_PATH, "veg_briyani.png")));
+                "veg_briyani.png"));
         menu1.add(new MenuItem("Cheese Fries", 4, new HashSet<>(),
-                String.format(FOOD_FOLDER_PATH, "cheese_fries.png")));
+                "cheese_fries.png"));
         menu1.add(new MenuItem("Kampong Style Fried Rice", 4.8, new HashSet<>(),
-                String.format(FOOD_FOLDER_PATH, "kampong.png")));
+                "kampong.png"));
         //note that this is fried rice
         menu1.add(new MenuItem("Sambal Chicken Fried Rice", 4.8, new HashSet<>(),
-                String.format(FOOD_FOLDER_PATH, "sambal_chicken.png")));
-        menu1.add(new MenuItem("Roti John", 4, new HashSet<>(), String.format(FOOD_FOLDER_PATH,
-                "roti_john.png")));
+                "sambal_chicken.png"));
+        menu1.add(new MenuItem("Roti John", 4, new HashSet<>(), "roti_john.png"));
 
         // Add cold and hot
-        menu1.add(new MenuItem("Milo Cold", 1.5, drinks, String.format(FOOD_FOLDER_PATH,
-                "milo.png")));
-        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, String.format(FOOD_FOLDER_PATH,
-                "milo.png")));
+        menu1.add(new MenuItem("Milo Cold", 1.5, drinks, "milo.png"));
+        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "milo.png"));
 
-        menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, String.format(FOOD_FOLDER_PATH,
-                "milo_dino.png")));
-        menu1.add(new MenuItem("Milo Godzilla", 3, drinks, String.format(FOOD_FOLDER_PATH,
-                "milo_god.png")));
+        menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "milo_dino.png"));
+        menu1.add(new MenuItem("Milo Godzilla", 3, drinks,
+                "milo_god.png"));
 
 
         Menu menu2 = new Menu();
