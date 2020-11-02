@@ -25,6 +25,11 @@ public class ModelStubAcceptingStudentAdded extends ModelStub {
     }
 
     @Override
+    public boolean isClashingClassTime(Student toCheck) {
+        return false;
+    }
+
+    @Override
     public ReadOnlyReeve getReeve() {
         return new Reeve();
     }

@@ -32,7 +32,6 @@ public class OverdueCommandTest {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
 
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -43,7 +42,6 @@ public class OverdueCommandTest {
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
 
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -54,7 +52,6 @@ public class OverdueCommandTest {
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
         expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
 
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);

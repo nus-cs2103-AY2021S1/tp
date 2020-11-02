@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +17,7 @@ import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class ExamStatsCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
 
     @Test
     public void execute_examStats_success() {
@@ -26,7 +27,7 @@ public class ExamStatsCommandTest {
         CommandResult expectedCommandResult =
                 new CommandResult(ExamStatsCommand.MESSAGE_EXAM_STATS_SUCCESS, false,
                         false, false, clone);
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
 
         assertCommandSuccess(new ExamStatsCommand(INDEX_FIRST_PERSON), model, expectedCommandResult, expectedModel);
     }

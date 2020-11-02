@@ -9,10 +9,10 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.schedule.ReadOnlyEvent;
-import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.notes.ReadOnlyNotebook;
 import seedu.address.model.notes.note.Note;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.NameComparator;
 import seedu.address.model.student.Student;
 

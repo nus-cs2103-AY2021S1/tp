@@ -1,13 +1,18 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.notes.ReadOnlyNotebook;
 import seedu.address.model.notes.note.Note;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Student;
 
 /**
@@ -90,7 +95,52 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ReadOnlyEvent getSchedule() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public LocalDateTime getScheduleViewDateTime() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setScheduleViewDate(LocalDate targetDate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ScheduleViewMode getScheduleViewMode() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setScheduleViewMode(ScheduleViewMode viewMode) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<VEvent> getVEventList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateSortedStudentList(Comparator<? super Student> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateClassTimesToEvent() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<VEvent> getLessonEventsList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isClashingClassTime(Student toCheck) {
         throw new AssertionError("This method should not be called.");
     }
 
