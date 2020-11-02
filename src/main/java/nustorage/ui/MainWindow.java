@@ -229,7 +229,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private boolean isUiCommand(String userInput) {
         userInput.trim();
-
         return userInput.equals("switch");
 
     }

@@ -34,6 +34,8 @@ public class EditInventoryCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This inventory record already "
             + "exists in the InventoryWindow";
+    public static final String MESSAGE_INVALID_QUANTITY_INPUT = "You cannot change the current quantity to your "
+            + "specified quantity!";
 
     private final Index index;
     private final EditInventoryDescriptor editInventoryDescriptor;
