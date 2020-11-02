@@ -3,8 +3,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minHeight="175.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ListView fx:id="notebook" orientation="HORIZONTAL" prefHeight="200.0" style="-fx-background-color: #663B25;" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="notebook" maxHeight="200.0" orientation="HORIZONTAL" style="-fx-background-color: #663B25;" />
     </children>
 </VBox>

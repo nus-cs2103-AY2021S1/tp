@@ -25,12 +25,12 @@
                 <Label fx:id="title" alignment="TOP_CENTER" styleClass="cell_big_label" text="\$first" />
             </HBox>
             <Label fx:id="description" styleClass="cell_small_label" text="\\$description" wrapText="true">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <VBox.margin>
-               <Insets top="2.0" />
-            </VBox.margin></Label>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <VBox.margin>
+                    <Insets top="2.0" />
+                </VBox.margin></Label>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>

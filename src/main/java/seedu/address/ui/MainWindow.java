@@ -123,7 +123,6 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel = new SchedulePanel(logic.getVEventList());
         personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
         studentListPanel = new StudentListPanel(logic.getSortedStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
