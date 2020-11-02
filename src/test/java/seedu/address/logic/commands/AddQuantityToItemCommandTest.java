@@ -109,5 +109,9 @@ public class AddQuantityToItemCommandTest {
         // different name -> returns false
         AddQuantityToItemCommand aic4 = new AddQuantityToItemCommand(VALID_ITEM_NAME_BANANA, VALID_QUANTITY_INT);
         assertNotEquals(aic1, aic4);
+
+        // different hasCommit -> returns false
+        AddQuantityToItemCommand aic5 = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INT, false);
+        assertNotEquals(aic1, aic5);
     }
 }
