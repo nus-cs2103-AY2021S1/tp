@@ -321,13 +321,13 @@ Format: `stats INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
-The statistics of the flashcard will be displayed in the view pane. Statistics of flashcard works in conjunction with the [quiz](#quizzing-flashcards-quiz) functionality.
+The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quizzing-flashcards-quiz) feature.
 
 The following information will be displayed on the view pane:
-* Question of flashcard.
-* Reviewed count.
-* Correct count.
-* Piechart to show the graphical representation of correct attempts vs wrong attempts in quiz mode.
+* Question of the flashcard.
+* Reviewed count of the flashcard.
+* Correct count of the flashcard.
+* Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard.
 
 ### Exiting the program : `exit`
 
