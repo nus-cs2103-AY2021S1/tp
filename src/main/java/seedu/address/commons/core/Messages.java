@@ -10,5 +10,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX = "The patient index provided is invalid";
     public static final String MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC = "The NRIC provided is invalid";
     public static final String MESSAGE_PATIENTS_LISTED_OVERVIEW = "%1$d patient(s) listed!";
-
+    public static final String MESSAGE_INDEX_OUT_OF_BOUNDS = "Index out of bounds! \n%1$s";
 }
