@@ -186,7 +186,7 @@
 }
 
 .view-display-tg {
-    -fx-background-color: #606060;
+    -fx-background-color: #8e8e8e;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 15pt;
     -fx-text-fill: black;
@@ -201,7 +201,7 @@
 }
 
 .view-display-student {
-    -fx-background-color: a4a4a4;
+    -fx-background-color: ffffff;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 15pt;
     -fx-text-fill: black;
