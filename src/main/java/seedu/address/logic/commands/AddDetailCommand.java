@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +65,7 @@ public class AddDetailCommand extends DetailCommand {
 
         Student studentToAddDetail = lastShownList.get(index.getZeroBased());
 
-        List<Detail> details = new ArrayList<>(studentToAddDetail.getDetails());
+        List<Detail> details = studentToAddDetail.getDetails();
         details.add(detailToAdd);
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);

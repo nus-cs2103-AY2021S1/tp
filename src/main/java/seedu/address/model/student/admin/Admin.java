@@ -50,7 +50,7 @@ public class Admin {
     }
 
     public List<Detail> getDetails() {
-        return details;
+        return new ArrayList<>(details);
     }
 
     /**

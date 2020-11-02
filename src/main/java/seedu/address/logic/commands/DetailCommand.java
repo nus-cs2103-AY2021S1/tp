@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import java.util.List;
 
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.Detail;
 
 public abstract class DetailCommand extends Command {
@@ -20,12 +19,11 @@ public abstract class DetailCommand extends Command {
      * @return updated Student.
      */
     public Student updateStudentDetail(Student studentToAddDetail, List<Detail> details) {
-        Admin adminToAddDetail = studentToAddDetail.getAdmin();
-        Admin updatedAdmin = new Admin(adminToAddDetail.getClassVenue(), adminToAddDetail.getClassTime(),
-                adminToAddDetail.getFee(), adminToAddDetail.getPaymentDate(), details);
         Student updatedStudent = new Student(studentToAddDetail.getName(), studentToAddDetail.getPhone(),
-                studentToAddDetail.getSchool(), studentToAddDetail.getYear(), updatedAdmin,
-                studentToAddDetail.getQuestions(), studentToAddDetail.getExams(), studentToAddDetail.getAcademic());
+                studentToAddDetail.getSchool(), studentToAddDetail.getYear(),
+                studentToAddDetail.getClassVenue(), studentToAddDetail.getClassTime(),
+                studentToAddDetail.getFee(), studentToAddDetail.getPaymentDate(), details,
+                studentToAddDetail.getQuestions(), studentToAddDetail.getAcademic());
 
         return updatedStudent;
     }

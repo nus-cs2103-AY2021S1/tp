@@ -26,7 +26,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.exam.Exam;
-import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
@@ -121,32 +120,31 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        Admin updatedAdmin;
-        if (editAdminDescriptor.isAnyFieldEdited()) {
-            ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
-                    .orElse(studentToEdit.getAdmin().getClassTime());
-            ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
-                    .orElse(studentToEdit.getAdmin().getClassVenue());
-            Fee updatedFee = editAdminDescriptor.getFee()
-                    .orElse(studentToEdit.getAdmin().getFee());
-            PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
-                    .orElse(studentToEdit.getAdmin().getPaymentDate());
-
-            // Details cannot be edited through this channel
-            updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
-                    studentToEdit.getAdmin().getDetails());
-        } else {
-            updatedAdmin = studentToEdit.getAdmin();
-        }
-
         // Questions should not be edited through this command
         List<Question> questions = studentToEdit.getQuestions();
         // Exams should not be edited through this command
         List<Exam> exams = studentToEdit.getExams();
         // Academic should not be edited through this command
         Academic academic = studentToEdit.getAcademic();
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions, exams,
-                academic);
+
+        if (editAdminDescriptor.isAnyFieldEdited()) {
+            ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
+                    .orElse(studentToEdit.getClassTime());
+            ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
+                    .orElse(studentToEdit.getClassVenue());
+            Fee updatedFee = editAdminDescriptor.getFee()
+                    .orElse(studentToEdit.getFee());
+            PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
+                    .orElse(studentToEdit.getPaymentDate());
+
+            // Additional Details cannot be edited through this channel
+            return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
+                    updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate, studentToEdit.getDetails(),
+                    questions, academic);
+        } else {
+            return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, studentToEdit.getAdmin(),
+                    questions, academic);
+        }
     }
 
     @Override
