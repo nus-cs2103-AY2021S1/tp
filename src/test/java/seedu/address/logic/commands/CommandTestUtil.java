@@ -55,6 +55,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final String VALID_MEETING_NAME = "New Meeting Name";
+    public static final String VALID_DATE = "2021-01-12";
+    public static final String VALID_TIME = "18:00";
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)

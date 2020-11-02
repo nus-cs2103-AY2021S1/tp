@@ -35,16 +35,18 @@ public class MeetingBuilder {
         meetingName = new MeetingName(DEFAULT_NAME);
         date = new Date(DEFAULT_DATE);
         time = new Time(DEFAULT_TIME);
-        members = new HashSet<>();
+        members = SampleDataUtil.getPersonSet(DEFAULT_MEMBERS);
     }
 
     /**
      * Initializes the MeetingBuilder with the data of {@code meetingToCopy}.
      */
     public MeetingBuilder(Meeting meetingToCopy) {
+        module = meetingToCopy.getModule();
         meetingName = meetingToCopy.getMeetingName();
         date = meetingToCopy.getDate();
         time = meetingToCopy.getTime();
+        members = meetingToCopy.getParticipants();
     }
 
     /**
