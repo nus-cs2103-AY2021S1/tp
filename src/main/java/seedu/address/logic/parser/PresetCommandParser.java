@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import java.util.Optional;
 
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.DeletePresetCommand;
 import seedu.address.logic.commands.LoadPresetCommand;
 import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.commands.SavePresetCommand;
@@ -15,14 +17,24 @@ public class PresetCommandParser implements Parser<PresetCommand> {
         String[] argsArr = ParserUtil.checkPresetSyntax(args);
         ParserUtil.checkArgsLength(argsArr, PresetCommand.COMMAND_WORD, PresetCommand.MESSAGE_USAGE, 2, 2);
 
-        String saveOrLoad = argsArr[0];
+        String modeType = argsArr[0];
 
-        boolean save = saveOrLoad.equals("save") || saveOrLoad.equals("s");
+        boolean save = modeType.startsWith("s");
+        boolean load = false;
+        if (!save) {
+            load = modeType.startsWith("l");
+        }
         Optional<Name> presetName = Optional.empty();
         if (!argsArr[1].equals("")) {
             presetName = Optional.of(ParserUtil.parseName(argsArr[1]));
         }
 
-        return save ? new SavePresetCommand(presetName) : new LoadPresetCommand(presetName);
+        if (!save && !load && argsArr[1].equals("")) {
+            throw new ParseException(Messages.NO_INPUT_NAME);
+        }
+
+        return save ? new SavePresetCommand(presetName)
+                : load ? new LoadPresetCommand(presetName)
+                : new DeletePresetCommand(presetName);
     }
 }

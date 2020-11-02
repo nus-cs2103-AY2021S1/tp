@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.PriceWithinRangePredicate;
@@ -28,8 +29,8 @@ public class PriceCommandParserTest {
 
     @Test
     public void parse_fieldsMissing_failure() {
-        String format = String.format(ParserUtil.MESSAGE_INVALID_COMMAND_FORMAT,
-                String.format(ParserUtil.MESSAGE_INSUFFICENT_ARGUMENTS, PriceCommand.COMMAND_WORD, 2,
+        String format = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                String.format(Messages.MESSAGE_INSUFFICIENT_ARGUMENTS, PriceCommand.COMMAND_WORD, 2,
                         PriceCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "", format);
         assertParseFailure(parser, "1", format);
@@ -38,11 +39,11 @@ public class PriceCommandParserTest {
 
     @Test
     public void parse_invalidValues_failure() {
-        String illegalPrice = ParserUtil.MESSAGE_INVALID_PRICE;
+        String illegalPrice = Messages.MESSAGE_INVALID_PRICE;
         assertParseFailure(parser, "< -1", String.format(illegalPrice, "-1"));
         assertParseFailure(parser, "> -1.5", String.format(illegalPrice, "-1.5"));
 
-        String illegalInequality = ParserUtil.MESSAGE_INVALID_INEQUALITY;
+        String illegalInequality = Messages.MESSAGE_INVALID_INEQUALITY;
         assertParseFailure(parser, "<< 1", String.format(illegalInequality, "<<"));
         assertParseFailure(parser, ">* 2", String.format(illegalInequality, ">*"));
     }

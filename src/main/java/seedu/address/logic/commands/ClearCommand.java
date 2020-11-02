@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.storage.Storage;
 
@@ -13,7 +13,10 @@ import seedu.address.storage.Storage;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears the Order.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes everything from the Order.\n"
+            + "Format: clear\n"
+            + "Examples:\n"
+            + "clear: clears all items on current order";
     public static final String MESSAGE_SUCCESS = "Order has been cleared!";
     public static final String MESSAGE_EMPTY_ORDER = "Order is still empty!";
 
@@ -23,7 +26,7 @@ public class ClearCommand extends Command {
         requireNonNull(model.getOrderManager());
 
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
         if (model.getOrderSize() == 0) {

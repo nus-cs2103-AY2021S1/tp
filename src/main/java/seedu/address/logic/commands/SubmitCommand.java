@@ -5,8 +5,8 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderItem;
@@ -18,13 +18,17 @@ public class SubmitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
-
         if (!model.isSelected()) {
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+            throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
-
         Order order = new Order();
         order.setOrderItems(model.getObservableOrderItemList());
+        double total = order.getTotal();
+
+        if (total == 0.0) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
+        }
+
         StringBuilder text = new StringBuilder();
         for (OrderItem orderItem: order) {
             text.append(String.format("%s x %d\n", orderItem.getName(), orderItem.getQuantity()));

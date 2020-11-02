@@ -22,10 +22,29 @@ import seedu.address.model.vendor.Vendor;
 public class SampleDataUtil {
     public static Vendor[] getSampleVendors() {
         Menu menu1 = new Menu();
-        menu1.add(new Food("Milo", 0.9, new HashSet<>()));
-        menu1.add(new Food("Fries", 1.5, new HashSet<>()));
-        menu1.add(new Food("Lemonade", 2, new HashSet<>()));
-        menu1.add(new Food("Cup noodles", 1.15, new HashSet<>()));
+
+        menu1.add(new Food("Butter Chicken", 7, new HashSet<>()));
+        menu1.add(new Food("Pattaya", 5.5, new HashSet<>()));
+        HashSet<Tag> vegTags = new HashSet<>();
+        HashSet<Tag> spicyTags = new HashSet<>();
+        spicyTags.add(new Tag("Spicy"));
+        vegTags.add(new Tag("Vegetarian"));
+        menu1.add(new Food("Veg Briyani", 5, new HashSet<>(vegTags)));
+        menu1.add(new Food("Sambal Chicken", 5.5, new HashSet<>(spicyTags)));
+        menu1.add(new Food("Cheese Fries", 4, new HashSet<>()));
+        menu1.add(new Food("Kampong Style", 4.8, new HashSet<>()));
+        //note that this is fried rice
+        menu1.add(new Food("Sambal With Fried Sambal Chicken", 4.8, new HashSet<>()));
+        menu1.add(new Food("Roti John", 4, new HashSet<>()));
+
+        // Add cold and hot
+        menu1.add(new Food("Milo Cold", 1.5, new HashSet<>()));
+        menu1.add(new Food("Milo Hot", 1.3, new HashSet<>()));
+
+        menu1.add(new Food("Milo Dinosaur", 2.5, new HashSet<>()));
+        menu1.add(new Food("Milo Godzilla", 3, new HashSet<>()));
+
+
         Menu menu2 = new Menu();
         HashSet<Tag> tagList = new HashSet<>();
         tagList.add(new Tag("Egg"));
@@ -39,16 +58,17 @@ public class SampleDataUtil {
         menu3.add(new Food("Hamburger", 4.20, new HashSet<>()));
         menu3.add(new Food("Lemon tea", 1.2, tagList2));
 
-        return new Vendor[] {
-            new Vendor(new Name("McDonalds"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"), menu1),
+        return new Vendor[]{
+            new Vendor(new Name("Al Amaan Restaurant"), new Phone("67770555"),
+                        new Email("alamaanrestaurant@gmail.com"),
+                        new Address("12 Clementi Road, Singapore 129742"),
+                        getTagSet("halal"), menu1),
             new Vendor(new Name("Local Indian Store"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), menu2),
+                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                        getTagSet("colleagues", "friends"), menu2),
             new Vendor(new Name("Ameens"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"), menu3)
+                        new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                        getTagSet("neighbours"), menu3)
         };
     }
 

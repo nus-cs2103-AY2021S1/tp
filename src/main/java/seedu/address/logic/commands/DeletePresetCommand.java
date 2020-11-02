@@ -16,12 +16,17 @@ import seedu.address.model.preset.Preset;
 import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
 
-public class SavePresetCommand extends PresetCommand {
+public class DeletePresetCommand extends PresetCommand {
 
     private final Name presetName;
 
-    public SavePresetCommand(Optional<Name> presetName) {
-        this.presetName = presetName.orElseGet(() -> new Name("MyPreset"));
+    /**
+     * Creates a DeletePresetCommand to delete the specified preset {@code Name}
+     * @param presetName
+     */
+    public DeletePresetCommand(Optional<Name> presetName) {
+        assert presetName.isPresent();
+        this.presetName = presetName.get();
     }
 
     @Override
@@ -29,10 +34,6 @@ public class SavePresetCommand extends PresetCommand {
         if (!model.isSelected()) {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
-        if (model.getOrderSize() == 0) {
-            throw new CommandException(Messages.MESSAGE_PRESET_SAVE_NO_ORDER);
-        }
-
         try {
             List<List<Preset>> allLists = storage.readPresetManager()
                     .orElseThrow(() -> new CommandException(FILE_OPS_ERROR_MESSAGE));
@@ -44,33 +45,19 @@ public class SavePresetCommand extends PresetCommand {
             // check entire menu???? whether order is valid
             List<Preset> currentVendorPresets = allLists.get(model.getVendorIndex());
 
-            Preset newPreset = new Preset(presetName.toString(),
-                    model.getObservableOrderItemList());
-
             Optional<Preset> preset = currentVendorPresets.stream()
                     .filter(x -> x.getName().equals(presetName.toString()))
                     .findFirst();
-
-            String message = Messages.MESSAGE_PRESET_SAVE_SUCCESS;
-            if (preset.isPresent()) {
-                currentVendorPresets.remove(preset.get());
-                message = Messages.MESSAGE_PRESET_OVERWRITE_SUCCESS;
+            if (preset.isEmpty()) {
+                throw new CommandException(String.format(Messages.MESSAGE_PRESET_NOT_FOUND,
+                        presetName));
             }
-
-            currentVendorPresets.add(newPreset);
+            currentVendorPresets.remove(preset.get());
 
             storage.savePresetManager(allLists);
-
-            return new CommandResult(String.format(message, presetName), false, false, true);
         } catch (IOException | DataConversionException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof SavePresetCommand // instanceof handles nulls
-                && presetName.equals(((SavePresetCommand) other).presetName));
+        return new CommandResult(String.format(Messages.MESSAGE_PRESET_DELETE_SUCCESS, presetName), false, false, true);
     }
 }
