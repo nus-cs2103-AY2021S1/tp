@@ -47,9 +47,9 @@ This diagram shows our interface.
 
 ### Basic workflow
 1. Tag important files with the `tag` command for ease of access.
-![Tag](images/tag.PNG)
+![Tag](images/screenshots/tag.PNG)
 2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.
-![Open](images/open.PNG)
+![Open](images/screenshots/open.PNG)
 3. To find the location of tagged files, use the `show` command to get the file path of the file.
 4. If you have made a happy little accident, you can recover by using `undo` and `redo`.
 5. To exit the application, either close the application window, or use the `exit` command.
