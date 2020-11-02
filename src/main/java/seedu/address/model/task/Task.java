@@ -22,23 +22,23 @@ public class Task implements Comparable<Task> {
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-            "Task name can be any values, and it should not be blank";
+        "Task name can be any values, and it should not be blank";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
-            "Task description can be any values, and it should not be blank";
+        "Task description can be any values, and it should not be blank";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
-            "Publish date should only be in the format of dd-MM-yyyy";
+        "Publish date should only be in the format of dd-MM-yyyy";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
-            "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
+        "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
-            "Is done values should only contain booleans, and it should not be blank";
+        "Is done values should only contain booleans, and it should not be blank";
 
     public final String taskName;
     private final String description;
-    private LocalDate publishDate;
     private final Deadline deadline;
     private final Double progress;
     private final Boolean isDone;
     private final Set<String> assignees;
+    private LocalDate publishDate;
 
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
@@ -60,88 +60,6 @@ public class Task implements Comparable<Task> {
             this.isDone = false;
         }
         this.assignees = new HashSet<>();
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public LocalDate getPublishDate() {
-        return publishDate;
-    }
-
-    public Optional<Deadline> getDeadline() {
-        return Optional.ofNullable(deadline);
-    }
-
-    public Double getProgress() {
-        return progress;
-    }
-
-    public Set<String> getAssignees() {
-        return assignees;
-    }
-
-    public Boolean isDone() {
-        return isDone;
-    }
-
-    public boolean hasAssignee(Participation assignee) {
-        return assignees.contains(assignee.getPerson().toString());
-    }
-
-    public boolean hasAnyAssignee() {
-        return !assignees.isEmpty();
-    }
-
-    /**
-     * Returns true if the task's due date is between the given start date and end date.
-     *
-     * @param start the start date of the time range
-     * @param end   the end date of the time range
-     */
-    public boolean isDueBetween(Date start, Date end) {
-        assert (start != null && end != null);
-        if (this.deadline == null) {
-            return false;
-        }
-        return this.deadline.isWithinTimeRange(start, end);
-    }
-
-
-    /**
-     * Checks if the task has an assignee whose name matches the given name.
-     *
-     * @param assigneeGitUserName the assignee's name to look for
-     * @return true if this task has an assignee whose name matches the given name,
-     * and false otherwise
-     */
-    public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
-        return assignees.stream()
-                .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
-    }
-
-    /**
-     * Checks if the task is due on the given deadline.
-     *
-     * @param deadline the given deadline to check
-     * @return true if the task is due on the given deadline, and false otherwise
-     */
-    public boolean isDueOn(Deadline deadline) {
-        assert (deadline != null);
-        if (this.deadline == null) {
-            return false;
-        } else {
-            return this.deadline.equals(deadline);
-        }
-    }
-
-    public boolean addAssignee(String assignee) {
-        return assignees.add(assignee);
     }
 
     /**
@@ -198,6 +116,91 @@ public class Task implements Comparable<Task> {
         }
     }
 
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public LocalDate getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDate publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public Optional<Deadline> getDeadline() {
+        return Optional.ofNullable(deadline);
+    }
+
+    public Double getProgress() {
+        return progress;
+    }
+
+    public Set<String> getAssignees() {
+        return assignees;
+    }
+
+    public Boolean isDone() {
+        return isDone;
+    }
+
+    public boolean hasAssignee(Participation assignee) {
+        return assignees.contains(assignee.getPerson().toString());
+    }
+
+    public boolean hasAnyAssignee() {
+        return !assignees.isEmpty();
+    }
+
+    /**
+     * Returns true if the task's due date is between the given start date and end date.
+     *
+     * @param start the start date of the time range
+     * @param end   the end date of the time range
+     */
+    public boolean isDueBetween(Date start, Date end) {
+        assert (start != null && end != null);
+        if (this.deadline == null) {
+            return false;
+        }
+        return this.deadline.isWithinTimeRange(start, end);
+    }
+
+    /**
+     * Checks if the task has an assignee whose name matches the given name.
+     *
+     * @param assigneeGitUserName the assignee's name to look for
+     * @return true if this task has an assignee whose name matches the given name,
+     * and false otherwise
+     */
+    public boolean hasAssigneeWhoseGitNameIs(GitUserName assigneeGitUserName) {
+        return assignees.stream()
+            .anyMatch(assignee -> assignee.equals(assigneeGitUserName.toString()));
+    }
+
+    /**
+     * Checks if the task is due on the given deadline.
+     *
+     * @param deadline the given deadline to check
+     * @return true if the task is due on the given deadline, and false otherwise
+     */
+    public boolean isDueOn(Deadline deadline) {
+        assert (deadline != null);
+        if (this.deadline == null) {
+            return false;
+        } else {
+            return this.deadline.equals(deadline);
+        }
+    }
+
+    public boolean addAssignee(String assignee) {
+        return assignees.add(assignee);
+    }
+
     /**
      * Returns true if all fields are equal.
      */
@@ -212,7 +215,9 @@ public class Task implements Comparable<Task> {
         Task task = (Task) o;
         return Double.compare(task.getProgress(), getProgress()) == 0
                 && getTaskName().equals(task.getTaskName())
-                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
+                && (getDescription() == task.getDescription()
+                    || (getDescription() != null && task.getDescription() != null)
+                        && getDescription().equals(task.getDescription()))
                 && Objects.equals(getDeadline(), task.getDeadline());
         //        if (Double.compare(task.getProgress(), getProgress()) != 0) {
         //            return false;
@@ -233,10 +238,6 @@ public class Task implements Comparable<Task> {
     @Override
     public String toString() {
         return "[" + taskName + "]";
-    }
-
-    public void setPublishDate(LocalDate publishDate) {
-        this.publishDate = publishDate;
     }
 
     /**

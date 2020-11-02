@@ -26,7 +26,7 @@ public class TaskSorterCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Sort the task list by one of task's attributes in ascending/descending order\n"
+        + ": Sorts the task list by one of task's attributes in ascending/descending order\n"
         + "Parameters: ("
         + PREFIX_ASCENDING_SORT + ")||("
         + PREFIX_DESCENDING_SORT + ")  ("

@@ -13,7 +13,7 @@ public class AllTasksCommand extends Command {
     public static final String COMMAND_WORD = "alltasks";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": clear task filter and view all the tasks\n";
+        + ": Clears task filter and shows all the tasks\n";
 
     public static final String MESSAGE_ALL_TASKS_SUCCESS = "These are all the tasks in this project";
 

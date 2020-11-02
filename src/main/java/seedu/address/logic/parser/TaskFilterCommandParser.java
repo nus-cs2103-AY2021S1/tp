@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GitUserName;
@@ -57,7 +58,7 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
         }
         if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
             String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
-            predicate = task -> task.getTaskName().contains(taskName);
+            predicate = task -> StringUtil.containsWordIgnoreCase(task.getTaskName(), taskName);
         }
         if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
             Double progress = ParserUtil.parseTaskProgress(argMultimap.getValue(PREFIX_TASK_PROGRESS).get());

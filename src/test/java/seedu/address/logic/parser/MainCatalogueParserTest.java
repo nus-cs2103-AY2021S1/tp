@@ -38,6 +38,7 @@ import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.DeleteTaskCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
@@ -160,6 +161,13 @@ public class MainCatalogueParserTest {
     }
 
     @Test
+    public void parseCommand_deleteTask() throws Exception {
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+            DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(), Status.PROJECT);
+        assertEquals(new DeleteTaskCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
     public void parseCommand_allTasks() throws Exception {
         assertTrue(parser.parseCommand(AllTasksCommand.COMMAND_WORD,
             Status.PROJECT) instanceof AllTasksCommand);
@@ -218,6 +226,14 @@ public class MainCatalogueParserTest {
             parser.parseCommand(
                 AssignCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + " "
                     + ALICE.getPersonName(), Status.PROJECT_LIST);
+            fail();
+        } catch (Exception e) {
+            assertEquals(new InvalidScopeException(Status.PROJECT, Status.PROJECT_LIST), e);
+        }
+
+        try {
+            parser.parseCommand(
+                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased(), Status.PROJECT_LIST);
             fail();
         } catch (Exception e) {
             assertEquals(new InvalidScopeException(Status.PROJECT, Status.PROJECT_LIST), e);

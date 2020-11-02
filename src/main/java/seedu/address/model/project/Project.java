@@ -94,7 +94,15 @@ public class Project {
         return tasks.add(task);
     }
 
+    /**
+     * Deletes a task from the project
+     * @param task task to be deleted.
+     * @return true if the task to be deleted is in the project, and false otherwise.
+     */
     public boolean deleteTask(Task task) {
+        for (Participation participation: this.getTeammates()) {
+            participation.deleteTask(task);
+        }
         return tasks.remove(task);
     }
 
@@ -174,9 +182,10 @@ public class Project {
     /**
      * Adds a participation instance to a project with a person
      */
-    public void addParticipation(Person p) {
+    public Project addParticipation(Person p) {
         listOfParticipations.put(p.getGitUserName(),
                 new Participation(p.getGitUserNameString(), projectName.fullProjectName));
+        return this;
     }
 
     /**
@@ -217,7 +226,7 @@ public class Project {
      * @return
      */
     public HashMap<GitUserName, Participation> getParticipationHashMap() {
-        return listOfParticipations;
+        return new HashMap<>(listOfParticipations);
     }
 
     /**
