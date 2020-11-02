@@ -496,7 +496,7 @@ Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
-:information_source: | If you are adding or deleting exams from a student who you already have the exam stats window opened, you will have to enter the `exam stats` command again to get the updated statistics.
+:information_source: | If you are editing the exams of a student, you will have to enter the `exam stats` command again to get the updated statistics.
 -------|-------- 
 
 #### 3.4.3 Recording attendance of a student: `attendance` (By: Vaishak)
