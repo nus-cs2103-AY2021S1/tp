@@ -277,7 +277,6 @@ After using the findTG command, you can use listTG to quickly return to the list
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `listTG`
-Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
 
 #### 4.3.5 Delete a Tutorial Group from a Module: `deleteTG`
 You can use this command to delete a Tutorial Group you have previously added to a Module.
