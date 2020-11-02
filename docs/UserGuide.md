@@ -17,6 +17,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Editing a student: `edit-student`](#editing-a-student-edit-student "Go to Editing a student")
     - [Deleting a student: `delete-student`](#deleting-a-student-delete-student "Go to Deleting a student")
     - [Adding a session: `add-session`](#adding-a-session-add-session "Go to Adding a session")
+    - [Delete a session: `delete-session`](#delete-a-session-delete-session "Go to Deleting a session")
     - [Changing the current session: `goto`](#changing-the-current-session-goto "Go to Changing the current session")
     - [Marking a student's attendance: `mark`](#marking-a-students-attendance-mark "Go to Marking a student's attendance")
     - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
@@ -42,7 +43,8 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 2. Create a new session that represents a tutorial, lab or recitation session using the `add-session` command.
     * This session will read your student list and create a list of corresponding student records belonging to that session
     * Each student in the student list will be represented by a student record
-    * This list of records, once created, will be **independent of the student list**. Any modifications to the student list after a session is created **will not** affect the student records in that session. 
+    * This list of records, once created, will be **independent of the student list**. Any modifications to the student list after a session is created **will not** affect the student records in that session.
+    * You can use the `delete-session` command to delete a session from the session list.
 3. Mark your students' attendance and award them class participation marks with the `mark` and `score` commands respectively.
     * Note that you will not be allowed to use these commands outside of a session.
 
@@ -151,6 +153,19 @@ add-session s/SESSION_NAME dt/SESSION_DATE_TIME
 Example usage:
 ```
 add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900
+```
+
+### Deleting a session: `delete-session`
+Deletes the specified session from the session list.
+```
+delete-session s/SESSION_NAME
+```
+- Deletes the session with the specified `SESSION_NAME` from the displayed session list.
+- A session with `SESSION_NAME` must exist in said list.
+
+Example usage:
+```
+delete-session s/CS2103 Tutorial 9
 ```
 
 ### Changing the current session: `goto`
