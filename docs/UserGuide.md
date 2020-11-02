@@ -332,9 +332,7 @@ The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle be
 
 
 
-
-
-
+<br/><br/><br/><br/><br/><br/>
 <a name="GroupGeneralCommands"></a>
 ### 5.3&ensp;General Commands
 
@@ -398,6 +396,7 @@ Redoes the last redoable command. All undoable commands (as described [above](#U
 
 
 
+<br/><br/><br/><br/><br/><br/>
 <a name="GroupRecipeCommands"></a>
 ### 5.4&ensp;Recipe Commands
 
@@ -815,7 +814,7 @@ Figure 9.2: <i>The detailed recipe view</i>
 
 
 
-
+<br/><br/><br/><br/><br/><br/>
 <a name="GroupIngredientCommands"></a>
 ### 5.5&ensp;Ingredient Commands
 
@@ -948,7 +947,6 @@ Figure 12.2: <i>You now only have 1.75 litres of milk left</i>
 
 
 
-
 <a name="FindIngredientCommand"></a>
 #### 5.5.4&ensp;Finding Ingredients — **`find`**`ingredient`
 This command finds all ingredients containing the given keywords in the name, and it works identically to the `find recipe` command [above](#FindRecipeCommand).
@@ -1026,12 +1024,21 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 
 
+<a name="EditIngredientCommand"></a>
+#### 5.5.6&ensp;Editing Recipes (coming soon) — **`edit`**`ingredient`
+
+This command edits the given ingredient. Right now, it is not implemented yet!
 
 
 
 
 
 
+
+
+
+
+<br/><br/><br/><br/><br/><br/>
 <a name="GroupStatsCommands"></a>
 ### 5.6&ensp;Statistics Commands
 Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You can view these records with the commands below.
