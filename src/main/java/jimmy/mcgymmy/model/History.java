@@ -15,30 +15,11 @@ class History {
         stack = new Stack<>();
     }
 
-    private boolean checkIfSameWithPreviousState(McGymmy otherMcGymmy, Predicate<Food> otherPredicate,
-                                                 MacroList otherMacroList) {
-        if (stack.empty()) {
-            return false;
-        }
-
-        McGymmy mcGymmy = getMcGymmy();
-        Predicate<Food> predicate = getPredicate();
-        MacroList macroList = getMacroList();
-
-        boolean isSameMcGymmy = otherMcGymmy.equals(mcGymmy);
-        boolean isSamePredicate = otherPredicate.equals(predicate);
-        boolean isSameMacroList = otherMacroList.equals(macroList);
-        return isSameMcGymmy && isSamePredicate && isSameMacroList;
-    }
-
     void save(ModelManager modelManager) {
         McGymmy mcGymmy = new McGymmy(modelManager.getMcGymmy());
         Predicate<Food> predicate = modelManager.getFilterPredicate();
         MacroList macroList = modelManager.getMacroList();
-        boolean isSameWithPreviousState = checkIfSameWithPreviousState(mcGymmy, predicate, macroList);
-        if (!isSameWithPreviousState) {
-            stack.push(new Pair<>(mcGymmy, new Pair<>(predicate, macroList)));
-        }
+        stack.push(new Pair<>(mcGymmy, new Pair<>(predicate, macroList)));
     }
 
     boolean empty() {

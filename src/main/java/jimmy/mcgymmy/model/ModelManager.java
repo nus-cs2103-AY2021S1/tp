@@ -228,10 +228,8 @@ public class ModelManager implements Model {
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         logger.fine("Update predicate for filtered food list");
-        if (!predicate.equals(filterPredicate)) {
-            saveCurrentStateToHistory();
-            updateFilterPredicate(predicate);
-        }
+        saveCurrentStateToHistory();
+        updateFilterPredicate(predicate);
     }
 
     private void updateFilterPredicate(Predicate<Food> predicate) {
