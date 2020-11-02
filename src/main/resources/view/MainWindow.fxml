@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root onCloseRequest="#handleExit" title="HelloFile App" type="Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="300.0" minWidth="420.0" onCloseRequest="#handleExit" title="HelloFile App" type="Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <scene>
       <Scene>
          <root>
