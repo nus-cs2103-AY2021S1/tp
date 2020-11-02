@@ -20,7 +20,7 @@ public class ExerciseUiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(ExerciseUiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/Calo.png";
 
     private LogicForExercise logic;
     private MainWindowForExercise mainWindow;
