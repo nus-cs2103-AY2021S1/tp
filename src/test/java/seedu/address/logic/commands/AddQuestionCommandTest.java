@@ -59,6 +59,7 @@ public class AddQuestionCommandTest {
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
+
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);
     }
 
@@ -109,6 +110,7 @@ public class AddQuestionCommandTest {
                 expectedStudent.getName(), question);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);

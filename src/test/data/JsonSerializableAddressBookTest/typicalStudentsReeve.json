@@ -228,7 +228,7 @@
     "year": "Secondary 4",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "2 1000-1230",
+      "classTime": "2 1000-1130",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]

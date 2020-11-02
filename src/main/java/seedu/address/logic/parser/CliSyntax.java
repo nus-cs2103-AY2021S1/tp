@@ -31,6 +31,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_ATTENDANCE_STATUS = new Prefix("a/");
     public static final Prefix PREFIX_ATTENDANCE_FEEDBACK = new Prefix("f/");
 
+    /* Prefix for Schedule */
+    public static final Prefix PREFIX_VIEW = new Prefix("view");
+    public static final Prefix PREFIX_VIEW_MODE = new Prefix("mode/");
+    public static final Prefix PREFIX_VIEW_DATE = new Prefix("date/");
+
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME};
 
@@ -48,4 +53,5 @@ public class CliSyntax {
 
     public static final Prefix[] ATTENDANCE_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_ATTENDANCE_DATE, PREFIX_ATTENDANCE_STATUS, PREFIX_ATTENDANCE_FEEDBACK};
+
 }

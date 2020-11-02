@@ -23,7 +23,8 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ReeveStorage reeveStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ReeveStorage reeveStorage,
+                          UserPrefsStorage userPrefsStorage) {
         super();
         this.reeveStorage = reeveStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -75,5 +76,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         reeveStorage.saveAddressBook(addressBook, filePath);
     }
-
 }

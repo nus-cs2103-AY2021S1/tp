@@ -1,11 +1,16 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
+import seedu.address.model.schedule.Event;
+import seedu.address.model.schedule.EventRecurrence;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.Scheduler;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
@@ -93,6 +98,14 @@ public class SampleDataUtil {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyEvent getSampleSchedule() {
+        Event event = new Event("Lesson event", LocalDateTime.parse("2020-12-03T10:15:30"),
+                LocalDateTime.parse("2020-12-03T10:17:30"),
+                "uidAliceLesson", EventRecurrence.WEEKLY);
+        List<Event> lst = Arrays.asList(event);
+        return new Scheduler(lst);
     }
 
     /**

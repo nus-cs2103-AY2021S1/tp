@@ -71,6 +71,7 @@ public class SolveQuestionCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS,
                 expectedStudent.getName(), solved);
 
+
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
