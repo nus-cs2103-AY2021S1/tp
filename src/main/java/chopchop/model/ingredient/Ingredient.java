@@ -186,9 +186,12 @@ public class Ingredient extends Entry {
      */
     public Pair<Ingredient, Ingredient> split(Quantity quantity)
             throws IllegalValueException, IncompatibleIngredientsException {
-        if (this.getQuantity().compareTo(quantity) < 0 || quantity.isNegative()) {
-            throw new IllegalValueException(String.format("Insufficient '%s' to remove given quantity",
-                    this.name.toString()));
+        {
+            var existingQty = this.getQuantity();
+            if (existingQty.compareTo(quantity) < 0 || quantity.isNegative()) {
+                throw new IllegalValueException(String.format("Insufficient '%s' to remove given quantity "
+                    + "(need %s, have only %s)", this.name.toString(), quantity, existingQty));
+            }
         }
 
         var firstSets = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
@@ -212,7 +215,9 @@ public class Ingredient extends Entry {
         secondSets.putAll(this.sets.subMap(splitKey, false, this.sets.lastKey(), true));
 
         var remainingQuantity = this.sets.get(splitKey).subtract(currQuantity)
-                .orElseThrow(IncompatibleIngredientsException::new);
+            .orElseThrow(x -> new IncompatibleIngredientsException(
+                String.format("Ingredient '%s': %s", this.getName(), x)
+            ));
 
         if (!remainingQuantity.isZero()) {
             secondSets.put(splitKey, remainingQuantity);

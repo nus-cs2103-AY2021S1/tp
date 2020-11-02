@@ -18,15 +18,11 @@ public class StatsIngredientRecentCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
-        try {
-            var output = model.getRecentlyUsedIngredients(N_MOST_RECENT);
-            var msgOutput = output.stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
-                .collect(Collectors.toList());
-            return CommandResult.statsMessage(msgOutput, "Here is the list of ingredients recently used");
-        } catch (Exception e) {
-            return CommandResult.message("Unable to generate ingredient recently used");
-        }
+        var output = model.getRecentlyUsedIngredients(N_MOST_RECENT);
+        var msgOutput = output.stream()
+            .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+            .collect(Collectors.toList());
+        return CommandResult.statsMessage(msgOutput, "Here are your recently used ingredients");
     }
 
     @Override

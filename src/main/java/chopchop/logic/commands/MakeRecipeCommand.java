@@ -58,8 +58,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
                 model.addIngredientUsage(ingredientRef);
 
             } catch (IncompatibleIngredientsException | IllegalValueException e) {
-                return CommandResult.error("Could not make recipe '%s' (caused by ingredient '%s'): %s",
-                    this.recipe.getName(), ingredient.getName(), e.getMessage());
+                return CommandResult.error("Could not make recipe: %s", e.getMessage());
             }
         }
 

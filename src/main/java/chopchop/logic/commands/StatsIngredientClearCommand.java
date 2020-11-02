@@ -23,12 +23,9 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
-        try {
-            this.usages = model.getIngredientUsageList();
-            model.setIngredientUsageList(new UsageList<>());
-        } catch (Exception e) {
-            return CommandResult.error("Unable to clear records of ingredients used");
-        }
+
+        this.usages = model.getIngredientUsageList();
+        model.setIngredientUsageList(new UsageList<>());
         return CommandResult.statsMessage(new ArrayList<>(), "All records of ingredients used are cleared!");
     }
 
@@ -41,12 +38,10 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
     @Override
     public CommandResult undo(Model model) {
         requireNonNull(model);
-        try {
-            model.setIngredientUsageList(this.usages);
-            this.usages.setAll(new UsageList<>()); //don't think need to clear but just in case
-        } catch (Exception e) {
-            return CommandResult.error("Unable to restore records of ingredients used");
-        }
+
+        model.setIngredientUsageList(this.usages);
+        this.usages.setAll(new UsageList<>());
+
         return CommandResult.message("Undo: restored records of ingredients used");
     }
 
