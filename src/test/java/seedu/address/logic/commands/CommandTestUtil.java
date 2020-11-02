@@ -36,6 +36,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TELEGRAM_AMY = "@amytele";
+    public static final String VALID_TELEGRAM_BOB = "@bobtele";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_CORE_MODULE = "Core";
@@ -84,7 +85,6 @@ public class CommandTestUtil {
     public static final EditContactDescriptor DESC_BOB;
     public static final EditModuleDescriptor DESC_CS2030;
     public static final EditModuleDescriptor DESC_CS2103T;
-    //public static final EditCommand.EditModuleDescriptor DESC_BOB;
 
     static {
         VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2030));
@@ -100,7 +100,7 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_FRIEND)
                 .build();
         DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
     }
 
