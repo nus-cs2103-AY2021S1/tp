@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -58,6 +59,23 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        cardPane.widthProperty().addListener((observable, oldValue, newValue) ->
+            Platform.runLater(() -> resizeTags(newValue.doubleValue()))
+        );
+    }
+
+    private void resizeTags(double width) {
+        tags.setMaxWidth(width * 0.9);
+        tags.setPrefWrapLength(width);
+        tags.getChildren()
+            .filtered(x -> x instanceof Label)
+            .forEach(label -> resizeLabel((Label) label, width));
+    }
+
+    private void resizeLabel(Label label, double width) {
+        label.setWrapText(true);
+        label.setMaxWidth(width * 0.9);
     }
 
     @Override

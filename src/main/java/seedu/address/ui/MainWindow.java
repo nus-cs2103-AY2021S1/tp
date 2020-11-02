@@ -145,6 +145,8 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+
+        primaryStage.setMinWidth(GuiSettings.getMinimumWidth());
     }
 
     /**

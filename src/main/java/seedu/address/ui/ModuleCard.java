@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
-
 import java.util.Comparator;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -46,8 +46,24 @@ public class ModuleCard extends UiPart<Region> {
         moduleName.setText(module.getModuleName().moduleName);
 
         module.getInstructors().stream()
-                .sorted(Comparator.comparing(instructor -> instructor.getName().fullName))
-                .forEach(person -> instructors.getChildren().add(new Label(person.getName().fullName)));
+            .sorted(Comparator.comparing(instructor -> instructor.getName().fullName))
+            .forEach(person -> instructors.getChildren().add(new Label(person.getName().fullName)));
+
+        cardPane.widthProperty().addListener((observable, oldValue, newValue) ->
+            Platform.runLater(() -> resizeInstructors(newValue.doubleValue())));
+    }
+
+    private void resizeInstructors(double width) {
+        instructors.setMaxWidth(width * 0.9);
+        instructors.setPrefWrapLength(width);
+        instructors.getChildren()
+            .filtered(x -> x instanceof Label)
+            .forEach(label -> resizeLabel((Label) label, width));
+    }
+
+    private void resizeLabel(Label label, double width) {
+        label.setWrapText(true);
+        label.setMaxWidth(width * 0.9);
     }
 
     @Override
