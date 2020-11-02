@@ -11,7 +11,7 @@ public class RoomNumber {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Room numbers should only contain numbers, cannot start with 0 "
-                    + "and it should be at most 3 digits long";
+                    + "and should be 3 digits long";
 
     public static final String VALIDATION_REGEX = "^[1-9][0-9][0-9]$";
     public final String value;

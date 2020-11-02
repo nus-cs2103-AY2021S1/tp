@@ -82,8 +82,8 @@ Examples:
 Adds a room to ResiReg. The following room details are stored: room floor, room number, room type, and optionally, tags.
 
 Format: `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...`
-- Floor must be an integer
-- Room number must be an integer
+- The floor number must be a **positive integer between** 1 and 99 **inclusive**.
+- The room number must be a **positive integer between** 100 and 999 **inclusive**.
 - Room type must be one of the following values: `CA` (corridor, aircon), `CN` (corridor, non-aircon), `NA` (non-corridor, aircon), `NN` (non-corridor, non-aircon)
 - The room will not be added if any piece of required information is missing. An error message will be displayed instead.
 
