@@ -130,7 +130,7 @@ class AssignCommandTest {
         assertEquals(assignCommand, otherCommand);
 
         // different types -> returns false
-        assertNotEquals(assignCommand, 1);
+        assertNotEquals(assignCommand, new Object());
 
         // null -> returns false
         assertNotEquals(assignCommand, null);

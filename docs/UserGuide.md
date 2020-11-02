@@ -254,13 +254,21 @@ Examples :
 * `assign 2 m/CS2030S` Assigns the contact at index 2 to the existing module with code `CS2030S`.
 * `assign 3 m/CS2100 m/CS2106` Assigns the contact at index 3 to the existing modules with codes `CS2100` and `CS2106`.
 
+Before assignment:
+
+![BeforeAssignment](images/BeforeAssignment.png)
+
+After assignment:
+
+![AfterAssignment](images/AfterAssignment.png)
+
 #### Unassigning an instructor from modules : `unassign`
 
 Unassigns a contact from one or more modules in the active semester. The contact will no longer be an instructor in those modules.
 
 Format: `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​`
 
-* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. The contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
+* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. All `MODULE_CODE` **must be unique** and the contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
 * You can unassign the contact from all modules in the active semester by typing `m/`
         without specifying any module codes after it.
     
