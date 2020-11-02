@@ -185,9 +185,9 @@ public class ModelManager implements Model {
     public void undo() {
         if (canUndo()) {
             assert !history.empty() : "McGymmyStack is empty";
-            McGymmy prevMcGymmy = history.getMcGymmy();
-            Predicate<Food> prevPredicate = history.getPredicate();
-            MacroList macroList = history.getMacroList();
+            McGymmy prevMcGymmy = history.peekMcGymmy();
+            Predicate<Food> prevPredicate = history.peekPredicate();
+            MacroList macroList = history.peekMacroList();
             history.pop();
             mcGymmy.resetData(prevMcGymmy);
             updateFilterPredicate(prevPredicate);
