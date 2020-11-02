@@ -9,7 +9,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 * Table of Contents
     - Quick start
     - Features
-        - [Adding a flashcard](#Adding a flashcard): `add`
+        - [Adding a flashcard](#adding-a-flashcard): `add`
         - Clear all flashcards: `clear`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
