@@ -22,7 +22,7 @@ public class DeleteCategoryCommand extends Command {
         + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "Existing category deleted: %s";
-    public static final String MESSAGE_INVALID_CATEGORY = "This category does not exists in the expense book.";
+    public static final String MESSAGE_INVALID_CATEGORY = "This category does not exist in the expense book.";
 
     private final Tag toDelete;
 
