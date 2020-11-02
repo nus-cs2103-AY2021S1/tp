@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.model.student.admin.Fee.FREE_OF_CHARGE;
 import static seedu.address.model.student.admin.PaymentDate.TODAY;
 
 import java.util.ArrayList;
@@ -62,7 +63,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         Year year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
         ClassVenue classVenue = ParserUtil.parseClassVenue(argMultimap.getValue(PREFIX_VENUE).get());
         ClassTime classTime = ParserUtil.parseClassTime(argMultimap.getValue(PREFIX_TIME).get());
-        Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
+
+        Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).orElse(FREE_OF_CHARGE));
         PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).orElse(TODAY));
         List<Detail> detailList =
                 ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_DETAILS));

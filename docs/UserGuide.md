@@ -6,42 +6,42 @@
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
   * [2.1 Setting Up Reeve](#21-setting-up-reeve)
-  * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of---reeve---s-layout)
+  * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of-reeves-layout)
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
   * [3.2 Student Administrative Features](#32-student-administrative-features)
-    + [3.2.1 Adding a student: `add` (By: Alex and Hogan)](#321-adding-a-student---add---by--alex-and-hogan-)
-    + [3.2.2 Editing a student: `edit` (By: Vaishak)](#322-editing-a-student---edit---by--vaishak-)
-    + [3.2.3 Locating students: `find` (By: Choon Siong)](#323-locating-students---find---by--choon-siong-)
-    + [3.2.4 Listing all students: `list`](#324-listing-all-students---list-)
-    + [3.2.5 Deleting a student: `delete`](#325-deleting-a-student---delete-)
-    + [3.2.6 Sorting the list of students: `sort` (By: Choon Siong)](#326-sorting-the-list-of-students---sort---by--choon-siong-)
-    + [3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#327-finding-students-with-overdue-fees---overdue---by--ying-gao-)
-    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-details-for-a-student---detail---by--vaishak-)
-        + [3.2.8.1 Adding a detail: `detail add`](#3281-adding-a-detail---detail-add-)
-        + [3.2.8.2 Editing a detail: `detail edit`](#3282-editing-a-detail---detail-edit-)
-        + [3.2.8.3 Deleting a detail: `detail delete`](#3283-deleting-a-detail---detail-delete-)
-    + [3.2.9 Clearing all entries: `clear`](#328-clearing-all-entries---clear-)
-  * [3.3 Student Academics Features](#33-stude9t-academics-features)
-    + [3.3.1 Recording questions from a student: `question` (By: Ying Gao)](#331-recording-questions-from-a-student---question---by--ying-gao-)
-        + [3.3.1.1 Adding a question: `question add`](#3311-adding-a-question---question-add-)
-        + [3.3.1.2 Resolving a question: `question solve`](#3312-resolving-a-question---question-solve-)
-        + [3.3.1.3 Deleting a question: `question delete`](#3313-deleting-a-question---question-delete-)
-    + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student---exam---by--hogan-)
-        + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student---exam-add-)
-        + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student---exam-delete-)
-    + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student---attendance---by--vaishak-)
-        + [3.3.2.1 Adding an attendance record to a student: `attendance add`](#3321-adding-an-attendance-record-to-a-student---attendance-add-)
-        + [3.3.2.2 Deleting an attendance record for a student: `attendance delete`](#3322-deleting-an-attendance-record-for-a-student---attendance-delete-)
+    + [3.2.1 Adding a student: `add` (By: Alex and Hogan)](#321-adding-a-student-add-by-alex-and-hogan)
+    + [3.2.2 Editing a student: `edit` (By: Vaishak)](#322-editing-a-student-edit-by-vaishak)
+    + [3.2.3 Locating students: `find` (By: Choon Siong)](#323-locating-students-find-by-choon-siong)
+    + [3.2.4 Listing all students: `list`](#324-listing-all-students-list)
+    + [3.2.5 Deleting a student: `delete`](#325-deleting-a-student-delete)
+    + [3.2.6 Sorting the list of students: `sort` (By: Choon Siong)](#326-sorting-the-list-of-students-sort-by-choon-siong)
+    + [3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#327-finding-students-with-overdue-fees-overdue-by-ying-gao)
+    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-additional-details-for-a-student-detail-by-vaishak)
+        + [3.2.8.1 Adding a detail: `detail add`](#3281-adding-a-detail-detail-add)
+        + [3.2.8.2 Editing a detail: `detail edit`](#3282-editing-a-detail-detail-edit)
+        + [3.2.8.3 Deleting a detail: `detail delete`](#3283-deleting-a-detail-detail-delete)
+    + [3.2.9 Clearing all entries: `clear`](#329-clearing-all-entries-clear)
+  * [3.3 Student Academics Features](#33-student-academics-features)
+    + [3.3.1 Recording questions from a student: `question` (By: Ying Gao)](#331-recording-questions-from-a-student-question-by-ying-gao)
+        + [3.3.1.1 Adding a question: `question add`](#3311-adding-a-question-question-add)
+        + [3.3.1.2 Resolving a question: `question solve`](#3312-resolving-a-question-question-solve)
+        + [3.3.1.3 Deleting a question: `question delete`](#3313-deleting-a-question-question-delete)
+    + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student-exam-by-hogan)
+        + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student-exam-add)
+        + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student-exam-delete)
+        + [3.3.2.3 Viewing exam statistics of a student: `exam stats`](#3323-viewing-exam-statistics-of-a-student-exam-stats)
+    + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student-attendance-by-vaishak)
+        + [3.3.3.1 Adding an attendance record to a student: `attendance add`](#3331-adding-an-attendance-record-to-a-student-attendance-add)
+        + [3.3.3.2 Deleting an attendance record for a student: `attendance delete`](#3332-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.4 Miscellaneous Features](#34-miscellaneous-features)
-    + [3.4.1 Scheduling: `schedule`](#341-scheduling---schedule-)
-        + [Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#viewing-personal-schedule-on-a-timetable---schedule-view----by--alex-)
-        + [Adding events to the schedule: `schedule add`](#adding-events-to-the-schedule---schedule-add-)
-        + [List events: `schedule list`](#list-events---schedule-list-)
-        + [Delete events on the schedule: `schedule delete`](#delete-events-on-the-schedule---schedule-delete-)
-    + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative details---toggle---by--hogan-)
-    + [3.4.3 Viewing help: `help`](#343-viewing-help---help-)
-    + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program---exit-)
+    + [3.4.1 Scheduling: `schedule`](#341-scheduling-schedule-coming-soon)
+        + [3.4.1.1. Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#3411-viewing-personal-schedule-on-a-timetable-schedule-view--by-alex-coming-soon)
+        + [3.4.1.2. Adding events to the schedule: `schedule add`](#3412-adding-events-to-the-schedule-schedule-add-coming-soon)
+        + [3.4.1.3. Delete events on the schedule: `schedule delete`](#3413-delete-events-on-the-schedule-schedule-delete-coming-soon)
+    + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan)
+    + [3.4.3 Viewing help: `help`](#343-viewing-help-help)
+    + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program-exit)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -66,7 +66,7 @@ Let's dive into the User Guide to find out more!
 ### 1.2 Understanding the User Guide
 The goal of this User Guide is to provide you with the information on how to utilise **Reeve** to its fullest. 
 
-For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it! Rest assured!
+For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it.
 
 Here is a summary (Table 1) of the symbols that are used in this User Guide:
 
@@ -105,7 +105,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
    * **`exit`** : Exits **Reeve**.
 
-1. Refer to the [Features](#features) section below for details of each command.
+1. Refer to the [Features](#3-features) section below for details of each command.
 
 ### 2.2 Making sense of **Reeve**'s layout
 (to be added when GUI is finalised)
@@ -139,7 +139,7 @@ Thereafter, you will be able to view, edit find or delete these students.
 
 You can add a student together with his/her individual administrative details into **Reeve's** student list.
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]`
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -159,6 +159,7 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE [d/
 
 </div>
 
+* `FEE` defaults to $0.00 if not included.
 * `LAST_PAYMENT_DATE` defaults to today's date if not included.
 
 Examples:
@@ -171,15 +172,18 @@ t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 Edits an existing student in **Reeve**.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
+Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
+:information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
+Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing Monday, Wednesday and Sunday respectively.<br>
+Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
+E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.  
 
 </div>
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Start time has to be before end time.
@@ -211,21 +215,30 @@ Examples:
 
 #### 3.2.4 Listing all students: `list`
 
-Shows the list of all students in **Reeve**.
-
-:information source: You will need to use this if you want to view the full student list after using commands such as `find` and `schedule`.
+You can view the list of all students in **Reeve**.
 
 Format: `list`
 
+<div markdown="block" class="alert alert-info">
+:information source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+</div>
+
 #### 3.2.5 Deleting a student: `delete`
 
-Deletes the specified student from **Reeve**.
+You can delete a specified student from **Reeve**.
 
-Format: `delete INDEX`
+Format: `delete STUDENT_INDEX`
 
-* Deletes the student at the specified `INDEX`.
+* Deletes the student at the specified `STUDENT_INDEX`.
 * The index refers to the index number shown in the displayed students list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+:information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
@@ -250,9 +263,12 @@ Examples:
 
 #### 3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
-Finds students whose date of last payment is more than a month ago.
+You can find all students whose date of last payment is more than a month ago.
 
-Format: `unpaid`
+Format: `overdue`
+
+* Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
+* If all students have paid their fees within the past month, no students will be displayed.
 
 #### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
 
@@ -265,14 +281,17 @@ General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each `COMMAND_WORD` as explained below.
 
-Examples:  
-* `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
-* `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
-* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
-
 #### 3.2.8.1 Adding a detail: `detail add`
 
 You can add a detail to a specified student in **Reeve**.
+
+Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
+
+* Adds the detail to the student at the specified `STUDENT_INDEX`.
+
+Examples:  
+* `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
+* `detail add 3 t/Punctual` adds the "Punctual" detail to the 3rd student in **Reeve**.
 
 #### 3.2.8.2 Editing a detail: `detail edit`
 
@@ -300,7 +319,7 @@ Examples:
 
 #### 3.2.9 Clearing all entries: `clear`
 
-Clears all student data from **Reeve**.
+You can clear all student data from **Reeve**.
 
 Format: `clear`
 
@@ -311,23 +330,29 @@ Thereafter, you will be able to view, edit or delete these details of each stude
 
 #### 3.3.1 Recording questions from a student: `question` (By: Ying Gao) 
 
-Adds, resolves or remove questions from a specified student.
+You can add, resolve or remove questions from a specified student in **Reeve**.
 
-General Format: `question COMMAND_WORD INDEX DETAILS`
+General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
 * The `COMMAND_WORD` field accepts either `add`, `solve` or `delete`.
-* The command affects the student at the specified `INDEX`.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The command affects the student at the specified `STUDENT_INDEX`, which is his/her position on the list.
 * The format of `DETAILS` varies with each command word as explained below.
+
+<div markdown="block" class="alert alert-info">
+:information_source: `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+</div>
 
 ##### 3.3.1.1 Adding a question: `question add`
 
 Adds a new question to the student.
 
-Format: `question add INDEX t/QUESTION`
+Format: `question add STUDENT_INDEX t/QUESTION`
 
-* This records a new unresolved question to a student.
-* `QUESTION` must not be empty.
+* This records a new unresolved question to the student at the specified `STUDENT_INDEX`.
+
+<div markdown="block" class="alert alert-info">
+:information_source: `QUESTION` must not be empty.
+</div>
 
 Example:
 * `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
@@ -336,11 +361,20 @@ Example:
 
 Marks a student's question as resolved.
 
-Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
+Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`
 
-* This resolves the question at the specified `QUESTION_INDEX`.
-* `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
-* `SOLUTION` must not be empty.
+* This resolves the question from the student at the specified `STUDENT_INDEX`
+* This resolves the question at the `QUESTION_INDEX`. The `QUESTION_INDEX` refers to the position of the question in the student's list of questions.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+:information_source: `SOLUTION` must not be empty.
+
+:information_source: You can only resolve unanswered questions (i.e. questions with a cross symbol next to it).
+
+</div>
 
 Example:
 * `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
@@ -349,7 +383,7 @@ Example:
 
 Deletes a student's question.
 
-Format: `question delete INDEX i/QUESTION_INDEX`
+Format: `question delete STUDENT_INDEX i/QUESTION_INDEX`
 
 * This deletes the question at the specified `QUESTION_INDEX`.
 * `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -361,10 +395,10 @@ Example:
 
 You can add or delete an exam to/from a specified student.
 
-General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
+General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD_EXAM` field accepts either `add` or `delete`.
-* The command affects the student at the specified `INDEX`.
+* The command affects the student at the specified `STUDENT_INDEX`.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
@@ -372,16 +406,18 @@ General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
 
 You can add an exam record to a specified student in **Reeve**.
 
-Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
+Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
-* Adds the given exam to the student at the specified `INDEX`.
+* Adds the given exam to the student at the specified `STUDENT_INDEX`.
 
+<div markdown="block" class="alert alert-info">
 :information_source: The format of EXAM_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of EXAM_SCORE is as follows:
 * x/y where x and y are non-negative integers. 
 * x has to be less than or equal to y (e.g. 30/50).
+</div>
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and 
@@ -404,6 +440,21 @@ Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
 
+##### 3.3.2.3 Viewing exam statistics of a student: `exam stats`
+
+To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded examinations.
+
+Format: `exam stats STUDENT_INDEX`
+
+* Views exam statistics of the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed students list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
+* `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
+
 #### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
 You can add or delete an attendance record to/from a specified student.
@@ -411,30 +462,32 @@ You can add or delete an attendance record to/from a specified student.
 General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD` field accepts either `add` or `delete`.
-* The command affects the student at the specified `INDEX`.
+* The command affects the student at the specified `STUDENT_INDEX`.
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
-##### 3.3.2.1 Adding an attendance record to a student: `attendance add`
+##### 3.3.3.1 Adding an attendance record to a student: `attendance add`
 
 You can add an attendance record to a specified student in **Reeve**.
 
-Format: `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`
+Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`
 
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
 
+<div markdown="block" class="alert alert-info">
 :information_source: The format of ATTENDANCE_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of FEEDBACK is as follows:
-* attended or unattended.
+* present or absent.
+</div>
 
 Examples:
-* `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
-status of attended and feedback of attentive, to the 2nd student in **Reeve**.
+* `attendance add 2 d/08/12/2020 s/present f/attentive` adds the attendance record with the date 8 Dec 2020,
+status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
-##### 3.3.2.2 Deleting an attendance record for a student: `attendance delete`
+##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`
 
 You can delete a specific attendance record from a specified student in **Reeve**.
 
@@ -449,51 +502,43 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule`
+#### 3.4.1 Scheduling: `schedule` (COMING SOON)
 
-##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
+##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex) (COMING SOON)
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
-Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
+Format: `schedule view [mode/VIEW_MODE] [date/DATE_TO_VIEW]`
 
 * mode can be either **weekly** or **daily**. The case of the letters does not matter.
 * Date must be in the format of **yyyy-mm-dd**.
-* Both mode and date are optional. If it is not provided, the timetable would be dafult in the weekly mode and showing the current date.
+* Both mode and date are optional. If it is not provided, the timetable would be default in the weekly mode and showing the current date.
 
-Example: (To include screenshot)
+Example: `schedule view mode/weekly date/2020-11-25` Shows the schedule in the week of 2020-11-25 (To include screenshot)
 
-##### 3.4.1.2 Adding events to the schedule: `schedule add`
+##### 3.4.1.2 Adding events to the schedule: `schedule add` (COMING SOON)
 
 Adds a new event to the schedule.
 
-Format: `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [description/Event_Description] [recurrence/Event_recurrence]`
+Format: `schedule add [n/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [r/Event_recurrence]`
 
 * All fields are compulsory.
 * Event_Name has no restriction and can be of any form.
 * Start_Date_Time and End_Date_Time must be of the format yyyy-mm-ddTHH:mm
+* The Time portion HH:mm must be in 24-hr format.
 * Event_recurrence can only be one of these cases: `none`, `daily`, or `weekly`
 
 Example:
-`schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
+`schedule add n/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 r/none`
 creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
 
-##### 3.4.1.3 List events: `schedule list`
-
-Lists events.
-
-Format: `schedule list`
-
-* Outputs a list of events on the same panel as the student list. 
-
-##### 3.4.1.4 Delete events on the schedule: `schedule delete`
+##### 3.4.1.3 Delete events on the schedule: `schedule delete` (COMING SOON)
 
 Deletes an event on the schedule.
 
-Format: `schedule delete EVENT_INDEX`
+Format: `schedule delete n/eventName start/eventStartDateTime end/eventEndDateTime`
 
-* EVENT_INDEX is the index of the event to be deleted.
-* User has to first call the `schedule list` command in order to find out the index of the event being deleted.
+* The event's name, start date time and end date time identifies an event to be deleted
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -513,7 +558,7 @@ Format: `help`
 
 #### 3.4.4 Exiting the program: `exit`
 
-Exits the program.
+You can exit the program. Any changes you have made to **Reeve** is automatically saved to your drive, hence you do not have to worry about losing data.
 
 Format: `exit`
 
@@ -525,20 +570,32 @@ Table 2: Summary of commands in **Reeve**
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+**Add Student** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]...​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
+**Edit Student** | `edit STUDENT_INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
+**Find Student** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
+**List Students** | `list`
+**Delete Student** | `delete STUDENT_INDEX`<br> e.g. `delete 3`
+**Sort Students** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
+**Overdue** | `overdue unpaid`
+**Add Detail** | `detail add STUDENT_INDEX t/DETAIL_TEXT`<br> e.g. `detail add 1 t/Smart`
+**Edit Detail** | `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`<br> e.g. `detail edit 1 i/2 t/Handsome`
+**Delete Detail** | `detail delete STUDENT_INDEX i/DETAIL_INDEX`<br> e.g. `detail delete 1 i/3`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
-**Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
-**Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
-**List** | `list`
+**Add Question** | `question add STUDENT_INDEX t/QUESTION`<br> e.g. `question add 1 t/How do birds fly?`
+**Resolve Question** | `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`<br> e.g. `question solve 1 i/1 t/Read a book.`
+**Delete Question** | `question delete STUDENT_INDEX i/QUESTION_INDEX`<br> e.g. `question delete 1 i/1`
+**Add Exam** | `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`<br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
+**Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
+**Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
+**Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
+**Toggle View** | `toggle`
 **Help** | `help`
-**Add exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE` <br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
-**Delete exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX` <br> e.g. `exam delete 2 i/5`
+**Exit** | `exit`
 
 ## 5. Glossary
 
 The following table provides the definitions of the various terms used in this User Guide.
+
 Term | Definition
 --------|------------------
 

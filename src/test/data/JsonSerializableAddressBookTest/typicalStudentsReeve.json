@@ -33,7 +33,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }
@@ -70,7 +70,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }
@@ -107,7 +107,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }
@@ -144,7 +144,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }
@@ -181,7 +181,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }
@@ -218,7 +218,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }}, {
@@ -253,7 +253,7 @@
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }]
     }

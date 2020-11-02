@@ -105,6 +105,16 @@ public class Student {
         return result;
     }
 
+    public String getFormattedQuestions() {
+        String result = "";
+        int index = 1;
+        for (Question question: questions) {
+            result = result + index + ". " + question.toString() + "\n";
+            index++;
+        }
+        return result;
+    }
+
     public List<Detail> getDetails() {
         return admin.getDetails();
     }

@@ -18,6 +18,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.schedule.ScheduleViewMode;
+import seedu.address.model.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -206,6 +207,15 @@ public class MainWindow extends UiPart<Stage> {
         studentListPanel.toggleState();
     }
 
+    /**
+     * Opens the exam stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleExamStats(Student student) {
+        ExamStatsWindow examStatsWindow = new ExamStatsWindow(student);
+        examStatsWindow.show();
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -241,6 +251,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isToggleStudentCard()) {
                 handleAcademicPanel();
+            }
+
+            if (commandResult.isExamStats()) {
+                handleExamStats(commandResult.getSelectedStudent());
             }
 
             return commandResult;

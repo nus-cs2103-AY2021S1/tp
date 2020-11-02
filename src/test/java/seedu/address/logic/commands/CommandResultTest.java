@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.student.Student;
+import seedu.address.testutil.StudentBuilder;
+
 public class CommandResultTest {
     @Test
     public void equals() {
@@ -16,9 +19,7 @@ public class CommandResultTest {
         assertTrue(commandResult.equals(new CommandResult("feedback")));
 
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false,
-                false)));
-
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false)));
+                false, null)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -33,13 +34,13 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, null)));
 
         // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, null)));
 
         // different toggle value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, true, null)));
     }
 
     @Test
@@ -53,12 +54,17 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false, false, null).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true, false, null).hashCode());
 
         // different toggle value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, false, true, null).hashCode());
+
+        // different toggle value -> returns different hashcode
+        Student dummyStudent = new StudentBuilder().withName("Alice").build();
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false,
+                false, false, dummyStudent).hashCode());
     }
 }
