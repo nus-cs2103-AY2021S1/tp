@@ -217,17 +217,17 @@ Multiple ingredients are separated by `,`.
 
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be in two formats:
-    * local path e.g. images/healthy1.jpg 
-    * url (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+    * Local path e.g. images/healthy1.jpg 
+    * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
 
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
-  Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images<br>/wishful/data<br>/myimage.png | Local image will be displayed
+  Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg/jpeg/png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
-  Invalid image | NA | 1. Invalid URL<br><br>2. No internet connection | Default image will be displayed
+  Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is optional field
 
  
@@ -235,9 +235,9 @@ Multiple ingredients are separated by `,`.
 
      Image | File Path | Image | File Path
      --------|--------------|--------|-------------
-     <img src="images/healthy1.png" width="100" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="100" height="100"> | images/healthy4.jpg
-     <img src="images/healthy2.png" width="100" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="100" height="100"> | images/healthy5.jpg
-     <img src="images/healthy3.png" width="100" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="100" height="100"> | images/healthy6.jpg
+     <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
+     <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
+     <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
      
      
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
@@ -308,17 +308,17 @@ Multiple ingredients are separated by `,`.
 
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be in two formats:
-    * local path e.g. images/healthy1.jpg 
-    * url (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+    * Local path e.g. images/healthy1.jpg 
+    * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
 
 * Here are the respective actions required by users depending on different usage of `IMAGE`:
 
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
-  Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images<br>/wishful/data<br>/myimage.png | Local image will be displayed
+  Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
   Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg/jpeg/png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to this [table](#table) ) | img/images/healthy1.jpg | Sample image is displayed
-  Invalid image | NA | 1. Invalid URL<br><br>2. No internet connection | Default image will be displayed
+  Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is optional field
   
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
