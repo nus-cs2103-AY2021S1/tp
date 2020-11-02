@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.BookmarkCommand;
+import seedu.stock.logic.commands.ClearCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.FindCommand;
@@ -40,6 +41,7 @@ import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 
@@ -68,6 +70,60 @@ public class SuggestionCommandParserTest {
 
         // EP: correct command word with invalid prefixes
         userInput = LOCATION_DESC_BANANA;
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_clearCommandSuggestion_success() {
+        // EP: incorrect command word with valid prefixes
+        String userInput = "";
+        SuggestionCommandParser parser = new SuggestionCommandParser("clea");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.CLEAR_COMMAND_WORD + "\n" + ClearCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: incorrect command word with invalid prefixes
+        userInput = FILE_NAME_DESC;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
+        userInput = "";
+        parser = new SuggestionCommandParser("clear", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.CLEAR_COMMAND_WORD + "\n" + ClearCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = SOURCE_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_tabCommandSuggestion_success() {
+        // EP: incorrect command word with valid prefixes
+        String userInput = "";
+        SuggestionCommandParser parser = new SuggestionCommandParser("ta");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.TAB_COMMAND_WORD + "\n" + TabCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: incorrect command word with invalid prefixes
+        userInput = SOURCE_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
+        userInput = "";
+        parser = new SuggestionCommandParser("tab", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.TAB_COMMAND_WORD + "\n" + TabCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = LOCATION_DESC_APPLE;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
