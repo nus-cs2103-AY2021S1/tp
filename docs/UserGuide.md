@@ -313,7 +313,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
-**Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...`
+**Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...` <br> e.g. `filter t/examinable r/3`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
 **Find** | `find KEYWORD...` <br>  e.g. `find general important`
