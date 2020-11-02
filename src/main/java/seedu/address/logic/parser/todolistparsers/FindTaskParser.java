@@ -21,11 +21,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FindTaskCriteria;
-import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskContainsTagsPredicate;
 import seedu.address.model.task.TaskMatchesDatePredicate;
 import seedu.address.model.task.TaskMatchesPriorityPredicate;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindTaskCommand object.

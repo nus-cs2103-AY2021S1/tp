@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.EditContactDescriptorBuilder;
 
 public class EditContactDescriptorTest {

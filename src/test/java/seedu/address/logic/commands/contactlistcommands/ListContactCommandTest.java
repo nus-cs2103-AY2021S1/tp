@@ -2,11 +2,12 @@ package seedu.address.logic.commands.contactlistcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showContactAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -22,7 +23,7 @@ public class ListContactCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(new ModuleList(),new ArchivedModuleList(),
+        model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
                 getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
         expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
                 model.getContactList(), new TodoList(), new EventList(), new UserPrefs());

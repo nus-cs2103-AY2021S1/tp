@@ -18,14 +18,17 @@ public class ContactNameContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("second");
         List<String> secondPredicateKeywordList = Arrays.asList("second", "third");
 
-        ContactNameContainsKeywordsPredicate firstPredicate = new ContactNameContainsKeywordsPredicate(firstPredicateKeywordList);
-        ContactNameContainsKeywordsPredicate secondPredicate = new ContactNameContainsKeywordsPredicate(secondPredicateKeywordList);
+        ContactNameContainsKeywordsPredicate firstPredicate =
+                new ContactNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        ContactNameContainsKeywordsPredicate secondPredicate =
+                new ContactNameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        ContactNameContainsKeywordsPredicate firstPredicateCopy = new ContactNameContainsKeywordsPredicate(firstPredicateKeywordList);
+        ContactNameContainsKeywordsPredicate firstPredicateCopy =
+                new ContactNameContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,7 +44,8 @@ public class ContactNameContainsKeywordsPredicateTest {
     @Test
     public void test_contactNameContainsKeywords_returnsTrue() {
         // One keyword
-        ContactNameContainsKeywordsPredicate predicate = new ContactNameContainsKeywordsPredicate(Collections.singletonList("John"));
+        ContactNameContainsKeywordsPredicate predicate =
+                new ContactNameContainsKeywordsPredicate(Collections.singletonList("John"));
         assertTrue(predicate.test(new ContactBuilder().withName("John Doe").build()));
 
         // Multiple keywords
@@ -59,12 +63,10 @@ public class ContactNameContainsKeywordsPredicateTest {
 
     @Test
     public void test_contactNameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        ContactNameContainsKeywordsPredicate predicate = new ContactNameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ContactBuilder().withName("John").build()));
 
         // Non-matching keyword
-        predicate = new ContactNameContainsKeywordsPredicate(Arrays.asList("Amy"));
+        ContactNameContainsKeywordsPredicate predicate =
+                new ContactNameContainsKeywordsPredicate(Arrays.asList("Amy"));
         assertFalse(predicate.test(new ContactBuilder().withName("John Doe").build()));
 
         // Keywords match email and telegram, but does not match name

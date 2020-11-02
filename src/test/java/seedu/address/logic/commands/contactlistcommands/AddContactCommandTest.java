@@ -6,8 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import javafx.collections.ObservableList;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,12 +31,6 @@ import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.ContactBuilder;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 public class AddContactCommandTest {
 
@@ -62,7 +63,8 @@ public class AddContactCommandTest {
         AddContactCommand addContactCommand = new AddContactCommand(validContact);
         ModelStub modelStub = new ModelStubWithContact(validContact);
 
-        assertThrows(CommandException.class, AddContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> addContactCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> addContactCommand.execute(modelStub));
     }
 
     @Test

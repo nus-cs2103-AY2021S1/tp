@@ -102,7 +102,8 @@ public class CommandTestUtil {
                 .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_FRIEND)
                 .build();
         DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
     }
 

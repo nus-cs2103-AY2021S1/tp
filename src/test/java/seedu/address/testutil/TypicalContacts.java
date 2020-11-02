@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.ContactList;
-import seedu.address.model.ModuleList;
 import seedu.address.model.contact.Contact;
 
 /**

@@ -10,11 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ExitCommand;
@@ -52,7 +53,7 @@ public class AddZoomLinkCommandTest {
     public void execute_nullModel_throwsNullPointerException() {
         Index validIndex = INDEX_FIRST_MODULE;
         ZoomDescriptor validDescriptor = new ZoomDescriptor();
-        AddZoomLinkCommand command = new AddZoomLinkCommand(validIndex,validDescriptor);
+        AddZoomLinkCommand command = new AddZoomLinkCommand(validIndex, validDescriptor);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
@@ -61,7 +62,7 @@ public class AddZoomLinkCommandTest {
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         ZoomLink linkToAdd = new ZoomLink(VALID_ZOOMLINK_CS2103T);
         ModuleLesson lesson = new ModuleLesson(VALID_MODULELESSONTYPE_ES2660);
-        Module moduleWithAddedZoom = moduleToUpdate.addZoomLink(lesson,linkToAdd);
+        Module moduleWithAddedZoom = moduleToUpdate.addZoomLink(lesson, linkToAdd);
 
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
                 .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).withZoomLink(VALID_ZOOMLINK_CS2103T).build();

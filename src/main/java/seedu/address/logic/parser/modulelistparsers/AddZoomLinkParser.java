@@ -8,8 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;

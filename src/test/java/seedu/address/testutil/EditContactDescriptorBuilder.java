@@ -12,7 +12,6 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
-import seedu.address.model.contact.TelegramTest;
 import seedu.address.model.tag.Tag;
 
 /**

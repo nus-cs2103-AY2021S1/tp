@@ -1,9 +1,11 @@
 package seedu.address.logic.commands.contactlistcommands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
@@ -12,8 +14,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleList;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 public class ClearContactCommandTest {
 
