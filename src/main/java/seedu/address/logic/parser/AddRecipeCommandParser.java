@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_INGREDIENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_QUANTITY;
+import static seedu.address.logic.parser.RecipeParserUtil.DEFAULT_DESCRIPTION;
+import static seedu.address.logic.parser.RecipeParserUtil.DEFAULT_PRODUCT_QUANTITY;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -32,8 +34,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_RECIPE_PRODUCT_NAME, PREFIX_RECIPE_INGREDIENTS,
                         PREFIX_RECIPE_PRODUCT_QUANTITY, PREFIX_RECIPE_DESCRIPTION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_RECIPE_PRODUCT_NAME, PREFIX_RECIPE_INGREDIENTS,
-                PREFIX_RECIPE_PRODUCT_QUANTITY, PREFIX_RECIPE_DESCRIPTION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_RECIPE_PRODUCT_NAME, PREFIX_RECIPE_INGREDIENTS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));
         }
@@ -42,8 +43,10 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         List<IngredientPrecursor> ingredientPrecursors = RecipeParserUtil
                 .parseIngredients(argMultimap.getValue(PREFIX_RECIPE_INGREDIENTS).get());
         ProductQuantity productQuantity = RecipeParserUtil
-                .parseProductQuantity(argMultimap.getValue(PREFIX_RECIPE_PRODUCT_QUANTITY).get());
-        String description = RecipeParserUtil.parseDescription(argMultimap.getValue(PREFIX_RECIPE_DESCRIPTION).get());
+                .parseProductQuantity(argMultimap.getValue(PREFIX_RECIPE_PRODUCT_QUANTITY)
+                        .orElse(DEFAULT_PRODUCT_QUANTITY));
+        String description = RecipeParserUtil.parseDescription(argMultimap.getValue(PREFIX_RECIPE_DESCRIPTION)
+                .orElse(DEFAULT_DESCRIPTION));
 
         RecipePrecursor recipePre = new RecipePrecursor(Recipe.getIdCounter() + 1, ingredientPrecursors,
                 productName, productQuantity, description);

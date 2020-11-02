@@ -163,6 +163,10 @@ public class EditItemCommandTest {
         EditItemCommand.EditItemDescriptor descQuant = new EditItemCommand.EditItemDescriptor();
         descQuant.setQuantity(new Quantity("1"));
         assertFalse(editName.equals(new EditItemCommand(VALID_ITEM_NAME_APPLE, descQuant)));
+
+        // different hasCommit -> returns false;
+        EditItemCommand editName3 = new EditItemCommand(VALID_ITEM_NAME_APPLE, descName, false);
+        assertFalse(editName.equals(editName3));
     }
 
     /**

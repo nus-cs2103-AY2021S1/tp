@@ -40,8 +40,10 @@ public class AddQuantityToItemCommand extends Command {
 
     private final String itemName;
     private final Quantity quantity;
+    private boolean hasCommit; // determines if model.commit should be called in edit item command
 
     /**
+     * Constructor for add quantity to item command.
      * @param quantity quantity to add to the item, can be negative
      */
     public AddQuantityToItemCommand(String itemName, Quantity quantity) {
@@ -49,6 +51,20 @@ public class AddQuantityToItemCommand extends Command {
 
         this.itemName = itemName;
         this.quantity = quantity;
+        this.hasCommit = true;
+    }
+
+    /**
+     * Constructor used when add quantity to item command is part of crafting
+     * @param quantity quantity to add to the item, can be negative
+     */
+    public AddQuantityToItemCommand(String itemName, Quantity quantity, boolean hasCommit) {
+        requireNonNull(itemName);
+        assert !hasCommit : "Attempt to commit model in add quantity command";
+
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.hasCommit = false;
     }
 
     @Override
@@ -62,7 +78,7 @@ public class AddQuantityToItemCommand extends Command {
 
         Item itemToEdit = itemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, itemName)));
+                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
         assert(itemToEdit != null);
         assert(itemToEdit.getQuantity() != null);
 
@@ -81,11 +97,9 @@ public class AddQuantityToItemCommand extends Command {
         editItemDescriptor.setQuantity(updatedQuantity);
         editItemDescriptor.setTags(itemToEdit.getTags());
 
-        EditItemCommand editItemCommand = new EditItemCommand(itemName, editItemDescriptor);
+        EditItemCommand editItemCommand = new EditItemCommand(itemName, editItemDescriptor, hasCommit);
 
         logger.info(itemToEdit.getName() + "'s quantity changed to " + updatedQuantity + ".");
-
-        model.commitInventory();
 
         return editItemCommand.execute(model);
     }
@@ -102,9 +116,10 @@ public class AddQuantityToItemCommand extends Command {
             return false;
         }
 
-        // check if itemName and quantity are the same
+        // check if itemName and quantity and hasCommit are the same
         AddQuantityToItemCommand a = (AddQuantityToItemCommand) other;
         return itemName.equals(a.itemName)
-                && quantity.toInt() == a.quantity.toInt();
+                && quantity.toInt() == a.quantity.toInt()
+                && hasCommit == a.hasCommit;
     }
 }
