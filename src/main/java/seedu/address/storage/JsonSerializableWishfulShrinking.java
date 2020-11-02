@@ -12,7 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
 import seedu.address.model.consumption.Consumption;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipeImage;

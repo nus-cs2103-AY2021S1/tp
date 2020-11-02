@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.consumption.Consumption;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**

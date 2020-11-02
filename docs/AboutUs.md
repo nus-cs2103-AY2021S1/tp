@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Dao Ngoc Hieu
 
-<img src="images/daongochieu2810.png" width="200px">
+<img src="images/member/daongochieu2810.png" width="200px">
 
 [[homepage](https://resumednh.herokuapp.com)]
 [[github](https://github.com/daongochieu2810)]
@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Caitlin Jee Shen-Yi
 
-<img src="images/caitlinjee.png" width="200px">
+<img src="images/member/caitlinjee.png" width="200px">
 
 [[github](http://github.com/caitlinjee)]
 
@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Olivia Juliani Johansen
 
-<img src="images/oliviajohansen.png" width="200px">
+<img src="images/member/oliviajohansen.png" width="200px">
 
 [[github](http://github.com/oliviajohansen)]
 
@@ -37,7 +37,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Tan Jia Qi
 
-<img src="images/jiaqi20.png" width="200px">
+<img src="images/member/jiaqi20.png" width="200px">
 
 [[github](http://github.com/jiaqi20)]
 
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Goh Tian Yong
 
-<img src="images/tianyong-goh.png" width="200px">
+<img src="images/member/tianyong-goh.png" width="200px">
 
 [[github](https://github.com/TianYong-Goh)]
 

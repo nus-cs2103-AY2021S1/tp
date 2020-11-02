@@ -2,7 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.consumption.Consumption;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
