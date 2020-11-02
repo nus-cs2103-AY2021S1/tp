@@ -7,6 +7,7 @@ import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_NUSNETID_BOB
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
+import static seedu.taskmaster.testutil.TypicalStudents.getTypicalSession;
 import static seedu.taskmaster.testutil.TypicalStudents.getTypicalTaskmaster;
 
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.session.exceptions.DuplicateSessionException;
+import seedu.taskmaster.model.session.exceptions.SessionNotFoundException;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
 import seedu.taskmaster.testutil.StudentBuilder;
@@ -92,6 +94,21 @@ public class TaskmasterTest {
         Taskmaster taskmasterWithSession = new TaskmasterBuilder().withSession(duplicateSession).build();
         assertThrows(DuplicateSessionException.class, ()
             -> taskmasterWithSession.addSession(duplicateSession));
+    }
+
+    @Test
+    public void deleteSession_sessionFound_success() {
+        Taskmaster actualTaskmaster = new TaskmasterBuilder().withSession(getTypicalSession()).build();
+        Taskmaster expectedTaskmaster = new TaskmasterBuilder().build();
+        actualTaskmaster.deleteSession(getTypicalSession().getSessionName());
+        assertEquals(expectedTaskmaster, actualTaskmaster);
+    }
+
+    @Test
+    public void deleteSession_sessionNotFound_sessionNotFoundExceptionThrown() {
+        Taskmaster tmWithoutSession = new Taskmaster();
+        assertThrows(SessionNotFoundException.class, ()
+            -> tmWithoutSession.deleteSession(getTypicalSession().getSessionName()));
     }
 
     @Test

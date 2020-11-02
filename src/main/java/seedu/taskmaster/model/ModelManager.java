@@ -110,6 +110,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteSession(SessionName sessionName) {
+        taskmaster.deleteSession(sessionName);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
+    }
+
+    @Override
     public void addSession(Session session) {
         taskmaster.addSession(session);
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);

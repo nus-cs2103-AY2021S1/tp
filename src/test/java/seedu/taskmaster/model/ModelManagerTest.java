@@ -11,6 +11,7 @@ import static seedu.taskmaster.testutil.TypicalStudentRecords.BENSON_STUDENT_REC
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
 import static seedu.taskmaster.testutil.TypicalStudents.BENSON;
 import static seedu.taskmaster.testutil.TypicalStudents.BOB;
+import static seedu.taskmaster.testutil.TypicalStudents.getTypicalSession;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -93,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void setSessions_validSessionList_success() {
-        Session newSession = TypicalStudents.getTypicalSession();
+        Session newSession = getTypicalSession();
         List<Session> sessions = new ArrayList<>();
         sessions.add(newSession);
         modelManager.setSessions(sessions);
@@ -109,11 +110,21 @@ public class ModelManagerTest {
 
     @Test
     public void addSession_validSession_success() {
-        Session newSession = TypicalStudents.getTypicalSession();
+        Session newSession = getTypicalSession();
         modelManager.addSession(newSession);
         Taskmaster expectedTaskmaster = new TaskmasterBuilder().withSession(newSession).build();
         Model expectedModel = new ModelManager(expectedTaskmaster, new UserPrefs());
         assertEquals(modelManager, expectedModel);
+    }
+
+    @Test
+    public void deleteSession_sessionFound_success() {
+        Taskmaster actualTaskmaster = new TaskmasterBuilder().withSession(getTypicalSession()).build();
+        Model actualModel = new ModelManager(actualTaskmaster, new UserPrefs());
+        Taskmaster expectedTaskmaster = new TaskmasterBuilder().build();
+        Model expectedModel = new ModelManager(expectedTaskmaster, new UserPrefs());
+        actualModel.deleteSession(getTypicalSession().getSessionName());
+        assertEquals(expectedModel, actualModel);
     }
 
     @Test
@@ -132,8 +143,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasSession_sessionInStudentList_returnsTrue() {
-        modelManager.addSession(TypicalStudents.getTypicalSession());
-        assertTrue(modelManager.hasSession(TypicalStudents.getTypicalSession()));
+        modelManager.addSession(getTypicalSession());
+        assertTrue(modelManager.hasSession(getTypicalSession()));
     }
 
     @Test
@@ -148,8 +159,8 @@ public class ModelManagerTest {
 
     @Test
     public void hasSession_sessionNameInStudentList_returnsTrue() {
-        modelManager.addSession(TypicalStudents.getTypicalSession());
-        assertTrue(modelManager.hasSession(TypicalStudents.getTypicalSession().getSessionName()));
+        modelManager.addSession(getTypicalSession());
+        assertTrue(modelManager.hasSession(getTypicalSession().getSessionName()));
     }
 
     @Test
