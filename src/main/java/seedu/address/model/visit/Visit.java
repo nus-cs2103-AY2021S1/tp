@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.model.patient.Name;
@@ -84,26 +83,22 @@ public class Visit implements Comparable<Visit> {
     }
 
     /**
-     * Validates visit date in DD/MM/YYYY format.
-     * YYYY must be 19xx or 2xxx.
+     * Validates visit date in dd/MM/yyyy format.
+     * Visit date must occur before current local machine date.
      */
     public static boolean isValidVisitDate(String input) {
-        DateTimeFormatter dateFormatAs19xx =
-                DateTimeFormatter.ofPattern("dd/MM/19uu").withResolverStyle(ResolverStyle.STRICT);
-
-        DateTimeFormatter dateFormatAs2xxx =
-                DateTimeFormatter.ofPattern("dd/MM/2uuu").withResolverStyle(ResolverStyle.STRICT);
+        LocalDate currentDate = LocalDate.now();
+        boolean isBefore = true;
 
         try {
-            LocalDate.parse(input, dateFormatAs19xx);
-        } catch (DateTimeParseException exception) {
-            try {
-                LocalDate.parse(input, dateFormatAs2xxx);
-            } catch (DateTimeParseException exception2) {
-                return false;
+            LocalDate inputLocalDate = LocalDate.parse(input, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            if (inputLocalDate.isAfter(currentDate)) {
+                isBefore = false;
             }
+        } catch (DateTimeParseException exception) {
+            return false;
         }
-        return true;
+        return isBefore;
     }
 
     /**

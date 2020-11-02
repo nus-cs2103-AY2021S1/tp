@@ -43,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private ProfileWindow profilePanel;
     private VisitFormWindow visitWindow;
     private ProfileVisitPanel profileVisitPanel;
-    private EmptyVisitList emptyVisitList;
+    private EmptyVisitHistory emptyVisitHistory;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -96,7 +96,7 @@ public class MainWindow extends UiPart<Stage> {
         });
         profilePanel = new ProfileWindow();
         profileVisitPanel = new ProfileVisitPanel();
-        emptyVisitList = new EmptyVisitList();
+        emptyVisitHistory = new EmptyVisitHistory();
     }
 
     public Stage getPrimaryStage() {
@@ -215,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
 
         if (!visitWindow.isShowing()) {
             visitWindow.show();
+            visitWindow.focus();
         } else {
             visitWindow.focus();
         }
@@ -226,10 +227,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleEmptyVisitHistory() {
-        if (!emptyVisitList.isShowing()) {
-            emptyVisitList.show();
+        if (!emptyVisitHistory.isShowing()) {
+            emptyVisitHistory.show();
         } else {
-            emptyVisitList.focus();
+            emptyVisitHistory.focus();
         }
     }
 
