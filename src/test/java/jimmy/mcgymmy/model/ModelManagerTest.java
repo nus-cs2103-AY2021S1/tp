@@ -178,12 +178,12 @@ public class ModelManagerTest {
     @Test
     public void undo_undoAfterClearFilteredFood_modelManagerHasCorrectContent() {
         McGymmy expectedMcGymmy = new McGymmyBuilder().withFood(CHICKEN_RICE).withFood(DANISH_COOKIES).build();
-        ModelManager expectedModelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
         modelManager.addFood(CHICKEN_RICE);
         modelManager.addFood(DANISH_COOKIES);
+        modelManager.updateFilteredFoodList(food -> food.equals(CHICKEN_RICE));
         modelManager.clearFilteredFood();
         modelManager.undo();
-        assertEquals(modelManager, expectedModelManager);
+        assertEquals(modelManager.getMcGymmy(), expectedMcGymmy);
     }
 
     @Test
