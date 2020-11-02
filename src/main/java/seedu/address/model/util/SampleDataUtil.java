@@ -28,47 +28,47 @@ import seedu.address.model.task.Task;
  */
 public class SampleDataUtil {
 
-    private static ArrayList<String> task1 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task1 = new ArrayList<>(Arrays.asList(
             "Refactor project class",
             "tedious :(",
             "19-10-2020 13:30:00",
             "25.0",
             "false"));
-    private static ArrayList<String> task2 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task2 = new ArrayList<>(Arrays.asList(
             "Brainstorm user stories",
             "20-10-2020 14:00:00",
             null,
             "100.0",
             "true"));
-    private static ArrayList<String> task3 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task3 = new ArrayList<>(Arrays.asList(
             "Refine data model",
             "so hard T.T",
             null,
             "0.0",
             "false"
     ));
-    private static ArrayList<String> task4 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task4 = new ArrayList<>(Arrays.asList(
             "Write UG",
             null,
             null,
             "50.0",
             "false"
     ));
-    private static ArrayList<String> task5 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task5 = new ArrayList<>(Arrays.asList(
             "Delete ProjectDescription attribute",
             "easy fast game",
             null,
             "0.0",
             "false"
     ));
-    private static ArrayList<String> task6 = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> task6 = new ArrayList<>(Arrays.asList(
             "Write DG",
             "barely done, how now brown cow",
             null,
             "15.0",
             "false"
     ));
-    private static ArrayList<String> validTask = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> validTask = new ArrayList<>(Arrays.asList(
             "Write testcases",
             "testcases for storage, person and project class",
             "10-10-2020 23:59:00",
@@ -161,8 +161,7 @@ public class SampleDataUtil {
         return new Task(s.get(0),
             s.get(1),
             s.get(2) == null ? null : new Deadline(s.get(2)),
-            Double.parseDouble(s.get(3)),
-            Boolean.parseBoolean(s.get(4)));
+            Double.parseDouble(s.get(3)));
     }
     /**
      * Returns a task set containing the list of strings given.

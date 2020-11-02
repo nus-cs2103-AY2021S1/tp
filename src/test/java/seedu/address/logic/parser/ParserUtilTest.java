@@ -207,14 +207,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTask_validValueWithoutWhitespace_returnsTask() {
-        Task expectedTask = new Task(VALID_TASK_1, null, null, 0, false);
+        Task expectedTask = new Task(VALID_TASK_1, null, null, 0);
         assertEquals(expectedTask, ParserUtil.parseTask(VALID_TASK_1));
     }
 
     @Test
     public void parseTask_validValueWithWhitespace_returnsTrimmedTask() {
         String taskWithWhitespace = WHITESPACE + VALID_TASK_1 + WHITESPACE;
-        Task expectedTask = new Task(VALID_TASK_1, null, null, 0, false);
+        Task expectedTask = new Task(VALID_TASK_1, null, null, 0);
         assertEquals(expectedTask, ParserUtil.parseTask(taskWithWhitespace));
     }
 
@@ -232,8 +232,8 @@ public class ParserUtilTest {
     public void parseTasks_collectionWithValidTasks_returnsTaskSet() {
         Set<Task> actualTaskSet = ParserUtil.parseTasks(Arrays.asList(VALID_TASK_1, VALID_TASK_2));
         Set<Task> expectedTaskSet = new HashSet<Task>(Arrays.asList(
-                new Task(VALID_TASK_1, null, null, 0, false),
-                new Task(VALID_TASK_2, null, null, 0, false)));
+                new Task(VALID_TASK_1, null, null, 0),
+                new Task(VALID_TASK_2, null, null, 0)));
 
         assertEquals(expectedTaskSet, actualTaskSet);
     }

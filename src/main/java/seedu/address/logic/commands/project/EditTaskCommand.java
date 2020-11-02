@@ -3,7 +3,6 @@ package seedu.address.logic.commands.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
@@ -40,7 +39,6 @@ public class EditTaskCommand extends Command {
             + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_DESCRIPTION + "TASKDESCRIPTION] "
             + "[" + PREFIX_TASK_PROGRESS + "TASK PROGRESS]...\n"
-            + "[" + PREFIX_TASK_IS_DONE + "TASK STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_DEADLINE + "29-02-2020 00:00:00 ";
 
@@ -99,14 +97,13 @@ public class EditTaskCommand extends Command {
         String updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
         Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline().orElse(null));
         Double updatedProgress = editTaskDescriptor.getProgress().orElse(taskToEdit.getProgress());
-        Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
         String updatedTaskDescription = editTaskDescriptor.getTaskDescription()
                 .orElse(taskToEdit.getDescription());
         Set<String> updatedAssignees = editTaskDescriptor.getAssignees().orElse(
                 taskToEdit.getAssignees());
 
         Task updatedTask = new Task(updatedTaskName, updatedTaskDescription, updatedDeadline,
-                updatedProgress, updatedIsDone);
+                updatedProgress);
         updatedTask.getAssignees().addAll(updatedAssignees);
 
         return updatedTask;

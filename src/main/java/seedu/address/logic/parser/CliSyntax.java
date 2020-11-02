@@ -12,7 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_PROJECT_TAG = new Prefix("tg/");
     public static final Prefix PREFIX_TASK = new Prefix("tk/");
-    public static final Prefix PREFIX_MEETING = new Prefix("mt/");
     // Prefixes related to Task
     public static final Prefix PREFIX_TASK_ASSIGNEE = new Prefix("ta/");
     public static final Prefix PREFIX_TASK_NAME = new Prefix("tn/");
@@ -25,8 +24,6 @@ public class CliSyntax {
     // Prefixes related to Task Filter
     public static final Prefix PREFIX_START_DATE = new Prefix("start/");
     public static final Prefix PREFIX_END_DATE = new Prefix("end/");
-    // Prefixes related to meeting filters
-    public static final Prefix PREFIX_MEETING_FILTER_BY_NAME = new Prefix("mtn");
     // Prefixes related to Teammate
     public static final Prefix PREFIX_TEAMMATE_ADDRESS = new Prefix("ma/");
     public static final Prefix PREFIX_TEAMMATE_EMAIL = new Prefix("me/");
