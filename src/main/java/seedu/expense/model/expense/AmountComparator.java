@@ -17,9 +17,7 @@ public class AmountComparator extends SortKeyComparator {
 
     @Override
     public int compare(Expense o1, Expense o2) {
-        int s1 = o1.getAmount().value;
-        int s2 = o2.getAmount().value;
-        return s1 - s2;
+        return o1.getAmount().compareTo(o2.getAmount());
     }
 
     @Override

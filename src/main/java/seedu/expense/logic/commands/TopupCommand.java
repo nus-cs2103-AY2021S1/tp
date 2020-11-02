@@ -27,7 +27,7 @@ public class TopupCommand extends Command {
             + PREFIX_AMOUNT + "59.90 "
             + PREFIX_TAG + "Food";
 
-    public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%.02f";
+    public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%s";
     public static final String MESSAGE_CATEGORY_NOT_FOUND = "The expense book does not contain the category %s";
 
     private final Amount toAdd;
@@ -61,7 +61,7 @@ public class TopupCommand extends Command {
 
         model.topupCategoryBudget(category, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, category.tagName,
-                model.getCategoryBudget(category).getAmount().asDouble()));
+                model.getCategoryBudget(category).getAmount()));
     }
 
     @Override
