@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -50,8 +49,7 @@ public class Person {
      * Overloaded constructor to take in listOfParticipations
      */
     public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address,
-                  HashMap<ProjectName,
-                          Participation> listOfParticipations) {
+                  HashMap<ProjectName, Participation> listOfParticipations) {
         requireAllNonNull(personName, gitUserName, phone, email, address);
         this.personName = personName;
         this.gitUserName = gitUserName;
@@ -107,7 +105,7 @@ public class Person {
      * Gets all projects that this person participates in.
      */
     public List<Project> getProjects() {
-        List<Project> projects = Collections.emptyList();
+        List<Project> projects = new ArrayList<>();
         listOfParticipations.values().forEach(p -> projects.add(p.getProject()));
         return projects;
     }
@@ -130,7 +128,8 @@ public class Person {
      * Gets all tasks that this person participates in.
      */
     public List<Task> getTasks() {
-        List<Task> tasks = Collections.emptyList();
+        System.out.println(listOfParticipations);
+        List<Task> tasks = new ArrayList<>();
         listOfParticipations.values().forEach(p -> tasks.addAll(p.getTasks()));
         return tasks;
     }
@@ -157,6 +156,10 @@ public class Person {
     public void addProject(Project p) {
         listOfParticipations.put(p.getProjectName(),
                 new Participation(personName.toString(), p.getProjectName().toString()));
+    }
+
+    public void addExistingParticipation(Participation p) {
+        listOfParticipations.put(p.getProject().getProjectName(), p);
     }
 
     /**

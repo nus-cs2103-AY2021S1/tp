@@ -19,9 +19,11 @@ import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartPersonCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
+import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.DeleteTeammateCommand;
+import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
@@ -143,6 +145,20 @@ public class MainCatalogueParser {
         case NewTeammateCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new NewTeammateCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case AddTeammateParticipationCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new AddTeammateParticipationParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case DeleteTeammateParticipationCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new DeleteTeammateParticipationParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
