@@ -23,7 +23,6 @@ import javafx.scene.paint.Color;
 
 public class Calender extends UiPart<Region> {
     private static final String FILEPATH = "Calender.fxml";
-    private static VBox[] grid = new VBox[42];
     private LocalDate now;
     private int year;
     private Month month;
@@ -41,7 +40,6 @@ public class Calender extends UiPart<Region> {
      */
     public Calender() {
         super(FILEPATH);
-        loadVbox();
         this.now = LocalDate.now();
         this.year = now.getYear();
         this.month = now.getMonth();
@@ -63,11 +61,6 @@ public class Calender extends UiPart<Region> {
         }
     }
 
-    private void loadVbox() {
-        for (int i = 0; i < 42; i++) {
-            grid[i] = new VBox();
-        }
-    }
 
     private void fillCalender(VBox box, int col, int row) {
         calenderGrid.add(box, col, row);
@@ -81,19 +74,24 @@ public class Calender extends UiPart<Region> {
             } else {
                 this.headerMonth = this.headerMonth.plus(1);
             }
-        } else { // minus 1 month
+        } else if (value == -1) { // minus 1 month
             if (this.headerMonth.getValue() == 1) {
                 this.headerMonth = Month.DECEMBER;
                 this.headerYear = this.headerYear - 1;
             } else {
                 this.headerMonth = this.headerMonth.minus(1);
             }
+        } else {
+            // do nothing
         }
         monthYearInput.setText(this.headerMonth.toString() + " " + this.headerYear);
+        monthYearInput.setStyle("-fx-text-fill: white");
     }
 
     private void loadNow() {
-        monthYearInput.setText(this.headerMonth.toString() + " " + this.headerYear);
+        emptyCal();
+        loadDayHeader();
+        updateHeader(0);
         this.month.firstDayOfYear(this.isLeapYear);
         LocalDate start = YearMonth.of(this.headerYear, this.headerMonth).atDay(1);
         int first = start.getDayOfWeek().getValue();
@@ -177,8 +175,6 @@ public class Calender extends UiPart<Region> {
     @FXML
     public void nextMonth() {
         updateHeader(1);
-        emptyCal();
-        loadDayHeader();
         loadNow();
     }
 
@@ -188,8 +184,6 @@ public class Calender extends UiPart<Region> {
     @FXML
     public void previousMonth() {
         updateHeader(-1);
-        emptyCal();
-        loadDayHeader();
         loadNow();
     }
 }
