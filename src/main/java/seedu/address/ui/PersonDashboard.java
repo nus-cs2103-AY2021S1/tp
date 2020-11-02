@@ -49,8 +49,6 @@ public class PersonDashboard extends UiPart<Region> {
     private FlowPane projects;
     @FXML
     private FlowPane tasks;
-    @FXML
-    private FlowPane meetings;
 
     /**
      * Creates a {@code PersonDashboardCode} with the given {@code Person} and index to display.
