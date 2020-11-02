@@ -29,22 +29,19 @@ public class ViewDisplay extends UiPart<Region> {
         viewDisplayStyle.clear();
 
         switch (view) {
-            case "MODULES":
-                viewDisplayStyle.add("view-display-module");
-                System.out.println("moduel add");
-                break;
+        case "TUTORIAL GROUPS":
+            viewDisplayStyle.add("view-display-tg");
+            break;
 
-            case "TUTORIAL GROUPS":
-                viewDisplayStyle.add("view-display-tg");
-                System.out.println("tg add");
-                break;
+        case "STUDENTS":
+            viewDisplayStyle.add("view-display-student");
+            break;
 
-            case "STUDENTS":
-                viewDisplayStyle.add("view-display-student");
-                System.out.println("student add");
-                break;
-
+        default:
+            viewDisplayStyle.add("view-display-module");
+            break;
         }
+
         viewDisplay.setText(view);
     }
 }
