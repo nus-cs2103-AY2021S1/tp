@@ -85,7 +85,6 @@ public class MainWindowTest extends GuiUnitTest {
 
     @Test
     public void stage_Check() {
-        mainWindow.show();
         assertEquals(stage, mainWindow.getPrimaryStage());
     }
 
