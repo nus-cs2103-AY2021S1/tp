@@ -346,6 +346,23 @@ public class AutoCompleter {
                 validArguments.add(Strings.ARG_TAG);
                 validArguments.add(Strings.ARG_EXPIRY);
             }
+        } else if (cmd.equals(Strings.COMMAND_STATS)) {
+            // ugh, this command format is 3head
+            var foo = new StringView(args.getRemaining()).words();
+            if (foo.size() == 2) {
+                var kind = foo.get(1);
+                if (tgt.equals(CommandTarget.RECIPE.toString())) {
+                    if (kind.equals(Strings.STATS_KIND_MADE)) {
+                        validArguments.add(Strings.ARG_AFTER);
+                        validArguments.add(Strings.ARG_BEFORE);
+                    }
+                } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+                    if (kind.equals(Strings.STATS_KIND_USED)) {
+                        validArguments.add(Strings.ARG_AFTER);
+                        validArguments.add(Strings.ARG_BEFORE);
+                    }
+                }
+            }
         }
 
         return tryCompletionUsing(getArgNames(validArguments), orig, partial)
@@ -700,16 +717,6 @@ public class AutoCompleter {
             // only list accepts recommendations.
             return command.equals(Strings.COMMAND_LIST);
         }
-    }
-
-    private boolean commandRequiresItemReference(String commandName) {
-        return List.of(
-            Strings.COMMAND_ADD,
-            Strings.COMMAND_MAKE,
-            Strings.COMMAND_EDIT,
-            Strings.COMMAND_VIEW,
-            Strings.COMMAND_DELETE
-        ).indexOf(commandName) >= 0;
     }
 
     enum RequiredCompletion {

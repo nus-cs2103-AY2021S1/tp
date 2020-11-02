@@ -162,6 +162,14 @@ public class CommandParserTest {
             FindCommandParser.parseFindCommand(new CommandArguments("kekw"));
         });
 
+        assertThrows(UnsupportedOperationException.class, () -> {
+            var p = new CommandParser();
+            var c1 = p.parse("make recipe asdf").getValue();
+            var c2 = p.parse("make recipe asdf").getValue();
+
+            c1.equals(c2);
+        });
+
         assertNotEquals(new CommandArguments("add"), "add");
         assertNotEquals(new CommandArguments("add"), new CommandArguments("subtract"));
 
