@@ -1,8 +1,14 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
 import java.nio.file.Path;
 import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,9 +24,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TutorialGroupBuilder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 public class EditTutorialGroupCommandTest {
 
@@ -31,12 +34,12 @@ public class EditTutorialGroupCommandTest {
         ModelStubWithOneTutorialGroup modelStub = new ModelStubWithOneTutorialGroup();
         TutorialGroup editedTutorialGroup = new TutorialGroupBuilder().withTutorialGroupId("B014").build();
 
-        CommandResult commandResult = new EditTutorialGroupCommand(INDEX_FIRST_PERSON,editedTutorialGroup.getId(),
-            editedTutorialGroup.getDayOfWeek(), editedTutorialGroup.getStartTime(),editedTutorialGroup.getEndTime())
+        CommandResult commandResult = new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editedTutorialGroup.getId(),
+            editedTutorialGroup.getDayOfWeek(), editedTutorialGroup.getStartTime(), editedTutorialGroup.getEndTime())
             .execute(modelStub);
 
-        assertEquals(String.format(EditTutorialGroupCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup.getId())
-            , commandResult.getFeedbackToUser());
+        assertEquals(String.format(EditTutorialGroupCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS, editedTutorialGroup.getId()),
+            commandResult.getFeedbackToUser());
         assertEquals(editedTutorialGroup, modelStub.tutorialGroup);
     }
 
@@ -44,8 +47,9 @@ public class EditTutorialGroupCommandTest {
     public void execute_duplicateTutorialUnfilteredList_failure() throws CommandException {
         ModelStubWithTwoTutorialGroup modelStub = new ModelStubWithTwoTutorialGroup();
         TutorialGroup editedTutorialGroup = new TutorialGroupBuilder().withTutorialGroupId("T003").build();
-        EditTutorialGroupCommand editCommand = new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editedTutorialGroup.getId()
-        , editedTutorialGroup.getDayOfWeek(), editedTutorialGroup.getStartTime(), editedTutorialGroup.getEndTime());
+        EditTutorialGroupCommand editCommand = new EditTutorialGroupCommand(INDEX_FIRST_PERSON,
+            editedTutorialGroup.getId(), editedTutorialGroup.getDayOfWeek(),
+            editedTutorialGroup.getStartTime(), editedTutorialGroup.getEndTime());
 
         assertThrows(CommandException.class, EditTutorialGroupCommand.MESSAGE_DUPLICATE_TUTORIAL, ()
             -> editCommand.execute(modelStub));
@@ -55,17 +59,17 @@ public class EditTutorialGroupCommandTest {
 
 
     private class ModelStubWithOneTutorialGroup extends ModelStub {
-        ObservableList<Module> filteredModuleList = FXCollections.observableArrayList();
-        ObservableList<TutorialGroup> filteredTutorialGroupList = FXCollections.observableArrayList();
-        TutorialGroup DEFAULT_TUTORIAL_GROUP = new TutorialGroupBuilder().build();
-        TutorialGroup tutorialGroup = DEFAULT_TUTORIAL_GROUP;
+        private ObservableList<Module> filteredModuleList = FXCollections.observableArrayList();
+        private ObservableList<TutorialGroup> filteredTutorialGroupList = FXCollections.observableArrayList();
+        private TutorialGroup defaultTutorialGroup = new TutorialGroupBuilder().build();
+        private TutorialGroup tutorialGroup = defaultTutorialGroup;
 
         public ModelStubWithOneTutorialGroup() {
             Module module = new ModuleBuilder().build();
-            module.addTutorialGroup(DEFAULT_TUTORIAL_GROUP);
+            module.addTutorialGroup(defaultTutorialGroup);
             filteredModuleList.add(module);
             filteredModuleList = new FilteredList<>(filteredModuleList);
-            filteredTutorialGroupList.add(DEFAULT_TUTORIAL_GROUP);
+            filteredTutorialGroupList.add(defaultTutorialGroup);
             filteredTutorialGroupList = new FilteredList<>(filteredTutorialGroupList);
         }
 
@@ -87,19 +91,19 @@ public class EditTutorialGroupCommandTest {
     }
 
     private class ModelStubWithTwoTutorialGroup extends ModelStub {
-        ObservableList<Module> filteredModuleList = FXCollections.observableArrayList();
-        ObservableList<TutorialGroup> filteredTutorialGroupList = FXCollections.observableArrayList();
-        TutorialGroup DEFAULT_TUTORIAL_GROUP_1 = new TutorialGroupBuilder().build();
-        TutorialGroup DEFAULT_TUTORIAL_GROUP_2 = new TutorialGroupBuilder().withTutorialGroupId("T003").build();
+        private ObservableList<Module> filteredModuleList = FXCollections.observableArrayList();
+        private ObservableList<TutorialGroup> filteredTutorialGroupList = FXCollections.observableArrayList();
+        private TutorialGroup defaultTutorialGroup1 = new TutorialGroupBuilder().build();
+        private TutorialGroup defaultTutorialGroup2 = new TutorialGroupBuilder().withTutorialGroupId("T003").build();
 
         public ModelStubWithTwoTutorialGroup() {
             Module module = new ModuleBuilder().build();
-            module.addTutorialGroup(DEFAULT_TUTORIAL_GROUP_1);
-            module.addTutorialGroup(DEFAULT_TUTORIAL_GROUP_2);
+            module.addTutorialGroup(defaultTutorialGroup1);
+            module.addTutorialGroup(defaultTutorialGroup2);
             filteredModuleList.add(module);
             filteredModuleList = new FilteredList<>(filteredModuleList);
-            filteredTutorialGroupList.add(DEFAULT_TUTORIAL_GROUP_1);
-            filteredTutorialGroupList.add(DEFAULT_TUTORIAL_GROUP_2);
+            filteredTutorialGroupList.add(defaultTutorialGroup1);
+            filteredTutorialGroupList.add(defaultTutorialGroup2);
             filteredTutorialGroupList = new FilteredList<>(filteredTutorialGroupList);
         }
 
@@ -202,7 +206,9 @@ public class EditTutorialGroupCommandTest {
         }
 
         @Override
-        public boolean isInTutorialGroupView() { return true; }
+        public boolean isInTutorialGroupView() {
+            return true;
+        }
 
         @Override
         public void setViewToStudent(TutorialGroup target) {

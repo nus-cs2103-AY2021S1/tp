@@ -47,17 +47,30 @@ public class TutorialGroupBuilder {
         return this;
     }
 
+    /**
+     * Returns a TutorialGroupBuilder that builds a Tutorial Group with the specified startTime
+     * @param startTimeString
+     * @return
+     */
     public TutorialGroupBuilder withStartTime(String startTimeString) {
         this.startTime = new TimeOfDay(startTimeString);
         return this;
     }
 
+    /**
+     * Returns a TutorialGroupBuilder that builds a Tutorial Group with the specified startTime
+     * @param endTimeString
+     * @return
+     */
     public TutorialGroupBuilder withEndTime(String endTimeString) {
         this.startTime = new TimeOfDay(endTimeString);
         return this;
     }
 
-
+    /**
+     * Builds and returns a Tutorial Group with the specified attribute values
+     * @return
+     */
     public TutorialGroup build() {
         return new TutorialGroup(tutorialGroupId, dayOfWeek, startTime, endTime);
     }

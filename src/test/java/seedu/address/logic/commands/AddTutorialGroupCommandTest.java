@@ -5,11 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -39,7 +42,8 @@ public class AddTutorialGroupCommandTest {
 
         CommandResult commandResult = new AddTutorialGroupCommand(validTutorialGroup).execute(modelStub);
 
-        assertEquals(String.format(AddTutorialGroupCommand.MESSAGE_SUCCESS, validTutorialGroup), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddTutorialGroupCommand.MESSAGE_SUCCESS, validTutorialGroup),
+            commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTutorialGroup), modelStub.tutorialGroupsAdded);
     }
 
@@ -156,7 +160,9 @@ public class AddTutorialGroupCommandTest {
         }
 
         @Override
-        public boolean isInTutorialGroupView() { return true; }
+        public boolean isInTutorialGroupView() {
+            return true;
+        }
 
         @Override
         public void setViewToStudent(TutorialGroup target) {
@@ -266,8 +272,8 @@ public class AddTutorialGroupCommandTest {
     }
 
     private class ModelStubWithTutorialGroup extends ModelStub {
+        private ObservableList<TutorialGroup> tutorialGroupsList = FXCollections.observableArrayList();
         private final TutorialGroup tutorialGroup;
-        ObservableList<TutorialGroup> tutorialGroupsList = FXCollections.observableArrayList();
 
         ModelStubWithTutorialGroup(TutorialGroup tutorialGroup) {
             requireNonNull(tutorialGroup);
@@ -296,7 +302,8 @@ public class AddTutorialGroupCommandTest {
     private class ModelStubAcceptingTutorialGroupAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
         final ArrayList<TutorialGroup> tutorialGroupsAdded = new ArrayList<>();
-        final ObservableList<TutorialGroup> tutorialGroupsList = new FilteredList<TutorialGroup>(FXCollections.observableArrayList());
+        final ObservableList<TutorialGroup> tutorialGroupsList =
+            new FilteredList<TutorialGroup>(FXCollections.observableArrayList());
 
         public boolean hasTutorialGroup(TutorialGroup tutorialGroup) {
             requireNonNull(tutorialGroup);

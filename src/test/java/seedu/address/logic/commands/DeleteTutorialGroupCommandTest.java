@@ -1,14 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
 import org.junit.jupiter.api.Test;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,21 +30,23 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.TypicalModules;
 import seedu.address.testutil.TypicalModulesPopulatedWithTutorialGroups;
-import seedu.address.testutil.TypicalTutorialGroups;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class DeleteTutorialGroupCommandTest {
 
-    private Model model = new ModelManager(TypicalModulesPopulatedWithTutorialGroups.getTypicalModuleList(), new UserPrefs());
+    private Model model = new ModelManager(TypicalModulesPopulatedWithTutorialGroups.getTypicalModuleList(),
+        new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws CommandException {
         Module moduleToDeleteFrom = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
         model.setViewToTutorialGroup(moduleToDeleteFrom);
-        TutorialGroup tutorialGroupToDelete = moduleToDeleteFrom.getTutorialGroups().get(INDEX_FIRST_PERSON.getZeroBased());
+        TutorialGroup tutorialGroupToDelete = moduleToDeleteFrom.getTutorialGroups()
+            .get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteTutorialGroupCommand deleteTutorialGroupCommand = new DeleteTutorialGroupCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteTutorialGroupCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS, tutorialGroupToDelete);
+        String expectedMessage = String.format(DeleteTutorialGroupCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
+            tutorialGroupToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getModuleList(), new UserPrefs());
         expectedModel.setViewToTutorialGroup(moduleToDeleteFrom);
@@ -170,7 +175,9 @@ public class DeleteTutorialGroupCommandTest {
         }
 
         @Override
-        public boolean isInTutorialGroupView() { return true; }
+        public boolean isInTutorialGroupView() {
+            return true;
+        }
 
         @Override
         public void setViewToStudent(TutorialGroup target) {
@@ -281,7 +288,7 @@ public class DeleteTutorialGroupCommandTest {
 
     private class ModelStubWithTutorialGroup extends ModelStub {
         private final TutorialGroup tutorialGroup;
-        ObservableList<TutorialGroup> tutorialGroupsList = FXCollections.observableArrayList();
+        private ObservableList<TutorialGroup> tutorialGroupsList = FXCollections.observableArrayList();
 
         ModelStubWithTutorialGroup(TutorialGroup tutorialGroup) {
             super(TypicalModules.getTypicalModuleList(), new UserPrefs());
