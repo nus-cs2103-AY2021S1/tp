@@ -210,8 +210,10 @@ Adds inventory item or pending delivery to **OneShelf**.
 ##### 3.1.2a `add-i`
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
-* If item does not exist in the inventory book, a new item will be added.
-* If similar inventory item already exist, The `QUANTITY` of that particular item will be increased.
+
+Pointers to take note when adding an item:
+* If item does not exist in the inventory book, then a new item will be added.
+* If similar inventory item already exist, then the `QUANTITY` of that particular item will be increased.
 * An item which has the same `NAME` and `SUPPLIER` is considered similar.
 * `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
@@ -264,6 +266,9 @@ An item can have any number of tags (including 0) and adding exactly the same ta
 
 Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`
 
+Pointers to take note when adding a delivery:
+* You can add a delivery even if the same `Name`, `Phone` and `Address` already exists in the delivery book.
+
 Example 1: 
 
 1. Type `add-d n/JASON p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`.
@@ -306,6 +311,8 @@ Pending deliveries are automatically sorted based on their `deliver by` time and
 Removes a specified quantity of an existing item from **OneShelf**.
 
 Format: `remove-i INDEX q/QUANTITY`
+
+Pointers to take note when removing an item's quantity:
 * Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`.
 The [index](#index) refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -330,6 +337,8 @@ Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/T
 The `|` symbol means the user must provide at least one of the fields
 separated by the `|`
 </div>
+
+Pointers to take note when editing an item:
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * Updates the components of an item.
@@ -388,6 +397,8 @@ Finds items or deliveries whose attributes contain any of the given keywords.
 
 Format: `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`
 
+Pointers to take note when finding an item:
+
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
 * `Name`, `Supplier` and `Tag` can be searched
@@ -418,6 +429,8 @@ Figure 12:
 ##### 3.1.5b `find-d`
 
 Format: `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
+
+Pointers to take note when finding a delivery:
 
 * The search is case-insensitive. e.g `john` will match `JOHN`
 * The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
@@ -477,6 +490,8 @@ for delivery as you would often need to delete a pending delivery once it has be
 
 Format: `delete-i INDEX` or `delete-d INDEX`
 
+Pointers to take note when deleting an item or delivery:
+
 * Deletes an item or delivery at the specified `INDEX`.
 * The index refers to the index number shown in the displayed item/ delivery list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -520,6 +535,8 @@ Undoes the previous command by reverting the current data displayed to the state
 
 Format: `undo`
 
+Pointers to take note about `undo`:
+
 * If there is a previous state available, the current state is reverted to that state
 * If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
 * The maximum number of previous commands you can undo is 20
@@ -551,6 +568,8 @@ Format: `undo`
 Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
 
 Format: `redo`
+
+Pointers to take note about `redo`:
 
 * If there is an undone state available, the current state is reverted to that state
 * If the current state is the latest possible one, it shows a message informing the user that there is nothing more to redo
