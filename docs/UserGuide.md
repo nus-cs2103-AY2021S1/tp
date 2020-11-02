@@ -13,7 +13,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [Clear all flashcards](#clearing-all-flashcards--clear): `clear`
         - [Deleting a flashcard](#deleting-a-flashcard---delete): `delete`
         - [Editing a flashcard](#editing-a-flashcard---edit): `edit`
-        - Filter relevant flashcards: `filter`
+        - [Filter relevant flashcards](#filtering-out-flashcards---filter): `filter`
         - [Favourite a flashcard](#favourite-a-flashcard---fav) : `fav`
         - [Unfavourite a flashcard](#unfavourite-a-flashcard---unfav): `unfav`
         - [Find flashcards](#find-flashcards--find): `find`
@@ -23,6 +23,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [Quiz flashcards](#quizzing-flashcards-quiz): `quiz`
         - [Sort all flashcards](#sort-all-flashcards--sort): `sort`
         - [View a flashcard](#views-a-flashcard---view): `view`
+        - [View the statistics of a flashcard](#viewing-statistics-of-flashcard-stats): `stats`
         - [Exiting the program](#exiting-the-program--exit): `exit`
         - [Saving the data](#saving-the-data)
     - FAQ
@@ -143,7 +144,7 @@ Format: `delete INDEX`
 
 * Deletes the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
@@ -156,7 +157,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
 * Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
@@ -192,7 +193,7 @@ Format: `fav INDEX`
 
 * Favourite the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
@@ -205,7 +206,7 @@ Format: `unfav INDEX`
 
 * Unfavourite the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
@@ -268,12 +269,14 @@ Upon entering quiz mode, the following user input will be recognised:
 
 Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
 `y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.  
-Once you give a feedback (pressing either `y` or `n`), the review and success frequency for that flashcard will be updated even if you
-quit the quiz prematurely.
+
+The quiz mode works in conjunction with the [statistics](#viewing-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#viewing-statistics-of-flashcard-stats) feature.
+* Pressing `y` will increase the review and success frequency of the flashcard.
+* Pressing `n` will increase the review frequency of the flashcard.
 
 Format: `quiz`
 
-<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quit the quiz prematurely.
 </div>
 
 ### Sort all flashcards : `sort`
@@ -299,12 +302,30 @@ Format: `view INDEX [-a]`
 
 * View the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 *  If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
+
+### Viewing the statistics of flashcard `stats`
+
+View the statistics of a flashcard.
+
+Format: `stats INDEX`
+
+* Shows the statistics of the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+
+The statistics of the flashcard will be displayed in the view pane. Statistics of flashcard works in conjunction with the [quiz](#quizzing-flashcards-quiz) functionality.
+
+The following information will be displayed on the view pane:
+* Question of flashcard.
+* Reviewed count.
+* Correct count.
+* Piechart to show the graphical representation of correct attempts vs wrong attempts in quiz mode.
 
 ### Exiting the program : `exit`
 
@@ -336,4 +357,5 @@ Action | Format, Examples
 **Quiz** | `quiz`
 **Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
 **View** | `view INDEX [-a]` <br> e.g. `view 1`
+**Stats** | `stats INDEX` <br> e.g. `stats 3`
 **Exit** | `exit`
