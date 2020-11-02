@@ -7,9 +7,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.consumption.Consumption;
 import seedu.address.model.consumption.ConsumptionList;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.UniqueIngredientList;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.UniqueIngredientList;
 import seedu.address.model.recipe.UniqueRecipeList;
 
 /**

@@ -14,10 +14,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Name;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.recipe.Tag;
 
+<<<<<<< HEAD
+=======
+//import seedu.address.model.ingredient.Ingredient;
+
+>>>>>>> a421f622f0ff2d6c7969e005b29122cf59175db2
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@tatouille";
     private static final String INVALID_INGREDIENT_NAME = "+apples";

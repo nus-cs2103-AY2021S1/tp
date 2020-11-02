@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
-import seedu.address.model.commons.Calories;
-import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.recipe.Calories;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecipeImage;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.recipe.Tag;
 
 /**
  * Contains utility methods for populating {@code WishfulShrinking} with sample data.

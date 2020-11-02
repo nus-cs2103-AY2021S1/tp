@@ -7,6 +7,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.consumption.ListConsumptionCommand;
+import seedu.address.logic.commands.ingredient.GetEditIngredientCommand;
+import seedu.address.logic.commands.ingredient.ListIngredientsCommand;
+import seedu.address.logic.commands.recipe.GetEditRecipeCommand;
+import seedu.address.logic.commands.recipe.ListRecipesCommand;
+
 public class CommandResultTest {
     @Test
     public void equals() {
