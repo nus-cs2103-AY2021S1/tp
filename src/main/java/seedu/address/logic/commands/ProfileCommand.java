@@ -15,7 +15,7 @@ import seedu.address.model.visit.VisitHistory;
 
 
 /**
- * Changes the visitList of an existing person in the address book.
+ * Changes the visit history of an existing person in the address book.
  */
 public class ProfileCommand extends Command {
     public static final String COMMAND_WORD = "profile";
