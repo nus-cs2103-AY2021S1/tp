@@ -38,10 +38,12 @@ public class SampleDataUtil {
         Menu menu1 = new Menu();
         menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(), "butter_chicken.png"));
         menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), "pattaya.png"));
+
         HashSet<Tag> vegTags = new HashSet<>();
         HashSet<Tag> spicyTags = new HashSet<>();
         spicyTags.add(new Tag("Spicy"));
         vegTags.add(new Tag("Vegetarian"));
+
         menu1.add(new MenuItem("Veg Briyani", 5, new HashSet<>(vegTags),
                 "veg_briyani.png"));
         menu1.add(new MenuItem("Cheese Fries", 4, new HashSet<>(),
@@ -60,7 +62,6 @@ public class SampleDataUtil {
         menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "milo_dino.png"));
         menu1.add(new MenuItem("Milo Godzilla", 3, drinks,
                 "milo_god.png"));
-
 
         Menu menu2 = new Menu();
         HashSet<Tag> tagList = new HashSet<>();
@@ -95,6 +96,7 @@ public class SampleDataUtil {
             new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("charlotte@example.com"),
                     new Address("28 Clementi Road, Singapore 129754"),
                     getTagSet("western"), menu3)
+
         };
     }
 
