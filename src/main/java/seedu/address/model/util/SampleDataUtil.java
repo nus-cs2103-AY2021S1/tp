@@ -21,6 +21,7 @@ import seedu.address.model.vendor.Vendor;
  */
 //todo: Add the image urls under the file path parameter here
 public class SampleDataUtil {
+
     public static Vendor[] getSampleVendors() {
         HashSet<Tag> starters = new HashSet<>();
         starters.add(new Tag("Starter"));
@@ -35,28 +36,32 @@ public class SampleDataUtil {
         burgers.add(new Tag("Burger"));
 
         Menu menu1 = new Menu();
-        menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(),
-                "resources/images/address_book_32.png"));
-        menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), ""));
+        menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(), "butter_chicken.png"));
+        menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), "pattaya.png"));
+
         HashSet<Tag> vegTags = new HashSet<>();
         HashSet<Tag> spicyTags = new HashSet<>();
         spicyTags.add(new Tag("Spicy"));
         vegTags.add(new Tag("Vegetarian"));
-        menu1.add(new MenuItem("Veg Briyani", 5, new HashSet<>(vegTags), ""));
-        menu1.add(new MenuItem("Sambal Chicken", 5.5, new HashSet<>(spicyTags), ""));
-        menu1.add(new MenuItem("Cheese Fries", 4, new HashSet<>(), ""));
-        menu1.add(new MenuItem("Kampong Style", 4.8, new HashSet<>(), ""));
+
+        menu1.add(new MenuItem("Veg Briyani", 5, new HashSet<>(vegTags),
+                "veg_briyani.png"));
+        menu1.add(new MenuItem("Cheese Fries", 4, new HashSet<>(),
+                "cheese_fries.png"));
+        menu1.add(new MenuItem("Kampong Style Fried Rice", 4.8, new HashSet<>(),
+                "kampong.png"));
         //note that this is fried rice
-        menu1.add(new MenuItem("Sambal With Fried Sambal Chicken", 4.8, new HashSet<>(), ""));
-        menu1.add(new MenuItem("Roti John", 4, new HashSet<>(), ""));
+        menu1.add(new MenuItem("Sambal Chicken Fried Rice", 4.8, new HashSet<>(),
+                "sambal_chicken.png"));
+        menu1.add(new MenuItem("Roti John", 4, new HashSet<>(), "roti_john.png"));
 
         // Add cold and hot
-        menu1.add(new MenuItem("Milo Cold", 1.5, drinks, ""));
-        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, ""));
+        menu1.add(new MenuItem("Milo Cold", 1.5, drinks, "milo.png"));
+        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "milo.png"));
 
-        menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, ""));
-        menu1.add(new MenuItem("Milo Godzilla", 3, drinks, ""));
-
+        menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "milo_dino.png"));
+        menu1.add(new MenuItem("Milo Godzilla", 3, drinks,
+                "milo_god.png"));
 
         Menu menu2 = new Menu();
         HashSet<Tag> tagList = new HashSet<>();
@@ -82,15 +87,16 @@ public class SampleDataUtil {
 
         return new Vendor[]{
             new Vendor(new Name("Al Amaan Restaurant"), new Phone("67740637"),
-                        new Email("alamaanrestaurant@gmail.com"),
-                        new Address("12 Clementi Road, Singapore 129742"),
-                        getTagSet("halal"), menu1),
+                    new Email("alamaanrestaurant@gmail.com"),
+                    new Address("12 Clementi Road, Singapore 129742"),
+                    getTagSet("halal"), menu1),
             new Vendor(new Name("Local Indian Store"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                        getTagSet("colleagues", "friends"), menu2),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    getTagSet("colleagues", "friends"), menu2),
             new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("charlotte@example.com"),
-                        new Address("28 Clementi Road, Singapore 129754"),
-                        getTagSet("western"), menu3)
+                    new Address("28 Clementi Road, Singapore 129754"),
+                    getTagSet("western"), menu3)
+
         };
     }
 
