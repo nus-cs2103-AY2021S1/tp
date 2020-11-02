@@ -112,6 +112,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the main catalogue data, which is essentially a list of `Project`s, a list of `Person`s, and a list of their associations `Participation`s.
 * exposes unmodifiable `ObservableList<Project>` and `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* keeps a status about the current status of the application which may affect the execution of commands.
 * does not depend on any of the other three components.
 
 
@@ -195,7 +196,7 @@ calls `enter`, causing a switch of scoping status and assignment of `project` of
 </div>
 The following sequence diagram shows the execution of start command.
 
-![StartCommandSequence](images/StartCommandSequence.png)
+![StartProjectSequenceDiagram](images/StartProjectSequenceDiagram.png)
 
 Step 3. The user executes `viewtask 5` command to view the details of the task of index 5 in the filtered task list of current project.
 The `viewtask` command calls `enterTask`, causing a switch of scoping status and assignment of `taskOnView` in the current project.
