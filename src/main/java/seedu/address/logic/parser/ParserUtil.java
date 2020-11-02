@@ -105,7 +105,7 @@ public class ParserUtil {
         if (!Year.isValidYear(trimmedYear)) {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new Year(year);
+        return new Year(trimmedYear);
     }
 
     /**
