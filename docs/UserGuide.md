@@ -47,7 +47,9 @@ This diagram shows our interface.
 
 ### Basic workflow
 1. Tag important files with the `tag` command for ease of access.
+![Tag](images/tag.PNG)
 2. When trying to access tagged files, instead of navigating to the file location, simply use the `open` command to access the required files.
+![Open](images/open.PNG)
 3. To find the location of tagged files, use the `show` command to get the file path of the file.
 4. If you have made a happy little accident, you can recover by using `undo` and `redo`.
 5. To exit the application, either close the application window, or use the `exit` command.
@@ -223,6 +225,9 @@ Format: `ls`
 
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
+<div markdown="block" class="alert alert-info">
+**Warning: Command history will be deleted once the app is closed!
+</div>
 
 Format: `undo`
 
@@ -230,6 +235,9 @@ Format: `undo`
 
 Redo a recently executed command.<br>
 Redo only exists when undo has been executed.
+<div markdown="block" class="alert alert-info">
+**Warning: Command history will be deleted once the app is closed!
+</div>
 
 Format: `redo`
 
