@@ -26,7 +26,6 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     @Override
     public ScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_VIEW, PREFIX_VIEW_MODE, PREFIX_VIEW_DATE);
 
