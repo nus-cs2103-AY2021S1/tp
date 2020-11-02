@@ -30,7 +30,7 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 
 <div class="toc-no-bullet-points">
 <!-- Referenced from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff -->
-Table of Contents
+<b>Table of Contents</b>
   * Table of Contents
   {:toc}
 </div>
