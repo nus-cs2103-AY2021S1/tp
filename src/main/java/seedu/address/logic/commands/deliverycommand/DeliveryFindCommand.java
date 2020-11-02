@@ -2,6 +2,11 @@ package seedu.address.logic.commands.deliverycommand;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -20,9 +25,12 @@ public class DeliveryFindCommand extends DeliveryCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all deliveries whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "PREFIX only limited to name, phone, address and order\n"
-            + "Parameters: " + "PREFIX " + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n/Sally";
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ORDER + "ORDER]\n"
+            + "Example: " + COMMAND_WORD + " n/Sally p/84738594";
 
     private final Predicate<Delivery> predicate;
 
