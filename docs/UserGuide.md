@@ -185,7 +185,7 @@ Examples:
 Finds a tag by a keyword. 
 
 You can find tags using a keyword.
-If the keyword matches its name and/or label partially, it will be also be found and listed in the *Tag Panel*.
+If the keyword matches its name and/or label partially, it will also be found and listed in the *Tag Panel*.
 
 Format: `find KEYWORD`
         
