@@ -16,28 +16,28 @@ public class SellerTest {
 
 
     @Test
-    public void isSamePerson() {
+    public void isSameSeller() {
         // same object -> returns true
-        assertTrue(ALICE.isSamePerson(ALICE));
+        assertTrue(ALICE.isSameSeller(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSamePerson(null));
+        assertFalse(ALICE.isSameSeller(null));
 
         // different phone and email -> returns false
         Seller editedAlice = new SellerBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameSeller(editedAlice));
 
         // different name -> returns false
         editedAlice = new SellerBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
+        assertFalse(ALICE.isSameSeller(editedAlice));
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new SellerBuilder(ALICE).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameSeller(editedAlice));
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new SellerBuilder(ALICE).build();
-        assertTrue(ALICE.isSamePerson(editedAlice));
+        assertTrue(ALICE.isSameSeller(editedAlice));
     }
 
     @Test

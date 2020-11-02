@@ -75,7 +75,7 @@ public class UniqueBidderList implements Iterable<Bidder> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedBidder) && contains(editedBidder)) {
+        if (!target.isSameBidder(editedBidder) && contains(editedBidder)) {
             throw new DuplicatePersonException();
         }
 
@@ -140,11 +140,6 @@ public class UniqueBidderList implements Iterable<Bidder> {
         return other == this // short circuit if same object
                 || (other instanceof UniqueBidderList // instanceof handles nulls
                 && internalList.equals(((UniqueBidderList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
     }
 
     /**
