@@ -130,7 +130,7 @@ Format: `delete INDEX`
 
 * Deletes the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
@@ -143,7 +143,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
 * Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
@@ -179,7 +179,7 @@ Format: `fav INDEX`
 
 * Favourite the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 
 Examples: 
 * `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
@@ -192,7 +192,7 @@ Format: `unfav INDEX`
 
 * Unfavourite the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 
 Examples: 
 * `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
@@ -284,7 +284,7 @@ Format: `view INDEX [-a]`
 
 * View the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 *  If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
