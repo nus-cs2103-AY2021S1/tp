@@ -39,8 +39,7 @@ public class AttendanceBelowCommand extends Command {
         model.updateFilteredStudentList(predicate);
         return new CommandResult(String.format(
                 MESSAGE_ATTENDANCE_BELOW_SUCCESS,
-                upperBound)
-        );
+                upperBound));
     }
 
     @Override

@@ -12,6 +12,7 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 /**
  * Wraps all data at the Trackr level.
@@ -90,6 +91,10 @@ public class Trackr implements ReadOnlyTrackr<Module> {
 
     public ObservableList<TutorialGroup> getTutorialGroupListOfModule(Module target) {
         return moduleList.getTutorialGroupListOfModule(target);
+    }
+
+    public UniqueTutorialGroupList getUniqueTutorialGroupList(Module target) {
+        return moduleList.getUniqueTutorialGroupList(target);
     }
 
     /**
