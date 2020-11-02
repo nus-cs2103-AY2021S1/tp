@@ -25,7 +25,7 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION,
-                        PREFIX_ITEM_COST, PREFIX_DATETIME);
+                        PREFIX_ITEM_COST);
 
         Index index;
 
@@ -37,20 +37,16 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
         }
 
         EditInventoryCommand.EditInventoryDescriptor editInventoryDescriptor = new EditInventoryDescriptor();
-        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
-            editInventoryDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
-        }
         if (argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).isPresent()) {
             editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
                     argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
         }
+        if (argMultimap.getValue(PREFIX_QUANTITY).isPresent()) {
+            editInventoryDescriptor.setQuantity(ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get()));
+        }
         if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
             editInventoryDescriptor.setUnitCost(ParserUtil.parseItemCost(
                     argMultimap.getValue(PREFIX_ITEM_COST).get()));
-        }
-        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editInventoryDescriptor.setDateTime(ParserUtil.parseDatetime(
-                    argMultimap.getValue(PREFIX_DATETIME).get()));
         }
 
         if (!editInventoryDescriptor.isAnyFieldEdited()) {
