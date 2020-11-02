@@ -345,7 +345,6 @@ public class ModelManager implements Model {
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-
         moduleBook.setModule(target, editedModule);
     }
 
