@@ -15,6 +15,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - Favourite a flashcard : `fav`
         - Unfavourite a flashcard: `unfav`
         - Find flashcards: `find`
+        - Viewing help: `help`
         - Listing all flashcards: `list`
         - Review all flashcards : `review`
         - Quiz flashcards: `quiz`
@@ -137,7 +138,8 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
-* Specifying empty values to note or rating eg. `r/` will remove the corresponding field in the flashcard.
+* Specifying empty values to note, rating or diagram eg. `r/` will remove the corresponding field in the flashcard.
+* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
 
 Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
@@ -157,9 +159,9 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 * Although all fields are optional, a minimum of one field has to be given.
 
 Examples:
-*  `filter` followed by `c/SDLC` filters and lists all flashcards belonging n the SDLC category.
-*  `filter` followed by `t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
-*  `filter` followed by `r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+*  `filter c/SDLC` filters and lists all flashcards belonging n the SDLC category.
+*  `filter t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
+*  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 
 
 ### Favourite a flashcard  : `fav`
@@ -202,12 +204,19 @@ Examples:
 * `find general important` 
 * `find GENERAL object`
 
+### Viewing help : `help`
+
+Opens a window with a link that directs you to our user guide.
+
+Format: `help`
 
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards.
 
 Format: `list`
+
+* All additional input after the command word `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
 
 ### Reviewing all flashcards: `review`
 
@@ -252,11 +261,10 @@ Sorts a list of all flashcards according to the criteria given.
 Format: `sort <success|reviewed> <-a|-d>`
 
 Examples: 
-* sort followed by:
-    - `reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
-    - `reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
-    - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
-    - `success -d` shows a list of all flashcards sorted according to success rate in descending order
+* `sort reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
+* `sort reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
+* `sort success -a` shows a list of all flashcards sorted according to success rate in ascending order
+* `sort success -d` shows a list of all flashcards sorted according to success rate in descending order
 
 <div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
 </div>
