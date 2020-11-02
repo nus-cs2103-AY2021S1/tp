@@ -28,12 +28,12 @@ public class DeleteSessionCommandTest {
 
     private final Session toDelete = new Session(sessionName, sessionDateTime, getTypicalStudents());
 
-    Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
 
     @Test
     public void constructor_nullSessionName_exceptionThrown() {
         assertThrows(NullPointerException.class, ()
-                -> new DeleteSessionCommand(null));
+            -> new DeleteSessionCommand(null));
     }
 
     @Test

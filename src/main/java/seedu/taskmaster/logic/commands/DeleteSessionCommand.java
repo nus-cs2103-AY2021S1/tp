@@ -33,7 +33,7 @@ public class DeleteSessionCommand extends Command {
         requireNonNull(sessionName);
         this.sessionName = sessionName;
     }
-    
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

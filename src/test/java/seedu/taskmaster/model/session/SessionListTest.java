@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
+import static seedu.taskmaster.testutil.TypicalStudents.getTypicalSession;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -131,6 +132,24 @@ public class SessionListTest {
         SessionList sessionList = SessionListManager.of(sessions);
         assertThrows(DuplicateSessionException.class, ()
             -> sessionList.add(typicalSession1));
+    }
+
+    @Test
+    public void deleteSession_sessionInList_success() {
+        List<Session> sessions = new ArrayList<>();
+        SessionList listWithoutSession = SessionListManager.of(sessions);
+        sessions.add(typicalSession1);
+        SessionList listWithSession = SessionListManager.of(sessions);
+        listWithSession.delete(typicalSession1.getSessionName());
+        assertEquals(listWithSession, listWithoutSession);
+    }
+
+    @Test
+    public void deleteSession_sessionNotInList_sessionNotFoundExceptionThrown() {
+        List<Session> sessions = new ArrayList<>();
+        SessionList listWithoutSession = SessionListManager.of(sessions);
+        assertThrows(SessionNotFoundException.class, ()
+            -> listWithoutSession.delete(getTypicalSession().getSessionName()));
     }
 
     @Test
