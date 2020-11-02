@@ -204,13 +204,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of all students represented by their {@code nusnetIds} in the {@code studentRecordList}
+     * Marks the attendance of all student records represented by {@code nusnetIds} in the {@code studentRecordList}
      * of the {@code currentSession}, with the given {@code attendanceType}.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType)
+    public void markAllStudentRecords(List<NusnetId> nusnetIds, AttendanceType attendanceType)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetIds != null;
         assert attendanceType != null;
@@ -223,7 +223,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.get().markAllStudents(nusnetIds, attendanceType);
+        currentSession.get().markAllStudentAttendances(nusnetIds, attendanceType);
     }
 
     /**

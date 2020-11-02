@@ -7,6 +7,7 @@ import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_INT;
 import static seedu.taskmaster.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalStudentRecords.ALICE_STUDENT_RECORD;
+import static seedu.taskmaster.testutil.TypicalStudentRecords.BENSON_STUDENT_RECORD;
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
 import static seedu.taskmaster.testutil.TypicalStudents.BENSON;
 import static seedu.taskmaster.testutil.TypicalStudents.BOB;
@@ -16,11 +17,13 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
@@ -29,6 +32,7 @@ import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NameContainsKeywordsPredicate;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.testutil.TaskmasterBuilder;
+import seedu.taskmaster.testutil.TypicalStudents;
 
 public class ModelManagerTest {
 
@@ -85,6 +89,67 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTaskmasterFilePath(path);
         assertEquals(path, modelManager.getTaskmasterFilePath());
+    }
+
+    @Test
+    public void setSessions_validSessionList_success() {
+        Session newSession = TypicalStudents.getTypicalSession();
+        List<Session> sessions = new ArrayList<>();
+        sessions.add(newSession);
+        modelManager.setSessions(sessions);
+        Taskmaster expectedTaskmaster = new TaskmasterBuilder().withSession(newSession).build();
+        Model expectedModel = new ModelManager(expectedTaskmaster, new UserPrefs());
+        assertEquals(modelManager, expectedModel);
+    }
+
+    @Test
+    public void setSessions_nullSessionList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setSessions(null));
+    }
+
+    @Test
+    public void addSession_validSession_success() {
+        Session newSession = TypicalStudents.getTypicalSession();
+        modelManager.addSession(newSession);
+        Taskmaster expectedTaskmaster = new TaskmasterBuilder().withSession(newSession).build();
+        Model expectedModel = new ModelManager(expectedTaskmaster, new UserPrefs());
+        assertEquals(modelManager, expectedModel);
+    }
+
+    @Test
+    public void hasSession_nullSession_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSession((Session) null));
+    }
+
+    @Test
+    public void hasSession_sessionNotInSessionList_returnsFalse() {
+        Session newSession = new Session(
+                new SessionName("This session is not in the session list"),
+                new SessionDateTime(LocalDateTime.of(2020, 11, 1, 10, 30)),
+                TypicalStudents.getTypicalStudents());
+        assertFalse(modelManager.hasSession(newSession));
+    }
+
+    @Test
+    public void hasSession_sessionInStudentList_returnsTrue() {
+        modelManager.addSession(TypicalStudents.getTypicalSession());
+        assertTrue(modelManager.hasSession(TypicalStudents.getTypicalSession()));
+    }
+
+    @Test
+    public void hasSession_nullSessionName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSession((SessionName) null));
+    }
+
+    @Test
+    public void hasSession_sessionNameNotInSessionList_returnsFalse() {
+        assertFalse(modelManager.hasSession(new SessionName("This session is not in the session list")));
+    }
+
+    @Test
+    public void hasSession_sessionNameInStudentList_returnsTrue() {
+        modelManager.addSession(TypicalStudents.getTypicalSession());
+        assertTrue(modelManager.hasSession(TypicalStudents.getTypicalSession().getSessionName()));
     }
 
     @Test
@@ -342,18 +407,21 @@ public class ModelManagerTest {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        stds.add(BOB);
+        stds.add(BENSON);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.markAllStudents(stds, AttendanceType.PRESENT);
+        modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT);
 
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|PRESENT|Class Participation Score: 0,"
                         + " e0456789|PRESENT|Class Participation Score: 0]"));
-        modelManager.markAllStudents(stds, AttendanceType.ABSENT);
+        modelManager.markAllStudentRecords(studentRecords, AttendanceType.ABSENT);
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|ABSENT|Class Participation Score: 0,"
                         + " e0456789|ABSENT|Class Participation Score: 0]"));
@@ -363,8 +431,12 @@ public class ModelManagerTest {
     void markAllStudents_noSession_failure() {
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        stds.add(BOB);
-        assertThrows(NoSessionException.class, () -> modelManager.markAllStudents(stds, AttendanceType.PRESENT));
+        stds.add(BENSON);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
+        assertThrows(NoSessionException.class, () ->
+                modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
     }
 
     @Test
@@ -372,12 +444,15 @@ public class ModelManagerTest {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        stds.add(BOB);
+        stds.add(BENSON);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
-                .markAllStudents(stds, AttendanceType.PRESENT));
+                .markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
     }
 }

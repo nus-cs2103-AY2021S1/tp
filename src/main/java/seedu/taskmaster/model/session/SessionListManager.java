@@ -71,9 +71,9 @@ public class SessionListManager implements SessionList {
     }
 
     @Override
-    public void add(Session toAdd) {
+    public void add(Session toAdd) throws DuplicateSessionException {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (contains(toAdd.getSessionName())) {
             throw new DuplicateSessionException();
         }
         internalList.add(toAdd);
