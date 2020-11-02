@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import com.eva.logic.commands.DeleteStaffCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -21,8 +20,8 @@ import org.junit.jupiter.api.io.TempDir;
 import com.eva.commons.core.Messages;
 //import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.CommandResult;
+import com.eva.logic.commands.DeleteStaffCommand;
 // import com.eva.logic.commands.ListCommand;
-import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.Model;
