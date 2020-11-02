@@ -62,7 +62,7 @@ public class AddQuantityToItemCommand extends Command {
 
         Item itemToEdit = itemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, itemName)));
+                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
         assert(itemToEdit != null);
         assert(itemToEdit.getQuantity() != null);
 
