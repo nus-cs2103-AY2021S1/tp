@@ -18,6 +18,7 @@ import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.CommentCommand;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
@@ -34,17 +35,21 @@ import com.eva.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX =
+            "Please enter a valid index! Index is not a non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+    public static Index parseIndex(String oneBasedIndex) throws IndexParseException, ParseException {
+        if (oneBasedIndex.isEmpty()) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new IndexParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -177,15 +182,17 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code leaveDate} is invalid.
      */
-    public static Leave parseLeave(List<String> leaveDates) throws ParseException {
+    public static Leave parseLeave(List<String> leaveDates) throws ParseException, IllegalArgumentException {
         requireNonNull(leaveDates);
         if (leaveDates.size() > 2 || leaveDates.size() < 1) {
             throw new ParseException(AddLeaveCommand.MESSAGE_USAGE);
         }
-        String trimmedDate = leaveDates.get(0).trim();
-        if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+        for (String date : leaveDates) {
+            if (!DateUtil.isValidDate(date.trim())) {
+                throw new IllegalArgumentException(String.format(DateUtil.MESSAGE_CONSTRAINTS, date));
+            }
         }
+        String trimmedDate = leaveDates.get(0).trim();
         if (leaveDates.size() > 1) {
             String trimmedEndDate = leaveDates.get(1).trim();
             return new Leave(trimmedDate, trimmedEndDate);

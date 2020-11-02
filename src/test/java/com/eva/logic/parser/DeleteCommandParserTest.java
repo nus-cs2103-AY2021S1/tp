@@ -3,6 +3,7 @@ package com.eva.logic.parser;
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static com.eva.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static com.eva.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,6 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", MESSAGE_INVALID_INDEX);
     }
 }

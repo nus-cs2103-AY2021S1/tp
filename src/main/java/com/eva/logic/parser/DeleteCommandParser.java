@@ -13,6 +13,7 @@ import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.parser.comment.DeleteCommentCommandParser;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.DeleteLeaveCommandParser;
 
@@ -41,6 +42,8 @@ public class DeleteCommandParser implements Parser<Command> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
         if (!deleteApplicantCommand.isEmpty() && !deleteCommentCommand.isEmpty()) {
             return new DeleteCommentCommandParser()

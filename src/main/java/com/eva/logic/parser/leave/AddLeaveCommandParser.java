@@ -13,6 +13,7 @@ import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.Parser;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -44,9 +45,11 @@ public class AddLeaveCommandParser implements Parser<AddLeaveCommand> {
             List<Leave> leaves = parseLeaveArgs(leaveArgsList);
 
             return new AddLeaveCommand(index, leaves);
-        } catch (ParseException pe) {
+        } catch (ParseException e) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddLeaveCommand.MESSAGE_USAGE));
+        } catch (IndexParseException | IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
     }
 }

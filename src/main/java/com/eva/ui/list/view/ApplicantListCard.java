@@ -59,6 +59,12 @@ public class ApplicantListCard extends UiPart<Region> {
     public ApplicantListCard(Applicant applicant, int displayedIndex) {
         super(FXML);
         this.applicant = applicant;
+
+        name.setWrapText(true);
+        phone.setWrapText(true);
+        address.setWrapText(true);
+        email.setWrapText(true);
+
         id.setText(displayedIndex + ". ");
         name.setText(applicant.getName().fullName);
         phone.setText(applicant.getPhone().value);

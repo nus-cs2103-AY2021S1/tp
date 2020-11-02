@@ -3,6 +3,7 @@ package com.eva.logic.parser;
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.DeleteApplicantCommand;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
@@ -22,6 +23,8 @@ public class DeleteApplicantCommandParser {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteApplicantCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }

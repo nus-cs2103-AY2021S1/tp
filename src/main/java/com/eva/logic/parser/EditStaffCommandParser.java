@@ -19,6 +19,7 @@ import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.EditCommand;
 import com.eva.logic.commands.EditCommand.EditPersonDescriptor;
 import com.eva.logic.commands.EditStaffCommand;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.tag.Tag;
@@ -50,6 +51,8 @@ public class EditStaffCommandParser implements Parser<EditStaffCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStaffCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();

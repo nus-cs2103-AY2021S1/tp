@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.AddApplicationCommand;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.applicant.application.Education;
@@ -87,6 +88,8 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddApplicationCommand.MESSAGE_USAGE_2), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 }
