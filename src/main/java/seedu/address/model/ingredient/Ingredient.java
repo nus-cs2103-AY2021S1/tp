@@ -18,7 +18,7 @@ public class Ingredient {
                     + "by a hyphen.\n"
                     + "4. Ingredient quantity should only consist of alphanumeric, full stop and forward slashes"
                     + ". ";
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
@@ -111,11 +111,10 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        String ingredientString = "";
-        if (quantity != "") {
-            ingredientString = quantity + " ";
+        String ingredientString = value;
+        if (!quantity.isBlank()) {
+            ingredientString += " (Quantity: " + quantity + ")";
         }
-        ingredientString += value;
         return ingredientString;
     }
 
