@@ -31,6 +31,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Add a task to a project `addtask `
     - Assign a task to a teammate `assign `
     - Edit a task `edittask `
+    - Delete a task `deletetask`
     - Filter tasks by various attributes `filter `
     - List all tasks `alltasks`
     - Sort tasks by various attributes `sort`
@@ -40,10 +41,10 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Edit a teammate's details `editteammate `
     - View a teammate's details `viewteammate `
     - Delete a teammate `deleteteammate`
-    
+  
 - **Features in person_list scope**
   - Start working on an existing person `startperson `
-    
+  
 - **Summary**
 
 --------------------------------------------------------------------------------------------------------------------
@@ -189,7 +190,7 @@ Adds a new project with the
 Deletes a project and all associated information from the project catalogue
 
 Format: `delete (INDEX) `
-- Initialises the project at the specified INDEX.
+- Deletes the project at the specified INDEX.
 - The index refers to the index number shown in the displayed project list.
 - The index must be a positive integer 1, 2, 3, …​
 
@@ -261,6 +262,18 @@ Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [done/TASK_STATUS] [t
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
 
 Example: `edittask 3 tn/Finish project status/true` changes the name of task 3 in the list to Finish project, and the done status to true, indicating the task is completed.
+
+### Delete a task from the project `deletetask `
+
+Deletes a task and all associated information from the project
+
+Format: `deletetask (INDEX) `
+
+- Deletes the project at the specified INDEX.
+- The index refers to the index number shown in the displayed task list.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples: `deletetask 2` deletes the second task shown in the displayed task list.
 
 ### Filter tasks `filter `
 
@@ -405,16 +418,17 @@ Action | Format, Examples | Scope
 **Start a project** | `startproject INDEX`<br> e.g., `startproject 3` | project_list scope
 **Start a person** | `startperson INDEX`<br> e.g., `startperson 3` | person_list scope
 **Add** | `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` | global scope
-**Delete project** | `delete INDEX` <br> eg. `delete 2` | global scope
-**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | global scope
+**Delete project** | `delete INDEX` <br> e.g. `delete 2` | global scope
+**Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` | global scope
 **edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
 **Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Edit task details** | `edittask (INDEX) [n/TASK_NAME[ [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
+**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
+**Delete Task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
 **Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS)||(done/ISDONE)``<br>e.g. `filter ta/Alice` | project scope
 **Show all the tasks** | `alltasks` | project scope 
 **Sort tasks ** | `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
-**View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
+**View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
