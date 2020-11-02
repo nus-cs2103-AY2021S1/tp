@@ -331,7 +331,13 @@ public class ParserUtilTest {
     @Test
     public void parseDateTime_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class,
-                "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.", ()
+                "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
+                        + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
+                        + "\nInput YYYY as 19xx to 2xxx."
+                        + "\nInput MM as 01 to 12."
+                        + "\nInput dd as 01 to 31."
+                        + "\nInput HH as 00 to 24."
+                        + "\nInput mm as 00 to 59.", ()
                 -> ParserUtil.parseDateTime("test"));
     }
 
@@ -339,7 +345,13 @@ public class ParserUtilTest {
     @Test
     public void parseDuration_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class,
-                "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.", ()
+                "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
+                        + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
+                        + "\nInput YYYY as 19xx to 2xxx."
+                        + "\nInput MM as 01 to 12."
+                        + "\nInput dd as 01 to 31."
+                        + "\nInput HH as 00 to 24."
+                        + "\nInput mm as 00 to 59.", ()
                 -> ParserUtil.parseDurationWithStart("test", "30"));
     }
 
@@ -347,7 +359,13 @@ public class ParserUtilTest {
     @Test
     public void parseDuration_invalidDuration_throwsParseException() {
         assertThrows(ParseException.class,
-                "Check if you have entered a valid date in the format: yyyy-MM-dd HH:mm.", ()
+                "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
+                        + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
+                        + "\nInput YYYY as 19xx to 2xxx."
+                        + "\nInput MM as 01 to 12."
+                        + "\nInput dd as 01 to 31."
+                        + "\nInput HH as 00 to 24."
+                        + "\nInput mm as 00 to 59.", ()
                 -> ParserUtil.parseDurationWithStart("2020-10-10", "test"));
     }
 }
