@@ -47,7 +47,7 @@ public class AddTaskCommand extends Command {
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.addTask(toAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
 
     @Override

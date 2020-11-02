@@ -154,7 +154,7 @@ Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope.
 - If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect.
 
-# **Features** in project scope
+# **Features** in project_list scope
 
 ### Start work on an existing project `startproject `
 Initialises the project specified.
