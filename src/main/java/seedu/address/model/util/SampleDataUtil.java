@@ -87,7 +87,7 @@ public class SampleDataUtil {
                         new ClassTime("4 2000-2130"), new Fee("38"),
                         new PaymentDate("19/12/19"), getDetailList("rude"),
                         getQuestions(), getExams(sampleExam2, sampleExam3),
-                        getAttendance(new Attendance("20/04/98", "attended",
+                        getAttendance(new Attendance("20/04/98", "present",
                                 new Feedback("unprepared"))))
         };
     }
