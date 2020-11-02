@@ -16,7 +16,7 @@ import seedu.taskmaster.model.student.Student;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add-student";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the student list. "
             + "Parameters: "

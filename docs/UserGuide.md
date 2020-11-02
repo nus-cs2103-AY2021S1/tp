@@ -11,12 +11,12 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Usage](#usage "Go to Usage")
 - [UI](#ui "Go to UI")
 - [Commands](#commands "Go to Commands")
-    - [Adding a student: `add`](#adding-a-student-add "Go to Adding a student")
+    - [Adding a student: `add-student`](#adding-a-student-add-student "Go to Adding a student")
     - [Listing all students: `list`](#listing-all-students-list "Go to Listing all students")
     - [Finding students by name: `find`](#finding-students-by-name-find "Go to Finding students by name")
-    - [Editing a student: `edit`](#editing-a-student-edit "Go to Editing a student")
-    - [Deleting a student: `delete`](#deleting-a-student-delete "Go to Deleting a student")
-    - [Adding a session: `session`](#adding-a-session-session "Go to Adding a session")
+    - [Editing a student: `edit-student`](#editing-a-student-edit-student "Go to Editing a student")
+    - [Deleting a student: `delete-student`](#deleting-a-student-delete-student "Go to Deleting a student")
+    - [Adding a session: `add-session`](#adding-a-session-add-session "Go to Adding a session")
     - [Changing the current session: `goto`](#changing-the-current-session-goto "Go to Changing the current session")
     - [Marking a student's attendance: `mark`](#marking-a-students-attendance-mark "Go to Marking a student's attendance")
     - [Marking all students' attendance: `mark all`](#marking-all-students-attendance-mark-all "Go to Marking all students' attendance")
@@ -37,9 +37,9 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
 4. Double-click the file to start the app. A GUI should appear, with the field bar to input commands. The list of commands are available below.
 
 ### Usage
-1. Add the students that you are currently teaching into TAskmaster using the `add` command.
-    * You can use the `list`, `edit` and `delete` commands to read and modify your student list.
-2. Create a new session that represents a tutorial, lab or recitation session using the `session` command.
+1. Add the students that you are currently teaching into TAskmaster using the `add-student` command.
+    * You can use the `list`, `edit-student` and `delete-student` commands to read and modify your student list.
+2. Create a new session that represents a tutorial, lab or recitation session using the `add-session` command.
     * This session will read your student list and create a list of corresponding student records belonging to that session
     * Each student in the student list will be represented by a student record
     * This list of records, once created, will be **independent of the student list**. Any modifications to the student list after a session is created **will not** affect the student records in that session. 
@@ -65,10 +65,10 @@ The number below the attendance of the student is their current class participat
 > - Items with ellipses (`...`) after them can be used multiple times including zero times
 > - Parameters can be in any order
 
-### Adding a student: `add`
+### Adding a student: `add-student`
 Adds a student into the student list.
 ```
-add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]...
+add-student n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]...
 ```
 - The `NAME` must be non-empty.
 - The `TELEGRAM` handle must be a valid handle (comprising only alphanumeric characters and underscores with length between 5 and 32 characters inclusive).
@@ -76,7 +76,7 @@ add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]...
 
 Example usage:
 ```
-add n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy
+add-student n/John Tan u/johntan98 e/johntan98@gmail.com i/e0012345 t/tardy
 ```
 
 ### Listing all students: `list`
@@ -105,10 +105,10 @@ find John
 find alex david
 ```
 
-### Editing a student: `edit`
+### Editing a student: `edit-student`
 Edits an existing student in the student list.
 ```
-edit INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...
+edit-student INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...
 ```
 - Edits the student at the specified `INDEX` number shown in the displayed student list. 
 - The `INDEX` **must be a positive integer** that exists in said list.
@@ -120,29 +120,29 @@ edit INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...
 Example usages:
 ```
 // Edit the telegram and email of the first person
-edit 1 u/johntan98 e/johntan98@gmail.com
+edit-student 1 u/johntan98 e/johntan98@gmail.com
 
 // Edit the name of the second person and clear all existing tags
-edit 2 n/Rachel Lee t/
+edit-student 2 n/Rachel Lee t/
 ```
 
-### Deleting a student: `delete`
+### Deleting a student: `delete-student`
 Deletes the specified student from the student list.
 ```
-delete INDEX
+delete-student INDEX
 ```
 - Deletes the student at the specified `INDEX` number shown in the displayed student list.
 - The `INDEX` **must be a positive integer** that exists in said list.
 
 Example usage:
 ```
-delete 3
+delete-student 3
 ```
 
-### Adding a session: `session`
+### Adding a session: `add-session`
 Adds a session into the session list.
 ```
-session s/SESSION_NAME dt/SESSION_DATE_TIME
+add-session s/SESSION_NAME dt/SESSION_DATE_TIME
 ```
 - The `SESSION_DATE_TIME` must be of the format `dd-MM-yyyy HHmm`.
 - The `SESSION_DATE_TIME` must be a valid date of the format `dd-MM-yyyy HHmm`.
@@ -150,7 +150,7 @@ session s/SESSION_NAME dt/SESSION_DATE_TIME
 
 Example usage:
 ```
-session s/CS2103 Tutorial 9 dt/23-10-2020 0900
+add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900
 ```
 
 ### Changing the current session: `goto`
@@ -239,12 +239,12 @@ exit
 
 | Action            | Format, Examples                                                                                              |
 |-------------------|---------------------------------------------------------------------------------------------------------------|
-| Add student       | ```add n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add n/John Tan u/johntan98```<br>```e/johntan98@gmail.com i/e0012345 t/tardy```  |
+| Add student       | ```add-student n/NAME u/TELEGRAM e/EMAIL i/NUSNETID [t/TAG]``` <br> e.g., ```add-student n/John Tan u/johntan98```<br>```e/johntan98@gmail.com i/e0012345 t/tardy```  |
 | List students     | ```list```                                                                                               |
 | Find students     | ```find KEYWORD [MORE_KEYWORDS]``` <br> e.g., ```find alex david```                                      |
-| Edit student      | ```edit INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...```<br> e.g., ```edit 1 u/johntan98 e/johntan98@gmail.com```                                                           |
-| Delete student    | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
-| Add session       | ```session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
+| Edit student      | ```edit-student INDEX [n/NAME] [u/TELEGRAM] [e/EMAIL] [i/NUSNETID] [t/TAG]...```<br> e.g., ```edit-student 1 u/johntan98 e/johntan98@gmail.com```                                                           |
+| Delete student    | ```delete-student INDEX``` <br> e.g., ```delete-student 3```                                                             |
+| Add session       | ```add-session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```add-session s/CS2103 Tutorial 9 dt/23-10-2020 0900```|
 | Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 9```
 | Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/absent`                                             |
 | Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
