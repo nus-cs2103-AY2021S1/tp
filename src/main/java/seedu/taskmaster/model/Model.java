@@ -69,6 +69,12 @@ public interface Model {
     void setSessions(List<Session> sessions);
 
     /**
+     * Deletes the session with {@code sessionName}.
+     * {@code sessionName} must already exist in the session list.
+     */
+    void deleteSession(SessionName sessionName);
+
+    /**
      * Adds the given session.
      * {@code session} must not already exist in the session list.
      */

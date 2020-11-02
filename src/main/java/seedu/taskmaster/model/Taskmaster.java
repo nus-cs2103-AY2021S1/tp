@@ -88,6 +88,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     /* Session-Level Operations */
 
     /**
+     * Deletes the session with {@code sessionName}.
+     * {@code sessionName} must already exist in the session list.
+     */
+    public void deleteSession(SessionName sessionName) {
+        sessions.delete(sessionName);
+    }
+
+    /**
      * Adds a session to the session list.
      * The session must not already exist in the session list.
      */
