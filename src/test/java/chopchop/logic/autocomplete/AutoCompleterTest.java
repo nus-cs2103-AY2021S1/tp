@@ -254,12 +254,18 @@ public class AutoCompleterTest {
         cases.put("stats recipe m",                         "stats recipe made");
         cases.put("stats recipe c",                         "stats recipe clear");
         cases.put("stats recipe r",                         "stats recipe recent");
+        cases.put("stats recipe made /a",                   "stats recipe made /after");
+        cases.put("stats recipe made /b",                   "stats recipe made /before");
+        cases.put("stats recipe recent /b",                 "stats recipe recent /b");
 
         cases.put("stats ingredient u",                     "stats ingredient used");
         cases.put("stats ingredient c",                     "stats ingredient clear");
         cases.put("stats ingredient r",                     "stats ingredient recent");
 
         cases.put("stats ingredient used asdf",             "stats ingredient used asdf");
+        cases.put("stats ingredient used /a",               "stats ingredient used /after");
+        cases.put("stats ingredient used /b",               "stats ingredient used /before");
+        cases.put("stats ingredient recent /b",             "stats ingredient recent /b");
 
         runTests(cases);
     }
