@@ -78,6 +78,7 @@ Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 Note(s): 
 * All fields are required except those in square brackets. No duplicate names.
 * NAME must be alphanumeric.
+* PHONE_NUMBER must be at least 3 digits but not longer than 20 digits.
 
 Example(s):
 * `contact add n/John Doe p/98765432 e/johnd@example.com`
