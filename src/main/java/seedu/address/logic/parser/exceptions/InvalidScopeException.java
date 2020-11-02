@@ -1,9 +1,8 @@
-package seedu.address.model.exceptions;
+package seedu.address.logic.parser.exceptions;
 
 import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
 
 /**

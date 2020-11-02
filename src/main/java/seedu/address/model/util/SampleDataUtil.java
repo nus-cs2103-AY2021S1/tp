@@ -204,6 +204,7 @@ public class SampleDataUtil {
     public static ArrayList<String> getTask6() {
         return task6;
     }
+
     public static ArrayList<String> getValidTask() {
         return validTask;
     }

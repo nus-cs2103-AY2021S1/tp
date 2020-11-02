@@ -19,7 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.project.Participation;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 

@@ -16,6 +16,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.GitUserIndex;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ProjectTag;
