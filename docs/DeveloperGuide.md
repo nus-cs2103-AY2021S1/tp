@@ -335,6 +335,8 @@ Given below is an example usage scenario.
 
 The sequence diagram below illustrates Logic and Model Components when the user executes `sort name` command to sort patients in Hospify alphabetically. 
 
+![SortSequenceDiagram](images/UML_Diagrams/SortSequenceDiagram.png)
+
 <div markdown="block" class="alert alert-info">
  
 **:information_source: Note on sequence diagram:**<br>
@@ -361,6 +363,8 @@ After the command is executed, a success message is displayed and the sorted lis
 
 The following activity diagram summarizes what happens when the user inputs a sort command.
 
+![SortActivityDiagram](images/UML_Diagrams/SortActivityDiagram.png)
+
 #### Design consideration:
 
 ##### Aspect: How sort is implemented
@@ -385,6 +389,8 @@ Given below is an example usage scenario.
 
 The sequence diagram below illustrates Logic and Model Components when the user executes `count` command to sort patients in Hospify alphabetically. 
 
+![CountSequenceDiagram](images/UML_Diagrams/CountSequenceDiagram.png)
+
 <div markdown="block" class="alert alert-info">
  
 **:information_source: Note on sequence diagram:**<br>
@@ -407,6 +413,8 @@ In the **Model** Component, the following key methods are used:
 After the command is executed, a success message is displayed in the application. (i.e. There are 10 patients.)
 
 The following activity diagram summarizes what happens when the user inputs a count command.
+
+![CountActivityDiagram](images/UML_Diagrams/CountActivityDiagram.png)
 
 #### Design consideration:
 
