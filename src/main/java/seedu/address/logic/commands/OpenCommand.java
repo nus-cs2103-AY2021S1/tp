@@ -72,10 +72,6 @@ public class OpenCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         assert label != null || tagName != null;
 
-        if (!Desktop.isDesktopSupported()) {
-            throw new CommandException(MESSAGE_ENV_NOT_DESKTOP_SUPPORTED);
-        }
-
         List<Tag> tagsToOpen = new ArrayList<>();
 
         if (tagName != null) {
@@ -94,6 +90,11 @@ public class OpenCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_LABEL_NOT_FOUND, label.toString()));
             }
             tagsToOpen = tagList;
+        }
+
+        // Check if environment is desktop supported before opening files
+        if (!Desktop.isDesktopSupported()) {
+            throw new CommandException(MESSAGE_ENV_NOT_DESKTOP_SUPPORTED);
         }
 
         // Perform open and get a set of opened tags
