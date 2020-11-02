@@ -14,6 +14,7 @@ import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.person.staff.leave.LeaveTaken;
 import com.eva.model.tag.Tag;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +31,7 @@ class JsonAdaptedStaff {
     private final String phone;
     private final String email;
     private final String address;
+    private final String leaveTaken;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedLeave> leaves = new ArrayList<>();
     private final List<JsonAdaptedComment> comments = new ArrayList<>();
@@ -43,6 +45,7 @@ class JsonAdaptedStaff {
             @JsonProperty("phone") String phone,
             @JsonProperty("email") String email,
             @JsonProperty("address") String address,
+            @JsonProperty("leaveTaken") String leaveTaken,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("leaves") List<JsonAdaptedLeave> leaves,
             @JsonProperty("comments") List<JsonAdaptedComment> comments
@@ -51,6 +54,7 @@ class JsonAdaptedStaff {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.leaveTaken = leaveTaken;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -70,6 +74,7 @@ class JsonAdaptedStaff {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        leaveTaken = Integer.toString(source.getLeaveTaken().getDays());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -134,10 +139,17 @@ class JsonAdaptedStaff {
         }
         final Address modelAddress = new Address(address);
 
+        if (leaveTaken == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, LeaveTaken.class.getSimpleName()));
+        }
+        final LeaveTaken modelLeaveTaken = new LeaveTaken(Integer.parseInt(leaveTaken));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Leave> modelLeaves = new HashSet<>(personLeaves);
         final Set<Comment> modelComments = new HashSet<>(personComments);
-        return new Staff(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelLeaves, modelComments);
+        return new Staff(modelName, modelPhone, modelEmail, modelAddress, modelLeaveTaken,
+                modelTags, modelLeaves, modelComments);
     }
 
 }
