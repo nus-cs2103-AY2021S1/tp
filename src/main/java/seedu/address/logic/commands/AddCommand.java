@@ -61,7 +61,6 @@ public class AddCommand extends Command {
         // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
         assert model != null;
         ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
-
         int index = addIndex.getZeroBased();
 
         if (!model.isSelected()) {

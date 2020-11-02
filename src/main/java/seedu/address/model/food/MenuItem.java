@@ -24,5 +24,4 @@ public class MenuItem extends Food {
     public String getFilePath() {
         return filePath;
     }
-
 }
