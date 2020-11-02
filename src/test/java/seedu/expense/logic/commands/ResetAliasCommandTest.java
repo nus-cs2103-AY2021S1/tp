@@ -25,55 +25,31 @@ import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 
-public class AliasCommandTest {
+public class ResetAliasCommandTest {
 
     @Test
-    public void constructor_nullStrings_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AliasCommand(null, null));
+    public void execute_nullObject_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ResetAliasCommand().execute(null));
     }
 
     @Test
-    public void execute_nonAlphabetical_throwsIllegalArgumentException() {
+    public void execute_emptyAliasMap_throwsCommandException() {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertThrows(CommandException.class, () -> new AliasCommand("get", "-$").execute(modelStub));
+        modelStub.getAliasMap().removeAllAliases();
+        assertThrows(CommandException.class, () -> new ResetAliasCommand().execute(modelStub));
     }
 
     @Test
-    public void execute_fromDefaultInsteadOfCustomisedAlias_throwCommandException() throws CommandException {
+    public void execute_nonEmptyAliasMap_aliasMapBecomesEmpty() throws CommandException {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertThrows(CommandException.class, () -> new AliasCommand("find", "f").execute(modelStub));
+        new ResetAliasCommand().execute(modelStub);
+        assertTrue(modelStub.getAliasMap().isEmpty());
     }
 
     @Test
-    public void execute_fromDefaultWithNoCustomisedAliasYet_leestBecomesAliasForListCommand()
-            throws CommandException {
-        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        new AliasCommand("list", "leest").execute(modelStub);
-        assertTrue(modelStub.getAliasMap().hasAlias(new AliasEntry("leest", "list")));
+    public void equals_anyTwoResetAliasCommand_true() {
+        assertEquals(new ResetAliasCommand(), new ResetAliasCommand());
     }
-
-    @Test
-    public void equals_sameStrings_true() {
-        assertEquals(new AliasCommand("a", "b"), new AliasCommand("a", "b"));
-    }
-
-    @Test
-    public void execute_duplicateKeywords_throwIllegalArgumentException() {
-        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertThrows(CommandException.class, () ->
-                new AliasCommand("get", "switch").execute(modelStub)
-        );
-    }
-
-    @Test
-    public void execute_removeSingleAlias_revertBack() throws CommandException {
-        ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertEquals(
-                new CommandResult("Removed alias. [get] is no longer alias for [find]."),
-                new AliasCommand("get", "find").execute(modelStub)
-        );
-    }
-
 
     private class ModelStubWithAliasMap implements Model {
         private AliasMap am;
