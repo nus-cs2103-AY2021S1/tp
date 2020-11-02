@@ -21,7 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FindTaskCriteria;
-import seedu.address.model.task.NameContainsKeywordsPredicate;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskContainsTagsPredicate;
 import seedu.address.model.task.TaskMatchesDatePredicate;
@@ -54,7 +54,7 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
             List<String> nameKeywords = ParserUtil.parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
-            NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
+            TaskNameContainsKeywordsPredicate namePredicate = new TaskNameContainsKeywordsPredicate(nameKeywords);
             findTaskCriteria.addPredicate(namePredicate);
         }
 

@@ -10,7 +10,7 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Task}'s {@code Name} matches any of the search keywords provided by the user.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Task> {
+public class TaskNameContainsKeywordsPredicate implements Predicate<Task> {
 
     private final List<String> keywords;
 
@@ -19,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
      *
      * @param keywords List of keywords.
      */
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public TaskNameContainsKeywordsPredicate(List<String> keywords) {
         assert !keywords.isEmpty() : "At least one search keyword must be present";
         this.keywords = keywords;
     }
@@ -34,7 +34,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TaskNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TaskNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
