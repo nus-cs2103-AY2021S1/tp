@@ -33,6 +33,9 @@ public class StartPersonCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a StartPersonCommand to delete the displayed person in the current list with the specified {@code Index}.
+     */
     public StartPersonCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

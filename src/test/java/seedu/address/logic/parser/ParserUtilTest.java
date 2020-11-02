@@ -199,7 +199,6 @@ public class ParserUtilTest {
         assertEquals(expectedProjectTagSet, actualProjectTagSet);
     }
 
-    // TODO: task invalid tests
     @Test
     public void parseTask_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTask(null));

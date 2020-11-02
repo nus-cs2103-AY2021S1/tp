@@ -15,7 +15,6 @@ import seedu.address.logic.parser.MainCatalogueParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyMainCatalogue;
-import seedu.address.model.Status;
 import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -110,23 +109,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Status getStatus() {
-        return model.getStatus();
-    }
-
-    @Override
-    public void enter(Project project) {
-        model.enter(project);
-    }
-
-    @Override
-    public void quit() {
-        model.quit();
-    }
-
-    @Override
     public boolean isProjectsView() {
-        switch (getStatus()) {
+        switch (model.getStatus()) {
         case PROJECT_LIST:
         case PROJECT:
         case TASK:
