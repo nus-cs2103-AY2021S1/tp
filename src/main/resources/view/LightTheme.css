@@ -10,6 +10,11 @@
     -fx-opacity: 1.0;
 }
 
+.label #defaultText {
+    -fx-font-size: 40pt;
+    -fx-font-color: black;
+}
+
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Quicksand";
@@ -497,6 +502,12 @@
     -fx-border-color: derive(#F1F1F1, 0%);
     -fx-border-top-width: 0px;
     -fx-background-radius: 5;
+}
+
+.note-list-panel-vbox .defaultHBox {
+    -fx-border-insets: 5;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
 }
 
 .note-list-panel-vbox .list-cell:filled:even {

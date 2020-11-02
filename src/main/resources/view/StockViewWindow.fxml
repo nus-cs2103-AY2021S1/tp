@@ -3,10 +3,15 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="note-list-panel-vbox">
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="note-list-panel-vbox" alignment="CENTER">
+
     <ListView fx:id="stockView" VBox.vgrow="ALWAYS" styleClass="pane-with-border-notes"/>
     <padding>
         <Insets right="150" left="150" />
     </padding>
+
 </VBox>

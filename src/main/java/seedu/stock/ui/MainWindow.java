@@ -12,7 +12,10 @@ import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -73,6 +76,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private PieChart mainPie;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -164,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
      * Switches to and updates the stock view window.
      */
     @FXML
-    public void handleStockView(Stock stockToView) {
+    public void handleStockView(Optional<Stock> stockToView) {
         //jump to stock view tab
         tabPane.getSelectionModel().select(2);
         updateStockView(stockToView);
@@ -174,22 +180,33 @@ public class MainWindow extends UiPart<Stage> {
      * Updates the stock view window.
      */
     @FXML
-    public void updateStockView(Stock stockToView) {
+    public void updateStockView(Optional<Stock> optionalStockToView) {
 
-        String nameString = "Name: " + stockToView.getName().fullName;
-        String serialNumberString = "Serial Number: " + stockToView.getSerialNumber().toString();
-        String sourceString = "Source: " + stockToView.getSource().value;
-        String quantityString = "Quantity: " + "Quantity left: " + stockToView.getQuantity().quantity
-                + "\nLow Quantity: " + stockToView.getQuantity().lowQuantity;
-        String location = "Location: " + stockToView.getLocation().value;
-        String notes = "Notes: " + stockToView.notesToString(stockToView.getNotes());
+        if (optionalStockToView.isPresent()) {
+            Stock stockToView = optionalStockToView.get();
+            String nameString = "Name: " + stockToView.getName().fullName;
+            String serialNumberString = "Serial Number: " + stockToView.getSerialNumber().toString();
+            String sourceString = "Source: " + stockToView.getSource().value;
+            String quantityString = "Quantity: " + "Quantity left: " + stockToView.getQuantity().quantity
+                    + "\nLow Quantity: " + stockToView.getQuantity().lowQuantity;
+            String location = "Location: " + stockToView.getLocation().value;
+            String notes = "Notes: " + stockToView.notesToString(stockToView.getNotes());
 
-        ObservableList<String> fieldList = FXCollections.observableArrayList();
-        fieldList.addAll(nameString, serialNumberString, sourceString, quantityString,
-                location, notes);
+            ObservableList<String> fieldList = FXCollections.observableArrayList();
+            fieldList.addAll(nameString, serialNumberString, sourceString, quantityString,
+                    location, notes);
 
-        stockViewWindow = new StockViewWindow(fieldList);
-        stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
+            stockViewWindowPlaceholder.getChildren().remove(mainPie);
+            stockViewWindow = new StockViewWindow(fieldList);
+            stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
+
+        } else {
+            
+            stockViewWindow = new StockViewWindow();
+            stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
+
+        }
+
     }
 
     /**
@@ -279,12 +296,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowNotes()) {
                 Stock stockToView = commandResult.getStockToShowNotes();
-                handleStockView(stockToView);
+                handleStockView(Optional.of(stockToView));
             } else {
                 // stock view window used before
                 if (stockViewWindow != null) {
                     ObservableList<Stock> stockList = logic.getModel().getStockBook().getStockList();
-                    Stock stockToView = stockViewWindow.getStockToView(stockList);
+                    Optional<Stock> stockToView = stockViewWindow.getStockToView(stockList);
                     updateStockView(stockToView);
                 }
             }
