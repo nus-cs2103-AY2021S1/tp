@@ -129,6 +129,11 @@ public class ModelManager implements Model {
         return filteredAccounts.isEmpty();
     }
 
+    @Override
+    public Account getAccountFromFilteredList(int index) {
+        return filteredAccounts.get(index);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Account} backed by the internal list of
      * {@code versionedCommonCents}

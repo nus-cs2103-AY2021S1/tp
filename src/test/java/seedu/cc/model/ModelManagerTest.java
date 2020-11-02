@@ -15,6 +15,8 @@ import seedu.cc.commons.core.GuiSettings;
 import seedu.cc.model.account.Account;
 import seedu.cc.model.account.Name;
 import seedu.cc.model.account.exceptions.AccountNotFoundException;
+import seedu.cc.testutil.TypicalEntries;
+import seedu.cc.testutil.TypicalIndexes;
 
 public class ModelManagerTest {
 
@@ -145,6 +147,14 @@ public class ModelManagerTest {
         modelManager.addAccount(editedAccount);
         modelManager.setAccount(editedAccount);
         assertTrue(modelManager.hasAccount(editedAccount));
+    }
+
+    @Test
+    public void getAccountFromFilteredList_validAccount_returnsTrue() {
+        modelManager.addAccount(TypicalEntries.getTypicalAccount());
+        Account expectedAccount = TypicalEntries.getTypicalAccount();
+        Account actualAccount = modelManager.getAccountFromFilteredList(TypicalIndexes.INDEX_FIRST_ENTRY.getZeroBased());
+        assertEquals(actualAccount, expectedAccount);
     }
 
     @Test

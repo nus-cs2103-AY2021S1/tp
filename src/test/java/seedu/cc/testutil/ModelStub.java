@@ -11,9 +11,11 @@ import seedu.cc.model.Model;
 import seedu.cc.model.ReadOnlyCommonCents;
 import seedu.cc.model.ReadOnlyUserPrefs;
 import seedu.cc.model.account.Account;
+import seedu.cc.model.account.Name;
 
 
 public class ModelStub implements Model {
+    private static final Account ACCOUNT_STUB = new Account(new Name("Account stub"));
     private List<Account> accountList = new ArrayList<>();
 
     public List<Account> getAccountList() {
@@ -89,6 +91,11 @@ public class ModelStub implements Model {
     public boolean hasNoAccount() {
         return true;
     };
+
+    @Override
+    public Account getAccountFromFilteredList(int index) {
+        return ACCOUNT_STUB;
+    }
 
     @Override
     public ObservableList<Account> getFilteredAccountList() {
