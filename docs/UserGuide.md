@@ -434,7 +434,8 @@ replaced with `Jirachi`.
 You may find yourself in situations where you need to retrieve a specific group of animals from your `ZooKeep` book. For
 example, you may need to find animals with the same feed times or similar medical conditions.
 You can use this command to find and list all animals in your `ZooKeep` book whose fields contain any of the specified 
-argument keywords (at least 1).
+argument keywords (at least 1). The argument keywords do not need to exactly match the values in the fields; only a 
+partial match is needed.
 
 Format: `find KEYWORD [MORE KEYWORDS]…`
 
@@ -445,6 +446,8 @@ Keyword matching is case insensitive.
 Examples:
 * `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
 * `find 1200` finds all animals with the field (id or feed time) containing the specified keyword.
+* `find be` finds all animals with the fields containing the specified keyword. If there is an animal named 'Bell' and another
+animal with a medical condition called 'Benign Tumour', both animals will be listed due to a partial match.
 
 Example Usage:
 ```
