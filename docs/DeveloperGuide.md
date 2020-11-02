@@ -2,11 +2,15 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+<div class="toc-no-bullet-points">
+<!-- Referenced from https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff -->
+  * Table of Contents
+  {:toc}
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
-## **How to navigate this Developer Guide**
+## 1. How to navigate this Developer Guide
 
 The target audience of this guide is for anyone who wishes to extend or modify the functionality of ZooKeepBook. The guide is split into 3 sections, covering the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#design'>design of ZooKeepBook</a>, the <a href = 'https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#implementation'>implementation of certain features</a> as well as how to <a href='https://ay2021s1-cs2103t-w15-4.github.io/tp/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops'>manage the development of ZooKeepBook</a>.
 
@@ -20,16 +24,16 @@ The following symbols are used throughout this developer guide. They highlight i
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 This section describes the high-level components that make up ZooKeep.
 
-### Architecture
+### 3.1. Architecture
 
 The ***Architecture Diagram*** (*Figure 1*) given below explains the high-level design of the App. 
 
@@ -86,7 +90,7 @@ scenario where the user issues the command `delete 123`.
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2. UI component
 
 The Class Diagram for the UI Component is shown below (*Figure 4*)
 
@@ -110,7 +114,7 @@ The `UI` component
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3. Logic component
 
 The Class Diagram for the Logic Component is shown below (*Figure 5*)
 
@@ -136,7 +140,7 @@ Given below is the Sequence Diagram (*Figure 6*) for interactions within the `Lo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4. Model component
 
 The Class Diagram for the Model Component is shown below (*Figure 7*)
 
@@ -160,7 +164,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5. Storage component
 
 The Class Diagram for the Storage Component is shown below (*Figure 8*)
 
@@ -174,19 +178,19 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the ZooKeepBook data in json format and read it back.
 
-### Common classes
+### 3.6. Common classes
 
 Classes used by multiple components are in the `seedu.zookeepbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Undo feature (by Zhi Yuan)
+### 4.1. Undo feature (by Zhi Yuan)
 
-#### Implementation
+#### 4.1.1. Implementation
 
 The undo feature is facilitated by a stack data structure.
 
@@ -267,9 +271,9 @@ The following 2 Activity Diagrams (*Figures 14.1 & 14.2*) summarize what happens
 <p align="center"><i> Figure 14.1 (left): Activity Diagram when user executes a command </i></p>
 <p align="center"><i> Figure 14.2 (right): Activity Diagram when user undoes a command </i></p>
 
-#### Design consideration:
+#### 4.1.2. Design consideration:
 
-##### Aspect: How undo executes
+##### 4.1.2.1. Aspect: How undo executes
 
 * **Alternative 1 (current choice):** Saves the entire ZooKeepBook as a state.
   * Pros: Easy to implement, works with all commands immediately.
@@ -281,9 +285,9 @@ The following 2 Activity Diagrams (*Figures 14.1 & 14.2*) summarize what happens
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
-### Redo feature (by Jun Cheng)
+### 4.2. Redo feature (by Jun Cheng)
 
-#### Implementation
+#### 4.2.1. Implementation
 
 The Redo feature was added as a complement to the Undo feature which was done earlier. The addition of this
 feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
@@ -371,9 +375,9 @@ The following 2 Activity Diagrams (*Figures 21.1 & 21.2*) summarise what happens
 <p align="center"><i>Figure 21.1 (left): Activity Diagram when user executes an undo command</i></p>
 <p align="center"><i>Figure 21.2 (right): Activity Diagram when user executes a redo command</i></p>
 
-#### Design consideration:
+#### 4.2.2. Design consideration:
 
-##### Aspect: How redo executes
+##### 4.2.2.1. Aspect: How redo executes
 
 * **Alternative 1 (current choice):** Saves the entire ZooKeepBook as a state.
   * Pros: Easy to implement, works with all commands immediately.
@@ -385,9 +389,9 @@ The following 2 Activity Diagrams (*Figures 21.1 & 21.2*) summarise what happens
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
-### Snapshot feature (by Aizat)
+### 4.3. Snapshot feature (by Aizat)
 
-#### Implementation
+#### 4.3.1. Implementation
 
 The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. 
 `SnapCommandParser` parses the user's input as a file name and then creates a `SnapCommand` 
@@ -407,14 +411,16 @@ The following Sequence Diagram (*Figure 22*) illustrates the creation and execut
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-#### Design considerations:
-##### Aspect: Overwriting files
+#### 4.3.2. Design consideration:
+
+##### 4.3.2.1. Aspect: Overwriting files
+
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
-### Sort feature (by Malcolm)
+### 4.4. Sort feature (by Malcolm)
 
-#### Implementation
+#### 4.4.1. Implementation
 
 This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
 
@@ -454,14 +460,15 @@ The following Activity Diagram (*Figure 24*) summarises what happens when a user
 
 <p align="center"><i>Figure 24: Activity Diagram when user executes sort command</i></p>
 
-#### Design Consideration  
-##### Aspect: Sorting based on different categories  
+#### 4.4.2. Design Consideration:
+  
+##### 4.4.2.1. Aspect: Sorting based on different categories  
 We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
 
 
-### Feed times feature (by Jeremy)
+### 4.5. Feed times feature (by Jeremy)
 
-#### Implementation
+#### 4.5.1. Implementation
 
 The feed times feature utilizes a TreeSet with a custom comparator.
 
@@ -508,9 +515,9 @@ The following Activity Diagram (*Figure 26*) summarizes what happens when feed t
 
 <p align="center"><i>Figure 26: Activity Diagram when user adds an animal with feed times</i></p>
 
-#### Design consideration:
+#### 4.5.2. Design consideration:
 
-##### Aspect: How chronological order is maintained
+##### 4.5.2.1. Aspect: How chronological order is maintained
 
 * **Alternative 1 (current choice):** Store the feed times in chronological order
   * Pros: Quick to display when retrieving information
@@ -523,7 +530,7 @@ The following Activity Diagram (*Figure 26*) summarizes what happens when feed t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 This section provides guides for developers wishing to take on this framework for extension or morphing.
 
 * [Documentation guide](Documentation.md)
@@ -534,10 +541,10 @@ This section provides guides for developers wishing to take on this framework fo
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## 6. Appendix: Requirements
 This section lists the target requirements for ZooKeep.
 
-### Product scope
+### 6.1. Product scope
 
 **Target user profile**:
 
@@ -554,7 +561,7 @@ This section lists the target requirements for ZooKeep.
 * Easier to transfer a large amount of animal information when zookeepers change shifts.
 * Manage animals faster than a typical mouse/GUI driven app.
 
-### User stories
+### 6.2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -574,11 +581,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### 6.3. Use cases
 
 (For all use cases below, the **System** is the `ZooKeepBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add an animal**
+**Use case: UC01 - Add an animal**
 
 **MSS**
 
@@ -606,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
 
-**Use case: Delete an animal**
+**Use case: UC02 - Delete an animal**
 
 **MSS**
 
@@ -628,13 +635,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
 
-* 2a. The given ID does not exist
+* 2a. The given ID does not exist or is out of range
 
   * 2a1. ZooKeepBook shows an error message
 
   * Use case resumes at step 1
 
-**Use case: List all animals**
+**Use case: UC03 - List all animals**
 
 **MSS**
 
@@ -644,7 +651,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Use case: Exit program**
+**Use case: UC04 - Exit program**
 
 **MSS**
 
@@ -654,7 +661,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Use case: View available commands**
+**Use case: UC05 - View available commands**
 
 **MSS**
 
@@ -665,11 +672,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends
    
 
-**Use case: Find animals based on keywords**
+**Use case: UC06 - Find animals based on keywords**
 
 **MSS**
 
-1. User specifies the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
+1. User specifies the find command with the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
 
 2. ZooKeepBook searches for all animals with any of the exact keywords
 
@@ -686,11 +693,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Use case resumes at step 1
   
 
-**Use case: Sort all animals**
+**Use case: UC07 - Sort all animals**
 
 **MSS**
 
-1. User specifies the sort command and the specific category (name, id or feedtime)
+1. User specifies the sort command and the specific category (name, id, feedtime or medical)
 
 2. ZooKeepBook sorts the animals according to the category
 
@@ -708,13 +715,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * Use case resumes at step 1
 
-**Use case: Undo last command**
+**Use case: UC08 - Undo last command**
 
 **MSS**
 
-1. User enters undo command.
+1. User specifies the undo command
 
-2. ZooKeepBook reverts to the state before last command was made.
+2. ZooKeepBook reverts to the state before last command was made
 
 3. ZooKeepBook shows a success message
 
@@ -722,19 +729,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. There is no previous state to revert to.
+* 2a. There is no previous state to revert to
 
   * 2a1. ZooKeepBook shows an error message
 
   * Use case ends
 
-**Use case: Redo last undo**
+**Use case: UC09 - Redo last undo**
 
 **MSS**
 
-1. User enters redo command.
+1. User specifies the redo command
 
-2. ZooKeepBook reverts to the state before undo command was made.
+2. ZooKeepBook reverts to the state before undo command was made
 
 3. ZooKeepBook shows a success message
 
@@ -742,13 +749,106 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. There is no previous state to revert to.
+* 2a. There is no previous state to revert to
 
   * 2a1. ZooKeepBook shows an error message
 
   * Use case ends
   
-### Non-Functional Requirements
+**Use case: UC10 - Save current animal data**
+
+**MSS**
+
+1. User specifies the snap command with the appropriate file name
+
+2. ZooKeepBook creates a snapshot of the current ZooKeep book data which is saved as a file with the user specified file name
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+* 1b. An invalid file name is entered
+
+  * 1b1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+**Use case: UC11 - Append data to an animal**
+
+**MSS**
+
+1. User specifies the append command with the animal ID and any relevant medical conditions and/or feed times to be added
+
+2. ZooKeepBook appends the entered animal conditions and/or feed times to the specific animal
+
+3. ZooKeepBook shows the edited animal details
+
+4. ZooKeepBook refreshes to show the updated list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+* 2a. The given ID does not exist or is out of range
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+* 2b. No details are entered or the appended details result in no change to the animal
+
+  * 2b1. ZooKeepBook shows an error message
+  
+  * Use case resumes at step 1
+
+**Use case: UC12 - Replace the data of an animal**
+
+**MSS**
+
+1. User specifies the replace command with the animal ID and any intended changes in the animal details
+
+2. ZooKeepBook replaces the current animal details with the entered changes
+
+3. ZooKeepBook shows the updated animal details
+
+4. ZooKeepBook refreshes to show the updated list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+* 2a. The given ID does not exist or is out of range
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+* 2b. No details are entered or the entered details result in no change to the animal
+
+  * 2b1. ZooKeepBook shows an error message
+  
+  * Use case resumes at step 1
+
+  
+### 6.4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 animals without a noticeable sluggishness in performance for typical usage.
@@ -767,7 +867,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 15. The project is expected to adhere to the schedule of the CS2103/CS2103T tP timeline which requires weekly deliverables and increments.
 16. The project is not required to sort and arrange tasks among all staff or ensure efficient task allocation and completion.
 
-### Glossary
+### 6.5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Data persistence**: data provided by the user can be saved and updated to the hard drive, and can also be loaded once system is booted up again
@@ -776,7 +876,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## 7. Appendix: Instructions for manual testing
 This section provides instructions for testing the application manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
@@ -784,24 +884,22 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 7.1. Launch and shutdown
 
-1. Initial launch
+#### 7.1.1. Initial launch
 
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+#### 7.1.2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Deleting an animal
-
-1. Deleting an animal
+### 7.2. Deleting an animal
 
    1. Test case: `delete 123`<br>
       Expected: The animal with an ID of 123 deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
@@ -809,19 +907,19 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than all 3 digit numbers)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than all 3 digit numbers or larger than all 6 digit numbers)<br>
       Expected: Similar to previous.
 
-### Saving data
+### 7.3. Saving data
 
-1. Dealing with missing/corrupted data files
+#### 7.3.1. Dealing with missing/corrupted data files
 
    1. To simulate a missing/corrupted data file, delete the `data/zookeepbook.json` file.
    
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The sample ZooKeepBook will be loaded as the new `data/zookeepbook.json` file.
 
-1. Auto-saving feature
+#### 7.3.2. Auto-saving feature
 
    1. After launching the application, perform actions that edit the ZooKeepBook, such as `add` or `delete`. Close
       the window.
