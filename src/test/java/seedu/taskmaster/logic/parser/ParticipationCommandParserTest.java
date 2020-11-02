@@ -1,6 +1,7 @@
 package seedu.taskmaster.logic.parser;
 
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_NEGATIVEZERO;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_NONINTEGER;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_TOOBIG;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_TOOSMALL;
@@ -27,6 +28,8 @@ class ParticipationCommandParserTest {
             "Invalid input: Negative score. Score needs to be between 0 to 10 inclusive.";
     private static final String MESSAGE_INVALID_INPUT_TOO_BIG =
             "Invalid input: Score is greater than 10. Score needs to be between 0 to 10 inclusive.";
+    private static final String MESSAGE_INVALID_NEGATIVE_ZERO =
+            "Invalid input: Do not put - before zero.";
 
     private ParticipationCommandParser parser = new ParticipationCommandParser();
 
@@ -62,6 +65,7 @@ class ParticipationCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_PARTICIPATION_NONINTEGER, MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, "1" + INVALID_PARTICIPATION_TOOSMALL, MESSAGE_INVALID_INPUT_TOO_SMALL);
         assertParseFailure(parser, "1" + INVALID_PARTICIPATION_TOOBIG, MESSAGE_INVALID_INPUT_TOO_BIG);
+        assertParseFailure(parser, "1" + INVALID_PARTICIPATION_NEGATIVEZERO, MESSAGE_INVALID_NEGATIVE_ZERO);
     }
 
     @Test

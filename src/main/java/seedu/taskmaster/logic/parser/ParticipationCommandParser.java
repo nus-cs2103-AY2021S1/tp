@@ -25,15 +25,24 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
 
         Index index;
         double score;
+        double rawScore;
+        double[] raw; // [negative 1/0 flag, rawScore]
+        boolean isNegative;
 
         try {
-            score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_CLASS_PARTICIPATION).get());
+            raw = ParserUtil.parseScore(argMultimap.getValue(PREFIX_CLASS_PARTICIPATION).get());
+            rawScore = raw[1];
+            isNegative = raw[0] == 1;
+
+            score = Math.round(rawScore * 100.0) / 100.0;
             String preamble = argMultimap.getPreamble();
 
-            if (score < 0) {
+            if (isNegative && rawScore == 0) {
+                throw new IllegalValueException("Invalid input: Do not put - before zero.");
+            } else if (rawScore < 0) {
                 throw new IllegalValueException(
                         "Invalid input: Negative score. Score needs to be between 0 to 10 inclusive.");
-            } else if (score > 10) {
+            } else if (rawScore > 10) {
                 throw new IllegalValueException(
                         "Invalid input: Score is greater than 10. Score needs to be between 0 to 10 inclusive.");
             }
