@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.visit.Visit;
 
 /**
- * Panel containing the list of Visit Reports.
+ * Panel containing the list of visits.
  */
 public class ProfileVisitPanel extends UiPart<Stage> {
     private static final String FXML = "ProfileVisitPanel.fxml";
@@ -24,7 +24,7 @@ public class ProfileVisitPanel extends UiPart<Stage> {
     private ListView<Visit> visitHistoryView;
 
     /**
-     * Creates a VisitListPanel object.
+     * Creates a ProfileVisitPanel object.
      */
     public ProfileVisitPanel(Stage root) {
         super(FXML, root);
@@ -32,7 +32,7 @@ public class ProfileVisitPanel extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new visit history panel.
+     * Creates a new profile visit panel.
      */
     public ProfileVisitPanel() {
         this(new Stage());
@@ -63,7 +63,7 @@ public class ProfileVisitPanel extends UiPart<Stage> {
     }
 
     /**
-     * Displays the VisitListPanel window.
+     * Displays the ProfileVisitPanel window.
      */
     public void show() {
         logger.fine("Displaying visitation log.");
@@ -80,21 +80,21 @@ public class ProfileVisitPanel extends UiPart<Stage> {
     }
 
     /**
-     * Checks if the VisitListPanel window is being displayed.
+     * Checks if the ProfileVisitPanel window is being displayed.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the VisitListPanel window.
+     * Hides the ProfileVisitPanel window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the VisitListPanel window.
+     * Focuses on the ProfileVisitPanel window.
      */
     public void focus() {
         getRoot().requestFocus();

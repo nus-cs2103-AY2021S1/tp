@@ -106,7 +106,7 @@ public class EditCommand extends Command {
      * edited with {@code editPatientDescriptor}.
      */
     private static Patient createEditedPatient(Patient patientToEdit, EditPatientDescriptor editPatientDescriptor) {
-        assert patientToEdit != null;
+        assert patientToEdit != null : "Patient cannot be null.";
 
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());

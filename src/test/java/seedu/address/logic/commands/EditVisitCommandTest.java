@@ -32,7 +32,7 @@ public class EditVisitCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_unfilteredListInvalidPatientIndex_failure() {
         int outOfBoundInt = model.getFilteredPatientList().size() + 1;
         Index outOfBoundIndex = Index.fromOneBased(outOfBoundInt);
         EditVisitCommand editVisitCommand = new EditVisitCommand(outOfBoundIndex, EMPTY_INDEX);
@@ -45,7 +45,7 @@ public class EditVisitCommandTest {
      * lesser than size of patient list in CliniCal
      */
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_filteredListInvalidPatientIndex_failure() {
         Index indexOfPatient = TypicalIndexes.INDEX_FIRST_PATIENT;
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PATIENT;
         CommandTestUtil.showPatientAtIndex(model, indexOfPatient);
