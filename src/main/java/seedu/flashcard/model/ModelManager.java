@@ -38,7 +38,7 @@ public class ModelManager implements Model {
         this.flashcardDeck = new FlashcardDeck(flashcardDeck);
         this.userPrefs = new UserPrefs(userPrefs);
         sortedFlashcards = new SortedList<>(this.flashcardDeck.getFlashcardList());
-        filteredFlashcards = new FilteredList<>(this.sortedFlashcards);
+        filteredFlashcards = new FilteredList<>(this.flashcardDeck.getFlashcardList());
     }
 
     public ModelManager() {
