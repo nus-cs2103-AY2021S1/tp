@@ -201,7 +201,7 @@ score INDEX cp/SCORE
 ```
 - Scores the participation of the student associated with the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
-- The `SCORE` **must be a number** between 0 and 10, inclusive. 
+- The `SCORE` **must be a non-negative number** between 0 and 10, inclusive. 
 Taskmaster supports detailed score up to 2 decimal places.
 For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.
 
@@ -215,10 +215,10 @@ score 4 cp/4.21
 ### Scoring all students' participation: `score all`
 Scores the participation of all students in the session.
 ```
-score all INDEX cp/SCORE
+score all cp/SCORE
 ```
 - Scores the participation of all students shown in the displayed student record list.
-- The `SCORE` **must be a number** between 0 and 10, inclusive. 
+- The `SCORE` **must be a non-negative number** between 0 and 10, inclusive. 
 Taskmaster supports detailed score up to 2 decimal places.
 For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.
 
