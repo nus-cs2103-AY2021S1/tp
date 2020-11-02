@@ -48,7 +48,7 @@ public class AddNoteCommandTest {
     public void equals() {
         Note thingsToDo = new NoteBuilder().withTitle("things to do").withDescription("finish marking").build();
         Note events = new NoteBuilder().withTitle("things to do").withDescription("meet benedict").build();
-        Note friends = new NoteBuilder().withTitle("meeting with friends").withDescription("meet benedict").build();
+        Note friends = new NoteBuilder().withTitle("meeting").withDescription("meet benedict").build();
 
         AddNoteCommand addThingsToDoCommand = new AddNoteCommand(thingsToDo);
         AddNoteCommand addEventsCommand = new AddNoteCommand(events);
