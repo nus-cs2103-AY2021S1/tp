@@ -234,7 +234,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
      */
     private void generateTabSuggestion(StringBuilder toBeDisplayed) {
-        toBeDisplayed.append(CommandWords.CLEAR_COMMAND_WORD);
+        toBeDisplayed.append(CommandWords.TAB_COMMAND_WORD);
 
         generateBodyMessage(toBeDisplayed, TabCommand.MESSAGE_USAGE);
     }
