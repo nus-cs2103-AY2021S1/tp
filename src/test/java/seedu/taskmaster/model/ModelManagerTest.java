@@ -324,7 +324,8 @@ public class ModelManagerTest {
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
-        assertThrows(NoSessionException.class, () -> modelManager.scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE));
+        assertThrows(NoSessionException.class, () -> modelManager
+                .scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE));
     }
 
     @Test
