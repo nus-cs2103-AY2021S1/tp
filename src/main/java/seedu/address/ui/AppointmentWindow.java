@@ -77,7 +77,7 @@ public class AppointmentWindow extends UiPart<Stage> {
         // clear the lists
         patientAllergies.getChildren().clear();
         appointmentDescriptions.clear();
-
+        appointmentTable.getColumns().get(1).setSortable(false);
         patient.getAllergies().stream()
                 .sorted(Comparator.comparing(allergy -> allergy.allergyName))
                 .forEach(allergy -> patientAllergies.getChildren().add(new Label(allergy.allergyName)));

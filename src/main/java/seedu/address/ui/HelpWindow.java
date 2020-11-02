@@ -92,6 +92,7 @@ public class HelpWindow extends UiPart<Stage> {
         moreInfo.setText(MORE_INFO);
         commandDescriptions.sort(Comparator.comparing(CommandDescription::getCommand));
         helpTable.setItems(commandDescriptions);
+        helpTable.getColumns().forEach(col -> col.setSortable(false));
     }
 
     /**
