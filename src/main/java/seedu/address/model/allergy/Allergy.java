@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Allergy {
 
-    public static final String MESSAGE_CONSTRAINTS = "Allergies names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Allergies names should be alphabetical";
     public static final String VALIDATION_REGEX = "\\p{Alpha}+";
 
     public final String allergyName;
