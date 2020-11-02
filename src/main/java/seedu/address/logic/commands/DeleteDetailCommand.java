@@ -20,7 +20,7 @@ public class DeleteDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": deletes an Additional Detail in the student identified"
+            + ": deletes a Detail in the student identified"
             + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
@@ -30,7 +30,7 @@ public class DeleteDetailCommand extends DetailCommand {
     public static final String MESSAGE_SUCCESS = "Detail removed from %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
-    private static Logger logger = Logger.getLogger("Delete Additional Detail Log");
+    private static Logger logger = Logger.getLogger("Delete Detail Log");
 
     private final Index studentIndex;
     private final Index detailIndex;

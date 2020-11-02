@@ -21,7 +21,7 @@ public class EditDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "edit";
     public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": edits an Additional Detail in the student identified "
+            + ": edits a Detail in the student identified "
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer) "
@@ -33,7 +33,7 @@ public class EditDetailCommand extends DetailCommand {
     public static final String MESSAGE_SUCCESS = "Detail edited for %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
-    private static Logger logger = Logger.getLogger("Edit Additional Detail Log");
+    private static Logger logger = Logger.getLogger("Edit Detail Log");
 
     private final Index studentIndex;
     private final Index detailIndex;

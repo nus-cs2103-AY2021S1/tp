@@ -61,7 +61,7 @@ public class StudentAdminCard extends UiPart<Region> {
         time.setText("Class Time: " + student.getClassTime().toString());
         fee.setText("Fee: " + student.getFee().toString());
         payment.setText("Last Payment Date: " + student.getPaymentDate().toString());
-        details.setText("Additional Details: \n" + student.getFormattedDetails());
+        details.setText("Details: \n" + student.getFormattedDetails());
     }
 
     @Override

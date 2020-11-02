@@ -13,9 +13,9 @@ public abstract class DetailCommand extends Command {
             + "from a student in Reeve. \n" + "SUPPORTED COMMANDS: add, edit, delete";
 
     /**
-     * Creates a new Student, with the provided additional detail.
+     * Creates a new Student, with the provided detail.
      * @param studentToAddDetail student to add detail to.
-     * @param details new list of additional details.
+     * @param details new list of details.
      * @return updated Student.
      */
     public Student updateStudentDetail(Student studentToAddDetail, List<Detail> details) {
