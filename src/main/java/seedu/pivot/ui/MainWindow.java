@@ -279,6 +279,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setTabSelected(String tabType) {
+        if (tabType == null) {
+            caseTabPane.getSelectionModel().clearSelection();
+        }
+
         switch (tabType) {
         case TYPE_DOC:
             caseTabPane.getSelectionModel().select(documentTab);
