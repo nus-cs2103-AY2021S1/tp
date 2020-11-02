@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -17,7 +18,7 @@ class JsonAdaptedAttendance {
      * Constructs a {@code JsonAdaptedAttendance} with the given {@code isPresent}.
      */
     @JsonCreator
-    public JsonAdaptedAttendance(String weekNum) {
+    public JsonAdaptedAttendance(@JsonProperty String weekNum) {
         this.weekNum = weekNum;
     }
 

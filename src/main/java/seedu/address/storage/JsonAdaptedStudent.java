@@ -30,8 +30,8 @@ class JsonAdaptedStudent {
     private final String name;
     private final String phone;
     private final String email;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String studentId;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attendance = new ArrayList<>();
     private final String participationScore;
 
@@ -40,22 +40,22 @@ class JsonAdaptedStudent {
      */
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("email") String email,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                              @JsonProperty("email") String email,
                               @JsonProperty("studentId") String studentId,
+                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("attendance") List<JsonAdaptedAttendance> attendance,
                               @JsonProperty("participationScore") String participationScore) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.studentId = studentId;
-        this.participationScore = participationScore;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
         if (attendance != null) {
             this.attendance.addAll(attendance);
         }
+        this.participationScore = participationScore;
     }
 
     /**
@@ -66,7 +66,6 @@ class JsonAdaptedStudent {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         studentId = source.getStudentId().toString();
-        participationScore = source.getAttendance().getParticipationScoreAsString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -79,6 +78,7 @@ class JsonAdaptedStudent {
                 attendance.add(jsonAdaptedAttendance);
             }
         }
+        participationScore = source.getAttendance().getParticipationScoreAsString();
     }
 
     /**
