@@ -374,6 +374,7 @@ Modduke's data is saved in the hard disk automatically after any command that ch
 ### Command Line Shortcuts
 
 `Ctrl-U` --- Clears CommandBox
+`Ctrl-W` --- Deletes text from the cursor position to previous word
 
 --------------------------------------------------------------------------------------------------------------------
 
