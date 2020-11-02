@@ -48,7 +48,6 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
             editInventoryDescriptor.setUnitCost(ParserUtil.parseItemCost(
                     argMultimap.getValue(PREFIX_ITEM_COST).get()));
         }
-
         if (!editInventoryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditInventoryCommand.MESSAGE_NOT_EDITED);
         }
