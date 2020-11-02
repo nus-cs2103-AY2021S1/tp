@@ -1,6 +1,5 @@
 package com.eva.logic.parser;
 
-import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static com.eva.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static com.eva.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -8,7 +7,6 @@ import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 
 
