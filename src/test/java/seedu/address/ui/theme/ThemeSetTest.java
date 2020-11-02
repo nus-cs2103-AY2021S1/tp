@@ -13,7 +13,7 @@ public class ThemeSetTest {
     @Test
     public void getTheme_getDefaultTheme_success() {
         Theme themeGet = ThemeSet.getTheme(DEFAULT_THEME_NAME);
-        assertTrue(themeGet.equals(ThemeSet.DEFAULT_THEME));
+        assertTrue(themeGet.equals(ThemeSet.LIGHT_THEME));
     }
 
     @Test
@@ -23,8 +23,8 @@ public class ThemeSetTest {
     }
 
     @Test
-    public void getTheme_invalidThemeName_returnDefaultTheme() {
+    public void getTheme_invalidThemeName_returnLightTheme() {
         Theme themeGet = ThemeSet.getTheme(INVALID_THEME_NAME);
-        assertTrue(themeGet.equals(ThemeSet.DEFAULT_THEME));
+        assertTrue(themeGet.equals(ThemeSet.LIGHT_THEME));
     }
 }
