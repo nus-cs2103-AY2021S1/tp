@@ -35,16 +35,13 @@ public class AliasCommandTest {
     @Test
     public void setAlias_nonAlphabetical_throwsIllegalArgumentException() {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertThrows(CommandException.class, () -> new AliasCommand(
-                "get", "-$"
-        ).execute(modelStub));
+        assertThrows(CommandException.class, () -> new AliasCommand("get", "-$").execute(modelStub));
     }
 
     @Test
     public void setAlias_fromDefaultInsteadOfCustomisedAlias_throwCommandException() throws CommandException {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertThrows(CommandException.class,
-                () -> new AliasCommand("find", "f").execute(modelStub));
+        assertThrows(CommandException.class, () -> new AliasCommand("find", "f").execute(modelStub));
     }
 
     @Test
@@ -52,7 +49,7 @@ public class AliasCommandTest {
             throws CommandException {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
         new AliasCommand("list", "leest").execute(modelStub);
-        assertTrue(modelStub.am.hasAlias(new AliasEntry("leest", "list")));
+        assertTrue(modelStub.getAliasMap().hasAlias(new AliasEntry("leest", "list")));
     }
 
     @Test
@@ -63,7 +60,7 @@ public class AliasCommandTest {
     @Test
     public void execute_duplicateKeywords_throwIllegalArgumentException() {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
-        assertThrows( CommandException.class, () ->
+        assertThrows(CommandException.class, () ->
                 new AliasCommand("get", "switch").execute(modelStub)
         );
     }
@@ -79,7 +76,8 @@ public class AliasCommandTest {
 
 
     private class ModelStubWithAliasMap implements Model {
-        AliasMap am;
+        private AliasMap am;
+
         ModelStubWithAliasMap() {
             am = new AliasMap();
             am.addAlias(new AliasEntry("get", "find"));
