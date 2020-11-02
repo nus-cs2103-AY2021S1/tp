@@ -1,10 +1,7 @@
 package seedu.address.model.food;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Set;
 
-import javafx.scene.image.Image;
 import seedu.address.model.tag.Tag;
 
 public class MenuItem extends Food {

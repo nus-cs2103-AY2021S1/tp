@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -86,16 +85,16 @@ public class SampleDataUtil {
         menu3.add(new MenuItem("Cheese Steak Sliders (3pcs)", 16.90, burgers, ""));
 
         return new Vendor[]{
-                new Vendor(new Name("Al Amaan Restaurant"), new Phone("67740637"),
-                        new Email("alamaanrestaurant@gmail.com"),
-                        new Address("12 Clementi Road, Singapore 129742"),
-                        getTagSet("halal"), menu1),
-                new Vendor(new Name("Local Indian Store"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                        new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                        getTagSet("colleagues", "friends"), menu2),
-                new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("charlotte@example.com"),
-                        new Address("28 Clementi Road, Singapore 129754"),
-                        getTagSet("western"), menu3)
+            new Vendor(new Name("Al Amaan Restaurant"), new Phone("67740637"),
+                    new Email("alamaanrestaurant@gmail.com"),
+                    new Address("12 Clementi Road, Singapore 129742"),
+                    getTagSet("halal"), menu1),
+            new Vendor(new Name("Local Indian Store"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                    getTagSet("colleagues", "friends"), menu2),
+            new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("charlotte@example.com"),
+                    new Address("28 Clementi Road, Singapore 129754"),
+                    getTagSet("western"), menu3)
         };
     }
 

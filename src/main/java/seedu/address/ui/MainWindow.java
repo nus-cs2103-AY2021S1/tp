@@ -126,7 +126,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-            foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
+        foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
         setFoodListDisplay(false);
 
