@@ -22,15 +22,19 @@ public class IngredientCardHandle extends NodeHandle<Node> {
     private final Label expLabel;
     private final List<Label> tagLabels;
 
+    private int id;
+
 
     /**
      * Constructs a {@code IngredientCardHandle} with the given {@code ingredientCardNode}.
      */
-    public IngredientCardHandle(Node ingredientCardNode) {
+    public IngredientCardHandle(Node ingredientCardNode, int id) {
         super(ingredientCardNode);
         nameLabel = getChildNode(NAME_FIELD_ID);
         qtyLabel = getChildNode(QTY_FIELD_ID);
         expLabel = getChildNode(EXPIRY_DATE_FIELD_ID);
+
+        this.id = id;
 
         Region tagsContainer = getChildNode(TAG_LIST_FIELD_ID);
         tagLabels = tagsContainer
@@ -72,7 +76,14 @@ public class IngredientCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Compares an ingredient card to verify if it is equal to an ingredient.
+     * Retrieves the id of the ingredient in the ingredient card.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Compares an ingredient card to verify if it is equal to an ingredient. Ingredient names are unique.
      */
     public boolean equals(Ingredient ingredient) {
         // Well we gotta change this depending on how we make our ingredient card more presentable uwu
