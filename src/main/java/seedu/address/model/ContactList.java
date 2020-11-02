@@ -44,7 +44,6 @@ public class ContactList implements ReadOnlyContactList {
      */
     public void resetData(ReadOnlyContactList newData) {
         requireNonNull(newData);
-
         setContact(newData.getContactList());
     }
 

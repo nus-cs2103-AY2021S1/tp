@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.ALICE;
 // import static seedu.address.testutil.TypicalContacts.BENSON;
-// import static seedu.address.testutil.TypicalModules.CS2030;
+import static seedu.address.testutil.TypicalModules.CS2030;
 // import static seedu.address.testutil.TypicalModules.CS2101;
 // import static seedu.address.testutil.TypicalModules.CS2030;
 // import static seedu.address.testutil.TypicalModules.CS2101;
@@ -45,14 +45,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setModuleListFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("module/list/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setModuleListFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setModuleListFilePath(Paths.get("new/module/list/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -69,7 +69,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setModuleListFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
     }
 
@@ -85,20 +85,18 @@ public class ModelManagerTest {
         assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
     }
 
-    /*
+
     @Test
     public void hasModule_moduleNotInModuleList_returnsFalse() {
         assertFalse(modelManager.hasModule(CS2030));
     }
-     */
 
-    /*
+
     @Test
     public void hasModule_moduleInModuleList_returnsTrue() {
         modelManager.addModule(CS2030);
         assertTrue(modelManager.hasModule(CS2030));
     }
-     */
 
     @Test
     public void deleteModule_nullModule_throwsNullPointerException() {
@@ -106,22 +104,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void deleteModule_moduleNotInModuleList_throwsContactNotFoundException() {
-        // assertThrows(ContactNotFoundException.class, () -> modelManager.deleteModule(null));
-    }
-
-    @Test
-    public void deleteModule_moduleInModuleList_success() {
-        // Module module = new ModuleBuilder().build();
-        // modelManager.addModule(module);
-        // modelManager.deleteModule(module);
-        // ModelManager expectedModelManager = new ModelManager();
-        // assertEquals(modelManager, expectedModelManager);
-    }
-
-    @Test
     public void addModule_nullModule_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.addModule(null));
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
     }
 
     @Test
@@ -140,17 +129,13 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasContact(ALICE));
     }
 
-    @Test
-    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
-    }
 
-    /*
     @Test
     public void getFilteredContactList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredContactList().remove(0));
     }
 
+    /*
     @Test
     public void equals() {
         ModuleList moduleList = new ModuleListBuilder().withModule(CS2030).withModule(CS2101).build();

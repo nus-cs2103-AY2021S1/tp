@@ -54,14 +54,14 @@ public class TypicalContacts {
     private TypicalContacts() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code ContactList} with all the typical contacts.
      */
     public static ContactList getTypicalContactList() {
-        ContactList ab = new ContactList();
-        for (Contact person : getTypicalContacts()) {
-            // ab.addPerson(person);
+        ContactList list = new ContactList();
+        for (Contact contact : getTypicalContacts()) {
+            list.addContact(contact);
         }
-        return ab;
+        return list;
     }
 
     public static List<Contact> getTypicalContacts() {

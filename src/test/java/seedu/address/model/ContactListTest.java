@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.ALICE;
@@ -46,7 +47,7 @@ public class ContactListTest {
     public void resetData_withDuplicateContacts_throwsDuplicateContactException() {
         // Two contacts with the same identity fields
         Contact editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY)
-                .build();
+                .withTags(VALID_TAG_HUSBAND).build();
         List<Contact> newContacts = Arrays.asList(ALICE, editedAlice);
         ContactListStub newData = new ContactListStub(newContacts);
 
@@ -73,7 +74,7 @@ public class ContactListTest {
     public void hasContact_contactWithSameIdentityFieldsInContactList_returnsTrue() {
         contactList.addContact(ALICE);
         Contact editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY)
-                .build();
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(contactList.hasContact(editedAlice));
     }
 
@@ -83,9 +84,8 @@ public class ContactListTest {
     }
 
     @Test
-    public void addContact_duplicateContact_throwsDuplicateContactException() {
-        contactList.addContact(ALICE);
-        assertThrows(DuplicateContactException.class, () -> contactList.addContact(ALICE));
+    public void removeContact_nullContact_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> contactList.removeContact(null));
     }
 
     @Test
