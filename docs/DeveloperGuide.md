@@ -226,7 +226,7 @@ The `leave` command calls `quit` method.
 </div>
 The following sequence diagram shows the execution of leave command. Note that the leave command will do nothing if the application is already in the `CATALOGUE` scope.
 
-![LeaveCommandSequence](images/LeaveCommandSequence.png)
+![LeaveSequenceDiagram](images/LeaveSequenceDiagram.png)
 
 The following activity diagram summarizes the scoping features when a user executes a new command:
 
