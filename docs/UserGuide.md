@@ -121,6 +121,10 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t
 * `DIAGRAM` only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used.
   * d/images/diagram.png is supported.
   * d/image s/diagram.png is not supported.
+* `DIAGRAM` only supports the following file types. Unintended behaviour may occur if file path with spaces is used.
+  * jpeg
+  * png
+  * bmp
 * `TAGS` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
