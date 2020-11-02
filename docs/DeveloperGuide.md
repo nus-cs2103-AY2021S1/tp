@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 <!-- TOC adapted from
-https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff 
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff
 -->
 <div class="toc-no-bullet-points">
   * Table of Contents
