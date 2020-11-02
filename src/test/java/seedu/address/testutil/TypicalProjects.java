@@ -29,7 +29,7 @@ public class TypicalProjects {
             .withRepoUrl("https://github.com/a/a.git")
             .withDeadline("21-03-2020 00:00:00")
             .withTags("linguistics")
-            .withTasks(SampleDataUtil.getTask1(), SampleDataUtil.getTask2())
+            .withTasks(SampleDataUtil.getTask1(), SampleDataUtil.getTask2(), SampleDataUtil.getTask3())
             .build();
     public static final Project BRICK = new ProjectBuilder().withProjectName("Brick No Meier")
             .withProjectDescription("To destroy the brick and mortar")
