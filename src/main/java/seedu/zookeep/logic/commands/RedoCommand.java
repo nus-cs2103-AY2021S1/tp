@@ -36,6 +36,8 @@ public class RedoCommand extends Command {
         }
 
         ReadOnlyZooKeepBook lastState = historyStack.viewRecentRedo();
+
+        assert (lastState != null) : "The ZooKeepBook state cannot be null!";
         model.setZooKeepBook(lastState);
         historyStack.removeRecentRedo();
         return new CommandResult(MESSAGE_SUCCESS);
