@@ -68,7 +68,7 @@ public class EditRoomCommand extends Command {
         List<Allocation> lastShownAllocationList = model.getFilteredAllocationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }
 
         Room roomToEdit = lastShownList.get(index.getZeroBased());
@@ -205,7 +205,7 @@ public class EditRoomCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditRoomCommand)) {
+            if (!(other instanceof EditRoomDescriptor)) {
                 return false;
             }
 

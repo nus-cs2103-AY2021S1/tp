@@ -40,7 +40,7 @@ public class DeleteRoomCommand extends Command {
         List<Room> lastShownList = model.getFilteredRoomList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }
 
         Room toDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -54,5 +54,12 @@ public class DeleteRoomCommand extends Command {
         model.addBinItem(binItem);
         model.saveStateResiReg();
         return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, toDelete.toString()));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj // short circuit if same object
+            || obj instanceof DeleteRoomCommand // instanceof handles nulls
+            && targetIndex.equals(((DeleteRoomCommand) obj).targetIndex);
     }
 }
