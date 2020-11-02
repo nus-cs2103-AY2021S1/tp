@@ -66,6 +66,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
    
    * **`view 1`** : Views the 1st flashcard in the current list.
+   
+   * **`stats 1`** : Views the statistics of the 1st flashcard in the current list.
 
    * **`exit`** : Exits the app.
   
