@@ -18,7 +18,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Modduke.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Using your terminal, navigate to folder containing `modduke.jar` and run the command `java -jar modduke.jar`. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -68,6 +68,22 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+### Autocompletion
+
+Currently Modduke supports autocompletion for the following fields in v1.3.
+
+* Contact Name -  Triggered using `cname/`
+* Module Name -  Triggered using `mdname/`
+* Meeting Name -  Triggered using `mtname/`
+
+Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode.
+Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions.
+
+![Autocomplete Example](images/AutocompleteExample.gif)
+
+* Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
+* Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
 
 ### Adding a contact : `contact add`
 
@@ -354,22 +370,6 @@ Format: `exit`
 ### Saving the data
 
 Modduke's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Autocompletion
-
-Currently Modduke will support autocompletion for the following fields in v1.3.
-
-* Contact Name -  Triggered using `cname/`
-* Module Name -  Triggered using `mdname/`
-* Meeting Name -  Triggered using `mtname/`
-
-Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode.
-Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions.
-
-![Autocomplete Example](images/AutocompleteExample.gif)
-
-* Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
-* Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
 
 ### Command Line Shortcuts
 
