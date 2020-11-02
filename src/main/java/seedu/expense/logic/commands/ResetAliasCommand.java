@@ -11,10 +11,8 @@ import seedu.expense.model.Model;
 public class ResetAliasCommand extends Command {
 
     public static final String COMMAND_WORD = "resetAlias";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes all custom aliases defined by user.\n"
             + "Example: " + COMMAND_WORD;
-
     public static final String MESSAGE_EMPTY = "No custom aliases found.";
     public static final String MESSAGE_SUCCESS = "All custom aliases removed.";
 
@@ -34,12 +32,10 @@ public class ResetAliasCommand extends Command {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof ResetAliasCommand)) {
             return false;
         }
-
         return true;
     }
 
