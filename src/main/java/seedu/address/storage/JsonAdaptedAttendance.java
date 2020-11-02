@@ -1,5 +1,9 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -12,19 +16,36 @@ import seedu.address.model.student.Attendance;
  */
 class JsonAdaptedAttendance {
 
-    private final String weekNum;
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Attendance's %s field is missing!";
+
+    private final List<JsonAdaptedWeekNumber> weekNumbers = new ArrayList<>();
+    private final String participationScore;
 
     /**
      * Constructs a {@code JsonAdaptedAttendance} with the given {@code isPresent}.
      */
     @JsonCreator
-    public JsonAdaptedAttendance(@JsonProperty String weekNum) {
-        this.weekNum = weekNum;
+    public JsonAdaptedAttendance(@JsonProperty("weekNumbers") List<JsonAdaptedWeekNumber> weekNums,
+                                 @JsonProperty("participationScore") String participationScore) {
+        if (weekNums != null) {
+            this.weekNumbers.addAll(weekNums);
+        }
+        this.participationScore = participationScore;
     }
 
-    @JsonValue
-    public String getWeekNum() {
-        return weekNum;
+    /**
+     * Converts a given {@code Attendance} into this class for Jackson use.
+     */
+    public JsonAdaptedAttendance (Attendance source) {
+        boolean[] attendanceRecords = source.getIsPresent();
+        List<String> attendanceRecordsString = new ArrayList<>();
+        for (int i = 0; i < attendanceRecords.length; i++) {
+            if (attendanceRecords[i]) {
+                attendanceRecordsString.add(String.valueOf(i + 1));
+            }
+        }
+        weekNumbers.addAll(attendanceRecordsString.stream().map(JsonAdaptedWeekNumber::new).collect(Collectors.toList()));
+        participationScore = source.getParticipationScoreAsString();
     }
 
     /**
@@ -33,12 +54,21 @@ class JsonAdaptedAttendance {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Attendance toModelType() throws IllegalValueException {
-        if (!Attendance.isValidAttendance(weekNum)) {
+        final Attendance modelAttendance = new Attendance();
+        for (JsonAdaptedWeekNumber weekNumber : weekNumbers) {
+            modelAttendance.addAttendance(weekNumber.toModelType());
+        }
+
+        if (participationScore == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "Participation Score"));
+        }
+        if (!Attendance.isValidParticipation(participationScore)) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        Attendance attendance = new Attendance();
-        attendance.addAttendance(weekNum);
-        return attendance;
+        modelAttendance.editParticipation(participationScore);
+
+        return modelAttendance;
     }
 
 }
