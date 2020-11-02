@@ -132,6 +132,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public CategoryBudget getCategoryBudget(Tag category) {
+        return expenseBook.getBudgets().getCategoryBudget(category);
+    }
+
+    @Override
     public void topupBudget(Amount amount) {
         expenseBook.topupBudget(amount);
     }

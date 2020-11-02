@@ -173,6 +173,11 @@ public class TopupCommandTest {
         }
 
         @Override
+        public CategoryBudget getCategoryBudget(Tag category) {
+            return budgets.getCategoryBudget(category);
+        }
+
+        @Override
         public void topupBudget(Amount amount) {
             budgets.topupBudget(amount);
         }

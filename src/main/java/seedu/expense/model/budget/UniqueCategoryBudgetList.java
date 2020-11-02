@@ -7,6 +7,7 @@ import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -131,6 +132,29 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     public CategoryBudget getDefaultCategory() {
         return defaultCategory;
+    }
+
+    /**
+     * Returns the {@code CategoryBudget} corresponding to the specified category.
+     *
+     * @throws CategoryBudgetNotFoundException if the supplied category does not exist in the list of category-budgets.
+     */
+    public CategoryBudget getCategoryBudget(Tag category) {
+        requireNonNull(category);
+
+        if (category.equals(DEFAULT_TAG)) {
+            return getDefaultCategory();
+        }
+
+        List<CategoryBudget> categoryBudgets = internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .collect(Collectors.toList());
+
+        if (categoryBudgets.isEmpty()) {
+            throw new CategoryBudgetNotFoundException();
+        }
+
+        return categoryBudgets.get(0);
     }
 
     /**
