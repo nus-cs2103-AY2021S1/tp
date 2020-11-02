@@ -21,7 +21,7 @@ public class DeadlineCommand extends Command {
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
             + PREFIX_DATE_TIME + "DEADLINE_DATE_TIME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION \n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Do work "
             + PREFIX_DATE_TIME + "01-01-2020 12:00 "
