@@ -61,20 +61,30 @@ public class ParserUtil {
     public static String parseIngredient(String ingredients) throws ParseException {
         requireNonNull(ingredients);
         String[] ingredientsArr = ingredients.split(",");
+        if (ingredientsArr.length == 0) {
+            throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+        }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < ingredientsArr.length; i++) {
             String trimmedIngredient = ingredientsArr[i].trim();
             String ingName = trimmedIngredient;
+            if (trimmedIngredient.equals("")) {
+                throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
+            }
             String ingQuantity = "";
             int indexOfDash = trimmedIngredient.indexOf("-");
             if (indexOfDash != -1) {
                 ingName = trimmedIngredient.substring(0, indexOfDash).trim();
                 ingQuantity = trimmedIngredient.substring(indexOfDash + 1).trim();
             }
-            if ((ingName != "" && !ingName.matches(VALIDATION_REGEX)) || (ingQuantity != ""
-                    && !ingQuantity.matches(VALIDATION_REGEX_QUANTITY))) {
+            if ((ingName != "" && !ingName.matches(VALIDATION_REGEX))) {
                 throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
             }
+
+            if (ingQuantity != "") {
+                parseQuantity(ingQuantity);
+            }
+
             if (i != ingredientsArr.length - 1) {
                 sb.append(trimmedIngredient + ", ");
             } else {
