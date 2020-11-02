@@ -1,5 +1,7 @@
 package com.eva.logic.commands;
 
+import static com.eva.commons.core.PanelState.APPLICANT_LIST;
+import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static java.util.Objects.requireNonNull;
@@ -7,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import com.eva.commons.core.Messages;
+import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
@@ -30,7 +33,7 @@ public class SetApplicationStatusCommand extends Command {
             + PREFIX_APPLICATION_STATUS + "accepted";
     public static final String MESSAGE_SUCCESS = "Application Status of %1$s changed from %3$s to %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database";
-
+    public static final String MESSAGE_WRONG_PANEL = "Please switch to applicant list panel ";
     private final Index targetIndex;
     private final ApplicationStatus newApplicationStatus;
 
@@ -46,6 +49,18 @@ public class SetApplicationStatusCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        PanelState panelState = model.getPanelState();
+        if (!panelState.equals(APPLICANT_LIST) && !panelState.equals(APPLICANT_PROFILE)) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                    MESSAGE_WRONG_PANEL));
+        }
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(targetIndex)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
+        }
 
         List<Applicant> lastShownList = model.getFilteredApplicantList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
