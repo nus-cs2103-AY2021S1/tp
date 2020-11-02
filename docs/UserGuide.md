@@ -34,7 +34,9 @@ You may refer to [Quick Start](#quick-start) for a short tutorial on how to run 
 
 ## Quick Start
 
-1. Ensure that Java 11 or above is installed in your computer
+> **ResiReg** runs on Windows, Linux, and OS-X.
+
+1. Ensure that Java 11 or above is installed in your computer.
 2. Download the latest `ResiReg.jar` here.
 3. Copy the file to the folder you want to use as the home folder for your **ResiReg**.
 4. Double-click the file to start the app. The app window should open in a few seconds.
@@ -56,11 +58,11 @@ This section explains the format of commands in this User Guide.
 - Items with `…` after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
 </div>
 
-### I. Housing Management
+### Housing Management
 
 > **ResiReg** allows you to manage rooms in the Residential College.
 
-#### 1. Listing and filtering rooms : `rooms`
+#### Listing and filtering rooms : `rooms`
 
 Switches to the room tab if it is not already selected and shows a list of rooms in ResiReg, optionally filtered by some criteria.
 
@@ -75,20 +77,20 @@ Examples:
 - `rooms fl/11` shows all rooms on floor 11.
 - `rooms --vacant fl/11 fl/12 t/CN` shows all vacant rooms of type corridor non-aircon which are on either floor 11 or floor 12.
 
-#### 2. Adding a room: `add-room`
+#### Adding a room: `add-room`
 
 Adds a room to ResiReg. The following room details are stored: room floor, room number, room type, and optionally, tags.
 
 Format: `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...`
-- Floor must be an integer
-- Room number must be an integer
+- The floor number must be a **positive integer between** 1 and 99 **inclusive**.
+- The room number must be a **positive integer between** 100 and 999 **inclusive**.
 - Room type must be one of the following values: `CA` (corridor, aircon), `CN` (corridor, non-aircon), `NA` (non-corridor, aircon), `NN` (non-corridor, non-aircon)
 - The room will not be added if any piece of required information is missing. An error message will be displayed instead.
 
 Examples:
 - `add-room fl/12 n/112 t/CA` adds the room #12-112 of type corridor aircon.
 
-#### 3. Deleting a room: `delete-room`
+#### Deleting a room: `delete-room`
 
 Deletes the specified room from ResiReg.
 
@@ -96,7 +98,7 @@ Format: `delete-room <index>`
 - Deletes the room at the specified `index`, and moves the room to the bin.
 - The index refers to the index number shown in the displayed room list.
 
-#### 4. Editing rooms: `edit-room`
+#### Editing rooms: `edit-room`
 
 Edits an existing room in ResiReg.
 
@@ -107,7 +109,7 @@ Format `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<t
 Examples:
 - `edit-room 1 t/CN` Changes the room type of the 1st room to `CN`
 
-#### 5. Allocating a room to a student : `allocate`
+#### Allocating a room to a student : `allocate`
 
 Allocates a room to a student i.e denotes that the student currently occupies the room.
 
@@ -121,7 +123,6 @@ Examples:
 
 - `allocate ri/1 si/1` allocates the room at `room_index` 1 to the student at `student_index` 1.
 
-#### 6. Deallocating a room for a student : `deallocate`
 ##### Before allocation
 
 <img src="images/BeforeAllocation.png">
@@ -130,6 +131,7 @@ Examples:
 
 <img src="images/AfterAllocation.png">
 
+#### Deallocating a room for a student : `deallocate`
 
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
 
@@ -147,7 +149,7 @@ Refer to "After allocation" above.
 
 <img src="images/AfterDeallocation.png">
 
-#### 7. Reallocating a room for a student : `reallocate`
+#### Reallocating a room for a student : `reallocate`
 
 Reallocates a room for a student, by editing the allocation relating a student to its current room.
 
@@ -162,8 +164,6 @@ Format: `reallocate si/<student_index> ri/<room_index>`
 Examples:
 * `reallocate si/1 ri/2` edits the allocation of the student with index 1's current room to the room with index 2.
 
-#### 8. Archiving a Semester: `archive`
-
 ##### Before reallocation
 Refer to "After allocation" above.
 
@@ -171,20 +171,11 @@ Refer to "After allocation" above.
 
 <img src="images/AfterReallocation.png">
 
-#### 9. Visualising a Piechart of Allocated Rooms
+### Data Management
 
-Visualises a piechart of allocated and unallocated rooms by switching to the `Statistics` tab, and updates upon a change in room allocation.
+> **ResiReg** allows you to manage allocations on a per-Semester basis.
 
-Example:
-* `allocate si/1 ri/1` allocates a room to a student, updating the piechart.
-
-##### Before a room allocation
-
-<img src="images/BeforeAllocationPiechart.png">
-
-##### After a room allocation
-<img src="images/AfterAllocationPiechart.png">
-
+#### Archiving a Semester: `archive`
 
 Archives the previous semester's data into an archival folder, and adjusts the application to operate on the succeeding semester.
 
@@ -193,11 +184,20 @@ Format: `archive`
 - Moves the previous semester's allocation data to `AY[YEAR]S[SEMESTER]/archive.json`. For example, if the previous semester was 2019 Semester 2, the allocation data will be moved to `AY2019S2/archive.json`.
 - The rooms and students are still preserved in the system.
 
-### II. Student Management
+##### Before archival
+
+![UI before archiving](./images/BeforeArchive.png)
+
+##### After archival
+
+![UI after archiving](./images/AfterArchive.png)
+
+
+### Student Management
 
 > **ResiReg** allows you to manage students in the Residential College.
 
-#### 1. Listing all students : `students`
+#### Listing all students : `students`
 
 Shows a list of all students in ResiReg, optionally filtered by some parameters.
 
@@ -208,13 +208,32 @@ Examples:
 - `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane.
 - `students n/dameeth` switches to the Students tab if it is not already selected, and shows the list of students matching the name "dameeth" on the right pane.
 
-#### 2. Adding a student : `add-student`
+#### Adding a student : `add-student`
 
 Adds a student to ResiReg. The following student details are stored: name, student ID, phone, email, faculty, and optionally, tags.
 
 Format: `add-student n/<student_name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [tag/<tag_name>]...`
 
 - The student ID must be a 8-digit alphanumeric string, starting with `EO` and ending with 6 digits. It must be unique (no two students in ResiReg can share the same student ID). Otherwise, an error message is displayed accordingly.
+- The phone number should be exactly 8 digits
+- The faculty should be a case-sensitive code. Refer to the following list for the faculty codes and their corresponding faculty names
+    - `FASS` (Arts and Social Sciences)
+    - `BIZ` (Business)
+    - `SOC` (Computing)
+    - `CLE` (Continuing & Lifelong Education)
+    - `DEN` (Dentistry)
+    - `SDE` (Design & Environment)
+    - `DNUS` (Duke-NUS)
+    - `ENG` (Engineering)
+    - `ISE` (Integrative Sciences & Engineering)
+    - `LAW` (Law)
+    - `MED` (Medicine)
+    - `MUS` (Music)
+    - `PH` (Public Health)
+    - `PP` (Public Policy)
+    - `FOS` (Science)
+    - `USP` (University Scholars Programme)
+    - `YNUS` (Yale-NUS)
 - The pairs of type-prefixes and data (eg. `n/<student_name>`) may given be in any order.
 - The student will not be added if some pieces of information is missing. An error message will be displayed instead.
 
@@ -222,10 +241,10 @@ Examples:
 
 - `add-student n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` successfully creates a new student named Jet New whose student ID is E0407889, phone number is 82462157,
   email is jn@u.nus.edu, and faculty is Computing (SOC).
-- `add-student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing):
+- `add student n/Jet New i/E0407889 e/jn@u.nus.edu` prompts the user with the following error message (because the faculty field is missing):
   `Invalid command format! add-student: Adds a student to ResiReg. Parameters: n/NAME i/STUDENT_ID p/PHONE e/EMAIL f/FACULTY [tag/TAG]... Example: add-student n/John Doe s/E0123456 p/98765432 e/johndoe@u.nus.edu f/FASS`
 
-#### 3. Editing a student : `edit-student`
+#### Editing a student : `edit-student`
 
 Edits an existing student in ResiReg.
 
@@ -233,16 +252,17 @@ Format: `edit-student <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_ph
 
 - Edits the person at the specified `index`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
+- All inputs must satisfy the constraints listed for the `edit-student` command
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
-- You can remove all of the student’s tags by typing `t/` without specifying any tags after it.
+- You can remove all of the student’s tags by typing `tag/` without specifying any tags after it.
 
 Examples:
 
 - `edit-student 1 p/82462157 e/johnd@comp.nus.edu.sg` Edits the phone number and email address of the first student to be `82462157` and `johnd@comp.nus.edu.sg` respectively.
-- `edit-student 2 n/Alpha Queue/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
+- `edit-student 2 n/Alpha Queue tag/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
 
-#### 4. Deleting a student : `delete-student`
+#### Deleting a student : `delete-student`
 
 Deletes the specified student from ResiReg.
 
@@ -254,18 +274,18 @@ Format: `delete-student <index>`
 
 Examples:
 
-- `list` followed by `delete-student 2` deletes the 2nd student in ResiReg.
-- `find-students Betsy` followed by `delete-student 1` deletes the 1st student in the results of the `find` command.
+- `students` followed by `delete-student 2` deletes the 2nd student in ResiReg.
+- `students n/Roy` followed by `delete-student 1` deletes the 1st student (if any) in the results of the `students` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If you delete a student erroneously, you should undo the command immediately. However, if you deleted the student a while ago, and wish to restore it, then you should use the restore command (see below).
 </div>
 
-### III. General
+### General
 
 > **ResiReg** has many general features such as Command Line Interface (CLI) sugar and a recyling bin for more efficient usage by experienced users.
 
-#### 1. Listing all bin items : `bin`
+#### Listing all bin items : `bin`
 
 Shows a list of all bin items in ResiReg.
 
@@ -275,7 +295,7 @@ Format: `bin`
 
 Examples: `bin`
 
-#### 2. Restoring a bin item : `restore`
+#### Restoring a bin item : `restore`
 
 Restores an existing bin item in ResiReg.
 
@@ -287,7 +307,7 @@ Examples:
 
 - `restore 1` restores the first bin item in the list, to its original list.
 
-#### 3. Set bin expiry time : `set-bin-expiry`
+#### Set bin expiry time : `set-bin-expiry`
 
 Sets the amount of time (in days) that bin items stay in the bin before they are permanently removed.
 
@@ -303,7 +323,7 @@ Examples:
 
 - `set-bin-expiry 20` sets all bin items to be permanentely removed 20 days after their deletion.
 
-#### 4. Listing all aliases : `aliases`
+#### Listing all aliases : `aliases`
 
 Shows the list of aliases (an alias is a user-defined term that can be used interchangeably with a command word) and their corresponding command words currently in ResiReg.
 
@@ -311,7 +331,7 @@ Format: `aliases​`
 
 Example: `aliases`
 
-#### 5. Adding an alias : `alias`
+#### Adding an alias : `alias`
 
 Adds an alias for a command word to ResiReg.
 
@@ -325,7 +345,7 @@ Examples:
 - `alias c/set-bin-expiry a/sb` adds an alias `sb` for the `set-bin-expiry` command. Henceforth, `sb` and `set-bin-expiry` command will have the same effect
 - `alias c/rooms a/r` adds an alias `r` for the `rooms` command. Henceforth, `r` and `rooms` command will have the same effect. Note that filtering flags such as `--allocated` and `--vacant` remain unchanged.
 
-#### 6. Deleting an alias : `dealias`
+#### Deleting an alias : `dealias`
 
 Deletes an alias for a command word to ResiReg.
 
@@ -337,7 +357,7 @@ Examples:
 
 - `dealias c/set-bin-expiry a/sb` removes the an alias `sb` for the `set-bin-expiry` command. Henceforth, typing `sb` will lead to an error message.
 
-#### 7. Asking for help as a first time user : `help`
+#### Asking for help as a first time user : `help`
 
 Shows a list of all available commands and their purpose to understand the usage of the commands.
 
@@ -359,7 +379,7 @@ clear: Clears list of students.
 You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html
 ```
 
-#### 8. Checking the syntax for a command
+#### Checking the syntax for a command
 
 Shows the purpose, syntax, and parameters of a command if you need to use the command but are unsure of its syntax.
 
@@ -379,13 +399,13 @@ Parameters: [--vacant or --allocated]
 Example: rooms
 ```
 
-#### 9. Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries (students, rooms, allocations and bin items) from ResiReg.
 
 Format: `clear`
 
-#### 10. Undo previous command : `undo`
+#### Undo previous command : `undo`
 Restores the address book to the state before 
 the previous state modifying command was executed.
 
@@ -393,7 +413,7 @@ the previous state modifying command was executed.
 in the command box will execute the command as well.
 </div>
 
-#### 11. Redo previous undo command : `redo`
+#### Redo previous undo command : `redo`
 Reverses the most recent undo command.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-y</kbd> keyboard combination
@@ -405,7 +425,7 @@ in the command box will execute the command as well.
 that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
 </div>
 
-#### 12. List previously entered commands : `history`
+#### List previously entered commands : `history`
 Lists all the commands previously entered in reverse chronological order.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
@@ -413,19 +433,19 @@ display the previous and next command respectively in the command box.
 
 </div>
 
-#### 13. Exiting ResiReg : `exit`
+#### Exiting ResiReg : `exit`
 Exits the program.
 
 Format: `exit`
 
-#### 14. View students and rooms side by side: `toggle-split`
+#### View students and rooms side by side: `toggle-split`
 While allocating rooms to students, it is probably easier to view rooms and students at the same time. If the rooms and students tabs are currently separate, `toggle-split` will merge the students and rooms tab into 1 tab that shows them side by side, which is shown the image below. You can use the `rooms` or `students` commands to switch to the combined tab as usual.
 
 Format: `toggle-split`
 
 ![](images/CombinedStudentsRoomsTab.png)
 
-#### 15. View students and rooms in separate tabs: `toggle-split`
+#### View students and rooms in separate tabs: `toggle-split`
 If the rooms and students tab are currently combined, `toggle-split` will separate them into 2 separate tabs, as shown below.
 
 Format: `toggle-split`
@@ -450,7 +470,7 @@ Just type in the `help` command!
 
 | Action                | Format, Examples                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _list rooms_          | `rooms [--allocated or --vacant]... [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
+| _list rooms_          | `rooms [--allocated or --vacant] [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
 | _add room_            | `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...` e.g.`add-room fl/11 n/101 t/CN` |
 | _edit room_           | `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<tag_name>]...` e.g.`edit-room 1 n/100`                        |
 | _delete room_         | `delete-room <index>` e.g.`delete-room 1`                        |

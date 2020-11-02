@@ -794,7 +794,7 @@ Similar to <u>UC03 - edit a student</u>, just replace student with room.
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Mainstream OS**: Windows, Linux, OS-X
 - **OHS**: Office of Housing Services at the National University of Singapore (NUS)
 - **OHS Admin**: An employee of the OHS who works at a Residential College at NUS
 - **Residential College**: A university residence for students that offers a 2-year program at NUS

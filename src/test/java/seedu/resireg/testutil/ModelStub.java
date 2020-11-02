@@ -13,6 +13,7 @@ import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -168,7 +169,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasBinItem(BinItem binItem) {
-        return false;
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
@@ -187,12 +188,27 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasDuplicateBinnedItem(Binnable itemToRestore) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void restoreItem(Binnable itemToRestore) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteExpiredBinItems() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public Semester getSemester() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSemester(Semester newSemester) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -26,6 +26,7 @@ import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -258,12 +259,27 @@ public class AddAliasCommandTest {
         }
 
         @Override
+        public boolean hasDuplicateBinnedItem(Binnable itemToRestore) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void restoreItem(Binnable itemToRestore) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteExpiredBinItems() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Semester getSemester() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSemester(Semester newSemester) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -354,7 +370,7 @@ public class AddAliasCommandTest {
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains a single alias.
      */
     private class ModelStubWithAlias extends ModelStub {
         private final CommandWordAlias commandWordAlias;
@@ -372,7 +388,7 @@ public class AddAliasCommandTest {
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that always accept the alias being added.
      */
     private class ModelStubAcceptingAliasAdded extends ModelStub {
         final ArrayList<CommandWordAlias> aliasesAdded = new ArrayList<>();

@@ -29,46 +29,46 @@ public class TypicalStudents {
             .withFaculty("FASS")
             .withStudentId("E0111110")
             .withEmail("alice@example.com")
-            .withPhone("94351253")
+            .withPhone("12345678")
             .withTags("friends").build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
-            .withFaculty("FASS")
+            .withFaculty("SOC")
             .withStudentId("E0222228")
             .withEmail("benson@example.com")
-            .withPhone("98765432")
+            .withPhone("01234567")
             .withTags("owesMoney", "friends")
             .withRoom(new RoomBuilder().withFloor("1").withRoomNumber("101").build()).build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
-            .withPhone("95352563")
+            .withPhone("34567890")
             .withEmail("carl@example.com")
-            .withFaculty("FASS")
+            .withFaculty("DEN")
             .withStudentId("E0111112").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
-            .withPhone("87652533")
-            .withFaculty("FASS")
+            .withPhone("12234567")
+            .withFaculty("DNUS")
             .withStudentId("E0111113")
             .withEmail("daniel@example.com")
             .withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("12234571")
             .withEmail("elle@example.com")
             .withFaculty("FASS")
             .withStudentId("E0111114").build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("72234573")
             .withEmail("fiona@example.com")
             .withFaculty("FASS")
             .withStudentId("E0111115").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best")
-            .withPhone("9482442")
+            .withPhone("62345673")
             .withEmail("george@example.com")
             .withFaculty("FASS")
             .withStudentId("E0111101").build();
 
     // Manually added
-    public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("12345678")
             .withEmail("stefan@example.com").withFaculty("FASS").withStudentId("E0111116").build();
-    public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Student IDA = new StudentBuilder().withName("Ida Mueller").withPhone("90123456")
             .withEmail("hans@example.com").withFaculty("FASS").withStudentId("E0111117").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}

@@ -24,7 +24,6 @@ public class MainPanel extends UiPart<Region> {
 
     private StudentsTab studentsTab;
     private RoomsTab roomsTab;
-    private PiechartsTab piechartsTab;
 
     @FXML
     private Tab binsTab;
@@ -32,7 +31,6 @@ public class MainPanel extends UiPart<Region> {
     private StudentListPanel studentListPanel;
     private RoomListPanel roomListPanel;
     private BinItemListPanel binItemListPanel;
-    private PiechartPanel piechartPanel;
 
     @FXML
     private TabPane tabPane;
@@ -44,11 +42,6 @@ public class MainPanel extends UiPart<Region> {
      */
     public MainPanel() {
         super(FXML);
-
-        // add pie chart tab
-        PiechartsOnlyTab piechartsOnlyTab = new PiechartsOnlyTab();
-        tabPane.getTabs().add(0, piechartsOnlyTab.getRoot());
-        piechartsTab = piechartsOnlyTab;
 
         addSeparateStudentsRoomsTabs();
         showStudentPanel();
@@ -67,10 +60,6 @@ public class MainPanel extends UiPart<Region> {
         showTab(roomsTab.getTab());
     }
 
-    private void showPiechartsPanel() {
-        showTab(piechartsTab.getTab());
-    }
-
     /**
      * Changes the tab displayed based on the toggle.
      *
@@ -86,9 +75,6 @@ public class MainPanel extends UiPart<Region> {
             break;
         case BIN_ITEMS:
             showTab(binsTab);
-            break;
-        case PIECHART:
-            showPiechartsPanel();
             break;
         default:
             logger.warning("Unhandled TabView");
@@ -111,16 +97,10 @@ public class MainPanel extends UiPart<Region> {
                 logic.getFilteredAllocationList(),
                 logic.getFilteredStudentList());
 
-        piechartPanel = new PiechartPanel(
-                logic.getFilteredStudentList(),
-                logic.getFilteredAllocationList(),
-                logic.getFilteredRoomList());
-
         binItemListPanel = new BinItemListPanel(logic.getFilteredBinItemList());
 
         studentsTab.setStudentListPanel(studentListPanel);
         roomsTab.setRoomListPanel(roomListPanel);
-        piechartsTab.setPiechartPanel(piechartPanel);
 
         binItemListPanelPlaceholder.getChildren()
                 .add(binItemListPanel.getRoot());

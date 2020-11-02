@@ -47,6 +47,7 @@ public class StorageStub implements Storage {
 
     @Override
     public void saveResiReg(ReadOnlyResiReg resiReg) throws IOException {
+
         throw new AssertionError("This method should not be called.");
     }
 

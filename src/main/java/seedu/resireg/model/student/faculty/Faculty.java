@@ -14,8 +14,10 @@ public class Faculty {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-        "A faculty must be listed here: http://www.nus.edu.sg/education";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+        "A faculty must be listed here: http://www.nus.edu.sg/education\n"
+            + "The following is a list of all faculty codes used in ResiReg: "
+            + FacultyEnum.toListString();
+
     public final String value;
 
     /**

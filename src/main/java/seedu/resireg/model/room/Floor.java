@@ -10,7 +10,7 @@ import static seedu.resireg.commons.util.AppUtil.checkArgument;
 public class Floor {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Floors should only contain numbers, cannot start with 0 and it should be at most 2 digits long";
+            "Floor numbers should only contain numbers, cannot start with 0 and should be at most 2 digits long";
 
     public static final String VALIDATION_REGEX = "^[1-9][0-9]?$";
     public final String value;

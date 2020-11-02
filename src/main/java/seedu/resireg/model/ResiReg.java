@@ -2,7 +2,6 @@ package seedu.resireg.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,8 +15,6 @@ import seedu.resireg.model.bin.UniqueBinItemList;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.UniqueRoomList;
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.academicyear.AcademicYear;
-import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.UniqueStudentList;
 
@@ -42,10 +39,7 @@ public class ResiReg implements ReadOnlyResiReg {
      *   among constructors.
      */
     {
-        semester = new Semester(
-                new AcademicYear(LocalDate.now().getYear()),
-                new SemesterNumber(1)
-        );
+        semester = new Semester();
         students = new UniqueStudentList();
         rooms = new UniqueRoomList();
         allocations = new UniqueAllocationList();
@@ -63,11 +57,12 @@ public class ResiReg implements ReadOnlyResiReg {
     }
 
     /**
-     *
-     * @param semester
+     * Updates the semester to a new Semester.
+     * @param newSemester the semester to update to
      */
-    public void setSemester(Semester semester) {
-        this.semester = semester;
+    public void setSemester(Semester newSemester) {
+        semester.setAcademicYear(newSemester.getAcademicYear());
+        semester.setSemesterNumber(newSemester.getSemesterNumber());
         indicateModified();
     }
 
@@ -76,9 +71,8 @@ public class ResiReg implements ReadOnlyResiReg {
         newResiReg.setStudents(toBeCopied.getStudentList());
         newResiReg.setRooms(toBeCopied.getRoomList());
         newResiReg.setBinItems(toBeCopied.getBinItemList());
-
         Semester currentSemester = toBeCopied.getSemester();
-        newResiReg.semester = currentSemester.getNextSemester();
+        newResiReg.setSemester(currentSemester.getNextSemester());
 
         return newResiReg;
     }
@@ -200,7 +194,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public boolean isAllocated(Student student) {
         requireNonNull(student);
-        return allocations.contains(student);
+        return allocations.hasStudent(student);
     }
 
     /**
@@ -208,7 +202,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public boolean isAllocated(Room room) {
         requireNonNull(room);
-        return allocations.contains(room);
+        return allocations.hasRoom(room);
     }
 
 

@@ -2,6 +2,8 @@ package seedu.resireg.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -28,8 +30,14 @@ public class SemesterDisplay extends UiPart<Region> {
         this.semester = semester;
         logger.info("Created SemesterDisplay panel");
 
-        semesterLabel.setText("Current Semester: AY" + semester.getAcademicYear()
-            + " Semester " + semester.getSemesterNumber());
+        // Create a String format of "Current Semester: AY{year} Semester {semester}" to bind to
+        StringBinding sb = Bindings.createStringBinding(() ->
+                        String.format("Current Semester: AY%d Semester %d",
+                                semester.getAcademicYear(),
+                                semester.getSemesterNumber()),
+                semester.semesterNumberProperty(),
+                semester.academicYearProperty());
+        semesterLabel.textProperty().bind(sb);
     }
 
     @Override
@@ -47,6 +55,6 @@ public class SemesterDisplay extends UiPart<Region> {
         // state check
         SemesterDisplay display = (SemesterDisplay) other;
         return semesterLabel.getText().equals(display.semesterLabel.getText())
-            && semester.equals(display.semester);
+                && semester.equals(display.semester);
     }
 }
