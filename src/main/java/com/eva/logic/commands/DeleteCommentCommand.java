@@ -1,4 +1,8 @@
 package com.eva.logic.commands;
+import static com.eva.commons.core.PanelState.APPLICANT_LIST;
+import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
+import static com.eva.commons.core.PanelState.STAFF_LIST;
+import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
@@ -8,10 +12,13 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.eva.commons.core.Messages;
+import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
 import com.eva.model.comment.Comment;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
@@ -26,40 +33,48 @@ import com.eva.model.tag.Tag;
 
 public class DeleteCommentCommand extends CommentCommand {
 
-    public static final String COMMAND_WORD = "deletecomment";
-
-    public static final String MISSING_PERSONTYPE_MESSAGE = "Need to specify applicant or staff \n"
-            + "e.g: 'deletecomment s- ...' or 'deletecomment a- ...'";
+    public static final String COMMAND_WORD = "delc";
 
     public static final String MESSAGE_DELETECOMMENT_USAGE = "Format for this command: \n"
-            + COMMAND_WORD + " INDEX <s-/a-> ti/TITLE";
+            + COMMAND_WORD + " INDEX c/ ti/TITLE";
 
     private static final String NO_TITLE_MESSAGE = "No such title. To delete comment, "
-            + "type: " + DeleteCommand.COMMAND_WORD + " INDEX c- t:<TITLE>";
+            + "Format: " + DeleteCommand.COMMAND_WORD + " INDEX c/ t/TITLE";
 
-    private String personType;
 
     /**
      * Creates delete comment command object
      * @param index
      * @param commentPersonDescriptor
-     * @param personType
      */
-    public DeleteCommentCommand(Index index, CommentCommand.CommentPersonDescriptor commentPersonDescriptor,
-                                String personType) {
+    public DeleteCommentCommand(Index index, CommentCommand.CommentPersonDescriptor commentPersonDescriptor) {
         super(index, commentPersonDescriptor);
-        this.personType = personType;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        PanelState panelState = model.getPanelState();
 
         List<? extends Person> lastShownList;
-        if (this.personType.equals("applicant")) {
+        if (panelState.equals(APPLICANT_LIST) || panelState.equals(APPLICANT_PROFILE)) {
             lastShownList = model.getFilteredApplicantList();
-        } else {
+        } else if (panelState.equals(STAFF_LIST) || panelState.equals(STAFF_PROFILE)) {
             lastShownList = model.getFilteredStaffList();
+        } else {
+            throw new CommandException("Program spoil");
+        }
+
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(index)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
+        } else if (panelState.equals(STAFF_PROFILE)) {
+            if (!model.getCurrentViewStaff().getIndex().equals(index)) {
+                throw new CommandException("Please go to staff profile with keyed in index"
+                        + " or staff list panel with 'list s-'");
+            }
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -72,15 +87,32 @@ public class DeleteCommentCommand extends CommentCommand {
             if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
-
-            if (editedPerson instanceof Staff) {
+            switch (panelState) {
+            case STAFF_LIST:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-            } else {
+                break;
+            case APPLICANT_LIST:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+                break;
+            case STAFF_PROFILE:
+                model.setStaff((Staff) personToEdit, (Staff) editedPerson);
+                model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+                Staff staffToView = (Staff) lastShownList.get(index.getZeroBased());
+                model.setCurrentViewStaff(new CurrentViewStaff(staffToView, index));
+                break;
+            case APPLICANT_PROFILE:
+                model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
+                model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+                Applicant applicantToView = (Applicant) lastShownList.get(index.getZeroBased());
+                model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
+                break;
+            default:
+                throw new CommandException("Unknown Panel");
             }
-            return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, editedPerson));
+            return new CommandResult(String.format(MESSAGE_DELETE_COMMENT_SUCCESS, editedPerson),
+                    false, false, true);
         } catch (CommandException e) {
             throw new CommandException(NO_TITLE_MESSAGE);
         }
@@ -129,9 +161,4 @@ public class DeleteCommentCommand extends CommentCommand {
             throw new CommandException("Specify staff or applicant with 's-' or 'a-'.");
         }
     }
-
-    public String getPersonType() {
-        return this.personType;
-    }
-
 }

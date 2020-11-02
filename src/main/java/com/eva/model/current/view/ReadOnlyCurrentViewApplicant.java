@@ -2,6 +2,7 @@ package com.eva.model.current.view;
 
 import java.util.Optional;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.application.Application;
@@ -28,4 +29,6 @@ public interface ReadOnlyCurrentViewApplicant {
      * Returns the application of the current view applicant.
      */
     Application getApplication();
+
+    Index getIndex();
 }

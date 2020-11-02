@@ -2,6 +2,7 @@ package com.eva.model.current.view;
 
 import java.util.Optional;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -28,4 +29,6 @@ public interface ReadOnlyCurrentViewStaff {
      * This list will not contain any duplicate leaves.
      */
     ObservableList<Leave> getLeaveList();
+
+    Index getIndex();
 }
