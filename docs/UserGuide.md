@@ -3,20 +3,22 @@ layout: page
 title: User Guide
 ---
 
+<!-- <div class="owo"> -->
 * Table of Contents
 {:toc}
+<!-- </div> -->
 
 ---------------
 ## 1. Introduction
 
-ChopChop is a food recipe management system, which aims to make it easier for people to manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands; For fast typists, ChopChop will be able to manage your recipes more efficiently than other applications. Even so, it also features a graphical user interface (GUI) to display ingredients and recipes in an interactive form.
+ChopChop is a food recipe management system, which aims to make it easier for people to manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands; for fast typists, ChopChop will be able to manage your recipes more efficiently than other applications. Even so, it also features a graphical user interface (GUI) to display ingredients and recipes in an interactive manner.
 
 Furthermore, our command interface also features [tab completion](#TabCompletion), which will greatly increase the speed at which you can use ChopChop by reducing the amount of typing required.
 
 
 ### 1.1. Navigating this Document
 
-This user guide provides an in-depth guide about how to use ChopChop. Choose a topic from the Table of Contents to find answers, get step-by-step instructions. In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
+This user guide provides an in-depth guide about how to use ChopChop. Choose a topic from the Table of Contents to find answers and get step-by-step instructions. In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
 
 Specifically, this document covers:
 1. The components of the user interface
@@ -73,7 +75,7 @@ An ingredient consists of a quantity with an associated unit, and an optional ex
 
 For example, you might have <i>500 mL</i> of milk that you bought last week that expires tomorrow, while you have another <i>1.5 L</i> of milk that you bought today, expiring two weeks from now. ChopChop will track both these *sets*, and will intelligently use the earliest-expiring set when doing its accounting.
 
-For a more in-depth look at how ChopChop handles quantities, see [this section](#quantities-and-units).
+For a more in-depth look at how ChopChop handles quantities, see [this section](#QuantitiesAndUnits).
 
 ### 3.2. Recipes
 A recipe consists of a list of used ingredients (and their quantities), as well as a list of steps.
@@ -129,58 +131,70 @@ Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
 
 <a name="CommandBox"></a>
 ### 4.1 Command Box
+{:.no_toc}
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
-After typing your commands, press <kbd>enter</kbd> to input the command.
+After typing your commands, press <kbd>enter</kbd> to input the command. You can also use the <kbd>up</kbd> and <kbd>down</kbd> arrow keys to navigate through the history of commands you've typed previously.
 
-To learn about the commands you can perform, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed -.
+To learn about the commands you can perform, check out our [command summary](#CommandSummary) for a quick overview or our [commands](#Commands) for a detailed list.
 If you have yet to check out ChopChop's [tab completion](#TabCompletion) section, do drop by to learn this handy feature!
 
 
 
 <a name="CommandOutput"></a>
 ### 4.2 Command Output
+{:.no_toc}
 ChopChop will always display textual responses to the commands you input — the `Command Output` is where you can view the responses.
 
 
 
 <a name="RecipeButton"></a>
 ### 4.3 Recipe Button
+{:.no_toc}
 ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` as shown in Figure 1.2 when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
 
 
 
 <a name="IngredientButton"></a>
 ### 4.4 Ingredient Button
+{:.no_toc}
 ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the `Main Display Area` as shown in Figure 1.3 when you press the `Ingredients` button.
 
 
 
 <a name="RecommendationButton"></a>
 ### 4.5 Recommendation Button
+{:.no_toc}
 ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be display as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` when you press the `Recommendations` button.
 
 
 
 <a name="FavouriteButton"></a>
 ### 4.6 Favourite Button
+{:.no_toc}
 ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles](#RecipeTiles).
 
 
 
 <a name="StatisticsBox"></a>
 ### 4.7 Statistics Box
-ChopChop is able to produce statistics based on the food you make! -insert more info cause idk what stats does atm-
+{:.no_toc}
+ChopChop is able to produce statistics based on the food you make!
+<div style="background-color: red">
+<h3 style="color: white; text-align: center">TODO NOT FINISHED</h3>
+</div>
 
 
 
 <a name="RecipeTiles"></a>
 ### 4.8 Recipe Tiles
+{:.no_toc}
 ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in Figure 1.4.
 
 
 
 <a name="IngredientTiles"></a>
 ### 4.9 Ingredient Tiles
+{:.no_toc}
 ChopChop is able to show you your ingredients in the form of tiles, as shown in Figure 1.3. In each tile, there are 5 components:
 
 1. The `Index` shows the index of the ingredient for easier referencing.
@@ -199,24 +213,28 @@ Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
 
 <a name="RecipeName"></a>
 ### 4.10 Recipe Name and Tags
+{:.no_toc}
 ChopChop displays the name of the recipe, and the tags associated with it in this area.
 
 
 
 <a name="RecipeIngredients"></a>
 ### 4.11 Recipe Ingredients
+{:.no_toc}
 ChopChop displays the ingredients you need in the recipe here. The format of the display is the `Ingredient`, follow by the `(Quantity)`.
 
 
 
 <a name="RecipeSteps"></a>
 ### 4.12 Recipe Steps
+{:.no_toc}
 ChopChop lists down the steps you can take to create the dish here.
 
 
 
 <a name="MenuBar"></a>
 ### 4.13 Menu Bar
+{:.no_toc}
 ChopChop provides two buttons here — `File` and `Help`. Click the `exit` option under `File` to exit ChopChop, and if you want to view this User Guide, you can click the `help` option under `Help`.
 
 
@@ -248,8 +266,13 @@ For example, the <i>add ingredient</i> command is specified like this: `add ingr
 * In general, the order of arguments is important; for example, the order of `/step` determines the order of the steps in the recipe, while a `/qty` in an <i>add recipe</i> command must only appear after an `/ingredient`.
 
 
+#### 5.1.1. Escaping Slashes
 
+Since ChopChop uses `/` to denote argument names, it would seem that recipe and ingredient names cannot contain slashes. Worry not, because you can <i>escape</i> these slashes! This is done by prefixing the `/` with a backslash, eg. `\/`. For example, if you want to make a recipe named `some / recipe`, you would instead use `some \/ recipe`.
 
+In other contexts, the backslash (`\`) behaves like a normal character and doesn't do anything special.
+
+When tab-completing names, ChopChop will automatically insert the backslashes for you, so that you don't have to worry about it when typing your commands.
 
 
 <a name="HelpCommand"></a>
@@ -294,6 +317,9 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 ### 5.4. Recipe Commands
 
+These commands allow you to add, delete, edit, view, and make recipes.
+
+
 <a name="ViewRecipeCommand"></a>
 #### 5.4.1 Viewing Recipes — **`view`**`recipe`
 This command opens the detailed recipe view, allowing you to see the steps, ingredients, and tags of the recipe.
@@ -315,7 +341,7 @@ Figure 3.1: <i>The recipe list view</i>
 After pressing <kbd>enter</kbd>, you will see this view, showing the recipe you wish to view:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/add_recipe_2.png" width="75%" /> <br />
+<img src="images/ug/view_recipe_2.png" width="75%" /> <br />
 Figure 3.2: <i>The detailed recipe view</i>
 </div>
 
@@ -665,6 +691,48 @@ Again, to reset the search filter or go back to the full recipe view, you can cl
 
 
 
+<a name="MakeRecipeCommand"></a>
+#### 5.4.1 Making Recipes — **`make`**`recipe`
+This command allows you to <i>make</i> a recipe, which will add it to the statistics tracker, and deduct the appropriate amounts from ChopChop's internal ingredient inventory.
+
+If you do not have sufficient ingredients to make the recipe, an error message is shown. After the recipe is made, you will be brought to the ingredient list showing the updated ingredient amounts.
+
+**Usage**: `make recipe <#REF>`
+
+Examples:
+- `make recipe pancakes` <br />
+  This makes the recipe named 'pancakes'. Note that the name here is case insensitive.
+
+To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/make_recipe_1.png" width="75%" /> <br />
+Figure 9.1: <i>Making</i>
+</div>
+
+After pressing <kbd>enter</kbd>, you will see this view, showing the recipe you wish to view:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/make_recipe_2.png" width="75%" /> <br />
+Figure 9.2: <i>The detailed recipe view</i>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### 5.5. Ingredient commands
 
 <a name="ListIngredientCommand"></a>
@@ -679,7 +747,7 @@ This command shows a list of all recipes in ChopChop. As with the `list recipes`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_ingredient.png" width="75%" /> <br />
-Figure 9: <i>The ingredient list view</i>
+Figure 10: <i>The ingredient list view</i>
 </div>
 
 
@@ -695,7 +763,7 @@ This command adds an ingredient to ChopChop, with an optional quantity and expir
 As mentioned in the overview above, an ingredient can consist of multiple sets; the `add ingredient` command will intelligently *combine* ingredients as appropriate.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Note:** Ingredients need to have compatible units in order to be combined; see [this section](#quantities-and-units) for how it works.
+:information_source: **Note:** Ingredients need to have compatible units in order to be combined; see [this section](#QuantitiesAndUnits) for how it works.
 </div>
 
 If the new ingredient has `/tag` options that are not present in the existing ingredient, then they are added as well.
@@ -716,35 +784,35 @@ Suppose you just finished a grocery run, and want to add the items to ChopChop. 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 10.1: <i>Adding 2 litres of milk</i>
+Figure 11.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 10.2: <i>The newly added milk ingredient</i>
+Figure 11.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 10.3: <i>Adding 24 blueberries</i>
+Figure 11.3: <i>Adding 24 blueberries</i>
 </div>
 
 This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 10.4: <i>You now have 29 blueberries</i>
+Figure 11.4: <i>You now have 29 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
-Figure 10.5: <i>Ingredients must have compatible units to be combined</i>
+Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -762,7 +830,7 @@ This command deletes a specific ingredient from ChopChop. Similar to the `add in
 If `/qty` is not specified, then the behaviour of this command is to completely remove the ingredient from ChopChop. Worry not: if you accidentally delete something, you can always `undo` it.
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Note:** If specified, the quantity needs to have compatible units with the existing ingredient; see [this section](#quantities-and-units) for how it works.
+:information_source: **Note:** If specified, the quantity needs to have compatible units with the existing ingredient; see [this section](#QuantitiesAndUnits) for how it works.
 </div>
 
 **Usage**: `delete ingredient <#REF> [/qty <quantity>]`
@@ -777,14 +845,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 11.1: <i>Removing 250ml of milk</i>
+Figure 12.1: <i>Removing 250ml of milk</i>
 </div>
 
 Notice how the amount of milk decreased from 2 litres to 1.75 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 11.2: <i>You now only have 1.75 litres of milk left</i>
+Figure 12.2: <i>You now only have 1.75 litres of milk left</i>
 </div>
 
 
@@ -810,14 +878,14 @@ For example, suppose you wanted to find all ingredients containing fish (not in 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 12.1: <i>The complete ingredient list</i>
+Figure 13.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 12.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 13.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
@@ -854,14 +922,14 @@ Examples:
 To illustrate, suppose you want to search for ingredients with 'tags' **all time** and **favourite**, and expire earlier than the 'expiry date' **2020-12-31**, you could use `filter ingredient /tag all time /expiry 2020-12-31 /expiry 2021-01-01 /tag favourite`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
-Figure 13.1: <i>The starting state of the application</i>
+Figure 14.1: <i>The starting state of the application</i>
 </div>
 
 After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing only the matching ingredient, **apple**.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
-Figure 13.2: <i>The ingredient matching all criteria provided</i>
+Figure 14.2: <i>The ingredient matching all criteria provided</i>
 </div>
 
 Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command:
@@ -1013,6 +1081,7 @@ For easy reference, here are the commands that ChopChop supports, listed in alph
 
 
 -------------------------
+<a name="QuantitiesAndUnits"></a>
 ## 6. Quantities and Units
 
 In order to keep track of ingredients correctly, ChopChop needs to know about their amounts. Currently, there are 3 'kinds' of units supported; volume, mass (weight), and counts. These are the supported units specifically:
