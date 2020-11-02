@@ -266,8 +266,13 @@ For example, the <i>add ingredient</i> command is specified like this: `add ingr
 * In general, the order of arguments is important; for example, the order of `/step` determines the order of the steps in the recipe, while a `/qty` in an <i>add recipe</i> command must only appear after an `/ingredient`.
 
 
+#### 5.1.1. Escaping Slashes
 
+Since ChopChop uses `/` to denote argument names, it would seem that recipe and ingredient names cannot contain slashes. Worry not, because you can <i>escape</i> these slashes! This is done by prefixing the `/` with a backslash, eg. `\/`. For example, if you want to make a recipe named `some / recipe`, you would instead use `some \/ recipe`.
 
+In other contexts, the backslash (`\`) behaves like a normal character and doesn't do anything special.
+
+When tab-completing names, ChopChop will automatically insert the backslashes for you, so that you don't have to worry about it when typing your commands.
 
 
 <a name="HelpCommand"></a>
