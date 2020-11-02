@@ -450,7 +450,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_printCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = FILE_NAME_DESC;
         SuggestionCommandParser parser = new SuggestionCommandParser("prin");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -459,18 +459,27 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + LOW_QUANTITY_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
+        userInput = FILE_NAME_DESC;
         parser = new SuggestionCommandParser("print", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.PRINT_COMMAND_WORD + userInput
                 + "\n" + PrintCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + LOCATION_DESC_BANANA;
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_bookmarkCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes (single)
         String userInput = SERIAL_NUMBER_DESC_BANANA;
         SuggestionCommandParser parser = new SuggestionCommandParser("bookma");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -479,18 +488,43 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + LOW_QUANTITY_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: incorrect command word with valid prefixes (multiple)
+        userInput = userInput + SERIAL_NUMBER_DESC_APPLE;
+        expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.BOOKMARK_COMMAND_WORD + SERIAL_NUMBER_DESC_BANANA
+                + SERIAL_NUMBER_DESC_APPLE + "\n" + BookmarkCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes (single)
+        userInput = SERIAL_NUMBER_DESC_BANANA;
         parser = new SuggestionCommandParser("bookmark", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.BOOKMARK_COMMAND_WORD + userInput
                 + "\n" + BookmarkCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + FILE_NAME_DESC;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes (multiple)
+        userInput = userInput + SERIAL_NUMBER_DESC_APPLE;
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.BOOKMARK_COMMAND_WORD + SERIAL_NUMBER_DESC_BANANA
+                + SERIAL_NUMBER_DESC_APPLE + "\n" + BookmarkCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_unbookmarkCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes (single)
         String userInput = SERIAL_NUMBER_DESC_BANANA;
         SuggestionCommandParser parser = new SuggestionCommandParser("unbookma");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -499,11 +533,36 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + NAME_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: incorrect command word with valid prefixes (multiple)
+        userInput = userInput + SERIAL_NUMBER_DESC_APPLE;
+        expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.UNBOOKMARK_COMMAND_WORD + SERIAL_NUMBER_DESC_BANANA
+                + SERIAL_NUMBER_DESC_APPLE + "\n" + UnbookmarkCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes (single)
+        userInput = SERIAL_NUMBER_DESC_BANANA;
         parser = new SuggestionCommandParser("unbookmark", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.UNBOOKMARK_COMMAND_WORD + userInput
                 + "\n" + UnbookmarkCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + FILE_NAME_DESC;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes (multiple)
+        userInput = userInput + SERIAL_NUMBER_DESC_APPLE;
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.UNBOOKMARK_COMMAND_WORD + SERIAL_NUMBER_DESC_BANANA
+                + SERIAL_NUMBER_DESC_APPLE + "\n" + UnbookmarkCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
