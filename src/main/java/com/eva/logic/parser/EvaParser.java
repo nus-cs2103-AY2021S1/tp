@@ -97,7 +97,7 @@ public class EvaParser {
             return new HelpCommand();
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommandParser().parse(arguments);
 
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
