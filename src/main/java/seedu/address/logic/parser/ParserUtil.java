@@ -96,6 +96,9 @@ public class ParserUtil {
         if (!trimmedQuantity.matches(VALIDATION_REGEX_QUANTITY)) {
             throw new ParseException(Ingredient.MESSAGE_CONSTRAINTS);
         }
+        if (!Ingredient.isValidQuantity(quantity)) {
+            throw new ParseException(Ingredient.QUANTITY_CONSTRAINTS);
+        }
         return trimmedQuantity;
     }
 
@@ -136,7 +139,9 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            if (!tagName.equals("")) {
+                tagSet.add(parseTag(tagName));
+            }
         }
         return tagSet;
     }

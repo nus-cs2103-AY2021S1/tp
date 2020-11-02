@@ -95,9 +95,19 @@ public class Recipe {
                 && otherRecipe.getName().equals(getName())
                 && otherRecipe.getInstruction().equals(getInstruction())
                 && otherRecipe.getRecipeImage().equals(getRecipeImage())
-                && otherRecipe.getIngredient().equals(getIngredient())
+                && isSameIngredients(otherRecipe.getIngredient())
                 && otherRecipe.getCalories().equals(getCalories())
                 && otherRecipe.getTags().equals(getTags());
+    }
+
+    private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
+        ArrayList<Ingredient> ingredients = getIngredient();
+        for (int i = 0; i < ingredients.size(); i ++) {
+            if (!ingredients.get(i).isSameIngredient(otherIngredients.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -109,7 +119,7 @@ public class Recipe {
         String recipeName = PREFIX_NAME.toString() + name;
         String ingredients = PREFIX_INGREDIENT.toString() + stringifyIngredients(this.ingredients);
         String calories = PREFIX_CALORIES.toString() + this.calories.getValue();
-        String instructions = PREFIX_INSTRUCTION.toString() + stringifyInstructions(this.instructions);
+        String instructions = stringifyInstructions(this.instructions);
         String image = PREFIX_RECIPE_IMAGE + this.recipeImage.getValue();
         String tags = stringifyTags(this.tags);
         return commandWord + " " + position + " " + recipeName + " " + ingredients + " " + calories
@@ -132,33 +142,41 @@ public class Recipe {
 
     private String stringifyTags(Set<Tag> set) {
         int size = set.size();
-        String tags = PREFIX_TAG.toString();
-        for (Tag tag: set) {
-            if (size == 1) {
-                tags += tag.getTagName();
-            } else {
-                tags += tag.getTagName() + " " + PREFIX_TAG;
+        if (size == 0) {
+            return "";
+        } else {
+            String tags = PREFIX_TAG.toString();
+            for (Tag tag: set) {
+                if (size == 1) {
+                    tags += tag.getTagName();
+                } else {
+                    tags += tag.getTagName() + " " + PREFIX_TAG;
+                }
+                size--;
             }
-            size--;
+            return tags;
         }
-        return tags;
     }
 
     private String stringifyInstructions(ArrayList<Instruction> instructions) {
         int len = instructions.size();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < len; i++) {
-            Instruction instruction = instructions.get(i);
-            String instrStr = instruction.toString();
-            int firstBracket = instrStr.indexOf(")");
-            instrStr = instrStr.substring(firstBracket + 1);
-            if (i == len - 1) {
-                sb.append(instrStr);
-            } else {
-                sb.append(instrStr + ". ");
+        if (len == 0) {
+            return "";
+        } else {
+            StringBuilder sb = new StringBuilder(PREFIX_INSTRUCTION.toString());
+            for (int i = 0; i < len; i++) {
+                Instruction instruction = instructions.get(i);
+                String instrStr = instruction.toString();
+                int firstBracket = instrStr.indexOf(")");
+                instrStr = instrStr.substring(firstBracket + 1);
+                if (i == len - 1) {
+                    sb.append(instrStr);
+                } else {
+                    sb.append(instrStr + ". ");
+                }
             }
+            return sb.toString();
         }
-        return sb.toString();
     }
 
     /**
