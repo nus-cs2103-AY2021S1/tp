@@ -35,7 +35,7 @@ public class ModuleBuilder {
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
-        moduleName = new ModuleName(DEFAULT_MODULENAME);
+        moduleName = new ModuleName(DEFAULT_MODULE_NAME);
         zoomLinkMap = new HashMap<ModuleLesson, ZoomLink>();
         //zoomLinkMap.put(new ModuleLesson(DEFAULT_MODULELESSONTYPE), new ZoomLink(DEFAULT_ZOOMLINK));
         modularCredits = new ModularCredits(DEFAULT_MODULARCREDITS);

@@ -3,7 +3,7 @@ package seedu.address.model.module;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2103T;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2030;
@@ -41,7 +41,7 @@ public class UniqueModuleListTest {
     public void contains_moduleWithSameIdentityFieldsInList_returnsTrue() {
         uniqueModuleList.add(CS2030);
         Module editedModule = new ModuleBuilder(CS2030)
-                .withZoomLink(VALID_MODULE_LESSON_CS2103T, VALID_ZOOM_LINK_CS2103T).build();
+                .withZoomLink(VALID_MODULE_LESSON, VALID_ZOOM_LINK_CS2103T).build();
         assertTrue(uniqueModuleList.contains(editedModule));
     }
 
@@ -84,7 +84,7 @@ public class UniqueModuleListTest {
     public void setModule_editedModuleHasSameIdentity_success() {
         uniqueModuleList.add(CS2030);
         Module editedModule = new ModuleBuilder(CS2030)
-                .withZoomLink(VALID_MODULE_LESSON_CS2103T, VALID_ZOOM_LINK_CS2103T).build();
+                .withZoomLink(VALID_MODULE_LESSON, VALID_ZOOM_LINK_CS2103T).build();
         uniqueModuleList.setModule(CS2030, editedModule);
         UniqueModuleList expectedUniqueModuleList = new UniqueModuleList();
         expectedUniqueModuleList.add(editedModule);

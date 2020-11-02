@@ -11,6 +11,11 @@ import seedu.address.commons.util.StringUtil;
 public class NameContainsKeywordsPredicate implements Predicate<Contact> {
     private final List<String> keywords;
 
+    /**
+     * Creates and initialises a NameContainsKeywordsPredicate object.
+     *
+     * @param keywords List of keywords to test for matching contacts.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
         assert !keywords.isEmpty() : "At least one search keyword must be present";
         this.keywords = keywords;
