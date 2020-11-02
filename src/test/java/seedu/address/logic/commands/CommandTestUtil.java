@@ -120,6 +120,8 @@ public class CommandTestUtil {
             NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS + INSTRUCTION_DESC_MARGARITAS
             + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
 
+    public static final String EMPTY_TAG_DESC = "";
+
     //Invalid Recipe Name with prefix
     public static final String INVALID_NAME_DESC = " "
             + PREFIX_NAME + "Butter & Chicken!"; // only alphanumeric characters allowed
@@ -144,6 +146,8 @@ public class CommandTestUtil {
     //Invalid Tags with prefix
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG
             + "healthy*"; // only alphanumeric characters allowed
+
+    //Valid Tags with prefix
     public static final String MISSING_TAG_DESC = " " + PREFIX_TAG;
 
     //Invalid Instructions
