@@ -245,7 +245,7 @@ ChopChop provides two buttons here — `File` and `Help`. Click the `exit` optio
 
 While ChopChop has a graphical user interface, the main method of interaction is through the use of *typed commands*. Using these commands as described below, you can manipulate your recipes and ingredients without ever needing to move your mouse!
 
-Commands should be typed in the <i>Command Box</i> — you can refer to <i>Figure 1.2</i> above if you get lost.
+Commands should be typed in the <i>Command Box</i> — you can refer to <i>Figure 1.2</i> above if you get lost. ChopChop also features [tab completion](#TabCompletion), which will make typing commands easier.
 
 ### 5.1&ensp;Command Syntax
 
@@ -275,8 +275,73 @@ In other contexts, the backslash (`\`) behaves like a normal character and doesn
 When tab-completing names, ChopChop will automatically insert the backslashes for you, so that you don't have to worry about it when typing your commands.
 
 
+<a name="TabCompletion"></a>
+### 5.2&ensp;Tab Completion
+
+Suppose you wanted to add a recipe for pancakes, and you wanted real, <i>industrial strength</i> pancakes (unlike the simplified recipe we'll be using below) — the list of ingredients would look something like this:
+
+```
+add recipe Pancakes
+  /ingredient flour /qty 290g
+  /ingredient egg /qty 1
+  /ingredient sugar /qty 60g
+  /ingredient baking powder /qty 4tsp
+  /ingredient baking soda /qty 0.25tsp
+  /ingredient salt /qty 3g
+  /ingredient milk /qty 440ml
+  /ingredient butter /qty 60g
+  /ingredient vanilla extract /qty 2tsp
+  /step ...
+```
+
+That certainly seems cumbersome to type out in full, so what if there was a way to speed it up drastically? You can, simply by pressing the <kbd>tab</kbd> key to let ChopChop &ldquo;fill-in-the-blanks&rdquo; for you!
+
+#### 5.2.1&ensp;Introduction to Tab Completion
+
+Here's what you can do instead (where <kbd>tab</kbd> represents pressing the tab key):
+<pre>
+a <kbd>tab</kbd> r <kbd>tab</kbd> Pancakes
+  /i <kbd>tab</kbd> f <kbd>tab</kbd> /q <kbd>tab</kbd> 290g
+  /i <kbd>tab</kbd> e <kbd>tab</kbd> /q <kbd>tab</kbd> 1
+  /i <kbd>tab</kbd> su <kbd>tab</kbd> /q <kbd>tab</kbd> 60g
+  /i <kbd>tab</kbd> baking p <kbd>tab</kbd> /q <kbd>tab</kbd> 4tsp
+  /i <kbd>tab</kbd> baking s <kbd>tab</kbd> /q <kbd>tab</kbd> 0.25tsp
+  /i <kbd>tab</kbd> sa <kbd>tab</kbd> /q <kbd>tab</kbd> 3g
+  /i <kbd>tab</kbd> m <kbd>tab</kbd> /q <kbd>tab</kbd> 440ml
+  /i <kbd>tab</kbd> bu <kbd>tab</kbd> /q <kbd>tab</kbd> 60g
+  /i <kbd>tab</kbd> v <kbd>tab</kbd> /q <kbd>tab</kbd> 2tsp
+</pre>
+
+At just 126 compared to 289 keystrokes, that's more than a 50% reduction! ChopChop will intelligently fill in commands, parameter names (eg. `/ingredient`), recipe names, ingredient names, and tag names.
+
+
+#### 5.2.2&ensp;Using Tab Completion
+
+How does it work? ChopChop uses the current text when completing and searches for the <i>appropriate</i> matching items; it knows to look for ingredient names while within an `/ingredient` parameter, and to look for ingredient tags instead of recipe tags when in an `add ingredient` command.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:** For tab completion to work, you must type at least one character before pressing <kdb>tab</kdb>. ChopChop cannot read your mind!
+</div>
+
+What if there are multiple items that share a prefix, for example <i>baking powder</i> and <i>baking soda</i> in the pancake recipe above? Worry not; pressing <kbd>tab</kbd> <i>repeatedly</i> will cycle through the available completions, and they are sorted lexicographically (length, followed by alphabetical order) — pressing <kbd>tab</kbd> after `/ingredient b` would give you <i>butter</i>, <i>baking powder</i>, and <i>baking soda</i>, in that order.
+
+The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle between `find` and `filter`.
+
+
+
+
+
+
+
+
+
+<a name="GroupGeneralCommands"></a>
+### 5.3&ensp;General Commands
+
+These commands are general commands that do not operate on ingredients or recipes.
+
 <a name="HelpCommand"></a>
-### 5.2&ensp;Getting Help — **`help`**
+#### 5.3.1&ensp;Getting Help — **`help`**
 
 This command shows a message with a link to this user guide; you can use it to easily access this page from the application. The link can be clicked, and will open this page in your web browser.
 
@@ -307,7 +372,7 @@ Examples:
 
 
 <a name="QuitCommand"></a>
-### 5.3&ensp;Quitting ChopChop — **`quit`**
+#### 5.3.2&ensp;Quitting ChopChop — **`quit`**
 This command quits ChopChop. You can rest assured that your data is automatically saved whenever a command is executed, so you do not need to save it manually before quitting.
 
 **Usage**: `quit`
@@ -315,7 +380,7 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 
 <a name="UndoCommand"></a>
-### 5.4&ensp;Undoing Commands — **`undo`**
+#### 5.3.3&ensp;Undoing Commands — **`undo`**
 Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
 
 **Usage**: `undo`
@@ -325,7 +390,7 @@ Undoes the last undoable command. Undoable commands are commands that involve ch
 
 
 <a name="RedoCommand"></a>
-### 5.5&ensp;Redoing Commands — **`redo`**
+#### 5.3.4&ensp;Redoing Commands — **`redo`**
 Redoes the last redoable command. All undoable commands (as described [above](#UndoCommand)) can be redone.
 
 **Usage**: `redo`
@@ -333,14 +398,14 @@ Redoes the last redoable command. All undoable commands (as described [above](#U
 
 
 
-
-### 5.6&ensp;Recipe Commands
+<a name="GroupRecipeCommands"></a>
+### 5.4&ensp;Recipe Commands
 
 These commands allow you to add, delete, edit, view, and make recipes.
 
 
 <a name="ViewRecipeCommand"></a>
-#### 5.6.1&ensp;Viewing Recipes — **`view`**`recipe`
+#### 5.4.1&ensp;Viewing Recipes — **`view`**`recipe`
 This command opens the detailed recipe view, allowing you to see the steps, ingredients, and tags of the recipe.
 
 **Usage**: `view recipe <#REF>`
@@ -370,7 +435,7 @@ Figure 3.2: <i>The detailed recipe view</i>
 
 
 <a name="ListRecipeCommand"></a>
-#### 5.6.2&ensp;Listing Recipes — **`list`**`recipes`
+#### 5.4.2&ensp;Listing Recipes — **`list`**`recipes`
 This command shows a list of all recipes in ChopChop. You can use this to switch panes (between recipes and ingredients) without using the mouse, as well as to clear any filters that might have been applied due to previous commands (eg. `find` and `filter`).
 
 **Usage**: `list recipes`
@@ -391,7 +456,7 @@ Figure 4: <i>The recipe list view</i>
 
 
 <a name="AddRecipeCommand"></a>
-#### 5.6.3&ensp;Adding Recipes — **`add`**`recipe`
+#### 5.4.3&ensp;Adding Recipes — **`add`**`recipe`
 This command adds a recipe to ChopChop, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
 
 **Usage**:
@@ -453,7 +518,7 @@ Figure 5.3: <i>The newly created recipe in the recipe list</i>
 
 
 <a name="EditRecipeCommand"></a>
-#### 5.6.4&ensp;Editing Recipes — **`edit`**`recipe`
+#### 5.4.4&ensp;Editing Recipes — **`edit`**`recipe`
 This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
 To accommodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
@@ -606,7 +671,7 @@ And now the pancake recipe is complete!
 
 
 <a name="DeleteRecipeCommand"></a>
-#### 5.6.5&ensp;Deleting Recipes — **`delete`**`recipe`
+#### 5.4.5&ensp;Deleting Recipes — **`delete`**`recipe`
 This command deletes a specific recipe from ChopChop. Don't worry if you did this accidentally, because commands can be undone! (see: [undo](#UndoCommand)).
 
 **Usage**: `delete recipe <#REF>`
@@ -622,7 +687,7 @@ Examples:
 
 
 <a name="FindRecipeCommand"></a>
-#### 5.6.6&ensp;Finding Recipes — **`find`**`recipe`
+#### 5.4.6&ensp;Finding Recipes — **`find`**`recipe`
 This command finds all recipes containing the given keywords in the name.
 
 **Usage**: `find recipe <keyword> [<keyword>]...`
@@ -664,7 +729,7 @@ Figure 8.3: <i>Back to the main recipe list</i>
 
 
 <a name="FilterRecipeCommand"></a>
-#### 5.6.7&ensp;Filtering Recipes — **`filter`**`recipe`
+#### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe`
 This command filters all recipes and lists those containing all ingredients and tags specified in the command.
 
 **Usage**:
@@ -711,7 +776,7 @@ Again, to reset the search filter or go back to the full recipe view, you can cl
 
 
 <a name="MakeRecipeCommand"></a>
-#### 5.6.8&ensp;Making Recipes — **`make`**`recipe`
+#### 5.4.8&ensp;Making Recipes — **`make`**`recipe`
 This command allows you to <i>make</i> a recipe, which will add it to the statistics tracker, and deduct the appropriate amounts from ChopChop's internal ingredient inventory.
 
 If you do not have sufficient ingredients to make the recipe, an error message is shown. After the recipe is made, you will be brought to the ingredient list showing the updated ingredient amounts.
@@ -751,11 +816,11 @@ Figure 9.2: <i>The detailed recipe view</i>
 
 
 
-
-### 5.7&ensp;Ingredient commands
+<a name="GroupIngredientCommands"></a>
+### 5.5&ensp;Ingredient Commands
 
 <a name="ListIngredientCommand"></a>
-#### 5.7.1&ensp;Listing Ingredients — **`list`**`ingredients`
+#### 5.5.1&ensp;Listing Ingredients — **`list`**`ingredients`
 This command shows a list of all recipes in ChopChop. As with the `list recipes` command, you can use this command to switch between panes without clicking, or to reset any filters.
 
 **Usage**: `list ingredients`
@@ -774,7 +839,7 @@ Figure 10: <i>The ingredient list view</i>
 
 
 <a name="AddIngredientCommand"></a>
-#### 5.7.2&ensp;Adding Ingredients — **`add`**`ingredient`
+#### 5.5.2&ensp;Adding Ingredients — **`add`**`ingredient`
 This command adds an ingredient to ChopChop, with an optional quantity and expiry date:
 - If the quantity is not specified, ChopChop will infer a counted quantity, like eggs.
 - If the expiry date is not specified, it is assumed that the ingredient (eg. salt) does not expire.
@@ -842,7 +907,7 @@ Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
 
 
 <a name="DeleteIngredientCommand"></a>
-#### 5.7.3&ensp;Deleting Ingredients — **`delete`**`ingredient`
+#### 5.5.3&ensp;Deleting Ingredients — **`delete`**`ingredient`
 
 This command deletes a specific ingredient from ChopChop. Similar to the `add ingredient` command, this command also allows you to delete quantities of ingredients instead of the whole ingredient. In this scenario, ChopChop will intelligently remove the earliest-expiring ingredients first.
 
@@ -885,7 +950,7 @@ Figure 12.2: <i>You now only have 1.75 litres of milk left</i>
 
 
 <a name="FindIngredientCommand"></a>
-#### 5.7.4&ensp;Finding Ingredients — **`find`**`ingredient`
+#### 5.5.4&ensp;Finding Ingredients — **`find`**`ingredient`
 This command finds all ingredients containing the given keywords in the name, and it works identically to the `find recipe` command [above](#FindRecipeCommand).
 
 Constraints:
@@ -917,7 +982,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 
 <a name="FilterIngredientCommand"></a>
-#### 5.7.5&ensp;Filtering Ingredients — **`filter`**`ingredient`
+#### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient`
 This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
 
 **Usage**:
@@ -967,12 +1032,13 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 
 
+<a name="GroupStatsCommands"></a>
+### 5.6&ensp;Statistics Commands
+Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You can view these records with the commands below.
 
-### 5.8&ensp;Statistics Commands
-Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You view these records with the commands below.
 
 <a name="StatsRecipeTopCommand"></a>
-#### 5.8.1&ensp;Listing top Recipes -- **`stats`**`recipe top`
+#### 5.6.1&ensp;Listing Top Recipes — **`stats`**`recipe top`
 Shows a list of recipes that were made the most. The list is sorted in descending order by the number of times it was made; the first recipe in the list is the recipe that was made the most number of times. The number of usages is calculated from based on current records. So, if you have just cleared your recipe usage records,
 you will see that all recipes were made 0 times.
 Even after you delete a recipe is deleted, its past usages are still saved within ChopChop.
@@ -982,21 +1048,30 @@ Even after you delete a recipe is deleted, its past usages are still saved withi
 Example:
 Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
 
+
+
+
 <a name="StatsRecipeRecentCommand"></a>
-#### 5.8.2&ensp;Listing recently made Recipes— **`stats`**`recipe recent`
+#### 5.6.2&ensp;Listing Recent Recipes — **`stats`**`recipe recent`
+
 Shows a list of most recently made recipes. The list is arranged in descending chronological order; the recipe most recently made is the first item on the list.
+
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
 
+**Usage**: `stats recipe recent`
+
+
+
 <a name="StatsRecipeMadeCommand"></a>
-#### 5.8.3&ensp;Listing Recipes made within a given time frame — **`stats`**`recipe made`
+#### 5.6.3&ensp;Listing Recipes within a Time Frame — **`stats`**`recipe made`
 Shows a list of recipes that were made within the given time frame. The list is arranged in descending chronological order.
 
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will see the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
 
-**Usage**: `stats recipe [/before <DATE>] [/after <DATE>]`
+**Usage**: `stats recipe made [/before <date-time>] [/after <date-time>]`
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** If you omit both `[/before DATE]` and `[/after DATE]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
+:bulb: **Tip:** If you omit both `[/before <date-time>]` and `[/after <date-time>]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
 </div>
 
 For example:
@@ -1008,7 +1083,7 @@ If you enter `stats recipe /after 2020-02-13` into the command box, all recipes 
 
 If you enter `stats recipe /before 2020-10-31 /after 2020-02-13` into the command box, all recipes made within the period of 2020-02-13 to 2020-10-31 will be listed in the Statistics box.
 
-If you enter `stats recipe` into the command box without either `[/before <DATE>]` or `[/after <DATE>]`, all recipes made today be listed in the Statistics box.
+If you enter `stats recipe` into the command box without either `[/before <date-time>]` or `[/after <date-time>]`, all recipes made today be listed in the Statistics box.
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **Tip:** If you are only interested in what was cooked for dinner, you can specify the time period to the nearest minute. For example, `stats recipe /before 2020-02-13 20:30 /after 2020-02-13 18:30` will show a list of recipes made within this 2-hour period.
@@ -1017,7 +1092,7 @@ If you enter `stats recipe` into the command box without either `[/before <DATE>
 
 
 <a name="StatsRecipeClearCommand"></a>
-#### 5.8.4&ensp;Clearing Recipe usage records -- **`stats`**`recipe clear`
+#### 5.6.4&ensp;Clearing Recipe History — **`stats`**`recipe clear`
 After you execute this command, the records of recipes that were made are deleted from ChopChop.
 
 **Usage**: `stats recipe clear`
@@ -1027,16 +1102,16 @@ After you execute this command, the records of recipes that were made are delete
 
 
 <a name="StatsIngredientRecentCommand"></a>
-#### 5.8.5&ensp;Listing recently used Ingredients— **`stats`**`ingredient recent`
+#### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
 Shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
-**Usage**: `stats ingredient made`
+**Usage**: `stats ingredient recent`
 
 
 
 <a name="StatsIngredientUsedCommand"></a>
-#### 5.8.6&ensp;Listing Ingredients used within a given time frame — **`stats`**`ingredient used`
+#### 5.6.6&ensp;Listing Ingredients within a Time Frame — **`stats`**`ingredient used`
 Shows a list of ingredients that were used by recipes made recently within the given time frame.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
@@ -1045,7 +1120,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 
 <a name="StatsIngredientClearCommand"></a>
-#### 5.8.7&ensp;Clearing Ingredient usage records -- **`stats`**`ingredient clear`
+#### 5.6.7&ensp;Clearing Ingredient History — **`stats`**`ingredient clear`
 After you execute this command, the records of ingredients that were used are deleted from ChopChop.
 
 **Usage**: `stats ingredient clear`
@@ -1056,7 +1131,7 @@ After you execute this command, the records of ingredients that were used are de
 
 
 <a name="CommandSummary"></a>
-### 5.9. Command Summary
+### 5.7&ensp;Command Summary
 
 For easy reference, here are the commands that ChopChop supports, listed in alphabetical order. You can click on the name of the command to go to its section in the User Guide.
 
@@ -1314,7 +1389,7 @@ view recipe &lt;#REF&gt;
 
 -------------------------
 <a name="QuantitiesAndUnits"></a>
-## 6. Quantities and Units
+## 6&ensp;Quantities and Units
 
 In order to keep track of ingredients correctly, ChopChop needs to know about their amounts. Currently, there are 3 'kinds' of units supported; volume, mass (weight), and counts. These are the supported units specifically:
 
@@ -1330,7 +1405,7 @@ In order to keep track of ingredients correctly, ChopChop needs to know about th
 Additionally, quantities without a unit are assumed to be dimensionless 'counts'; for example, **3 eggs**.
 
 
-### 6.1. Ingredient Combining
+### 6.1&ensp;Ingredient Combining
 
 As mentioned above, ChopChop will combine ingredients when you `add` them, provided they have compatible units. Combining works as you would expect, and is rather flexible; adding `3 cups` of milk to an existing stock of `400ml` will yield `1.15l`.
 
@@ -1340,56 +1415,3 @@ However, you cannot, for example, add `300g` of eggs to `4` eggs, as grams and c
 
 
 
-
---------------------
-<a name="TabCompletion"></a>
-## 7. Tab Completion
-
-Suppose you wanted to add a recipe for pancakes, and you wanted real, <i>industrial strength</i> pancakes (unlike the simplified recipe we've been using thus far); the list of ingredients would look something like this:
-
-```
-add recipe Pancakes
-  /ingredient flour /qty 290g
-  /ingredient egg /qty 1
-  /ingredient sugar /qty 60g
-  /ingredient baking powder /qty 4tsp
-  /ingredient baking soda /qty 0.25tsp
-  /ingredient salt /qty 3g
-  /ingredient milk /qty 440ml
-  /ingredient butter /qty 60g
-  /ingredient vanilla extract /qty 2tsp
-  /step ...
-```
-
-That certainly seems cumbersome to type out in full, so what if there was a way to speed it up drastically? You can, simply by pressing the <kbd>tab</kbd> key to let ChopChop &ldquo;fill-in-the-blanks&rdquo; for you!
-
-### 7.1. Introduction to Tab Completion
-
-Here's what you can do instead (where <kbd>tab</kbd> represents pressing the tab key):
-<pre>
-a <kbd>tab</kbd> r <kbd>tab</kbd> Pancakes
-  /i <kbd>tab</kbd> f <kbd>tab</kbd> /q <kbd>tab</kbd> 290g
-  /i <kbd>tab</kbd> e <kbd>tab</kbd> /q <kbd>tab</kbd> 1
-  /i <kbd>tab</kbd> su <kbd>tab</kbd> /q <kbd>tab</kbd> 60g
-  /i <kbd>tab</kbd> baking p <kbd>tab</kbd> /q <kbd>tab</kbd> 4tsp
-  /i <kbd>tab</kbd> baking s <kbd>tab</kbd> /q <kbd>tab</kbd> 0.25tsp
-  /i <kbd>tab</kbd> sa <kbd>tab</kbd> /q <kbd>tab</kbd> 3g
-  /i <kbd>tab</kbd> m <kbd>tab</kbd> /q <kbd>tab</kbd> 440ml
-  /i <kbd>tab</kbd> bu <kbd>tab</kbd> /q <kbd>tab</kbd> 60g
-  /i <kbd>tab</kbd> v <kbd>tab</kbd> /q <kbd>tab</kbd> 2tsp
-</pre>
-
-At just 126 compared to 289 keystrokes, that's more than a 50% reduction! ChopChop will intelligently fill in commands, parameter names (eg. `/ingredient`), recipe names, ingredient names, and tag names.
-
-
-### 7.2. Using Tab Completion
-
-How does it work? ChopChop uses the current text when completing and searches for the <i>appropriate</i> matching items; it knows to look for ingredient names while within an `/ingredient` parameter, and to look for ingredient tags instead of recipe tags when in an `add ingredient` command.
-
-<div markdown="span" class="alert alert-primary">
-:information_source: **Note:** For tab completion to work, you must type at least one character before pressing <kdb>tab</kdb>. ChopChop cannot read your mind!
-</div>
-
-What if there are multiple items that share a prefix, for example <i>baking powder</i> and <i>baking soda</i> in the pancake recipe above? Worry not; pressing <kbd>tab</kbd> <i>repeatedly</i> will cycle through the available completions, and they are sorted lexicographically (length, followed by alphabetical order) — pressing <kbd>tab</kbd> after `/ingredient b` would give you <i>butter</i>, <i>baking powder</i>, and <i>baking soda</i>, in that order.
-
-The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle between `find` and `filter`.
