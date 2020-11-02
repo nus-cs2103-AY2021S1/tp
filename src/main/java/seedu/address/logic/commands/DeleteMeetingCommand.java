@@ -42,6 +42,15 @@ public class DeleteMeetingCommand extends Command {
         this.targetMeetingName = targetMeetingName;
     }
 
+    /**
+     * Creates a DeleteMeetingCommand to delete the specified {@code Meeting}
+     * For Testing.
+     */
+    public DeleteMeetingCommand(Meeting meeting) {
+        this.targetModuleName = meeting.getModule().getModuleName();
+        this.targetMeetingName = meeting.getMeetingName();
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -78,6 +87,7 @@ public class DeleteMeetingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteMeetingCommand // instanceof handles nulls
+                && targetModuleName.equals(((DeleteMeetingCommand) other).targetModuleName)
                 && targetMeetingName.equals(((DeleteMeetingCommand) other).targetMeetingName)); // state check
     }
 }

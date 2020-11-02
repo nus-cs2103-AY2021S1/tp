@@ -103,9 +103,11 @@ public class TypicalMeetings {
     public static List<Meeting> getTypicalMeetings() {
         return new ArrayList<>(Arrays.asList(CS2100_MEETING, CS2101_MEETING, CS2102_MEETING, CS2103_MEETING));
     }
+
     public static List<Meeting> getTypicalMeetingsWithMembers() {
         return new ArrayList<>(Arrays.asList(CS2103_NO_MEMBERS));
     }
+
     public static List<Meeting> getTypicalMeetingsWithEditedMember() {
         return new ArrayList<>(Arrays.asList(CS2103_EDITED_MEMBER));
     }

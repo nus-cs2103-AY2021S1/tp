@@ -4,6 +4,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,9 @@ public class TypicalModules {
     public static final Module CS2104 = new ModuleBuilder()
             .withName("CS2104")
             .withMembers(new HashSet<>(Arrays.asList(ELLE))).build();
+    public static final Module CS2105 = new ModuleBuilder()
+            .withName("CS2105")
+            .withMembers(new HashSet<>(Arrays.asList(FIONA))).build();
 
     public static ModuleBook getTypicalModuleBook() {
         ModuleBook mb = new ModuleBook();
