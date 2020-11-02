@@ -59,6 +59,7 @@ public class UnfavCommandTest {
                 unfavouritedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
+        showFlashcardAtIndex(expectedModel, INDEX_SECOND_FLASHCARD);
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), unfavouritedFlashcard);
 
         assertCommandSuccess(unfavCommand, model, expectedMessage, expectedModel);

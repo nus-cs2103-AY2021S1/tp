@@ -102,6 +102,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FLASHCARD_SUCCESS, editedFlashcard);
 
         Model expectedModel = new ModelManager(new FlashcardDeck(model.getFlashcardDeck()), new UserPrefs());
+        showFlashcardAtIndex(expectedModel, INDEX_FIRST_FLASHCARD);
         expectedModel.setFlashcard(model.getFilteredFlashcardList().get(0), editedFlashcard);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
