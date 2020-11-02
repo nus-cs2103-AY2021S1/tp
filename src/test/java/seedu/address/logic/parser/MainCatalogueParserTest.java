@@ -47,7 +47,7 @@ import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
-import seedu.address.model.exceptions.InvalidScopeException;
+import seedu.address.logic.parser.exceptions.InvalidScopeException;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
