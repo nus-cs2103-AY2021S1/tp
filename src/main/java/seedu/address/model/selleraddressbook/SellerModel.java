@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.selleraddressbook;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.seller.Seller;
-import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 
 public interface SellerModel {
 

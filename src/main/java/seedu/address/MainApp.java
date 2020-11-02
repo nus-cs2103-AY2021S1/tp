@@ -15,11 +15,9 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -32,8 +30,6 @@ import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -76,7 +72,6 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
         BidBookStorage bidBookStorage = new JsonBidBookStorage(userPrefs.getBidBookFilePath());
         BidderAddressBookStorage bidderAddressBookStorage =
@@ -85,7 +80,7 @@ public class MainApp extends Application {
                 new JsonSellerAddressBookStorage(userPrefs.getSellerAddressBookFilePath());
         MeetingBookStorage meetingBookStorage =
                 new JsonMeetingBookStorage(userPrefs.getMeetingBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
+        storage = new StorageManager(userPrefsStorage, bidBookStorage,
                 bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage, propertyBookStorage);
 
         initLogging(config);
@@ -103,14 +98,12 @@ public class MainApp extends Application {
      * or an empty book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
         Optional<ReadOnlyBidBook> bidBookOptional;
         Optional<ReadOnlyBidderAddressBook> bidderAddressBookOptional;
         Optional<ReadOnlySellerAddressBook> sellerAddressBookOptional;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
         Optional<ReadOnlyMeetingBook> meetingBookOptional;
 
-        ReadOnlyAddressBook initialData;
         ReadOnlyBidBook initialBidData;
         ReadOnlyBidderAddressBook initialBidderData;
         ReadOnlySellerAddressBook initialSellerData;
@@ -118,30 +111,24 @@ public class MainApp extends Application {
         ReadOnlyMeetingBook initialMeetingData;
 
         try {
-            addressBookOptional = storage.readAddressBook();
             bidBookOptional = storage.readBidBook();
             propertyBookOptional = storage.readPropertyBook();
             bidderAddressBookOptional = storage.readBidderAddressBook();
             sellerAddressBookOptional = storage.readSellerAddressBook();
             meetingBookOptional = storage.readMeetingBook();
 
-            if (!addressBookOptional.isPresent()) {
-                logger.info("AddressBook Data file not found. Will be starting with a sample AddressBook");
-            }
             if (!bidBookOptional.isPresent()) {
                 logger.info("BidBook Data file not found. Will be starting with a sample BidBook");
             }
             if (!bidderAddressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample bidderAddressBook");
+                logger.info("Bidder Data file not found. Will be starting with a sample bidderAddressBook");
             }
             if (!sellerAddressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample sellerAddressBook");
+                logger.info("Seller Data file not found. Will be starting with a sample sellerAddressBook");
             }
             if (!meetingBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample meetingBook");
+                logger.info("Meeting Data file not found. Will be starting with a sample meetingBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-
             if (!propertyBookOptional.isPresent()) {
                 logger.info("Property data file not found. Will be starting with a sample PropertyBook");
             }
@@ -153,7 +140,6 @@ public class MainApp extends Application {
 
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
             initialBidData = new BidBook();
             initialPropertyData = new PropertyBook();
             initialBidderData = new BidderAddressBook();
@@ -161,14 +147,13 @@ public class MainApp extends Application {
             initialMeetingData = new MeetingBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
             initialBidData = new BidBook();
             initialPropertyData = new PropertyBook();
             initialBidderData = new BidderAddressBook();
             initialSellerData = new SellerAddressBook();
             initialMeetingData = new MeetingBook();
         }
-        return new ModelManager(initialData, userPrefs, initialBidData, initialPropertyData,
+        return new ModelManager(userPrefs, initialBidData, initialPropertyData,
                 initialBidderData, initialSellerData, initialMeetingData);
     }
 

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.bids;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
@@ -24,10 +23,10 @@ public class ListBidCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalBidBook(),
+        model = new ModelManager(new UserPrefs(), getTypicalBidBook(),
                 getTypicalPropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(),
                 new MeetingBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
     }

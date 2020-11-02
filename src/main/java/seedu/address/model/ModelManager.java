@@ -48,14 +48,12 @@ public class ModelManager implements Model {
     private static final BidComparator bidComparator = new BidComparator();
 
     private final BidBook bidBook;
-    private final AddressBook addressBook;
     private final BidderAddressBook bidderAddressBook;
     private final SellerAddressBook sellerAddressBook;
     private final UserPrefs userPrefs;
     private final PropertyBook propertyBook;
     private final MeetingBook meetingBook;
 
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Seller> filteredSellers;
     private final FilteredList<Bidder> filteredBidders;
     private final FilteredList<Bid> filteredBids;
@@ -68,22 +66,22 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, userPrefs, bidBook, meetingManager and propertyBook.
      */
 
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
+    public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
                         ReadOnlyPropertyBook propertyBook, ReadOnlyBidderAddressBook bidderAddressBook,
                         ReadOnlySellerAddressBook sellerAddressBook, ReadOnlyMeetingBook meetingManager) {
         super();
-        requireAllNonNull(addressBook, userPrefs, bidBook, propertyBook,
+        requireAllNonNull(userPrefs, bidBook, propertyBook,
                 bidderAddressBook, sellerAddressBook, meetingManager);
 
-        logger.fine("Initializing with address book: " + addressBook
-                + " and user prefs " + userPrefs + " and bid book: " + bidBook
-                + " and property book: " + propertyBook
+        logger.fine("Initializing with: "
+                + "\n user prefs " + userPrefs
+                + "\n bid book: " + bidBook
+                + "\n property book: " + propertyBook
                 + "\n bidderAddressBook: " + bidderAddressBook
                 + "\n sellerAddressBook: " + sellerAddressBook
                 + "\n and meeting manager" + meetingManager
         );
 
-        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.bidderAddressBook = new BidderAddressBook(bidderAddressBook);
         this.sellerAddressBook = new SellerAddressBook(sellerAddressBook);
@@ -91,7 +89,6 @@ public class ModelManager implements Model {
         this.meetingBook = new MeetingBook(meetingManager);
         this.propertyBook = new PropertyBook(propertyBook);
 
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBidders = new FilteredList<>(this.bidderAddressBook.getBidderList());
         filteredSellers = new FilteredList<>(this.sellerAddressBook.getSellerList());
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
@@ -106,13 +103,8 @@ public class ModelManager implements Model {
      * Constructor for the ModelManager.
      */
     public ModelManager() {
-        this(new AddressBook(),
-                new UserPrefs(),
-                new BidBook(),
-                new PropertyBook(),
-                new BidderAddressBook(),
-                new SellerAddressBook(),
-                new MeetingBook());
+        this (new UserPrefs(), new BidBook(), new PropertyBook(), new BidderAddressBook(), new SellerAddressBook(),
+            new MeetingBook());
 
     }
 
@@ -141,17 +133,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-    @Override
     public Path getPropertyBookFilePath() {
         return userPrefs.getPropertyBookFilePath();
     }
@@ -162,41 +143,6 @@ public class ModelManager implements Model {
         userPrefs.setPropertyBookFilePath(propertyBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
 
     //=========== BidBook ================================================================================
 
@@ -282,22 +228,7 @@ public class ModelManager implements Model {
         return userPrefs.getBidBookFilePath();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
+    //=========== Filtered List Accessors =============================================================
 
     //=========== PropertyBook ================================================================================
 
@@ -454,8 +385,6 @@ public class ModelManager implements Model {
         sortedMeetings.setComparator(comparator);
         meetingBook.setMeetings(sortedMeetings);
     }
-
-    //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
@@ -619,13 +548,19 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
+        return userPrefs.equals(other.userPrefs)
+                && sellerAddressBook.equals(other.sellerAddressBook)
+                && filteredSellers.equals(other.filteredSellers)
+
+                && bidderAddressBook.equals(other.bidderAddressBook)
+                && filteredBidders.equals(other.filteredBidders)
+
                 && meetingBook.equals(other.meetingBook)
                 && filteredMeetings.equals(other.filteredMeetings)
+
                 && propertyBook.equals(other.propertyBook)
                 && filteredProperties.equals(other.filteredProperties)
+
                 && bidBook.equals(other.bidBook)
                 && filteredBids.equals(other.filteredBids);
     }

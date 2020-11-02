@@ -5,12 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_BIDS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.BID_A;
 import static seedu.address.testutil.bids.TypicalBid.BID_B;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
-import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,10 +29,10 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
  */
 public class FindBidCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalBidBook(),
+    private Model model = new ModelManager(new UserPrefs(), getTypicalBidBook(),
             new PropertyBook(), new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalBidBook(),
-            new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
+    private Model expectedModel = new ModelManager(new UserPrefs(), getTypicalBidBook(),
+            new PropertyBook(), new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
 
     @Test
     public void equals() {

@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BIDDER_ID_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_PROPERTY_ID_BID_A;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
@@ -28,7 +27,7 @@ public class AddBidCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+        model = new ModelManager(new UserPrefs(),
                 getTypicalBidBook(), getTypicalPropertyBook(),
                 getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
     }
@@ -39,7 +38,6 @@ public class AddBidCommandIntegrationTest {
                 .withPropertyId(VALID_PROPERTY_ID_BID_A).withBidderId(VALID_BIDDER_ID_BID_B)
                 .build();
         Model expectedModel = new ModelManager(
-                model.getAddressBook(),
                 new UserPrefs(),
                 model.getBidBook(),
                 model.getPropertyBook(),

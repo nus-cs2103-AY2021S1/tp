@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MEETING;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
@@ -27,7 +26,7 @@ import seedu.address.model.meeting.Meeting;
 
 class DeleteMeetingCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(),
+    private Model model = new ModelManager(
             new UserPrefs(),
             getTypicalBidBook(),
             getTypicalPropertyBook(),
@@ -43,7 +42,7 @@ class DeleteMeetingCommandTest {
         String expectedAdminMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS,
                 adminMeetingToDelete);
 
-        ModelManager expectedAdminModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedAdminModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
         expectedAdminModel.deleteMeeting(adminMeetingToDelete);
@@ -55,7 +54,7 @@ class DeleteMeetingCommandTest {
         String expectedViewingMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS,
                 viewingMeetingToDelete);
 
-        ModelManager expectedViewingModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        ModelManager expectedViewingModel = new ModelManager(new UserPrefs(),
                 model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
@@ -79,7 +78,7 @@ class DeleteMeetingCommandTest {
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(INDEX_FIRST_MEETING);
 
         String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteMeeting(meetingToDelete);

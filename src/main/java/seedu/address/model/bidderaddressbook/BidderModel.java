@@ -1,10 +1,9 @@
-package seedu.address.model;
+package seedu.address.model.bidderaddressbook;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;

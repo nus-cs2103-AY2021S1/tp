@@ -17,18 +17,18 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "selleraddressbook")
-class JsonSerializableSellerAddressBook {
+public class JsonSerializableSellerAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Sellers list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_SELLER = "Sellers list contains duplicate seller(s).";
 
-    private final List<JsonAdaptedSeller> persons = new ArrayList<>();
+    private final List<JsonAdaptedSeller> sellers = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given seller.
      */
     @JsonCreator
-    public JsonSerializableSellerAddressBook(@JsonProperty("persons") List<JsonAdaptedSeller> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableSellerAddressBook(@JsonProperty("sellers") List<JsonAdaptedSeller> sellers) {
+        this.sellers.addAll(sellers);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableSellerAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableSellerAddressBook(ReadOnlySellerAddressBook source) {
-        persons.addAll(source.getSellerList().stream().map(JsonAdaptedSeller::new).collect(Collectors.toList()));
+        sellers.addAll(source.getSellerList().stream().map(JsonAdaptedSeller::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,10 +47,10 @@ class JsonSerializableSellerAddressBook {
      */
     public SellerAddressBook toModelType() throws IllegalValueException {
         SellerAddressBook sellerAddressBook = new SellerAddressBook();
-        for (JsonAdaptedSeller jsonAdaptedSeller : persons) {
+        for (JsonAdaptedSeller jsonAdaptedSeller : sellers) {
             Seller seller = jsonAdaptedSeller.toModelType();
             if (sellerAddressBook.hasSeller(seller)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SELLER);
             }
             sellerAddressBook.addSeller(seller);
         }

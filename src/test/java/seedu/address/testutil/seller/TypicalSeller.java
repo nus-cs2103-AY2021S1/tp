@@ -19,6 +19,8 @@ public class TypicalSeller {
 
     public static final Seller ALICE = new SellerBuilder().withName("Alice Pauline")
             .withPhone("94351253").withId(1).build();
+    public static final Seller SELLER_ALICE = new SellerBuilder().withName("Alice Pauline")
+            .withPhone("94351253").withId(1).build();
     public static final Seller BENSON = new SellerBuilder().withName("Benson Meier").withId(2).build();
     public static final Seller CARL = new SellerBuilder().withName("Carl Kurz")
             .withPhone("95352563").withPhone("9482442").withId(3).build();
@@ -36,6 +38,10 @@ public class TypicalSeller {
             .withId(12).build();
     public static final Seller BOB = new SellerBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withId(13).build();
+
+    // Manually added
+    public static final Seller HOON = new SellerBuilder().withName("Hoon Meier").withPhone("8482424").build();
+    public static final Seller IDA = new SellerBuilder().withName("Ida Mueller").withPhone("8482131").build();
 
     /**
      * Returns an {@code SellerAddressBook} with all the typical persons.

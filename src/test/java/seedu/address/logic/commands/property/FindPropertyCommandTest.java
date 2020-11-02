@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PROPERTY_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
-import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +15,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.property.FindPropertyCommand.FindPropertyDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -42,10 +39,10 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
  */
 public class FindPropertyCommandTest {
 
-    private Model model = new ModelManager(new AddressBook(), new UserPrefs(), new BidBook(),
+    private Model model = new ModelManager(new UserPrefs(), new BidBook(),
             getTypicalPropertyBook(), new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
-    private Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new BidBook(),
-            getTypicalPropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
+    private Model expectedModel = new ModelManager(new UserPrefs(), new BidBook(),
+            getTypicalPropertyBook(), new BidderAddressBook(), new SellerAddressBook(), new MeetingBook());
 
     @Test
     public void equals() {

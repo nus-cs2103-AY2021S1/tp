@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.seller.SellerCommandTestUtil.showSell
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -30,7 +29,7 @@ import seedu.address.model.propertybook.PropertyBook;
  */
 public class DeleteSellerCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(),
+    private Model model = new ModelManager(
             new UserPrefs(),
             new BidBook(),
             new PropertyBook(),
@@ -45,7 +44,7 @@ public class DeleteSellerCommandTest {
 
         String expectedMessage = String.format(DeleteSellerCommand.MESSAGE_DELETE_SELLER_SUCCESS, sellerToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteSeller(sellerToDelete);
@@ -54,7 +53,7 @@ public class DeleteSellerCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredSellerList().size() + 1);
         DeleteSellerCommand deleteSellerCommand = new DeleteSellerCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteSellerCommand, model, Messages.MESSAGE_INVALID_SELLER_DISPLAYED_INDEX);
@@ -68,7 +67,7 @@ public class DeleteSellerCommandTest {
         DeleteSellerCommand deleteSellerCommand = new DeleteSellerCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteSellerCommand.MESSAGE_DELETE_SELLER_SUCCESS, sellerToDelete);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteSeller(sellerToDelete);
@@ -83,7 +82,7 @@ public class DeleteSellerCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getSellerAddressBook().getSellerList().size());
 
         DeleteSellerCommand deleteSellerCommand = new DeleteSellerCommand(outOfBoundIndex);
 
