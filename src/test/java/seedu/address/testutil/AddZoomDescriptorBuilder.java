@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.modulelistcommands.AddZoomDescriptor;
+import seedu.address.logic.commands.modulelistcommands.ZoomDescriptor;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ZoomLink;
 
@@ -9,21 +9,21 @@ import seedu.address.model.module.ZoomLink;
  */
 public class AddZoomDescriptorBuilder {
 
-    private AddZoomDescriptor descriptor;
+    private ZoomDescriptor descriptor;
 
     public AddZoomDescriptorBuilder() {
-        this.descriptor = new AddZoomDescriptor();
+        this.descriptor = new ZoomDescriptor();
     }
 
-    public AddZoomDescriptorBuilder(AddZoomDescriptor descriptor) {
-        this.descriptor = new AddZoomDescriptor(descriptor);
+    public AddZoomDescriptorBuilder(ZoomDescriptor descriptor) {
+        this.descriptor = new ZoomDescriptor(descriptor);
     }
 
     /**
      * Sets the {@code ZoomLink} of the {@code AddZoomDescriptor} that we are building.
      */
     public AddZoomDescriptorBuilder withZoomLink(String zoomLink) {
-        descriptor.setLink(new ZoomLink(zoomLink));
+        descriptor.setZoomLink(new ZoomLink(zoomLink));
         return this;
     }
 
@@ -38,7 +38,7 @@ public class AddZoomDescriptorBuilder {
     /**
      * Returns the newly built {@code AddZoomDescriptor} object.
      */
-    public AddZoomDescriptor build() {
+    public ZoomDescriptor build() {
         return descriptor;
     }
 

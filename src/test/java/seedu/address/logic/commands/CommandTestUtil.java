@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,16 +14,15 @@ import java.util.HashMap;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.modulelistcommands.AddZoomDescriptor;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
+import seedu.address.model.ModuleList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.testutil.AddZoomDescriptorBuilder;
 import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 
@@ -141,10 +141,10 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        // ModuleList expectedModuleList = new ModuleList(actualModel.getAddressBook());
+        ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
         // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
-        // assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         // assertEquals(expectedModuleList, actualModel.getAddressBook());
         // assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }

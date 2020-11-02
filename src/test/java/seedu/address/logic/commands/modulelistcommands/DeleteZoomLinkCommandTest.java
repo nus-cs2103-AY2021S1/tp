@@ -12,6 +12,7 @@ import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
+import seedu.address.testutil.ModuleBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -54,7 +55,9 @@ public class DeleteZoomLinkCommandTest {
     public void execute_validIndexUnfilteredList_deleteSuccess() {
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+
         Module updatedModule = moduleToUpdate.deleteZoomLink(validLesson);
+
         DeleteZoomLinkCommand deleteZoomLinkCommand = new DeleteZoomLinkCommand(INDEX_FIRST_MODULE, validLesson);
 
         String expectedMessage = String.format(DeleteZoomLinkCommand.MESSAGE_DELETE_ZOOM_SUCCESS,

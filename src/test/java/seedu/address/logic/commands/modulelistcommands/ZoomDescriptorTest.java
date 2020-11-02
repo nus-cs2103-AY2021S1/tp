@@ -10,16 +10,16 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103
 import org.junit.jupiter.api.Test;
 import seedu.address.testutil.AddZoomDescriptorBuilder;
 
-public class AddZoomDescriptorTest {
+public class ZoomDescriptorTest {
 
     @Test
     public void equals() {
 
-        AddZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
                 .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
 
         // same descriptor values -> returns true
-        AddZoomDescriptor descriptorWithSameValues = new AddZoomDescriptor(descriptor);
+        ZoomDescriptor descriptorWithSameValues = new ZoomDescriptor(descriptor);
         assertTrue(descriptor.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -32,7 +32,7 @@ public class AddZoomDescriptorTest {
         assertFalse(descriptor.equals(5));
 
         // different module lesson -> returns false
-        AddZoomDescriptor editedDescriptor =  new AddZoomDescriptorBuilder(descriptor)
+        ZoomDescriptor editedDescriptor =  new AddZoomDescriptorBuilder(descriptor)
                 .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).build();
         assertFalse(descriptor.equals(editedDescriptor));
 

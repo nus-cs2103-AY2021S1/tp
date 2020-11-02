@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULELESSONTYPE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULELESSONTYPE_ES2660;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -12,15 +11,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
+import seedu.address.logic.commands.ExitCommand;
 import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
@@ -31,9 +28,8 @@ import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.testutil.AddZoomDescriptorBuilder;
-import seedu.address.testutil.EditContactDescriptorBuilder;
-import seedu.address.testutil.ModuleBuilder;
 
 public class AddZoomLinkCommandTest {
 
@@ -42,7 +38,7 @@ public class AddZoomLinkCommandTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        AddZoomDescriptor validDescriptor = new AddZoomDescriptor();
+        ZoomDescriptor validDescriptor = new ZoomDescriptor();
         assertThrows(NullPointerException.class, () -> new AddZoomLinkCommand(null, validDescriptor));
     }
 
@@ -55,36 +51,36 @@ public class AddZoomLinkCommandTest {
     @Test
     public void execute_nullModel_throwsNullPointerException() {
         Index validIndex = INDEX_FIRST_MODULE;
-        AddZoomDescriptor validDescriptor = new AddZoomDescriptor();
+        ZoomDescriptor validDescriptor = new ZoomDescriptor();
         AddZoomLinkCommand command = new AddZoomLinkCommand(validIndex,validDescriptor);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
-    public void execute_validZoomLinkAndLesson_addSuccess() {
-        Index index = INDEX_FIRST_MODULE;
-        Module firstModule = model.getFilteredModuleList().get(index.getZeroBased());;
-        Module editedModule = new ModuleBuilder(firstModule).withZoomLink(new ModuleLesson(VALID_MODULELESSONTYPE),
-                VALID_ZOOMLINK_CS2103T).build();
+    public void execute_validArguments_addSuccess() {
+        Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        ZoomLink linkToAdd = new ZoomLink(VALID_ZOOMLINK_CS2103T);
+        ModuleLesson lesson = new ModuleLesson(VALID_MODULELESSONTYPE_ES2660);
+        Module updatedModule = moduleToUpdate.addZoomLink(lesson,linkToAdd);
 
-        AddZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+                .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
         AddZoomLinkCommand command = new AddZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
 
         String expectedMessage = String.format(AddZoomLinkCommand.MESSAGE_ADD_ZOOM_SUCCESS, VALID_ZOOMLINK_CS2103T);
 
         Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
-        expectedModel.setModule(firstModule, editedModule);
+        expectedModel.setModule(moduleToUpdate, updatedModule);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidModuleIndexUnfilteredList_addFailure() {
+    public void execute_invalidModuleIndexUnfilteredList_throwsCommandException() {
         int outOfBoundIndex = model.getFilteredModuleList().size() + 1;
         Index invalidIndex = Index.fromOneBased(outOfBoundIndex);
-        AddZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
                 .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
         AddZoomLinkCommand addZoomLinkCommand = new AddZoomLinkCommand(invalidIndex, descriptor);
 
@@ -96,7 +92,7 @@ public class AddZoomLinkCommandTest {
      * but smaller than size of the module list.
      */
     @Test
-    public void execute_invalidModuleIndexFilteredList_editFailure() {
+    public void execute_invalidModuleIndexFilteredList_throwsCommandException() {
         // update module filtered list to contain only a single module
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
@@ -106,10 +102,64 @@ public class AddZoomLinkCommandTest {
         int moduleListSize = model.getModuleList().getModuleList().size();
         assertTrue(outOfBoundIndex.getZeroBased() < moduleListSize);
 
-        AddZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
                 .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
         AddZoomLinkCommand addZoomLinkCommand = new AddZoomLinkCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(addZoomLinkCommand, model, Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_duplicateZoomLink_throwsCommandException() {
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+                .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+        AddZoomLinkCommand command = new AddZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
+
+        assertCommandFailure(command, model, AddZoomLinkCommand.MESSAGE_DUPLICATE_ZOOM_LINK);
+    }
+
+    @Test
+    public void execute_invalidLesson_throwsCommandException() {
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+        AddZoomLinkCommand command = new AddZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
+
+        assertCommandFailure(command, model, AddZoomLinkCommand.MESSAGE_LESSON_CONTAINS_ZOOM_LINK);
+    }
+
+    @Test
+    public void equals() {
+
+        ZoomDescriptor descriptor = new AddZoomDescriptorBuilder()
+                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+        final AddZoomLinkCommand standardCommand = new AddZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
+
+        // same index and descriptor -> returns true
+        ZoomDescriptor copyDescriptor = new AddZoomDescriptorBuilder()
+                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+        AddZoomLinkCommand commandWithSameValues = new AddZoomLinkCommand(INDEX_FIRST_MODULE, copyDescriptor);
+
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different type -> returns false
+        assertFalse(standardCommand.equals(8));
+
+        // different command types -> returns false
+        assertFalse(standardCommand.equals(new ExitCommand()));
+
+        // different index, same descriptor -> returns false
+        assertFalse(standardCommand.equals(new AddZoomLinkCommand(INDEX_SECOND_MODULE, descriptor)));
+
+        // different descriptor, same index -> returns false
+        ZoomDescriptor editedDescriptor = new AddZoomDescriptorBuilder()
+                .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+        assertFalse(standardCommand.equals(new AddZoomLinkCommand(INDEX_FIRST_MODULE, editedDescriptor)));
+    }
+
 }
