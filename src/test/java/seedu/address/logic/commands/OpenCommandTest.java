@@ -2,15 +2,18 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LABEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MAC_FILE_ADDRESS_TESTFILE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.OpenCommand.MESSAGE_ENV_NOT_DESKTOP_SUPPORTED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
 import java.awt.Desktop;
+import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
@@ -116,6 +119,24 @@ class OpenCommandTest {
                     String.format(OpenCommand.MESSAGE_ERROR + OpenCommand.MESSAGE_FILE_NOT_FOUND,
                             correctTag.getTagName(),
                             correctTag.getFileAddress()), () -> openCommand.execute(modelStubWithTag));
+        }
+    }
+
+    @Test
+    public void execute_noPermissionToOpenFile_throwCommandException() {
+        if (Desktop.isDesktopSupported()) {
+            Tag correctTag = new TagBuilder().withTagName("test")
+                    .withFileAddress(VALID_FILE_ADDRESS_CS2101).build();
+            File file = new File(correctTag.getFileAddress().value);
+            boolean canSetPermission = file.setReadable(false);
+            // Only perform this test if tester has permission to set file read permission
+            if (canSetPermission) {
+                OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
+                Model modelStubWithTag = new ModelStubWithTag(new TagBuilder().build());
+                assertThrows(CommandException.class,
+                        MESSAGE_ENV_NOT_DESKTOP_SUPPORTED, () -> openCommand.execute(modelStubWithTag));
+            }
+            file.setReadable(true);
         }
     }
 
