@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class Project {
     // Data fields
     private final ProjectDescription projectDescription;
     private final Set<ProjectTag> projectTags = new HashSet<>();
-    private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
+    private final Map<GitUserName, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
     private Comparator<Task> taskComparator = TaskComparators.SORT_BY_DEADLINE;
     private final Set<Task> tasks = new HashSet<>();
@@ -53,7 +54,7 @@ public class Project {
      */
     public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
-                   HashMap<GitUserName, Participation> listOfParticipations, Set<Task> tasks) {
+                   Map<GitUserName, Participation> listOfParticipations, Set<Task> tasks) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
                 tasks);
         this.projectName = projectName;
@@ -225,8 +226,8 @@ public class Project {
      *
      * @return
      */
-    public HashMap<GitUserName, Participation> getParticipationHashMap() {
-        return listOfParticipations;
+    public Map<GitUserName, Participation> getParticipationHashMap() {
+        return Collections.unmodifiableMap(listOfParticipations);
     }
 
     /**

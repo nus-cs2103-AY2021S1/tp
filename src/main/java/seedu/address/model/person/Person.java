@@ -128,7 +128,6 @@ public class Person {
      * Gets all tasks that this person participates in.
      */
     public List<Task> getTasks() {
-        System.out.println(listOfParticipations);
         List<Task> tasks = new ArrayList<>();
         listOfParticipations.values().forEach(p -> tasks.addAll(p.getTasks()));
         return tasks;

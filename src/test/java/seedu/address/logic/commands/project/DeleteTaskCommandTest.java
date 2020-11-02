@@ -20,6 +20,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.ProjectBuilder;
 
 class DeleteTaskCommandTest {
     private Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
@@ -41,7 +42,6 @@ class DeleteTaskCommandTest {
     @Test
     void execute_validIndexUnfilteredTaskList_success() {
         model.enter(project);
-
         Task taskToDelete = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_TASK);
 
@@ -53,7 +53,8 @@ class DeleteTaskCommandTest {
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        Project expectedProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project expectedProject = ProjectBuilder.makeCopy(project);
+        expectedModel.setProject(project, expectedProject);
         expectedProject.deleteTask(taskToDelete);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -70,7 +71,7 @@ class DeleteTaskCommandTest {
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToDelete.getTaskName()));
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         // ensures that outOfBoundIndex is still in bounds of the whole task list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getProjectCatalogue().getProjectList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < project.getTasks().size());
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex);
 
@@ -95,7 +96,8 @@ class DeleteTaskCommandTest {
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
         Model expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
-        Project expectedProject = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        Project expectedProject = ProjectBuilder.makeCopy(project);
+        expectedModel.setProject(project, expectedProject);
         expectedProject.deleteTask(taskToDelete);
 
         assertCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
