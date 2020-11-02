@@ -60,7 +60,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "|   lesson   |                                                       |\n"
             + "|--------------------------------------------------------------------|\n"
             + "|    add     | lesson title:TITLE tag:MODULE_CODE                    |\n"
-            + "|   lesson   | [desc:DESCRIPTION] day:DAY from:TIME to:TIME          |\n"
+            + "|   lessons  | [desc:DESCRIPTION] day:DAY from:TIME to:TIME          |\n"
             + "|            | start:DATE end:DATE                                   |\n"
             + "|            | e.g. lesson title:CS2103T tag:CS2103T desc: truly fun |\n"
             + "|            | day:Mon from:12:00 to:14:00 start:01-01-2020          |\n"
