@@ -53,7 +53,7 @@
           <Label styleClass="label-title">Modduke</Label>
         </StackPane>
 
-        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+        <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
           <VBox alignment="TOP_CENTER">
             <Label>Contacts</Label>
             <VBox fx:id="personList" minWidth="300" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
@@ -86,7 +86,7 @@
 
           <VBox alignment="TOP_CENTER">
             <Label>Selected Meeting</Label>
-            <VBox fx:id="selectedMeeting"  minWidth="300" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <VBox fx:id="selectedMeeting" minWidth="300" prefWidth="300" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
