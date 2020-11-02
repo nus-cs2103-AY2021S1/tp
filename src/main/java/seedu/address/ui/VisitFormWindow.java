@@ -106,10 +106,10 @@ public class VisitFormWindow extends UiPart<Stage> {
     }
 
     /**
-     * Focuses on VisitFormWindow.
+     * Focuses on the Diagnosis tab in VisitFormWindow.
      */
     public void focus() {
-        getRoot().requestFocus();
+        diagnosis.requestFocus();
     }
 
     /**

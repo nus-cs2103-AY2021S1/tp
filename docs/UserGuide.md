@@ -15,7 +15,7 @@ Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) an
 
 Interested to know more? Take a look at our [**Quick Start**](#3-quick-start) guide. Enjoy!
 
-## 2 About this document
+## 2. About this document
 
 Welcome to the CliniCal User Guide!
 
@@ -350,7 +350,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 **Example**: You want to add a visitation log to the 1st patient on the list.
 
-**Step 1**: Input `addvisit 1 vd/10/12/2020` into the command box and press <kbd>Enter</kbd>.
+**Step 1**: Input `addvisit 1 vd/23/10/2020` into the command box and press <kbd>Enter</kbd>.
 
 **Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in relevant
             details in each text box.
@@ -362,7 +362,9 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* Use <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> and <kbd>CTRL</kbd> + <kbd>TAB</kbd> to move to the previous and next text box respectively!
+* Use <kbd>SHIFT</kbd> + <kbd>TAB</kbd> and <kbd>CTRL</kbd> + <kbd>TAB</kbd> to move to the previous and next text box respectively!
+* Do note that after entering relevant details for the Comments text box, your mouse cursor will automatically move to the Save button 
+  if you press <kbd>CTRL</kbd> + <kbd>TAB</kbd>. At this point, you can simply press <kbd>ENTER</kbd> to save the visitation log.
 * You can press <kbd>Esc</kbd> or the close button at the top right to close the window without saving.
 
 </div>

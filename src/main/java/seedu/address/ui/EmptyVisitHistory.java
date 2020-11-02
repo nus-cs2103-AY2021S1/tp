@@ -11,12 +11,12 @@ import seedu.address.commons.core.LogsCenter;
 /**
  * Controller for a help page
  */
-public class EmptyVisitList extends UiPart<Stage> {
+public class EmptyVisitHistory extends UiPart<Stage> {
 
     public static final String EMPTY_MESSAGE = "Patient has no past visitation records.";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final String FXML = "EmptyVisitListWindow.fxml";
+    private static final String FXML = "EmptyVisitHistoryWindow.fxml";
 
     @FXML
     private Button button;
@@ -29,7 +29,7 @@ public class EmptyVisitList extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
-    public EmptyVisitList(Stage root) {
+    public EmptyVisitHistory(Stage root) {
         super(FXML, root);
         text.setText(EMPTY_MESSAGE);
     }
@@ -37,7 +37,7 @@ public class EmptyVisitList extends UiPart<Stage> {
     /**
      * Instantiates new HelpWindow.
      */
-    public EmptyVisitList() {
+    public EmptyVisitHistory() {
         this(new Stage());
     }
 

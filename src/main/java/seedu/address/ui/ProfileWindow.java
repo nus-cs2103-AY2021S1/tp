@@ -100,7 +100,7 @@ public class ProfileWindow extends UiPart<Stage> {
      */
     public ProfileWindow(Stage root) {
         super(FXML, root);
-        populateVisitList(FXCollections.observableArrayList());
+        populateVisitHistory(FXCollections.observableArrayList());
     }
 
     @FXML
@@ -164,7 +164,7 @@ public class ProfileWindow extends UiPart<Stage> {
 
         VisitHistory visitHistory = patient.getVisitHistory();
         ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
-        populateVisitList(observableHistory);
+        populateVisitHistory(observableHistory);
     }
 
     /**
@@ -172,7 +172,7 @@ public class ProfileWindow extends UiPart<Stage> {
      * @param observableHistory Observable list of patient's visit history.
      *
      */
-    public void populateVisitList(ObservableList<Visit> observableHistory) {
+    public void populateVisitHistory(ObservableList<Visit> observableHistory) {
         visitHistory.setItems(observableHistory);
         visitHistory.setCellFactory(listView -> new ProfileVisitHistoryCell());
     }

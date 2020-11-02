@@ -36,11 +36,11 @@
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
-                            <Label styleClass="label-bright" text="Remarks:">
+                            <Label styleClass="label-bright" text="Comments:">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></Label>
-                            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Fill in any additional remarks here&#13;&#10;    e.g. Has difficulty swallowing tablets and pills" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Fill in any additional comments here&#13;&#10;    e.g. Has difficulty swallowing tablets and pills" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
