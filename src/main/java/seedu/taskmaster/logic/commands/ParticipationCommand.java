@@ -9,8 +9,8 @@ import seedu.taskmaster.commons.core.Messages;
 import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.exceptions.SessionException;
-import seedu.taskmaster.model.student.Student;
 
 /**
  * Marks the participation of a student identified using its displayed index from the student list.
@@ -41,15 +41,16 @@ public class ParticipationCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        int index = targetIndex.getZeroBased();
-        List<Student> lastShownList = model.getFilteredStudentList();
-
-        if (index >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
-        }
-
-        Student studentToScore = lastShownList.get(index);
+        StudentRecord studentToScore = null;
         try {
+            int index = targetIndex.getZeroBased();
+            List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
+
+            if (index >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            }
+
+            studentToScore = lastShownList.get(index);
             model.scoreStudent(studentToScore, score);
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());

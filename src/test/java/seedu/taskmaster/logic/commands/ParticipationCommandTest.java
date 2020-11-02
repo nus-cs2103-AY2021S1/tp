@@ -18,9 +18,8 @@ import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.SessionName;
-import seedu.taskmaster.model.student.Student;
-
 
 class ParticipationCommandTest {
 
@@ -31,7 +30,7 @@ class ParticipationCommandTest {
         model.changeSession(new SessionName("Typical session"));
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.changeSession(new SessionName("Typical session"));
-        Student firstStudent = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        StudentRecord firstStudent = model.getFilteredStudentRecordList().get(INDEX_FIRST_STUDENT.getZeroBased());
         ParticipationCommand participationCommand = new ParticipationCommand(INDEX_FIRST_STUDENT, VALID_SCORE_INT);
         expectedModel.scoreStudent(firstStudent, VALID_SCORE_INT);
         String expectedMessage = String.format(ParticipationCommand.MESSAGE_SCORE_STUDENT_SUCCESS,

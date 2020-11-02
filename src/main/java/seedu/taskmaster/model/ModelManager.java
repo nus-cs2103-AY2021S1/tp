@@ -174,7 +174,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void scoreStudent(Student target, int score) {
+    public void scoreStudent(StudentRecord target, int score) {
         requireAllNonNull(target, score);
         taskmaster.scoreStudent(target, score);
     }

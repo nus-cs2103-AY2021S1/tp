@@ -30,8 +30,8 @@ public class ParticipationAllCommand extends ParticipationCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
         try {
+            List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
             model.scoreAllStudents(lastShownList, score);
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());
