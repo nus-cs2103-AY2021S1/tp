@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_TIME + "1 1200-1400 "
             + PREFIX_FEE + "30 "
             + PREFIX_PAYMENT + "24/09/2020 "
-            + PREFIX_DETAILS + "Additional details here ";
+            + PREFIX_DETAILS + "Details here ";
 
     public static final String MESSAGE_SUCCESS = "New student added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Reeve";

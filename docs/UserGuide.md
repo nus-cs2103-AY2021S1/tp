@@ -190,7 +190,7 @@ E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
-*  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
+*  `edit 3 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the venue and time of the third student to be `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
 #### 3.2.3 Locating students: `find` (By: Choon Siong)
 
@@ -270,7 +270,7 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-#### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
+#### 3.2.8 Managing details for a student: `detail` (By: Vaishak) 
 
 You can add, edit or delete a detail for a specified student.
 
@@ -295,11 +295,13 @@ Examples:
 
 #### 3.2.8.2 Editing a detail: `detail edit`
 
-You can edit an existing detail to a specified student in **Reeve**.
+You can edit an existing detail for a specified student in **Reeve**.
 
 Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
 
 * Edits the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to edit, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:  
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
@@ -312,6 +314,8 @@ You can delete an existing detail to a specified student in **Reeve**.
 Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 
 * Deletes the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to delete, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:  
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
@@ -476,15 +480,15 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * There can only be one attendance record for every `LESSON_DATE`.
 
 <div markdown="block" class="alert alert-info">
-:information_source: The format of ATTENDANCE_DATE is as follows:
+:information_source: The format of LESSON_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
-:information_source: The format of FEEDBACK is as follows:
+:information_source: The format of ATTENDANCE_STATUS is as follows:
 * present or absent.
 </div>
 
 Examples:
-* `attendance add 2 d/08/12/2020 s/present f/attentive` adds the attendance record with the date 8 Dec 2020,
+* `attendance add 2 d/08/12/2020 a/present f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
 ##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`

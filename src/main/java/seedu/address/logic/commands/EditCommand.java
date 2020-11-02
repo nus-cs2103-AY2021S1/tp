@@ -132,7 +132,7 @@ public class EditCommand extends Command {
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
                     .orElse(studentToEdit.getAdmin().getPaymentDate());
 
-            // Additional Details cannot be edited through this channel
+            // Details cannot be edited through this channel
             updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
                     studentToEdit.getAdmin().getDetails());
         } else {
