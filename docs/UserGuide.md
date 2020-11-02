@@ -212,6 +212,7 @@ Adds inventory item or pending delivery to **OneShelf**.
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
 
 Pointers to take note when adding an item:
+
 * If item does not exist in the inventory book, then a new item will be added.
 * If similar inventory item already exist, then the `QUANTITY` of that particular item will be increased.
 * An item which has the same `NAME` and `SUPPLIER` is considered similar.
