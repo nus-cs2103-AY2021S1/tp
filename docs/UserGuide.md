@@ -10,6 +10,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
     - Quick start
     - Features
         - Adding a flashcard: `add`
+        - Clear all flashcards: `clear`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
         - Favourite a flashcard : `fav`
@@ -113,6 +114,12 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming c/Super Important n/Important question!`
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
+
+### Clearing all flashcards : `clear` 
+
+Clears all flashcard data from the program.
+
+Format: `clear`
 
 
 ### Deleting a flashcard  : `delete`
@@ -300,6 +307,7 @@ Flashcards data are saved in the hard disk automatically after any command that 
 Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
+**Clear** | `clear`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...`
