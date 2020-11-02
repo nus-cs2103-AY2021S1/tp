@@ -397,10 +397,13 @@
     -fx-font-size: 11;
 }
 
+.hat_container {
+    -fx-translate-x: 220;
+    -fx-translate-y: 1;
+}
+
 .hat_icon {
     -fx-padding: 0 100 0 10;
-    -fx-translate-x: 220;
-    -fx-translate-y: -25;
 }
 
 .selected-meeting-column {

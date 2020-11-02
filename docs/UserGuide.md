@@ -14,7 +14,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `modduke.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `modduke.jar` from [here](https://github.com/AY2021S1-CS2103-F10-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Modduke.
 
@@ -26,7 +26,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
    * **`contact list`** : Lists all contacts.
 
-   * **`contact add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to Modduke.
+   * **`contact add`** `n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to Modduke.
 
    * **`contact delete`** `n/John Doe` : Deletes `John Doe` from the Modduke.
 
@@ -93,6 +93,8 @@ Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Note(s): 
 * All fields are required except those in square brackets. No duplicate names.
+* NAME must be alphanumeric.
+* PHONE_NUMBER must be at least 3 digits but not longer than 20 digits.
 
 Example(s):
 * `contact add n/John Doe p/98765432 e/johnd@example.com`
@@ -319,7 +321,7 @@ Note(s):
 * Views the meeting with the specified meeting name in the given module.
 
 Example(s):
-* `meeting view n/CS2103 n/Weekly Meeting` views the `Weekly Meeting` meeting from the module `CS2103`.
+* `meeting view m/CS2103 n/Weekly Meeting` views the `Weekly Meeting` meeting from the module `CS2103`.
 
 ### Copy email address of contacts : `copy email`
 
