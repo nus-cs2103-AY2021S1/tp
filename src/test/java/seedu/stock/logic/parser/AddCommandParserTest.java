@@ -3,6 +3,8 @@ package seedu.stock.logic.parser;
 import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.CommandTestUtil.DEFAULT_SERIAL_NUMBER;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LARGER_THAN_INT_LIMIT_LOW_QUANTITY_DESC;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOW_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -130,10 +132,21 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
                 + INVALID_QUANTITY_DESC + LOCATION_DESC_BANANA, Quantity.MESSAGE_CONSTRAINTS);
 
+        // invalid too large quantity
+        assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
+                + INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC + LOCATION_DESC_BANANA,
+                                                Quantity.MESSAGE_CONSTRAINTS);
+
         // invalid lowQuantity
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
                 + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + INVALID_LOW_QUANTITY_DESC,
                 Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+
+        // invalid too large lowQuantity
+        assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
+                        + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA
+                        + INVALID_LARGER_THAN_INT_LIMIT_LOW_QUANTITY_DESC,
+                                Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
 
         // invalid location
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA + QUANTITY_DESC_BANANA

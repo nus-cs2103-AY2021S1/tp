@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.StockBook;
@@ -36,28 +37,36 @@ import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_APPLE = "Apple Juice";
-    public static final String VALID_NAME_BANANA = "Banana Bun";
-    public static final String VALID_SERIAL_NUMBER_APPLE = "Ntuc1";
-    public static final String VALID_SERIAL_NUMBER_BANANA = "Fairprice1";
-    public static final String VALID_SOURCE_APPLE = "Ntuc";
-    public static final String VALID_SOURCE_BANANA = "Fairprice";
+    public static final String VALID_NAME_APPLE = "apple juice";
+    public static final String VALID_NAME_BANANA = "banana bun";
+    public static final String VALID_SERIAL_NUMBER_APPLE = "ntuc1";
+    public static final String VALID_SERIAL_NUMBER_BANANA = "fairprice1";
+    public static final String VALID_SOURCE_APPLE = "ntuc";
+    public static final String VALID_SOURCE_BANANA = "fairprice";
     public static final String VALID_QUANTITY_APPLE = "2000";
     public static final String VALID_QUANTITY_BANANA = "1000";
     public static final String VALID_LOW_QUANTITY_APPLE = "0";
     public static final String VALID_LOW_QUANTITY_BANANA = "2200";
-    public static final String VALID_LOCATION_APPLE = "Fruit Section, Subsection C";
-    public static final String VALID_LOCATION_BANANA = "Fruits section, Subsection B";
+    public static final String VALID_LOCATION_APPLE = "fruit section, subsection c";
+    public static final String VALID_LOCATION_BANANA = "fruits section, subsection b";
     public static final String VALID_FILE_NAME = "test";
     public static final String VALID_SORT_ORDER_ASCENDING = "ascending";
     public static final String VALID_SORT_ORDER_DESCENDING = "descending";
     public static final String VALID_SORT_FIELD = "serialnumber";
     public static final String VALID_NOTE = "This is a note";
     public static final String VALID_NOTE_INDEX = "0";
+    public static final String VALID_NOTE_APPLE = "Note for apple.";
+    public static final String VALID_NOTE_ORANGE = "Note for orange.";
+    public static final String FIRST_NOTE_APPLE = "Fresh from AppleLand.";
+    public static final String VALID_NOTE_INDEX_SECOND_NOTE_APPLE = "2";
+    public static final String SECOND_NOTE_BANANA = "Tuesday";
+    public static final String VALID_NOTE_INDEX_FIRST_NOTE_BANANA = "1";
+    public static final String VALID_NOTE_INDEX_OUT_OF_BOUNDS = "99";
+
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
-    public static final String NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN = " " + PREFIX_NAME + "Banana         Bun";
+    public static final String NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN = " " + PREFIX_NAME + "banana         bun";
     public static final String SERIAL_NUMBER_DESC_APPLE = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_APPLE;
     public static final String SERIAL_NUMBER_DESC_BANANA = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_BANANA;
     public static final String SOURCE_DESC_APPLE = " " + PREFIX_SOURCE + VALID_SOURCE_APPLE;
@@ -77,6 +86,8 @@ public class CommandTestUtil {
     public static final String SORT_ORDER_DESCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_DESCENDING;
     public static final String SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + VALID_SORT_FIELD;
     public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
+    public static final String NOTE_DESC_APPLE = " " + PREFIX_NOTE + VALID_NOTE_APPLE;
+    public static final String NOTE_DESC_ORANGE = " " + PREFIX_NOTE + VALID_NOTE_ORANGE;
     public static final String NOTE_INDEX_DESC = " " + PREFIX_NOTE_INDEX + VALID_NOTE_INDEX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
@@ -94,12 +105,19 @@ public class CommandTestUtil {
     public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
     public static final String INVALID_LIST_TYPE_DESC = " " + PREFIX_LIST_TYPE + "a";
     public static final String INVALID_STATISTICS_TYPE_DESC = " " + PREFIX_STATISTICS_TYPE + "sour";
+    public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE + "              ";
+    public static final String INVALID_NOTE_INDEX_DESC = " " + PREFIX_NOTE_INDEX + "invalid";
 
+    public static final String INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC =
+                                            " " + PREFIX_QUANTITY + "10000000000000000000000";
+    public static final String INVALID_LARGER_THAN_INT_LIMIT_LOW_QUANTITY_DESC =
+            " " + PREFIX_LOW_QUANTITY + "10000000000000000000000";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-    public static final String DEFAULT_SERIAL_NUMBER = "0";
+    public static final String DEFAULT_SERIAL_NUMBER = "00";
 
+    // Keywords for find command testing
     public static final String[] VALID_NAME_APPLE_KEYWORDS = VALID_NAME_APPLE.split("\\s+");
     public static final String[] VALID_NAME_BANANA_KEYWORDS = VALID_NAME_BANANA.split("\\s+");
     public static final String[] VALID_SOURCE_APPLE_KEYWORDS = VALID_SOURCE_APPLE.split("\\s+");
@@ -117,7 +135,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException | SourceCompanyNotFoundException ce) {
+        } catch (CommandException | SourceCompanyNotFoundException | SerialNumberNotFoundException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }
@@ -167,6 +185,23 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code SerialNumberNotFoundException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the stock book, filtered stock list and selected stock in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailureForNote(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        StockBook expectedStockBook = new StockBook(actualModel.getStockBook());
+        List<Stock> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStockList());
+
+        assertThrows(SerialNumberNotFoundException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedStockBook, actualModel.getStockBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredStockList());
+    }
+
+    /**
      * Updates {@code model}'s filtered list to show only the stock at the given {@code targetSerialNumber} in the
      * {@code model}'s stock book.
      */
@@ -192,4 +227,18 @@ public class CommandTestUtil {
         model.updateFilteredStockList((new NameContainsKeywordsPredicate(nameForPredicate)));
 
     }
+
+    /**
+     * Returns true if the stock with the serial number provided exists in the stock book.
+     * @param model model to test stock list
+     * @param targetSerialNumber serial number to find in stock list
+     * @return boolean true if serial number is in stock book
+     */
+    public static boolean isSerialNumberInStockBook(Model model, SerialNumber targetSerialNumber) {
+        //if stock exists
+        return model.getStockBook().getStockList()
+                .stream()
+                .anyMatch(stock -> stock.getSerialNumber().equals(targetSerialNumber));
+    }
+
 }

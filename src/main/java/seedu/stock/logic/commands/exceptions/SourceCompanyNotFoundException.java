@@ -17,4 +17,5 @@ public class SourceCompanyNotFoundException extends Exception {
     public SourceCompanyNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
+
 }

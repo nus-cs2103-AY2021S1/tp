@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `add`.
-    * Added documentation for the feature `prrint`.
+    * Added documentation for the feature `print`.
   * Developer Guide:
     * Added implementation details of the `add` feature.
     * Added implementation details of the `print` feature.

@@ -10,7 +10,8 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 public class Note {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "A note can take any values, and it should not be only whitespaces.";
+            "Invalid note entered!\n"
+            + "A note can take any values, and it should not be only whitespaces.";
     /*
      * The first character of the note must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
@@ -31,7 +32,7 @@ public class Note {
     }
 
     /**
-     * Returns true if a given string is a valid source.
+     * Returns true if a given string is a valid note.
      */
     public static boolean isValidNote(String test) {
         return test.matches(VALIDATION_REGEX);

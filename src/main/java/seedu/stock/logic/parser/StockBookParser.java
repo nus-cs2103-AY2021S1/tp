@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.BookmarkCommand;
+import seedu.stock.logic.commands.ClearCommand;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -16,10 +17,11 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
-import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
+import seedu.stock.logic.commands.StockViewCommand;
+import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
@@ -49,7 +51,7 @@ public class StockBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments");
+        final String arguments = matcher.group("arguments").toLowerCase();
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -58,9 +60,6 @@ public class StockBookParser {
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             try {
@@ -90,6 +89,13 @@ public class StockBookParser {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
+        case ClearCommand.COMMAND_WORD:
+            try {
+                return new ClearCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
         case DeleteCommand.COMMAND_WORD:
             try {
                 return new DeleteCommandParser().parse(arguments);
@@ -100,6 +106,13 @@ public class StockBookParser {
         case StatisticsCommand.COMMAND_WORD:
             try {
                 return new StatisticsCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case TabCommand.COMMAND_WORD:
+            try {
+                return new TabCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
@@ -132,9 +145,9 @@ public class StockBookParser {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
-        case NoteViewCommand.COMMAND_WORD:
+        case StockViewCommand.COMMAND_WORD:
             try {
-                return new NoteViewCommandParser().parse(arguments);
+                return new StockViewCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
@@ -156,6 +169,13 @@ public class StockBookParser {
         case UnbookmarkCommand.COMMAND_WORD:
             try {
                 return new UnbookmarkCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case ExitCommand.COMMAND_WORD:
+            try {
+                return new ExitCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }

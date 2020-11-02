@@ -1,7 +1,9 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_SERIAL_NUMBER_NOT_FOUND;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +25,15 @@ public class UnbookmarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes bookmarks from bookmarked stocks "
             + "the given serial number. \n"
-            + "Parameters: "
-            + PREFIX_SERIAL_NUMBER + "SERIAL NUMBER \n"
-            + "You may provide more than one serial number \n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + "CS2103 ";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "China3 ";
 
 
     public static final String MESSAGE_UNBOOKMARK_STOCK_SUCCESS = "Unbookmarked Stock: %1$s";
-    public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists: %1$s";
     public static final String MESSAGE_NOT_BOOKMARKED = "Stock with given serial number"
             + " is not bookmarked before:%1$s";
 

@@ -35,11 +35,13 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("^")); // only non-alphanumeric characters
         assertFalse(Quantity.isValidQuantity("fdfs")); // alphabets only
         assertFalse(Quantity.isValidQuantity("-199")); // negative number
+        assertFalse(Quantity.isValidQuantity(Integer.toString(Integer.MAX_VALUE + 1))); //Overflow
 
         // valid quantity
         assertTrue(Quantity.isValidQuantity("0")); // zero
         assertTrue(Quantity.isValidQuantity("14")); // numbers only
         assertTrue(Quantity.isValidQuantity("2324254")); // large number
+        assertTrue(Quantity.isValidQuantity(Integer.toString(Integer.MAX_VALUE))); //Max integer value
     }
 
     @Test
@@ -54,7 +56,6 @@ public class QuantityTest {
         assertFalse(notLowQuantity.isLowOnQuantity()); // comparing with default low quantity
         notLowQuantity = new Quantity("100", "10");
         assertFalse(notLowQuantity.isLowOnQuantity()); // comparing after changing low quantity value
-
     }
 
     @Test
@@ -69,7 +70,5 @@ public class QuantityTest {
 
         // returns false, lowQuantity edited
         assertFalse(quantity.equals(quantityWithLowQuantity));
-
-
     }
 }

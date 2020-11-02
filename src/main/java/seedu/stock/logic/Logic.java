@@ -6,8 +6,10 @@ import javafx.collections.ObservableList;
 import seedu.stock.commons.core.GuiSettings;
 import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.Model;
 import seedu.stock.model.ReadOnlyStockBook;
 import seedu.stock.model.stock.Stock;
 
@@ -23,7 +25,7 @@ public interface Logic {
      * @throws ParseException If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException,
-            SourceCompanyNotFoundException;
+            SourceCompanyNotFoundException, SerialNumberNotFoundException;
 
     /**
      * Returns the StockBook.
@@ -49,4 +51,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    Model getModel();
 }

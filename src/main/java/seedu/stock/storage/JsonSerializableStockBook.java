@@ -24,7 +24,7 @@ class JsonSerializableStockBook {
     private final List<JsonAdaptedStock> stocks = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableStockBook} with the given persons.
+     * Constructs a {@code JsonSerializableStockBook} with the given stocks.
      */
     @JsonCreator
     public JsonSerializableStockBook(@JsonProperty("stocks") List<JsonAdaptedStock> stocks) {

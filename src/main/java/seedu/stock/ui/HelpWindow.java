@@ -27,43 +27,46 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String NOTE = "NOTE\n";
     public static final String STATISTICS = "STATISTICS\n";
     public static final String SORT = "SORT\n";
+    public static final String BOOKMARK = "BOOKMARK\n";
+    public static final String UNBOOKMARK = "UNBOOKMARK\n";
+    public static final String PRINT = "PRINT\n";
+    public static final String CLEAR = "CLEAR\n";
     public static final String EXIT = "EXIT\n";
 
     public static final String COMMAND_DESCRIPTION = "COMMAND DESCRIPTION";
     public static final String HELP_DESCRIPTION =
             "help";
 
-    public static final String ADD_DESCRIPTION =
-            "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>";
+    public static final String ADD_DESCRIPTION = "add n/<name> s/<source> q/<quantity>"
+            + " l/<location> [lq/<low quantity>]";
 
-    public static final String LIST_DESCRIPTION =
-            "list lt/all \nlist lt/bookmark \nlist lt/low";
+    public static final String LIST_DESCRIPTION = "list lt/<list type>";
 
-    public static final String DELETE_DESCRIPTION =
-            "delete sn/<serial number>"
-            + "delete sn/<serial number> sn/<serial number 2>";
+    public static final String DELETE_DESCRIPTION = "delete sn/<serial number>...";
 
-    public static final String FIND_DESCRIPTION =
-            "find (followed by combination of any): \n"
-                    + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
+    public static final String FIND_DESCRIPTION = "find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]";
 
-    public static final String FINDEXACT_DESCRIPTION =
-            "findexact (followed by combination of any): \n"
-                    + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
+    public static final String FINDEXACT_DESCRIPTION = "findexact [n/<name>] [sn/<serial number>]"
+            + " [s/<source>] [l/<location>]";
 
-    public static final String UPDATE_DESCRIPTION =
-            "update sn/<serial number> (followed by combination of any):\n"
-                    + "iq/<+/-><quantity to increment/decrement> \nnq/<new quantity> \nn/<new name>\n"
-                    + "l/<new location in warehouse> \ns/<new source of stock>\n"
-                    + "NOTE: only either of iq/ or nq/ can be provided.\n";
+    public static final String UPDATE_DESCRIPTION = "update sn/<serial number>... [iq/<increment value> | "
+            + "nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]";
 
-    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note for stock>\n"
+    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note>\n"
             + "noteview sn/<serial number>\n"
             + "notedelete sn/<serial number> ni/<note index>";
 
-    public static final String STATISTICS_DESCRIPTION = "stats st/source\nstats st/source-qd-<source company>";
+    public static final String STATISTICS_DESCRIPTION = "stats st/<statistics type>";
 
     public static final String SORT_DESCRIPTION = "sort o/<order> by/<field>";
+
+    public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number>...";
+
+    public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number>...";
+
+    public static final String PRINT_DESCRIPTION = "print fn/<file name>";
+
+    public static final String CLEAR_DESCRIPTION = "clear";
 
     public static final String EXIT_DESCRIPTION = "exit";
 
@@ -147,6 +150,30 @@ public class HelpWindow extends UiPart<Stage> {
     private Label sortMessage;
 
     @FXML
+    private Label bookmarkMethod;
+
+    @FXML
+    private Label bookmarkMessage;
+
+    @FXML
+    private Label unbookmarkMethod;
+
+    @FXML
+    private Label unbookmarkMessage;
+
+    @FXML
+    private Label printMethod;
+
+    @FXML
+    private Label printMessage;
+
+    @FXML
+    private Label clearMethod;
+
+    @FXML
+    private Label clearMessage;
+
+    @FXML
     private Label url;
 
     @FXML
@@ -192,10 +219,6 @@ public class HelpWindow extends UiPart<Stage> {
         sortMethod.setText(SORT);
         sortMessage.setText(SORT_DESCRIPTION);
 
-        //Update Method
-        statsMethod.setText(UPDATE);
-        statsMessage.setText(UPDATE_DESCRIPTION);
-
         //Find Method
         findMethod.setText(FIND);
         findMessage.setText(FIND_DESCRIPTION);
@@ -208,14 +231,33 @@ public class HelpWindow extends UiPart<Stage> {
         exitMethod.setText(EXIT);
         exitMessage.setText(EXIT_DESCRIPTION);
 
+        //Stats Method
+        statsMethod.setText(STATISTICS);
+        statsMessage.setText(STATISTICS_DESCRIPTION);
+
+        //Bookmark Method
+        bookmarkMethod.setText(BOOKMARK);
+        bookmarkMessage.setText(BOOKMARK_DESCRIPTION);
+
+        //Unbookmark Method
+        unbookmarkMethod.setText(UNBOOKMARK);
+        unbookmarkMessage.setText(UNBOOKMARK_DESCRIPTION);
+
+        //Print Method
+        printMethod.setText(PRINT);
+        printMessage.setText(PRINT_DESCRIPTION);
+
+        //Clear Method
+        clearMethod.setText(CLEAR);
+        clearMessage.setText(CLEAR_DESCRIPTION);
 
         //Disclaimer on where to click
         disclaimer.setText(DISCLAIMER);
-        disclaimer.setStyle("-fx-font-size: 110%;");
+        disclaimer.setStyle("-fx-font-size: 200%;");
 
         //setting the colours for the link
         url.setText(USERGUIDE_URL);
-        url.setStyle("-fx-text-fill: #0b6ae0;");
+        url.setStyle("-fx-text-fill: #0b6ae0;" + "-fx-font-size: 200%;");
         url.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

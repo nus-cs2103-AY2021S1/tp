@@ -1,6 +1,8 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,13 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the stock identified by the EXACT serial number used in the displayed.\n"
-            + "Parameters: SERIAL NUMBER (must be a valid serial number)\n"
-            + "Example: " + COMMAND_WORD + " sn/Kc company1";
+            + "Format: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION
+            + " [" + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "]...\n"
+            + "Example: "
+            + COMMAND_WORD + " "
+            + PREFIX_SERIAL_NUMBER + "Fairprice1";
 
     public static final String MESSAGE_DELETE_STOCK_SUCCESS = "All serial number(s) are found.\n"
                                                                     + "Deleted Stock(s): %1$s";

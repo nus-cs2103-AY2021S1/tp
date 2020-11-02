@@ -16,13 +16,14 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
 import seedu.stock.model.stock.Note;
+import seedu.stock.model.stock.NoteIndex;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Source;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various Parser classes.
  */
 public class ParserUtil {
 
@@ -49,10 +50,12 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
+
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+
         return new Name(trimmedName);
     }
 
@@ -64,6 +67,7 @@ public class ParserUtil {
      */
     public static Quantity parseQuantity(String quantity) throws ParseException {
         requireNonNull(quantity);
+
         String trimmedQuantity = quantity.trim();
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
@@ -102,10 +106,12 @@ public class ParserUtil {
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);
+
         String trimmedLocation = location.trim();
         if (!Location.isValidLocation(trimmedLocation)) {
             throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
+
         return new Location(trimmedLocation);
     }
 
@@ -117,17 +123,17 @@ public class ParserUtil {
      */
     public static Source parseSource(String source) throws ParseException {
         requireNonNull(source);
+
         String trimmedSource = source.trim();
         if (!Source.isValidSource(trimmedSource)) {
             throw new ParseException(Source.MESSAGE_CONSTRAINTS);
         }
+
         return new Source(trimmedSource);
     }
 
     /**
-<<<<<<< HEAD
      * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
-=======
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -135,10 +141,12 @@ public class ParserUtil {
      */
     public static Note parseNote(String note) throws ParseException {
         requireNonNull(note);
+
         String trimmedNote = note.trim();
         if (!Note.isValidNote(trimmedNote)) {
             throw new ParseException(Note.MESSAGE_CONSTRAINTS);
         }
+
         return new Note(trimmedNote);
     }
 
@@ -150,11 +158,30 @@ public class ParserUtil {
      */
     public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
         requireNonNull(serialNumber);
+
         String trimmedSerialNumber = serialNumber.trim();
         if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
             throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
         }
+
         return new SerialNumber(trimmedSerialNumber);
+    }
+
+    /**
+     * Parses a {@code String noteIndex} into a {@code NoteIndex}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code noteIndex} is invalid.
+     */
+    public static NoteIndex parseNoteIndex(String noteIndex) throws ParseException {
+        requireNonNull(noteIndex);
+
+        String trimmedNoteIndex = noteIndex.trim();
+        if (!NoteIndex.isValidNoteIndex(trimmedNoteIndex)) {
+            throw new ParseException(NoteIndex.MESSAGE_CONSTRAINTS);
+        }
+
+        return new NoteIndex(trimmedNoteIndex);
     }
 
     /**
@@ -176,7 +203,6 @@ public class ParserUtil {
         List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
 
         if (values.isEmpty()) {
-
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
@@ -198,10 +224,12 @@ public class ParserUtil {
      */
     public static QuantityAdder parseQuantityAdder(String valueToBeAdded) throws ParseException {
         requireNonNull(valueToBeAdded);
+
         String trimmedValue = valueToBeAdded.trim();
         if (!QuantityAdder.isValidValue(trimmedValue)) {
             throw new ParseException(QuantityAdder.MESSAGE_CONSTRAINTS);
         }
+
         return new QuantityAdder(trimmedValue);
     }
 

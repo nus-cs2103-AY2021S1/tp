@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
@@ -9,41 +10,41 @@ import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.NoteIndex;
 import seedu.stock.model.stock.SerialNumber;
-
-
 
 public class NoteDeleteCommandParser implements Parser<NoteDeleteCommand> {
 
     private static final String MESSAGE_INVALID_NOTE_INDEX =
             "Note index must be a valid positive integer.";
 
-    private static final Prefix[] validPrefixesForDeleteNote = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[] validPrefixesForNoteDelete = { PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX };
     private static final Prefix[] invalidPrefixesForDeleteNote =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForDeleteNote);
+            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNoteDelete);
 
     @Override
     public NoteDeleteCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, validPrefixesForDeleteNote);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
-        if (!areAllPrefixesPresent(argMultimap, validPrefixesForDeleteNote)
+        if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteDelete)
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForDeleteNote)
-                || isDuplicatePrefixPresent(argMultimap, validPrefixesForDeleteNote)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    NoteDeleteCommand.MESSAGE_USAGE));
+        }
+
+        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteDelete)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
                     NoteDeleteCommand.MESSAGE_USAGE));
         }
 
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
         SerialNumber serialNumber = ParserUtil.parseSerialNumber(serialNumberInput);
         String noteIndexInput = argMultimap.getValue(PREFIX_NOTE_INDEX).get();
-        if (!noteIndexInput.matches("[0-9]+") || noteIndexInput.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_NOTE_INDEX,
-                    NoteDeleteCommand.MESSAGE_USAGE));
-        }
-        int noteIndex = Integer.parseInt(noteIndexInput);
+        NoteIndex noteIndex = ParserUtil.parseNoteIndex(noteIndexInput);
 
         return new NoteDeleteCommand(serialNumber, noteIndex);
     }

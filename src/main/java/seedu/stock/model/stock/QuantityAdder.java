@@ -13,7 +13,8 @@ import java.util.Optional;
 public class QuantityAdder {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Increment value should be an integer";
+            "Invalid quantity adder!\n"
+            + "Increment value should be an integer";
     // Matches any signed integer
     public static final String VALIDATION_REGEX = "^(\\+|-)?\\d+$";
     public final String valueToBeAdded;
@@ -36,7 +37,14 @@ public class QuantityAdder {
      * @return A boolean value indicating if the test passes.
      */
     public static boolean isValidValue(String test) {
-        return test.matches(VALIDATION_REGEX);
+        requireNonNull(test);
+        try {
+            //protective layer against huge string input.
+            Integer.parseInt(test);
+            return test.matches(VALIDATION_REGEX);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -63,10 +71,14 @@ public class QuantityAdder {
      * @return The quantity result after being incremented.
      */
     public Optional<Quantity> incrementQuantity(Quantity toBeAddedInto) {
+        BigInteger limit = new BigInteger("2147483647");
         BigInteger incrementValue = new BigInteger(valueToBeAdded);
         BigInteger currentQuantity = new BigInteger(toBeAddedInto.quantity);
         currentQuantity = currentQuantity.add(incrementValue);
         if (currentQuantity.signum() == -1) {
+            return Optional.empty();
+        }
+        if (currentQuantity.compareTo(limit) > 0) {
             return Optional.empty();
         }
         return Optional.of(new Quantity(currentQuantity.toString()));

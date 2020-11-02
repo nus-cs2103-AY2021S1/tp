@@ -71,7 +71,6 @@ public abstract class UiPart<T> {
         try {
             fxmlLoader.load();
         } catch (IOException e) {
-            System.out.println(location);
             throw new AssertionError(e);
         }
     }
