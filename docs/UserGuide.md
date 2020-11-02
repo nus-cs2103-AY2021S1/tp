@@ -464,10 +464,10 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * There can only be one attendance record for every `LESSON_DATE`.
 
 <div markdown="block" class="alert alert-info">
-:information_source: The format of ATTENDANCE_DATE is as follows:
+:information_source: The format of LESSON_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
-:information_source: The format of FEEDBACK is as follows:
+:information_source: The format of ATTENDANCE_STATUS is as follows:
 * present or absent.
 </div>
 
