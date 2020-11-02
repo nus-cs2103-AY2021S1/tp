@@ -2,8 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.UsageList;
@@ -26,7 +24,7 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
 
         this.usages = model.getIngredientUsageList();
         model.setIngredientUsageList(new UsageList<>());
-        return CommandResult.statsMessage(new ArrayList<>(), "All records of ingredients used are cleared!");
+        return CommandResult.message("Cleared ingredient usage history");
     }
 
     /**
@@ -42,7 +40,7 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
         model.setIngredientUsageList(this.usages);
         this.usages.setAll(new UsageList<>());
 
-        return CommandResult.message("Undo: restored records of ingredients used");
+        return CommandResult.message("Undo: restored history of ingredients used");
     }
 
     @Override

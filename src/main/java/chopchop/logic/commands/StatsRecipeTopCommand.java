@@ -12,7 +12,7 @@ public class StatsRecipeTopCommand extends Command {
         requireNonNull(model);
 
         var output = model.getMostMadeRecipeList();
-        return CommandResult.statsMessage(output, "Here are the top recipes");
+        return CommandResult.statsMessage(output, "Here are your top recipes");
     }
 
     @Override

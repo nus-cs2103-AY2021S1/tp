@@ -10,7 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.BiFunction;
 
+import chopchop.commons.util.Pair;
 import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
 import chopchop.logic.commands.Command;
@@ -23,7 +25,6 @@ import chopchop.logic.commands.StatsRecipeRecentCommand;
 import chopchop.logic.commands.StatsRecipeTopCommand;
 import chopchop.logic.parser.CommandArguments;
 
-import static chopchop.commons.util.Enforce.enforceLessThan;
 import static chopchop.commons.util.Strings.ARG_AFTER;
 import static chopchop.commons.util.Strings.ARG_BEFORE;
 import static chopchop.commons.util.Strings.COMMAND_STATS;
@@ -74,7 +75,7 @@ public class StatsCommandParser {
             return ensureNoArgs(args, c + " " + STATS_KIND_RECENT, new StatsRecipeRecentCommand());
 
         case STATS_KIND_MADE:
-            return parseDateRecipeCommand(kind, args);
+            return parseDateCommand("recipe", args, (aft, bef) -> new StatsRecipeMadeCommand(aft, bef));
 
         default:
             return Result.error("Expected one of 'top', 'made', 'recent', or 'clear'"
@@ -93,7 +94,7 @@ public class StatsCommandParser {
             return ensureNoArgs(args, c + " " + STATS_KIND_RECENT, new StatsIngredientRecentCommand());
 
         case STATS_KIND_USED:
-            return parseDateIngredientCommand(kind, args);
+            return parseDateCommand("ingredient", args, (aft, bef) -> new StatsIngredientUsedCommand(aft, bef));
 
         default:
             return Result.error("Expected one of 'used', 'recent', or 'clear'"
@@ -109,75 +110,47 @@ public class StatsCommandParser {
 
 
 
-
-    private static Result<StatsRecipeMadeCommand> parseDateRecipeCommand(String name, CommandArguments args) {
-        Optional<String> err;
-        var supportedArgs = List.of(ARG_BEFORE, ARG_AFTER);
-        if ((err = checkArguments(args, "stats recipe", supportedArgs)).isPresent()) {
-            return Result.error(err.get());
-        }
-
-        var after = args.getArgument(ARG_AFTER);
-        var before = args.getArgument(ARG_BEFORE);
-
-        if (before.size() > 1 || after.size() > 1) {
-            return Result.error("Multiple dates specified");
-        }
-
-        try {
-
-            var arg1 = processDate(after).orElse(null);
-            var arg2 = processDate(before).orElse(null);
-
-            return Result.of(new StatsRecipeMadeCommand(arg1, arg2));
-
-        } catch (Exception e) {
-
-            return Result.error("Unable to parse date");
-        }
-    }
-
-    private static Result<StatsIngredientUsedCommand> parseDateIngredientCommand(String name, CommandArguments args) {
+    private static Result<Command> parseDateCommand(String kind, CommandArguments args,
+        BiFunction<LocalDateTime, LocalDateTime, Command> constructor) {
 
         Optional<String> err;
         var supportedArgs = List.of(ARG_BEFORE, ARG_AFTER);
-        if ((err = checkArguments(args, "stats ingredient", supportedArgs)).isPresent()) {
+        if ((err = checkArguments(args, String.format("stats %s", kind), supportedArgs)).isPresent()) {
             return Result.error(err.get());
         }
 
-        var after = args.getArgument(ARG_AFTER);
-        var before = args.getArgument(ARG_BEFORE);
+        var afters = args.getArgument(ARG_AFTER);
+        var befores = args.getArgument(ARG_BEFORE);
 
-        if (before.size() > 1 || after.size() > 1) {
+        if (befores.size() > 1 || afters.size() > 1) {
             return Result.error("Multiple dates specified");
         }
 
-        try {
-            var arg1 = processDate(after).orElse(null);
-            var arg2 = processDate(before).orElse(null);
-
-            return Result.of(new StatsIngredientUsedCommand(arg1, arg2));
-
-        } catch (DateTimeParseException e) {
-            return Result.error("Unable to parse date: %s", e.getMessage());
-        }
+        return Result.transpose(Result.listToOptional(afters).map(x -> processDate(x, "after")))
+            .then(aft -> {
+                return Result.transpose(Result.listToOptional(befores).map(x -> processDate(x, "before")))
+                    .map(bef -> Pair.of(aft.orElse(null), bef.orElse(null)));
+            })
+            .map(p -> constructor.apply(p.fst(), p.snd()));
     }
 
-    private static Optional<LocalDateTime> processDate(List<String> strings) throws DateTimeParseException {
-        enforceLessThan(strings.size(), 2);
+    private static Result<LocalDateTime> processDate(String input, String kind) {
 
-        if (strings.size() == 0) {
-            return Optional.empty();
+        if (input.isEmpty()) {
+            return Result.error("date (for '/%s') cannot be empty", kind);
         }
 
         var timeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        String val = strings.get(0);
-        if (val.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
-            return Optional.of(LocalDateTime.of(LocalDate.parse(val, formatter), LocalTime.of(0, 0)));
-        } else {
-            return Optional.of(LocalDateTime.parse(val, timeFormatter));
+        try {
+            if (input.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+                return Result.of(LocalDateTime.of(LocalDate.parse(input, formatter), LocalTime.of(0, 0)));
+            } else {
+                return Result.of(LocalDateTime.parse(input, timeFormatter));
+            }
+        } catch (DateTimeParseException e) {
+            return Result.error("Unable to parse date/time (for '/%s'): %s", kind, e.getMessage());
         }
     }
 

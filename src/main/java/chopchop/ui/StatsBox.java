@@ -14,7 +14,6 @@ import chopchop.model.Model;
 import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;

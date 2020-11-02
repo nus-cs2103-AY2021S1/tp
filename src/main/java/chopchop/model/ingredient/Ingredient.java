@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.StringJoiner;
 import java.util.TreeMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -125,7 +126,7 @@ public class Ingredient extends Entry {
      */
     public Ingredient combine(Ingredient other) throws IncompatibleIngredientsException {
         if (!this.isSame(other)) {
-            throw new IncompatibleIngredientsException(String.format("Cannot combine '%s' with '%s'",
+            throw new IncompatibleIngredientsException(String.format("cannot combine '%s' with '%s'",
                 this.name, other.name));
         }
 
@@ -157,7 +158,7 @@ public class Ingredient extends Entry {
             } else {
                 if (!thisQty.compatibleWith(qty)) {
                     throw new IncompatibleIngredientsException(
-                        String.format("Incompatible units '%s' and '%s'", thisQty, qty)
+                        String.format("incompatible units ('%s' and '%s')", thisQty, qty)
                     );
                 }
 
@@ -185,12 +186,22 @@ public class Ingredient extends Entry {
      * of the ingredient
      */
     public Pair<Ingredient, Ingredient> split(Quantity quantity)
-            throws IllegalValueException, IncompatibleIngredientsException {
+        throws IllegalValueException, IncompatibleIngredientsException {
+
         {
             var existingQty = this.getQuantity();
-            if (existingQty.compareTo(quantity) < 0 || quantity.isNegative()) {
-                throw new IllegalValueException(String.format("Insufficient '%s' to remove given quantity "
-                    + "(need %s, have only %s)", this.name.toString(), quantity, existingQty));
+            try {
+                if (existingQty.compareTo(quantity) < 0 || quantity.isNegative()) {
+                    throw new IllegalValueException(String.format(
+                        "insufficient '%s' to remove given quantity (need %s, have only %s)",
+                        this.name.toString(), quantity, existingQty
+                    ));
+                }
+                // this is thrown by compareTo
+            } catch (IncompatibleIngredientsException e) {
+                throw new IncompatibleIngredientsException(String.format(
+                    "%s (for ingredient '%s')", e.getMessage(), this.getName()
+                ));
             }
         }
 
@@ -199,11 +210,16 @@ public class Ingredient extends Entry {
         var currQuantity = quantity;
         var splitKey = this.sets.firstKey();
 
+        var incompatibleException = (Function<String, IncompatibleIngredientsException>) (e -> {
+            return new IncompatibleIngredientsException(String.format(
+                "%s (for ingredient '%s')", e, this.getName()
+            ));
+        });
+
         for (var entry : this.sets.entrySet()) {
             if (entry.getValue().compareTo(currQuantity) < 0) {
                 currQuantity = currQuantity.subtract(entry.getValue())
-                    .orElseThrow(IncompatibleIngredientsException::new);
-
+                    .orElseThrow(incompatibleException);
             } else {
                 splitKey = entry.getKey();
                 break;
@@ -215,9 +231,7 @@ public class Ingredient extends Entry {
         secondSets.putAll(this.sets.subMap(splitKey, false, this.sets.lastKey(), true));
 
         var remainingQuantity = this.sets.get(splitKey).subtract(currQuantity)
-            .orElseThrow(x -> new IncompatibleIngredientsException(
-                String.format("Ingredient '%s': %s", this.getName(), x)
-            ));
+            .orElseThrow(incompatibleException);
 
         if (!remainingQuantity.isZero()) {
             secondSets.put(splitKey, remainingQuantity);

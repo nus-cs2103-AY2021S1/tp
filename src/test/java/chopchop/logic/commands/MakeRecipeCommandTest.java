@@ -53,8 +53,8 @@ public class MakeRecipeCommandTest {
 
         var c4 = runCommand(m, "make recipe asdf salad");
         assertTrue(c4.isError());
-        assertEquals("Error: Could not make recipe 'asdf salad' (caused by ingredient 'rainbows'): "
-            + "Cannot compare '50mL' with '400g' (incompatible units)", c4.toString());
+        assertEquals("Error: Could not make recipe: Cannot compare '50mL' with '400g' "
+            + "(incompatible units) (for ingredient 'rainbows')", c4.toString());
 
         {
             var p = new CommandParser();

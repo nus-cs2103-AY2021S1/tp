@@ -26,7 +26,7 @@ public class StatsIngredientUsedCommand extends Command {
         }
     }
 
-    private String getMessage() {
+    private String getMessage(boolean isEmpty) {
         DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         String msg;
@@ -35,16 +35,20 @@ public class StatsIngredientUsedCommand extends Command {
             var after = this.after.format(formatter);
             var onAfter = this.after.format(onFormatter);
             if (this.after.plusDays(1).equals(this.before)) {
-                msg = String.format("Here is a list of ingredients used on %s", onAfter);
+                msg = String.format(isEmpty ? "No ingredients were used on %s"
+                                            : "Showing ingredients used on %s", onAfter);
             } else {
-                msg = String.format("Here is a list of ingredients used from the period %s to %s", after, before);
+                msg = String.format(isEmpty ? "No ingredients were used between %s and %s"
+                                            : "Showing ingredients used between %s and %s", after, before);
             }
         } else if (this.before != null) {
             var before = this.before.format(formatter);
-            msg = String.format("Here is a list of ingredients used before %s", before);
+            msg = String.format(isEmpty ? "No ingredients were used before %s"
+                                        : "Showing ingredients used before %s", before);
         } else {
             var before = this.after.format(formatter);
-            msg = String.format("Here is a list of ingredients used after %s", before);
+            msg = String.format(isEmpty ? "No ingredients were used after %s"
+                                        : "Showing ingredients used after %s", before);
         }
         return msg;
     }
@@ -52,7 +56,7 @@ public class StatsIngredientUsedCommand extends Command {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
         var output = model.getIngredientUsageList().getUsagesBetween(after, before);
-        return CommandResult.statsMessage(output, getMessage());
+        return CommandResult.statsMessage(output, getMessage(output.isEmpty()));
     }
 
     @Override
