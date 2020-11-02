@@ -6,6 +6,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.FILE_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_STATISTICS_TYPE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_DESC;
@@ -42,7 +43,7 @@ import seedu.stock.logic.commands.UpdateCommand;
 public class SuggestionCommandParserTest {
     @Test
     public void parse_exitCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = "";
         SuggestionCommandParser parser = new SuggestionCommandParser("exi");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -50,11 +51,20 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = LOCATION_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
+        userInput = "";
         parser = new SuggestionCommandParser("exit", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.EXIT_COMMAND_WORD;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = LOCATION_DESC_BANANA;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
