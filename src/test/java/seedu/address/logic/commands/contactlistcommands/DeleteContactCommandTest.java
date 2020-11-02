@@ -102,7 +102,7 @@ public class DeleteContactCommandTest {
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
-        // same value -> returns true
+        // same index value -> returns true
         DeleteContactCommand deleteFirstCommandCopy = new DeleteContactCommand(INDEX_FIRST_CONTACT);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
@@ -112,7 +112,7 @@ public class DeleteContactCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different index -> returns false
+        // different index value -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
