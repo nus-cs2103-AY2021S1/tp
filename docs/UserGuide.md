@@ -233,7 +233,7 @@ longer input commands to the textbox.
 Upon entering review mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `↑ key` hides answer and notes of the current flashcard  
-* `→ key` key moves on to the next flashcard (if there is a next flashcard)
+* `→ key` moves on to the next flashcard (if there is a next flashcard)
 * `← key` moves to the previous flashcard (if there is a previous flashcard)
 * `q` quits review mode
 
@@ -280,7 +280,7 @@ Examples:
     
 ### Views a flashcard  : `view`
 
-View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user. 
+View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
 
 Format: `view INDEX [-a]`
 
