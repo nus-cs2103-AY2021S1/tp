@@ -24,7 +24,7 @@ Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized
     - [API](#add)
 
 1. **List**
-    - Displays a list of the all the user's expenses.
+    - Displays a list of all the user's expenses.
     - Command: `list`
     - [API](#list)
 
@@ -139,7 +139,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - **At least 1 of the 4 fields** (description, amount, date, category) of expense must be specified.
     - Format: `edit <index> [-d <description>] [-$<amount_spent>] [-@<date>] [t/<category>]`
     - Example: `edit 1 -d lunch -$12.50`
-    - Example: `edit 11 -$12.50 -dlunch -@23-06/2020 t/Food`
+    - Example: `edit 11 -$12.50 -d lunch -@23-06-2020 t/Food`
     - Input constraints:
       - See [add](#add)
     <div markdown="span" class="alert alert-primary">
@@ -202,7 +202,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Date input should be in the format dd-MM-yyyy.
     - Budget Balance shown is overall budget balance (see [list](#list))
     - Format: `find [-d <description>] [-@<date>]`
-    - Example: `find -d Phone`, `find -d lunch -@ 01-07-2020`
+    - Example: `find -d Phone`, `find -d lunch -@01-07-2020`
 
     ![find_example](images/ug_example/find_example.PNG)
     _Find by partial description keyword_
@@ -256,6 +256,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
         - The 2 commands specified cannot be the same.
         - New command cannot be a keyword that is already being used.
         - Original command must exist.
+        
+    NOTE: (after alias a b -> a is no longer alias for anything and has nothing to do with b)
     - Format: `alias <original_command> <new_command>`
     - Example: `alias add spent`
     
@@ -313,7 +315,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 |---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  **Add**      | `add -d <description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -d dinner -$10.50`, `add -d dinner -$10.50 -@20-08-2020 t/Food`                |
 |  **List**     | `list`                                                                                                                                                           |
-|  **Edit**     | `edit <index> [-d <description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -d lunch -$12.50`, `edit 1 -$12.50 -d lunch -@11-11/2020 t/Lunch`|
+|  **Edit**     | `edit <index> [-d <description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -d lunch -$12.50`, `edit 1 -$12.50 -d lunch -@11-11-2020 t/Lunch`|
 | **Delete**    | `delete <index>`<br> e.g., `delete 1`                                                                                                                            |
 | **Topup**     | `topup -$<amount> [t/<category>]`<br> e.g., `topup -$200`, `topup -$30 t/Food`                                                                                   |
 |  **Find**     | `find [-d <description>] [-@<date>]` <br> e.g., `find -d lunch`, `find -d lunch -@01-07-2020`                                                                    |
