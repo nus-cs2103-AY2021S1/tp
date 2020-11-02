@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddApplicantCommand;
 import com.eva.logic.commands.AddApplicationCommand;
-import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.AddCommentCommand;
 import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.AddStaffCommand;
@@ -15,12 +14,10 @@ import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.DeleteApplicantCommand;
 import com.eva.logic.commands.DeleteApplicationCommand;
-import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.commands.DeleteLeaveCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.commands.EditApplicantCommand;
-import com.eva.logic.commands.EditCommand;
 import com.eva.logic.commands.EditCommentCommand;
 import com.eva.logic.commands.EditStaffCommand;
 import com.eva.logic.commands.ExitCommand;
@@ -62,9 +59,6 @@ public class EvaParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
         case AddStaffCommand.COMMAND_WORD:
             return new AddStaffCommandParser().parse(arguments);
 
@@ -73,12 +67,6 @@ public class EvaParser {
 
         case EditStaffCommand.COMMAND_WORD:
             return new EditStaffCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
 
         case AddCommentCommand.COMMAND_WORD:
             return new AddCommentCommandParser().parse(arguments);

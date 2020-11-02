@@ -54,7 +54,7 @@ public class EvaParserTest {
     @Test
     public void parseCommand_deleteStaff() throws Exception {
         DeleteStaffCommand command = (DeleteStaffCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " s-");
+                DeleteStaffCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteStaffCommand(INDEX_FIRST_PERSON), command);
     }
 

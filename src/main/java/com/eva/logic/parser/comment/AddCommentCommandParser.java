@@ -1,8 +1,7 @@
 package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -32,7 +31,7 @@ public class AddCommentCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_APPLICANT, PREFIX_STAFF);
+                        PREFIX_COMMENT);
 
         Index index;
 
@@ -45,25 +44,17 @@ public class AddCommentCommandParser {
 
 
         CommentCommand.CommentPersonDescriptor commentPersonDescriptor = new CommentCommand.CommentPersonDescriptor();
-        if (argMultimap.getAllValues(PREFIX_APPLICANT).size() != 0) {
-            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT))
-                    .ifPresent(commentPersonDescriptor::setComments);
-        } else if (argMultimap.getAllValues(PREFIX_STAFF).size() != 0) {
-            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_STAFF))
+        if (argMultimap.getAllValues(PREFIX_COMMENT).size() != 0) {
+            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT))
                     .ifPresent(commentPersonDescriptor::setComments);
         } else {
-            throw new ParseException(AddCommentCommand.MISSING_PERSONTYPE_MESSAGE);
+            throw new ParseException(AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE);
         }
 
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if (!argMultimap.getValue(PREFIX_APPLICANT).isEmpty()) {
-            return new AddCommentCommand(index, commentPersonDescriptor, "applicant");
-        } else if (!argMultimap.getValue(PREFIX_STAFF).isEmpty()) {
-            return new AddCommentCommand(index, commentPersonDescriptor, "staff");
-        }
-        return new AddCommentCommand(index, commentPersonDescriptor, "staff");
+        return new AddCommentCommand(index, commentPersonDescriptor);
     }
 
     /**
@@ -77,6 +68,12 @@ public class AddCommentCommandParser {
         if (comments.isEmpty() || comments.size() == 1
                 && comments.contains("")) {
             throw new ParseException(AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE);
+        }
+        for (String comment : comments) {
+            String trimmedComment = comment.trim();
+            if (!Comment.isValidAddComment(" " + trimmedComment)) {
+                throw new ParseException(AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE);
+            }
         }
         return Optional.of(ParserUtil.parseComments(comments));
     }

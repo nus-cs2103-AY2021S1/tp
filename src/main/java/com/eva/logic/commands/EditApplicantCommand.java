@@ -1,5 +1,7 @@
 package com.eva.logic.commands;
 
+import static com.eva.commons.core.PanelState.APPLICANT_LIST;
+import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
 import static com.eva.logic.commands.EditCommand.MESSAGE_DUPLICATE_PERSON;
 import static com.eva.logic.commands.EditCommand.MESSAGE_EDIT_PERSON_SUCCESS;
 import static com.eva.logic.commands.EditCommand.createEditedPerson;
@@ -16,16 +18,17 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import com.eva.commons.core.Messages;
+import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
+import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 
 
-
 public class EditApplicantCommand extends Command {
-    public static final String COMMAND_WORD = "editapplicant";
+    public static final String COMMAND_WORD = "edita";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the applicant identified "
             + "by the index number used in the displayed applicant list. "
@@ -41,6 +44,9 @@ public class EditApplicantCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
+
+    public static final String MESSAGE_WRONG_PANEL = "Please switch to applicant list panel "
+            + "via 'list a-' to edit applicant";
 
     private final Index index;
     private final EditCommand.EditPersonDescriptor editPersonDescriptor;
@@ -61,6 +67,10 @@ public class EditApplicantCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        PanelState panelState = model.getPanelState();
+        if (!panelState.equals(APPLICANT_LIST)) {
+            throw new CommandException(MESSAGE_WRONG_PANEL);
+        }
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -77,7 +87,12 @@ public class EditApplicantCommand extends Command {
 
         model.setApplicant(personToEdit, (Applicant) editedPerson);
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            Applicant applicantToView = lastShownList.get(index.getZeroBased());
+            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
+        }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
+                false, false, true);
     }
 }

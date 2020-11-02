@@ -3,6 +3,7 @@ package com.eva.ui.profile.staff.view;
 import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 
 import com.eva.commons.core.PanelState;
+import com.eva.commons.core.index.Index;
 import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
@@ -51,7 +52,8 @@ public class StaffProfilePanel extends UiPart<Region> {
     public void fillInnerParts() {
         if (this.staff.getCurrentView().isPresent()) {
             Staff currentStaff = this.staff.getCurrentView().get();
-            staffBasicInfoDisplay = new StaffBasicInfoDisplay(currentStaff);
+            Index index = this.staff.getIndex();
+            staffBasicInfoDisplay = new StaffBasicInfoDisplay(currentStaff, index);
             basicInfoPlaceholder.getChildren().add(staffBasicInfoDisplay.getRoot());
 
             commentListPanel = new CommentListPanel(staff.getCommentList());

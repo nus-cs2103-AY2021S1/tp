@@ -80,7 +80,7 @@ public class ViewCommand extends Command {
         }
         Staff staffToView = lastShownList.get(targetIndex.getZeroBased());
         model.setPanelState(PanelState.STAFF_PROFILE);
-        model.setCurrentViewStaff(new CurrentViewStaff(staffToView));
+        model.setCurrentViewStaff(new CurrentViewStaff(staffToView, targetIndex));
         return staffToView;
     }
 
