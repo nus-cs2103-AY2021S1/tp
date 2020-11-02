@@ -314,6 +314,7 @@ Action | Format, Examples
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
 **Find** | `find KEYWORD...` <br>  e.g. `find general important`
+**Help** | `help`
 **List** | `list`
 **Review** | `review`
 **Quiz** | `quiz`
