@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
@@ -20,6 +21,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 
 
@@ -78,8 +80,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    //public static final EditCommand.EditModuleDescriptor DESC_AMY;
-    //public static final EditCommand.EditModuleDescriptor DESC_BOB;
+    public static final EditContactDescriptor DESC_AMY;
+    public static final EditContactDescriptor DESC_BOB;
     public static final EditModuleDescriptor DESC_CS2030;
     public static final EditModuleDescriptor DESC_CS2103T;
     //public static final EditCommand.EditModuleDescriptor DESC_BOB;
@@ -93,6 +95,12 @@ public class CommandTestUtil {
                 .build();
         DESC_CS2103T = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2103T)
                 .withZoomLinks(VALID_ZOOMLINKS_CS2103T).withTags(VALID_TAG_CORE_MODULE)
+                .build();
+        DESC_AMY = new EditContactDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_FRIEND)
+                .build();
+        DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
     }
 
