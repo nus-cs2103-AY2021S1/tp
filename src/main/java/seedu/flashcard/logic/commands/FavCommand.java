@@ -1,7 +1,6 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
 import java.util.Set;
@@ -60,7 +59,6 @@ public class FavCommand extends Command {
         Flashcard favouritedFlashcard = createFavouriteFlashcard(flashcardToFavourite);
 
         model.setFlashcard(flashcardToFavourite, favouritedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouritedFlashcard));
     }
 
