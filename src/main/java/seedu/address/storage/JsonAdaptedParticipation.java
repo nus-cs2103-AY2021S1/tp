@@ -31,7 +31,6 @@ class JsonAdaptedParticipation {
                                     @JsonProperty("project") String project,
                                     @JsonProperty("role")Role role,
                                     @JsonProperty("tasks")List<JsonAdaptedTask> tasks
-                                    //                             @JsonProperty("meetings")Set<Meeting> meetings
     ) {
         this.person = person;
         this.project = project;

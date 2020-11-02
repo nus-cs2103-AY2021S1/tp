@@ -68,7 +68,7 @@ public class SampleDataUtil {
             "15.0",
             "false"
     ));
-    private final static ArrayList<String> validTask = new ArrayList<>(Arrays.asList(
+    private static final ArrayList<String> validTask = new ArrayList<>(Arrays.asList(
             "Write testcases",
             "testcases for storage, person and project class",
             "10-10-2020 23:59:00",

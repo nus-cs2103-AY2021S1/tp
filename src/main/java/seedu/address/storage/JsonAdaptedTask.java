@@ -119,7 +119,7 @@ class JsonAdaptedTask {
         }
 
 
-        task.setPublishDate(LocalDate.parse(publishDate,(DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
+        task.setPublishDate(LocalDate.parse(publishDate, (DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
         assignees.forEach(task::addAssignee);
         return task;
     }

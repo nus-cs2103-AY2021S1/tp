@@ -36,7 +36,8 @@ class JsonSerializableMainCatalogue {
     @JsonCreator
     public JsonSerializableMainCatalogue(@JsonProperty("projects") List<JsonAdaptedProject> projects,
                                          @JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                         @JsonProperty("participations") List<JsonAdaptedParticipation> participations) {
+                                         @JsonProperty("participations")
+                                                 List<JsonAdaptedParticipation> participations) {
         //TODO: update person field in catalogue
         this.projects.addAll(projects);
         this.persons.addAll(persons);
