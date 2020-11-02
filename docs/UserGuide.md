@@ -225,10 +225,10 @@ Multiple ingredients are separated by `,`.
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
-  Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg/jpeg/png | The image will be downloaded into data folder and displayed
+  Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
-  No image input | NA | NA | Default image will be displayed since `IMAGE` is optional field
+  No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
 
  
 * Here is the table <a id="table"></a> containing built-in sample images provided by Wishful Shrinking:
@@ -316,10 +316,10 @@ Multiple ingredients are separated by `,`.
   Usage | Action | Example | Outcome
   ---------|-----------------------|---------|---------
   Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
-  Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg/jpeg/png | The image will be downloaded into data folder and displayed
+  Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to this [table](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
-  No image input | NA | NA | Default image will be displayed since `IMAGE` is optional field
+  No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
   
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
