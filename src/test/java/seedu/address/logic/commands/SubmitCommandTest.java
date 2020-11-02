@@ -33,7 +33,7 @@ public class SubmitCommandTest {
                 Assertions.assertTrue(false);
             }
         }
-        expectedMessage.append(String.format("Estimated total: $%.2f", calculatedTotal));
+        expectedMessage.append(String.format("Estimated total: $%.2f\n", calculatedTotal));
         assertCommandSuccess(new SubmitCommand(), model, expectedMessage.toString(), expectedModel);
     }
 }
