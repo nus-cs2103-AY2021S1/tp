@@ -1,21 +1,13 @@
 package seedu.stock.ui;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Text;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.model.stock.Stock;
 

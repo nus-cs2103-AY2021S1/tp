@@ -3,19 +3,15 @@ package seedu.stock.ui;
 import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceQuantityDistributionStatisticsData;
 import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceStatisticsData;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -29,7 +25,6 @@ import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
-import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
 
 
