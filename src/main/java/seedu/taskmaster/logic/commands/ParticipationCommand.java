@@ -22,8 +22,11 @@ public class ParticipationCommand extends Command {
             + ": Scores the class participation of the student identified by the "
             + "index number used in the displayed student list.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_CLASS_PARTICIPATION + "CLASS_PARTICIPATION (default: integer between 0 to 10) \n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CLASS_PARTICIPATION + "7";
+            + PREFIX_CLASS_PARTICIPATION
+            + "CLASS_PARTICIPATION (between 0 to 10 inclusive, allows for 2 decimal points) \n"
+            + "You may substitute INDEX for the word 'all' to mark all students in the session. \n"
+            + "Example 1: " + COMMAND_WORD + " 1 " + PREFIX_CLASS_PARTICIPATION + "7\n"
+            + "Example 2: " + COMMAND_WORD + " all " + PREFIX_CLASS_PARTICIPATION + "6\n";
 
     public static final String MESSAGE_SCORE_STUDENT_SUCCESS = "%1$s scored %2$s for class participation";
     protected final int score;
