@@ -30,7 +30,9 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
             String preamble = argMultimap.getPreamble();
 
             if (score < 0) {
-                throw new ParseException("Negative score");
+                throw new ParseException("Negative score.");
+            } else if (score > 10) {
+                throw new ParseException("Score is greater than 10.");
             }
 
             if (preamble.equals("all")) {
