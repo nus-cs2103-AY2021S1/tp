@@ -66,7 +66,7 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the task manager.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task manager.
      */
     public void setTask(Task target, Task editedTask) {

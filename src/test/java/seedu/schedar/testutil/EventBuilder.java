@@ -30,7 +30,7 @@ public class EventBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code seedu.address.model.task.EventBuilder} with the default details.
+     * Creates a {@code seedu.schedar.model.task.EventBuilder} with the default details.
      */
     public EventBuilder() {
         title = new Title(DEFAULT_TITLE);

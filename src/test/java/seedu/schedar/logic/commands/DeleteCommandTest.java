@@ -1,24 +1,24 @@
 // TODO: Test for Delete Command
 
-//package seedu.address.logic.commands;
+//package seedu.schedar.logic.commands;
 //
 //import static org.junit.jupiter.api.Assertions.assertFalse;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-//import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-//import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+//import static seedu.schedar.logic.commands.CommandTestUtil.assertCommandFailure;
+//import static seedu.schedar.logic.commands.CommandTestUtil.assertCommandSuccess;
+//import static seedu.schedar.logic.commands.CommandTestUtil.showPersonAtIndex;
+//import static seedu.schedar.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+//import static seedu.schedar.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+//import static seedu.schedar.testutil.TypicalPersons.getTypicalAddressBook;
 //
 //import org.junit.jupiter.api.Test;
 //
-//import seedu.address.commons.core.Messages;
-//import seedu.address.commons.core.index.Index;
-//import seedu.address.model.Model;
-//import seedu.address.model.ModelManager;
-//import seedu.address.model.UserPrefs;
-//import seedu.address.model.person.Person;
+//import seedu.schedar.commons.core.Messages;
+//import seedu.schedar.commons.core.index.Index;
+//import seedu.schedar.model.Model;
+//import seedu.schedar.model.ModelManager;
+//import seedu.schedar.model.UserPrefs;
+//import seedu.schedar.model.person.Person;
 //
 ///**
 // * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for

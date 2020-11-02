@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        TaskManagerStorage addressBookStorage = new JsonTaskManagerStorage(userPrefs.getTaskManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskManagerStorage taskManagerStorage = new JsonTaskManagerStorage(userPrefs.getTaskManagerFilePath());
+        storage = new StorageManager(taskManagerStorage, userPrefsStorage);
 
         initLogging(config);
 

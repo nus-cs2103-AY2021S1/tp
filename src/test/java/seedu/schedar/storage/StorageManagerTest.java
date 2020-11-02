@@ -51,8 +51,8 @@ public class StorageManagerTest {
     public void taskManagerReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonTaskManagerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTaskManagerStorageTest} class.
          */
         TaskManager original = getTypicalTaskManager();
         storageManager.saveTaskManager(original);

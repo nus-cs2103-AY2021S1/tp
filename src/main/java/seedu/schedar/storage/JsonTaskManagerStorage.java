@@ -57,8 +57,8 @@ public class JsonTaskManagerStorage implements TaskManagerStorage {
     }
 
     @Override
-    public void saveTaskManager(ReadOnlyTaskManager addressBook) throws IOException {
-        saveTaskManager(addressBook, filePath);
+    public void saveTaskManager(ReadOnlyTaskManager taskManager) throws IOException {
+        saveTaskManager(taskManager, filePath);
     }
 
     /**

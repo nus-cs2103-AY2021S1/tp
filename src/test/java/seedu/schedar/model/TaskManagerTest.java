@@ -77,7 +77,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    public void hasTask_taskWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTask_taskWithSameIdentityFieldsInTaskManager_returnsTrue() {
         taskManager.addTask(BAKE);
         ToDo editedBake = new ToDoBuilder(BAKE).withPriority(VALID_PRIORITY_PROJECT).withTags(VALID_TAG_PROJECT)
                 .build();
