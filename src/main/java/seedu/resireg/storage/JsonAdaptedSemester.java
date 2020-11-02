@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.academicyear.AcademicYear;
-import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 
 /**
  * Jackson-friendly version of {@link Semester}.
@@ -41,12 +39,12 @@ public class JsonAdaptedSemester {
      * @throws IllegalValueException if there were any data constraints violated in the adapted semester.
      */
     public Semester toModelType() throws IllegalValueException {
-        if (!AcademicYear.isValidAcademicYear(academicYear)) {
-            throw new IllegalValueException(AcademicYear.MESSAGE_CONSTRAINTS);
+        if (!Semester.isValidAcademicYear(academicYear)) {
+            throw new IllegalValueException(Semester.ACADEMIC_YEAR_MESSAGE_CONSTRAINTS);
         }
 
-        if (!SemesterNumber.isValidSemesterNumber(semesterNumber)) {
-            throw new IllegalValueException(SemesterNumber.MESSAGE_CONSTRAINTS);
+        if (!Semester.isValidSemesterNumber(semesterNumber)) {
+            throw new IllegalValueException(Semester.SEMESTER_NUMBER_MESSAGE_CONSTRAINTS);
         }
 
         return new Semester(academicYear, semesterNumber);
