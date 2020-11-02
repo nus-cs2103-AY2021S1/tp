@@ -3,7 +3,6 @@ package chopchop.ui;
 import static chopchop.ui.testutil.GuiTestAssert.assertCardDisplaysIngredient;
 import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.APRICOT_WITHOUT_TAGS;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import chopchop.model.ingredient.Ingredient;
 import chopchop.testutil.IngredientBuilder;
