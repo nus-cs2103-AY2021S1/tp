@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -64,7 +66,7 @@ public class TagCard extends UiPart<Region> {
             return;
         }
 
-        String showInfoCommand = "show t/" + tag.getTagName();
+        String showInfoCommand = ShowCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_TAG_NAME + tag.getTagName();
         try {
             mainWindow.executeCommand(showInfoCommand);
         } catch (CommandException | ParseException exception) {
