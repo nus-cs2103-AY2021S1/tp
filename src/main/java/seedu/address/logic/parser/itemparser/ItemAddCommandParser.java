@@ -40,6 +40,8 @@ public class ItemAddCommandParser implements Parser<ItemAddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG,
                         PREFIX_MAX_QUANTITY, PREFIX_METRIC);
 
+        assert argMultimap != null;
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ItemAddCommand.MESSAGE_USAGE));

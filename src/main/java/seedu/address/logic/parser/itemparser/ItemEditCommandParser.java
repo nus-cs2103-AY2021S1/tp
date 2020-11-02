@@ -40,6 +40,8 @@ public class ItemEditCommandParser implements Parser<ItemEditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY, PREFIX_SUPPLIER, PREFIX_TAG,
                         PREFIX_MAX_QUANTITY, PREFIX_METRIC);
 
+        assert argMultimap != null;
+
         Index index;
 
         try {

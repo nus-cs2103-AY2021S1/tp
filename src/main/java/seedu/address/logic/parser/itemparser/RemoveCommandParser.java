@@ -29,6 +29,8 @@ public class RemoveCommandParser implements Parser<ItemRemoveCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY);
 
+        assert argMultimap != null;
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());

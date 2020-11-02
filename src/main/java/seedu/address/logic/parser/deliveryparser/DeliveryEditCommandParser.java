@@ -30,6 +30,8 @@ public class DeliveryEditCommandParser implements Parser<DeliveryEditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_ORDER, PREFIX_TIME);
 
+        assert argMultimap != null;
+
         Index index;
 
         try {
