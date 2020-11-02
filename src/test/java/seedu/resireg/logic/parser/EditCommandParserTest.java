@@ -3,6 +3,7 @@ package seedu.resireg.logic.parser;
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.resireg.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.resireg.logic.commands.CommandTestUtil.EMPTY_TAG_DESC;
 import static seedu.resireg.logic.commands.CommandTestUtil.FACULTY_DESC_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.FACULTY_DESC_BOB;
 import static seedu.resireg.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -29,7 +30,6 @@ import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static seedu.resireg.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.resireg.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -50,8 +50,6 @@ import seedu.resireg.model.tag.Tag;
 import seedu.resireg.testutil.EditStudentDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.HELP.getFullMessage());
@@ -103,9 +101,9 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Student} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + EMPTY_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + EMPTY_TAG_DESC + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + EMPTY_TAG_DESC + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_FACULTY_AMY
@@ -212,7 +210,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + EMPTY_TAG_DESC;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
