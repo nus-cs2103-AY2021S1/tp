@@ -7,25 +7,25 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 
 * Table of Contents
-    - Quick start
-    - Features
-        - [Adding a flashcard](#adding-a-flashcard): `add`
-        - Clear all flashcards: `clear`
-        - Deleting a flashcard: `delete`
-        - Editing a flashcard: `edit`
-        - Favourite a flashcard : `fav`
-        - Unfavourite a flashcard: `unfav`
-        - Find flashcards: `find`
-        - Viewing help: `help`
-        - Listing all flashcards: `list`
-        - Review all flashcards : `review`
-        - Quiz flashcards: `quiz`
-        - Sort all flashcards: `sort`
-        - Exiting the program: `exit`
-        - View a flashcard: `view`
-        - Saving the data
+    - [Quick start](#quick-start)
+    - [Features](#features)
+        - [Adding a flashcard](#adding-a-flashcard--add): `add`
+        - [Clear all flashcards](#clearing-all-flashcards--clear): `clear`
+        - [Deleting a flashcard](#deleting-a-flashcard---delete): `delete`
+        - [Editing a flashcard](#editing-a-flashcard---edit): `edit`
+        - [Favourite a flashcard](#favourite-a-flashcard---fav) : `fav`
+        - [Unfavourite a flashcard](#unfavourite-a-flashcard---unfav): `unfav`
+        - [Find flashcards](#find-flashcards--find): `find`
+        - [Viewing help](#viewing-help--help): `help`
+        - [Listing all flashcards](#listing-all-flashcards--list): `list`
+        - [Review all flashcards](#reviewing-all-flashcards-review) : `review`
+        - [Quiz flashcards](#quizzing-flashcards-quiz): `quiz`
+        - [Sort all flashcards](#sort-all-flashcards--sort): `sort`
+        - [Exiting the program](#exiting-the-program--exit): `exit`
+        - [View a flashcard](#views-a-flashcard---view): `view`
+        - [Saving the data](#saving-the-data)
     - FAQ
-    - Command summary
+    - [Command summary](#command-summary)
         
 
 --------------------------------------------------------------------------------------------------------------------
