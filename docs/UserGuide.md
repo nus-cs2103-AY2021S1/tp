@@ -57,6 +57,8 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 Inventory items are the items that you want to keep track in your restaurant. The input for inventory items are flexible,
 so that you can define the items according to your needs. <br>
 
+`Name` and `Supplier` are used to uniquely identify an inventory item.
+
 You can keep track of restaurant items such as chair, frying pan, spoon or even ingredients such as milk, chicken, etc. <br>
 
 All items related commands have a suffix `-i`. 
@@ -64,7 +66,14 @@ All items related commands have a suffix `-i`.
 #### Pending deliveries
 
 Pending deliveries are deliveries that has yet to be delivered out to customers. Imagine you have received a call from
-a customer requesting for a delivery, you can also keep track for all the deliveries' request.
+a customer requesting for a delivery, you can also keep track for all the deliveries' request. <br>
+
+All delivery orders are unique.
+You are able to add multiple delivery orders from the same `Name`, `Phone` and `Address`. There is no duplication in
+pending deliveries, unlike inventory items. <br>
+*Reason: A person have ordered from the restaurant. 10 minutes later, the same person called again to add 
+a new order. Therefore, we allow you to add different orders even if `Name`, `Phone` and `Address` are already in
+the list.*
 
 All pending deliveries related command have a suffix `-d`.
 
@@ -150,6 +159,12 @@ Things to note for the commands:
   e.g. a command with format `add-i n/NAME q/QUANTITY` can be used as
   1. either `add-i n/Chicken q/10`
   1. or `add-i q/10 n/Chicken`
+  
+* If you add multiple inputs of the same parameter in a single command, OneShelf will take in the last parameter
+as the actual input. <br>
+  e.g. `add-i n/Chicken q/10 n/Fish` <br>
+  Notice that in this example, `NAME` appears twice in one single command, OneShelf will take Fish as the actual
+  name and ignore Chicken.
 
 
 #### 3.1.1 Viewing help : `help`
@@ -248,7 +263,7 @@ An item can have any number of tags (including 0) and adding exactly the same ta
 
 ##### 3.1.2b `add-d`
 
-Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/]`
+Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`
 
 Example 1: 
 
