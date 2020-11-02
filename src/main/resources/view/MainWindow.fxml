@@ -14,6 +14,8 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
          xmlns:fx="http://javafx.com/fxml/1"
          title="Warenager" minWidth="1010" minHeight="600"
@@ -55,6 +57,17 @@
                                           xmlns="http://javafx.com/javafx"
                                           xmlns:fx="http://javafx.com/fxml">
                                 </PieChart>
+                        </StackPane>
+
+                    </Tab>
+                    <Tab text="Stock View" closable="false">
+
+                        <StackPane fx:id="stockViewWindowPlaceholder" VBox.vgrow="ALWAYS"
+                                   styleClass="pane-with-border-chart">
+                            <PieChart fx:id="mainPie" title="No stock viewed"
+                                      xmlns="http://javafx.com/javafx"
+                                      xmlns:fx="http://javafx.com/fxml">
+                            </PieChart>
                         </StackPane>
 
                     </Tab>

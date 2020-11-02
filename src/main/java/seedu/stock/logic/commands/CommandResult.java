@@ -18,7 +18,7 @@ public class CommandResult {
     private final boolean showHelp;
 
     /** Notes of the stock should be shown to user. */
-    private final boolean showNotes;
+    private final boolean showStockView;
 
     /** Stock to show notes. */
     private final Stock stockToShowNotes;
@@ -43,12 +43,12 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, Map<String, Integer> statisticsData,
-                         boolean showHelp, boolean showNotes, Stock stockToShowNotes,
+                         boolean showHelp, boolean showStockView, Stock stockToShowNotes,
                          boolean showStatistics, String[] otherStatisticsDetails,
                          boolean isSwitchTab, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
-        this.showNotes = showNotes;
+        this.showStockView = showStockView;
         this.stockToShowNotes = stockToShowNotes;
         this.showStatistics = showStatistics;
         this.statisticsData = statisticsData;
@@ -73,8 +73,8 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isShowNotes() {
-        return showNotes;
+    public boolean isShowStockView() {
+        return showStockView;
     }
 
     public Stock getStockToShowNotes() {

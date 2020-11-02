@@ -36,10 +36,10 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
-import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
+import seedu.stock.logic.commands.StockViewCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
@@ -476,13 +476,14 @@ public class SuggestionCommandParserTest {
     }
 
     @Test
-    public void parse_noteViewCommandSuggestion_success() {
+    public void parse_stockViewCommandSuggestion_success() {
         // EP: incorrect command word with valid prefixes
+
         String userInput = SERIAL_NUMBER_DESC_APPLE;
-        SuggestionCommandParser parser = new SuggestionCommandParser("notevie");
+        SuggestionCommandParser parser = new SuggestionCommandParser("stockvie");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
-                + MESSAGE_SUGGESTION + CommandWords.NOTE_VIEW_COMMAND_WORD + userInput
-                + "\n" + NoteViewCommand.MESSAGE_USAGE;
+                + MESSAGE_SUGGESTION + CommandWords.STOCK_VIEW_COMMAND_WORD + userInput
+                + "\n" + StockViewCommand.MESSAGE_USAGE;
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -492,10 +493,11 @@ public class SuggestionCommandParserTest {
 
         // EP: correct command word with valid prefixes
         userInput = SERIAL_NUMBER_DESC_APPLE;
-        parser = new SuggestionCommandParser("noteview", "error message");
+        parser = new SuggestionCommandParser("stockview", "error message");
+
         expectedSuggestionMessage = "error message" + "\n"
-                + MESSAGE_SUGGESTION + CommandWords.NOTE_VIEW_COMMAND_WORD + userInput
-                + "\n" + NoteViewCommand.MESSAGE_USAGE;
+                + MESSAGE_SUGGESTION + CommandWords.STOCK_VIEW_COMMAND_WORD + userInput
+                + "\n" + StockViewCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
