@@ -215,6 +215,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Clears view pane.
+     */
+    private void clearViewPane() {
+        flashcardViewCardPlaceholder.getChildren().clear();
+    }
+
+    /**
      * Executes stats view function
      */
     private void handleStatsView(int viewIndex) {
@@ -237,6 +244,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            clearViewPane();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
