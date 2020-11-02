@@ -31,12 +31,12 @@ public class SampleDataUtil {
     private static final ArrayList<String> task1 = new ArrayList<>(Arrays.asList(
             "Refactor project class",
             "tedious :(",
-            "19-10-2020 13:30:00",
+            null,
             "25.0",
             "false"));
     private static final ArrayList<String> task2 = new ArrayList<>(Arrays.asList(
             "Brainstorm user stories",
-            "20-10-2020 14:00:00",
+            null,
             null,
             "100.0",
             "true"));
