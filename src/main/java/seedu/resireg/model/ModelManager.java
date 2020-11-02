@@ -16,6 +16,8 @@ import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.bin.Binnable;
+import seedu.resireg.model.bin.exceptions.InvalidBinnedItemException;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -255,6 +257,28 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedItem);
         statefulResiReg.setBinItem(target, editedItem);
         refilterLists();
+    }
+
+    @Override
+    public boolean hasDuplicateBinnedItem(Binnable itemToRestore) {
+        return (itemToRestore instanceof Student) || (itemToRestore instanceof Room);
+    }
+
+    /**
+     * Restores the given item to its correct list. This method is implemented in ModelManager to prevent
+     * leakage of Binnable abstraction to the Logic module.
+     * @param itemToRestore should not exist in ResiReg.
+     */
+    @Override
+    public void restoreItem(Binnable itemToRestore) {
+        requireNonNull(itemToRestore);
+        if (itemToRestore instanceof Student) {
+            addStudent((Student) itemToRestore);
+        } else if (itemToRestore instanceof Room) {
+            addRoom((Room) itemToRestore);
+        } else {
+            throw new InvalidBinnedItemException();
+        }
     }
 
     @Override

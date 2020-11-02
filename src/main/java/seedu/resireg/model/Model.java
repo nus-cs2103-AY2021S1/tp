@@ -9,6 +9,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -226,12 +227,25 @@ public interface Model {
     void addBinItem(BinItem binItem);
 
     /**
-     * Replaces the given room {@code target} with {@code editedItem}.
+     * Replaces the given binitem {@code target} with {@code editedItem}.
      * {@code target} must exist in ResiReg.
      * The bin item identity of {@code editedItem} must not be the same as another
      * existing bin item in ResiReg.
      */
     void setBinItem(BinItem target, BinItem editedItem);
+
+    /**
+     * Returns true if the item to restore already exists in ResiReg.
+     * @param itemToRestore is the unwrapped bin item.
+     */
+    boolean hasDuplicateBinnedItem(Binnable itemToRestore);
+
+
+    /**
+     * Adds the itemToRestore to its correct list.
+     * @param itemToRestore is the unwrapped bin item.
+     */
+    void restoreItem(Binnable itemToRestore);
 
     void deleteExpiredBinItems();
 

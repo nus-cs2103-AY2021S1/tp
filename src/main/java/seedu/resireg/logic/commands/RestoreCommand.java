@@ -11,8 +11,6 @@ import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.bin.Binnable;
-import seedu.resireg.model.room.Room;
-import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
 
 /**
@@ -22,9 +20,8 @@ public class RestoreCommand extends Command {
 
     public static final String COMMAND_WORD = "restore";
 
-    public static final String MESSAGE_RESTORE_SUCCESS = "Restored %1$s: %2$s";
-    public static final String MESSAGE_UNRECOGNIZED_BIN_ITEM_TYPE =
-            "Unrecognized type of item in bin! Please report this to the developers!";
+    public static final String MESSAGE_RESTORE_SUCCESS = "Restore success!";
+    public static final String MESSAGE_DUPLICATE_ITEM = "Cannot restore since this item already exists in ResiReg.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
         "Restores the bin item.",
@@ -51,24 +48,15 @@ public class RestoreCommand extends Command {
 
         BinItem binItem = lastShownList.get(index.getZeroBased());
         Binnable itemToRestore = binItem.getBinnedItem();
-        model.deleteBinItem(binItem);
-        String successMessage = "";
-        if (itemToRestore instanceof Student) {
-            Student studentToAdd = (Student) itemToRestore;
-            model.addStudent(studentToAdd);
-            successMessage = String.format(MESSAGE_RESTORE_SUCCESS, "Student", studentToAdd.getNameAsString());
-        } else if (itemToRestore instanceof Room) {
-            Room roomToAdd = (Room) itemToRestore;
-            model.addRoom(roomToAdd);
-            successMessage = String.format(MESSAGE_RESTORE_SUCCESS, "Room", roomToAdd.toString());
-        } else {
-            throw new CommandException(MESSAGE_UNRECOGNIZED_BIN_ITEM_TYPE);
+
+        if (model.hasDuplicateBinnedItem(itemToRestore)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
         }
 
-        assert !successMessage.isBlank() : "success message for RestoreCommand should not be blank.";
-
+        model.restoreItem(itemToRestore);
+        model.deleteBinItem(binItem);
         model.saveStateResiReg();
-        return new CommandResult(successMessage);
+        return new CommandResult(MESSAGE_RESTORE_SUCCESS);
     }
 
 

@@ -9,7 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.resireg.model.bin.exceptions.BinItemNotFoundException;
-import seedu.resireg.model.student.exceptions.DuplicateBinItemException;
+import seedu.resireg.model.bin.exceptions.DuplicateBinItemException;
 
 /**
  * A list of rooms that enforces uniqueness between its elements and does not allow nulls.

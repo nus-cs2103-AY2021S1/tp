@@ -15,21 +15,18 @@ Class MainPanel
 Class StatusBarFooter
 Class CommandBox
 
-
-package Student <<Rectangle>> {
-Class StudentListPanel
-}
-
 skinparam componentBorderColor transparent
 package Room <<Rectangle>>{
 Class RoomListPanel
 }
 
+package Student <<Rectangle>> {
+Class StudentListPanel
+}
+
 package BinItem <<Rectangle>>{
 Class BinItemListPanel
 }
-
-Class StudentListPanel
 }
 
 package Model <<Rectangle>> {
@@ -52,15 +49,16 @@ MainWindow *-down-> MainPanel
 MainWindow *-down-> StatusBarFooter
 
 MainPanel *-down-> RoomListPanel
-MainPanel *-down-> BinItemListPanel
 MainPanel *-down-> StudentListPanel
+MainPanel *-down-> BinItemListPanel
 
 RoomListPanel --|> UiPart
 BinItemListPanel --|> UiPart
 StudentListPanel --|> UiPart
 
-RoomListPanel ..down.> Model
-StudentListPanel ..down.> Model
+StudentListPanel ..right.> Model
+BinItemListPanel ..[hidden]right.> Model
+RoomListPanel ..right.> Model
 
 MainWindow --left|> UiPart
 
@@ -77,6 +75,7 @@ HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 RoomListPanel -[hidden]left- BinItemListPanel
+StudentListPanel -[hidden]right- RoomListPanel
 
 MainWindow -[hidden]-|> UiPart
 @enduml

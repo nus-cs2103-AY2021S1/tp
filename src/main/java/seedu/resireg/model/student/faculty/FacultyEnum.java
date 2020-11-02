@@ -1,5 +1,7 @@
 package seedu.resireg.model.student.faculty;
 
+import java.util.Arrays;
+
 public enum FacultyEnum {
     ARTS_SOCIAL_SCIENCES("FASS"),
     BUSINESS("BIZ"),
@@ -32,5 +34,13 @@ public enum FacultyEnum {
     @Override
     public String toString() {
         return abbreviation;
+    }
+
+    /**
+     * Returns all values of the enum as a string in list form.
+     */
+    public static String toListString() {
+        return Arrays.asList(FacultyEnum.values()).toString();
+
     }
 }

@@ -26,6 +26,7 @@ import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -254,6 +255,16 @@ public class AddAliasCommandTest {
 
         @Override
         public void setBinItem(BinItem target, BinItem editedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasDuplicateBinnedItem(Binnable itemToRestore) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void restoreItem(Binnable itemToRestore) {
             throw new AssertionError("This method should not be called.");
         }
 

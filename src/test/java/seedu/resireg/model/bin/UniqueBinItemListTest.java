@@ -15,7 +15,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.model.bin.exceptions.BinItemNotFoundException;
-import seedu.resireg.model.student.exceptions.DuplicateBinItemException;
+import seedu.resireg.model.bin.exceptions.DuplicateBinItemException;
 import seedu.resireg.testutil.BinItemBuilder;
 
 public class UniqueBinItemListTest {
