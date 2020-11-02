@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -43,6 +45,14 @@ public class ZoomLinkCard extends UiPart<Region> {
         lessonName.setMinWidth(150);
         lessonName.setMaxWidth(150);
         link.setText(displayZoomLink.getZoomLink().toString());
+    }
+
+    @FXML
+    private void copyZoomLink() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(displayZoomLink.getZoomLink().getLink());
+        clipboard.setContent(url);
     }
 
     @Override
