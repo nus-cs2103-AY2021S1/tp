@@ -23,7 +23,7 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CLASS_PARTICIPATION);
 
         Index index;
-        int score;
+        double score;
 
         try {
             score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_CLASS_PARTICIPATION).get());

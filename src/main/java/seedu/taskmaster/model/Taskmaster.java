@@ -240,7 +240,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreStudent(StudentRecord target, int score)
+    public void scoreStudent(StudentRecord target, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert target != null;
 
@@ -260,7 +260,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreStudentWithNusnetId(NusnetId nusnetId, int score)
+    public void scoreStudentWithNusnetId(NusnetId nusnetId, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetId != null;
 
@@ -280,7 +280,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreAllStudents(List<NusnetId> nusnetIds, int score)
+    public void scoreAllStudents(List<NusnetId> nusnetIds, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetIds != null;
 

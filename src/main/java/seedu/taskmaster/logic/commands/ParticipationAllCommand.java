@@ -25,7 +25,7 @@ public class ParticipationAllCommand extends ParticipationCommand {
 
     public static final String MESSAGE_MARK_ALL_SUCCESS = "Scored %1$s for all students' participation mark.";
 
-    public ParticipationAllCommand(int score) {
+    public ParticipationAllCommand(double score) {
         super(null, score);
     }
 

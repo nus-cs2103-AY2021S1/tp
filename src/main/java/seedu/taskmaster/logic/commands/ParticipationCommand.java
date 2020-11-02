@@ -29,14 +29,14 @@ public class ParticipationCommand extends Command {
             + "Example 2: " + COMMAND_WORD + " all " + PREFIX_CLASS_PARTICIPATION + "6\n";
 
     public static final String MESSAGE_SCORE_STUDENT_SUCCESS = "%1$s scored %2$s for class participation";
-    protected final int score;
+    protected final double score;
     private final Index targetIndex;
 
     /**
      * @param targetIndex of the student in the filtered student list to mark
      * @param newScore as the new score of the student
      */
-    public ParticipationCommand(Index targetIndex, int newScore) {
+    public ParticipationCommand(Index targetIndex, double newScore) {
         this.targetIndex = targetIndex;
         this.score = newScore;
     }
@@ -44,7 +44,7 @@ public class ParticipationCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        StudentRecord studentToScore = null;
+        StudentRecord studentToScore;
         try {
             int index = targetIndex.getZeroBased();
             List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
@@ -58,7 +58,7 @@ public class ParticipationCommand extends Command {
         } catch (SessionException sessionException) {
             throw new CommandException(sessionException.getMessage());
         }
-        return new CommandResult(String.format(MESSAGE_SCORE_STUDENT_SUCCESS, studentToScore, score));
+        return new CommandResult(String.format(MESSAGE_SCORE_STUDENT_SUCCESS, studentToScore.getName(), score));
     }
 
     @Override

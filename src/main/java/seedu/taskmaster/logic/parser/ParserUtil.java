@@ -197,12 +197,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code score} is invalid.
      */
-    public static int parseScore(String score) throws ParseException {
+    public static double parseScore(String score) throws ParseException {
         requireNonNull(score);
         String trimmedScore = score.trim();
-        int parsedScore = 0;
+        double parsedScore = 0;
         try {
-            parsedScore = Integer.valueOf(score);
+            double in = Double.valueOf(trimmedScore);
+            parsedScore = Math.round(in * 100.0) / 100.0;
         } catch (NumberFormatException e) {
             throw new ParseException(ClassParticipation.MESSAGE_CONSTRAINTS);
         }

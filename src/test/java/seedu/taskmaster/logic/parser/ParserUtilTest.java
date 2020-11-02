@@ -206,7 +206,7 @@ public class ParserUtilTest {
 
     @Test
     void parseScore_validInput() throws Exception {
-        int res = ParserUtil.parseScore(VALID_SCORE_STRING);
+        double res = ParserUtil.parseScore(VALID_SCORE_STRING);
         assertEquals(VALID_SCORE_INT, res);
     }
 }

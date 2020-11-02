@@ -80,12 +80,12 @@ public class Session {
      * Marks the attendance of a student with the given {@code nusnetId} in the
      * student record list with {@code attendanceType}.
      */
-    public void scoreStudentParticipation(NusnetId nusnetId, int score) {
+    public void scoreStudentParticipation(NusnetId nusnetId, double score) {
         assert nusnetId != null;
         studentRecords.scoreStudentParticipation(nusnetId, score);
     }
 
-    public void scoreAllParticipation(List<NusnetId> nusnetIds, int score) {
+    public void scoreAllParticipation(List<NusnetId> nusnetIds, double score) {
         studentRecords.scoreAllParticipation(nusnetIds, score);
     }
 
