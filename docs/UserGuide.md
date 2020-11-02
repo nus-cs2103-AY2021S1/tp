@@ -29,7 +29,7 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 ## Quick start
 
-Ensure you have Java `11` or above installed in your Computer. If not, you may download Java `11`from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+In this section, we will be going through the process of installing **Hospify** on your computer and some of the necessary pre-requisites. Before we start the installation, please ensure that you have Java `11` or above installed in your Computer. If not, you may download Java `11` from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
 <div markdown="block" class="alert alert-info">
 
@@ -72,6 +72,8 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 ## Features
 
+In this section, we will be looking at a series of commands that **Hospify** supports, how you can use these commands, why these commands may be helpful to you and the expected outcomes of executing these commands. You may refer to the table of contents at the top of this page to skip to the specific command that you are interested in.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -89,7 +91,7 @@ There are many versions of Java `11` listed. Select the correct version based on
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
 </div>
 
-### Displaying usage instructions: `help` (By Peh Jun Siang)
+### Displaying usage instructions: `help` (by Peh Jun Siang)
 
 The `help` command shows a list of all the commands and their usages with examples supported by **Hospify**.
 
@@ -125,16 +127,25 @@ This is a core and basic feature of **Hospify**. This command allows you to add 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Recall:**<br>
+**:information_source: Important note on the fields:**<br>
 
-* Items 1 to 6 are compulsory fields that you have to provide. Missing any one of those fields will trigger an error.
+* All items except items 4 and 7 are compulsory fields that you have to provide. Missing any one of those fields will trigger an error.
 
-* Item 7 is an optional item that you may choose to exclude. In addition, you may choose to include more than one of such item by using `t/ALLERGIES` again.
+* Items 4 and 7 are optional items that you may choose to exclude. In addition, for item 7, you may choose to include more than one of such item by using `t/ALLERGIES` again.
+
+* You are **not allowed** to add patients with the same `NRIC` or `MEDICAL_RECORD_URL` field as an existing patient in **Hospify**. However, it is possible to do so for the other fields.
 </div>
 
 Let us summarise the information above to a single line of command in the following format.
 
-Format: `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS mr/MEDICAL_RECORD_URL [t/ALLERGIES]…​`
+Format: `add n/NAME ic/NRIC p/PHONE_NUMBER [e/EMAIL] a/ADDRESS mr/MEDICAL_RECORD_URL [t/ALLERGIES]…​`
+
+* The `NAME` and `ALLERGIES` field should contain alphanumeric characters.
+* The `NRIC` field should start with an alphabet, followed by 7 digits, before ending with another alphabet.
+* The `PHONE_NUMBER` field should contain a number that is at least 3 digits long.
+* The `EMAIL` field should contain a valid email address (for more information on email validity, please refer to the [Command Summary](#command-summary)).
+* The `ADDRESS` field can contain any word or number.
+* The `MEDICAL_RECORD` field should contain a valid url (for more information on url validity, please refer to the [Command Summary](#command-summary)).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of allergies (including 0)
@@ -146,20 +157,30 @@ Examples:
 * `add n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 mr/www.samplerecord.com/11`
 * `add n/Betsy Crowe ic/S9425431A t/shellfish e/betsycrowe@example.com a/Newgate Prison p/1234567 t/grass mr/www.samplerecord.com/02`
 
-When a patient is successfully added to **Hospify**, a success message will appear in the message box, and the patient is shown at the bottom of the list as shown in figure 2.1 below. <br>
+When a patient is successfully added to **Hospify**, a success message will appear in the message box, and the patient is shown at the bottom of the list as shown in figure 3.1 below. <br>
 
 ![Add patient](images/Add%20patient.PNG)
-Figure 2.1 Adding a patient (success scenario)
+Figure 3.1 Adding a patient (success scenario)
 
 ### Listing all patients: `list` (by Cedric Lim Jun Wei)
 
-This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#locating-patients-by-name-find) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
+This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#locating-patients-by-name-or-nric-find-by-gabriel-teo-yu-xiang) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
 
 To use the command, simply type in `list` on the command line with no additional parameters.
 
 Format: `list`
 
-### Editing a patient: `edit`
+In the example below, we first use the `find` command to search for patient `Bernice Yu`. This results in a partial list containing only one patient as shown in figure 4.1 below.
+
+![Find patient](images/list1.png)
+Figure 4.1 Finding patient `Bernice Yu`
+
+With the help of the `list` command, we can revert back to the complete list of patients as shown in figure 4.2 below.
+
+![List patients](images/list2.png)
+Figure 4.2 Listing all patients
+
+### Editing a patient: `edit` (by Peh Jun Siang)
 
 Edits an existing patient in **Hospify**.
 
@@ -392,7 +413,13 @@ When an `Appointment` is successfully deleted, a success message will appear in 
 
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
+By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit-by-peh-jun-siang) patients by including the `mr/MEDICAL_RECORD_URL` field. Recall that this is a compulsory field for the `add` command while it is an optional field for the `edit` command and we can summarise the command formats as shown below.
+
+Format: `add n/NAME …​ mr/MEDICAL_RECORD_URL …​` or `edit INDEX …​ [mr/MEDICAL_RECORD_URL] …​`
+
+Example: `add n/John Doe …​ mr/www.samplemedicalrecord.com/01 …​` or `edit 1 …​ mr/www.samplemedicalrecord.com/02 …​`
+
+With this field, you can store the url to the online medical record of the patient and can access this url in the patient's tab whenever necessary. Now, let us explore how we can make use of this feature to edit patients' online medical record.
 
 <div markdown="block" class="alert alert-info">
 
@@ -405,25 +432,27 @@ By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-ju
 
 In the following example, we will be using [Google Docs](https://docs.google.com) to store the medical record of patient `John Doe`.
 
-1. First, we add patient `John Doe` using [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) as shown in figure 2.2.1 below.<br>
+1. First, we add patient `John Doe` using the `add` command. Upon successful addition, you should be able to see a success message including the `MEDICAL_RECORD_URL` you have just added when you scroll the message box to the right as shown in figure 14.1 below.<br>
     
     ![medical record example 1](images/Medical%20record%20example%20(1).png)
-    Figure 2.2.1 Adding patient John Doe
+    Figure 14.1 Adding patient John Doe
     
-1. Next, to copy the medical record url of patient `John Doe` that we have just added, locate the patient in the list and click on the `MR URL` button located on the bottom right corner as shown in figure 2.2.2 below. A `Link Copied!` success message should appear once clicked, indicating that the link has been copied to the system clipboard.<br>
+1. Next, to copy the medical record url of patient `John Doe` that we have just added, locate the patient in the list and click on the `MR URL` button located on the bottom right corner as shown in figure 14.2 below. A `Link Copied!` success message should appear once clicked, indicating that the link has been copied to the system clipboard.<br>
     
     ![medical record example 2](images/Medical%20record%20example%20(2).png)
-    Figure 2.2.2 Copying medical record url of John Doe
+    Figure 14.2 Copying medical record url of John Doe
     
-1. Then, open the web browser of your choice and paste the medical record url onto the search bar as shown in figure 2.2.3 below.<br>
+1. Then, open the web browser of your choice and paste the medical record url onto the search bar as shown in figure 14.3 below.<br>
     
     ![medical record example 3](images/Medical%20record%20example%20(3).png)
-    Figure 2.2.3 Pasting medical record url of John Doe onto search bar
+    Figure 14.3 Pasting medical record url of John Doe onto search bar
     
-1. Finally, you can access the medical record of the patient and make edits if applicable. A sample medical record is shown in figure 2.2.4 below for your reference.<br>
+1. Finally, you can access the medical record of the patient and make edits if applicable. A sample medical record is shown in figure 14.4 below for your reference.<br>
     
     ![medical record example 4](images/Medical%20record%20example%20(4).png)
-    Figure 2.2.4 Sample medical record of John Doe on Google Docs
+    Figure 14.4 Sample medical record of John Doe on Google Docs
+
+The example we have just discussed uses the `add` command. The usage of the `MEDICAL_RECORD_URL` field in `edit` works in the same way as described in the `add` example as well.
 
 ### Clearing all entries: `clear`
 
@@ -441,13 +470,11 @@ Format: `exit`
 
 **Hospify** data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ (Peh Jun Siang)
+
+In this section, we will be looking at some of the frequently asked questions from our users.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
@@ -491,6 +518,8 @@ Step 2. Type the command `java -version` to check for the version.
 
 ## Command summary
 
+In this section, we have summarised all the commands and their formats into a table for easy reference. The commands are arranged in alphabetical order. Additionally, you may refer to the specific requirements of a valid email and url (for the `Medical Record` feature) if you are encountering problems with using these fields.
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho ic/S1234567A p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
@@ -501,3 +530,18 @@ Action | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Count** | `count`
+
+* Valid email format
+
+    * Emails should be of the format local-part@domain.topleveldomain
+    * The local-part should only contain alphanumeric characters or special characters including !#$%&'*+/=?`{|}~^.-
+    * The domain should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
+    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets
+    
+* Valid URL format
+    
+    * URL should be of the format (http:// or https://)(www.)domain.topleveldomain/path
+    * The URL can start with `http://`, `https://`, `www.` or any of the first two paired with `www.`
+    * The domain should be between 2 to 256 characters long (inclusive) and should only contain alphanumeric characters or special characters including @:%._+~#?&=/
+    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets
+    * The path follows the same rule as the domain except there is no restriction in its length
