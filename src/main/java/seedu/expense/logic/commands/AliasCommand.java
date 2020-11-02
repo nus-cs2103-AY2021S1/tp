@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 
 /**
  * Edits the alias of an existing commands in the alias map.
@@ -21,6 +22,7 @@ public class AliasCommand extends Command {
             + "Example: " + COMMAND_WORD + " find " + "get ";
 
     public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s]";
+    public static final String MESSAGE_REMOVED_ALIAS_SUCCESS = "Removed alias. [%s] is no longer alias for [%s].";
 
     private final String previousAlias;
     private final String newAlias;
@@ -46,6 +48,9 @@ public class AliasCommand extends Command {
                     new AliasEntry(newAlias, actualCommand));
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
+        }
+        if (AliasMap.RESERVED_KEYWORDS.contains(newAlias)) {
+            return new CommandResult(String.format(MESSAGE_REMOVED_ALIAS_SUCCESS, previousAlias, newAlias));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_ALIAS_SUCCESS, previousAlias, newAlias));
     }
