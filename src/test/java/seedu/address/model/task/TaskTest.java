@@ -8,7 +8,7 @@ public class TaskTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Task(null, null, null, 0, false));
+        assertThrows(NullPointerException.class, () -> new Task(null, null, null, 0));
     }
 
     // TODO: invalid test

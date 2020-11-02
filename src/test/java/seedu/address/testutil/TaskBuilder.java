@@ -105,8 +105,7 @@ public class TaskBuilder {
      * @return task sample
      */
     public Task build() {
-        return new Task(taskName, description, deadline.orElse(null), progress,
-                isDone);
+        return new Task(taskName, description, deadline.orElse(null), progress);
     }
 
 }
