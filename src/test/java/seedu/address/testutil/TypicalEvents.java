@@ -35,20 +35,6 @@ public class TypicalEvents {
             .withRecurrence(EventRecurrence.NONE)
             .build();
 
-    public static final Event NOT_TYPICAL_EVENT = new EventBuilder().withEventName("Not typical event")
-            .withEventStartDateTime(LocalDateTime.parse("2020-12-25T10:10:00"))
-            .withEventEndDateTime(LocalDateTime.parse("2020-12-26T10:12:01"))
-            .withUniqueIdentifier("uidChristmas")
-            .withRecurrence(EventRecurrence.NONE)
-            .build();
-
-    public static final Event ALSO_NOT_TYPICAL_EVENT = new EventBuilder().withEventName("Also not typical event")
-            .withEventStartDateTime(LocalDateTime.parse("2020-12-27T10:10:00"))
-            .withEventEndDateTime(LocalDateTime.parse("2020-12-27T10:12:01"))
-            .withUniqueIdentifier("dk")
-            .withRecurrence(EventRecurrence.NONE)
-            .build();
-
     private TypicalEvents() {} // prevents instantiation
 
     public static List<Event> getTypicalEvents() {

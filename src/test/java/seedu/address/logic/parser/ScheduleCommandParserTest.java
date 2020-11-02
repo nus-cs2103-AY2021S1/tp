@@ -22,7 +22,7 @@ public class ScheduleCommandParserTest {
         ScheduleViewMode viewMode = ScheduleViewMode.WEEKLY;
         LocalDate viewDate = LocalDate.of(2020, 11, 5);
 
-        assertParseSuccess(parser, "view mode/weekly date/2020-11-05",
+        assertParseSuccess(parser, "view mode/weekly date/05/11/2020",
                 new ScheduleViewCommand(viewMode, viewDate));
     }
 
@@ -45,7 +45,7 @@ public class ScheduleCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid mode
-        assertParseFailure(parser, "view mode/123 date/2020-11-05",
+        assertParseFailure(parser, "view mode/123 date/05/11/2020",
                 ScheduleViewCommand.MESSAGE_INVALID_VIEW_MODE);
 
         //invalid date

@@ -63,7 +63,7 @@ public class SampleDataUtil {
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new School("Raffles Girls School"), new Year(SchoolType.SECONDARY, 3),
                         new Admin(new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                                new ClassTime("2 1900-1930"), new Fee("680"),
+                                new ClassTime("2 1900-2030"), new Fee("680"),
                                 new PaymentDate("1/12/19"), getDetailList()),
                         getQuestions(), getExams(sampleExam3), new Academic(getAttendance(new Attendance(
                         "01/01/2020", "present", new Feedback("prepared well"))))),

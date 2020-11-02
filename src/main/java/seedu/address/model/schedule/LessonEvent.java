@@ -6,6 +6,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
@@ -14,6 +15,8 @@ import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 
 public class LessonEvent extends Event {
+
+    public static final DateTimeFormatter VIEW_DATE_FORMAT = DateTimeFormatter.ofPattern("d/M/yyyy");
 
     /**
      * Creates an Lesson Event object that will be link to the user's schedule.

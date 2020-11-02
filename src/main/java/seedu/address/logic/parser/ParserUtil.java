@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
@@ -18,6 +17,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.schedule.LessonEvent;
 import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -282,22 +282,12 @@ public class ParserUtil {
      * @throws ParseException when input string does not follow the format
      */
     public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
+        requireNonNull(dateToViewSchedule);
+        String dateView = dateToViewSchedule.trim();
         try {
-            return LocalDate.parse(dateToViewSchedule, DATE_TIME_FORMATTER);
+            return LocalDate.parse(dateView, LessonEvent.VIEW_DATE_FORMAT);
         } catch (DateTimeParseException e) {
             throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE_FORMAT);
-        }
-    }
-
-    /**
-     * Parses a {@code dateTime} string into a LocalDateTime object.
-     * @throws ParseException when input string does not follow the format.
-     */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
-        try {
-            return LocalDateTime.parse(dateTime);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(e.getMessage());
         }
     }
 
