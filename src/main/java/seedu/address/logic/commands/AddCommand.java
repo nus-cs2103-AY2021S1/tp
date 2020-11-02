@@ -46,7 +46,8 @@ public class AddCommand extends Command {
             + PREFIX_DETAILS + "Details here ";
 
     public static final String MESSAGE_SUCCESS = "New student added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Reeve";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Reeve\n\n "
+            + "A student is uniquely identified by his/her NAME, PHONE, SCHOOL and YEAR";
 
     private final Student toAdd;
 

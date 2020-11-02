@@ -76,6 +76,7 @@ Symbol | Meaning
 -------|-------- 
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
 :information_source: | Indicates important information. 
+:bulb: | Indicates tips.
 
 ## 2. Quick start
 
@@ -135,6 +136,8 @@ The following points explain how to make sense of the command format:
 Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc. 
 Thereafter, you will be able to view, edit find or delete these students.
 
+:bulb: To switch between display of administrative and academic details of students, use the [toggle](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan) command!
+
 #### 3.2.1 Adding a student: `add` (By: Alex and Hogan)
 
 You can add a student together with his/her individual administrative details into **Reeve's** student list.
@@ -143,24 +146,26 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: The format of TIME is as follows:
-* {int: day_of_week} {int: start_time}-{int: end_time}.
-* day_of_week is any number from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
-* start_time and end_time follows the 24-hr clock format (e.g. 1pm refers to 1300).
-
-:information_source: The format of LAST_PAYMENT_DATE is as follows:
-* d/m/yyyy or dd/mm/yyyy (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
-
-:information_source: The format of YEAR is as follows:
-* TYPE_OF_SCHOOL LEVEL (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-* TYPE_OF_SCHOOL can be primary(pri, p), secondary(sec, s) or jc. 
-* LEVEL has to correspond with the TYPE_OF_SCHOOL (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
-<br>
-
-</div>
-
 * `FEE` defaults to $0.00 if not included.
 * `LAST_PAYMENT_DATE` defaults to today's date if not included.
+
+* The format of `CLASS_TIME` is as follows:
+    * `DAY_OF_WEEK START_TIME-END_TIME`
+    * `DAY_OF_WEEK` is any number from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
+    * `START_TIME` and `END_TIME` follows the 24-hr clock format (e.g. 1pm refers to 1300).
+
+* The format of `LAST_PAYMENT_DATE` is as follows:
+    * `d/m/yyyy or dd/mm/yyyy` (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
+
+* The format of `YEAR` is as follows:
+    * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
+    * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
+    * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
+<br>
+
+:information_source: You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
+
+</div>
 
 Examples:
 * `add n/Alex p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214
@@ -332,6 +337,8 @@ Format: `clear`
 Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc. 
 Thereafter, you will be able to view, edit or delete these details of each student. 
 
+:bulb: To switch between display of administrative and academic details of students, use the [toggle](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan) command!
+
 #### 3.3.1 Recording questions from a student: `question` (By: Ying Gao) 
 
 You can add, resolve or remove questions from a specified student in **Reeve**.
@@ -459,6 +466,8 @@ Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
+
+:information_source: If you are adding or deleting exams from a student who you already have the exam stats window opened, you will have to enter the `exam stats` command again to get the updated statistics.
 #### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
 You can add or delete an attendance record to/from a specified student.

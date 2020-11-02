@@ -94,7 +94,7 @@ public class Exam {
 
     @Override
     public String toString() {
-        return " " + examName + "\n\t- Date: " + examDate.format(OUTPUT) + "\n\t- Score: "
-                + score + " (" + score.getScorePercentage() + "%)";
+        return "- " + examName + "\n\t-> Date: " + examDate.format(OUTPUT) + "\n\t-> Score: "
+                + score + " (" + score.getScorePercentage() + "%)\n";
     }
 }
