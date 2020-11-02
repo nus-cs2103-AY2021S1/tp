@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import seedu.address.commons.core.index.GitUserIndex;
-import seedu.address.model.project.Participation;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.task.Task;
