@@ -5,22 +5,20 @@ title: User Guide
 
 <img align="right" height="170" src="images/inventoryinator.jpg">
 
-[//]: # (// TODO ** add authorship for grading purposes **)
-
-
 ## Introduction
 
-**Inventoryinator** is a **desktop app for managing game inventories**, and can be used for **any generic game** where 
-you have a need for sorting and collating resources. If you find yourself ever wondering how much resources you have
-back at home base, or are unsure whether you can craft your next upgrade, then this is the app for you.
+**Inventoryinator** is a **desktop app for managing game inventories**, and supports
+**any generic game** where you need to sort and collate resources. If you ever find
+yourself wondering how many resources you have back at home base, or are unsure whether
+you can craft your next upgrade, then this is the app for you!
 
-Our app is optimized for use via the **typing** of commands, while your inventory is visually represented on our 
-**Graphical User Interface (GUI)**. If you can type fast, Inventoryinator can
+Our app is optimized for use via the **typing** of commands, while your inventory is
+shown on our **Graphical User Interface (GUI)**. If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
-This User Guide will help you get started with the setup of Inventoryinator and provide a quick reference of
-the features available and how to use them. You can use the table of contents below for easy access to sections
-in this document. 
+This User Guide will help you get started with the setup of Inventoryinator and provide a
+quick reference of the features available and how to use them. You can use the table of
+contents below for easy access to sections in this document. 
 
 * Table of Contents
 {:toc}
@@ -37,27 +35,23 @@ in this document.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
    
-   [//]: # (//TODO smaller diagram for quickstart, taking up too much space)
-   
    ![Ui](images/Ui.png)
-   
-[//]: # (// TODO better use of whitespaces)
 
-1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing `Enter` will open the help window.<br>
    
    Some example commands you can try:
 
-   * **`listi`** : Lists all items stored in Inventoryinator.
+   * **`listi`** : This shows you all items stored in your inventory.
 
-   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to the Inventoryinator
+   * **`addi`**`-n banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to your inventory.
 
-   * **`addq`**`banana -q 10` Adds a quantity of 10 to the entry for the banana
+   * **`addq`**`-n banana -q 10` Adds a quantity of 10 to the number of `banana` you own.
 
-   * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
+   * **`deli`**`-n banana` : Deletes the `banana` item from your inventory.
 
-   * **`delr`**`-n banana`**`-r`**`1` : Deletes the first recipe from the item `bananas` 
+   * **`delr`**`-n banana -r 1` : Deletes the first recipe from the `banana` item of your inventory.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -65,21 +59,21 @@ ___________________________________________________________________
 
 ## Legend:
 
-A legend for the styling used in this guide to describe the commands' format.
+You can refer to this section to reference the syntax used in this guide to format
+the commands.
 
 Key | Meaning
 -------|-------------
-term | Command/variable term<br>
-**term** | Compulsory to be included in the command<br>
-\<term\> | User Input Variable like recipe name or item name<br>
-\[term, ...\] | Optional terms, "..." indicates multiple terms are accpeted
-\[term1/ term2\] | Optional terms to specify parameters, only 1 of term1 or term2 _ should be input
--term | Option field to add to or an argument parameter
-default | If no parameter is given as input, this will be the input parameter.
+term | Standard command/variable term<br>
+-term | Terms preceded by a dash (-) are prefixes to denote the parameter after it (eg. -q for quantity)
+**compulsory_term** | Bolded terms are compulsory for the command to be executed<br>
+\<input_variable\> | Terms in <> brackets are user input variables like recipe names or item names<br>
+\<term, ...\> | "..." indicates that the command can accept multiple terms for this parameter
+\[optional_input_variable\] | Terms in [] brackets are optional
+\[optional_term, ...\] | "..." indicates that the command can accept zero or more terms for this parameter
+default | If no parameter is given as input, this will be the input parameter
 
 ___________________________________________________________________
-
-[//]: # (// TODO made Recipe definition clear, add glossary?)
 
 ## Command summary
 
@@ -87,95 +81,167 @@ A summary of the commands for the features currently implemented.
 
 Action | Format
 -------|---------------------------------
-**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] \[-t \<tag1, tag2, …\>\]
+**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location, …\>\] \[-t \<tag, …\>\]
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
 **Add Quantity to Item** | `addq` **-n \<item name\>** **-q \<qty\>**
-**Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>**
+**Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag, …\>**
 **Craft Item** | `craft` **-n \<item name\>** **-q \<quantity\>** \[-r \<index\>\]
 **Check craft** | `check` **-n \<item name\>** **-q \<quantity\>** 
 **Delete Item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
-**Edit Item** | `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag1, tag2, …\>\]
-**Find Item by Name** | `find` **\<string1, string2\>**
-**Find Item by Tag** | `findt` **\<string1, string2\>**
+**Edit Item** | `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag, …\>\]
+**Find Item by Name** | `find` **\<string, ...\>**
+**Find Item by Tag** | `findt` **\<string, ...\>**
 **List Items** | `listi`
 **List Recipes** | `listr`
-**View Detailed View of Item** | `view` **\<item name\>** 
+**View Detailed View of Item** | `view` **\<item name\>**
+**Clear Items** | `cleari`
+**Clear Recipes** | `clearr`
+**Undo** | `undo`
+**Redo** | `redo`
 **Help** | `help` \[command\]
 **Exit** | `exit`
 
 
 ## Features
-[//]: # (// TODO add more to the preface under the features heading)
-
-Inventoryinator's features and their descriptions, as of v1.3.
-
-[//]: # (Command writeups are structured with a written description of the command's functions for non-technical users,
- then a **Name**, **Synopsis**, **Description** and **Example** for those familiar with CLI Syntax) 
-
-[//]: # (// TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does)
+In this section, you can find a comprehensive list of Inventoryinator's commands and their descriptions, as of v1.4.
+For each command, you will find a written description of the command's functions. For experienced users, you can
+refer to the more succinct name, synopsis, description and example sections to directly access the information you need.
 
 ### Adding an item: `addi`
+###### (Implemented by: Zhengdao)
+
+This command allows you to add a new item to your inventory. Adding an item will cause Inventoryinator to start
+tracking your item. You will need to provide an item name. You can optionally provide the initial item quantity,
+description, location and tags. If you do not provide these fields, they will be set to default values (except for
+location and tags). You will be able to edit these fields later on.
 
 **NAME:**
 
-- `addi` - adds a new item  
+- `addi` - adds a new item to your inventory 
 
 **SYNOPSIS:**
 	 
-- `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
+- `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location, …\>\] \[-t \<tag, …\>\]
 
 **DESCRIPTION:**
-- **item name:** name of the item to be added
-- **q:** quantity to add (default: 1)
-- **d:** description of item (default: “No description given.”)
-- **l:** locations where item can be found in game 
-- **t:** user defined **tag** for an item
-- Adds an item to the inventory, with the given fields
+- **n:** name of the item to be added
+- **q:** quantity to add (default: 0)
+- **d:** description of item (default: “None.”)
+- **l:** locations where item can be found in game (default: "None")
+- **t:** user defined tag for an item
+- Adds an item to your inventory, with the given input.
 
 **EXAMPLE:**
 - `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm -t delicious, consumable
-- Adds new entry of 44 <u>banana</u>, with description edible <u>banana</u>, 
-found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
+
+This command adds a new entry of 44 <u>banana</u>, with description <u>edible banana</u>, 
+found at location <u>Bob’s banana farm</u> and tags <u>delicious</u>, <u>consumable</u> to your inventory.
+
+```
+TIPS:
+Quantity should be an integer between 0 and 2,147,483,647.
+Item names are case-sensitive.
+Tags must be alphanumerical and cannot contain spaces.
+```
 
 ### Adding a new Recipe: `addr`
+###### (Implemented by: Rahul)
+
+This command allows you to add a new recipe to your inventory. Adding a recipe will cause Inventoryinator to link
+the recipe to its product item. This will allow you to use this recipe to craft the item using the `craft` command
+you will see later. You will need to provide a product name as well as names and quantities of the items used to
+create this product. You can optionally provide the product quantity (if the recipe produces more than 1 of the product)
+and a description for the recipe. If you do not provide these fields, they will be set to default values.
+
 **NAME:**
-- `addr` - adds a new recipe
+- `addr` - adds a new recipe to your inventory
 
 **SYNOPSIS:**
 - `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num\>\] \[-d \<desc\>\]
 
 **DESCRIPTION:**
-- **product name:**	name of the item created by the recipe
-- **-items:** specify the list of material items used
-- **-pc:** quantity of product produced in a craft (default: 1)
-- **-d:** description of recipe (default: “No description given”)
-- Adds a recipe to the inventory, with the given fields,
+- **n:**	name of the item created by the recipe
+- **items:** specify the list of material items used
+- **pc:** quantity of product produced in a craft (default: 1)
+- **d:** description of recipe (default: “None”)
+- Adds a recipe to your inventory, with the given input,
  do note that all items mentioned in the command must exist in the item listing.
 
 **EXAMPLE:**
-- `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
-- Adds a **recipe** to craft <u>Bob’s anvil</u>, which takes 3 <u>blocks of iron</u> and 4 <u>iron ingots</u>
+- `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u>\[3\], <u>iron ingot</u>\[4\]
 
+This command adds a recipe to craft <u>Bob’s anvil</u>, which takes 3 <u>blocks of iron</u> and 4 <u>iron ingots</u>.
+
+```
+TIPS:
+Item names are case-sensitive.
+You cannot edit recipes! Please be careful when typing in your quantities.
+To add a recipe that creates an item not yet in your inventory, you will need to add the item first.
+```
 
 ### Adding quantity to an item: `addq`
+###### (Implemented by: Jing Lin)
+
+This command allows you to increase or decrease the quantity of an item in your inventory by a specified amount.
+You cannot reduce the quantity of an item to below 0. You will need to provide the item name of the item you wish
+to increase or decrease the quantity to, as well as the quantity you wish to increase or decrease. To decrease the
+quantity, provide a negative number.
 
 **NAME:**
 - `addq` - adds quantity to a single specified item
 
 **SYNOPSIS:**
-- `addq` **\<item name\>** **-q \<qty\>**
+- `addq` **-n \<item name\>** **-q \<qty\>**
 
 **DESCRIPTION:**
-- **item name:** given name of the item in the system
-- **qty:** amount of that item to add
-- Adds the quantity to the item in the inventory
+- **n:** given name of the item in the system
+- **q:** amount of that item to add
+- Adds the quantity to the item in your inventory.
 
 **EXAMPLE:**
 - `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
-Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
+
+Adds <u>8</u> more <u>Bob’s 6th regrets</u> to your inventory.
+
+```
+TIPS:
+Total quantity cannot exceed 2,147,483,647.
+```
+
+### Adding tags to an item: `addt`
+###### (Implemented by: Stephen)
+
+This command allows you to add tags to an item. You will need to provide the item name of the item you wish to add
+tags to, and the tags that you wish to add.
+
+**NAME:**
+- `addt` - adds tags to a single specified item
+
+**SYNOPSIS:**
+- `addt` **-n \<item name\>** **-t \<tag, …\>**
+
+**DESCRIPTION:**
+- **n:** given name of the item in the system
+- **t:** tags to be added to the item
+- Adds the tags to the item in your inventory.
+
+**EXAMPLE:**
+- `addt` -n <u>Bob's 9th horse</u> -t <u>consumable</u>
+
+Adds the <u>consumable</u> tag to the item <u>Bob's 9th horse</u> in your inventory.
+
+```
+TIPS:
+Tags must be alphanumerical and cannot contain spaces.
+Your input must contain at least one tag that the item does not currently have.
+```
 
 ### Listing all items: `listi`
+###### (Implemented by: Kheng Hun)
+
+This command displays all items in your inventory. You will be able to view the item names, their quantities,
+descriptions and tags.
 
 **NAME:**
 - `listi` - lists all items
@@ -184,9 +250,14 @@ Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 - `listi`
 
 **DESCRIPTION:**
-Lists all items and their quantities
+Lists all items that are in your inventory, and their quantities, descriptions and tags.
 
 ### Listing all recipes: `listr`
+###### (Implemented by: Kheng Hun)
+
+This command displays all recipes in your inventory. You will be able to view the product names, amount of product
+produced by the recipe, and the items and their associated quantities required to craft the product. You
+will also see the recipe description.
 
 **NAME:**
 - `listr` - lists all recipes
@@ -195,9 +266,13 @@ Lists all items and their quantities
 - `listr`
 
 **DESCRIPTION:**
-Lists all recipes, outputs, descriptions and their ingredients
+Lists all recipes, products, descriptions and their ingredients.
 
 ### Deleting an item: `deli`
+###### (Implemented by: Stephen)
+
+This command allows you to delete an item in your inventory. This removes the item as well as all recipes that use
+or produce the item from your inventory. You will need to provide the item name of the item you wish to delete.
 
 **NAME:**
 - `deli` - deletes an item
@@ -206,15 +281,26 @@ Lists all recipes, outputs, descriptions and their ingredients
 - `deli` **-n \<item name\>**
 
 **DESCRIPTION:**
-- **item name:** name of the item to be deleted
-- Deletes the item in the inventory with the corresponding item name,
+- **n:** name of the item to be deleted
+- Deletes the item in your inventory with the corresponding item name,
  and all recipes associated with the item
 
 **EXAMPLE:**
 - `deli` -n <u>Bob’s 28th finger</u>
-Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+
+Deletes the item with the name <u>Bob’s 28th finger</u> from your inventory.
+
+```
+TIPS:
+If you accidentally delete an item, you can always undo it!
+```
 
 ### Deleting a Recipe: `delr`
+###### (Implemented by: Kheng Hun)
+
+This command allows you to delete a recipe in your inventory. This removes the recipe from your inventory, and it
+will no longer be associated with any of its ingredients or product. You will need to provide the product name of the
+recipe and the index of the recipe in the product item.
 
 **NAME:**
 - `delr` - deletes a recipe
@@ -223,62 +309,85 @@ Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 - `delr` **-n \<item name\>** **-r index**
 
 **DESCRIPTION:**
-- **item name:** name of the item associated with the recipe to be deleted
-- **index:** deletes the <u>recipe</u> numbered <u>index</u>
-- Deletes the recipe in the inventory with the corresponding recipe index in the given item,
- do note that this listing of item recipes is not designed to take input index beyond `2,147,483,647`. 
+- **n:** name of the product item of the recipe to be deleted
+- **r:** deletes the <u>recipe</u> numbered <u>index</u>
+- Deletes the recipe in your inventory with the corresponding recipe index in the given item.
 
 **EXAMPLE:**
 - `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
-Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
+
+Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u> from your inventory.
+
+```
+TIPS:
+To find the index of the recipe you wish to delete, use the view command on the product item.
+The input recipe index should not exceed 2,147,483,647.
+```
 
 ### Finding an item: `find`
+###### (Implemented by: Rahul)
 
-This command allows the user to search for items in `Inventoryinator` by item name,
- entering multiple names allows the user to search for items with name that matches any string.
+This command allows you to search for items in your inventory by item name. Entering multiple names will allow you
+to search for items that have an item name that matches or contains any string. Note that this command is
+case-insensitive.
 
 **NAME:**
 - `find` - finds items
 
 **SYNOPSIS:**
-- `find` **\<string1, string2 ...\>**
+- `find` **\<string, ...\>**
 
 **DESCRIPTION:**
-- **string{digit}:** keywords to search by, comma seperated.
-- Displays items that match or contain, case-insensitive, any of the search keywords
+- **string:** keywords to search by, comma separated.
+- Displays items in your inventory that match or contain, case-insensitive, any of the search keywords.
 
 **EXAMPLE:**
-- `find` <u>bob</u> <u>alice</u>
+- `find` <u>bob</u>, <u>alice</u>
 
 - Returns the items whose names match/ contain <u>bob</u> or <u>alice</u>, like: 
   - Bob’s 9000th crush
   - Alice's sword
   - Little bob
 
-### Finding items by tags: `findt`
+```
+TIPS:
+You can use `find .` to find all items in your inventory.
+```
 
-This command allows the user to search for items in `Inventoryinator` by tags,
- entering multiple tags allows the user to search for items that match any given tag.
+### Finding items by tags: `findt`
+###### (Implemented by: Stephen)
+
+This command allows you to search for items in your inventory by tag. Entering multiple tags will allow you
+to search for items that have any tags in your search parameters.
 
 **NAME:**
 - `findt` - finds items tagged with matching tag strings
 
 **SYNOPSIS:**
-- `findt` **\<string1, string2 ...\>**
+- `findt` **\<string, ...\>**
 
 **DESCRIPTION:**
-- **string{digit}:** keyword tags to search by, comma separated
-- Displays items that match the tags, case-insensitive, any of the given search keywords
+- **string:** keyword tags to search by, comma separated.
+- Displays items that match the tags, case-insensitive, any of the given search keywords.
 
 **EXAMPLE:**
-- `findt` <u>delic</u> <u>yummy</u>
+- `findt` <u>delic</u>, <u>yummy</u>
 
 - Returns the items whose tags match/contain "delic" or "yummy", like: 
   - Bob’s Banana tags: [<u>tuturu</u>, <u>yummy</u>]
   - Alice's Apple tags: [<u>delicate</u>]
   - Kim's Kiwi tags: [<u>yummy</u>, <u>delicious</u>]
-  
+
+```
+TIPS:
+Search parameters must be alphanumerical and cannot contain spaces.
+```
+
 ### View item `view`
+###### (Implemented by: Zhengdao)
+
+This command allows you to view more details of an item in your inventory, and the recipes that can craft this item.
+You will need to provide the item name of the item you wish to view.
 
 **NAME:**
 - `view` - view more details on an item
@@ -291,46 +400,78 @@ This command allows the user to search for items in `Inventoryinator` by tags,
 
 **EXAMPLE:**
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
-View all details of the item with the name <u>Bob’s bitten fingernail clipping</u>
+
+View all details of the item with the name <u>Bob’s bitten fingernail clipping</u>.
+
+```
+TIPS:
+This command will only show an item that matches the search parameter exactly. (case-sensitive)
+```
 
 ### Edit an item: `edit`
+###### (Implemented by: Kheng Hun)
+
+This command allows you to edit an item in your inventory. You will need to provide the item name of the item you wish
+to edit as well as the fields you wish to edit.
 
 **NAME:**
 - `edit` - edit 1 or more fields of an item
 
 **SYNOPSIS:**
-- `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag1, tag2, …\>\]
+- `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag, …\>\]
 
 **DESCRIPTION:**
-- **item name:** item name of the item to be edited
-- \[name:\] new name of edited item
-- \[qty:\] new quantity of edited item
-- \[desc:\] new description of edited item
-- \[tag1, tag2...\] new tags of edited item
+- **o:** item name of the item to be edited
+- **n:** new name of edited item
+- **q:** new quantity of edited item
+- **d:** new description of edited item
+- **t:** new tags of edited item
 
 **EXAMPLE:**
+- `edit` -o <u> Iron Ore</u> -q <u>20</u>
+
+Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u>.
+
 - `edit` -o <u> Iron Ore</u> -q <u>20</u> -d <u>mined</u>  
+
 Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u> and description of <u>mined</u>.
 
 ### Craft an item: `craft`
+###### (Implemented by: Kheng Hun)
+
+This command allows you to craft an item using a recipe in your inventory. You will need to provide the item name
+of the item being crafted, the quantity of the item you wish to craft, and optionally, the index of the recipe you wish
+to use. If you do not provide the index, the first recipe will be used. The ingredients of the recipe will have their
+quantities reduced by the amount required to craft the desired quantity of the product.
 
 **NAME:**
-- `craft` - crafts a quantity of an item using materials in the inventory
+- `craft` - crafts a quantity of an item using materials in your inventory
 
 **SYNOPSIS:**
-- `craft` **-n \<item name\>** **-q \<quantity\>** \[-r \<index\>\]
+- `craft` **-n \<item name\>** **-q \<quantity\>** \[-i \<index\>\]
 
 **DESCRIPTION:**
-- **item name:** name of the item to craft
-- **quantity:** desired quantity of the item to obtain  
-- **index:** uses the <u>recipe</u> numbered <u>index</u> for crafting (default: 1)
-Crafts quantity of a single specified item using the recipe
+- **n:** name of the item to craft
+- **q:** desired quantity of the item to obtain  
+- **i:** uses the <u>recipe</u> numbered <u>index</u> for crafting (default: 1)
+Crafts quantity of the specified item using the specified recipe.
 
 **EXAMPLE:**
-- 'craft' -n <u>Iron Sword</u> -q <u>3</u> -r <u>2</u>  
-Crafts 3 <u>Iron Swords</u> using the 2nd recipe in the list which may craft it.
+- 'craft' -n <u>Iron Sword</u> -q <u>3</u> -i <u>2</u>
+
+Crafts 3 <u>Iron Swords</u> using the second recipe in the list which may craft it. 3 <u>Iron Swords</u> will be
+added to your inventory.
+
+```
+TIPS:
+This command may craft more of the desired item than your input, if the recipe used creates 2 or more of the product.
+```
 
 ### Check if crafting an item is possible: `check`
+###### (Implemented by: Kheng Hun)
+
+This command allows you to check if you have sufficient items in your inventory to craft a specified quantity of a
+desired item. You will need to provide the item name and quantity of the item you wish to check if you can craft.
 
 **NAME:**
 - `check` - check if crafting an item with one recipe is possible based on the current inventory
@@ -339,15 +480,20 @@ Crafts 3 <u>Iron Swords</u> using the 2nd recipe in the list which may craft it.
 - `check` **-n \<item name\>** **-q \<quantity\>** 
 
 **DESCRIPTION:**
-- **item name:** name of the item to check
-- **quantity:** desired quantity of the item to obtain from crafting 
+- **n:** name of the item to check
+- **q:** desired quantity of the item to obtain from crafting 
+Checks if it is possible for you to craft a quantity of the specified item using any recipe in your inventory.
 
 **EXAMPLE:**
 - 'check' -n <u>Iron Sword</u> -q <u>5</u>  
-Checks and displays if any recipe in the recipe list may be used to craft 5 (or more) <u>Iron Swords</u>
-based on the current inventory.
+
+Checks and displays if any recipe in the recipe list can craft 5 (or more) <u>Iron Swords</u>
+based on your current inventory.
 
 ### Clear all items: `cleari`
+###### (Implemented by: Zhengdao)
+
+This command allows you to clear all items and recipes in your inventory.
 
 **NAME:**
 - `cleari` - Deletes all items and recipes
@@ -356,14 +502,16 @@ based on the current inventory.
 - `cleari`
 
 **DESCRIPTION:**
-Deletes all items and recipes. Your inventory will be empty after
-executing this command.
+Deletes all items and recipes. Your inventory will be empty after executing this command.
 
 **EXAMPLE:**
 - `cleari` followed by `listi`
     - `listi` will indicate "You have no items in your inventory now."
 
 ### Clear all recipes: `clearr`
+###### (Implemented by: Zhengdao)
+
+This command allows you to clear all recipes in your inventory.
 
 **NAME:**
 - `clearr` - Deletes all recipes
@@ -379,6 +527,11 @@ Deletes all recipes.
     - `listr` will indicate "You have no recipes in your inventory now."
 
 ### Undo a command: `undo`
+###### (Implemented by: Jing Lin)
+
+This command allows you to undo the last command that affected any item or recipe. Your inventory will be reverted
+to how it was before you executed the command. You should use this if you accidentally executed a command you did
+not intend to.
 
 **NAME:**
 - `undo` - Reverses the effect of the previous command
@@ -395,6 +548,10 @@ considers commands that adds, removes, or changes an item or recipe.
     - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>.
 
 ### Redo a command: `redo`
+###### (Implemented by: Jing Lin)
+
+This command allows you to redo the last command that was undone. Your inventory will be set to how it was after
+you executed the command. You should use this if you accidentally undid a command you actually wanted to execute.
 
 **NAME:**
 - `redo` - Reverses the effect of the previous undone command
@@ -411,21 +568,21 @@ Reverses the effect of the previous undo command.
       `redo` re-adds the 10 <u>Apples</u>.
 
 ### Viewing help: `help`
+This command opens a dialog box with a link to this user guide. If you're here, you don't need this command! :)
 
 **NAME:** 
-- `help` - lists all commands and how to use them (Current implementation)
+- `help` - lists all commands and how to use them (current implementation)
 
 **SYNOPSIS:**
-- `help` \[command\]
+- `help`
 
 **DESCRIPTION:**
-- Displays a help sheet with brief descriptions of each command.
-- Shows a message explaning how to access the help page.
-- Will eventually be extended to get help about specific commands.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 ### Exiting the program: `exit`
+This command allows you to close the application.
 
 **NAME:**
 - `exit` - closes the application
@@ -434,7 +591,7 @@ Reverses the effect of the previous undo command.
 - `exit`
 
 **DESCRIPTION:**
-- Closes the application. 
+Closes the application. 
 
 ## FAQ
 
@@ -445,6 +602,16 @@ Reverses the effect of the previous undo command.
 **Q**: Do I need to save my data manually in the application?
 **A**: Inventoryinator data is saved in the hard disk automatically after any command that changes the data.
         There is no need to save manually. The format of save data is via `json file format`
---------------------------------------------------------------------------------------------------------------------
 
-[//]: # (// TODO Add Glossary of Terms.)
+## Glossary
+* Mainstream OS: Windows, Linux, Unix, OS-X
+* GUI: The graphical user interface is a form of user interface that allows users
+ to interact with electronic devices through graphical icons and audio indicator such as primary notation.
+* Parameter: a user input to be used by the application
+* Item: An item represents an object you obtain in a game. Eg a <u>Rock</u>
+* Recipe: A recipe is associated with multiple items, and represents the consumption of items in the input,
+ to produce an item of the output. Eg: 3 <u>Sticks</u> -> <u>Staff</u>
+* Location: The place where an item can be found in game. Eg: <u>Sleepywood</u>
+* Inventory: The entire state of the Inventoryinator, including recipes, items, locations etc.
+
+--------------------------------------------------------------------------------------------------------------------
