@@ -136,7 +136,8 @@ The following points explain how to make sense of the command format:
 Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc. 
 Thereafter, you will be able to view, edit find or delete these students.
 
-:bulb: To switch between display of administrative and academic details of students, use the [toggle](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan) command!
+:bulb: | To switch between display of administrative and academic details of students, use the [toggle](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan) command!
+-------|-------- 
 
 #### 3.2.1 Adding a student: `add` (By: Alex and Hogan)
 
@@ -163,8 +164,8 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
     * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 <br>
 
-:information_source: You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
-
+:information_source: | You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
+-------|-------- 
 </div>
 
 Examples:
@@ -337,7 +338,8 @@ Format: `clear`
 Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc. 
 Thereafter, you will be able to view, edit or delete these details of each student. 
 
-:bulb: To switch between display of administrative and academic details of students, use the [toggle](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan) command!
+:bulb: | To switch between display of administrative and academic details of students, use the [toggle](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan) command!
+-------|-------- 
 
 #### 3.3.1 Recording questions from a student: `question` (By: Ying Gao) 
 
@@ -421,14 +423,13 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 * Adds the given exam to the student at the specified `STUDENT_INDEX`.
 
-<div markdown="block" class="alert alert-info">
-:information_source: The format of EXAM_DATE is as follows:
-* dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+* The format of EXAM_DATE is as follows:
+    * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
-:information_source: The format of EXAM_SCORE is as follows:
-* x/y where x and y are non-negative integers. 
-* x has to be less than or equal to y (e.g. 30/50).
-</div>
+* The format of EXAM_SCORE is as follows:
+    * x/y where x and y are non-negative integers. 
+    * x has to be less than or equal to y (e.g. 30/50).
+
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and 
@@ -466,8 +467,9 @@ Examples:
 * `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
+:information_source: | If you are adding or deleting exams from a student who you already have the exam stats window opened, you will have to enter the `exam stats` command again to get the updated statistics.
+-------|-------- 
 
-:information_source: If you are adding or deleting exams from a student who you already have the exam stats window opened, you will have to enter the `exam stats` command again to get the updated statistics.
 #### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
 You can add or delete an attendance record to/from a specified student.
