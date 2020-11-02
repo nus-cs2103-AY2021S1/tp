@@ -396,6 +396,19 @@ Redoes the last redoable command. All undoable commands (as described [above](#U
 
 
 
+<a name="ListRecommendationCommand"></a>
+#### 5.3.5&ensp;Listing Recommendations — **`list`**`recommendations`
+
+This command allows you to switch to the recommendations pane, to view recipe recommendations.
+
+<div style="background-color: red">
+<h3 style="color: white; text-align: center">TODO ADD SCREENSHOT</h3>
+</div>
+
+
+
+
+
 <br/><br/><br/><br/><br/><br/>
 <a name="GroupRecipeCommands"></a>
 ### 5.4&ensp;Recipe Commands
