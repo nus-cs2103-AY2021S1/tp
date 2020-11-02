@@ -47,7 +47,7 @@ public class ViewModuleCommand extends Command {
 
         Module moduleToView = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView.toView()));
     }
 
     @Override

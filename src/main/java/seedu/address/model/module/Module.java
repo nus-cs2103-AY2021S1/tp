@@ -346,6 +346,14 @@ public class Module {
         }
         return false;
     }
+
+    /**
+     * Returns the module for the view command.
+     */
+    public String toView() {
+        return String.format("Module Name: %s \nZoomLink: %s \nMCs: %s", getName(), getAllLinks(),
+                getModularCredits().toString());
+    }
     @Override
     public String toString() {
         return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getAllLinks(),
