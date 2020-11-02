@@ -20,10 +20,6 @@ public class JsonSerializableMainCatalogueTest {
     private static final Path INVALID_PROJECT_FILE = TEST_DATA_FOLDER.resolve("invalidProjectMainCatalogue.json");
     private static final Path DUPLICATE_PROJECT_FILE = TEST_DATA_FOLDER.resolve("duplicateProjectMainCatalogue.json");
 
-    /*
-    Values from mainCatalogueFromFile and typicalProjectsMainCatalogue are the same, but throws error, not sure why yet
-    TODO: Fix (LUCAS)
-     */
     @Test
     public void toModelType_typicalProjectsFile_success() throws Exception {
         JsonSerializableMainCatalogue dataFromFile = JsonUtil.readJsonFile(TYPICAL_PROJECTS_FILE,
