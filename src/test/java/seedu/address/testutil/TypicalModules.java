@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 
 public class TypicalModules {
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105").build();
+
     public static final Module CS2100 = new ModuleBuilder()
             .withName("CS2100")
             .withMembers(new HashSet<>(Arrays.asList(BENSON))).build();
