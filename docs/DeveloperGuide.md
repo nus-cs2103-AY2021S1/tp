@@ -189,13 +189,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   solution.
   
 ##### Aspect: Mutability of account
-* **Choice:** Allowing Name attribute of Account to be mutated by EditCommand.
-  * Rationale: Initially, we implemented the Name attribute of Account to be immutable. However, we realize that it
-  is difficult to replace the name of the account if it is immutable. Hence, to overcome this obstacle, we decided
-  to make the Name attribute mutable.
-  * Implications: Extra precaution needs to be implemented, for instance creating new copies of account to prevent unnecessary
-  changes to accounts in account list.
-
+* **Choice:** Allowing name attribute of Account to be mutated by EditCommand.
+  * Rationale: Initially, we implemented the name attribute of Account to be immutable. However, we realize that it
+  is difficult to edit the name of the account if it is immutable. Hence, to overcome this obstacle, we decided
+  to make the name attribute mutable.
+  * Implications: Extra precaution needs to be implemented, for instance creating copies of account in methods that interacts
+  with the accounts to prevent unnecessary changes to accounts in account list. Hence, it resulted in more defensive coding 
+  which resulted in more lines of code.
 
 ### Find entries feature 
 
@@ -283,7 +283,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How get total expenses/revenues executes:
 * Alternative 1 (current choice): Calculates the total expenses/revenues in the by retrieving the expense/revenue list. 
     * Pros: Easy to implement.
-    * Cons:
  
 ### \[Proposed\] Undo/redo feature
 
