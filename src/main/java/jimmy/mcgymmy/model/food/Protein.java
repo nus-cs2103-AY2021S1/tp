@@ -15,8 +15,4 @@ public class Protein extends Macronutrient {
         super(amount, MULTIPLIER);
     }
 
-    public Protein(String amount) {
-        this(Integer.parseInt(amount));
-    }
-
 }
