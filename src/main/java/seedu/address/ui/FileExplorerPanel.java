@@ -10,7 +10,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.CdCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.explorer.CurrentPath;
 
@@ -61,7 +63,7 @@ public class FileExplorerPanel extends UiPart<Region> {
     public void cdToParentPath() {
         MainWindow mainWindow = MainWindow.getInstance();
 
-        String command = "cd ../";
+        String command = CdCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_PARENT_PATH;
         try {
             mainWindow.executeCommand(command);
         } catch (CommandException | ParseException exception) {

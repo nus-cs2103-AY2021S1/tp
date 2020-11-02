@@ -48,7 +48,7 @@ public class ThemeWindow extends UiPart<Stage> {
     }
 
     private void fillThemeCards() {
-        ThemeCard defaultThemeCard = new ThemeCard(ThemeSet.DEFAULT_THEME, this);
+        ThemeCard defaultThemeCard = new ThemeCard(ThemeSet.LIGHT_THEME, this);
         ThemeCard darkThemeCard = new ThemeCard(ThemeSet.DARK_THEME, this);
 
         themeList.getItems().setAll(

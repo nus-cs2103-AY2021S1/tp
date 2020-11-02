@@ -9,7 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.commons.util.AppUtil;
+import seedu.address.logic.commands.CdCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,7 +64,7 @@ public class FileCard extends UiPart<Region> {
             return;
         }
 
-        String command = "cd ./" + fileName.getText();
+        String command = CdCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_CHILD_PATH + fileName.getText();
         try {
             mainWindow.executeCommand(command);
         } catch (CommandException | ParseException exception) {
