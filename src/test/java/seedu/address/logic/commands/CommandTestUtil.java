@@ -16,9 +16,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ICNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
+import static seedu.address.model.appointment.AppointmentDateTime.DATE_TIME_FORMATTER;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -114,16 +117,29 @@ public class CommandTestUtil {
     public static final String VALID_COMMENT_TWO = "No need to follow up";
 
     // for Appointment
+    public static final String VALIDSTART_1 = LocalDateTime.now().plusDays(1).plusMinutes(10)
+            .format(DATE_TIME_FORMATTER);
+    public static final String VALIDEND_1 = LocalDateTime.now().plusDays(1).plusMinutes(40)
+            .format(DATE_TIME_FORMATTER);
+    public static final String VALIDSTART_2 = LocalDateTime.now().plusDays(1).plusMinutes(60)
+            .format(DATE_TIME_FORMATTER);
+    public static final String VALIDEND_2 = LocalDateTime.now().plusDays(1).plusMinutes(100)
+            .format(DATE_TIME_FORMATTER);
+
     public static final String VALID_PATIENT_NAME_FIRST = "Fiona Apple";
     public static final String VALID_PATIENT_NAME_SECOND = "Seth MacFarlane";
     public static final String VALID_PATIENT_IC_FIRST = "S9631111F";
     public static final String VALID_PATIENT_IC_SECOND = "G1984861R";
-    public static final String VALID_START_TIME_FIRST = "2020-11-11 11:10";
-    public static final String VALID_START_TIME_SECOND = "2020-11-11 11:40";
-    public static final String VALID_END_TIME_FIRST = "2020-11-11 11:30";
-    public static final String VALID_END_TIME_SECOND = "2020-11-11 11:50";
-    public static final String VALID_DURATION_FIRST = "20";
-    public static final String VALID_DURATION_SECOND = "10";
+    public static final String VALID_START_TIME_FIRST = VALIDSTART_1;
+    public static final String VALID_START_TIME_SECOND = VALIDSTART_2;
+    public static final String VALID_END_TIME_FIRST = VALIDEND_1;
+    public static final String VALID_END_TIME_SECOND = VALIDEND_2;
+    public static final String VALID_DURATION_FIRST = "" + Duration.between(
+            LocalDateTime.parse(VALIDSTART_1, DATE_TIME_FORMATTER),
+            LocalDateTime.parse(VALIDEND_1, DATE_TIME_FORMATTER)).toMinutes();
+    public static final String VALID_DURATION_SECOND = "" + Duration.between(
+            LocalDateTime.parse(VALIDSTART_2, DATE_TIME_FORMATTER),
+            LocalDateTime.parse(VALIDEND_2, DATE_TIME_FORMATTER)).toMinutes();
 
     public static final String PATIENTNAME_DESC_FIRST = " " + PREFIX_APP_PATIENTNAME + VALID_PATIENT_NAME_FIRST;
     public static final String PATIENTNAME_DESC_SECOND = " " + PREFIX_APP_PATIENTNAME + VALID_PATIENT_NAME_SECOND;

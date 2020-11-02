@@ -2,6 +2,14 @@ package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_FIRST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_SECOND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_IC_FIRST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_IC_SECOND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_FIRST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SECOND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_FIRST;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECOND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -35,8 +43,12 @@ public class AddAppointmentCommandTest {
     public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
         AddAppointmentCommandTest.ModelStubAcceptingAppointmentAdded modelStub = new AddAppointmentCommandTest
                 .ModelStubAcceptingAppointmentAdded();
-        Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIc("S1234567A")
-                .withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
+        Appointment validAppointment = new AppointmentBuilder()
+                .withPatientName(VALID_PATIENT_NAME_FIRST)
+                .withPatientIc(VALID_PATIENT_IC_FIRST)
+                .withStartTime(VALID_START_TIME_FIRST)
+                .withEndTime(VALID_END_TIME_FIRST)
+                .build();
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
@@ -47,8 +59,12 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_conflictingAppointment_throwsCommandException() {
-        Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIc("S1234567A")
-                .withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
+        Appointment validAppointment = new AppointmentBuilder()
+                .withPatientName(VALID_PATIENT_NAME_FIRST)
+                .withPatientIc(VALID_PATIENT_IC_FIRST)
+                .withStartTime(VALID_START_TIME_FIRST)
+                .withEndTime(VALID_END_TIME_FIRST)
+                .build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         AddAppointmentCommandTest.ModelStub modelStub = new AddAppointmentCommandTest
                 .ModelStubWithAppointment(validAppointment);
@@ -58,10 +74,18 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void equals() {
-        Appointment aliceAppointment = new AppointmentBuilder().withPatientName("Alice")
-                .withPatientIc("S1234567A").withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
-        Appointment bobAppointment = new AppointmentBuilder().withPatientName("Bob")
-                .withPatientIc("S7654321Z").withStartTime("2020-10-25 13:00").withEndTime("2020-10-25 14:00").build();
+        Appointment aliceAppointment = new AppointmentBuilder()
+                .withPatientName(VALID_PATIENT_NAME_FIRST)
+                .withPatientIc(VALID_PATIENT_IC_FIRST)
+                .withStartTime(VALID_START_TIME_FIRST)
+                .withEndTime(VALID_END_TIME_FIRST)
+                .build();
+        Appointment bobAppointment = new AppointmentBuilder()
+                .withPatientName(VALID_PATIENT_NAME_SECOND)
+                .withPatientIc(VALID_PATIENT_IC_SECOND)
+                .withStartTime(VALID_START_TIME_SECOND)
+                .withEndTime(VALID_END_TIME_SECOND)
+                .build();
         AddAppointmentCommand addAliceAppointmentCommand = new AddAppointmentCommand(aliceAppointment);
         AddAppointmentCommand addBobAppointmentCommand = new AddAppointmentCommand(bobAppointment);
 
