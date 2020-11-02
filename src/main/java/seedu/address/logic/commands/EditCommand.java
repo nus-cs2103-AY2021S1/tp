@@ -60,7 +60,9 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
+    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s\n\n"
+            + "WARNING : If you have edited patient name or patient NRIC, "
+            + "please make sure to update the relevant changes to any appointments, using the 'editappt' command.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the list of patients.";
 

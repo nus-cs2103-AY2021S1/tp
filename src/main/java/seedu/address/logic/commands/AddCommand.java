@@ -43,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_SEX + "M "
             + PREFIX_BLOODTYPE + "A+ "
             + PREFIX_ALLERGY + "penicillin "
-            + PREFIX_ALLERGY + "sulfa"
+            + PREFIX_ALLERGY + "sulfa "
             + PREFIX_COLORTAG + "green";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
