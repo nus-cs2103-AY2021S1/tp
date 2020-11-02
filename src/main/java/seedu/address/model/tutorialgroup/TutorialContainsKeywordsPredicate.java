@@ -16,7 +16,7 @@ public class TutorialContainsKeywordsPredicate implements Predicate<TutorialGrou
     public boolean test(TutorialGroup tutorialGroup) {
         String idstring = tutorialGroup.getId().toString();
         return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tutorialGroup.getId().toString(), keyword));
+            .anyMatch(keyword -> idstring.toUpperCase().contains(keyword.toUpperCase()));
     }
 
     @Override
