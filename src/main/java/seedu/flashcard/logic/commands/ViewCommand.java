@@ -20,7 +20,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the flashcard identified by the index number used in the displayed flashcard list.\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer greater than 0)"
             + " [" + FLAG_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
