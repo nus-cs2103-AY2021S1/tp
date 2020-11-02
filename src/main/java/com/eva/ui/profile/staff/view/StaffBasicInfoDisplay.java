@@ -35,22 +35,6 @@ public class StaffBasicInfoDisplay extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    /*/**
-     * Creates a {@code StaffBasicInfoDisplay} with the given {@code Staff}.
-     */
-    public StaffBasicInfoDisplay(Staff staff) {
-        super(FXML);
-        this.staff = staff;
-        name.setText(this.staff.getName().fullName);
-        phone.setText(this.staff.getPhone().value);
-        address.setText(this.staff.getAddress().value);
-        email.setText(this.staff.getEmail().value);
-        tags.getChildren().add(new Label("staff"));
-        staff.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-    }
-
     /**
      * Creates a {@code StaffBasicInfoDisplay} with the given {@code Staff}.
      */
