@@ -1,6 +1,7 @@
 package seedu.resireg.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
@@ -8,6 +9,9 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_FLOOR;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.testutil.Assert.assertThrows;
@@ -37,6 +41,7 @@ import seedu.resireg.model.room.RoomNameContainsKeywordPairsPredicate;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
+import seedu.resireg.testutil.EditRoomDescriptorBuilder;
 import seedu.resireg.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -102,6 +107,16 @@ public class CommandTestUtil {
     public static final String ALIAS_DESC_ROOMS_RO = " " + PREFIX_ALIAS + VALID_ALIAS_ROOMS_RO;
     public static final String ALIAS_DESC_STUDENTS_STU = " " + PREFIX_ALIAS + VALID_ALIAS_STUDENTS_ST;
 
+    // descriptions corresponding to ROOM_A and ROOM_B in {@code TypicalRooms}
+    public static final String FLOOR_DESC_A = " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_A;
+    public static final String FLOOR_DESC_B = " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_B;
+    public static final String ROOM_NUMBER_DESC_A = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_A;
+    public static final String ROOM_NUMBER_DESC_B = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_B;
+    public static final String ROOM_TYPE_DESC_A = " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_A;
+    public static final String ROOM_TYPE_DESC_B = " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_B;
+    public static final String TAG_DESC_RENOVATED = " " + PREFIX_TAG + VALID_TAG_RENOVATED;
+    public static final String TAG_DESC_DAMAGED = " " + PREFIX_TAG + VALID_TAG_DAMAGED;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -112,6 +127,10 @@ public class CommandTestUtil {
     public static final String INVALID_FLOOR = "asfdj";
     public static final String INVALID_ROOM_NUMBER = "asdfj";
     public static final String INVALID_ROOM_TYPE = "asdfjk";
+
+    public static final String INVALID_FLOOR_DESC = " " + PREFIX_ROOM_FLOOR + INVALID_FLOOR;
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + INVALID_ROOM_NUMBER;
+    public static final String INVALID_ROOM_TYPE_DESC = " " + PREFIX_ROOM_TYPE + INVALID_ROOM_TYPE;
 
     public static final String INVALID_DATE = "asfdj";
 
@@ -125,6 +144,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditRoomCommand.EditRoomDescriptor DESC_ROOM_A;
+    public static final EditRoomCommand.EditRoomDescriptor DESC_ROOM_B;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -135,6 +156,13 @@ public class CommandTestUtil {
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withFaculty(VALID_FACULTY_BOB)
             .withStudentId(VALID_STUDENT_ID_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ROOM_A = new EditRoomDescriptorBuilder().withFloor(VALID_FLOOR_A)
+                .withRoomNumber(VALID_ROOM_NUMBER_A).withRoomType(VALID_ROOM_TYPE_A)
+                .withTags(VALID_TAG_RENOVATED).build();
+        DESC_ROOM_B = new EditRoomDescriptorBuilder().withFloor(VALID_FLOOR_B)
+                .withRoomNumber(VALID_ROOM_NUMBER_B).withRoomType(VALID_ROOM_TYPE_B)
+                .withTags(VALID_TAG_DAMAGED).build();
+
     }
 
     /**

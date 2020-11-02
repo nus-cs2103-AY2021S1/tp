@@ -50,4 +50,11 @@ public class AddRoomCommand extends Command {
         model.saveStateResiReg();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this // short circuit if same object
+            || (obj instanceof AddRoomCommand) // instanceof handles nulls
+            && toAdd.equals(((AddRoomCommand) obj).toAdd);
+    }
 }
