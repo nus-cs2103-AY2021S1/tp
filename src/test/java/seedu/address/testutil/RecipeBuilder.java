@@ -37,7 +37,7 @@ public class RecipeBuilder {
                     new Instruction("5) Lay cheese and ham on the mustard half; lay avocado, onion slices, "
                             + "tomato slices, egg salad, and lettuce on the other half")));
 
-    public static final RecipeImage DEFAULT_RECIPE_IMAGE = new RecipeImage("images/sandwich.jpeg");
+    public static final RecipeImage DEFAULT_RECIPE_IMAGE = new RecipeImage("images/default.jpg");
 
     private Name name;
     private ArrayList<Ingredient> ingredients;

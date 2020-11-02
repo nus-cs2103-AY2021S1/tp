@@ -220,19 +220,30 @@ Multiple ingredients are separated by `,`.
 </div>
 
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
-* `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
-    * If you don't input the image field, Wishful Shrinking will add a default image to the recipe.
-    * If you want to use an image that has been saved in your computer, you have to specify the **absolute path** of the image, and add file:// in front of the file path. Then, replace IMAGE in img/IMAGE with the file path of your image, e.g. img/file:///D:/myimages/wishful/data/myimage.png.
-    * If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png). The image will only be downloaded into Wishful Shrinking's data folder if there is internet connection.
-    * If you input an invalid file path, input an invalid url, or input a url while there is no internet,  Wishful Shrinking will replace the image with a default image. 
-    * Wishful Shrinking has a few sample images for you to use if you don't have any images on hand. Below is the table of sample images and their file paths. To use the sample images, replace IMAGE in img/IMAGE with the file path, e.g. img/images/healthy1.jpg.<br>
-   
-      Image | File Path | Image | File Path
-      --------|------------------|---------|----------------
-      <img src="images/healthy1.png" width="100" height="100"> | images/healthy1.png | <img src="images/healthy4.png" width="100" height="100"> | images/healthy4.png
-      <img src="images/healthy2.png" width="100" height="100"> | images/healthy2.png | <img src="images/healthy5.png" width="100" height="100"> | images/healthy5.png
-      <img src="images/healthy3.png" width="100" height="100"> | images/healthy3.png | <img src="images/healthy6.png" width="100" height="100"> | images/healthy6.png
-   
+* `IMAGE` can be in two formats:
+    * Local path e.g. images/healthy1.jpg 
+    * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+
+* Here are the respective actions required by users depending on different usage of `IMAGE`:
+
+  Usage | Action | Example | Outcome
+  ---------|-----------------------|---------|---------
+  Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
+  Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
+  Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
+  Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
+  No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
+
+ 
+* Here is the table <a id="table"></a> containing built-in sample images provided by Wishful Shrinking:
+
+     Image | File Path | Image | File Path
+     --------|--------------|--------|-------------
+     <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
+     <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
+     <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
+     
+
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
  step of the instruction based on the end of a sentence, indicated by a `.`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
@@ -299,12 +310,23 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 Multiple ingredients are separated by `,`.
 </div> 
 
+
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
-* `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
-    * If you don't input the image field, Wishful Shrinking will add a default image to the recipe.
-    * If you want to use an image that has been saved in your computer, you have to specify the **absolute path** of the image, and add file:// in front of the file path. Then, replace IMAGE in img/IMAGE with the file path of your image, e.g. img/file:///D:/myimages/wishful/data/myimage.png.
-    * If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png). The image will only be downloaded into Wishful Shrinking's data folder if there is internet connection.
-    * If you input an invalid file path, input an invalid url, or input a url while there is no internet,  Wishful Shrinking will replace the image with a default image. 
+* `IMAGE` can be in two formats:
+    * Local path e.g. images/healthy1.jpg 
+    * URL (online image) e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+
+* Here are the respective actions required by users depending on different usage of `IMAGE`:
+
+  Usage | Action | Example | Outcome
+  ---------|-----------------------|---------|---------
+  Image from local storage | 1. Specify **absolute path** of the image<br><br> 2. Add **file://** in front of the file path<br><br> 3. Replace **IMAGE** in img/IMAGE with the file path of your image | file:///D:/images/wishful<br>/data/myimage.png | Local image will be displayed
+  Image from online resources | 1. Make sure the computer is connected to Internet<br><br> 2. Copy the online **image address** | Valid image address which starts with https:// and ends with .jpg or jpeg or png | The image will be downloaded into data folder and displayed
+  Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to this [table](#table) ) | img/images/healthy1.jpg | Sample image is displayed
+  Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
+  No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
+  
+
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
 </div> 
@@ -722,6 +744,7 @@ Term | Explanation
 **Drawer** | Page that layers above left section of the window when the `selectR` command runs and closes when the `close` command runs.
 **CLI** | A Command Line Interface (CLI) is a text-based user interface that allows users to type text commands instructing the program to do specific tasks.
 **GUI** | A Graphical User Interface (GUI) is a form of user interface that allows users to interact with the program through graphical icons instead of text-based user interfaces.
+**Absolute Path** | The complete details needed to locate a file or folder, starting from the root element.
 
 --------------------------------------------------------------------------------------------------------------------
 

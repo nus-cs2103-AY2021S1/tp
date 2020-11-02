@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 public class ClearConsumptionCommand extends Command {
 
     public static final String COMMAND_WORD = "clearC";
+
     public static final String MESSAGE_SUCCESS = "Daily consumption has been cleared!";
 
     private static final Logger logger = Logger.getLogger("ClearConsumptionLogger");

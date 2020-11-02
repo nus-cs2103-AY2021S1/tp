@@ -28,8 +28,9 @@ public class Ingredient {
                     + "decimal places.";
     public static final String HYPHEN_CONSTRAINTS = "Each ingredient has an optional field quantity that is "
             + "separated by a spaced followed by a hyphen.";
-    /*
-     * The first character of the address must not be a whitespace,
+
+    /**
+     * The first character of the ingredient must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
@@ -172,11 +173,10 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        String ingredientString = "";
-        if (quantity != "") {
-            ingredientString = quantity + " ";
+        String ingredientString = value;
+        if (!quantity.isBlank()) {
+            ingredientString += " (Quantity: " + quantity + ")";
         }
-        ingredientString += value;
         return ingredientString;
     }
 
