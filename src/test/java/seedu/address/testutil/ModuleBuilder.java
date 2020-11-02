@@ -4,7 +4,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Module objects.
  */
 public class ModuleBuilder {
 
@@ -13,7 +13,7 @@ public class ModuleBuilder {
     private ModuleId moduleId;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
         moduleId = new ModuleId(DEFAULT_MODULE_ID);
@@ -27,7 +27,7 @@ public class ModuleBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code ModuleId} of the {@code Module} that we are building.
      */
     public ModuleBuilder withModuleId(String moduleId) {
         this.moduleId = new ModuleId(moduleId);

@@ -26,8 +26,7 @@ public class ListStudentCommand extends Command {
 
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         TutorialGroup tg = model.getCurrentTgInView();
-        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS, tg),
-                false, false, false, true, false);
+        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS, tg));
     }
 
     @Override
