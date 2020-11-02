@@ -52,7 +52,6 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
             editInventoryDescriptor.setDateTime(ParserUtil.parseDatetime(
                     argMultimap.getValue(PREFIX_DATETIME).get()));
         }
-
         if (!editInventoryDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditInventoryCommand.MESSAGE_NOT_EDITED);
         }
