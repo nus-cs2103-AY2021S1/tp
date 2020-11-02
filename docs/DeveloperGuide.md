@@ -409,7 +409,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+### Use cases 
+(Update the number once all the use cases are done) (Comment)
 
 (For all use cases below, the **System** is the `CommonCents` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -417,62 +418,221 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add an expense entry
-2.  Common Cents adds the expense entry
+1.  User requests to add an expense
+2.  Common Cents adds the expense to expense list and displays success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given input is in invalid format.
+* 1a. The given command input is in invalid format.
 
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
 
 
-**Use case: UC02 - Add a revenue entry**
+**Use case: UC02 - Add a revenue**
 
 **MSS**
 
-1.  User requests to add revenue entry
-2.  Common Cents adds revenue entry
+1.  User requests to add revenue.
+2.  Common Cents adds revenue to revenue list and displays success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given input is in invalid format.
+* 1a. The given command input is in invalid format.
 
     * 1a1. Common Cents shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC03 - Delete an entry**
+**Use case: UC03 - Delete an expense**
 
 **MSS**
 
-1.  User requests to delete a specific entry
-2.  Common cents deletes the entry.
+1.  User requests to delete an expense.
+2.  Common cents deletes the expense.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
+* 1a. The given command input is in invalid format.
 
     * 1a1. Common cents shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC04 - Exiting app**
+**Use case: UC04 - Delete a revenue**
 
 **MSS**
 
-1.  User requests to exit
-2.  Common cents responds with exit message and closes.
+1.  User requests to delete an revenue.
+2.  Common Cents removes the revenue from the revenue list and displays success message.
 
     Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common cents shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC - Undoing an add command**
+
+**MSS**
+
+1.  User requests <u> add an expense (UC01)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the add command and displays success message.
+
+**Use case: UC - Undoing a delete command**
+
+**MSS**
+
+1.  User requests <u> delete an expense (UC03)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the delete command and displays success message.
+
+**Use case: UC - Undoing a edit command**
+
+**MSS**
+
+1.  User requests <u> edit an expense (UC)</u>.
+2.  User requests to undo command.
+3.  Common Cents returns to the state prior to the edit command and displays success message.
+
+
+**Use case: UC - Add an account**
+
+**MSS**
+
+1. User request to add a new account.
+2. Common Cents adds account to account list and displays success message
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given command input is in invalid format.
+
+    * 1a1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+      
+* 1b. The account to be added has the same name as an existing account in Common Cents.
+
+    * 1b1. Common Cents shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC - Listing accounts**
+
+**MSS**
+
+1.  User requests to list all the accounts
+2.  Common Cents displays the name of the accounts and their indices.
+
+    Use case ends.
+
+**Use case: UC - Delete a account**
+
+**MSS**
+
+1.  User requests <u> list all the account (UC)</u>.
+2.  User requests to delete account.
+3.  Common Cents removes the account from the account list and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given command input is in invalid format.
+
+    * 2a1. Common cents shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. Common Cents only has an account.
+
+    * 2b1. Common Cents shows an error message.
+    
+      Use case resumes at step 2.
+    
+* 2c. User is currently managing the account to be deleted.
+    * 2c1. Common Cents shows an error message.
+          
+      Use case resumes at step 2.
+
+**Use case: UC - Editing the account's name**
+
+**MSS**
+
+1.  User requests <u> list all the account (UC)</u>.
+2.  User requests to edit the account's name.
+3.  Common Cents edits the account name displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given command input is in invalid format.
+
+    * 2a1. Common cents shows an error message.
+
+      Use case resumes at step 2.
+      
+* 2b. The new account name is the same as a name of an existing account.
+
+    * 2b1. Common cents shows an error message.
+    
+      Use case resumes at step 2.
+      
+* 2c. The new account name is the same as the current name of the account.
+
+    * 2c1. Common cents shows an error message.
+    
+      Use case resumes at step 2.
+
+**Use case: UC - Switching to an account**
+
+**MSS**
+
+1.  User requests <u> list all the account (UC)</u>.
+2.  User requests to switch to another account.
+3.  Common Cents switches to another account and displays success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The given command input is in invalid format.
+
+    * 2a1. Common cents shows an error message.
+
+      Use case resumes at step 2.
+      
+* 2b. The user is already on the account to be switched.
+
+    * 2b1. Common cents shows an error message.
+    
+      Use case resumes at step 2.
+      
+**Use case: UC - Exiting app**
+    
+**MSS**
+
+1.  User requests to exit
+2.  Common Cents responds with exit message and closes.
+
+    Use case ends.
+
+
 
 *{More to be added}*
 
@@ -564,7 +724,9 @@ testers are expected to do more *exploratory* testing.
    Pie chart is reverted to the state prior to the previous command.
    
 ### Account-level commands
-1. Adding an account
+1. Adding a new unique account
+   1. Prerequisite: Ensure no accounts in Common Cents has the name `New Account`.
+
    1. Test case: `newacc n/New Account`<br>
       Expected: New account is added to Common Cents. (use `listacc` command to check) First expense entry is deleted from the expense list. 
       Details of the added account is shown in the status message.
