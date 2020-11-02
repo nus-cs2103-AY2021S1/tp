@@ -4,12 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an additional detail in Reeve.
+ * Represents a detail in Reeve.
  * Guarantees: immutable; detail is valid as declared in {@link #isValidAdditionalDetail(String)}
  */
 public class Detail {
 
-    public static final String MESSAGE_CONSTRAINTS = "Additional details should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Details should be alphanumeric";
     public static final String VALIDATION_REGEX = "^[\\s]*[a-zA-Z0-9][a-zA-Z0-9\\s]*$";
 
     public final String detail;
@@ -26,7 +26,7 @@ public class Detail {
     }
 
     /**
-     * Returns true if a given string is a valid additional detail.
+     * Returns true if a given string is a valid detail.
      */
     public static boolean isValidAdditionalDetail(String test) {
         return test.matches(VALIDATION_REGEX);

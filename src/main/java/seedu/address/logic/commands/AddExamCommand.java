@@ -25,7 +25,7 @@ public class AddExamCommand extends ExamCommand {
 
     public static final String MESSAGE_USAGE = ExamCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": Adds an exam to a student.\n\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_EXAM_NAME + "EXAM_NAME "
             + PREFIX_EXAM_DATE + "EXAM_DATE "
             + PREFIX_SCORE + "SCORE \n\n"
@@ -77,7 +77,7 @@ public class AddExamCommand extends ExamCommand {
         exams.add(toAdd);
         Student updatedStudent = new Student(selectedStudent.getName(), selectedStudent.getPhone(),
                 selectedStudent.getSchool(), selectedStudent.getYear(), selectedStudent.getAdmin(),
-                selectedStudent.getQuestions(), exams, selectedStudent.getAcademic());
+                selectedStudent.getQuestions(), exams, selectedStudent.getAttendance());
         model.setStudent(selectedStudent, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EXAM_ADDED_SUCCESS, updatedStudent.getName(), toAdd));

@@ -21,20 +21,20 @@
       "question" : "How do you inverse a matrix?",
       "solution" : ""
     }],
-    "exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "50/100"
-    }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "20/30"
-  }],
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
       }]
     }
   }, {
@@ -57,7 +57,13 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ],
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "present",
+        "feedback" : "sleepy during lesson"
+      }],
       "exams" : [ {
         "examName" : "CA2",
         "examDate" : "19/9/2020",
@@ -66,12 +72,6 @@
         "examName" : "CA1",
         "examDate" : "2/3/2020",
         "score" : "21/40"
-  }],
-    "academic" : {
-      "attendanceList" : [ {
-        "date" : "14/04/1998",
-        "attendanceStatus" : "present",
-        "feedback" : "sleepy during lesson"
       }]
     }
   }, {
@@ -95,20 +95,20 @@
       "question" : "How do you inverse a matrix?",
       "solution" : ""
     } ],
-    "exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "50/100"
-    }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "20/30"
-    }],
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
       }]
     }
   }, {
@@ -132,20 +132,20 @@
       "question" : "How do you inverse a matrix?",
       "solution" : ""
     } ],
-    "exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "50/100"
-    }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "20/30"
-    }],
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
       }]
     }
   }, {
@@ -169,20 +169,20 @@
       "question" : "How do you inverse a matrix?",
       "solution" : "Read your textbook"
     } ],
-    "exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "50/100"
-    }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "20/30"
-    }],
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
       }]
     }
   }, {
@@ -206,20 +206,20 @@
       "question" : "How do you inverse a matrix?",
       "solution" : ""
     } ],
-    "exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "50/100"
-    }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "20/30"
-    }],
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
       }]
     }}, {
     "name" : "George Best",
@@ -228,7 +228,7 @@
     "year": "Secondary 4",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "2 1000-1230",
+      "classTime": "2 1000-1130",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
@@ -241,20 +241,21 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ],"exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "50/100"
-    }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "20/30"
-    }],
+    } ],
     "academic" : {
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
       }]
     }
   } ]

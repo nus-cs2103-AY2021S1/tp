@@ -26,10 +26,8 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.exam.Exam;
-import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
@@ -69,12 +67,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         List<Detail> detailList =
                 ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_DETAILS));
 
-        Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
         List<Question> questions = new ArrayList<>();
         ArrayList<Exam> exams = new ArrayList<>();
         List<Attendance> attendanceList = new ArrayList<>();
-        Academic academic = new Academic(attendanceList);
-        Student student = new Student(name, phone, school, year, admin, questions, exams, academic);
+        Student student = new Student(name, phone, school, year,
+                classVenue, classTime, fee, paymentDate, detailList,
+                questions, exams, attendanceList);
         return new AddCommand(student);
     }
 

@@ -49,6 +49,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), editedStudent);
 
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -103,6 +104,7 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
+
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

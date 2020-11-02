@@ -15,7 +15,7 @@ Reeve is optimized for users that are very comfortable with typing as it works o
 Students' details are displayed in a neat and organized manner through the use of a Graphical User Interface (GUI).
 
 If you are looking for an application to better allow you to track your students' administrative and academic details so that you can better meet their needs? Look no further!
- 
+
 ## 1. About
 
 ## 2. Understanding the Guide
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | expert user               | view my students' preferred tutoring location         | figure out how to get that location                                                 |
 | `* * *`  | expert user               | edit my students' personal details                    | get rid of outdated data                                                            |
 | `* * *`  | expert user               | view my student's details                             | refer to them when needed                                                           |
-| `* * *`  | expert user               | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
+| `* * *`  | expert user               | add details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
 | `* * *`  | long-time user            | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
 | `* * *`  | expert user               | find a student's record                               | retrieve students' data with ease                                                   |
 

@@ -85,12 +85,15 @@ public class MainApp extends Application {
         Optional<ReadOnlyNotebook> notebookOptional;
         ReadOnlyReeve initialData;
         ReadOnlyNotebook initialNotebook;
+
         try {
             addressBookOptional = storage.readAddressBook();
+
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample Reeve");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Reeve");
             initialData = new Reeve();

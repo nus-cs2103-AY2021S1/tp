@@ -11,6 +11,6 @@ public class ToggleStudentCardCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_TOGGLE_SUCCESS, false, false, true);
+        return new CommandResult(MESSAGE_TOGGLE_SUCCESS, false, false, true, null);
     }
 }

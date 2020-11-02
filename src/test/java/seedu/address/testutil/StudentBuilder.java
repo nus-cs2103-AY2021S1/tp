@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
-import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
@@ -15,7 +14,6 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
-import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
@@ -33,10 +31,9 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
-    public static final SchoolType DEFAULT_SCHOOL_TYPE = SchoolType.SECONDARY;
-    public static final Integer DEFAULT_SCHOOL_LEVEL = 4;
+    public static final String DEFAULT_YEAR = "Sec 4";
     public static final String DEFAULT_CLASS_VENUE = "311, Clementi Ave 2, #02-25";
-    public static final String DEFAULT_CLASS_TIME = "1 1500-1700";
+    public static final String DEFAULT_CLASS_TIME = "1 2100-2200";
     public static final String DEFAULT_FEE = "21";
     public static final String DEFAULT_PAYMENT_DATE = "21/05/2020";
     public static final String DEFAULT_ADDITIONAL_DETAILS_MONEY = "owesMoney";
@@ -77,7 +74,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         school = new School(DEFAULT_SCHOOL);
-        year = new Year(DEFAULT_SCHOOL_TYPE, DEFAULT_SCHOOL_LEVEL);
+        year = new Year(DEFAULT_YEAR);
 
         venue = new ClassVenue(DEFAULT_CLASS_VENUE);
         time = new ClassTime(DEFAULT_CLASS_TIME);
@@ -106,12 +103,11 @@ public class StudentBuilder {
         school = studentToCopy.getSchool();
         year = studentToCopy.getYear();
 
-        Admin studentAdmin = studentToCopy.getAdmin();
-        venue = studentAdmin.getClassVenue();
-        time = studentAdmin.getClassTime();
-        fee = studentAdmin.getFee();
-        paymentDate = studentAdmin.getPaymentDate();
-        details.addAll(studentAdmin.getDetails());
+        venue = studentToCopy.getClassVenue();
+        time = studentToCopy.getClassTime();
+        fee = studentToCopy.getFee();
+        paymentDate = studentToCopy.getPaymentDate();
+        details.addAll(studentToCopy.getDetails());
 
         questions.addAll(studentToCopy.getQuestions());
         exams.addAll(studentToCopy.getExams());
@@ -148,8 +144,8 @@ public class StudentBuilder {
     /**
      * Sets the {@code Year} of the {@code Student} that we are building.
      */
-    public StudentBuilder withYear(SchoolType schoolType, Integer level) {
-        this.year = new Year(schoolType, level);
+    public StudentBuilder withYear(String year) {
+        this.year = new Year(year);
         return this;
     }
 
@@ -230,9 +226,8 @@ public class StudentBuilder {
      */
     public Student build() {
         return new Student(name, phone, school, year,
-                new Admin(venue, time, fee, paymentDate, details),
-                questions, exams,
-                new Academic(attendances));
+                venue, time, fee, paymentDate, details,
+                questions, exams, attendances);
     }
 
 }

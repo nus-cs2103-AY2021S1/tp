@@ -25,7 +25,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
-import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.YearMatchPredicate;
@@ -100,7 +99,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
-        YearMatchPredicate yearMatchPredicate = prepareYearPredicate(SchoolType.SECONDARY, 2);
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("Sec 2");
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
@@ -120,7 +119,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate namePredicate = prepareNamePredicate("Kurz Elle Kunz");
         SchoolContainsKeywordsPredicate schoolPredicate = prepareSchoolPredicate("Girls School");
-        YearMatchPredicate yearMatchPredicate = prepareYearPredicate(SchoolType.SECONDARY, 3);
+        YearMatchPredicate yearMatchPredicate = prepareYearPredicate("Sec 3");
         List<Predicate<Student>> predicates = Arrays.asList(namePredicate,
                 schoolPredicate, yearMatchPredicate);
         Predicate<Student> consolidatedPredicates = consolidatePredicates(predicates);
@@ -152,9 +151,8 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code YearMatchPredicate}.
      */
-    private YearMatchPredicate prepareYearPredicate(SchoolType schoolType, Integer level) throws ParseException {
-        Year year = new Year(schoolType, level);
-        return new YearMatchPredicate(year);
+    private YearMatchPredicate prepareYearPredicate(String year) throws ParseException {
+        return new YearMatchPredicate(new Year(year));
     }
 
     /**

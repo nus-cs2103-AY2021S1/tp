@@ -1,6 +1,6 @@
 ## Reeve - User Guide
 
-**Table of Contents**  
+**Table of Contents**
 - [1. Introduction](#1-introduction)
   * [1.1 About Reeve](#11-about-reeve)
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
@@ -30,6 +30,7 @@
     + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student-exam-by-hogan)
         + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student-exam-add)
         + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student-exam-delete)
+        + [3.3.2.3 Viewing exam statistics of a student: `exam stats`](#3323-viewing-exam-statistics-of-a-student-exam-stats)
     + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.3.3.1 Adding an attendance record to a student: `attendance add`](#3331-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.3.3.2 Deleting an attendance record for a student: `attendance delete`](#3332-deleting-an-attendance-record-for-a-student-attendance-delete)
@@ -46,16 +47,16 @@
 - [6. FAQ](#6-faq)
 
 ## 1. Introduction
-**Welcome to Reeve!** 
+**Welcome to Reeve!**
 
 ### 1.1 About Reeve
 Are you looking for a one-stop application that can handle all your private tutoring needs? Then you are in luck!
 
-**Reeve** is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
-**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. In addition, **Reeve** comes with a customisable personal scheduler to assist you keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself. 
+**Reeve** is a desktop application for **private tutors to better manage both administrative and academic details of their students**, optimised for use via a
+**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. In addition, **Reeve** comes with a customisable personal scheduler to assist you keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself.
 
-Get to experience all the above without even having to move your mouse at all! 
- 
+Get to experience all the above without even having to move your mouse at all!
+
 Also, did we mention that you are able to achieve all the above **without internet access at all**?
 
 If you are a private tutor that wants to not only manage your students' administrative details with ease but to also better meet their needs, then **Reeve** is made for you!
@@ -63,7 +64,7 @@ If you are a private tutor that wants to not only manage your students' administ
 Let's dive into the User Guide to find out more!
 
 ### 1.2 Understanding the User Guide
-The goal of this User Guide is to provide you with the information on how to utilise **Reeve** to its fullest. 
+The goal of this User Guide is to provide you with the information on how to utilise **Reeve** to its fullest.
 
 For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it.
 
@@ -71,14 +72,14 @@ Here is a summary (Table 1) of the symbols that are used in this User Guide:
 
 Table 1: Summary of symbols
 
-Symbol | Meaning 
--------|-------- 
+Symbol | Meaning
+-------|--------
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
-:information_source: | Indicates important information. 
+:information_source: | Indicates important information.
 
 ## 2. Quick start
 
-This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application. 
+This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application.
 
 ### 2.1 Setting Up Reeve
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -131,7 +132,7 @@ The following points explain how to make sense of the command format:
 
 ### 3.2 Student Administrative Features
 
-Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc. 
+Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc.
 Thereafter, you will be able to view, edit find or delete these students.
 
 #### 3.2.1 Adding a student: `add` (By: Alex and Hogan)
@@ -152,7 +153,7 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 
 :information_source: The format of YEAR is as follows:
 * TYPE_OF_SCHOOL LEVEL (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-* TYPE_OF_SCHOOL can be primary(pri, p), secondary(sec, s) or jc. 
+* TYPE_OF_SCHOOL can be primary(pri, p), secondary(sec, s) or jc.
 * LEVEL has to correspond with the TYPE_OF_SCHOOL (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 <br>
 
@@ -178,7 +179,7 @@ Format: `edit STUDENT_INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENU
 :information_source: The format of TIME is {int: Day_of_week} {int: Start_time}-{int: End_time}<br>
 Day_of_week refers to an Integer value from 1 - 7, with 1, 3 and 7 representing Monday, Wednesday and Sunday respectively.<br>
 Start_time and End_time refer to time values in 24hr format (1200-1700)<br>
-E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.  
+E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 </div>
 
@@ -189,7 +190,7 @@ E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
-*  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
+*  `edit 3 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the venue and time of the third student to be `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
 #### 3.2.3 Locating students: `find` (By: Choon Siong)
 
@@ -243,19 +244,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 3.2.6 Sorting the list of students: `sort` (By: Choon Siong)  
-  
+#### 3.2.6 Sorting the list of students: `sort` (By: Choon Siong)
+
 Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
 
 Format: `sort COMPARISON_MEANS`
 
-* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`. 
+* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`.
 * Only one option for the sorting method can be specified.
 * The sorting method is case sensitive when being specified
 * Sorting methods:
 	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
 	* `classTime`: Sorts students by the the time of their class first by the day than the time.
-	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type. 
+	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type.
 
 Examples:
 * `sort year` to sort students by their year
@@ -269,14 +270,14 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-#### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
+#### 3.2.8 Managing details for a student: `detail` (By: Vaishak)
 
 You can add, edit or delete a detail for a specified student.
 
 General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 * The `COMMAND_WORD` field accepts either `add`, `edit` or `delete`.
-* The command affects the student at the specified `STUDENT_INDEX`. 
+* The command affects the student at the specified `STUDENT_INDEX`.
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each `COMMAND_WORD` as explained below.
 
@@ -288,19 +289,21 @@ Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
 
 * Adds the detail to the student at the specified `STUDENT_INDEX`.
 
-Examples:  
+Examples:
 * `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
 * `detail add 3 t/Punctual` adds the "Punctual" detail to the 3rd student in **Reeve**.
 
 #### 3.2.8.2 Editing a detail: `detail edit`
 
-You can edit an existing detail to a specified student in **Reeve**.
+You can edit an existing detail for a specified student in **Reeve**.
 
 Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
 
 * Edits the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to edit, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
-Examples:  
+Examples:
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
 * `detail edit 5 i/8 t/Smart` edits the 8th detail for the 5th student in **Reeve**, to "Smart".
 
@@ -311,8 +314,10 @@ You can delete an existing detail to a specified student in **Reeve**.
 Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 
 * Deletes the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to delete, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
-Examples:  
+Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
@@ -324,10 +329,10 @@ Format: `clear`
 
 ### 3.3 Student Academics Features
 
-Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc. 
-Thereafter, you will be able to view, edit or delete these details of each student. 
+Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
+Thereafter, you will be able to view, edit or delete these details of each student.
 
-#### 3.3.1 Recording questions from a student: `question` (By: Ying Gao) 
+#### 3.3.1 Recording questions from a student: `question` (By: Ying Gao)
 
 You can add, resolve or remove questions from a specified student in **Reeve**.
 
@@ -414,15 +419,15 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of EXAM_SCORE is as follows:
-* x/y where x and y are non-negative integers. 
+* x/y where x and y are non-negative integers.
 * x has to be less than or equal to y (e.g. 30/50).
 </div>
 
 Examples:
-* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and 
+* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and
 score 40/60 to the first student in **Reeve**.
 
-* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and 
+* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and
 score 67/100 to the fifth student in **Reeve**.
 
 ##### 3.3.2.2 Deleting an exam record for a student: `exam delete`
@@ -432,12 +437,27 @@ You can delete a specific exam from a specified student in **Reeve**.
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
 * Deletes the exam at `EXAM_INDEX` in the specified student's exam list.
-* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
+* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
 * The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
 Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
+
+##### 3.3.2.3 Viewing exam statistics of a student: `exam stats`
+
+To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded examinations.
+
+Format: `exam stats STUDENT_INDEX`
+
+* Views exam statistics of the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed students list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
+* `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
 
 #### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
@@ -460,15 +480,15 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * There can only be one attendance record for every `LESSON_DATE`.
 
 <div markdown="block" class="alert alert-info">
-:information_source: The format of ATTENDANCE_DATE is as follows:
+:information_source: The format of LESSON_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
-:information_source: The format of FEEDBACK is as follows:
+:information_source: The format of ATTENDANCE_STATUS is as follows:
 * present or absent.
 </div>
 
 Examples:
-* `attendance add 2 d/08/12/2020 s/present f/attentive` adds the attendance record with the date 8 Dec 2020,
+* `attendance add 2 d/08/12/2020 a/present f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
 ##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`
@@ -486,43 +506,19 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule` (COMING SOON)
+#### 3.4.1 Scheduling: `schedule` (By: Alex) 
 
-##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex) (COMING SOON)
+##### 3.4.1.1 Viewing classes on a Timetable: `schedule view`  
 
-List the events that the user has on a timetable. The classes that user has with students will also be included.
+List the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
 
-Format: `schedule view [mode/VIEW_MODE] [date/DATE_TO_VIEW]`
+Format: `schedule view mode/VIEW_MODE date/DATE_TO_VIEW`
 
 * mode can be either **weekly** or **daily**. The case of the letters does not matter.
-* Date must be in the format of **yyyy-mm-dd**.
-* Both mode and date are optional. If it is not provided, the timetable would be default in the weekly mode and showing the current date.
+* Date must be in the format of **yyyy-mm-dd**. For instance, 2020-11-02 refers to the date 2nd November 2020
+* Both mode and date are compulsory.
 
-Example: `schedule view mode/weekly date/2020-11-25` Shows the schedule in the week of 2020-11-25 (To include screenshot)
-
-##### 3.4.1.2 Adding events to the schedule: `schedule add` (COMING SOON)
-
-Adds a new event to the schedule.
-
-Format: `schedule add [n/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [r/Event_recurrence]`
-
-* All fields are compulsory.
-* Event_Name has no restriction and can be of any form.
-* Start_Date_Time and End_Date_Time must be of the format yyyy-mm-ddTHH:mm
-* The Time portion HH:mm must be in 24-hr format.
-* Event_recurrence can only be one of these cases: `none`, `daily`, or `weekly`
-
-Example:
-`schedule add n/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 r/none`
-creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
-
-##### 3.4.1.3 Delete events on the schedule: `schedule delete` (COMING SOON)
-
-Deletes an event on the schedule.
-
-Format: `schedule delete n/eventName start/eventStartDateTime end/eventEndDateTime`
-
-* The event's name, start date time and end date time identifies an event to be deleted
+Example: `schedule view mode/weekly date/2020-11-02` Shows the schedule of classes in the week of 2020-11-02. Figure 3.4.1.1 depicts a sample output of the command.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 

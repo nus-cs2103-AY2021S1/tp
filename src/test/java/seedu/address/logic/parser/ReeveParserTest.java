@@ -12,7 +12,6 @@ import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,7 +34,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OverdueCommand;
 import seedu.address.logic.commands.QuestionCommand;
-import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.notes.AddNoteCommand;
@@ -106,14 +104,6 @@ public class ReeveParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + StudentUtil.getFindStudentDescriptorDetails(descriptor));
         assertEquals(new FindCommand(descriptor), command);
-    }
-
-    @Test
-    public void parseCommand_schedule() throws Exception {
-        LocalDate date = LocalDate.of(2020, 9, 27);
-        ScheduleCommand command = (ScheduleCommand) parser.parseCommand(
-                ScheduleCommand.COMMAND_WORD + " " + "27/09/2020");
-        assertEquals(new ScheduleCommand(date), command);
     }
 
     @Test

@@ -50,12 +50,12 @@ public class Admin {
     }
 
     public List<Detail> getDetails() {
-        return details;
+        return new ArrayList<>(details);
     }
 
     /**
-     * Get additional details of student formatted for GUI use.
-     * @return formatted additional details.
+     * Get details of student formatted for GUI use.
+     * @return formatted details.
      */
     public String getFormattedDetails() {
         String result = "";

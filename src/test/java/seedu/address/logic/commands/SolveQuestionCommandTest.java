@@ -72,6 +72,7 @@ public class SolveQuestionCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS,
                 expectedStudent.getName(), solved);
 
+
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.setStudent(clone, expectedStudent);
@@ -178,7 +179,6 @@ public class SolveQuestionCommandTest {
             questions.add(toAdd);
         }
         return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
-                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getExams(),
-                toCopy.getAcademic());
+                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getAcademic());
     }
 }

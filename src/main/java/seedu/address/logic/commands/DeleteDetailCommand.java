@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +20,7 @@ public class DeleteDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": deletes an Additional Detail in the student identified"
+            + ": deletes a Detail in the student identified"
             + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
@@ -31,7 +30,7 @@ public class DeleteDetailCommand extends DetailCommand {
     public static final String MESSAGE_SUCCESS = "Detail removed from %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
-    private static Logger logger = Logger.getLogger("Delete Additional Detail Log");
+    private static Logger logger = Logger.getLogger("Delete Detail Log");
 
     private final Index studentIndex;
     private final Index detailIndex;
@@ -72,7 +71,7 @@ public class DeleteDetailCommand extends DetailCommand {
             throw new CommandException(MESSAGE_BAD_DETAIL_INDEX);
         }
 
-        List<Detail> details = new ArrayList<>(studentToAddDetail.getDetails());
+        List<Detail> details = studentToAddDetail.getDetails();
         Detail removedDetail = details.remove(detailIndex.getZeroBased());
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);

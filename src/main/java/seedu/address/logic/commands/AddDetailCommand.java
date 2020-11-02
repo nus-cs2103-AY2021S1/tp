@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +20,7 @@ public class AddDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": adds an Additional Detail to the student identified "
+            + ": adds a Detail to the student identified "
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_TEXT + "DETAIL\n"
@@ -30,7 +29,7 @@ public class AddDetailCommand extends DetailCommand {
 
     public static final String MESSAGE_SUCCESS = "New detail added to %s: %s";
 
-    private static Logger logger = Logger.getLogger("Add Additional Detail Log");
+    private static Logger logger = Logger.getLogger("Add Detail Log");
 
     private final Index index;
     private final Detail detailToAdd;
@@ -66,7 +65,7 @@ public class AddDetailCommand extends DetailCommand {
 
         Student studentToAddDetail = lastShownList.get(index.getZeroBased());
 
-        List<Detail> details = new ArrayList<>(studentToAddDetail.getDetails());
+        List<Detail> details = studentToAddDetail.getDetails();
         details.add(detailToAdd);
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
