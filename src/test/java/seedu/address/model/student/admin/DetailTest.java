@@ -19,7 +19,7 @@ public class DetailTest {
 
     @Test
     public void isValidAdditionalDetail() {
-        // null additional detail
+        // null detail
         assertThrows(NullPointerException.class, () -> Detail.isValidAdditionalDetail(null));
     }
 

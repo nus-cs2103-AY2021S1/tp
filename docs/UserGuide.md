@@ -269,7 +269,7 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-#### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
+#### 3.2.8 Managing details for a student: `detail` (By: Vaishak) 
 
 You can add, edit or delete a detail for a specified student.
 
