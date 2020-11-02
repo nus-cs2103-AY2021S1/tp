@@ -2,13 +2,17 @@ package seedu.address.commons.util;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class DateUtil {
     public static final String DATE_TIME_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final String DATE_VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
     public static final String DATETIME_VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";
@@ -19,7 +23,7 @@ public class DateUtil {
     public static final String SEARCH_TIME_CONSTRAINTS =
             "Search phrase for time should be in the format of HH:mm.";
     public static final String SEARCH_DATE_CONSTRAINTS =
-            "Search phrase for date should be in the format of dd-MM-yyyy.";
+            String.format("Search phrase for date should be in the format of %1$s.", DATE_FORMAT);
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
     public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", DATETIME_FORMATTER);
@@ -32,7 +36,12 @@ public class DateUtil {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDate(String test) {
-        return test.matches(DATE_VALIDATION_REGEX);
+        try {
+            LocalDate.parse(test, DATE_FORMATTER);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -52,7 +61,14 @@ public class DateUtil {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidTime(String test) {
-        return test.matches(TIME_VALIDATION_REGEX);
+        TimeFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(test);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
