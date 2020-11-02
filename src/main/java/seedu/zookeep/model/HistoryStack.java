@@ -2,6 +2,9 @@ package seedu.zookeep.model;
 
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.logging.Logger;
+
+import seedu.zookeep.commons.core.LogsCenter;
 
 /**
  * Encapsulates 2 stacks, with one containing past states of the ZooKeepBook while the other contains the
@@ -10,10 +13,10 @@ import java.util.Stack;
  */
 public class HistoryStack {
 
+    private static final Logger logger = LogsCenter.getLogger(HistoryStack.class);
     private static HistoryStack history;
 
     private final Stack<ReadOnlyZooKeepBook> historyStack;
-
     private final Stack<ReadOnlyZooKeepBook> redoStack;
 
     private HistoryStack() {
@@ -40,16 +43,22 @@ public class HistoryStack {
     }
 
     /**
-     * Push a read only state of ZooKeepBook into the stack
+     * Pushes a read only state of ZooKeepBook into the undo stack.
      * @param book the ZooKeepBook to be pushed
      */
     public void addToHistory(ReadOnlyZooKeepBook book) {
         if (getHistorySize() == 0 || !viewRecentHistory().equals(book)) {
+            logger.info("Adding new ZooKeepBook state to undo stack: " + book);
             historyStack.push(book);
         }
     }
 
+    /**
+     * Pushes a read only state of ZooKeepBook into the redo stack.
+     * @param book the ZooKeepBook to be pushed
+     */
     public void addToRedo(ReadOnlyZooKeepBook book) {
+        logger.info("Adding new ZooKeepBook state to redo stack: " + book);
         redoStack.push(book);
     }
 
@@ -77,11 +86,19 @@ public class HistoryStack {
         return redoStack.size();
     }
 
+    /**
+     * Clears the undo stack.
+     */
     public void clearHistory() {
+        logger.info("Clearing the undo stack.");
         historyStack.clear();
     }
 
+    /**
+     * Clears the redo stack.
+     */
     public void clearRedo() {
+        logger.info("Clearing the redo stack.");
         redoStack.clear();
     }
 

@@ -41,6 +41,8 @@ public class UndoCommand extends Command {
 
         historyStack.removeRecentHistory();
         ReadOnlyZooKeepBook lastState = historyStack.viewRecentHistory();
+
+        assert (lastState != null) : "The ZooKeepBook state cannot be null!";
         model.setZooKeepBook(lastState);
         return new CommandResult(MESSAGE_SUCCESS);
     }

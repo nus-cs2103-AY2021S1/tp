@@ -758,12 +758,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  The system should allow different users to access the same data to allow ease of transfer during shift changes.
 7.  The system should have clear, complete and comprehensive documentation of all available commands and/or features by the end of the project.
 8.  The system should be extensible such that new commands or features can be easily added to it if needed.
-9.  The system should adopt a proper security system to prevent outsiders from accessing sensitive information.
+9.  The system should cope with emergency situations and allow for **data archiving** in case users need to retrieve important data stored in older versions of the ZooKeepBook.
 10. The system should respond to user requests (e.g. load data, add new animals) within 2 seconds, unless an error occurs.
 11. The system should be intuitive enough such that new staff are able to adapt quickly and use the app smoothly within a short time frame.
-12. The system should be user-friendly and implement helpful features to assist forgetful or careless users, such as daily reminders and warnings.
+12. The system should be user-friendly and implement helpful features to assist careless users, such as allowing for the undoing and redoing of commands.
 13. The system should be backward compatible with data produced by its earlier versions.
-14. The system should be flexible and allow its users some degree of freedom and customisation, such as personalisation of commands and animal display UI.
+14. The system should be flexible and allow its users some degree of freedom, by allowing them to enter certain command parameters in any order they wish.
 15. The project is expected to adhere to the schedule of the CS2103/CS2103T tP timeline which requires weekly deliverables and increments.
 16. The project is not required to sort and arrange tasks among all staff or ensure efficient task allocation and completion.
 
@@ -771,6 +771,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Data persistence**: data provided by the user can be saved and updated to the hard drive, and can also be loaded once system is booted up again
+* **Data archiving**: the process of moving data that is no longer actively used to a specified directory for long-term retention.
 
 *{More to be added, if necessary}*
 
