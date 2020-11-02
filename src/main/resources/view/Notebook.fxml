@@ -5,6 +5,6 @@
 
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ListView fx:id="notebook" maxHeight="200.0" orientation="HORIZONTAL" style="-fx-background-color: #663B25;" />
+        <ListView fx:id="notebook" maxHeight="200.0" minHeight="200.0" orientation="HORIZONTAL" style="-fx-background-color: #663B25;" />
     </children>
 </VBox>
