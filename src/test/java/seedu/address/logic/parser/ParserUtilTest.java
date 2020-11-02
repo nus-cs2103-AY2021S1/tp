@@ -350,6 +350,6 @@ public class ParserUtilTest {
     public void parseDuration_invalidDuration_throwsParseException() {
         assertThrows(ParseException.class,
                 MESSAGE_INVALID_DURATION, ()
-                -> ParserUtil.parseDurationWithStart("2030-10-10 09:30", "test"));
+                -> ParserUtil.parseDurationWithStart("10/10/2030 09:30", "test"));
     }
 }

@@ -10,9 +10,9 @@ import java.time.format.DateTimeParseException;
 
 public class AppointmentDateTime {
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
-            "Please check if you have entered a valid date in the following format: yyyy-MM-dd HH:mm\n"
+            "Please check if you have entered a valid date in the following format: dd/MM/yyyy HH:mm\n"
                     + "Please note that only appointments of upcoming dates(including today) will be accepted.\n"
                     + "\nInput YYYY as 19xx to 2xxx."
                     + "\nInput MM as 01 to 12."
