@@ -16,7 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
     private final OrderManager orderManager;
 
     private final UserPrefs userPrefs;
-    private ObservableList<Food> filteredFoods;
+    private ObservableList<MenuItem> filteredMenuItems;
 
     private boolean isSortedAsc = false;
 
@@ -136,7 +136,7 @@ public class ModelManager implements Model {
     public void selectVendor(int vendorIndex) {
         this.addressBook.selectVendor(vendorIndex);
         if (vendorIndex != -1) {
-            this.filteredFoods = new FilteredList<>(this.menuManagers.get(vendorIndex).getFoodList());
+            this.filteredMenuItems = new FilteredList<>(this.menuManagers.get(vendorIndex).getMenuItemList());
         }
     }
 
@@ -167,27 +167,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFoodBy(String sortedBy, boolean ascending, boolean toggle) {
+    public void sortMenuItemBy(String sortedBy, boolean ascending, boolean toggle) {
         int index = getVendorIndex();
         if (index < 0 || index >= menuManagers.size()) {
             return;
         }
         // not suppose to modify menumanager's menus
-        Comparator<Food> foodComparator;
+        Comparator<MenuItem> itemComparator;
         switch (sortedBy) {
         case SortCommand.NAME:
-            foodComparator = Comparator.comparing(Food::getName);
+            itemComparator = Comparator.comparing(MenuItem::getName);
             break;
         case SortCommand.PRICE:
-            foodComparator = Comparator.comparing(Food::getPrice);
+            itemComparator = Comparator.comparing(MenuItem::getPrice);
             break;
         default:
             throw new IllegalStateException("Unexpected value: " + sortedBy);
         }
 
-        filteredFoods = filteredFoods.sorted(foodComparator);
+        filteredMenuItems = filteredMenuItems.sorted(itemComparator);
         if ((toggle && isSortedAsc) || (!toggle && !ascending)) {
-            filteredFoods = filteredFoods.sorted(foodComparator.reversed());
+            filteredMenuItems = filteredMenuItems.sorted(itemComparator.reversed());
         }
         isSortedAsc = toggle ? !isSortedAsc : ascending;
     }
@@ -196,7 +196,7 @@ public class ModelManager implements Model {
      * Shows the current menu at the default state.
      */
     public void showDefaultMenu() {
-        filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
+        filteredMenuItems = new FilteredList<>(menuManagers.get(getVendorIndex()).getMenuItemList());
         isSortedAsc = false;
     }
 
@@ -278,24 +278,24 @@ public class ModelManager implements Model {
     //=========== Filtered Food List Accessors =============================================================
 
     @Override
-    public ObservableList<Food> getFilteredFoodList() {
-        return filteredFoods;
+    public ObservableList<MenuItem> getFilteredMenuItemList() {
+        return filteredMenuItems;
     }
 
     @Override
-    public int getFilteredFoodListSize() {
-        return filteredFoods == null ? 0 : getFilteredFoodList().size();
+    public int getFilteredMenuItemListSize() {
+        return filteredMenuItems == null ? 0 : getFilteredMenuItemList().size();
     }
 
     @Override
-    public void updateFilteredFoodList(Predicate<Food> predicate) {
+    public void updateFilteredMenuItemList(Predicate<MenuItem> predicate) {
         requireNonNull(predicate);
         int index = getVendorIndex();
         if (index < 0 || index >= menuManagers.size()) {
             return;
         }
         // not suppose to modify menumanager's menus
-        filteredFoods = filteredFoods.filtered(predicate);
+        filteredMenuItems = filteredMenuItems.filtered(predicate);
     }
 
     @Override

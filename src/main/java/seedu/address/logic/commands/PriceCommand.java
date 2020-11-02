@@ -39,10 +39,10 @@ public class PriceCommand extends Command {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
-        model.updateFilteredFoodList(predicate);
+        model.updateFilteredMenuItemList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_PRICE_CONTEXT,
-                        model.getFilteredFoodListSize(), predicate));
+                        model.getFilteredMenuItemListSize(), predicate));
     }
 
     @Override

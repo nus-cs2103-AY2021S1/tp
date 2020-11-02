@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 
 /**
  * Panel containing the list of foods.
@@ -18,30 +18,30 @@ public class FoodListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(FoodListPanel.class);
 
     @FXML
-    private ListView<Food> foodListView;
+    private ListView<MenuItem> foodListView;
 
     /**
      * Creates a {@code FoodListPanel} with the given {@code ObservableList}.
      */
-    public FoodListPanel(ObservableList<Food> foodList) {
+    public FoodListPanel(ObservableList<MenuItem> menuItemList) {
         super(FXML);
-        foodListView.setItems(foodList);
-        foodListView.setCellFactory(listView -> new FoodListViewCell());
+        foodListView.setItems(menuItemList);
+        foodListView.setCellFactory(listView -> new MenuItemListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Food} using a {@code FoodCard}.
      */
-    class FoodListViewCell extends ListCell<Food> {
+    class MenuItemListViewCell extends ListCell<MenuItem> {
         @Override
-        protected void updateItem(Food food, boolean empty) {
-            super.updateItem(food, empty);
+        protected void updateItem(MenuItem item, boolean empty) {
+            super.updateItem(item, empty);
 
-            if (empty || food == null) {
+            if (empty || item == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new FoodCard(food, getIndex() + 1).getRoot());
+                setGraphic(new FoodCard(item, getIndex() + 1).getRoot());
             }
         }
     }

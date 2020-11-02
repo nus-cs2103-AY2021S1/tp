@@ -14,7 +14,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.Menu;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.vendor.Vendor;
@@ -60,8 +60,8 @@ public class TypicalVendors {
     //    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalVendors() {
-        List<Food> foodList = Arrays.asList(new Food("Prata", 1, new HashSet<>()));
-        menu.setFoods(foodList);
+        List<MenuItem> menuItemList = Arrays.asList(new MenuItem("Prata", 1, new HashSet<>(), ""));
+        menu.setMenuItems(menuItemList);
     } // prevents instantiation
 
     /**
@@ -75,8 +75,8 @@ public class TypicalVendors {
         return ab;
     }
 
-    public static List<ObservableList<Food>> getMenus() {
-        List<ObservableList<Food>> menus = new ArrayList<>();
+    public static List<ObservableList<MenuItem>> getMenus() {
+        List<ObservableList<MenuItem>> menus = new ArrayList<>();
         List<Vendor> vendors = getTypicalVendors();
         for (Vendor v : vendors) {
             menus.add(v.getMenu().asUnmodifiableObservableList());

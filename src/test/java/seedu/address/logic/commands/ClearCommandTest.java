@@ -12,7 +12,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.testutil.TypicalVendors;
@@ -20,9 +20,9 @@ import seedu.address.testutil.TypicalVendors;
 public class ClearCommandTest {
 
     private void setOrderManager(Model model) {
-        OrderItem item1 = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
-        OrderItem item2 = new OrderItem(new Food("Milo", 1.50, new HashSet<>()), 2);
-        OrderItem item3 = new OrderItem(new Food("Cheese Prata", 2, new HashSet<>()), 3);
+        OrderItem item1 = new OrderItem(new MenuItem("Prata", 1, new HashSet<>(), ""), 1);
+        OrderItem item2 = new OrderItem(new MenuItem("Milo", 1.50, new HashSet<>(), ""), 2);
+        OrderItem item3 = new OrderItem(new MenuItem("Cheese Prata", 2, new HashSet<>(), ""), 3);
         try {
             model.addOrderItem(item1);
             model.addOrderItem(item2);
@@ -44,7 +44,7 @@ public class ClearCommandTest {
     public void clear_emptyOrder_success() {
         Model model = initialiseModel();
         Model expectedModel = initialiseModel();
-        OrderItem orderItem = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
+        OrderItem orderItem = new OrderItem(new MenuItem("Prata", 1, new HashSet<>(), ""), 1);
         try {
             model.addOrderItem(orderItem);
         } catch (CommandException e) {

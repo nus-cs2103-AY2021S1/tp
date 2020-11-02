@@ -29,10 +29,10 @@ import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.FoodStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.MenuItemStorage;
 import seedu.address.storage.PresetManagerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -95,7 +95,7 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-            menuManagersOptional = new FoodStorage().readMenuManagers(initialData.getVendorList());
+            menuManagersOptional = new MenuItemStorage().readMenuManagers(initialData.getVendorList());
             menuManagersOptional.forEach(x -> x.ifPresentOrElse(y ->
                     initialMenuManagers.add(new MenuManager(y)), () -> {
                     logger.info("Data file not found. Will be starting with an empty menu");

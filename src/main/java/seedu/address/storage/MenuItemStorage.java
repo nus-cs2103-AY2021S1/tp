@@ -12,7 +12,7 @@ import seedu.address.model.vendor.Vendor;
 /**
  * Stub to load in a sample menu to be used in MainApp class.
  */
-public class FoodStorage {
+public class MenuItemStorage {
     /**
      * Generates a List of ReadOnlyMenuManager wrapped in Optional class
      */
