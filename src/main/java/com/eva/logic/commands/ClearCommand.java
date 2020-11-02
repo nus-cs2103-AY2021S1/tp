@@ -1,6 +1,9 @@
 package com.eva.logic.commands;
 
-import static com.eva.commons.core.PanelState.*;
+import static com.eva.commons.core.PanelState.APPLICANT_LIST;
+import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
+import static com.eva.commons.core.PanelState.STAFF_LIST;
+import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static java.util.Objects.requireNonNull;
@@ -13,14 +16,17 @@ import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 
 /**
- * Clears the eva database.
+ * Clears the staff or applicants records in eva database.
  */
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "All %1$s has been cleared!";
-    public static final String MESSAGE_USAGE = " ";
-    private static final String MESSAGE_WRONG_PANEL = "Please switch to %1$s list with list %2$s.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": clears all records of staffs or applicants according to parameters.\n"
+            + "parameters: LIST_TYPE-\n"
+            + "Example: " + COMMAND_WORD + " s-";
+    private static final String MESSAGE_WRONG_PANEL = "Please switch to %1$s list with list %2$s";
     private Prefix type;
 
     public ClearCommand(Prefix type) {
