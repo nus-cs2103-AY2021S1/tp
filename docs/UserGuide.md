@@ -185,15 +185,13 @@ Examples:
 Finds a tag by a keyword. 
 
 You can find tags using a keyword.
-If the keyword matches its name and/or label partially, it will be listed in the *Tag Panel*.
+If the keyword matches its name and/or label partially, it will be also be found and listed in the *Tag Panel*.
 
 Format: `find KEYWORD`
         
 Examples:
-* `find file1` (finds a tag with tag name `file1`)
-* `find label2020` (finds a tag with label name `label2020`)    
-* `find tagname1 label1` (finds a tag name/label name `tagname1` and `label1`)
-* `find he` (finds a tag with tag name contains `he` or label name contains `he`)
+* `find he` (finds tags which contains `he` in label / tag name, e.g. `hello`, `hero`, etc.)
+* `find tagname label` (finds tags which contains `tagname` or `label` in label / tag name, e.g. `tagname123`, `label345`, etc.)
 
 ### Changing current directory : `cd`
 
