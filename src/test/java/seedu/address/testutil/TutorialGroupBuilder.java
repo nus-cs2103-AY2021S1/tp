@@ -47,6 +47,17 @@ public class TutorialGroupBuilder {
         return this;
     }
 
+    public TutorialGroupBuilder withStartTime(String startTimeString) {
+        this.startTime = new TimeOfDay(startTimeString);
+        return this;
+    }
+
+    public TutorialGroupBuilder withEndTime(String endTimeString) {
+        this.startTime = new TimeOfDay(endTimeString);
+        return this;
+    }
+
+
     public TutorialGroup build() {
         return new TutorialGroup(tutorialGroupId, dayOfWeek, startTime, endTime);
     }

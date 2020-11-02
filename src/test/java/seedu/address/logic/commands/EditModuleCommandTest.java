@@ -28,18 +28,18 @@ public class EditModuleCommandTest {
 
     private Model model = new ModelManager(getTypicalModuleList(), new UserPrefs());
 
-    //    @Test
-    //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-    //        Module editedModule = new ModuleBuilder().build();
-    //        EditModuleCommand editCommand = new EditModuleCommand(INDEX_FIRST_PERSON, "CS21");
-    //
-    //        String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
-    //
-    //        Model expectedModel = new ModelManager(new Trackr(model.getModuleList()), new UserPrefs());
-    //        expectedModel.setModule(model.getFilteredModuleList().get(0), "CS21");
-    //
-    //        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    //    }
+//        @Test
+//        public void execute_allFieldsSpecifiedUnfilteredList_success() {
+//            Module editedModule = new ModuleBuilder().build();
+//            EditModuleCommand editCommand = new EditModuleCommand(INDEX_FIRST_PERSON, "CS21");
+//
+//            String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
+//
+//            Model expectedModel = new ModelManager(new Trackr(model.getModuleList()), new UserPrefs());
+//            expectedModel.setModule(model.getFilteredModuleList().get(0), "CS21");
+//
+//            assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+//        }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
