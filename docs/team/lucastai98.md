@@ -17,14 +17,26 @@ Given below are my contributions to the project.
   * What changes made: 
     * created the class from scratch.
     
-* **Model modification**: Created Meeting object and added basic dependencies.
+* **Model modification**: Created Meeting class and added basic dependencies.
   * What it means: a meeting of a project that teammates can attend.
   * What changes made: 
     * created the class from scratch;
     * added dependencies of it in Project, Participation, and related collections;
     * added related test cases.
-
-* **New Feature**: 
+    
+* **Storage modification**: Allowed the application to store data for future reference [\#182](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/182)
+  * What it means: Allowed the application to save all data as a Json file.
+  * What changes made:
+    * Created JsonAdaptedPerson, JsonAdaptedParticipation, JsonAdaptedTask and their related classes. [\#151](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/151)
+    * Modified the rest of the classes under Storage Package to fit with the new data and classes.
+    * Implemented a new design for storing of data compared to AB3.
+    * added related test cases. 
+  
+* **New Feature**: Created new command to add a new task [\#100](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/100)
+    * What it does: allows the user to create a new task within a project.
+    
+* **New Feature**: Created new command to edit an existing task [\#100](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/100)
+    * What it does: allows the user to edit the properties of an existing task.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=lucastai98&tabRepo=AY2021S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code)
 

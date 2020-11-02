@@ -126,7 +126,7 @@ The `Model`,
 
 The `Storage` component,
 
-* can save `Project` objects, `Person` objects, `Task` objects and their details in json format and read it back.
+* can save `Project` objects, `Person` objects, `Task` objects, and their details in json format and read it back.
 * can save the main catalogue data in json format and read it back.
 
 ### Common classes
@@ -771,7 +771,7 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Teammate**: A person belonging to a project of the team leader's team.
 * **Participation**: The class of an object that handles the relations between a Project object and Person Object.
-
+* **Scope**: The confines of when certain commands will work.
 <!-- may add more: e.g. person, participation, start, user, index -->
 <!-- I dont think you need to clarify those terms as they are self explanatory -->
 

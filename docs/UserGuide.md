@@ -433,3 +433,10 @@ Action | Format, Examples | Scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Teammate**: A person belonging to a project of the team leader's team.
+* **Participation**: The class of an object that handles the relations between a Project object and Person Object.
+* **Scope**: The confines of when certain commands will work.
