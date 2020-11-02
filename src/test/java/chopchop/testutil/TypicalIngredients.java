@@ -35,6 +35,12 @@ public class TypicalIngredients {
         .withTags(new HashSet<>(Arrays.asList(TAG_APRICOT, TAG_ALL_ONE, TAG_ALL_TWO)))
         .build();
 
+    public static final Ingredient APRICOT_WITHOUT_TAGS = new IngredientBuilder()
+            .withName(VALID_INGREDIENT_NAME_APRICOT)
+            .withDate(VALID_INGREDIENT_EXPIRY_APRICOT)
+            .withQuantity(Count.of(VALID_INGREDIENT_QTY_APRICOT))
+            .build();
+
     public static final Ingredient BANANA = new IngredientBuilder()
         .withName(VALID_INGREDIENT_NAME_BANANA)
         .withDate(VALID_INGREDIENT_EXPIRY_BANANA)

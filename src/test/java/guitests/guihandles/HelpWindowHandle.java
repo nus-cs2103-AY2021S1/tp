@@ -3,6 +3,8 @@ package guitests.guihandles;
 import guitests.GuiRobot;
 import javafx.stage.Stage;
 
+// Deprecated.
+
 /**
  * A handle to the {@code HelpWindow} of the application.
  */
