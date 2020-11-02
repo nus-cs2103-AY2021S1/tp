@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalMeetings.CS2103;
-import static seedu.address.testutil.TypicalModules.CS2105;
+import static seedu.address.testutil.TypicalMeetings.CS2103_MEETING;
+import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
@@ -103,9 +103,9 @@ public class ModelManagerTest {
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
-        MeetingBook meetingBook = new MeetingBookBuilder().withMeeting(CS2103).build();
+        MeetingBook meetingBook = new MeetingBookBuilder().withMeeting(CS2103_MEETING).build();
         MeetingBook differentMeetingBook = new MeetingBook();
-        ModuleBook moduleBook = new ModuleBookBuilder().withModule(CS2105).build();
+        ModuleBook moduleBook = new ModuleBookBuilder().withModule(CS2100).build();
         ModuleBook differentModuleBook = new ModuleBook();
         UserPrefs userPrefs = new UserPrefs();
 

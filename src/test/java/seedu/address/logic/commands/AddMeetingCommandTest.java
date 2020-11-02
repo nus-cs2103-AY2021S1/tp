@@ -1,14 +1,22 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.CS2100_MEETING;
 import static seedu.address.testutil.TypicalMeetings.CS2101_MEETING;
+import static seedu.address.testutil.TypicalMeetings.CS2104_MEETING;
+import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
+import static seedu.address.testutil.TypicalModules.CS2104;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,18 +27,24 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyModuleBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.MeetingBuilder;
 
 public class AddMeetingCommandTest {
+
+    private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
+            new UserPrefs());
 
     @Test
     public void constructor_nullParams_throwsNullPointerException() {
@@ -39,36 +53,101 @@ public class AddMeetingCommandTest {
                         null, null));
     }
 
-    /*
     @Test
     public void execute_meetingAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingMeetingAdded modelStub = new ModelStubAcceptingMeetingAdded();
-        Meeting validMeeting = new MeetingBuilder().build();
+        Meeting validMeeting = new MeetingBuilder(CS2104_MEETING).build();
 
-        CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(modelStub);
+        CommandResult commandResult = new AddMeetingCommand(validMeeting).execute(model);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
     }
 
-    public void execute_duplicateMeeting_throwsCommandException() {
-        Meeting validMeeting = new MeetingBuilder().build();
-        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(validMeeting);
-        ModelStub modelStub = new ModelStubWithMeeting(validMeeting);
+    @Test
+    public void execute_sameNameDifferentModule_addSuccessful() throws Exception {
+        Meeting meetingSameNameDifferentModule = new MeetingBuilder(CS2104_MEETING)
+                .withModule(CS2100_MEETING.getModule())
+                .withMembers(CS2100_MEETING.getParticipants())
+                .build();
 
-        assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () ->
-                addMeetingCommand.execute(modelStub));
+        CommandResult commandResult = new AddMeetingCommand(meetingSameNameDifferentModule).execute(model);
+
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameNameDifferentModule), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_sameModuleDifferentName_addSuccessful() throws Exception {
+        Meeting meetingSameModuleDifferentName = new MeetingBuilder(CS2104_MEETING)
+                .withName(CS2100_MEETING.getMeetingName().toString())
+                .build();
+
+        CommandResult commandResult = new AddMeetingCommand(meetingSameModuleDifferentName).execute(model);
+
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameModuleDifferentName), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_sameTimeDifferentDate_addSuccessful() throws Exception {
+        Meeting meetingSameDateDifferentTime = new MeetingBuilder(CS2104_MEETING)
+                .withTime("10:00")
+                .build();
+
+        CommandResult commandResult = new AddMeetingCommand(meetingSameDateDifferentTime).execute(model);
+
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameDateDifferentTime), commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_sameDateDifferentTime_addSuccessful() throws Exception {
+        Meeting meetingSameDateDifferentTime = new MeetingBuilder(CS2104_MEETING)
+                .withDate("2020-01-02")
+                .build();
+
+        CommandResult commandResult = new AddMeetingCommand(meetingSameDateDifferentTime).execute(model);
+
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameDateDifferentTime), commandResult.getFeedbackToUser());
     }
 
     @Test
     public void execute_duplicateMeeting_throwsCommandException() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditCommand.EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-        EditCommand editCommand = new EditCommand(BENSON.getName(), descriptor);
+        Meeting duplicateMeeting = new MeetingBuilder(CS2100_MEETING).build();
+        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(duplicateMeeting);
+        String expectedMessage = String.format(
+                AddMeetingCommand.MESSAGE_DUPLICATE_MEETING,
+                duplicateMeeting.getModule().getModuleName(),
+                duplicateMeeting.getMeetingName());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertThrows(CommandException.class, expectedMessage, () ->
+                addMeetingCommand.execute(model));
     }
-     */
+
+    @Test
+    public void execute_duplicateMeetingDateAndTime_throwsCommandException() {
+        Meeting meetingWithDuplicateDateTime = new MeetingBuilder(CS2104_MEETING)
+                .withDate("2020-01-02")
+                .withTime("10:00")
+                .build();
+        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(meetingWithDuplicateDateTime);
+        String expectedMessage = String.format(
+                AddMeetingCommand.MESSAGE_CONFLICTING_MEETING_TIMES,
+                CS2100_MEETING.getModule().getModuleName(),
+                CS2100_MEETING.getMeetingName());
+
+        assertThrows(CommandException.class, expectedMessage, () ->
+                addMeetingCommand.execute(model));
+    }
+
+    @Test
+    public void execute_personNotInModule_throwsCommandException() {
+        Meeting meetingWithPersonNotInModule = new MeetingBuilder(CS2104_MEETING)
+                .withMembers(CS2100_MEETING.getParticipants())
+                .build();
+        AddMeetingCommand addMeetingCommand = new AddMeetingCommand(meetingWithPersonNotInModule);
+        String expectedMessage = String.format(
+                AddMeetingCommand.MESSAGE_NONEXISTENT_PERSON, BENSON.getName().toString(), CS2104.getModuleName());
+
+        assertThrows(CommandException.class, expectedMessage, () ->
+                addMeetingCommand.execute(model));
+    }
 
     @Test
     public void equals() {
@@ -91,283 +170,4 @@ public class AddMeetingCommandTest {
         // different meeting -> returns false
         assertFalse(meetingCommand2.equals(meetingCommand1));
     }
-
-    /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPerson(Person person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPersonName(Name name) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPerson(Person target, Person editedPerson) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getFilteredPersonList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate,
-                                                                   List<ModuleName> modules) throws CommandException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeetingBook(ReadOnlyMeetingBook newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyMeetingBook getMeetingBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasMeeting(Meeting meeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeeting(Meeting target, Meeting editedMeeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setSelectedMeeting(Meeting target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Meeting getSelectedMeeting() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updatePersonInMeetingBook(Person ...persons) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasMeetingName(MeetingName meetingName) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteMeeting(Meeting targetMeeting) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-
-        @Override
-        public Path getMeetingBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setMeetingBookFilePath(Path meetingBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Meeting> getFilteredMeetingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addModule(Module module) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasModuleName(ModuleName moduleName) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyModuleBook getModuleBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setModuleBook(ReadOnlyModuleBook moduleBook) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getModuleBookFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setModuleBookFilePath(Path moduleBookFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Module> getFilteredModuleList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void getPersonsInModule(ModuleName moduleName) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updatePersonInModuleBook(Person ...persons) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredModuleList(Predicate<Module> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateModuleInMeetingBook(Module... modules) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setModule(Module target, Module editedModule) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteModule(Module target) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
-    /**
-     * A Model stub that contains a single meeting.
-     */
-    private class ModelStubWithMeeting extends ModelStub {
-        private final Meeting meeting;
-
-        ModelStubWithMeeting(Meeting meeting) {
-            requireNonNull(meeting);
-            this.meeting = meeting;
-        }
-
-        @Override
-        public boolean hasMeeting(Meeting meeting) {
-            requireNonNull(meeting);
-            return this.meeting.isSameMeeting(meeting);
-        }
-
-        @Override
-        public boolean hasMeetingName(MeetingName meetingName) {
-            return this.meeting.isSameMeetingName(meetingName);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the meeting being added.
-     */
-    private class ModelStubAcceptingMeetingAdded extends ModelStub {
-        final ArrayList<Meeting> meetingsAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasMeeting(Meeting meeting) {
-            return meetingsAdded.stream().anyMatch(meeting::isSameMeeting);
-        }
-
-        @Override
-        public void addMeeting(Meeting meeting) {
-            requireNonNull(meeting);
-            meetingsAdded.add(meeting);
-        }
-
-        @Override
-        public boolean hasMeetingName(MeetingName meetingName) {
-            return meetingsAdded.stream().anyMatch(meeting -> meeting.isSameMeetingName(meetingName));
-        }
-
-        @Override
-        public ReadOnlyMeetingBook getMeetingBook() {
-            return new MeetingBook();
-        }
-    }
-
 }

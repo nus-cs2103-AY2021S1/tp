@@ -119,7 +119,7 @@ public class AddMeetingCommand extends Command {
             }
             if (meeting.getDate().equals(date) && meeting.getTime().equals(time)) {
                 throw new CommandException(
-                        String.format(MESSAGE_CONFLICTING_MEETING_TIMES, module.getModuleName(),
+                        String.format(MESSAGE_CONFLICTING_MEETING_TIMES, meeting.getModule().getModuleName(),
                                 meeting.getMeetingName()));
             }
         }

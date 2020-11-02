@@ -47,37 +47,37 @@ public class SampleDataUtil {
 
     public static Module[] getSampleModules() {
         return new Module[] {
-            new Module(new ModuleName("CS2103"), getPersonSet("Alex Yeoh", "Bernice Yu")),
-            new Module(new ModuleName("CS2105"), getPersonSet("Bernice Yu", "David Li")),
-            new Module(new ModuleName("CS2040"), getPersonSet("David Li", "Charlotte Oliveiro")),
-            new Module(new ModuleName("CS2100"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
+            new Module(new ModuleName("CS1100"), getPersonSet("Alex Yeoh", "Bernice Yu")),
+            new Module(new ModuleName("CS1101"), getPersonSet("Bernice Yu", "David Li")),
+            new Module(new ModuleName("CS1102"), getPersonSet("David Li", "Charlotte Oliveiro")),
+            new Module(new ModuleName("CS1103"), getPersonSet("Roy Balakrishnan", "Bernice Yu"))
         };
     }
 
     public static Meeting[] getSampleMeetings() {
         return new Meeting[] {
-            new Meeting(getModule("CS2103"),
+            new Meeting(getModule("CS1100"),
                     new MeetingName("Weekly Meeting"),
                     new Date("2020-09-20"),
                     new Time("10:00"),
                     getPersonSet("Alex Yeoh", "Bernice Yu"),
                     getSpecialNameSet("Discuss observer pattern."),
                     getSpecialNameSet("Refer to textbook.")),
-            new Meeting(getModule("CS2105"),
+            new Meeting(getModule("CS1101"),
                     new MeetingName("Project Meeting"),
                     new Date("2020-10-19"),
                     new Time("17:30"),
                     getPersonSet("Bernice Yu", "David Li"),
                     getSpecialNameSet("Discuss application layer."),
                     getSpecialNameSet("Talk about http and dns.")),
-            new Meeting(getModule("CS2040"),
+            new Meeting(getModule("CS1102"),
                     new MeetingName("Emergency Meeting"),
                     new Date("2020-10-10"),
                     new Time("16:00"),
                     getPersonSet("David Li", "Charlotte Oliveiro"),
                     getSpecialNameSet("Resolve merge conflicts."),
                     getSpecialNameSet("Bug with my commit")),
-            new Meeting(getModule("CS2100"),
+            new Meeting(getModule("CS1103"),
                     new MeetingName("Report Discussion"),
                     new Date("2020-09-08"),
                     new Time("08:00"),
