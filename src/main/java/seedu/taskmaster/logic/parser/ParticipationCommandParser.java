@@ -6,6 +6,7 @@ import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION
 import java.util.NoSuchElementException;
 
 import seedu.taskmaster.commons.core.index.Index;
+import seedu.taskmaster.commons.exceptions.IllegalValueException;
 import seedu.taskmaster.logic.commands.ParticipationAllCommand;
 import seedu.taskmaster.logic.commands.ParticipationCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
@@ -30,9 +31,11 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
             String preamble = argMultimap.getPreamble();
 
             if (score < 0) {
-                throw new ParseException("Negative score.");
+                throw new IllegalValueException(
+                        "Invalid input: Negative score. Score needs to be between 0 to 10 inclusive.");
             } else if (score > 10) {
-                throw new ParseException("Score is greater than 10.");
+                throw new IllegalValueException(
+                        "Invalid input: Score is greater than 10. Score needs to be between 0 to 10 inclusive.");
             }
 
             if (preamble.equals("all")) {
@@ -44,6 +47,10 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
         } catch (ParseException | NoSuchElementException e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParticipationCommand.MESSAGE_USAGE), e);
+        } catch (IllegalValueException e) {
+            throw new ParseException(
+                    e.getMessage()
+            );
         }
     }
 }
