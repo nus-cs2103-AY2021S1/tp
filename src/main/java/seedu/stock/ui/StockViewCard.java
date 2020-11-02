@@ -20,7 +20,7 @@ public class StockViewCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final String note;
+    public final String field;
 
     @FXML
     private HBox cardPane;
@@ -30,13 +30,13 @@ public class StockViewCard extends UiPart<Region> {
     private Label noteText;
 
     /**
-     * Creates a {@code NoteCard} with the given {@code Note} and index to display.
+     * Creates a {@code StockViewCard} with the given {@code String} and index to display.
      */
-    public StockViewCard(String note, String header) {
+    public StockViewCard(String field, String header) {
         super(FXML);
-        this.note = note;
-        id.setText(header + ":");
-        noteText.setText(note);
+        this.field = field;
+        id.setText(header + ": ");
+        noteText.setText(field);
     }
 
     @Override
@@ -53,6 +53,7 @@ public class StockViewCard extends UiPart<Region> {
 
         // state check
         StockViewCard card = (StockViewCard) other;
-        return note.equals(card.note);
+        return field.equals(card.field);
     }
+
 }

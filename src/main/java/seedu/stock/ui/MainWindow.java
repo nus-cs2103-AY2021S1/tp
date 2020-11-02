@@ -178,7 +178,9 @@ public class MainWindow extends UiPart<Stage> {
     public void updateStockView(Optional<Stock> optionalStockToView) {
 
         if (optionalStockToView.isPresent()) {
+
             Stock stockToView = optionalStockToView.get();
+
             String nameString = "Name: " + stockToView.getName().fullName;
             String serialNumberString = "Serial Number: " + stockToView.getSerialNumber().toString();
             String sourceString = "Source: " + stockToView.getSource().value;

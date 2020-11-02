@@ -51,7 +51,7 @@ public class StockViewWindow extends UiPart<Region> {
                 setText(null);
             } else {
                 String[] headerBody = field.split(": ", 2);
-                setGraphic(new StockViewCard(headerBody[1], headerBody[0]).getRoot());
+                setGraphic(new StockViewCard(upperFirst(headerBody[1]), headerBody[0]).getRoot());
             }
         }
     }
@@ -74,5 +74,19 @@ public class StockViewWindow extends UiPart<Region> {
         }
         return stockToView;
     }
+
+
+    /**
+     * Returns the input string with the first letter being upper-cased
+     * @param toChange
+     * @return input string with first letter being upper-cased
+     */
+    public String upperFirst(String toChange) {
+        String upperCase = toChange.substring(0, 1).toUpperCase();
+        String lowerCase = toChange.substring(1);
+
+        return upperCase + lowerCase;
+    }
+
 
 }
