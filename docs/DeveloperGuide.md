@@ -187,6 +187,7 @@ All commands have a restriction on the scope. This is seen in `CommandParser`. I
 would be thrown and an error message would be shown on the GUI.
 
 Step 1. The user launches the application. The default status of scope is `PROJECT_LIST`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
+(The `person` in `MainCatalogue` is also initialized to be empty, and all behaviors under `PERSON_LIST` scope would be very similar to `PROJECT_LIST`, so relevant behaviors will not be repeated in this document.)
 
 ![ScopingStep1](images/ScopingStep1.png)
 
@@ -198,7 +199,7 @@ The following sequence diagram shows how scoping works in the application.
 
 ![ScopingSequence](images/ScopingSequenceDiagram.png)
 
-Step 2. The user executes `start 3` command to view the details of the project of index 3 in the main catalogue. The `start` command
+Step 2. The user executes `startproject 3` command to view the details of the project of index 3 in the main catalogue. The `startproject` command
 calls `enter`, causing a switch of scoping status and assignment of `project` of focus in `MainCatalogue`.
 
 ![ScopingStep2](images/ScopingStep2.png)
@@ -206,12 +207,13 @@ calls `enter`, causing a switch of scoping status and assignment of `project` of
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `start` command calls `enter` method in model, causing a switching of level and updates the project of focus.
 
 </div>
-The following sequence diagram shows the execution of start command.
+The following sequence diagram shows the execution of startproject command.
 
 ![StartProjectSequenceDiagram](images/StartProjectSequenceDiagram.png)
 
 Step 3. The user executes `viewtask 5` command to view the details of the task of index 5 in the filtered task list of current project.
 The `viewtask` command calls `enterTask`, causing a switch of scoping status and assignment of `taskOnView` in the current project.
+(`viewteammate` command is executed similarly.)
 
 ![ScopingStep3](images/ScopingStep3.png)
 
@@ -246,7 +248,7 @@ The following activity diagram summarizes the scoping features when a user execu
 
 #### Design consideration:
 
-##### Aspect: How the scope is checked
+##### Aspect: How to check scope
 
 * **Alternative 1 (current choice):** Parses a command only if the scoping is valid.
   * Pros: Easy to implement.
@@ -255,6 +257,17 @@ The following activity diagram summarizes the scoping features when a user execu
 * **Alternative 2:** Checks the validity of scope of a command upon execution.
   * Pros: Will not increase coupling with parser.
   * Cons: The scoping features of each command are not explicitly seen, and may increase coupling with command.
+  
+##### Aspect: How to establish hierarchy of scopes
+
+* **Alternative 1 (current choice):** Use a hierarchy scheme to define scopes, and all scoping status at the same level are strictly restricted to its parent scope.
+  * Pros: Only need one status field in `Model`, and easy to extend.
+  * Cons: When lower levels of `PERSON` is implemented, child scopes of `PROJECT` like `TASK` might be reused, but it is not easy to implement this.
+
+* **Altertative 2:** Keeps a status for every level.
+  * Pros: Do not need a hierarchy understanding of all scopes anymore, and will solve the duplication problem in alternative 1.
+  * Cons: Need several status field in `Model`, which may make the code more complicated and harder to extend. 
+  
 ### New Task feature
 
 The implementation of the task feature involves adding new tasks created in the 'Project' class and storing them with a JsonAdaptedTask class which is contained by the JsonAdaptedProject class.
