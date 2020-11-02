@@ -15,11 +15,11 @@ import seedu.address.model.ModuleList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 
+
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
  */
 public class TypicalModules {
-
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
         .withZoomLink("Lecture", "https://nus-sg.zoom.us/cs2030").build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
