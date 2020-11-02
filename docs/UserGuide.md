@@ -131,6 +131,8 @@ The following points explain how to make sense of the command format:
 
 ### 3.2 General Features
 
+This section serves to provide you a detailed explanation of the general features which will help you to maximise the potential of **Reeve**.
+
 #### 3.2.1 Viewing help: `help`
 
 If you are unsure of any of the commands, this command will direct you to the help page. 
