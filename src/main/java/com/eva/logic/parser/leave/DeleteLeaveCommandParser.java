@@ -9,7 +9,6 @@ import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.commons.util.DateUtil;
 import com.eva.logic.commands.DeleteLeaveCommand;
-import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.Parser;
