@@ -7,6 +7,7 @@ public class ViewCommandResult extends CommandResult {
     private String textArea;
     private List zoomLinksToCopy;
     private List zoomLinks;
+    private List assignments;
 
     public ViewCommandResult(String feedbackToUser) {
         super(feedbackToUser);
@@ -34,5 +35,12 @@ public class ViewCommandResult extends CommandResult {
 
     public List getZoomLinksToCopy() {
         return zoomLinksToCopy;
+    }
+
+    public void setAssignments(List assignments) {
+        this.assignments = assignments;
+    }
+    public List getAssignments() {
+        return assignments;
     }
 }

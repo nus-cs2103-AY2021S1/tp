@@ -12,5 +12,10 @@
             <VBox fx:id="zoomLinkListView" />
          </children>
       </StackPane>
+      <StackPane fx:id="assignmentListPlaceHolder" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <VBox fx:id="assignmentListView" prefHeight="200.0" prefWidth="100.0" />
+         </children>
+      </StackPane>
    </children>
 </VBox>

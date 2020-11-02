@@ -13,11 +13,17 @@ public class DetailDisplay extends UiPart<Region> {
 
     private ZoomLinkPanel zoomLinkPanel;
 
+    private AssignmentPanel assignmentPanel;
+
     @FXML
     private TextArea resultDisplay;
 
     @FXML
     private StackPane listPlaceholder;
+
+    @FXML
+    private StackPane assignmentListPlaceHolder;
+
 
     public DetailDisplay() {
         super(FXML);
@@ -28,5 +34,7 @@ public class DetailDisplay extends UiPart<Region> {
 
         zoomLinkPanel = new ZoomLinkPanel(FXCollections.observableArrayList(result.getZoomLinks()));
         listPlaceholder.getChildren().add(zoomLinkPanel.getRoot());
+        assignmentPanel = new AssignmentPanel(FXCollections.observableArrayList(result.getAssignments()));
+        assignmentListPlaceHolder.getChildren().add(assignmentPanel.getRoot());
     }
 }
