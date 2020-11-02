@@ -534,9 +534,9 @@ Action | Format, Examples
 * Valid email format
 
     * Emails should be of the format local-part@domain.topleveldomain
-    * The local-part should only contain alphanumeric characters or special characters including !#$%&'*+/=?`{|}~^.-
+    * The local-part should only contain alphanumeric characters or special characters including !#$%&'*+/=?`{}~^.-
     * The domain should be at least 2 characters long, start and end with alphanumeric characters, and consist of alphanumeric characters, a period or a hyphen for the characters in between, if any
-    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets
+    * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets<br>
     
 * Valid URL format
     
