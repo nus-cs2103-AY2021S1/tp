@@ -12,6 +12,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_INDEX_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SORT_FIELD_DESC;
@@ -70,7 +71,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_helpCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = "";
         SuggestionCommandParser parser = new SuggestionCommandParser("hel");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -78,11 +79,19 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = SOURCE_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
         parser = new SuggestionCommandParser("help", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.HELP_COMMAND_WORD + "\n" + HelpCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = QUANTITY_DESC_BANANA;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
