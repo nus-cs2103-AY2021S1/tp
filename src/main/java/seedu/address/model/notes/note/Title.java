@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Title {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Title not be more than 20 characters";
+            "Title not be more than 15 characters";
 
     /*
      * The first character of the title must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "^(\\S.{1,19})";
+    public static final String VALIDATION_REGEX = "^(\\S.{0,14})";
 
     public final String title;
 
