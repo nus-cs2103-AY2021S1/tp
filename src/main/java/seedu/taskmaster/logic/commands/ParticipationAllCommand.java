@@ -5,8 +5,10 @@ import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION
 
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.exceptions.SessionException;
 import seedu.taskmaster.model.student.Student;
 
@@ -28,7 +30,7 @@ public class ParticipationAllCommand extends ParticipationCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<StudentRecord> lastShownList = model.getFilteredStudentRecordList();
         try {
             model.scoreAllStudents(lastShownList, score);
         } catch (SessionException sessionException) {

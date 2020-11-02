@@ -186,10 +186,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void scoreAllStudents(List<Student> students, int score) {
+    public void scoreAllStudents(List<StudentRecord> students, int score) {
         List<NusnetId> nusnetIds = students
                 .stream()
-                .map(Student::getNusnetId)
+                .map(StudentRecord::getNusnetId)
                 .collect(Collectors.toList());
 
         taskmaster.scoreAllStudents(nusnetIds, score);

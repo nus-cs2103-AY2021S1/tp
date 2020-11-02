@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.UserPrefs;
+import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.SessionName;
-import seedu.taskmaster.model.student.Student;
 
 
 
@@ -26,7 +26,7 @@ class ParticipationAllCommandTest {
     @Test
     public void execute_participationAllStudents_success() {
         model.changeSession(new SessionName("Typical session"));
-        List<Student> students = model.getFilteredStudentList();
+        List<StudentRecord> students = model.getFilteredStudentRecordList();
         ParticipationAllCommand participationAllCommand = new ParticipationAllCommand(VALID_SCORE_INT);
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.changeSession(new SessionName("Typical session"));

@@ -158,7 +158,7 @@ public interface Model {
     /**
      * Marks the attendances of all {@code students} with the given {@code attendanceType}
      */
-    void scoreAllStudents(List<Student> students, int score);
+    void scoreAllStudents(List<StudentRecord> students, int score);
 
     /**
      * Updates the corresponding attendance statuses with the Attendances in the given list.

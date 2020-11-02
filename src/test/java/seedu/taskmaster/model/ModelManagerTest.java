@@ -376,17 +376,20 @@ public class ModelManagerTest {
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
         stds.add(BOB);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
-        modelManager.scoreAllStudents(stds, VALID_SCORE_INT);
+        modelManager.scoreAllStudents(studentRecords, VALID_SCORE_INT);
 
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|NO_RECORD|Class Participation Score: 0,"
                         + " e0456789|NO_RECORD|Class Participation Score: 0]"));
-        modelManager.scoreAllStudents(stds, (VALID_SCORE_INT + 2));
+        modelManager.scoreAllStudents(studentRecords, (VALID_SCORE_INT + 2));
         assertTrue(s.getStudentRecords().toString()
                 .equals("[e0123456|NO_RECORD|Class Participation Score: 2,"
                 + " e0456789|NO_RECORD|Class Participation Score: 2]"));
@@ -397,7 +400,10 @@ public class ModelManagerTest {
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
         stds.add(BOB);
-        assertThrows(NoSessionException.class, () -> modelManager.scoreAllStudents(stds, VALID_SCORE_INT));
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
+        assertThrows(NoSessionException.class, () -> modelManager.scoreAllStudents(studentRecords, VALID_SCORE_INT));
     }
 
     @Test
@@ -406,11 +412,15 @@ public class ModelManagerTest {
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
         stds.add(BOB);
+        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
+        studentRecords.add(ALICE_STUDENT_RECORD);
+        studentRecords.add(BENSON_STUDENT_RECORD);
         Session s = new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
-        assertThrows(NoSessionSelectedException.class, () -> modelManager.scoreAllStudents(stds, VALID_SCORE_INT));
+        assertThrows(NoSessionSelectedException.class, () -> modelManager
+                .scoreAllStudents(studentRecords, VALID_SCORE_INT));
     }
 
     @Test
