@@ -254,9 +254,9 @@ You can add a Tutorial Group to the Module you are viewing using this command.
 > You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
 
-Format: `addTG tg/TG_CODE`
+Format: `addTG tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
 
-Example: `addTG tg/T03`
+Example: `addTG tg/T03 day/MON start/08:00 end/10:00`
 
 #### 4.3.3 Find a Tutorial Group: `findTG`
 If you need to quickly find a Tutorial from a list of Tutorials, use this command.
