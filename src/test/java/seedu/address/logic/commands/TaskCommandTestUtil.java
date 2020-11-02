@@ -53,5 +53,5 @@ public class TaskCommandTestUtil {
         + PREFIX_START_DATE + "09-06-2020"
         + " " + PREFIX_END_DATE + "02-04-2020"; // the end date should not be earlier than the start date
     public static final Task PLAN_MEETING = new Task(VALID_TASK_NAME, VALID_TASK_DESCRIPTION,
-            new Deadline(VALID_TASK_DEADLINE), VALID_TASK_PROGRESS, VALID_TASK_IS_DONE);
+            new Deadline(VALID_TASK_DEADLINE), VALID_TASK_PROGRESS);
 }

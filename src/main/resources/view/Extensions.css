@@ -108,25 +108,3 @@
 #teammateH1 {
     -fx-font: 15pt"Arial";
 }
-
-/*--------------------------------------- Teammate Dashboard ---------------------------------------------------*/
-
-#meetingLabel {
-    -fx-font: 45pt"Arial";
-}
-
-#meetingDesc {
-    -fx-font: 15pt"Arial";
-}
-
-#meetingPD {
-    -fx-font: 15pt"Arial";
-}
-
-#duration {
-    -fx-font: 15pt"Arial";
-}
-
-#note {
-    -fx-font: 15pt"Arial";
-}
