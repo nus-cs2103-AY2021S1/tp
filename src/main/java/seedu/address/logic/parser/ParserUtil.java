@@ -25,6 +25,7 @@ import seedu.address.model.task.event.StartDateTime;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
     public static final String DAY_MESSAGE_CONSTRAINTS = "Day should be in the format of MON, TUE,"
             + " ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
 
@@ -47,9 +48,14 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index[] parseVarargsIndex(String oneBasedIndexes) throws ParseException {
-        String[] splited = oneBasedIndexes.trim().split(" ");
-        Index[] indexes = new Index[splited.length];
-        for (int i = 0; i < splited.length; i++) {
+        String trimmed = oneBasedIndexes.trim();
+        if (trimmed.equals("")) {
+            throw new ParseException(MESSAGE_MISSING_INDEX);
+        }
+        String[] splited = trimmed.split(" ");
+        int length = splited.length;
+        Index[] indexes = new Index[length];
+        for (int i = 0; i < length; i++) {
             if (!StringUtil.isNonZeroUnsignedInteger(splited[i])) {
                 throw new ParseException(MESSAGE_INVALID_INDEX);
             }

@@ -26,7 +26,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
                 String[] pair = splited[i].trim().split(":");
                 if (pair.length <= 1) {
                     throw new ParseException(
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", DoneCommand.MESSAGE_USAGE));
                 }
                 indexes[i] = ParserUtil.parseIndex(pair[0]);
                 durations[i] = Integer.parseInt((pair[1]));
@@ -34,7 +34,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             return new DoneCommand(indexes, durations);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(), DoneCommand.MESSAGE_USAGE), pe);
         }
     }
 

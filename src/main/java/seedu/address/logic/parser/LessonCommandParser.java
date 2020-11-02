@@ -42,7 +42,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TAG, PREFIX_DAY, PREFIX_START_DATE, PREFIX_END_DATE,
                 PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", LessonCommand.MESSAGE_USAGE));
         }
         Description description = Description.defaultDescription();
 
