@@ -57,7 +57,7 @@ public class AddZoomLinkCommandTest {
     }
 
     @Test
-    public void execute_validArguments_addSuccess() {
+    public void execute_validZoomLinkAndLesson_addSuccess() {
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         ZoomLink linkToAdd = new ZoomLink(VALID_ZOOMLINK_CS2103T);
         ModuleLesson lesson = new ModuleLesson(VALID_MODULELESSONTYPE_ES2660);
