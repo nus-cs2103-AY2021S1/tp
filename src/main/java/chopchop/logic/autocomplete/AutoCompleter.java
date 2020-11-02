@@ -462,7 +462,12 @@ public class AutoCompleter {
 
         // the entire command string *except* the partial item name.
         var allExceptLast = orig.stripTrailing().substring(0,
-            orig.stripTrailing().length() - partial.length());
+            orig.stripTrailing().replace("\\/", "/").length() - partial.length());
+
+
+        // un-escape the user input first
+        partial = partial.replace("\\/", "/");
+
 
         // make a copy of the list, then sort by name length.
         var sortedList = new ArrayList<>(entries);
@@ -492,6 +497,9 @@ public class AutoCompleter {
 
             var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
+
+            // re-escape the user output.
+            completion = completion.replace("/", "\\/");
 
             return Optional.of(allExceptLast + completion + " ");
         }
