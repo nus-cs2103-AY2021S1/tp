@@ -38,7 +38,7 @@ public class AliasMap {
     public static final String ALIAS_ALPHABETS_ONLY = "Only case-sensitive alphabets can be used as aliases.";
     public static final String ALIAS_COMMAND_UNALIASABLE = "AliasCommand and ResetAliasCommand cannot have aliases.";
     public static final IntPredicate IS_ALPHABET_ASCII = x -> (x > 96 && x < 123 || x > 64 && x < 91);
-    private static final Set<String> RESERVED_KEYWORDS = Set.of(
+    public static final Set<String> RESERVED_KEYWORDS = Set.of(
             AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD,
