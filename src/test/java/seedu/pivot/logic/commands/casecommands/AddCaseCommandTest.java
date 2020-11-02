@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
@@ -158,7 +159,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void commitPivot(String command, boolean isMainPageCommand) {}
+        public void commitPivot(String commandMessage, Undoable command) {}
 
         @Override
         public ReadOnlyPivot getPivot() {

@@ -18,6 +18,7 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
@@ -153,6 +154,6 @@ public class DeleteCaseCommandTest {
         }
 
         @Override
-        public void commitPivot(String command, boolean isMainPageCommand) {}
+        public void commitPivot(String commandMessage, Undoable command) {}
     }
 }

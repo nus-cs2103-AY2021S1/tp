@@ -16,13 +16,15 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
 
-public class AddWitnessCommand extends AddCommand {
+public class AddWitnessCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_WITNESS
             + ": Adds a witness to the opened case in PIVOT.\n"
@@ -41,6 +43,8 @@ public class AddWitnessCommand extends AddCommand {
 
     public static final String MESSAGE_ADD_WITNESS_SUCCESS = "New witness added: %1$s";
     public static final String MESSAGE_DUPLICATE_WITNESS = "This witness already exists in the case";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddWitnessCommand.class);
 
     private final Index index;
@@ -83,7 +87,7 @@ public class AddWitnessCommand extends AddCommand {
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_WITNESS_SUCCESS, witness), false);
+        model.commitPivot(String.format(MESSAGE_ADD_WITNESS_SUCCESS, witness), this);
 
         return new CommandResult(String.format(MESSAGE_ADD_WITNESS_SUCCESS, witness));
     }
@@ -94,5 +98,10 @@ public class AddWitnessCommand extends AddCommand {
                 || (other instanceof AddWitnessCommand // instanceof handles nulls
                 && witness.equals(((AddWitnessCommand) other).witness)
                 && index.equals(((AddWitnessCommand) other).index));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

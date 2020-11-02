@@ -12,6 +12,8 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -21,7 +23,7 @@ import seedu.pivot.model.investigationcase.Description;
 /**
  * Adds a Description to an opened Case in PIVOT.
  */
-public class AddDescriptionCommand extends AddCommand {
+public class AddDescriptionCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
             + ": Adds a description to opened case in PIVOT. "
@@ -33,6 +35,8 @@ public class AddDescriptionCommand extends AddCommand {
 
     public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "New description added: %1$s";
     public static final String MESSAGE_DUPLICATE_DESCRIPTION = "This description already exists for the case!";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddDescriptionCommand.class);
 
     private final Index index;
@@ -75,7 +79,7 @@ public class AddDescriptionCommand extends AddCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description), false);
+        model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description), this);
 
         return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
     }
@@ -86,5 +90,10 @@ public class AddDescriptionCommand extends AddCommand {
                 || (other instanceof AddDescriptionCommand // instanceof handles nulls
                 && index.equals(((AddDescriptionCommand) other).index)
                 && description.equals(((AddDescriptionCommand) other).description));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

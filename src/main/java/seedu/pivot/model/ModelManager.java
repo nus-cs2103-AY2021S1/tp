@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.pivot.commons.core.GuiSettings;
 import seedu.pivot.commons.core.LogsCenter;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 
@@ -117,10 +118,10 @@ public class ModelManager implements Model {
 
     //=========== Versioned Pivot ===========================================================================
     @Override
-    public void commitPivot(String command, boolean isMainPageCommand) {
-        requireNonNull(command);
+    public void commitPivot(String commandMessage, Undoable command) {
+        requireNonNull(commandMessage);
         this.versionedPivot.purgeStates();
-        this.versionedPivot.commit(new Pivot(this.pivot), command, isMainPageCommand);
+        this.versionedPivot.commit(new Pivot(this.pivot), commandMessage, command);
     }
 
     @Override
@@ -146,13 +147,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String getStateCommand() {
-        return this.versionedPivot.getCommandResult();
+    public String getCommandMessage() {
+        return this.versionedPivot.getCommandMessageResult();
     }
 
     @Override
     public boolean isMainPageCommand() {
-        return this.versionedPivot.getIsMainPageCommandResult();
+        return this.versionedPivot.isMainPageCommand();
     }
 
     //=========== Filtered Case List Accessors =============================================================

@@ -12,6 +12,8 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.EditCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -21,7 +23,7 @@ import seedu.pivot.model.investigationcase.Status;
 /**
  * Edits the { @code Status } to an opened { @case Case } in PIVOT.
  */
-public class EditStatusCommand extends EditCommand {
+public class EditStatusCommand extends EditCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_STATUS
             + ": Edits the status of the opened case.\n"
@@ -31,6 +33,8 @@ public class EditStatusCommand extends EditCommand {
             + PREFIX_STATUS + "closed";
 
     public static final String MESSAGE_EDIT_STATUS_SUCCESS = "Status updated: %1$s";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditStatusCommand.class);
 
     private final Index index;
@@ -66,8 +70,13 @@ public class EditStatusCommand extends EditCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_STATUS_SUCCESS, status), false);
+        model.commitPivot(String.format(MESSAGE_EDIT_STATUS_SUCCESS, status), this);
 
         return new CommandResult(String.format(MESSAGE_EDIT_STATUS_SUCCESS, status));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

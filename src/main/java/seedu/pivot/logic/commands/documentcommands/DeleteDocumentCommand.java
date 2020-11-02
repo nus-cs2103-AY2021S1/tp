@@ -13,16 +13,19 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Document;
 
-public class DeleteDocumentCommand extends DeleteCommand {
+public class DeleteDocumentCommand extends DeleteCommand implements Undoable {
 
     public static final String MESSAGE_DELETE_DOCUMENT_SUCCESS = "Deleted document: %1$s";
 
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(DeleteDocumentCommand.class);
 
     private final Index caseIndex;
@@ -72,7 +75,7 @@ public class DeleteDocumentCommand extends DeleteCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete), false);
+        model.commitPivot(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete), this);
         model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete));
@@ -86,4 +89,8 @@ public class DeleteDocumentCommand extends DeleteCommand {
                 && documentIndex.equals(((DeleteDocumentCommand) other).documentIndex)); // state check
     }
 
+    @Override
+    public Page getPage() {
+        return pageType;
+    }
 }
