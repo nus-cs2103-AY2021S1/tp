@@ -68,7 +68,7 @@ public class StatsBox extends UiPart<Region> {
             .map(u -> Pair.of(u.getName(), u.getPrintableDate()))
             .collect(Collectors.toList());
 
-        this.showRecentRecipes(SUBTITLE_DEFAULT, list);
+        this.showRecentRecipes(list.isEmpty() ? SUBTITLE_NO_RECIPES : SUBTITLE_DEFAULT, list);
     }
 
     private void showRecentRecipes(String subtitle, List<Pair<String, String>> list) {

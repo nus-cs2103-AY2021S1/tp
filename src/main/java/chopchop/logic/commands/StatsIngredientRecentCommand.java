@@ -22,7 +22,9 @@ public class StatsIngredientRecentCommand extends Command {
         var msgOutput = output.stream()
             .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
             .collect(Collectors.toList());
-        return CommandResult.statsMessage(msgOutput, "Here are your recently used ingredients");
+        return CommandResult.statsMessage(msgOutput, msgOutput.isEmpty()
+            ? "No ingredients were used recently"
+            : "Here are your recently used ingredients");
     }
 
     @Override

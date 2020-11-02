@@ -23,7 +23,9 @@ public class StatsRecipeRecentCommand extends Command {
         var msgOutput = output.stream()
             .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
             .collect(Collectors.toList());
-        return CommandResult.statsMessage(msgOutput, "Here are your recently made recipes");
+        return CommandResult.statsMessage(msgOutput, msgOutput.isEmpty()
+            ? "No recipes were made recently"
+            : "Here are your recently made recipes");
     }
 
     @Override
