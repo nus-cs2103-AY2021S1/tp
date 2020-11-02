@@ -10,17 +10,23 @@ CliniCal is a desktop app that allows doctors to manage patient records and sche
 Given below are my contributions to the project.
 
 * **New Feature**: Add/delete appointment for existing patients
-  * What it does: Added the ability to add and delete appointments.
+  * What it does: Add and delete appointments.
   * Justification: Allows user to add and delete appointments for existing patients.
   * Highlights: The add appointment command is made simple to use as all you need to provide is the patient index, appointment's start date, time and duration. 
   Based on the provided patient index, the command will retrieve the patient's name and IC. It will also generate the appointment's end date and time automatically based on the provided duration.
   * Credits: NIL
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-  * What it does: Added the ability to allow user to reuse previous commands without the need to retype it again.
-  * Justification: Allows user to easily see and make use of previous commands.
-  * Highlights: Highly user-centric and is extremely convenient and common to use. A lot of my peers who tested our application really liked this feature.
+* **New Feature**: Added a view command history and clear command history commands that allows the user to view and clear the command history.
+  * What it does: Show a list of previous commands.
+  * Justification: Allows user to recall their previous commands.
+  * Highlights: There is a shortcut which is even better and I am going to mention it below this feature.
   * Credits: NIL
+  
+* **New Feature**: Added a navigation feature that allows the user to view and reuse previous commands using up/down arrow keys.
+  * What it does: View and reuse previous commands.
+  * Justification: Allows user to conveniently reuse commonly used previous commands and even check what they input wrongly previously.
+  * Highlights: Highly user-centric and is extremely convenient and common to use. A lot of my peers who tested our application really liked this feature.
+  * Credits: NIL  
   
 * **Morphing of AddressBook**:
   * Refactor Person name to Patient. [\#51](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/51)
@@ -36,9 +42,10 @@ Given below are my contributions to the project.
     * Added implementation details and use cases of the `history`, `clearhistory` and `up down arrow keys` features. [\#100](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/100)
     
 * **Project management**:
-  * Setup tP Team Organisation and Repo Setup
+  * Setup tP Team Organisation and Repo Setup.
         
 * **Community**:
+  * PRs reviewed (with non-trivial review comments): [\#235](https://github.com/AY2021S1-CS2103T-W11-4/tp/pull/235)
   * Contributed to forum discussions (examples: [3](https://github.com/nus-cs2103-AY2021S1/forum/issues/3), [147](https://github.com/nus-cs2103-AY2021S1/forum/issues/147))
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/Michaeliaaa/ped/issues)
 
