@@ -143,43 +143,55 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The scoping mechanism is facilitated by an `enum` class `Status` in `MainCatalogue`. Possible values of `Status` are `CATALOGUE`, `PROJECT`, `PERSON`, and `TASK`.
+The scoping mechanism is facilitated by an `enum` class `Status` in `MainCatalogue`. Possible values of `Status` are `PROJECT_LIST`, `PERSON_LIST`, `PROJECT`, `PERSON`, `TASK`, and `TEAMMATE`.
 The possible values of `Status` form a hierarchy structure as follows. 
 
-* `CATALOGUE`
-  * `PROJECT`
-    * `TASK`
-  * `PERSON`
+* global
+  * `PROJECT_LIST`
+    * `PROJECT`
+      * `TASK`
+      * `TEAMMATE`
+  * `PERSON_LIST`
+    * `PERSON`
 
-A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT` scope, it is also in the `PROJECT_LIST` scope. However, it is not necessarily in `TASK` scope because `TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
 
-The `status` of `MainCatalogue` is open to be accessed in other `Model` components and `Logic` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
+The `Status` of `MainCatalogue` is open to be accessed in other `Model` components by a public getter. The `MainCatalogue` has a field `project` which is an `Optional` object of `Project`. 
 This is a pointer to the project that is expected to be the focus for the application if it is in the `PROJECT` or lower status. Similarly, there is a pointer in each `Project` to keep the task of focus if the application is in `TASK` status.
-The switch of `status` is implemented by the following operations:
+The switch of `Status` is implemented by the following operations:
 
 * `MainCatalogue#enter(Project project)` — Switches to `PROJECT` status and updates the project on view to the given project.
+* `MainCatalogue#enter(Person person)` — Switches to `PRERSON` status and updates the project on view to the given project.
 * `MainCatalogue#enterTask(Task task)` — Switches to `TASK` status and updates the task on view to the given task.
+* `MainCatalogue#enterTeammate(Participation teammate)` — Switches to `TEAMMATE` status and updates the teammate on view to the given teammate (participation).
 * `MainCatalogue#quit()` — Switches to the parent status, and clear the lower-level pointer.
 
-These operations are exposed in `Model` and `Logic` interfaces with the same name.
+These operations are exposed in `Model` interface with the same name.
 
-In the GUI design of the application, the three columns correspond to three levels of the status. The left column refers to the top level, which is `CATALOGUE`, and it thus consists of a list of projects. The middle column refers to the middle level, which can be `PROJECT` or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. The right column refers to the bottom level, which can be `TASK`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (project or person).
+In the GUI design of the application, the three columns correspond to three levels of the status. 
+The left column refers to the top level, which is `PROJECT_LIST` or `PERSON_LIST`, and it thus consists of a list of projects or persons.
+The middle column refers to the middle level, which can be `PROJECT` or `PERSON`, and it shows the details of the project or person of focus as stored in `MainCatalogue`. 
+The right column refers to the bottom level, which can be `TASK` or `TEAMMATE`, and it shows the details of the object this status refers to that is of focus as stored in its parent object (project or person).
 
 Users are allowed to switch the scoping status while using the app using user input commands. Relevant commands include:
 
-* `StartCommand` — Enters a project with its index in the current filtered list of projects and switches to `PROJECT` status. This corresponds to `enter` method.
+* `ListProjectsCommand` — Requests to view the list of `Project`s.
+* `ListPersonsCommand` — Requests to view the list of `Person`s.
+* `StartProjectCommand` — Enters a project with its index in the current filtered list of projects and switches to `PROJECT` status. This corresponds to `enter` method with input type `Project`.
+* `StartPersonCommand` — Enters a person with its index in the current filtered list of persons and switches to `PERSON` status. This corresponds to `enter` method with input type `Person`.
 * `ViewTaskCommand` — Requests to view the detailed information of a task. This corresponds to `enterTask` method.
+* `ViewTeammateCommand` — Requests to view the detailed information of a teammate (which is represented by participation). This corresponds to `enterTeammate` method.
 * `LeaveCommand` — Leaves the current object of focus, i.e. Switches to the parent status and clear the lower-level pointer. This corresponds to `quit` method.
 
 All commands have a restriction on the scope. This is seen in `CommandParser`. If a command is invoked but the application is not in the correct scoping status, an `InvalidScopeException`
 would be thrown and an error message would be shown on the GUI.
 
-Step 1. The user launches the application. The default status of scope is `CATALOGUE`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
+Step 1. The user launches the application. The default status of scope is `PROJECT_LIST`, and `project` in `MainCatalogue` is initialized to an empty `Optional` object.
 
 ![ScopingStep1](images/ScopingStep1.png)
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** At this stage, commands at non-`CATALOGUE` level cannot be executed.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** At this stage, commands at non-`PROJECT_LIST` level cannot be executed.
 
 </div>
 The following sequence diagram shows how scoping works in the application.
@@ -216,7 +228,7 @@ The scope is switched to `PROJECT`, project of focus is updated to a new project
 ![ScopingStep4](images/ScopingStep4.png)
 
 Step 5. The user executes `leave` command to go to the parent status.
-Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `CATALOGUE`.
+Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `PROJECT_LIST`.
 The `leave` command calls `quit` method.
 
 ![ScopingStep5](images/ScopingStep5.png)
@@ -224,7 +236,7 @@ The `leave` command calls `quit` method.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `leave` command calls `quit` method in model, causing a switching of level and updates the project and task of focus.
 
 </div>
-The following sequence diagram shows the execution of leave command. Note that the leave command will do nothing if the application is already in the `CATALOGUE` scope.
+The following sequence diagram shows the execution of leave command. Note that the leave command will do nothing if the application is already in the `PROJECT_LIST` scope.
 
 ![LeaveSequenceDiagram](images/LeaveSequenceDiagram.png)
 
