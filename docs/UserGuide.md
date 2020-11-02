@@ -194,31 +194,38 @@ mark all a/present
 mark 2 a/absent
 ```
 
-### Scoring a student's participation: `score`
-Scores the participation of the specified student from the student list.
+### Scoring student participation: `score`
+Scores the participation of the specified student in the session.
 ```
 score INDEX cp/SCORE
 ```
 - Scores the participation of the student associated with the specified `INDEX` number shown in the displayed student record list.
 - The `INDEX` **must be a positive integer** that exists in said list.
-- The `SCORE` **must be a positive integer**.
+- The `SCORE` **must be a number** between 0 and 10, inclusive. 
+Taskmaster supports detailed score up to 2 decimal places.
+For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.
 
 Example Usage:
 ```
 score 1 cp/5
+score 3 cp/6.9
+score 4 cp/4.21
 ```
 
 ### Scoring all students' participation: `score all`
-Scores the participation of all students from the student list.
+Scores the participation of all students in the session.
 ```
 score all INDEX cp/SCORE
 ```
 - Scores the participation of all students shown in the displayed student record list.
-- The `SCORE` **must be a positive integer**.
+- The `SCORE` **must be a number** between 0 and 10, inclusive. 
+Taskmaster supports detailed score up to 2 decimal places.
+For scores with more than 2 decimal places, the score will be rounded to the nearest 2 decimal places.
 
 Example Usage:
 ```
 score all cp/10
+score all cp/2.94
 ```
 
 ### Clearing all entries: `clear`
