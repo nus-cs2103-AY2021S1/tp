@@ -136,7 +136,7 @@ Format: `undo`
 * Does not apply for undoable commands such as `find`, `list` and `clearhistory`.
 
 Example: 
-* While trying to `delete`, you accidentally deleted Alex Yeoh's patient details by accident.
+* While trying to `edit`, you accidentally deleted Alex Yeoh's patient details by accident.
 * Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
 
 #### 4.1.5 Redoing a command: `redo`
