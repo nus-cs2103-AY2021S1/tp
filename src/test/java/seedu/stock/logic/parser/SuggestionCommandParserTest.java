@@ -9,6 +9,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_INDEX_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_APPLE;
@@ -97,7 +98,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_listCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = INVALID_LIST_TYPE_DESC;
         SuggestionCommandParser parser = new SuggestionCommandParser("lis");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -106,11 +107,19 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = INVALID_LIST_TYPE_DESC + LOW_QUANTITY_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
         parser = new SuggestionCommandParser("list", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.LIST_COMMAND_WORD + " lt/all" + "\n" + ListCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = INVALID_LIST_TYPE_DESC + NAME_DESC_BANANA;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
