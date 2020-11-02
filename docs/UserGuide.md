@@ -224,7 +224,7 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. The new item will show up in Inventory Book, refer to the diagram below (Figure 5):
+3. The new item will show up in Inventory Book, refer to Figure 5:
     <br>
     
     ![add-i_step_1](images/add-i_eg1.1.PNG)
@@ -234,8 +234,7 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     <br>
 
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
-through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below
-(Figure 6):
+through as you are not allowed to add with max quantity and metric. You should receive an error message, refer to Figure 6:
     <br>
 
     ![add-i_step_2](images/add-i_eg1.2.PNG)
@@ -248,7 +247,7 @@ through as you are not allowed to add with max quantity and metric. You should r
 
 5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
 are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
-You can refer to the diagram below (Figure 7) for the expected result:
+You can refer to Figure 7 for the expected result:
     <br>
     
     ![add-i_step3](images/add-i_eg1.3.PNG)
@@ -272,7 +271,7 @@ Example 1:
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
- you may want to refer to the diagram below (Figure 8):
+ you may want to refer to Figure 8:
     <br>
     
     ![add-d_step1](images/add-d_eg1.1.PNG)
@@ -287,7 +286,7 @@ Example 2:
  `add-d n/HUGO p/91123421 a/Blk 253 BUKIT TIMAH o/Fish fillet x1 by/10`.
 
 2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
- you may want to refer to the diagram below (Figure 9):
+ you may want to refer to Figure 9 below:
     <br>
     
     ![add-d_step2](images/add-d_eg1.2.PNG)
@@ -344,8 +343,8 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown 
-below (Figure 10).
+3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields,
+refer to Figure 10.
     <br>
     
     ![edit-iexampleonestepthree](images/edit-i_example_one_step_three.png)
@@ -361,7 +360,7 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated 
-fields as shown below (Figure 11).
+fields as shown in Figure 11.
     <br>
     
     ![add-i example two step three](images/edit-i_example_two_step_three.png)
@@ -407,7 +406,7 @@ Example:
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to 
-the diagram below (Figure 12):
+Figure 12:
     <br>
     
     ![find-command-4](images/find-command-1.PNG)
@@ -437,8 +436,7 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to the
-diagram below (Figure 13):
+3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to Figure 13:
     <br>
     <a name="findexample1"></a>
 
@@ -463,7 +461,7 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display, refer to the diagram below (Figure 14):
+3. Success Message will be shown in the Result Display, refer to Figure 14:
     <br>
     
     ![list-command-1](images/list-command-1.PNG)
@@ -484,7 +482,7 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example 1:
-1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below (Figure 15):
+1. Assume by entering `list-i`, we have the following inventory items as shown in Figure 15:
     <br>
      
     ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
@@ -493,7 +491,7 @@ Example 1:
     Figure 15: Before deleting index 2
     <br>
  
-2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below (Figure 16):
+2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown in Figure 16:
     <br>
     
     ![delete-i_step2](images/UG_delete_eg1_step2.PNG)
