@@ -6,18 +6,18 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":CommonCentsParser" as CommonCentsParser LOGIC_COLOR
 participant ":DeleteAccountCommandParser" as DeleteAccountCommandParser LOGIC_COLOR
 participant "d:DeleteAccountCommand" as DeleteAccountCommand LOGIC_COLOR
+participant ":CommandResultFactory" as CommandResultFactory LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":ActiveAccount" as ActiveAccount MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("deleteacc 1")
 activate LogicManager
 
-LogicManager -> CommonCentsParser : parseCommand("delete 1")
+LogicManager -> CommonCentsParser : parseCommand("deleteacc 1")
 activate CommonCentsParser
 
 create DeleteAccountCommandParser
@@ -49,21 +49,37 @@ deactivate CommonCentsParser
 LogicManager -> DeleteAccountCommand : execute()
 activate DeleteAccountCommand
 
-DeleteAccountCommand -> Model : deleteExpense(1)
+DeleteAccountCommand -> Model : getAccountFromFilterList(1)
+activate Model
+
+Model --> DeleteAccountCommand : retrievedExpense
+deactivate Model
+
+DeleteAccountCommand -> Model : deleteExpense(retrievedExpense)
 activate Model
 
 Model --> DeleteAccountCommand
 deactivate Model
 
+DeleteAccountCommand -> CommandResultFactory : createDefaultCommandResult()
+activate CommandResultFactory
+
 create CommandResult
-DeleteAccountCommand -> CommandResult
+CommandResultFactory -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteAccountCommand
+CommandResult --> CommandResultFactory : result
 deactivate CommandResult
+
+CommandResultFactory --> DeleteAccountCommand : result
+deactivate CommandResultFactory
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CommandResultFactory -[hidden]-> DeleteAccountCommand
+destroy CommandResultFactory
 
 DeleteAccountCommand --> LogicManager : result
 deactivate DeleteAccountCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteAccountCommand -[hidden]-> LogicManager
 destroy DeleteAccountCommand
 
