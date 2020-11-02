@@ -9,38 +9,53 @@ Wishful Shrinking is a desktop application for managing your diet, keeping track
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+* **New Feature**: Added the ability to search for a recipe in the recipe list.
+  * What it does: allows the user to search for a recipe in the recipe list by its name, ingredients or tags.
+  * Justification: This feature improves the original "search for contact by name" feature that was originally in AddressBook Level 3, as it now allows users to search for recipes not only by name, but also by the ingredients it contains, which is essential in recipes, and also tags, which are helpful for the user to filter their favourite recipes.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+  * Credits: This feature was built off from the "search for contact by name" feature in AddressBook Level 3 to include searching by ingredients and tags.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Added the ability to get recommended recipes.
+  * What it does: allows the user to get recipes that they can make, which are the recipes whose ingredients are all present in their fridge.
+  * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, which the ingredient that are already present in their fridge.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  
+* **New Feature**: Added the ability to add ingredients to the user's fridge.
+  * What it does: allows the user to add ingredients to their fridge in Wishful Shrinking.
+  * Justification: This feature improves the product significantly because a user can now save ingredients that they have into the fridge, which is essential in using the recommend recipes feature.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  * Credits: This feature was built off from the "add contacts" feature in AddressBook Level 3 and refactored to add ingredients instead of contacts.
+  
+* **New Feature**: Added the ability to search for an ingredient in the fridge.
+  * What it does: allows the user to search for an ingredient in the fridge by its name.
+  * Justification: This feature improves the product significantly because a user can now easily search for an ingredient by its name to see whether it is present in the fridge.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  * Credits: This feature was built off from the "search for contact by name" feature in AddressBook Level 3.
+  
+* **New Feature**: Added the ability to delete a consumed recipe in the consumption list.
+  * What it does: allows the user to delete a recipe that they have eaten in the consumption list.
+  * Justification: This feature improves the product significantly because a user can now delete the recipes that they do not want anymore or have mistakenly added from the consumption list.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+  * Credits: This feature was built off from the "delete contact" feature in AddressBook Level 3.  
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=caitlinjee&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed release `v1.2` (1 release) on GitHub
+  * Refactored code to support the Ingredient class when work began on the fridge
+  * Updated the links and images in the Developer Guide to Wishful Shrinking
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Added support for tags for recipes (Pull requests [\#85](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/85))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `searchR`, `recommend` and `deleteC` [\#110](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/110)
+    * Added UI images [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178)
+    * Did cosmetic tweaks to User Guide and ensured phrasing used was consistent and accurate: [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `addF`, `deleteC`, `recommend` and `searchR` feature: [\#118](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/118/files)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#115](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/115), [\#175](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/175), [\#173](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/173)
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
