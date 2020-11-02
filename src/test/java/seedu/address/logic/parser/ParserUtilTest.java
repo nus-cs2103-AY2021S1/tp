@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DURATION;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.allergy.Allergy;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.BloodType;
 import seedu.address.model.patient.Email;
@@ -331,13 +333,7 @@ public class ParserUtilTest {
     @Test
     public void parseDateTime_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class,
-                "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
-                        + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
-                        + "\nInput YYYY as 19xx to 2xxx."
-                        + "\nInput MM as 01 to 12."
-                        + "\nInput dd as 01 to 31."
-                        + "\nInput HH as 00 to 24."
-                        + "\nInput mm as 00 to 59.", ()
+                AppointmentDateTime.MESSAGE_CONSTRAINTS, ()
                 -> ParserUtil.parseDateTime("test"));
     }
 
@@ -345,13 +341,7 @@ public class ParserUtilTest {
     @Test
     public void parseDuration_invalidDateTime_throwsParseException() {
         assertThrows(ParseException.class,
-                "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
-                        + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
-                        + "\nInput YYYY as 19xx to 2xxx."
-                        + "\nInput MM as 01 to 12."
-                        + "\nInput dd as 01 to 31."
-                        + "\nInput HH as 00 to 24."
-                        + "\nInput mm as 00 to 59.", ()
+                AppointmentDateTime.MESSAGE_CONSTRAINTS, ()
                 -> ParserUtil.parseDurationWithStart("test", "30"));
     }
 
@@ -359,13 +349,7 @@ public class ParserUtilTest {
     @Test
     public void parseDuration_invalidDuration_throwsParseException() {
         assertThrows(ParseException.class,
-                "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
-                        + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
-                        + "\nInput YYYY as 19xx to 2xxx."
-                        + "\nInput MM as 01 to 12."
-                        + "\nInput dd as 01 to 31."
-                        + "\nInput HH as 00 to 24."
-                        + "\nInput mm as 00 to 59.", ()
-                -> ParserUtil.parseDurationWithStart("2020-10-10", "test"));
+                MESSAGE_INVALID_DURATION, ()
+                -> ParserUtil.parseDurationWithStart("2030-10-10 09:30", "test"));
     }
 }

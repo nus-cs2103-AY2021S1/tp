@@ -21,7 +21,7 @@ public class DeleteAppointmentCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Deleted appointment: %1$s";
+    public static final String MESSAGE_SUCCESS = "Deleted appointment:\n%1$s";
 
     private final Index targetIndex;
 

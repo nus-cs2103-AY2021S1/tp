@@ -257,18 +257,21 @@ public class ParserUtil {
         requireNonNull(dateTimeStr, durationStr);
         String trimmedDateTime = dateTimeStr.trim();
         String trimmedDuration = durationStr.trim();
+        int duration;
+
         if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
         try {
-            int duration = Integer.parseInt(trimmedDuration);
+            duration = Integer.parseInt(trimmedDuration);
             if (duration <= 0) {
                 throw new ParseException(MESSAGE_NEGATIVE_INVALID_DURATION);
             }
-            return new AppointmentDateTime(trimmedDateTime, duration);
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION);
         }
+
+        return new AppointmentDateTime(trimmedDateTime, duration);
     }
 
     /**
@@ -281,6 +284,7 @@ public class ParserUtil {
         requireNonNull(durationStr);
         String trimmedDuration = durationStr.trim();
         int duration;
+
         try {
             duration = Integer.parseInt(trimmedDuration);
             if (duration <= 0) {
