@@ -34,6 +34,7 @@ import seedu.address.logic.commands.recipe.ClearRecipeCommand;
 import seedu.address.logic.commands.recipe.CloseCommand;
 import seedu.address.logic.commands.recipe.DeleteRecipeCommand;
 import seedu.address.logic.commands.recipe.GetEditRecipeCommand;
+//import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.logic.commands.recipe.ListRecipesCommand;
 import seedu.address.logic.commands.recipe.RecommendCommand;
 import seedu.address.logic.commands.recipe.SearchRecipeCommand;
@@ -43,6 +44,7 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
+//import seedu.address.testutil.EditRecipeDescriptorBuilder;
 import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.IngredientUtil;
 import seedu.address.testutil.RecipeBuilder;
@@ -123,13 +125,14 @@ public class WishfulShrinkingParserTest {
         assertEquals(new SelectRecipeCommand(INDEX_FIRST_CONSUMPTION), command);
     }
 
-    /*@Test
-    public void parseCommand_edit() throws Exception {
-        Recipe recipe = new RecipeBuilder().build();
-        EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-        assertEquals(new EditCommand(INDEX_FIRST_RECIPE, descriptor), command);
-    }*/
+    //@Test
+    //public void parseCommand_edit() throws Exception {
+    //    Recipe recipe = new RecipeBuilder().build();
+    //    EditRecipeCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
+    //    EditRecipeCommand command = (EditRecipeCommand) parser.parseCommand(EditRecipeCommand.COMMAND_WORD + " "
+    //            + INDEX_FIRST_RECIPE.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(descriptor));
+    //    assertEquals(new EditRecipeCommand(INDEX_FIRST_RECIPE, descriptor), command);
+    //}
 
 
     @Test

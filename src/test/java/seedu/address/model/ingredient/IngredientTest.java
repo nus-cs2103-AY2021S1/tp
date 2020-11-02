@@ -31,13 +31,18 @@ public class IngredientTest {
 
         // valid ingredient quantities
         assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", "2 cups"))); // space within quantity
+        assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", " 2 cups "))); // space before and after
         assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", "2cups"))); // no space within quantity
-        assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", "pinch"))); // no numbers in quantity
+        assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", "2/3 cups"))); // fraction quantity
+        assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", "2.3 cups"))); // decimal
+        assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage", "pinch of"))); // no numbers in quantity
         assertTrue(Ingredient.isValidIngredient(new Ingredient("cabbage"))); // no quantity
 
         // invalid ingredient quantities
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake", "2 c@ps"))); // empty name
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake", "2 cups!"))); // empty name
+        assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
+                "0.0000000000000000000000000000000000000000000005 cups"))); // empty name
 
     }
 }
