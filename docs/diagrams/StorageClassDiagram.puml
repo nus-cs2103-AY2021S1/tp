@@ -18,7 +18,11 @@ StorageManager o--> MainCatalogueStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonMainCatalogueStorage .left.|> MainCatalogueStorage
-JsonMainCatalogueStorage .down.> JsonSerializableMainCatalogueStorage
-JsonSerializableMainCatalogueStorage .right.> JsonSerializableProject
-JsonSerializableProject .right.> JsonAdaptedTag
+JsonMainCatalogueStorage .down.> JsonSerializableMainCatalogue
+JsonSerializableMainCatalogue .right.> JsonAdaptedProject
+JsonSerializableMainCatalogue .down.> JsonAdaptedPerson
+JsonAdaptedProject .right.> JsonAdaptedTag
+JsonAdaptedProject .down.> JsonAdaptedTask
+JsonAdaptedParticipation .left.> JsonAdaptedTask
+JsonAdaptedProject .down.> JsonAdaptedParticipation
 @enduml

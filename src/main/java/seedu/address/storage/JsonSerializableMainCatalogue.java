@@ -28,7 +28,7 @@ class JsonSerializableMainCatalogue {
 
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
-    private final List<JsonParticipation> participations = new ArrayList<>();
+    private final List<JsonAdaptedParticipation> participations = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableMainCatalogue} with the given projects.
@@ -36,7 +36,7 @@ class JsonSerializableMainCatalogue {
     @JsonCreator
     public JsonSerializableMainCatalogue(@JsonProperty("projects") List<JsonAdaptedProject> projects,
                                          @JsonProperty("persons") List<JsonAdaptedPerson> persons,
-                                         @JsonProperty("participations") List<JsonParticipation> participations) {
+                                         @JsonProperty("participations") List<JsonAdaptedParticipation> participations) {
         //TODO: update person field in catalogue
         this.projects.addAll(projects);
         this.persons.addAll(persons);
@@ -53,7 +53,7 @@ class JsonSerializableMainCatalogue {
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
         participations.addAll(
-                source.getParticipationList().stream().map(JsonParticipation::new).collect(Collectors.toList()));
+                source.getParticipationList().stream().map(JsonAdaptedParticipation::new).collect(Collectors.toList()));
     }
 
     /**
@@ -77,8 +77,8 @@ class JsonSerializableMainCatalogue {
             }
             mainCatalogue.addPerson(person);
         }
-        for (JsonParticipation jsonParticipation : participations) {
-            Participation participation = jsonParticipation.toModelType();
+        for (JsonAdaptedParticipation jsonAdaptedParticipation : participations) {
+            Participation participation = jsonAdaptedParticipation.toModelType();
             if (mainCatalogue.hasParticipation(participation)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPATION);
             }
