@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 import com.eva.logic.parser.exceptions.ParseException;
 
 public class DateUtil {
-    public static final String MESSAGE_CONSTRAINTS = "Given date could not be parsed.\n"
-            + "Date should be in the format: dd/MM/yyyy";
-    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/[0-9]{4}$";
+    public static final String MESSAGE_CONSTRAINTS = "Given date: %s could not be parsed.\n"
+            + "Date should be in the format: dd/MM/yyyy\nDate year cannot be less than 1000";
+    public static final String VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])/(1[0-2]|0[1-9])/([12][0-9]{3})$";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     /**
      * Returns true if the given date matches the format required according to {@code VALIDATION_REGEX}.
@@ -31,7 +31,7 @@ public class DateUtil {
      * @param dateStr The str to be parsed.
      */
     public static LocalDate dateParsed(String dateStr) {
-        checkArgument(isValidDate(dateStr), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDate(dateStr), String.format(MESSAGE_CONSTRAINTS, dateStr));
         return LocalDate.parse(dateStr, DATE_TIME_FORMATTER);
     }
 

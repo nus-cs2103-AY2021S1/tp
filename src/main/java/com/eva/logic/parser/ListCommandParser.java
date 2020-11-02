@@ -1,7 +1,7 @@
 package com.eva.logic.parser;
 
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT_LIST;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF_LIST;
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.ListCommand;
@@ -20,7 +20,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     @Override
     public ListCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_STAFF_LIST, PREFIX_APPLICANT_LIST);
+                ArgumentTokenizer.tokenize(args, PREFIX_STAFF, PREFIX_APPLICANT);
 
         if (argMultimap.isEmpty()
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -28,9 +28,9 @@ public class ListCommandParser implements Parser<ListCommand> {
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_STAFF_LIST).isPresent()) {
+        if (argMultimap.getValue(PREFIX_STAFF).isPresent()) {
             return new ListCommand(true);
-        } else if (argMultimap.getValue(PREFIX_APPLICANT_LIST).isPresent()) {
+        } else if (argMultimap.getValue(PREFIX_APPLICANT).isPresent()) {
             return new ListCommand(false);
         } else {
             throw new ParseException(

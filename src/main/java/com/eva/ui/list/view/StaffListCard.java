@@ -55,6 +55,12 @@ public class StaffListCard extends UiPart<Region> {
     public StaffListCard(Staff staff, int displayedIndex) {
         super(FXML);
         this.staff = staff;
+
+        name.setWrapText(true);
+        phone.setWrapText(true);
+        address.setWrapText(true);
+        email.setWrapText(true);
+
         id.setText(displayedIndex + ". ");
         name.setText(staff.getName().fullName);
         phone.setText(staff.getPhone().value);

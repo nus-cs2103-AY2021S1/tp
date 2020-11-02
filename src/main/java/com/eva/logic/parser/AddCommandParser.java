@@ -12,6 +12,7 @@ import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.parser.comment.AddCommentCommandParser;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.AddLeaveCommandParser;
 
@@ -39,7 +40,7 @@ public class AddCommandParser implements Parser<Command> {
         Optional<String> addLeaveCommand = argMultimap.getValue(PREFIX_LEAVE);
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
+        } catch (ParseException | IndexParseException e) {
             isAddCommentOrLeave = false;
         }
 
@@ -47,14 +48,14 @@ public class AddCommandParser implements Parser<Command> {
         if (!addApplicantCommand.isEmpty() && !addCommentCommand.isEmpty() && isAddCommentOrLeave) {
             try {
                 index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            } catch (ParseException pe) {
+            } catch (ParseException | IndexParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_2), pe);
             }
             return new AddCommentCommandParser().parse(" " + index.getOneBased() + " a- " + addCommentCommand.get());
         } else if (!addStaffCommand.isEmpty() && !addCommentCommand.isEmpty() && isAddCommentOrLeave) {
             try {
                 index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            } catch (ParseException pe) {
+            } catch (ParseException | IndexParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_2), pe);
             }
             return new AddCommentCommandParser().parse(" " + index.getOneBased() + " s- " + addCommentCommand.get());
@@ -67,7 +68,7 @@ public class AddCommandParser implements Parser<Command> {
         } else if (!addLeaveCommand.isEmpty()) {
             try {
                 index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            } catch (ParseException pe) {
+            } catch (ParseException | IndexParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE_2), pe);
             }
             return new AddLeaveCommandParser().parse(" " + index.getOneBased()

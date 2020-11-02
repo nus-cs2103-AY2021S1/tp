@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.Address;
 import com.eva.model.person.Email;
@@ -31,7 +32,7 @@ public class ParserUtilTest {
     private static final String INVALID_APPLICATION_STATUS = "processsing";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "12345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -45,12 +46,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(IndexParseException.class, () -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(IndexParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

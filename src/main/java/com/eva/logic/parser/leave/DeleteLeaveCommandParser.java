@@ -9,11 +9,11 @@ import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.commons.util.DateUtil;
 import com.eva.logic.commands.DeleteLeaveCommand;
-import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.Parser;
 import com.eva.logic.parser.ParserUtil;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
@@ -41,12 +41,14 @@ public class DeleteLeaveCommandParser implements Parser<DeleteLeaveCommand> {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble()); // errors if index is invalid.
 
             LocalDate delDate = DateUtil.dateParsed(argMultimap.getValue(PREFIX_DATE).get(),
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteLeaveCommand.MESSAGE_USAGE));
 
             return new DeleteLeaveCommand(index, delDate);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE), pe);
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteLeaveCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
     }
 }

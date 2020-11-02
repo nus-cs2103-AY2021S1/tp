@@ -3,6 +3,7 @@ package com.eva.logic.parser;
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.ViewCommand;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,6 +24,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
     }
 }

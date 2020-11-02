@@ -3,6 +3,7 @@ package com.eva.model.current.view;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.comment.Comment;
 import com.eva.model.comment.exceptions.CommentNotFoundException;
 import com.eva.model.comment.view.UniqueCommentsList;
@@ -16,6 +17,7 @@ public class CurrentViewApplicant implements ReadOnlyCurrentViewApplicant {
     private final Applicant currentView;
     private final Application application;
     private final UniqueCommentsList comments;
+    private final Index index;
 
     /**
      * Creates an empty currentViewApplicant.
@@ -24,20 +26,26 @@ public class CurrentViewApplicant implements ReadOnlyCurrentViewApplicant {
         this.currentView = null;
         this.application = new Application();
         this.comments = new UniqueCommentsList();
+        this.index = Index.fromZeroBased(0);
     }
 
     /**
      * Creates a currentView with the current viewing applicant.
      */
-    public CurrentViewApplicant(Applicant currentView) {
+    public CurrentViewApplicant(Applicant currentView, Index index) {
         this.currentView = currentView;
         this.application = currentView.getApplication();
         this.comments = new UniqueCommentsList();
         this.comments.fill(currentView.getComments());
+        this.index = index;
     }
 
     public Optional<Applicant> getCurrentView() {
         return Optional.ofNullable(currentView);
+    }
+
+    public Index getIndex() {
+        return this.index;
     }
 
     public Application getApplication() {

@@ -3,6 +3,7 @@ package com.eva.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import com.eva.commons.core.Messages;
+import com.eva.commons.core.PanelState;
 import com.eva.model.Model;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.staff.Staff;
@@ -30,9 +31,11 @@ public class FindStaffCommand extends FindCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        model.setPanelState(PanelState.STAFF_LIST);
         model.updateFilteredStaffList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStaffList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredStaffList().size()),
+                false, false, true);
     }
 
     @Override

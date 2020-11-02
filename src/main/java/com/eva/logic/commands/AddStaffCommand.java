@@ -1,11 +1,13 @@
 package com.eva.logic.commands;
 
+import static com.eva.commons.core.PanelState.STAFF_LIST;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import com.eva.logic.commands.exceptions.CommandException;
@@ -14,7 +16,7 @@ import com.eva.model.person.staff.Staff;
 
 
 public class AddStaffCommand extends Command {
-    public static final String COMMAND_WORD = "addstaff";
+    public static final String COMMAND_WORD = "adds";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a staff to Eva. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -52,7 +54,9 @@ public class AddStaffCommand extends Command {
         }
 
         model.addStaff(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.setPanelState(STAFF_LIST);
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, true);
     }
 
     @Override

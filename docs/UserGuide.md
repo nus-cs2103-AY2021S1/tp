@@ -19,9 +19,13 @@ Welcome to the User Guide for Eva!
     + [3.3.1. Add a staff: `addstaff`](#331-add-a-staff-addstaff)
     + [3.3.2. Delete a staff: `delstaff`](#332-delete-a-staff-delstaff)
     + [3.3.3. Edit a staff: `editstaff`](#333-edit-a-staff-editstaff)
-    + [3.3.4. Record leave taken by staff: `addleave`](#334-record-leave-taken-by-staff-addleave)
-    + [3.3.5. Delete leave taken by staff: `deleteleave`](#335-delete-leave-taken-by-staff-deleteleave)
-    + [3.3.6. Edit leave taken by staff: `editleave`](#336-edit-leave-taken-by-staff-editleave)
+    + [3.3.4 Edit general information of staff : `edits INDEX`](#3811-edit-general-information-of-staff--edit-index-s-)
+    + [3.3.5. Record leave taken by staff: `addleave`](#334-record-leave-taken-by-staff-addleave)
+    + [3.3.6. Delete leave taken by staff: `deleteleave`](#335-delete-leave-taken-by-staff-deleteleave)
+    + [3.3.7. Edit leave taken by staff: `editleave`](#336-edit-leave-taken-by-staff-editleave)
+    + [3.3.8 Add comment to a staff: `addc INDEX s-`](#351-add-comment-to-a-staff-addcomment-index-s-)
+    + [3.3.9 Edit comment of a staff: `editc INDEX s-`](#3812-edit-comment-of-a-staff-edit-index-s--c)
+    + [3.3.10 Delete comment from a staff: `delc INDEX s-`](#353-delete-comment-from-a-staff-deletecomment-index-s-)
   * [3.4. Applicant commands](#34-applicant-commands)
     + [3.4.1 Add an applicant: `addapplicant`](#341-add-an-applicant-addapplicant)
     + [3.4.2. Delete an applicant: `delapplicant`](#342-delete-an-applicant-delapplicant)
@@ -29,34 +33,12 @@ Welcome to the User Guide for Eva!
     + [3.4.4. Add an application: `addapplication`](#344-add-an-application-addapplication)
     + [3.4.5. Delete an application: `deleteapplication`](#345-delete-an-application-deleteapplication)
     + [3.4.6. Set application status: `setappstatus`](#346-set-application-status-setappstatus)
-  * [3.5. Comment commands](#35-comment-commands)
-    + [3.5.1 Add comment to a staff: `addcomment INDEX s-`](#351-add-comment-to-a-staff-addcomment-index-s-)
-    + [3.5.2 Add comment to an applicant: `addcomment INDEX a-`](#352-add-comment-to-an-applicant-addcomment-index-a-)
-    + [3.5.3 Delete comment from a staff: `deletecomment INDEX s-`](#353-delete-comment-from-a-staff-deletecomment-index-s-)
-    + [3.5.4 Delete comment from an applicant: `deletecomment INDEX a-`](#354-delete-comment-from-an-applicant-deletecomment-index-a-)
-    + [3.5.5 Edit comment on a staff: `editcomment INDEX s-`](#355-edit-comment-on-a-staff-editcomment-index-s-)
-    + [3.5.6 Edit comment on an applicant: `editcomment INDEX a-`](#356-edit-comment-on-an-applicant-editcomment-index-a-)
-  * [3.6. Centralised Add (Experienced users): `add`](#36-quick-add-experienced-users-add)
-    + [3.6.1. Add a staff to application: `add s-`](#361-add-a-staff-to-eva-add-s-)
-    + [3.6.2. Add a applicant to application: `add a-`](#362-add-a-applicant-to-eva-add-a-)
-    + [3.6.3. Add a comment to staff in application: `add <index> s- c/`](#363-add-a-comment-to-staff-in-eva-add-index-s--c)
-    + [3.6.4. Add a comment to applicant in application: `add <index> a- c/`](#364-add-a-comment-to-applicant-in-eva-add-index-a--c)
-    + [3.6.5. Add leave to staff in application: `add <index> l/ `](#365-add-leave-to-staff-in-eva-add-index-l-)
-  * [3.7. Centralised Delete (Experienced Users): `delete`](#37-quick-delete-experienced-users-delete)
-    + [3.7.1. Delete a staff from application: `delete <index_of_staff> s-`](#371-delete-a-staff-from-eva-delete-index_of_staff-s-)
-    + [3.7.2. Delete a applicant from application: `delete <index_of_applicant> a-`](#372-delete-a-applicant-from-eva-delete-index_of_applicant-a-)
-    + [3.7.3. Delete a comment from staff in application: `delete <index> s- c/`](#373-delete-a-comment-from-staff-in-eva-delete-index-s--c)
-    + [3.7.4. Delete a comment from applicant in application: `delete <index> a- c/`](#374-delete-a-comment-from-applicant-in-eva-delete-index-a--c)
-    + [3.7.5. Delete leave from staff in application: `delete <index> l/ `](#375-delete-leave-from-staff-in-eva-delete-index-l-)
-  * [3.8. Quick Edit (Experienced users): `edit`](#38-quick-edit-experienced-users-edit)
-    + [3.8.1. Edit a staff](#381-edit-a-staff)
-      + [3.8.1.1 Edit general information of staff : `edit INDEX s-`](#3811-edit-general-information-of-staff--edit-index-s-)
-      + [3.8.1.2 Edit comment of a staff: `edit INDEX s- c/`](#3812-edit-comment-of-a-staff-edit-index-s--c)
-    + [3.8.2 Edit an applicant](#382-edit-an-applicant)
-      + [3.8.2.1 Edit general information of staff : `edit INDEX a-`](#3821-edit-general-information-of-applicant--edit-index-a-)
-      + [3.8.2.2 Edit comment of an applicant: `edit INDEX a- c/`](#3822-edit-comment-of-an-applicant-edit-index-a--c)
-      + [3.8.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`](#3823-edit-interview-date-of-an-applicant-edit-index-a--id)
-  * [3.9. Archive data files `[coming in v2.0]`](#39-archive-data-files-coming-in-v20)
+    + [3.4.7. Edit general information of applicant : `edita INDEX`](#3821-edit-general-information-of-applicant--edit-index-a-)
+    + [3.4.8 Edit Interview Date of an applicant: `edit INDEX a- id/`](#3823-edit-interview-date-of-an-applicant-edit-index-a--id)
+    + [3.4.9 Add comment to an applicant: `addc INDEX a-`](#352-add-comment-to-an-applicant-addcomment-index-a-)
+    + [3.4.10 Edit comment on an applicant: `editc INDEX a-`](#356-edit-comment-on-an-applicant-editcomment-index-a-)
+    + [3.4.11 Delete comment from an applicant: `delc INDEX a-`](#354-delete-comment-from-an-applicant-deletecomment-index-a-)
+  * [3.5. Archive data files `[coming in v2.0]`](#39-archive-data-files-coming-in-v20)
 - [4. FAQ](#4-faq)
 - [5. Command summary](#5-command-summary)
   * [5.1. Common](#51-common)
@@ -111,7 +93,7 @@ Note how the app contains some sample data.<br>
 
    * **`deleteleave`**`1 10/10/2020` : Deletes the leave record containing the date `10/10/2020` from the 1st person in the current list.
 
-   * **`find`**`-s Doe` : Finds the staff whose name contains "Doe".
+   * **`find`**`-staff Doe` : Finds the staff whose name contains "Doe".
    
    * **`clear`** : Clears the database.
 
@@ -201,14 +183,14 @@ Format: `exit`
 
 Adds a staff to Eva.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
+Format: `addstaff n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
  - A staff can have any number of tags (including 0) <br>
  - A staff can have any number of comments (including 0) <br>
  
 Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
+* `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Developer`
 
 #### 3.3.2. Delete a staff: `delstaff`
 
@@ -254,7 +236,7 @@ Format: `addleave INDEX l/d/DATE [d/DATE]`
 
 Examples:
 * `list` followed by `addleave 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
-* `find Betsy` followed by `addleave 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find` command.
+* `find -staff Betsy` followed by `addleave 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find` command.
 * `addleave 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addleave 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
 
@@ -265,7 +247,7 @@ Format: `deleteleave INDEX d/DATE`
 
 Examples:
 * `list` followed by `deleteleave 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
-* `find Betsy` followed by `deleteleave 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find` command.
+* `find -staff Betsy` followed by `deleteleave 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find` command.
 * `deleteleave 2 d/09/09/2020`
 
 #### 3.3.6. Edit leave taken by staff: `editleave`

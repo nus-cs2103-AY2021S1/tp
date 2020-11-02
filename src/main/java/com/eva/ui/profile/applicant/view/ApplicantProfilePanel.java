@@ -3,6 +3,7 @@ package com.eva.ui.profile.applicant.view;
 import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
 
 import com.eva.commons.core.PanelState;
+import com.eva.commons.core.index.Index;
 import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.ui.UiPart;
@@ -54,7 +55,8 @@ public class ApplicantProfilePanel extends UiPart<Region> {
     public void fillInnerParts() {
         if (this.applicant.getCurrentView().isPresent()) {
             Applicant currentApplicant = this.applicant.getCurrentView().get();
-            applicantBasicInfoDisplay = new ApplicantBasicInfoDisplay(currentApplicant);
+            Index index = this.applicant.getIndex();
+            applicantBasicInfoDisplay = new ApplicantBasicInfoDisplay(currentApplicant, index);
             basicInfoPlaceholder.getChildren().add(applicantBasicInfoDisplay.getRoot());
 
             applicationInfoDisplay = new ApplicationInfoDisplay(applicant.getApplication());

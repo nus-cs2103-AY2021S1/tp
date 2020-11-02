@@ -13,6 +13,7 @@ import java.util.Set;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.EditCommand;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.tag.Tag;
@@ -44,6 +45,8 @@ public class EditCommandParser implements Parser<Command> {
             index = ParserUtil.parseIndex(typeMap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
 
         if (isApplicant) {
