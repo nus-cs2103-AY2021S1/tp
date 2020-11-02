@@ -600,7 +600,7 @@ This section lists some of the frequently asked questions.
 **A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
 
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
-**A**: The find feature will only list animals with the exact specified keyword provided.
+**A**: Yes. The keywords entered as parameters can be used for partial matching.
 
 ## 7. Command summary
 If you need a quick reference guide, the following tables should help.
