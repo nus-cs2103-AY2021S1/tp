@@ -44,6 +44,12 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     public ApplicantBasicInfoDisplay(Applicant applicant, Index index) {
         super(FXML);
         this.applicant = applicant;
+
+        name.setWrapText(true);
+        phone.setWrapText(true);
+        address.setWrapText(true);
+        email.setWrapText(true);
+
         name.setText(this.applicant.getName().fullName);
         id.setText(index.getOneBased() + ". ");
         phone.setText(this.applicant.getPhone().value);

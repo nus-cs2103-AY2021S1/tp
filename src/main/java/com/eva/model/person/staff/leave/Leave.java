@@ -42,8 +42,15 @@ public class Leave {
      */
     public Leave(String startDate, String endDate) {
         requireNonNull(startDate, endDate);
-        this.startDate = dateParsed(startDate);
-        this.endDate = dateParsed(endDate);
+        LocalDate start = dateParsed(startDate);
+        LocalDate end = dateParsed(endDate);
+        if (start.isBefore(end)) {
+            this.startDate = dateParsed(startDate);
+            this.endDate = dateParsed(endDate);
+        } else {
+            this.startDate = dateParsed(endDate);
+            this.endDate = dateParsed(startDate);
+        }
         leaveLength = getDaysBetween(this.startDate, this.endDate);
     }
 

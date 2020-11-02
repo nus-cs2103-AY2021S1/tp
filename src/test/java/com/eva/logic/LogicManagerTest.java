@@ -5,6 +5,7 @@ import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 //import static com.eva.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 //import static com.eva.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 //import static com.eva.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static com.eva.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static com.eva.testutil.Assert.assertThrows;
 //import static com.eva.testutil.TypicalPersons.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,10 +18,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import com.eva.commons.core.Messages;
 //import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.CommandResult;
-import com.eva.logic.commands.DeleteStaffCommand;
 // import com.eva.logic.commands.ListCommand;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -63,8 +62,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteStaffCommand = "dels ha";
-        assertParseException(deleteStaffCommand,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
+        assertParseException(deleteStaffCommand, MESSAGE_INVALID_INDEX);
     }
 
     /*

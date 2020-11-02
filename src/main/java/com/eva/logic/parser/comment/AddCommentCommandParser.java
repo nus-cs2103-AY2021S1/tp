@@ -15,6 +15,7 @@ import com.eva.logic.commands.EditCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.ParserUtil;
+import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 
@@ -40,6 +41,8 @@ public class AddCommentCommandParser {
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE), pe);
+        } catch (IndexParseException pe) {
+            throw new ParseException(pe.getMessage());
         }
 
 

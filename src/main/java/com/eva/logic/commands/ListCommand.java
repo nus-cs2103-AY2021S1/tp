@@ -16,7 +16,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": brings up list view of all staffs or applicants.\n"
-            + "parameters: LIST_TYPE-"
+            + "parameters: LIST_TYPE-\n"
             + "Example: " + COMMAND_WORD + " s-";
 
     public static final String MESSAGE_SUCCESS_STAFF = "Listed all staffs";

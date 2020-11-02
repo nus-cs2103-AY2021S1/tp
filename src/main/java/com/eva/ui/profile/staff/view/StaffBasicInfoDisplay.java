@@ -41,6 +41,12 @@ public class StaffBasicInfoDisplay extends UiPart<Region> {
     public StaffBasicInfoDisplay(Staff staff, Index index) {
         super(FXML);
         this.staff = staff;
+
+        name.setWrapText(true);
+        phone.setWrapText(true);
+        address.setWrapText(true);
+        email.setWrapText(true);
+
         name.setText(this.staff.getName().fullName);
         phone.setText(this.staff.getPhone().value);
         address.setText(this.staff.getAddress().value);
