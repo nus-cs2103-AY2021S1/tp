@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.model.exceptions.EntryNotFoundException;
 import chopchop.model.usage.Usage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,6 +63,7 @@ public class UsageList<T extends Usage> {
                 return;
             }
         }
+        throw new EntryNotFoundException();
     }
 
     public List<T> getUsageList() {
@@ -167,6 +169,15 @@ public class UsageList<T extends Usage> {
         return outputLst.stream()
             .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        return (obj instanceof UsageList) && ((UsageList<?>) obj).getUsageList().equals(this.usages);
     }
 
 }
