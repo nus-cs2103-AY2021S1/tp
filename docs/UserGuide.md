@@ -31,7 +31,7 @@ This table below will illustrate what they mean.
 | `add`      | Words in light-blue highlight, also known as a mark-up| A command that can be typed into CliniCal|`help`|
 | `p/PHONE_NUMBER` | Words in UPPER_CASE | Parameters to be supplied by the user (can be in any order!)|`p/91234567`|
 | `n/NAME [s/SEX]` | Words in square brackets| Optional|`n/John Doe` or <br> `n/John s/M` |
-| `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sul g/ad` or `g/penicillini`|
+| `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sulfa g/zyrtec` or `g/levocetirizine `|
 | [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
 
 <div markdown="block" class="alert alert-info">
@@ -118,7 +118,7 @@ Format: `clearhistory`
 
 **:information_source: Note:**<br>
 
- * Use with caution, `clearhistory` cannot be undone!
+ * Use with caution, `clearhistory` cannot be undone using `undo`!
 
 </div>
 
@@ -130,23 +130,24 @@ Revert your previous command which modified the patient database.
 
 Format: `undo`
 
-* Only applies for commands that modify the patient database such as `add`, `addpicture`, `edit`, `delete`, `clear`,
+* Only applies for commands that modify the patient database such as `add`, `edit`, `delete`, `clear`,
 `addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
+* Does not support `addpicture`, so remember be careful when using modifying a patient's profile picture!
 * Does not apply for undoable commands such as `find`, `list` and `clearhistory`.
 
 Example: 
-* While trying to `addpicture`, you accidentally deleted Alex Yeoh's patient details. 
+* While trying to `edit`, you accidentally deleted Alex Yeoh's patient details by accident.
 * Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
 
 #### 4.1.5 Redoing a command: `redo`
 
-![example redoing command](images/redoExample.png)
-
 Redo the most recent command that you have undone.
+
+![example redoing command](images/redoExample.png)
 
 Format: `redo`
 
-* Only able to `redo` commands that have been previously undone such as `add`, `addpicture`, `edit`, `delete`, `clear`,
+* Only able to `redo` commands that have been previously undone such as `add`, `edit`, `delete`, `clear`,
 `addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
 
 #### 4.1.6 Exiting the program: `exit`
@@ -193,11 +194,12 @@ Examples:
 
 Add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
 
-All patient profiles are preloaded with a stock profile picture.
-
 ![example of patient with new profile](images/addProfileExample.png)
 
 Format: `addpicture INDEX f/FILE_PATH`
+
+* All patient profiles are preloaded with a stock profile picture.
+* Make sure to add the correct profile picture in, `addpicture` cannot be undone using `undo`!
 
 Examples:
 *  `addpicture 3 f/data/profile_3.jpg` Replaces existing profile picture with 'profile_3.jpg' found in
@@ -269,14 +271,19 @@ Find patients whose names or IC number contain any of the given keywords.
 
 ![example of finding meier](images/findExample.png)
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORDS`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * You can search for the patient's name or IC number.
-* Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
+* The search is case-insensitive. 
+    * `benson` will match `Benson`
+* The search keyword entered can consist of just one word or even multiple keywords. 
+    * `Benson` or `Benson Meier` 
+* Patient will be matched even if the keyword matches the search parameters only partially 
+    * `Ben` will match `Benson`, `7435696` will match `S7435696B`.
+* The order of the keywords does not matter. 
+    * `Meier Benson` will match `Benson Meier`
 * Patients matching at least one keyword will be returned (i.e. OR search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+    * `Benson Meier` will return `Benson Yu`, `Andrew Meier`
 
 Examples:
 * `find John` Returns `john` and `John Doe`
@@ -535,23 +542,23 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
+**Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
-**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]`
+**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/06/10/2020`
 **Add Appointment** | `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addappt 1 st/2020-10-27 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
-**Delete Appointment** | `deleteappt INDEX` <br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
-**Edit Appointment** | `editappt INDEX` <br> e.g., `editappt 3 st/2020-11-11 10:10 d/40`
-**Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**Delete Visit** | `deletevisit INDEX i/VISIT_INDEX` <br> e.g. `deletevisit 1 i/2`
+**Delete Appointment** | `deleteappt INDEX` <br> e.g. `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com `
+**Edit Appointment** | `editappt INDEX` <br> e.g. `editappt 3 st/2020-11-11 10:10 d/40`
+**Edit Visit** | `editvisit INDEX i/VISIT_INDEX` <br> e.g. `editvisit 1 i/2`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **List** | `list`
 **Help** | `help`
 **Undo** | `undo`
 **Redo** | `redo`
 **Retrieve past commands** | `history`
-**View patient profile** | `profile INDEX`<br> e.g., `profile 2`
+**View patient profile** | `profile INDEX`<br> e.g. `profile 2`
 **Exit** | `exit`

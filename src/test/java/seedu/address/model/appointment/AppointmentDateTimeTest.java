@@ -35,6 +35,9 @@ public class AppointmentDateTimeTest {
         assertFalse(AppointmentDateTime.isValidDateTime("2020-12-55 88:36")); // invalid hour
         assertFalse(AppointmentDateTime.isValidDateTime("2020-12-25 23:99")); // invalid minute
 
+        assertFalse(AppointmentDateTime.isValidDateTime("2020-11-31 01:00")); // bug found in PE-D
+        assertFalse(AppointmentDateTime.isValidDateTime("2021-02-29 00:00"));
+
         // valid appointment datetime
         assertTrue(AppointmentDateTime.isValidDateTime("2020-12-25 23:36"));
     }

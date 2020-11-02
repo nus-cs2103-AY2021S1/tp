@@ -43,7 +43,6 @@ public class AppointmentDateTime {
      */
     public AppointmentDateTime(String dateTime, int duration) {
         assert duration > 0 : "Invalid duration";
-        assert duration <= Integer.MAX_VALUE : "Invalid duration";
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER).plusMinutes(duration);
@@ -62,8 +61,8 @@ public class AppointmentDateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, DATE_TIME_FORMATTER);
-            return true;
+            LocalDateTime parsed = LocalDateTime.parse(test, DATE_TIME_FORMATTER);
+            return parsed.format(DATE_TIME_FORMATTER).equals(test);
         } catch (DateTimeParseException e) {
             return false;
         }
