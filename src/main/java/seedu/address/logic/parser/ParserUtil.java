@@ -30,7 +30,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_EMPTY_VISIT_INDEX = "";
     public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
-    public static final String MESSAGE_INVALID_DURATION = "The given duration should be a positive number.";
+    public static final String MESSAGE_NEGATIVE_INVALID_DURATION = "The given duration should be a positive number.";
+    public static final String MESSAGE_INVALID_DURATION = "Duration provided is invalid.";
+    public static final String MESSAGE_OVERFLOW_INVALID_DURATION = "The given duration should not be more than 2147483647.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -258,11 +260,18 @@ public class ParserUtil {
         if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
-        int duration = Integer.parseInt(trimmedDuration);
-        if (duration <= 0) {
-            throw new ParseException(MESSAGE_INVALID_DURATION);
+        try {
+            int duration = Integer.parseInt(trimmedDuration);
+            if (duration <= 0) {
+                throw new ParseException(MESSAGE_NEGATIVE_INVALID_DURATION);
+            }
+            if (duration > Integer.MAX_VALUE) {
+                throw new ParseException(MESSAGE_OVERFLOW_INVALID_DURATION);
+            }
+            return new AppointmentDateTime(trimmedDateTime, duration);
+        } catch (NumberFormatException e){
+            throw new ParseException(MESSAGE_OVERFLOW_INVALID_DURATION);
         }
-        return new AppointmentDateTime(trimmedDateTime, duration);
     }
 
     /**
@@ -275,11 +284,13 @@ public class ParserUtil {
         requireNonNull(durationStr);
         String trimmedDuration = durationStr.trim();
         int duration;
-
         try {
             duration = Integer.parseInt(trimmedDuration);
             if (duration <= 0) {
-                throw new ParseException(MESSAGE_INVALID_DURATION);
+                throw new ParseException(MESSAGE_NEGATIVE_INVALID_DURATION);
+            }
+            if (duration > Integer.MAX_VALUE) {
+                throw new ParseException(MESSAGE_OVERFLOW_INVALID_DURATION);
             }
         } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_INVALID_DURATION);
