@@ -2,9 +2,14 @@
 
 Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
 
+
+This User Guide explains how you can use Bamboo to manage your personal finances.
+
+Refer to Quick Start for a short tutorial on how to set up Bamboo on your system, and refer to Features for a full walk-through of Bamboo's features.
+
 ---
 
-## Table of content
+## Table of contents
 
 1. [Quick Start](#QuickStart)
 2. [Features](#Features)
@@ -12,81 +17,101 @@ Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized
 4. [Command Summary](#CommandSummary)
 
 ## Quick Start <a name="QuickStart"></a>
+> _Bamboo runs on Windows, OS-X, and Unix systems._
+1. Ensure that Java Version 11 or above is installed in your computer
+2. Download the latest Bamboo Release `ExpenseBook.jar` [here](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
+3. Copy the file to the folder you want to use as the home directory for Bamboo.
+4. Double-click the file to start the app. It should open in a new window.  
+    OR Navigate to the directory on terminal and run `java -jar <FILENAME>.jar`.
+5. Type in commands with arguements in the command input box above, and press `Enter` to execute them.
+6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the 
+[Features](#Features) section for a comprehensive guide!
+7. Happy saving!  
 
-1. Download Java Version 11
-2. Download [Bamboo v1.3](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
+## Command Format Guide
+<div markdown="span" class="alert alert-primary">
+This section explains the format of commands in this User Guide.
+
+- Items in <angular_brackets> are types of parameters to be supplied by the user e.g. in `add -d <description>`, `<description>` refers to a description of an expense such as "Lunch @ Thai Place".
+- Items in square brackets are optional e.g `-d <description> [-@<date>]` means that date input is optional. Both `-d lunch` and `-d lunch -@03-09-2020` are valid.
+</div>
 
 ## Features <a name="Features"></a>
 
 1. **Add**
     - Adds new expense record.
     - Command: `add`
-    - [API](#add)
+    - [Usage](#add)
 
 1. **List**
     - Displays a list of all the user's expenses.
     - Command: `list`
-    - [API](#list)
+    - [Usage](#list)
 
 1. **Update**
     - Edits existing expense record.
     - Command: `edit`
-    - [API](#edit)
+    - [Usage](#edit)
 
 1. **Delete**
     - Deletes a specified existing expense record.
     - Command: `delete`
-    - [API](#delete)
+    - [Usage](#delete)
     
 1. **Adding Remark**
     - Adds a remark to an existing expense.
     - Command: `remark`
-    - [API](#remark)
+    - [Usage](#remark)
 
 1. **Category Tagging**
     - Tags expenses by their categories.
     - Prefix: `t/`
-    - [API](#tag)
+    - [Usage](#tag)
 
 1. **Add Category**
     - Adds a new category (for budgeting and expenses).
     - Command: `addCat`
-    - [API](#addCat)
+    - [Usage](#addCat)
 
 1. **Delete Category**
     - Deletes an existing category in the expense book.
     - Command: `deleteCat`
-    - [API](#deleteCat) 
+    - [Usage](#deleteCat) 
 
 1. **Switch Category**
     - Switches an expense book into another existing category.
     - Command: `switch`
-    - [API](#switch)
+    - [Usage](#switch)
 
 1. **Top up budget**
     - Increases a budget for a specific category by user-defined amount.
     - Command: `topup`
-    - [API](#topup)
+    - [Usage](#topup)
 
 1. **Find**
     - Finds expenses by keywords, date, tags.
     - Command: `find`
-    - [API](#find)
+    - [Usage](#find)
     
 1. **Sorting**  
     - Sort by **date, description (alphabetical), amount**, with option of reverse sort.
     - Command: `sort` 
-    - [API](#sort)
+    - [Usage](#sort)
 
 1. **Map Command Keyword**
     - Maps user-specified keyword to existing command.
     - Command: `alias`
-    - [API](#alias)
+    - [Usage](#alias)
 
 1. **Help command**
     - Renders a help link to the commands in User Guide
     - Command: `help`
-    - [API](#help)
+    - [Usage](#help)
+
+1. **Clear command**
+    - Clears and resets the expense book.
+    - Command: `clear`
+    - [Usage](#clear)
 
 1. **Save Load Function**
     - Automatically saves the state of the expense book after each operation.
@@ -100,7 +125,7 @@ Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized
 1. **Simulation of future spending &lt;pending&gt;**
 1. **Multiple Accounts &lt;pending&gt;**
 
-## Usage/ API <a name="Usage"></a>
+## Usage <a name="Usage"></a>
 For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 ### Commands
 1. **Add an Expense `add`** <a name="add"></a>
@@ -122,7 +147,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
       - The expense to be added must not share the same identity fields (description, amount and date) as any expense in the expense book.
     
     ![add_example](images/ug_example/add_example.PNG)
-
+    &nbsp;
+    
 1. **List all Expenses `list`** <a name="list"></a>
     - Displays all the items in the list.
     - Displays the budget balance based on **total expenditure** against the **total sum of all budgets**.
@@ -130,7 +156,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `list` 
 
     ![list_example](images/ug_example/list_example.PNG)
-
+    &nbsp;
+    
 1. **Edit an expense `edit`** <a name="edit"></a>
     - Edits the fields of existing expenses.
     - Identified by index starting from 1, based on expenses currently displayed.
@@ -149,6 +176,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     </div>
     
     ![edit_example](images/ug_example/edit_example.PNG)
+    &nbsp;
 
 1. **Delete an Expense `delete`** <a name="delete"></a>
     - Deletes a specified existing expense record.
@@ -157,7 +185,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `delete 11` Deletes the item at index 11 of the list.
 
     ![delete_example](images/ug_example/delete_example.PNG)
-
+    &nbsp;
+    
 1. **Add a Category `addCat`** <a name="addCat"></a>
     - Adds a new category to the expense book.
     - The category must not already exist in the expense book.
@@ -169,6 +198,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     
     ![addCat_example](images/ug_example/addCat_example_2.PNG)
     _Use "Shopping" category_
+    &nbsp;
     
 1. **Delete a Category `deleteCat`** <a name="deleteCat"></a>
     - Deletes an existing category in expense book.
@@ -179,6 +209,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     
     ![deleteCat_example](./images/ug_example/deleteCat_example.PNG)
     _Expense 9 is reverted from "Shopping" category to "Default" category_
+    &nbsp;
     
 1. **Top up Category Budget `topup`** <a name="topup"></a>
     - Increases the budget of a **particular category** by the amount specified by the user.
@@ -194,7 +225,8 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     </div>
 
     ![topup_example](images/ug_example/topup_example.PNG)
-
+    &nbsp;
+    
 1. **Find Expenses `find`** <a name="find"></a>
     - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
@@ -209,6 +241,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     
     ![find_example_2](images/ug_example/find_example_2.PNG)
     _Find by description keyword and date_
+    &nbsp;
 
 1. **Add a Remark `remark`** <a name="remark"></a>
     - Adds a remark to an existing expense.
@@ -216,6 +249,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `remark 11 -r Pepper Lunch`
 
     ![remark_example](./images/ug_example/remark_example.PNG)
+    &nbsp;
     
 1. **Sort Expenses `sort`** <a name="sort"></a>
     - Sorts expenses which are current displayed.
@@ -232,6 +266,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     | ![sort_example](./images/ug_example/sort_example.PNG) <br> _Single parameter sort: ascending Date order_ | ![sort_example_2](./images/ug_example/sort_example_2.PNG) <br> _Multiple parameter sort: in order of appearance – date, then description, then amount (see Expenses 1 and 2)_ |
     |-------------------------------------------------------|---------------------------------------------------------|
     |![sort_example_3](./images/ug_example/sort_example_3.PNG) <br> _Multi-parameter sort will take the last sorting keyword if there are duplicates_|![sort_example_4](./images/ug_example/sort_example_4.PNG) <br> _Sorting after using `Find`_ |
+    &nbsp;
     
 1. **Switch Category `switch`** <a name="switch"></a>
     - Switches expense book to requested category.
@@ -248,6 +283,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
     ![switch_example](./images/ug_example/switch_example.PNG)
     _Budget balance displayed here is the budget for the "Food" category_
+    &nbsp;
 
 1. **Map Command Keyword `alias`** <a name="alias"></a>
     - Maps user-specified keyword to existing command.
@@ -266,6 +302,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     
     ![alias_example_2](./images/ug_example/alias_example_2.PNG)
     _"spent" keyword now functions as "add"_
+    &nbsp;
 
 1. **Display Help `help`** <a name="help"></a>
     - Displays a help link to the User Guide, which comprehensively covers Bamboo's commands.
@@ -273,6 +310,15 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `help` 
     
     ![help_example](./images/ug_example/help_example.PNG)
+    &nbsp;
+      
+1. **Clear all expenses `clear`** <a name="clear"></a>
+    - Clears all expenses from Bamboo, resulting in an empty expense book.
+    - Format: `clear`
+    - Example: `clear`
+    
+    ![clear_example](images/ug_example/clear_example.PNG)
+
 
 ### Fields
 1. **description**
@@ -305,7 +351,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Note:** Prefixes function with or without a whitespace after. (e.g. -`d dinner and -ddinner` will yield the same results)
+:bulb: **Note:** Prefixes function with or without whitespace after. For example, `d dinner` and `-ddinner` will yield the same results.
 
 </div>
 
@@ -326,3 +372,4 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 | **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                           |
 | **Alias**     | `alias <original_command> <new_command>` <br> e.g., `alias add spent`                                                                                            |
 | **Help**      | `help`                                                                                                                                                           |
+| **Clear**     | `clear`                                                                                                                                                          |

@@ -22,7 +22,7 @@ public class AddCommand extends Command {
             + PREFIX_DESCRIPTION + " DESCRIPTION "
             + PREFIX_AMOUNT + "AMOUNT "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "CATEGORY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Uniqlo Jacket "
             + PREFIX_AMOUNT + "59.90 "

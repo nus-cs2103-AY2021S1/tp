@@ -37,7 +37,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "CATEGORY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_AMOUNT + "10 "
             + PREFIX_DATE + "01-07-2020";
