@@ -1,6 +1,8 @@
 package com.eva.logic.commands;
 
 import static com.eva.commons.core.PanelState.STAFF_LIST;
+import static com.eva.commons.core.PanelState.STAFF_PROFILE;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -46,9 +48,15 @@ public class DeleteStaffCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
-        if (!panelState.equals(STAFF_LIST)) {
+        if (!panelState.equals(STAFF_LIST) && !panelState.equals(STAFF_PROFILE)) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
+        }
+        if (panelState.equals(STAFF_PROFILE)) {
+            if (!model.getCurrentViewStaff().getIndex().equals(targetIndex)) {
+                throw new CommandException("Please go to staff profile with keyed in index"
+                        + "or staff list panel with 'list s-'");
+            }
         }
         List<Staff> lastShownList = model.getFilteredStaffList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -57,8 +65,11 @@ public class DeleteStaffCommand extends Command {
         // cannot cast
         Staff staffToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStaff(staffToDelete);
+        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+        model.setPanelState(STAFF_LIST);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_STAFF_SUCCESS, staffToDelete),
+                false, false, true);
     }
 
     @Override

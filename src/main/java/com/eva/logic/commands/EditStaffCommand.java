@@ -69,6 +69,12 @@ public class EditStaffCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
         }
+        if (panelState.equals(STAFF_PROFILE)) {
+            if (!model.getCurrentViewStaff().getIndex().equals(index)) {
+                throw new CommandException("Please go to staff with keyed in index"
+                        + " or staff list panel with 'list s-'");
+            }
+        }
         List<Staff> lastShownList = model.getFilteredStaffList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

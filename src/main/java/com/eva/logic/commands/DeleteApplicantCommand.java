@@ -1,6 +1,8 @@
 package com.eva.logic.commands;
 
 import static com.eva.commons.core.PanelState.APPLICANT_LIST;
+import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -45,9 +47,15 @@ public class DeleteApplicantCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
-        if (!panelState.equals(APPLICANT_LIST)) {
+        if (!panelState.equals(APPLICANT_LIST) && !panelState.equals(APPLICANT_PROFILE)) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
+        }
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(targetIndex)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
         }
         List<Applicant> lastShownList = model.getFilteredApplicantList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -56,8 +64,11 @@ public class DeleteApplicantCommand extends Command {
         // cannot cast
         Applicant applicantToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteApplicant(applicantToDelete);
+        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        model.setPanelState(APPLICANT_LIST);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICANT_SUCCESS, applicantToDelete.getName()));
+        return new CommandResult(String.format(MESSAGE_DELETE_APPLICANT_SUCCESS, applicantToDelete.getName()),
+                false, false, true);
     }
 
     @Override

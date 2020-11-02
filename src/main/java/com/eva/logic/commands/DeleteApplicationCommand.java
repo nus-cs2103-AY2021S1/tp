@@ -1,6 +1,8 @@
 package com.eva.logic.commands;
 
 import static com.eva.commons.core.PanelState.APPLICANT_LIST;
+import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -10,6 +12,7 @@ import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
+import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.application.Application;
 
@@ -42,9 +45,15 @@ public class DeleteApplicationCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
-        if (!panelState.equals(APPLICANT_LIST)) {
+        if (!panelState.equals(APPLICANT_LIST) && !panelState.equals(APPLICANT_PROFILE)) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
+        }
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(targetIndex)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
         }
         List<Applicant> lastShownList = model.getFilteredApplicantList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -54,8 +63,15 @@ public class DeleteApplicationCommand extends Command {
         Applicant targetApplicant = lastShownList.get(targetIndex.getZeroBased());
         Application blankApplication = new Application();
         model.deleteApplication(targetApplicant, blankApplication);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, targetApplicant));
+        if (panelState.equals(APPLICANT_LIST)) {
+            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        } else if (panelState.equals(APPLICANT_PROFILE)) {
+            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+            Applicant applicantToView = lastShownList.get(targetIndex.getZeroBased());
+            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, targetIndex));
+        }
+        return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, targetApplicant),
+                false, false, true);
     }
 
 }

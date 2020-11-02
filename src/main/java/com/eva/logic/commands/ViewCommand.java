@@ -95,7 +95,7 @@ public class ViewCommand extends Command {
         }
         Applicant applicantToView = lastShownList.get(targetIndex.getZeroBased());
         model.setPanelState(PanelState.APPLICANT_PROFILE);
-        model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
+        model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, targetIndex));
         return applicantToView;
     }
 }

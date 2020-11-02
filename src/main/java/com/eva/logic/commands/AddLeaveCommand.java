@@ -69,6 +69,12 @@ public class AddLeaveCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        if (panelState.equals(STAFF_PROFILE)) {
+            if (!model.getCurrentViewStaff().getIndex().equals(targetIndex)) {
+                throw new CommandException("Please go to staff profile with keyed in index"
+                        + " or staff list panel with 'list s-'");
+            }
+        }
 
         Staff staffToTakeLeave = lastShownList.get(targetIndex.getZeroBased());
         StringBuilder sb = new StringBuilder();

@@ -56,6 +56,12 @@ public class AddApplicationCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
         }
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(index)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
+        }
         // if (model.hasApplication(toAdd)) // MESSAGE_OVERRIDE
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 
@@ -70,7 +76,7 @@ public class AddApplicationCommand extends Command {
         } else if (panelState.equals(APPLICANT_PROFILE)) {
             model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
             Applicant applicantToView = lastShownList.get(index.getZeroBased());
-            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
+            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToUpdate.getName()),
                 false, false, true);

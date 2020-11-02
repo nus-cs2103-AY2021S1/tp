@@ -68,9 +68,15 @@ public class EditApplicantCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
-        if (!panelState.equals(APPLICANT_LIST)) {
+        if (!panelState.equals(APPLICANT_LIST) && !panelState.equals(APPLICANT_PROFILE)) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
+        }
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(index)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
         }
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 
@@ -90,7 +96,7 @@ public class EditApplicantCommand extends Command {
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         if (panelState.equals(APPLICANT_PROFILE)) {
             Applicant applicantToView = lastShownList.get(index.getZeroBased());
-            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
+            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),

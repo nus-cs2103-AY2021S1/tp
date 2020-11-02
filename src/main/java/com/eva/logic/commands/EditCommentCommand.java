@@ -69,11 +69,21 @@ public class EditCommentCommand extends Command {
         } else {
             throw new CommandException("Program spoil");
         }
+        if (panelState.equals(APPLICANT_PROFILE)) {
+            if (!model.getCurrentViewApplicant().getIndex().equals(index)) {
+                throw new CommandException("Please go to applicant with keyed in index"
+                        + " or applicant list panel with 'list a-'");
+            }
+        } else if (panelState.equals(STAFF_PROFILE)) {
+            if (!model.getCurrentViewStaff().getIndex().equals(index)) {
+                throw new CommandException("Please go to staff profile with keyed in index"
+                        + " or staff list panel with 'list s-'");
+            }
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
-
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
@@ -100,7 +110,7 @@ public class EditCommentCommand extends Command {
             model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
             model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
             Applicant applicantToView = (Applicant) lastShownList.get(index.getZeroBased());
-            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
+            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, index));
             break;
         default:
             throw new CommandException("Unknown Panel");

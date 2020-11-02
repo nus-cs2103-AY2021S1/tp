@@ -2,6 +2,7 @@ package com.eva.ui.profile.applicant.view;
 
 import java.util.Comparator;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.ui.UiPart;
 
@@ -18,6 +19,8 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
 
     @FXML
     private HBox displayPane;
+    @FXML
+    private Label id;
     @FXML
     private Label name;
     @FXML
@@ -40,6 +43,27 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
         super(FXML);
         this.applicant = applicant;
         name.setText(this.applicant.getName().fullName);
+        phone.setText(this.applicant.getPhone().value);
+        address.setText(this.applicant.getAddress().value);
+        email.setText(this.applicant.getEmail().value);
+        interviewDate.setText(this.applicant.getInterviewDate().toString());
+        applicationStatus.setText(this.applicant.getApplicationStatus().toString());
+        tags.getChildren().add(new Label("Applicant"));
+        applicant.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    /**
+     * Create ApplicantBasicInfoDIsplay object
+     * @param applicant
+     * @param index
+     */
+    public ApplicantBasicInfoDisplay(Applicant applicant, Index index) {
+        super(FXML);
+        this.applicant = applicant;
+        name.setText(this.applicant.getName().fullName);
+        id.setText(index.getOneBased() + ". ");
         phone.setText(this.applicant.getPhone().value);
         address.setText(this.applicant.getAddress().value);
         email.setText(this.applicant.getEmail().value);

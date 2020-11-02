@@ -61,6 +61,12 @@ public class DeleteLeaveCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                     MESSAGE_WRONG_PANEL));
         }
+        if (panelState.equals(STAFF_PROFILE)) {
+            if (!model.getCurrentViewStaff().getIndex().equals(targetIndex)) {
+                throw new CommandException("Please go to staff profile with keyed in index"
+                        + "or staff list panel with 'list s-'");
+            }
+        }
         List<Staff> lastShownList = model.getFilteredStaffList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
