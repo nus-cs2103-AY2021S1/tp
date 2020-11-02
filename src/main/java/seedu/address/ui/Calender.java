@@ -1,18 +1,25 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-
-import java.lang.management.ClassLoadingMXBean;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
+
+import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class Calender extends UiPart<Region> {
     private static final String FILEPATH = "Calender.fxml";
@@ -25,11 +32,13 @@ public class Calender extends UiPart<Region> {
     private boolean isLeapYear;
 
     @FXML
-    public GridPane calenderGrid;
-
+    private GridPane calenderGrid;
     @FXML
     private Label monthYearInput;
 
+    /**
+     * Represents the calender that is going to be displayed.
+     */
     public Calender() {
         super(FILEPATH);
         loadVbox();
@@ -103,10 +112,8 @@ public class Calender extends UiPart<Region> {
             }
             box.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
-
             int col = parseCol(i);
             int row = parseRow(i);
-//            System.out.println(String.format("Value: %d, Col: %d, Row: %d",i,col,row));
             fillCalender(box, col, row);
         }
     }
@@ -128,18 +135,25 @@ public class Calender extends UiPart<Region> {
             switch (i) {
             case 0:
                 setDayHeader("Monday", 0);
+                break;
             case 1:
                 setDayHeader("Tuesday", 1);
+                break;
             case 2:
                 setDayHeader("Wednesday", 2);
+                break;
             case 3:
                 setDayHeader("Thursday", 3);
+                break;
             case 4:
                 setDayHeader("Friday", 4);
+                break;
             case 5:
                 setDayHeader("Saturday", 5);
+                break;
             case 6:
                 setDayHeader("Sunday", 6);
+                break;
             default:
                 setDayHeader("", 0);
             }
@@ -157,14 +171,20 @@ public class Calender extends UiPart<Region> {
         fillCalender(box, col, 0);
     }
 
+    /**
+     * Handles the button action when pressing on next month.
+     */
     @FXML
     public void nextMonth() {
-        updateHeader(1 );
+        updateHeader(1);
         emptyCal();
         loadDayHeader();
         loadNow();
     }
 
+    /**
+     * Handles the button action when pressing on previous month.
+     */
     @FXML
     public void previousMonth() {
         updateHeader(-1);

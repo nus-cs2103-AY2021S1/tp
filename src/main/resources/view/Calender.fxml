@@ -30,12 +30,12 @@
                               <Font size="27.0" />
                            </font>
                         </Label>
-                        <Button fx:id="nextYearButton" mnemonicParsing="false" onAction="#nextMonth" text="Button" GridPane.halignment="RIGHT">
+                        <Button fx:id="nextYearButton" mnemonicParsing="false" onAction="#nextMonth" text="Next" GridPane.halignment="RIGHT">
                            <GridPane.margin>
                               <Insets right="20.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button fx:id="previousYearButton" mnemonicParsing="false" onAction="#previousMonth" text="Button" GridPane.halignment="LEFT">
+                        <Button fx:id="previousYearButton" mnemonicParsing="false" onAction="#previousMonth" text="Previous" GridPane.halignment="LEFT">
                            <GridPane.margin>
                               <Insets left="20.0" />
                            </GridPane.margin>
