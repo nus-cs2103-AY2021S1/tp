@@ -2,7 +2,6 @@ package nustorage.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
