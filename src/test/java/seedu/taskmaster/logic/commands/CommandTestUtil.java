@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String PRESENT_ATTENDANCE = "present";
     public static final String ABSENT_ATTENDANCE = "absent";
-    public static final String VALID_SCORE_STRING = "0";
-    public static final int VALID_SCORE_INT = 0;
+    public static final String VALID_SCORE_STRING = "0.00";
+    public static final double VALID_SCORE_DOUBLE = 0;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

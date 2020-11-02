@@ -6,7 +6,7 @@ import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPAT
 import static seedu.taskmaster.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.PREAMBLE_ALL;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_INT;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_DOUBLE;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_SCORE_STRING;
 import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION;
 import static seedu.taskmaster.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -63,7 +63,7 @@ class ParticipationCommandParserTest {
         Index targetIndex = INDEX_FIRST_STUDENT;
         String inputScore = targetIndex.getOneBased() + " "
                 + PREFIX_CLASS_PARTICIPATION + VALID_SCORE_STRING;
-        ParticipationCommand expectedCommandPresent = new ParticipationCommand(targetIndex, VALID_SCORE_INT);
+        ParticipationCommand expectedCommandPresent = new ParticipationCommand(targetIndex, VALID_SCORE_DOUBLE);
         assertParseSuccess(parser, inputScore, expectedCommandPresent);
     }
 
@@ -71,7 +71,7 @@ class ParticipationCommandParserTest {
     public void parse_markAllStudents_success() {
         String inputScore = PREAMBLE_ALL + " "
                 + PREFIX_CLASS_PARTICIPATION + VALID_SCORE_STRING;
-        ParticipationCommand expectedCommandPresent = new ParticipationAllCommand(VALID_SCORE_INT);
+        ParticipationCommand expectedCommandPresent = new ParticipationAllCommand(VALID_SCORE_DOUBLE);
         assertParseSuccess(parser, inputScore, expectedCommandPresent);
     }
 }
