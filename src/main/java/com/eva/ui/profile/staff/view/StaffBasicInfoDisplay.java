@@ -2,6 +2,7 @@ package com.eva.ui.profile.staff.view;
 
 import java.util.Comparator;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
 
@@ -24,6 +25,8 @@ public class StaffBasicInfoDisplay extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label id;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -35,7 +38,7 @@ public class StaffBasicInfoDisplay extends UiPart<Region> {
     /**
      * Creates a {@code StaffBasicInfoDisplay} with the given {@code Staff}.
      */
-    public StaffBasicInfoDisplay(Staff staff) {
+    public StaffBasicInfoDisplay(Staff staff, Index index) {
         super(FXML);
         this.staff = staff;
 
@@ -52,6 +55,7 @@ public class StaffBasicInfoDisplay extends UiPart<Region> {
         staff.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        id.setText(index.getOneBased() + ". ");
     }
 
     @Override

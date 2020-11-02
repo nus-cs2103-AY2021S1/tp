@@ -10,7 +10,7 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import com.eva.logic.commands.AddCommand;
+import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.CommentCommand;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.staff.Staff;
@@ -26,7 +26,7 @@ public class StaffUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddStaffCommand(Staff staff) {
-        return AddCommand.COMMAND_WORD + " s- " + getStaffDetails(staff);
+        return AddStaffCommand.COMMAND_WORD + " " + getStaffDetails(staff);
     }
 
     /**

@@ -2,6 +2,7 @@ package com.eva.ui.profile.applicant.view;
 
 import java.util.Comparator;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.ui.UiPart;
 
@@ -19,6 +20,8 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     @FXML
     private HBox displayPane;
     @FXML
+    private Label id;
+    @FXML
     private Label name;
     @FXML
     private Label phone;
@@ -34,9 +37,11 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code StaffBasicInfoDisplay} with the given {@code Person}.
+     * Create ApplicantBasicInfoDIsplay object
+     * @param applicant
+     * @param index
      */
-    public ApplicantBasicInfoDisplay(Applicant applicant) {
+    public ApplicantBasicInfoDisplay(Applicant applicant, Index index) {
         super(FXML);
         this.applicant = applicant;
 
@@ -46,6 +51,7 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
         email.setWrapText(true);
 
         name.setText(this.applicant.getName().fullName);
+        id.setText(index.getOneBased() + ". ");
         phone.setText(this.applicant.getPhone().value);
         address.setText(this.applicant.getAddress().value);
         email.setText(this.applicant.getEmail().value);

@@ -20,8 +20,8 @@ import org.junit.jupiter.api.io.TempDir;
 import com.eva.commons.core.Messages;
 //import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.CommandResult;
+import com.eva.logic.commands.DeleteStaffCommand;
 // import com.eva.logic.commands.ListCommand;
-import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.Model;
@@ -62,9 +62,9 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertParseException(deleteCommand,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        String deleteStaffCommand = "dels ha";
+        assertParseException(deleteStaffCommand,
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
     }
 
     /*

@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.ClearCommand;
-import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 //import com.eva.logic.commands.EditCommand;
 //import com.eva.logic.commands.EditCommand.EditPersonDescriptor;
@@ -54,7 +53,7 @@ public class EvaParserTest {
     @Test
     public void parseCommand_deleteStaff() throws Exception {
         DeleteStaffCommand command = (DeleteStaffCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " s-");
+                DeleteStaffCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteStaffCommand(INDEX_FIRST_PERSON), command);
     }
 

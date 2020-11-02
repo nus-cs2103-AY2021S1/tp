@@ -1,8 +1,7 @@
 package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -10,7 +9,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.eva.commons.core.index.Index;
-import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.commands.EditCommand;
 import com.eva.logic.commands.EditCommentCommand;
 import com.eva.logic.parser.ArgumentMultimap;
@@ -32,7 +30,7 @@ public class EditCommentCommandParser implements Parser<EditCommentCommand> {
     public EditCommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_APPLICANT, PREFIX_STAFF);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMMENT);
 
         Index index;
 
@@ -47,26 +45,17 @@ public class EditCommentCommandParser implements Parser<EditCommentCommand> {
 
         EditCommand.EditPersonDescriptor editPersonDescriptor =
                 new EditCommand.EditPersonDescriptor();
-        if (argMultimap.getAllValues(PREFIX_APPLICANT).size() != 0) {
-            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT))
-                    .ifPresent(editPersonDescriptor::setComments);
-        } else if (argMultimap.getAllValues(PREFIX_STAFF).size() != 0) {
-            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_STAFF))
+        if (argMultimap.getAllValues(PREFIX_COMMENT).size() != 0) {
+            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT))
                     .ifPresent(editPersonDescriptor::setComments);
         } else {
-            throw new ParseException(DeleteCommentCommand.MISSING_PERSONTYPE_MESSAGE);
+            throw new ParseException(EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE);
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-
-        if (!argMultimap.getValue(PREFIX_APPLICANT).isEmpty()) {
-            return new EditCommentCommand(index, editPersonDescriptor, "applicant");
-        } else if (!argMultimap.getValue(PREFIX_STAFF).isEmpty()) {
-            return new EditCommentCommand(index, editPersonDescriptor, "staff");
-        }
-        return new EditCommentCommand(index, editPersonDescriptor, "staff");
+        return new EditCommentCommand(index, editPersonDescriptor);
     }
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
@@ -79,6 +68,12 @@ public class EditCommentCommandParser implements Parser<EditCommentCommand> {
         if (comments.isEmpty() || comments.size() == 1
                 && comments.contains("")) {
             throw new ParseException(EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE);
+        }
+        for (String comment : comments) {
+            String trimmedComment = comment.trim();
+            if (!Comment.isValidAddComment(" " + trimmedComment)) {
+                throw new ParseException(EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE);
+            }
         }
         return Optional.of(ParserUtil.parseComments(comments));
     }

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.eva.commons.core.index.Index;
 import com.eva.model.comment.Comment;
 import com.eva.model.comment.exceptions.CommentNotFoundException;
 import com.eva.model.comment.view.UniqueCommentsList;
@@ -20,6 +21,7 @@ public class CurrentViewStaff implements ReadOnlyCurrentViewStaff {
     private final Staff currentView;
     private final UniqueLeaveList leaves;
     private final UniqueCommentsList comments;
+    private final Index index;
 
     /**
      * Creates an empty currentViewStaff.
@@ -28,22 +30,40 @@ public class CurrentViewStaff implements ReadOnlyCurrentViewStaff {
         this.currentView = null;
         this.leaves = new UniqueLeaveList();
         this.comments = new UniqueCommentsList();
+        this.index = Index.fromZeroBased(0);
     }
 
-    /**
+    /*/**
      * Creates a currentView with the current viewing staff.
      */
-    public CurrentViewStaff(Staff currentView) {
+    /*public CurrentViewStaff(Staff currentView) {
         requireNonNull(currentView);
         this.currentView = currentView;
         this.leaves = new UniqueLeaveList();
         this.leaves.fill(currentView.getLeaves());
         this.comments = new UniqueCommentsList();
         this.comments.fill(currentView.getComments());
+    }*/
+
+    /**
+     * Creates a currentView with the current viewing staff index.
+     */
+    public CurrentViewStaff(Staff currentView, Index index) {
+        requireNonNull(currentView);
+        this.currentView = currentView;
+        this.leaves = new UniqueLeaveList();
+        this.leaves.fill(currentView.getLeaves());
+        this.comments = new UniqueCommentsList();
+        this.comments.fill(currentView.getComments());
+        this.index = index;
     }
 
     public Optional<Staff> getCurrentView() {
         return Optional.ofNullable(currentView);
+    }
+
+    public Index getIndex() {
+        return this.index;
     }
 
     public ObservableList<Comment> getCommentList() throws CommentNotFoundException {
