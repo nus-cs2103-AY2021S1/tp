@@ -5,9 +5,9 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_MISSING_PREFIX_INVALID_COMMAND;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,9 +23,9 @@ import seedu.pivot.model.investigationcase.Status;
 import seedu.pivot.model.investigationcase.Title;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -167,19 +167,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String gender} into a {@code Gender}.
+     * Parses a {@code String sex} into a {@code Sex}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code gender} is invalid.
+     * @throws ParseException if the given {@code sex} is invalid.
      */
-    public static Gender parseGender(String gender) throws ParseException {
-        requireNonNull(gender);
-        String trimmedGender = gender.trim();
-        if (!Gender.isValidGender(trimmedGender)) {
-            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+    public static Sex parseSex(String sex) throws ParseException {
+        requireNonNull(sex);
+        String trimmedSex = sex.trim();
+        if (!Sex.isValidSex(trimmedSex)) {
+            throw new ParseException(Sex.MESSAGE_CONSTRAINTS);
         }
 
-        return Gender.createGender(trimmedGender);
+        return Sex.createSex(trimmedSex);
     }
 
     /**
@@ -237,8 +237,8 @@ public class ParserUtil {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
-            editPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        if (argMultimap.getValue(PREFIX_SEX).isPresent()) {
+            editPersonDescriptor.setSex(ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));

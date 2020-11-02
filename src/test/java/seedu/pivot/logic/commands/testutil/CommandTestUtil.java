@@ -36,8 +36,8 @@ public class CommandTestUtil {
 
     public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
     public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
-    public static final String VALID_GENDER_AMY = "F";
-    public static final String VALID_GENDER_BOB = "M";
+    public static final String VALID_SEX_AMY = "F";
+    public static final String VALID_SEX_BOB = "M";
 
     public static final String INVALID_CASEPERSON_NAME = "James&";
 

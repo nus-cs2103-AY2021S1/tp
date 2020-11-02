@@ -11,8 +11,8 @@ public class Witness extends CasePerson {
      *
      * @param name A valid name.
      */
-    public Witness(Name name, Gender gender, Phone phone, Email email, Address address) {
-        super(name, gender, phone, email, address);
+    public Witness(Name name, Sex sex, Phone phone, Email email, Address address) {
+        super(name, sex, phone, email, address);
     }
 
     /**
@@ -31,7 +31,7 @@ public class Witness extends CasePerson {
 
         Witness otherWitness = (Witness) other;
         return otherWitness.getName().equals(getName())
-                && otherWitness.getGender().equals(getGender())
+                && otherWitness.getSex().equals(getSex())
                 && otherWitness.getPhone().equals(getPhone())
                 && otherWitness.getEmail().equals(getEmail())
                 && otherWitness.getAddress().equals(getAddress());

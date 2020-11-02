@@ -10,8 +10,8 @@ public class Suspect extends CasePerson {
      *
      * @param name A valid name.
      */
-    public Suspect(Name name, Gender gender, Phone phone, Email email, Address address) {
-        super(name, gender, phone, email, address);
+    public Suspect(Name name, Sex sex, Phone phone, Email email, Address address) {
+        super(name, sex, phone, email, address);
     }
 
     /**
@@ -30,7 +30,7 @@ public class Suspect extends CasePerson {
 
         Suspect otherSuspect = (Suspect) other;
         return otherSuspect.getName().equals(getName())
-                && otherSuspect.getGender().equals(getGender())
+                && otherSuspect.getSex().equals(getSex())
                 && otherSuspect.getPhone().equals(getPhone())
                 && otherSuspect.getEmail().equals(getEmail())
                 && otherSuspect.getAddress().equals(getAddress());

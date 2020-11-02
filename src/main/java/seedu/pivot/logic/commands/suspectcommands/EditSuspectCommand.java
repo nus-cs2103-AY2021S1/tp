@@ -5,9 +5,9 @@ import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -23,9 +23,9 @@ import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 
 public class EditSuspectCommand extends EditPersonCommand {
@@ -34,7 +34,7 @@ public class EditSuspectCommand extends EditPersonCommand {
             + ": Edits a person in the opened case in PIVOT.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_GENDER + "GENDER] "
+            + "[" + PREFIX_SEX + "GENDER] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
@@ -90,11 +90,11 @@ public class EditSuspectCommand extends EditPersonCommand {
         assert suspectToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(suspectToEdit.getName());
-        Gender updatedGender = editPersonDescriptor.getGender().orElse(suspectToEdit.getGender());
+        Sex updatedSex = editPersonDescriptor.getSex().orElse(suspectToEdit.getSex());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(suspectToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(suspectToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(suspectToEdit.getAddress());
 
-        return new Suspect(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress);
+        return new Suspect(updatedName, updatedSex, updatedPhone, updatedEmail, updatedAddress);
     }
 }

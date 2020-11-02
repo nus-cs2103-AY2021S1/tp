@@ -10,21 +10,21 @@
     } ],
     "witnesses": [ {
       "name" : "Janice",
-      "gender" : "F",
+      "sex" : "F",
       "phone" : "",
       "email" : "",
       "address" : ""
     } ],
     "suspects": [ {
       "name" : "Peter",
-      "gender" : "M",
+      "sex" : "M",
       "phone" : "912345678",
       "email" : "peter@gmail.com",
       "address" : "Blk 123"
     } ],
     "victims" : [ {
       "name" : "Tom",
-      "gender" : "M",
+      "sex" : "M",
       "phone" : "912345678",
       "email" : "tom@gmail.com",
       "address" : "Blk 123"
@@ -41,7 +41,7 @@
     } ],
     "witnesses": [ {
       "name" : "Janice",
-      "gender" : "F",
+      "sex" : "F",
       "phone" : "",
       "email" : "",
       "address" : ""
@@ -49,7 +49,7 @@
     "suspects": [],
     "victims" : [ {
       "name" : "Tom",
-      "gender" : "M",
+      "sex" : "M",
       "phone" : "912345678",
       "email" : "tom@gmail.com",
       "address" : "Blk 123"

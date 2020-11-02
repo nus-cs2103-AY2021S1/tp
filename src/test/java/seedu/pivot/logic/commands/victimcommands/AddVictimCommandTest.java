@@ -21,20 +21,20 @@ import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CaseBuilder;
 
 
 public class AddVictimCommandTest {
     private static final Name DEFAULT_NAME = new Name("Test Name");
-    private static final Gender DEFAULT_GENDER = Gender.createGender("m");
+    private static final Sex DEFAULT_SEX = Sex.createSex("m");
     private static final Phone DEFAULT_PHONE = new Phone("91234567");
     private static final Address DEFAULT_ADDRESS = new Address("Blk 123");
     private static final Email DEFAULT_EMAIL = new Email("abc@gmail.com");
-    private static final Victim DEFAULT_VICTIM = new Victim(DEFAULT_NAME, DEFAULT_GENDER,
+    private static final Victim DEFAULT_VICTIM = new Victim(DEFAULT_NAME, DEFAULT_SEX,
             DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
     private static final Index DEFAULT_INDEX = Index.fromZeroBased(0);
 
@@ -47,7 +47,7 @@ public class AddVictimCommandTest {
 
     @Test
     public void equals() {
-        Victim alternateVictim = new Victim(new Name("Alice"), Gender.F,
+        Victim alternateVictim = new Victim(new Name("Alice"), Sex.F,
                 new Phone("92345678"), new Email("alice@hello.com"), new Address("Blk 345"));
         Index alternateIndex = Index.fromZeroBased(1000);
 

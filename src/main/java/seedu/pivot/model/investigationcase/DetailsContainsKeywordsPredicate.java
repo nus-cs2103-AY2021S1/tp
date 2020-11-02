@@ -100,7 +100,7 @@ public class DetailsContainsKeywordsPredicate implements Predicate<Case> {
      */
     public void appendPersonDetails(StringBuilder builder, CasePerson person) {
         builder.append(person.getName()).append(" ");
-        builder.append(person.getGender().toString()).append(" ");
+        builder.append(person.getSex().toString()).append(" ");
         builder.append(person.getPhone()).append(" ");
         builder.append(person.getEmail()).append(" ");
         builder.append(person.getAddress()).append(" ");

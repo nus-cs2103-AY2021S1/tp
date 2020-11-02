@@ -10,7 +10,7 @@ import java.util.Objects;
 public abstract class CasePerson {
     // Identity fields
     private final Name name;
-    private final Gender gender;
+    private final Sex sex;
 
     // Data fields
     private final Phone phone;
@@ -20,10 +20,10 @@ public abstract class CasePerson {
     /**
      * Every field must be present and not null.
      */
-    public CasePerson(Name name, Gender gender, Phone phone, Email email, Address address) {
-        requireAllNonNull(name, gender, phone, email, address);
+    public CasePerson(Name name, Sex sex, Phone phone, Email email, Address address) {
+        requireAllNonNull(name, sex, phone, email, address);
         this.name = name;
-        this.gender = gender;
+        this.sex = sex;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -33,8 +33,8 @@ public abstract class CasePerson {
         return name;
     }
 
-    public Gender getGender() {
-        return gender;
+    public Sex getSex() {
+        return sex;
     }
 
     public Phone getPhone() {
@@ -55,15 +55,15 @@ public abstract class CasePerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, gender, phone, email, address);
+        return Objects.hash(name, sex, phone, email, address);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append(" Gender: ")
-                .append(getGender());
+                .append(" Sex: ")
+                .append(getSex());
 
         if (!phone.toString().isBlank()) {
             builder.append(" Phone: ")

@@ -5,9 +5,9 @@ import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -28,13 +28,13 @@ public class AddVictimCommand extends AddCommand {
             + ": Adds a victim to the opened case in PIVOT.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_GENDER + "GENDER "
+            + PREFIX_SEX + "GENDER "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " " + TYPE_VICTIM + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_GENDER + "M "
+            + PREFIX_SEX + "M "
             + PREFIX_PHONE + "912345678 "
             + PREFIX_EMAIL + "john@email.com "
             + PREFIX_ADDRESS + "Blk 123";

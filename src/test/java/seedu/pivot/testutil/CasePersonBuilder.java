@@ -3,9 +3,9 @@ package seedu.pivot.testutil;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
@@ -16,14 +16,14 @@ import seedu.pivot.model.investigationcase.caseperson.Witness;
 public class CasePersonBuilder {
 
     public static final String DEFAULT_NAME = "Tom Holland";
-    public static final String DEFAULT_GENDER = "M";
+    public static final String DEFAULT_SEX = "M";
     public static final String DEFAULT_PHONE = "";
     public static final String DEFAULT_EMAIL = "";
     public static final String DEFAULT_ADDRESS = "";
 
     // Identity fields
     private Name name;
-    private Gender gender;
+    private Sex sex;
 
     // Data fields
     private Phone phone;
@@ -35,7 +35,7 @@ public class CasePersonBuilder {
      */
     public CasePersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        gender = Gender.createGender(DEFAULT_GENDER);
+        sex = Sex.createSex(DEFAULT_SEX);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -46,7 +46,7 @@ public class CasePersonBuilder {
      */
     public CasePersonBuilder(CasePerson personToCopy) {
         name = personToCopy.getName();
-        gender = personToCopy.getGender();
+        sex = personToCopy.getSex();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
@@ -61,10 +61,10 @@ public class CasePersonBuilder {
     }
 
     /**
-     * Sets the {@code Gender} of the {@code CasePerson} that we are building.
+     * Sets the {@code Sex} of the {@code CasePerson} that we are building.
      */
-    public CasePersonBuilder withGender(String gender) {
-        this.gender = Gender.createGender(gender);
+    public CasePersonBuilder withSex(String gender) {
+        this.sex = Sex.createSex(gender);
         return this;
     }
 
@@ -97,7 +97,7 @@ public class CasePersonBuilder {
      * @return Suspect object
      */
     public Suspect buildSuspect() {
-        return new Suspect(name, gender, phone, email, address);
+        return new Suspect(name, sex, phone, email, address);
     }
 
     /**
@@ -105,7 +105,7 @@ public class CasePersonBuilder {
      * @return Witness object
      */
     public Witness buildWitness() {
-        return new Witness(name, gender, phone, email, address);
+        return new Witness(name, sex, phone, email, address);
     }
 
     /**
@@ -113,6 +113,6 @@ public class CasePersonBuilder {
      * @return Victim object
      */
     public Victim buildVictim() {
-        return new Victim(name, gender, phone, email, address);
+        return new Victim(name, sex, phone, email, address);
     }
 }

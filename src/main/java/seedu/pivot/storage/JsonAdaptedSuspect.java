@@ -9,9 +9,9 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 
 
@@ -24,7 +24,7 @@ public class JsonAdaptedSuspect {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedSuspect.class);
 
     private final String name;
-    private final String gender;
+    private final String sex;
     private final String phone;
     private final String email;
     private final String address;
@@ -33,11 +33,11 @@ public class JsonAdaptedSuspect {
      * Constructs a {@code JsonAdaptedSuspect} with the given suspect details.
      */
     @JsonCreator
-    public JsonAdaptedSuspect(@JsonProperty("name") String name, @JsonProperty("gender") String gender,
+    public JsonAdaptedSuspect(@JsonProperty("name") String name, @JsonProperty("sex") String sex,
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("address") String address) {
         this.name = name;
-        this.gender = gender;
+        this.sex = sex;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -48,7 +48,7 @@ public class JsonAdaptedSuspect {
      */
     public JsonAdaptedSuspect(Suspect source) {
         this.name = source.getName().getAlphaNum();
-        this.gender = source.getGender().toString();
+        this.sex = source.getSex().toString();
         this.phone = source.getPhone().toString();
         this.email = source.getEmail().toString();
         this.address = source.getAddress().toString();
@@ -71,15 +71,15 @@ public class JsonAdaptedSuspect {
         }
         final Name modelName = new Name(name);
 
-        if (gender == null) {
-            logger.warning("Suspect gender is null. Check data");
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        if (sex == null) {
+            logger.warning("Suspect sex is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Sex.class.getSimpleName()));
         }
-        if (!Gender.isValidGender(gender)) {
+        if (!Sex.isValidSex(sex)) {
             logger.warning("Suspect gender is invalid. Check data");
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Sex.MESSAGE_CONSTRAINTS);
         }
-        final Gender modelGender = Gender.createGender(gender);
+        final Sex modelSex = Sex.createSex(sex);
 
         if (phone == null) {
             logger.warning("Suspect phone is null. Check data");
@@ -107,6 +107,6 @@ public class JsonAdaptedSuspect {
         }
         final Address modelAddress = new Address(address);
 
-        return new Suspect(modelName, modelGender, modelPhone, modelEmail, modelAddress);
+        return new Suspect(modelName, modelSex, modelPhone, modelEmail, modelAddress);
     }
 }
