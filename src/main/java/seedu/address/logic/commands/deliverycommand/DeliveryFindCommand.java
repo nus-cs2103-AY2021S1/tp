@@ -25,11 +25,12 @@ public class DeliveryFindCommand extends DeliveryCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all deliveries whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "'|' symbol means the user must provide at least one of the fields\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ORDER + "ORDER]\n"
+            + "[" + PREFIX_NAME + "NAME | "
+            + PREFIX_PHONE + "PHONE | "
+            + PREFIX_ADDRESS + "ADDRESS | "
+            + PREFIX_ORDER + "ORDER]\n"
             + "Example: " + COMMAND_WORD + " n/Sally p/84738594";
 
     private final Predicate<Delivery> predicate;
