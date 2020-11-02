@@ -17,17 +17,17 @@ import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.stock.logic.commands.NoteViewCommand;
+import seedu.stock.logic.commands.StockViewCommand;
 import seedu.stock.model.stock.SerialNumber;
 
-public class NoteViewCommandParserTest {
+public class StockViewCommandParserTest {
 
-    private NoteViewCommandParser parser = new NoteViewCommandParser();
+    private StockViewCommandParser parser = new StockViewCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                NoteViewCommand.MESSAGE_USAGE));
+                StockViewCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class NoteViewCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + SERIAL_NUMBER_DESC_APPLE,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteViewCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StockViewCommand.MESSAGE_USAGE));
 
     }
 
@@ -45,23 +45,23 @@ public class NoteViewCommandParserTest {
         // quantity field present
         assertParseFailure(parser,
                 SERIAL_NUMBER_DESC_APPLE + QUANTITY_DESC_BANANA,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteViewCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StockViewCommand.MESSAGE_USAGE));
 
         // location field present
         assertParseFailure(parser,
                 SERIAL_NUMBER_DESC_APPLE + LOCATION_DESC_BANANA,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteViewCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StockViewCommand.MESSAGE_USAGE));
 
         // source field present
         assertParseFailure(parser,
                 SERIAL_NUMBER_DESC_APPLE + SOURCE_DESC_BANANA,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteViewCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, StockViewCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                NoteViewCommand.MESSAGE_USAGE);
+                StockViewCommand.MESSAGE_USAGE);
 
         // missing any prefix
         assertParseFailure(parser, "", expectedMessage);
@@ -71,7 +71,7 @@ public class NoteViewCommandParserTest {
     @Test
     public void parse_duplicateCompulsoryFields_failure() {
         String expectedMessage = String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
-                NoteViewCommand.MESSAGE_USAGE);
+                StockViewCommand.MESSAGE_USAGE);
 
         // multiple serialNumber
         assertParseFailure(parser, SERIAL_NUMBER_DESC_BANANA
@@ -82,9 +82,9 @@ public class NoteViewCommandParserTest {
     public void parse_validArgs_returnsNoteViewCommand() {
 
         // no leading and trailing whitespaces
-        NoteViewCommand expectedNoteViewCommand =
-                new NoteViewCommand(SERIAL_NUMBER_FIRST_STOCK);
-        assertParseSuccess(parser, SERIAL_NUMBER_DESC_APPLE, expectedNoteViewCommand);
+        StockViewCommand expectedStockViewCommand =
+                new StockViewCommand(SERIAL_NUMBER_FIRST_STOCK);
+        assertParseSuccess(parser, SERIAL_NUMBER_DESC_APPLE, expectedStockViewCommand);
 
     }
 
@@ -94,12 +94,12 @@ public class NoteViewCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + SERIAL_NUMBER_DESC_APPLE,
-                new NoteViewCommand(SERIAL_NUMBER_FIRST_STOCK));
+                new StockViewCommand(SERIAL_NUMBER_FIRST_STOCK));
 
         // whitespaces in between different headers
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + SERIAL_NUMBER_DESC_BANANA + "          ",
-                new NoteViewCommand(SERIAL_NUMBER_SECOND_STOCK));
+                new StockViewCommand(SERIAL_NUMBER_SECOND_STOCK));
 
     }
 
@@ -108,7 +108,7 @@ public class NoteViewCommandParserTest {
 
         // invalid serial number format
         String invalidSerialNumberExpectedMessage = String.format(SerialNumber.MESSAGE_CONSTRAINTS,
-                NoteViewCommand.MESSAGE_USAGE);
+                StockViewCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser,
                 PREAMBLE_WHITESPACE + INVALID_SERIAL_NUMBER_DESC,
