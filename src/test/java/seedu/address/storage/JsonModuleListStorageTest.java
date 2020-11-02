@@ -62,31 +62,31 @@ public class JsonModuleListStorageTest {
         assertThrows(DataConversionException.class, () -> readModuleList("invalidAndValidModuleModuleList.json"));
     }
 
-        @Test
-        public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-            Path filePath = testFolder.resolve("TempModuleList.json");
-            Trackr original = getTypicalTrackr();
-            JsonModuleListStorage jsonModuleListStorage = new JsonModuleListStorage(filePath);
+    @Test
+    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempModuleList.json");
+        Trackr original = getTypicalTrackr();
+        JsonModuleListStorage jsonModuleListStorage = new JsonModuleListStorage(filePath);
 
-            // Save in new file and read back
-            jsonModuleListStorage.saveModuleList(original, filePath);
-            ReadOnlyTrackr<Module> readBack = jsonModuleListStorage.readModuleList(filePath).get();
-            assertEquals(original, new Trackr(readBack));
+        // Save in new file and read back
+        jsonModuleListStorage.saveModuleList(original, filePath);
+        ReadOnlyTrackr<Module> readBack = jsonModuleListStorage.readModuleList(filePath).get();
+        assertEquals(original, new Trackr(readBack));
 
-            // Modify data, overwrite exiting file, and read back
-            original.removeModule(CS2100);
-            original.removeModule(CS2040);
-            jsonModuleListStorage.saveModuleList(original, filePath);
-            readBack = jsonModuleListStorage.readModuleList(filePath).get();
-            assertEquals(original, new Trackr(readBack));
+        // Modify data, overwrite exiting file, and read back
+        original.removeModule(CS2100);
+        original.removeModule(CS2040);
+        jsonModuleListStorage.saveModuleList(original, filePath);
+        readBack = jsonModuleListStorage.readModuleList(filePath).get();
+        assertEquals(original, new Trackr(readBack));
 
-            // Save and read without specifying file path
-            original.addTutorialGroup(V04, CS2030);
-            jsonModuleListStorage.saveModuleList(original); // file path not specified
-            readBack = jsonModuleListStorage.readModuleList().get(); // file path not specified
-            assertEquals(original, new Trackr(readBack));
+        // Save and read without specifying file path
+        original.addTutorialGroup(V04, CS2030);
+        jsonModuleListStorage.saveModuleList(original); // file path not specified
+        readBack = jsonModuleListStorage.readModuleList().get(); // file path not specified
+        assertEquals(original, new Trackr(readBack));
 
-        }
+    }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
