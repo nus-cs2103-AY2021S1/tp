@@ -49,7 +49,6 @@ class JsonAdaptedParticipation {
         tasks.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
-        //        meetings = source.getMeetings();
     }
 
     /**

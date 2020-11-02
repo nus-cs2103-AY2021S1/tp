@@ -37,7 +37,6 @@ public class TypicalProjects {
             .withDeadline("21-03-2020 00:00:00")
             .withTags("amazon", "evil")
             .withTasks(SampleDataUtil.getTask3())
-            //            .withMeetings("2020-10-10T15:30:00")
             //            .withPeople("Bob", "Niaz")
             .build();
     public static final Project CARACTIVE = new ProjectBuilder().withProjectName("Caractive")
