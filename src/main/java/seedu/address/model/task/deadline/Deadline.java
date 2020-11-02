@@ -157,7 +157,7 @@ public class Deadline extends Task {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        // attributes that are neglected are hided
+        // attributes that are neglected are hidden
         builder.append(getTitle())
                 .append(" Done by: ")
                 .append(getDeadlineDateTime())

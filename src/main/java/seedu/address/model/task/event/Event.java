@@ -142,7 +142,7 @@ public class Event extends Task {
             builder.append("Lesson: ");
         }
 
-        // attributes that are neglected are hided
+        // attributes that are neglected are hidden
         builder.append(getTitle())
                 .append(" From: ")
                 .append(getStartDateTime())

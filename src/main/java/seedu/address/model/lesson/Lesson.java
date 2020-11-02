@@ -196,7 +196,7 @@ public class Lesson {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        // attributes that are neglected are hided
+        // attributes that are neglected are hidden
         builder.append(getTitle())
                 .append(getDescription().equals(Description.defaultDescription()) ? "" : " Description: ")
                 .append(getDescription())
