@@ -481,6 +481,9 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void commitContactList() {}
+
+        @Override
         public ReadOnlyContactList getContactList() {
             return new ContactList();
         }

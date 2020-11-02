@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.ContactList;
 import seedu.address.model.ModuleList;
 import seedu.address.model.contact.Contact;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
-public class TypicalPersons {
+public class TypicalContacts {
 
     public static final Contact ALICE = new ContactBuilder().withName("Alice Pauline")
             .withEmail("alice@example.com").withTelegram("@alice")
@@ -51,17 +52,17 @@ public class TypicalPersons {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalPersons() {} // prevents instantiation
+    private TypicalContacts() {} // prevents instantiation
 
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static ModuleList getTypicalAddressBook() {
-        ModuleList ab = new ModuleList();
-        for (Contact person : getTypicalPersons()) {
-            // ab.addPerson(person);
+    public static ContactList getTypicalContactList() {
+        ContactList list = new ContactList();
+        for (Contact contact : getTypicalPersons()) {
+            list.addContact(contact);
         }
-        return ab;
+        return list;
     }
 
     public static List<Contact> getTypicalPersons() {
