@@ -2,8 +2,9 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -13,6 +14,9 @@ import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleLesson;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.ui.DisplayZoomLink;
 
 /**
  * Lists all modules in the module list to the user.
@@ -51,9 +55,12 @@ public class ViewModuleCommand extends Command {
 
         ViewCommandResult viewCommandResult = new ViewCommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
         viewCommandResult.setTextArea(moduleToView.toViewTextArea());
-        viewCommandResult.setZoomLinks(moduleToView.getAllLinks().values().stream().collect(Collectors.toList()));
-        //viewCommandResult.setZoomLinksToCopy(moduleToView.getAllLinks()
-        // .values().stream().collect(Collectors.toList()));
+        List<DisplayZoomLink> displayZoomLinkList = new ArrayList<>();
+        for (Map.Entry<ModuleLesson, ZoomLink> entry : moduleToView.getAllLinks().entrySet()) {
+            DisplayZoomLink displayZoomLink = new DisplayZoomLink(entry.getKey(), entry.getValue());
+            displayZoomLinkList.add(displayZoomLink);
+        }
+        viewCommandResult.setDisplayZoomLinks(displayZoomLinkList);
         return viewCommandResult;
     }
 

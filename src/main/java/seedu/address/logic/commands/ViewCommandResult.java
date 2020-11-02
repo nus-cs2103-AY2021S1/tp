@@ -2,11 +2,12 @@ package seedu.address.logic.commands;
 
 import java.util.List;
 
+import seedu.address.ui.DisplayZoomLink;
+
 public class ViewCommandResult extends CommandResult {
 
     private String textArea;
-    private List zoomLinksToCopy;
-    private List zoomLinks;
+    private List<DisplayZoomLink> displayZoomLinks;
 
     public ViewCommandResult(String feedbackToUser) {
         super(feedbackToUser);
@@ -16,23 +17,15 @@ public class ViewCommandResult extends CommandResult {
         this.textArea = textArea;
     }
 
-    public void setZoomLinks(List zoomLinks) {
-        this.zoomLinks = zoomLinks;
-    }
-
-    public void setZoomLinksToCopy(List zoomLinksToCopy) {
-        this.zoomLinksToCopy = zoomLinksToCopy;
+    public void setDisplayZoomLinks(List<DisplayZoomLink> displayZoomLinks) {
+        this.displayZoomLinks = displayZoomLinks;
     }
 
     public String getTextArea() {
         return textArea;
     }
 
-    public List getZoomLinks() {
-        return zoomLinks;
-    }
-
-    public List getZoomLinksToCopy() {
-        return zoomLinksToCopy;
+    public List<DisplayZoomLink> getDisplayZoomLinks() {
+        return displayZoomLinks;
     }
 }

@@ -26,7 +26,8 @@ public class DetailDisplay extends UiPart<Region> {
     public void setDisplay(ViewCommandResult result) {
         resultDisplay.setText(result.getTextArea());
 
-        zoomLinkPanel = new ZoomLinkPanel(FXCollections.observableArrayList(result.getZoomLinks()));
+        zoomLinkPanel = new ZoomLinkPanel(FXCollections.observableArrayList(result.getDisplayZoomLinks()));
+
         listPlaceholder.getChildren().add(zoomLinkPanel.getRoot());
     }
 }
