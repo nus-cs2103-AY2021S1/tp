@@ -10,6 +10,9 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class DateUtil {
+
+    public static final String TIME_CONSTRAINTS =
+            "Time should be valid and in the format of HH:mm.";
     public static final String DATE_TIME_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
     public static final String DATE_FORMAT = "dd-MM-yyyy";

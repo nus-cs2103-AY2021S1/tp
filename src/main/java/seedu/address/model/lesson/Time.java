@@ -12,8 +12,7 @@ import seedu.address.commons.util.DateUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class Time {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Time should be in the format of HH:mm";
+    public static final String MESSAGE_CONSTRAINTS = DateUtil.TIME_CONSTRAINTS;
     public static final String RANGE_CONSTRAINTS = "Start time should be before end time";
     public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", DateUtil.TIME_FORMATTER);
     public final LocalTime value;

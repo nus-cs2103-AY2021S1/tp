@@ -102,7 +102,7 @@ public class ParserUtil {
             throw new ParseException(DateUtil.DATE_CONSTRAINTS);
         }
         if (!DateUtil.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
         }
         return StartDateTime.createStartDateTime(trimmedDate, trimmedTime);
     }
@@ -121,7 +121,7 @@ public class ParserUtil {
             throw new ParseException(DateUtil.DATE_CONSTRAINTS);
         }
         if (!DateUtil.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
         }
         return EndDateTime.createEndDateTime(trimmedDate, trimmedTime);
     }
