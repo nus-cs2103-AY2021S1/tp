@@ -7,8 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtil {
+    public static final String DATE_CONSTRAINTS =
+            "Date should be a valid date in the format of dd-MM-yyyy.";
     public static final String DATE_TIME_CONSTRAINTS =
-            "DateTime should be in the format of dd-MM-yyyy HH:mm.";
+            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm.";
     public static final String DATE_VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
     public static final String DATETIME_VALIDATION_REGEX =
             "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";

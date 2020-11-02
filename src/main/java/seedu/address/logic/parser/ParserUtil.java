@@ -154,7 +154,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+            throw new ParseException(DateUtil.DATE_CONSTRAINTS);
         }
         return LocalDate.parse(trimmedDate, parser);
     }
@@ -169,31 +169,13 @@ public class ParserUtil {
         requireNonNull(day);
         String trimmedDay = day.trim();
         String dayOfWeek = trimmedDay.toUpperCase();
-        switch (dayOfWeek) {
-        case "MON":
-        case "MONDAY":
-            return DayOfWeek.MONDAY;
-        case "TUE":
-        case "TUESDAY":
-            return DayOfWeek.TUESDAY;
-        case "WED":
-        case "WEDNESDAY":
-            return DayOfWeek.WEDNESDAY;
-        case "THU":
-        case "THURSDAY":
-            return DayOfWeek.THURSDAY;
-        case "FRI":
-        case "FRIDAY":
-            return DayOfWeek.FRIDAY;
-        case "SAT":
-        case "SATURDAY":
-            return DayOfWeek.SATURDAY;
-        case "SUN":
-        case "SUNDAY":
-            return DayOfWeek.SUNDAY;
-        default:
+        DayOfWeek result; //Default value
+        try {
+            result = DayOfWeek.valueOf(dayOfWeek);
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
         }
+        return result;
     }
 
     /**
