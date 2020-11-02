@@ -15,7 +15,8 @@ public class AliasCommand extends Command {
     public static final String COMMAND_WORD = "alias";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a customised alias to a command.\n"
-            + "Alias must not be the same as the default command words and the 'alias' nor 'clear alias' command cannot have an alias.\n"
+            + "Alias must not be the same as the default command words and the 'alias' nor 'clear alias' "
+            + "command cannot have an alias.\n"
             + "Parameters: "
             + "[desired_alias] "
             + "[current_alias/if none, default_command]\n"
