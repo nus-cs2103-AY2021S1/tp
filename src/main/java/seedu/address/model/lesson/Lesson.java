@@ -202,7 +202,18 @@ public class Lesson {
                 && otherLesson.getDayOfWeek().equals(getDayOfWeek())
                 && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
     }
-
+    /**
+     * Returns true if date and time of this lessons will overlap with an event.
+     */
+    public boolean isSameTimeSlot(Event otherEvent) {
+        LocalDateTime startDateTime = LocalDateTime.of(getStartDate(), getStartTime());
+        LocalDateTime endDateTime = LocalDateTime.of(getEndDate(), getEndTime());
+        LocalDateTime otherStartDateTime = otherEvent.getStartDateTimeValue();
+        LocalDateTime otherEndDateTime = otherEvent.getEndDateTimeValue();
+        return otherEvent != null
+            && getDayOfWeek().equals(otherStartDateTime.getDayOfWeek())
+            && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
+    }
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

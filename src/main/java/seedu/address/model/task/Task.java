@@ -44,6 +44,10 @@ public abstract class Task implements Comparable<Task> {
     public Tag getTag() {
         return tag;
     }
+
+    /**
+     * Checks if 2 tasks or lessons overlap with one another.
+     */
     public static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
                                                   LocalDateTime endB) {
         return (startA.isBefore(endB)) && (endA.isAfter(startB));

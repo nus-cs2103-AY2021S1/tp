@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -69,11 +70,27 @@ public class Event extends Task {
      * Returns true if date and time of both events will overlap.
      */
     public boolean isSameTimeSlot(Event otherEvent) {
+        if (otherEvent == this) {
+            return true;
+        }
         LocalDateTime startDateTime = getStartDateTimeValue();
         LocalDateTime endDateTime = getEndDateTimeValue();
         LocalDateTime otherStartDateTime = otherEvent.getStartDateTimeValue();
         LocalDateTime otherEndDateTime = otherEvent.getEndDateTimeValue();
-        return Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
+        return otherEvent != null
+            && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
+    }
+    /**
+     * Returns true if date and time of this event will overlap with a lesson.
+     */
+    public boolean isSameTimeSlot(Lesson otherLesson) {
+        LocalDateTime startDateTime = getStartDateTimeValue();
+        LocalDateTime endDateTime = getEndDateTimeValue();
+        LocalDateTime otherStartDateTime = LocalDateTime.of(otherLesson.getStartDate(), otherLesson.getStartTime());
+        LocalDateTime otherEndDateTime = LocalDateTime.of(otherLesson.getEndDate(), otherLesson.getEndTime());
+        return otherLesson != null
+            && otherLesson.getDayOfWeek().equals(startDateTime.getDayOfWeek())
+            && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
     }
     /**
      * Returns an immutable tag, which throws {@code UnsupportedOperationException}

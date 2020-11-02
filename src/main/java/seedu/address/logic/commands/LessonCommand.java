@@ -17,7 +17,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
+import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.event.Event;
 
 public class LessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
@@ -58,20 +60,30 @@ public class LessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        ObservableList<Task> existingTasks = model.getFilteredTaskList();
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
+        
+        ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
+        boolean isTaskInModel = tasksToAdd.stream()
+                .anyMatch(model::hasTask);
+        if (isTaskInModel) {
+            throw new CommandException(MESSAGE_DUPLICATE_LESSON);
+        }
+        for (Task task: existingTasks) {
+            if (task instanceof Event && ((Event) task).isSameTimeSlot(lesson)) {
+                throw new CommandException(DateTime.OVERLAP_CONSTRAINTS);
+            }
+        }
         for (Lesson lesson: existingLessons) {
             if (lesson.isSameTimeSlot(this.lesson)) {
                 throw new CommandException(Time.OVERLAP_CONSTRAINTS);
             }
         }
-        ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
-        for (Task taskToAdd: tasksToAdd) {
-            if (model.hasTask(taskToAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
-            }
-            model.addTask(taskToAdd);
-            model.addTaskToCalendar(taskToAdd);
-        }
+        tasksToAdd.stream()
+                .forEach(task -> {
+                    model.addTask(task);
+                    model.addTaskToCalendar(task);
+                });
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }
