@@ -3,8 +3,6 @@ package seedu.address.model.tutorialgroup;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 public class TutorialContainsKeywordsPredicate implements Predicate<TutorialGroup> {
     private final List<String> keywords;
 
