@@ -80,6 +80,15 @@ public class SessionListManager implements SessionList {
     }
 
     @Override
+    public void delete(SessionName toDelete) {
+        requireNonNull(toDelete);
+        if (!contains(toDelete)) {
+            throw new SessionNotFoundException();
+        }
+        internalList.removeIf(session -> session.getSessionName().equals(toDelete));
+    }
+
+    @Override
     public void setSessions(SessionListManager replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

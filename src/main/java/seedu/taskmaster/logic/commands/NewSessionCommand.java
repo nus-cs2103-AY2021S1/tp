@@ -30,7 +30,7 @@ public class NewSessionCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SESSION = "Cannot add session:\n"
             + "A session with the same name already exists in the session list";
 
-    protected StudentRecordList studentRecordList = null;
+    private StudentRecordList studentRecordList = null;
     private final SessionName sessionName;
     private final SessionDateTime sessionDateTime;
 

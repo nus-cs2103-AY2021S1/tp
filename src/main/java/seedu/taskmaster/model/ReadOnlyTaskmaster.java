@@ -3,6 +3,7 @@ package seedu.taskmaster.model;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 
 
@@ -25,4 +26,5 @@ public interface ReadOnlyTaskmaster {
      * {@code StudentRecord}.
      */
     ObservableList<StudentRecord> getStudentRecordList();
+
 }
