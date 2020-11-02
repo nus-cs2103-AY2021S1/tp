@@ -17,7 +17,7 @@ public class JsonSerializableNotebookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableNotebookTest");
     private static final Path TYPICAL_NOTES_FILE = TEST_DATA_FOLDER.resolve("typicalNotesNotebook.json");
-    private static final Path INVALID_NOTES_FILE = TEST_DATA_FOLDER.resolve("invalidNotesNotebook.json");
+    private static final Path INVALID_NOTES_FILE = TEST_DATA_FOLDER.resolve("invalidNoteNotebook.json");
     private static final Path DUPLICATE_NOTES_FILE = TEST_DATA_FOLDER.resolve("duplicateNoteNotebook.json");
 
     @Test
