@@ -65,6 +65,7 @@ public class DeleteDetailCommandTest {
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
+
         assertCommandSuccess(deleteAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }
 
@@ -101,6 +102,7 @@ public class DeleteDetailCommandTest {
 
         String expectedMessage = String.format(DeleteDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), detail);
+
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);

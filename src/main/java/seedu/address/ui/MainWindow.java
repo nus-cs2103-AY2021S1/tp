@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -16,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.schedule.ScheduleViewMode;
+import seedu.address.model.student.Student;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SchedulePanel schedulePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private GridPane displayGridPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -67,6 +74,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -111,6 +119,10 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        schedulePanel = new SchedulePanel(logic.getVEventList());
+        personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
+
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
         studentListPanel = new StudentListPanel(logic.getSortedStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -165,10 +177,43 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the schedule with updated events.
+     */
+    @FXML
+    private void handleCalendar() {
+        schedulePanel = new SchedulePanel(logic.getVEventList());
+        personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        if (logic.getScheduleViewMode().equals(ScheduleViewMode.WEEKLY)) {
+            schedulePanel.setWeekView();
+        }
+        if (logic.getScheduleViewMode().equals(ScheduleViewMode.DAILY)) {
+            schedulePanel.setDayView();
+        }
+        schedulePanel.setDisplayedDateTime(logic.getScheduleViewDateTime());
+        schedulePanel.getRoot().toFront();
+    }
+
+    /**
+     * Closes the schedule.
+     */
+    public void closeSchedule() {
+        schedulePanel.getRoot().toBack();
+    }
+
+    /**
      * Toggle the display of student cards in the student list panel between admin and academic.
      */
     public void handleAcademicPanel() {
         studentListPanel.toggleState();
+    }
+
+    /**
+     * Opens the exam stats window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleExamStats(Student student) {
+        ExamStatsWindow examStatsWindow = new ExamStatsWindow(student);
+        examStatsWindow.show();
     }
 
     public StudentListPanel getStudentListPanel() {
@@ -194,8 +239,22 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+
+            // this is to open schedule when schedule command is called
+            if (commandResult.isSchedule()) {
+                handleCalendar();
+                return commandResult;
+            }
+
+            // closes schedule if other command is called
+            closeSchedule();
+
             if (commandResult.isToggleStudentCard()) {
                 handleAcademicPanel();
+            }
+
+            if (commandResult.isExamStats()) {
+                handleExamStats(commandResult.getSelectedStudent());
             }
 
             return commandResult;

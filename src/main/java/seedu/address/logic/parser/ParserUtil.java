@@ -1,21 +1,25 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddExamCommand;
+import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.schedule.LessonEvent;
+import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
-import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
@@ -36,6 +40,9 @@ import seedu.address.model.student.question.UnsolvedQuestion;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd")
+            .toFormatter();
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -108,32 +115,7 @@ public class ParserUtil {
         if (!Year.isValidYear(trimmedYear)) {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        final Matcher matcher = Year.YEAR_FORMAT.matcher(year.trim());
-        boolean isMatched = matcher.matches();
-        assert isMatched;
-        String schoolTypeString = matcher.group("school").trim().toLowerCase();
-        String levelString = matcher.group("level").trim().toLowerCase();
-
-        SchoolType schoolType = parseSchoolType(schoolTypeString);
-        Integer level = Integer.parseInt(levelString);
-
-        return new Year(schoolType, level);
-    }
-
-    /**
-     * Parses a {@code String schoolType} into a {@code SchoolType}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code schoolType} is invalid.
-     */
-    public static SchoolType parseSchoolType(String schoolType) throws ParseException {
-        requireNonNull(schoolType);
-        String trimmed = schoolType.trim().toLowerCase();
-        if (!SchoolType.isValidSchoolType(trimmed)) {
-            throw new ParseException(SchoolType.SCHOOL_TYPE_CONSTRANTS);
-        }
-        checkArgument(SchoolType.isValidSchoolType(trimmed), SchoolType.SCHOOL_TYPE_CONSTRANTS);
-        return SchoolType.LOOKUP_TABLE.get(trimmed);
+        return new Year(trimmedYear);
     }
 
     /**
@@ -248,6 +230,37 @@ public class ParserUtil {
             detailSet.add(parseDetail(detail));
         }
         return detailSet;
+    }
+
+    /**
+     * Parses {@code String input} into a {@ScheduleViewMode}.
+     * Case of the input string is ignored.
+     * @throws ParseException when given input string is not one of the view mode.
+     */
+    public static ScheduleViewMode parseViewMode(String input) throws ParseException {
+
+        if (input.equalsIgnoreCase(ScheduleViewMode.DAILY.name())) {
+            return ScheduleViewMode.DAILY;
+        }
+
+        if (input.equalsIgnoreCase(ScheduleViewMode.WEEKLY.name())) {
+            return ScheduleViewMode.WEEKLY;
+        }
+        throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_VIEW_MODE);
+    }
+
+    /**
+     * Parses a {@code dateToViewSchedule} into a LocalDateTime object.
+     * @throws ParseException when input string does not follow the format
+     */
+    public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
+        requireNonNull(dateToViewSchedule);
+        String dateView = dateToViewSchedule.trim();
+        try {
+            return LocalDate.parse(dateView, LessonEvent.VIEW_DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE_FORMAT);
+        }
     }
 
     /**
