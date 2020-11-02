@@ -1,16 +1,15 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.meeting.MeetingNameContainsKeywordsPredicate;
-import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.MeetingBuilder;
 
 public class MeetingNameContainsKeywordsPredicateTest {
     @Test
@@ -42,7 +41,7 @@ public class MeetingNameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_MeetingNameContainsKeywords_returnsTrue() {
+    public void test_meetingNameContainsKeywords_returnsTrue() {
         // One keyword
         MeetingNameContainsKeywordsPredicate predicate = new MeetingNameContainsKeywordsPredicate(
                 Collections.singletonList("CS2100"));
@@ -62,9 +61,10 @@ public class MeetingNameContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_MeetingNameDoesNotContainKeywords_returnsFalse() {
+    public void test_meetingNameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        MeetingNameContainsKeywordsPredicate predicate = new MeetingNameContainsKeywordsPredicate(Collections.emptyList());
+        MeetingNameContainsKeywordsPredicate predicate =
+                new MeetingNameContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new MeetingBuilder().withName("CS2100").build()));
 
         // Non-matching keyword

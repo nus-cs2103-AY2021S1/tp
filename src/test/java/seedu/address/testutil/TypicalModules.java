@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -7,10 +10,6 @@ import java.util.List;
 
 import seedu.address.model.ModuleBook;
 import seedu.address.model.module.Module;
-
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-
 
 public class TypicalModules {
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105").build();

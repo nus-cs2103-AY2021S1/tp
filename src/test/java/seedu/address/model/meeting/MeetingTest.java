@@ -1,25 +1,18 @@
 package seedu.address.model.meeting;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.PersonBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.CS2100_MEETING;
 import static seedu.address.testutil.TypicalMeetings.CS2101_MEETING;
 import static seedu.address.testutil.TypicalModules.CS2101;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.MeetingBuilder;
 
 public class MeetingTest {
     @Test
@@ -70,8 +63,8 @@ public class MeetingTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Meeting CS2100MeetingCopy = new MeetingBuilder(CS2100_MEETING).build();
-        assertTrue(CS2100_MEETING.equals(CS2100MeetingCopy));
+        Meeting cs2100MeetingCopy = new MeetingBuilder(CS2100_MEETING).build();
+        assertTrue(CS2100_MEETING.equals(cs2100MeetingCopy));
 
         // same object -> returns true
         assertTrue(CS2100_MEETING.equals(CS2100_MEETING));
