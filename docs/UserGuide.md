@@ -239,7 +239,7 @@ Multiple ingredients are separated by `,`.
      <img src="images/healthy2.png" width="100" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="100" height="100"> | images/healthy5.jpg
      <img src="images/healthy3.png" width="100" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="100" height="100"> | images/healthy6.jpg
      
-   
+   <div style="text-align: center">Table</div>
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
  step of the instruction based on the end of a sentence, indicated by a `.`.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
