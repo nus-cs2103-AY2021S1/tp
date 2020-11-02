@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_CS2101;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -98,6 +99,29 @@ public class CdCommandTest {
             assertThrows(CommandException.class, String.format(
                     CdCommand.MESSAGE_PATH_INVALID, "build.gradle"), () -> cdCommand.execute(modelStub));
         }
+    }
+
+    @Test
+    public void execute_noPermission_throwCommandException() {
+        // Get paths to parent and child folder
+        File file = new File(VALID_FILE_ADDRESS_CS2101);
+        file = new File(file.getParent());
+        String pathToTestUtil = file.getPath();
+        String pathToTestFolder = pathToTestUtil + "/testFolder";
+        File testFolder = new File(pathToTestFolder);
+
+        // Set read permission to false
+        boolean canSetPermission = testFolder.setReadable(false);
+
+        // Test CdCommand
+        if (canSetPermission) {
+            Model modelStub = new ModelStubWithCurrentPath(pathToTestUtil);
+            CdCommand cdCommand = new CdCommand(AddressType.CHILD, "testFolder");
+            assertThrows(CommandException.class, () -> cdCommand.execute(modelStub));
+        }
+
+        // Set read permission back to true
+        testFolder.setReadable(true);
     }
 
     @Test
