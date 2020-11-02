@@ -58,6 +58,10 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
 
+        if (IngredientParser.hasDuplicates(ingredients)) {
+            throw new ParseException(AddRecipeCommand.MESSAGE_DUPLICATE_INGREDIENTS);
+        }
+
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));

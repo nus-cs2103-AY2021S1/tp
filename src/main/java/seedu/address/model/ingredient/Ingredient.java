@@ -85,8 +85,7 @@ public class Ingredient {
         }
 
         return otherIngredient != null
-                && otherIngredient.getValue().equals(getValue())
-                && otherIngredient.getQuantity().equals(getQuantity());
+                && otherIngredient.getValue().toLowerCase().equals(getValue().toLowerCase());
     }
 
     /**

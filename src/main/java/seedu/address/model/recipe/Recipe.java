@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.model.ingredient.Ingredient;
@@ -91,22 +92,25 @@ public class Recipe {
         }
 
         return otherRecipe != null
-                && otherRecipe.getName().equals(getName())
-                && otherRecipe.getInstruction().equals(getInstruction())
-                && otherRecipe.getRecipeImage().equals(getRecipeImage())
-                && isSameIngredients(otherRecipe.getIngredient())
-                && otherRecipe.getCalories().equals(getCalories())
-                && otherRecipe.getTags().equals(getTags());
+                && otherRecipe.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
+                && isSameIngredients(otherRecipe.getIngredient());
     }
 
     private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
-        for (int i = 0; i < ingredients.size(); i++) {
-            if (!ingredients.get(i).isSameIngredient(otherIngredients.get(i))) {
-                return false;
-            }
+        if (ingredients.size() != otherIngredients.size()) {
+            return false;
         }
-        return true;
+        ArrayList<String> ingredientsCopy = new ArrayList<String>(new ArrayList<Ingredient>(ingredients)
+                                            .stream().map(ingredient -> ingredient.getValue().toLowerCase())
+                                            .collect(Collectors.toList()));
+        ArrayList<String> otherIngredientsCopy = new ArrayList<String>(new ArrayList<Ingredient>(otherIngredients)
+                                            .stream().map(ingredient -> ingredient.getValue().toLowerCase())
+                                            .collect(Collectors.toList()));
+
+        Collections.sort(ingredientsCopy);
+        Collections.sort(otherIngredientsCopy);
+        return ingredientsCopy.equals(otherIngredientsCopy);
     }
 
     /**
@@ -125,7 +129,12 @@ public class Recipe {
                 + " " + instructions + " " + image + " " + tags;
     }
 
-    private String stringifyIngredients(ArrayList<Ingredient> ingredients) {
+    /**
+     * Converts the list of ingredients into a string, with each ingredient separated by a comma.
+     * @param ingredients the list of ingredients
+     * @return a string of the ingredienst
+     */
+    public String stringifyIngredients(ArrayList<Ingredient> ingredients) {
         int len = ingredients.size();
         String ingredientsResult = "";
         for (int i = 0; i < len; i++) {
@@ -193,12 +202,8 @@ public class Recipe {
         }
 
         Recipe otherRecipe = (Recipe) other;
-        return otherRecipe.getName().equals(getName())
-                && otherRecipe.getInstruction().equals(getInstruction())
-                && otherRecipe.getRecipeImage().equals(getRecipeImage())
-                && otherRecipe.getIngredient().equals(getIngredient())
-                && otherRecipe.getCalories().equals(getCalories())
-                && otherRecipe.getTags().equals(getTags());
+        return otherRecipe.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
+                && isSameIngredients(otherRecipe.getIngredient());
     }
 
     @Override
@@ -212,9 +217,10 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                .append(ingredients.stream()
+                /*.append(ingredients.stream()
                         .map(item -> item.getQuantity() + " " + item.getValue())
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
+                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))*/
+                .append(stringifyIngredients(ingredients))
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")

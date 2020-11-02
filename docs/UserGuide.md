@@ -215,6 +215,10 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
 Multiple ingredients are separated by `,`.
 </div> 
 
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+    You cannot add duplicate recipes into Wishful Shrinking. Duplicate recipes means recipes with both the same name and ingredients. You may add two recipes with the same name, but different ingredients, or vice versa. If two recipes have the same image, instructions and tags, but different names and ingredients, they are not considered duplicate recipes.
+</div>
+
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
     * If you don't input the image field, Wishful Shrinking will add a default image to the recipe.
@@ -378,10 +382,10 @@ Finds recipes in the Recipe List that contain all the specified ingredient(s), n
 
 Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]]`
 
-* The search is case-insensitive. e.g `salad` will match `Salad`.
+* The search is case-insensitive. e.g. `salad` will match `Salad`.
+* The search will match partial keywords. e.g. `sandw` will match `sandwich`.
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham.
-* All fields are optional, but **at least one** of the fields must be present to search by recipe ingredient(s
-), recipe name or recipe tag(s).
+* All fields are optional, but **at least one** of the fields must be present to search by recipe ingredient(s), recipe name or recipe tag(s).
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Multiple ingredients and tags are separated by a space and not a comma.
 </div>
@@ -454,6 +458,9 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by a `,`.
 </div> 
+<div markdown="span" class="alert alert-primary">:memo: **Note:**
+    Adding the same ingredients with different quantities **will not** accumulate in the fridge. To increase the quantity of an ingredient, use `editF` instead.
+</div>
 
 Examples:
 * `addF i/peanut`

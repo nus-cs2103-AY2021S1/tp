@@ -22,6 +22,9 @@ public class RecipeBuilder {
     public static final String DEFAULT_NAME = "Sandwich";
     public static final ArrayList<Ingredient> DEFAULT_INGREDIENTS =
             new ArrayList<>(List.of(new Ingredient("Kaiser Rolls Or Other Bread", "2 whole")));
+    public static final String OTHER_NAME = "Salad";
+    public static final ArrayList<Ingredient> OTHER_INGREDIENTS =
+            new ArrayList<>(List.of(new Ingredient("Tomatoes", "2 kg")));
     public static final Integer DEFAULT_CALORIES = 70;
     public static final ArrayList<Instruction> DEFAULT_INSTRUCTION =
             new ArrayList<>(List.of(new Instruction("1) Make egg salad by chopping the hard boiled eggs "
@@ -128,11 +131,20 @@ public class RecipeBuilder {
     }
 
     /**
-     * Builds Recipe
+     * Builds Recipe.
      * @return built Recipe
      */
     public Recipe build() {
         return new Recipe(name, instructions, recipeImage, ingredients, calories, tags);
+    }
+
+    /**
+     * Builds Recipe that has different values from the default recipe builder.
+     * @return built Recipe
+     */
+    public Recipe buildOtherRecipe() {
+        Name otherName = new Name(DEFAULT_NAME);
+        return new Recipe(otherName, instructions, recipeImage, OTHER_INGREDIENTS, calories, tags);
     }
 
 }
