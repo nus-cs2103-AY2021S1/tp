@@ -85,6 +85,7 @@ public class SuggestionCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // EP: correct command word with valid prefixes
+        userInput = "";
         parser = new SuggestionCommandParser("help", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.HELP_COMMAND_WORD + "\n" + HelpCommand.MESSAGE_USAGE;
@@ -112,6 +113,7 @@ public class SuggestionCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // EP: correct command word with valid prefixes
+        userInput = INVALID_LIST_TYPE_DESC;
         parser = new SuggestionCommandParser("list", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.LIST_COMMAND_WORD + " lt/all" + "\n" + ListCommand.MESSAGE_USAGE;
@@ -125,7 +127,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_addCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = NAME_DESC_APPLE + SOURCE_DESC_APPLE + QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE
                 + LOW_QUANTITY_DESC_APPLE;
         SuggestionCommandParser parser = new SuggestionCommandParser("ad");
@@ -134,11 +136,21 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + FILE_NAME_DESC;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
+        userInput = NAME_DESC_APPLE + SOURCE_DESC_APPLE + QUANTITY_DESC_APPLE + LOCATION_DESC_APPLE
+                + LOW_QUANTITY_DESC_APPLE;
         parser = new SuggestionCommandParser("add", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.ADD_COMMAND_WORD + userInput + "\n" + AddCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + FILE_NAME_DESC;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
