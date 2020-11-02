@@ -545,4 +545,3 @@ Action | Format, Examples
     * The domain should be between 2 to 256 characters long (inclusive) and should only contain alphanumeric characters or special characters including @:%._+~#?&=/
     * The top level domain should be between 2 to 6 (inclusive) characters long and only contain alphabets
     * The path follows the same rule as the domain except there is no restriction in its length
-    
