@@ -29,7 +29,8 @@ public class AddIngredientCommand extends Command {
             + PREFIX_INGREDIENT + "bread, oranges " + PREFIX_QUANTITY + "2kg" + ", cheese ";
 
     public static final String MESSAGE_SUCCESS = "New ingredient(s) added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECIPE = "This ingredient already exists in the fridge";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the fridge";
+    public static final String MESSAGE_ADD_DUPLICATE_INGREDIENTS = "Command contains duplicate ingredients";
 
     private final ArrayList<Ingredient> toAdd;
 
@@ -54,7 +55,7 @@ public class AddIngredientCommand extends Command {
         StringBuilder ingredientsAdded = new StringBuilder();
         for (Ingredient ingredient : toAdd) {
             if (model.hasIngredient(ingredient)) {
-                throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
+                throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
             }
             ingredientsAdded.append(ingredient + ", ");
             model.addIngredient(ingredient);

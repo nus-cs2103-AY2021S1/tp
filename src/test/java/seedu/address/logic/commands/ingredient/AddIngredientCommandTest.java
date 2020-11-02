@@ -59,7 +59,7 @@ public class AddIngredientCommandTest {
                 .ModelStubWithIngredient(validIngredient);
 
         assertThrows(CommandException.class,
-                AddIngredientCommand.MESSAGE_DUPLICATE_RECIPE, () -> addIngredientCommand.execute(modelStub));
+                AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT, () -> addIngredientCommand.execute(modelStub));
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ingredient.AddIngredientCommand;
+import seedu.address.logic.commands.recipe.AddRecipeCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -41,6 +42,10 @@ public class AddIngredientCommandParser implements Parser<AddIngredientCommand> 
         assert ingredientString.length() != 0 : "ingredientString should not be empty";
 
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
+
+        if (IngredientParser.hasDuplicates(ingredients)) {
+            throw new ParseException(AddIngredientCommand.MESSAGE_ADD_DUPLICATE_INGREDIENTS);
+        }
 
         return new AddIngredientCommand(ingredients);
     }
