@@ -8,6 +8,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.INVALID_STATISTICS_TYPE
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_DESC;
@@ -201,7 +202,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_statisticsCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = INVALID_STATISTICS_TYPE_DESC;
         SuggestionCommandParser parser = new SuggestionCommandParser("stat");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -210,12 +211,21 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + LOW_QUANTITY_DESC_BANANA;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes
+        userInput = INVALID_STATISTICS_TYPE_DESC;
         parser = new SuggestionCommandParser("stats", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.STATISTICS_COMMAND_WORD + " st/source"
                 + "\n" + StatisticsCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + LOW_QUANTITY_DESC_BANANA;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
