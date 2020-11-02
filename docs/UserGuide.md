@@ -16,8 +16,8 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.9. Save](#39-save)
   - [3.10. Archive : `archive`](#310-archive--archive)
   - [3.11. Recall : `recall`](#311-recall--recall)
-  - [3.12. FAQ](#312-faq)
-  - [3.13. Command summary](#313-command-summary)
+- [4. FAQ](#4-faq)
+- [5. Command summary](#5-command-summary)
 
 # 2. Quick start
 
@@ -40,7 +40,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
     <b>:information_source: Notes about the command format:</b>
 
     - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
-    e.g. in `add e/EXERCISE c/CALORIES`, `NAME` is a parameter which can be used as `add e/Push Up c/1000`.
+    e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
 
     - Items in square brackets are optional.  
     e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
@@ -145,18 +145,21 @@ The application will save the data automatically to the default file path after 
 ## 3.10. Archive : `archive`
 Archive the data into a different file location.
 
-Format: `archive f/FILE_LOCATION/FILE_NAME.json`<br>
-The file location takes reference from the home folder that the .jar file is located at, unless absolute filepath is specified.
+Format: `archive f/FILE_LOCATION\FILE_NAME.json`  
+The format of the file location accept both Absolute and Relative Path.  
+The file name must ends with the extension `.json`   
 
 
-Examples:<br>
-`archive f/data\file_name.json`<br>
+Examples:  
+- `archive f/data\file_name.json`  
+- `archive f/C:\Users\user_name\Desktop\FILE_NAME.json`  
 
-If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.
 
 <div markdown="block" class="alert alert-info">
-    <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json  
-    <b> Relative Path </b>: Path that are not absolute. E.g. FILE_LOCATION\FILE_NAME.json  
+    <b> Absolute Path </b>: Path that contains root element, e.g. C:\Users\user_name\Desktop\FILE_NAME.json<br>
+    <b> Relative Path </b>: Path will take reference from the file that contains <b>Calo.jar</b> For example, if Calo is inside
+    the <mark>C:\Users\UserName\App</mark> and the user entered <mark>data\archived_file.json</mark> as the destination, the archived file will be
+    at <mark>C:\Users\UserName\App\data\archived_file.json</mark>  
 </div>
 
 #### Add templates : `create`
@@ -192,7 +195,7 @@ Example:
 - `recall run` finds the most recent exercise with the name "run".
 
 ---
-## 3.12. FAQ
+## 4. FAQ
 
 *Q*: How do I transfer my data to another Computer?<br>
 *A*: Transfer the file “data” that is contained in the same file as your .jar file from your old computer to your new computer.
@@ -202,7 +205,7 @@ Example:
 
 ---
 
-## 3.13. Command summary
+## 5. Command summary
 
 | Action     | Format, Examples                                                                                                                                                      |
 | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
