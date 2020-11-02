@@ -10,8 +10,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 
 /**
@@ -64,7 +64,7 @@ public class DeleteTeammateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof DeleteTeammateCommand // instanceof handles nulls
-            && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex)); // state check
+            || (other instanceof DeleteTeammateCommand) // instanceof handles nulls
+            && gitUserIndex.equals(((DeleteTeammateCommand) other).gitUserIndex); // state check
     }
 }

@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":StartProjectCommand" as StartProjectCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":MainCatalogue" as MainCatalogue MODEL_COLOR
+end box
+
+[-> StartProjectCommand : execute()
+activate StartProjectCommand
+
+StartProjectCommand -> Model : getFilteredProjectList()
+activate Model
+
+Model --> StartProjectCommand
+deactivate Model
+
+StartProjectCommand -> Model : enter(project)
+activate Model
+
+Model -> MainCatalogue : enter(project)
+activate MainCatalogue
+
+MainCatalogue -> MainCatalogue : updateStatus
+activate MainCatalogue
+deactivate MainCatalogue
+
+MainCatalogue --> Model
+deactivate MainCatalogue
+
+Model -> Model : updateProjectToBeDisplayedOnDashboard(project)
+activate Model
+deactivate Model
+
+Model --> StartProjectCommand
+deactivate Model
+
+[<-- StartProjectCommand
+deactivate StartProjectCommand
+@enduml

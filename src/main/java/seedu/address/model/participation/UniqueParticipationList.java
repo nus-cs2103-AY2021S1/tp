@@ -1,4 +1,4 @@
-package seedu.address.model.project;
+package seedu.address.model.participation;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateParticipationException;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ParticipationNotFoundException;
