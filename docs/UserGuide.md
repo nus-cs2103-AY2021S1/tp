@@ -498,7 +498,7 @@ You can delete a specific attendance record from a specified student in **Reeve*
 Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 * Deletes the attendance record with the given `ATTENDANCE_DATE` in the specified student.
-* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
+* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
 * The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
 Examples:
@@ -506,9 +506,9 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule` (By: Alex) 
+#### 3.4.1 Scheduling: `schedule` (By: Alex)
 
-##### 3.4.1.1 Viewing classes on a Timetable: `schedule view`  
+##### 3.4.1.1 Viewing classes on a Timetable: `schedule view`
 
 List the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
 
