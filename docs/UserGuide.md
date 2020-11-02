@@ -294,11 +294,11 @@ You can use this command to edit a Tutorial Group you have previously added to a
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
 
-Format: `editTG TG_INDEX`
-Where TG_INDEX is the index of the Tutorial Group you want to delete.
+Format: `editTG TG_INDEX tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
+Where TG_INDEX is the index of the Tutorial Group you want to edit.
+You must enter all arguments regardless of which field you would like to edit.
 
-Example: `editTG 3`
-
+Example: `editTG 3 tg/T04 day/TUE start/08:00 end/10:00`
 
 
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
