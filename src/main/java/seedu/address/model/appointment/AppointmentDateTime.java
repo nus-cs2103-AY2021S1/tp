@@ -12,7 +12,13 @@ public class AppointmentDateTime {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
-            "Times should be entered in the format: yyyy-MM-dd HH:mm";
+            "Invalid time. Please check if your year, month, day, hour and minute inputs are valid.\n "
+                    + "\nEnsure that the time is entered in this format: yyyy-MM-dd HH:mm"
+                    + "\nInput YYYY as 19xx to 2xxx."
+                    + "\nInput MM as 01 to 12."
+                    + "\nInput dd as 01 to 31."
+                    + "\nInput HH as 00 to 24."
+                    + "\nInput mm as 00 to 59.";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
     // rather than a regex.
 
