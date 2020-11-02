@@ -251,8 +251,9 @@ Example: `viewTG 1`
 #### 4.3.2 Add a Tutorial Group to a Module: `addTG`
 You can add a Tutorial Group to the Module you are viewing using this command.
 
-> You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
-> Refer to 4.2.1 - View all Tutorial Groups in a Module
+> - You can only use this command when you are viewing Tutorial Groups of the Module you intend to add the Tutorial Group to.   
+> - This command can also be used after the findTG command while displaying only Tutorial Groups you searched for.   
+> - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `addTG tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
 
@@ -261,8 +262,8 @@ Example: `addTG tg/T03 day/MON start/08:00 end/10:00`
 #### 4.3.3 Find a Tutorial Group: `findTG`
 If you need to quickly find a Tutorial from a list of Tutorials, use this command.
 
-> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
-> Refer to 4.2.1 - View all Tutorial Groups in a Module
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `findTG TARGET_TG_CODE`
 Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
@@ -273,15 +274,15 @@ To search for a Tutorial Group with code B014
 #### 4.3.4 Return to Tutorial Group List: `listTG`
 After using the findTG command, you can use listTG to quickly return to the list of all Tutorial Groups in the Module.
 
-> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
-> Refer to 4.2.1 - View all Tutorial Groups in a Module
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `listTG`
 
 #### 4.3.5 Delete a Tutorial Group from a Module: `deleteTG`
 You can use this command to delete a Tutorial Group you have previously added to a Module.
-> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
-> Refer to 4.2.1 - View all Tutorial Groups in a Module
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `deleteTG TG_INDEX`
 Where TG_INDEX is the index of the Tutorial Group you want to delete.
@@ -291,8 +292,8 @@ To delete Tutorial Group with the index 2 in the currently displayed list.
 
 #### 4.3.6 Edit a Tutorial Group: `editTG`
 You can use this command to edit a Tutorial Group you have previously added to a Module.
-> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
-> Refer to 4.2.1 - View all Tutorial Groups in a Module
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `editTG TG_INDEX tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
 Where TG_INDEX is the index of the Tutorial Group you want to edit.
