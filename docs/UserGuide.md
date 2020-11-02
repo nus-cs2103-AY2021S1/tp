@@ -21,8 +21,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [Review all flashcards](#reviewing-all-flashcards-review) : `review`
         - [Quiz flashcards](#quizzing-flashcards-quiz): `quiz`
         - [Sort all flashcards](#sort-all-flashcards--sort): `sort`
-        - [Exiting the program](#exiting-the-program--exit): `exit`
         - [View a flashcard](#views-a-flashcard---view): `view`
+        - [Exiting the program](#exiting-the-program--exit): `exit`
         - [Saving the data](#saving-the-data)
     - FAQ
     - [Command summary](#command-summary)
