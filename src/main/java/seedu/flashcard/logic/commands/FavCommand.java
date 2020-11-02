@@ -1,7 +1,6 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
 import java.util.Set;
@@ -30,7 +29,7 @@ public class FavCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Favourites the flashcard identified by the index number used in the displayed flashcard list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer greater than 0)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_FAVOURITE_FLASHCARD_SUCCESS = "Favourite Flashcard: %1$s";
@@ -60,7 +59,6 @@ public class FavCommand extends Command {
         Flashcard favouritedFlashcard = createFavouriteFlashcard(flashcardToFavourite);
 
         model.setFlashcard(flashcardToFavourite, favouritedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(String.format(MESSAGE_FAVOURITE_FLASHCARD_SUCCESS, favouritedFlashcard));
     }
 

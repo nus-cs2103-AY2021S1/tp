@@ -10,6 +10,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
     - Quick start
     - Features
         - Adding a flashcard: `add`
+        - Clear all flashcards: `clear`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
         - Favourite a flashcard : `fav`
@@ -114,6 +115,12 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
+### Clearing all flashcards : `clear` 
+
+Clears all flashcard data from the program.
+
+Format: `clear`
+
 
 ### Deleting a flashcard  : `delete`
 
@@ -123,7 +130,7 @@ Format: `delete INDEX`
 
 * Deletes the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
@@ -136,7 +143,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
 * Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
@@ -172,7 +179,7 @@ Format: `fav INDEX`
 
 * Favourite the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 
 Examples: 
 * `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
@@ -185,7 +192,7 @@ Format: `unfav INDEX`
 
 * Unfavourite the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 
 Examples: 
 * `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
@@ -212,7 +219,7 @@ Format: `help`
 
 ### Listing all flashcards : `list`
 
-Shows a list of all flashcards.
+Shows a list of all flashcards. This is useful for removing any `filter` or `find` you have done on the flashcard list.
 
 Format: `list`
 
@@ -226,9 +233,9 @@ longer input commands to the textbox.
 Upon entering review mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `↑ key` hides answer and notes of the current flashcard  
-* `→ arrow` key moves on to the next flashcard (if there is a next flashcard)
+* `→ key` moves on to the next flashcard (if there is a next flashcard)
 * `← key` moves to the previous flashcard (if there is a previous flashcard)
-* `q key` quits review mode
+* `q` quits review mode
 
 Format: `review`
 
@@ -242,12 +249,14 @@ Quiz the current list of flashcards. This puts the user in quiz mode and the use
 
 Upon entering quiz mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
-* `q` key quits review mode
+* `q` quits quiz mode
 * `y` This input will only be recognised after the `↓ key` is pressed. `y` is a feedback to indicate a correct answer. 
 * `n` This input will only be recognised after the `↓ key` is pressed. `n` is a feedback to indicate an incorrect answer. 
 
 Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
-`y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.
+`y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.  
+Once you give a feedback (pressing either `y` or `n`), the review and success frequency for that flashcard will be updated even if you
+quit the quiz prematurely.
 
 Format: `quiz`
 
@@ -277,10 +286,11 @@ Format: `view INDEX [-a]`
 
 * View the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The index **must be a positive integer greater than 0** 1, 2, 3, …
 *  If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
-<div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
+flashcard was not modified/deleted.
 </div>
 
 ### Exiting the program : `exit`
@@ -300,12 +310,14 @@ Flashcards data are saved in the hard disk automatically after any command that 
 Action | Format, Examples
 --------|------------------
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
+**Clear** | `clear`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...` <br> e.g. `filter t/examinable r/3`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
 **Find** | `find KEYWORD...` <br>  e.g. `find general important`
+**Help** | `help`
 **List** | `list`
 **Review** | `review`
 **Quiz** | `quiz`
