@@ -32,7 +32,8 @@ public class ParserUtil {
     public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
     public static final String MESSAGE_NEGATIVE_INVALID_DURATION = "The given duration should be a positive number.";
     public static final String MESSAGE_INVALID_DURATION = "Duration provided is invalid.";
-    public static final String MESSAGE_OVERFLOW_INVALID_DURATION = "The given duration should not be more than 2147483647.";
+    public static final String MESSAGE_OVERFLOW_INVALID_DURATION = "The given duration should not "
+            + "be more than 2147483647.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -269,7 +270,7 @@ public class ParserUtil {
                 throw new ParseException(MESSAGE_OVERFLOW_INVALID_DURATION);
             }
             return new AppointmentDateTime(trimmedDateTime, duration);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new ParseException(MESSAGE_OVERFLOW_INVALID_DURATION);
         }
     }
