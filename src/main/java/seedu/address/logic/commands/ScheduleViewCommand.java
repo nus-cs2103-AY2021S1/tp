@@ -10,13 +10,13 @@ import seedu.address.model.Model;
 import seedu.address.model.schedule.ScheduleViewMode;
 
 public class ScheduleViewCommand extends ScheduleCommand {
-    public static final String COMMAND_WORD = "schedule view";
+    public static final String COMMAND_WORD = "schedule";
     public static final String MESSAGE_INVALID_VIEW_MODE = "invalid view mode!";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Date should be in the format dd/mm/yyyy";
     public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
             + "mode/[weekly / daily]\n"
             + "date/[dd/mm/yyyy]\n"
-            + "Example: event view mode/weekly date/02/11/2020";
+            + "Example: schedule mode/weekly date/02/11/2020";
 
     private final LocalDate viewDate;
     private final ScheduleViewMode viewMode;
