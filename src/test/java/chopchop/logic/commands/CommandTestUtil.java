@@ -8,7 +8,6 @@ import java.util.List;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
@@ -34,18 +33,13 @@ public class CommandTestUtil {
      * Executes the given command and asserts that it succeeds.
      */
     public static void assertCommandSuccess(Command command, Model model, Model expectedModel) {
-        try {
-            var result = command.execute(model, new HistoryManagerStub());
-            assertTrue(result.didSucceed());
-            assertEquals(expectedModel, model);
+        var result = command.execute(model, new HistoryManagerStub());
+        assertTrue(result.didSucceed());
+        assertEquals(expectedModel, model);
 
-            if (command instanceof Undoable) {
-                var r = ((Undoable) command).undo(model);
-                assertTrue(r.didSucceed());
-            }
-
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+        if (command instanceof Undoable) {
+            var r = ((Undoable) command).undo(model);
+            assertTrue(r.didSucceed());
         }
     }
 
@@ -59,14 +53,8 @@ public class CommandTestUtil {
         EntryBook<Ingredient> expectedIndBook = new EntryBook<>(model.getIngredientBook());
         List<Ingredient> expectedFilteredList = new ArrayList<>(model.getFilteredIngredientList());
 
-        try {
-            var result = command.execute(model, new HistoryManagerStub());
-            assertTrue(result.isError());
-
-
-        } catch (CommandException ce) {
-            assertTrue(true);
-        }
+        var result = command.execute(model, new HistoryManagerStub());
+        assertTrue(result.isError());
 
         assertEquals(expectedIndBook, model.getIngredientBook());
         assertEquals(expectedFilteredList, model.getFilteredIngredientList());

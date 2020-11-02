@@ -34,7 +34,7 @@ public class AppParameters {
 
         String configPathParameter = namedParameters.get("config");
         if (configPathParameter != null && !FileUtil.isValidPath(configPathParameter)) {
-            logger.warn("Invalid config path '%s'. Using default config path.", configPathParameter);
+            logger.warn("Invalid config path '%s'. Using default config path", configPathParameter);
             configPathParameter = null;
         }
         appParameters.setConfigPath(configPathParameter != null ? Paths.get(configPathParameter) : null);

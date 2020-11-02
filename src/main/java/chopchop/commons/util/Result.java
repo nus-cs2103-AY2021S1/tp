@@ -400,6 +400,19 @@ public class Result<T> extends Either<String, T> {
     }
 
     /**
+     * Converts a {@code List<T>} to an {@code Optional<T>} by taking the first element of
+     * the list. (cf. {@code listToMaybe :: [a] -> Maybe a}) If the list is empty, returns
+     * an empty optional.
+     */
+    public static <T> Optional<T> listToOptional(List<T> list) {
+        if (list.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(list.get(0));
+        }
+    }
+
+    /**
      * Creates a new {@code Result} containing the successfully-computed value.
      *
      * @param value the value

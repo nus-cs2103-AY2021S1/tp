@@ -12,13 +12,9 @@ public class StatsRecipeTopCommand extends Command {
         requireNonNull(model);
 
         var output = model.getMostMadeRecipeList();
-        return CommandResult.statsMessage(output, "Here are the top recipes");
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof StatsRecipeTopCommand);
+        return CommandResult.statsMessage(output, output.isEmpty()
+            ? "No recipes were made recently"
+            : "Here are your top recipes");
     }
 
     @Override

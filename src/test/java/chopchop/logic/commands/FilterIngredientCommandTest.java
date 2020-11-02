@@ -5,11 +5,8 @@ import static chopchop.testutil.TypicalIngredients.APRICOT;
 import static chopchop.testutil.TypicalIngredients.BANANA;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import chopchop.model.attributes.ExpiryDate;
@@ -28,38 +25,6 @@ public class FilterIngredientCommandTest {
         new UsageList<IngredientUsage>(), new UserPrefs());
     private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(),
         new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
-
-    @Test
-    public void equals() {
-        var firstTagPredicate = new TagContainsKeywordsPredicate(Collections.singletonList("firstTag"));
-        var secondTagPredicate = new TagContainsKeywordsPredicate(Collections.singletonList("secondTag"));
-
-        var firstExpiryPredicate = new ExpiryDateOnOrBeforePredicate(new ExpiryDate("2020-12-31"));
-        var secondExpiryPredicate = new ExpiryDateOnOrBeforePredicate(new ExpiryDate("2022-01-01"));
-
-        var filterFirstCommand = new FilterIngredientCommand(firstExpiryPredicate, firstTagPredicate);
-        var filterSecondCommand = new FilterIngredientCommand(secondExpiryPredicate, firstTagPredicate);
-        var filterThirdCommand = new FilterIngredientCommand(firstExpiryPredicate, secondTagPredicate);
-        var filterFourthCommand = new FilterIngredientCommand(secondExpiryPredicate, secondTagPredicate);
-
-        // same object -> returns true
-        assertTrue(filterFirstCommand.equals(filterFirstCommand));
-
-        // same value -> returns true
-        var filterFirstCommandCopy = new FilterIngredientCommand(firstExpiryPredicate, firstTagPredicate);
-        assertTrue(filterFirstCommand.equals(filterFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(filterFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(filterFirstCommand.equals(null));
-
-        // different values -> returns false
-        assertFalse(filterFirstCommand.equals(filterSecondCommand));
-        assertFalse(filterFirstCommand.equals(filterThirdCommand));
-        assertFalse(filterFirstCommand.equals(filterFourthCommand));
-    }
 
     @Test
     public void execute_multipleTags_noIngredientFound() {

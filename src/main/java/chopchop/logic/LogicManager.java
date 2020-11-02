@@ -3,16 +3,15 @@ package chopchop.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.Log;
 import chopchop.logic.autocomplete.AutoCompleter;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.Undoable;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
-import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.logic.recommendation.RecommendationManager;
 import chopchop.model.Model;
 import chopchop.model.ReadOnlyEntryBook;
@@ -25,7 +24,6 @@ import javafx.collections.ObservableList;
  * The main LogicManager governing the logic in the app.
  */
 public class LogicManager implements Logic {
-    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Log logger = new Log(LogicManager.class);
 
     private final Model model;
@@ -53,13 +51,13 @@ public class LogicManager implements Logic {
      * @param commandText The command as entered by the user.
      */
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) {
         logger.log("command: '%s'", commandText);
 
         this.historyManager.addInput(commandText);
         var res = this.parser.parse(commandText);
         if (res.isError()) {
-            throw new ParseException(res.getError());
+            return CommandResult.error(res.getError());
         }
 
         var cmd = res.getValue();
@@ -74,8 +72,12 @@ public class LogicManager implements Logic {
             this.storage.saveIngredientUsages(this.model.getIngredientUsageList());
             this.storage.saveIngredientBook(this.model.getIngredientBook());
             this.storage.saveRecipeBook(this.model.getRecipeBook());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        } catch (IOException e) {
+            return CommandResult.error("Could not save data to file: %s (exception: %s)%s",
+                e.getMessage(), e.getClass().getSimpleName(),
+                Optional.ofNullable(e.getCause())
+                    .map(c -> String.format(" (caused by: %s)", c.toString()))
+                    .orElse(""));
         }
 
         return result;

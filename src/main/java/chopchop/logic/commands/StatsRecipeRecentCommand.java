@@ -3,7 +3,6 @@ package chopchop.logic.commands;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
@@ -17,19 +16,16 @@ public class StatsRecipeRecentCommand extends Command {
      * @param model          {@code Model} which the command should operate on.
      * @param historyManager {@code History} which the command should record to.
      * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        try {
-            var output = model.getRecentlyUsedRecipes(N_MOST_RECENT);
-            var msgOutput = output.stream()
-                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
-                .collect(Collectors.toList());
-            return CommandResult.statsMessage(msgOutput, "Here is a list of recipes recently made");
-        } catch (Exception e) {
-            return CommandResult.message("Unable to generate recipes recently made");
-        }
+    public CommandResult execute(Model model, HistoryManager historyManager) {
+        var output = model.getRecentlyUsedRecipes(N_MOST_RECENT);
+        var msgOutput = output.stream()
+            .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+            .collect(Collectors.toList());
+        return CommandResult.statsMessage(msgOutput, msgOutput.isEmpty()
+            ? "No recipes were made recently"
+            : "Here are your recently made recipes");
     }
 
     @Override

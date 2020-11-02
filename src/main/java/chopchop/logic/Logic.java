@@ -5,8 +5,6 @@ import java.util.List;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
@@ -21,10 +19,8 @@ public interface Logic {
      *
      * @param commandText The command as entered by the user.
      * @return the result of the command execution.
-     * @throws CommandException If an error occurs during command execution.
-     * @throws ParseException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    CommandResult execute(String commandText);
 
     /**
      * Computes the completion for the given user input. If there is no completion

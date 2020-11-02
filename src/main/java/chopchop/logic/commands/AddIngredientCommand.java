@@ -1,13 +1,10 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
-import static java.util.Objects.requireNonNull;
+import static chopchop.commons.util.Enforce.enforceNonNull;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.ExpiryDate;
@@ -35,7 +32,7 @@ public class AddIngredientCommand extends Command implements Undoable {
      * Creates a command to add an ingredient with the given parts.
      */
     public AddIngredientCommand(String name, Optional<Quantity> qty, Optional<ExpiryDate> exp, Set<Tag> tags) {
-        requireAllNonNull(name, qty, exp, tags);
+        enforceNonNull(name, qty, exp, tags);
 
         this.name = name;
         this.tags = tags;
@@ -46,8 +43,8 @@ public class AddIngredientCommand extends Command implements Undoable {
 
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(Model model, HistoryManager historyManager) {
+        enforceNonNull(model);
 
         // first create the ingredient.
         this.addedIngredient = new Ingredient(this.name, this.quantity, this.expiryDate, this.tags);
@@ -76,7 +73,7 @@ public class AddIngredientCommand extends Command implements Undoable {
 
     @Override
     public CommandResult undo(Model model) {
-        requireNonNull(model);
+        enforceNonNull(model);
 
         String action = "";
         Ingredient ingr = null;
@@ -95,21 +92,6 @@ public class AddIngredientCommand extends Command implements Undoable {
         }
 
         return CommandResult.message("Undo: %s ingredient '%s'", action, ingr.getName());
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof AddIngredientCommand)) {
-            return false;
-        } else if (obj == this) {
-            return true;
-        }
-
-        var other = (AddIngredientCommand) obj;
-        return Objects.equals(this.name, other.name)
-            && Objects.equals(this.quantity, other.quantity)
-            && Objects.equals(this.expiryDate, other.expiryDate)
-            && Objects.equals(this.tags, other.tags);
     }
 
     @Override

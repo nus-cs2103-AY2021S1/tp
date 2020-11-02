@@ -1,6 +1,5 @@
 package chopchop.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -38,7 +37,7 @@ public class DeleteRecipeCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredList_returnsError() {
         var outOfBoundIndex = ItemReference.ofOneIndex(model.getFilteredRecipeList().size() + 1);
         var deleteCommand = new DeleteRecipeCommand(outOfBoundIndex);
 
@@ -61,7 +60,7 @@ public class DeleteRecipeCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_returnsError() {
         showRecipeAtIndex(model, INDEXED_FIRST);
 
         var outOfBoundIndex = INDEXED_SECOND;
@@ -71,27 +70,6 @@ public class DeleteRecipeCommandTest {
         var deleteCommand = new DeleteRecipeCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model);
-    }
-    @Test
-    public void equals() {
-        var deleteFirstCommand = new DeleteRecipeCommand(INDEXED_FIRST);
-        var deleteSecondCommand = new DeleteRecipeCommand(INDEXED_SECOND);
-
-        // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
-
-        // same values -> returns true
-        var deleteFirstCommandCopy = new DeleteRecipeCommand(INDEXED_FIRST);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
-
-        // different values -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**

@@ -3,13 +3,13 @@ package chopchop.logic.commands;
 import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
 import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
 
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import chopchop.model.usage.IngredientUsage;
@@ -19,38 +19,12 @@ import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
-import org.junit.jupiter.api.Test;
 
 public class FindRecipeCommandTest {
     private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
             new UsageList<IngredientUsage>(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(),
             new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
-
-    @Test
-    public void equals() {
-        var firstPredicate = new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        var secondPredicate = new NameContainsKeywordsPredicate(Collections.singletonList("second"));
-
-        var findFirstCommand = new FindRecipeCommand(firstPredicate);
-        var findSecondCommand = new FindRecipeCommand(secondPredicate);
-
-        // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
-
-        // same values -> returns true
-        var findFirstCommandCopy = new FindRecipeCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
-
-        //different values -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
-    }
 
     @Test
     public void execute_zeroKeywords_noRecipeFound() {

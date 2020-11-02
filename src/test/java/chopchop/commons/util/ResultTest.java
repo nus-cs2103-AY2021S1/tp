@@ -87,6 +87,13 @@ public class ResultTest {
 
         assertEquals(Result.of(2468), a);
         assertEquals(Result.error("uwu"), b);
+
+
+        List<String> l1 = List.of("asdf", "bsdf");
+        List<String> l2 = List.of();
+
+        assertEquals(Optional.of("asdf"), Result.listToOptional(l1));
+        assertEquals(Optional.empty(), Result.listToOptional(l2));
     }
 
     @Test

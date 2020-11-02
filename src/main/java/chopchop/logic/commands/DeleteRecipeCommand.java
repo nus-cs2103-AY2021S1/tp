@@ -2,7 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
@@ -25,7 +24,7 @@ public class DeleteRecipeCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
         var res = resolveRecipeReference(this.item, model);
@@ -45,13 +44,6 @@ public class DeleteRecipeCommand extends Command implements Undoable {
 
         model.addRecipe(this.recipe);
         return CommandResult.message("Undo: re-added recipe '%s'", this.recipe.getName());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof DeleteRecipeCommand
-                && this.item.equals(((DeleteRecipeCommand) other).item));
     }
 
     @Override

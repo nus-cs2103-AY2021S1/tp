@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 import chopchop.commons.util.Pair;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.commands.AddCommandParser;
 import chopchop.logic.parser.commands.DeleteCommandParser;
 import chopchop.logic.parser.commands.EditCommandParser;
@@ -19,7 +18,6 @@ import chopchop.logic.parser.commands.MakeCommandParser;
 import chopchop.logic.parser.commands.StatsCommandParser;
 import chopchop.logic.parser.commands.ViewCommandParser;
 import chopchop.logic.parser.commands.CommonParser;
-import chopchop.logic.parser.exceptions.ParseException;
 
 import org.junit.jupiter.api.Test;
 
@@ -60,6 +58,12 @@ public class CommandParserTest {
         tests.put("quit", "Result(QuitCommand)");
         tests.put("undo", "Result(UndoCommand)");
         tests.put("redo", "Result(RedoCommand)");
+        tests.put("clear", "Result(ClearCommand)");
+
+        tests.put("quit a", "Error('quit' command takes no arguments)");
+        tests.put("undo /asdf", "Error('undo' command takes no arguments)");
+        tests.put("redo 123 /asdf", "Error('redo' command takes no arguments)");
+
 
         tests.put("filter recipe /tag x", "Result(FilterRecipeCommand(...))");
         tests.put("filter ingredient /tag x", "Result(FilterIngredientCommand(...))");
@@ -99,15 +103,6 @@ public class CommandParserTest {
 
             System.err.println(x);
             assertEquals(v, x.toString());
-        });
-
-
-        assertThrows(CommandException.class, () -> {
-            throw new CommandException("asdf");
-        });
-
-        assertThrows(CommandException.class, () -> {
-            throw new CommandException("asdf", new RuntimeException("owo"));
         });
     }
 
@@ -149,8 +144,7 @@ public class CommandParserTest {
         assertTrue(CommonParser.getCommandTarget(new CommandArguments("add"), false).isError());
 
         // just... force coverage on these classes.
-        assertThrows(ParseException.class, () -> {
-
+        {
             new AddCommandParser();
             new DeleteCommandParser();
             new EditCommandParser();
@@ -162,9 +156,7 @@ public class CommandParserTest {
             new StatsCommandParser();
             new ViewCommandParser();
             new CommonParser();
-
-            throw new ParseException("owo");
-        });
+        };
 
         assertThrows(IllegalArgumentException.class, () -> {
             FindCommandParser.parseFindCommand(new CommandArguments("kekw"));
@@ -223,6 +215,7 @@ public class CommandParserTest {
         cases.put("list",                                                               false);
 
         cases.put("help",                                                               true);
+        cases.put("clear",                                                              true);
         cases.put("help add",                                                           true);
         cases.put("help add recipe",                                                    true);
         cases.put("add ingredient f",                                                   true);

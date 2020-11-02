@@ -37,13 +37,6 @@ public class FindRecipeCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindRecipeCommand // instanceof handles nulls
-                && predicate.equals(((FindRecipeCommand) other).predicate)); // state check
-    }
-
-    @Override
     public String toString() {
         return String.format("FindRecipeCommand(keywords: %s)", this.predicate.getKeywords());
     }

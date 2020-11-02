@@ -24,11 +24,6 @@ public class ListRecommendationCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other instanceof ListRecommendationCommand;
-    }
-
-    @Override
     public String toString() {
         return "ListRecommendationCommand";
     }

@@ -138,7 +138,7 @@ public class MainApp extends Application {
             logger.error("Data file for %s book was invalid; starting with an empty book", kind);
 
             this.ui.showCommandOutput(
-                String.format("Existing %ss were corrupted; starting with empty data.", kind),
+                String.format("Existing %ss were corrupted; starting with empty data", kind),
                 /* isError: */ true
             );
 
@@ -166,7 +166,7 @@ public class MainApp extends Application {
             logger.error("Data file for %s usage list was invalid; starting with an empty list", kind);
 
             this.ui.showCommandOutput(
-                String.format("Existing %s usages were corrupted; starting with empty data.", kind),
+                String.format("Existing %s usages were corrupted; starting with empty data", kind),
                 /* isError: */ true
             );
 

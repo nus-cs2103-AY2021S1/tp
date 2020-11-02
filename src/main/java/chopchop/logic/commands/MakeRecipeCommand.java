@@ -7,7 +7,6 @@ import java.util.List;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.Pair;
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
@@ -35,8 +34,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager)
-        throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
         var res = resolveRecipeReference(this.item, model);
@@ -60,8 +58,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
                 model.addIngredientUsage(ingredientRef);
 
             } catch (IncompatibleIngredientsException | IllegalValueException e) {
-                return CommandResult.error("Could not make recipe '%s' (caused by ingredient '%s'): %s",
-                    this.recipe.getName(), ingredient.getName(), e.getMessage());
+                return CommandResult.error("Could not make recipe: %s", e.getMessage());
             }
         }
 
@@ -95,14 +92,6 @@ public class MakeRecipeCommand extends Command implements Undoable {
         this.ingredients.clear();
         model.removeRecipeUsage(this.recipe);
         return CommandResult.message("Undo: unmade recipe '%s'", this.recipe.getName());
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof MakeRecipeCommand
-                && this.item.equals(((MakeRecipeCommand) other).item)
-                && this.ingredients.equals(((MakeRecipeCommand) other).ingredients));
     }
 
     @Override

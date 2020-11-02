@@ -1,15 +1,13 @@
 package chopchop.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static chopchop.commons.util.Enforce.enforceNonNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.Step;
@@ -44,8 +42,8 @@ public class AddRecipeCommand extends Command implements Undoable {
 
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        requireNonNull(model);
+    public CommandResult execute(Model model, HistoryManager historyManager) {
+        enforceNonNull(model);
 
         if (model.findRecipeWithName(this.name).isPresent()) {
             return CommandResult.error("Recipe '%s' already exists", this.name);
@@ -78,28 +76,12 @@ public class AddRecipeCommand extends Command implements Undoable {
     @Override
     public CommandResult undo(Model model) {
 
-        requireNonNull(model);
-        requireNonNull(this.recipe);
+        enforceNonNull(model);
+        enforceNonNull(this.recipe);
 
         model.deleteRecipe(this.recipe);
         return CommandResult.message("Undo: removed recipe '%s'", this.recipe.getName());
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof AddRecipeCommand)) {
-            return false;
-        } else if (obj == this) {
-            return true;
-        }
-
-        var other = (AddRecipeCommand) obj;
-        return Objects.equals(this.name, other.name)
-            && Objects.equals(this.steps, other.steps)
-            && Objects.equals(this.ingredients, other.ingredients)
-            && Objects.equals(this.tags, other.tags);
-    }
-
 
     @Override
     public String toString() {

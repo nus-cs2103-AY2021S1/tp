@@ -54,14 +54,6 @@ public class FilterRecipeCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof FilterRecipeCommand // instanceof handles nulls
-            && tagPredicates.equals(((FilterRecipeCommand) other).tagPredicates)
-            && ingredientPredicates.equals(((FilterRecipeCommand) other).ingredientPredicates)); // state check
-    }
-
-    @Override
     public String toString() {
         return String.format("FilterRecipeCommand(...)");
     }

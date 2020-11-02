@@ -5,23 +5,23 @@ package chopchop.logic.parser;
 import java.util.List;
 import java.util.ArrayList;
 
-import chopchop.logic.commands.RedoCommand;
-import chopchop.logic.commands.UndoCommand;
 import chopchop.commons.util.Pair;
 import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
 import chopchop.commons.util.StringView;
-
 import chopchop.logic.commands.Command;
+import chopchop.logic.commands.ClearCommand;
 import chopchop.logic.commands.QuitCommand;
+import chopchop.logic.commands.RedoCommand;
+import chopchop.logic.commands.UndoCommand;
 
 import static chopchop.logic.parser.commands.AddCommandParser.parseAddCommand;
+import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 import static chopchop.logic.parser.commands.EditCommandParser.parseEditCommand;
-import static chopchop.logic.parser.commands.HelpCommandParser.parseHelpCommand;
-import static chopchop.logic.parser.commands.ListCommandParser.parseListCommand;
 import static chopchop.logic.parser.commands.FilterCommandParser.parseFilterCommand;
 import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
-import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
+import static chopchop.logic.parser.commands.HelpCommandParser.parseHelpCommand;
+import static chopchop.logic.parser.commands.ListCommandParser.parseListCommand;
 import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
 import static chopchop.logic.parser.commands.StatsCommandParser.parseStatsCommand;
 import static chopchop.logic.parser.commands.ViewCommandParser.parseViewCommand;
@@ -105,14 +105,15 @@ public class CommandParser {
                 case Strings.COMMAND_HELP:      return parseHelpCommand(args);
                 case Strings.COMMAND_FIND:      return parseFindCommand(args);
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
-                case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
                 case Strings.COMMAND_MAKE:      return parseMakeCommand(args);
                 case Strings.COMMAND_VIEW:      return parseViewCommand(args);
-                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
-                case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
-                case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
-                case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
                 case Strings.COMMAND_STATS:     return parseStatsCommand(args);
+                case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
+                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
+                case Strings.COMMAND_UNDO:      return ensureNoArgs(args, new UndoCommand());
+                case Strings.COMMAND_REDO:      return ensureNoArgs(args, new RedoCommand());
+                case Strings.COMMAND_QUIT:      return ensureNoArgs(args, new QuitCommand());
+                case Strings.COMMAND_CLEAR:     return ensureNoArgs(args, new ClearCommand());
 
                 default:
                     return Result.error("Unknown command '%s'", args.getCommand());
@@ -139,5 +140,13 @@ public class CommandParser {
         }
 
         return Pair.of(sb.toString().strip(), input.drop(i));
+    }
+
+    private Result<Command> ensureNoArgs(CommandArguments args, Command command) {
+        if (!args.getRemaining().isEmpty() || !args.getAllArguments().isEmpty()) {
+            return Result.error("'%s' command takes no arguments", args.getCommand());
+        } else {
+            return Result.of(command);
+        }
     }
 }

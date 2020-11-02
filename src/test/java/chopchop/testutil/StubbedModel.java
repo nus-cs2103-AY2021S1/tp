@@ -13,41 +13,44 @@ import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.UsageList;
+import chopchop.model.usage.RecipeUsage;
+import chopchop.model.usage.IngredientUsage;
+import javafx.collections.ObservableList;
 
 public class StubbedModel extends chopchop.model.ModelStub {
 
     private final EntryBook<Recipe> recipes;
     private final EntryBook<Ingredient> ingredients;
 
-    /**
-     * Makes a new stubbed model that has some functionality to contain and replace recipes.
-     */
-    public StubbedModel() {
+    private StubbedModel(boolean isEmpty) {
         this.recipes = new EntryBook<>();
         this.ingredients = new EntryBook<>();
 
-        this.recipes.setAll(List.of(
-            TypicalRecipes.APRICOT_SALAD,
-            TypicalRecipes.BANANA_SALAD,
-            TypicalRecipes.CUSTARD_SALAD
-        ));
+        if (!isEmpty) {
+            this.recipes.setAll(List.of(
+                TypicalRecipes.APRICOT_SALAD,
+                TypicalRecipes.BANANA_SALAD,
+                TypicalRecipes.CUSTARD_SALAD
+            ));
 
-        this.recipes.add(new Recipe(
-            "Peanut Salad", List.of(TypicalIngredients.APRICOT_REF), List.of(new Step("mix")),
-            Set.of(new Tag("gross"), new Tag("round"))
-        ));
+            this.recipes.add(new Recipe(
+                "Peanut Salad", List.of(TypicalIngredients.APRICOT_REF), List.of(new Step("mix")),
+                Set.of(new Tag("gross"), new Tag("round"))
+            ));
 
-        this.ingredients.setAll(List.of(
-            TypicalIngredients.APRICOT,
-            TypicalIngredients.BANANA,
-            TypicalIngredients.CUSTARD,
-            TypicalIngredients.BAKED_BEANS
-        ));
+            this.ingredients.setAll(List.of(
+                TypicalIngredients.APRICOT,
+                TypicalIngredients.BANANA,
+                TypicalIngredients.CUSTARD,
+                TypicalIngredients.BAKED_BEANS
+            ));
 
-        this.ingredients.add(new Ingredient(
-            "Peanut", Optional.empty(), Optional.empty(),
-            Set.of(new Tag("brown"), new Tag("round"))
-        ));
+            this.ingredients.add(new Ingredient(
+                "Peanut", Optional.empty(), Optional.empty(),
+                Set.of(new Tag("brown"), new Tag("round"))
+            ));
+        }
     }
 
     @Override
@@ -58,6 +61,16 @@ public class StubbedModel extends chopchop.model.ModelStub {
     @Override
     public ReadOnlyEntryBook<Recipe> getRecipeBook() {
         return this.recipes;
+    }
+
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return this.recipes.getEntryList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return this.ingredients.getEntryList();
     }
 
     @Override
@@ -82,13 +95,18 @@ public class StubbedModel extends chopchop.model.ModelStub {
     }
 
     @Override
-    public void setIngredient(Ingredient target, Ingredient edited) {
-        this.ingredients.set(target, edited);
+    public void addRecipe(Recipe target) {
+        this.recipes.add(target);
     }
 
     @Override
-    public void addRecipe(Recipe target) {
-        this.recipes.add(target);
+    public void deleteRecipe(Recipe target) {
+        this.recipes.remove(target);
+    }
+
+    @Override
+    public void setIngredient(Ingredient target, Ingredient edited) {
+        this.ingredients.set(target, edited);
     }
 
     @Override
@@ -116,5 +134,38 @@ public class StubbedModel extends chopchop.model.ModelStub {
 
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
+    }
+
+    @Override
+    public UsageList<RecipeUsage> getRecipeUsageList() {
+        return new UsageList<>();
+    }
+
+    @Override
+    public UsageList<IngredientUsage> getIngredientUsageList() {
+        return new UsageList<>();
+    }
+
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> ul) {
+    }
+
+    @Override
+    public void setIngredientUsageList(UsageList<IngredientUsage> ul) {
+    }
+
+
+    /**
+     * Returns an empty stubbed model.
+     */
+    public static StubbedModel empty() {
+        return new StubbedModel(/* isEmpty: */ true);
+    }
+
+    /**
+     * Returns a stubbed model filled with stuff.
+     */
+    public static StubbedModel filled() {
+        return new StubbedModel(/* isEmpty: */ false);
     }
 }

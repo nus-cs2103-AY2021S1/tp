@@ -14,9 +14,9 @@ import chopchop.model.Model;
 import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 /**
  * The UI component that is responsible for displaying pinned information.
@@ -36,7 +36,7 @@ public class StatsBox extends UiPart<Region> {
     private final Model model;
 
     @FXML
-    private Label subtitle;
+    private Text subtitle;
 
     @FXML
     private VBox recipeList;
@@ -68,7 +68,7 @@ public class StatsBox extends UiPart<Region> {
             .map(u -> Pair.of(u.getName(), u.getPrintableDate()))
             .collect(Collectors.toList());
 
-        this.showRecentRecipes(SUBTITLE_DEFAULT, list);
+        this.showRecentRecipes(list.isEmpty() ? SUBTITLE_NO_RECIPES : SUBTITLE_DEFAULT, list);
     }
 
     private void showRecentRecipes(String subtitle, List<Pair<String, String>> list) {

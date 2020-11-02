@@ -4,8 +4,6 @@ package chopchop.ui;
 
 import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.parser.exceptions.ParseException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -16,8 +14,6 @@ import javafx.scene.layout.Region;
  * The UI component that is responsible for receiving user command inputs.
  */
 public class CommandBox extends UiPart<Region> {
-
-    public static final String ERROR_STYLE_CLASS = "error";
 
     private static final String FXML = "CommandBox.fxml";
 
@@ -36,8 +32,7 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.logic = logic;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        this.commandTextField.textProperty().addListener((unused1, unused2, unused3) -> this.setStyleToDefault());
+
         // No commands entered yet.
         this.historyPointer = 0;
 
@@ -92,14 +87,9 @@ public class CommandBox extends UiPart<Region> {
     private void handleCommandEntered() {
         var command = this.commandTextField.getText();
         if (!command.isEmpty()) {
-            try {
-                this.commandExecutor.execute(command);
-            } catch (CommandException | ParseException e) {
-                this.setStyleToIndicateCommandFailure();
-            } finally {
-                this.historyPointer = this.logic.getInputHistory().size();
-                this.commandTextField.clear();
-            }
+            this.commandExecutor.execute(command);
+            this.historyPointer = this.logic.getInputHistory().size();
+            this.commandTextField.clear();
         }
     }
 
@@ -108,25 +98,6 @@ public class CommandBox extends UiPart<Region> {
             this.commandTextField.appendText(keypress);
             this.commandTextField.requestFocus();
             this.commandTextField.end();
-        }
-    }
-
-
-    /**
-     * Sets the command box style to use the default style.
-     */
-    private void setStyleToDefault() {
-        this.commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
-    }
-
-    /**
-     * Sets the command box style to indicate a failed command.
-     */
-    private void setStyleToIndicateCommandFailure() {
-        var styleClass = this.commandTextField.getStyleClass();
-
-        if (!styleClass.contains(ERROR_STYLE_CLASS)) {
-            styleClass.add(ERROR_STYLE_CLASS);
         }
     }
 
@@ -140,6 +111,6 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText);
     }
 }

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AutoCompleterTest {
 
     private final CommandParser parser = new CommandParser();
-    private final StubbedModel model = new StubbedModel();
+    private final StubbedModel model = StubbedModel.filled();
 
     private void runTests(HashMap<String, String> cases) {
         var completer = new AutoCompleter();

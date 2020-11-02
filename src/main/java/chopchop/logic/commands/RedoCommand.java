@@ -2,7 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
@@ -12,7 +11,7 @@ import chopchop.model.Model;
 public class RedoCommand extends Command {
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
         requireNonNull(historyManager);
 

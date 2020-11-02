@@ -30,30 +30,32 @@ public class Strings {
     public static final String COMMAND_LIST         = "list";
     public static final String COMMAND_EDIT         = "edit";
     public static final String COMMAND_FIND         = "find";
-    public static final String COMMAND_FILTER       = "filter";
     public static final String COMMAND_QUIT         = "quit";
-    public static final String COMMAND_DELETE       = "delete";
     public static final String COMMAND_MAKE         = "make";
     public static final String COMMAND_UNDO         = "undo";
     public static final String COMMAND_REDO         = "redo";
-    public static final String COMMAND_STATS        = "stats";
     public static final String COMMAND_VIEW         = "view";
+    public static final String COMMAND_STATS        = "stats";
+    public static final String COMMAND_CLEAR        = "clear";
+    public static final String COMMAND_FILTER       = "filter";
+    public static final String COMMAND_DELETE       = "delete";
 
 
     public static final List<String> COMMAND_NAMES = List.of(
         COMMAND_ADD,
+        COMMAND_VIEW,
         COMMAND_HELP,
         COMMAND_LIST,
         COMMAND_FIND,
-        COMMAND_FILTER,
         COMMAND_EDIT,
         COMMAND_QUIT,
-        COMMAND_DELETE,
         COMMAND_MAKE,
         COMMAND_UNDO,
         COMMAND_REDO,
         COMMAND_STATS,
-        COMMAND_VIEW
+        COMMAND_CLEAR,
+        COMMAND_FILTER,
+        COMMAND_DELETE
     );
 
     public static final String STATS_KIND_TOP       = "top";

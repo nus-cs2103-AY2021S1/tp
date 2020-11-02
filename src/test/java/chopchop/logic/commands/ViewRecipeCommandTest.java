@@ -1,6 +1,5 @@
 package chopchop.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -9,8 +8,6 @@ import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalReferences.INDEXED_SECOND;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 
-import chopchop.model.attributes.NameContainsKeywordsPredicate;
-import chopchop.model.recipe.Recipe;
 import org.junit.jupiter.api.Test;
 
 import chopchop.logic.parser.ItemReference;
@@ -19,6 +16,8 @@ import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
+import chopchop.model.attributes.NameContainsKeywordsPredicate;
+import chopchop.model.recipe.Recipe;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
 
@@ -43,7 +42,7 @@ public class ViewRecipeCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidIndexUnfilteredList_returnsError() {
         var outOfBoundIndex = ItemReference.ofOneIndex(model.getFilteredRecipeList().size() + 1);
         var viewCommand = new ViewRecipeCommand(outOfBoundIndex);
 
@@ -66,7 +65,7 @@ public class ViewRecipeCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidIndexFilteredList_returnsError() {
         showRecipeAtIndex(model, INDEXED_FIRST);
 
         var outOfBoundIndex = INDEXED_SECOND;
@@ -76,28 +75,6 @@ public class ViewRecipeCommandTest {
         var viewCommand = new ViewRecipeCommand(outOfBoundIndex);
 
         assertCommandFailure(viewCommand, model);
-    }
-
-    @Test
-    public void equals() {
-        var viewFirstCommand = new ViewRecipeCommand(INDEXED_FIRST);
-        var viewSecondCommand = new ViewRecipeCommand(INDEXED_SECOND);
-
-        // same object -> returns true
-        assertTrue(viewFirstCommand.equals(viewFirstCommand));
-
-        // same values -> returns true
-        var viewFirstCommandCopy = new ViewRecipeCommand(INDEXED_FIRST);
-        assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
-
-        // different types -> returns false
-        assertFalse(viewFirstCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(viewFirstCommand.equals(null));
-
-        // different values -> returns false
-        assertFalse(viewFirstCommand.equals(viewSecondCommand));
     }
 
     /**

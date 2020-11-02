@@ -6,8 +6,6 @@ import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.Log;
 import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.parser.exceptions.ParseException;
 import chopchop.model.Model;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -68,7 +66,7 @@ public class MainWindow extends UiPart<Stage> {
         this.setAccelerators();
 
         this.primaryStage.setMinWidth(960);
-        this.primaryStage.setMinHeight(640);
+        this.primaryStage.setMinHeight(540);
     }
 
     public Stage getPrimaryStage() {
@@ -129,32 +127,25 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            var result = this.logic.execute(commandText);
-            logger.log("command result: %s", result.toString());
+    private CommandResult executeCommand(String commandText) {
+        var result = this.logic.execute(commandText);
+        logger.log("command result: %s", result.toString());
 
-            if (result.isStatsOutput()) {
+        if (result.isStatsOutput()) {
 
-                this.commandOutput.clear(); // clear cmd box
-                this.statsOutput.setMessage(result);
+            this.commandOutput.clear(); // clear cmd box
+            this.statsOutput.setMessage(result);
 
-            } else {
-                this.commandOutput.setFeedbackToUser(result);
-                this.statsOutput.clearMessage();
-            }
-
-            if (result.shouldExit()) {
-                handleExit();
-            }
-
-            return result;
-        } catch (CommandException | ParseException e) {
-            logger.warn("invalid command '%s'", commandText);
-
-            this.commandOutput.setFeedbackToUser(CommandResult.error(e.getMessage()));
-            throw e;
+        } else {
+            this.commandOutput.setFeedbackToUser(result);
+            this.statsOutput.clearMessage();
         }
+
+        if (result.shouldExit()) {
+            handleExit();
+        }
+
+        return result;
     }
 
     /**
@@ -162,11 +153,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleHelp() {
-        try {
-            this.executeCommand("help");
-        } catch (CommandException | ParseException ignored) {
-            // Command cannot fail
-        }
+        this.executeCommand("help");
     }
 
     /**

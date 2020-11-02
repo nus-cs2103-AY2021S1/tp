@@ -2,7 +2,6 @@
 
 package chopchop.logic.commands;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.model.Model;
@@ -10,8 +9,6 @@ import chopchop.model.attributes.units.Mass;
 import chopchop.testutil.StubbedModel;
 import org.junit.jupiter.api.Test;
 
-
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,25 +23,16 @@ public class MakeRecipeCommandTest {
         }
 
         assertTrue(c.hasValue());
-
-        try {
-            return c.getValue().execute(m, new HistoryManager());
-        } catch (CommandException e) {
-            return CommandResult.error(e.getMessage());
-        }
+        return c.getValue().execute(m, new HistoryManager());
     }
 
     private CommandResult runCommand(Command c, Model m) {
-        try {
-            return c.execute(m, new HistoryManager());
-        } catch (CommandException e) {
-            return CommandResult.error(e.getMessage());
-        }
+        return c.execute(m, new HistoryManager());
     }
 
     @Test
     void test() {
-        var m = new StubbedModel();
+        var m = StubbedModel.filled();
         runCommand(m, "add ingredient sprinkles /qty 400g");
         runCommand(m, "add ingredient rainbows /qty 400g");
         runCommand(m, "add recipe uwu salad /ingredient sprinkles /qty 50g /step sprinkle it");
@@ -65,8 +53,8 @@ public class MakeRecipeCommandTest {
 
         var c4 = runCommand(m, "make recipe asdf salad");
         assertTrue(c4.isError());
-        assertEquals("Error: Could not make recipe 'asdf salad' (caused by ingredient 'rainbows'): "
-            + "Cannot compare '50mL' with '400g' (incompatible units)", c4.toString());
+        assertEquals("Error: Could not make recipe: Cannot compare '50mL' with '400g' "
+            + "(incompatible units) (for ingredient 'rainbows')", c4.toString());
 
         {
             var p = new CommandParser();
@@ -90,26 +78,6 @@ public class MakeRecipeCommandTest {
 
             var r2 = ((MakeRecipeCommand) c).undo(m);
             assertTrue(r2.didSucceed());
-        }
-
-        if (true) {
-            var p = new CommandParser();
-            var cc1 = p.parse("make recipe apricot salad").getValue();
-            var cc2 = p.parse("make recipe uwu salad").getValue();
-            var cc3 = p.parse("make recipe uwu salad").getValue();
-            var cc4 = p.parse("make recipe apricot salad").getValue();
-
-            runCommand(cc1, m);
-            runCommand(cc2, m);
-            runCommand(cc3, m);
-            runCommand(cc4, m);
-
-            assertEquals(cc1, cc1);
-            assertEquals(cc2, cc3);
-
-            assertNotEquals(cc1, "asdf");
-            assertNotEquals(cc1, cc3);
-            assertNotEquals(cc1, cc4);
         }
     }
 }

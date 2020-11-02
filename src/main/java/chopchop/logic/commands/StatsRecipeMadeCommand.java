@@ -3,7 +3,6 @@ package chopchop.logic.commands;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
@@ -37,35 +36,27 @@ public class StatsRecipeMadeCommand extends Command {
             var onAfter = this.after.format(onFormatter);
             if (this.after.plusDays(1).equals(this.before)) {
                 msg = String.format(isEmpty ? "No recipes were made on %s"
-                                            : "Here is a list of recipes made on %s", onAfter);
+                                            : "Showing recipes made on %s", onAfter);
             } else {
-                msg = String.format(isEmpty ? "No recipes were made from the period %s to %s"
-                                            : "Here is a list of recipes made from the period %s to %s", after, before);
+                msg = String.format(isEmpty ? "No recipes were made between %s and %s"
+                                            : "Showing recipes made between %s and %s", after, before);
             }
         } else if (this.before != null) {
             var before = this.before.format(formatter);
             msg = String.format(isEmpty ? "No recipes were made before %s"
-                                        : "Here is a list of recipes made before %s", before);
+                                        : "Showing recipes made before %s", before);
         } else {
             var before = this.after.format(formatter);
             msg = String.format(isEmpty ? "No recipes were made after %s"
-                                        : "Here is a list of recipes made after %s", before);
+                                        : "Showing recipes made after %s", before);
         }
         return msg;
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager) {
         var output = model.getRecipeUsageList().getUsagesBetween(after, before);
         return CommandResult.statsMessage(output, getMessage(output.isEmpty()));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this
-            || (other instanceof StatsRecipeMadeCommand
-            && this.before.equals(((StatsRecipeMadeCommand) other).before)
-            && this.after.equals(((StatsRecipeMadeCommand) other).after));
     }
 
     @Override
