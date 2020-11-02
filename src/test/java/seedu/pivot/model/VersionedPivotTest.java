@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.pivot.logic.commands.Page;
 import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.model.VersionedPivot.PivotState;
@@ -23,7 +24,7 @@ public class VersionedPivotTest {
     private final Undoable initialCommandResult = null;
     private final String initialCommandMessageResult = "";
     private final PivotTest.PivotStub emptyPivot = new PivotTest.PivotStub(Collections.emptyList());
-    private final PivotState initialState = new PivotState(emptyPivot, INITIAL_COMMAND, null);
+    private final PivotState initialState = new PivotState(emptyPivot, null, INITIAL_COMMAND);
     private VersionedPivot versionedPivot = new VersionedPivot(emptyPivot);
 
     @BeforeEach
@@ -35,7 +36,7 @@ public class VersionedPivotTest {
     public void constructor() {
         // initialisation of pivotStateList
         List<PivotState> listWithInitialPivot = new ArrayList<>();
-        listWithInitialPivot.add(new PivotState(emptyPivot, INITIAL_COMMAND, null));
+        listWithInitialPivot.add(new PivotState(emptyPivot, null, INITIAL_COMMAND));
         assertEquals(listWithInitialPivot, versionedPivot.getPivotStateList());
 
         // initialisation currentStatePointer
@@ -51,7 +52,7 @@ public class VersionedPivotTest {
         // constructing expected versioned pivot object
         List<PivotState> expectedPivotStateList = new ArrayList<>();
         expectedPivotStateList.add(initialState);
-        PivotState newPivotState = new PivotState(getTypicalPivot(), testMessage, testCommand);
+        PivotState newPivotState = new PivotState(getTypicalPivot(), testCommand, testMessage);
         expectedPivotStateList.add(newPivotState);
 
         int expectedCurrentStatePointer = 1;
@@ -121,7 +122,7 @@ public class VersionedPivotTest {
         // constructing expected versioned pivot object
         List<PivotState> expectedPivotStateList = new ArrayList<>();
         expectedPivotStateList.add(initialState);
-        PivotState newPivotState = new PivotState(getTypicalPivot(), testMessage, testCommand);
+        PivotState newPivotState = new PivotState(getTypicalPivot(), testCommand, testMessage);
         expectedPivotStateList.add(newPivotState);
 
         int expectedCurrentStatePointer = INITIAL_STATE;
@@ -160,7 +161,7 @@ public class VersionedPivotTest {
         // constructing expected versioned pivot object
         List<PivotState> expectedPivotStateList = new ArrayList<>();
         expectedPivotStateList.add(initialState);
-        PivotState newPivotState = new PivotState(getTypicalPivot(), testMessage, testCommand);
+        PivotState newPivotState = new PivotState(getTypicalPivot(), testCommand, testMessage);
         expectedPivotStateList.add(newPivotState);
 
         int expectedCurrentStatePointer = 1;

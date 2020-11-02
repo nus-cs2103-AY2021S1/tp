@@ -28,7 +28,7 @@ public class VersionedPivot extends Pivot {
      */
     public VersionedPivot(ReadOnlyPivot pivot) {
         requireNonNull(pivot);
-        pivotStateList.add(new PivotState(pivot, INITIAL_COMMAND, null));
+        pivotStateList.add(new PivotState(pivot, null, INITIAL_COMMAND));
         currentStatePointer = INITIAL_STATE;
     }
 
@@ -96,7 +96,7 @@ public class VersionedPivot extends Pivot {
      */
     public void commit(ReadOnlyPivot pivot, String commandMessage, Undoable command) {
         requireAllNonNull(pivot, commandMessage, command);
-        pivotStateList.add(new PivotState(pivot, commandMessage, command));
+        pivotStateList.add(new PivotState(pivot, command, commandMessage));
         currentStatePointer++;
 
         assert currentStatePointer < pivotStateList.size() : "Index out of bounds";
@@ -172,13 +172,20 @@ public class VersionedPivot extends Pivot {
 
     public static class PivotState {
         final ReadOnlyPivot pivotState;
-        final String commandMessage;
         final Undoable command;
+        final String commandMessage;
 
-        public PivotState(ReadOnlyPivot pivotState, String commandMessage, Undoable command) {
+        /**
+         * Creates a PivotState with a PIVOT state, the command that caused the change in state, and its corresponding
+         * message that was displayed to the user when the command was used.
+         * @param pivotState PIVOT state.
+         * @param command Command that caused the change in PIVOT state.
+         * @param commandMessage Message displayed to user when command was used.
+         */
+        public PivotState(ReadOnlyPivot pivotState, Undoable command, String commandMessage) {
             this.pivotState = pivotState;
-            this.commandMessage = commandMessage;
             this.command = command;
+            this.commandMessage = commandMessage;
         }
 
         public ReadOnlyPivot getPivotState() {
