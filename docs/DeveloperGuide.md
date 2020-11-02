@@ -208,7 +208,7 @@ The `viewtask` command calls `enterTask`, causing a switch of scoping status and
 </div>
 The following sequence diagram shows the execution of view task command.
 
-![ViewTaskCommandSequence](images/ViewTaskCommandSequence.png)
+![ViewTaskSequenceDiagram](images/ViewTaskSequenceDiagram.png)
 
 Step 4. The user executes `start 2` command to view details of project of index 2 in the current list of projects instead.
 The scope is switched to `PROJECT`, project of focus is updated to a new project and the task on view is updated to empty.
