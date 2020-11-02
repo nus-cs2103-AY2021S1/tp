@@ -305,7 +305,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_findExactCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes
         String userInput = SERIAL_NUMBER_DESC_APPLE;
         SuggestionCommandParser parser = new SuggestionCommandParser("findexac");
         String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
@@ -314,12 +314,21 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + INVALID_LIST_TYPE_DESC;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // EP: correct command word
+        userInput = SERIAL_NUMBER_DESC_APPLE;
         parser = new SuggestionCommandParser("findexact", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.FIND_EXACT_COMMAND_WORD + userInput
                 + "\n" + FindExactCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + INVALID_LIST_TYPE_DESC;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
