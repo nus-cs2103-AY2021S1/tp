@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Item's name in the delivery book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class DeliveryName {
+public class DeliveryName implements Comparable<DeliveryName>{
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -56,4 +56,8 @@ public class DeliveryName {
         return fullName.hashCode();
     }
 
+    @Override
+    public int compareTo(DeliveryName deliveryName) {
+        return this.fullName.compareTo(deliveryName.fullName);
+    }
 }

@@ -13,7 +13,8 @@ public class DeliveryEndTimeComparator implements Comparator<Delivery> {
         } else if (delivery1.getEndTime().isAfter(delivery2.getEndTime())) {
             return 1;
         } else {
-            return 0;
+            // when 2 deliveries have the same endTime
+            return delivery1.getName().compareTo(delivery2.getName());
         }
     }
 }

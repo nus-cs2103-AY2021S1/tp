@@ -76,10 +76,6 @@ public class DeliveryEditCommand extends DeliveryCommand {
         Delivery deliveryToEdit = lastShownList.get(index.getZeroBased());
         Delivery editedDelivery = createEditedDelivery(deliveryToEdit, editDeliveryDescriptor);
 
-        if (!deliveryToEdit.equals(editedDelivery) && deliveryModel.hasDelivery(editedDelivery)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
-        }
-
         deliveryModel.setDelivery(deliveryToEdit, editedDelivery);
         deliveryModel.updateFilteredDeliveryList(DeliveryModel.PREDICATE_SHOW_ALL_DELIVERIES);
         models.commit();

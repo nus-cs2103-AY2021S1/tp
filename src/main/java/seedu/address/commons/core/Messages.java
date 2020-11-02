@@ -106,7 +106,9 @@ public class Messages {
                 .append(DIVIDER)
                 .append("CONGRATULATIONS! You have completed OneShelf's tutorial! If you would "
                         + "want to find out more about OneShelf,\n"
-                        + "feel free to check out the user guide's link stated above!");
+                        + "feel free to check out the user guide's link stated above!\n")
+                .append(DIVIDER)
+                .append("To close this window, press ALT + F4");
         return summary.toString();
     }
 
@@ -140,7 +142,9 @@ public class Messages {
                 .append("Edit a delivery: edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER] [by/TIME]\n")
                 .append("Find a delivery: find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]\n")
                 .append("Clear all deliveries: clear-d\n")
-                .append("List all deliveries: list-d\n");
+                .append("List all deliveries: list-d\n")
+                .append(DIVIDER)
+                .append("To close this window, press ALT + F4");
         return summary.toString();
     }
 }

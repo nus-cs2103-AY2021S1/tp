@@ -36,7 +36,10 @@ Installation Steps:
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-1. Double-click the file to start the app.
+1. Double-click the file to start the app. If you are unable to open the file by double-clicking, 
+you may want to install 
+[Java SE Platform](https://www.oracle.com/sg/java/technologies/javase-downloads.html) or you can also open **OneShelf**
+using the terminal, refer to the installation guide video above.
 
 1. Refer to the [Features](#3-features) below for details of each command.
 
@@ -94,7 +97,7 @@ All pending deliveries related command have a suffix `-d`.
 
    <a name="uihelpstart"></a>
 * Type the command `help start` in the command box and press Enter to execute it. <br>
-   A new help window shown below should appear on your desktop. You are strongly encouraged to follow
+   A new help window shown below (Figure 2) should appear on your desktop. You are strongly encouraged to follow
    the steps in the help window if you are a new user.
     <br>
     
@@ -174,7 +177,7 @@ To open up `help summary` window, you can also do the following:
 * Press `F2`
 * Click on `Help` located at the top toolbar and then click `Summary F2`
     
-A new help window similar to Figure 4 below should appear on your desktop.
+A new help window similar below (Figure 4) should appear on your desktop.
 <a name="helpsummary"></a>
 <br>
 
@@ -206,7 +209,7 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. The new item will show up in Inventory Book, refer to the diagram below:
+3. The new item will show up in Inventory Book, refer to the diagram below (Figure 5):
     <br>
     
     ![add-i_step_1](images/add-i_eg1.1.PNG)
@@ -216,7 +219,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     <br>
 
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
-through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below:
+through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below
+(Figure 6):
     <br>
 
     ![add-i_step_2](images/add-i_eg1.2.PNG)
@@ -229,7 +233,7 @@ through as you are not allowed to add with max quantity and metric. You should r
 
 5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
 are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
-You can refer to the diagram below for the expected result:
+You can refer to the diagram below (Figure 7) for the expected result:
     <br>
     
     ![add-i_step3](images/add-i_eg1.3.PNG)
@@ -253,7 +257,7 @@ Example 1:
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
- you may want to refer to the diagram below:
+ you may want to refer to the diagram below (Figure 8):
     <br>
     
     ![add-d_step1](images/add-d_eg1.1.PNG)
@@ -268,7 +272,7 @@ Example 2:
  `add-d n/HUGO p/91123421 a/Blk 253 BUKIT TIMAH o/Fish fillet x1 by/10`.
 
 2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
- you may want to refer to the diagram below:
+ you may want to refer to the diagram below (Figure 9):
     <br>
     
     ![add-d_step2](images/add-d_eg1.2.PNG)
@@ -325,7 +329,8 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
+3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown 
+below (Figure 10).
     <br>
     
     ![edit-iexampleonestepthree](images/edit-i_example_one_step_three.png)
@@ -340,7 +345,8 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
+3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated 
+fields as shown below (Figure 11).
     <br>
     
     ![add-i example two step three](images/edit-i_example_two_step_three.png)
@@ -385,7 +391,8 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to 
+the diagram below (Figure 12):
     <br>
     
     ![find-command-4](images/find-command-1.PNG)
@@ -415,7 +422,8 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to the
+diagram below (Figure 13):
     <br>
     <a name="findexample1"></a>
 
@@ -440,7 +448,7 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display.
+3. Success Message will be shown in the Result Display, refer to the diagram below (Figure 14):
     <br>
     
     ![list-command-1](images/list-command-1.PNG)
@@ -461,7 +469,7 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example 1:
-1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below:
+1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below (Figure 15):
     <br>
      
     ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
@@ -470,7 +478,7 @@ Example 1:
     Figure 15: Before deleting index 2
     <br>
  
-2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
+2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below (Figure 16):
     <br>
     
     ![delete-i_step2](images/UG_delete_eg1_step2.PNG)
@@ -581,7 +589,7 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 ##### 3.2.3b Sorting Pending Deliveries
 
-* Pending deliveries are sorted based on deliver by timing.
+* Pending deliveries are sorted based on deliver by timing ie. delivery by.
 
 
 ### 3.3 Coming Soon
@@ -669,7 +677,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 
 <a name="6-glossary"></a>
-### 6. Glossary
+## 6. Glossary
 * **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
 *(i.e milk, cheese)*
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant
