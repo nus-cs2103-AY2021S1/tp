@@ -20,7 +20,7 @@ public class StatsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows the flashcard's statistics identified by the index number used in the displayed "
             + "flashcard list.\n"
-            + "Parameters: INDEX (must be a positive integer)"
+            + "Parameters: INDEX (must be a positive integer greater than 0)"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS = "Flashcard's statistics is shown: %1$s";
