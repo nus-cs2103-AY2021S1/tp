@@ -36,8 +36,8 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_MEDICAL_RECORD + "www.samplerecord.com/hospify01 "
-            + PREFIX_ALLERGY + "friends "
-            + PREFIX_ALLERGY + "owesMoney";
+            + PREFIX_ALLERGY + "peanuts "
+            + PREFIX_ALLERGY + "pollen";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Hospify";
