@@ -21,6 +21,7 @@ import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
@@ -211,6 +212,11 @@ public class AliasCommandTest {
 
         @Override
         public void switchCategory(Tag category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CategoryBudget getCategoryBudget(Tag category) throws CategoryBudgetNotFoundException {
             throw new AssertionError("This method should not be called.");
         }
 
