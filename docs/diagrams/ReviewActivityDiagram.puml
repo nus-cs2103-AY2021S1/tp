@@ -10,18 +10,41 @@ if () then ([input is right arrow])
     if () then ([has next flashcard])
         :show next flashcard;
     else ([else])
-        : quit review mode;
+        : stay at same flashcard;
     endif
-elseif () then ([input is top arrow])
-       :hide current flashcard's answer;
-elseif () then ([input is bottom arrow])
-       : show current flashcard's answer;
-else ([input is left arrow])
-    if () then ([has previous flashcard])
-            :show previous flashcard;
+else ([else])
+    if () then ([input is left arrow])
+        if () then ([has previous flashcard])
+            : show previous flashcard;
         else ([else])
-            : quit review mode;
+            : stay at same flashcard;
         endif
+    else ([else])
+        if () then ([input is down arrow])
+            : show current flashcard's answer;
+        else ([else])
+            if () then ([input is up arrow])
+                :hide current flashcard's answer;
+            else ([else])
+                if () then ([input is q])
+                    : quit review mode;
+                else ([else])
+                endif
+            endif
+         endif
+    endif
 endif
 stop
 @enduml
+
+
+if () then ([input is left arrow])
+                if () then ([has previous flashcard])
+                    : show previous flashcard;
+                else ([else])
+                    : stay at same flashcard;
+                endif
+
+
+                 if () then ([input is top arrow])
+                        : hide current flashcard's answer;

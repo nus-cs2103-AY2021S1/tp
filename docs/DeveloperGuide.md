@@ -245,34 +245,40 @@ The following sequence diagram shows how the `add` operation works:
 
 #### Current Implementation
 
-The review mechanism is implemented mainly via `MainWindow`. The review feature is a UI feature so `MainWindow` maintains the necessary UI state 
-and keeps track of whether the application is in review mode. Review mode is facilitated by `ReviewManager` which keeps track of the review state.
-It maintains the list of `Flashcard` and the `currentIndex` at which the user is at.
+The review feature is one of the two abstract study features. The review feature is facilitated by `StudyManager` which
+keeps track of the review state. It maintains the list of `Flashcard` and the `currentIndex` at which the user is at.
+The review feature also involves the UI via `ReviewPanel` which will handle user input and displaying of the flashcards.
 
-It implements the following operations:
-* `ReviewManager#hasNextFlashcard` - determines if there are any more flashcards in the flashcard list after the flashcard specified by the `currentIndex`
-* `ReviewManager#hasPreviousFlashcard` - determines if there are any previous flashcards in the flashcard list before the flashcard specified by the `currentIndex`
-* `ReviewManager#getCurrentFlashcard` - returns flashcard at `currentIndex` in the flashcard list
-* `ReviewManager#getPreviousFlashcard` - decrements `currentIndex` by 1 and returns the associated flashcard
-* `ReviewManager#getNextFlashcard` - increments `currentIndex` by 1 and returns the associated flashcard
+`StudyManager` implements the following operations:
+* `StudyManager#hasNextFlashcard` - determines if there are any more flashcards in the flashcard list after the flashcard specified by the `currentIndex`
+* `StudyManager#hasPreviousFlashcard` - determines if there are any previous flashcards in the flashcard list before the flashcard specified by the `currentIndex`
+* `StudyManager#getCurrentFlashcard` - returns flashcard at `currentIndex` in the flashcard list
+* `StudyManager#getPreviousFlashcard` - decrements `currentIndex` by 1 and returns the associated flashcard
+* `StudyManager#getNextFlashcard` - increments `currentIndex` by 1 and returns the associated flashcard
 
-Given below is an example of how the undo/redo mechanism behaves at each step:
+The following class diagrams show how the relationship between the different UI components involved in review, and `StudyManager`.
+
+Given below is an example of how the review mechanism behaves at each step:
 
 Step 1. The user launches the application.
 
-Step 2. The user executes `review` command. `MainWindow` will receive a `CommandResult` and calls `CommandResult#isReviewMode` which returns true. `MainWindow#handleReview` is then called to enter review mode.
+Step 2. The user executes `review` command. `MainWindow` will receive a `CommandResult` and calls `CommandResult#isReviewMode` which returns true. A new `ReviewPanel` 
+is created and `MainWindow#enterStudyMode` is then called with this `ReviewPanel` to enter review mode.
 
-Step 3. In `MainWindow#handleReview`, the UI elements are altered, a listener is set up to listen for arrow key presses and a new `ReviewManager` is created to keep track of state.
+Step 3. In `MainWindow#enterStudyMode`, the UI elements are altered to show the review user interface. In `ReviewPanel` a listener is set 
+up to listen for arrow key presses, and a new `StudyManager` is created to keep track of state.
 
-Step 4. Depending on the key presses, different operations of `ReviewManager` are called. The flashcard to render in the UI is determined by the various `ReviewManager` operations and the state as mentioned above.
+Step 4. Depending on the key presses, different operations of `StudyManager` are called. The flashcard to render in the 
+UI is determined by the various `StudyManager` operations and the state as mentioned above.
 
-Step 5. If user presses `q` or runs out of flashcards to review, `MainWindow#exitReviewMode` is called which places the application back in normal command mode.
+Step 5. If user presses `q`, `StudyPanel#exitStudyMode` is called which in turn calls `MainWindow#exitReviewMode`, 
+which places the application back in normal command mode.
 
 The following sequence diagram gives an overview of how the application enters review mode:
 
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png)
 
-The following activity diagram summarises the control path in review mode set up by `ReviewManager#handleReview`:
+The following activity diagram summarises the control path in review mode set up by `ReviewPanel` and `StudyManager`:
 
 ![ReviewActivityDiagram](images/ReviewActivityDiagram.png)
 
