@@ -136,7 +136,7 @@ public class ParserUtil {
     public static LocalTime parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter parser = DateUtil.TIME_FORMATTER;
         if (!Time.isValidTime(trimmedTime)) {
             throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
@@ -152,7 +152,7 @@ public class ParserUtil {
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter parser = DateUtil.DATE_FORMATTER;
         if (!DateUtil.isValidDate(trimmedDate)) {
             throw new ParseException(DateUtil.DATE_CONSTRAINTS);
         }
