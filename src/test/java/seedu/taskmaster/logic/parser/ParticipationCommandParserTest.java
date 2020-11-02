@@ -2,7 +2,8 @@ package seedu.taskmaster.logic.parser;
 
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_NONINTEGER;
-import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_SCORE;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_TOOBIG;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.INVALID_PARTICIPATION_TOOSMALL;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.PREAMBLE_ALL;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -22,6 +23,10 @@ import seedu.taskmaster.logic.commands.ParticipationCommand;
 class ParticipationCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParticipationCommand.MESSAGE_USAGE);
+    private static final String MESSAGE_INVALID_INPUT_TOO_SMALL =
+            "Invalid input: Negative score. Score needs to be between 0 to 10 inclusive.";
+    private static final String MESSAGE_INVALID_INPUT_TOO_BIG =
+            "Invalid input: Score is greater than 10. Score needs to be between 0 to 10 inclusive.";
 
     private ParticipationCommandParser parser = new ParticipationCommandParser();
 
@@ -55,7 +60,8 @@ class ParticipationCommandParserTest {
     @Test
     public void parse_invalidAttendanceType_failure() {
         assertParseFailure(parser, "1" + INVALID_PARTICIPATION_NONINTEGER, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + INVALID_PARTICIPATION_SCORE, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1" + INVALID_PARTICIPATION_TOOSMALL, MESSAGE_INVALID_INPUT_TOO_SMALL);
+        assertParseFailure(parser, "1" + INVALID_PARTICIPATION_TOOBIG, MESSAGE_INVALID_INPUT_TOO_BIG);
     }
 
     @Test

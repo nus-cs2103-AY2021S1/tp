@@ -63,6 +63,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE_TYPE + "notAttendanceType";
     public static final String INVALID_PARTICIPATION_SCORE = " " + PREFIX_CLASS_PARTICIPATION + "-1";
+    public static final String INVALID_PARTICIPATION_TOOSMALL = " " + PREFIX_CLASS_PARTICIPATION + "-1";
+    public static final String INVALID_PARTICIPATION_TOOBIG = " " + PREFIX_CLASS_PARTICIPATION + "10.1";
     public static final String INVALID_PARTICIPATION_NONINTEGER = " " + PREFIX_CLASS_PARTICIPATION + "NOTASCORE";
     // refer to {@code AttendanceType} for valid attendance types
 
