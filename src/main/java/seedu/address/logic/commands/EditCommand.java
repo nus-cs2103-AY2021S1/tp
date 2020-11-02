@@ -26,11 +26,11 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.question.Question;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
-import seedu.address.model.student.question.Question;
 
 /**
  * Edits the details of an existing student in Reeve.
@@ -140,10 +140,10 @@ public class EditCommand extends Command {
             // Additional Details cannot be edited through this channel
             return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
                     updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate, studentToEdit.getDetails(),
-                    questions, academic);
+                    academic);
         } else {
             return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, studentToEdit.getAdmin(),
-                    questions, academic);
+                    academic);
         }
     }
 

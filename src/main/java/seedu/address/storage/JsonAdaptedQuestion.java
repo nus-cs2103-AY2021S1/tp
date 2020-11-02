@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.question.Question;
-import seedu.address.model.student.question.SolvedQuestion;
-import seedu.address.model.student.question.UnsolvedQuestion;
+import seedu.address.model.student.academic.question.Question;
+import seedu.address.model.student.academic.question.SolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 
 /**
  * Jackson-friendly version of {@code Question}.

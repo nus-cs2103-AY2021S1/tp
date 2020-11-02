@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.question.UnsolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
 
 public class AddQuestionCommandTest {

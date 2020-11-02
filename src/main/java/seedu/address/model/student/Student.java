@@ -3,21 +3,19 @@ package seedu.address.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.question.Question;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
-import seedu.address.model.student.question.Question;
 
 /**
  * Represents a Student in Reeve.
@@ -30,21 +28,19 @@ public class Student {
     private final School school;
     private final Year year;
     private final Admin admin;
-    private final List<Question> questions = new ArrayList<>();
     private final Academic academic;
 
     /**
      *  alternate constructor where admin and academic details need not be changed
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions, Academic academic) {
-        requireAllNonNull(name, phone, school, year, admin, questions, academic);
+                   Admin admin, Academic academic) {
+        requireAllNonNull(name, phone, school, year, admin, academic);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.admin = admin;
-        this.questions.addAll(questions);
         this.academic = academic;
     }
 
@@ -60,24 +56,21 @@ public class Student {
         this.school = school;
         this.year = year;
         this.admin = new Admin(venue, time, fee, date, details);
-        this.questions.addAll(questions);
-        this.academic = new Academic(attendances, exams);
+        this.academic = new Academic(questions, attendances, exams);
     }
 
     /**
      * alternate constructor for when admin need not be changed
      */
-    public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions,
-                   List<Exam> exams, List<Attendance> attendances) {
+    public Student(Name name, Phone phone, School school, Year year, Admin admin,
+                   List<Question> questions, List<Exam> exams, List<Attendance> attendances) {
         requireAllNonNull(name, phone, school, year, admin, questions, exams, attendances);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.admin = admin;
-        this.questions.addAll(questions);
-        this.academic = new Academic(attendances, exams);
+        this.academic = new Academic(questions, attendances, exams);
     }
 
     /**
@@ -85,26 +78,14 @@ public class Student {
      */
     public Student(Name name, Phone phone, School school, Year year,
                    ClassVenue venue, ClassTime time, Fee fee, PaymentDate date, List<Detail> details,
-                   List<Question> questions, Academic academic) {
-        requireAllNonNull(name, phone, school, year, venue, time, fee, date, details, questions, academic);
+                   Academic academic) {
+        requireAllNonNull(name, phone, school, year, venue, time, fee, date, details, academic);
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.admin = new Admin(venue, time, fee, date, details);
-        this.questions.addAll(questions);
         this.academic = academic;
-    }
-
-    private Student(Student copy) {
-        requireNonNull(copy);
-        this.name = copy.name;
-        this.phone = copy.phone;
-        this.school = copy.school;
-        this.year = copy.year;;
-        this.admin = copy.admin;
-        this.questions.addAll(copy.questions);
-        this.academic = copy.academic;
     }
 
     public Name getName() {
@@ -121,10 +102,6 @@ public class Student {
 
     public Year getYear() {
         return year;
-    }
-
-    public List<Question> getQuestions() {
-        return List.copyOf(questions);
     }
 
     /**
@@ -172,7 +149,7 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, school, year, questions, admin, academic);
+        return Objects.hash(name, phone, school, year, admin, academic);
     }
 
     @Override
@@ -186,26 +163,15 @@ public class Student {
                 .append(getSchool())
                 .append("\nYear: ")
                 .append(getYear())
-                .append(getAdmin());
+                .append(getAdmin())
+                .append(getAcademic());
 
-        if (!questions.isEmpty()) {
-            builder.append("\nQuestions:\n");
-            String questionList = questions.stream()
-                    .map(Question::toString)
-                    .collect(Collectors.joining("\n"));
-            builder.append(questionList);
-        }
-
-        return builder.append(getAcademic()).toString();
+        return builder.toString();
     }
 
-    //==============QUESTION ACCESSORS==============//
-    public Admin getAdmin() {
-        return admin;
-    }
-
+    //==============QUESTION OPERATIONS==============//
     public boolean containsQuestion(Question question) {
-        return questions.stream().anyMatch(question::isSameQuestion);
+        return academic.containsQuestion(question);
     }
 
     /***
@@ -214,11 +180,8 @@ public class Student {
      */
     public Student addQuestion(Question question) {
         assert !containsQuestion(question);
-
         requireNonNull(question);
-        Student replacement = new Student(this);
-        replacement.questions.add(question);
-        return replacement;
+        return new Student(name, phone, school, year, admin, academic.addQuestion(question));
     }
 
     /**
@@ -226,13 +189,10 @@ public class Student {
      * This operation preserves the immutability of the Student class.
      */
     public Student setQuestion(Question target, Question newQuestion) {
-        assert questions.contains(target);
+        assert getQuestions().contains(target);
         requireAllNonNull(target, newQuestion);
 
-        Student replacement = new Student(this);
-        int location = replacement.questions.indexOf(target);
-        replacement.questions.set(location, newQuestion);
-        return replacement;
+        return new Student(name, phone, school, year, admin, academic.setQuestion(target, newQuestion));
     }
 
     /**
@@ -240,25 +200,17 @@ public class Student {
      * This operation preserves the immutability of the Student class.
      */
     public Student deleteQuestion(Question target) {
-        assert questions.contains(target);
+        assert getQuestions().contains(target);
         requireNonNull(target);
 
-        Student replacement = new Student(this);
-        replacement.questions.remove(target);
-        return replacement;
-    }
-
-    public String getFormattedQuestions() {
-        String result = "";
-        int index = 1;
-        for (Question question : questions) {
-            result = result + index + ". " + question.toString() + "\n";
-            index++;
-        }
-        return result;
+        return new Student(name, phone, school, year, admin, academic.deleteQuestion(target));
     }
 
     //==============ADMIN ACCESSORS==============//
+    public Admin getAdmin() {
+        return admin;
+    }
+
     public Fee getFee() {
         return admin.getFee();
     }
@@ -288,12 +240,32 @@ public class Student {
         return academic;
     }
 
+    public List<Question> getQuestions() {
+        return academic.getQuestions();
+    }
+
     public List<Attendance> getAttendance() {
         return academic.getAttendance();
     }
 
     public List<Exam> getExams() {
         return academic.getExams();
+    }
+
+    /**
+     * Get Question of student formatted for GUI use.
+     * @return formatted questions.
+     */
+    public String getFormattedQuestions() {
+        return academic.getFormattedQuestions();
+    }
+
+    /**
+     * Get Attendance of student formatted for GUI use.
+     * @return formatted exams.
+     */
+    public String getFormattedAttendance() {
+        return academic.getFormattedAttendance();
     }
 
     /**

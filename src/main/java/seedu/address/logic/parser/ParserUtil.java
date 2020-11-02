@@ -25,14 +25,14 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
+import seedu.address.model.student.academic.question.Question;
+import seedu.address.model.student.academic.question.SolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
-import seedu.address.model.student.question.Question;
-import seedu.address.model.student.question.SolvedQuestion;
-import seedu.address.model.student.question.UnsolvedQuestion;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

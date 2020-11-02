@@ -55,7 +55,7 @@ public class StudentAcademicCard extends UiPart<Region> {
         year.setText("Year: " + student.getYear());
         questions.setText("Questions:\n" + student.getFormattedQuestions());
         exams.setText("Examinations: \n" + student.getFormattedExams());
-        attendance.setText("Attendance:\n" + student.getAcademic().getFormattedAttendance());
+        attendance.setText("Attendance:\n" + student.getFormattedAttendance());
     }
 
     @Override

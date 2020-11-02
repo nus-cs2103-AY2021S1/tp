@@ -11,12 +11,12 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": ["Clever"]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : " ",
-      "solution" : ""
-    } ],
     "academic": {
+      "questions": [ {
+        "status" : false,
+        "question" : " ",
+        "solution" : ""
+      } ],
       "attendanceList" : [{
         "date" : "14/04/1998",
         "attendanceStatus" : "attended",

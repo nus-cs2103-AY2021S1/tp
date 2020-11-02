@@ -11,7 +11,31 @@
       "paymentDate": "20/12/2020",
       "additionalDetails": ["He's valid"]
     },
-    "questions" : []
+    "academic" : {
+      "questions": [{
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+        }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      }],
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "present",
+        "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
+      }]
+    }
   }, {
     "name": "Student With Invalid Phone Field",
     "phone": "948asdf2424",
@@ -24,6 +48,30 @@
       "paymentDate": "20/12/2020",
       "additionalDetails": ["He's valid"]
     },
-    "questions":  []
+    "academic" : {
+      "questions": [{
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      }],
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "present",
+        "feedback" : "sleepy during lesson"
+      }],
+      "exams" : [ {
+        "examName" : "End of Year Examination 2020",
+        "examDate" : "7/11/2020",
+        "score" : "50/100"
+      }, {
+        "examName" : "Mid Year Examination 2020",
+        "examDate" : "25/7/2020",
+        "score" : "20/30"
+      }]
+    }
   } ]
 }

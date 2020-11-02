@@ -1,4 +1,4 @@
-package seedu.address.model.student.question;
+package seedu.address.model.student.academic.question;
 
 /**
  * Represents an unsolved question a student has for a tutor in Reeve.
