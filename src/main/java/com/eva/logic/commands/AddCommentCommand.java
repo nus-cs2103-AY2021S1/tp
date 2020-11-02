@@ -53,11 +53,11 @@ public class AddCommentCommand extends CommentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        PanelState personType = model.getPanelState();
+        PanelState panelState = model.getPanelState();
         List<? extends Person> lastShownList;
-        if (personType.equals(APPLICANT_LIST) || personType.equals(APPLICANT_PROFILE)) {
+        if (panelState.equals(APPLICANT_LIST) || panelState.equals(APPLICANT_PROFILE)) {
             lastShownList = model.getFilteredApplicantList();
-        } else if (personType.equals(STAFF_LIST) || personType.equals(STAFF_PROFILE)) {
+        } else if (panelState.equals(STAFF_LIST) || panelState.equals(STAFF_PROFILE)) {
             lastShownList = model.getFilteredStaffList();
         } else {
             throw new CommandException("Program spoil");
@@ -73,22 +73,29 @@ public class AddCommentCommand extends CommentCommand {
             if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
                 throw new CommandException(MESSAGE_DUPLICATE_PERSON);
             }
-            if (personType.equals(STAFF_LIST)) {
+            switch (panelState) {
+            case STAFF_LIST:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-            } else if (personType.equals(APPLICANT_LIST)) {
+                break;
+            case APPLICANT_LIST:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-            } else if (personType.equals(STAFF_PROFILE)) {
+                break;
+            case STAFF_PROFILE:
                 model.setStaff((Staff) personToEdit, (Staff) editedPerson);
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
                 Staff staffToView = (Staff) lastShownList.get(index.getZeroBased());
                 model.setCurrentViewStaff(new CurrentViewStaff(staffToView, index));
-            } else if (personType.equals(APPLICANT_PROFILE)) {
+                break;
+            case APPLICANT_PROFILE:
                 model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
                 model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
                 Applicant applicantToView = (Applicant) lastShownList.get(index.getZeroBased());
                 model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
+                break;
+            default:
+                throw new CommandException("Unknown Panel");
             }
             return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson),
                     false, false, true);

@@ -47,7 +47,8 @@ public class DeleteStaffCommand extends Command {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
         if (!panelState.equals(STAFF_LIST)) {
-            throw new CommandException(MESSAGE_WRONG_PANEL);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                    MESSAGE_WRONG_PANEL));
         }
         List<Staff> lastShownList = model.getFilteredStaffList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {

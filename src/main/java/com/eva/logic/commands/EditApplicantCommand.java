@@ -69,7 +69,8 @@ public class EditApplicantCommand extends Command {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
         if (!panelState.equals(APPLICANT_LIST)) {
-            throw new CommandException(MESSAGE_WRONG_PANEL);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                    MESSAGE_WRONG_PANEL));
         }
         List<Applicant> lastShownList = model.getFilteredApplicantList();
 

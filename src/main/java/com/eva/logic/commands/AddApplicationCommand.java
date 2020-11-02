@@ -53,7 +53,8 @@ public class AddApplicationCommand extends Command {
         requireNonNull(model);
         PanelState panelState = model.getPanelState();
         if (!panelState.equals(APPLICANT_PROFILE) && !panelState.equals(APPLICANT_LIST)) {
-            throw new CommandException(MESSAGE_WRONG_PANEL);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
+                    MESSAGE_WRONG_PANEL));
         }
         // if (model.hasApplication(toAdd)) // MESSAGE_OVERRIDE
         List<Applicant> lastShownList = model.getFilteredApplicantList();
@@ -71,8 +72,6 @@ public class AddApplicationCommand extends Command {
             Applicant applicantToView = lastShownList.get(index.getZeroBased());
             model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView));
         }
-        model.setPanelState(APPLICANT_LIST);
-        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToUpdate.getName()),
                 false, false, true);
     }
