@@ -175,7 +175,9 @@ Examples:
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tips:</span>
 
+* Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
 * A patient can have any number of allergies (including 0).
+* Allergy cannot contain a whitespace and should consist of one single word instead.
 * The color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>.
 * Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list.
 
@@ -225,7 +227,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 * Edits the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
+* Allergy cannot contain a whitespace and should consist of one single word instead.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
 Examples:
@@ -233,6 +237,14 @@ Examples:
 *  `edit 2 ct/red` Clears the existing color tag and edits the color tag of the 2nd patient to be <span style="color:red">red</span>.
 
 ![example of color coded patient](images/colorTagExample.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant appointments, using the `editappt` command.;
+
+</div>
 
 #### 4.2.4 Deleting a patient: `delete`
 
@@ -250,6 +262,14 @@ Examples:
 * `list` followed by `delete 9` Deletes the 9th patient (duplicated entry of John Doe) in the patient database.
 * `find Betsy` followed by `delete 1` Deletes the 1st patient in the results of the `find` command.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Please make sure to delete **any appointments related to the deleted patient**, using the `deleteappt` command.;
+
+</div>
+
 #### 4.2.5 Deleting all patients: `clear`
 
 ![example of cleared list](images/clearExample.png)
@@ -265,15 +285,23 @@ Format: `clear`
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Please make sure to delete **any appointments related to the deleted patient**, using the `deleteappt` command.;
+
+</div>
+
 #### 4.2.6 Finding patients: `find`
 
-Find patients whose names or IC number contain any of the given keywords.
+Find patients whose names or NRIC contain any of the given keywords.
 
 ![example of finding meier](images/findExample.png)
 
 Format: `find KEYWORDS`
 
-* You can search for the patient's name or IC number.
+* You can search for the patient's name or NRIC.
 * The search is case-insensitive. 
     * `benson` will match `Benson`
 * The search keyword entered can consist of just one word or even multiple keywords. 
@@ -289,7 +317,7 @@ Examples:
 * `find John` Returns `john` and `John Doe`
 * `find ben` Returns `benjamin`
 * `find alex david` Returns `Alex Yeoh`, `David Li`<br>
-* `find 9123456` Returns the patient with the IC number `s9123456z`
+* `find 9123456` Returns the patient with the NRIC `s9123456z`
 
 #### 4.2.7 Listing all patients: `list`
 
@@ -419,26 +447,27 @@ Patient Appointment commands help you manage your upcoming patient appointments.
 
 Add a new appointment for the specified patient to the appointment database.
 
-Format: `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION`
+Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
-* `APPOINTMENT_DATETIME` refers to the date and starting time of the appointment.
-    * It follows the format of `yyyy-MM-dd HH:mm`.
-    * Do note that you will need to input the hour (`HH`) in  the 24-hour format.
+* `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
+    * It follows the format of `dd/MM/yyyy HH:mm`.
+    * Note that you will need to input the hour (`HH`) in  the 24-hour format.
 
 * `DURATION` refers to the duration of the appointment, in minutes.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
+* Note that only appointments of upcoming dates (including today) will be accepted.
 * If you are having trouble converting your time to 24 hour format, check out a time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
 * You can retrieve your desired patient `INDEX` from the **Patients** tab.
 </div>
 
 Example: You want to add an appointment with the first patient on the list.
 
-Step 1: Input `addappt 6 st/2020-10-29 16:00 d/120` into the command box and press Enter.
+Step 1: Input `addappt 6 st/29/12/2020 16:00 d/120` into the command box and press Enter.
 
 Step 2: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
@@ -457,7 +486,7 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 Edit the specified appointment in the appointment database.
 
-Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
+Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]`
 
 * Edits the appointment at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed appointment list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -466,11 +495,19 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETI
 * `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab. 
     * It **must be a positive number**, eg. 1, 2, 3, …​
 * `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab.
-* `PATIENT_IC` refers to the ic number of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
-* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
-    * It follows the format of `yyyy-MM-dd HH:mm`. 
-    * Do note that you will need to input the hour (`HH`) in  the 24-hour format. 
+* `PATIENT_IC` refers to the NRIC of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
+* `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment. 
+    * It follows the format of `dd/MM/yyyy HH:mm`. 
+    * Note that you will need to input the hour (`HH`) in  the 24-hour format. 
 * `DURATION` refers to the duration of the appointment, in minutes.
+
+Example: You want to reschedule the first appointment in the appointment list.
+
+Step 1: Input `editappt 1 st/29/12/2020 17:00 d/120` into the command box and press Enter.
+
+Step 2: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
+
+Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -479,13 +516,13 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETI
 * You can retrieve your desired appointment `INDEX` from the **Overview** tab.
 </div>
 
-Example: You want to edit the time and the duration of the first appointment in the appointment list.
+<div markdown="block" class="alert alert-info">
 
-Step 1: Input `editappt 1 st/2020-10-29 17:00 d/120` into the command box and press Enter.
+**:information_source: Note:**<br>
 
-Step 2: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
+* Please make sure to **update the changes to the relevant patient**, using the `edit` command.;
 
-Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
+</div>
 
 #### 4.4.3 Deleting an appointment: `deleteappt`
 
@@ -547,14 +584,14 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g. `add n/James Ho p/22224444 ic/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]` <br> e.g. `addvisit 1 vd/06/10/2020`
-**Add Appointment** | `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addappt 1 st/2020-10-27 14:00 d/60`
+**Add Appointment** | `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION` <br> e.g., `addappt 1 st/27/12/2020 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Delete Visit** | `deletevisit INDEX i/VISIT_INDEX` <br> e.g. `deletevisit 1 i/2`
 **Delete Appointment** | `deleteappt INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com `
-**Edit Appointment** | `editappt INDEX` <br> e.g. `editappt 3 st/2020-11-11 10:10 d/40`
+**Edit Appointment** | `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_TIME] [d/DURATION]` <br> e.g. `editappt 3 st/12/12/2020 10:10 d/40`
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX` <br> e.g. `editvisit 1 i/2`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **List** | `list`
