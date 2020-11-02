@@ -218,16 +218,22 @@ list lt/<list type>
 <h4>Examples</h4>
 
 ```
+list lt/all
+```
+
+![list_all](images/list_all.png)
+
+```
 list lt/bookmark
 ```
 
 ![list_bookmark](images/list_bookmark.png)
 
 ```
-list lt/all
+list lt/low
 ```
 
-![list_all](images/list_all.png)
+![list_low](images/list_low.png)
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
