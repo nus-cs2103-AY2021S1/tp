@@ -107,10 +107,10 @@ public class ReplaceCommandTest {
 
     @Test
     public void execute_invalidAnimalId_failure() {
-        Id outOfBoundId = new Id("99999999999999");
-        assert model.getAnimal(outOfBoundId).equals(Optional.empty());
+        Id invalidId = new Id("999999"); // max possible Id as well
+        assert model.getAnimal(invalidId).equals(Optional.empty());
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY).build();
-        ReplaceCommand replaceCommand = new ReplaceCommand(outOfBoundId, descriptor);
+        ReplaceCommand replaceCommand = new ReplaceCommand(invalidId, descriptor);
 
         assertCommandFailure(replaceCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }

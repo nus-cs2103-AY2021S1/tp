@@ -181,7 +181,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
+* `ID` should be a number from 100 to 999999, inclusive.
 
 * `ID` of animal to add must not already exist in your `ZooKeep` book.
 
@@ -228,7 +228,7 @@ Format: `delete ID`
 
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
+* `ID` should be a number from 100 to 999999, inclusive.
 
 * `ID` of animal to delete must exist in your `ZooKeep` book.
 </div>
@@ -338,7 +338,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
+* `ID` should be a number from 100 to 999999, inclusive.
 
 * `ID` of animal must exist in your `ZooKeep` book.
 
@@ -394,7 +394,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * If you enter an `ID` with leading zeroes, those zeroes will be trimmed during command execution.
 
-* `ID` should be at least 3 digits long (not counting leading zeroes, if any).
+* `ID` should be a number from 100 to 999999, inclusive.
 
 * `ID` of animal must exist in your `ZooKeep` book.
 
@@ -477,7 +477,7 @@ Format: `sort CATEGORY`
 
 These are the category options you can sort the animals by:
 
-* `name`: Sorts all animals by their name in alphabetical order.
+* `name`: Sorts all animals by their name in alphabetical order (case-insensitive).
 * `id`: Sorts all animals by their id in ascending order.
 * `feedtime`: Sorts all animals by their earliest feed time in chronological order.
 * `medical`: Sorts all animals by their number of medical conditions in ascending order.
@@ -528,7 +528,7 @@ This command is useful for storing important archives in the `data/snapshots` fo
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
 
-Please refer to the [FAQs](#faq) to find out how to load a snapshot that you have saved.
+Please refer to the [FAQ](#faq) to find out how to load a snapshot that you have saved.
 
 Format: `snap FILE_NAME`
 

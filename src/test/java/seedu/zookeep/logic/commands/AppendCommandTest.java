@@ -92,10 +92,10 @@ public class AppendCommandTest {
 
     @Test
     public void execute_invalidAnimalId_failure() {
-        Id outOfBoundId = new Id("99999999999999");
-        assert model.getAnimal(outOfBoundId).equals(Optional.empty());
+        Id invalidId = new Id("999999"); // max possible Id as well
+        assert model.getAnimal(invalidId).equals(Optional.empty());
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withFeedTimes(FEED_TIMES).build();
-        AppendCommand appendCommand = new AppendCommand(outOfBoundId, descriptor);
+        AppendCommand appendCommand = new AppendCommand(invalidId, descriptor);
 
         assertCommandFailure(appendCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }

@@ -27,14 +27,19 @@ public class IdTest {
         // invalid id numbers
         assertFalse(Id.isValidId("")); // empty string
         assertFalse(Id.isValidId(" ")); // spaces only
+        assertFalse(Id.isValidId("-123")); // negative numbers
         assertFalse(Id.isValidId("91")); // less than 3 numbers
+        assertFalse(Id.isValidId("99")); // just below lower boundary
+        assertFalse(Id.isValidId("1000000")); // just above upper boundary
+        assertFalse(Id.isValidId("93121534")); // more than 6 numbers
         assertFalse(Id.isValidId("id")); // non-numeric
         assertFalse(Id.isValidId("9011p041")); // alphabets within digits
         assertFalse(Id.isValidId("9312 1534")); // spaces within digits
 
         // valid id numbers
+        assertTrue(Id.isValidId("100")); // lower boundary exactly
         assertTrue(Id.isValidId("911")); // exactly 3 numbers
-        assertTrue(Id.isValidId("93121534"));
-        assertTrue(Id.isValidId("124293842033123")); // long id numbers
+        assertTrue(Id.isValidId("654321")); // long id numbers (6 numbers)
+        assertTrue(Id.isValidId("999999")); // upper boundary exactly
     }
 }
