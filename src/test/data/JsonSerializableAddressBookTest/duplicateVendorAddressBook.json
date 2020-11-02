@@ -8,15 +8,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name": "Alice Pauline",
@@ -27,15 +30,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   } ]
 }

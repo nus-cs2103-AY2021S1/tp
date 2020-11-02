@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
@@ -87,7 +88,7 @@ public interface Model {
      */
     ReadOnlyMenuManager getMenuManager(int index);
 
-    void sortFoodBy(String sortedBy, boolean ascending, boolean toggle);
+    void sortMenuItemBy(String sortedBy, boolean ascending, boolean toggle);
 
     void showDefaultMenu();
     /**
@@ -124,11 +125,11 @@ public interface Model {
     void addOrderItem(OrderItem orderItem) throws CommandException;
 
     /**
-     * Returns an unmodifiable view of the filtered food list at the corresponding index
+     * Returns an unmodifiable view of the filtered menu item list at the corresponding index
      */
-    ObservableList<Food> getFilteredFoodList();
+    ObservableList<MenuItem> getFilteredMenuItemList();
 
-    int getFilteredFoodListSize();
+    int getFilteredMenuItemListSize();
 
     /**
      * Clears the order.
@@ -141,11 +142,12 @@ public interface Model {
     void resetOrder();
 
     /**
-     * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
+     * Updates the filter of the filtered menu item list at the corresponding index to filter by the given
+     * {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredFoodList(Predicate<Food> predicate);
+    void updateFilteredMenuItemList(Predicate<MenuItem> predicate);
 
     /**
      * Returns an unmodifiable view of the filtered orderItem list at the corresponding index

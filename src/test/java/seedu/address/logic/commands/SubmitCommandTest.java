@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
 import seedu.address.testutil.TypicalModel;
 
@@ -18,7 +18,7 @@ public class SubmitCommandTest {
     public void execute_submit_success() {
         Model model = TypicalModel.getModelManagerWithMenu();
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        ObservableList<Food> menu = model.getFilteredFoodList();
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
 
         StringBuilder expectedMessage = new StringBuilder();
         double calculatedTotal = 0;

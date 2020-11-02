@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.menu.MenuManager;
-import seedu.address.testutil.TypicalFoods;
+import seedu.address.testutil.TypicalMenuItems;
 
 public class JsonSerializableMenuManagerTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializableMenuManagerTest {
         JsonSerializableMenuManager dataFromFile = JsonUtil.readJsonFile(TYPICAL_FOODS_FILE,
                 JsonSerializableMenuManager.class).get();
         MenuManager menuManagerFromFile = dataFromFile.toModelType();
-        MenuManager typicalVendorsMenuManager = TypicalFoods.getTypicalMenuManager();
+        MenuManager typicalVendorsMenuManager = TypicalMenuItems.getTypicalMenuManager();
         assertEquals(menuManagerFromFile, typicalVendorsMenuManager);
     }
 

@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.food.Food;
+import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
 import seedu.address.testutil.TypicalModel;
 
@@ -33,8 +33,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(index);
 
 
-        ObservableList<Food> menu = model.getFilteredFoodList();
-        Food firstItem = menu.get(0);
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        MenuItem firstItem = menu.get(0);
         OrderItem addedItem = new OrderItem(firstItem, 1);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
@@ -56,8 +56,8 @@ public class AddCommandTest {
         int quantity = 3;
         AddCommand addCommand = new AddCommand(first, quantity);
 
-        ObservableList<Food> menu = model.getFilteredFoodList();
-        Food secondItem = menu.get(1);
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
+        MenuItem secondItem = menu.get(1);
         OrderItem addedItem = new OrderItem(secondItem, 3);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
@@ -75,7 +75,7 @@ public class AddCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model model = TypicalModel.getModelManagerWithMenu();
 
-        ObservableList<Food> menu = model.getFilteredFoodList();
+        ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
         Index outOfBoundIndex = Index.fromOneBased(menu.size() + 1);
         AddCommand addCommand = new AddCommand(outOfBoundIndex);
 

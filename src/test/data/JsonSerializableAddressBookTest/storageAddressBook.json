@@ -8,15 +8,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name" : "Benson Meier",
@@ -27,15 +30,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -46,15 +52,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name" : "Daniel Meier",
@@ -65,15 +74,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name" : "Elle Meyer",
@@ -84,15 +96,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name" : "Fiona Kunz",
@@ -103,15 +118,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   }, {
     "name" : "George Best",
@@ -122,15 +140,18 @@
     "menu" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ]
+      "tagged" : [ "classic" ],
+      "filePath" : ""
     }, {
       "name" : "Milo",
       "price" : 1.5,
-      "tagged" : [ "Iced" ]
+      "tagged" : [ "Iced" ],
+      "filePath" : ""
     }, {
       "name" : "Nuggets",
       "price" : 3.2,
-      "tagged" : [ "six" ]
+      "tagged" : [ "six" ],
+      "filePath" : ""
     } ]
   } ]
 }
