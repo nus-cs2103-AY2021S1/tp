@@ -69,9 +69,9 @@ public class NoteViewCommand extends Command {
             throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        if (stockToViewNotes.get().getNotes().size() == 0) {
-            throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
-        }
+//        if (stockToViewNotes.get().getNotes().size() == 0) {
+//            throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
+//        }
 
         return new CommandResult(generateSuccessMessage(stockToViewNotes.get()), null,
                 false, true, stockToViewNotes.get(), false, null, false, false);

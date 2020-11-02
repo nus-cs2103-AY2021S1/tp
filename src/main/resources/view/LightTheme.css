@@ -210,13 +210,13 @@
 
 .cell_small_label {
     -fx-font-family: "Quicksand";
-    -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label_header {
     -fx-font-family: "Quicksand";
-    -fx-font-size: 16px;
+    -fx-font-size: 18px;
     -fx-text-fill: #010504;
     -fx-font-weight: bold;
 }
@@ -484,7 +484,7 @@
     -fx-border-color: transparent transparent transparent white;
     -fx-border-insets: 5;
     -fx-border-width: 1;
-    -fx-border-style: dashed;
+    -fx-border-style: solid;
 }
 
 #notesBox #notes {
@@ -500,23 +500,23 @@
 }
 
 .note-list-panel-vbox .list-cell:filled:even {
-    -fx-background-color: #8ABAFF;
+    -fx-background-color: #e7eaea;
 }
 
 .note-list-panel-vbox .list-cell:filled:odd {
-    -fx-background-color: #FF8A9E;
+    -fx-background-color: #E1BE91;
 }
 
 .note-list-panel-vbox .list-cell:filled:selected:even {
-    -fx-background-color: #B9D6FF;
-    -fx-border-color: #CCCCCC;
-    -fx-border-width: 1;
+    -fx-background-color: #ced5d7;
+    -fx-border-color: #363c43;
+    -fx-border-width: 3;
 }
 
 .note-list-panel-vbox .list-cell:filled:selected:odd {
-    -fx-background-color: #FFDCE2;
-    -fx-border-color: #CCCCCC;
-    -fx-border-width: 1;
+    -fx-background-color: #E1BE91;
+    -fx-border-color: #363c43;
+    -fx-border-width: 3;
 }
 
 .scroll-bar:horizontal .thumb,

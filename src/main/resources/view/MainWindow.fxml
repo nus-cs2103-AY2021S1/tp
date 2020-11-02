@@ -60,6 +60,11 @@
                         </StackPane>
 
                     </Tab>
+                    <Tab text="Stock View" closable="false">
+
+                        <StackPane fx:id="stockViewWindowPlaceholder" VBox.vgrow="ALWAYS"/>
+
+                    </Tab>
                 </TabPane>
 
                 <StackPane HBox.hgrow="ALWAYS" fx:id="commandBoxPlaceholder"

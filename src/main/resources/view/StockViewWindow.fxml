@@ -5,8 +5,8 @@
 <?import javafx.geometry.Insets?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="note-list-panel-vbox">
-    <ListView fx:id="notesListView" VBox.vgrow="ALWAYS" styleClass="pane-with-border-notes"/>
+    <ListView fx:id="stockView" VBox.vgrow="ALWAYS" styleClass="pane-with-border-notes"/>
     <padding>
-        <Insets right="5" left="5" />
+        <Insets right="150" left="150" />
     </padding>
 </VBox>

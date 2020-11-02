@@ -4,14 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.stock.model.stock.Note;
 
 /**
  * An UI component that displays information of a {@code Stock}.
  */
-public class NoteCard extends UiPart<Region> {
+public class StockViewCard extends UiPart<Region> {
 
-    private static final String FXML = "NoteListCard.fxml";
+    private static final String FXML = "StockViewCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -21,7 +20,7 @@ public class NoteCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Note note;
+    public final String note;
 
     @FXML
     private HBox cardPane;
@@ -33,11 +32,11 @@ public class NoteCard extends UiPart<Region> {
     /**
      * Creates a {@code NoteCard} with the given {@code Note} and index to display.
      */
-    public NoteCard(Note note, int displayedIndex) {
+    public StockViewCard(String note, String header) {
         super(FXML);
         this.note = note;
-        id.setText(displayedIndex + ".");
-        noteText.setText(note.value);
+        id.setText(header + ":");
+        noteText.setText(note);
     }
 
     @Override
@@ -48,12 +47,12 @@ public class NoteCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NoteCard)) {
+        if (!(other instanceof StockViewCard)) {
             return false;
         }
 
         // state check
-        NoteCard card = (NoteCard) other;
+        StockViewCard card = (StockViewCard) other;
         return note.equals(card.note);
     }
 }
