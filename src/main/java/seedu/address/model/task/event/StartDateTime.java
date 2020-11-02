@@ -46,17 +46,6 @@ public class StartDateTime extends DateTime {
     }
 
     /**
-     * Returns true if a given string is a valid dateTime number.
-     *
-     * @param date the string value of date to be put to test.
-     * @param time the string value of time to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidDateTime(String date, String time) {
-        return DateUtil.isValidDate(date) && DateUtil.isValidTime(time);
-    }
-
-    /**
      * Creates a new StartDateTime object with the date changed.
      *
      * @param date the date to be changed to.

@@ -13,23 +13,20 @@ public class DateUtil {
     public static final String DATE_TIME_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";
     public static final String DATE_FORMAT = "dd-MM-yyyy";
-    public static final String DATE_VALIDATION_REGEX = "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4}$";
-    public static final String DATETIME_VALIDATION_REGEX =
-            "^(3[01]|[12][0-9]|0[1-9])-(1[0-2]|0[1-9])-[0-9]{4} (2[0-3]|[01][0-9]):([0-5][0-9])$";
-    public static final String TIME_VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-            .withResolverStyle(ResolverStyle.SMART);
-    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
-            .withResolverStyle(ResolverStyle.SMART);
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
+            .withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm")
-            .withResolverStyle(ResolverStyle.SMART);
+            .withResolverStyle(ResolverStyle.STRICT);
     public static final String SEARCH_TIME_CONSTRAINTS =
             "Search phrase for time should be in the format of HH:mm.";
     public static final String SEARCH_DATE_CONSTRAINTS =
             String.format("Search phrase for date should be in the format of %1$s.", DATE_FORMAT);
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
-    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", DATETIME_FORMATTER);
+    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00",
+            DATETIME_FORMATTER.withResolverStyle(ResolverStyle.SMART)); // smartly resolve the default datetime
     public static final String RANGE_CONSTRAINTS = "Start date should be before end date";
 
     /**
@@ -54,7 +51,12 @@ public class DateUtil {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDateTime(String test) {
-        return test.matches(DATETIME_VALIDATION_REGEX);
+        try {
+            LocalDateTime.parse(test, DATETIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
 
     /**
