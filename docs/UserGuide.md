@@ -294,11 +294,13 @@ Examples:
 
 #### 3.2.8.2 Editing a detail: `detail edit`
 
-You can edit an existing detail to a specified student in **Reeve**.
+You can edit an existing detail for a specified student in **Reeve**.
 
 Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
 
 * Edits the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to edit, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:  
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
@@ -311,6 +313,8 @@ You can delete an existing detail to a specified student in **Reeve**.
 Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 
 * Deletes the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to delete, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:  
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
