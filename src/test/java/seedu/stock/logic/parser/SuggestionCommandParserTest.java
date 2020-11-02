@@ -156,7 +156,7 @@ public class SuggestionCommandParserTest {
 
     @Test
     public void parse_deleteCommandSuggestion_success() {
-        // EP: incorrect command word
+        // EP: incorrect command word with valid prefixes (single)
         String userInput = SERIAL_NUMBER_DESC_APPLE;
         SuggestionCommandParser parser = new SuggestionCommandParser("delet");
         String expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
@@ -165,11 +165,36 @@ public class SuggestionCommandParserTest {
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // EP: correct command word
+        // EP: incorrect command word with invalid prefixes
+        userInput = userInput + QUANTITY_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: incorrect command word with valid prefixes (multiple)
+        userInput = userInput + SERIAL_NUMBER_DESC_BANANA;
+        expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + SERIAL_NUMBER_DESC_APPLE
+                + SERIAL_NUMBER_DESC_BANANA + "\n" + DeleteCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes (single)
+        userInput = SERIAL_NUMBER_DESC_APPLE;
         parser = new SuggestionCommandParser("delete", "error message");
         expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
                 + "\n" + DeleteCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with invalid prefixes
+        userInput = userInput + QUANTITY_DESC_APPLE;
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word with valid prefixes (multiple)
+        userInput = userInput + SERIAL_NUMBER_DESC_BANANA;
+        expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + SERIAL_NUMBER_DESC_APPLE
+                + SERIAL_NUMBER_DESC_BANANA + "\n" + DeleteCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
