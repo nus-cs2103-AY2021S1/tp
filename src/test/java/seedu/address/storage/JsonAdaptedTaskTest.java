@@ -26,7 +26,7 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_TASK_DESCRIPTION = SampleDataUtil.getValidTask().get(1);
     private static final String VALID_PROGRESS = SampleDataUtil.getValidTask().get(3);
     private static final String VALID_IS_DONE = SampleDataUtil.getValidTask().get(4);
-    private static final String VALID_PUBLISH_DATE = "2020-10-10";
+    private static final String VALID_PUBLISH_DATE = "10-10-2020";
     private static final Set<String> VALID_ASSIGNEES = SampleDataUtil.getAssigneeSet("niaz", "lucas");
 
     @Test
