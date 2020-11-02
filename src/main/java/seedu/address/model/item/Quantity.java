@@ -13,6 +13,8 @@ public class Quantity {
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain non-negative integers, "
                     + "should be at least 1 digit long, and less than 2147483647 ";
+    public static final String MESSAGE_CONSTRAINTS_ALLOW_NEGATIVE =
+            "Quantity should be an integer between -2147483648 and 2147483647 ";
     public static final String VALIDATION_REGEX = "\\d+";
     private static final String ALLOW_NEGATIVE_VALIDATION_REGEX = "-?\\d+";
     public final String value;
@@ -34,7 +36,7 @@ public class Quantity {
      */
     public Quantity(String quantity, Boolean allowNegative) {
         requireNonNull(quantity);
-        checkArgument(isValidQuantityAllowNegative(quantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidQuantityAllowNegative(quantity), MESSAGE_CONSTRAINTS_ALLOW_NEGATIVE);
         int truncatedInt = parseInt(quantity);
         value = truncatedInt + "";
     }
