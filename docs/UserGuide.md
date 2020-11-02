@@ -30,6 +30,7 @@
     + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student-exam-by-hogan)
         + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student-exam-add)
         + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student-exam-delete)
+        + [3.3.2.3 Viewing exam statistics of a student: `exam stats`](#3323-viewing-exam-statistics-of-a-student-exam-stats)
     + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student-attendance-by-vaishak)
         + [3.3.3.1 Adding an attendance record to a student: `attendance add`](#3331-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.3.3.2 Deleting an attendance record for a student: `attendance delete`](#3332-deleting-an-attendance-record-for-a-student-attendance-delete)
@@ -189,7 +190,7 @@ E.g. "4 0900-1700" means a class time of Thursday, 9am to 5pm.
 
 Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
-*  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
+*  `edit 3 v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the venue and time of the third student to be `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
 #### 3.2.3 Locating students: `find` (By: Choon Siong)
 
@@ -269,7 +270,7 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-#### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
+#### 3.2.8 Managing details for a student: `detail` (By: Vaishak) 
 
 You can add, edit or delete a detail for a specified student.
 
@@ -294,11 +295,13 @@ Examples:
 
 #### 3.2.8.2 Editing a detail: `detail edit`
 
-You can edit an existing detail to a specified student in **Reeve**.
+You can edit an existing detail for a specified student in **Reeve**.
 
 Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
 
 * Edits the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to edit, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:  
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
@@ -311,6 +314,8 @@ You can delete an existing detail to a specified student in **Reeve**.
 Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
 
 * Deletes the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+* `DETAIL_INDEX` refers to the index of the detail to delete, within the detail field of the student.
+* There has to be a valid detail at the `DETAIL_INDEX` provided.
 
 Examples:  
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
@@ -439,6 +444,21 @@ Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
 
+##### 3.3.2.3 Viewing exam statistics of a student: `exam stats`
+
+To gauge how one of your students are doing with their examinations, this command allows you to view a graphical
+representation of all recorded examinations.
+
+Format: `exam stats STUDENT_INDEX`
+
+* Views exam statistics of the student at the specified `INDEX`.
+* The index refers to the index number shown in the displayed students list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `exam stats 2` views the exam statistics of the 2nd student in **Reeve**.
+* `find n/Betsy` followed by `exam stats 1` views the exam statistics the 1st student in the results of the `find` command.
+
 #### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
 
 You can add or delete an attendance record to/from a specified student.
@@ -460,15 +480,15 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * There can only be one attendance record for every `LESSON_DATE`.
 
 <div markdown="block" class="alert alert-info">
-:information_source: The format of ATTENDANCE_DATE is as follows:
+:information_source: The format of LESSON_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
-:information_source: The format of FEEDBACK is as follows:
+:information_source: The format of ATTENDANCE_STATUS is as follows:
 * present or absent.
 </div>
 
 Examples:
-* `attendance add 2 d/08/12/2020 s/present f/attentive` adds the attendance record with the date 8 Dec 2020,
+* `attendance add 2 d/08/12/2020 a/present f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
 ##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`
@@ -486,43 +506,19 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule` (COMING SOON)
+#### 3.4.1 Scheduling: `schedule` (By: Alex) 
 
-##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex) (COMING SOON)
+##### 3.4.1.1 Viewing classes on a Timetable: `schedule view`  
 
-List the events that the user has on a timetable. The classes that user has with students will also be included.
+List the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
 
-Format: `schedule view [mode/VIEW_MODE] [date/DATE_TO_VIEW]`
+Format: `schedule view mode/VIEW_MODE date/DATE_TO_VIEW`
 
 * mode can be either **weekly** or **daily**. The case of the letters does not matter.
-* Date must be in the format of **yyyy-mm-dd**.
-* Both mode and date are optional. If it is not provided, the timetable would be default in the weekly mode and showing the current date.
+* Date must be in the format of **yyyy-mm-dd**. For instance, 2020-11-02 refers to the date 2nd November 2020
+* Both mode and date are compulsory.
 
-Example: `schedule view mode/weekly date/2020-11-25` Shows the schedule in the week of 2020-11-25 (To include screenshot)
-
-##### 3.4.1.2 Adding events to the schedule: `schedule add` (COMING SOON)
-
-Adds a new event to the schedule.
-
-Format: `schedule add [n/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [r/Event_recurrence]`
-
-* All fields are compulsory.
-* Event_Name has no restriction and can be of any form.
-* Start_Date_Time and End_Date_Time must be of the format yyyy-mm-ddTHH:mm
-* The Time portion HH:mm must be in 24-hr format.
-* Event_recurrence can only be one of these cases: `none`, `daily`, or `weekly`
-
-Example:
-`schedule add n/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 r/none`
-creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
-
-##### 3.4.1.3 Delete events on the schedule: `schedule delete` (COMING SOON)
-
-Deletes an event on the schedule.
-
-Format: `schedule delete n/eventName start/eventStartDateTime end/eventEndDateTime`
-
-* The event's name, start date time and end date time identifies an event to be deleted
+Example: `schedule view mode/weekly date/2020-11-02` Shows the schedule of classes in the week of 2020-11-02. Figure 3.4.1.1 depicts a sample output of the command.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 

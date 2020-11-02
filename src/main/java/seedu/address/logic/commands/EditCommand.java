@@ -97,6 +97,12 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
+        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
+        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.isClashingClassTime(editedStudent)) {
+            throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
+        }
+
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
@@ -126,7 +132,7 @@ public class EditCommand extends Command {
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
                     .orElse(studentToEdit.getAdmin().getPaymentDate());
 
-            // Additional Details cannot be edited through this channel
+            // Details cannot be edited through this channel
             updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
                     studentToEdit.getAdmin().getDetails());
         } else {

@@ -50,7 +50,7 @@ public class CommandTestUtil {
     public static final SchoolType VALID_SCHOOL_TYPE_BOB = SchoolType.SECONDARY;
     public static final Integer VALID_SCHOOL_LEVEL_BOB = 4;
     public static final String VALID_YEAR_BOB = "Secondary 4";
-    public static final String VALID_CLASS_TIME_AMY = "2 1200-1300";
+    public static final String VALID_CLASS_TIME_AMY = "2 1500-1600";
     public static final String VALID_CLASS_TIME_BOB = "5 0900-1100";
     public static final String VALID_CLASS_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
     public static final String VALID_CLASS_VENUE_BOB = "347 Woodlands Ave 3, Singapore 730347";

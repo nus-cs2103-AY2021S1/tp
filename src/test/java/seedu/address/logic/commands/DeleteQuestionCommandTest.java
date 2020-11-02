@@ -54,6 +54,7 @@ public class DeleteQuestionCommandTest {
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
         Student expected = deleteQuestion(questionIndex, clone);
+
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expected);
 
@@ -72,6 +73,7 @@ public class DeleteQuestionCommandTest {
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
         Student expected = deleteQuestion(questionIndex, clone);
+
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expected);
 
@@ -91,8 +93,10 @@ public class DeleteQuestionCommandTest {
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
         Student expected = deleteQuestion(questionIndex, clone);
+
         Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expected);
+
 
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);
         String expectedMessage = String.format(MESSAGE_SUCCESS, expected.getName(), removed);
