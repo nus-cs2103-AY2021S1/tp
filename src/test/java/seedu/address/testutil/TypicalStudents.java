@@ -109,7 +109,7 @@ public class TypicalStudents {
             .build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
             .withSchool("Montford Secondary").withYear(SchoolType.SECONDARY, 4)
-            .withClassTime("2 1000-1230")
+            .withClassTime("2 1000-1130")
             .withExams(new Exam("End of Year Examination 2020", "7/11/2020", new Score("50/100")),
                     new Exam("Mid Year Examination 2020", "25/7/2020", new Score("20/30")))
             .withAttendances(new Attendance("14/04/1998", "present",

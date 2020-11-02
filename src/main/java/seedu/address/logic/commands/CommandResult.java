@@ -20,6 +20,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Schedule should be shown to user. */
+    private final boolean schedule;
+
     /** The application should toggle between admin and academic student cards. */
     private final boolean toggleStudentCard;
 
@@ -30,11 +33,26 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean schedule, boolean toggleStudentCard) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.schedule = schedule;
+        this.toggleStudentCard = toggleStudentCard;
+        this.selectedStudent = null;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
                          boolean toggleStudentCard, Student student) {
+
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.toggleStudentCard = toggleStudentCard;
+        this.schedule = false;
         this.selectedStudent = student;
     }
 
@@ -68,6 +86,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isSchedule() {
+        return schedule;
     }
 
     public boolean isToggleStudentCard() {

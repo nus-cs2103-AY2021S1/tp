@@ -1,11 +1,16 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
+import seedu.address.model.schedule.Event;
+import seedu.address.model.schedule.EventRecurrence;
+import seedu.address.model.schedule.ReadOnlyEvent;
+import seedu.address.model.schedule.Scheduler;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
@@ -58,7 +63,7 @@ public class SampleDataUtil {
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new School("Raffles Girls School"), new Year(SchoolType.SECONDARY, 3),
                         new Admin(new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                                new ClassTime("2 1900-1930"), new Fee("680"),
+                                new ClassTime("2 1900-2030"), new Fee("680"),
                                 new PaymentDate("1/12/19"), getDetailList()),
                         getQuestions(), getExams(sampleExam3), new Academic(getAttendance(new Attendance(
                         "01/01/2020", "present", new Feedback("prepared well"))))),
@@ -93,6 +98,14 @@ public class SampleDataUtil {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyEvent getSampleSchedule() {
+        Event event = new Event("Lesson event", LocalDateTime.parse("2020-12-03T10:15:30"),
+                LocalDateTime.parse("2020-12-03T10:17:30"),
+                "uidAliceLesson", EventRecurrence.WEEKLY);
+        List<Event> lst = Arrays.asList(event);
+        return new Scheduler(lst);
     }
 
     /**
