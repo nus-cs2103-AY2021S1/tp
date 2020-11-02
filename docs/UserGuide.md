@@ -88,13 +88,13 @@ must be specified exactly.
 * Items in square brackets are optional (zero or one instance).<br>
   e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
   * Note: Multiple instances of the same prefix will not throw an error. 
-  However, the software will only read the last instance in the input. 
+  However, the app will only read the last instance in the input. 
   * e.g `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
   
 * Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
   e.g. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
   `q/What is my name? t/topic1 t/fun` 
-  * Note: Multiple instances of the tag prefix is accepted, and the software will read every instance
+  * Note: Multiple instances of the tag prefix is accepted, and the app will read every instance
   in the input.
 
 * Parameters can be in any order.<br>
