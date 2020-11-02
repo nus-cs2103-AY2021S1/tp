@@ -132,9 +132,10 @@ class OpenCommandTest {
             if (canSetPermission) {
                 OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
                 Model modelStubWithTag = new ModelStubWithTag(correctTag);
-                assertThrows(CommandException.class, String.format(MESSAGE_ERROR, correctTag.getTagName()) +
-                        String.format(MESSAGE_FILE_NO_PERMISSION, correctTag.getFileAddress()),
-                        () -> openCommand.execute(modelStubWithTag));
+                assertThrows(CommandException.class,
+                        String.format(MESSAGE_ERROR, correctTag.getTagName())
+                                + String.format(MESSAGE_FILE_NO_PERMISSION,
+                                correctTag.getFileAddress()), () -> openCommand.execute(modelStubWithTag));
             }
             file.setReadable(true);
         }
