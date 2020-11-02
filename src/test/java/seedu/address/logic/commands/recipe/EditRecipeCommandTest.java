@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_NOODLE;
-import static seedu.address.logic.commands.CommandTestUtil.EMPTY_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;

@@ -101,7 +101,7 @@ public class Recipe {
 
     private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
-        for (int i = 0; i < ingredients.size(); i ++) {
+        for (int i = 0; i < ingredients.size(); i++) {
             if (!ingredients.get(i).isSameIngredient(otherIngredients.get(i))) {
                 return false;
             }

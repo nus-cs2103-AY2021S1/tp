@@ -41,7 +41,8 @@ public class IngredientTest {
         // invalid ingredient quantities
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake", "2 c@ps"))); // empty name
         assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake", "2 cups!"))); // empty name
-        assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake", "0.0000000000000000000000000000000000000000000005 cups"))); // empty name
+        assertFalse(Ingredient.isValidIngredient(new Ingredient("fishcake",
+                "0.0000000000000000000000000000000000000000000005 cups"))); // empty name
 
     }
 }

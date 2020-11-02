@@ -2,7 +2,6 @@ package seedu.address.model.ingredient;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Objects;
 
@@ -23,17 +22,17 @@ public class Ingredient {
                     + "5. Ingredient quantity should be a number greater than 0.";
     public static final String QUANTITY_CONSTRAINTS =
             "1. Ingredient quantity should be in format -NUMBER UNITS\n"
-                    + "2. Ingredient quantity should only consist of alphanumeric characters, a single full stop\"\n" +
-                    "                    + \" or a single forward slash.\n"
-                    + "3. Ingredient quantity should be a number greater than 0 and is only accurate up to 45 " +
-                    "decimal" +
-                    " places.";
+                    + "2. Ingredient quantity should only consist of alphanumeric characters, a single full stop\n"
+                    + "or a single forward slash.\n"
+                    + "3. Ingredient quantity should be a number greater than 0 and is only accurate up to 45 "
+                    + "decimal places.";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ][\\p{Alnum} ]*";
     public static final String VALIDATION_REGEX_QUANTITY = "[\\p{Alnum}\\/\\. ]*";
+    public static final String VALIDATION_REGEX_UNITS = "[\\p{Alnum} ]*";
     private String value;
     private String quantity;
 
@@ -103,15 +102,14 @@ public class Ingredient {
     public static boolean isValidQuantity(String quantity) {
         int fullStopIndex = quantity.indexOf(".");
         int forwardSlashIndex = quantity.indexOf("/");
-        String VALIDATION_REGEX_UNITS = "[\\p{Alnum} ]*";
 
         //More than one occurence of decimal point or forward slash
         if (fullStopIndex != quantity.lastIndexOf(".")
-        || forwardSlashIndex != quantity.lastIndexOf("/")) {
+            || forwardSlashIndex != quantity.lastIndexOf("/")) {
             return false;
         }
 
-        String[] digitsAndUnits =  getDigitsAndUnitsFromQuantity(quantity);
+        String [] digitsAndUnits = getDigitsAndUnitsFromQuantity(quantity);
         if (digitsAndUnits == null) {
             return false;
         }

@@ -18,8 +18,6 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Tag;
 
-//import seedu.address.model.ingredient.Ingredient;
-
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@tatouille";
     private static final String INVALID_INGREDIENT_NAME = "+apples";
@@ -30,8 +28,8 @@ public class ParserUtilTest {
     private static final String INVALID_INGREDIENT_QUANTITY_2 = "2//5g";
     private static final String INVALID_INGREDIENT_QUANTITY_3 = "2..5g";
     //not a valid quantity value
-    private static final String INVALID_INGREDIENT_QUANTITY_4 = "0" +
-            ".0000000000000000000000000000000000000000000005 g"; //46 decimal places not supported by float
+    private static final String INVALID_INGREDIENT_QUANTITY_4 = "0"
+            + ".0000000000000000000000000000000000000000000005 g"; //46 decimal places not supported by float
 
     private static final String INVALID_TAG = "#less calories";
 

@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MISSING_INSTRUCTIONS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MISSING_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NON_INTEGER_CALORIES_DESC;
