@@ -13,6 +13,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - Clear all flashcards: `clear`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
+        - Filter relevant flashcards: `filter`
         - Favourite a flashcard : `fav`
         - Unfavourite a flashcard: `unfav`
         - Find flashcards: `find`
@@ -84,8 +85,17 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 * Words in lower_case are to be specified exactly. e.g. in `sort <success|reviewed>`, `success` and `reviewed` 
 must be specified exactly.
 
-* Items in square brackets are optional.<br>
-  e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name? c/topic 1` or as `q/What is my name?`
+* Items in square brackets are optional (zero or one instance).<br>
+  e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
+  * Note: Multiple instances of the same prefix will not throw an error. 
+  However, the app will only read the last instance in the input. 
+  * e.g `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
+  
+* Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
+  e.g. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
+  `q/What is my name? t/topic1 t/fun` 
+  * Note: Multiple instances of the tag prefix is accepted, and the app will read every instance
+  in the input.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
@@ -99,7 +109,7 @@ must be specified exactly.
 
 Adds a flashcard.
 
-Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
+Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t/TAG]...`
 
 * `RATING` must be a number between 1 and 5 inclusive.
 * `DIAGRAM` can be defined by a valid relative or absolute path.
@@ -110,7 +120,7 @@ If the category is not specified, the flashcard will have the <b>General</b> cat
 
 Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming`
-* `add q/What does OOP stand for? a/Object Oriented Programming r/3`
+* `add q/What does OOP stand for? a/Object Oriented Programming r/3 t/cool`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/Super Important n/Important question!`
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
@@ -139,7 +149,7 @@ Examples:
 
 Edits a flashcard.
 
-Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]`
+Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...`
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
@@ -310,11 +320,11 @@ Flashcards data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
+**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Clear** | `clear`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
-**Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...` <br> e.g. `filter t/examinable r/3`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Filter** | <code>filter [c/CATEGORY] [r/RATING] [f/<yes&#124;no>] [t/TAG]...</code> <br> e.g. `filter t/examinable r/3`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
 **Find** | `find KEYWORD...` <br>  e.g. `find general important`
