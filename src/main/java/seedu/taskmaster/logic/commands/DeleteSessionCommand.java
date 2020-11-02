@@ -48,7 +48,7 @@ public class DeleteSessionCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || other instanceof NewSessionCommand
+                || other instanceof DeleteSessionCommand
                 && sessionName.equals(((DeleteSessionCommand) other).sessionName);
     }
 }
