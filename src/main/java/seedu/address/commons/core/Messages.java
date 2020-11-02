@@ -25,7 +25,7 @@ public class Messages {
             String.format(MESSAGE_INVALID_DISPLAYED_INDEXES, "lesson");
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%1$d lessons listed!";
-    public static final String MESSAGE_INCORRECT_TASK_STATUS = "One or more targeted task is already completed.\n"
+    public static final String MESSAGE_INCORRECT_TASK_STATUS = "One or more targeted deadline is already completed.\n"
             + "Please check your command carefully.";
     public static final String MESSAGE_INVALID_DONE_TASK_TYPE = "You can only mark a deadline as done.\n"
             + "One or more task selected is not in deadline type";
