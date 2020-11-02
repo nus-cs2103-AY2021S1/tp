@@ -28,12 +28,28 @@ import seedu.zookeep.testutil.AnimalBuilder;
 class SortCommandTest {
 
     @Test
-    public void execute_sortAnimalNameSuccessful() {
+    public void execute_sortAnimalNameTitleCaseSuccessful() {
         Animal ahmeng = new AnimalBuilder().withName("Ahmeng").build();
         Animal buttercup = new AnimalBuilder().withName("Buttercup").build();
         Animal coco = new AnimalBuilder().withName("Coco").build();
         ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
                 new ArrayList<>(Arrays.asList(buttercup, ahmeng, coco)));
+
+        AnimalComparator animalNameComparator = AnimalComparator.createAnimalNameComparator();
+        CommandResult commandResult = new SortCommand(animalNameComparator).execute(modelStub);
+
+        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.NAME_CATEGORY),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(ahmeng, buttercup, coco), modelStub.animals);
+    }
+
+    @Test
+    public void execute_sortAnimalNameMixedCaseSuccessful() {
+        Animal ahmeng = new AnimalBuilder().withName("ahmeng").build();
+        Animal buttercup = new AnimalBuilder().withName("ButteRcup").build();
+        Animal coco = new AnimalBuilder().withName("cOcO").build();
+        ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
+                new ArrayList<>(Arrays.asList(coco, ahmeng, buttercup)));
 
         AnimalComparator animalNameComparator = AnimalComparator.createAnimalNameComparator();
         CommandResult commandResult = new SortCommand(animalNameComparator).execute(modelStub);
