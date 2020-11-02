@@ -463,8 +463,6 @@ public class AddCommandTest {
 
         @Override
         public void saveResiReg(ReadOnlyResiReg resiReg, Path filePath) throws IOException {
-
-
             throw new AssertionError("This method should not be called.");
         }
 

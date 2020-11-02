@@ -261,7 +261,8 @@ public class ModelManager implements Model {
 
     @Override
     public boolean hasDuplicateBinnedItem(Binnable itemToRestore) {
-        return (itemToRestore instanceof Student) || (itemToRestore instanceof Room);
+        return (itemToRestore instanceof Student && hasStudent((Student) itemToRestore))
+            || (itemToRestore instanceof Room && hasRoom((Room) itemToRestore));
     }
 
     /**

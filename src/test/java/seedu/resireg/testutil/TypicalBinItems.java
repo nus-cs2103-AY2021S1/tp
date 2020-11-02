@@ -6,14 +6,19 @@ import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ITEM_A;
 import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ITEM_B;
 import static seedu.resireg.testutil.BinItemBuilder.DEFAULT_DATE_DELETED;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_A;
-import static seedu.resireg.testutil.TypicalStudents.ALICE;
+import static seedu.resireg.testutil.TypicalRooms.getTypicalRooms;
+import static seedu.resireg.testutil.TypicalStudents.AMY;
 import static seedu.resireg.testutil.TypicalStudents.CARL;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalStudents;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.room.Room;
+import seedu.resireg.model.student.Student;
 
 /**
  * A utility class containing a list of {@code BinItem} objects to be used in tests.
@@ -23,7 +28,7 @@ public class TypicalBinItems {
     /** Student */
     public static final BinItem BIN_ITEM_ONE = new BinItemBuilder()
         .withDateDeleted(DEFAULT_DATE_DELETED)
-        .withItem(ALICE)
+        .withItem(AMY)
         .build();
 
     /** Student */
@@ -53,6 +58,23 @@ public class TypicalBinItems {
 
     private TypicalBinItems() {
     } // prevents instantiation
+
+    /**
+     * Returns an {@code ResiReg} with all the typical students, rooms and bin items.
+     */
+    public static ResiReg getTypicalResiReg() {
+        ResiReg rr = new ResiReg();
+        for (Student student : getTypicalStudents()) {
+            rr.addStudent(student);
+        }
+        for (Room room : getTypicalRooms()) {
+            rr.addRoom(room);
+        }
+        for (BinItem item: getTypicalBinItems()) {
+            rr.addBinItem(item);
+        }
+        return rr;
+    }
 
     public static List<BinItem> getTypicalBinItems() {
         return new ArrayList<>(Arrays.asList(BIN_ITEM_ONE, BIN_ITEM_TWO, BIN_ITEM_THREE));

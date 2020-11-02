@@ -370,7 +370,7 @@ public class AddAliasCommandTest {
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains a single alias.
      */
     private class ModelStubWithAlias extends ModelStub {
         private final CommandWordAlias commandWordAlias;
@@ -388,7 +388,7 @@ public class AddAliasCommandTest {
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that always accept the alias being added.
      */
     private class ModelStubAcceptingAliasAdded extends ModelStub {
         final ArrayList<CommandWordAlias> aliasesAdded = new ArrayList<>();
