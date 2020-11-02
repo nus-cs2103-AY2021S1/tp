@@ -12,6 +12,9 @@ import seedu.address.model.recipe.IngredientPrecursor;
 import seedu.address.model.recipe.ProductQuantity;
 
 public class RecipeParserUtil {
+    public static final String DEFAULT_DESCRIPTION = "None";
+    public static final String DEFAULT_PRODUCT_QUANTITY = "1";
+    public static final ProductQuantity DEFAULT_QUANTITY_TYPED = new ProductQuantity(DEFAULT_PRODUCT_QUANTITY);
 
     private static final Pattern SPLIT_INGREDIENT_FORMAT = Pattern.compile("[^\\[]+\\[\\d+");
     private static final String MESSAGE_INGREDIENT_FORMAT = "Ingredients should be listed as itemName[qty], ...";

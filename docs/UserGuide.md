@@ -3,20 +3,19 @@ layout: page
 title: User Guide
 ---
 
+<img align="right" height="170" src="images/inventoryinator.jpg">
+
 [//]: # (// TODO ** add authorship for grading purposes **)
+
 
 ## Introduction
 
-[//]: # (// TODO shift to the right)
+**Inventoryinator** is a **desktop app for managing game inventories**, and can be used for **any generic game** where 
+you have a need for sorting and collating resources. If you find yourself ever wondering how much resources you have
+back at home base, or are unsure whether you can craft your next upgrade, then this is the app for you.
 
-![inventoryinator](images/inventoryinator.jpg)
-
-[//]: # (// TODO longer intro)
-
-[//]: # (// TODO personalise intro, don't bother with CLI GUI copypasta)
-
-**Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
+Our app is optimized for use via the **typing** of commands, while your inventory is visually represented on our 
+**Graphical User Interface (GUI)**. If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
 This User Guide will help you get started with the setup of Inventoryinator and provide a quick reference of
@@ -48,11 +47,11 @@ in this document.
    
    Some example commands you can try:
 
-   * **`list`** : Lists all items stored in Inventoryinator.
+   * **`listi`** : Lists all items stored in Inventoryinator.
 
    * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to the Inventoryinator
 
-   * **`add`**`banana -q 10` Adds a quantity of 10 to the banana
+   * **`addq`**`banana -q 10` Adds a quantity of 10 to the entry for the banana
 
    * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 
@@ -144,14 +143,15 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 - `addr` - adds a new recipe
 
 **SYNOPSIS:**
-- `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
+- `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num\>\] \[-d \<desc\>\]
 
 **DESCRIPTION:**
 - **product name:**	name of the item created by the recipe
 - **-items:** specify the list of material items used
 - **-pc:** quantity of product produced in a craft (default: 1)
 - **-d:** description of recipe (default: “No description given”)
-- Adds a recipe to the inventory, with the given fields
+- Adds a recipe to the inventory, with the given fields,
+ do note that all items mentioned in the command must exist in the item listing.
 
 **EXAMPLE:**
 - `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u> \[3\], <u>iron ingot</u>\[4\]
@@ -225,7 +225,8 @@ Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 **DESCRIPTION:**
 - **item name:** name of the item associated with the recipe to be deleted
 - **index:** deletes the <u>recipe</u> numbered <u>index</u>
-- Deletes the recipe in the inventory with the corresponding recipe index in the given item
+- Deletes the recipe in the inventory with the corresponding recipe index in the given item,
+ do note that this listing of item recipes is not designed to take input index beyond `2,147,483,647`. 
 
 **EXAMPLE:**
 - `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>

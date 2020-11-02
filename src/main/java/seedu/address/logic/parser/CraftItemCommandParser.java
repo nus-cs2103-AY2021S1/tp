@@ -48,6 +48,10 @@ public class CraftItemCommandParser implements Parser<CraftItemCommand> {
                 return new CraftItemCommand(itemName, quantity);
             }
         } catch (ParseException pe) {
+            // throw the original exception for quantity
+            if (pe.getMessage().substring(0, 3).equals("Qua")) {
+                throw pe;
+            }
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, CraftItemCommand.MESSAGE_USAGE), pe);
         }
