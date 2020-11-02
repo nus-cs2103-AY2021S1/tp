@@ -82,7 +82,8 @@ The `UI` component,
 
 1. `Logic` uses the `CommonCentsParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can either affect the `ActiveAccount` which in turn affects the `Model` (e.g. adding an expense), 
+or affect the `Model` directly (e.g. adding an account).
 1. Based on the changes the command execution made, the `CommandResultFactory` generates a `CommandResult` object which encapsulates
 the result of the command execution and is passed back to the `Ui`,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
@@ -104,7 +105,7 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the CommonCents data.
-* exposes an unmodifiable `ObservableList<Account>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores an unmodifiable list of Accounts.
 * does not depend on any of the other three components.
 
 
@@ -143,7 +144,7 @@ is managed by `ActiveAccount` as well as the `Model`. As such, it implements the
 
 * `Account#setName(Name editedName)` — Sets the name of the account
 
-The operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setName()`.
+This operation is exposed in the `ActiveAccount` interface as `ActiveAccount#setName()`.
 
 Given below is an example usage scenario and how the edit account mechanism behaves at each step.
 
@@ -165,9 +166,9 @@ The following sequence diagram shows how an edit account operation works:
 
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Some of the interactions with the utility classes,
-such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
-of the edit account command.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
+Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+of the edit account command. 
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -516,29 +517,82 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
-### Deleting a person
+### Entry-level commands
+1. Adding an entry while all entries are being shown
+   1. Prerequisites: List all entries using the `list` command.
+   
+   1. Test case: `add c/expense d/buying paint a/6.45 t/arts`<br>
+      Expected: Expense is added to the end of the expense list. Details of the expense added shown in the status message. 
+      Pie chart and total expense value are updated.
+      
+   1. Test case: `add c/revenue d/selling paintings a/25 t/arts`<br>   
+      Expected: Revenue  is added to the end of the revenue list. Details of the revenue added shown in the status message. 
+      Pie chart and total revenue value are updated.
+      
+   1. Test case: `add c/wronginput d/buying paint a/6.45 t/arts`<br>
+      Expected: No entry is added, Error details shown in the status message
+      
+   1. Other incorrect add commands to try: `add `, `add c/expense d/ a/6.45`, `add c/revenue d/selling paintings a/x`(where x is not a valid monetary value).<br>
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
-1. Deleting a person while all persons are being shown
+1. Deleting a entry while all entries are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all entries using the `list` command. Multiple entries in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 1 c/expense`<br>
+      Expected: First expense is deleted from the expense list. Details of the deleted expense entry shown in the status message. 
+      Pie chart and total expense value are updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete 1 c/revenue`<br>
+      Expected: First revenue is deleted from the expense list. Details of the deleted revenue shown in the status message. 
+      Pie chart and total revenue value
+      
+   1. Test case: `delete 0 c/expense`<br>
+      Expected: No expense entry is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   1. Other incorrect delete commands to try: `delete 0 c/revenue`, `delete x` (where x is larger than the account list size or smaller than 1), `...`.<br>
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
-1. _{ more test cases …​ }_
+
+1. Undoing an entry-level command
+
+   1. Prerequisites: Use at least one add, edit or delete `command`.
+   
+   1. Test case: `undo`<br>
+   Expected: Previous add, edit or delete command is reverted. Success message of the undo command will be shown in the status message. 
+   Pie chart is reverted to the state prior to the previous command.
+   
+### Account-level commands
+1. Adding an account
+   1. Test case: `newacc n/New Account`<br>
+      Expected: New account is added to Common Cents. (use `listacc` command to check) First expense entry is deleted from the expense list. 
+      Details of the added account is shown in the status message.
+   
+   1. Test case: `newacc n/`<br>
+      Expected: No account is added. Error details shown in the status message.
+      
+   1. Other incorrect add account commands to try: `newacc`.<br>
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
+         
+1. Deleting an account
+   1. Prerequisite: Have at least two account, and be on the first account. (use `listacc` command to check)
+   
+   1. Test case: `deleteacc 2`<br>
+      Expected: Second account is deleted from the account list. (use `listacc` command to check) 
+      Details of the deleted account is shown in the status message.
+      
+   1. Test case: `deleteacc 0`<br>
+      Expected: No account is deleted. Error details shown in the status message.
+      
+   1. Test case: `deleteacc`, `delete x` (where x is larger than the account list size or smaller than 1)
+      Expected: Similar behaviour with previous testcase. Note that error details may differ based on which parameters of the input that is in an incorrect format.   
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisite: Remove commonCents.json in data folder in the home folder.
+   1. Launch Common Cent via CLI
+       1. Expected: CLI displays log stating that data file is not found and a sample data is loaded. Common Cents
+       launches with two accounts, `Default Account 1` and `Default Account 2` and each account has sample expenses and revenues.
