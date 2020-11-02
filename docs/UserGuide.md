@@ -164,6 +164,7 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
+* Note: `filter r/` will filter for all unrated flashcards.
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging n the SDLC category.
