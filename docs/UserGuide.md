@@ -103,6 +103,9 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
 
 * `RATING` must be a number between 1 and 5 inclusive.
 * `DIAGRAM` can be defined by a valid relative or absolute path.
+* `DIAGRAM` only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used.
+  * d/images/diagram.png is supported.
+  * d/image s/diagram.png is not supported.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category is not specified, the flashcard will have the <b>General</b> category.
