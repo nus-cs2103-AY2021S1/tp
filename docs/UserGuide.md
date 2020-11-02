@@ -508,11 +508,11 @@ Examples:
 
 #### 3.4.1 Scheduling: `schedule` (By: Alex) 
 
-##### 3.4.1.1 Viewing classes on a Timetable: `**schedule view**`  
+##### 3.4.1.1 Viewing classes on a Timetable: `**schedule**`  
 
 Display the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
 
-Format: `schedule view mode/VIEW_MODE date/DATE_TO_VIEW`
+Format: `schedule mode/VIEW_MODE date/DATE_TO_VIEW`
 
 * Displays a timetable view of your classes.
 * A weekly view gives you an overview of the classes you have on that particular week. You could thus plan your time for the week ahead.
@@ -525,7 +525,7 @@ Format: `schedule view mode/VIEW_MODE date/DATE_TO_VIEW`
     
 :information_source: Both the inputs of mode and date are compulsory.
 
-Example: `schedule view mode/weekly date/02/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
+Example: `schedule mode/weekly date/02/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -575,7 +575,7 @@ Action | Format, Examples
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
-**Schedule View** | `schedule view mode/VIEW_MODE date/DATE_TO_VIEW` <br> e.g. `schedule view mode/weekly date/02/11/2020`
+**Schedule View** | `schedule mode/VIEW_MODE date/DATE_TO_VIEW` <br> e.g. `schedule view mode/weekly date/02/11/2020`
 **Toggle View** | `toggle`
 **Help** | `help`
 **Exit** | `exit`
