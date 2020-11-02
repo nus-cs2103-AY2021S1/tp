@@ -212,7 +212,7 @@ Format: `help`
 
 ### Listing all flashcards : `list`
 
-Shows a list of all flashcards.
+Shows a list of all flashcards. This is useful for removing any `filter` or `find` you have done on the flashcard list.
 
 Format: `list`
 
@@ -226,9 +226,9 @@ longer input commands to the textbox.
 Upon entering review mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `↑ key` hides answer and notes of the current flashcard  
-* `→ arrow` key moves on to the next flashcard (if there is a next flashcard)
+* `→ key` key moves on to the next flashcard (if there is a next flashcard)
 * `← key` moves to the previous flashcard (if there is a previous flashcard)
-* `q key` quits review mode
+* `q` quits review mode
 
 Format: `review`
 
@@ -242,12 +242,14 @@ Quiz the current list of flashcards. This puts the user in quiz mode and the use
 
 Upon entering quiz mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
-* `q` key quits review mode
+* `q` quits quiz mode
 * `y` This input will only be recognised after the `↓ key` is pressed. `y` is a feedback to indicate a correct answer. 
 * `n` This input will only be recognised after the `↓ key` is pressed. `n` is a feedback to indicate an incorrect answer. 
 
 Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
-`y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.
+`y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.  
+Once you give a feedback (pressing either `y` or `n`), the review and success frequency for that flashcard will be updated even if you
+quit the quiz prematurely.
 
 Format: `quiz`
 
@@ -271,7 +273,7 @@ Examples:
     
 ### Views a flashcard  : `view`
 
-View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
+View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user. 
 
 Format: `view INDEX [-a]`
 
@@ -280,7 +282,8 @@ Format: `view INDEX [-a]`
 * The index **must be a positive integer** 1, 2, 3, …
 *  If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
-<div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
+flashcard was not modified/deleted.
 </div>
 
 ### Exiting the program : `exit`
