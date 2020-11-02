@@ -34,12 +34,13 @@ public class DeliveryEditCommand extends DeliveryCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the delivery identified "
             + "by the index number used in the displayed delivery list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "'|' symbol means the user must provide at least one of the fields\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "ITEM_NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_ORDER + "ORDER] "
-            + "[" + PREFIX_TIME + "TIME]\n"
+            + "[" + PREFIX_NAME + "ITEM_NAME | "
+            + PREFIX_PHONE + "PHONE | "
+            + PREFIX_ADDRESS + "ADDRESS | "
+            + PREFIX_ORDER + "ORDER | "
+            + PREFIX_TIME + "TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91111111 ";
 
