@@ -99,6 +99,8 @@ The `FILE_PATH` field can accept both absolute and relative file path from your 
 
 Format: `tag t>TAG_NAME f>FILE_PATH [l>LABEL]...`
 
+![tag](images/screenshots/tag_command.png)
+
 Examples:
 * `tag t>Users f>C:\Users` (Adds a tag with tag name `Users`,absolute file path `C:\Users`, and no label)
 * `tag t>Users f>C:\Users l>Important` (Adds a tag with tag name `Users`, absolute file path `C:\Users`, and label name `Important`)
@@ -113,6 +115,8 @@ You can see some basic information of a tagged file by using this command.
 It will show you the tag's file path and label information.
 
 Format: `show t>TAG_NAME`
+
+![show](images/screenshots/show_command.png)
 
 Examples:
 * `show t>my_research` (show you the details of a tag name `my_research`)
@@ -130,6 +134,8 @@ Tip: You can tag many files that you want to open at the same time with the same
 
 Format: `open t>TAG_NAME` or `open l>LABEL`
 
+![open](images/screenshots/open_command.png)
+
 Examples:
 * `open t>my_research` (open the file with tag name `my_research`)
 * `open l>notes` (open all the files with label `notes`)
@@ -140,6 +146,8 @@ Removes the tag from the list of tags.<br>
 You can delete a tag by using this command.
 
 Format: `untag t>TAG_NAME`
+
+![untag](images/screenshots/untag_command.png)
 
 Examples:
 * `untag t>notes` (delete tag with tag name `notes`)
@@ -155,6 +163,7 @@ Examples:
 * `retag o>notes t>secret` (Rename an old tag name `notes` to new tag name `secret`)
 * `retag o>examfiles t>oldexamfiles` (Rename an old tag name `examfiles` to new tag name `oldexamfiles`)
 
+![retag](images/screenshots/retag_command.png)
 
 ### Adding a label to a tag : `label`
 
@@ -166,6 +175,8 @@ Warning: Duplicated labels will only be added once.
 
 Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
+![label](images/screenshots/label_command.png)
+
 Examples:
 * `label t>file1 l>important` (Add a label of tag name `file1` with label name `important`) 
 * `label t>file2 l>important l>exam` (Add a label of tag name `file2` with multiple labels of label name `important` and `exam`)
@@ -175,6 +186,8 @@ Examples:
 Delete one or more label from a tag.
 
 Format: ` unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
+
+![unlabel](images/screenshots/unlabel_command.png)
 
 Examples:
 * `unlabel t>notes l>secret` (Deletes a label of label name `secret` that has tag name `notes`)
@@ -188,6 +201,9 @@ You can find tags using a keyword.
 If the keyword matches its name and/or label partially, it will be also be found and listed in the *Tag Panel*.
 
 Format: `find KEYWORD`
+
+![before](images/screenshots/pre_find_command.png)
+![after](images/screenshots/find_command.png)
         
 Examples:
 * `find he` (finds tags which contains `he` in label / tag name, e.g. `hello`, `hero`, etc.)
@@ -208,6 +224,8 @@ Format 2: `cd ./RELATIVE_FILE_PATH`
 
 Format 3: `cd ../`
 
+![cd](images/screenshots/cd_command.png)
+
 Examples:
 * `cd f>C:\Users` (Changes the current directory to `C:\Users`)
 * `cd ./tp` (Changes the current directory to the child directory `tp`)
@@ -219,6 +237,9 @@ Lists all added tags.
 
 Format: `ls`
 
+![before](images/screenshots/find_command.png)
+![after](images/screenshots/list_command.png)
+
 ### Undoing command : `undo`
 
 Undo a recently executed command.<br>
@@ -228,6 +249,9 @@ You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear
 </div>
 
 Format: `undo`
+
+![before](images/screenshots/clear_command.png)
+![after](images/screenshots/undo_command.png)
 
 ### Redoing command : `redo`
 
@@ -239,6 +263,9 @@ Redo only exists when undo has been executed.
 
 Format: `redo`
 
+![before](images/screenshots/undo_command.png)
+![after](images/screenshots/redo_command.png)
+
 ### Clearing all tags : `clear`
 
 Clears the list of all tags.<br>
@@ -247,6 +274,8 @@ Clears the list of all tags.<br>
 </div>
 
 Format: `clear`
+
+![clear](images/screenshots/clear_command.png)
 
 ### Exiting the application : `exit`
 
@@ -259,6 +288,8 @@ Format: `exit`
 Displays help for all/certain commands.
 
 Format: (All command) `help` or (Certain command) `help COMMAND`
+
+![help](images/screenshots/help.png)
 
 Examples : 
 * `help` (Shows all command and its format)
