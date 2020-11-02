@@ -37,6 +37,7 @@ public class AliasMap {
     public static final String ALIAS_NOT_FOUND = "The [%s] alias cannot be found.";
     public static final String ALIAS_ALPHABETS_ONLY = "Only case-sensitive alphabets can be used as aliases.";
     public static final String ALIAS_COMMAND_UNALIASABLE = "`alias` and `reset alias` commands cannot have aliases.";
+    public static final String MESSAGE_OVERRIDE_ALIAS = "Override existing alias instead: %s";
     public static final IntPredicate IS_ALPHABET_ASCII = x -> (x > 96 && x < 123 || x > 64 && x < 91);
     public static final Set<String> RESERVED_KEYWORDS = Set.of(
             AddCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD,
@@ -147,6 +148,13 @@ public class AliasMap {
         }
         if (prev.getKey().equals(update.getKey())) {
             throw new IllegalArgumentException(UNCHANGED_ALIAS);
+        }
+        if (RESERVED_KEYWORDS.contains(prev.getKey())) {
+            for (HashMap.Entry<String, String> e: this.aliasMap.entrySet()) {
+                if (e.getValue().equals(prev.getKey())) {
+                    throw new IllegalArgumentException(String.format(MESSAGE_OVERRIDE_ALIAS, e.getKey()));
+                }
+            }
         }
         this.aliasMap.remove(prev.getKey());
         if (!RESERVED_KEYWORDS.contains(update.getKey())) {
