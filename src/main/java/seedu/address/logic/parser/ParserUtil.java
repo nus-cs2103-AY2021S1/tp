@@ -25,6 +25,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MINIMUM_AMOUNT_AS_STRING = "0";
+    public static final String NEGATIVE_SIGN = "-";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.\n"
             + "Please note that record to the nearest KG/L is sufficient for inventory keeping.";
     public static final int MAXIMUM_AMOUNT = 999;
@@ -126,12 +127,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parse a string representing amount into an amount.
+     * Parses a string representing amount into an amount.
      */
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
         if (!StringUtil.isUnsignedInteger(trimmedAmount)) {
+            throw new ParseException(MESSAGE_INVALID_AMOUNT);
+        }
+        if (trimmedAmount.contains(NEGATIVE_SIGN)) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
         }
         if (Integer.parseInt(trimmedAmount) > MAXIMUM_AMOUNT) {
@@ -143,7 +147,7 @@ public class ParserUtil {
         return new Amount(trimmedAmount);
     }
     /**
-     * Parse a string representing ingredient into an ingredient name.
+     * Parses a string representing ingredient into an ingredient name.
      */
     public static IngredientName parseIngredientName(String ingredient) throws ParseException {
         requireNonNull(ingredient);
@@ -155,7 +159,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parse a string representing ingredient into an ingredient.
+     * Parses a string representing ingredient into an ingredient.
      */
     public static Ingredient parseIngredient(String ingredient) throws ParseException {
         requireNonNull(ingredient);
