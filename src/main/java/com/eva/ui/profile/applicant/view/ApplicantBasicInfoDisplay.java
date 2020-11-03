@@ -8,9 +8,7 @@ import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 
 public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     private static final String FXML = "ApplicantBasicInfoDisplay.fxml";
@@ -46,17 +44,15 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
         this.applicant = applicant;
 
         id.setText(index.getOneBased() + ". ");
-        name.setText("Name: " + this.applicant.getName().fullName);
-        phone.setText("Phone: " + this.applicant.getPhone().value);
-        address.setText("Address: " + this.applicant.getAddress().value);
-        email.setText("Email: " + this.applicant.getEmail().value);
-        interviewDate.setText("Interview Date: "
-                + (this.applicant.getInterviewDate().isPresent()
+        name.setText(this.applicant.getName().fullName);
+        phone.setText(this.applicant.getPhone().value);
+        address.setText(this.applicant.getAddress().value);
+        email.setText(this.applicant.getEmail().value);
+        interviewDate.setText((this.applicant.getInterviewDate().isPresent()
                 ? this.applicant.getInterviewDate().get().toString()
                 : "Not set yet")
         );
-        applicationStatus.setText("Application Status: "
-                + this.applicant.getApplicationStatus().toString());
+        applicationStatus.setText( this.applicant.getApplicationStatus().toString());
         tags.getChildren().add(new Label("Applicant"));
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
