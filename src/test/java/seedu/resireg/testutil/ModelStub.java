@@ -19,7 +19,7 @@ import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 
 /**
- * A default model stub that have all of the methods failing.
+ * A default model stub with all of the methods failing.
  */
 public class ModelStub implements Model {
     @Override

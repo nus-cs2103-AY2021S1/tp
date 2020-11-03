@@ -12,7 +12,7 @@ import seedu.resireg.model.UserPrefs;
 import seedu.resireg.storage.Storage;
 
 /**
- * A stub class for Storage.
+ * A stub class for Storage with all of the methods failing.
  */
 public class StorageStub implements Storage {
     @Override
