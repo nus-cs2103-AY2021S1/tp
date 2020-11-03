@@ -15,6 +15,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.notes.note.Description;
+import seedu.address.model.notes.note.Title;
 import seedu.address.model.schedule.LessonEvent;
 import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
@@ -227,6 +229,36 @@ public class ParserUtil {
             detailSet.add(parseDetail(detail));
         }
         return detailSet;
+    }
+
+    /**
+     * Parses a {@code String title} into a {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code Description}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
     }
 
     /**
