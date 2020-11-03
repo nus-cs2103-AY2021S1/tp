@@ -959,40 +959,79 @@ A valid sort input would be `sort o/descending by/quantity`. <br>
 
 ![sort_step5](images/sort/sort_step5.png)
 
-<h4>Examples</h4>
-
-Stock | Details
-------| --------
-**Stock 1** | Name: Chicken breast<br> Serial Number: FAIRPRICE1<br> Quantity: 10<br> Source: Fairprice<br> Location in warehouse: Poultry section
-**Stock 2** | Name: Pork belly<br> Serial Number: FAIRPRICE2<br> Quantity: 25<br> Source: Fairprice<br> Location in warehouse: Poultry section
-**Stock 3** | Name: Coca cola<br> Serial Number: NTUC1<br> Quantity: 100<br> Source: Ntuc<br> Location in warehouse: Drinks section
-**Stock 4** | Name: Sprite<br> Serial Number: NTUC2<br> Quantity: 100<br> Source: Ntuc<br> Location in warehouse: Drinks section
-
-```
-sort o/descending by/quantity
-```
-will sort based on quantity and in descending order. <br>
-
-![SortQuantityDescending](images/SortQuantityDescending.png)
-
-```
-sort o/ascending by/name
-```
-will sort based on name and in ascending order. <br>
-
-![SortNameAscending](images/SortNameAscending.png)
-
 ### Command Suggestion
+
 Sometimes user will type in wrong commands. Warenager will help such user by suggesting the correct format
 of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
 and suggest the closest command to whatever the user has typed.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: When will suggestion appear?** 
+
+The suggestion will only be made if the command format is invalid or unknown.
+If the command is valid, but there are errors such as serial number not found when executing commands,
+then Warenager will not suggest anything to the user and instead displays an error message.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: What prefixes and parameters will be suggested?** 
+
+The suggestion feature will always suggest a valid command format.
+
+Therefore, when giving a certain suggestion, Warenager will throw out every prefix that are
+not valid for that particular command, even though the prefixes were provided by the user.
+
+Furthermore, for every valid prefixes (both compulsory and optional) that the user has entered,
+Warenager will check if the parameter supplied for each of those valid prefixes are also valid.
+For parameters that are deemed to be invalid, Warenager will display the parameter's default description.
+
+Lastly, for every compulsory prefixes that is required for the suggested command, but were
+not supplied by the user, Warenager will add them to the suggestion message along with
+their parameter's default description.
+
+Every optional prefix that is valid for the suggested command if not entered by the user
+will not be suggested by Warenager.
+
+For example, consider the case where user has entered an invalid command
+`ad n/apple s/ q/1000 sn/fairprice1`
+
+The command Warenager will then suggest will be
+`add n/apple s/<source> q/1000 l/<location>`
+
+Explanation:
+* Warenager will first try to predict the intended command word. Warenager will conclude that
+  the command word intended was `add`.
+* Warenager will now check for compulsory prefixes with respect to the infered command `add`.
+  The first prefix is `n/` and its parameter `apple`. It is valid and hence the suggestion message
+  generated is `n/apple`.
+* The second prefix is `s/` and its parameter is empty. The parameter is not valid and hence the
+  suggestion message generated is `s/<source>`.
+* The third prefix is `q/` and its parameter is `1000`. It is valid and hence the suggestion message
+  generated is `q/1000`.
+* The fourth prefix is `sn/fairprice1` which is not a valid prefix with respect to `add` command word.
+  Therefore it is discarded.
+* Lastly, Warenager will notice that the compulsory prefix `l/` is missing and hence the suggestion
+  message generated is `l/<location>`.
+* The prefix `lq/` is not generated since it is an optional prefix and not supplied by the user.
+
+</div>
+
 <div markdown="block" class="alert alert-warning">
 
-**:warning:**
-The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
-are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
-an error message.
+**:warning: Accuracy and correctness of suggestion**
+
+In short, the suggestion feature will always suggest a correct and valid command format, but
+it cannot guarantee that the suggested command will run without execution errors.
+
+Warenager uses a certain heuristic (minimum edit distance) to predict the intended command. Since it
+is a heuristic, and therefore a method to predict, it may not be 100% accurate and bound to make
+some mistakes.
+
+More information about the heuristic used and thus how Warenager will predict the intended command
+can be found at Warenager's Developer Guide.
 
 </div>
 

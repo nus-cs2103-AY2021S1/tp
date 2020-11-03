@@ -637,7 +637,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             String description = "";
-            if (argMultimap.getValue(currentPrefix).isPresent()) {
+            boolean isPresent = argMultimap.getValue(currentPrefix).isPresent();
+            if (currentPrefix.equals(PREFIX_LOW_QUANTITY) && !isPresent) {
+                continue;
+            }
+            if (isPresent) {
                 description = argMultimap.getValue(currentPrefix).get();
             }
             if (!checkIfParameterValid(currentPrefix, description)) {
