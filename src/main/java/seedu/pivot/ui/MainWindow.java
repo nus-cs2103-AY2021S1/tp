@@ -118,11 +118,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label sectionLabel;
 
-    // For Section Label
-    private final String firstInit = "Welcome to PIVOT. ";
-    private final String preamble = "You are now at the ";
-    private final String homepage = "Homepage";
+    private final String homepage = "Home Page";
     private final String archive = "Archive";
+    private final String casePanel = "Case Panel";
+    private final String mainPanel = "Main Panel";
+    private String currentPage = homepage;
+    private String currentPanel = mainPanel;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -146,6 +147,8 @@ public class MainWindow extends UiPart<Stage> {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 updateCaseInformationPanel((Index) newValue);
+                currentPanel = newValue == null ? mainPanel : casePanel;
+                updateSectionLabel(EMPTY);
             }
         });
 
@@ -161,11 +164,10 @@ public class MainWindow extends UiPart<Stage> {
         UiStateManager.getCurrentSection().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
-                String section = "";
                 if (newValue != null) {
-                    section = newValue.equals(ArchiveStatus.DEFAULT) ? homepage : archive;
+                    currentPage = newValue.equals(ArchiveStatus.DEFAULT) ? homepage : archive;
                 }
-                sectionLabel.setText(preamble + section);
+                updateSectionLabel(EMPTY);
             }
         });
 
@@ -230,7 +232,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        sectionLabel.setText(firstInit + preamble + homepage);
+        // For Section Label
+        String firstInit = "Welcome to PIVOT. ";
+        updateSectionLabel(firstInit);
 
         updateCaseInformationPanel(indexSimpleObjectProperty.get());
     }
@@ -295,6 +299,12 @@ public class MainWindow extends UiPart<Stage> {
         default:
             caseTabPane.getSelectionModel().clearSelection();
         }
+    }
+
+    private void updateSectionLabel(String firstInit) {
+        String divider = " - ";
+        String preamble = "You are now at the ";
+        sectionLabel.setText(firstInit + preamble + currentPage + divider + currentPanel);
     }
 
     /**
