@@ -9,7 +9,40 @@ SWEe! is a desktop application used for managing CS2103T learning progress mainl
 
 Given below are my contributions to the project.
 
-* **New Feature**:
+* **New Feature**: Added the ability to review flashcards.
+  * What it does: allows the user to enter an interactive review mode where the user can use arrow keys
+  to show a flashcard's answer, move to the next flashcard or move to previous flashcard.
+  * Justification: This features allows users to review their flashcards in a sandbox mode, allowing them to study the flashcards
+  more easily.
+  * Highlights: This enhancement involved designing a completely new UI screen. It also involved much UI integration with the logic component of the app and was challenging as 
+  no similar feature was present originally in AB3. Also rewrote the review UI code in a fashion such that it could be extended easily by the quiz feature.
+
+* **New Feature**: Added the ability to view flashcards.
+  * What it does: allows user to view a flashcard in the view pane with or without the answer shown.
+  * Justification: This features allows users to see the flashcards in detail with the full question, answer, diagrams and notes.
+  * Highlights: This enhancement involved mainly designing the UI to ensure that the viewpane can accomodate to different
+  screen sizes, as well as different lengths of fields in the flashcard.
+  
+* **New Feature**: Added rating to flashcards.
+  * What it does: allows user to specify a star rating attribute to the flashcard.
+  * Justification: The star rating is intended to mirror the CS2103 website which provides star rating for different objectives.
+  This allows user to map their learning from CS2103 website over to our flashcards better.
+  * Highlights: Besides changing the flashcard model, had to modify add, edit commands and the UI to accomodate the flashcard's rating.
+  
+* **UI Implementation**: Stats feature.
+  * Handled the UI portion of the stats command by displaying the relevant information in the viewpane.
+  * Highlights: Displayed information using a piechart for better visualization.
+
+* **UI Implementation**: General UI of the app.
+  * Updated the UI from AB3 to use a 2 column format.
+  * Updated the list panel to use rounded borders.
+  
+* **Refactor**: Refactored add command from AB3.
+  * Refactored add command to support flashcards' question and answer.
+  * Highlights: Refactored associated tests and wrote new tests.
+
+
+
 * **Code contributed**: 
 
 * **Project management**:
