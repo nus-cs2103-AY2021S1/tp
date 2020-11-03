@@ -223,6 +223,15 @@ Examples:
 *  `filter t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 
+Steps for filtering for a flashcard based on category and tag.
+
+Step 1: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`
+
+![filedirectory](images/ug/ug_filter_step1.PNG)
+
+Step 2: The flashcard whose category and tag fields matches Trivial and preloaded respectively is shown.
+
+![filedirectory](images/ug/ug_filter_step2.PNG)
 
 ### Favourite a flashcard  : `fav`
 
