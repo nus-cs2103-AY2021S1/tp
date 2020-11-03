@@ -77,7 +77,7 @@ This document is written in a manner where formatting is applied to text in orde
 | ------------- | ------------------------------------------------------------ |
 | `code`        | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
 | *Italics*     | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
-| [Underline]() | Words that are underlined refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
 | **Bold**      | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
 
 ### 2.3 Command Format
@@ -118,19 +118,19 @@ all the commands are listed in [Section 4, "Features"](#4-features).
 Figure 3.2 Command example
 
 ### 3.3 Switching Views
-__Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
-to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
+__Trackr__ allows you to switch the current view from `Modules` (Figure 3.3.1) to `Tutorial Groups` (Figure 3.3.2) 
+to `Students` (Figure 3.3.3) depending on your current need. This is done using the commands `listMod`, `viewTG`, and `viewStudent`. 
 The correct syntax for these commands are shown in [Section 4, "Features"](#4-features). The top of the app shows the view
 you are currently in.
 
 ![ModuleView](images/ModuleView.png) <br>
-Figure 3.31 Module View
+Figure 3.3.1 Module View
 
 ![TutorialGroupView](images/TutorialGroupView.png) <br>
-Figure 3.32 Tutorial Group View
+Figure 3.3.2 Tutorial Group View
 
 ![StudentView](images/StudentView.png) <br>
-Figure 3.33 Student view
+Figure 3.3.3 Student view
 
 
 ## 4. Features
@@ -320,8 +320,8 @@ Note:
 
 Example:
 
-- Views all students of tutorial group _T03_.
-    - `viewStudent T03`
+- Views all students of tutorial group at _index 1_.
+    - `viewStudent 1`
     
 Expected Outcome:
 
