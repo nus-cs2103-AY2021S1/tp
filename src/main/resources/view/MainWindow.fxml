@@ -41,8 +41,7 @@
                               <children>
                                  <VBox prefHeight="152.0" prefWidth="151.33333333333334" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                       <StackPane fx:id="viewItemDisplayPanel" prefHeight="154.0" prefWidth="135.0" VBox.vgrow="ALWAYS" />
-                                       <StackPane fx:id="calenderPlaceHolder1" prefHeight="150.0" prefWidth="200.0" />
+                                        <VBox fx:id="viewItemDisplayPanel" prefHeight="154.0" prefWidth="135.0" VBox.vgrow="ALWAYS" />
                                        <AnchorPane fx:id="calenderPlaceHolder" prefHeight="200.0" prefWidth="200.0" />
                                     </children>
                                  </VBox>
