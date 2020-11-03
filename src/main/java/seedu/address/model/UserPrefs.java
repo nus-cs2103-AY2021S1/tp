@@ -138,13 +138,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, bidBookFilePath,
-                bidderAddressBookFilePath, sellerAddressBookFilePath, meetingBookFilePath,
-                propertyBookFilePath);
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);

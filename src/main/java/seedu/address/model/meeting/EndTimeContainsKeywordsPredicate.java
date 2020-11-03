@@ -3,7 +3,7 @@ package seedu.address.model.meeting;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Meeting}'s {@code StartTime} matches any of the keywords given.
+ * Tests that a {@code Meeting}'s {@code EndTime} matches any of the keywords given.
  */
 public class EndTimeContainsKeywordsPredicate implements Predicate<Meeting> {
     private final EndTime endTime;

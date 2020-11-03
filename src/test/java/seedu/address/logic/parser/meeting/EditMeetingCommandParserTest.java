@@ -33,7 +33,7 @@ import seedu.address.logic.parser.meetingparser.EditMeetingCommandParser;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.MeetingDate;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 public class EditMeetingCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =

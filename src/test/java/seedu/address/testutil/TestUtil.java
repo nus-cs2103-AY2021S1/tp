@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
+import static seedu.address.testutil.meeting.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
