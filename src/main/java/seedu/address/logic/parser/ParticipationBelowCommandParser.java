@@ -20,7 +20,7 @@ public class ParticipationBelowCommandParser {
             upperBound = ParserUtil.parseUpperBound(args);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AttendanceBelowCommand.MESSAGE_USAGE), pe);
+                    ParticipationBelowCommand.MESSAGE_USAGE), pe);
         }
 
         return new ParticipationBelowCommand(new ParticipationBelowSpecifiedScorePredicate(upperBound), upperBound);
