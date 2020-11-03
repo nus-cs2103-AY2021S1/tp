@@ -53,4 +53,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * Integrated JFoenix to the project ([\#90](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/90))
- 
