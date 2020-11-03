@@ -91,7 +91,8 @@ public class LessonContainsKeywordsPredicate extends ModelContainsKeywordsPredic
         if (prefix.equals("datetime:")) {
             return words.stream()
                     .anyMatch(keyword -> {
-                        assert DateTimeUtil.isValidDateTime(keyword) : "find keyword for date time not in correct format";
+                        assert DateTimeUtil.isValidDateTime(keyword)
+                                : "find keyword for date time not in correct format";
                         return lesson.happensOnDateTime(
                                 LocalDateTime.parse(keyword, DateTimeUtil.DATETIME_FORMATTER)
                         );
