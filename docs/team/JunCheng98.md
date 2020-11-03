@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Lim Jun Cheng's Project Portfolio Page
 ---
 
 ## Project: ZooKeep
@@ -9,38 +9,38 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to redo commands that were undone by the undo command: [\#147](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/147)
+  * What it does: allows the user to reverse all the preceding undo commands one at a time.
+  * Justification: If there exists an undo function that rectifies mistakes made by users, then there should also be a redo function in case users make mistakes again, accidentally undoing too many commands and want a convenient way to restore them.
+  * Highlights: This enhancement, similar to undo, was added as an extension and did not require any modifications to be made to existing commands (other than undo) since redo only needs to track the changes in the state of the ZooKeepBook following an undo command.
+  It was difficult to decide on an appropriate way for redo to keep track of commands that change the ZooKeepBook state since commands go through several processes from user to execution.
+  * Credits: Similar to the undo feature, the redo command was implemented using a stack (which stores states of the ZooKeepBook that were undone by the undo command).
+  
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=JunCheng98)
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Morphed the Phone field in the original AB3 to ID field in the current ZooKeep: [\#62](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/62), [\#64](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/64)
+  * Enhanced the find command to enable searching in all fields: [\#114](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/114)
+  * Enhanced the find command to allow substring matching: [\#269](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/269)
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added information on data saving in FAQ: [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199/files)
+    * Added documentation to clarify constraints for ID entries: [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199/files)
+    * Changed 'feeding times' to 'feed times' to be consistent with code base: [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199/files)
+    * Clarified format for feed time and addressed issues about leading zeroes in ID: [\#270](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/270)
+    * Confirmed that find command supports both substring matching and full word matching: [\#304](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/304)
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `redo` feature: [\#144](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/144)
+    * Added relevant UML diagrams to complement the implementation details of `redo`: [\#144](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/144)
+    * Changed some instances of 'person' in various sections to 'animal': [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199/files)
+    * Modified the 'Deleting an animal' section of the Appendix: [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199/files)
+    * Appended 2 new scenarios to the 'Saving Data' section of the Appendix: [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199/files)
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+* **Team-based tasks**:
+  * [DG] Added relevant Non-Functional Requirements (NFRs) and Glossary: [\#20](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/20)
+  * [UG] Modified the descriptions of all available features to be more user-centric: [\#222](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/222)
+  * [UG] Included different screenshots of ZooKeep to complement the examples given for all the features: [\#268](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/268)
+  * [DG] Modified entries in NFRs and added some new Glossary entries: [\#305](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/305)
+  * Added several issues to the repository: ([\#217](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/217), [\#218](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/218), [\#219](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues/219))
