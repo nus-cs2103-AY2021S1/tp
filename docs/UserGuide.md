@@ -87,9 +87,9 @@ This section details the notations used to specify the command formats in the [c
 
 This section shows the commands that can be used with NUStorage. It is divided into three sections:
 
-1. Inventory commands
-2. Finance account commands
-3. Universal commands
+1. [Inventory commands](#51-inventory-commands)
+2. [Finance commands](#52-finance-commands)
+3. [Universal commands](#53-universal-commands)
 
 Accompanying the details of each command are figures that show an example of the command and the result of executing the command.
 
