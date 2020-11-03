@@ -25,6 +25,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MINIMUM_AMOUNT_AS_STRING = "0";
+    public static final String MAXIMUM_AMOUNT_AS_STRING = "999";
     public static final String NEGATIVE_SIGN = "-";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.\n"
             + "Please note that record to the nearest KG/L is sufficient for inventory keeping.";
@@ -33,6 +34,11 @@ public class ParserUtil {
     public static final String MESSAGE_EXCEED_MAXIMUM_AMOUNT = "The amount entered is greater than "
             + "999 KG / L, which is the maximum capacity for any kind of ingredient for one stall.\n"
             + "Please double check the current amount and enter the actual current amount !";
+    public static final String MESSAGE_EXCEED_MAXIMUM_LENGTH = "The amount entered has at least four "
+            + "digits, which is more than the maximum capacity of storage (999 KG / L) for any one "
+            + "ingredient.\nPlease enter the actual current amount and remove any leading zeros!\n"
+            + "Please note that only amounts with less than four digits will be accepted.\n"
+            + "For example : 0000000000000000009 is not acceptable, but 009 is.";
     public static final String MESSAGE_INVALID_INGREDIENT_NAME = "The ingredient is not found, it "
             + "has to be chosen from : " + Arrays.toString(IngredientName.INGREDIENTS)
             + "\nPlease note that ingredient names are CASE-SENSITIVE to ensure consistency.";
@@ -132,6 +138,9 @@ public class ParserUtil {
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
+        if (trimmedAmount.length() > MAXIMUM_AMOUNT_AS_STRING.length()) {
+            throw new ParseException(MESSAGE_EXCEED_MAXIMUM_LENGTH);
+        }
         if (!StringUtil.isUnsignedInteger(trimmedAmount)) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
         }
