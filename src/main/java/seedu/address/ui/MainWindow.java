@@ -92,6 +92,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private JFXDrawersStack drawersStack;
     private JFXDrawer leftDrawer;
+    private ScrollPane leftDrawerPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -232,8 +233,15 @@ public class MainWindow extends UiPart<Stage> {
         nav.setPrefWidth(120);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            leftPanel.setPrefWidth(primaryStage.getWidth() / 2.5);
-            //nav.setPrefWidth(primaryStage.getWidth() / 10);
+            final double leftPanelSize = primaryStage.getWidth() / 2.5;
+            final double leftDrawerPaneSize = primaryStage.getWidth() / 2.6;
+            leftPanel.setPrefWidth(leftPanelSize);
+            leftDrawer.setMinWidth(leftDrawerPaneSize);
+            leftDrawer.setMaxWidth(leftDrawerPaneSize);
+            if (leftDrawerPane != null) {
+                leftDrawerPane.setMinWidth(leftDrawerPaneSize);
+                leftDrawerPane.setMaxWidth(leftDrawerPaneSize);
+            }
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 
@@ -262,7 +270,7 @@ public class MainWindow extends UiPart<Stage> {
         //keep drawer width updated
         leftDrawer.setMaxWidth(drawerSize);
         leftDrawer.setMinWidth(drawerSize);
-        ScrollPane leftDrawerPane = new ScrollPane();
+        leftDrawerPane = new ScrollPane();
         leftDrawerPane.setFitToWidth(true);
         leftDrawerPane.setContent(new SingleRecipeCard(selected).getRoot());
         final KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e ->
@@ -295,9 +303,6 @@ public class MainWindow extends UiPart<Stage> {
             ParseException, IOException, URISyntaxException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             //handle showing single recipe
             Recipe selected = commandResult.getRecipe();
             if (selected != null) {
@@ -305,7 +310,16 @@ public class MainWindow extends UiPart<Stage> {
             }
             //handle closing drawer
             if (commandResult.isClose()) {
+                if (leftDrawer.isClosed()) {
+                    commandResult = new CommandResult("Drawer is already closed!");
+                    logger.info("Result: " + commandResult.getFeedbackToUser());
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    return commandResult;
+                }
                 hideDrawer();
+            } else if (leftDrawer.isOpened()) {
+                CommandException commandException = new CommandException("Close drawer first!");
+                throw commandException;
             }
 
             if (commandResult.isShowHelp()) {
@@ -330,7 +344,8 @@ public class MainWindow extends UiPart<Stage> {
                 listPanelPlaceholder.getChildren().clear();
                 fillConsumptionPanel();
             }
-
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
