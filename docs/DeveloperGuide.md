@@ -131,7 +131,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on the implementation of certain features.
+This section describes some noteworthy details on the implementation of certain features. All detailed diagrams of each feature will be located in the Appendix.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** 
@@ -242,7 +242,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Will use less memory (Consumption list only save related information).
   * Cons: Not future proof (need to restructure the whole command if wanted to show more information from the recipe)
 
-### List feature
+### List features
 List features (`List Recipes`, `List Ingredients` and `List Consumption`) allows user to list out all the item that was saved in the respective list.
 List Consumption feature will also calculate and show the total calories consume. 
 
@@ -250,7 +250,7 @@ List Consumption feature will also calculate and show the total calories consume
 Command and Parser make use of Substitutability:
 * `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command`
 
-The following sequence diagram shows how eat recipe operation works when `execute(recipes)`, `execute(fridge)` or `execute(calories)` API call:
+The following sequence diagram shows how list operation works when `execute(recipes)`, `execute(fridge)` or `execute(calories)` API call:
 
 ![ListSequenceDiagram](images/implementation/ListSequence.png)
 
@@ -292,7 +292,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: All the data saved are being used. 
   * Cons: Showing too much unimportant information.
 
-### Delete feature
+### Delete features
 Delete features (`Delete Recipe`, `Delete Ingredient` and `Delete Consumption`) allows users to delete the saved item from the respective list.
 
 #### Implementation
@@ -302,7 +302,7 @@ Command and Parser make use of Substitutability:
 * `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
 * `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
 
-The following sequence diagram shows how eat recipe operation works when `execute(deleteR 1)`, `execute(deleteF 1)` or `execute(deleteC 1)` API call:
+The following sequence diagram shows how delete operation works when `execute(deleteR 1)`, `execute(deleteF 1)` or `execute(deleteC 1)` API call:
 
 ![DeleteSequence](images/implementation/DeleteSequence.png)
 
@@ -334,7 +334,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other deleting commands
 
-### Edit feature
+### Edit features
 This edit feature (`Edit Recipe` and `Edit Ingredient`) allows users to edit an existing recipe/ingredient in the recipe list/firdge.
 
 #### Implementation
@@ -343,7 +343,7 @@ Command and Parser make use of Substitutability:
 * `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>`
 
-The following sequence diagram shows how recommend operation works when `execute("editR 1 n/Pea soup")` or `execute("editF 1 i/tomato")` API call:
+The following sequence diagram shows how edit operation works when `execute("editR 1 n/Pea soup")` or `execute("editF 1 i/tomato")` API call:
 
 ![EditSequence](images/implementation/EditSequence.png)
 
@@ -386,7 +386,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Easy to implement.
   * Cons: Not user friendly.
 
-### Get edit feature
+### Get edit features
 Get edit features (Get Edit Recipe and Get Edit Ingredient) allows users to get the command of an existing recipe/ingredients to edit.
 
 #### Implementation
@@ -395,7 +395,7 @@ Command and Parser make use of Substitutability:
 * `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
 * `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>`
 
-The following sequence diagram shows how eat recipe operation works when `execute(editR 1)` or `execute(editF 1)` API call:
+The following sequence diagram shows how get edit operation works when `execute(editR 1)` or `execute(editF 1)` API call:
 
 ![GetEditSequence](images/implementation/GetEditSequence.png)
 <div markdown="span" class="alert alert-info">:information_source: 
@@ -434,7 +434,7 @@ Command and Parser make use of Substitutability:
 * `SelectRecipeCommand` extends `Command`
 * `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>`
 
-The following sequence diagram shows how eat recipe operation works when `execute(selectR 1)` API call:
+The following sequence diagram shows how select recipe operation works when `execute(selectR 1)` API call:
 
 ![SelectRecipeSequence](images/SelectRecipeSequence.png)
 
@@ -450,7 +450,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other commands
 
-### Search Recipe feature
+### Search features
 Search features (Search Recipe and Search Ingredient) allow user to search for recipe/ingrdient in the recipe list/fridge based on the name.
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Search Recipe would able to search based on tag or ingredient.
@@ -462,7 +462,7 @@ Command and Parser make use of Substitutability:
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
 * `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>`
 
-The following sequence diagram shows how search recipe operation works when `execute("searchR n/burger")` or `execute("searchF avocado")`API call:
+The following sequence diagram shows how search operation works when `execute("searchR n/burger")` or `execute("searchF avocado")`API call:
 
 ![SearchSequence](images/implementation/SearchSequence.png)
 
@@ -495,7 +495,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 * **Alternative 2:** User can search for recipes by all fields at once
   * Pros: Harder to implement.
-  * Cons: User's can filter the recipes by two or three fields at once
+  * Cons: User's can filter the recipes by two or three fields at once, making filtering more efficient
 
 #### Design Considerations (Search Ingredient)
 ##### Aspect 1: Concern while adding a new feature
@@ -529,14 +529,14 @@ The following sequence diagram shows how recommend operation works when `execute
   * Pros: Easy to implement
   * Cons: Slow to compare, the ingredients might not match if the spellings are different, or if the ingredient has similar names, eg mozarella and cheese. Other than that, if users do not input basic ingredients into their fridge, eg salt and pepper, the recipe might not get recommended to them.
 
-### Clear feature
+### Clear features
 Clear features (`Clear Recipes`, `Clear Ingredients` and `Clear Consumption`) allows user to clear all the item that was saved in the respective list. 
 
 #### Implementation
 Command and Parser make use of Substitutability:
 * `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command`
 
-The following sequence diagram shows how eat recipe operation works when `execute(clearR)`, `execute(clearF)` or `execute(clearC)` API call:
+The following sequence diagram shows how clear operation works when `execute(clearR)`, `execute(clearF)` or `execute(clearC)` API call:
 
 ![ClearSequenceDiagram](images/implementation/ClearSequence.png)
 
@@ -942,4 +942,40 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-## Appendix
+## Appendix : Detailed sequence diagrams for features
+
+### Add features
+
+#### Add Ingredient
+
+The following sequence diagram shows how add ingredients operation works when `execute("addF i/tomato")` API call:
+
+![AddIngredientSequence](images/feature/ingredient/AddIngredientSequence.png)
+
+
+### List features
+
+### Delete features
+
+#### Delete Consumption
+
+The following sequence diagram shows how delete consumption operation works when `execute("deleteC 1")` API call:
+
+![DeleteConsumptionSequence](images/feature/consumption/DeleteConsumptionSequence.png)
+
+
+### Edit features
+
+### Get edit features
+
+### Search features
+
+#### Search Recipe
+
+The following sequence diagram shows how search recipe operation works when `execute("searchR n/burger")` API call:
+
+![SearchRecipeSequence](images/feature/recipe/SearchRecipeSequence.png)
+
+
+
+### Clear features
