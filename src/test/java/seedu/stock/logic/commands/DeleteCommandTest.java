@@ -6,13 +6,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
-import static seedu.stock.testutil.TypicalStocks.APPLE;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
-import static seedu.stock.testutil.TypicalStocks.UNKNOWN_SERIAL_NUMBER;
-import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
-import static seedu.stock.testutil.TypicalStocks.serialNumberListAsString;
-import static seedu.stock.testutil.TypicalStocks.stocksAsString;
+import static seedu.stock.testutil.TypicalStocks.*;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -75,7 +69,7 @@ public class DeleteCommandTest {
         Set<SerialNumber> firstSerialNumberSet = new LinkedHashSet<>();
         firstSerialNumberSet.add(SERIAL_NUMBER_FIRST_STOCK);
 
-        Stock stockToDelete = APPLE;
+        Stock stockToDelete = ALMOND;
         List<Stock> firstStock = new ArrayList<>();
         firstStock.add(stockToDelete);
 

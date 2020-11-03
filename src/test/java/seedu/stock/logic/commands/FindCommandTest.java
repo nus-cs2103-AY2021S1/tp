@@ -7,9 +7,7 @@ import static seedu.stock.commons.core.Messages.MESSAGE_STOCKS_LISTED_OVERVIEW;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
-import static seedu.stock.testutil.TypicalStocks.APPLE;
-import static seedu.stock.testutil.TypicalStocks.BANANA;
-import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
+import static seedu.stock.testutil.TypicalStocks.*;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -52,6 +50,7 @@ public class FindCommandTest {
         List<Predicate<Stock>> predicateList = Arrays.asList(namePredicate, sourcePredicate);
         expectedModel.updateFilteredStockList(
                 predicateList.stream().reduce(x -> false, Predicate::or));
+
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(APPLE, BANANA), model.getFilteredStockList());

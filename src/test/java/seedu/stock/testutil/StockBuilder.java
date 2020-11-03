@@ -30,6 +30,7 @@ public class StockBuilder {
     private Quantity quantity;
     private Location location;
     private List<Note> notes;
+    private boolean isBookmarked;
 
     /**
      * Creates a {@code StockBuilder} with the default details.
@@ -41,6 +42,7 @@ public class StockBuilder {
         quantity = new Quantity(DEFAULT_QUANTITY, DEFAULT_LOW_QUANTITY);
         location = new Location(DEFAULT_LOCATION);
         notes = new ArrayList<>();
+        isBookmarked = false;
     }
 
     /**
@@ -57,6 +59,7 @@ public class StockBuilder {
             noteListCopy.add(note);
         }
         notes = noteListCopy;
+        isBookmarked = stockToCopy.getIsBookmarked();
     }
 
     /**
@@ -119,6 +122,11 @@ public class StockBuilder {
         return this;
     }
 
+    public StockBuilder withBookmark(boolean bookmarked) {
+        this.isBookmarked = bookmarked;
+        return this;
+    }
+
     /**
      * Adds the {@code Note} of the {@code Stock} that we are building.
      */
@@ -174,11 +182,17 @@ public class StockBuilder {
             notesListCopy.add(note);
         }
         copy.notes = notesListCopy;
+        copy.isBookmarked = this.isBookmarked;
+
         return copy;
     }
 
     public Stock build() {
-        return new Stock(name, serialNumber, source, quantity, location, notes);
+        Stock result = new Stock(name, serialNumber, source, quantity, location, notes);
+        if (isBookmarked) {
+            result.setBookmarked();
+        }
+        return result;
     }
 
 }
