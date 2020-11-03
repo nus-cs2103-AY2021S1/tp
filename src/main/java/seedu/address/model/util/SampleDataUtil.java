@@ -99,7 +99,7 @@ public class SampleDataUtil {
     public static Note[] getSampleNotes() {
         return new Note[] {
             new Note(new Title("Finish tp"), new Description("It's week 11!!")),
-            new Note(new Title("Study for finals"), new Description("or die during reading week :(")),
+            new Note(new Title("Mug for finals"), new Description("or die during reading week :(")),
             new Note(new Title("relax"), new Description("Eat, watch youtube, go USS"))
         };
     }
