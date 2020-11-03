@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -24,7 +23,7 @@ import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
  */
 
 public interface Storage extends SellerAddressBookStorage, BidderAddressBookStorage,
-        AddressBookStorage, UserPrefsStorage, BidBookStorage, MeetingBookStorage,
+        UserPrefsStorage, BidBookStorage, MeetingBookStorage,
         PropertyBookStorage {
 
     @Override
@@ -32,15 +31,6 @@ public interface Storage extends SellerAddressBookStorage, BidderAddressBookStor
 
     @Override
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
-
-    @Override
-    Path getAddressBookFilePath();
-
-    @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
-
-    @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     // ===================== BID =======================
     @Override

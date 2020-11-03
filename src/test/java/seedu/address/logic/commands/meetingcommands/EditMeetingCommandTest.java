@@ -11,14 +11,12 @@ import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_VENUE_A;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,7 +27,7 @@ import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
 class EditMeetingCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+    private Model model = new ModelManager(new UserPrefs(), new BidBook(),
             new PropertyBook(), getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(), getTypicalMeetingAddressBook());
 
@@ -43,7 +41,7 @@ class EditMeetingCommandTest {
                 new EditMeetingCommand(INDEX_FIRST_MEETING, adminMeetingDescriptor);
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedAdminMeeting);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
 
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedAdminMeeting);
@@ -68,7 +66,7 @@ class EditMeetingCommandTest {
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
 
         expectedModel.setMeeting(lastMeeting, editedMeeting);
@@ -84,7 +82,7 @@ class EditMeetingCommandTest {
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
@@ -101,7 +99,7 @@ class EditMeetingCommandTest {
 
         String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), model.getMeetingBook());
 
         expectedModel.setMeeting(model.getFilteredMeetingList().get(0), editedMeeting);
@@ -147,7 +145,7 @@ class EditMeetingCommandTest {
         assertFalse(standardMeetingCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardMeetingCommand.equals(new ClearCommand()));
+        assertFalse(standardMeetingCommand.equals(new ListMeetingCommand()));
 
         // different index -> returns false
         assertFalse(standardMeetingCommand.equals(new EditMeetingCommand(INDEX_SECOND_MEETING, VALID_MEETING_A)));

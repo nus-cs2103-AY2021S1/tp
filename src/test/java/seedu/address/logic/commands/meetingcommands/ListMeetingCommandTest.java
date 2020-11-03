@@ -1,10 +1,9 @@
 package seedu.address.logic.commands.meetingcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.seller.SellerCommandTestUtil.showSellerAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showMeetingAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
@@ -24,10 +23,10 @@ class ListMeetingCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+        model = new ModelManager(new UserPrefs(), new BidBook(),
                 getTypicalPropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(),
                 getTypicalMeetingAddressBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
     }
@@ -39,7 +38,7 @@ class ListMeetingCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showSellerAtIndex(model, INDEX_FIRST_MEETING);
+        showMeetingAtIndex(model, INDEX_FIRST_MEETING);
         assertCommandSuccess(new ListMeetingCommand(), model, ListMeetingCommand.MESSAGE_SUCCESS, expectedModel);
     }
 

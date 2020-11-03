@@ -3,7 +3,6 @@ package seedu.address.logic.commands.property;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
@@ -30,7 +29,7 @@ public class AddPropertyCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), getTypicalPropertyBook(),
+        model = new ModelManager(new UserPrefs(), new BidBook(), getTypicalPropertyBook(),
                 getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
     }
 
@@ -41,7 +40,6 @@ public class AddPropertyCommandIntegrationTest {
                 .build();
 
         Model expectedModel = new ModelManager(
-                model.getAddressBook(),
                 new UserPrefs(),
                 model.getBidBook(),
                 model.getPropertyBook(),

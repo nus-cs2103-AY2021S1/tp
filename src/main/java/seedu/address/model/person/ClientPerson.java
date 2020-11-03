@@ -8,7 +8,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Represents the clients who interacts with the property agent.
  */
-public class ClientPerson extends Person {
+public abstract class ClientPerson extends Person {
 
     // Identity fields
     protected Id clientId;

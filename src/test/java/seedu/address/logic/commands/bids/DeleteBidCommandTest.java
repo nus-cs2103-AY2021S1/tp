@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.showBidAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BID;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BID;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
@@ -31,7 +30,7 @@ import seedu.address.model.propertybook.PropertyBook;
 public class DeleteBidCommandTest {
 
 
-    private Model model = new ModelManager(getTypicalAddressBook(),
+    private Model model = new ModelManager(
             new UserPrefs(),
             getTypicalBidBook(),
             new PropertyBook(),
@@ -46,7 +45,7 @@ public class DeleteBidCommandTest {
 
         String expectedMessage = String.format(DeleteBidCommand.MESSAGE_DELETE_BID_SUCCESS, bidToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteBid(bidToDelete);
@@ -69,7 +68,7 @@ public class DeleteBidCommandTest {
         DeleteBidCommand deleteBidCommand = new DeleteBidCommand(INDEX_FIRST_BID);
 
         String expectedMessage = String.format(DeleteBidCommand.MESSAGE_DELETE_BID_SUCCESS, bidToDelete);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteBid(bidToDelete);

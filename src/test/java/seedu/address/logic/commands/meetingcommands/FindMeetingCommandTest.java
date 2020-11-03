@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalMeeting.ADMINMEETING01;
 import static seedu.address.testutil.TypicalMeeting.PAPERWORKMEETING05;
 import static seedu.address.testutil.TypicalMeeting.VIEWINGMEETING03;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -28,13 +27,11 @@ import seedu.address.model.meeting.PropertyIdContainsKeywordsPredicate;
 import seedu.address.model.meeting.VenueContainsKeywordsPredicate;
 import seedu.address.model.propertybook.PropertyBook;
 
-
-
 class FindMeetingCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+    private Model model = new ModelManager(new UserPrefs(), new BidBook(),
             new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(),
             getTypicalMeetingAddressBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+    private Model expectedModel = new ModelManager(new UserPrefs(), new BidBook(),
             new PropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(),
             getTypicalMeetingAddressBook());
 

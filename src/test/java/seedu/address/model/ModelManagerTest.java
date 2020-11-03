@@ -3,30 +3,30 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.propertybook.PropertyModel.PREDICATE_SHOW_ALL_PROPERTIES;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.bidder.TypicalBidder.BIDDER_ALICE;
 import static seedu.address.testutil.bids.TypicalBid.BID_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
+import static seedu.address.testutil.seller.TypicalSeller.SELLER_ALICE;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.bidderaddressbook.BidderModel;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.selleraddressbook.SellerModel;
+import seedu.address.testutil.bidder.BidderAddressBookBuilder;
 import seedu.address.testutil.property.PropertyBookBuilder;
+import seedu.address.testutil.seller.SellerAddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -36,7 +36,6 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
         assertEquals(new BidderAddressBook(), new BidderAddressBook(modelManager.getBidderAddressBook()));
         assertEquals(new SellerAddressBook(), new SellerAddressBook(modelManager.getSellerAddressBook()));
         assertEquals(new BidBook(), new BidBook(modelManager.getBidBook()));
@@ -78,41 +77,6 @@ public class ModelManagerTest {
         assertEquals(guiSettings, modelManager.getGuiSettings());
     }
 
-    // ------------------- ADDRESS BOOK -------------------
-
-    @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
-    }
-
-    @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
-    }
-
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
-    }
-
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
-    }
-
-    @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
-    }
-
     // ------------------- BID BOOK -------------------
 
     @Test
@@ -135,12 +99,6 @@ public class ModelManagerTest {
     @Test
     public void hasBid_bidNotInBidBook_returnsFalse() {
         assertFalse(modelManager.hasBid(BID_A));
-    }
-
-    @Test
-    public void hasBid_bidInBidBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
     }
 
     @Test
@@ -184,28 +142,100 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPropertyList().remove(0));
     }
 
+    // ----------------- BIDDER ---------------------
+    @Test
+    public void setBidderAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setBidderAddressBookFilePath(null));
+    }
+
+    @Test
+    public void setBidderAddressBookFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("data/bidderaddressbook.json");
+        modelManager.setBidderAddressBookFilePath(path);
+        assertEquals(path, modelManager.getBidderAddressBookFilePath());
+    }
+
+    @Test
+    public void hasBidder_nullBidder_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasBidder(null));
+    }
+
+    @Test
+    public void hasBidder_bidderNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasBidder(BIDDER_ALICE));
+    }
+
+    @Test
+    public void hasBidder_bidderInAddressBook_returnsTrue() {
+        modelManager.addBidder(BIDDER_ALICE);
+        assertTrue(modelManager.hasBidder(BIDDER_ALICE));
+    }
+
+    @Test
+    public void getFilteredBidderList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBidderList().remove(0));
+    }
+
+    // ----------------- SELLER ---------------------
+    @Test
+    public void setSellerAddressBookFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setSellerAddressBookFilePath(null));
+    }
+
+    @Test
+    public void setSellerAddressBookFilePath_validPath_setsAddressBookFilePath() {
+        Path path = Paths.get("data/selleraddressbook.json");
+        modelManager.setSellerAddressBookFilePath(path);
+        assertEquals(path, modelManager.getSellerAddressBookFilePath());
+    }
+
+    @Test
+    public void hasSeller_nullSeller_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasSeller(null));
+    }
+
+    @Test
+    public void hasSeller_sellerNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasSeller(SELLER_ALICE));
+    }
+
+    @Test
+    public void hasSeller_sellerInAddressBook_returnsTrue() {
+        modelManager.addSeller(SELLER_ALICE);
+        assertTrue(modelManager.hasSeller(SELLER_ALICE));
+    }
+
+    @Test
+    public void getFilteredSellerList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredSellerList().remove(0));
+    }
     // ------------------- GENERAL -------------------
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
-        BidderAddressBook bidderAddressBook = new BidderAddressBook();
-        SellerAddressBook sellerAddressBook = new SellerAddressBook();
+
+        BidderAddressBook bidderAddressBook = new BidderAddressBookBuilder().withBidder(BIDDER_ALICE).build();
+        BidderAddressBook differentBidderAddressBook = new BidderAddressBook();
+
+        SellerAddressBook sellerAddressBook = new SellerAddressBookBuilder().withSeller(SELLER_ALICE).build();
+        SellerAddressBook differentSellerAddressBook = new SellerAddressBook();
+
         BidBook bidBook = new BidBook();
         MeetingBook meetingBook = new MeetingBook();
+
         PropertyBook propertyBook = new PropertyBookBuilder()
                 .withProperty(PROPERTY_A).withProperty(PROPERTY_B).build();
         PropertyBook differentPropertyBook = new PropertyBook();
 
-        modelManager = new ModelManager(addressBook, userPrefs,
+        modelManager = new ModelManager(userPrefs,
                 bidBook,
                 propertyBook,
                 bidderAddressBook,
                 sellerAddressBook,
                 meetingBook);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs,
+
+        ModelManager modelManagerCopy = new ModelManager(userPrefs,
                 bidBook,
                 propertyBook,
                 bidderAddressBook,
@@ -225,38 +255,33 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different bidderAddressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(userPrefs,
+                bidBook, propertyBook, differentBidderAddressBook, sellerAddressBook, meetingBook)));
 
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs,
-                bidBook, propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
+        // different sellerAddressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(userPrefs,
+                bidBook, propertyBook, bidderAddressBook, differentSellerAddressBook, meetingBook)));
 
         // different propertyBook -> returns false
-
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
+        assertFalse(modelManager.equals(new ModelManager(userPrefs,
                 bidBook, differentPropertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
-
-        // different filteredPersonList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
-                bidBook, propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
 
         // different filteredPropertyList -> returns false
         modelManager.updateFilteredPropertyList(property -> property.equals(PROPERTY_A));
-
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
+        assertFalse(modelManager.equals(new ModelManager(userPrefs,
                 bidBook, propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredSellerList(SellerModel.PREDICATE_SHOW_ALL_SELLERS);
+        modelManager.updateFilteredBidderList(BidderModel.PREDICATE_SHOW_ALL_BIDDERS);
         modelManagerCopy.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
 
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs, bidBook,
+        assertFalse(modelManager.equals(new ModelManager(differentUserPrefs, bidBook,
                 propertyBook, bidderAddressBook, sellerAddressBook, meetingBook)));
     }
 }

@@ -93,7 +93,7 @@ public class UniqueSellerList implements Iterable<Seller> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedSeller) && contains(editedSeller)) {
+        if (!target.isSameSeller(editedSeller) && contains(editedSeller)) {
             throw new DuplicatePersonException();
         }
 
@@ -141,11 +141,6 @@ public class UniqueSellerList implements Iterable<Seller> {
         return other == this // short circuit if same object
                 || (other instanceof UniqueSellerList // instanceof handles nulls
                 && internalList.equals(((UniqueSellerList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
     }
 
     /**

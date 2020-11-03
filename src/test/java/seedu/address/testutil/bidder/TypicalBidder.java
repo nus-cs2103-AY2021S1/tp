@@ -12,13 +12,14 @@ import java.util.List;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.bidder.Bidder;
 
-
 /**
  * A utility class containing a list of {@code Bidder} objects to be used in tests.
  */
 public class TypicalBidder {
 
     public static final Bidder ALICE = new BidderBuilder().withName("Alice Pauline")
+            .withPhone("94351253").withId(1).build();
+    public static final Bidder BIDDER_ALICE = new BidderBuilder().withName("Alice Pauline")
             .withPhone("94351253").withId(1).build();
     public static final Bidder BENSON = new BidderBuilder().withName("Benson Meier")
             .withId(2).build();
@@ -32,6 +33,10 @@ public class TypicalBidder {
             .withPhone("9482427").withId(6).build();
     public static final Bidder GEORGE = new BidderBuilder()
             .withName("George Best").withPhone("9482442").withId(7).build();
+
+    // Manually added
+    public static final Bidder HOON = new BidderBuilder().withName("Hoon Meier").withPhone("8482424").build();
+    public static final Bidder IDA = new BidderBuilder().withName("Ida Mueller").withPhone("8482131").build();
 
     // Manually added - Bidder's details found in {@code CommandTestUtil}
     public static final Bidder AMY = new BidderBuilder().withName(VALID_NAME_AMY)

@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSe
 import static seedu.address.logic.commands.seller.SellerCommandTestUtil.showSellerAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -19,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.sellercommands.EditSellerCommand;
 import seedu.address.logic.commands.sellercommands.EditSellerCommand.EditSellerDescriptor;
+import seedu.address.logic.commands.sellercommands.ListSellerCommand;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -38,7 +37,7 @@ import seedu.address.testutil.seller.SellerBuilder;
  */
 public class EditSellerCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+    private Model model = new ModelManager(new UserPrefs(), new BidBook(),
             new PropertyBook(), getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(), new MeetingBook());
 
@@ -50,7 +49,7 @@ public class EditSellerCommandTest {
         EditSellerCommand editSellerCommand = new EditSellerCommand(INDEX_FIRST_PERSON, sellerDescriptor);
 
         String expectedMessage = String.format(EditSellerCommand.MESSAGE_EDIT_SELLER_SUCCESS, editedSeller);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setSeller(model.getFilteredSellerList().get(0), editedSeller);
@@ -74,7 +73,7 @@ public class EditSellerCommandTest {
 
         String expectedMessage = String.format(EditSellerCommand.MESSAGE_EDIT_SELLER_SUCCESS, editedSeller);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setSeller(lastSeller, editedSeller);
@@ -89,7 +88,7 @@ public class EditSellerCommandTest {
 
         String expectedMessage = String.format(EditSellerCommand.MESSAGE_EDIT_SELLER_SUCCESS, editedSeller);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         assertSellerCommandSuccess(editSellerCommand, model, expectedMessage, expectedModel);
@@ -106,7 +105,7 @@ public class EditSellerCommandTest {
 
         String expectedMessage = String.format(EditSellerCommand.MESSAGE_EDIT_SELLER_SUCCESS, editedSeller);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setSeller(model.getFilteredSellerList().get(0), editedSeller);
@@ -177,7 +176,7 @@ public class EditSellerCommandTest {
         assertFalse(standardSellerCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardSellerCommand.equals(new ClearCommand()));
+        assertFalse(standardSellerCommand.equals(new ListSellerCommand()));
 
         // different index -> returns false
         assertFalse(standardSellerCommand.equals(new EditSellerCommand(INDEX_SECOND_PERSON, DESC_AMY)));

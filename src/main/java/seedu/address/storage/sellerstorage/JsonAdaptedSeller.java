@@ -17,7 +17,6 @@ public class JsonAdaptedSeller {
 
     private final String name;
     private final String phone;
-    private final String tagged;
     private final String id;
 
     /**
@@ -25,10 +24,9 @@ public class JsonAdaptedSeller {
      */
     @JsonCreator
     public JsonAdaptedSeller(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-                             @JsonProperty("tagged") String tagged, @JsonProperty("id") String id) {
+                             @JsonProperty("id") String id) {
         this.name = name;
         this.phone = phone;
-        this.tagged = tagged;
         this.id = id;
     }
 
@@ -38,7 +36,6 @@ public class JsonAdaptedSeller {
     public JsonAdaptedSeller(Seller source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        tagged = source.getTag().tagName;
         id = source.getId().toString();
     }
 

@@ -3,7 +3,6 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
@@ -16,9 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
@@ -44,18 +41,17 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         JsonBidBookStorage bidBookStorage = new JsonBidBookStorage(getTempFilePath("bb"));
         JsonBidderAddressBookStorage bidderAddressBookStorage =
-                new JsonBidderAddressBookStorage(getTempFilePath("ab"));
+                new JsonBidderAddressBookStorage(getTempFilePath("bidderb"));
         JsonSellerAddressBookStorage sellerAddressBookStorage =
-                new JsonSellerAddressBookStorage(getTempFilePath("ab"));
+                new JsonSellerAddressBookStorage(getTempFilePath("sellerb"));
         JsonMeetingBookStorage meetingBookStorage =
                 new JsonMeetingBookStorage(getTempFilePath("mb"));
         JsonPropertyBookStorage propertyBookStorage =
                 new JsonPropertyBookStorage(getTempFilePath("pb"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, bidBookStorage,
+        storageManager = new StorageManager(userPrefsStorage, bidBookStorage,
                 bidderAddressBookStorage, sellerAddressBookStorage, meetingBookStorage, propertyBookStorage);
     }
 
@@ -77,32 +73,14 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    @Test
-    public void addressBookReadSave() throws Exception {
-        /*
-         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
-         */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
-    }
-
-    @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
-    }
-
     // ------------------- PROPERTY STORAGE -------------------
 
     @Test
     public void propertyBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonPropertyBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonPropertyBookStorageTest} class.
          */
         PropertyBook original = getTypicalPropertyBook();
         storageManager.savePropertyBook(original);
@@ -121,8 +99,8 @@ public class StorageManagerTest {
     public void bidBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonBidBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonBidBookStorageTest} class.
          */
         BidBook original = getTypicalBidBook();
         storageManager.saveBidBook(original);
@@ -141,8 +119,8 @@ public class StorageManagerTest {
     public void bidderAddressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonBidderAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonBidderAddressBookStorageTest} class.
          */
         BidderAddressBook original = getTypicalBidderAddressBook();
         storageManager.saveBidderAddressBook(original);
@@ -161,8 +139,8 @@ public class StorageManagerTest {
     public void sellerAddressBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonSellerAddressBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonSellerAddressBookStorage} class.
          */
         SellerAddressBook original = getTypicalSellerAddressBook();
         storageManager.saveSellerAddressBook(original);
@@ -184,7 +162,7 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMeetingBookStorageTest} class.
          */
         MeetingBook original = getTypicalMeetingAddressBook();
         storageManager.saveMeetingBook(original);
