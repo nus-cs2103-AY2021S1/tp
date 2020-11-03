@@ -818,17 +818,16 @@ look as shown in the image below.
 **Clicking into the `Stock View` tab:**
 ![stockview-step-0](images/stockview/stockview-step-0.png)
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source:** If you already have stocks in your stockbook, you may skip Step 1.
+Make sure that the serial number of the stock you want to view is correctly entered.
+
+</div>
+
 **Step 1.** Start with these stocks in your stock book in your `Data` tab as shown in the image below.
 
 ![stockview-step-1](images/stockview/stockview-step-1.png)
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source:** You may also skip Step 1 and use the stocks that have notes already in your stockbook.
-Make sure that the serial number of the stock and the note index of the note you are deleting
-from the stock is correctly entered.
-
-</div>
 
 Let's view the stock with serial number `COLD STORAGE1`.
 
