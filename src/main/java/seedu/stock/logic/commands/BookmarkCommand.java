@@ -172,7 +172,7 @@ public class BookmarkCommand extends Command {
         }
         serialNumbersAsString += "\n";
 
-        return serialNumbersAsString ;
+        return serialNumbersAsString;
     }
 
 
