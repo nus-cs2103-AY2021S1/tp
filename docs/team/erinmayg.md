@@ -26,13 +26,13 @@ Given below are my contributions to the project.
   * What it does: Detects whether there's a duplicate prefix provided by the user.
   * Justification: Restricts the user by forbidding users to enter multiple prefixes in commands which doesn't
    support multiple prefixes of the same type.
-  * Highlights: This feature requires an understanding of how the ArgumentMultimap class works.
+  * Highlights: This feature requires an understanding of how the `ArgumentMultimap` class works.
 
 * **New Feature**: Added the ability to detect any prefix from the list of required prefixes
   * What it does: Checks whether there exists at least one prefix from the list of supported prefixes by a command.
   * Justification: This feature improves the app by allowing commands (such as `find` and `findmod`) to be more
    flexible by not requiring users to provide all supported prefixes.
-  * Highlights: This feature requires an understanding of how the ArgumentMultimap class works.
+  * Highlights: This feature requires an understanding of how the `ArgumentMultimap` class works.
    
 * **New Feature**: Displays the module list and a view of switching semesters
   * What it does: Switches the tabs in the GUI to represent the switching of semesters.
