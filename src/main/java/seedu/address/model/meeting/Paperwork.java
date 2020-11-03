@@ -29,8 +29,8 @@ public class Paperwork extends Meeting {
     /**
      * Returns true if either the venue, meetingDate, bidderId, start time, end time and propertyId is the same.
      *
-     * @param other The other meeting.
-     * @return True if both meeting objects represent the same meeting.
+     * @param other The other paperwork.
+     * @return True if both paperwork objects represent the same paperwork.
      */
     @Override
     public boolean equals(Object other) {

@@ -31,7 +31,7 @@ public class EndTime {
     }
 
     /**
-     * Returns true if a given string is a valid start time.
+     * Returns true if a given string is a valid end time.
      */
     public static boolean isValidEndTime(String test) {
         return test.matches(VALIDATION_REGEX);

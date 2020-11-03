@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.meeting;
 
 import java.util.Arrays;
 

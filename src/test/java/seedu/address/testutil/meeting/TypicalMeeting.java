@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.meeting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.model.MeetingBook;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.MeetingBuilder;
 
 /**
  * A utility class containing a list of {@code Seller} objects to be used in tests.
