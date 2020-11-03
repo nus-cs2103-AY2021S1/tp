@@ -25,8 +25,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MINIMUM_AMOUNT_AS_STRING = "0";
-    public static final String NEGATIVE_SIGN = "-";
-    public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.\n"
+            + "Please note that record to the nearest KG/L is sufficient for inventory keeping.";
     public static final int MAXIMUM_AMOUNT = 999;
     public static final int MINIMUM_AMOUNT = 0;
     public static final String MESSAGE_EXCEED_MAXIMUM_AMOUNT = "The amount entered is greater than "
@@ -131,15 +131,14 @@ public class ParserUtil {
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
-        if (Integer.parseInt(trimmedAmount) == MINIMUM_AMOUNT
-            && !trimmedAmount.contains(NEGATIVE_SIGN)) {
-            return new Amount(MINIMUM_AMOUNT_AS_STRING);
-        }
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedAmount)) {
+        if (!StringUtil.isUnsignedInteger(trimmedAmount)) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
         }
         if (Integer.parseInt(trimmedAmount) > MAXIMUM_AMOUNT) {
             throw new ParseException(MESSAGE_EXCEED_MAXIMUM_AMOUNT);
+        }
+        if (Integer.parseInt(trimmedAmount) == MINIMUM_AMOUNT) {
+            return new Amount(MINIMUM_AMOUNT_AS_STRING);
         }
         return new Amount(trimmedAmount);
     }
