@@ -123,15 +123,13 @@ public class PrintCommand extends Command {
     }
 
     /**
-     * Formats the string to allow commas to be stored in the same column if it contains a comma.
+     * Formats the string to so that special characters in a column would not affect
+     * the integrity of the csv file generated. The whole string in the column will remain in the column.
      *
      * @return String of the formatted input to be stored in a csv column.
      */
     private String commaFormatter(String string) {
-        if (string.contains(",")) {
-            return String.format("\"%s\"", string);
-        }
-        return string;
+        return String.format("\"%s\"", string);
     }
 
     /**
