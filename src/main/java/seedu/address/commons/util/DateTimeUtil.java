@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
@@ -39,6 +40,7 @@ public class DateTimeUtil {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDate(String test) {
+        requireNonNull(test);
         try {
             LocalDate.parse(test, DATE_FORMATTER);
         } catch (DateTimeParseException e) {
@@ -54,6 +56,7 @@ public class DateTimeUtil {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDateTime(String test) {
+        requireNonNull(test);
         try {
             LocalDateTime.parse(test, DATETIME_FORMATTER);
         } catch (DateTimeParseException e) {
@@ -69,6 +72,7 @@ public class DateTimeUtil {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidTime(String test) {
+        requireNonNull(test);
         try {
             LocalTime.parse(test, TIME_FORMATTER);
         } catch (DateTimeParseException e) {
