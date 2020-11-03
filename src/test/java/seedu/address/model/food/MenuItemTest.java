@@ -61,6 +61,8 @@ public class MenuItemTest {
     @Test
     public void invalidPriceTest() {
         assertFalse(Food.isValidPrice(-2));
+        // one equivalence value is 0
+        assertFalse(Food.isValidPrice(0));
 
         assertTrue(Food.isValidPrice(2));
         assertTrue(Food.isValidPrice(2.54));

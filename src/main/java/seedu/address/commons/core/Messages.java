@@ -27,6 +27,7 @@ public class Messages {
     public static final String MESSAGE_FOOD_LISTED_PRICE_CONTEXT = "%1$d food with price %2$s listed!";
     public static final String MESSAGE_MENU_LIST = "All food listed!";
     public static final String MESSAGE_ORDERITEM_QUANTITY_EXCEED = "Cannot have more than 100 of the an order item.";
+    public static final String MESSAGE_EMPTY_PROFILE = "Please create a profile first before using the submit command.";
 
     public static final String MESSAGE_AMBIGUOUS_COMMAND = "Ambiguous command. The following commands matches the "
             + "prefix: %s";

@@ -18,6 +18,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.MenuCommand;
 import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.commands.PriceCommand;
+import seedu.address.logic.commands.ProfileCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SubmitCommand;
@@ -70,6 +71,7 @@ public class AddressBookParser {
             ExitCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             VendorCommand.COMMAND_WORD,
+            ProfileCommand.COMMAND_WORD,
             PresetCommand.COMMAND_WORD,
         };
 
@@ -131,6 +133,9 @@ public class AddressBookParser {
 
         case PresetCommand.COMMAND_WORD:
             return new PresetCommandParser().parse(arguments);
+
+        case ProfileCommand.COMMAND_WORD:
+            return new ProfileCommandParser().parse(arguments);
 
         default:
             throw matchingCommands.size() == 0

@@ -17,6 +17,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
     private Path menuManagerFolderPath = Paths.get("menu");
     private Path orderManagerFilePath = Paths.get("order", "presets.json");
+    private Path profileManagerFilePath = Paths.get("profile", "profile.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -74,6 +75,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setOrderManagerFilePath(Path orderManagerFilePath) {
         requireNonNull(orderManagerFilePath);
         this.addressBookFilePath = orderManagerFilePath;
+    }
+
+    public Path getProfileManagerFilePath() {
+        return profileManagerFilePath;
+    }
+
+    public void setProfileManagerFilePath(Path profileManagerFilePath) {
+        requireNonNull(profileManagerFilePath);
+        this.profileManagerFilePath = profileManagerFilePath;
     }
 
     @Override

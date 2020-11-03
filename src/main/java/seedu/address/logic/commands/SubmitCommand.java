@@ -4,12 +4,17 @@ import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.profile.Profile;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Phone;
 import seedu.address.storage.Storage;
 
 public class SubmitCommand extends Command {
@@ -31,10 +36,28 @@ public class SubmitCommand extends Command {
             throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
         }
 
+        StringBuilder profileText = new StringBuilder();
+        try {
+            Optional<Profile> optionalProfile = storage.readProfileManager();
+            if (optionalProfile.isEmpty()) {
+                throw new CommandException(Messages.MESSAGE_EMPTY_PROFILE);
+            } else {
+                Profile profile = optionalProfile.get();
+                Address address = profile.getAddress();
+                Phone phone = profile.getPhone();
+                profileText.append(String.format("Address: %s\n", address.toString()));
+                profileText.append(String.format("Phone: %s\n", phone.toString()));
+                profileText.append("---------------------------------\n");
+            }
+        } catch (DataConversionException de) {
+            throw new CommandException(Messages.MESSAGE_EMPTY_PROFILE);
+        }
+
         StringBuilder orderText = new StringBuilder();
         for (OrderItem orderItem: order) {
             orderText.append(orderItem.toOrderText());
         }
+
         boolean copySuccess = true;
         try {
             StringSelection stringSelection = new StringSelection(orderText.toString());
@@ -49,6 +72,7 @@ public class SubmitCommand extends Command {
         if (copySuccess) {
             feedback.append(CLIPBOARD_SUCCESS_MESSAGE);
         }
+        feedback.append(profileText.toString());
         feedback.append(orderText.toString());
         feedback.append(String.format(ESTIMATE_TOTAL_MESSAGE, order.getTotal()));
 
