@@ -13,22 +13,22 @@ import org.junit.jupiter.api.Test;
 public class AttendanceTest {
 
     @Test
-    public void isValidAttendance() {
+    public void isValidWeekNumber() {
         // null attendance week number
-        assertThrows(NullPointerException.class, () -> Attendance.isValidAttendance(null));
+        assertThrows(NullPointerException.class, () -> Attendance.isValidWeekNumber(null));
 
         // invalid attendance week numbers
-        assertFalse(Attendance.isValidAttendance("0")); // 1 less than lower bound
-        assertFalse(Attendance.isValidAttendance("14")); // 1 more than upper bound
-        assertFalse(Attendance.isValidAttendance("ab")); // non-numeric
-        assertFalse(Attendance.isValidAttendance("one"));
-        assertFalse(Attendance.isValidAttendance("Week 1")); // contains alphabets
-        assertFalse(Attendance.isValidAttendance("1 1")); // contains space
+        assertFalse(Attendance.isValidWeekNumber("0")); // 1 less than lower bound
+        assertFalse(Attendance.isValidWeekNumber("14")); // 1 more than upper bound
+        assertFalse(Attendance.isValidWeekNumber("ab")); // non-numeric
+        assertFalse(Attendance.isValidWeekNumber("one"));
+        assertFalse(Attendance.isValidWeekNumber("Week 1")); // contains alphabets
+        assertFalse(Attendance.isValidWeekNumber("1 1")); // contains space
 
         // valid attendance week numbers
-        assertTrue(Attendance.isValidAttendance("1"));
-        assertTrue(Attendance.isValidAttendance("13"));
-        assertTrue(Attendance.isValidAttendance("10"));
+        assertTrue(Attendance.isValidWeekNumber("1"));
+        assertTrue(Attendance.isValidWeekNumber("13"));
+        assertTrue(Attendance.isValidWeekNumber("10"));
 
 
     }

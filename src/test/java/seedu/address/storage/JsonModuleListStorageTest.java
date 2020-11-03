@@ -1,7 +1,13 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2030;
+import static seedu.address.testutil.TypicalModules.CS2040;
+import static seedu.address.testutil.TypicalModules.CS2100;
+import static seedu.address.testutil.TypicalModules.getTypicalTrackr;
+import static seedu.address.testutil.TypicalTutorialGroups.V04;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -22,11 +28,11 @@ public class JsonModuleListStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readModuleList_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> readModuleList(null));
     }
 
-    private java.util.Optional<ReadOnlyTrackr<Module>> readAddressBook(String filePath) throws Exception {
+    private java.util.Optional<ReadOnlyTrackr<Module>> readModuleList(String filePath) throws Exception {
         return new JsonModuleListStorage(Paths.get(filePath)).readModuleList(addToTestDataPathIfNotNull(filePath));
     }
 
@@ -38,49 +44,49 @@ public class JsonModuleListStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readModuleList("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("notJsonFormatModuleList.json"));
+        assertThrows(DataConversionException.class, () -> readModuleList("notJsonFormatModuleList.json"));
     }
 
     @Test
     public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidModuleModuleList.json"));
+        assertThrows(DataConversionException.class, () -> readModuleList("invalidModuleModuleList.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidModuleModuleList.json"));
+    public void readModuleList_invalidAndValidModuleModuleList_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readModuleList("invalidAndValidModuleModuleList.json"));
     }
 
-    //    @Test
-    //    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-    //        Path filePath = testFolder.resolve("TempModuleList.json");
-    //        UniqueStudentList original = getTypicalStudentList();
-    //        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
-    //
-    //        // Save in new file and read back
-    //        jsonAddressBookStorage.saveAddressBook(original, filePath);
-    //        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-    //        assertEquals(original, new AddressBook(readBack));
-    //
-    //        // Modify data, overwrite exiting file, and read back
-    //        original.(BENG);
-    //        original.removePerson(ALICE);
-    //        jsonAddressBookStorage.saveAddressBook(original, filePath);
-    //        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
-    //        assertEquals(original, new AddressBook(readBack));
-    //
-    //        // Save and read without specifying file path
-    //        original.addPerson(IDA);
-    //        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-    //        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
-    //        assertEquals(original, new AddressBook(readBack));
-    //
-    //    }
+    @Test
+    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempModuleList.json");
+        Trackr original = getTypicalTrackr();
+        JsonModuleListStorage jsonModuleListStorage = new JsonModuleListStorage(filePath);
+
+        // Save in new file and read back
+        jsonModuleListStorage.saveModuleList(original, filePath);
+        ReadOnlyTrackr<Module> readBack = jsonModuleListStorage.readModuleList(filePath).get();
+        assertEquals(original, new Trackr(readBack));
+
+        // Modify data, overwrite exiting file, and read back
+        original.removeModule(CS2100);
+        original.removeModule(CS2040);
+        jsonModuleListStorage.saveModuleList(original, filePath);
+        readBack = jsonModuleListStorage.readModuleList(filePath).get();
+        assertEquals(original, new Trackr(readBack));
+
+        // Save and read without specifying file path
+        original.addTutorialGroup(V04, CS2030);
+        jsonModuleListStorage.saveModuleList(original); // file path not specified
+        readBack = jsonModuleListStorage.readModuleList().get(); // file path not specified
+        assertEquals(original, new Trackr(readBack));
+
+    }
 
     @Test
     public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
