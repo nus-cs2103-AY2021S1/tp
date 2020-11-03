@@ -320,8 +320,8 @@ Note:
 
 Example:
 
-- Views all students of tutorial group _T03_.
-    - `viewStudent T03`
+- Views all students of tutorial group at _index 1_.
+    - `viewStudent 1`
     
 Expected Outcome:
 
