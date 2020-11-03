@@ -4,7 +4,7 @@
 User Guide v1.3
 ---
 
-This user guide provides [set-up](#set-up) instructions and a detailed description of all the [features](#features) available in the PlaNus application. You can also access this user guide on the application website with
+This user guide provides [set-up](#set-up) instructions, and a detailed description of all the [features](#features) available in the PlaNus application. You can also access this user guide on the application website with
 this [link](https://ay2021s1-cs2103t-t12-3.github.io/tp/).
 
 ## Table of Contents
@@ -43,7 +43,6 @@ PlaNus is a **task managing desktop application** for students in NUS with many 
 Objectives of PlaNus:
 1. Provide students with a detailed breakdown of how much time they spend on their tasks and lessons in their respective modules.
 2. Allow students to have a calendar view of their schedule.
-3. Allocate tasks and lessons to their schedule automatically. (coming soon in v1.4)
 
 
 
@@ -61,7 +60,7 @@ Objectives of PlaNus:
 
     ![sample PlaNus](images/SamplePlanus.png)
 
-5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`
+5. Alternatively, in command prompt (for Windows) or terminal (in MacOS), go to the directory where planus.jar is stored and enter `java -jar planus.jar`.To open command prompt (for Windows) or terminal (in MacOS), simply search for them in your computer.
 6. You may try out some commands listed in the [command summary](#command-summary) to explore the app.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -253,14 +252,14 @@ Examples:
 * `find-task title:homework` followed by `done 1:20`
     * Marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline as 20 minutes.
 
-To mark the first deadline in the current task list as done and stating you have spend 50 minutes on it,
+To mark the first deadline in the current task list as done and stating you have spent 50 minutes on it,
 users can do the following:
 1) Type in the command box the following command:
 * `done 1:50`
 
 ![mark_as_done](./images/DoneCommand.png)
 
-2) The status of the deadline has been set to complete. And the time taken to complete the task will be used for time analysis.
+2) The status of the deadline has been set to complete, and the time taken to complete the task will be used for time analysis.
 
 ![mark_as_done_result](./images/DoneCommandResult.png)
 
@@ -419,7 +418,7 @@ Other examples:
 ## 3. Create, Read, Update and Delete a Lesson
 
 This section shows features that a user can use to manage lessons. A lesson happens in a 
-recurring manner that have a start and end time and a start and end date.
+recurring manner that have a start and end time, and a start and end date.
 
 ### 3.1 List all lessons :`list-lesson`
 
@@ -535,7 +534,7 @@ Available attributes in v1.3 include:
 
 Examples:
 
-To find all lessons with titles containing the phrase "tutorial" (case insensitive), users can do
+To find all lessons with titles containing the phrase "tutorial" (case-insensitive), users can do
 the following steps:
 
 1) List all lessons by typing `list-lesson` in the command box:
@@ -632,8 +631,8 @@ denoted by the `tag` on its task/lesson.
 How does it work:
 * Each module has a **time spent on tasks** and **time spent on lessons**.
 * When a `deadline` is marked as done, it contributes towards **time spent on tasks** for that module. 
-* When an `event` has occured, it contributes towards **time spent on tasks** for that module.
-* When a `lesson` has occcured, it contributes towards **time spent on lesson** for that module.
+* When an `event` has occurred, it contributes towards **time spent on tasks** for that module.
+* When a `lesson` has occurred, it contributes towards **time spent on a lesson** for that module.
 
 Example:
 
@@ -661,7 +660,10 @@ Therefore, the **time analysis for the week** will show that the **time spent on
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
-
+* Task: An event or a deadline
+* Event: Consists of a start and end time, and a date
+* Deadline: Consists of a deadline date and time
+* Lesson: Consists of recurring events
 
 --------------------------------------------------------------------------------------------------------------------
 
