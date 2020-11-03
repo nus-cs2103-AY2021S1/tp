@@ -161,5 +161,21 @@ public class VersionedPivot extends Pivot {
             this.command = command;
             this.isMainPageCommand = isMainPageCommand;
         }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            if (!(other instanceof PivotState)) {
+                return false;
+            }
+
+            PivotState otherPivotState = (PivotState) other;
+            return otherPivotState.pivotState.equals(pivotState)
+                    && otherPivotState.command.equals(command)
+                    && otherPivotState.isMainPageCommand == isMainPageCommand;
+        }
     }
 }

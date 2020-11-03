@@ -42,7 +42,7 @@ public class EditVictimCommand extends EditPersonCommand {
             + PREFIX_EMAIL + "newEmail@mail.com "
             + PREFIX_ADDRESS + "New Road Crescent\n\n";
 
-    public static final String MESSAGE_EDIT_VICTIMS_SUCCESS = "Edited Victim: %1$s";
+    public static final String MESSAGE_EDIT_VICTIM_SUCCESS = "Edited Victim: %1$s";
     public static final String MESSAGE_DUPLICATE_VICTIMS = "This victim already exists in the case.";
 
     private static final Logger logger = LogsCenter.getLogger(EditVictimCommand.class);
@@ -81,9 +81,9 @@ public class EditVictimCommand extends EditPersonCommand {
                 caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim), false);
+        model.commitPivot(String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim), false);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim));
+        return new CommandResult(String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim));
     }
 
     private Victim createEditedPerson(Victim victimToEdit, EditPersonDescriptor editPersonDescriptor) {

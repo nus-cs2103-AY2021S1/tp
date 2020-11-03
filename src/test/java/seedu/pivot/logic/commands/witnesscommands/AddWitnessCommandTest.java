@@ -87,7 +87,7 @@ public class AddWitnessCommandTest {
     @Test
     public void execute_sameWitness_throwsCommandException() {
         StateManager.setState(DEFAULT_INDEX);
-        Case testCase = new CaseBuilder().withWitnesses(DEFAULT_WITNESS).build();
+        Case testCase = new CaseBuilder().addWitnesses(DEFAULT_WITNESS).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 

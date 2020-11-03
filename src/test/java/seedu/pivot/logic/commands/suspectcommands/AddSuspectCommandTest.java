@@ -89,7 +89,7 @@ public class AddSuspectCommandTest {
     @Test
     public void execute_sameSuspect_throwsCommandException() {
         StateManager.setState(DEFAULT_INDEX);
-        Case testCase = new CaseBuilder().withSuspects(DEFAULT_SUSPECT).build();
+        Case testCase = new CaseBuilder().addSuspects(DEFAULT_SUSPECT).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 

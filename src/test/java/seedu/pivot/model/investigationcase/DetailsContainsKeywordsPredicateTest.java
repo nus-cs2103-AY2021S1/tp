@@ -110,21 +110,21 @@ public class DetailsContainsKeywordsPredicateTest {
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
                 Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
-                .withVictims(new CasePersonBuilder().withName("Janice").withGender("F")
+                .addVictims(new CasePersonBuilder().withName("Janice").withGender("F")
                         .withEmail("alice@email.com").withAddress("123 Main Street").buildVictim())
                 .build()));
 
         // Keywords match some fields in witness
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
-                .withWitnesses(new CasePersonBuilder().withName("Janice").withGender("F")
+                .addWitnesses(new CasePersonBuilder().withName("Janice").withGender("F")
                         .withEmail("alice@email.com").withAddress("123 Main Street").buildWitness())
                 .build()));
 
         // Keywords match some fields in suspect
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
-                .withSuspects(new CasePersonBuilder().withName("Janice").withGender("F")
+                .addSuspects(new CasePersonBuilder().withName("Janice").withGender("F")
                         .withEmail("alice@email.com").withAddress("123 Main Street").buildSuspect())
                 .build()));
     }
@@ -139,7 +139,7 @@ public class DetailsContainsKeywordsPredicateTest {
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice Bob").withDescription("Riots")
-                .withStatus("CLOSED").withVictims(
+                .withStatus("CLOSED").addVictims(
                         new CasePersonBuilder().withName("Janice").withGender("F").buildVictim())
                 .build()));
     }
@@ -163,7 +163,7 @@ public class DetailsContainsKeywordsPredicateTest {
         Suspect suspectTwo = new CasePersonBuilder().withName("Tom").withGender("M").withPhone("91234567")
                 .withEmail("tom@gmail.com").withAddress("123 Main Street").buildSuspect();
         Case testCase = new CaseBuilder().withTitle("Bank Robbery")
-                .withSuspects(suspectOne, suspectTwo)
+                .addSuspects(suspectOne, suspectTwo)
                 .build();
         String expectedOutput = "Janice F 91234567 alice@gmail.com 123 Main Street Tom M 91234567 tom@gmail.com "
                 + "123 Main Street ";
@@ -179,7 +179,7 @@ public class DetailsContainsKeywordsPredicateTest {
                 .withEmail("tom@gmail.com").withAddress("123 Main Street").buildWitness();
 
         Case testCase = new CaseBuilder().withTitle("Bank Robbery")
-                .withWitnesses(witnessOne, witnessTwo)
+                .addWitnesses(witnessOne, witnessTwo)
                 .build();
         String expectedOutput = "Janice F 91234567 alice@gmail.com 123 Main Street Tom M 91234567 tom@gmail.com "
                 + "123 Main Street ";
@@ -195,7 +195,7 @@ public class DetailsContainsKeywordsPredicateTest {
                 .withEmail("tom@gmail.com").withAddress("123 Main Street").buildVictim();
 
         Case testCase = new CaseBuilder().withTitle("Bank Robbery")
-                .withVictims(victimOne, victimTwo)
+                .addVictims(victimOne, victimTwo)
                 .build();
         String expectedOutput = "Janice F 91234567 alice@gmail.com 123 Main Street Tom M 91234567 tom@gmail.com "
                 + "123 Main Street ";

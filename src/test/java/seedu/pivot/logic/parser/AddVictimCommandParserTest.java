@@ -11,7 +11,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -31,7 +31,7 @@ public class AddVictimCommandParserTest {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
     public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private AddVictimCommandParser parser = new AddVictimCommandParser();
 

@@ -55,7 +55,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
 
         if (suspectIndex.getZeroBased() >= updatedSuspects.size()) {
             logger.info("Invalid index: " + suspectIndex.getOneBased());
-            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECT_DISPLAYED_INDEX);
         }
 
         Suspect suspectToDelete = updatedSuspects.get(suspectIndex.getZeroBased());

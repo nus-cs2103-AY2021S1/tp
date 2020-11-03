@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,8 +36,8 @@ public class OpenCaseCommandTest {
 
     @Test
     public void execute_validIndex_success() {
-        Case caseToOpen = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        OpenCaseCommand openCaseCommand = new OpenCaseCommand(INDEX_FIRST_PERSON);
+        Case caseToOpen = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
+        OpenCaseCommand openCaseCommand = new OpenCaseCommand(FIRST_INDEX);
 
         String expectedMessage = String.format(OpenCaseCommand.MESSAGE_OPEN_CASE_SUCCESS, caseToOpen);
 

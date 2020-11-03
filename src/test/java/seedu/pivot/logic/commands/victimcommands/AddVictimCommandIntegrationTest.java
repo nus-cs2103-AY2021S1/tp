@@ -4,7 +4,7 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandF
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +12,7 @@ import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
+import seedu.pivot.model.Pivot;
 import seedu.pivot.model.UserPrefs;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
@@ -34,16 +35,17 @@ public class AddVictimCommandIntegrationTest {
 
     @Test
     public void execute_validIndexAndValidVictimUnfilteredList_success() {
-        StateManager.setState(INDEX_FIRST_PERSON);
-        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        StateManager.setState(FIRST_INDEX);
+        Case caseToUpdate = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
         // CASE: ALICE, WITHOUT Victim
-        Case expectedCase = new CaseBuilder(caseToUpdate).withVictims(DEFAULT_VICTIM).build();
+        Case expectedCase = new CaseBuilder(caseToUpdate).addVictims(DEFAULT_VICTIM).build();
 
-        AddCommand command = new AddVictimCommand(INDEX_FIRST_PERSON, DEFAULT_VICTIM);
+        AddCommand command = new AddVictimCommand(FIRST_INDEX, DEFAULT_VICTIM);
 
         String expectedMessage = String.format(AddVictimCommand.MESSAGE_ADD_VICTIM_SUCCESS, DEFAULT_VICTIM);
-        ModelManager expectedModel = new ModelManager((model.getPivot()), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToUpdate, expectedCase);
+        expectedModel.commitPivot(expectedMessage, false);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();
@@ -51,12 +53,12 @@ public class AddVictimCommandIntegrationTest {
 
     @Test
     public void execute_validIndexAndDuplicateVictimUnfilteredList_throwsCommandException() {
-        StateManager.setState(INDEX_FIRST_PERSON);
-        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        StateManager.setState(FIRST_INDEX);
+        Case caseToUpdate = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
         // CASE: ALICE, WITHOUT Victim
         Victim victim = caseToUpdate.getVictims().get(0);
 
-        AddCommand command = new AddVictimCommand(INDEX_FIRST_PERSON, victim);
+        AddCommand command = new AddVictimCommand(FIRST_INDEX, victim);
 
         assertCommandFailure(command, model, AddVictimCommand.MESSAGE_DUPLICATE_VICTIM);
         StateManager.resetState();
@@ -64,18 +66,19 @@ public class AddVictimCommandIntegrationTest {
 
     @Test
     public void execute_validIndexAndValidVictimFilteredList_success() {
-        showCaseAtIndex(model, INDEX_FIRST_PERSON);
-        StateManager.setState(INDEX_FIRST_PERSON);
-        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        showCaseAtIndex(model, FIRST_INDEX);
+        StateManager.setState(FIRST_INDEX);
+        Case caseToUpdate = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
         // CASE: ALICE, WITHOUT Victim
-        Case expectedCase = new CaseBuilder(caseToUpdate).withVictims(DEFAULT_VICTIM).build();
+        Case expectedCase = new CaseBuilder(caseToUpdate).addVictims(DEFAULT_VICTIM).build();
 
-        AddCommand command = new AddVictimCommand(INDEX_FIRST_PERSON, DEFAULT_VICTIM);
+        AddCommand command = new AddVictimCommand(FIRST_INDEX, DEFAULT_VICTIM);
 
         String expectedMessage = String.format(AddVictimCommand.MESSAGE_ADD_VICTIM_SUCCESS, DEFAULT_VICTIM);
-        ModelManager expectedModel = new ModelManager((model.getPivot()), new UserPrefs());
-        showCaseAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
+        showCaseAtIndex(expectedModel, FIRST_INDEX);
         expectedModel.setCase(caseToUpdate, expectedCase);
+        expectedModel.commitPivot(expectedMessage, false);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();
@@ -83,13 +86,13 @@ public class AddVictimCommandIntegrationTest {
 
     @Test
     public void execute_validIndexAndDuplicateVictimFilteredList_throwsCommandException() {
-        showCaseAtIndex(model, INDEX_FIRST_PERSON);
-        StateManager.setState(INDEX_FIRST_PERSON);
-        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        showCaseAtIndex(model, FIRST_INDEX);
+        StateManager.setState(FIRST_INDEX);
+        Case caseToUpdate = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
         // CASE: ALICE, WITHOUT Victim
         Victim victim = caseToUpdate.getVictims().get(0);
 
-        AddCommand command = new AddVictimCommand(INDEX_FIRST_PERSON, victim);
+        AddCommand command = new AddVictimCommand(FIRST_INDEX, victim);
 
         assertCommandFailure(command, model, AddVictimCommand.MESSAGE_DUPLICATE_VICTIM);
         StateManager.resetState();

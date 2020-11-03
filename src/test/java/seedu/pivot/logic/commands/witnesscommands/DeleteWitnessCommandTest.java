@@ -72,7 +72,7 @@ public class DeleteWitnessCommandTest {
     public void execute_witnessDeletedByModel_success() throws CommandException {
         StateManager.setState(DEFAULT_CASE_INDEX);
         Case testCase = new CaseBuilder()
-                .withWitnesses(DEFAULT_WITNESS).build();
+                .addWitnesses(DEFAULT_WITNESS).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 

@@ -88,7 +88,7 @@ public class AddVictimCommandTest {
     @Test
     public void execute_sameVictim_throwsCommandException() {
         StateManager.setState(DEFAULT_INDEX);
-        Case testCase = new CaseBuilder().withVictims(DEFAULT_VICTIM).build();
+        Case testCase = new CaseBuilder().addVictims(DEFAULT_VICTIM).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 

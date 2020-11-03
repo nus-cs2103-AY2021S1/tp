@@ -65,7 +65,7 @@ public class EditSuspectCommand extends EditPersonCommand {
         List<Suspect> editedSuspects = caseToEdit.getSuspects();
 
         if (personIndex.getZeroBased() >= editedSuspects.size()) {
-            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECT_DISPLAYED_INDEX);
         }
 
         Suspect suspectToEdit = editedSuspects.get(personIndex.getZeroBased());
