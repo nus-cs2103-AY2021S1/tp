@@ -35,7 +35,7 @@ public class DeleteMeetingCommandTest {
             new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_validMeetingUnfilteredList_success() {
         Meeting deletedMeeting = new MeetingBuilder(CS2100_MEETING).build();
         DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(
                 CS2100_MEETING.getModule().getModuleName(),
