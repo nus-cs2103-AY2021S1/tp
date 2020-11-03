@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_PROPERTY_ID_BID_A;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BID;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BID;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
@@ -21,9 +20,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.bidcommands.EditBidCommand;
 import seedu.address.logic.commands.bidcommands.EditBidCommand.EditBidDescriptor;
+import seedu.address.logic.commands.bidcommands.ListBidCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
@@ -38,7 +37,7 @@ import seedu.address.testutil.bids.EditBidDescriptorBuilder;
  */
 public class EditBidCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalBidBook(),
+    private Model model = new ModelManager(new UserPrefs(), getTypicalBidBook(),
             getTypicalPropertyBook(), getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(), new MeetingBook());
 
@@ -52,7 +51,7 @@ public class EditBidCommandTest {
 
         String expectedMessage = String.format(EditBidCommand.MESSAGE_EDIT_BID_SUCCESS,
                 model.getFilteredBidList().get(0), editedBid);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setBid(model.getFilteredBidList().get(0), editedBid);
@@ -133,7 +132,7 @@ public class EditBidCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ListBidCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditBidCommand(INDEX_SECOND_BID, VALID_BID_A)));

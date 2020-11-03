@@ -13,7 +13,7 @@ import seedu.address.model.person.bidder.Bidder;
  * Jackson-friendly version of {@link Bidder}.
  */
 public class JsonAdaptedBidder {
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Bidder's %s field is missing!";
 
     private final String name;
     private final String phone;

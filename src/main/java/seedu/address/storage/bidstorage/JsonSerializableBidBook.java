@@ -32,16 +32,16 @@ class JsonSerializableBidBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyBidBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableBidBook}.
      */
     public JsonSerializableBidBook(ReadOnlyBidBook source) {
         bids.addAll(source.getBidList().stream().map(JsonAdaptedBid::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code BidBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

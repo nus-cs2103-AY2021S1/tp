@@ -2,8 +2,8 @@ package seedu.address.logic.commands.bidder;
 
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.assertBidderCommandFailure;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.assertBidderCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
+import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -15,7 +15,6 @@ import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.testutil.bidder.BidderBuilder;
 
@@ -25,7 +24,7 @@ public class AddBidderCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), getTypicalPropertyBook(),
+        model = new ModelManager(new UserPrefs(), getTypicalBidBook(), getTypicalPropertyBook(),
                 getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
     }
 
@@ -34,7 +33,6 @@ public class AddBidderCommandIntegrationTest {
         Bidder validBidder = new BidderBuilder().build();
 
         Model expectedModel = new ModelManager(
-                model.getAddressBook(),
                 new UserPrefs(),
                 model.getBidBook(),
                 model.getPropertyBook(),

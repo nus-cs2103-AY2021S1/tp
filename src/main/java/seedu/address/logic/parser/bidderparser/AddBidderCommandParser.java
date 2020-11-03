@@ -21,8 +21,8 @@ import seedu.address.model.person.bidder.Bidder;
 public class AddBidderCommandParser implements Parser<AddBidderCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddBidderCommand
+     * and returns an AddBidderCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

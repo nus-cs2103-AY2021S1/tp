@@ -2,7 +2,6 @@ package seedu.address.logic.commands.seller;
 
 import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSellerCommandFailure;
 import static seedu.address.logic.commands.seller.SellerCommandTestUtil.assertSellerCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
@@ -25,7 +24,7 @@ public class AddSellerCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(), getTypicalPropertyBook(),
+        model = new ModelManager(new UserPrefs(), new BidBook(), getTypicalPropertyBook(),
                 getTypicalBidderAddressBook(), getTypicalSellerAddressBook(), new MeetingBook());
     }
 
@@ -34,7 +33,6 @@ public class AddSellerCommandIntegrationTest {
         Seller validSeller = new SellerBuilder().build();
 
         Model expectedModel = new ModelManager(
-                model.getAddressBook(),
                 new UserPrefs(),
                 model.getBidBook(),
                 model.getPropertyBook(),

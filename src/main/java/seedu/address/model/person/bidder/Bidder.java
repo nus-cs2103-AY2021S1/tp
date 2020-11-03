@@ -1,7 +1,5 @@
 package seedu.address.model.person.bidder;
 
-import static seedu.address.model.id.BidderId.DEFAULT_BIDDER_ID;
-
 import seedu.address.model.id.BidderId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
@@ -14,16 +12,6 @@ import seedu.address.model.tag.Tag;
 public class Bidder extends ClientPerson {
 
     public static final Tag BIDDER_TAG = new Tag("bidder");
-
-    /**
-     * Constructs the bidder with name, phone and tags.
-     *
-     * @param name The name of the bidder.
-     * @param phone The phone number.
-     */
-    public Bidder(Name name, Phone phone) {
-        super(name, phone, BIDDER_TAG, DEFAULT_BIDDER_ID);
-    }
 
     /**
      * Constructs the bidder with the name, phone, tags, and id.

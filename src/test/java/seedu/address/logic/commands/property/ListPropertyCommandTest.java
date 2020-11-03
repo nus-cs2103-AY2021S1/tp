@@ -3,7 +3,6 @@ package seedu.address.logic.commands.property;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.showPropertyAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
@@ -27,10 +26,10 @@ public class ListPropertyCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+        model = new ModelManager(new UserPrefs(), new BidBook(),
                 getTypicalPropertyBook(), getTypicalBidderAddressBook(), getTypicalSellerAddressBook(),
                 new MeetingBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 model.getPropertyBook(), model.getBidderAddressBook(),
                 model.getSellerAddressBook(), model.getMeetingBook());
     }
