@@ -12,6 +12,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.preset.Preset;
+import seedu.address.model.profile.Profile;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -22,17 +23,19 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private PresetManagerStorage presetManagerStorage;
+    private ProfileManagerStorage profileManagerStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}
      * and {@Code OrderManagerStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
-                          PresetManagerStorage presetManagerStorage) {
+                          PresetManagerStorage presetManagerStorage, ProfileManagerStorage profileManagerStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.presetManagerStorage = presetManagerStorage;
+        this.profileManagerStorage = profileManagerStorage;
     }
 
     public StorageManager() {
@@ -87,7 +90,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ OrderManager methods ==============================
+    // ================ PresetManager methods ==============================
 
     @Override
     public Path getPresetManagerFilePath() {
@@ -116,5 +119,32 @@ public class StorageManager implements Storage {
         presetManagerStorage.savePresetManager(allPresets, filePath);
     }
 
+    // ================ ProfileManager methods ==============================
 
+    @Override
+    public Path getProfileManagerFilePath() {
+        return presetManagerStorage.getPresetManagerFilePath();
+    }
+
+    @Override
+    public Optional<Profile> readProfileManager() throws DataConversionException {
+        return readProfileManager(profileManagerStorage.getProfileManagerFilePath());
+    }
+
+    @Override
+    public Optional<Profile> readProfileManager(Path filePath) throws DataConversionException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return profileManagerStorage.readProfileManager(filePath);
+    }
+
+    @Override
+    public void saveProfileManager(Profile profile) throws IOException {
+        saveProfileManager(profile, profileManagerStorage.getProfileManagerFilePath());
+    }
+
+    @Override
+    public void saveProfileManager(Profile profile, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        profileManagerStorage.saveProfileManager(profile, filePath);
+    }
 }

@@ -26,6 +26,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.order.OrderManager;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
+import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TypicalVendors;
@@ -53,7 +54,14 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonPresetManagerStorage orderManagerStorage =
                 new JsonPresetManagerStorage(temporaryFolder.resolve("presets.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, orderManagerStorage);
+        JsonProfileManagerStorage profileManagerStorage =
+                new JsonProfileManagerStorage(temporaryFolder.resolve("profile.json"));
+        StorageManager storage = new StorageManager(
+                addressBookStorage,
+                userPrefsStorage,
+                orderManagerStorage,
+                profileManagerStorage
+        );
         model.selectVendor(0);
         logic = new LogicManager(model, storage);
     }
