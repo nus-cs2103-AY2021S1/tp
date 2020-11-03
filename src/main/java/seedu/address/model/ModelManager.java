@@ -262,15 +262,15 @@ public class ModelManager implements Model {
     @Override
     public void deleteProperty(Property target) {
         PropertyId propertyId = target.getPropertyId();
-        bidBook.removeBidsByPropertyId(propertyId);
-        meetingBook.removeMeetingsByPropertyId(propertyId);
+        bidBook.removeAllBidsWithPropertyId(propertyId);
+        meetingBook.removeAllMeetingsWithPropertyId(propertyId);
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void deletePropertyByPropertyId(PropertyId propertyId) {
-        bidBook.removeBidsByPropertyId(propertyId);
-        meetingBook.removeMeetingsByPropertyId(propertyId);
+        bidBook.removeAllBidsWithPropertyId(propertyId);
+        meetingBook.removeAllMeetingsWithPropertyId(propertyId);
         propertyBook.removePropertyByPropertyId(propertyId);
     }
 
@@ -426,8 +426,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBidder(Bidder target) {
-        bidBook.removeByBidderId((BidderId) target.getId());
-        meetingBook.removeMeetingByBidderId((BidderId) target.getId());
+        bidBook.removeAllBidsWithBidderId((BidderId) target.getId());
+        meetingBook.removeAllMeetingsWithBidderId((BidderId) target.getId());
         bidderAddressBook.removeBidder(target);
     }
 

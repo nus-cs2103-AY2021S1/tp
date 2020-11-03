@@ -55,7 +55,8 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     /**
      * Removes the meetings in the list that contains the bidder id.
      */
-    public void removeMeetingByBidderId(BidderId bidderId) {
+    public void removeAllWithBidderId(BidderId bidderId) {
+        requireNonNull(bidderId);
         internalList.removeIf(meeting -> meeting.getBidderId().equals(bidderId));
     }
 
@@ -96,7 +97,7 @@ public class UniqueMeetingList implements Iterable<Meeting> {
      *
      * @param propertyId The propertyId of the property
      */
-    public void removeByPropertyId(PropertyId propertyId) {
+    public void removeAllWithPropertyId(PropertyId propertyId) {
         requireNonNull(propertyId);
         internalList.removeIf(meeting -> meeting.getPropertyId().equals(propertyId));
     }

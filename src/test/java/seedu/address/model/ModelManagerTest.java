@@ -223,9 +223,9 @@ public class ModelManagerTest {
         PropertyBook expectedPropertyBook = getTypicalPropertyBook();
         expectedPropertyBook.removeProperty(PROPERTY_A);
         BidBook expectedBidBook = getTypicalBidBook();
-        expectedBidBook.removeBidsByPropertyId(PROPERTY_A.getPropertyId());
+        expectedBidBook.removeAllBidsWithPropertyId(PROPERTY_A.getPropertyId());
         MeetingBook expectedMeetingBook = getTypicalMeetingAddressBook();
-        expectedMeetingBook.removeMeetingsByPropertyId(PROPERTY_A.getPropertyId());
+        expectedMeetingBook.removeAllMeetingsWithPropertyId(PROPERTY_A.getPropertyId());
         expected = TestUtil.getTypicalModelManager();
         expected.setPropertyBook(expectedPropertyBook);
         expected.setBidBook(expectedBidBook);
@@ -262,9 +262,9 @@ public class ModelManagerTest {
         expected = TestUtil.getTypicalModelManager();
         expected.setPropertyBook(expectedPropertyBook);
         BidBook expectedBidBook = getTypicalBidBook();
-        expectedBidBook.removeBidsByPropertyId(PROPERTY_A.getPropertyId());
+        expectedBidBook.removeAllBidsWithPropertyId(PROPERTY_A.getPropertyId());
         MeetingBook expectedMeetingBook = getTypicalMeetingAddressBook();
-        expectedMeetingBook.removeMeetingsByPropertyId(PROPERTY_A.getPropertyId());
+        expectedMeetingBook.removeAllMeetingsWithPropertyId(PROPERTY_A.getPropertyId());
         expected.setPropertyBook(expectedPropertyBook);
         expected.setMeetingManager(expectedMeetingBook);
         expected.setBidBook(expectedBidBook);
