@@ -279,7 +279,7 @@ Upon entering quiz mode, the following user input will be recognised:
 Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
 `y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.  
 
-The quiz mode works in conjunction with the [statistics](#viewing-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#viewing-statistics-of-flashcard-stats) feature.
+The quiz mode works in conjunction with the [statistics](#viewing-the-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#viewing-the-statistics-of-flashcard-stats) feature.
 * Pressing `y` will increase the review and success frequency of the flashcard.
 * Pressing `n` will increase the review frequency of the flashcard.
 
