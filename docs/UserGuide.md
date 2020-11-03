@@ -129,7 +129,7 @@ Success:
 
 ### Finding a log : `find`
 
-Finds all logs that contain ALL keywords anywhere in the log.
+Finds all logs that contain ALL keywords (case-insensitive) anywhere in the log.
 
 Format: `find <keywords>`
 
