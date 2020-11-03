@@ -20,7 +20,7 @@ public class Amount implements Comparable<Amount> {
     public static final String VALIDATION_REGEX = "(?<dollars>\\d+)(.(?<cents>\\d{1,2}))?";
     private static final RoundingMode ROUNDING_MODE = RoundingMode.HALF_EVEN;
     private static final BigDecimal MAX_VALUE = new BigDecimal("10e9");
-    private static final BigDecimal MIN_VALUE = new BigDecimal("-10e9");
+    private static final BigDecimal MIN_VALUE = new BigDecimal("0");
 
     // value in Amount stored as cents
     protected final BigDecimal value;
