@@ -48,6 +48,10 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private FlowPane allergies;
     @FXML
+    private Label noAllergiesLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
     private Label numberOfAppointments;
     @FXML
     private Button copyButton;
@@ -66,7 +70,16 @@ public class PatientCard extends UiPart<Region> {
         nric.setText(patient.getNric().value);
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
+        String patientEmail = patient.getEmail().value;
+
+        if (!patientEmail.isEmpty()) {
+            email.setText(patientEmail);
+            emailLabel.setText("EMAIL:");
+        }
+
+        if (patient.getAllergies().isEmpty()) {
+           noAllergiesLabel.setText("NONE");
+        }
 
         Set<Appointment> appointmentList = patient.getAppointments();
         int numOfAppts = 0;

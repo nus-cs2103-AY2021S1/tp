@@ -23,15 +23,40 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="allergies" hgap="5.0">
+         <FlowPane hgap="3.0">
             <VBox.margin>
                <Insets />
             </VBox.margin>
-      </FlowPane>
-      <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <children>
+            <Label fx:id="allergiesLabel" styleClass="card_label_important" text="ALLERGIES:" />
+            <Label fx:id="noAllergiesLabel" />
+            <FlowPane fx:id="allergies" hgap="5.0" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0">
+            <children>
+            <Label fx:id="nricLabel" styleClass="card_label" text="NRIC:" />
+            <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0">
+            <children>
+            <Label fx:id="phoneLabel" styleClass="card_label" text="PHONE:" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0">
+            <children>
+            <Label fx:id="addressLabel" styleClass="card_label" text="ADDRESS:" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </children>
+         </FlowPane>
+         <FlowPane hgap="3.0">
+            <children>
+            <Label fx:id="emailLabel" styleClass="card_label" text="\$emailLabel" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </FlowPane>
          <SplitPane dividerPositions="0.29797979797979796">
            <items>
              <AnchorPane minHeight="0.0">
