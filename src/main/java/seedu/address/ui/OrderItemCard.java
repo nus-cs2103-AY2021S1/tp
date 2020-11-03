@@ -51,7 +51,12 @@ public class OrderItemCard extends UiPart<Region> {
         quantity.setText("x " + Integer.toString(orderItem.getQuantity()));
         orderItem.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label label = new Label(tag.tagName);
+                    label.setEllipsisString("...");
+                    label.setMaxWidth(150);
+                    tags.getChildren().add(label);
+                });
     }
 
     @Override

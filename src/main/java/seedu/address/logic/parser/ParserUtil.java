@@ -242,4 +242,15 @@ public class ParserUtil {
                                        String messageUsage, int argNum) throws ParseException {
         checkArgsLength(argsArr, commandWord, messageUsage, argNum, argNum);
     }
+
+    /**
+     * Checks whether the number of argument is at least min.
+     */
+    public static void argsLengthAtLeast(String[] argsArr, String commandWord,
+                                         String messageUsage, int min) throws ParseException {
+        if (argsArr.length == 1 && argsArr[0].equals("") || argsArr.length < min) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    String.format(Messages.MESSAGE_INSUFFICIENT_ARGUMENTS, commandWord, min, messageUsage)));
+        }
+    }
 }

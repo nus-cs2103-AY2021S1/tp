@@ -67,6 +67,8 @@ public abstract class Food {
 
     public abstract Set<Tag> getTags();
 
+    public abstract void setTags(Set<Tag> tags);
+
     /**
      * Returns true if both foods have the same identity and data fields.
      * This defines a stronger notion of equality between two foods.

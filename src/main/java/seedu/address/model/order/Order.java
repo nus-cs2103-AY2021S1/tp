@@ -3,6 +3,7 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.order.exceptions.DuplicateOrderItemException;
 import seedu.address.model.order.exceptions.OrderItemNotFoundException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Vendor;
 
 public class Order implements Iterable<OrderItem> {
@@ -56,6 +58,7 @@ public class Order implements Iterable<OrderItem> {
             int index = internalList.indexOf(toAdd);
             OrderItem existingItem = internalList.get(index);
             toAdd.setQuantity(newQuantity);
+            toAdd.setTags(existingItem.getTags());
             setOrderItem(existingItem, toAdd);
         } else {
             internalList.add(toAdd);
@@ -202,5 +205,23 @@ public class Order implements Iterable<OrderItem> {
             }
         }
         return true;
+    }
+
+    /**
+     * Tags an {@code orderItem} with a {@code tag}.
+     */
+    public void tagOrderItem(OrderItem orderItem, Tag tag) {
+        OrderItem newOrderItem = orderItem.makeCopy();
+        newOrderItem.addTag(tag);
+        setOrderItem(orderItem, newOrderItem);
+    }
+
+    /**
+     * Clears all tag of {@code orderItem}.
+     */
+    public void untagOrderItem(OrderItem orderItem) {
+        OrderItem newOrderItem = orderItem.makeCopy();
+        newOrderItem.setTags(new HashSet<>());
+        setOrderItem(orderItem, newOrderItem);
     }
 }

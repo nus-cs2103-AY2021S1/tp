@@ -20,6 +20,8 @@ import seedu.address.storage.Storage;
 public class SubmitCommand extends Command {
 
     public static final String COMMAND_WORD = "submit";
+    public static final String CLIPBOARD_SUCCESS_MESSAGE = "Successfully copied to clipboard!\n";
+    public static final String ESTIMATE_TOTAL_MESSAGE = "Estimated total: $%.2f\n";
 
     @Override
     public CommandResult execute(Model model, Storage storage) throws CommandException {
@@ -34,7 +36,7 @@ public class SubmitCommand extends Command {
             throw new CommandException(Messages.MESSAGE_EMPTY_ORDER);
         }
 
-        StringBuilder text = new StringBuilder();
+        StringBuilder profileText = new StringBuilder();
         try {
             Optional<Profile> optionalProfile = storage.readProfileManager();
             if (optionalProfile.isEmpty()) {
@@ -43,21 +45,22 @@ public class SubmitCommand extends Command {
                 Profile profile = optionalProfile.get();
                 Address address = profile.getAddress();
                 Phone phone = profile.getPhone();
-                text.append(String.format("Address: %s\n", address.toString()));
-                text.append(String.format("Phone: %s\n", phone.toString()));
-                text.append("---------------------------------\n");
+                profileText.append(String.format("Address: %s\n", address.toString()));
+                profileText.append(String.format("Phone: %s\n", phone.toString()));
+                profileText.append("---------------------------------\n");
             }
         } catch (DataConversionException de) {
             throw new CommandException(Messages.MESSAGE_EMPTY_PROFILE);
         }
 
+        StringBuilder orderText = new StringBuilder();
         for (OrderItem orderItem: order) {
-            text.append(String.format("%s x %d\n", orderItem.getName(), orderItem.getQuantity()));
+            orderText.append(orderItem.toOrderText());
         }
 
         boolean copySuccess = true;
         try {
-            StringSelection stringSelection = new StringSelection(text.toString());
+            StringSelection stringSelection = new StringSelection(orderText.toString());
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(stringSelection, null);
         } catch (HeadlessException e) {
@@ -65,8 +68,14 @@ public class SubmitCommand extends Command {
             e.printStackTrace();
         }
 
-        text.append(String.format("Estimated total: $%.2f\n", order.getTotal()));
+        StringBuilder feedback = new StringBuilder();
+        if (copySuccess) {
+            feedback.append(CLIPBOARD_SUCCESS_MESSAGE);
+        }
+        feedback.append(profileText.toString());
+        feedback.append(orderText.toString());
+        feedback.append(String.format(ESTIMATE_TOTAL_MESSAGE, order.getTotal()));
 
-        return new CommandResult(text.toString());
+        return new CommandResult(feedback.toString());
     }
 }

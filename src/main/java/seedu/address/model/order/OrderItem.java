@@ -33,6 +33,7 @@ public class OrderItem extends Food {
     public OrderItem(MenuItem menuItem, int quantity) {
         super(menuItem.getName(), menuItem.getPrice(), menuItem.getTags());
         requireAllNonNull(quantity);
+        tags.clear();
         this.quantity = quantity;
     }
 
@@ -87,8 +88,7 @@ public class OrderItem extends Food {
 
         return orderItem != null
                 && orderItem.getName().equals(getName())
-                && (orderItem.getPrice() == (getPrice()))
-                && (orderItem.getTags().equals(getTags()));
+                && (orderItem.getPrice() == (getPrice()));
     }
 
     /**
@@ -99,17 +99,43 @@ public class OrderItem extends Food {
         return Collections.unmodifiableSet(tags);
     }
 
-    //    @Override
-    //    public boolean equals(Object other) {
-    //        return other == this // short circuit if same object
-    //                || (other instanceof OrderItem // instanceof handles nulls
-    //                && isSameOrderItem((OrderItem) other));
-    //    }
+    @Override
+    public void setTags(Set<Tag> newTags) {
+        tags.clear();
+        tags.addAll(newTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof OrderItem)) {
+            return false;
+        }
+
+        OrderItem otherFood = (OrderItem) other;
+        return otherFood.getName().equals(getName())
+                && otherFood.getPrice() == getPrice();
+    }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(super.name, super.price, super.tags, quantity);
+    }
+
+    /**
+     * Creates a text suitable for order.
+     */
+    public String toOrderText() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName() + " x " + getQuantity() + "\n");
+        for (Tag tag: tags) {
+            builder.append(" - " + tag.tagName + "\n");
+        }
+        return builder.toString();
     }
 
     @Override
@@ -125,4 +151,7 @@ public class OrderItem extends Food {
         return builder.toString();
     }
 
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
 }

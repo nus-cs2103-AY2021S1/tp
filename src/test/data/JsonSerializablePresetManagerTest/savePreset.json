@@ -4,7 +4,7 @@
     "orderItems" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ],
+      "tagged" : [ ],
       "quantity" : 6
     }, {
       "name" : "Milo",
@@ -32,7 +32,7 @@
     "orderItems" : [ {
       "name" : "Prata",
       "price" : 1.0,
-      "tagged" : [ "classic" ],
+      "tagged" : [ ],
       "quantity" : 6
     }, {
       "name" : "Milo",

@@ -2,6 +2,10 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +53,19 @@ public class SubmitCommandTest {
         storage.saveProfileManager(new Profile("Block 123, Bobby Street 3", "22222222"));
         ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
 
+        boolean copySuccess = true;
+        try {
+            StringSelection stringSelection = new StringSelection("testing clipboard");
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            // clipboard.setContents(stringSelection, null);
+        } catch (HeadlessException e) {
+            copySuccess = false;
+        }
+
         StringBuilder expectedMessage = new StringBuilder();
+        if (copySuccess) {
+            expectedMessage.append(SubmitCommand.CLIPBOARD_SUCCESS_MESSAGE);
+        }
         String expectedAddress = CommandTestUtil.VALID_ADDRESS_BOB;
         String expectedPhone = CommandTestUtil.VALID_PHONE_BOB;
 

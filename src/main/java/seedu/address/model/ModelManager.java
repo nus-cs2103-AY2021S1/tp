@@ -22,6 +22,7 @@ import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Vendor;
 
 /**
@@ -238,6 +239,18 @@ public class ModelManager implements Model {
         } catch (CommandException e) {
             throw e;
         }
+    }
+
+    @Override
+    public void tagOrderItem(OrderItem orderItem, Tag tag) {
+        requireAllNonNull(orderItem, tag);
+        orderManager.tagOrderItem(orderItem, tag);
+    }
+
+    @Override
+    public void untagOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        orderManager.untagOrderItem(orderItem);
     }
 
     @Override
