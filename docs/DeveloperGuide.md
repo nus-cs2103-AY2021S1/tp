@@ -189,8 +189,8 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ##### Aspect: How findmod executes
 
-* **Alternative 1 (current choice):** AND searching from multiple attributes and OR searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.  
-  * Pros : Provides the ability to narrow down the search results by adding more attributes while also allowing more flexible search within the attributes. Single keyword for module code attribute allows for more focused module code searches. 
+* **Alternative 1 (current choice):** AND searching from multiple attributes and OR searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
+  * Pros : Provides the ability to narrow down the search results by adding more attributes while also allowing more flexible search within the attributes. Single keyword for module code attribute allows for more focused module code searches.
   * Cons : Unable to search for multiple modules with different module attributes and unable to search for multiple modules with different module codes.
 
 * **Alternative 2:** And searching across attributes and disallow multiple keyword search across all attributes.
@@ -204,7 +204,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
 It uses an operation `AddressBook#removeModule()` which is exposed in the `Model` interface as `Model#deleteModule()`.
 Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
-from the module list. 
+from the module list.
 
 Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
 
@@ -234,22 +234,22 @@ The following activity diagram summarizes what happens when a user executes a de
 * **Alternative 2:** Deletes a module based on the index of the module list.
   * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
   * Cons : Less intuitive.
-  
+
 ####  Deleting a module from the module list
-  
+
   a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
-  
+
   b. Test case: `delmod m/CS2103`
   Expected: Module with module code `CS2103` would be deleted from the module list.
-  
+
   c. Test case: `delmod m/CS1101S`
   Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. Status bar remains the same.
-  
+
   d. Test case: `delmod m/CS2103 m/CS2100`
   Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. Status bar remains the same.
-  
+
   { more test cases ... }
-  
+
 ### Assign feature
 
 #### Implementation
@@ -319,17 +319,17 @@ The following sequence diagram shows how the unassignall operation works:
 * **Alternative 1 (current choice):** Unassigns all instructors from all modules.
  * Pros : More efficient to unassign all instructors from all modules.
  * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
- 
+
 * **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
  * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
  * Cons : Less efficient to unassign all instructors from all modules.
- 
+
 ### Clear all contacts feature
 
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearContacts()` — Clear all contacts from the list.  
+* `AddressBook#clearContacts()` — Clear all contacts from the list.
 
 These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
 
@@ -354,7 +354,7 @@ Expected : Error message saying "Contact list is already empty".
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearMod()` — Clear all modules from the list.  
+* `AddressBook#clearMod()` — Clear all modules from the list.
 
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 
@@ -550,19 +550,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType adds the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. The attributes are in an invalid format.
-    
+
     * 1a1. FaculType shows an error message.
-    
+
       Use case resumes at step 1.
-      
+
 * 1b. The contact to be added already exists.
 
     * 1b1. FaculType shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: Delete a contact**
@@ -598,13 +598,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType edits the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The list is empty.
 
     Use case ends.
-    
+
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
@@ -616,7 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. FaculType shows an error message.
     
       Use case resumes at step 2.
-      
+ 
 **Use case: Find a contact**
 
 **MSS**
@@ -627,13 +627,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType shows the contact(s)
 
     Use case ends.
-   
+
 **Extensions**
 
 *  2a. The list is empty.
-   
+
    Use case ends.
-      
+ 
 **Use case: Add or update a remark**
 
 **MSS**
@@ -644,19 +644,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType adds/edits the contact's remark
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The list is empty.
 
     Use case ends.
-    
+
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 **Use case: Add a module**
 
 **MSS**
@@ -665,13 +665,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType adds the module
 
     Use case ends.
-    
+
 **Extensions**
 
 *   1a. The module code already exists.
-    
+
     * 1a1. FaculType shows an error message.
-        
+ 
       Use case resumes at step 1.
 
 **Use case: Delete a module**
@@ -685,17 +685,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-    
+
 *   1a. The module list is empty.
-    
+
     Use case ends.
-    
+
 *   2a. The given module code does not exist.
 
     * 2a1. FaculType shows an error message.
-    
+
     Use case resumes at step 1.
-    
+
 **Use case: Find a module**
 
 **MSS**
@@ -706,11 +706,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType shows the module(s)
 
    Use case ends.
-   
+
 **Extensions**
 
 *  2a. The module list is empty.
-   
+
    Use case ends.
 
 **Use case: Assign a contact to a module**
@@ -725,27 +725,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  FaculType assigns the contact to the module
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The contact list is empty.
 
     Use case ends.
-    
+
 *   4a. The module list is empty.
 
     Use case ends.
-    
+
 *   5a. The given contact does not exist.
-    
+
     *   5a1. FaculType shows an error message.
-    
+
     Use case resumes at step 4.
-        
+
 *   5b. The given module does not exist.
 
     * 5b2. FaculType shows an error message.
-    
+
     Use case resumes at step 4.
 
 ### Non-Functional Requirements
@@ -832,7 +832,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `find n/`<br>
       Expected: No contacts filtered. Error details shown in the status message. Status bar remains the same.
-      
+
    1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
       Expected: Similar to previous.
 
