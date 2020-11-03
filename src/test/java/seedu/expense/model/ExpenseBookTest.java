@@ -69,13 +69,16 @@ public class ExpenseBookTest {
 
     @Test
     public void hasExpense_expenseInExpenseBook_returnsTrue() {
+        expenseBook.addCategory(FEL_BDAY.getTag());
         expenseBook.addExpense(FEL_BDAY);
         assertTrue(expenseBook.hasExpense(FEL_BDAY));
     }
 
     @Test
     public void hasExpense_expenseWithSameIdentityFieldsInExpenseBook_returnsTrue() {
+        expenseBook.addCategory(FEL_BDAY.getTag());
         expenseBook.addExpense(FEL_BDAY);
+        expenseBook.addCategory(new Tag(VALID_TAG_TRANSPORT));
         Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(expenseBook.hasExpense(editedAlice));

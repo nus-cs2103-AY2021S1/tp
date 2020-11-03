@@ -24,6 +24,9 @@ public class ExpenseBookBuilder {
      * Adds a new {@code Expense} to the {@code ExpenseBook} that we are building.
      */
     public ExpenseBookBuilder withExpense(Expense expense) {
+        if (!expenseBook.containsCategory(expense.getTag())) {
+            expenseBook.addCategory(expense.getTag());
+        }
         expenseBook.addExpense(expense);
         return this;
     }

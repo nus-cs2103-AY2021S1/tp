@@ -17,7 +17,6 @@ import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
-import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -142,10 +141,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void topupCategoryBudget(Tag category, Amount amount) throws CategoryNotFoundException {
-        if (!expenseBook.containsCategory(category)) {
-            throw new CategoryNotFoundException();
-        }
+    public void topupCategoryBudget(Tag category, Amount amount) {
 
         expenseBook.topupCategoryBudget(category, amount);
     }

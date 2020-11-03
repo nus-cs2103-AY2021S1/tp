@@ -28,7 +28,8 @@ public class TopupCommand extends Command {
             + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%s";
-    public static final String MESSAGE_CATEGORY_NOT_FOUND = "The expense book does not contain the category %s";
+    public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. "
+            + "If you need to, please add it using the \"AddCat\" command first.";
 
     private final Amount toAdd;
     private final Tag category;
@@ -55,8 +56,9 @@ public class TopupCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         if (!model.hasCategory(category)) {
-            throw new CommandException(String.format(MESSAGE_CATEGORY_NOT_FOUND, category.toString()));
+            throw new CommandException(String.format(MESSAGE_INVALID_CATEGORY, category));
         }
 
         model.topupCategoryBudget(category, toAdd);
