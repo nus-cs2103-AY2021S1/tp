@@ -5,10 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.resireg.logic.commands.DeallocateCommand.MESSAGE_STUDENT_NOT_ALLOCATED;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.getTypicalUserPrefs;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.List;
@@ -75,6 +77,12 @@ public class DeallocateCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         DeallocateCommand deallocateCommand = new DeallocateCommand(outOfBoundIndex);
         assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_studentNotAllocated_throwsCommandException() {
+        DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FOURTH_PERSON);
+        assertCommandFailure(deallocateCommand, model, history, MESSAGE_STUDENT_NOT_ALLOCATED);
     }
 
     @Test

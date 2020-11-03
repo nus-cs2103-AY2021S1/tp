@@ -60,9 +60,7 @@ public class DeallocateCommand extends Command {
             }
         }
 
-        if (!model.hasStudent(studentToDeallocate)) {
-            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        } else if (toDeallocate == null) {
+        if (toDeallocate == null) {
             throw new CommandException(MESSAGE_STUDENT_NOT_ALLOCATED);
         }
 

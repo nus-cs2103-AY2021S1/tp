@@ -8,6 +8,7 @@ import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.logic.commands.DeallocateCommand;
+import seedu.resireg.logic.commands.ReallocateCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -28,6 +29,12 @@ public class DeallocateCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeallocateCommand.HELP.getFullMessage()));
+    }
+
+    @Test
+    public void parse_invalidIndices_throwsParseException() {
+        assertParseFailure(parser, "si/a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeallocateCommand.HELP.getFullMessage()));
     }
 }
