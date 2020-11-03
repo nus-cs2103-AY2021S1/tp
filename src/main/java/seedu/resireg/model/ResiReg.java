@@ -205,7 +205,6 @@ public class ResiReg implements ReadOnlyResiReg {
         return allocations.hasRoom(room);
     }
 
-
     //// room-level operations
 
     /**
