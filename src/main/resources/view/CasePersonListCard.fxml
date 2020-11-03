@@ -18,9 +18,12 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <VBox>
+                <padding>
+                    <Insets top="5" bottom="5"/>
+                </padding>
                 <HBox spacing="5" alignment="CENTER_LEFT">
                     <padding>
-                        <Insets top="5" bottom="5"/>
+                        <Insets bottom="5"/>
                     </padding>
                     <Label fx:id="id" styleClass="cell_big_label">
                         <minWidth>
@@ -36,9 +39,58 @@
                         </minWidth>
                     </Label>
                 </HBox>
-                <Label fx:id="phone" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-                <Label fx:id="email" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-                <Label fx:id="address" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets right="2.5" bottom="1.5"/>
+                    </padding>
+                    <Label fx:id="phoneTitle" text="Phone:">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="phone" text="\$first" styleClass="cell_big_label" wrapText="true">
+                        <padding>
+                            <Insets left="0.5" bottom="0.5"/>
+                        </padding>
+                    </Label>
+                </HBox>
+
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets right="2.5" bottom="1.5"/>
+                    </padding>
+                    <Label fx:id="emailTitle" text="Email:">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="email" text="\$first" styleClass="cell_big_label" wrapText="true">
+                        <padding>
+                            <Insets left="0.5" bottom="0.5"/>
+                        </padding>
+                    </Label>
+                </HBox>
+
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets right="2.5"/>
+                    </padding>
+                    <Label fx:id="addressTitle" text="Address:">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                    <Label fx:id="address" text="\$first" styleClass="cell_big_label" wrapText="true">
+                        <padding>
+                            <Insets left="0.5"/>
+                        </padding>
+                    </Label>
+                </HBox>
+
             </VBox>
 
         </VBox>
