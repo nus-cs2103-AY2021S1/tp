@@ -20,7 +20,7 @@ Given below are my contributions to the project.
   * Justification: An attendance tracking feature helps to ease one of a tutor's many required tasks. This is done by greatly
   simplifying the process of taking and storing the attendance of the tutor's many students.
 
-* **Minor Enhancements implemented**:
+* **Other Enhancements implemented**:
   * Added the `Academic` class to restructure `Student`.
   * Added the `ClassTime` and `ClassVenue` that are fields in *Student*.
   * Adapted the `edit` command to work with the new structure of `Student` in **Reeve**.
@@ -33,7 +33,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `edit` ([\#37](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/37)) , `detail` ([\#102](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/102)) and `attendance` ([/#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
+    * Added documentation for the features `edit` ([\#37](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/37)) , `detail` ([\#102](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/102)) and `attendance` ([\#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
     * Added Table of Contents ([\#129](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/129)).
     * Updated order and content of Command summary ([\#147](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/147))
   * Developer Guide:
