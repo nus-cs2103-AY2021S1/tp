@@ -22,7 +22,7 @@ import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 
 public class JsonModuleListStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleListStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -63,7 +63,7 @@ public class JsonModuleListStorageTest {
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
+    public void readAndSaveModuleList_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempModuleList.json");
         Trackr original = getTypicalTrackr();
         JsonModuleListStorage jsonModuleListStorage = new JsonModuleListStorage(filePath);

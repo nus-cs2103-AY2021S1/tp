@@ -45,17 +45,17 @@ public class TypicalTutorialGroups {
     );
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code UniqueTutorialGroupList} with all the typical tutorial groups.
      */
     public static UniqueTutorialGroupList getTutorialGroupList() {
         UniqueTutorialGroupList tgl = new UniqueTutorialGroupList();
-        for (TutorialGroup tutorialGroup: getTypicalModules()) {
+        for (TutorialGroup tutorialGroup: getTypicalTutorialGroups()) {
             tgl.addTutorialGroup(tutorialGroup);
         }
         return tgl;
     }
 
-    public static List<TutorialGroup> getTypicalModules() {
+    public static List<TutorialGroup> getTypicalTutorialGroups() {
         return new ArrayList<>(Arrays.asList(T05, B06, S12));
     }
 }

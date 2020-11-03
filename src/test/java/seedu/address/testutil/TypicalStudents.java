@@ -40,7 +40,7 @@ public class TypicalStudents {
             .withName("David Ong")
             .withEmail("dong@u.nus.edu")
             .withPhone("81320987")
-            .withTags("CS2103T")
+            .withTags("CS2103T", "UTCP")
             .withStudentId("A1837538N")
             .build();
 
@@ -48,7 +48,7 @@ public class TypicalStudents {
             .withName("Elizabeth Teo")
             .withEmail("eteo@u.nus.edu")
             .withPhone("89993333")
-            .withTags("CS2103T")
+            .withTags("CS2103T", "DDP")
             .withStudentId("A1938563M")
             .build();
 
