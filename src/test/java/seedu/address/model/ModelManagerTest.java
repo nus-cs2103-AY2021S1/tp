@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.propertybook.PropertyModel.PREDICATE_SHOW_ALL_PROPERTIES;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.BIDDER_ALICE;
+import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.BID_A;
+import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
+import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.SELLER_ALICE;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -21,11 +25,18 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.BidderModel;
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.DuplicatePropertyException;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
+import seedu.address.model.property.exceptions.PropertyNotFoundException;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerModel;
+import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.bidder.BidderAddressBookBuilder;
 import seedu.address.testutil.property.PropertyBookBuilder;
+import seedu.address.testutil.property.PropertyBuilder;
 import seedu.address.testutil.seller.SellerAddressBookBuilder;
 
 public class ModelManagerTest {
@@ -121,6 +132,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setPropertyBook_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.setPropertyBook(null));
+    }
+
+    @Test
+    public void setPropertyBook() {
+        modelManager.setPropertyBook(getTypicalPropertyBook());
+        assertEquals(getTypicalPropertyBook(), modelManager.getPropertyBook());
+    }
+
+    @Test
     public void hasProperty_nullProperty_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasProperty(null));
     }
@@ -138,8 +161,290 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasProperty_sameIdentity_returnsTrue() {
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        modelManager.addProperty(PROPERTY_A);
+        Property other = new PropertyBuilder(PROPERTY_B)
+                .withAddress(PROPERTY_A.getAddress().toString())
+                .build();
+        assertTrue(modelManager.hasProperty(other));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_nullProperty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.hasPropertyExceptPropertyId(null, new PropertyId(1)));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_nullPropertyId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.hasPropertyExceptPropertyId(PROPERTY_A, null));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_notFoundInPropertyBook_returnsFalse() {
+        assertFalse(modelManager.hasPropertyExceptPropertyId(PROPERTY_A, PROPERTY_B.getPropertyId()));
+
+        // inside property book but has excluded property id
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        modelManager.addProperty(PROPERTY_A);
+        assertFalse(modelManager.hasPropertyExceptPropertyId(PROPERTY_A, PROPERTY_A.getPropertyId()));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_inPropertyBook_returnsTrue() {
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        modelManager.addProperty(PROPERTY_A);
+        assertTrue(modelManager.hasPropertyExceptPropertyId(PROPERTY_A, PROPERTY_B.getPropertyId()));
+    }
+
+    @Test
+    public void deleteProperty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.deleteProperty(null));
+    }
+
+    @Test
+    public void deleteProperty_doesNotExist_throwsPropertyNotFoundException() {
+        assertThrows(PropertyNotFoundException.class,
+                () -> modelManager.deleteProperty(PROPERTY_A));
+    }
+
+    @Test
+    public void deleteProperty_succeeds() {
+        // no bids or meetings
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        modelManager.addProperty(PROPERTY_A);
+        modelManager.deleteProperty(PROPERTY_A);
+        ModelManager expected = new ModelManager();
+        expected.setSellerAddressBook(getTypicalSellerAddressBook());
+        assertEquals(expected, modelManager);
+
+        // cascade delete bids and meetings
+        modelManager = TestUtil.getTypicalModelManager();
+        modelManager.deleteProperty(PROPERTY_A);
+
+        PropertyBook expectedPropertyBook = getTypicalPropertyBook();
+        expectedPropertyBook.removeProperty(PROPERTY_A);
+        BidBook expectedBidBook = getTypicalBidBook();
+        expectedBidBook.removeBidsByPropertyId(PROPERTY_A.getPropertyId());
+        MeetingBook expectedMeetingBook = getTypicalMeetingAddressBook();
+        expectedMeetingBook.removeMeetingsByPropertyId(PROPERTY_A.getPropertyId());
+        expected = TestUtil.getTypicalModelManager();
+        expected.setPropertyBook(expectedPropertyBook);
+        expected.setBidBook(expectedBidBook);
+        expected.setMeetingManager(expectedMeetingBook);
+        assertEquals(expected, modelManager);
+    }
+
+    @Test
+    public void deletePropertyByPropertyId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.deletePropertyByPropertyId(null));
+    }
+
+    @Test
+    public void deletePropertyByPropertyId_propertyNotFound_throwsPropertyNotFoundException() {
+        assertThrows(PropertyNotFoundException.class,
+                () -> modelManager.deletePropertyByPropertyId(new PropertyId(1)));
+    }
+
+    @Test
+    public void deletePropertyByPropertyId_success() {
+        // no cascading
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        modelManager.setPropertyBook(getTypicalPropertyBook());
+        modelManager.deletePropertyByPropertyId(PROPERTY_A.getPropertyId());
+        ModelManager expected = new ModelManager();
+        expected.setSellerAddressBook(getTypicalSellerAddressBook());
+        PropertyBook expectedPropertyBook = getTypicalPropertyBook();
+        expectedPropertyBook.removeProperty(PROPERTY_A);
+        expected.setPropertyBook(expectedPropertyBook);
+        assertEquals(expected, modelManager);
+
+        // cascading delete
+        modelManager = TestUtil.getTypicalModelManager();
+        modelManager.deletePropertyByPropertyId(PROPERTY_A.getPropertyId());
+        expected = TestUtil.getTypicalModelManager();
+        expected.setPropertyBook(expectedPropertyBook);
+        BidBook expectedBidBook = getTypicalBidBook();
+        expectedBidBook.removeBidsByPropertyId(PROPERTY_A.getPropertyId());
+        MeetingBook expectedMeetingBook = getTypicalMeetingAddressBook();
+        expectedMeetingBook.removeMeetingsByPropertyId(PROPERTY_A.getPropertyId());
+        expected.setPropertyBook(expectedPropertyBook);
+        expected.setMeetingManager(expectedMeetingBook);
+        expected.setBidBook(expectedBidBook);
+        assertEquals(expected, modelManager);
+    }
+
+    @Test
+    public void addProperty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.addProperty(null));
+    }
+
+    @Test
+    public void addProperty_invalidProperty_throwsInvalidSellerIdException() {
+        assertThrows(InvalidSellerIdException.class,
+                () -> modelManager.addProperty(PROPERTY_A));
+    }
+
+    @Test
+    public void addProperty_addDuplicateProperty_throwsDuplicatePropertyException() {
+        modelManager = TestUtil.getTypicalModelManager();
+
+        // same object
+        assertThrows(DuplicatePropertyException.class,
+                () -> modelManager.addProperty(PROPERTY_A));
+
+        // same property id
+        Property samePropertyA = new PropertyBuilder(PROPERTY_B)
+                .withPropertyId(PROPERTY_A.getPropertyId().toString())
+                .build();
+        assertThrows(DuplicatePropertyException.class,
+                () -> modelManager.addProperty(samePropertyA));
+
+        // same address
+        Property anotherPropertyA = new PropertyBuilder(PROPERTY_B)
+                .withAddress(PROPERTY_A.getAddress().toString())
+                .build();
+        assertThrows(DuplicatePropertyException.class,
+                () -> modelManager.addProperty(anotherPropertyA));
+    }
+
+    @Test
+    public void addProperty_success() {
+        modelManager = TestUtil.getTypicalModelManager();
+        Property propertyD = new PropertyBuilder()
+                .withPropertyId(PropertyId.DEFAULT_PROPERTY_ID.toString())
+                .withPropertyName("Dempsey Hill")
+                .withAddress("101 Dempsey Dill")
+                .withSellerId("S2")
+                .withAskingPrice(99.99)
+                .withIsClosedDeal("active")
+                .withPropertyType("Bungalow")
+                .withIsRental("No")
+                .build();
+        modelManager.addProperty(propertyD);
+        ModelManager expected = TestUtil.getTypicalModelManager();
+        PropertyBook expectedPropertyBook = getTypicalPropertyBook();
+        expectedPropertyBook.addProperty(propertyD);
+        expected.setPropertyBook(expectedPropertyBook);
+        assertEquals(expected, modelManager);
+    }
+
+    @Test
+    public void getPropertyById_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.getPropertyById(null));
+    }
+
+    @Test
+    public void getPropertyById_propertyNotFound_throwsPropertyNotFoundException() {
+        assertThrows(PropertyNotFoundException.class,
+                () -> modelManager.getPropertyById(new PropertyId(1)));
+    }
+
+    @Test
+    public void getPropertyByPropertyId_propertyInPropertyBook_returnsProperty() {
+        modelManager = TestUtil.getTypicalModelManager();
+        assertEquals(PROPERTY_A, modelManager.getPropertyById(PROPERTY_A.getPropertyId()));
+    }
+
+    @Test
+    public void containsPropertyId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.containsPropertyId(null));
+    }
+
+    @Test
+    public void containsPropertyId_notInPropertyBook_returnsFalse() {
+        assertFalse(modelManager.containsPropertyId(new PropertyId(1)));
+    }
+
+    @Test
+    public void containsPropertyId_inPropertyBook_returnsTrue() {
+        modelManager = TestUtil.getTypicalModelManager();
+        assertTrue(modelManager.containsPropertyId(PROPERTY_A.getPropertyId()));
+    }
+
+    @Test
+    public void setProperty_nullTarget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.setProperty(null, PROPERTY_A));
+    }
+
+    @Test
+    public void setProperty_nullEditedProperty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.setProperty(PROPERTY_A, null));
+    }
+
+    @Test
+    public void setProperty_propertyNotFound_throwsPropertyNotFoundException() {
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        assertThrows(PropertyNotFoundException.class,
+                () -> modelManager.setProperty(PROPERTY_A, PROPERTY_B));
+    }
+
+    @Test
+    public void setProperty_invalidEditedProperty_throwsInvalidSellerIdException() {
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
+        modelManager.setPropertyBook(getTypicalPropertyBook());
+        Property editedProperty = new PropertyBuilder(PROPERTY_A)
+                .withSellerId("S100")
+                .build();
+        assertThrows(InvalidSellerIdException.class,
+                () -> modelManager.setProperty(PROPERTY_A, editedProperty));
+    }
+
+    @Test
+    public void setProperty_editedPropertyExists_throwsDuplicatePropertyException() {
+        modelManager = TestUtil.getTypicalModelManager();
+
+        // same object
+        assertThrows(DuplicatePropertyException.class,
+                () -> modelManager.setProperty(PROPERTY_A, PROPERTY_B));
+
+        // same property id
+        Property sameId = new PropertyBuilder(PROPERTY_A)
+                .withPropertyId(PROPERTY_B.getPropertyId().toString())
+                .build();
+        assertThrows(DuplicatePropertyException.class,
+                () -> modelManager.setProperty(PROPERTY_A, sameId));
+
+        // same address
+        Property sameAddress = new PropertyBuilder(PROPERTY_A)
+                .withAddress(PROPERTY_B.getAddress().toString())
+                .build();
+        assertThrows(DuplicatePropertyException.class,
+                () -> modelManager.setProperty(PROPERTY_A, sameAddress));
+    }
+
+    @Test
+    public void setProperty_success() {
+        Property editedProperty = new PropertyBuilder(PROPERTY_A)
+                .withPropertyName("New name")
+                .build();
+        modelManager = TestUtil.getTypicalModelManager();
+        modelManager.setProperty(PROPERTY_A, editedProperty);
+        ModelManager expected = TestUtil.getTypicalModelManager();
+        PropertyBook expectedPropertyBook = getTypicalPropertyBook();
+        expectedPropertyBook.setProperty(PROPERTY_A, editedProperty);
+        expected.setPropertyBook(expectedPropertyBook);
+        assertEquals(expected, modelManager);
+    }
+
+    @Test
     public void getFilteredPropertyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPropertyList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredPropertyList_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> modelManager.updateFilteredPropertyList(null));
     }
 
     // ----------------- BIDDER ---------------------

@@ -132,19 +132,13 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getPropertyBookFilePath() {
-        return userPrefs.getPropertyBookFilePath();
-    }
-
-    @Override
-    public void setPropertyBookFilePath(Path propertyBookFilePath) {
-        requireNonNull(propertyBookFilePath);
-        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
-    }
-
-
     //=========== BidBook ================================================================================
+
+
+    @Override
+    public void setBidBook(ReadOnlyBidBook bidBook) {
+        this.bidBook.resetData(bidBook);
+    }
 
     @Override
     public ReadOnlyBidBook getBidBook() {
@@ -233,6 +227,17 @@ public class ModelManager implements Model {
     //=========== PropertyBook ================================================================================
 
     @Override
+    public Path getPropertyBookFilePath() {
+        return userPrefs.getPropertyBookFilePath();
+    }
+
+    @Override
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
+    }
+
+    @Override
     public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
         this.propertyBook.resetData(propertyBook);
     }
@@ -295,10 +300,10 @@ public class ModelManager implements Model {
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
         if (!isValidProperty(editedProperty)) {
             throw new InvalidSellerIdException();
         }
-        requireAllNonNull(target, editedProperty);
         propertyBook.setProperty(target, editedProperty);
     }
 

@@ -34,7 +34,7 @@ public class AddPropertyCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newProperty_success() throws CommandException {
+    public void execute_newProperty_success() {
         Property validProperty = new PropertyBuilder()
                 .withPropertyId(DEFAULT_PROPERTY_ID.toString())
                 .build();
@@ -51,7 +51,7 @@ public class AddPropertyCommandIntegrationTest {
 
         assertCommandSuccess(new AddPropertyCommand(validProperty), model,
                 String.format(AddPropertyCommand.MESSAGE_SUCCESS,
-                        validProperty.setId(new PropertyId(3))), expectedModel);
+                        validProperty.setId(new PropertyId(4))), expectedModel);
     }
 
     @Test

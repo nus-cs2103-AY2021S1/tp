@@ -64,6 +64,9 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
 
     //=========== BidBook ================================================================================
 
+    /** Sets the BidBook */
+    void setBidBook(ReadOnlyBidBook bidBook);
+
     /** Returns the BidBook */
     ReadOnlyBidBook getBidBook();
 
