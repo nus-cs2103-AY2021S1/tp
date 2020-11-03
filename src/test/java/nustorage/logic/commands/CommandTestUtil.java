@@ -3,13 +3,17 @@ package nustorage.logic.commands;
 import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
+import nustorage.model.record.FinanceRecord;
+import nustorage.testutil.EditFinanceDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -90,6 +94,20 @@ public class CommandTestUtil {
 
     public static final String INVALID_AMOUNT_DESC_A = " " + PREFIX_AMOUNT + "0.10a"; // 'a' is not allowed
 
+    public static final EditFinanceCommand.EditFinanceDescriptor DESC_FINANCE_A;
+    public static final EditFinanceCommand.EditFinanceDescriptor DESC_FINANCE_B;
+
+    static {
+        DESC_FINANCE_A = new EditFinanceDescriptorBuilder()
+                .withId(ID_A)
+                .withAmount(AMOUNT_A)
+                .withDateTime(DATE_TIME_A).build();
+        DESC_FINANCE_B = new EditFinanceDescriptorBuilder()
+                .withId(ID_B)
+                .withAmount(AMOUNT_B)
+                .withDateTime(DATE_TIME_B).build();
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -128,5 +146,17 @@ public class CommandTestUtil {
         // only do so by copying its components.
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showFinanceRecordAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredFinanceList().size());
 
+        FinanceRecord financeRecord = model.getFilteredFinanceList().get(targetIndex.getZeroBased());
+        final int id = financeRecord.getID();
+        model.updateFilteredFinanceList(record -> record.getID() == id);
+
+        assertEquals(1, model.getFilteredFinanceList().size());
+    }
 }
