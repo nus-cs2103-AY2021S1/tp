@@ -70,7 +70,7 @@ public class AliasCommandTest {
     public void execute_removeSingleAlias_revertBack() throws CommandException {
         ModelStubWithAliasMap modelStub = new ModelStubWithAliasMap();
         assertEquals(
-                new CommandResult("Removed alias. [get] is no longer alias for [find]."),
+                new CommandResult("Removed alias. [get] is no longer alias for [find]. "),
                 new AliasCommand("get", "find").execute(modelStub)
         );
     }

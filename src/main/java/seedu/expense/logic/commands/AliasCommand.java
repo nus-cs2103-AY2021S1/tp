@@ -24,8 +24,8 @@ public class AliasCommand extends Command {
             + "To remove customised alias for a command, simply enter: "
             + COMMAND_WORD + " [default_command] [current_alias]";
 
-    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s]";
-    public static final String MESSAGE_REMOVED_ALIAS_SUCCESS = "Removed alias. [%s] is no longer alias for [%s].";
+    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s] ";
+    public static final String MESSAGE_REMOVED_ALIAS_SUCCESS = "Removed alias. [%s] is no longer alias for [%s]. ";
 
     private final String previousAlias;
     private final String newAlias;
