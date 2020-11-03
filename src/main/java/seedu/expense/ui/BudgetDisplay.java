@@ -144,4 +144,13 @@ public class BudgetDisplay extends UiPart<Region> {
     public void hide() {
         getRoot().setVisible(false);
     }
+
+    /**
+     * Returns the visibility of budget display
+     *
+     * @return visibility of budget display
+     */
+    public boolean isVisible() {
+        return getRoot().isVisible();
+    }
 }
