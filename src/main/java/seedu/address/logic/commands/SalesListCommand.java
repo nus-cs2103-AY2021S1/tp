@@ -1,23 +1,19 @@
 package seedu.address.logic.commands;
 
+import seedu.address.model.Model;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-
 /**
- * Lists the sales of the drink items that has been recorded by the app.
+ * Ranks the drink items in the SalesBook based on the number od
  */
 public class SalesListCommand extends Command {
 
     public static final String COMMAND_WORD = "s-list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the sales of the drinks as entered.\n"
-            + "Parameters: There are no parameters.\n"
-            + "Example: " + COMMAND_WORD;
-
-    public static final String MESSAGE_SUCCESS = "Listed the sales that has been recorded.";
+    public static final String MESSAGE_SUCCESS = "Listed the sales of drink items recorded in a "
+            + "descending order.";
 
     public static final String MESSAGE_NO_RECORD_SUCCESS = "You have not recorded any sales yet. Use "
             + SalesUpdateCommand.COMMAND_WORD + " to update the sales record.";
@@ -25,16 +21,16 @@ public class SalesListCommand extends Command {
     /**
      * Executes the command and returns the result message.
      *
-     * @param model {@code Model} which the command should operate on.
+     * @param model {@code Model} which the command should operate on
      * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         if (model.isEmptySalesBook()) {
             return new CommandResult(MESSAGE_NO_RECORD_SUCCESS);
         } else {
+            model.sortSalesBook();
             model.updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
             return new CommandResult(MESSAGE_SUCCESS);
         }

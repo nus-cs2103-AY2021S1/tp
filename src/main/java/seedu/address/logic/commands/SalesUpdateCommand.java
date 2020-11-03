@@ -20,8 +20,8 @@ public class SalesUpdateCommand extends Command {
 
     public static final int MAX_NUM_ALLOWED = 9999999;
 
-    public static final String MESSAGE_MAX_NUM_ALLOWED_EXCEEDED = "Number of a drink sold should be less than "
-            + "or equal to " + MAX_NUM_ALLOWED + ".";
+    public static final String MESSAGE_MAX_NUM_ALLOWED_EXCEEDED = "Number of a drink sold should be a non-negative"
+            + " unsigned integer that is less than or equal to " + MAX_NUM_ALLOWED + ".";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the sales of the drinks as entered. "
             + "Existing sales record will be overwritten by the input.\n"
@@ -30,8 +30,8 @@ public class SalesUpdateCommand extends Command {
             + String.format(" that is less than %d.\n", MAX_NUM_ALLOWED)
             + "Example: " + COMMAND_WORD + " " + PREFIX_BSBM + "100" + " " + PREFIX_BSPM + "0";
 
-    public static final String MESSAGE_SUCCESS = "Added sales to the record. You may use "
-            + SalesListCommand.COMMAND_WORD + " to check the current record.";
+    public static final String MESSAGE_SUCCESS = "Added sales to the record. You may use \'"
+            + SalesListCommand.COMMAND_WORD + "\' to check the ordered current record.";
 
     private final Map<Drink, Integer> sales;
 

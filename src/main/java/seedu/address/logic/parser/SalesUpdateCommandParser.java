@@ -48,6 +48,11 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
             Drink drink = Drink.valueOf(drinkPrefixes[i].toString().replace("/", ""));
             if (argMultimap.getValue(drinkPrefixes[i]).isPresent()) {
                 int val = ParserUtil.parseNumberSold(argMultimap.getValue(drinkPrefixes[i]).get());
+
+                if (val > SalesUpdateCommand.MAX_NUM_ALLOWED) {
+                    throw new ParseException(SalesUpdateCommand.MESSAGE_MAX_NUM_ALLOWED_EXCEEDED);
+                }
+
                 sales.put(drink, val);
             }
         }
