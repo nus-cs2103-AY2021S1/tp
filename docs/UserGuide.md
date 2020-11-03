@@ -40,7 +40,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
     <b>:information_source: Notes about the command format:</b>
 
     - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
-    e.g. in `add e/EXERCISE c/CALORIES`, `NAME` is a parameter which can be used as `add e/Push Up c/1000`.
+    e.g. in `add e/EXERCISE c/CALORIES`, `EXERCISE` is a parameter which can be used as `add e/Push Up c/1000`.
 
     - Items in square brackets are optional.  
     e.g `e/EXERCISE c/CALORIES [at/DATE]` can be used as `e/Push Up c/1000 at/29-09-2020` or as `e/Push Up c/1000`.
