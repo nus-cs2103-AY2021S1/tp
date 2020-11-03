@@ -35,6 +35,26 @@ PropertyFree also provides a
 calendar for property agents to manage their schedule be it for property viewings or meeting with clients. 
 It is optimized for CLI users so that the bookkeeping can be done faster by typing in commands.
 
+# Key Terms and Definitions
+
+**Seller** - A seller is the owner of a property that wants to list their house for sale. 
+
+**Bidder** - A bidder is a person who wishes to bid for the purchase of a certain property.
+
+**Property** - A property is a listed estate that is up for bidder to place bids on. A property can only be added
+if a valid seller from the seller list is attached to the property.
+
+**Bid** - A Bid is an offer attempt by a bidder for a specific property. A bid can only be placed if the given property
+and bidder exists in the property list and bidder list.
+
+**Meeting** - A meeting can be of 3 types. 
+
+ 1. View - For viewing of properties
+ 2. Admin - For general admin meetings
+ 3. Paperwork - For signing of paperwork related to the selling and buying of the house
+ 
+ All types of meeting require a valid Property Id and Bidder Id for it to be added to the schedule.
+
 # Features
 
 > **Command format**
@@ -420,9 +440,9 @@ Seller id: S2
 
 ---
 
-## Adding to Bid to a Property
+## Adding a Bid for a Property
 
-Adds a bid to the bid list in order of property followed by bid amount
+Adds a bid to the bid list which is automatically sorted by property followed by the bid amount.
 
 - Command: `add-bid`
 - Format: `add-bid b/ PROPERTY_ID c/ BIDDER_ID m/ BID_AMOUNT`
@@ -442,7 +462,7 @@ by B2
 to property: P1
 ```
 
-## View full List of Bids
+## View Full List of Bids
 
 Will display all bids in the bid list
 
@@ -483,9 +503,9 @@ by B2
 to property: P1
 ```
 
-## Editing Bid from a Property
+## Editing a Bid
 
-Will edit a bidder’s bid value for a specific property
+Will edit a bidder’s bid value for a specific property. The edited bid will be automatically sorted.
 
 - Command: `edit-bid`
 
@@ -498,7 +518,8 @@ Will edit a bidder’s bid value for a specific property
 - Format 4: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] c/ [NEW_BIDDER_ID]` (edits only the propertyId and bidderId)
 - Format 5: `edit-bid <index number of bid to edit> c/ [NEW_BIDDER_ID] m/ [NEW_BID_AMOUNT]` (edits only the bidderId and bidAmount)
 - Format 6: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] m/ [NEW_BID_AMOUNT]` (edits only the propertyId and bidAmount)
-- Format 7: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] c/ [NEW_BIDDER_ID] m/ [NEW_BID_AMOUNT]` (edits all parameters)           
+- Format 7: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] c/ [NEW_BIDDER_ID] m/ [NEW_BID_AMOUNT]` (edits all parameters)    
+       
 Example:
 
 ```
@@ -521,7 +542,7 @@ by B12
 to property: P99
 ```
 
-## Find a specific bid based on id
+## Find a specific bid based key words
 
 Will display all bids in the bid list that contains the id specified by the user
 
@@ -537,7 +558,7 @@ find-bid P1 B2 $65000.00
 Expected Output:
 
 ```
-4 bids listed!
+2 bids listed!
 ```
 
 ---

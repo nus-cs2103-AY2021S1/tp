@@ -91,7 +91,7 @@ public class UniquePropertyList implements Iterable<Property> {
             throw new PropertyNotFoundException();
         }
 
-        if (!target.isSameProperty(editedProperty) && contains(editedProperty)) {
+        if (containsExceptPropertyId(editedProperty, target.getPropertyId())) {
             throw new DuplicatePropertyException();
         }
 
@@ -120,11 +120,12 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
-     * Removes the property with the corresponding seller id.
+     * Removes all properties with the corresponding seller id, if it exists.
      *
      * @param sellerId The seller id specified.
      */
-    public void removeBySellerId(SellerId sellerId) {
+    public void removeAllWithSellerId(SellerId sellerId) {
+        requireNonNull(sellerId);
         internalList.removeIf(property -> property.getSellerId().equals(sellerId));
 
     }
@@ -193,11 +194,6 @@ public class UniquePropertyList implements Iterable<Property> {
         return other == this // short circuit if same object
                 || (other instanceof UniquePropertyList // instanceof handles nulls
                 && internalList.equals(((UniquePropertyList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
     }
 
     /**

@@ -18,8 +18,8 @@ public class Viewing extends Meeting {
      * @param propertyId Property ID.
      * @param meetingDate MeetingDate.
      * @param venue Venue.
-     * @param startTime Start Time.
-     * @param endTime End Time.
+     * @param startTime StartTime Start Time.
+     * @param endTime EndTime End Time.
      */
     public Viewing(BidderId bidderId, PropertyId propertyId, MeetingDate meetingDate, Venue venue,
                    StartTime startTime, EndTime endTime) {
@@ -31,8 +31,8 @@ public class Viewing extends Meeting {
     /**
      * Returns true if either the venue, meetingDate, bidderId, start time, end time and propertyId is the same.
      *
-     * @param other The other property.
-     * @return True if both property objects represent the same meeting.
+     * @param other The other viewing.
+     * @return True if both viewing objects represent the same viewing.
      */
     @Override
     public boolean equals(Object other) {

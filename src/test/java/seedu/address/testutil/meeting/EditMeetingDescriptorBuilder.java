@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.meeting;
 
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand;
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand.EditMeetingDescriptor;
@@ -10,8 +10,10 @@ import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 
+//@@author Christopher-LM
 /**
  * A utility class to help with building EditBidderDescriptor objects.
+ * @author christophermervyn
  */
 public class EditMeetingDescriptorBuilder {
 

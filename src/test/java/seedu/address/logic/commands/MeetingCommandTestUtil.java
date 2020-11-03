@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.id.PropertyId;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 public class MeetingCommandTestUtil {
 

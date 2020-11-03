@@ -19,6 +19,8 @@ import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.testutil.property.EditPropertyDescriptorBuilder;
+import seedu.address.testutil.property.FindPropertyDescriptorBuilder;
+import seedu.address.testutil.property.PropertyBuilder;
 
 public class PropertyCommandTestUtil {
 
@@ -101,11 +103,13 @@ public class PropertyCommandTestUtil {
     public static final String INVALID_PROPERTY_SELLER_ID = " " + PREFIX_PROPERTY_SELLER_ID + "D1";
     public static final String INVALID_PROPERTY_IS_CLOSED_DEAL = " " + PREFIX_PROPERTY_IS_CLOSED_DEAL + "hey";
 
-    public static final EditPropertyDescriptor DESC_ANCHORVALE;
-    public static final EditPropertyDescriptor DESC_BEDOK;
+    public static final EditPropertyDescriptor EDIT_DESC_ANCHORVALE;
+    public static final EditPropertyDescriptor EDIT_DESC_BEDOK;
+    public static final PropertyBuilder ANCHORVALE_BUILDER;
+    public static final FindPropertyCommand.FindPropertyDescriptor FIND_DESC_ANCHORVALE;
 
     static {
-        DESC_ANCHORVALE = new EditPropertyDescriptorBuilder()
+        EDIT_DESC_ANCHORVALE = new EditPropertyDescriptorBuilder()
                 .withPropertyName(VALID_PROPERTY_NAME_ANCHORVALE)
                 .withAddress(VALID_PROPERTY_ADDRESS_ANCHORVALE)
                 .withSellerId(VALID_PROPERTY_SELLER_ID_ANCHORVALE)
@@ -113,7 +117,7 @@ public class PropertyCommandTestUtil {
                 .withAskingPrice(VALID_PROPERTY_ASKING_PRICE_ANCHORVALE)
                 .withIsRental(VALID_PROPERTY_IS_RENTAL_ANCHORVALE)
                 .build();
-        DESC_BEDOK = new EditPropertyDescriptorBuilder()
+        EDIT_DESC_BEDOK = new EditPropertyDescriptorBuilder()
                 .withPropertyName(VALID_PROPERTY_NAME_BEDOK)
                 .withAddress(VALID_PROPERTY_ADDRESS_BEDOK)
                 .withSellerId(VALID_PROPERTY_SELLER_ID_BEDOK)
@@ -121,6 +125,25 @@ public class PropertyCommandTestUtil {
                 .withAskingPrice(VALID_PROPERTY_ASKING_PRICE_BEDOK)
                 .withIsRental(VALID_PROPERTY_IS_RENTAL_BEDOK)
                 .build();
+        FIND_DESC_ANCHORVALE = new FindPropertyDescriptorBuilder()
+                .withPropertyNamePredicate(VALID_PROPERTY_NAME_ANCHORVALE)
+                .withAddressPredicate(VALID_PROPERTY_ADDRESS_ANCHORVALE)
+                .withSellerIdPredicate(VALID_PROPERTY_SELLER_ID_ANCHORVALE)
+                .withPropertyTypePredicate(VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE)
+                .withAskingPricePredicate(VALID_PROPERTY_PRICE_FILTER_ANCHORVALE)
+                .withIsRentalPredicate(VALID_PROPERTY_IS_RENTAL_ANCHORVALE)
+                .withIsClosedDealPredicate(VALID_PROPERTY_IS_CLOSED_DEAL_ANCHORVALE)
+                .withPropertyIdPredicate(VALID_PROPERTY_PROPERTY_ID_ANCHORVALE)
+                .build();
+        ANCHORVALE_BUILDER = new PropertyBuilder()
+                .withPropertyName(VALID_PROPERTY_NAME_ANCHORVALE)
+                .withAddress(VALID_PROPERTY_ADDRESS_ANCHORVALE)
+                .withAskingPrice(VALID_PROPERTY_ASKING_PRICE_ANCHORVALE)
+                .withPropertyType(VALID_PROPERTY_PROPERTY_TYPE_ANCHORVALE)
+                .withIsRental(VALID_PROPERTY_IS_RENTAL_ANCHORVALE)
+                .withSellerId(VALID_PROPERTY_SELLER_ID_ANCHORVALE)
+                .withPropertyId(VALID_PROPERTY_PROPERTY_ID_ANCHORVALE)
+                .withIsClosedDeal(VALID_PROPERTY_IS_CLOSED_DEAL_ANCHORVALE);
     }
 
     /**

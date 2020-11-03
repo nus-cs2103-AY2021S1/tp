@@ -10,8 +10,8 @@ import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_MEETING_
 import static seedu.address.logic.commands.MeetingCommandTestUtil.VALID_VENUE_A;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MEETING;
-import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
+import static seedu.address.testutil.meeting.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.propertybook.PropertyBook;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
+import seedu.address.testutil.meeting.EditMeetingDescriptorBuilder;
 
 class EditMeetingCommandTest {
     private Model model = new ModelManager(new UserPrefs(), new BidBook(),

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.property.PropertyCommandTestUtil.DESC_ANCHORVALE;
-import static seedu.address.logic.commands.property.PropertyCommandTestUtil.DESC_BEDOK;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.EDIT_DESC_ANCHORVALE;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.EDIT_DESC_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_ASKING_PRICE_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_IS_RENTAL_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_NAME_BEDOK;
@@ -172,11 +172,11 @@ public class EditPropertyCommandTest {
 
     @Test
     public void equals() {
-        final EditPropertyCommand standardCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY, DESC_ANCHORVALE);
+        final EditPropertyCommand standardCommand = new EditPropertyCommand(INDEX_FIRST_PROPERTY, EDIT_DESC_ANCHORVALE);
 
         // same values -> returns true
         EditPropertyCommand.EditPropertyDescriptor copyDescriptor =
-                new EditPropertyCommand.EditPropertyDescriptor(DESC_ANCHORVALE);
+                new EditPropertyCommand.EditPropertyDescriptor(EDIT_DESC_ANCHORVALE);
         EditPropertyCommand commandWithSameValues = new EditPropertyCommand(INDEX_FIRST_PROPERTY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -190,10 +190,10 @@ public class EditPropertyCommandTest {
         assertFalse(standardCommand.equals(new ListPropertyCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditPropertyCommand(INDEX_SECOND_PROPERTY, DESC_ANCHORVALE)));
+        assertFalse(standardCommand.equals(new EditPropertyCommand(INDEX_SECOND_PROPERTY, EDIT_DESC_ANCHORVALE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditPropertyCommand(INDEX_FIRST_PROPERTY, DESC_BEDOK)));
+        assertFalse(standardCommand.equals(new EditPropertyCommand(INDEX_FIRST_PROPERTY, EDIT_DESC_BEDOK)));
     }
 
 }

@@ -28,15 +28,20 @@ ___
 
 ## My Contributions to PropertyFree
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a meetingDate. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+* **Find Meeting Feature**: Added the ability to find meetings based on certain attributes.
+  * What it does: allows the user to find meetings based on various parameters and also allows the user to find based on multiple features also.
+  * Justification: This feature improves the product significantly because a user might want to find the meeting with ease rather then filtering through the list manually.
+  * Highlights: The implementation of this command was challenging as I had to make sure that users are able to find based on multiple number of attributes in different order.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **Delete Meeting Feature**: Added the ability to delete meetings.
+  * What it does: allows the user to delete meetings based on the id of the meeting.
+  * Justification: This feature allows the user to remove meetings that have been cancelled or the user feels is not necessary anymore.
+  * Highlights: The implementation was rather straight forward however, there was soem issues faced with zero indexing.
+  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **Code contributed**: [RepoSense link]()
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=harsha&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=munharsha&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub

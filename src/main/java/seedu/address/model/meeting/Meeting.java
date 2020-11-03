@@ -142,8 +142,8 @@ public abstract class Meeting {
     /**
      * Returns true if either the venue, meetingDate, bidderId and propertyId is the same.
      *
-     * @param other The other property.
-     * @return True if both property objects represent the same meeting.
+     * @param other The other meeting.
+     * @return True if both meeting objects represent the same meeting.
      */
     @Override
     public boolean equals(Object other) {

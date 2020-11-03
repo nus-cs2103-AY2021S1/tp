@@ -39,38 +39,64 @@ is update and maintained by Marcus.
 
 
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a meetingDate. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
+* **Add Bid Feature**: Added the ability to add a bid to a list of bids.
+  * What it does: allows the user to add a bid for a property with a link to a property Id and a bidder Id.
+  * Justification: This feature is a necessary feature to allow the user to manage bids for a property.
+  * Highlights: The add-bid feature will automatically slot the bid in Alpha numeric order so the displayed list is always organized.
+  * Credits: NIL
+  
+* **Edit Bid Feature**: Added the ability to edit a bid in the list of bids.
+  * What it does: allows the user to edit a bid by changing the details of the bid.
+  * Justification: This feature greatly improves the user convenience by allowing the user to correct mistakes in a bid rather than deleting the bid.
+  * Highlights: The edit-bid feature will automatically slot the bid in Alpha numeric order so the displayed list is always organized.
+  * Credits: NIL
+  
+* **Find Bid Feature**: Added the ability to find a specific bid in the list of bids.
+  * What it does: allows the user to find a bid based on keywords specified.
+  * Justification: This feature greatly improves the user convenience by allowing the user easily find a specific bid.
+  * Highlights: the find bid command can find a bid using the property id, bidder id or the bid amount.
+  * Credits: NIL
+ 
+* **Tab Feature**: Added tabs to the UI to better display all the lists.
+  * What it does: displays the property, bidder, seller, bid lists in a presentable manner.
+  * Justification: This feature greatly improves the user convenience by allowing the user to easily switch between lists.
+  * Highlights: the tabs automatically switch to a tab if the command used is related to the tab.
+  * Credits: NIL
+  
+* **Delete Bid Feature**: Added the ability to delete a specific bid from the list of bids.
+  * What it does: allows the user to delete a bid based on the index in the list.
+  * Justification: This feature is a necessary feature to allow the user to remove a bid once it is not necessary.
+  * Highlights: the delete bid command can only delete based on the index.
+  * Credits: NIL
+  
+* **List Bid Feature**: Added the ability to display the list of bids.
+  * What it does: allows the user to display the list of bids.
+  * Justification: This feature is a necessary feature to allow the user navigate to the list of bids or clear the filtered bids list.
+  * Highlights: the list bid command will change the tab to the bid list.
+  * Credits: NIL
+  
 * **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=marcon&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Marcon2509&tabRepo=AY2021S1-CS2103-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Managed releases `v1.1` - `v1.4` (4 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Wrote additional tests for existing bid features to increase coverage
+  * Wrote tests for other features.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the bid features
+    * Did cosmetic tweaks to existing documentation of all bid features
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added implementation details of the `delete` and 'list' feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments):
+  * Reported bugs and suggestions for other teams in the class
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
