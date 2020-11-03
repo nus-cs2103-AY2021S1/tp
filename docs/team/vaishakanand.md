@@ -11,12 +11,12 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 Given below are my contributions to the project.
 
 * **New Feature implemented**: Added the **details** feature to **Reeve**.
-  * What it does: Allows the user to add additional details to a student.
+  * What it does: Allows the user to add, edit or delete any additional details to a student.
   * Justification: This feature would help tutors significantly as it allows them to add details that have not been 
   covered by the other fields, to students.
   
 * **New Feature implemented**: Added the **attendance** feature to **Reeve**.
-  * What it does: Allows the user to track the attendance of students in lessons.
+  * What it does: Allows the user to track (add or delete) the attendance of students in lessons.
   * Justification: An attendance tracking feature helps to ease one of a tutor's many required tasks. This is helps them
    by greatly simplifying the process of taking and storing the attendance of the tutor's many students.
 
