@@ -101,11 +101,20 @@ public class StudentBuilder {
         for (String weekNumber : weekNumbers) {
             newAttendance.addAttendance(weekNumber);
         }
-        this.attendance = newAttendance;
+        newAttendance.setParticipation(attendance.getParticipationScoreAsString());
+        attendance = newAttendance;
+        return this;
+    }
+
+    /**
+     * Sets the participation score of the {@code Student} that we are building.
+     */
+    public StudentBuilder withParticipation(String participationScoreAsString) {
+        attendance.setParticipation(participationScoreAsString);
         return this;
     }
 
     public Student build() {
-        return new Student(name, phone, email, tags, studentId);
+        return new Student(name, phone, email, tags, studentId, attendance);
     }
 }

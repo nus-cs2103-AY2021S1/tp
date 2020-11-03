@@ -34,21 +34,40 @@ public class AttendanceTest {
     }
 
     @Test
+    public void isValidParticipationEdit() {
+        // null participation score
+        assertThrows(NullPointerException.class, () -> Attendance.isValidParticipationEdit(null));
+
+        // invalid participation score
+        assertFalse(Attendance.isValidParticipationEdit("-101")); // 1 less than lower bound
+        assertFalse(Attendance.isValidParticipationEdit("101")); // 1 more than upper bound
+        assertFalse(Attendance.isValidParticipationEdit("two")); // non-numeric
+        assertFalse(Attendance.isValidParticipationEdit("score 10")); // contains alphabets
+        assertFalse(Attendance.isValidParticipationEdit("10 0")); // contains space
+
+        // valid participation edit score
+        assertTrue(Attendance.isValidParticipationEdit("-100"));
+        assertTrue(Attendance.isValidParticipationEdit("100"));
+        assertTrue(Attendance.isValidParticipationEdit("-49"));
+        assertTrue(Attendance.isValidParticipationEdit("61"));
+    }
+
+    @Test
     public void isValidParticipation() {
         // null participation score
         assertThrows(NullPointerException.class, () -> Attendance.isValidParticipation(null));
 
         // invalid participation score
-        assertFalse(Attendance.isValidParticipation("-101")); // 1 less than lower bound
+        assertFalse(Attendance.isValidParticipation("-1")); // 1 less than lower bound
         assertFalse(Attendance.isValidParticipation("101")); // 1 more than upper bound
-        assertFalse(Attendance.isValidParticipation("two")); // non-numeric
-        assertFalse(Attendance.isValidParticipation("score 10")); // contains alphabets
-        assertFalse(Attendance.isValidParticipation("10 0")); // contains space
+        assertFalse(Attendance.isValidParticipation("thirty")); // non-numeric
+        assertFalse(Attendance.isValidParticipation("score 45")); // contains alphabets
+        assertFalse(Attendance.isValidParticipation("5 9")); // contains space
 
-        // valid participation score
-        assertTrue(Attendance.isValidParticipation("-100"));
+        // valid participation edit score
+        assertTrue(Attendance.isValidParticipation("0"));
         assertTrue(Attendance.isValidParticipation("100"));
-        assertTrue(Attendance.isValidParticipation("-49"));
+        assertTrue(Attendance.isValidParticipation("49"));
         assertTrue(Attendance.isValidParticipation("61"));
     }
 

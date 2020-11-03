@@ -45,6 +45,7 @@ public class TypicalStudents {
             .withTags("CS2103T", "UTCP")
             .withStudentId("A1837538N")
             .withAttendance("1", "4", "3", "12")
+            .withParticipation("24")
             .build();
 
     public static final Student ELIZABETH = new StudentBuilder()
@@ -53,6 +54,7 @@ public class TypicalStudents {
             .withPhone("89993333")
             .withTags("CS2103T", "DDP")
             .withStudentId("A1938563M")
+            .withParticipation("100")
             .build();
 
     public static final Student FIONA = new StudentBuilder()

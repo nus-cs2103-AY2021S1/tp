@@ -1,9 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
-import static seedu.address.testutil.TypicalTutorialGroups.T05;
 import static seedu.address.testutil.TypicalTutorialGroups.getTutorialGroupList;
-import static seedu.address.testutil.TypicalTutorialGroups.getTypicalTutorialGroups;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +9,6 @@ import java.util.List;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
-import seedu.address.model.student.Student;
-import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.
