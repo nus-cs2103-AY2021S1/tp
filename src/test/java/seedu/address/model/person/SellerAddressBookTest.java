@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.selleraddressbook.SellerAddressBook;
-import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
-import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
+import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.testutil.seller.SellerBuilder;
 
 public class SellerAddressBookTest {
