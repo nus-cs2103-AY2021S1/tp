@@ -16,8 +16,8 @@ public class FindCommand extends Command {
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " <word in log name>";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all logs that contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all logs that contain all of "
+            + "the specified keywords (case-insensitive) anywhere in the log and displays them.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " abs";
 
