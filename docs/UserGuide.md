@@ -161,6 +161,20 @@ Format: `editex INDEX [e/EXERCISE] [c/CALORIES]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+### Deleting an exercise : `deleteex`
+
+Deletes the specified exercise.
+
+Format: `deleteex <index>`
+
+- Deletes the log at the specified `<index>`.
+- The index refers to the index number shown in the list of exercises.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `list` followed by `deleteex 2`deletes the 2nd exercise.
+
 ### Exiting the program : `exit`
 
 Exits the program.
