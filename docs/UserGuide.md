@@ -617,17 +617,18 @@ note sn/SHENG SIONG1 nt/chicken will expire soon
 
 <h4>Below is a guided example for adding notes to stocks:</h4>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source:** If you already have stocks in your stock book, you may also skip Step 1.
+Just make sure that the serial number of the stock you are adding the note to is correctly entered.
+Use the `list lt/all` command to show all the stocks in the stock book in the `Data` tab.
+
+</div>
+
 **Step 1.** Start with [adding](#adding-new-stock-add) these 3 stocks in your
 stock book in your `Data` tab as shown in the image below.
 
 ![note-step-1](images/note/note-step-1.png)
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source:** You may also skip Step 1 and use the stocks already in your stockbook.
-Just make sure that the serial number of the stock you are adding the note to is correctly entered.
-
-</div>
 
 Let's add a note to stock with name Apple juice.
 
@@ -721,9 +722,10 @@ notedelete sn/ntuc1 ni/1
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source:** You may also skip Step 1 and use the stocks that have notes already in your stockbook.
+**:information_source:** You may skip Step 1 and use the stocks that have notes already in your stockbook.
 Make sure that the serial number of the stock and the note index of the note you are deleting
-from the stock is correctly entered.
+from the stock is correctly entered. Note that deleting notes is an irreversible action and you will have to
+manually add the note back using the `note` command, if you deleted the note.
 Use the `list lt/all` command to show all the stocks in the stock book in the `Data` tab.
 
 </div>
