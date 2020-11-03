@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_NOTE + "Important question to take note of! "
             + PREFIX_RATING + "2 "
             + PREFIX_TAG + "exam "
-            + PREFIX_DIAGRAM + "images/diagram_1";
+            + PREFIX_DIAGRAM + "images/diagram_1.png";
 
     public static final String MESSAGE_SUCCESS = "New flashcard added: %1$s";
     public static final String MESSAGE_DUPLICATE_FLASHCARD = "This flashcard already exists";

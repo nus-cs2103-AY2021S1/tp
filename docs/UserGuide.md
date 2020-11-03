@@ -50,17 +50,17 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
    * **`filter c/OOP`** : Filters out flashcard(s) belonging to the OOP category. 
    
-   * **`fav 1`** : Favourite the 1st flashcard in the current list.
+   * **`fav 1`** : Favourites the 1st flashcard in the current list.
      
-   * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
+   * **`unfav 1`** : Unfavourites the 1st flashcard in the current list.
    
-   * **`find general`**: Find all flashcards containing general.
+   * **`find general`**: Finds all flashcards containing general.
 
    * **`list`** : Lists all flashcards.
 
    * **`review`** : Reviews the current list of flashcards.
    
-   * **`quiz`** : Quiz the current list of flashcards.
+   * **`quiz`** : Quizzes the current list of flashcards.
    
    * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
    
@@ -115,7 +115,7 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t
 * `DIAGRAM` can be defined by a valid relative or absolute path.
 * `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
      It can consist of multiple words but there should only be 1 space between words.
-* `TAGS` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
+* `TAG` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category is not specified, the flashcard will have the <b>General</b> category.
@@ -159,7 +159,8 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * The index **must be a positive integer greater than 0** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
-* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
+* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes 
+once the prefix is declared e.g. `c/` is not allowed and will not remove category.
 
 Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
@@ -187,11 +188,11 @@ Examples:
 
 ### Favourite a flashcard  : `fav`
 
-Favourite the specified flashcard.
+Favourites the specified flashcard.
 
 Format: `fav INDEX`
 
-* Favourite the flashcard at the specified INDEX.
+* Favourites the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer greater than 0** 1, 2, 3, …
 
@@ -200,11 +201,11 @@ Examples:
 
 ### Unfavourite a flashcard  : `unfav`
 
-Unfavourite the specified flashcard.
+Unfavourites the specified flashcard.
 
 Format: `unfav INDEX`
 
-* Unfavourite the flashcard at the specified INDEX.
+* Unfavourites the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer greater than 0** 1, 2, 3, …
 
@@ -213,7 +214,7 @@ Examples:
 
 ### Find flashcards : `find`
 
-Search for all flashcards matching any of the search keywords.
+Searches for all flashcards matching any of the search keywords.
 
 Format: `find KEYWORD [KEYWORD]...`
 * Finds all flashcards containing any of the keywords
@@ -259,7 +260,7 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 ### Quizzing flashcards: `quiz`
 
-Quiz the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
+Quizzes the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
 
 Upon entering quiz mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
@@ -292,16 +293,16 @@ Examples:
 <div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
 </div>
     
-### Views a flashcard  : `view`
+### View a flashcard  : `view`
 
-View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
+Views the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
 
 Format: `view INDEX [-a]`
 
-* View the flashcard at the specified INDEX.
+* Views the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer greater than 0** 1, 2, 3, …
-*  If `-a` is specified, the answer and notes of the flashcard will be shown too.
+* If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
