@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         // Checks if low quantity prefix only appear at most once in the given command.
-        if (!doesLowQuantityPrefixesAppearOnce(argMultimap, PREFIX_LOW_QUANTITY)) {
+        if (!doesLowQuantityPrefixAppearOnce(argMultimap, PREFIX_LOW_QUANTITY)) {
             throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, AddCommand.MESSAGE_USAGE));
         }
 
@@ -81,7 +81,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * Returns true if all of the low quantity prefix appears at most one time in the given
      * {@code ArgumentMultimap}.
      */
-    private static boolean doesLowQuantityPrefixesAppearOnce(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean doesLowQuantityPrefixAppearOnce(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() <= 1);
     }
 
