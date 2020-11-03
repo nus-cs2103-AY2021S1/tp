@@ -8,7 +8,6 @@ import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.logic.commands.DeallocateCommand;
-import seedu.resireg.logic.commands.ReallocateCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

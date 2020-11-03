@@ -31,18 +31,18 @@ public class AllocationTest {
 
     @Test
     public void hasSameStudent() {
-        Allocation ALLOCATION_ONE_COPY = new AllocationBuilder(ALLOCATION_ONE).build();
-        assertTrue(ALLOCATION_ONE.hasSameStudent(ALLOCATION_ONE_COPY));
-        assertTrue(ALLOCATION_ONE.hasSameRoom(ALLOCATION_ONE_COPY));
+        Allocation allocationOneCopy = new AllocationBuilder(ALLOCATION_ONE).build();
+        assertTrue(ALLOCATION_ONE.hasSameStudent(allocationOneCopy));
+        assertTrue(ALLOCATION_ONE.hasSameRoom(allocationOneCopy));
 
-        Allocation ALLOCATION_ONE_EDITED_STUDENT_ID = new AllocationBuilder(ALLOCATION_ONE)
+        Allocation allocationOneEditedStudentId = new AllocationBuilder(ALLOCATION_ONE)
                 .withStudentId(DANIEL.getStudentId().value).build();
-        assertFalse(ALLOCATION_ONE.hasSameStudent(ALLOCATION_ONE_EDITED_STUDENT_ID));
+        assertFalse(ALLOCATION_ONE.hasSameStudent(allocationOneEditedStudentId));
 
-        Allocation ALLOCATION_ONE_EDITED_ROOM = new AllocationBuilder(ALLOCATION_ONE)
+        Allocation allocationOneEditedRoom = new AllocationBuilder(ALLOCATION_ONE)
                 .withFloor(ROOM_FOUR.getFloor().value)
                 .withRoomNumber(ROOM_FOUR.getRoomNumber().value).build();
-        assertFalse(ALLOCATION_ONE.hasSameRoom(ALLOCATION_ONE_EDITED_ROOM));
+        assertFalse(ALLOCATION_ONE.hasSameRoom(allocationOneEditedRoom));
     }
 
     @Test
