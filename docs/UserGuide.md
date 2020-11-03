@@ -225,7 +225,7 @@ Examples:
 
 Steps for filtering for a flashcard based on category and tag.
 
-Step 1: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`
+Step 1: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`.
 
 ![filedirectory](images/ug/ug_filter_step1.PNG)
 
@@ -305,6 +305,19 @@ Format: `review`
 The review and success frequency of a flashcard is not affected by review mode.
 </div>
 
+Steps for entering review mode.
+
+Step 1: We want to enter review mode to review our flashcards. Type the command `review`.
+![filedirectory](images/ug/ug_review_step1.PNG)
+
+Step 2: We are brought to the review mode. The instructions on how to navigate review mode will be shown at the top.
+
+![filedirectory](images/ug/ug_review_step2.PNG)
+
+Step 3: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, the answer of the flashcard is shown.
+
+![filedirectory](images/ug/ug_review_step3.PNG)
+
 ### Quizzing flashcards: `quiz`
 
 Quiz the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
@@ -326,6 +339,25 @@ Format: `quiz`
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
+
+Steps for entering quiz mode.
+
+Step 1: We want to enter quiz mode to quiz ourself on the current list of flashcards. Type the command `quiz`.
+
+![filedirectory](images/ug/ug_quiz_step1.PNG)
+
+Step 2: We are brought to the quiz mode. The instructions on how to navigate quiz mode will be shown at the top.
+
+![filedirectory](images/ug/ug_quiz_step2.PNG)
+
+Step 3: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, we will be prompted if we got the answer correct.
+
+![filedirectory](images/ug/ug_quiz_step3.PNG)
+
+Step 4: We got this answer correct so we will press `y`. This will automatically bring us to the next flashcard.
+
+![filedirectory](images/ug/ug_quiz_step4.PNG)
+
 
 ### Sort all flashcards : `sort`
 
@@ -357,6 +389,24 @@ Format: `view INDEX [-a]`
 flashcard was not modified/deleted.
 </div>
 
+Steps for viewing a specific flashcard.
+
+Step 1: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`.
+
+![filedirectory](images/ug/ug_view_step1.PNG)
+
+Step 2: We will be presented with a "snapshot" of the flashcard at index 3 in the view pane.
+
+![filedirectory](images/ug/ug_view_step2.PNG)
+
+Step 3: To view the answer and notes(if applicable) of the flashcard on the view pane. Type the command `view 3 -a`.
+
+![filedirectory](images/ug/ug_view_step3.PNG)
+
+Step 4: The answer of the flashcard is now displayed on the view pane.
+
+![filedirectory](images/ug/ug_view_step4.PNG)
+
 ### Viewing the statistics of flashcard `stats`
 
 View the statistics of a flashcard.
@@ -380,6 +430,16 @@ The following information will be displayed on the view pane:
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
+
+Steps for viewing the statistics of a specific flashcard.
+
+Step 1: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`.
+
+![filedirectory](images/ug/ug_stats_step1.PNG)
+
+Step 2: The statistics of the flashcard at index 1 will be displayed in the view pane.
+
+![filedirectory](images/ug/ug_stats_step2.PNG)
 
 ### Exiting the program : `exit`
 
