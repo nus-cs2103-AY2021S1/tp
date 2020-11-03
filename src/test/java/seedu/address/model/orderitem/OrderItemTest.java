@@ -48,10 +48,6 @@ public class OrderItemTest {
         // different quantity, same name -> returns true
         editedPrata = new OrderItemBuilder(PRATA).withQuantity(4).build();
         assertTrue(PRATA.equals(editedPrata));
-
-        // different tags -> returns false
-        editedPrata = new OrderItemBuilder(PRATA).withTags("false").build();
-        assertFalse(PRATA.equals(editedPrata));
     }
 
     @Test

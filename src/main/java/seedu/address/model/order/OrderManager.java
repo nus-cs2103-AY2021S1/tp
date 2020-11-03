@@ -9,6 +9,7 @@ import java.util.Stack;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Wraps all data at the address-book level
@@ -163,4 +164,11 @@ public class OrderManager implements ReadOnlyOrderManager {
         return order.hashCode();
     }
 
+    /**
+     * Tags {@code orderItem} with {@code tag}.
+     */
+    public void tagOrderItem(OrderItem orderItem, Tag tag) {
+        order.tagOrderItem(orderItem, tag);
+        saveChanges();
+    }
 }

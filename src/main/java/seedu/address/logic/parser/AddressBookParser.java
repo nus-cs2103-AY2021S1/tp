@@ -21,6 +21,7 @@ import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SubmitCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.TotalCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.VendorCommand;
@@ -55,6 +56,7 @@ public class AddressBookParser {
         String[] commands = {
             AddCommand.COMMAND_WORD,
             RemoveCommand.COMMAND_WORD,
+            TagCommand.COMMAND_WORD,
             SortCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
@@ -85,6 +87,9 @@ public class AddressBookParser {
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
+
+        case TagCommand.COMMAND_WORD:
+            return new TagCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);

@@ -12,6 +12,7 @@ import seedu.address.model.food.MenuItem;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.vendor.Vendor;
 
 
@@ -166,4 +167,5 @@ public interface Model {
 
     boolean isSelected();
 
+    void tagOrderItem(OrderItem orderItem, Tag tag);
 }

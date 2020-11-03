@@ -21,6 +21,12 @@ public class MenuItem extends Food {
         return this.tags;
     }
 
+    @Override
+    public void setTags(Set<Tag> newTags) {
+        tags.clear();
+        tags.addAll(newTags);
+    }
+
     public String getFilePath() {
         return filePath;
     }
