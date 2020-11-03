@@ -59,6 +59,30 @@ public class DoneCommandTest {
     }
 
     @Test
+    public void execute_validIndexesUnfilteredList_success() {
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_SECOND_ASSIGNMENT);
+
+        Assignment firstAssignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment secondAssignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+
+        assignmentsToMarkDone.add(secondAssignmentToMarkDone);
+        assignmentsToMarkDone.add(firstAssignmentToMarkDone);
+
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
+
+        String expectedMessage = String.format(DoneCommand.MESSAGE_MARK_ASSIGNMENTS_AS_DONE_SUCCESS,
+                assignmentsToMarkDone);
+
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
+        expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), firstAssignmentToMarkDone);
+        expectedModel.setAssignment(model.getFilteredAssignmentList().get(1), secondAssignmentToMarkDone);
+
+        assertCommandSuccess(doneCommand, model, expectedMessage, expectedModel);
+    }
+
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
         indexesToMarkDone.add(outOfBoundIndex);
@@ -111,6 +135,45 @@ public class DoneCommandTest {
         DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
 
         assertCommandFailure(doneCommand, model, DoneCommand.MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE);
+    }
+
+    @Test
+    public void execute_alreadyMarkedDonePartialAssignmentsUnfilteredList_failure() {
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_SECOND_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_THIRD_ASSIGNMENT);
+
+        // Set assignment in filtered list in ProductiveNus as done
+        Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment firstAssignmentMarkedDone = new AssignmentBuilder(firstAssignment).withDoneStatusSet().build();
+        model.setAssignment(firstAssignment, firstAssignmentMarkedDone);
+
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
+
+        assertCommandFailure(doneCommand, model, String.format(DoneCommand.MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE, "[1]"));
+    }
+
+    @Test
+    public void execute_alreadyMarkedDoneAllAssignmentsUnfilteredList_failure() {
+        indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_SECOND_ASSIGNMENT);
+        indexesToMarkDone.add(INDEX_THIRD_ASSIGNMENT);
+
+        // Set all assignments in filtered list in ProductiveNus as done
+        Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment firstAssignmentMarkedDone = new AssignmentBuilder(firstAssignment).withDoneStatusSet().build();
+        Assignment secondAssignment = model.getFilteredAssignmentList().get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+        Assignment secondAssignmentMarkedDone = new AssignmentBuilder(secondAssignment).withDoneStatusSet().build();
+        Assignment thirdAssignment = model.getFilteredAssignmentList().get(INDEX_THIRD_ASSIGNMENT.getZeroBased());
+        Assignment thirdAssignmentMarkedDone = new AssignmentBuilder(thirdAssignment).withDoneStatusSet().build();
+
+        model.setAssignment(firstAssignment, firstAssignmentMarkedDone);
+        model.setAssignment(secondAssignment, secondAssignmentMarkedDone);
+        model.setAssignment(thirdAssignment, thirdAssignmentMarkedDone);
+
+        DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
+
+        assertCommandFailure(doneCommand, model, String.format(DoneCommand.MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE, "[1, 2, 3]"));
     }
 
     @Test
