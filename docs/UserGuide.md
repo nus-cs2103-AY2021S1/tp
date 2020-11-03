@@ -193,7 +193,7 @@ Examples:
 
 Steps for editing a flashcard's category and rating:
 
-Step 1: Locate the flashcard you wish to edit. In this example, we want to edit flashcard at index 2.
+Step 1: Locate the flashcard you wish to edit. In this example, we want to edit the flashcard at index 2.
 
 ![filedirectory](images/ug/ug_edit_step1.PNG)
 
