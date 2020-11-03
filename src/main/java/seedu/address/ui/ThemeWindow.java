@@ -51,11 +51,13 @@ public class ThemeWindow extends UiPart<Stage> {
         ThemeCard lightThemeCard = new ThemeCard(ThemeSet.LIGHT_THEME, this);
         ThemeCard darkThemeCard = new ThemeCard(ThemeSet.DARK_THEME, this);
         ThemeCard galaxyThemeCard = new ThemeCard(ThemeSet.GALAXY_THEME, this);
+        ThemeCard skyThemeCard = new ThemeCard(ThemeSet.SKY_THEME, this);
 
         themeList.getItems().setAll(
                 lightThemeCard.getRoot(),
                 darkThemeCard.getRoot(),
-                galaxyThemeCard.getRoot()
+                galaxyThemeCard.getRoot(),
+                skyThemeCard.getRoot()
         );
     }
 
