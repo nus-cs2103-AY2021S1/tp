@@ -290,7 +290,8 @@ Format: `count`
 </div>
 
 Example:
-![Count example](images/CountExample.png)
+
+![Count example](images/CountExample.PNG)
 
 ### Sorting the patients: `sort` (by Chong Jia Le)
 
@@ -307,21 +308,33 @@ Examples:
 * Performing `sort name` would result in the patients to be sorted by their name in ascending order, as shown in the steps below.
 
     1. Initially, list of patients is not sorted by name as seen below:
-        ![Sort Nric example](images/SortNric.png)
+        
+        ![Sort Nric example](images/SortNric.PNG)
+        
     2. After user inputs `sort name` list is sorted as seen below:
-        ![Sort Name example](images/SortName.png)
+        
+        ![Sort Name example](images/SortName.PNG)
 
 * Performing `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order, as shown in the steps below.
+    
     1. Initially, list of patients is not sorted by NRIC as seen below:
-        ![Sort Nric example](images/SortName.png)
+        
+        ![Sort Nric example](images/SortName.PNG)
+    
     2. After user inputs `sort NRIC` list is sorted as seen below:
-        ![Sort Name example](images/SortNric.png)
+        
+        ![Sort Name example](images/SortNric.PNG)
         
 * Performing `find amy` followed by `sort name` would result in the app displaying all patients whose names contain `amy` sorted in alphabetical order by their name.
+    
     1. `find amy` is performed resulting in the application showing only patients whose names contain `amy` as shown below:
-        ![Sort Find example 1](images/SortFind.png)
+  
+        ![Sort Find example 1](images/SortFind.PNG)
+        
     2. After the user inputs `sort name`, the partial list is sorted as seen below:
-        ![Sort Find example 2](images/SortFind2.png)
+        
+        ![Sort Find example 2](images/SortFind2.PNG)
+        
 ### Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
 
 The `showAppt` command shows you all the appointments of a patient in a table for ease of viewing.
