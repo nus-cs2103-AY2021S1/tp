@@ -54,7 +54,7 @@ public class StockViewWindow extends UiPart<Region> {
                 String header = headerBody[0];
                 String body = headerBody[1];
 
-                if(header.equals("Serial Number")) {
+                if (header.equals("Serial Number")) {
                     body = body.toUpperCase();
                 } else {
                     body = upperFirst(body);
