@@ -12,26 +12,29 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.question.Question;
 
 public class JsonAdaptedAcademic {
 
-    public static final String MISSING_ADMIN_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
-
+    private final List<JsonAdaptedQuestion> questions = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attendanceList = new ArrayList<>();
-    private final List<JsonAdaptedExam> jsonAdaptedExams = new ArrayList<>();
+    private final List<JsonAdaptedExam> exams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedAcademic} with academic details.
-     * @param attendanceList
      */
     @JsonCreator
-    public JsonAdaptedAcademic(@JsonProperty("attendanceList") List<JsonAdaptedAttendance> attendanceList,
+    public JsonAdaptedAcademic(@JsonProperty("questions") List<JsonAdaptedQuestion> questions,
+                               @JsonProperty("attendanceList") List<JsonAdaptedAttendance> attendanceList,
                                @JsonProperty("exams") List<JsonAdaptedExam> exams) {
+        if (questions != null) {
+            this.questions.addAll(questions);
+        }
         if (attendanceList != null) {
             this.attendanceList.addAll(attendanceList);
         }
         if (exams != null) {
-            this.jsonAdaptedExams.addAll(exams);
+            this.exams.addAll(exams);
         }
     }
 
@@ -39,10 +42,13 @@ public class JsonAdaptedAcademic {
      * Converts a given {@code Academic} into this class for Jackson use.
      */
     public JsonAdaptedAcademic(Student source) {
+        questions.addAll(source.getQuestions().stream()
+                .map(JsonAdaptedQuestion::new)
+                .collect(Collectors.toList()));
         attendanceList.addAll(source.getAttendance().stream()
                 .map(JsonAdaptedAttendance::new)
                 .collect(Collectors.toList()));
-        jsonAdaptedExams.addAll(source.getExams().stream()
+        exams.addAll(source.getExams().stream()
                 .map(JsonAdaptedExam::new)
                 .collect(Collectors.toList()));
     }
@@ -53,18 +59,21 @@ public class JsonAdaptedAcademic {
      * @throws IllegalValueException if there were any data constraints violated in the adapted admin.
      */
     public Academic toModelType() throws IllegalValueException {
+        List<Question> modelQuestions = new ArrayList<>();
+        for (JsonAdaptedQuestion question : questions) {
+            modelQuestions.add(question.toModelType());
+        }
 
-        final List<Attendance> attendances = new ArrayList<>();
+        List<Attendance> modelAttendance = new ArrayList<>();
         for (JsonAdaptedAttendance attendance : attendanceList) {
-            attendances.add(attendance.toModelType());
+            modelAttendance.add(attendance.toModelType());
         }
 
-        List<Exam> exams = new ArrayList<>();
-        for (JsonAdaptedExam exam : jsonAdaptedExams) {
-            exams.add(exam.toModelType());
+        List<Exam> modelExams = new ArrayList<>();
+        for (JsonAdaptedExam exam : exams) {
+            modelExams.add(exam.toModelType());
         }
 
-        final List<Attendance> modelAttendance = new ArrayList<>(attendances);
-        return new Academic(modelAttendance, exams);
+        return new Academic(modelQuestions, modelAttendance, modelExams);
     }
 }
