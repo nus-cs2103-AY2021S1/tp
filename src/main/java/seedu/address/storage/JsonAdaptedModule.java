@@ -55,7 +55,7 @@ public class JsonAdaptedModule {
 
         if (moduleId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "Module ID"));
+                    ModuleId.class.getSimpleName()));
         }
         if (!ModuleId.isValidModuleId(moduleId)) {
             throw new IllegalValueException(ModuleId.MESSAGE_CONSTRAINTS);
