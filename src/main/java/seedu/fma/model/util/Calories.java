@@ -4,7 +4,8 @@ package seedu.fma.model.util;
  * Represents calories
  */
 public class Calories {
-    public static final String NUMBER_CONSTRAINTS = "Don't try to break our app! Calories should be an integer within range 1-1000 inclusive.";
+    public static final String NUMBER_CONSTRAINTS = "Don't try to break our app! "
+            + "Calories should be an integer within range 1-1000 inclusive.";
     public static final String MESSAGE_CONSTRAINTS =
             "Don't try to cheat us! Calories should be within range 1-1000 inclusive.";
 

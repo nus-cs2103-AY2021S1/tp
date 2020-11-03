@@ -1,13 +1,12 @@
 package seedu.fma.model.log;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Represents a Log's Rep number in the log book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRep(int)}
  */
 public class Rep {
-    public static final String NUMBER_CONSTRAINTS = "Don't try to break our app! Reps should be an integer within range 1-1000 inclusive.";
+    public static final String NUMBER_CONSTRAINTS = "Don't try to break our app! "
+            + "Reps should be an integer within range 1-1000 inclusive.";
     public static final String MESSAGE_CONSTRAINTS =
             "Don't try to cheat us! Reps should be within range 1-1000 inclusive.";
     public final int value;
