@@ -16,12 +16,14 @@ public class ListCommandParser implements Parser<ListCommand> {
         boolean hasArgumentIndex = args.matches("(.+|[$&+,:;=?@#|'<>.^*()%!-])$"); //Has argument
         if (!hasArgumentIndex) {
             return new ListCommand(Index.fromZeroBased(0));
-        }
-        try {
-            Index index = ParserUtil.parseListIndex(args);
-            return new ListCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
+        } else {
+            boolean argumentRange = args.trim().matches("^([1-9]|[1-4][0-9]|50)$");
+            if (argumentRange) {
+                Index index = ParserUtil.parseListIndex(args);
+                return new ListCommand(index);
+            } else {
+                throw new ParseException(ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
+            }
         }
     }
 }
