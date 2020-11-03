@@ -217,9 +217,6 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                /*.append(ingredients.stream()
-                        .map(item -> item.getQuantity() + " " + item.getValue())
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))*/
                 .append(stringifyIngredients(ingredients))
                 .append(" Calories: ")
                 .append(getCalories() + " cal")

@@ -68,10 +68,6 @@ public class SingleRecipeCard extends UiPart<HBox> {
         };
         getRoot().widthProperty().addListener(stageSizeListener);
 
-        /*ingredients.setText(recipe.getIngredient().stream()
-                .map(item -> item.getQuantity() + " " + item.getValue())
-                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a));*/
-
         ingredients.setText(recipe.stringifyIngredients(recipe.getIngredient()));
 
         calories.setText(recipe.getCalories().value.toString() + " cal");
