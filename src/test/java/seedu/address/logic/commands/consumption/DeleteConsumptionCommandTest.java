@@ -19,8 +19,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.consumption.Consumption;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteConsumptionCommand}.
  */
 public class DeleteConsumptionCommandTest {
 

@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.consumption.Consumption;
 
 /**
- * Deletes a recipe identified using it's displayed index from the consumption list.
+ * Deletes a recipe identified using its displayed index from the consumption list.
  */
 public class DeleteConsumptionCommand extends Command {
 
