@@ -40,8 +40,10 @@ public class DoneCommand extends Command {
     // for done single index
     public static final String MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE = "This assignment is already marked as done.";
     // for done multiple indexes
-    public static final String MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE = "These assignments are already marked as done: %1$s";
-    public static final String MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE = "This assignment is already marked as done: %1$s";
+    public static final String MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE =
+            "These assignments are already marked as done: %1$s";
+    public static final String MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE =
+            "This assignment is already marked as done: %1$s";
 
     private final List<Index> targetIndexes;
 
@@ -87,12 +89,14 @@ public class DoneCommand extends Command {
         }
 
         if (hasException) {
-            if (isMultipleIndexes && assignmentsAlreadyMarkedDone.size() > 1 ) {
+            if (isMultipleIndexes && assignmentsAlreadyMarkedDone.size() > 1) {
                 // sort so that the numbers will appear in ascending order later
                 assignmentsAlreadyMarkedDone.sort(null);
-                throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE, assignmentsAlreadyMarkedDone));
+                throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE,
+                        assignmentsAlreadyMarkedDone));
             } else if (isMultipleIndexes) {
-                throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE, assignmentsAlreadyMarkedDone));
+                throw new CommandException(String.format(MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE,
+                        assignmentsAlreadyMarkedDone));
             } else {
                 throw new CommandException(MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE);
             }

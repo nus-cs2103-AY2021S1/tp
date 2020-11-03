@@ -63,8 +63,10 @@ public class DoneCommandTest {
         indexesToMarkDone.add(INDEX_FIRST_ASSIGNMENT);
         indexesToMarkDone.add(INDEX_SECOND_ASSIGNMENT);
 
-        Assignment firstAssignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        Assignment secondAssignmentToMarkDone = model.getFilteredAssignmentList().get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+        Assignment firstAssignmentToMarkDone = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+        Assignment secondAssignmentToMarkDone = model.getFilteredAssignmentList()
+                .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
 
         assignmentsToMarkDone.add(secondAssignmentToMarkDone);
         assignmentsToMarkDone.add(firstAssignmentToMarkDone);
@@ -150,7 +152,8 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
 
-        assertCommandFailure(doneCommand, model, String.format(DoneCommand.MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE, "[1]"));
+        assertCommandFailure(doneCommand, model,
+                String.format(DoneCommand.MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENT_AS_DONE, "[1]"));
     }
 
     @Test
@@ -173,7 +176,8 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexesToMarkDone);
 
-        assertCommandFailure(doneCommand, model, String.format(DoneCommand.MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE, "[1, 2, 3]"));
+        assertCommandFailure(doneCommand, model, String.format(
+                DoneCommand.MESSAGE_MULTIPLE_ALREADY_MARKED_ASSIGNMENTS_AS_DONE, "[1, 2, 3]"));
     }
 
     @Test
