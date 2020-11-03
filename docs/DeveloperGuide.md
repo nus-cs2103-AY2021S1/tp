@@ -174,30 +174,19 @@ Both options are equally feasible. However, Alternative 1 was chosen to avoid co
 #### Implementation
 
 The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
-It deletes the module based on the specified module code inputted by the user.
-For example, “delmod m/CS2103” deletes the existing CS2103 module in FaculType.
-
-Currently, `DelmodCommand` implements the following operations:
-
-* `DelmodCommandParser#parse(String)` - Parses the arguments of the delmod command. In the given example above, the arguments will be “ m/CS2103”.
-
-And `DelmodCommand` implements the following:
-
-* `DelmodCommand#execute(Model)` - Executes the deletion of the specified module in the given FaculType model.
+It uses an operation `AddressBook#removeModule()` which is exposed in the `Model` interface as `Model#deleteModule()`.
+Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
+from the module list. 
 
 Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
 
-Step 1. The user executes the command `delmod m/CS2103`. 
+Step 1. The user launches the application. Facultype is initialized with the module `CS2103` in the addressbook.
 
-Step 2. The command will be brought to the LogicManager class, where it will be recognized as a `delmod` command and 
-LogicManager will call `DelmodCommandParser#parse(String)` with ` m/CS2103` as the arguments.
+Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the addressbook.
 
-Step 3. `DelmodCommandParser` then obtains the `ModuleCode` from the arguments and forms the `DelmodCommand` with that specified `ModuleCode`.
-The `DelmodCommand` is then returned to the `LogicManager`.
+Step 3. The `delmod` command then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
-Step 4. `LogicManager` then calls `DelmodCommand#execute(Model)`. 
-
-Step 5. The `Module` with the specified `ModuleCode`, if already existing in FaculType, will be deleted. 
+Step 4. The Module with the specified module code, will be deleted from the `UniqueModuleList` in the addressbook.
 
 The following sequence diagram shows how the deleting of the module works:
 
@@ -207,13 +196,28 @@ The following sequence diagram shows how the deleting of the module works:
 
 ##### Aspect: What the delmod command deletes by
 * **Alternative 1 (current choice):** Deletes a module based on the module code.
- * Pros : More intuitive to the Dean to delete by the module code.
- * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
+  * Pros : More intuitive to the Dean to delete by the module code.
+  * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
 
 * **Alternative 2:** Deletes a module based on the index of the module list.
- * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
- * Cons : Less intuitive.
-
+  * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
+  * Cons : Less intuitive.
+  
+  Deleting a module from the module list
+  
+  a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+  
+  b. Test case: `delmod m/CS2103`
+  Expected: Module with module code `CS2103` would be deleted from the module list.
+  
+  c. Test case: `delmod m/CS1101S`
+  Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. Status bar remains the same.
+  
+  d. Test case: `delmod m/CS2103 m/CS2100`
+  Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. Status bar remains the same.
+  
+  { more test cases ... }
+  
 ### Assign feature
 
 #### Implementation
