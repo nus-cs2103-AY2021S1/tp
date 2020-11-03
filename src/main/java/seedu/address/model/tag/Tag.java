@@ -39,5 +39,8 @@ public class Tag {
                 && tagName.equals(((Tag) other).tagName)); // state check
     }
 
-
+    @Override
+    public String toString() {
+        return tagName;
+    }
 }

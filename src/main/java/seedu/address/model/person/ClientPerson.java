@@ -44,8 +44,8 @@ public abstract class ClientPerson extends Person {
                 .append(getPhone())
                 .append("\nId: ")
                 .append(getId())
-                .append("\nTags: ")
-                .append(getId());
+                .append("\nTag: ")
+                .append(getTag());
         return builder.toString();
     }
 }
