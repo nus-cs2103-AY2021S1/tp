@@ -246,6 +246,22 @@ Cons:
 
 ### \[Proposed\] Data archiving
 
+
+
+### Zoom Link Management
+
+As Cap 5 Buddy is designed to suit the needs of SoC students during the transition to online learning,
+it is crucial to design features which allows efficient management of zoom links which are widely used during
+online learning. However, it is worth noting that these features can be easily modified to manage any website links,
+showcasing the usefulness of these features beyond online learning.
+
+The section below provides details of the implementation of each zoom link related function and design considerations
+of these features.
+
+#### Details of implementation
+
+ 
+
 ### Contact List Management
 
 As a module tracking system, Cap 5 Buddy allows users to manage a list of module-related contacts with ease.
@@ -253,7 +269,7 @@ This is especially important since being enrolled in numerous modules results in
 numerous contacts, each with different contact details.
 
 The section below provides details of the implementation of each Contact List function and design considerations
-of the contact list features.
+of these features.
 
 #### Contact List Commands
 
