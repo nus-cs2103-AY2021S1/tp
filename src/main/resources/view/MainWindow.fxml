@@ -56,19 +56,19 @@
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10" />
                         </padding>
-                        <Label fx:id="caseTitle" styleClass="label-title" text="Default Title">
+                        <Label fx:id="caseTitle" styleClass="label-title" text="Default Title" wrapText="true">
                             <padding>
-                                <Insets bottom="5" />
+                                <Insets top="5" bottom="3" left="5" right="5" />
                             </padding>
                         </Label>
-                        <Label fx:id="caseDescription" styleClass="label-bright" text="Default Description">
+                        <Label fx:id="caseDescription" styleClass="label-bright" text="Default Description" wrapText="true">
                             <padding>
-                                <Insets bottom="5" />
+                                <Insets top="3" bottom="3" left="5" right="5" />
                             </padding>
                         </Label>
                         <Label fx:id="caseStatus" styleClass="label-bright" text="Default Status">
                             <padding>
-                                <Insets bottom="20" />
+                                <Insets top="3" bottom="15" left="5" right="5" />
                             </padding>
                         </Label>
 
@@ -80,7 +80,7 @@
                                 <AnchorPane VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="documentListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
-                                            <Insets bottom="10" top="5" />
+                                            <Insets bottom="10" top="5" left="5" right="5"  />
                                         </padding>
                                     </StackPane>
                                 </AnchorPane>
@@ -89,7 +89,7 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="suspectListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
-                                            <Insets bottom="10" top="5" />
+                                            <Insets bottom="10" top="5" left="5" right="5" />
                                         </padding>
                                     </StackPane>
                                 </AnchorPane>
@@ -98,7 +98,7 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="victimListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
-                                            <Insets bottom="10" top="5" />
+                                            <Insets bottom="10" top="5" left="5" right="5" />
                                         </padding>
                                     </StackPane>
                                 </AnchorPane>
@@ -107,7 +107,7 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="witnessListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
-                                            <Insets bottom="10" top="5" />
+                                            <Insets bottom="10" top="5" left="5" right="5" />
                                         </padding>
                                     </StackPane>
                                 </AnchorPane>
