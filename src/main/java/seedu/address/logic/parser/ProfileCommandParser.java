@@ -20,8 +20,8 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         }
         String phoneStr = strArgs[0];
         StringBuilder builder = new StringBuilder();
-        for (String string : strArgs) {
-            builder.append(string);
+        for (int i = 1; i < strArgs.length; i++) {
+            builder.append(strArgs[i]);
             builder.append(" ");
         }
         String addressStr = builder.toString();
