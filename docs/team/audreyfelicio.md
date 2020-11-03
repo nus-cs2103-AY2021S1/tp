@@ -37,11 +37,11 @@ Given below are my contributions to the project.
   heuristics is implemented using dynamic programming algorithm.
 
 * **Git & Repository**:
-  * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`
+  * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`.
   * Set up the team repository as specified by the `CS2103T` module requirements.
   * Used GitHub Projects feature to create kanban boards to track user stories.
   * Manager and maintainer of project repository.
-  * Provided help to team members about Git, GitHub, and workflow.
+  * Provided help to team members about Git, GitHub, and forking workflow.
 
 * **Reviews & Merging**:
   * Head reviewer for Pull Requests.
@@ -52,16 +52,20 @@ Given below are my contributions to the project.
   * Tests other team member's code and determine functional flaws if any.
 
 * **Testing**:
-  * Created unit tests for update feature (update command parser).
-  * Created integration tests for update feature (update command).
-  * Created unit tests for suggestion feature (suggestion command parser, suggestion util).
-  * Created integration tests for suggestion feature (suggestion command).
-  * Created unit tests for sort feature (sort command parser, sort util).
-  * Created integration tests for sort feature (sort command).
+  * Created unit tests for `update` feature (update command parser).
+  * Created integration tests for `update` feature (update command).
+  * Created unit tests for `suggestion` feature (suggestion command parser, suggestion util).
+  * Created integration tests for `suggestion` feature (suggestion command).
+  * Created unit tests for `sort` feature (sort command parser, sort util).
+  * Created integration tests for `sort` feature (sort command).
+  * Improved coverage by creating tests for `QuantityAdder` and `ModelManager`.
   * Reviewed other team members' tests and ensure the tests are adequate and working.
 
 * **Documentation**:
   * User Guide:
+    * Added prefixes table.
+    * Added command information and summary table.
+    * Added invalid prefixes warning.
     * Added documentation for the feature `update`.
     * Added documentation for the feature `sort`.
     * Added documentation for the feature `suggestion`.
@@ -70,3 +74,17 @@ Given below are my contributions to the project.
     * Added implementation details of the `update` feature.
     * Added implementation details of the `sort` feature.
     * Added implementation details of the `suggestion` feature.
+    * Added sequence and class diagrams for `Logic` API.
+    * Added architecture and sequence diagrams for `update`, `sort`, and `suggestion` feature.
+    * Added user stories.
+    * Added use cases for `update` feature.
+    * Added use cases for `sort` feature.
+    * Added use cases for `suggestion` feature.
+
+* **Project Management**:
+  * Created meeting rooms via Zoom for regular team meeting every week.
+  * Ensured meeting time is chosen such that everyone can attend.
+  * Ensured everyone attend the meeting on time.
+
+* **UI**:
+  * Updated the table in help window and adjusted font.
