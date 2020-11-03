@@ -5,10 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Attendance;
-import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of week number.
  */
 class JsonAdaptedWeekNumber {
 
