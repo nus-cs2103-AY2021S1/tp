@@ -27,13 +27,20 @@ public class AddRecipeCommandIntegrationTest {
 
     @Test
     public void execute_newRecipe_success() {
-        Recipe validRecipe = new RecipeBuilder().build();
+        Recipe validRecipe = new RecipeBuilder().buildOtherRecipe();
 
         Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
         expectedModel.addRecipe(validRecipe);
 
         assertCommandSuccess(new AddRecipeCommand(validRecipe), model,
                 String.format(AddRecipeCommand.MESSAGE_SUCCESS, validRecipe), expectedModel);
+    }
+
+    @Test
+    public void execute_newDuplicateRecipe_failure() {
+        Recipe validRecipe = new RecipeBuilder().build();
+
+        assertCommandFailure(new AddRecipeCommand(validRecipe), model, AddRecipeCommand.MESSAGE_DUPLICATE_RECIPE);
     }
 
     @Test

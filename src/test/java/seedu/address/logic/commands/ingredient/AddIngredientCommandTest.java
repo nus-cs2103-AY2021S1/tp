@@ -59,7 +59,7 @@ public class AddIngredientCommandTest {
                 .ModelStubWithIngredient(validIngredient);
 
         assertThrows(CommandException.class,
-                AddIngredientCommand.MESSAGE_DUPLICATE_RECIPE, () -> addIngredientCommand.execute(modelStub));
+                AddIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT, () -> addIngredientCommand.execute(modelStub));
     }
 
     @Test
@@ -244,7 +244,7 @@ public class AddIngredientCommandTest {
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
             requireNonNull(ingredient);
-            return this.ingredient.isSameIngredient(ingredient);
+            return this.ingredient.isSameIngredientName(ingredient);
         }
     }
 
@@ -257,7 +257,7 @@ public class AddIngredientCommandTest {
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
             requireNonNull(ingredient);
-            return ingredientsAdded.stream().anyMatch(ingredient::isSameIngredient);
+            return ingredientsAdded.stream().anyMatch(ingredient::isSameIngredientName);
         }
 
         @Override

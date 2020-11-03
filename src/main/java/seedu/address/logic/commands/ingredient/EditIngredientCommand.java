@@ -37,8 +37,7 @@ public class EditIngredientCommand extends Command {
 
     public static final String MESSAGE_EDIT_INGREDIENT_SUCCESS = "Edited Ingredient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This recipe already exists in the Recipe "
-            + "collection.";
+    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the fridge";
 
     private static Logger logger = Logger.getLogger("EditIngredientLogger");
 
@@ -144,6 +143,7 @@ public class EditIngredientCommand extends Command {
         public void setIngredient(Ingredient ingredient) {
             this.ingredient = ingredient;
         }
+
         public Optional<Ingredient> getIngredient() {
             return Optional.ofNullable(ingredient);
         }

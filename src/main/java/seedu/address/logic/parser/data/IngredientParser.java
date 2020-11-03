@@ -4,7 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -63,5 +66,20 @@ public class IngredientParser {
         }
     }
 
+    /**
+     * Detects if there are duplicate ingredients in a recipe's ingredients.
+     * @param ingredients the list of ingredients
+     * @return true if there are duplicate ingredients in the recipe
+     */
+    public static boolean hasDuplicates(ArrayList<Ingredient> ingredients) {
+        Set<String> ingredientSet = new HashSet<>(new HashSet<>(ingredients)
+                                    .stream().map(ingredient -> ingredient.getValue().toLowerCase())
+                                    .collect(Collectors.toList()));
+
+        if (ingredientSet.size() < ingredients.size()) {
+            return true;
+        }
+        return false;
+    }
 
 }
