@@ -16,6 +16,7 @@ import seedu.address.model.meeting.VenueContainsKeywordsPredicate;
 
 /**
  * A utility class to help with building FindPropertyDescriptor objects.
+ * @author christophermervyn
  */
 public class FindMeetingDescriptorBuilder {
 

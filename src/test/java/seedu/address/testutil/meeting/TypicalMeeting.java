@@ -10,6 +10,7 @@ import seedu.address.testutil.MeetingBuilder;
 
 /**
  * A utility class containing a list of {@code Seller} objects to be used in tests.
+ * @author christophermervyn
  */
 public class TypicalMeeting {
 
