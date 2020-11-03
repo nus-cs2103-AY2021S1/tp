@@ -22,7 +22,7 @@ import seedu.address.model.task.event.StartDateTime;
 /**
  * Lesson class to store information about a module's lessons.
  */
-public class Lesson {
+public class Lesson implements TimeSlot {
     private final Title title;
     private final Tag tag;
     private final Description description;
@@ -70,6 +70,12 @@ public class Lesson {
     }
     public LocalDate getEndDate() {
         return endDate;
+    }
+    public LocalDateTime getStartDateTimeValue() {
+        return LocalDateTime.of(getStartDate(), getStartTime());
+    }
+    public LocalDateTime getEndDateTimeValue() {
+        return LocalDateTime.of(getEndDate(), getEndTime());
     }
     public Tag getTag() {
         return tag;
@@ -186,7 +192,6 @@ public class Lesson {
                 && otherLesson.getStartDate().equals(getStartDate())
                 && otherLesson.getEndDate().equals(getEndDate());
     }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

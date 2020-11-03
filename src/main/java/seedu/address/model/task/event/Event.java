@@ -3,11 +3,13 @@ package seedu.address.model.task.event;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.tag.Tag.defaultTag;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import seedu.address.model.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -19,7 +21,7 @@ import seedu.address.model.task.deadline.Deadline;
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event extends Task {
+public class Event extends Task implements TimeSlot {
     // Data fields
     private final StartDateTime startDateTime;
     private final EndDateTime endDateTime;
@@ -66,7 +68,9 @@ public class Event extends Task {
     public LocalDateTime getStartDateTimeValue() {
         return startDateTime.getValue();
     }
-
+    public DayOfWeek getDayOfWeek() {
+        return getStartDateTimeValue().getDayOfWeek();
+    }
     /**
      * Returns an immutable tag, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -86,7 +86,6 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         }
         requireAllNonNull(startDate, endDate, startTime, endTime, dayOfWeek);
         Lesson lesson = new Lesson(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
-
         return new LessonCommand(lesson);
     }
 
