@@ -7,8 +7,9 @@ import static seedu.flashcard.commons.util.AppUtil.checkArgument;
  * Represents the Category the Flashcard is in.
  */
 public class Category {
-    public static final String MESSAGE_CONSTRAINTS = "Categories names should be alphanumeric and "
-                                                        + "not more than 50 characters";
+    public static final String MESSAGE_CONSTRAINTS = "Categories names should be alphanumeric,"
+                                                        + " not more than 50 characters, and only have 1 space "
+                                                        + "between wordsadd ";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
     private String category;
 

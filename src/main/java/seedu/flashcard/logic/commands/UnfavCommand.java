@@ -27,7 +27,7 @@ public class UnfavCommand extends Command {
     public static final String COMMAND_WORD = "unfav";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unfavourite the flashcard identified by the index number used in the displayed flashcard list.\n"
+            + ": Unfavourites the flashcard identified by the index number used in the displayed flashcard list.\n"
             + "Parameters: INDEX (must be a positive integer greater than 0)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
