@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private static String themeColor = "linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);";
+    private static String themeColor = "linear-gradient(to top, #16a085 0%, #004f08 100%);";
 
     private Stage primaryStage;
     private Logic logic;

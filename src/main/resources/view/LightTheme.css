@@ -5,19 +5,19 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-text-fill: #32325D;
+    -fx-text-fill: green;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-text-fill: #32325D;
+    -fx-text-fill: green;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-text-fill: #32325D;
+    -fx-text-fill: green;
     -fx-opacity: 1;
 }
 
@@ -106,13 +106,13 @@
 .cell_big_label {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2e7eff;
+    -fx-text-fill: green;
 }
 
 .cell_medium_label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2e7eff;
+    -fx-text-fill: green;
 }
 
 .cell_small_label {
@@ -309,6 +309,6 @@
     -fx-font-size: 11;
 }
 #leftPanel, #resultDisplayPlaceholder, #messageArea {
-    -fx-background-color: linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);
+    -fx-background-color: linear-gradient(to top, #16a085 0%, #004f08 100%);
 
 }

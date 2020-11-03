@@ -7,6 +7,7 @@ import java.util.Objects;
 import seedu.address.logic.commands.consumption.ListConsumptionCommand;
 import seedu.address.logic.commands.ingredient.GetEditIngredientCommand;
 import seedu.address.logic.commands.ingredient.ListIngredientsCommand;
+import seedu.address.logic.commands.recipe.AddRecipeCommand;
 import seedu.address.logic.commands.recipe.CloseCommand;
 import seedu.address.logic.commands.recipe.GetEditRecipeCommand;
 import seedu.address.logic.commands.recipe.ListRecipesCommand;
@@ -72,6 +73,7 @@ public class CommandResult {
         case ListConsumptionCommand.COMMAND_WORD:
             this.isShowConsumption = true;
             break;
+        case AddRecipeCommand.COMMAND_WORD:
         case ListRecipesCommand.COMMAND_WORD:
             this.isShowRecipe = true;
             break;
