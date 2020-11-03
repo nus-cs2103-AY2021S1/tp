@@ -21,7 +21,6 @@ import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.logic.commands.NoteCommand;
