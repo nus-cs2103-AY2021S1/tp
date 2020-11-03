@@ -39,7 +39,6 @@ public class ItemEditCommand extends ItemCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the item identified "
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "'|' symbol means the user must provide at least one of the fields\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "ITEM_NAME | "
             + PREFIX_QUANTITY + "QUANTITY | "
