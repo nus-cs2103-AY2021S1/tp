@@ -1,6 +1,9 @@
 package seedu.address.model.util;
 
+import static seedu.address.model.appointment.AppointmentDateTime.DATE_TIME_FORMATTER;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
@@ -72,17 +75,27 @@ public class SampleDataUtil {
     }
 
     public static Appointment[] getSampleAppointments() {
+        String start1 = LocalDateTime.now().plusMinutes(10).format(DATE_TIME_FORMATTER);
+        String end1 = LocalDateTime.now().plusMinutes(70).format(DATE_TIME_FORMATTER);
+        String start2 = LocalDateTime.now().plusDays(1).minusMinutes(90).format(DATE_TIME_FORMATTER);
+        String end2 = LocalDateTime.now().plusDays(1).minusMinutes(30).format(DATE_TIME_FORMATTER);
+        String start3 = LocalDateTime.now().plusDays(1).plusMinutes(10).format(DATE_TIME_FORMATTER);
+        String end3 = LocalDateTime.now().plusDays(1).plusMinutes(70).format(DATE_TIME_FORMATTER);
+        String start4 = LocalDateTime.now().plusDays(2).plusMinutes(20).format(DATE_TIME_FORMATTER);
+        String end4 = LocalDateTime.now().plusDays(2).plusMinutes(140).format(DATE_TIME_FORMATTER);
+        String start5 = LocalDateTime.now().plusDays(2).plusMinutes(160).format(DATE_TIME_FORMATTER);
+        String end5 = LocalDateTime.now().plusDays(2).plusMinutes(220).format(DATE_TIME_FORMATTER);
         return new Appointment[] {
             new Appointment(new Name("Alex Yeoh"), new IcNumber("G4329854B"),
-                    new AppointmentDateTime("30/10/2020 10:20"), new AppointmentDateTime("30/10/2020 11:40")),
+                    new AppointmentDateTime(start1), new AppointmentDateTime(end1)),
             new Appointment(new Name("Bernice Yu"), new IcNumber("S7908430A"),
-                    new AppointmentDateTime("30/10/2020 14:00"), new AppointmentDateTime("30/10/2020 16:20")),
+                    new AppointmentDateTime(start2), new AppointmentDateTime(end2)),
             new Appointment(new Name("Charlotte Oliveiro"), new IcNumber("S7856411C"),
-                    new AppointmentDateTime("31/10/2020 08:50"), new AppointmentDateTime("31/10/2020 10:10")),
+                    new AppointmentDateTime(start3), new AppointmentDateTime(end3)),
             new Appointment(new Name("David Li"), new IcNumber("F1155948D"),
-                    new AppointmentDateTime("31/10/2020 10:30"), new AppointmentDateTime("31/10/2020 11:40")),
+                    new AppointmentDateTime(start4), new AppointmentDateTime(end4)),
             new Appointment(new Name("Irfan Ibrahim"), new IcNumber("S1568938I"),
-                    new AppointmentDateTime("31/10/2020 12:00"), new AppointmentDateTime("31/10/2020 13:15"))
+                    new AppointmentDateTime(start5), new AppointmentDateTime(end5))
         };
     }
 
