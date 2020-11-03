@@ -122,6 +122,9 @@ public class StockBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isBookmarked} of the {@code Stock} that we are building.
+     */
     public StockBuilder withBookmark(boolean bookmarked) {
         this.isBookmarked = bookmarked;
         return this;
@@ -187,6 +190,10 @@ public class StockBuilder {
         return copy;
     }
 
+    /**
+     * Returns a stock built from the given parameters
+     * @return a stock built from the given parameters
+     */
     public Stock build() {
         Stock result = new Stock(name, serialNumber, source, quantity, location, notes);
         if (isBookmarked) {

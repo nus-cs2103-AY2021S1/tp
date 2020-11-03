@@ -2,11 +2,8 @@ package seedu.stock.logic.commands;
 
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 
-
 import org.junit.jupiter.api.Test;
 
-import seedu.stock.logic.commands.HelpCommand;
-import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 

@@ -2,7 +2,11 @@ package seedu.stock.logic.commands;
 
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
-import static seedu.stock.testutil.TypicalStocks.*;
+import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;
+import static seedu.stock.testutil.TypicalStocks.INDEX_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -11,13 +15,10 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.util.SortUtil;
-import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
-import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 import seedu.stock.testutil.StockBuilder;
@@ -105,43 +106,6 @@ public class BookmarkCommandTest {
         assertCommandSuccess(bookmarkCommand, model, expectedMessage, expectedModel);
     }
 
-//    @Test
-//    public void execute_bookmarkSomeAlreadyBookmarked_success() {
-//        Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
-//        List<Stock> stocksToBookmark = new ArrayList<>();
-//        List<Stock> stocksAlreadyBookmarked = new ArrayList<>();
-//
-//        stocksAlreadyBookmarked = model.getFilteredStockList().filtered(stock -> stock.getIsBookmarked());
-//        stocksToBookmark = model.getFilteredStockList().filtered(stock -> !stock.getIsBookmarked());
-//
-//        model.getFilteredStockList().forEach(stock -> serialNumbersToBookmark.add(stock.getSerialNumber()));
-//
-//        BookmarkCommand bookmarkCommand = new BookmarkCommand(serialNumbersToBookmark);
-//
-//
-//
-//        String expectedMessage = String.format(BookmarkCommand.MESSAGE_ALREADY_BOOKMARKED
-//                , stocksAsString(stocksAlreadyBookmarked))
-//                + "\n" + String.format(BookmarkCommand.MESSAGE_BOOKMARK_STOCK_SUCCESS
-//                , stocksAsString(stocksToBookmark));
-//
-//        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-//                getTypicalSerialNumberSetsBook());
-//
-//        for (Stock stock : stocksToBookmark) {
-//            Stock stockBookmarked = new StockBuilder(stock).copyOfStockBuilder().withBookmark(true).build();
-//            expectedModel.setStock(stock, stockBookmarked);
-//        }
-//
-//        expectedModel.sortFilteredStockList(SortUtil.generateGeneralComparator());
-//
-//        System.out.println(expectedModel.getFilteredStockList());
-//
-//        assertCommandSuccess(bookmarkCommand, model, expectedMessage, expectedModel);
-//
-//    }
-
-
 
     /**
      * Displays the list of stocks in a clearer view, with each subsequent stock moved to the next line.
@@ -170,7 +134,7 @@ public class BookmarkCommandTest {
         }
         serialNumbersAsString += "\n";
 
-        return serialNumbersAsString ;
+        return serialNumbersAsString;
     }
 
 }

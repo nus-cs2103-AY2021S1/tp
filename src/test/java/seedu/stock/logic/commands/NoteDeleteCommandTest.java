@@ -10,7 +10,11 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailureFor
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
-import static seedu.stock.testutil.TypicalStocks.*;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FOURTH_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
+import static seedu.stock.testutil.TypicalStocks.UNKNOWN_SERIAL_NUMBER;
+import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import org.junit.jupiter.api.Test;
 

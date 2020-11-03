@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.stock.commons.util.SortUtil;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
@@ -135,10 +134,6 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-
-            System.out.println(actualModel.getFilteredStockList());
-            System.out.println(expectedModel.getFilteredStockList());
-
             assertEquals(expectedModel, actualModel);
         } catch (CommandException | SourceCompanyNotFoundException | SerialNumberNotFoundException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);

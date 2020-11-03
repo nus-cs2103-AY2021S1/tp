@@ -1,7 +1,6 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
