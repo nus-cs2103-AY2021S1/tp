@@ -36,14 +36,14 @@ public class CommandTestUtil {
     public static final String EXERCISE_A = "Sit ups";
     public static final String EXERCISE_B = "Jumping jacks";
 
-    public static final String VALID_REP_A_STR = "5";
-    public static final String VALID_REP_B_STR = "10";
+    public static final int VALID_REP_A_INT = 5;
+    public static final int VALID_REP_B_INT = 10;
 
     public static final String VALID_COMMENT_A_STR = "This exercise is tough";
     public static final String VALID_COMMENT_B_STR = "Easy";
 
-    public static final Rep VALID_REP_A = new Rep(VALID_REP_A_STR);
-    public static final Rep VALID_REP_B = new Rep(VALID_REP_B_STR);
+    public static final Rep VALID_REP_A = new Rep(VALID_REP_A_INT);
+    public static final Rep VALID_REP_B = new Rep(VALID_REP_B_INT);
 
     public static final Name VALID_EXERCISE_NAME_A = new Name(EXERCISE_A);
     public static final Name VALID_EXERCISE_NAME_B = new Name(EXERCISE_B);
@@ -111,15 +111,15 @@ public class CommandTestUtil {
 
     static {
         VALID_LOG_A = new LogBuilder().withExercise(VALID_EXERCISE_A)
-                .withReps(VALID_REP_A_STR).withComment(VALID_COMMENT_A_STR).build();
+                .withReps(VALID_REP_A_INT).withComment(VALID_COMMENT_A_STR).build();
         VALID_LOG_B = new LogBuilder().withExercise(VALID_EXERCISE_B)
-                .withReps(VALID_REP_B_STR).withComment(VALID_COMMENT_B_STR).build();
+                .withReps(VALID_REP_B_INT).withComment(VALID_COMMENT_B_STR).build();
 
         EDIT_LOG_DESCRIPTOR_A = new EditCommand.EditLogDescriptor();
         EDIT_LOG_DESCRIPTOR_A.setExercise(VALID_EXERCISE_A);
 
         EDIT_LOG_DESCRIPTOR_B = new EditCommand.EditLogDescriptor();
-        EDIT_LOG_DESCRIPTOR_B.setRep(new Rep(VALID_REP_B_STR));
+        EDIT_LOG_DESCRIPTOR_B.setRep(new Rep(VALID_REP_B_INT));
 
         EDIT_EX_DESCRIPTOR_A = new EditExCommand.EditExDescriptor();
         EDIT_EX_DESCRIPTOR_A.setExerciseName(VALID_EXERCISE_NAME_A);

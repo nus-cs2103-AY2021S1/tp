@@ -6,20 +6,11 @@ package seedu.fma.commons.util;
 public class IntegerUtil {
 
     /**
-     * Returns true if a integer more than zero.
-     * @param integer integer to be checked
+     * Returns true iff integer is in range 1-1000 inclusive
+     * @param integer value to be teseted
+     * @return true iff integer is in range 1-1000 inclusive
      */
-    public static boolean isPositiveInteger(Integer integer) {
-        return integer > 0;
-    }
-
-    /**
-     * Throws IllegalArgumentException if the integer is lesser than 0 or equal 0.
-     * @param integer integer to be checked
-     */
-    public static void requirePositiveInteger(Integer integer) {
-        if (!isPositiveInteger(integer)) {
-            throw new IllegalArgumentException("Error. Require a positive number.");
-        }
+    public static boolean isInValidRange(int integer) {
+        return integer >= 1 && integer <= 1000;
     }
 }

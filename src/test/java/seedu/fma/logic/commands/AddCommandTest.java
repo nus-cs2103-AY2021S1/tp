@@ -63,12 +63,12 @@ public class AddCommandTest {
         Log logSitsUp = new LogBuilder()
                 .withExercise(sitUps)
                 .withComment("This is okay")
-                .withReps("13")
+                .withReps(13)
                 .build();
         Log logFlyingKicks = new LogBuilder()
                 .withExercise(flyingKicks)
                 .withComment("This is not okay!")
-                .withReps("13")
+                .withReps(13)
                 .build();
         AddCommand addSitUpCommand = new AddCommand(logSitsUp);
         AddCommand addFlyingKicksCommand = new AddCommand(logFlyingKicks);
