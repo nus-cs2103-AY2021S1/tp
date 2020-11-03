@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.FindLessonCommand;
@@ -38,9 +37,10 @@ public class FindLessonCommandParser implements Parser<FindLessonCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_TIME, PREFIX_DATE_TIME, PREFIX_TAG);
 
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
+        if (!Parser.isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_TIME, PREFIX_DATE_TIME, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindLessonCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "",
+                    FindLessonCommand.MESSAGE_USAGE));
         }
         LessonContainsKeywordsPredicate predicate = new LessonContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
@@ -87,13 +87,4 @@ public class FindLessonCommandParser implements Parser<FindLessonCommand> {
         }
         values.forEach(val -> predicate.setKeyword(prefix, val));
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

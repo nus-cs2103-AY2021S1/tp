@@ -1,6 +1,7 @@
 package seedu.address.model.task.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.tag.Tag.defaultTag;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -144,14 +145,17 @@ public class Event extends Task implements TimeSlot {
         if (isLesson) {
             builder.append("Lesson: ");
         }
+
+        // attributes that are neglected are hidden
         builder.append(getTitle())
                 .append(" From: ")
                 .append(getStartDateTime())
                 .append(" To: ")
                 .append(getEndDateTime())
-                .append(" Description: ")
+                .append(getDescription().equals(Description.defaultDescription()) ? "" : " Description: ")
                 .append(getDescription())
-                .append(" Tag: ");
+                .append(getTag().equals(defaultTag()) ? "" : " Tag: ")
+                .append(getTag());
         return builder.toString();
     }
 

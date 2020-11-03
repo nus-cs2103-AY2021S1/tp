@@ -38,7 +38,7 @@ public class EditLessonCommand extends Command {
     public static final String COMMAND_WORD = "edit-lesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the lesson identified "
-            + "by the index number used in the displayed task list. "
+            + "by the index number used in the displayed lesson list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
@@ -97,23 +97,25 @@ public class EditLessonCommand extends Command {
         ArrayList<Task> associatedTasks = lessonToEdit.getAssociatedTasks();
 
         model.deleteTask(associatedTasks.toArray(new Task[0]));
+        model.deleteTaskInCalendar(associatedTasks.toArray(new Task[0]));
         ArrayList<Task> tasksToAdd = editedLesson.createRecurringTasks();
         for (Task taskToAdd: tasksToAdd) {
             if (model.hasTask(taskToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_LESSON);
             }
             model.addTask(taskToAdd);
+            model.addTaskToCalendar(taskToAdd);
         }
 
         model.setLesson(lessonToEdit, editedLesson);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS, editedLesson));
     }
 
     /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * Creates and returns a {@code Lesson} with the details of {@code lessonToEdit}
      * edited with {@code editLessonDescriptor}.
      */
     private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
@@ -151,8 +153,8 @@ public class EditLessonCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
+     * Stores the details to edit the lesson with. Each non-empty field value will replace the
+     * corresponding field value of the lesson.
      */
     public static class EditLessonDescriptor {
         private Title title;
@@ -185,7 +187,8 @@ public class EditLessonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, dayOfWeek, startDate, endDate, startTime, endTime);
+            return CollectionUtil.isAnyNonNull(title, description, dayOfWeek,
+                    startDate, endDate, startTime, endTime, tag);
         }
 
         public void setTitle(Title title) {

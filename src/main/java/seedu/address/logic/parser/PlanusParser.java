@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeadlineCommand;
+import seedu.address.logic.commands.DeleteLessonCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.EditLessonCommand;
@@ -43,7 +44,7 @@ public class PlanusParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -55,13 +56,13 @@ public class PlanusParser {
         case DeadlineCommand.COMMAND_WORD:
             return new DeadlineCommandParser().parse(arguments);
         case EditTaskCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditTaskCommandParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteTaskCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case FindTaskCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindTaskCommandParser().parse(arguments);
         case LessonCommand.COMMAND_WORD:
             return new LessonCommandParser().parse(arguments);
         case ListTaskCommand.COMMAND_WORD:
@@ -80,6 +81,8 @@ public class PlanusParser {
             return new EditLessonCommandParser().parse(arguments);
         case FindLessonCommand.COMMAND_WORD:
             return new FindLessonCommandParser().parse(arguments);
+        case DeleteLessonCommand.COMMAND_WORD:
+            return new DeleteLessonCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

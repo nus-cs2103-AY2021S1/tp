@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new DeleteTaskCommand object
  */
-public class DeleteCommandParser implements Parser<DeleteTaskCommand> {
+public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
@@ -22,7 +22,8 @@ public class DeleteCommandParser implements Parser<DeleteTaskCommand> {
             return new DeleteTaskCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(),
+                            DeleteTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 

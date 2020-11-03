@@ -84,7 +84,7 @@ public class DoneCommandTest {
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 
-        assertCommandFailure(doneCommand, model, Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+        assertCommandFailure(doneCommand, model, Messages.MESSAGE_DUPLICATE_INDEX);
     }
 
     @Test

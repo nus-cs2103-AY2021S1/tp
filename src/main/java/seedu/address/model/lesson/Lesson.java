@@ -201,8 +201,10 @@ public class Lesson implements TimeSlot {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+
+        // attributes that are neglected are hidden
         builder.append(getTitle())
-                .append(" Description: ")
+                .append(getDescription().equals(Description.defaultDescription()) ? "" : " Description: ")
                 .append(getDescription())
                 .append(" Tag: ")
                 .append(getTag())
