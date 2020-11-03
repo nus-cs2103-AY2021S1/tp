@@ -9,6 +9,7 @@ import java.util.Objects;
  * Represents the container that stores the start and end time of an Event.
  */
 public class EventTime {
+    public static final String MESSAGE_CONSTRAINTS = "Date Time can only contain numbers";
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     private final LocalDateTime start;
     private final LocalDateTime end;
@@ -74,8 +75,12 @@ public class EventTime {
             return false;
         } else if (otherTime instanceof EventTime) {
             EventTime other = (EventTime) otherTime;
-            return this.getStart().isEqual(other.getStart())
-                    && this.getEnd().isEqual(other.getEnd());
+            if (this.getEnd() == null) {
+                return this.getStart().isEqual(other.getStart());
+            } else {
+                return this.getStart().isEqual(other.getStart())
+                        && this.getEnd().isEqual(other.getEnd());
+            }
         } else {
             return false;
         }
