@@ -20,6 +20,7 @@ public class ParsePersonUtil {
     /**
      * Parses {@code gitUserName} into an {@code GitUserIndex} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static GitUserIndex parseGitUserIndex(String gitUserName) throws ParseException {
