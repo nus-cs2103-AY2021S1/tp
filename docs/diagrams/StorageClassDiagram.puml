@@ -18,7 +18,11 @@ StorageManager o--> PlanusStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonPlanusStorage .left.|> PlanusStorage
-JsonPlanusStorage .down.> JsonSerializablePlanusStorage
-JsonSerializablePlanusStorage .right.> JsonSerializableTask
-JsonSerializableTask .right.> JsonAdaptedTag
+JsonPlanusStorage .down.> JsonSerializablePlanus
+JsonSerializablePlanus .right.> JsonSerializableEvent
+JsonSerializablePlanus .down.> JsonSerializableDeadline
+JsonSerializablePlanus .down.> JsonSerializableLesson
+JsonSerializableEvent .right.> JsonAdaptedTag
+JsonSerializableDeadline .left.> JsonAdaptedTag
+JsonSerializableLesson .right.> JsonAdaptedTag
 @enduml
