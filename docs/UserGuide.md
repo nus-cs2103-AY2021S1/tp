@@ -317,7 +317,7 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 ![filedirectory](images/ug/ug_review_step2.PNG)
 
-**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, the answer of the flashcard is shown.
+**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon pressing the `↓ key`, the answer of the flashcard is shown.
 
 ![filedirectory](images/ug/ug_review_step3.PNG)
 
@@ -354,7 +354,7 @@ Format: `quiz`
 
 ![filedirectory](images/ug/ug_quiz_step2.PNG)
 
-**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, we will be prompted if we got the answer correct.
+**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon pressing the `↓ key`, we will be prompted if we got the answer correct.
 
 ![filedirectory](images/ug/ug_quiz_step3.PNG)
 
