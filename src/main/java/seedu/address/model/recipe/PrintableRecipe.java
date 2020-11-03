@@ -38,13 +38,12 @@ public class PrintableRecipe extends Recipe {
         offset = true;
     }
 
-    @Override
-    public DisplayedInventoryType getType() {
-        if (offset) {
-            return DisplayedInventoryType.RECIPES_OFFSET;
-        } else {
-            return DisplayedInventoryType.RECIPES;
-        }
+    public boolean getOffset() {
+        return offset;
     }
 
+    @Override
+    public DisplayedInventoryType getType() {
+        return DisplayedInventoryType.RECIPES;
+    }
 }

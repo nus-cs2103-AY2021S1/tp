@@ -68,10 +68,6 @@ public class InventoryListPanel extends UiPart<Region> {
                 case RECIPES:
                     setGraphic(new RecipeCard((PrintableRecipe) inventoryComponent, getIndex() + 1).getRoot());
                     break;
-                case RECIPES_OFFSET:
-                    // offset by 1 since there is a detailed item displayed above
-                    setGraphic(new RecipeCard((PrintableRecipe) inventoryComponent, getIndex()).getRoot());
-                    break;
                 case DETAILED_ITEM:
                     setGraphic(new DetailedItemCard((DetailedItem) inventoryComponent, getIndex() + 1).getRoot());
                     break;

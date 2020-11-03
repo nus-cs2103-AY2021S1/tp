@@ -40,7 +40,12 @@ public class RecipeCard extends UiPart<Region> {
     public RecipeCard(PrintableRecipe printableRecipe, int displayedIndex) {
         super(FXML);
         this.printableRecipe = printableRecipe;
-        productName.setText(displayedIndex + ". Recipe for: " + printableRecipe.getProductName());
+        if (printableRecipe.getOffset()) {
+            int index = displayedIndex - 1;
+            productName.setText(index + ". Recipe for: " + printableRecipe.getProductName());
+        } else {
+            productName.setText("Recipe for: " + printableRecipe.getProductName());
+        }
         ingredients.setText("Ingredients: " + printableRecipe.getPrintableIngredients());
         productQuantity.setText("Produces: " + printableRecipe.getProductQuantity().toString() + " "
                 + printableRecipe.getProductName());
