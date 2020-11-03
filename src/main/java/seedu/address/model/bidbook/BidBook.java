@@ -62,8 +62,8 @@ public class BidBook implements ReadOnlyBidBook {
      *
      * @param bidderId The bidder id specified.
      */
-    public void removeByBidderId(BidderId bidderId) {
-        listOfBids.removeByBidderId(bidderId);
+    public void removeAllBidsWithBidderId(BidderId bidderId) {
+        listOfBids.removeAllWithBidderId(bidderId);
     }
 
     /**
@@ -98,8 +98,8 @@ public class BidBook implements ReadOnlyBidBook {
      *
      * @param propertyId The propertyId of the property to be deleted.
      */
-    public void removeBidsByPropertyId(PropertyId propertyId) {
-        listOfBids.removeByPropertyId(propertyId);
+    public void removeAllBidsWithPropertyId(PropertyId propertyId) {
+        listOfBids.removeAllWithPropertyId(propertyId);
     }
 
     @Override

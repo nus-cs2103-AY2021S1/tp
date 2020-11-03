@@ -37,4 +37,22 @@ public class PropertyNameTest {
         assertTrue(PropertyName.isValidPropertyName("Capital Rise")); // with capital letters
         assertTrue(PropertyName.isValidPropertyName("Sunrise Heights Block With Balconies 2nd")); // long names
     }
+
+    @Test
+    public void equals() {
+        PropertyName name = new PropertyName("Property");
+
+        // same object
+        assertTrue(name.equals(name));
+
+        // different type
+        assertFalse(name.equals(new Address("Property")));
+
+        // same name
+        assertTrue(name.equals(new PropertyName("Property")));
+
+        // different name
+        assertFalse(name.equals(new PropertyName("property")));
+
+    }
 }

@@ -98,8 +98,8 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      * Removes meeting according to their bidder id.
      *
      */
-    public void removeMeetingByBidderId(BidderId bidderId) {
-        meetings.removeMeetingByBidderId(bidderId);
+    public void removeAllMeetingsWithBidderId(BidderId bidderId) {
+        meetings.removeAllWithBidderId(bidderId);
     }
 
     /**
@@ -107,8 +107,8 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      *
      * @param propertyId The propertyId of the property to be deleted.
      */
-    public void removeMeetingsByPropertyId(PropertyId propertyId) {
-        meetings.removeByPropertyId(propertyId);
+    public void removeAllMeetingsWithPropertyId(PropertyId propertyId) {
+        meetings.removeAllWithPropertyId(propertyId);
     }
 
     //// util methods

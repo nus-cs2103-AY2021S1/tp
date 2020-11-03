@@ -23,4 +23,9 @@ public class ListPropertyCommand extends Command {
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
         return new CommandResult(MESSAGE_SUCCESS).setEntity(EntityType.PROPERTY);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj || obj instanceof ListPropertyCommand;
+    }
 }

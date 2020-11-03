@@ -51,9 +51,4 @@ public class PropertyName {
                 && propertyName.equals(((PropertyName) other).propertyName)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return propertyName.hashCode();
-    }
-
 }

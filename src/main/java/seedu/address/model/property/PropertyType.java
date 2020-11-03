@@ -52,10 +52,5 @@ public class PropertyType {
                 && type.equals(((PropertyType) other).type)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return type.hashCode();
-    }
-
 }
 

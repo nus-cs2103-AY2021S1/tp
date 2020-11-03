@@ -18,7 +18,7 @@ public class IdParserUtil {
     public static PropertyId parsePropertyId(String propertyId) throws ParseException {
         requireNonNull(propertyId);
         String trimmedPropertyId = propertyId.trim();
-        if (!PropertyId.isValidId(propertyId)) {
+        if (!PropertyId.isValidId(trimmedPropertyId)) {
             throw new ParseException(PropertyId.MESSAGE_CONSTRAINTS);
         }
         return new PropertyId(trimmedPropertyId);
@@ -33,7 +33,7 @@ public class IdParserUtil {
     public static SellerId parseSellerId(String sellerId) throws ParseException {
         requireNonNull(sellerId);
         String trimmedSellerId = sellerId.trim();
-        if (!SellerId.isValidId(sellerId)) {
+        if (!SellerId.isValidId(trimmedSellerId)) {
             throw new ParseException(SellerId.MESSAGE_CONSTRAINTS);
         }
         return new SellerId(trimmedSellerId);
@@ -48,22 +48,7 @@ public class IdParserUtil {
     public static BidderId parseBidderId(String bidderId) throws ParseException {
         requireNonNull(bidderId);
         String trimmedBidderId = bidderId.trim();
-        if (!BidderId.isValidId(bidderId)) {
-            throw new ParseException(BidderId.MESSAGE_CONSTRAINTS);
-        }
-        return new BidderId(trimmedBidderId);
-    }
-
-    /**
-     * Parses a {@code String bidderId} into an {@code List<BidderId>}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code bidderId} is invalid.
-     */
-    public static BidderId parseBidderIdList(String bidderId) throws ParseException {
-        requireNonNull(bidderId);
-        String trimmedBidderId = bidderId.trim();
-        if (!BidderId.isValidId(bidderId)) {
+        if (!BidderId.isValidId(trimmedBidderId)) {
             throw new ParseException(BidderId.MESSAGE_CONSTRAINTS);
         }
         return new BidderId(trimmedBidderId);

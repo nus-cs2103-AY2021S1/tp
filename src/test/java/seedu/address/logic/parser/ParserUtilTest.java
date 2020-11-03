@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.price.Price;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -112,6 +113,41 @@ public class ParserUtilTest {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
         Tag expectedTag = new Tag(VALID_TAG_1);
         assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    }
+
+    @Test
+    public void parsePrice_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice(null));
+    }
+
+    @Test
+    public void parsePrice_invalidPrice_throwsParseException() {
+        // no input
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(""));
+
+        // non-numeric price
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("abc"));
+
+        // <= 0 price
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("-1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("0.009"));
+
+        // > 1 trillion
+        String moreThanTrillion = Double.toString(Math.pow(10, 12) + 0.01);
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(moreThanTrillion));
+    }
+
+    @Test
+    public void parsePrice_validInput_returnsPrice() throws ParseException {
+        Price expected = new Price(100);
+        assertEquals(expected, ParserUtil.parsePrice("100"));
+        assertEquals(expected, ParserUtil.parsePrice("100.009"));
+        expected = new Price(0.01);
+        assertEquals(expected, ParserUtil.parsePrice("0.01"));
+        expected = new Price(Math.pow(10, 12));
+        assertEquals(expected, ParserUtil.parsePrice(Double.toString(Math.pow(10, 12))));
+        assertEquals(expected, ParserUtil.parsePrice(Double.toString(Math.pow(10, 12) + 0.009)));
     }
 
 }
