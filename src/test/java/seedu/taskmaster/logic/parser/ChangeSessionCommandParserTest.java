@@ -1,6 +1,8 @@
 package seedu.taskmaster.logic.parser;
 
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taskmaster.logic.commands.CommandTestUtil.NEW_SESSION_NAME_DESC;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 import static seedu.taskmaster.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taskmaster.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -22,14 +24,11 @@ public class ChangeSessionCommandParserTest {
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
         // no session name specified
-        assertParseFailure(parser, "s/", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, PREFIX_SESSION_NAME.getPrefix(), MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // invalid session name
-        assertParseFailure(parser, "s/****", MESSAGE_INVALID_FORMAT);
-
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "some random string", MESSAGE_INVALID_FORMAT);
 
@@ -39,8 +38,8 @@ public class ChangeSessionCommandParserTest {
 
     @Test
     public void parse_validInput_returnsChangeSessionCommand() {
-        String input = " s/Existing Session";
-        ChangeSessionCommand expectedCommand = new ChangeSessionCommand(new SessionName("Existing Session"));
+        String input = NEW_SESSION_NAME_DESC;
+        ChangeSessionCommand expectedCommand = new ChangeSessionCommand(new SessionName("Tutorial 1"));
         assertParseSuccess(parser, input, expectedCommand);
     }
 }
