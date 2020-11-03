@@ -379,7 +379,7 @@ This command quits ChopChop. You can rest assured that your data is automaticall
 
 <a name="UndoCommand"></a>
 #### 5.3.3&ensp;Undoing Commands — **`undo`**
-Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
+Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop. You can check the <a href="#CommandSummary">command summary</a> for a quick list of which commands can be undone.
 
 **Usage**: `undo`
 
@@ -799,13 +799,13 @@ Examples:
 - `make recipe pancakes` <br />
   This makes the recipe named 'pancakes'. Note that the name here is case insensitive.
 
-To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:
+To illustrate suppose you wanted to make the pancakes here, you would use `make recipe pancakes`. You can run this command from any view (not necessarily from the recipe detail view):
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_1.png" width="75%" /> <br />
 Figure 9.1: <i>Making</i>
 </div>
 
-After pressing <kbd>enter</kbd>, you will see this view, showing the recipe you wish to view:
+After pressing <kbd>enter</kbd>, ChopChop will bring you to the ingredient list view, so you can check
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_2.png" width="75%" /> <br />

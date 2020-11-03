@@ -67,7 +67,8 @@ public class AddRecipeCommand extends Command implements Undoable {
 
         model.addRecipe(this.recipe);
 
-        return CommandResult.message("Added recipe '%s'", this.recipe.getName());
+        return CommandResult.message("Added recipe '%s'", this.recipe.getName())
+            .showingRecipe(this.recipe);
     }
 
 
@@ -80,7 +81,8 @@ public class AddRecipeCommand extends Command implements Undoable {
         enforceNonNull(this.recipe);
 
         model.deleteRecipe(this.recipe);
-        return CommandResult.message("Undo: removed recipe '%s'", this.recipe.getName());
+        return CommandResult.message("Undo: removed recipe '%s'", this.recipe.getName())
+            .showingRecipeList();
     }
 
     @Override

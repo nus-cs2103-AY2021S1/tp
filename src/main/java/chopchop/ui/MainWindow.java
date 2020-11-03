@@ -65,8 +65,11 @@ public class MainWindow extends UiPart<Stage> {
 
         this.setAccelerators();
 
-        this.primaryStage.setMinWidth(820);
-        this.primaryStage.setMinHeight(520);
+        // this.primaryStage.setMinWidth(820);
+        // this.primaryStage.setMinHeight(520);
+
+        this.primaryStage.setMinWidth(960);
+        this.primaryStage.setMinHeight(640);
     }
 
     public Stage getPrimaryStage() {
@@ -143,6 +146,24 @@ public class MainWindow extends UiPart<Stage> {
 
         if (result.shouldExit()) {
             handleExit();
+        }
+
+
+        switch (result.getSwitchedPanel()) {
+        case RECIPE_DETAIL:
+            DisplayNavigator.loadRecipeDisplay(result.getDisplayedRecipe().get());
+            break;
+
+        case RECIPE_LIST:
+            DisplayNavigator.loadRecipePanel();
+            break;
+
+        case INGREDIENT_LIST:
+            DisplayNavigator.loadIngredientPanel();
+            break;
+
+        default:
+            break;
         }
 
         return result;

@@ -31,12 +31,8 @@ public class ViewRecipeCommand extends Command {
             return CommandResult.error(recipe.getError());
         }
 
-
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipeDisplay(recipe.getValue());
-        }
-
-        return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName());
+        return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName())
+            .showingRecipe(recipe.getValue());
     }
 
     @Override

@@ -17,11 +17,8 @@ public class ListIngredientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_ENTRIES);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadIngredientPanel();
-        }
-
-        return CommandResult.message("Listed ingredients");
+        return CommandResult.message("Listed ingredients")
+            .showingIngredientList();
     }
 
     @Override

@@ -45,12 +45,9 @@ public class FilterRecipeCommand extends Command {
         }
         model.updateFilteredRecipeList(p);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipePanel();
-        }
-
         var sz = model.getFilteredRecipeList().size();
-        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s");
+        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s")
+            .showingRecipeList();
     }
 
     @Override

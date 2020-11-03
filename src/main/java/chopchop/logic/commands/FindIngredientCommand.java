@@ -28,12 +28,9 @@ public class FindIngredientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredIngredientList(predicate);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadIngredientPanel();
-        }
-
         var sz = model.getFilteredIngredientList().size();
-        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s");
+        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s")
+            .showingIngredientList();
     }
 
     @Override

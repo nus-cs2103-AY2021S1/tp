@@ -16,11 +16,8 @@ public class ListRecommendationCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecommendationPanel();
-        }
-
-        return CommandResult.message("Listed recommendations");
+        return CommandResult.message("Listed recommendations")
+            .showingRecommendationList();
     }
 
     @Override
