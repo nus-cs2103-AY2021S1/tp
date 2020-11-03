@@ -55,11 +55,11 @@ deactivate StatisticsCommandParser
 StockBookParser --> LogicManager
 deactivate StockBookParser
 
-LogicManager -> SourceStatisticsCommand : execute()
-activate SourceStatisticsCommand
+LogicManager -> SourceQuantityDistributionStatisticsCommand : execute()
+activate SourceQuantityDistributionStatisticsCommand
 
-SourceStatisticsCommand --> LogicManager
-deactivate SourceStatisticsCommand
+SourceQuantityDistributionStatisticsCommand --> LogicManager
+deactivate SourceQuantityDistributionStatisticsCommand
 
 [<--LogicManager
 deactivate LogicManager

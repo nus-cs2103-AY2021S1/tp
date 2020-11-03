@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete sn/ntuc1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -119,6 +119,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the stock book data in json format and read it back.
+* can save the serial number sets book data in json format and read it back.
 
 ### Common classes
 
@@ -977,6 +978,16 @@ The following sequence diagram shows how the Logic aspect of the statistics feat
 The following sequence diagram shows how the Ui aspect of the statistics feature works for **Example 1**:
 
 ![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png)
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the Logic aspect of the statistics feature works for **Example 2**:
+
+![Statistics-Logic Example 2](images/StatisticsCommandSequenceDiagramLogicExample2.png)
+
+The following sequence diagram shows how the Ui aspect of the statistics feature works for **Example 2**:
+
+![Statistics-Ui Example 2](images/StatisticsCommandSequenceDiagramUiExample2.png)
 
 #### Activity Diagram
 
