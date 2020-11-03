@@ -79,4 +79,8 @@ public class AddPropertyCommand extends Command {
                 || (other instanceof AddPropertyCommand // instanceof handles nulls
                 && toAdd.equals(((AddPropertyCommand) other).toAdd));
     }
+
+    public Property getToAdd() {
+        return toAdd;
+    }
 }

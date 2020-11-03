@@ -80,6 +80,7 @@ class PriceFilterTest {
 
         // same compareOp and price
         assertTrue(priceFilter.equals(new PriceFilter("== 100")));
+        assertTrue(priceFilter.equals(new PriceFilter("== 100.009")));
 
         // different compareOp but same price
         assertFalse(priceFilter.equals(new PriceFilter("< 100")));
@@ -89,7 +90,7 @@ class PriceFilterTest {
 
         // same compareOp but different price
         assertFalse(priceFilter.equals(new PriceFilter("== 101")));
-        assertFalse(priceFilter.equals(new PriceFilter("== 100.0051")));
+        assertFalse(priceFilter.equals(new PriceFilter("== 100.01")));
 
         // different compareOp and different price
         assertFalse(priceFilter.equals(new PriceFilter("< 100")));
