@@ -145,7 +145,7 @@ Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-Step 2: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` Remember to include the file extension in `DIAGRAM`.
+Step 2: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`.
 
 ![filedirectory](images/ug/ug_add_step2.png)
 
@@ -201,7 +201,7 @@ Step 2: We want to edit the category of the flashcard to Trivial and rating to 1
 
 ![filedirectory](images/ug/ug_edit_step2.PNG)
 
-Step 3: The flashcard's category and rating are edited to Trivial and 1 respectively.
+Step 3: The flashcard's category and rating are edited to `Trivial` and `1` respectively.
 
 ![filedirectory](images/ug/ug_edit_step3.PNG)
 
@@ -229,7 +229,7 @@ Step 1: We want to filter for a flashcard which has a Trivial category and conta
 
 ![filedirectory](images/ug/ug_filter_step1.PNG)
 
-Step 2: The flashcard whose category and tag fields matches Trivial and preloaded respectively is shown.
+Step 2: The flashcard with the category `Trivial` and tag field `preloaded` is shown.
 
 ![filedirectory](images/ug/ug_filter_step2.PNG)
 
@@ -308,6 +308,7 @@ The review and success frequency of a flashcard is not affected by review mode.
 Steps for entering review mode.
 
 Step 1: We want to enter review mode to review our flashcards. Type the command `review`.
+
 ![filedirectory](images/ug/ug_review_step1.PNG)
 
 Step 2: We are brought to the review mode. The instructions on how to navigate review mode will be shown at the top.
@@ -342,7 +343,7 @@ Format: `quiz`
 
 Steps for entering quiz mode.
 
-Step 1: We want to enter quiz mode to quiz ourself on the current list of flashcards. Type the command `quiz`.
+Step 1: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`.
 
 ![filedirectory](images/ug/ug_quiz_step1.PNG)
 
@@ -427,6 +428,7 @@ The following information will be displayed on the view pane:
 
 <div markdown="span" class="alert alert-primary">:memo: Note: No pie chart will be shown if the flashcard has not been reviewed.    
 </div>
+
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
