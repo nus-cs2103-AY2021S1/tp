@@ -43,10 +43,9 @@ import seedu.address.model.recipe.Recipe;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static String themeColor = "linear-gradient(to top, #16a085 0%, #004f08 100%);";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-
-    private static String themeColor = "linear-gradient(to top, #16a085 0%, #004f08 100%);";
 
     private Stage primaryStage;
     private Logic logic;

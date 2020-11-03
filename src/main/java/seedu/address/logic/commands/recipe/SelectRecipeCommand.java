@@ -52,6 +52,11 @@ public class SelectRecipeCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SELECT_RECIPE_SUCCESS, selectedRecipe), recipeToSelect);
     }
 
+    /**
+     * Separates string representation of recipe
+     * @param recipe
+     * @return
+     */
     public String separateRecipeString(Recipe recipe) {
         String recipeString = recipe.toString();
         String recipeStringSeparated;

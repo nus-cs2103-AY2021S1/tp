@@ -8,7 +8,6 @@ Wishful Shrinking is a desktop application for managing your diet, keeping track
 
 Given below are my contributions to the project.
 
-
 * **New Feature**: Added the ability to add recipes to the recipe list.
   * What it does: allows the user to add recipes to his/her collection.
   * Justification: This feature helps the user accumulate healthy recipes for future reference in preparing meals.
