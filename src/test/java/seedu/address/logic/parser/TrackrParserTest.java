@@ -31,6 +31,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTutorialGroupCommand;
+import seedu.address.logic.commands.ViewStudentCommand;
+import seedu.address.logic.commands.ViewTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
@@ -195,6 +197,20 @@ public class TrackrParserTest {
     public void parseCommand_listStudent() throws Exception {
         assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD) instanceof ListStudentCommand);
         assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3") instanceof ListStudentCommand);
+    }
+
+    @Test
+    public void parseCommand_viewTutorialGroup() throws Exception {
+        ViewTutorialGroupCommand command = (ViewTutorialGroupCommand) parser.parseCommand(
+                ViewTutorialGroupCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ViewTutorialGroupCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_viewStudent() throws Exception {
+        ViewStudentCommand command = (ViewStudentCommand) parser.parseCommand(
+                ViewStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ViewStudentCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
