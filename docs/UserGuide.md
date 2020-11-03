@@ -43,7 +43,6 @@ PlaNus is a **task managing desktop application** for students in NUS with many 
 Objectives of PlaNus:
 1. Provide students with a detailed breakdown of how much time they spend on their tasks and lessons in their respective modules.
 2. Allow students to have a calendar view of their schedule.
-3. Allocate tasks and lessons to their schedule automatically. (Coming soon in v1.4)
 
 
 
