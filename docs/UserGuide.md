@@ -9,22 +9,22 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 * Table of Contents
     - [Quick start](#quick-start)
     - [Features](#features)
-        - [Adding a flashcard](#adding-a-flashcard--add): `add`
-        - [Clear all flashcards](#clearing-all-flashcards--clear): `clear`
-        - [Deleting a flashcard](#deleting-a-flashcard---delete): `delete`
-        - [Editing a flashcard](#editing-a-flashcard---edit): `edit`
-        - [Filter relevant flashcards](#filtering-out-flashcards---filter): `filter`
+        - [Add a flashcard](#add-a-flashcard--add): `add`
+        - [Clear all flashcards](#clear-all-flashcards--clear): `clear`
+        - [Delete a flashcard](#delete-a-flashcard---delete): `delete`
+        - [Edit a flashcard](#edit-a-flashcard---edit): `edit`
+        - [Filter relevant flashcards](#filter-for-flashcards---filter): `filter`
         - [Favourite a flashcard](#favourite-a-flashcard---fav) : `fav`
         - [Unfavourite a flashcard](#unfavourite-a-flashcard---unfav): `unfav`
         - [Find flashcards](#find-flashcards--find): `find`
-        - [Viewing help](#viewing-help--help): `help`
-        - [Listing all flashcards](#listing-all-flashcards--list): `list`
-        - [Review all flashcards](#reviewing-all-flashcards-review) : `review`
-        - [Quiz flashcards](#quizzing-flashcards-quiz): `quiz`
-        - [Sort all flashcards](#sort-all-flashcards--sort): `sort`
-        - [View a flashcard](#views-a-flashcard---view): `view`
-        - [View the statistics of a flashcard](#viewing-the-statistics-of-flashcard-stats): `stats`
-        - [Exiting the program](#exiting-the-program--exit): `exit`
+        - [View help](#viewing-help--help): `help`
+        - [List flashcards](#list-all-flashcards--list): `list`
+        - [Review flashcards](#review-flashcards-review) : `review`
+        - [Quiz flashcards](#quiz-flashcards-quiz): `quiz`
+        - [Sort flashcards](#sort-all-flashcards--sort): `sort`
+        - [View a flashcard](#view-a-flashcard---view): `view`
+        - [View the statistics of a flashcard](#view-the-statistics-of-flashcard-stats): `stats`
+        - [Exit the program](#exit-the-program--exit): `exit`
         - [Saving the data](#saving-the-data)
     - FAQ
     - [Command summary](#command-summary)
@@ -108,7 +108,7 @@ must be specified exactly.
 
 </div>
 
-### Adding a flashcard : `add`
+### Add a flashcard : `add`
 
 Adds a flashcard.
 
@@ -145,7 +145,7 @@ Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`.
+**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`
 
 ![filedirectory](images/ug/ug_add_step2.png)
 
@@ -153,14 +153,14 @@ Root folder containing the jar file        |  Image directory
 
 ![filedirectory](images/ug/ug_add_step3.png)
 
-### Clearing all flashcards : `clear` 
+### Clear all flashcards : `clear` 
 
 Clears all flashcard data from the program.
 
 Format: `clear`
 
 
-### Deleting a flashcard  : `delete`
+### Delete a flashcard  : `delete`
 
 Deletes the specified flashcard.
 
@@ -173,7 +173,7 @@ Format: `delete INDEX`
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
 
-### Editing a flashcard  : `edit`
+### Edit a flashcard  : `edit`
 
 Edits a flashcard.
 
@@ -198,15 +198,15 @@ Examples:
 
 ![filedirectory](images/ug/ug_edit_step1.PNG)
 
-**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`.
+**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`
 
 ![filedirectory](images/ug/ug_edit_step2.PNG)
 
-**Step 3**: The flashcard's category and rating are edited to `Trivial` and `1` respectively.
+**Step 3**: The flashcard's category and rating are edited to Trivial and 1 respectively.
 
 ![filedirectory](images/ug/ug_edit_step3.PNG)
 
-### Filtering out flashcards  : `filter`
+### Filter for flashcards  : `filter`
 
 Filters for specific flashcard(s) based on the field input(s) by the user. 
 This will return all the flashcards whose fields match all the fields specified by the user.
@@ -226,11 +226,11 @@ Examples:
 
 **Steps for filtering for a flashcard based on category and tag**:
 
-**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`.
+**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`
 
 ![filedirectory](images/ug/ug_filter_step1.PNG)
 
-**Step 2**: The flashcard with the category `Trivial` and tag field `preloaded` is shown.
+**Step 2**: The flashcard with the category Trivial and tag field preloaded is shown.
 
 ![filedirectory](images/ug/ug_filter_step2.PNG)
 
@@ -280,7 +280,7 @@ Opens a window with a link that directs you to our user guide.
 
 Format: `help`
 
-### Listing all flashcards : `list`
+### List all flashcards : `list`
 
 Shows a list of all flashcards. This is useful for removing any `filter` or `find` you have done on the flashcard list.
 
@@ -288,7 +288,7 @@ Format: `list`
 
 * All additional input after the command word `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
 
-### Reviewing all flashcards: `review`
+### Review flashcards: `review`
 
 Reviews the current list of flashcards. This puts the user in review mode and the user can no 
 longer input commands to the textbox.
@@ -309,7 +309,7 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 **Steps for entering review mode**:
 
-**Step 1**: We want to enter review mode to review our flashcards. Type the command `review`.
+**Step 1**: We want to enter review mode to review our flashcards. Type the command `review`
 
 ![filedirectory](images/ug/ug_review_step1.PNG)
 
@@ -321,7 +321,7 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 ![filedirectory](images/ug/ug_review_step3.PNG)
 
-### Quizzing flashcards: `quiz`
+### Quiz flashcards: `quiz`
 
 Quizzes the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
 
@@ -334,7 +334,7 @@ Upon entering quiz mode, the following user input will be recognised:
 Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
 `y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.  
 
-The quiz mode works in conjunction with the [statistics](#viewing-the-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#viewing-the-statistics-of-flashcard-stats) feature.
+The quiz mode works in conjunction with the [statistics](#view-the-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#view-the-statistics-of-flashcard-stats) feature.
 * Pressing `y` will increase the review and success frequency of the flashcard.
 * Pressing `n` will increase the review frequency of the flashcard.
 
@@ -346,11 +346,11 @@ Format: `quiz`
 
 **Steps for entering quiz mode**:
 
-**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`.
+**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`
 
 ![filedirectory](images/ug/ug_quiz_step1.PNG)
 
-**Step 2**: We are brought to the quiz mode. The instructions on how to navigate quiz mode will be shown at the top.
+**Step 2**: We are brought into quiz mode. The instructions on how to navigate quiz mode will be shown at the top.
 
 ![filedirectory](images/ug/ug_quiz_step2.PNG)
 
@@ -365,7 +365,7 @@ Format: `quiz`
 
 ### Sort all flashcards : `sort`
 
-Sorts a list of all flashcards according to the criteria given.
+Sorts all flashcards according to the criteria given.
 
 Format: `sort <success|reviewed> <-a|-d>`
 
@@ -396,7 +396,7 @@ flashcard was not modified/deleted.
 
 **Steps for viewing a specific flashcard**:
 
-**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`.
+**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`
 
 ![filedirectory](images/ug/ug_view_step1.PNG)
 
@@ -404,15 +404,15 @@ flashcard was not modified/deleted.
 
 ![filedirectory](images/ug/ug_view_step2.PNG)
 
-**Step 3**: To view the answer and notes(if applicable) of the flashcard on the view pane. Type the command `view 3 -a`.
+**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a`
 
 ![filedirectory](images/ug/ug_view_step3.PNG)
 
-**Step 4**: The answer of the flashcard is now displayed on the view pane.
+**Step 4**: The answer of the flashcard is displayed on the view pane.
 
 ![filedirectory](images/ug/ug_view_step4.PNG)
 
-### Viewing the statistics of flashcard `stats`
+### View the statistics of flashcard `stats`
 
 View the statistics of a flashcard.
 
@@ -422,7 +422,7 @@ Format: `stats INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
-The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quizzing-flashcards-quiz) feature.
+The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
 The following information will be displayed on the view pane:
 * Question of the flashcard.
@@ -440,7 +440,7 @@ flashcard was not modified/deleted.
 
 **Steps for viewing the statistics of a specific flashcard**:
 
-**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`.
+**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`
 
 ![filedirectory](images/ug/ug_stats_step1.PNG)
 
@@ -448,7 +448,7 @@ flashcard was not modified/deleted.
 
 ![filedirectory](images/ug/ug_stats_step2.PNG)
 
-### Exiting the program : `exit`
+### Exit the program : `exit`
 
 Exits the program.
 
