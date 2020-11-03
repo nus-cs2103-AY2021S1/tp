@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.meeting;
 
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand;
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand.EditMeetingDescriptor;
