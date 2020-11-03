@@ -31,6 +31,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTutorialGroupCommand;
+import seedu.address.logic.commands.PreviousViewCommand;
 import seedu.address.logic.commands.ViewStudentCommand;
 import seedu.address.logic.commands.ViewTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -175,12 +176,6 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
-    //    @Test
-    //    public void parseCommand_list() throws Exception {
-    //        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-    //        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
-    //    }
-
     @Test
     public void parseCommand_listModule() throws Exception {
         assertTrue(parser.parseCommand(ListModuleCommand.COMMAND_WORD) instanceof ListModuleCommand);
@@ -211,6 +206,12 @@ public class TrackrParserTest {
         ViewStudentCommand command = (ViewStudentCommand) parser.parseCommand(
                 ViewStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new ViewStudentCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_previousView() throws Exception {
+        assertTrue(parser.parseCommand(PreviousViewCommand.COMMAND_WORD) instanceof PreviousViewCommand);
+        assertTrue(parser.parseCommand(PreviousViewCommand.COMMAND_WORD + " 3") instanceof PreviousViewCommand);
     }
 
     @Test
