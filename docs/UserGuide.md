@@ -171,7 +171,7 @@ Follow these steps and try importing your timetable:
 </div>
 
 Example:
-* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
+* `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` 
 
 ### Listing assignments : `list`
 
@@ -242,9 +242,9 @@ Here is an example with steps to follow:
 
 2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
 
-3) A message that indicates the number of assignments found will be displayed in the Message Box.
+3) A message that indicates the number of assignments found is displayed in the Message Box.
 
-![FindCommand1](images/FindCommandDiagram2.png)
+![FindCommand2](images/FindCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
 
 <div markdown="block" class="alert alert-primary">
@@ -252,6 +252,45 @@ Here is an example with steps to follow:
  **:clipboard: Pointers to note:**<br>
 * `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
+</div>
+
+### Editing your assignment : `edit`
+
+Format: `edit INDEX PREFIX/EDITTED_FIELD`
+
+You can specify an assignment's index to edit its fields. These fields are the name, module code and deadline of assignment.
+
+This is the table of prefixes used:
+
+| Prefix | Syntax | Example |
+|-|-|
+| `n/` | n/NAME_OF_ASSIGNMENT | - `n/Tutorial` |
+| `mod/` | mod/MODULE_CODE | - `mod/ST2334` |
+| `d/` | d/DATE_OR_TIME_OF_ASSIGNMENT | - `d/24-10-2020 1300` |
+
+<div markdown="block" class="alert alert-primary">
+
+Here is an example with steps to follow:
+
+1) To edit the name of the assignment with the first index in the assignment list to "Statistics Lab", you can simply key in `edit 1 n/Statistics Lab` in the Command Box. 
+
+![EditCommand1](images/EditCommand1.png)
+
+*Figure X: `edit 1 n/Statistics Lab` inputted by user*
+
+2) The assignment name will be changed to "Statistics Lab".
+
+3) A message that indicates details of the new edited assignment is displayed in the Message Box.
+
+![EditCommand2](images/EditCommand2.png)
+
+*Figure X: The displayed message and the edited assignment*
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
+* You can edit more than one field of an assignment at a time. For example, you can key in `edit 1 n/Tutorial mod/CS2103T` to edit both the name and module code in a single command.
 </div>
 
 ### Setting reminders for assignments : `remind`
@@ -333,13 +372,13 @@ For example, `prioritize 1 p/LOW` will set a low priority tag for the first assi
   
 **:clipboard: Pointers to note:**<br>
 * The `INDEX` must be found in your assignment list.
-* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH`.
+* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH` and they are case-insensitive.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 </div>
 
 ### Removing priority for assignments : `unprioritize`
 
-Format: `unprioritze INDEX`
+Format: `unprioritize INDEX`
 
 You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
 you wish to have the priority tag removed.
@@ -413,7 +452,7 @@ you can simply enter `undone 2` into the command line based on the index labelle
    
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
-* Assignments are marked as not done**by default**
+* Assignments are marked as not done **by default**
 * The index must be present. For example, `undone` without any index will not work.
 * The index **must be found in your assignment list**
 </div>
