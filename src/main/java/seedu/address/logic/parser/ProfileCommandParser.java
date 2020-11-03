@@ -14,15 +14,17 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
     @Override
     public ProfileCommand parse(String args) throws ParseException {
         String trimArgs = args.trim();
-
-        int aIndex = trimArgs.indexOf("a/");
-        int pIndex = trimArgs.indexOf("p/");
-        if (aIndex == -1 | pIndex == -1) {
+        String[] strArgs = trimArgs.split(" ");
+        if (strArgs.length < 2) {
             throw new ParseException(ProfileCommand.MESSAGE_USAGE);
         }
-
-        String addressStr = trimArgs.substring(aIndex + 2, pIndex).trim();
-        String phoneStr = trimArgs.substring(pIndex + 2).trim();
+        String phoneStr = strArgs[0];
+        StringBuilder builder = new StringBuilder();
+        for (String string : strArgs) {
+            builder.append(string);
+            builder.append(" ");
+        }
+        String addressStr = builder.toString();
 
         if (!Address.isValidAddress(addressStr) || !Phone.isValidPhone(phoneStr)) {
             throw new ParseException(ProfileCommand.MESSAGE_USAGE);

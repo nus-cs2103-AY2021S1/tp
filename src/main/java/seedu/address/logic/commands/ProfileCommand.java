@@ -14,11 +14,11 @@ public class ProfileCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add delivery address and phone number for submission.\n"
-            + "Format: profile a/ADDRESS p/PHONE\n"
-            + "- ADDRESS represents your delivery address.\n"
+            + "Format: profile PHONE ADDRESS\n"
             + "- PHONE represents your contact number and must be at least 3 digits long.\n"
+            + "- ADDRESS represents your delivery address.\n"
             + "Examples:\n"
-            + "profile a/25 Lower Kent Ridge Rd, Singapore 119081 p/92030888: "
+            + "profile 92030888 25 Lower Kent Ridge Rd, Singapore 119081: "
                 + "Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone number as '92030888'";
 
     public static final String MESSAGE_SUCCESS = "Profile Successfully added!";
