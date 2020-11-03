@@ -17,18 +17,21 @@
       <HBox alignment="CENTER_LEFT" spacing="5">
         <VBox alignment="CENTER_LEFT">
         <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="menu_food_name">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-        <Label fx:id="price" styleClass="cell_small_label" text="\$price" />
+        <Label fx:id="name" styleClass="menu_food_name" text="\$first" />
         </HBox>
+     <Label fx:id="price" styleClass="menu_food_price" text="\$price" />
         <FlowPane fx:id="tags" />
         </VBox>
-        <ImageView fx:id="imageView" />
+        <ImageView fx:id="imageView">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin></ImageView>
       </HBox>
 
     </VBox>
