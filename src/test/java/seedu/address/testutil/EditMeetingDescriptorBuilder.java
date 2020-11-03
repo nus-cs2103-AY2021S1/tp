@@ -67,7 +67,7 @@ public class EditMeetingDescriptorBuilder {
      * Parses the {@code names} into a {@code Set<Name>} and set it to the {@code EditMeetingDescriptor}
      * that we are building.
      */
-    public EditMeetingDescriptorBuilder withMemberNames(String... names) {
+    public EditMeetingDescriptorBuilder withMembers(String... names) {
         Set<Name> personNameSet = Stream.of(names).map(Name::new).collect(Collectors.toSet());
         descriptor.setMemberNames(personNameSet);
         return this;

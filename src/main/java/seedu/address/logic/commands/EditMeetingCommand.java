@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -59,7 +60,7 @@ public class EditMeetingCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING =
             "The meeting [%s] %s already exists in the meeting book";
-    public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts.";
+    public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in the module %s";
     public static final String MESSAGE_CONFLICTING_MEETING_TIMES =
             "The meeting [%s] %s is already occurring at the same date and time";
 
@@ -110,7 +111,7 @@ public class EditMeetingCommand extends Command {
 
         assert meetingToEdit != null;
 
-        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model);
+        Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model, module);
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_MEETING, module.getModuleName(),
@@ -135,7 +136,6 @@ public class EditMeetingCommand extends Command {
             }
         }
 
-
         model.setMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting), false,
@@ -148,7 +148,7 @@ public class EditMeetingCommand extends Command {
      */
     private static Meeting createEditedMeeting(Meeting meetingToEdit,
                                                EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor,
-                                               Model model) throws CommandException {
+                                               Model model, Module module) throws CommandException {
         assert meetingToEdit != null;
 
         MeetingName updatedMeetingName = editMeetingDescriptor.getMeetingName().orElse(meetingToEdit.getMeetingName());
@@ -157,7 +157,7 @@ public class EditMeetingCommand extends Command {
         Set<Name> updatedMemberNames = editMeetingDescriptor.getMemberNames().orElse(null);
         Set<SpecialName> updatedAgendas = editMeetingDescriptor.getAgendas().orElse(meetingToEdit.getAgendas());
         Set<SpecialName> updatedNotes = editMeetingDescriptor.getNotes().orElse(meetingToEdit.getNotes());
-        Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, model);
+        Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, module, model);
 
         return new Meeting(meetingToEdit.getModule(), updatedMeetingName, updatedDate, updatedTime, updatedMembers,
                 updatedAgendas, updatedNotes);
@@ -165,13 +165,14 @@ public class EditMeetingCommand extends Command {
 
     private static Set<Person> getUpdatedMembers(Meeting meetingToEdit,
                                                  Set<Name> updatedMemberNames,
+                                                 Module module,
                                                  Model model) throws CommandException {
         Set<Person> updatedMembers = new HashSet<>();
 
         if (updatedMemberNames != null) {
             List<Name> nonExistentPersonNames = new ArrayList<>();
             for (Name name : updatedMemberNames) {
-                if (!model.hasPersonName(name)) {
+                if (!module.hasClassmate(name)) {
                     nonExistentPersonNames.add(name);
                 }
             }
@@ -182,7 +183,8 @@ public class EditMeetingCommand extends Command {
                     sb.append(name + ", ");
                 }
                 String nonExistentPersonNamesString = sb.substring(0, sb.length() - 2);
-                throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString));
+                throw new CommandException(String.format(MESSAGE_NONEXISTENT_PERSON, nonExistentPersonNamesString,
+                        module.getModuleName()));
             }
 
             for (Name name : updatedMemberNames) {
