@@ -20,7 +20,7 @@ public class AliasCommand extends Command {
             + "[Command's current custom alias or if command has none, default command word]\n"
             + "Example: " + COMMAND_WORD + " find " + "get ";
 
-    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s]";
+    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s]. ";
 
     private final String previousAlias;
     private final String newAlias;

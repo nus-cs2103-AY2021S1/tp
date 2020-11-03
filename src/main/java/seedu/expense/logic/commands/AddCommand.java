@@ -29,11 +29,11 @@ public class AddCommand extends Command {
             + PREFIX_DATE + "04-10-2020 "
             + PREFIX_TAG + "friends ";
 
-    public static final String MESSAGE_SUCCESS = "New expense added: %1$s.";
-    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense book."
+    public static final String MESSAGE_SUCCESS = "New expense added: %1$s ";
+    public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense book. "
             + "Expense should be updated ";
     public static final String MESSAGE_DEFAULT = "The category '%s' does not exist yet"
-            + " -- tagging as 'Default' instead.";
+            + " -- tagging as 'Default' instead. ";
 
     private final Expense toAdd;
 
