@@ -43,85 +43,86 @@
                         </padding>
                     </Label>
                 </AnchorPane>
+                <SplitPane fx:id="caseInteractivePanel" dividerPositions="0.7668161434977578" orientation="VERTICAL" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <SplitPane fx:id="caseDisplayPlaceholder" dividerPositions="0.5" styleClass="pane-with-border">
+                        <VBox fx:id="caseList" minWidth="250" prefWidth="250" styleClass="pane-with-border">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+                            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        </VBox>
 
-                <SplitPane fx:id="caseDisplayPlaceholder" dividerPositions="0.5" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <VBox fx:id="caseList" minWidth="250" prefWidth="250" styleClass="pane-with-border">
+                        <VBox fx:id="caseInformation" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+                            <Label fx:id="caseTitle" styleClass="label-title" text="Default Title" wrapText="true">
+                                <padding>
+                                    <Insets bottom="3" left="5" right="5" top="5" />
+                                </padding>
+                            </Label>
+                            <Label fx:id="caseDescription" styleClass="label-bright" text="Default Description" wrapText="true">
+                                <padding>
+                                    <Insets bottom="3" left="5" right="5" top="3" />
+                                </padding>
+                            </Label>
+                            <Label fx:id="caseStatus" styleClass="label-bright" text="Default Status">
+                                <padding>
+                                    <Insets bottom="15" left="5" right="5" top="3" />
+                                </padding>
+                            </Label>
+
+                            <TabPane fx:id="caseTabPane" styleClass="tab-pane" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets bottom="10" />
+                                </padding>
+                                <Tab fx:id="documentTab" text="Documents">
+                                    <AnchorPane VBox.vgrow="ALWAYS">
+                                        <StackPane fx:id="documentListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <padding>
+                                                <Insets bottom="10" left="5" right="5" top="5" />
+                                            </padding>
+                                        </StackPane>
+                                    </AnchorPane>
+                                </Tab>
+                                <Tab fx:id="suspectTab" text="Suspects">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                        <StackPane fx:id="suspectListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <padding>
+                                                <Insets bottom="10" left="5" right="5" top="5" />
+                                            </padding>
+                                        </StackPane>
+                                    </AnchorPane>
+                                </Tab>
+                                <Tab fx:id="victimTab" text="Victims">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                        <StackPane fx:id="victimListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <padding>
+                                                <Insets bottom="10" left="5" right="5" top="5" />
+                                            </padding>
+                                        </StackPane>
+                                    </AnchorPane>
+                                </Tab>
+                                <Tab fx:id="witnessTab" text="Witnesses">
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                        <StackPane fx:id="witnessListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <padding>
+                                                <Insets bottom="10" left="5" right="5" top="5" />
+                                            </padding>
+                                        </StackPane>
+                                    </AnchorPane>
+                                </Tab>
+                            </TabPane>
+                        </VBox>
+
+                    </SplitPane>
+
+                    <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="100" styleClass="pane-with-border">
                         <padding>
-                            <Insets bottom="10" left="10" right="10" top="10" />
+                            <Insets bottom="5" left="10" right="10" top="5" />
                         </padding>
-                        <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                    </VBox>
-
-                    <VBox fx:id="caseInformation" minWidth="300" prefWidth="300" VBox.vgrow="ALWAYS">
-                        <padding>
-                            <Insets bottom="10" left="10" right="10" top="10" />
-                        </padding>
-                        <Label fx:id="caseTitle" styleClass="label-title" text="Default Title" wrapText="true">
-                            <padding>
-                                <Insets top="5" bottom="3" left="5" right="5" />
-                            </padding>
-                        </Label>
-                        <Label fx:id="caseDescription" styleClass="label-bright" text="Default Description" wrapText="true">
-                            <padding>
-                                <Insets top="3" bottom="3" left="5" right="5" />
-                            </padding>
-                        </Label>
-                        <Label fx:id="caseStatus" styleClass="label-bright" text="Default Status">
-                            <padding>
-                                <Insets top="3" bottom="15" left="5" right="5" />
-                            </padding>
-                        </Label>
-
-                        <TabPane fx:id="caseTabPane" styleClass="tab-pane" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED" VBox.vgrow="ALWAYS">
-                            <padding>
-                                <Insets bottom="10" />
-                            </padding>
-                            <Tab fx:id="documentTab" text="Documents">
-                                <AnchorPane VBox.vgrow="ALWAYS">
-                                    <StackPane fx:id="documentListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <padding>
-                                            <Insets bottom="10" top="5" left="5" right="5"  />
-                                        </padding>
-                                    </StackPane>
-                                </AnchorPane>
-                            </Tab>
-                            <Tab fx:id="suspectTab" text="Suspects">
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                    <StackPane fx:id="suspectListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <padding>
-                                            <Insets bottom="10" top="5" left="5" right="5" />
-                                        </padding>
-                                    </StackPane>
-                                </AnchorPane>
-                            </Tab>
-                            <Tab fx:id="victimTab" text="Victims">
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                    <StackPane fx:id="victimListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <padding>
-                                            <Insets bottom="10" top="5" left="5" right="5" />
-                                        </padding>
-                                    </StackPane>
-                                </AnchorPane>
-                            </Tab>
-                            <Tab fx:id="witnessTab" text="Witnesses">
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                                    <StackPane fx:id="witnessListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <padding>
-                                            <Insets bottom="10" top="5" left="5" right="5" />
-                                        </padding>
-                                    </StackPane>
-                                </AnchorPane>
-                            </Tab>
-                        </TabPane>
-                    </VBox>
-
+                    </StackPane>
                 </SplitPane>
-
-                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                    </padding>
-                </StackPane>
 
                 <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                     <padding>
