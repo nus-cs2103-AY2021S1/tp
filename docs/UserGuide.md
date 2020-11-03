@@ -117,14 +117,13 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t
 * `RATING` must be a number between 1 and 5 inclusive.
 * `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
      It can consist of multiple words but there should only be 1 space between words.
-* `DIAGRAM` can be defined by a valid relative or absolute path.
-* `DIAGRAM` only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used.
-  * d/images/diagram.png is supported.
-  * d/image s/diagram.png is not supported.
-* `DIAGRAM` only supports the following file types. Unintended behaviour may occur if file path with spaces is used.
+* `DIAGRAM` can be defined by a valid relative or absolute path and only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used. eg. `d/image s/diagram.png`
+* `DIAGRAM` only supports the following image file types.
   * jpeg
   * png
   * bmp
+  * jpg
+  * gif
 * `TAGS` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -286,7 +285,7 @@ The quiz mode works in conjunction with the [statistics](#viewing-statistics-of-
 
 Format: `quiz`
 
-<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quit the quiz prematurely.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
 
 ### Sort all flashcards : `sort`
@@ -336,6 +335,12 @@ The following information will be displayed on the view pane:
 * Reviewed count of the flashcard.
 * Correct count of the flashcard.
 * Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard.
+
+<div markdown="span" class="alert alert-primary">:memo: Note: No pie chart will be shown if the flashcard has not been reviewed.    
+</div>
+<div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
+flashcard was not modified/deleted.
+</div>
 
 ### Exiting the program : `exit`
 
