@@ -46,6 +46,8 @@ public class VisitHistory {
      */
     public VisitHistory editVisit(int idx, Visit toEdit) {
         this.visits.set(idx - 1, toEdit);
+        Collections.sort(this.visits);
+        Collections.reverse((this.visits));
         return this;
     }
 
