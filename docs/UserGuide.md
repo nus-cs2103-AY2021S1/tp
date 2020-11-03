@@ -58,6 +58,8 @@ Interested? Read on to get [started](#3-quick-start-guide)!
 
 ## 4. Command Formats
 
+This section details the notations used to specify the command formats in the [commands](#5-commands) and [commands summary](#6-commands-summary) sections.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
