@@ -749,7 +749,7 @@ You will see that all the notes of the stock with serial number `ntuc1` has been
 **After input:**
 ![notedelete-step-3](images/note/notedelete-step-3.png)
 
-You are now done with the guided tutorial for `note`.
+You are now done with the guided tutorial for `notedelete`.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -759,24 +759,40 @@ You should see an error message describing what went wrong and the correct forma
 Continuing from the steps from the guided example above, 
 Let's try deleting a note from an **unknown** serial number.
 
-Type `note sn/unknown1 nt/note` in the command box and enter.
+Type `notedelete sn/unknown1 ni/1` in the command box and enter.
 
 **After input:**
-![note-step-6](images/note/note-step-6.png)
+![notedelete-unknown](images/note/notedelete-step-4.png)
 
-Let's try adding a note but with an **invalid prefix**: `n/` for the `note` command.
+Let's try deleting a note but with an **invalid prefix**: `n/` for the `notedelete` command.
 
-Type `note sn/ntuc1 nt/valid note n/invalid` into the command box.
-
-**After input:**
-![note-step-7](images/note/note-step-7.png)
-
-Let's try adding a note but with a **duplicate** valid prefix for the `note` command.
-
-Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter.
+Type `notedelete sn/cold storage1 ni/1 n/invalid` into the command box.
 
 **After input:**
-![note-step-8](images/note/note-step-8.png)
+![notedelete-invalid](images/note/notedelete-step-5.png)
+
+Let's try deleting a note but with a **duplicate** valid prefix for the `notedelete` command.
+
+Type `notedelete sn/cold storage1 ni/1 ni/2` into the command box and enter.
+
+**After input:**
+![notedelete-duplicate](images/note/notedelete-step-6.png)
+
+Let's try deleting a note with an **invalid note index**. You will see that the note
+index for the stock could not be found.
+
+Type `notedelete sn/cold storage1 ni/10` into the command box and enter.
+
+**After input:**
+![notedelete-invalidnoteindex](images/note/notedelete-step-7.png)
+
+Let's try deleting a note from a stock **without notes**. You will see that
+you cannot delete a note as the stock does not have notes.
+
+Type `notedelete sn/ntuc1 ni/1` into the command box and enter.
+
+**After input:**
+![notedelete-nonotes](images/note/notedelete-step-8.png)
 
 </div>
 
