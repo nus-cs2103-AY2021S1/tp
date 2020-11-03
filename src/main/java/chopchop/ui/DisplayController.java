@@ -49,31 +49,6 @@ public class DisplayController extends UiPart<Region> {
         this.recommendationViewPanel = new RecommendationViewPanel(logic.getRecommendedRecipeList(),
                 logic.getExpiringRecipeList());
 
-        // logic.getFilteredRecipeList().addListener((ListChangeListener<Recipe>) c -> {
-        //     while (c.next()) {
-        //     }
-
-        //     /*
-        //      * Check if a recipe was replaced in the recipe book, with an extra check to account for
-        //      * updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES).
-        //      */
-        //     if (c.wasReplaced() && !c.getAddedSubList().equals(c.getRemoved())) {
-        //         this.displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
-        //     } else if (c.wasAdded()) {
-        //         this.displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
-        //     } else {
-        //         this.displayRecipeList();
-        //     }
-        // });
-
-        // logic.getFilteredIngredientList().addListener((ListChangeListener<Ingredient>) c -> {
-        //     while (c.next()) {
-        //     }
-
-        //     this.displayIngredientList();
-        // });
-
-
         {
             var container = new ScrollPane();
             container.setFitToWidth(true);
