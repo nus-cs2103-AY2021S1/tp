@@ -398,8 +398,8 @@ Given below is the sequence diagram of how the operation to edit a contact works
   * Cons: This can increase data coupling between `EditContactParser` and `EditContactCommand` which can cause unnecessary changes in
           either class if the other class were to change.
 
-Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, since there
-was less coupling between the 2 classes.
+Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, 
+hence increasing the ease of maintenance, since there was less coupling between the 2 classes.
 
 ##### Implementation of `EditContactCommand`
 
@@ -481,16 +481,29 @@ Given below is the sequence diagram showing the interaction between `FindContact
           and compose all the predicates.
   * Cons: Using a list means that we will not know the exact predicate objects in the list. This can make testing and
           debugging more complicated. Moreover, we need to enforce checks on the predicate ensure that
-          null objects which can cause `NullPointerException` to be thrown are not added.
+          null objects, which can cause `NullPointerException` to be thrown, are not added.
 
 * **Alternative 2:** Store each predicate object as an individual field of `FindContactCriteria`
-  * Pros: 
+  * Pros: Facilitates easier testing as we can accurately determine which predicate objects are present.
   * Cons: It is tedious to compose the predicates into a single predicate as we have to check each individual field and 
           determine if it is null of if the predicate exists. 
 
-##### Aspect: To implement `FindContactCommand` as a single command or as separate commands for different search parameters
+##### Aspect: Implementation of `FindContactCommand` 
 
-* **Alternative 1 (current choice):**
+* **Alternative 1 :** Implement separate find contact commands for each possible search parameter. In this case, to find contacts, 
+                      we can create a command to find contacts by name, and another to find by tags.
+  * Pros: Implementation of the commands would be more straightforward, as only one predicate has to be created for each
+          find contact command. The `FindContactCriteria` class to store all the predicates would not be necessary in this case.
+  * Cons: This can increase the number of different find contact commands which can cause confusion for users.
+          Additionally, this can lead to repetitive code since the implementation of each find contact command would be similar.      
+
+* **Alternative 2 (current choice):** Implement a single `FindContactCommand` which can search for contacts using all the possible search parameters.
+                                      All the predicates needed to test for matching contacts would be encapsulated in `FindContactCriteria` 
+  * Pros: Reduces the need for multiple find contact commands with similar implementations. Users can make more refined and
+          accurate searches by combining multiple search parameters.
+  * Cons: Increases the complexity of implementing `FindContactParser` which has to validate and parse multiple search 
+          parameters provided.
+
 
 
 
