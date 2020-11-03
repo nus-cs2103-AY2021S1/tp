@@ -72,8 +72,8 @@ public class MainApp extends Application {
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s Wishful Shrinking and {@code userPrefs}. <br>
      * The data from the sample Wishful Shrinking will be used instead if {@code storage}'s WishfulShrinking
-     * is not found, or an empty address book will be used instead if errors occur
-     * when reading {@code storage}'s address book.
+     * is not found, or an empty Wishful Shrinking will be used instead if errors occur
+     * when reading {@code storage}'s Wishful Shrinking.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyWishfulShrinking> wishfulShrinkingOptional;

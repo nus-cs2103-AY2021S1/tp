@@ -55,6 +55,7 @@ public class IngredientContainsKeywordsPredicateTest {
         // Only one matching keyword
         predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new IngredientBuilder().withValue("Sandwich Carol").build()));
+
         // Mixed-case keywords
         predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new IngredientBuilder().withValue("Sandwich Bob").build()));
@@ -71,9 +72,9 @@ public class IngredientContainsKeywordsPredicateTest {
         predicate = new IngredientContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new IngredientBuilder().withValue("Alice Bob").build()));
 
-        // Keywords match ingredients, email and address, but does not match name
+        // Keywords match ingredients, but does not match value
         predicate = new IngredientContainsKeywordsPredicate(
-                Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+                Arrays.asList("food", "morefood", "otherfood"));
         assertFalse(predicate.test(new IngredientBuilder().withValue("Alice").build()));
     }
 }

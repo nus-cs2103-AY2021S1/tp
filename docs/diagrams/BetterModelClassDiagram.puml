@@ -16,6 +16,8 @@ Recipe -up-> "*" Tag
 
 Recipe *--> Name
 Recipe *--> Ingredient
-Recipe *--> Email
-Recipe *--> Address
+Recipe *--> Calories
+Recipe *--> Instruction
+Recipe *--> Image
+Recipe --> "*" Tag
 @enduml
