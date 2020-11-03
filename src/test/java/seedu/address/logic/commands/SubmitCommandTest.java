@@ -2,34 +2,36 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.profile.Profile;
-import seedu.address.storage.*;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPresetManagerStorage;
+import seedu.address.storage.JsonProfileManagerStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TypicalModel;
-import seedu.address.testutil.TypicalVendors;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 
 public class SubmitCommandTest {
 
-    final static Path TYPICAL_ADDRESSBOOK_FILEPATH = Paths.get
+    private static final Path TYPICAL_ADDRESSBOOK_FILEPATH = Paths.get
             ("src/data/JsonSerializableAddressBookTest/typicalVendorsAddressBook.json");
-    final static Path TYPICAL_USERPREFS_FILEPATH = Paths.get
+    private static final Path TYPICAL_USERPREFS_FILEPATH = Paths.get
             ("src/data/JsonUserPrefsStorageTest/TypicalUserPref.json");
-    final static Path TYPICAL_PRESET_FILEPATH = Paths.get
+    private static final Path TYPICAL_PRESET_FILEPATH = Paths.get
             ("src/data/JsonSerializablePresetManagerTest/storagePreset.json");
-    final static Path TYPICAL_PROFILE_FILEPATH = Paths.get
+    private static final Path TYPICAL_PROFILE_FILEPATH = Paths.get
             ("src/data/JsonProfileStorageTest/TypicalProfile.json");
 
     public static Storage getDefaultStorage() {
