@@ -67,6 +67,7 @@ The sections below give more details of each component:
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
    *Figure 3: Class Diagram of the UI component*
 
 **API** :
