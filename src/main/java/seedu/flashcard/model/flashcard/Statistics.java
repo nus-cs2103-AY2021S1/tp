@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class Statistics {
     public static final String STATISTICS_CONSTRAINT = "Review frequency and success frequency should be positive "
-            + "integers, and review frequency should be greater than or equals to success frequency";
+            + "integers, and review frequency should be greater than or equal to success frequency";
 
     private final int reviewFrequency;
     private final int successFrequency;

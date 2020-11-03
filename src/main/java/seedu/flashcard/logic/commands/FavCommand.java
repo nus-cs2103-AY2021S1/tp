@@ -32,7 +32,7 @@ public class FavCommand extends Command {
             + "Parameters: INDEX (must be a positive integer greater than 0)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_FAVOURITE_FLASHCARD_SUCCESS = "Favourite Flashcard: %1$s";
+    public static final String MESSAGE_FAVOURITE_FLASHCARD_SUCCESS = "Favourited Flashcard: %1$s";
 
     private final Index targetIndex;
 
