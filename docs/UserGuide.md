@@ -486,7 +486,16 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
     * Only dates before and *up till and including today* are accepted.
 * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the date of the visitation will remain the same.
 
-(The date "01/01/1900" is reserved for internal usage, please do not use this date!)
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* If you do not wish to change the date, it is not needed to enter the same date again, even though CliniCal will still accept it.
+* The date "01/01/1900" is reserved for internal usage, please do not use this date!
+
+</div>
+
+
 
 
 **Example**: You want to edit the 1st visitation log belonging to the 2nd patient on the list.
