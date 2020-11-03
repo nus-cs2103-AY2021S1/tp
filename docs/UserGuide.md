@@ -7,26 +7,27 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 
 * Table of Contents
-    - Quick start
-    - Features
-        - Adding a flashcard: `add`
-        - Clear all flashcards: `clear`
-        - Deleting a flashcard: `delete`
-        - Editing a flashcard: `edit`
-        - Filter relevant flashcards: `filter`
-        - Favourite a flashcard : `fav`
-        - Unfavourite a flashcard: `unfav`
-        - Find flashcards: `find`
-        - Viewing help: `help`
-        - Listing all flashcards: `list`
-        - Review all flashcards : `review`
-        - Quiz flashcards: `quiz`
-        - Sort all flashcards: `sort`
-        - Exiting the program: `exit`
-        - View a flashcard: `view`
-        - Saving the data
+    - [Quick start](#quick-start)
+    - [Features](#features)
+        - [Add a flashcard](#add-a-flashcard--add): `add`
+        - [Clear all flashcards](#clear-all-flashcards--clear): `clear`
+        - [Delete a flashcard](#delete-a-flashcard---delete): `delete`
+        - [Edit a flashcard](#edit-a-flashcard---edit): `edit`
+        - [Filter for flashcards](#filter-for-flashcards---filter): `filter`
+        - [Favourite a flashcard](#favourite-a-flashcard---fav) : `fav`
+        - [Unfavourite a flashcard](#unfavourite-a-flashcard---unfav): `unfav`
+        - [Find flashcards](#find-flashcards--find): `find`
+        - [View help](#view-help--help): `help`
+        - [List all flashcards](#list-all-flashcards--list): `list`
+        - [Review flashcards](#review-flashcards-review) : `review`
+        - [Quiz flashcards](#quiz-flashcards-quiz): `quiz`
+        - [Sort all flashcards](#sort-all-flashcards--sort): `sort`
+        - [View a flashcard](#view-a-flashcard---view): `view`
+        - [View the statistics of a flashcard](#view-the-statistics-of-flashcard-stats): `stats`
+        - [Exit the program](#exit-the-program--exit): `exit`
+        - [Saving the data](#saving-the-data)
     - FAQ
-    - Command summary
+    - [Command summary](#command-summary)
         
 
 --------------------------------------------------------------------------------------------------------------------
@@ -65,6 +66,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
    
    * **`view 1`** : Views the 1st flashcard in the current list.
+   
+   * **`stats 1`** : Views the statistics of the 1st flashcard in the current list.
 
    * **`exit`** : Exits the app.
   
@@ -105,16 +108,22 @@ must be specified exactly.
 
 </div>
 
-### Adding a flashcard : `add`
+### Add a flashcard : `add`
 
 Adds a flashcard.
 
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t/TAG]...`
 
 * `RATING` must be a number between 1 and 5 inclusive.
-* `DIAGRAM` can be defined by a valid relative or absolute path.
 * `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
      It can consist of multiple words but there should only be 1 space between words.
+* `DIAGRAM` can be defined by a valid relative or absolute path and only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used. eg. `d/image s/diagram.png`
+* `DIAGRAM` only supports the following image file types.
+  * jpeg
+  * png
+  * bmp
+  * jpg
+  * gif
 * `TAG` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -128,14 +137,30 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
-### Clearing all flashcards : `clear` 
+**Steps for adding a flashcard with diagram**:
+
+**Step 1**: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
+
+Root folder containing the jar file        |  Image directory
+:-------------------------:|:-------------------------:
+![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
+
+**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`
+
+![filedirectory](images/ug/ug_add_step2.png)
+
+**Step 3**: The flashcard is added to the list.
+
+![filedirectory](images/ug/ug_add_step3.png)
+
+### Clear all flashcards : `clear` 
 
 Clears all flashcard data from the program.
 
 Format: `clear`
 
 
-### Deleting a flashcard  : `delete`
+### Delete a flashcard  : `delete`
 
 Deletes the specified flashcard.
 
@@ -143,12 +168,12 @@ Format: `delete INDEX`
 
 * Deletes the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
 
-### Editing a flashcard  : `edit`
+### Edit a flashcard  : `edit`
 
 Edits a flashcard.
 
@@ -156,7 +181,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
 * Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes 
@@ -167,7 +192,21 @@ Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 * `edit 3 n/Important question! r/`
 
-### Filtering out flashcards  : `filter`
+**Steps for editing a flashcard's category and rating**:
+
+**Step 1**: Locate the flashcard you wish to edit. In this example, we want to edit the flashcard at index 2.
+
+![filedirectory](images/ug/ug_edit_step1.PNG)
+
+**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`
+
+![filedirectory](images/ug/ug_edit_step2.PNG)
+
+**Step 3**: The flashcard's category and rating are edited to Trivial and 1 respectively.
+
+![filedirectory](images/ug/ug_edit_step3.PNG)
+
+### Filter for flashcards  : `filter`
 
 Filters for specific flashcard(s) based on the field input(s) by the user. 
 This will return all the flashcards whose fields match all the fields specified by the user.
@@ -185,6 +224,15 @@ Examples:
 *  `filter t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 
+**Steps for filtering for a flashcard based on category and tag**:
+
+**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`
+
+![filedirectory](images/ug/ug_filter_step1.PNG)
+
+**Step 2**: The flashcard with the category Trivial and tag field preloaded is shown.
+
+![filedirectory](images/ug/ug_filter_step2.PNG)
 
 ### Favourite a flashcard  : `fav`
 
@@ -194,7 +242,7 @@ Format: `fav INDEX`
 
 * Favourites the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
@@ -207,7 +255,7 @@ Format: `unfav INDEX`
 
 * Unfavourites the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
@@ -226,13 +274,13 @@ Examples:
 * `find general important` 
 * `find GENERAL object`
 
-### Viewing help : `help`
+### View help : `help`
 
 Opens a window with a link that directs you to our user guide.
 
 Format: `help`
 
-### Listing all flashcards : `list`
+### List all flashcards : `list`
 
 Shows a list of all flashcards. This is useful for removing any `filter` or `find` you have done on the flashcard list.
 
@@ -240,7 +288,7 @@ Format: `list`
 
 * All additional input after the command word `list` will be ignored. E.g. `list` and `list 123` will have the same effect.
 
-### Reviewing all flashcards: `review`
+### Review flashcards: `review`
 
 Reviews the current list of flashcards. This puts the user in review mode and the user can no 
 longer input commands to the textbox.
@@ -257,8 +305,23 @@ Format: `review`
 <div markdown="span" class="alert alert-primary">:memo: Note:
 The review and success frequency of a flashcard is not affected by review mode.
 </div>
+<br>
 
-### Quizzing flashcards: `quiz`
+**Steps for entering review mode**:
+
+**Step 1**: We want to enter review mode to review our flashcards. Type the command `review`
+
+![filedirectory](images/ug/ug_review_step1.PNG)
+
+**Step 2**: We are brought into review mode. The instructions on how to navigate review mode will be shown at the top.
+
+![filedirectory](images/ug/ug_review_step2.PNG)
+
+**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon pressing the `↓ key`, the answer of the flashcard is shown.
+
+![filedirectory](images/ug/ug_review_step3.PNG)
+
+### Quiz flashcards: `quiz`
 
 Quizzes the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
 
@@ -270,17 +333,39 @@ Upon entering quiz mode, the following user input will be recognised:
 
 Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
 `y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.  
-Once you give a feedback (pressing either `y` or `n`), the review and success frequency for that flashcard will be updated even if you
-quit the quiz prematurely.
+
+The quiz mode works in conjunction with the [statistics](#view-the-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#view-the-statistics-of-flashcard-stats) feature.
+* Pressing `y` will increase the review and success frequency of the flashcard.
+* Pressing `n` will increase the review frequency of the flashcard.
 
 Format: `quiz`
 
-<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
+<br>
+
+**Steps for entering quiz mode**:
+
+**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`
+
+![filedirectory](images/ug/ug_quiz_step1.PNG)
+
+**Step 2**: We are brought into quiz mode. The instructions on how to navigate quiz mode will be shown at the top.
+
+![filedirectory](images/ug/ug_quiz_step2.PNG)
+
+**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon pressing the `↓ key`, we will be prompted if we got the answer correct.
+
+![filedirectory](images/ug/ug_quiz_step3.PNG)
+
+**Step 4**: We got this answer correct so we will press `y`. This will automatically bring us to the next flashcard.
+
+![filedirectory](images/ug/ug_quiz_step4.PNG)
+
 
 ### Sort all flashcards : `sort`
 
-Sorts a list of all flashcards according to the criteria given.
+Sorts all flashcards according to the criteria given.
 
 Format: `sort <success|reviewed> <-a|-d>`
 
@@ -301,14 +386,69 @@ Format: `view INDEX [-a]`
 
 * Views the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0** 1, 2, 3, …
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
+<br>
 
-### Exiting the program : `exit`
+**Steps for viewing a specific flashcard**:
+
+**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`
+
+![filedirectory](images/ug/ug_view_step1.PNG)
+
+**Step 2**: We will be presented with a "snapshot" of the flashcard at index 3 in the view pane.
+
+![filedirectory](images/ug/ug_view_step2.PNG)
+
+**Step 3**: To view the answer and notes (if applicable) of the flashcard on the view pane. Type the command `view 3 -a`
+
+![filedirectory](images/ug/ug_view_step3.PNG)
+
+**Step 4**: The answer of the flashcard is displayed on the view pane.
+
+![filedirectory](images/ug/ug_view_step4.PNG)
+
+### View the statistics of flashcard `stats`
+
+View the statistics of a flashcard.
+
+Format: `stats INDEX`
+
+* Shows the statistics of the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+
+The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
+
+The following information will be displayed on the view pane:
+* Question of the flashcard.
+* Reviewed count of the flashcard.
+* Correct count of the flashcard.
+* Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard.
+
+<div markdown="span" class="alert alert-primary">:memo: Note: No pie chart will be shown if the flashcard has not been reviewed.    
+</div>
+<br>
+<div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
+flashcard was not modified/deleted.
+</div>
+<br>
+
+**Steps for viewing the statistics of a specific flashcard**:
+
+**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`
+
+![filedirectory](images/ug/ug_stats_step1.PNG)
+
+**Step 2**: The statistics of the flashcard at index 1 will be displayed in the view pane.
+
+![filedirectory](images/ug/ug_stats_step2.PNG)
+
+### Exit the program : `exit`
 
 Exits the program.
 
@@ -338,4 +478,5 @@ Action | Format, Examples
 **Quiz** | `quiz`
 **Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
 **View** | `view INDEX [-a]` <br> e.g. `view 1`
+**Stats** | `stats INDEX` <br> e.g. `stats 3`
 **Exit** | `exit`
