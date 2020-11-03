@@ -192,20 +192,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String score} into a score.
+     * Parses a {@code String score} into a double array.
+     * First entry of the array would be a isNegative flag, second entry is the parsed score.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code score} is invalid.
      */
-    public static int parseScore(String score) throws ParseException {
+    public static double[] parseScore(String score) throws ParseException {
         requireNonNull(score);
         String trimmedScore = score.trim();
-        int parsedScore = 0;
+
+        double parsedScore = 0;
         try {
-            parsedScore = Integer.valueOf(score);
+            parsedScore = Double.valueOf(trimmedScore);
+            double negativeFlag = trimmedScore.charAt(0) == '-' ? 1 : 0;
+            return new double[]{negativeFlag, parsedScore};
         } catch (NumberFormatException e) {
             throw new ParseException(ClassParticipation.MESSAGE_CONSTRAINTS);
         }
-        return parsedScore;
     }
 }

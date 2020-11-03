@@ -88,6 +88,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     /* Session-Level Operations */
 
     /**
+     * Deletes the session with {@code sessionName}.
+     * {@code sessionName} must already exist in the session list.
+     */
+    public void deleteSession(SessionName sessionName) {
+        sessions.delete(sessionName);
+    }
+
+    /**
      * Adds a session to the session list.
      * The session must not already exist in the session list.
      */
@@ -232,7 +240,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreStudent(Student target, int score)
+    public void scoreStudent(StudentRecord target, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert target != null;
 
@@ -252,7 +260,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreStudentWithNusnetId(NusnetId nusnetId, int score)
+    public void scoreStudentWithNusnetId(NusnetId nusnetId, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetId != null;
 
@@ -272,7 +280,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreAllStudents(List<NusnetId> nusnetIds, int score)
+    public void scoreAllStudents(List<NusnetId> nusnetIds, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetIds != null;
 
