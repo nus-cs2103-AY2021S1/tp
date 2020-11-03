@@ -90,21 +90,28 @@ public class Project {
         return allProjects;
     }
 
+    /**
+     * Adds a new unique task to the project
+     *
+     * @param task task to be added.
+     * @return true if the task to be added is unique in the project, and false otherwise.
+     */
     public boolean addTask(Task task) {
-        if(tasks.contains(task)){
+        if (tasks.contains(task)) {
             return false;
-        }else {
+        } else {
             return tasks.add(task);
         }
     }
 
     /**
      * Deletes a task from the project
+     *
      * @param task task to be deleted.
      * @return true if the task to be deleted is in the project, and false otherwise.
      */
     public boolean deleteTask(Task task) {
-        for (Participation participation: this.getTeammates()) {
+        for (Participation participation : this.getTeammates()) {
             participation.deleteTask(task);
         }
         return tasks.remove(task);
@@ -121,6 +128,7 @@ public class Project {
     public void showAllTasks() {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
     }
+
     public void updateTaskComparator(Comparator<Task> comparator) {
         this.taskComparator = comparator;
     }
@@ -302,10 +310,10 @@ public class Project {
      */
     public List<Task> getFilteredSortedTaskList() {
         return tasks
-            .stream()
-            .filter(taskFilter)
-            .sorted(taskComparator)
-            .collect(Collectors.toList());
+                .stream()
+                .filter(taskFilter)
+                .sorted(taskComparator)
+                .collect(Collectors.toList());
     }
 
     /**

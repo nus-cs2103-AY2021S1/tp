@@ -46,8 +46,8 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        if(!project.addTask(toAdd)){
-            return new CommandResult(String.format(MESSAGE_DUPLICATE_TASK,toAdd));
+        if (!project.addTask(toAdd)) {
+            return new CommandResult(String.format(MESSAGE_DUPLICATE_TASK, toAdd));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
