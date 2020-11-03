@@ -10,7 +10,7 @@ import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 
-
+//@@author Christopher-LM
 /**
  * A utility class to help with building EditBidderDescriptor objects.
  * @author christophermervyn

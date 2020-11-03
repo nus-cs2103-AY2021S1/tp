@@ -8,6 +8,7 @@ import seedu.address.model.MeetingBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.testutil.MeetingBuilder;
 
+//@@author Christopher-LM
 /**
  * A utility class containing a list of {@code Seller} objects to be used in tests.
  * @author christophermervyn
