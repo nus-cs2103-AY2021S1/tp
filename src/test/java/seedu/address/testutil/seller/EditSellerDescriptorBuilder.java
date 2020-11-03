@@ -61,8 +61,4 @@ public class EditSellerDescriptorBuilder {
         return descriptor;
     }
 
-    public EditSellerDescriptor buildWithDefaultId() {
-        descriptor.setId(SellerId.DEFAULT_SELLER_ID);
-        return descriptor;
-    }
 }

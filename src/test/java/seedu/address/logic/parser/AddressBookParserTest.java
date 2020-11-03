@@ -94,7 +94,7 @@ public class AddressBookParserTest {
     public void parseSellerCommand_sellerEdit() throws Exception {
         Seller seller = new SellerBuilder().build();
         EditSellerCommand.EditSellerDescriptor descriptor =
-                new EditSellerDescriptorBuilder(seller).buildWithDefaultId();
+                new EditSellerDescriptorBuilder(seller).build();
         EditSellerCommand command = (EditSellerCommand) parser.parseCommand(EditSellerCommand.COMMAND_WORD
                 + " " + INDEX_FIRST_PERSON.getOneBased()
                 + " " + SellerUtil.getEditSellerDescriptorDetails(descriptor));
