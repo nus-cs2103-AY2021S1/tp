@@ -115,7 +115,7 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t
 * `DIAGRAM` can be defined by a valid relative or absolute path.
 * `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
      It can consist of multiple words but there should only be 1 space between words.
-* `TAGS` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
+* `TAG` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category is not specified, the flashcard will have the <b>General</b> category.
@@ -159,7 +159,8 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * The index **must be a positive integer greater than 0** 1, 2, 3, …
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
-* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes once the prefix is declared e.g. `c/` is not allowed and will not remove category
+* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes 
+once the prefix is declared e.g. `c/` is not allowed and will not remove category.
 
 Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`

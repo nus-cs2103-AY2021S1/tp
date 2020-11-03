@@ -42,6 +42,7 @@
                 <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
             </HBox>
             </VBox>
+            <Label fx:id="diagramErrorMessage" styleClass="generic-error-label" visible="false" wrapText="true" text="\$error"/>
             <ImageView fx:id="diagram" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
             <FlowPane fx:id="tags" />
         </VBox>
