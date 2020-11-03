@@ -1,9 +1,11 @@
 package jimmy.mcgymmy.logic.parser;
 
 import static jimmy.mcgymmy.testutil.Assert.assertThrows;
+import static jimmy.mcgymmy.testutil.TypicalMacros.TEST_MACRO;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +46,18 @@ public class McGymmyParserTest {
         mcGymmyParser.setMacroList(mcGymmyParser.getMacroList().withNewMacro(dummyMacro));
         // this should not throw any errors
         mcGymmyParser.parse("test");
+    }
+
+    @Test
+    public void invalidMacro_showsUsageToUser() throws Exception {
+        McGymmyParser mcGymmyParser = new McGymmyParser();
+        mcGymmyParser.setMacroList(mcGymmyParser.getMacroList().withNewMacro(TEST_MACRO));
+        try {
+            mcGymmyParser.parse("test");
+            fail("ParseException not thrown");
+        } catch (ParseException e) {
+            assertTrue(e.getMessage().contains("Missing required"));
+        }
     }
 
     @Test

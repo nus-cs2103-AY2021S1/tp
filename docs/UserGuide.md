@@ -115,7 +115,7 @@ We will follow the following convention for each command's format:
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
   
-* Prefixes that precede parameters represent flags that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as flag-less parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
+* Prefixes that precede parameters represent *flags* that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as *flag-less* parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
   e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
 * Items in square brackets are optional.<br>
@@ -124,8 +124,14 @@ We will follow the following convention for each command's format:
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
 
-* Parameters and optional parameters can be in any order.<br>
+* Parameters and optional parameters with flags can be in any order.<br>
   e.g. if the command specifies `-c CARBS -p PROTEIN [-f FATS]`, `-p PROTEIN [-f FATS] -c CARBS` is also acceptable.
+
+* Flag-less parameters always have to be the first parameter after the command word.<br>
+  e.g. in `edit 1 -n chicken`, the flag-less parameter is `1` and the `n` parameter is `chicken`. However for `edit -n chicken 1`, there is no flag-less parameter, and the `n` parameter is `chicken 1`.
+  
+* Entering the same parameter twice will concatenate the inputs.<br>
+  e.g. in `add -n potato -n chip`, the `n` parameters will be concatenated to `potato chip`, and a new item with the name `potato chip` will be created.
 
 </div>
 
@@ -413,7 +419,9 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 :information_source:
 
-* Create a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
+* If any of the jargon below seem unclear, refer to *How to intepret the each command's format* under section *5. Features* above.
+
+* Creates a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
 
 * Parameters to the macro can be substituted in the `PARAMETERS_TO_COMMAND` using the syntax: `\FLAG_NAME`.
 
@@ -427,13 +435,22 @@ Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; 
 
 Examples:
 * `macro addWith100cal p ; add -n \$ -c 100 -p \p`
-    * Example usage of this macro: `addWith100cal Banana -p 2000`
-    * The following command will be executed by the macro: `add -n Banana -c 100 -p 2000`
-    * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 2000 respectively.
+    * Example usage of this macro: `addWith100cal Banana -p 200`
+    * The following command will be executed by the macro: `add -n Banana -c 100 -p 200`
+    * i.e. in `add -n \$ -c 100 -p \p`, `\$` and `\p` will be substituted with Banana and 200 respectively.
 
 * `macro addFoodWithFries; add -n \$ ; add -n \$ With Fries`
     * Example usage of this macro: `addFoodWithFries Ice Cream`
     * The following commands will be executed by the macro: `add -n Ice Cream` and `add -n Ice Cream With Fries`.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Be careful when creating a macro!
+* It is possible to create a macro with errors!
+* The commands in the macro will only be checked for errors when you run the macro itself.
+* e.g. Entering `macro test; add` will create a new macro, but every time you execute the macro `test`, the error message from `add` telling you it requires the name parameter will be shown.
+
+</div>
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
