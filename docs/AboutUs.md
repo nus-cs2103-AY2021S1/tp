@@ -16,7 +16,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/damithc)]
-[[portfolio](team/damithc.md)]
 
 * Role: Project Advisor
 
@@ -25,7 +24,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/AboutUs/eugeneteu.png" width="200px">
 
 [[github](https://github.com/EugeneTeu)]
-[[portfolio](team/eugene.md)]
 
 * Role: Tutor
 
@@ -35,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/AboutUs/fizzyagent.png" width="200px">
 
 [[github](http://github.com/FizzyAgent)]
-[[portfolio](team/pinxi.md)]
+[[portfolio](team/fizzyagent.md)]
 
 * Role: Team Lead
 * Responsibilities: NA
