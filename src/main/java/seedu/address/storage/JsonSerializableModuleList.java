@@ -33,6 +33,7 @@ public class JsonSerializableModuleList {
      * @param source future changes to this will not affect the created {@code JsonSerializableModuleList}.
      */
     public JsonSerializableModuleList(ReadOnlyTrackr<Module> source) {
+        assert source != null;
         modules.addAll(source.getList().stream().map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 

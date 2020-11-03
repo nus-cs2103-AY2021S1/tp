@@ -20,7 +20,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_STUDENT_ID + "STUDENT ID "
+            + PREFIX_STUDENT_ID + "STUDENT_ID "
             + "[" + PREFIX_TAG + "MODULE TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

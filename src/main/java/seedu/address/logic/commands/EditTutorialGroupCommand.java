@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
@@ -27,7 +30,15 @@ public class EditTutorialGroupCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "TUTORIAL_GROUP_INDEX "
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_TUTORIAL_GRP + "B015";
+        + PREFIX_TUTORIAL_GRP + "B015"
+        + PREFIX_TUTORIAL_GRP_DAY + "DAY_OF_WEEK "
+        + PREFIX_TUTORIAL_GRP_START_TIME + "START_TIME (24HR HH:MM FORMAT) "
+        + PREFIX_TUTORIAL_GRP_END_TIME + "END_TIME (24HR HH:MM FORMAT) \n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_TUTORIAL_GRP + "T03 "
+        + PREFIX_TUTORIAL_GRP_DAY + "MON "
+        + PREFIX_TUTORIAL_GRP_START_TIME + "11:00 "
+        + PREFIX_TUTORIAL_GRP_END_TIME + "13:00";;
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial Group: %1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This Tutorial Group already exists in this Module.";
