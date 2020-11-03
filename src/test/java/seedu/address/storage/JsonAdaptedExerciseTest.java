@@ -15,7 +15,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
-import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 
 /*
@@ -26,7 +25,7 @@ public class JsonAdaptedExerciseTest {
     private static final String INVALID_DESCRIPTION = "";
     private static final String INVALID_DATE = " ";
     private static final String INVALID_CALORIES = "@@@@@";
-    private static final String INVALID_MUSCLES = "abs,,";
+    private static final String INVALID_MUSCLE = "#abs";
     private static final String INVALID_TAG = "#friend";
 
 
@@ -35,7 +34,9 @@ public class JsonAdaptedExerciseTest {
     private static final String VALID_DATE = PUSH_UP.getDate().toString();
     // Always valid
     private static final String VALID_CALORIES = PUSH_UP.getCalories().toString();
-    private static final String VALID_MUSCLES = PUSH_UP.getMusclesWorkedDescription();
+    private static final List<JsonAdaptedMuscleTag> VALID_MUSCLES = PUSH_UP.getMuscleTags().stream()
+            .map(JsonAdaptedMuscleTag::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedExerciseTag> VALID_TAGS = PUSH_UP.getExerciseTags().stream()
             .map(JsonAdaptedExerciseTag::new)
             .collect(Collectors.toList());
@@ -107,11 +108,13 @@ public class JsonAdaptedExerciseTest {
     }
 
     @Test
-    public void toModelType_invalidMuscles_throwsIllegalValueException() {
-        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION,
-                                        VALID_DATE, VALID_CALORIES, INVALID_MUSCLES, VALID_TAGS);
-        String expectedMessage = Muscle.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
+    public void toModelType_invalidMuscleTags_throwsIllegalValueException() {
+        List<JsonAdaptedMuscleTag> invalidMuscleTags = new ArrayList<>(VALID_MUSCLES);
+        invalidMuscleTags.add(new JsonAdaptedMuscleTag(INVALID_MUSCLE));
+        JsonAdaptedExercise exercise =
+                new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION,
+                        VALID_DATE, VALID_CALORIES, invalidMuscleTags, VALID_TAGS);
+        assertThrows(IllegalValueException.class, exercise::toModelType);
     }
 
     @Test
@@ -120,7 +123,7 @@ public class JsonAdaptedExerciseTest {
         invalidTags.add(new JsonAdaptedExerciseTag(INVALID_TAG));
         JsonAdaptedExercise exercise =
                 new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION,
-                        VALID_DATE, VALID_CALORIES, INVALID_MUSCLES, invalidTags);
+                        VALID_DATE, VALID_CALORIES, VALID_MUSCLES, invalidTags);
         assertThrows(IllegalValueException.class, exercise::toModelType);
     }
 }

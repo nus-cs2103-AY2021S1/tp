@@ -13,7 +13,7 @@ public class Template {
     private String name;
     private String description;
     private Integer calories;
-    private List<Muscle> musclesWorked;
+    private Set<MuscleTag> muscleTags = new HashSet<>();
     private Set<ExerciseTag> tags = new HashSet<>();
 
 
@@ -31,8 +31,6 @@ public class Template {
         this.name = name;
         this.description = description;
         this.calories = calories;
-        //this.musclesWorked = musclesWorked;
-        //this.tags.addAll(tags);
     }
 
     public String getName() {
@@ -45,10 +43,6 @@ public class Template {
 
     public Integer getCalories() {
         return calories;
-    }
-
-    public List<Muscle> getMusclesWorked() {
-        return musclesWorked;
     }
 
     /**

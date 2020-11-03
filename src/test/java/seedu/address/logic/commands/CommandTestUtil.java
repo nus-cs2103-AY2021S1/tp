@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,7 +31,7 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_PUSH_UP = "Push Up Description";
     public static final String VALID_DATE_PUSH_UP = "10-10-2020";
     public static final String VALID_CALORIES_PUSH_UP = "100";
-    public static final String VALID_MUSCLES_PUSH_UP = "chest";
+    public static final String VALID_MUSCLE_CHEST = "chest";
     public static final String VALID_TAG_GYM = "gym";
     public static final String VALID_TAG_HOUSE = "house";
 
@@ -39,13 +39,13 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_SIT_UP = "Sit Up Description";
     public static final String VALID_DATE_SIT_UP = "10-10-2020";
     public static final String VALID_CALORIES_SIT_UP = "100";
-    public static final String VALID_MUSCLES_SIT_UP = "ab";
+    public static final String VALID_MUSCLE_ARM = "ab";
 
     public static final String NAME_DESC_PUSH_UP = " " + PREFIX_NAME + VALID_NAME_PUSH_UP;
     public static final String DESCRIPTION_DESC_PUSH_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PUSH_UP;
     public static final String DATE_DESC_PUSH_UP = " " + PREFIX_DATE + VALID_DATE_PUSH_UP;
     public static final String CALORIES_DESC_PUSH_UP = " " + PREFIX_CALORIES + VALID_CALORIES_PUSH_UP;
-    public static final String MUSCLES_DESC_PUSH_UP = " " + PREFIX_MUSCLES + VALID_MUSCLES_PUSH_UP;
+    public static final String MUSCLE_DESC_CHEST = " " + PREFIX_MUSCLE + VALID_MUSCLE_CHEST;
     public static final String TAG_DESC_GYM = " " + PREFIX_TAG + VALID_TAG_GYM;
     public static final String TAG_DESC_HOUSE = " " + PREFIX_TAG + VALID_TAG_HOUSE;
 
@@ -54,14 +54,14 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_SIT_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SIT_UP;
     public static final String DATE_DESC_SIT_UP = " " + PREFIX_DATE + VALID_DATE_SIT_UP;
     public static final String CALORIES_DESC_SIT_UP = " " + PREFIX_CALORIES + VALID_CALORIES_SIT_UP;
-    public static final String MUSCLES_DESC_SIT_UP = " " + PREFIX_MUSCLES + VALID_MUSCLES_SIT_UP;
+    public static final String MUSCLE_DESC_ARM = " " + PREFIX_MUSCLE + VALID_MUSCLE_ARM;
 
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "run&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // description should not be empty
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020-10-10"; // date of incorrect format
     public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "abc"; // calories should be numbers
-    public static final String INVALID_MUSCLES_DESC = " " + PREFIX_MUSCLES + "abs,chest"; // abs should be ab
+    public static final String INVALID_MUSCLE_DESC = " " + PREFIX_MUSCLE + "chest*"; // '*' not allowed in tags
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "gym*"; // '*' not allowed in tags
 
 

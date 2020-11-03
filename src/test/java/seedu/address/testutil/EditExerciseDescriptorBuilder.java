@@ -10,7 +10,7 @@ import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.ExerciseTag;
-import seedu.address.model.exercise.Muscle;
+import seedu.address.model.exercise.MuscleTag;
 import seedu.address.model.exercise.Name;
 
 
@@ -38,7 +38,7 @@ public class EditExerciseDescriptorBuilder {
         descriptor.setDate(exercise.getDate());
         descriptor.setDescription(exercise.getDescription());
         descriptor.setCalories(exercise.getCalories());
-        descriptor.setMusclesWorked(exercise.getMusclesWorked().isPresent() ? exercise.getMusclesWorked().get() : null);
+        descriptor.setMuscleTags(exercise.getMuscleTags());
         descriptor.setTags(exercise.getExerciseTags());
     }
 
@@ -75,10 +75,12 @@ public class EditExerciseDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Muscles} of the {@code EditExerciseDescriptor} that we are building.
+     * Parses the {@code muscleTags} into a {@code Set<MuscleTag>} and set it to the {@code EditExerciseDescriptor}
+     * that we are building.
      */
-    public EditExerciseDescriptorBuilder withMusclesWorked(String musclesWorked) {
-        descriptor.setMusclesWorked(Muscle.stringToMuscleList(musclesWorked));
+    public EditExerciseDescriptorBuilder withMuscleTags(String... muscleTags) {
+        Set<MuscleTag> tagSet = Stream.of(muscleTags).map(MuscleTag::new).collect(Collectors.toSet());
+        descriptor.setMuscleTags(tagSet);
         return this;
     }
 

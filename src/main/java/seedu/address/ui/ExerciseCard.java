@@ -38,7 +38,7 @@ public class ExerciseCard extends UiPart<Region> {
     @FXML
     private Label calories;
     @FXML
-    private Label muscles;
+    private FlowPane muscleTags;
     @FXML
     private FlowPane tags;
 
@@ -53,8 +53,9 @@ public class ExerciseCard extends UiPart<Region> {
         date.setText(exercise.getDate().value);
         description.setText(exercise.getDescription().value);
         calories.setText(exercise.getCalories().toString());
-        muscles.setText(exercise.getMusclesWorkedDescription() == null
-                                ? "None" : exercise.getMusclesWorkedDescription());
+        exercise.getMuscleTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.muscleTagName))
+                .forEach(tag -> muscleTags.getChildren().add(new Label(tag.muscleTagName)));
         exercise.getExerciseTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
