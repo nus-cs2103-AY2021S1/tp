@@ -128,7 +128,7 @@ public class NoteCommandParserTest {
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NOTE_DESC_ORANGE
                         + "/g                  " + SERIAL_NUMBER_DESC_BANANA,
-                new NoteCommand(SERIAL_NUMBER_SECOND_STOCK, noteStubWithUnknownPrefix));
+                new NoteCommand(SERIAL_NUMBER_THIRD_STOCK, noteStubWithUnknownPrefix));
 
     }
 
