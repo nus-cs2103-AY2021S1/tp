@@ -53,10 +53,6 @@ public class NameIsExactlyPredicateTest {
         // exact word, exact case -> true
         NameIsExactlyPredicate predicate = new NameIsExactlyPredicate(Collections.singletonList("Apple"));
         assertTrue(predicate.test(new ItemBuilder().withName("Apple").build()));
-
-        // exact word, mixed case -> true
-        predicate = new NameIsExactlyPredicate(Collections.singletonList("apple"));
-        assertTrue(predicate.test(new ItemBuilder().withName("Apple").build()));
     }
 
     @Test
@@ -67,6 +63,10 @@ public class NameIsExactlyPredicateTest {
 
         // Non-matching keyword
         predicate = new NameIsExactlyPredicate(Collections.singletonList("Carrot"));
+        assertFalse(predicate.test(new ItemBuilder().withName("Apple").build()));
+
+        // exact word, mixed case -> false
+        predicate = new NameIsExactlyPredicate(Collections.singletonList("apple"));
         assertFalse(predicate.test(new ItemBuilder().withName("Apple").build()));
     }
 }
