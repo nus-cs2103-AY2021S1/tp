@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.order.ReadOnlyOrderManager;
 import seedu.address.model.preset.Preset;
 
 public interface PresetManagerStorage {
@@ -16,7 +15,6 @@ public interface PresetManagerStorage {
     Path getPresetManagerFilePath();
 
     /**
-     * Returns OrderManager data as a {@link ReadOnlyOrderManager}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.

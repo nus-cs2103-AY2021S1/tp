@@ -31,9 +31,11 @@ import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
+import seedu.address.storage.JsonProfileManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.MenuItemStorage;
 import seedu.address.storage.PresetManagerStorage;
+import seedu.address.storage.ProfileManagerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -67,8 +69,10 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         PresetManagerStorage presetManagerStorage = new JsonPresetManagerStorage(userPrefs.getOrderManagerFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, presetManagerStorage);
-
+        ProfileManagerStorage profileManagerStorage = new JsonProfileManagerStorage(
+                userPrefs.getProfileManagerFilePath()
+        );
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, presetManagerStorage, profileManagerStorage);
         initLogging(config);
 
         model = initModelManager(storage, userPrefs);

@@ -225,6 +225,21 @@ Example:
 - `total`: returns the total cost of all items from current order.
 
 
+
+### Profile Details: `profile`
+
+Add delivery address and phone number for submission.
+
+Format: `profile a/ADDRESS p/PHONE`
+
+- `ADDRESS` represents your delivery address.
+
+- `PHONE` represents your contact number and must be at least 3 digits long.
+
+Examples:
+
+- `profile a/25 Lower Kent Ridge Rd, Singapore 119081 p/92030888`: Saves your address as '25 Lower Kent Ridge Rd, Singapore 119081' and phone nubmer as '92030888'
+
 ### Generate order text: `submit`
 
 Displays a copy-paste-able text of the order.
