@@ -118,19 +118,19 @@ all the commands are listed in [Section 4, "Features"](#4-features).
 Figure 3.2 Command example
 
 ### 3.3 Switching Views
-__Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
-to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
+__Trackr__ allows you to switch the current view from `Modules` (Figure 3.3.1) to `Tutorial Groups` (Figure 3.3.2) 
+to `Students` (Figure 3.3.3) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
 The correct syntax for these commands are shown in [Section 4, "Features"](#4-features). The top of the app shows the view
 you are currently in.
 
 ![ModuleView](images/ModuleView.png) <br>
-Figure 3.31 Module View
+Figure 3.3.1 Module View
 
 ![TutorialGroupView](images/TutorialGroupView.png) <br>
-Figure 3.32 Tutorial Group View
+Figure 3.3.2 Tutorial Group View
 
 ![StudentView](images/StudentView.png) <br>
-Figure 3.33 Student view
+Figure 3.3.3 Student view
 
 
 ## 4. Features
