@@ -24,20 +24,27 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_ARCHIVED_PERSONS = person -> (
             person.getArchiveStatus().archiveStatus);
 
-    Predicate<Person> PREDICATE_SHOW_ALL_MONDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("monday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_TUESDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("tuesday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_WEDNESDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("wednesday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_THURSDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("thursday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_FRIDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("friday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_SATURDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("saturday"));
-    Predicate<Person> PREDICATE_SHOW_ALL_SUNDAY_PERSONS = person -> (
-            person.getTags().toString().toLowerCase().contains("sunday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_MONDAY_PERSONS = person ->((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("monday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_TUESDAY_PERSONS = person -> ((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("tuesday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_WEDNESDAY_PERSONS = person -> ((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("wednesday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_THURSDAY_PERSONS = person -> ((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("thursday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_FRIDAY_PERSONS = person -> ((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("friday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_SATURDAY_PERSONS = person -> ((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("saturday"));
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE_SUNDAY_PERSONS = person -> ((
+            !person.getArchiveStatus().archiveStatus)
+                    && person.getTags().toString().toLowerCase().contains("sunday"));
 
     Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
     Predicate<SalesRecordEntry> PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY = unused -> true;
@@ -133,15 +140,10 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Adds an SalesRecordEntry to the Salesbook.
-     */
-    void addSalesRecordEntry(SalesRecordEntry salesRecordEntry);
-
-    /**
      * Adds an ingredient to the ingredient book.
      * The ingredient must not already exist in the ingredient book.
      */
-    public void addIngredient(Ingredient ingredient);
+    void addIngredient(Ingredient ingredient);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -162,16 +164,39 @@ public interface Model {
      */
     ArrayList<Ingredient> findIngredientInShortage();
 
+    /**
+     * Replaces sales book data with the data in {@code salesBook}.
+     */
     void setSalesBook(ReadOnlySalesBook salesBook);
 
+    /**
+     * Returns the SalesBook.
+     */
     SalesBook getSalesBook();
 
+    /**
+     * Returns true if the SalesBook does not contain any sales record.
+     * @return
+     */
     boolean isEmptySalesBook();
 
+    /**
+     * Overwrite the sales records in SalesBook based on the given {@Code salesInput}
+     * @param salesInput
+     */
     void overwrite(Map<Drink, Integer> salesInput);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Sorts the sales records in the SalesBook in descending order
+     */
+    void sortSalesBook();
 
+    /**
+     * Adds an SalesRecordEntry to the SalesBook.
+     */
+    void addSalesRecordEntry(SalesRecordEntry salesRecordEntry);
+
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /**

@@ -123,7 +123,7 @@ public class ParserUtil {
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedAmount)) {
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedAmount) && !trimmedAmount.equals("0")) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
         }
         return new Amount(trimmedAmount);

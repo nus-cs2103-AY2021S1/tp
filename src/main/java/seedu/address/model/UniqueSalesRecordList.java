@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,8 +53,9 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         if (contains(toAdd)) {
             // if it exists, then replace it with the new entry
             setSalesEntry(toAdd);
+        } else {
+            internalList.add(toAdd);
         }
-        internalList.add(toAdd);
     }
 
     /**
@@ -74,7 +76,14 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         internalList.set(index, newEntry); // replace with the new entry
     }
 
+    /**
+     * Finds the SalesRecordEntry in the list by its Drink type.
+     *
+     * @param drink the drink type to search for
+     * @return the SalesRecordEntry that contains that Drink type
+     */
     public SalesRecordEntry getSalesEntry(Drink drink) {
+        requireNonNull(drink);
         int index = indexOf(drink);
         if (index == -1) {
             throw new SalesRecordNotFoundException();
@@ -116,10 +125,17 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         }
     }
 
+    /**
+     * Returns true if the list is empty.
+     */
     public boolean isEmpty() {
         return internalList.isEmpty();
     }
 
+    /**
+     * Returns the number of elements in the list.
+     * @return
+     */
     public int size() {
         return internalList.size();
     }
@@ -172,6 +188,16 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the list of sales record entries based on the number of drinks sold in descending order.
+     * The first drink in the list is the drink with the highest sales number.
+     */
+    public void sort() {
+        Comparator<SalesRecordEntry> comparator = Comparator.comparingInt(SalesRecordEntry::getNumberSold);
+        comparator = comparator.reversed();
+        FXCollections.sort(internalList, comparator);
     }
 
     /**

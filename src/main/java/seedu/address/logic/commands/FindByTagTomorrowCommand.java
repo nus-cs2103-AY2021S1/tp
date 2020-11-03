@@ -8,10 +8,11 @@ import java.time.LocalDate;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all persons in address book whose tag(s) contains the next-day's day (i.e. Monday, Tuesday, etc).
+ * Finds and lists all active(unarchived) persons in address book whose tag(s) contains the next-day's day (i.e.
+ * Monday, Tuesday, etc).
  *
- * For example, assume today is Tuesday, after command "c-tomorrow", all employees whose tag(s) contains
- * "wednesday", case-insensitive, will be listed out.
+ * For example, assume today is Tuesday, after command "c-tomorrow", all active(unarchived) employees whose tag(s)
+ * contains "wednesday", case-insensitive, will be listed out.
  */
 public class FindByTagTomorrowCommand extends Command {
     public static final String COMMAND_WORD = "c-tomorrow";
@@ -30,25 +31,25 @@ public class FindByTagTomorrowCommand extends Command {
 
         switch (dayOfWeek) {
         case SUNDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_SUNDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_SUNDAY_PERSONS);
             break;
         case MONDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_MONDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_MONDAY_PERSONS);
             break;
         case TUESDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TUESDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_TUESDAY_PERSONS);
             break;
         case WEDNESDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_WEDNESDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_WEDNESDAY_PERSONS);
             break;
         case THURSDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_THURSDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_THURSDAY_PERSONS);
             break;
         case FRIDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_FRIDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_FRIDAY_PERSONS);
             break;
         case SATURDAY:
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_SATURDAY_PERSONS);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_ACTIVE_SATURDAY_PERSONS);
             break;
         default:
             model.updateFilteredPersonList(person -> false);

@@ -32,7 +32,6 @@ public class SalesListCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // TODO: with UI need to update model with the salesBook ui
         if (model.isEmptySalesBook()) {
             return new CommandResult(MESSAGE_NO_RECORD_SUCCESS);
         } else {
