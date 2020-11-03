@@ -11,6 +11,9 @@ import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.event.Event;
 
+/**
+ * Overlap class contains methods to check if TimeSlots overlap with one another in PlaNus.
+ */
 public class Overlap {
     /**
      * Checks if 2 tasks or lessons overlap with one another.
