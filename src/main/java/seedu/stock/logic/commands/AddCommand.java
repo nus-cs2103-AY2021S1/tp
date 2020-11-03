@@ -57,10 +57,11 @@ public class AddCommand extends Command {
 
         if (model.hasStock(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STOCK);
+        } else {
+            toAdd.setSerialNumber(model.generateNextSerialNumber(toAdd.getSource()));
+            model.addStock(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
-        toAdd.setSerialNumber(model.generateNextSerialNumber(toAdd.getSource()));
-        model.addStock(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

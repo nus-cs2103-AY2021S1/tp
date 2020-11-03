@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters an add stock command in
+the command box;
+
+:AddCommandParser parses the argument;
+
+if () then ([valid command input format])
+    if () then ([stock not present in Stockbook])
+        :generate unique serial number for the stock;
+        :update serial number of stock;
+        :add stock to Stockbook;
+        :return successful AddCommand message;
+    else ([else])
+        :throws CommandException
+        with error message;
+    endif
+else ([else])
+    :throws ParseException
+    with command usage
+    direction;
+endif
+:returns feedback to user;
+
+stop
+
+@enduml
