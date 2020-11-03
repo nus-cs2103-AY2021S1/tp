@@ -30,9 +30,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_EMPTY_VISIT_INDEX = "";
     public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
-    public static final String MESSAGE_NEGATIVE_INVALID_DURATION = "The given duration should be a positive number. ";
-    public static final String MESSAGE_INVALID_DURATION = "Duration provided is invalid."
-            + "It should not be more than 2147483647 or in decimal form.";
+    public static final String MESSAGE_NEGATIVE_INVALID_DURATION = "The given duration should be a positive number.";
+    public static final String MESSAGE_INVALID_DURATION = "The given duration is invalid. "
+            + "It should be a positive integer, not exceeding 2,147,483,647.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -240,7 +240,7 @@ public class ParserUtil {
     public static AppointmentDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
+        if (!AppointmentDateTime.isValidUpcomingDateTime(trimmedDateTime)) {
             throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
         return new AppointmentDateTime(trimmedDateTime);
@@ -259,7 +259,7 @@ public class ParserUtil {
         String trimmedDuration = durationStr.trim();
         int duration;
 
-        if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
+        if (!AppointmentDateTime.isValidUpcomingDateTime(trimmedDateTime)) {
             throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
         }
         try {

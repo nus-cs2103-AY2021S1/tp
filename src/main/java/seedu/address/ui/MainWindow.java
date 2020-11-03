@@ -302,8 +302,8 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser("Check that there are no misspellings in your command, "
-                    + "expecially in the prefixes!\n\n" + e.getMessage());
+            resultDisplay.setFeedbackToUser("If the error message below does not apply, please check that "
+                    + "there are no misspellings in your command, especially in the prefixes!\n\n" + e.getMessage());
             throw e;
         }
     }
