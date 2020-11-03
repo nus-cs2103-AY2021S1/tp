@@ -80,7 +80,7 @@ Update an existing exercise.
 
 ![update command message](images/updateCommandMessage.png)
 
-Format: `INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]...`
+Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]...`
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values of the exercise will be updated to the input values.
