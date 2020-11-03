@@ -169,6 +169,34 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
+### Find module by module attributes feature
+
+#### Implementation
+
+The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors teaching the module.
+It uses `ModelManager#updateFilteredModuleList(Predicate p)` which is exposed in the Model interface as `Model#updateFilteredModuleList(Predicate p)`.
+The method updates the current module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
+
+The following sequence diagram shows how the find module by module attributes operation works:
+
+![FindmodActivityDiagram](images/FindmodSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a findmod command:
+
+![FindmodActivityDiagram](images/FindmodActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How findmod executes
+
+* **Alternative 1 (current choice):** AND searching from multiple attributes and OR searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.  
+  * Pros : Provides the ability to narrow down the search results by adding more attributes while also allowing more flexible search within the attributes. Single keyword for module code attribute allows for more focused module code searches. 
+  * Cons : Unable to search for multiple modules with different module attributes and unable to search for multiple modules with different module codes.
+
+* **Alternative 2:** And searching across attributes and disallow multiple keyword search across all attributes.
+  * Pros : Provides the ability for a very focused module search.
+  * Cons : Attributes like instructor name and module name might be difficult to remember, and might be difficult to find with just one keyword.
+
 ### Deleting Module feature
 
 #### Implementation
@@ -192,7 +220,7 @@ The following sequence diagram shows how the deleting of the module works:
 
 ![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a find command:
+The following activity diagram summarizes what happens when a user executes a delmod command:
 
 ![DelmodActivityDiagram](images/DelmodActivityDiagram.png)
 
