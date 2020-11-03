@@ -8,9 +8,9 @@ import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.question.Question;
-import seedu.address.model.student.question.SolvedQuestion;
-import seedu.address.model.student.question.UnsolvedQuestion;
+import seedu.address.model.student.academic.question.Question;
+import seedu.address.model.student.academic.question.SolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 
 public class JsonAdaptedQuestionTest {
 

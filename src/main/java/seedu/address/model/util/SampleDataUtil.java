@@ -20,14 +20,14 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
+import seedu.address.model.student.academic.question.Question;
+import seedu.address.model.student.academic.question.SolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
-import seedu.address.model.student.question.Question;
-import seedu.address.model.student.question.SolvedQuestion;
-import seedu.address.model.student.question.UnsolvedQuestion;
 
 
 /**
@@ -60,7 +60,7 @@ public class SampleDataUtil {
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new School("Raffles Girls School"), new Year("Sec 3"),
                         new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        new ClassTime("2 1900-1930"), new Fee("680"),
+                        new ClassTime("2 1900-2030"), new Fee("680"),
                         new PaymentDate("1/12/19"), getDetailList(),
                         getQuestions(), getExams(sampleExam3),
                         getAttendance(new Attendance("01/01/2020", "present",

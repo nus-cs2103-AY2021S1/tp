@@ -181,8 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleCalendar() {
-        schedulePanel = new SchedulePanel(logic.getVEventList());
-        personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        schedulePanel.updateSchedule(logic.getVEventList());
         if (logic.getScheduleViewMode().equals(ScheduleViewMode.WEEKLY)) {
             schedulePanel.setWeekView();
         }

@@ -26,9 +26,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.question.Question;
-import seedu.address.model.student.question.SolvedQuestion;
-import seedu.address.model.student.question.UnsolvedQuestion;
+import seedu.address.model.student.academic.question.Question;
+import seedu.address.model.student.academic.question.SolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.testutil.StudentBuilder;
 
 public class SolveQuestionCommandTest {
@@ -177,7 +177,7 @@ public class SolveQuestionCommandTest {
             }
             questions.add(toAdd);
         }
-        return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(),
-                toCopy.getYear(), toCopy.getAdmin(), questions, toCopy.getAcademic());
+        return new Student(toCopy.getName(), toCopy.getPhone(), toCopy.getSchool(), toCopy.getYear(),
+                toCopy.getAdmin(), questions, toCopy.getExams(), toCopy.getAttendance());
     }
 }

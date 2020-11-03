@@ -508,17 +508,24 @@ Examples:
 
 #### 3.4.1 Scheduling: `schedule` (By: Alex) 
 
-##### 3.4.1.1 Viewing classes on a Timetable: `schedule view`  
+##### 3.4.1.1 Viewing classes on a Timetable: `**schedule**`  
 
-List the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
+Display the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
 
-Format: `schedule view mode/VIEW_MODE date/DATE_TO_VIEW`
+Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
-* mode can be either **weekly** or **daily**. The case of the letters does not matter.
-* Date must be in the format of **yyyy-mm-dd**. For instance, 2020-11-02 refers to the date 2nd November 2020
-* Both mode and date are compulsory.
+* Displays a timetable view of your classes.
+* A weekly view gives you an overview of the classes you have on that particular week. You could thus plan your time for the week ahead.
 
-Example: `schedule view mode/weekly date/2020-11-02` Shows the schedule of classes in the week of 2020-11-02. Figure 3.4.1.1 depicts a sample output of the command.
+:information_source: mode can be either **weekly** or **daily**. 
+    * The case of the letters does not matter.
+    
+:information_source:Date must be in the format of **dd/mm/yyyy**. 
+    * For instance, 2/11/2020 refers to the date 2nd November 2020
+    
+:information_source: Both the inputs of mode and date are compulsory.
+
+Example: `schedule m/weekly d/2/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -568,6 +575,7 @@ Action | Format, Examples
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
+**Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
 **Help** | `help`
 **Exit** | `exit`
