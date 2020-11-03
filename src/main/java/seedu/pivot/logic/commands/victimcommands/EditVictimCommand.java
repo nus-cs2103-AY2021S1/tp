@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.victimcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_VICTIM;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
@@ -43,7 +44,6 @@ public class EditVictimCommand extends EditPersonCommand {
             + PREFIX_ADDRESS + "New Road Crescent\n\n";
 
     public static final String MESSAGE_EDIT_VICTIMS_SUCCESS = "Edited Victim: %1$s";
-    public static final String MESSAGE_DUPLICATE_VICTIMS = "This victim already exists in the case.";
 
     private static final Logger logger = LogsCenter.getLogger(EditVictimCommand.class);
 
@@ -72,7 +72,7 @@ public class EditVictimCommand extends EditPersonCommand {
         Victim editedVictim = createEditedPerson(victimToEdit, editPersonDescriptor);
 
         if (editedVictims.contains(editedVictim)) {
-            throw new CommandException(MESSAGE_DUPLICATE_VICTIMS);
+            throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
         }
 
         editedVictims.set(personIndex.getZeroBased(), editedVictim);

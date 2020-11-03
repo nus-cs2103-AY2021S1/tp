@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
@@ -96,7 +97,7 @@ public class AddSuspectCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         AddCommand command = new AddSuspectCommand(DEFAULT_INDEX, DEFAULT_SUSPECT);
         assertThrows(CommandException.class,
-                AddSuspectCommand.MESSAGE_DUPLICATE_SUSPECT, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_DUPLICATE_SUSPECT, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 

@@ -32,5 +32,8 @@ public class UserMessages {
 
     //Duplicate Messages
     public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+    public static final String MESSAGE_DUPLICATE_WITNESS = "This witness already exists in the case.";
+    public static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
+    public static final String MESSAGE_DUPLICATE_VICTIM = "This victim already exists in the case.";
 
 }

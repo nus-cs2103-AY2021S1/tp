@@ -8,6 +8,7 @@ import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -58,7 +59,7 @@ public class AddWitnessCommandIntegrationTest {
 
         AddCommand command = new AddWitnessCommand(INDEX_FIRST_PERSON, witness);
 
-        assertCommandFailure(command, model, AddWitnessCommand.MESSAGE_DUPLICATE_WITNESS);
+        assertCommandFailure(command, model, UserMessages.MESSAGE_DUPLICATE_WITNESS);
         StateManager.resetState();
     }
 
@@ -91,7 +92,7 @@ public class AddWitnessCommandIntegrationTest {
 
         AddCommand command = new AddWitnessCommand(INDEX_FIRST_PERSON, witness);
 
-        assertCommandFailure(command, model, AddWitnessCommand.MESSAGE_DUPLICATE_WITNESS);
+        assertCommandFailure(command, model, UserMessages.MESSAGE_DUPLICATE_WITNESS);
         StateManager.resetState();
     }
 }
