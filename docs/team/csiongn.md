@@ -26,7 +26,8 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
   * **Substantially reworked the structure of `Year` class** for better input validation and management. ([\#96](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/96))
   * Helped to **rename Address Book references to Reeve** ([\#67](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/67))
 * **Project management**:
-* Reminded team of deliverables. 
+* Reminded team of deliverables.
+    * 
 * **Documentation**:
     * User Guide:
         * Updated documentation for the command `find` ([\#38](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/38) and [\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60))
