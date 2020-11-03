@@ -25,13 +25,17 @@ import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EditTutorialGroupCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindModuleCommand;
+import seedu.address.logic.commands.FindStudentCommand;
+import seedu.address.logic.commands.FindTutorialGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
@@ -153,6 +157,22 @@ public class TrackrParserTest {
         assertEquals(new FindModuleCommand(new ModuleContainsKeywordsPredicate(keywords)), command);
     }
 
+    @Test
+    public void parseCommand_findTutorialGroup() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindTutorialGroupCommand command = (FindTutorialGroupCommand) parser.parseCommand(
+                FindTutorialGroupCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindTutorialGroupCommand(new TutorialContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findStudentGroup() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindStudentCommand command = (FindStudentCommand) parser.parseCommand(
+                FindStudentCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindStudentCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+    
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
