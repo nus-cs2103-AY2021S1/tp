@@ -23,7 +23,7 @@ public class StatsCommand extends Command {
             + "Parameters: INDEX (must be a positive integer greater than 0)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS = "Flashcard's statistics is shown: %1$s";
+    public static final String MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS = "Viewed Flashcard's Statistics: %1$s";
 
     private final Index targetIndex;
 

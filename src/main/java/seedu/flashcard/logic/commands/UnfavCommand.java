@@ -31,7 +31,7 @@ public class UnfavCommand extends Command {
             + "Parameters: INDEX (must be a positive integer greater than 0)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS = "Unfavourite Flashcard: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_FLASHCARD_SUCCESS = "Unfavourited Flashcard: %1$s";
 
     private final Index targetIndex;
 
