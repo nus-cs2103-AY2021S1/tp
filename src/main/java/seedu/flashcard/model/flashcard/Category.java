@@ -9,7 +9,7 @@ import static seedu.flashcard.commons.util.AppUtil.checkArgument;
 public class Category {
     public static final String MESSAGE_CONSTRAINTS = "Categories names should be alphanumeric,"
                                                         + " not more than 50 characters, and only have 1 space "
-                                                        + "between wordsadd ";
+                                                        + "between words";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9_]+( [a-zA-Z0-9_]+)*$";
     private String category;
 
