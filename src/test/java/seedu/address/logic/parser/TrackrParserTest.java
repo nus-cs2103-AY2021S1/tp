@@ -29,6 +29,8 @@ import seedu.address.logic.commands.FindStudentCommand;
 import seedu.address.logic.commands.FindTutorialGroupCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
+import seedu.address.logic.commands.ListStudentCommand;
+import seedu.address.logic.commands.ListTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
@@ -141,14 +143,6 @@ public class TrackrParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
-    //    @Test
-    //    public void parseCommand_find() throws Exception {
-    //        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-    //        FindCommand command = (FindCommand) parser.parseCommand(
-    //                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-    //        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
-    //    }
-
     @Test
     public void parseCommand_findModule() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
@@ -172,7 +166,7 @@ public class TrackrParserTest {
                 FindStudentCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindStudentCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
-    
+
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
@@ -189,6 +183,18 @@ public class TrackrParserTest {
     public void parseCommand_listModule() throws Exception {
         assertTrue(parser.parseCommand(ListModuleCommand.COMMAND_WORD) instanceof ListModuleCommand);
         assertTrue(parser.parseCommand(ListModuleCommand.COMMAND_WORD + " 3") instanceof ListModuleCommand);
+    }
+
+    @Test
+    public void parseCommand_listTutorialGroup() throws Exception {
+        assertTrue(parser.parseCommand(ListTutorialGroupCommand.COMMAND_WORD) instanceof ListTutorialGroupCommand);
+        assertTrue(parser.parseCommand(ListTutorialGroupCommand.COMMAND_WORD + " 3") instanceof ListTutorialGroupCommand);
+    }
+
+    @Test
+    public void parseCommand_listStudent() throws Exception {
+        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD) instanceof ListStudentCommand);
+        assertTrue(parser.parseCommand(ListStudentCommand.COMMAND_WORD + " 3") instanceof ListStudentCommand);
     }
 
     @Test
