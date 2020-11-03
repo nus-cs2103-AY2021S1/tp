@@ -10,19 +10,19 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature implemented**: Added the **details feature** to **Reeve**.
+* **New Feature implemented**: Added the **details** feature to **Reeve**.
   * What it does: Allows the user to add additional details to a student.
-  * Justification: This feature would help tutors significantly as it allows them to add details that have not been covered
-  by the other fields, to students.
+  * Justification: This feature would help tutors significantly as it allows them to add details that have not been 
+  covered by the other fields, to students.
   
-* **New Feature implemented**: Added the **attendance feature** to **Reeve**.
+* **New Feature implemented**: Added the **attendance** feature to **Reeve**.
   * What it does: Allows the user to track the attendance of students in lessons.
-  * Justification: An attendance tracking feature helps to ease one of a tutor's many required tasks. This is done by greatly
-  simplifying the process of taking and storing the attendance of the tutor's many students.
+  * Justification: An attendance tracking feature helps to ease one of a tutor's many required tasks. This is helps them
+   by greatly simplifying the process of taking and storing the attendance of the tutor's many students.
 
 * **Other Enhancements implemented**:
   * Added the `Academic` class to restructure `Student`.
-  * Added the `ClassTime` and `ClassVenue` that are fields in *Student*.
+  * Added the `ClassTime` and `ClassVenue` that are required fields in `Student`.
   * Adapted the `edit` command to work with the new structure of `Student` in **Reeve**.
   
 * **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=vaishakanand)
