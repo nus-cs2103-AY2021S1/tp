@@ -77,7 +77,7 @@ public class Ingredient {
     }
 
     /**
-     * Returns true if both ingredients have the same name.
+     * Returns true if both ingredients have the same name and quantity.
      * This defines a weaker notion of equality between two recipes.
      */
     public boolean isSameIngredient(Ingredient otherIngredient) {
@@ -86,8 +86,21 @@ public class Ingredient {
         }
 
         return otherIngredient != null
-                && otherIngredient.getValue().equals(getValue())
+                && otherIngredient.getValue().toLowerCase().equals(getValue().toLowerCase())
                 && otherIngredient.getQuantity().equals(getQuantity());
+    }
+
+    /**
+     * Returns true if both ingredients have the same name.
+     * This defines a weaker notion of equality between two recipes.
+     */
+    public boolean isSameIngredientName(Ingredient otherIngredient) {
+        if (otherIngredient == this) {
+            return true;
+        }
+
+        return otherIngredient != null
+                && otherIngredient.getValue().toLowerCase().equals(getValue().toLowerCase());
     }
 
     /**
