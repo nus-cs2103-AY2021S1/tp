@@ -18,6 +18,7 @@ public class TypicalStudents {
             .withPhone("91234567")
             .withTags("CS2103T")
             .withStudentId("A1234567X")
+            .withAttendance("1", "2", "3", "6")
             .build();
 
     public static final Student BENG = new StudentBuilder()
@@ -26,6 +27,7 @@ public class TypicalStudents {
             .withPhone("81234567")
             .withTags("CS2103T")
             .withStudentId("A7654321B")
+            .withAttendance("1", "2", "5", "13")
             .build();
 
     public static final Student CHARLIE = new StudentBuilder()
@@ -42,6 +44,7 @@ public class TypicalStudents {
             .withPhone("81320987")
             .withTags("CS2103T", "UTCP")
             .withStudentId("A1837538N")
+            .withAttendance("1", "4", "3", "12")
             .build();
 
     public static final Student ELIZABETH = new StudentBuilder()
@@ -58,6 +61,7 @@ public class TypicalStudents {
             .withPhone("82938378")
             .withTags("CS1231S")
             .withStudentId("A2038468T")
+            .withAttendance("1", "2", "4", "10")
             .build();
 
     private TypicalStudents() {} // prevents instantiation
@@ -74,6 +78,6 @@ public class TypicalStudents {
     }
 
     public static List<Student> getTypicalStudents() {
-        return new ArrayList<>(Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH));
+        return new ArrayList<>(Arrays.asList(ALEX, BENG, CHARLIE, DAVID, ELIZABETH, FIONA));
     }
 }
