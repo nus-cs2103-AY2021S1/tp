@@ -43,7 +43,7 @@ public class DeleteConsumptionCommand extends Command {
 
         Consumption consumptionToDelete = lastShownList.get(toDelete.getZeroBased());
         model.deleteConsumption(consumptionToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CONSUMPTION_SUCCESS, consumptionToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_CONSUMPTION_SUCCESS, consumptionToDelete), ListConsumptionCommand.COMMAND_WORD);
     }
 
     @Override
