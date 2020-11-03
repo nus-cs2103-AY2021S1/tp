@@ -102,6 +102,7 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 
 * Adds an event to PlaNus, with the specified title in `title:TITLE`, with the specified description in `description:DESCRIPTION`, on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:TIME`, with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * The added event will be tracked for time analysis if it has a tag.
+  * Event must not overlap with existing events or lessons.
 
 Examples:
 
@@ -117,6 +118,7 @@ Users can add a lesson to PlaNus.
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
 * Adds a lesson to PlaNus, with the title specified in `title:TITLE`, starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
+  * Lesson must not overlap with existing events or lessons.
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Monday, Tuesday, ..., Sunday
 
