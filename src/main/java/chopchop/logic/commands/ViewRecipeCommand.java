@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Displays a recipe identified by the index number or its name from the recipe book.

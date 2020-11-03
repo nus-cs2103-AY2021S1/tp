@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Finds and lists all recipes whose name contains any of the argument keywords.

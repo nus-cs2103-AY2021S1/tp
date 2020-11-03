@@ -13,7 +13,6 @@ import chopchop.model.Model;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Makes a dish according to the recipe identified by the index number or name used in the displayed recipe list,

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Lists all recipes in the recipe book to the user.

@@ -9,7 +9,6 @@ import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.model.recipe.Recipe;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Filters and lists all recipes in recipe book that match all filtering criteria.

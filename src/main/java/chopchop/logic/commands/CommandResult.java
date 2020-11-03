@@ -2,7 +2,6 @@
 
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;

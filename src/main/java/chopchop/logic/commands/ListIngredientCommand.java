@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Lists all ingredients in the ingredient book to the user.

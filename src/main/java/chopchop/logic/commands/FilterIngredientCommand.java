@@ -9,7 +9,6 @@ import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Filters and lists all ingredients in ingredient book that match all filtering criteria.
