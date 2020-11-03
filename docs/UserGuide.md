@@ -802,16 +802,22 @@ Examples:
 To illustrate suppose you wanted to make the pancakes here, you would use `make recipe pancakes`. You can run this command from any view (not necessarily from the recipe detail view):
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_1.png" width="75%" /> <br />
-Figure 9.1: <i>Making</i>
+Figure 9.1: <i>Making pancakes</i>
 </div>
 
-After pressing <kbd>enter</kbd>, ChopChop will bring you to the ingredient list view, so you can check
+After pressing <kbd>enter</kbd>, ChopChop will open up the recipe that you've just made:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_2.png" width="75%" /> <br />
 Figure 9.2: <i>The detailed recipe view</i>
 </div>
 
+If there are ingredients that are missing, or that you have insufficient amounts of, ChopChop will display this message in the command output window:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/make_recipe_3.png" width="55%" /> <br />
+Figure 9.3: <i>Insufficient ingredients to make the pancakes</i>
+</div>
 
 
 
