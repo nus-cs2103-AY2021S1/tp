@@ -333,7 +333,7 @@ Stocks that do not exist in Warenager cannot be deleted. Using the same input in
 ![delete_step6](images/delete/delete_step6.png)
 
 Invalid delete command formats will also result in an error.<br>
-For example, the input `delet sn/courts3 sn/courts` will lead in an error as shown below
+For example, the input `delet sn/courts3 sn/courts4` will lead in an error as shown below
 as the keyword `delete` is misspelt.
 
 ![delete_step7](images/delete/delete_step7.png)
@@ -341,6 +341,17 @@ as the keyword `delete` is misspelt.
 The input `delete` will lead in an error as shown below as the compulsory fields with `sn/` is missing.
 
 ![delete_step8](images/delete/delete_step8.png)
+
+The input `delete sn/serial` will lead in an error as shown below as the serial number is invalid. This is
+also true for inputs with no serial numbers like `delete sn/`.
+
+![delete_step9](images/delete/delete_step9.png)
+
+The `delete sn/courts1 q/20` will lead in an error as shown below even though the serial number `courts1`
+is found. This is because the prefix `q/` is not allowed, and it is not just limited to `q/`. In delete
+commands, only the prefix `/sn` is allowed.
+
+![delete_step10](images/delete/delete_step10.png)
 
 </div>
 
