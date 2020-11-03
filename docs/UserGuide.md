@@ -481,7 +481,7 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 Multiple ingredients are separated by a `,`.
 </div> 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Adding the same ingredients with different quantities **will not** accumulate in the fridge. To increase the quantity of an ingredient, use `editF` instead.
+    Adding the same ingredients with different quantities **will not** accumulate in the fridge. To change the quantity of an ingredient, use `editF` instead.
 </div>
 
 Examples:
