@@ -14,17 +14,6 @@ public class ProteinTest {
     }
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NumberFormatException.class, () -> new Protein(null));
-    }
-
-    @Test
-    public void constructor_invalidProtein_throwsNumberFormatException() {
-        String invalidProtein = "";
-        assertThrows(NumberFormatException.class, () -> new Protein(invalidProtein));
-    }
-
-    @Test
     public void protein_isValid_correct() {
         // null protein number
         assertThrows(NullPointerException.class, () -> Protein.isValid(null));

@@ -182,9 +182,10 @@ public class ModelManagerTest {
         ModelManager expectedModelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
         modelManager.addFood(getChickenRice());
         modelManager.addFood(getDanishCookies());
+        modelManager.updateFilteredFoodList(food -> food.equals(getChickenRice()));
         modelManager.clearFilteredFood();
         modelManager.undo();
-        assertEquals(modelManager, expectedModelManager);
+        assertEquals(modelManager.getMcGymmy(), expectedMcGymmy);
     }
 
     @Test
@@ -271,7 +272,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void undo_updateFilteredFoodListWithSamePredicateMultipleTime_onlyUndoOnce() {
+    public void undo_updateFilteredFoodListWithSamePredicateMultipleTime_undoMultipleTimes() {
         McGymmy expectedMcGymmy = new McGymmyBuilder().withFood(getChickenRice()).withFood(getDanishCookies()).build();
         ModelManager expectedModelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
         modelManager = new ModelManager(expectedMcGymmy, new UserPrefs());
@@ -279,7 +280,8 @@ public class ModelManagerTest {
         modelManager.updateFilteredFoodList(predicate);
         modelManager.updateFilteredFoodList(predicate);
         modelManager.undo();
-        assertFalse(modelManager.canUndo());
+        assertTrue(modelManager.canUndo());
+        modelManager.undo();
         assertEquals(modelManager, expectedModelManager);
     }
 

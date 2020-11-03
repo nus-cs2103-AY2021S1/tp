@@ -15,12 +15,6 @@ public class CarbohydrateTest {
     }
 
     @Test
-    public void constructor_invalidCarbohydrate_throwsNumberFormatException() {
-        String invalidCarb = "";
-        assertThrows(NumberFormatException.class, () -> new Carbohydrate(Integer.parseInt(invalidCarb)));
-    }
-
-    @Test
     public void carbohydrate_isValid_correct() {
         // null carbohydrate
         assertThrows(NullPointerException.class, () -> Carbohydrate.isValid(null));

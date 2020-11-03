@@ -18,11 +18,7 @@ public class Fat extends Macronutrient {
     public Fat(int amount) throws IllegalValueException {
         super(amount, FAT_MULTIPLIER);
     }
-
-    public Fat(String amount) throws IllegalValueException {
-        this(Integer.parseInt(amount));
-    }
-
+    
     /**
      * Create a new Fat using the default value.
      * Mostly boilerplate code.

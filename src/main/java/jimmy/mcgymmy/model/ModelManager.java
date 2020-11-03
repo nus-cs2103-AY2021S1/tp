@@ -167,7 +167,9 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(index, editedFood);
         logger.fine("Change food at index " + index.getOneBased() + "to food:\n" + editedFood.toString());
         saveCurrentStateToHistory();
-        mcGymmy.setFood(index, editedFood);
+        Food food = getFilteredFoodList().get(index.getZeroBased());
+        Index index1 = Index.fromZeroBased(mcGymmy.getFoodList().indexOf(food));
+        mcGymmy.setFood(index1, editedFood);
         updateFilterPredicate(PREDICATE_SHOW_ALL_FOODS);
     }
 
@@ -183,9 +185,9 @@ public class ModelManager implements Model {
     public void undo() {
         if (canUndo()) {
             assert !history.empty() : "McGymmyStack is empty";
-            McGymmy prevMcGymmy = history.getMcGymmy();
-            Predicate<Food> prevPredicate = history.getPredicate();
-            MacroList macroList = history.getMacroList();
+            McGymmy prevMcGymmy = history.peekMcGymmy();
+            Predicate<Food> prevPredicate = history.peekPredicate();
+            MacroList macroList = history.peekMacroList();
             history.pop();
             mcGymmy.resetData(prevMcGymmy);
             updateFilterPredicate(prevPredicate);
@@ -208,7 +210,6 @@ public class ModelManager implements Model {
             }
         }
         mcGymmy.setFoodItems(lst);
-
         filteredFoodItems.clear();
     }
 
@@ -227,10 +228,8 @@ public class ModelManager implements Model {
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
         logger.fine("Update predicate for filtered food list");
-        if (!predicate.equals(filterPredicate)) {
-            saveCurrentStateToHistory();
-            updateFilterPredicate(predicate);
-        }
+        saveCurrentStateToHistory();
+        updateFilterPredicate(predicate);
     }
 
     private void updateFilterPredicate(Predicate<Food> predicate) {

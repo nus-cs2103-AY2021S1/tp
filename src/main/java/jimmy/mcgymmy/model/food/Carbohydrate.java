@@ -18,10 +18,6 @@ public class Carbohydrate extends Macronutrient {
         super(amount, CARBOHYDRATE_MULTIPLIER);
     }
 
-    public Carbohydrate(String amount) throws IllegalValueException {
-        this(Integer.parseInt(amount));
-    }
-
     /**
      * Create a new Carbohydrate using the default value.
      * Mostly boilerplate code.

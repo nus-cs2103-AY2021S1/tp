@@ -94,7 +94,7 @@ public class McGymmyParser {
             return MacroRunner.asCommandInstance(macro, args);
         } catch (org.apache.commons.cli.ParseException e) {
             String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName, "", options);
-            throw new ParseException(formattedHelp);
+            throw new ParseException(e.getMessage() + "\n" + formattedHelp);
         }
     }
 }

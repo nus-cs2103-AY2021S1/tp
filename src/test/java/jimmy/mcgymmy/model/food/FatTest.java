@@ -14,17 +14,6 @@ public class FatTest {
     }
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NumberFormatException.class, () -> new Fat(null));
-    }
-
-    @Test
-    public void constructor_invalidEmail_throwsNumberFormatException() {
-        String invalidFat = "12@123";
-        assertThrows(NumberFormatException.class, () -> new Fat(Integer.parseInt(invalidFat)));
-    }
-
-    @Test
     public void fat_isValid_correct() {
         // null fat
         assertThrows(NullPointerException.class, () -> Fat.isValid(null));
