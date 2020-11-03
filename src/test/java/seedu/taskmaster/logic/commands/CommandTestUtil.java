@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String PRESENT_ATTENDANCE = "present";
     public static final String ABSENT_ATTENDANCE = "absent";
-    public static final String VALID_SCORE_STRING = "0";
-    public static final int VALID_SCORE_INT = 0;
+    public static final String VALID_SCORE_STRING = "0.00";
+    public static final double VALID_SCORE_DOUBLE = 0;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -63,6 +63,9 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE_TYPE + "notAttendanceType";
     public static final String INVALID_PARTICIPATION_SCORE = " " + PREFIX_CLASS_PARTICIPATION + "-1";
+    public static final String INVALID_PARTICIPATION_TOOSMALL = " " + PREFIX_CLASS_PARTICIPATION + "-1";
+    public static final String INVALID_PARTICIPATION_NEGATIVEZERO = " " + PREFIX_CLASS_PARTICIPATION + "-0";
+    public static final String INVALID_PARTICIPATION_TOOBIG = " " + PREFIX_CLASS_PARTICIPATION + "10.1";
     public static final String INVALID_PARTICIPATION_NONINTEGER = " " + PREFIX_CLASS_PARTICIPATION + "NOTASCORE";
     // refer to {@code AttendanceType} for valid attendance types
 
