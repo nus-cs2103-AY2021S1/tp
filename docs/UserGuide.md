@@ -13,13 +13,13 @@ CliniCal(Clinic Calendar) is a **desktop app that allows doctors to manage patie
 
 Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
 
-Interested to know more? Take a look at our [**Quick Start**](#3-quick-start) guide. Enjoy!
+Interested to know more? Take a look at our [**Getting started**](#3-getting-started) guide. Enjoy!
 
 ## 2. About this document
 
 Welcome to the CliniCal User Guide!
 
-If you are new to CliniCal, this quick start guide will get you up and running in no time! It equips you with the basic knowledge you need to use CliniCal properly.
+If you are new to CliniCal, this user guide will get you up and running in no time! It equips you with the basic knowledge you need to use CliniCal properly.
 
 ### 2.1 Formatting
 
@@ -52,7 +52,7 @@ This table below will illustrate what they mean.
 
 </div>
 
-## 3. Quick Start
+## 3. Getting started
 
 You can follow the steps below to get CliniCal up and running:
 
@@ -62,7 +62,7 @@ You can follow the steps below to get CliniCal up and running:
 
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
@@ -78,19 +78,92 @@ You can follow the steps below to get CliniCal up and running:
 
    * `exit` : Exits the app.
 
-1. Refer to the [**Features**](#4-features) below for details of each command or refer to the [**Command Summary**](#6-command-summary) to quickly refer to all available commands.
+1. Refer to the [**Features**](#5-features) below for details of each command or refer to the [**Command Summary**](#7-command-summary) to quickly refer to all available commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Features
+## 4. User Interface
+
+CliniCal contains a Graphical User Interface (GUI) which serves to allow you to easily view his upcoming appointments and also patient records.
+
+[**INSERT PICTURE ON FIRST STARTUP OF CLINICAL WITH ANNOTATIONS OF THE MAIN PARTS OF THE GUI (indicated below)**]
+
+The layout of the GUI is as follows:
+* Top Menu Bar
+* Main Display Area
+* Result Display Area
+* Command Input Area
+
+On the first startup, CliniCal will be loaded with sample data to give you a feel of the features in CliniCal.
+
+If you wish to start afresh, enter the `clear` command to clear all entries from the appointment and patient database!
+
+### 4.1 Overview Tab
+
+[**INSERT PICTURE ON FIRST STARTUP ON OVERVIEW TAB WITH ANNOTATIONS OF APPOINTMENT LIST, CALENDAR AND APPOINTMENT INDEX**]
+
+This would be the home page of CliniCal, where the appointment list would be on the left and the calendar view on the right.
+
+* The index used to access each appointment is shown next to the patient's name.
+
+* On the left, you would be able to view all upcoming appointments with the follow details under each appointment:
+    * Patient Name
+    * NRIC
+    * Date and Time of Appointment
+    * Duration of Appointment
+
+* On the right, you would be able to view the upcoming appointments in a weekly calendar view. The view is set to show you appointments ranging from yesterday to 6 days from now.
+
+* Refer to the section on [**Patient Appointment Commands**](#54-patient-appointment-commands) for more details on how to add an appointment!
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+<br>
+* If the patient name in the appointment list is too long and becomes cutoff, simply resize the window to make it wider!
+
+</div>
+
+
+### 4.2 Patients Tab
+
+[**INSERT PICTURE OF SAMPLE DATA PATIENTS TAB WITH ANNOTATIONS OF PATIENT LIST AND PATIENT INDEX**]
+
+This tab shows you the patient database and the details of each patient, together with a summary of each visit.
+
+* The index used to access each patient is shown next to the patient's name.
+
+* The sample data in the figure above indicates that Bernice Yu has the <span style="color:red">red</span> color tag, meaning that Bernice Yu has high priority and requires close monitoring and follow-up actions. You are free to assign any HTML color to any patient.
+
+* Refer to [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
+
+### 4.3 Profile Window
+
+[**INSERT PICTURE OF SAMPLE DATA OF BERNICE YU PATIENT PROFILE WITH ANNOTATIONS OF PATIENT PROFILE PICTURE, PERSONAL DETAILS PANE, VISITS PANEL AND VISITATION LOG INDEX**]
+
+This window shows you the individual patient profile picture and personal details in an easy to read manner.
+
+* It also contains details of each visit stored in visitation logs sorted by descending date order in DD/MM/YYYY format (i.e. The most recent visit will appear at the top). 
+
+* The index used to access each visitation log is also shown after the words 'Visitation Log'.
+
+* Each visitation log contains the following details:
+    * Diagnosis
+    * Prescription
+    * Comments
+
+* Refer to [**Patient Visitation Commands**](#53-patient-visitation-commands) for more details on how to add a visit!
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
 
 This section highlights the commands that CliniCal supports. These include details about the format of the command and example scenarios of the command.
 
-### 4.1 General Commands
+### 5.1 General Commands
 
 General commands help enhance your general user experience while using CliniCal.
 
-#### 4.1.1 Viewing help: `help`
+#### 5.1.1 Viewing help: `help`
 
 Access help page by referring to the link provided in the message pop-up.
 
@@ -98,7 +171,7 @@ Access help page by referring to the link provided in the message pop-up.
 
 Format: `help`
 
-#### 4.1.2 Retrieving past commands: `history`
+#### 5.1.2 Retrieving past commands: `history`
 
 View a list of past commands that you had used during the session.
 
@@ -106,7 +179,7 @@ View a list of past commands that you had used during the session.
 
 Format: `history`
 
-#### 4.1.3 Clearing command history: `clearhistory`
+#### 5.1.3 Clearing command history: `clearhistory`
 
 Clear the command history.
 
@@ -122,7 +195,7 @@ Format: `clearhistory`
 
 </div>
 
-#### 4.1.4 Undoing the previous command: `undo`
+#### 5.1.4 Undoing the previous command: `undo`
 
 Revert your previous command which modified the patient database.
 
@@ -139,7 +212,7 @@ Example:
 * While trying to `edit`, you accidentally deleted Alex Yeoh's patient details by accident.
 * Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
 
-#### 4.1.5 Redoing a command: `redo`
+#### 5.1.5 Redoing a command: `redo`
 
 Redo the most recent command that you have undone.
 
@@ -150,17 +223,17 @@ Format: `redo`
 * Only able to `redo` commands that have been previously undone such as `add`, `edit`, `delete`, `clear`,
 `addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
 
-#### 4.1.6 Exiting the program: `exit`
+#### 5.1.6 Exiting the program: `exit`
 
 Exit the program.
 
 Format: `exit`
 
-### 4.2 Patient Commands
+### 5.2 Patient Commands
 
 Patient commands help you make changes to your database of patients.
 
-#### 4.2.1 Adding a patient: `add`
+#### 5.2.1 Adding a patient: `add`
 
 Add a new patient to the patient database.
 
@@ -192,7 +265,7 @@ Examples:
 
 </div>
 
-#### 4.2.2 Adding profile picture: `addpicture`
+#### 5.2.2 Adding profile picture: `addpicture`
 
 Add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
 
@@ -216,7 +289,7 @@ Examples:
 
 </div>
 
-#### 4.2.3 Editing a patient: `edit`
+#### 5.2.3 Editing a patient: `edit`
 
 Edit an existing patient in the patient database.
 
@@ -246,7 +319,7 @@ Examples:
 
 </div>
 
-#### 4.2.4 Deleting a patient: `delete`
+#### 5.2.4 Deleting a patient: `delete`
 
 ![example of deleted patient](images/deleteExample.png)
 
@@ -270,7 +343,7 @@ Examples:
 
 </div>
 
-#### 4.2.5 Deleting all patients: `clear`
+#### 5.2.5 Deleting all patients: `clear`
 
 ![example of cleared list](images/clearExample.png)
 
@@ -293,7 +366,7 @@ Format: `clear`
 
 </div>
 
-#### 4.2.6 Finding patients: `find`
+#### 5.2.6 Finding patients: `find`
 
 Find patients whose names or NRIC contain any of the given keywords.
 
@@ -319,7 +392,7 @@ Examples:
 * `find alex david` Returns `Alex Yeoh`, `David Li`<br>
 * `find 9123456` Returns the patient with the NRIC `s9123456z`
 
-#### 4.2.7 Listing all patients: `list`
+#### 5.2.7 Listing all patients: `list`
 
 ![example of listing patients](images/listExample.png)
 
@@ -336,7 +409,7 @@ You can revert your previous command which modified the patient database.
 
 </div>
 
-#### 4.2.8 Viewing patient profile: `profile`
+#### 5.2.8 Viewing patient profile: `profile`
 
 Display the patient's profile in a separate window.
 
@@ -355,7 +428,7 @@ Format: `profile INDEX`
 **Step 3**: To close the patient profile window, you can click on the 'Close' button on the top-right section of the window. Alternatively, you can press
 <kbd>ESC</kbd> key on your keyboard.
 
-### 4.3 Patient Visitation Commands
+### 5.3 Patient Visitation Commands
 
 Visitation commands help you make changes to the visitation logs specific to a patient. 
 
@@ -364,7 +437,7 @@ These visitation logs store the following as a short summary of a patient's visi
 * Prescription
 * Comments
 
-#### 4.3.1 Adding a new visitation log for patient: `addvisit`
+#### 5.3.1 Adding a new visitation log for patient: `addvisit`
 
 Display a new window to add a new visitation log for the specified patient.
 
@@ -374,6 +447,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 * `VISIT_DATE` refers to the date of visitation.
     * It follows the format of `dd/MM/yyyy`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
+    * Only dates before and *up till and including today* are accepted.
 * `VISIT_DATE`is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
 
 **Example**: You want to add a visitation log to the 1st patient on the list.
@@ -397,7 +471,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 </div>
 
-#### 4.3.2 Editing patient's visitation log: `editvisit`
+#### 5.3.2 Editing patient's visitation log: `editvisit`
 
 Display a new window to edit the visitation log for a specified patient.
 
@@ -421,7 +495,7 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
 
-#### 4.3.3 Deleting patient's visitation log: `deletevisit`
+#### 5.3.3 Deleting patient's visitation log: `deletevisit`
 
 Delete the patient's visitation log.
 
@@ -437,11 +511,11 @@ Format: `deletevisit INDEX i/VISIT_INDEX`
 
 **Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
 
-### 4.4 Patient Appointment Commands
+### 5.4 Patient Appointment Commands
 
 Patient Appointment commands help you manage your upcoming patient appointments.
 
-#### 4.4.1 Adding an appointment: `addappt`
+#### 5.4.1 Adding an appointment: `addappt`
 
 ![example of add appointment](images/addApptExample.png)
 
@@ -480,7 +554,7 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 </div>
 
-#### 4.4.2 Editing an appointment: `editappt`
+#### 5.4.2 Editing an appointment: `editappt`
 
 ![example of edit appointment](images/editApptExample.png)
 
@@ -524,7 +598,7 @@ Step 3: If the newly updated appointment is due within a week from today, you ca
 
 </div>
 
-#### 4.4.3 Deleting an appointment: `deleteappt`
+#### 5.4.3 Deleting an appointment: `deleteappt`
 
 ![example of delete appointment](images/DeleteApptExample.png)
 
@@ -548,7 +622,7 @@ Step 2: The first appointment displayed will be removed from the appointment lis
 
 </div>
 
-### 4.5 Retrieving past commands using arrow keys
+### 5.5 Retrieving past commands using arrow keys
 
 Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
@@ -564,20 +638,20 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 
 </div>
 
-### 4.6 Saving the data
+### 5.6 Saving the data
 
 CliniCal data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 7. Command summary
 
 Action | Format, Examples
 --------|------------------
