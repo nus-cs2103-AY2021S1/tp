@@ -2,12 +2,12 @@ package seedu.stock.logic.commands.exceptions;
 
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
-import seedu.stock.logic.commands.NoteViewCommand;
+import seedu.stock.logic.commands.StockViewCommand;
 
 
 /**
  * Represents an error which occurs during execution of a
- * {@link NoteCommand}, {@link NoteDeleteCommand} or {@link NoteViewCommand}.
+ * {@link NoteCommand}, {@link NoteDeleteCommand} or {@link StockViewCommand}.
  */
 public class SerialNumberNotFoundException extends Exception {
 

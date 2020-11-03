@@ -38,7 +38,8 @@ public class NoteCommandParser implements Parser<NoteCommand> {
                     NoteCommand.MESSAGE_USAGE));
         }
 
-        String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
+        String serialNumberInput =
+                argMultimap.getValue(PREFIX_SERIAL_NUMBER).get().toLowerCase();
         SerialNumber serialNumber = ParserUtil.parseSerialNumber(serialNumberInput);
         String noteInput = argMultimap.getValue(PREFIX_NOTE).get();
         Note noteToAdd = ParserUtil.parseNote(noteInput);

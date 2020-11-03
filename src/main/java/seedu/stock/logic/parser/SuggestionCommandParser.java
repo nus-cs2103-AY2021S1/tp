@@ -9,10 +9,10 @@ import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
-import static seedu.stock.logic.commands.CommandWords.NOTE_VIEW_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.PRINT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.SORT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.STOCK_VIEW_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UNBOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
@@ -49,10 +49,10 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
-import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
+import seedu.stock.logic.commands.StockViewCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.TabCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
@@ -196,8 +196,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
             break;
 
-        case NoteViewCommand.COMMAND_WORD:
-            generateNoteViewSuggestion(toBeDisplayed, argMultimap);
+        case StockViewCommand.COMMAND_WORD:
+            generateStockViewSuggestion(toBeDisplayed, argMultimap);
             break;
 
         case PrintCommand.COMMAND_WORD:
@@ -538,13 +538,13 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     }
 
     /**
-     * Generates suggestion for faulty noteview command.
+     * Generates suggestion for faulty stockview command.
      *
      * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
      * @param argMultimap The parsed user input fields.
      */
-    private void generateNoteViewSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        toBeDisplayed.append(NOTE_VIEW_COMMAND_WORD);
+    private void generateStockViewSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(STOCK_VIEW_COMMAND_WORD);
 
         String defaultDescriptionSerialNumber = CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER);
         if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
@@ -560,7 +560,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             break;
         }
 
-        generateBodyMessage(toBeDisplayed, NoteViewCommand.MESSAGE_USAGE);
+        generateBodyMessage(toBeDisplayed, StockViewCommand.MESSAGE_USAGE);
     }
 
     /**

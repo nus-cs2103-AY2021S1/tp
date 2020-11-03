@@ -4,12 +4,14 @@ import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.g
 import static seedu.stock.logic.commands.statisticsutil.GenerateStatisticsData.generateSourceStatisticsData;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -23,7 +25,6 @@ import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SerialNumberNotFoundException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
-import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Stock;
 
 
@@ -42,7 +43,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StockListPanel stockListPanel;
-    private NoteListPanel noteListPanel;
+    private StockViewWindow stockViewWindow;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -63,13 +64,16 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane stockListPanelPlaceholder;
 
     @FXML
-    private StackPane noteListPanelPlaceholder;
+    private StackPane stockViewWindowPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private PieChart mainPie;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -158,6 +162,51 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Switches to and updates the stock view window.
+     */
+    @FXML
+    public void handleStockView(Optional<Stock> stockToView) {
+        //jump to stock view tab
+        tabPane.getSelectionModel().select(2);
+        updateStockView(stockToView);
+    }
+
+    /**
+     * Updates the stock view window.
+     */
+    @FXML
+    public void updateStockView(Optional<Stock> optionalStockToView) {
+
+        if (optionalStockToView.isPresent()) {
+
+            Stock stockToView = optionalStockToView.get();
+
+            String nameString = "Name: " + stockToView.getName().fullName;
+            String serialNumberString = "Serial Number: " + stockToView.getSerialNumber().toString();
+            String sourceString = "Source: " + stockToView.getSource().value;
+            String quantityString = "Quantity: " + "Quantity left: " + stockToView.getQuantity().quantity
+                    + "\nLow Quantity: " + stockToView.getQuantity().lowQuantity;
+            String location = "Location: " + stockToView.getLocation().value;
+            String notes = "Notes: " + stockToView.notesToString(stockToView.getNotes());
+
+            ObservableList<String> fieldList = FXCollections.observableArrayList();
+            fieldList.addAll(nameString, serialNumberString, sourceString, quantityString,
+                    location, notes);
+
+            stockViewWindowPlaceholder.getChildren().remove(mainPie);
+            stockViewWindow = new StockViewWindow(fieldList);
+            stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
+
+        } else {
+
+            stockViewWindow = new StockViewWindow();
+            stockViewWindowPlaceholder.getChildren().add(stockViewWindow.getRoot());
+
+        }
+
+    }
+
+    /**
      * Toggles the tabs in Warenager.
      */
     @FXML
@@ -242,16 +291,20 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
-            if (commandResult.isShowHelp()) {
-                handleHelp();
+            if (commandResult.isShowStockView()) {
+                Stock stockToView = commandResult.getStockToShowNotes();
+                handleStockView(Optional.of(stockToView));
+            } else {
+                // stock view window used before
+                if (stockViewWindow != null) {
+                    ObservableList<Stock> stockList = logic.getModel().getStockBook().getStockList();
+                    Optional<Stock> stockToView = stockViewWindow.getStockToView(stockList);
+                    updateStockView(stockToView);
+                }
             }
 
-            if (commandResult.isShowNotes()) {
-                Stock stockToShowNotes = commandResult.getStockToShowNotes();
-                ObservableList<Note> internalNoteList = FXCollections.observableArrayList();
-                internalNoteList.addAll(stockToShowNotes.getNotes());
-                noteListPanel = new NoteListPanel(internalNoteList);
-                stockListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
+            if (commandResult.isShowHelp()) {
+                handleHelp();
             }
 
             if (commandResult.isExit()) {

@@ -13,11 +13,11 @@ import seedu.stock.model.Model;
 import seedu.stock.model.stock.SerialNumber;
 import seedu.stock.model.stock.Stock;
 
-public class NoteViewCommand extends Command {
+public class StockViewCommand extends Command {
 
-    public static final String COMMAND_WORD = "noteview";
+    public static final String COMMAND_WORD = "stockview";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all the notes of the stock identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays all the details of the stock identified "
             + "by the serial number of the stock.\n"
             + "Format: "
             + COMMAND_WORD + " "
@@ -26,9 +26,8 @@ public class NoteViewCommand extends Command {
             + COMMAND_WORD + " "
             + PREFIX_SERIAL_NUMBER + "ntuc1";
 
-    public static final String MESSAGE_NOTE_DISPLAY_SUCCESS = "Viewing notes for Stock: %1$s";
+    public static final String MESSAGE_NOTE_DISPLAY_SUCCESS = "Viewing Stock: %1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists.";
-    private static final String MESSAGE_STOCK_HAS_NO_NOTE = "Stock specified has no note.";
 
     private final SerialNumber serialNumber;
 
@@ -36,7 +35,7 @@ public class NoteViewCommand extends Command {
      * Constructs a NoteViewCommand.
      * @param serialNumber of the stock in the stock book
      */
-    public NoteViewCommand(SerialNumber serialNumber) {
+    public StockViewCommand(SerialNumber serialNumber) {
         requireAllNonNull(serialNumber);
 
         this.serialNumber = serialNumber;
@@ -69,10 +68,6 @@ public class NoteViewCommand extends Command {
             throw new SerialNumberNotFoundException(MESSAGE_SERIAL_NUMBER_NOT_FOUND);
         }
 
-        if (stockToViewNotes.get().getNotes().size() == 0) {
-            throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
-        }
-
         return new CommandResult(generateSuccessMessage(stockToViewNotes.get()), null,
                 false, true, stockToViewNotes.get(), false, null, false, false);
     }
@@ -92,12 +87,12 @@ public class NoteViewCommand extends Command {
             return true;
         }
         // instanceof handles nulls
-        if (!(other instanceof NoteViewCommand)) {
+        if (!(other instanceof StockViewCommand)) {
             return false;
         }
         // state check
-        NoteViewCommand otherNoteViewCommand = (NoteViewCommand) other;
-        return serialNumber.equals(otherNoteViewCommand.serialNumber);
+        StockViewCommand otherStockViewCommand = (StockViewCommand) other;
+        return serialNumber.equals(otherStockViewCommand.serialNumber);
     }
 
 }
