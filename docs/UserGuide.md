@@ -158,6 +158,27 @@ Action | Format, Examples
 **Tab** | `tab`
 **Exit** | `exit`
 
+### Prefix summary
+Summary of the prefixes known to Warenager is listed in this table:
+
+Prefix | Parameter | Parameter Description
+------ | --------- | -----------
+**n/** | `<name>`  | The name of the stock. It is a string and only alphanumeric characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
+**s/** | `<source>`| The source of the stock. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
+**q/** | `<quantity>` | The quantity of the stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 are allowed.
+**lq/** | `<low quantity>` | The threshold of low quantity of a certain stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 are allowed.
+**l/** | `<location>` | The location of the stock in the warehouse. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
+**lt/** | `<list type>` | The type of the list user want to view. It is a string and only the following values are known to Warenager. <br> `all`, `bookmark`, `low`.
+**sn/** | `<serial number>` | The serial number of the stock. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces. <br> It must always be ended by a number.
+**nq/** | `<new quantity>` | The new quantity of the stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 are allowed.
+**iq/** | `<increment value>` | The quantity value the user wants to add to the stock. It is a number. Both negative and positive numbers are allowed.
+**nt/** | `<note>` | The note the user wants to add. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
+**ni/** | `<note index>` | The note number the user wants to remove. It is a number and it must not be negative.
+**st/** | `<statistics type>` | The statistics type the user wants to be shown. It is a string and only the following values are known to Warenager. <br> `source`, `source-qd-<existing source>` where `<existing source>` is a valid source currently inside Warenager.
+**by/** | `<field>` | The field the user wants to be sorted. It is a string and only the following values are known to Warenager. <br> `name`, `quantity`, `serialnumber`, `source`, `location`.
+**o/** | `<order>` | The order the user wants to be sorted. It is a string and only the following values are known to Warenager. <br> `ascending`, `descending`.
+**fn/** | `<file name>` | The file name the stocks will be printed at. It is a string and only alphanumeric characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Components of Warenager
