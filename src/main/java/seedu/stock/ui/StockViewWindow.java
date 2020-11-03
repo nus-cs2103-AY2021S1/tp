@@ -82,10 +82,15 @@ public class StockViewWindow extends UiPart<Region> {
      * @return input string with first letter being upper-cased
      */
     public String upperFirst(String toChange) {
-        String upperCase = toChange.substring(0, 1).toUpperCase();
-        String lowerCase = toChange.substring(1);
 
-        return upperCase + lowerCase;
+        String upperCased = "";
+        if (toChange != null && !toChange.isEmpty()) {
+            String upperCase = toChange.substring(0, 1).toUpperCase();
+            String lowerCase = toChange.substring(1);
+            upperCased = upperCase + lowerCase;
+        }
+
+        return upperCased;
     }
 
 

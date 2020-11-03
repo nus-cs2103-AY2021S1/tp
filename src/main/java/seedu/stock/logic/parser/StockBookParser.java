@@ -51,84 +51,86 @@ public class StockBookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = matcher.group("arguments").toLowerCase();
+        final String arguments = matcher.group("arguments");
+        final String argumentsToLower = arguments.toLowerCase();
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
             try {
-                return new AddCommandParser().parse(arguments);
+                return new AddCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case HelpCommand.COMMAND_WORD:
             try {
-                return new HelpCommandParser().parse(arguments);
+                return new HelpCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case UpdateCommand.COMMAND_WORD:
             try {
-                return new UpdateCommandParser().parse(arguments);
+                return new UpdateCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case SortCommand.COMMAND_WORD:
             try {
-                return new SortCommandParser().parse(arguments);
+                return new SortCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case ListCommand.COMMAND_WORD:
             try {
-                return new ListCommandParser().parse(arguments);
+                return new ListCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case ClearCommand.COMMAND_WORD:
             try {
-                return new ClearCommandParser().parse(arguments);
+                return new ClearCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case DeleteCommand.COMMAND_WORD:
             try {
-                return new DeleteCommandParser().parse(arguments);
+                return new DeleteCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case StatisticsCommand.COMMAND_WORD:
             try {
-                return new StatisticsCommandParser().parse(arguments);
+                return new StatisticsCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case TabCommand.COMMAND_WORD:
             try {
-                return new TabCommandParser().parse(arguments);
+                return new TabCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case FindCommand.COMMAND_WORD:
             try {
-                return new FindCommandParser().parse(arguments);
+                return new FindCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case FindExactCommand.COMMAND_WORD:
             try {
-                return new FindExactCommandParser().parse(arguments);
+                return new FindExactCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case NoteCommand.COMMAND_WORD:
@@ -140,48 +142,49 @@ public class StockBookParser {
 
         case NoteDeleteCommand.COMMAND_WORD:
             try {
-                return new NoteDeleteCommandParser().parse(arguments);
+                return new NoteDeleteCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case StockViewCommand.COMMAND_WORD:
             try {
-                return new StockViewCommandParser().parse(arguments);
+                return new StockViewCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case PrintCommand.COMMAND_WORD:
             try {
-                return new PrintCommandParser().parse(arguments);
+                return new PrintCommandParser().parse(argumentsToLower);
 
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case BookmarkCommand.COMMAND_WORD:
             try {
-                return new BookmarkCommandParser().parse(arguments);
+                return new BookmarkCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
         case UnbookmarkCommand.COMMAND_WORD:
             try {
-                return new UnbookmarkCommandParser().parse(arguments);
+                return new UnbookmarkCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
 
         case ExitCommand.COMMAND_WORD:
             try {
-                return new ExitCommandParser().parse(arguments);
+                return new ExitCommandParser().parse(argumentsToLower);
             } catch (ParseException ex) {
-                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(argumentsToLower);
             }
         default:
-            return new SuggestionCommandParser(commandWord).parse(arguments);
+            return new SuggestionCommandParser(commandWord).parse(argumentsToLower);
         }
+
     }
 
 }

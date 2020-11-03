@@ -723,8 +723,8 @@ constructed with the list of `FieldContainsKeywordsPredicate`.
 
 Step 7. On construction of the `FindCommand`, the method
 `FindUtil#generateCombinedPredicatesWithOr()` is called to generate
-a composed Predicate<Stock>, which only requires one `FieldContainsKeywordsPredicate`
-to be fulfilled for stock to be displayed.
+a composed `Predicate<Stock>` with the list of `FieldContainsKeywordsPredicate`
+, which only requires one `FieldContainsKeywordsPredicate` to be fulfilled for stock to be displayed.
 
 Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
 with current `Model` as argument. Within this method call,
@@ -755,6 +755,11 @@ Classes:
 Method(s):
 * Step 7: `FindUtil#generateCombinedPredicatesWithOr()` to
  `FindUtil#generateCombinedPredicatesWithAnd()`
+
+Step: 
+* Step 7. On construction of the `FindExactCommand`, the method `FindUtil#generateCombinedPredicatesWithAnd()`
+ is called to generate a composed `Predicate<Stock>` with the list of `FieldContainsKeywordsPredicate`
+ , which requires all `FieldContainsKeywordsPredicate` to be fulfilled for stock to be displayed.
 
 #### Sequence Diagram
 The following sequence diagram shows how the Find feature works for Example 1:
