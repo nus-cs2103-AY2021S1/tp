@@ -50,8 +50,7 @@ public class InventoryListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of the current inventory, either {@code Item} using an
-     * {@code InventoryCard} or {@code PrintableRecipe} using a {@code RecipeCard}.
+     * Custom {@code ListCell} that displays the graphics of the current inventory, using suitable cards.
      */
     class ItemListViewCell extends ListCell<InventoryComponent> {
 
@@ -70,6 +69,7 @@ public class InventoryListPanel extends UiPart<Region> {
                     setGraphic(new RecipeCard((PrintableRecipe) inventoryComponent, getIndex() + 1).getRoot());
                     break;
                 case RECIPES_OFFSET:
+                    // offset by 1 since there is a detailed item displayed above
                     setGraphic(new RecipeCard((PrintableRecipe) inventoryComponent, getIndex()).getRoot());
                     break;
                 case DETAILED_ITEM:
