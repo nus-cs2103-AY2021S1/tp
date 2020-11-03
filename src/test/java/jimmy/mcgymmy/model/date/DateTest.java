@@ -8,18 +8,20 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
+
 class DateTest {
     private static final String EXPECTED_DATE_STRING_1 = "20 Apr 2020";
     private static final String EXPECTED_DATE_STRING_2 = "2 Sep 2020";
 
 
     @Test
-    void currentDate_returnsCorrectCurrentDate() {
+    void currentDate_returnsCorrectCurrentDate() throws IllegalValueException {
         assertEquals(Date.currentDate(), new Date(LocalDate.now().toString()));
     }
 
     @Test
-    void constructorAndToString_supportedFormat_createsDateObject() {
+    void constructorAndToString_supportedFormat_createsDateObject() throws IllegalValueException {
         // format: "yyyy-MM-dd"
         assertEquals(new Date("2020-04-20").toString(), EXPECTED_DATE_STRING_1);
         // format: "yyyy-M-dd"
@@ -45,13 +47,13 @@ class DateTest {
     }
 
     @Test
-    void constructor_unsupportedFormat_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Date("31/13/2020"));
-        assertThrows(IllegalArgumentException.class, () -> new Date("20/04/20"));
+    void constructor_unsupportedFormat_throwsIllegalValueException() {
+        assertThrows(IllegalValueException.class, () -> new Date("31/13/2020"));
+        assertThrows(IllegalValueException.class, () -> new Date("20/04/20"));
     }
 
     @Test
-    void equals_returnsCorrectComparison() {
+    void equals_returnsCorrectComparison() throws IllegalValueException {
         Date testDate1 = new Date(EXPECTED_DATE_STRING_1);
         Date testDate2 = new Date(EXPECTED_DATE_STRING_2);
         // identical -> returns true

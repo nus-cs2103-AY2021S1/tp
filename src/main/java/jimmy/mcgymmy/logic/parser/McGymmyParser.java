@@ -50,19 +50,14 @@ public class McGymmyParser {
     public CommandExecutable parse(String text) throws ParseException {
         ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(text);
         String commandName = headTail.getHead();
-        try {
-            if (commandName.equals("macro")) {
-                return parseCreateMacro(text);
-            } else if (this.macroList.hasMacro(commandName)) {
-                return this.parseRunMacro(commandName, headTail.getTail());
-            } else if (this.primitiveCommandParser.hasCommand(commandName)) {
-                return this.primitiveCommandParser.parsePrimitiveCommand(commandName, headTail.getTail());
-            } else {
-                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
-            }
-        } catch (IllegalArgumentException e) {
-            //Catch the error when the value of protein is > 1000 or < 0
-            throw new ParseException(e.getMessage());
+        if (commandName.equals("macro")) {
+            return parseCreateMacro(text);
+        } else if (this.macroList.hasMacro(commandName)) {
+            return this.parseRunMacro(commandName, headTail.getTail());
+        } else if (this.primitiveCommandParser.hasCommand(commandName)) {
+            return this.primitiveCommandParser.parsePrimitiveCommand(commandName, headTail.getTail());
+        } else {
+            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
@@ -99,7 +94,7 @@ public class McGymmyParser {
             return MacroRunner.asCommandInstance(macro, args);
         } catch (org.apache.commons.cli.ParseException e) {
             String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName, "", options);
-            throw new ParseException(formattedHelp);
+            throw new ParseException(e.getMessage() + "\n" + formattedHelp);
         }
     }
 }

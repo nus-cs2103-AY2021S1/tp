@@ -2,6 +2,7 @@ package jimmy.mcgymmy.model.tag;
 
 import static java.util.Objects.requireNonNull;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 
 /**
@@ -20,7 +21,7 @@ public class Tag {
      *
      * @param tagName A valid tag name.
      */
-    public Tag(String tagName) {
+    public Tag(String tagName) throws IllegalValueException {
         requireNonNull(tagName);
         AppUtil.checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
