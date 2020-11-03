@@ -67,7 +67,7 @@ class JsonAdaptedAttendance {
         if (!Attendance.isValidParticipation(participationScore)) {
             throw new IllegalValueException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        modelAttendance.editParticipation(participationScore);
+        modelAttendance.setParticipation(participationScore);
 
         return modelAttendance;
     }
