@@ -74,7 +74,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * Responsible for managing documentation quality and content.
   * Read Me:
-    * Header writer of README document.
+    * Head writer of README document.
   * User Guide:
     * Head writer and maintainer of team aspects of the user guide
       (eg. sections include introduction, quick start, definitions, features, commands)
