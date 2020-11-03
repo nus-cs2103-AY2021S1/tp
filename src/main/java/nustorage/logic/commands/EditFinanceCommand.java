@@ -29,7 +29,6 @@ public class EditFinanceCommand extends Command {
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
-    public static final String MESSAGE_AMT_MISSING = "'amt/' tag must be used.";
     public static final String MESSAGE_EDIT_FINANCE_SUCCESS = "Edited finance record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
@@ -50,6 +49,11 @@ public class EditFinanceCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
+        if (!editFinanceDescriptor.isAnyFieldEdited()) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+
         requireNonNull(model);
         List<FinanceRecord> lastShownList = model.getFilteredFinanceList();
 
@@ -79,9 +83,11 @@ public class EditFinanceCommand extends Command {
             FinanceRecord financeRecord, EditFinanceDescriptor editFinanceDescriptor) {
         assert financeRecord != null;
 
+        int updatedId = financeRecord.getID();
         double updatedAmount = editFinanceDescriptor.getAmount().orElse(financeRecord.getAmount());
         LocalDateTime updatedDatetime = editFinanceDescriptor.getDatetime().orElse(financeRecord.getDateTime());
-        return new FinanceRecord(updatedAmount, updatedDatetime);
+        boolean updatedHasInventory = financeRecord.taggedToInventory();
+        return new FinanceRecord(updatedId, updatedAmount, updatedDatetime, updatedHasInventory);
     }
 
     @Override
@@ -107,6 +113,8 @@ public class EditFinanceCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditFinanceDescriptor {
+
+        private Integer id;
         private Double amount;
         private LocalDateTime datetime;
 
@@ -117,6 +125,7 @@ public class EditFinanceCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditFinanceDescriptor(EditFinanceDescriptor toCopy) {
+            setId(toCopy.id);
             setAmount(toCopy.amount);
             setDatetime(toCopy.datetime);
         }
@@ -128,7 +137,15 @@ public class EditFinanceCommand extends Command {
             return CollectionUtil.isAnyNonNull(amount, datetime);
         }
 
-        public void setAmount(double amount) {
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
+        }
+
+        public void setAmount(Double amount) {
             this.amount = amount;
         }
 

@@ -62,12 +62,20 @@ public class FinanceRecordBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public FinanceRecordBuilder withDatetime(String datetime) {
+    public FinanceRecordBuilder withDateTime(String datetimeString) {
         try {
-            this.datetime = ParserUtil.parseDatetime(datetime);
+            this.datetime = ParserUtil.parseDatetime(datetimeString);
         } catch (ParseException e) {
             return this;
         }
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public FinanceRecordBuilder withDateTime(LocalDateTime datetime) {
+        this.datetime = datetime;
         return this;
     }
 

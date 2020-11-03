@@ -49,12 +49,12 @@ public class AddFinanceCommandParserTest {
                 new AddFinanceCommand(blankFinanceRecord));
 
         // no date
-        FinanceRecord timeFinanceRecord = new FinanceRecordBuilder(RECORD_A).withDatetime(TIME_STRING_A).build();
+        FinanceRecord timeFinanceRecord = new FinanceRecordBuilder(RECORD_A).withDateTime(TIME_STRING_A).build();
         assertParseSuccess(parser, AMOUNT_DESC_A + TIME_DESC_A,
                 new AddFinanceCommand(timeFinanceRecord));
 
         // no time
-        FinanceRecord dateFinanceRecord = new FinanceRecordBuilder(RECORD_A).withDatetime(DATE_STRING_A).build();
+        FinanceRecord dateFinanceRecord = new FinanceRecordBuilder(RECORD_A).withDateTime(DATE_STRING_A).build();
         assertParseSuccess(parser, AMOUNT_DESC_A + DATE_DESC_A,
                 new AddFinanceCommand(dateFinanceRecord));
     }
