@@ -83,8 +83,9 @@ public class Recipe {
         this.recipeImage = new RecipeImage("images/default.jpg");
     }
     /**
-     * Returns true if both recipes of the same name have at least one other identity field that is the same.
+     * Returns true if both recipes of the same name have the exact same ingredients.
      * This defines a weaker notion of equality between two recipes.
+     * This method is used to check for adding duplicate recipes in the recipe list.
      */
     public boolean isSameRecipe(Recipe otherRecipe) {
         if (otherRecipe == this) {
@@ -112,6 +113,34 @@ public class Recipe {
         Collections.sort(otherIngredientsCopy);
         return ingredientsCopy.equals(otherIngredientsCopy);
     }
+
+
+
+    /*public boolean isSameRecipe(Recipe otherRecipe) {
+        if (otherRecipe == this) {
+            return true;
+        }
+
+        return otherRecipe != null
+                && otherRecipe.getName().equals(getName())
+                && otherRecipe.getInstruction().equals(getInstruction())
+                && otherRecipe.getRecipeImage().equals(getRecipeImage())
+                && isSameIngredients(otherRecipe.getIngredient())
+                && otherRecipe.getCalories().equals(getCalories())
+                && otherRecipe.getTags().equals(getTags());
+    }
+
+    private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
+        ArrayList<Ingredient> ingredients = getIngredient();
+        for (int i = 0; i < ingredients.size(); i++) {
+            if (!ingredients.get(i).isSameIngredient(otherIngredients.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }*/
+
+
 
     /**
      * Converts a recipe to its command string.
@@ -217,7 +246,9 @@ public class Recipe {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append(" Ingredient: ")
-                .append(stringifyIngredients(ingredients))
+                .append(ingredients.stream()
+                .map(item -> item.getQuantity() + " " + item.getValue())
+                .reduce("", (a, b) -> b.equals("") ? a : a.trim().equals("") ? b : b + ", " + a))
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")
