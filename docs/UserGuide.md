@@ -330,7 +330,7 @@ Action | Format, Examples
 **Filter** | <code>filter [c/CATEGORY] [r/RATING] [f/<yes&#124;no>] [t/TAG]...</code> <br> e.g. `filter t/examinable r/3`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
-**Find** | `find KEYWORD...` <br>  e.g. `find general important`
+**Find** | `find KEYWORD [KEYWORD]...` <br>  e.g. `find general important`
 **Help** | `help`
 **List** | `list`
 **Review** | `review`
