@@ -1,5 +1,8 @@
 package seedu.address.model.contact;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Contact's telegram in the contact list.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegram(String)}
@@ -19,7 +22,7 @@ public class Telegram {
     public static final String USERNAME_REGEX = "[a-zA-Z0-9_]{5,}";
     public static final String VALIDATION_REGEX = "@" + USERNAME_REGEX;
 
-    /** Telegram username. */
+    /** String containing the telegram username. */
     public final String telegramUsername;
 
     /**
@@ -28,6 +31,8 @@ public class Telegram {
      * @param telegramUsername Telegram username.
      */
     public Telegram(String telegramUsername) {
+        requireNonNull(telegramUsername);
+        checkArgument(isValidTelegram(telegramUsername), MESSAGE_CONSTRAINTS);
         this.telegramUsername = telegramUsername;
     }
 

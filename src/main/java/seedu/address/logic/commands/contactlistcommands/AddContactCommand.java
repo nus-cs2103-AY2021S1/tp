@@ -48,7 +48,7 @@ public class AddContactCommand extends Command {
      */
     public AddContactCommand(Contact contact) {
         requireNonNull(contact);
-        logger.info("Adding a contact: " + contact.toString());
+        logger.info("Adding a contact: \n" + contact.toString());
         toAdd = contact;
     }
 
@@ -61,7 +61,7 @@ public class AddContactCommand extends Command {
         }
         model.addContact(toAdd);
         model.commitContactList();
-        logger.info("Contact has been added: " + toAdd.toString());
+        logger.info("Contact has been added: \n" + toAdd.toString());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

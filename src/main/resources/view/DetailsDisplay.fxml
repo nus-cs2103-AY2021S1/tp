@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="466.0" prefWidth="308.0" styleClass="pane-with-border" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="resultDisplay" editable="false" maxWidth="-Infinity" styleClass="result-display" />
+      <StackPane fx:id="listPlaceholder" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <VBox fx:id="zoomLinkListView" />
+         </children>
+      </StackPane>
+   </children>
+</VBox>

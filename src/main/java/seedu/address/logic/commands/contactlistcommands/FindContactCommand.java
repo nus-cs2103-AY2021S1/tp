@@ -37,7 +37,7 @@ public class FindContactCommand extends Command {
      */
     public FindContactCommand(FindContactCriteria findContactCriteria) {
         requireNonNull(findContactCriteria);
-        logger.info("The find contact command is being exceuted");
+        logger.info("The find contact command is being executed");
         this.predicate = findContactCriteria.getFindContactPredicate();
     }
 
@@ -45,7 +45,7 @@ public class FindContactCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredContactList(predicate);
-        logger.info("The find contact command has been executed");
+        logger.info("The result of executing the find contact command has been displayed");
         return new CommandResult(
                 String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredContactList().size()));
     }

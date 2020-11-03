@@ -17,7 +17,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Task {
     private final TaskName name;
-    private final Set<Tag> tags;
+    private final Set<Tag> tags = new HashSet<>();
     private final Priority priority;
     private final Date date;
     private final Status status;
@@ -32,9 +32,8 @@ public class Task {
      * @param name name of the task
      */
     public Task(TaskName name) {
-        requireNonNull(name);
+        assert name != null;
         this.name = name;
-        this.tags = null;
         this.priority = null;
         this.date = null;
         this.status = Status.NOT_COMPLETED;
@@ -53,7 +52,6 @@ public class Task {
     public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status) {
         requireNonNull(name);
         this.name = name;
-        this.tags = new HashSet<>();
         this.tags.addAll(tags);
         this.priority = priority;
         this.date = date;
@@ -70,8 +68,7 @@ public class Task {
     }
 
     public Optional<Set<Tag>> getTags() {
-        //return Collections.unmodifiableSet(tags);
-        return Optional.ofNullable(this.tags).map(Collections::unmodifiableSet);
+        return Optional.of(this.tags).map(Collections::unmodifiableSet);
     }
 
     public Task setTags(Set<Tag> tags) {
@@ -96,7 +93,7 @@ public class Task {
 
     public Optional<Status> getStatus() {
         assert this.status != null;
-        return Optional.ofNullable(this.status);
+        return Optional.of(this.status);
     }
 
     public Task setStatus(Status status) {
