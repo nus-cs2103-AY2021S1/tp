@@ -42,7 +42,6 @@ public class TimelineWindow extends UiPart<Stage> {
         for (int i = 0; i < logic.getFilteredMeetingList().size(); i++) {
             Meeting meeting = logic.getFilteredMeetingList().get(i);
             TimelineSection timelineSection = new TimelineSection(new TimelineMeetingCard(meeting));
-            Date date = new Date(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             if (i % 2 == 1) {
                 timelineSection = TimelineSection.getFlipped(timelineSection);
             }

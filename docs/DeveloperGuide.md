@@ -755,6 +755,10 @@ If any one of the edited participants are not members of the given module, a `Co
 Given below is the activity diagram of how the logic component behaves when called using the `meeting edit` command.
 ![EditMeetingActivityDiagram](images/EditMeetingActivityDiagram.png)
 
+####EditMeetingDescriptor
+`EditMeetingDescriptor` is a nested class within EditMeetingCommand to facilitate the creation of the edited meeting.
+It stores the details to edit the meeting with and each non-empty field value will replace the corresponding field value of the given meeting.
+
 ### Viewing a Specific Meeting's Agendas and Notes 
 
 #### Implementation:
@@ -845,6 +849,8 @@ Given below is the activity diagram which illustrates the workflow of this proce
   * Cons:
       * Using a list is not very suitable since `SelectedMeeting` is a single value.
       * Only certain JavaFX views can be used with ObservableList.
+
+###Timeline Feature
 
 
 --------------------------------------------------------------------------------------------------------------------
