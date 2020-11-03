@@ -1,11 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.CS2100_MEETING;
@@ -27,7 +23,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.MeetingBuilder;
 
 public class DeleteMeetingCommandTest {

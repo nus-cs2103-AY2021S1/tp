@@ -82,10 +82,10 @@ public class CommandTestUtil {
     public static final String DATE_DESC_CM1112_MEETING = " " + PREFIX_DATE + VALID_DATE_CM1112_MEETING;
     public static final String TIME_DESC_CM1111_MEETING = " " + PREFIX_TIME + VALID_TIME_CM1111_MEETING;
     public static final String TIME_DESC_CM1112_MEETING = " " + PREFIX_TIME + VALID_TIME_CM1112_MEETING;
-    public static final String PARTICIPANT_DESC_AMY
-            = " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_AMY;
-    public static final String PARTICIPANT_DESC_BOB
-            = " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_BOB;
+    public static final String PARTICIPANT_DESC_AMY =
+            " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_AMY;
+    public static final String PARTICIPANT_DESC_BOB =
+            " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_BOB;
 
     public static final String INVALID_MODULE_NAME = " " + PREFIX_MODULE + "James&"; // '&' not allowed in module names
     public static final String INVALID_MEETING_NAME = " " + PREFIX_NAME + "James&"; // '&' not allowed in meeting names

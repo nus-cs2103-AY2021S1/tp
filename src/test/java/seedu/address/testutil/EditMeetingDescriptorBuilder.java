@@ -1,20 +1,15 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditMeetingCommand;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class EditMeetingDescriptorBuilder {
     private EditMeetingCommand.EditMeetingDescriptor descriptor;

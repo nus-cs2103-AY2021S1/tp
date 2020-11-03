@@ -1,9 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_CM1111_MEETING;
 import static seedu.address.testutil.TypicalModules.CM1111;
 import static seedu.address.testutil.TypicalModules.CS2100;
@@ -14,7 +12,6 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.ALICIA;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -147,6 +144,7 @@ public class TypicalMeetings {
 
     public static List<Meeting> getTypicalMeetingsWithDuplicateName() {
         return new ArrayList<>(
-                Arrays.asList(CS1100_MEETING, CS2100_MEETING, CS2101_MEETING, CS2102_MEETING, CS2102_MEETING_DUPLICATE_NAME));
+                Arrays.asList(CS1100_MEETING, CS2100_MEETING, CS2101_MEETING, CS2102_MEETING,
+                        CS2102_MEETING_DUPLICATE_NAME));
     }
 }

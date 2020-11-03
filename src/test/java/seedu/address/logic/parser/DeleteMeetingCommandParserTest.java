@@ -1,5 +1,14 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteMeetingCommand;
@@ -8,15 +17,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.ModuleBuilder;
-
-import java.util.HashSet;
-import java.util.Set;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 public class DeleteMeetingCommandParserTest {
     private DeleteMeetingCommandParser parser = new DeleteMeetingCommandParser();

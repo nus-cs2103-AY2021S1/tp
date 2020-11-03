@@ -1,62 +1,45 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CM1112_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEETING_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PARTICIPANT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_NAME_DESC_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.MEETING_NAME_DESC_CM1112_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CM1112_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.PARTICIPANT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PARTICIPANT_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_CM1112_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CM1111_MEETING;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalMeetings.CM1111_MEETING;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
 import seedu.address.model.module.ModuleName;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.MeetingBuilder;
-
-import java.util.Arrays;
-import java.util.HashSet;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_CM1112_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEETING_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_NAME;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PARTICIPANT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MEETING_NAME_DESC_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.MEETING_NAME_DESC_CM1112_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_CM1112_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PARTICIPANT_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PARTICIPANT_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.TIME_DESC_CM1112_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_CM1111_MEETING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalMeetings.CM1111_MEETING;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
 
 public class AddMeetingCommandParserTest {
     private AddMeetingCommandParser parser = new AddMeetingCommandParser();
