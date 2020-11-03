@@ -121,6 +121,19 @@ public class MenuManagerTest {
     }
 
     @Test
+    public void sortMenuItemInDescendingByName_sortsMenu() {
+        menuManager.addMenuItem(PRATA);
+        menuManager.addMenuItem(CHEESE_PRATA);
+        menuManager.addMenuItem(MILO);
+        menuManager.sortMenuItemByName(false);
+        MenuManager sortedMenu = new MenuManager();
+        sortedMenu.addMenuItem(PRATA);
+        sortedMenu.addMenuItem(MILO);
+        sortedMenu.addMenuItem(CHEESE_PRATA);
+        assertEquals(menuManager.getMenuItemList(), sortedMenu.getMenuItemList());
+    }
+
+    @Test
     public void sortMenuItemInAscendingByPrice_sortsMenu() {
         menuManager.addMenuItem(PRATA);
         menuManager.addMenuItem(MILO);
@@ -131,6 +144,19 @@ public class MenuManagerTest {
         sortedMenu.addMenuItem(PRATA);
         sortedMenu.addMenuItem(MILO);
         sortedMenu.addMenuItem(CHEESE_PRATA);
+        assertEquals(menuManager.getMenuItemList(), sortedMenu.getMenuItemList());
+    }
+
+    @Test
+    public void sortMenuItemInDescendingByPrice_sortsMenu() {
+        menuManager.addMenuItem(PRATA);
+        menuManager.addMenuItem(CHEESE_PRATA);
+        menuManager.addMenuItem(MILO);
+        menuManager.sortMenuItemByPrice(false);
+        MenuManager sortedMenu = new MenuManager();
+        sortedMenu.addMenuItem(CHEESE_PRATA);
+        sortedMenu.addMenuItem(MILO);
+        sortedMenu.addMenuItem(PRATA);
         assertEquals(menuManager.getMenuItemList(), sortedMenu.getMenuItemList());
     }
 
