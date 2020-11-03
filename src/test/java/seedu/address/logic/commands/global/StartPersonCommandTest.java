@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROJECT;
-import static seedu.address.testutil.TypicalPersons.getTypicalMainCatalogue;
+import static seedu.address.testutil.TypicalMainCatalogue.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 

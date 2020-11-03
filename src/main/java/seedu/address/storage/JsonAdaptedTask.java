@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -51,7 +52,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskName = source.taskName;
         description = source.getDescription();
-        publishDate = source.getPublishDate().toString();
+        publishDate = source.getPublishDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         deadline = source.getDeadline().map(Deadline::toString).orElse(null);
         progress = source.getProgress().toString();
         isDone = source.isDone().toString();
@@ -108,19 +109,17 @@ class JsonAdaptedTask {
             task = new Task(taskName,
                     description,
                     null,
-                    Double.parseDouble(progress),
-                    Boolean.parseBoolean(isDone));
+                    Double.parseDouble(progress));
 
         } else {
             task = new Task(taskName,
                     description,
                     new Deadline(deadline),
-                    Double.parseDouble(progress),
-                    Boolean.parseBoolean(isDone));
+                    Double.parseDouble(progress));
         }
 
 
-        task.setPublishDate(LocalDate.parse(publishDate));
+        task.setPublishDate(LocalDate.parse(publishDate, (DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
         assignees.forEach(task::addAssignee);
         return task;
     }

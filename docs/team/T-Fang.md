@@ -18,7 +18,7 @@ Given below are my contributions to the project.
     * Added dependencies of it in and related collections;
     * Added related test cases.
 * **Model modification**: Update Participation class and create corresponding methods in Project. (Pull request: Pull request [\#71](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/71))
-  * What it means: Participation class is updated after creation of Meeting class and Task class
+  * What it means: Participation class is updated after creation of the Task class
   * What changes made:
     * Added more methods in Participation.
 * **New Feature**: Added task/meeting filter commands. 
@@ -42,7 +42,13 @@ Given below are my contributions to the project.
     * Updated MainCatalogueParser
     * Allowed user to sort the task list by task name, deadline, progress, and done status
     * Added relevant test cases
-    
+* **New Feature**: Added a command to delete a task from the task list
+    (Pull Request [\#271](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/271))
+  * What changes made: 
+    * Created DeleteTaskCommand and the relevant parser
+    * Updated MainCatalogueParser
+    * Allowed user to delete a task from the task list
+    * Added relevant test cases
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=T-Fang&tabRepo=AY2021S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 * **Project management**:
 * **Enhancements to existing features**: Update task filter to support filtering by progress/isDone 

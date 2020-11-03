@@ -8,14 +8,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.project.Participation;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Role;
 import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Participation}.
  */
-class JsonParticipation {
+class JsonAdaptedParticipation {
 
     private final String person;
     private final String project;
@@ -27,11 +27,10 @@ class JsonParticipation {
      * Constructs a {@code JsonAdaptedTask} with the given {@code taskName}.
      */
     @JsonCreator
-    public JsonParticipation(@JsonProperty("person") String person,
-                             @JsonProperty("project") String project,
-                             @JsonProperty("role")Role role,
-                             @JsonProperty("tasks")List<JsonAdaptedTask> tasks
-    //                             @JsonProperty("meetings")Set<Meeting> meetings
+    public JsonAdaptedParticipation(@JsonProperty("person") String person,
+                                    @JsonProperty("project") String project,
+                                    @JsonProperty("role")Role role,
+                                    @JsonProperty("tasks")List<JsonAdaptedTask> tasks
     ) {
         this.person = person;
         this.project = project;
@@ -43,14 +42,13 @@ class JsonParticipation {
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
-    public JsonParticipation(Participation source) {
+    public JsonAdaptedParticipation(Participation source) {
         person = source.getPerson().getGitUserNameString();
         project = source.getProject().getProjectName().toString();
         role = source.getRole();
         tasks.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
-        //        meetings = source.getMeetings();
     }
 
     /**

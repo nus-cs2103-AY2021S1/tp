@@ -13,7 +13,7 @@
         {
           "taskName": "Refactor project class",
           "description": "tedious :(",
-          "publishDate": "2020-10-26",
+          "publishDate": "26-10-2020",
           "deadline": null,
           "progress": "25.0",
           "isDone": "false",
@@ -22,7 +22,7 @@
         {
           "taskName": "Brainstorm user stories",
           "description": null,
-          "publishDate": "2020-10-26",
+          "publishDate": "26-10-2020",
           "deadline": null,
           "progress": "100.0",
           "isDone": "true",
@@ -43,7 +43,7 @@
         {
           "taskName": "Refine data model",
           "description": "so hard T.T",
-          "publishDate": "2020-10-26",
+          "publishDate": "26-10-2020",
           "deadline": null,
           "progress": "0.0",
           "isDone": "false",
@@ -63,7 +63,7 @@
         {
           "taskName": "Write UG",
           "description": null,
-          "publishDate": "2020-10-26",
+          "publishDate": "26-10-2020",
           "deadline": null,
           "progress": "50.0",
           "isDone": "false",

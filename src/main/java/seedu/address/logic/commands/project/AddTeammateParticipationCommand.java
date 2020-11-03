@@ -24,7 +24,7 @@ public class AddTeammateParticipationCommand extends Command {
     public static final String MESSAGE_TEAMMATE_NOT_FOUND = "Teammate not found";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds teammate to this project"
-        + "GIT USERNAME "
+        + "Parameters: Git UserName (must be a single word)\n "
         + "Example: " + COMMAND_WORD + " LucasTai98 ";
 
     private static final Logger logger = Logger.getLogger("AddTeammateParticipationCommandLogger");

@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.model.participation.Participation;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -131,4 +133,23 @@ public class ProjectBuilder {
                 projectTags, participations, tasks);
     }
 
+    /**
+     * Makes a copy of the given project.
+     */
+    public static Project makeCopy(Project project) {
+        return new Project(project.getProjectName(), project.getDeadline(), project.getRepoUrl(),
+            project.getProjectDescription(), project.getProjectTags(),
+            project.getParticipationHashMap(), project.getTasks());
+    }
+
+    /**
+     * Creates copies for all the projects in the given list.
+     */
+    public static List<Project> makeCopies(List<Project> projectList) {
+        return projectList
+            .stream()
+            .map(project -> makeCopy(project))
+            .collect(Collectors.toList());
+    }
 }
+

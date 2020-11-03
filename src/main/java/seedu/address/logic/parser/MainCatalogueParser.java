@@ -14,6 +14,7 @@ import seedu.address.logic.commands.global.EditCommand;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
+import seedu.address.logic.commands.global.LeaveCommand;
 import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartPersonCommand;
@@ -22,18 +23,19 @@ import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.DeleteTaskCommand;
 import seedu.address.logic.commands.project.DeleteTeammateCommand;
+import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
-import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.commands.project.TaskSorterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
+import seedu.address.logic.parser.exceptions.InvalidScopeException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Status;
-import seedu.address.model.exceptions.InvalidScopeException;
 
 /**
  * Parses user input.
@@ -155,13 +157,25 @@ public class MainCatalogueParser {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
+        case DeleteTeammateParticipationCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new DeleteTeammateParticipationParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
         case AddTaskCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new AddTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
-
+        case DeleteTaskCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new DeleteTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
         case DeleteTeammateCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new DeleteTeammateCommandParser().parse(arguments);

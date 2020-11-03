@@ -91,6 +91,9 @@ class JsonAdaptedProject {
             projectProjectTags.add(projectTag.toModelType());
         }
         final List<Task> projectTasks = new ArrayList<>();
+        for (JsonAdaptedTask projectTask : projectOccupied) {
+            projectTasks.add(projectTask.toModelType());
+        }
 
         if (projectName == null) {
             throw new IllegalValueException(String.format(

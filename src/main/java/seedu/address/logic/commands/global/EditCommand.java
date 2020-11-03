@@ -30,6 +30,7 @@ import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
+
 /**
  * Edits the details of an existing project in the main catalogue.
  */
@@ -59,6 +60,7 @@ public class EditCommand extends Command {
     private final EditProjectDescriptor editProjectDescriptor;
 
     /**
+     * Creates an EditCommand.
      * @param index of the project in the filtered project list to edit
      * @param editProjectDescriptor details to edit the project with
      */
