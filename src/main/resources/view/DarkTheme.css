@@ -420,21 +420,21 @@
 }
 
 .note-list-panel-vbox .list-cell:filled:even {
-    -fx-background-color: #8ABAFF;
+    -fx-background-color: #e7eaea;
 }
 
 .note-list-panel-vbox .list-cell:filled:odd {
-    -fx-background-color: #FF8A9E;
+    -fx-background-color: #fccd2c;
 }
 
 .note-list-panel-vbox .list-cell:filled:selected:even {
-    -fx-background-color: #B9D6FF;
+    -fx-background-color: #ced5d7;
     -fx-border-color: #363c43;
     -fx-border-width: 3;
 }
 
 .note-list-panel-vbox .list-cell:filled:selected:odd {
-    -fx-background-color: #FFDCE2;
+    -fx-background-color: #eecd4c;
     -fx-border-color: #363c43;
     -fx-border-width: 3;
 }

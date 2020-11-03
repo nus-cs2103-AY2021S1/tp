@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
 /**
  * Represents a Stock in the stock book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -152,7 +151,7 @@ public class Stock {
      * @param indexOfNoteToDelete the index of the note to delete
      * @return stock with deleted note
      */
-    public Stock deleteNote(int indexOfNoteToDelete) {
+    public Stock deleteNote(NoteIndex indexOfNoteToDelete) {
         Name name = this.name;
         SerialNumber serialNumber = this.serialNumber;
         Source source = this.source;
@@ -161,10 +160,10 @@ public class Stock {
         List<Note> notesToUpdate = this.notes;
 
         Stock updatedStock;
-        if (indexOfNoteToDelete == 0) {
+        if (indexOfNoteToDelete.getOneBased() == 0) {
             updatedStock = new Stock(name, serialNumber, source, quantity, location);
         } else {
-            notesToUpdate.remove(indexOfNoteToDelete - 1);
+            notesToUpdate.remove(indexOfNoteToDelete.getZeroBased());
             updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
         }
 

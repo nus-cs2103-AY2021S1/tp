@@ -9,7 +9,9 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
  */
 public class Location {
 
-    public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Invalid location entered!\n"
+            + "Locations can take any values, and it should not be blank";
 
     /*
      * The first character of the location must not be a whitespace,

@@ -21,7 +21,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
@@ -85,9 +84,11 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
         // Store the serial number provided
         List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
-        ArrayList<SerialNumber> serialNumbers = keywords.stream()
-                .map((keyword) -> new SerialNumber(keyword.toLowerCase()))
-                .collect(Collectors.toCollection(ArrayList::new));
+        List<SerialNumber> serialNumbers = new ArrayList<>();
+        for (String keyword : keywords) {
+            SerialNumber parsedToSerialNumber = ParserUtil.parseSerialNumber(keyword);
+            serialNumbers.add(parsedToSerialNumber);
+        }
         updateStockDescriptor.setSerialNumbers(serialNumbers);
 
         // Update name with new name provided

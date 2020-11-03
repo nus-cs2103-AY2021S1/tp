@@ -55,7 +55,6 @@ public class JsonSerialNumberSetsBookStorage implements SerialNumberSetsBookStor
         try {
             return Optional.of(jsonSerialNumberSetsBook.get().toModelType());
         } catch (IllegalValueException ive) {
-            System.out.println("failed here");
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
         }

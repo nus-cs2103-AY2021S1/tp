@@ -9,7 +9,8 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 public class AccumulatedQuantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "AccumulatedQuantity numbers should be more than 0.";
+            "Invalid accumulated quantity!\n"
+            + "AccumulatedQuantity numbers should be more than 0.";
     public static final String VALIDATION_REGEX = "\\d+";
     private String accumulatedQuantity;
 

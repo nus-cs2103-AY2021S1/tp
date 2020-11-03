@@ -9,7 +9,10 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
  */
 public class SerialNumber {
     public static final String MESSAGE_CONSTRAINTS =
-            "Serial numbers should not be empty and must be at least of length 2.";
+            "Invalid serial number entered!\n"
+            + "Serial numbers should not be empty, "
+            + "must contain a positive integer and must be at least of length 2.";
+
     public static final String VALIDATION_REGEX = ".*\\d.*";
     public static final String DEFAULT_SERIAL_NUMBER = "00";
     private final String serialNumber;

@@ -1,40 +1,45 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 import java.util.stream.Stream;
 
-import seedu.stock.logic.commands.NoteDeleteCommand;
-import seedu.stock.logic.commands.NoteViewCommand;
+import seedu.stock.logic.commands.StockViewCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
 
-public class NoteViewCommandParser implements Parser<NoteViewCommand> {
+public class StockViewCommandParser implements Parser<StockViewCommand> {
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[] validPrefixesForNoteView = { PREFIX_SERIAL_NUMBER };
     private static final Prefix[] invalidPrefixesForNoteView =
             ParserUtil.getInvalidPrefixesForCommand(validPrefixesForNoteView);
 
     @Override
-    public NoteViewCommand parse(String args) throws ParseException {
+    public StockViewCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, validPrefixesForNoteView);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
         if (!areAllPrefixesPresent(argMultimap, validPrefixesForNoteView)
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForNoteView)
-                || isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteView)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    NoteDeleteCommand.MESSAGE_USAGE));
+                    StockViewCommand.MESSAGE_USAGE));
+        }
+
+        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForNoteView)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
+                    StockViewCommand.MESSAGE_USAGE));
         }
 
         String serialNumberInput = argMultimap.getValue(PREFIX_SERIAL_NUMBER).get();
         SerialNumber serialNumber = ParserUtil.parseSerialNumber(serialNumberInput);
 
-        return new NoteViewCommand(serialNumber);
+        return new StockViewCommand(serialNumber);
     }
 
     /**

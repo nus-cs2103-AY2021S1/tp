@@ -29,7 +29,8 @@ public class DeleteCommand extends Command {
             + ": Deletes the stock identified by the EXACT serial number used in the displayed.\n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "...\n"
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION
+            + " [" + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "]...\n"
             + "Example: "
             + COMMAND_WORD + " "
             + PREFIX_SERIAL_NUMBER + "Fairprice1";

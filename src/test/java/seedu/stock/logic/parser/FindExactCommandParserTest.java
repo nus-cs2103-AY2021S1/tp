@@ -82,6 +82,13 @@ public class FindExactCommandParserTest {
                 new FindExactCommand(Arrays.asList(expectedNamePredicate,
                         expectedLocationPredicate, expectedSnPredicate)));
 
+        // whitespaces between different field headers
+        assertParseSuccess(parser,
+                PREAMBLE_WHITESPACE + LOCATION_DESC_APPLE + "              "
+                        + NAME_DESC_BANANA + SERIAL_NUMBER_DESC_BANANA,
+                new FindExactCommand(Arrays.asList(expectedNamePredicate,
+                        expectedLocationPredicate, expectedSnPredicate)));
+
     }
 
     @Test
