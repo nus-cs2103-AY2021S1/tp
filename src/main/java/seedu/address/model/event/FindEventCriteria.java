@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import static java.util.Objects.requireNonNull;
+
 public class FindEventCriteria {
     /**
      * List of predicates to be used to test for matching events.
@@ -16,6 +18,7 @@ public class FindEventCriteria {
      * @param predicate Predicate to be added.
      */
     public void addPredicate(Predicate<Event> predicate) {
+        requireNonNull(predicate);
         predicateList.add(predicate);
     }
 
