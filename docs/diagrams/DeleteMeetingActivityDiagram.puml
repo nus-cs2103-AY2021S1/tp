@@ -1,18 +1,18 @@
 @startuml
 start
-:User inputs add meeting commnad;
-:AddMeetingCommandParser checks input;
+:User inputs delete meeting command;
+:DeleteMeetingCommandParser checks input;
 if () then ([not all required fields present])
     :Throw ParseException;
     end
 else ([else])
-    :Parse all inputs and create AddMeetingCommand;
-    :Check if model contains module;
+    :Parse all inputs;
+    :Model contains module;
     if () then ([no])
         :Throw CommandException;
         end
     else ([yes])
-        :Check if model contains meeting;
+        :Model contains meeting;
         if () then ([no])
             :Throw CommandException;
             end
