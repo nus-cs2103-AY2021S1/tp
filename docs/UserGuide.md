@@ -33,8 +33,8 @@ To get started using Warenager,
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source:**<br>
-If you have not done Java programming before, then you probably do not have Java `11` installed in your computer. <br>
+**:information_source:** If you have not done Java programming before or have not used CLI-based applications
+programmed with Java like Warenager, then you probably do not have Java `11` installed in your computer. <br>
 You can install Java `11` [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
 </div>
@@ -48,7 +48,7 @@ You can install Java `11` [here](https://www.oracle.com/java/technologies/javase
 The commands available in the current version of
 Warenager are: add, delete, update, find, findexact, note, notedelete,
 stockview, stats, sort, print, bookmark, unbookmark, list and help.
-Refer to the [Features](#features) section to for details of each command.
+Refer to the [Commands](#commands) section to for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Definitions
@@ -344,6 +344,7 @@ find { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }
     e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
     e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
 
+
 * Search is case-insensitive.
     e.g. `find n/ashLey` will match stock with Name: Ashley.
 
@@ -379,69 +380,64 @@ will match only Stock 1.
 <h4>Below is a guided example for finding stocks using the `find` command:</h4>
 <div markdown="block" class="alert alert-info">
 
-**:information_source: The links provided are for reference if you do not know how to use the respective commands.**
+**:information_source:** 
+The links provided are for reference if you do not know how to use the respective commands.
 
 </div>
 
-Step 1. Start by [clearing](#clearing-all-data-in-warenager-clear)
-your stock list by entering the `clear` command in the command box.
-
-Your stock list at the `Data` tab should look like the image below.
-![clear-before-find](images/clear/clear_step2.png)
-
-Step 2. Enter the following `add` commands to [add](#adding-new-stock-add)
-3 stocks to your stock list. <br>
+Step 1. Start by [adding](#adding-new-stock-add) 3 stocks to your stock list.<br>
 `add n/apple juice s/ntuc l/fruits section a q/100`<br>
 `add n/banana bun s/ntuc l/fruits section b q/200`<br>
 `add n/pineapple tart s/cold storage l/fruits section c q/300`
 
-Your stock list at the `Data` tab after adding the 3 stocks should look like the image below.
+The 3 stocks added should appear in your `Data` tab as shown in the image below.
 ![add-before-find](images/find/find-step-2-addstocks.png)
 
 Let's find the stock with **name that contains `apple` or source that contains `cold`**.
 
-Step 3. Type the command `find n/apple s/cold` into the command box. The result display should show
+Step 2. Type the command `find n/apple s/cold` into the command box and enter. The result display should show
 the keywords you searched for and how many stocks were found.<br>
 In this case, the two stocks with names `apple juice` and `pineapple tart` would be found.
 
 **After input:**
-![find-step-3](images/find/find-step-3.png)
+![find-step-2](images/find/find-step-3.png)
 
 You have successfully used the `find` command.
 
 Let's add an additional field into the search.
 
-Step 4. Type the command `find n/apple s/cold l/unknown` in the command box.
-The same two stocks as in Step 3 should be found as they still match `n/apple`. 
+Step 3. Type the command `find n/apple s/cold l/unknown` in the command box and enter.
+The same two stocks as in Step 2 should be found as they still match `n/apple`. 
 
 **After input:**
-![find-step-4](images/find/find-step-4.png)
+![find-step-3](images/find/find-step-4.png)
 
 <h5>Below are some cases where `find` command does not work:</h5>
 
 Continuing from the steps from the guided example above, 
 let's try finding by **entering nothing** as a keyword. 
 
-Step 5. Type `find n/` into the command box. You will see that no stocks will be found.
+Step 4. Type `find n/` into the command box and enter. You will see that no stocks will be found.
 
 **After input:**
-![find-step-5](images/find/find-step-5.png)
+![find-step-4](images/find/find-step-5.png)
 
 Let's try finding with an invalid prefix for the `find` command.
 
-Step 6. Type `find nt/apple` into the command box. You will see an error message describing what went wrong
+Step 5. Type `find nt/apple` into the command box and enter. You will see an error message describing what went wrong
 and the correct command format for the `find` command.
 
 **After input**:
-![find-step-6](images/find/find-step-6.png)
+![find-step-5](images/find/find-step-6.png)
 
 Let's try finding with a duplicate valid prefix for the `find` command.
 
-Step 7. Type `find n/apple n/pineapple`. You will see an error message describing what went wrong
+Step 6. Type `find n/apple n/pineapple` into the command box and enter.
+You will see an error message describing what went wrong
 and the correct command format for the `find` command.
 
 **After input**:
-![find-step-7](images/find/find-step-7.png)
+![find-step-6](images/find/find-step-7.png)
 
 You are now done with the guided tutorial for `find` and should be able to use the command with relative ease now.
 
@@ -450,9 +446,10 @@ Displays a list of stocks found in the inventory that contains all keywords spec
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: The difference between the `find` and `findexact` command is that with the `find` command, stocks that
+**:information_source:** The difference between the `find` and `findexact` command is that with the `find` command, stocks that
                        match any of the fields searched will be displayed while for `findexact`, stocks must match all the of the fields
                        searched to be displayed.<br>
+                       <br>
                        For example, for `find n/apple s/cold`, stock details just need to match `n/apple` or `s/cold` to be displayed.
                        For `findexact n/apple s/cold`, stock details have to match both `n/apple` and `s/cold` to be displayed.
 
@@ -508,54 +505,47 @@ will not match Stock 1 and Stock 2.
 <h4>Below is a guided example for finding stocks using the `findexact` command:</h4>
 <div markdown="block" class="alert alert-info">
 
-**:information_source: The links provided are for reference if you do not know how to use the respective commands.
-If you are continueing from the above `find` command tutorial, you may skip steps 1 and 2.**
+**:information_source:** The links provided are for reference if you do not know how to use the respective commands.
+If you are continuing from the above `find` command tutorial, you may skip step 1.
 
 </div>
 
-Step 1. Start by [clearing](#clearing-all-data-in-warenager-clear)
-your stock list by entering the `clear` command in the command box.
-
-Your stock list at the `Data` tab should look like the image below.
-![clear-before-findexact](images/clear/clear_step2.png)
-
-Step 2. Enter the following `add` commands to [add](#adding-new-stock-add)
-3 stocks to your stock list. <br>
+Step 1. Start by [adding](#adding-new-stock-add) 3 stocks to your stock list. <br>
 `add n/apple juice s/ntuc l/fruits section a q/100`<br>
 `add n/banana bun s/ntuc l/fruits section b q/200`<br>
 `add n/pineapple tart s/cold storage l/fruits section c q/300`
 
-Your stock list at the `Data` tab after adding the 3 stocks should look like the image below.
+The 3 stocks added should appear in your `Data` tab as shown in the image below.
 ![add-before-findexact](images/find/find-step-2-addstocks.png)
 
 Let's find the stock with **name that contains `apple` and source that contains `cold`**.
 
-Step 3. Type the command `findexact n/apple s/cold` into the command box. The result display should show
+Step 2. Type the command `findexact n/apple s/cold` into the command box and enter. The result display should show
 the keywords you searched for and how many stocks were found.<br>
 In this case, only one stock, with the name `pineapple tart`, would be found.
 
 **After input:**
-![findexact-step-3](images/find/findexact-step-3.png)
+![findexact-step-2](images/find/findexact-step-3.png)
 
 You have successfully used the `findexact` command.
 
 Let's add an additional field into the search.
 
-Step 4. Type the command `findexact n/apple s/cold l/unknown` in the command box.
+Step 3. Type the command `findexact n/apple s/cold l/unknown` and enter.
 No stock should be found as there is no stock with the location unknown.
 
 **After input:**
-![findexact-step-4](images/find/findexact-step-4.png)
+![findexact-step-3](images/find/findexact-step-4.png)
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: For cases where the `findexact` command does not work,
+**:information_source:** For cases where the `findexact` command does not work,
 refer to the section where the `find` command does not work, at the `find` command guided tutorial Steps 5 to 7,
-with the replacement of the `find` command with the `findexact` command.**
+with the replacement of the `find` command with the `findexact` command.
 
 </div>
 
-You are now done with the guided tutorial for `findexact` and should be able to use the command with relative ease now.
+You are now done with the guided tutorial for `findexact` and should be able to use the command with relative ease.
 
 ### Update inventory: `update`
 Updates the details of the desired stock(s), requires the serial number of stock(s).
@@ -613,46 +603,90 @@ will change **Stock 1** and **Stock 3** name to `Apple juice`.
 Adds a note to the stock specified, displayed in the notes column for that stock.
 Multiple notes can be added to the stock and each note will be indexed. <br>
 
-<div markdown="block" class="alert alert-warning">
-
-**:warning:**
-If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
-To view full notes for the stock, use the `noteview` command.
-
-</div>
-
 <h4>Format</h4>
 ```
 note sn/<serial number> nt/<note>
 ```
 
-<h4>Examples</h4>
-
-Stock | Details
-------| --------
-**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: Ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
-**Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
-
+<h4>Example</h4>
 ```
-note sn/sheng siong1 nt/chicken will expire soon
+note sn/SHENG SIONG1 nt/chicken will expire soon
 ```
-will add note with index 1 in note column for Stock 2. <br>
 
-![chicken note 1](images/note_img1.jpg)
+<h4>Below is a guided example for adding notes to stocks:</h4>
 
-```
-note sn/sheng siong1 nt/chicken order will arrive wednesday
-```
-will add note with index 2 for Stock 2. <br>
+Step 1. Start with [adding](#adding-new-stock-add) these 3 stocks in your
+stock book in your `Data` tab as shown in the image below.
 
-![chicken note 2](images/note_img2.jpg)
+![note-step-1](images/note/note-step-1.png)
 
-```
-note sn/ntuc1 nt/banana just arrived
-```
-will add note with index 1 in note column for Stock 1. <br>
+<div markdown="block" class="alert alert-info">
 
-![banana note 1](images/note_img3.jpg)
+**:information_source:** You may also skip Step 1 and use the stocks already in your stockbook.
+Just make sure that the serial number of the stock you are adding the note to is correctly entered.
+
+</div>
+
+Let's add a note to stock with name Apple juice.
+
+Step 2. Type `note sn/ntuc1 nt/buy on wednesday` into the command box and enter. You will see the note
+added to the stock with name Apple juice at note index 1 in the Notes column.
+
+**After input:**
+![note-step-2](images/note/note-step-2.png)
+
+Let's add different note to the same stock as in Step 2.
+
+Step 3. Type `note sn/ntuc1 nt/another note for the SAME stock!` into the command box and enter.
+You will see the note added to the stock with name Apple juice at note index 2 in the Notes column.
+
+**After input:**
+![note-step-3](images/note/note-step-3.png)
+
+Let's add a note to a different stock from that in Steps 1 and 2.
+
+Step 4. Type `note sn/COLD STORAGE1 nt/3 pineapple tarts JUST arrived` into the command box and enter.
+You will see the note added to the stock with name Pineapple tart at note index 1 in the Notes column.
+
+**After input:**
+![note-step-4](images/note/note-step-4.png)
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning:** Below are some cases where `note` command does not work:
+You should see an error message describing what went wrong and the correct format for the `note` command.
+
+Continuing from the steps from the guided example above, 
+Let's try **entering nothing** as a note. 
+Type `note sn/ntuc1 n/` into the command box and enter.
+
+**After input:**
+![note-step-5](images/note/note-step-5.png)
+
+Let's try adding a note to an **unknown** serial number.
+
+Type `note sn/unknown1 nt/note` in the command box and enter.
+
+**After input:**
+![note-step-6](images/note/note-step-6.png)
+
+Let's try adding a note but with an invalid prefix: `n/` for the `note` command.
+
+Type `note sn/ntuc1 nt/valid note n/invalid` into the command box.
+
+**After input:**
+![note-step-7](images/note/note-step-7.png)
+
+Let's try adding a note but with a duplicate valid prefix for the `note` command.
+
+Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter.
+
+**After input:**
+![note-step-8](images/note/note-step-8.png)
+
+</div>
+
+You are now done with the guided tutorial for `note` and should be able to use the command with relative ease now.                              
 
 ### Deleting note(s) from stock: `notedelete`
 Deletes a note, specified by the note's index, from the stock specified by its serial number.
@@ -671,25 +705,47 @@ To delete ALL notes from a stock, note index to specify is 0.
 notedelete sn/<serial number> ni/<note index>
 ```
 
-<h4>Examples</h4>
+<h4>Example</h4>
 
-* Before: <br>
-
-![before notes](images/note_img3.jpg)
-
-* After command:
 ```
 notedelete sn/ntuc1 ni/1
 ```
 
-![after note delete1](images/notedelete_img1.jpg)
+<h4>Below is a guided example for deleting notes from stocks:</h4>
 
-* After command
-```
-notedelete sn/sheng siong1 ni/0
-```
+Step 1. Start with these stocks in your stock book in your `Data` tab as shown in the image below.
 
-![after note delete0](images/notedelete_img2.jpg)
+![notedelete-step-1](images/note/notedelete-step-1.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source:** You may also skip Step 1 and use the stocks that have notes already in your stockbook.
+Make sure that the serial number of the stock and the note index of the note you are deleting
+from the stock is correctly entered.
+
+</div>
+
+Let's delete a note from the stock with name Pineapple tart.
+
+Step 2. Type `notedelete sn/cold storage1 ni/2` into the command box and enter. 
+You will see that the note at note index 2, `pineapple tarts for CNY`
+of the stock with serial number `coldstorage1` has been deleted.
+
+**After input:**
+![notedelete-step-2](images/note/notedelete-step-2.png)
+
+You have successfully used the `notedelete` command.
+
+Let's try deleting all the notes from the stock with serial number `ntuc1` with one command.
+
+Step 3. Type `notedelete sn/ntuc1 ni/0` into the command box and enter.
+You will see that all the notes of the stock with serial number `ntuc1` has been deleted.
+
+**After input:**
+![notedelete-step-3](images/note/notedelete-step-3.png)
+
+You have successfully deleted all the notes from a stock.
+
 
 ### Viewing all notes of a stock: `noteview`
 Views all notes of the stock specified by its serial number.
