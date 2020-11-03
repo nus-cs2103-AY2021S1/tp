@@ -43,9 +43,9 @@ public class CaseTest {
         Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE_PAULINE_ASSAULT.isSameCase(editedAlice));
 
-        // different status -> returns false
+        // different status -> returns true
         editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withStatus("closed").build();
-        assertFalse(ALICE_PAULINE_ASSAULT.isSameCase(editedAlice));
+        assertTrue(ALICE_PAULINE_ASSAULT.isSameCase(editedAlice));
 
         // same name, different attributes -> returns true
         editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT)

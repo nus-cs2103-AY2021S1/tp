@@ -31,6 +31,7 @@ public class UserMessages {
             + "we are unable to open your file.";
 
     //Duplicate Messages
+    public static final String MESSAGE_DUPLICATE_TITLE = "A case with this title already exists.";
     public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
     public static final String MESSAGE_DUPLICATE_WITNESS = "This witness already exists in the case.";
     public static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
