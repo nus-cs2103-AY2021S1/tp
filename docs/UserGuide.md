@@ -3,10 +3,9 @@ layout: page
 title: User Guide
 ---
 
-<!-- <div class="owo"> -->
 * Table of Contents
 {:toc}
-<!-- </div> -->
+
 
 ---------------
 ## 1&ensp;Introduction
@@ -99,7 +98,7 @@ Here are some examples of names that are valid and invalid:
 
 
 --------------------------------
-## 4&ensp;Navigating the User Interface
+## 4&ensp;Navigating the User Interface (Xue Yong)
 
 ChopChop's UI design allows users to view all of the information you need through mouse input over a few tabs. However, that might lead to a slightly steeper learning curve.
 Hence, this section aims to give you a breakdown of the GUI's various components.
@@ -276,7 +275,7 @@ When tab-completing names, ChopChop will automatically insert the backslashes fo
 
 
 <a name="TabCompletion"></a>
-### 5.2&ensp;Tab Completion
+### 5.2&ensp;Tab Completion (Zhia Yang)
 
 Suppose you wanted to add a recipe for pancakes, and you wanted real, <i>industrial strength</i> pancakes (unlike the simplified recipe we'll be using below) — the list of ingredients would look something like this:
 
@@ -332,7 +331,10 @@ The same thing applies to commands; <code>f <kbd>tab</kbd></code> would cycle be
 
 
 
-<br/><br/><br/><br/><br/><br/>
+
+<br/><br/>
+<hr/>
+<br/>
 <a name="GroupGeneralCommands"></a>
 ### 5.3&ensp;General Commands
 
@@ -423,7 +425,9 @@ Figure 3: <i>The recommendations view</i>
 
 
 
-<br/><br/><br/><br/><br/><br/>
+<br/><br/>
+<hr/>
+<br/>
 <a name="GroupRecipeCommands"></a>
 ### 5.4&ensp;Recipe Commands
 
@@ -482,7 +486,7 @@ Figure 4: <i>The recipe list view</i>
 
 
 <a name="AddRecipeCommand"></a>
-#### 5.4.3&ensp;Adding Recipes — **`add`**`recipe`
+#### 5.4.3&ensp;Adding Recipes — **`add`**`recipe` (Zhia Yang)
 This command adds a recipe to ChopChop, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
 
 **Usage**:
@@ -544,7 +548,7 @@ Figure 5.3: <i>The newly created recipe in the recipe list</i>
 
 
 <a name="EditRecipeCommand"></a>
-#### 5.4.4&ensp;Editing Recipes — **`edit`**`recipe`
+#### 5.4.4&ensp;Editing Recipes — **`edit`**`recipe` (Alex)
 This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
 To accommodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
@@ -600,6 +604,8 @@ For example:
 - `/step:delete:1` <br />
   This deletes the first step of the recipe.
 
+Note that steps must be added sequentially; for instance, you cannot add step 5 to a recipe with only 2 steps.
+
 
 <h4>Usage</h4>
 
@@ -617,14 +623,17 @@ edit recipe <#REF>
 ```
 
 Examples:
-- `edit recipe #4 /name soup` <br />
+- `edit recipe #4 /name soup` <br/>
 	This changes the name of the fourth recipe currently shown in the GUI's view to 'soup'.
-- `edit recipe pancakes /ingredient:add syrup /qty 500ml` <br />
-	This edits the recipe named 'pancakes' by adding 500ml of syrup to the recipe's ingredient list.
-- `edit recipe risotto /step:edit:1 In a saucepan, warm the broth over low heat` <br />
-    This edits the recipe named 'risotto' by changing the 1st step to the text above.
-- `edit recipe beef curry /ingredient:delete apple /step:delete:4` <br />
-    This edits the recipe named 'beef curry' to remove both the ingredient 'apple' as well as the 4th step.
+
+- `edit recipe pancakes /ingredient:add syrup /qty 500ml` <br/>
+	This edits the recipe named 'pancakes' by adding 500ml of syrup to its ingredient list.
+
+- `edit recipe risotto /step:edit:1 In a saucepan, warm the broth over low heat` <br/>
+  This edits the recipe named 'risotto' by changing the 1st step to the text above.
+
+- `edit recipe beef curry /ingredient:delete apple /step:delete:4` <br/>
+  This edits the recipe named 'beef curry' to remove both the ingredient 'apple' as well as the 4th step.
 
 To illustrate how to use this powerful command, let us recreate the Pancake recipe from above, but starting from a blank recipe. First, we make the empty recipe using `add recipe Pancakes`:
 
@@ -634,7 +643,7 @@ To illustrate how to use this powerful command, let us recreate the Pancake reci
 Figure 6.1: <i>The empty recipe</i>
 </div>
 
-Now, let's add our ingredients. First, 400 grams of flour:
+Now, let's add our ingredients, using `/ingredient:add`; first, 400 grams of flour:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
@@ -648,7 +657,7 @@ Next, adding the eggs and milk in one go:
 Figure 6.3: <i>The edit command supports multiple operations at once</i>
 </div>
 
-Oops, that's too many eggs, so let's edit the quantity:
+Oops, that's too many eggs, so let's edit the quantity using `/ingredient:edit`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
@@ -660,7 +669,7 @@ Figure 6.4: <i>Editing an ingredient to change its quantity</i>
 Figure 6.5: <i>The recipe now uses only 3 eggs</i>
 </div>
 
-Now let's add the steps:
+Now let's add the steps with `/step:add`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
@@ -672,7 +681,7 @@ Figure 6.6: <i>Adding the first step</i>
 Figure 6.7: <i>Adding steps 2 and 3</i>
 </div>
 
-Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it:
+Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it with `/step:edit:2`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
@@ -755,7 +764,7 @@ Figure 8.3: <i>Back to the main recipe list</i>
 
 
 <a name="FilterRecipeCommand"></a>
-#### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe`
+#### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe` (Jialei)
 This command filters all recipes and lists those containing all ingredients and tags specified in the command.
 
 **Usage**:
@@ -847,7 +856,10 @@ Figure 9.3: <i>Insufficient ingredients to make the pancakes</i>
 
 
 
-<br/><br/><br/><br/><br/><br/>
+
+<br/><br/>
+<hr/>
+<br/>
 <a name="GroupIngredientCommands"></a>
 ### 5.5&ensp;Ingredient Commands
 
@@ -871,7 +883,7 @@ Figure 10: <i>The ingredient list view</i>
 
 
 <a name="AddIngredientCommand"></a>
-#### 5.5.2&ensp;Adding Ingredients — **`add`**`ingredient`
+#### 5.5.2&ensp;Adding Ingredients — **`add`**`ingredient` (Zhia Yang)
 This command adds an ingredient to ChopChop, with an optional quantity and expiry date:
 - If the quantity is not specified, ChopChop will infer a counted quantity, like eggs.
 - If the expiry date is not specified, it is assumed that the ingredient (eg. salt) does not expire.
@@ -1013,7 +1025,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 
 <a name="FilterIngredientCommand"></a>
-#### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient`
+#### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient` (Jialei)
 This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
 
 **Usage**:
@@ -1071,22 +1083,28 @@ This command edits the given ingredient. Right now, it is not implemented yet!
 
 
 
-<br/><br/><br/><br/><br/><br/>
+
+<br/><br/>
+<hr/>
+<br/>
 <a name="GroupStatsCommands"></a>
-### 5.6&ensp;Statistics Commands
+
+### 5.6&ensp;Statistics Commands (Travis)
 Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You can view these records with the commands below.
+
+The output of these statistics commands are shown in the [statistics box](#StatisticsBox) on the right side of ChopChop's interface.
 
 
 <a name="StatsRecipeTopCommand"></a>
 #### 5.6.1&ensp;Listing Top Recipes — **`stats`**`recipe top`
-Shows a list of recipes that were made the most. The list is sorted in descending order by the number of times it was made; the first recipe in the list is the recipe that was made the most number of times. The number of usages is calculated from based on current records. So, if you have just cleared your recipe usage records,
+This command shows a list of recipes that were made the most. The list is sorted in descending order by the number of times it was made; the first recipe in the list is the recipe that was made the most number of times. The number of usages is calculated from based on current records. So, if you have just cleared your recipe usage records,
 you will see that all recipes were made 0 times.
 Even after you delete a recipe is deleted, its past usages are still saved within ChopChop.
 
 **Usage**: `stats recipe top`
 
 Example:
-Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
+Let's say you executed `make recipe Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe top`, you will still see it listed as one of the top recipes.
 
 
 
@@ -1094,7 +1112,7 @@ Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year.
 <a name="StatsRecipeRecentCommand"></a>
 #### 5.6.2&ensp;Listing Recent Recipes — **`stats`**`recipe recent`
 
-Shows a list of most recently made recipes. The list is arranged in descending chronological order; the recipe most recently made is the first item on the list.
+This command shows a list of most recently made recipes. The list is arranged in descending chronological order; the recipe most recently made is the first item on the list.
 
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
 
@@ -1104,7 +1122,7 @@ Even after the recipe is deleted, its past usages are still saved within ChopCho
 
 <a name="StatsRecipeMadeCommand"></a>
 #### 5.6.3&ensp;Listing Recipes within a Time Frame — **`stats`**`recipe made`
-Shows a list of recipes that were made within the given time frame. The list is arranged in descending chronological order.
+This command shows a list of recipes that were made within the given time frame. The list is arranged in descending chronological order.
 
 Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will see the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
 
@@ -1115,7 +1133,7 @@ Even after the recipe is deleted, its past usages are still saved within ChopCho
 </div>
 
 For example:
-Let's say you executed `make Rojak` on 23:59 hours yesterday. If you enter `stats recipe` you will not see `Rojak` listed in the statistics box.
+Let's say you executed `make recipe Rojak` on 23:59 hours yesterday. If you enter `stats recipe` you will not see `Rojak` listed in the statistics box.
 
 If you enter `stats recipe /before 2020-02-13` into the command box, all recipes made prior to 2020-02-13 will be listed in the Statistics box.
 
@@ -1133,7 +1151,7 @@ If you enter `stats recipe` into the command box without either `[/before <date-
 
 <a name="StatsRecipeClearCommand"></a>
 #### 5.6.4&ensp;Clearing Recipe History — **`stats`**`recipe clear`
-After you execute this command, the records of recipes that were made are deleted from ChopChop.
+This command clears the history of the recipes that you've made from ChopChop. If you did this accidentally, don't worry, because you can [undo](#UndoCommand) this.
 
 **Usage**: `stats recipe clear`
 
@@ -1143,7 +1161,7 @@ After you execute this command, the records of recipes that were made are delete
 
 <a name="StatsIngredientRecentCommand"></a>
 #### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
-Shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
+This command shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
 **Usage**: `stats ingredient recent`
@@ -1152,7 +1170,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 <a name="StatsIngredientUsedCommand"></a>
 #### 5.6.6&ensp;Listing Ingredients within a Time Frame — **`stats`**`ingredient used`
-Shows a list of ingredients that were used by recipes made recently within the given time frame.
+This command shows a list of ingredients that were used by recipes made recently within the given time frame.
 Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
 
 **Usage**: `stats ingredient used`
@@ -1161,7 +1179,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 <a name="StatsIngredientClearCommand"></a>
 #### 5.6.7&ensp;Clearing Ingredient History — **`stats`**`ingredient clear`
-After you execute this command, the records of ingredients that were used are deleted from ChopChop.
+This command clears the history of the ingredients that you've used in ChopChop. If you did this accidentally, don't worry, because you can [undo](#UndoCommand) this.
 
 **Usage**: `stats ingredient clear`
 
@@ -1429,9 +1447,9 @@ view recipe &lt;#REF&gt;
 
 -------------------------
 <a name="QuantitiesAndUnits"></a>
-## 6&ensp;Quantities and Units
+## 6&ensp;Quantities and Units (Zhia Yang)
 
-In order to keep track of ingredients correctly, ChopChop needs to know about their amounts. Currently, there are 3 'kinds' of units supported; volume, mass (weight), and counts. These are the supported units specifically:
+In order to keep track of ingredients correctly, ChopChop needs to know about their amounts. Currently, there are 3 'kinds' of units supported; volume, mass (weight), and counts. Specifically, these are the supported units:
 
 - `ml`, `mL` — millilitres
 - `l`, `L` — litres (1000 ml)
@@ -1442,14 +1460,14 @@ In order to keep track of ingredients correctly, ChopChop needs to know about th
 - `mg` — milligram (0.001 g)
 - `kg` — kilogram (1000 g)
 
-Additionally, quantities without a unit are assumed to be dimensionless 'counts'; for example, **3 eggs**.
+Quantities without a unit are assumed to be dimensionless 'counts'; for example, **3** eggs. They do not need to be whole numbers, so that a recipe can use **2.5** apples, for example.
 
 
 ### 6.1&ensp;Ingredient Combining
 
 As mentioned above, ChopChop will combine ingredients when you `add` them, provided they have compatible units. Combining works as you would expect, and is rather flexible; adding `3 cups` of milk to an existing stock of `400ml` will yield `1.15l`.
 
-However, you cannot, for example, add `300g` of eggs to `4` eggs, as grams and counts are incompatible units.
+However, you cannot, for example, add `300g` of blueberries to `4` blueberries, as grams and counts are incompatible units.
 
 
 
