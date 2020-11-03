@@ -21,6 +21,7 @@ import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
 import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -309,6 +310,11 @@ public class ModelManager implements Model {
     public void setApplicant(Applicant target, Applicant editedPerson) {
         requireAllNonNull(target, editedPerson);
         applicantDatabase.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setApplicationStatus(Applicant applicant, ApplicationStatus status) {
+        applicant.setApplicationStatus(status);
     }
 
     @Override
