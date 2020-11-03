@@ -69,9 +69,22 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Fuzzy Finding Completion (Fzf)
+
+Currently Modduke supports Fuzzy Finding Completion from v1.4 onward. You can trigger the `fzf` mode
+using `ctrl + space`. Currently our fzf will search through all contact names, module names and meeting names and will
+match entries that contain the prefix entered.
+
+![Fzf Example](images/FzfCompletionExample.gif)
+
+You can exit `fzf` mode by manually pressing `esc`.
+You will also be taken automatically out of `fzf` mode once you select a fzf option by either using the arrow keys + `enter` 
+to select or by using your mouse.
+
 ### Autocompletion
 
-Currently Modduke supports autocompletion for the following fields in v1.3.
+Currently Modduke supports autocompletion for the following fields for v1.3 onward. Note that this is a legacy
+feature and most of its functionality can be achieved using our newer Fzf completion.
 
 * Contact Name -  Triggered using `cname/`
 * Module Name -  Triggered using `mdname/`

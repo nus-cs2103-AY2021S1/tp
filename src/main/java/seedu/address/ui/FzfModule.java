@@ -54,8 +54,6 @@ public class FzfModule {
         attachedTextField.addEventFilter(KeyEvent.ANY, (event) -> {
             if (isFzfMode) {
                 if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
-                    System.out.println(event.getCode());
-
                     menu.fireEvent(event.copyFor(menu, menu));
                     event.consume();
                     return;
@@ -140,7 +138,6 @@ public class FzfModule {
     }
     private void toggleFzfOn(int caretPos, double x, double y) {
         if (!isFzfMode) {
-            System.out.println("Fzf Toggled On");
             fzfStartPos = caretPos;
             isFzfMode = true;
             menuX = x;
@@ -149,7 +146,6 @@ public class FzfModule {
     }
     private void toggleFzfOff() {
         if (isFzfMode) {
-            System.out.println("Fzf Toggled Off");
             isFzfMode = false;
             query.setText("");
         }
