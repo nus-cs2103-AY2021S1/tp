@@ -2,13 +2,7 @@ package seedu.address.model.lesson;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -32,7 +26,7 @@ public class LessonTest {
         LocalDate startDate = DateUtil.toLocalDate(VALID_START_DATE_CS2103T);
         LocalDate endDate = DateUtil.toLocalDate(VALID_END_DATE_CS2103T);
         LocalTime differentStartTime = new Time("10:00").value;
-        Tag tag = new Tag(VALID_TAG);
+        Tag tag = new Tag(VALID_TAG_CS2103T);
         Description differentDescription = new Description("Different description");
         Title differentTitle = new Title("CS1101S Lecture");
         DayOfWeek differentDay = DayOfWeek.FRIDAY;

@@ -3,7 +3,7 @@ package seedu.address.model.calendar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103T;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTasks.EVENT1;
 import static seedu.address.testutil.TypicalTasks.EVENT2;
@@ -42,7 +42,7 @@ public class CalendarTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         calendarList.add(EVENT1);
-        Task editedAlice = new EventBuilder(EVENT1).withTag(VALID_TAG)
+        Task editedAlice = new EventBuilder(EVENT1).withTag(VALID_TAG_CS2103T)
                 .build();
         assertTrue(calendarList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class CalendarTest {
     @Test
     public void setTask_editedTaskHasSameIdentity_success() {
         calendarList.add(EVENT1);
-        Task editedAlice = new EventBuilder(EVENT1).withTag(VALID_TAG)
+        Task editedAlice = new EventBuilder(EVENT1).withTag(VALID_TAG_CS2103T)
                 .build();
         calendarList.setCalendarTask(EVENT1, editedAlice);
         Calendar expectedCalendarList = new Calendar();
