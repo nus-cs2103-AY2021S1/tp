@@ -1,6 +1,16 @@
 {
   "_comment": "StockBook save file which contains the same Stock values as in TypicalStocks#getTypicalStockBook()",
   "stocks" : [ {
+    "name" : "almond milk",
+    "serialNumber" : "cold storage1",
+    "source" : "cold storage",
+    "quantity" : "2000",
+    "lowQuantity" : "0",
+    "location" : "fruit section, subsection c",
+    "notes" : [ ],
+    "isBookmarked" : false
+  },
+    {
     "name" : "apple juice",
     "serialNumber" : "ntuc1",
     "source" : "ntuc",
