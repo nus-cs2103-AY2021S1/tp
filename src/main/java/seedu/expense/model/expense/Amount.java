@@ -102,7 +102,7 @@ public class Amount implements Comparable<Amount> {
      * Returns the {@code Double} dollar value of the amount.
      * Warning: use only if absolutely required due to precision loss.
      */
-    public Double getDoubleDollarValue() {
+    public Double getDollarAsDoubleValue() {
         return toDollars(value).doubleValue();
     }
 

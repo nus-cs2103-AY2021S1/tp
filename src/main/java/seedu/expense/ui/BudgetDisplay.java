@@ -78,7 +78,7 @@ public class BudgetDisplay extends UiPart<Region> {
         if (budgetAmount.equals(new Amount(0))) {
             return -1 / 0.0;
         } else {
-            return 1 - (expensesSum.getDoubleDollarValue() / budgetAmount.getDoubleDollarValue());
+            return 1 - (expensesSum.getDollarAsDoubleValue() / budgetAmount.getDollarAsDoubleValue());
         }
 
     }
