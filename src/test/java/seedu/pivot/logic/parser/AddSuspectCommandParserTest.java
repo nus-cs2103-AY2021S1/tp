@@ -1,16 +1,16 @@
 package seedu.pivot.logic.parser;
 
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_CASEPERSON_NAME;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.SEX_DESC_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_SEX_BOB;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -27,12 +27,6 @@ import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.testutil.CasePersonBuilder;
 
 public class AddSuspectCommandParserTest {
-    // Todo: move static fields to CommandTestUtil
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
-    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_SEX_BOB;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
 
     private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 
