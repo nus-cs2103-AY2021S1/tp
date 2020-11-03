@@ -3,7 +3,7 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-T10-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T10-3/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S1-CS2103T-T10-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S1-CS2103T-T10-3/tp)
 
-![Ui](images/Ui.png)
+![Ui](docs/images/Ui.png)
 
 
 This project is a food recipe management system that aims to make it easier for people to manage their recipes and ingredients. Potential users include:
