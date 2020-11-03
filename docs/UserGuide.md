@@ -141,7 +141,7 @@ Outcome:
 
 #### 1.2 Listing the number of drinks sold : `s-list`
 Shows a list of all types of drinks sold in the Sales Tracker. The list of drinks shown is 
-ranked from the most popular to least popular.
+ordered in descending order (i.e. ranked from the most to least sales).
 
 Format: `s-list`
 
@@ -154,8 +154,8 @@ instructions:
 Outcome:
 
 1. The Result Display will show a success message.
-2. The Sales Tracker will show a list of the drinks sales in descending order, where the drink with the most
-number of sales is on the top of the list.
+2. The Sales Tracker will show a list of the drinks sales in descending order, where the drink with the
+most sales is on the top of the list.
 
 {Example outcome screenshot to be added later}
 
