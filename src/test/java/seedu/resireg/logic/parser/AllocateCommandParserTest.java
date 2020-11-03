@@ -32,4 +32,10 @@ public class AllocateCommandParserTest {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AllocateCommand.HELP.getFullMessage()));
     }
+
+    @Test
+    public void parse_invalidIndices_throwsParseException() {
+        assertParseFailure(parser, "si/a ri/a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AllocateCommand.HELP.getFullMessage()));
+    }
 }

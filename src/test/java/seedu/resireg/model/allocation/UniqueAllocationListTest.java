@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
 import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
-import seedu.resireg.model.student.Student;
 import seedu.resireg.testutil.AllocationBuilder;
 
 

@@ -2,14 +2,19 @@ package seedu.resireg.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.resireg.logic.commands.AllocateCommand.MESSAGE_STUDENT_ALREADY_ALLOCATED;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_ROOM_ALREADY_ALLOCATED;
+import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_SAME_ROOM_ALLOCATED;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIFTH_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIFTH_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
@@ -103,6 +108,18 @@ public class ReallocateCommandTest {
     }
 
     @Test
+    public void execute_sameRoomReallocated_throwsCommandException() {
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ROOM);
+        assertCommandFailure(reallocateCommand, model, history, MESSAGE_SAME_ROOM_ALLOCATED);
+    }
+
+    @Test
+    public void execute_roomAlreadyAllocated_throwsCommandException() {
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_SECOND_ROOM);
+        assertCommandFailure(reallocateCommand, model, history, MESSAGE_ROOM_ALREADY_ALLOCATED);
+    }
+
+    @Test
     public void equals() {
         ReallocateCommand reallocateFirstCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FOURTH_ROOM);
         ReallocateCommand reallocateSecondCommand = new ReallocateCommand(INDEX_SECOND_PERSON, INDEX_FIFTH_ROOM);
@@ -120,8 +137,17 @@ public class ReallocateCommandTest {
         // null -> returns false
         assertFalse(reallocateFirstCommand.equals(null));
 
-        // different student -> returns false
+        // different reallocate -> returns false
         assertFalse(reallocateFirstCommand.equals(reallocateSecondCommand));
+
+        ReallocateCommand reallocateDifferentStudentCommand =
+                new ReallocateCommand(INDEX_SECOND_PERSON, INDEX_FOURTH_ROOM);
+        ReallocateCommand reallocateDifferentRoomCommand =
+                new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FIFTH_ROOM);
+
+        // different student -> returns false
+        assertFalse(reallocateFirstCommand.equals(reallocateDifferentStudentCommand));
+        assertFalse(reallocateFirstCommand.equals(reallocateDifferentRoomCommand));
     }
 
     /**
