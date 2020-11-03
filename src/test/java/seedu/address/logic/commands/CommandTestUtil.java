@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.LabelPersonDescriptorBuilder;
 
@@ -93,6 +94,9 @@ public class CommandTestUtil {
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "1000"; // missing ':' symbol
     public static final String INVALID_PARTICIPANT_DESC = " " + PREFIX_PARTICIPANT + "a*"; // '*' not allowed in names
 
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_CM1111;
+    public static final EditMeetingCommand.EditMeetingDescriptor DESC_CM1112;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
@@ -100,6 +104,15 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        DESC_CM1111 = new EditMeetingDescriptorBuilder().withMeetingName(VALID_MEETING_NAME_CM1111_MEETING)
+                .withDate(VALID_DATE_CM1111_MEETING).withTime(VALID_TIME_CM1111_MEETING)
+                .withMembers(VALID_PARTICIPANT_AMY).build();
+        DESC_CM1112 = new EditMeetingDescriptorBuilder().withMeetingName(VALID_MEETING_NAME_CM1112_MEETING)
+                .withDate(VALID_DATE_CM1112_MEETING).withTime(VALID_TIME_CM1112_MEETING)
+                .withMembers(VALID_PARTICIPANT_BOB).build();
     }
 
     public static final AddLabelCommand.LabelPersonDescriptor LABEL_DESC_AMY;
