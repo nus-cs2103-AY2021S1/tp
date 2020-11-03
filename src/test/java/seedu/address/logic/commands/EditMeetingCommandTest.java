@@ -35,9 +35,11 @@ import static seedu.address.testutil.TypicalMeetings.CS2102_MEETING_DUPLICATE_NA
 import static seedu.address.testutil.TypicalMeetings.CS2104_MEETING;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBookWithDuplicateName;
+import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2102;
 import static seedu.address.testutil.TypicalModules.CS2104;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -61,6 +63,7 @@ public class EditMeetingCommandTest {
                 .withName(VALID_MEETING_NAME)
                 .withDate(VALID_DATE)
                 .withTime(VALID_TIME)
+                .withMembers(CS2100.getClassmates())
                 .build();
         EditMeetingCommand.EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(editedMeeting).build();
         EditMeetingCommand editMeetingCommand = new EditMeetingCommand(
@@ -80,10 +83,9 @@ public class EditMeetingCommandTest {
     }
 
     @Test
-    public void execute_timeAndDateSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastMeeting = Index.fromOneBased(model.getFilteredMeetingList().size());
         Meeting lastMeeting = model.getFilteredMeetingList().get(indexLastMeeting.getZeroBased());
-
         MeetingBuilder meetingInList = new MeetingBuilder(lastMeeting);
         Meeting editedMeeting = meetingInList.withName(VALID_MEETING_NAME).withDate(VALID_DATE).build();
 
@@ -102,6 +104,24 @@ public class EditMeetingCommandTest {
                 new ModuleBook(model.getModuleBook()),
                 new UserPrefs());
         expectedModel.setMeeting(lastMeeting, editedMeeting);
+
+        assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
+        EditMeetingCommand editMeetingCommand = new EditMeetingCommand(
+                CS2100_MEETING.getModule().getModuleName(),
+                CS2100_MEETING.getMeetingName(),
+                new EditMeetingCommand.EditMeetingDescriptor());
+        Meeting editedMeeting = new MeetingBuilder(CS2100_MEETING).build();
+
+        String expectedMessage = String.format(EditMeetingCommand.MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingBook(model.getMeetingBook()),
+                new ModuleBook(model.getModuleBook()),
+                new UserPrefs());
 
         assertCommandSuccess(editMeetingCommand, model, expectedMessage, expectedModel);
     }

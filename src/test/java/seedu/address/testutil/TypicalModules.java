@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +18,7 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
     public static final Module CS2100 = new ModuleBuilder()
             .withName("CS2100")
-            .withMembers(new HashSet<>(Arrays.asList(BENSON))).build();
+            .withMembers(new HashSet<>(Arrays.asList(BENSON, GEORGE))).build();
     public static final Module CS2101 = new ModuleBuilder()
             .withName("CS2101")
             .withMembers(new HashSet<>(Arrays.asList(CARL))).build();
