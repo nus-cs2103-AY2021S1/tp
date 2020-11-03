@@ -137,6 +137,23 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
+Steps for adding a flashcard with diagrams:
+
+![filedirectory](images/ug/ug_add_step1.png)
+<br>
+
+![filedirectory](images/ug/ug_add_step1.1.png)
+
+Step 1: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
+
+![filedirectory](images/ug/ug_add_step2.png)
+
+Step 2: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` Remember to include the file extension in `DIAGRAM`.
+
+![filedirectory](images/ug/ug_add_step3.png)
+
+Step 3: The flashcard is added to the list.
+
 ### Clearing all flashcards : `clear` 
 
 Clears all flashcard data from the program.
