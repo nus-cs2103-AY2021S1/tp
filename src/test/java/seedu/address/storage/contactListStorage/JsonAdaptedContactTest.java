@@ -16,8 +16,6 @@ import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
 
-
-
 public class JsonAdaptedContactTest {
     private static final String INVALID_CONTACT_NAME = "R@chel";
     private static final String INVALID_EMAIL = "example.com";
@@ -31,7 +29,6 @@ public class JsonAdaptedContactTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
     private static final boolean VALID_IMPORTANCE = true;
-
 
     @Test
     public void toModelType_validContactDetails_returnsContact() throws Exception {
