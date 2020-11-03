@@ -139,20 +139,19 @@ Examples:
 
 Steps for adding a flashcard with diagrams:
 
+Step 1: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
+
 Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-
-Step 1: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
+Step 2: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` Remember to include the file extension in `DIAGRAM`.
 
 ![filedirectory](images/ug/ug_add_step2.png)
 
-Step 2: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png` Remember to include the file extension in `DIAGRAM`.
+Step 3: The flashcard is added to the list.
 
 ![filedirectory](images/ug/ug_add_step3.png)
-
-Step 3: The flashcard is added to the list.
 
 ### Clearing all flashcards : `clear` 
 
@@ -191,6 +190,20 @@ Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 * `edit 3 n/Important question! r/`
+
+Steps for editing a flashcard's category and rating:
+
+Step 1: Locate the flashcard you wish to edit. In this example, we want to edit flashcard at index 2.
+
+![filedirectory](images/ug/ug_edit_step1.PNG)
+
+Step 2: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`.
+
+![filedirectory](images/ug/ug_edit_step2.PNG)
+
+Step 3: The flashcard's category and rating are edited to Trivial and 1 respectively.
+
+![filedirectory](images/ug/ug_edit_step3.PNG)
 
 ### Filtering out flashcards  : `filter`
 
