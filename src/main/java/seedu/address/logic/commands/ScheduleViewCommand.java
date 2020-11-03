@@ -16,7 +16,7 @@ public class ScheduleViewCommand extends ScheduleCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
             + "m/[weekly / daily]\n"
             + "d/[dd/mm/yyyy]\n"
-            + "Example: schedule m/weekly d/02/11/2020";
+            + "Example: schedule m/weekly d/2/11/2020";
 
     private final LocalDate viewDate;
     private final ScheduleViewMode viewMode;
