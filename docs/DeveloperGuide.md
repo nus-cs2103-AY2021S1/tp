@@ -18,6 +18,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+   
+   *Figure 1: Architecture Diagram of the application*
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -49,8 +51,6 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface
  and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
@@ -60,11 +60,14 @@ The sections below give more details of each component:
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
+   *Figure 2: Sequence Diagram of an example of a user input*
+
 <!--The lifelines should not stop at the end of the activation bars-->
 
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
+   *Figure 3: Class Diagram of the UI component*
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -85,6 +88,8 @@ The `UI` component,
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
+   *Figure 4: Class Diagram of the logic component*
+
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -97,6 +102,8 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+   
+   *Figure 5: Sequence Diagram for "delete" input*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -104,6 +111,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
+
+   *Figure 6: Class Diagram of the Model component*
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -119,6 +128,8 @@ The `Model`,
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+
+   *Figure 7: Class Diagram of the Storage component*
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -191,6 +202,8 @@ Step 1. The user launches the application. The default status of scope is `PROJE
 
 ![ScopingStep1](images/ScopingStep1.png)
 
+   *Figure 8: Diagram of the initial scoping*
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** At this stage, commands at non-`PROJECT_LIST` level cannot be executed.
 
@@ -199,23 +212,33 @@ The following sequence diagram shows how scoping works in the application.
 
 ![ScopingSequence](images/ScopingSequenceDiagram.png)
 
+   *Figure 9: Sequence Diagram of the scoping components with an input*
+
+
 Step 2. The user executes `startproject 3` command to view the details of the project of index 3 in the main catalogue. The `startproject` command
 calls `enter`, causing a switch of scoping status and assignment of `project` of focus in `MainCatalogue`.
 
 ![ScopingStep2](images/ScopingStep2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `start` command calls `enter` method in model, causing a switching of level and updates the project of focus.
+   *Figure 10: Diagram of the scoping after 'startproject 3' command*
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `startproject` command calls `enter` method in model, causing a switching of level and updates the project of focus.
 
 </div>
 The following sequence diagram shows the execution of startproject command.
 
 ![StartProjectSequenceDiagram](images/StartProjectSequenceDiagram.png)
 
+   *Figure 11: Sequence Diagram of the 'startproject' command*
+
 Step 3. The user executes `viewtask 5` command to view the details of the task of index 5 in the filtered task list of current project.
 The `viewtask` command calls `enterTask`, causing a switch of scoping status and assignment of `taskOnView` in the current project.
 (`viewteammate` command is executed similarly.)
 
 ![ScopingStep3](images/ScopingStep3.png)
+
+   *Figure 12: Diagram of the scoping after 'viewtask 5' command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `viewtask` command calls `enterTask` method in model, causing a switching of level and updates the task of focus.
 
@@ -224,16 +247,22 @@ The following sequence diagram shows the execution of view task command.
 
 ![ViewTaskSequenceDiagram](images/ViewTaskSequenceDiagram.png)
 
-Step 4. The user executes `start 2` command to view details of project of index 2 in the current list of projects instead.
+   *Figure 13: Sequence Diagram of the 'viewtask' command*
+
+Step 4. The user executes `startproject 2` command to view details of project of index 2 in the current list of projects instead.
 The scope is switched to `PROJECT`, project of focus is updated to a new project and the task on view is updated to empty.
 
 ![ScopingStep4](images/ScopingStep4.png)
+
+   *Figure 14: Diagram of the scoping after 'startproject 2' command*
 
 Step 5. The user executes `leave` command to go to the parent status.
 Currently the application is at `PROJECT` status, so after execution of `leave` command, the new status would be `PROJECT_LIST`.
 The `leave` command calls `quit` method.
 
 ![ScopingStep5](images/ScopingStep5.png)
+
+   *Figure 15: Diagram of the scoping after 'leave' command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `leave` command calls `quit` method in model, causing a switching of level and updates the project and task of focus.
 
@@ -242,9 +271,13 @@ The following sequence diagram shows the execution of leave command. Note that t
 
 ![LeaveSequenceDiagram](images/LeaveSequenceDiagram.png)
 
+   *Figure 16: Sequence Diagram of the 'leave' command*
+
 The following activity diagram summarizes the scoping features when a user executes a new command:
 
 ![ScopingActivityDiagram](images/ScopingActivityDiagram.png)
+
+   *Figure 17: Activity Diagram of the scoping components*
 
 #### Design consideration:
 
@@ -305,6 +338,8 @@ LogicManager then calls the method `execute` of the `AddTaskCommand` which store
 The diagram below summarises the events above with the help of a sequence diagram:
 ![AddTaskSequenceDiagramImage](images/AddTaskSequenceDiagram.png)
 
+   *Figure 18: Sequence Diagram of the 'addtask' command*
+
 
 ### Filtering feature
 
@@ -330,10 +365,14 @@ Step 1. The user uses `start` to open a project called "Taskmania". Suppose ther
 
 ![FilterStep1](images/FilterStep1.png)
 
+   *Figure 19: Object Diagram of the project 'Taskmania'*
+
 
 Step 2. The user executes `filtert ta/T-Fang` command to find all tasks that have assignee whose Github username is "T-Fang". the command is eventually passed to `TaskFilterCommandParser` and the parser will identify the type of the filtering condition using the prefix entered and create the corresponding task predicate. In this case, `ta/` indicates that a predicate that filter tasks by their assignees' Github usernames should be created. Then when the `TaskFilterCommand` return by the parser is executed by the `LogicManager`, the `TaskFilterCommand` will get the current project ("Taskmania") from the `Model` and update the `taskFilter` predicate inside the "Taskmania" project. Therefore, the filtered task list of "Taskmania" will only contain `task1` and `task2`.
 
 ![FilterSequenceDiagram](images/FilterSequenceDiagram.png)
+
+   *Figure 20: Sequence Diagram of the 'filter ta/T-Fang' command*
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `TaskFilterCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -341,6 +380,8 @@ Step 2. The user executes `filtert ta/T-Fang` command to find all tasks that hav
 Step 3. After seeing tasks that has been assign to "Tian Fang", the user wants to take a look at other tasks in "Taskmania". The user executes `allt` to see all the tasks in the "Taskmania". the `MainCataloguePaser` parses the command and creates a `AllTasksCommand`. When the `AllTasksCommand` is executed, it will get the current project ("Taskmania") from the `Model` and call the `showAllTasks()` method inside the "Taskmania" project. Then the `taskFilter` inside "Taskmania" will be replaced by a predicate that always returns true and all the tasks will be shown.
 
 ![AllTasksSequenceDiagram](images/AllTasksSequenceDiagram.png)
+
+   *Figure 21: Sequence Diagram of the 'allt' command*
 
 
 In the example above, the users can also filter the task list in different ways and the `taskFilter` predicate in "Taskmania" will be updated correspondingly:
@@ -353,6 +394,8 @@ In the example above, the users can also filter the task list in different ways 
 The following activity diagram summarizes what happens when a user executes a task filter command:
 
 ![TaskFilterActivityDiagram](images/TaskFilterActivityDiagram.png)
+
+   *Figure 22: Activity Diagram of the filter command*
 
 #### Design consideration:
 
@@ -410,6 +453,8 @@ Given below is an example usage scenario and how the `NewTeammate` mechanism beh
 Step 1: The user enters `start 1` for example to start project 1 from the mainscreen.The user is greeted with the projects list on the left, and the description of the project in the centre.
 
 ![MainscreenUi](images/MainscreenUi.png)
+   
+   *Figure 23: What the app looks like after 'start 1' command*
 
 Step 2: The user enters a New Teammate command such as `newteammate mn/John Ivy mg/Ivydesign98 mp/82938281 me/imjon@gmail.com ma/13 Cupertino Loop`. The command text is passed into `LogicManager` (an implementation of Logic) which passes the raw text into the `MainCatalogueParser` to validate the first command word, which in this case is `newteammate`. A new instance of `TeammateCommandParser` class is then created which proceeds to parse the various fields of the command. Any invalid fields such as invalid field prefixes or invalid format of data would throw an exception at this stage. 
 
@@ -421,10 +466,14 @@ LogicManager then calls the method `execute` of the NewTeammateCommand which sto
 
 The diagram below summarises what is happening above with the help of a sequence diagram:
 ![NewTeammateSequenceDiagramImagae](images/NewTeammateSequenceDiagram.png)
+   
+   *Figure 24: Sequence Diagram of the 'newteammate' command*
 
 The diagram below gives a short overview on what happens when a user's input is received:
 
 ![NewTeammateActivityDiagramImagae](images/NewTeammateActivityDiagram.png)
+   
+   *Figure 25: Activity Diagram of the 'newteammate' command*
 
 --------------------------------------------------------------------------------------------------------------------
 
