@@ -75,7 +75,7 @@ public class Allocation {
     public boolean hasSameRoom(Allocation otherAllocation) {
         return otherAllocation != null
                 && otherAllocation.getFloor().equals(getFloor())
-                && otherAllocation.getRoomNumber().equals(getFloor());
+                && otherAllocation.getRoomNumber().equals(getRoomNumber());
     }
 
     /**

@@ -2,6 +2,9 @@ package seedu.resireg.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.resireg.logic.commands.AllocateCommand.MESSAGE_ALLOCATION_EXISTS;
+import static seedu.resireg.logic.commands.AllocateCommand.MESSAGE_ROOM_ALREADY_ALLOCATED;
+import static seedu.resireg.logic.commands.AllocateCommand.MESSAGE_STUDENT_ALREADY_ALLOCATED;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
@@ -92,6 +95,24 @@ public class AllocateCommandTest {
     }
 
     @Test
+    public void execute_studentAlreadyAllocated_throwsCommandException() {
+        AllocateCommand allocateCommand = new AllocateCommand(INDEX_FIRST_PERSON, INDEX_FOURTH_ROOM);
+        assertCommandFailure(allocateCommand, model, history, MESSAGE_STUDENT_ALREADY_ALLOCATED);
+    }
+
+    @Test
+    public void execute_roomAlreadyAllocated_throwsCommandException() {
+        AllocateCommand allocateCommand = new AllocateCommand(INDEX_FOURTH_PERSON, INDEX_FIRST_ROOM);
+        assertCommandFailure(allocateCommand, model, history, MESSAGE_ROOM_ALREADY_ALLOCATED);
+    }
+
+    @Test
+    public void execute_allocationAlreadyExists_throwsCommandException() {
+        AllocateCommand allocateCommand = new AllocateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ROOM);
+        assertCommandFailure(allocateCommand, model, history, MESSAGE_ALLOCATION_EXISTS);
+    }
+
+    @Test
     public void equals() {
         AllocateCommand allocateFirstCommand = new AllocateCommand(INDEX_FOURTH_PERSON, INDEX_FOURTH_ROOM);
         AllocateCommand allocateSecondCommand = new AllocateCommand(INDEX_FIFTH_PERSON, INDEX_FIFTH_ROOM);
@@ -109,8 +130,15 @@ public class AllocateCommandTest {
         // null -> returns false
         assertFalse(allocateFirstCommand.equals(null));
 
-        // different student -> returns false
+        // different allocation -> returns false
         assertFalse(allocateFirstCommand.equals(allocateSecondCommand));
+
+        AllocateCommand allocateDifferentStudentCommand = new AllocateCommand(INDEX_FIFTH_PERSON, INDEX_FOURTH_ROOM);
+        AllocateCommand allocateDifferentRoomCommand = new AllocateCommand(INDEX_FOURTH_PERSON, INDEX_FIFTH_ROOM);
+
+        // different student -> returns false
+        assertFalse(allocateFirstCommand.equals(allocateDifferentStudentCommand));
+        assertFalse(allocateFirstCommand.equals(allocateDifferentRoomCommand));
     }
 
     /**
