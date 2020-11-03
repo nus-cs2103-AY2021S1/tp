@@ -1,9 +1,12 @@
 package seedu.address.model.student.academic.exam;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents an Exam in Reeve that can be assigned to a {@code Student}.
@@ -55,22 +58,32 @@ public class Exam {
      * Returns true if a given string is a valid date for {@code Exam}.
      */
     public static boolean isValidDate(String date) {
-        String validationRegex = "(\\d{1,2})(\\/)(\\d{1,2})(\\/)(\\d{2}|\\d{4})";
-        if (!date.matches(validationRegex)) {
+        Pattern validationRegex =
+                Pattern.compile("(?<day>[0-9]{1,2})(/)(?<month>[0-9]{1,2})(/)(?<year>[0-9]{2}|[0-9]{4})");
+
+        Matcher matcher = validationRegex.matcher(date);
+
+        if (!matcher.matches()) {
             return false;
         }
+        String day = matcher.group("day");
+        String month = matcher.group("month");
+        String year = matcher.group("year");
 
-        LocalDate testDate = null;
-
-        for (DateTimeFormatter format : new DateTimeFormatter[] {INPUT_DEF, INPUT_ALT}) {
-            try {
-                testDate = LocalDate.parse(date, format);
-                break;
-            } catch (DateTimeParseException ignored) {
-                // does not match the DateTimeFormat, try the next
-            }
+        if (year.length() < 4) {
+            year = "20" + year;
         }
-        return testDate != null;
+
+        int parseDay = Integer.parseInt(day);
+        int parseMonth = Integer.parseInt(month);
+        int parseYear = Integer.parseInt(year);
+
+        try {
+            LocalDate.of(parseYear, parseMonth, parseDay);
+            return true;
+        } catch (DateTimeException e) {
+            return false;
+        }
     }
 
     @Override
