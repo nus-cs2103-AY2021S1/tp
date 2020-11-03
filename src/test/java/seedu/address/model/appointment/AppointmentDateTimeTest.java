@@ -39,6 +39,6 @@ public class AppointmentDateTimeTest {
         assertFalse(AppointmentDateTime.isValidDateTime("2021-02-29 00:00"));
 
         // valid appointment datetime
-        assertTrue(AppointmentDateTime.isValidDateTime("2020-12-25 23:36"));
+        assertTrue(AppointmentDateTime.isValidDateTime("2025-12-25 23:36"));
     }
 }
