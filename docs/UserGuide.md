@@ -381,11 +381,11 @@ will match only Stock 1.
 <div markdown="block" class="alert alert-info">
 
 **:information_source:** 
-The links provided are for reference if you do not know how to use the respective commands.
+The links provided are for reference if you do not know how to use the respective commands mentioned.
 
 </div>
 
-Step 1. Start by [adding](#adding-new-stock-add) 3 stocks to your stock list.<br>
+**Step 1.** Start by [adding](#adding-new-stock-add) 3 stocks to your stock list.<br>
 `add n/apple juice s/ntuc l/fruits section a q/100`<br>
 `add n/banana bun s/ntuc l/fruits section b q/200`<br>
 `add n/pineapple tart s/cold storage l/fruits section c q/300`
@@ -395,7 +395,7 @@ The 3 stocks added should appear in your `Data` tab as shown in the image below.
 
 Let's find the stock with **name that contains `apple` or source that contains `cold`**.
 
-Step 2. Type the command `find n/apple s/cold` into the command box and enter. The result display should show
+**Step 2.** Type the command `find n/apple s/cold` into the command box and enter. The result display should show
 the keywords you searched for and how many stocks were found.<br>
 In this case, the two stocks with names `apple juice` and `pineapple tart` would be found.
 
@@ -406,7 +406,7 @@ You have successfully used the `find` command.
 
 Let's add an additional field into the search.
 
-Step 3. Type the command `find n/apple s/cold l/unknown` in the command box and enter.
+**Step 3.** Type the command `find n/apple s/cold l/unknown` in the command box and enter.
 The same two stocks as in Step 2 should be found as they still match `n/apple`. 
 
 **After input:**
@@ -423,21 +423,21 @@ and the correct command format for the `find` command.
 Continuing from the steps from the guided example above, 
 let's try finding by **entering nothing** as a keyword. 
 
-Step 4. Type `find n/` into the command box and enter. You will see that no stocks will be found.
+Type `find n/` into the command box and enter. You will see that no stocks will be found.
 
 **After input:**
 ![find-step-4](images/find/find-step-5.png)
 
-Let's try finding with an invalid prefix for the `find` command.
+Let's try finding with an **invalid prefix**: `/nt` for the `find` command.
 
-Step 5. Type `find nt/apple` into the command box and enter. 
+Type `find nt/apple` into the command box and enter. 
 
 **After input**:
 ![find-step-5](images/find/find-step-6.png)
 
-Let's try finding with a duplicate valid prefix for the `find` command.
+Let's try finding with a **duplicate** valid prefix for the `find` command.
 
-Step 6. Type `find n/apple n/pineapple` into the command box and enter.
+Type `find n/apple n/pineapple` into the command box and enter.
 
 **After input**:
 ![find-step-6](images/find/find-step-7.png)
@@ -507,12 +507,12 @@ will not match Stock 1 and Stock 2.
 <h4>Below is a guided example for finding stocks using the `findexact` command:</h4>
 <div markdown="block" class="alert alert-info">
 
-**:information_source:** The links provided are for reference if you do not know how to use the respective commands.
+**:information_source:** The links provided are for reference if you do not know how to use the respective commands mentioned.
 If you are continuing from the above `find` command tutorial, you may skip step 1.
 
 </div>
 
-Step 1. Start by [adding](#adding-new-stock-add) 3 stocks to your stock list. <br>
+**Step 1.** Start by [adding](#adding-new-stock-add) 3 stocks to your stock list. <br>
 `add n/apple juice s/ntuc l/fruits section a q/100`<br>
 `add n/banana bun s/ntuc l/fruits section b q/200`<br>
 `add n/pineapple tart s/cold storage l/fruits section c q/300`
@@ -522,7 +522,7 @@ The 3 stocks added should appear in your `Data` tab as shown in the image below.
 
 Let's find the stock with **name that contains `apple` and source that contains `cold`**.
 
-Step 2. Type the command `findexact n/apple s/cold` into the command box and enter. The result display should show
+**Step 2.** Type the command `findexact n/apple s/cold` into the command box and enter. The result display should show
 the keywords you searched for and how many stocks were found.<br>
 In this case, only one stock, with the name `pineapple tart`, would be found.
 
@@ -533,7 +533,7 @@ You have successfully used the `findexact` command.
 
 Let's add an additional field into the search.
 
-Step 3. Type the command `findexact n/apple s/cold l/unknown` and enter.
+**Step 3.** Type the command `findexact n/apple s/cold l/unknown` and enter.
 No stock should be found as there is no stock with the location unknown.
 
 **After input:**
@@ -543,8 +543,8 @@ You are now done with the guided tutorial for `findexact`.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning:** For cases where the `findexact` command does not work,
-refer to the section where the `find` command does not work, at the `find` command guided tutorial Steps 5 to 7,
+**:warning:** Cases where the `findexact` command does not work are the same as those in
+the warning section in the [`find` command](#find-stocks-from-inventory-find) section,
 with the replacement of the `find` command with the `findexact` command.
 
 </div>
@@ -617,7 +617,7 @@ note sn/SHENG SIONG1 nt/chicken will expire soon
 
 <h4>Below is a guided example for adding notes to stocks:</h4>
 
-Step 1. Start with [adding](#adding-new-stock-add) these 3 stocks in your
+**Step 1.** Start with [adding](#adding-new-stock-add) these 3 stocks in your
 stock book in your `Data` tab as shown in the image below.
 
 ![note-step-1](images/note/note-step-1.png)
@@ -631,7 +631,7 @@ Just make sure that the serial number of the stock you are adding the note to is
 
 Let's add a note to stock with name Apple juice.
 
-Step 2. Type `note sn/ntuc1 nt/buy on wednesday` into the command box and enter. You will see the note
+**Step 2.** Type `note sn/ntuc1 nt/buy on wednesday` into the command box and enter. You will see the note
 added to the stock with name Apple juice at note index 1 in the Notes column.
 
 **After input:**
@@ -639,7 +639,7 @@ added to the stock with name Apple juice at note index 1 in the Notes column.
 
 Let's add different note to the same stock as in Step 2.
 
-Step 3. Type `note sn/ntuc1 nt/another note for the SAME stock!` into the command box and enter.
+**Step 3.** Type `note sn/ntuc1 nt/another note for the SAME stock!` into the command box and enter.
 You will see the note added to the stock with name Apple juice at note index 2 in the Notes column.
 
 **After input:**
@@ -647,7 +647,7 @@ You will see the note added to the stock with name Apple juice at note index 2 i
 
 Let's add a note to a different stock from that in Steps 1 and 2.
 
-Step 4. Type `note sn/COLD STORAGE1 nt/3 pineapple tarts JUST arrived` into the command box and enter.
+**Step 4.** Type `note sn/COLD STORAGE1 nt/3 pineapple tarts JUST arrived` into the command box and enter.
 You will see the note added to the stock with name Pineapple tart at note index 1 in the Notes column.
 
 **After input:**
@@ -674,14 +674,14 @@ Type `note sn/unknown1 nt/note` in the command box and enter.
 **After input:**
 ![note-step-6](images/note/note-step-6.png)
 
-Let's try adding a note but with an invalid prefix: `n/` for the `note` command.
+Let's try adding a note but with an **invalid prefix**: `n/` for the `note` command.
 
 Type `note sn/ntuc1 nt/valid note n/invalid` into the command box.
 
 **After input:**
 ![note-step-7](images/note/note-step-7.png)
 
-Let's try adding a note but with a duplicate valid prefix for the `note` command.
+Let's try adding a note but with a **duplicate** valid prefix for the `note` command.
 
 Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter.
 
@@ -715,7 +715,7 @@ notedelete sn/ntuc1 ni/1
 
 <h4>Below is a guided example for deleting notes from stocks:</h4>
 
-Step 1. Start with these stocks in your stock book in your `Data` tab as shown in the image below.
+**Step 1.** Start with these stocks in your stock book in your `Data` tab as shown in the image below.
 
 ![notedelete-step-1](images/note/notedelete-step-1.png)
 
@@ -730,7 +730,7 @@ Use the `list lt/all` command to show all the stocks in the stock book in the `D
 
 Let's delete a note from the stock with name Pineapple tart.
 
-Step 2. Type `notedelete sn/cold storage1 ni/2` into the command box and enter. 
+**Step 2.** Type `notedelete sn/cold storage1 ni/2` into the command box and enter. 
 You will see that the note at note index 2, `pineapple tarts for CNY`
 of the stock with serial number `coldstorage1` has been deleted.
 
@@ -741,7 +741,7 @@ You have successfully used the `notedelete` command.
 
 Let's try deleting all the notes from the stock with serial number `ntuc1` with one command.
 
-Step 3. Type `notedelete sn/ntuc1 ni/0` into the command box and enter.
+**Step 3.** Type `notedelete sn/ntuc1 ni/0` into the command box and enter.
 You will see that all the notes of the stock with serial number `ntuc1` has been deleted.
 
 **After input:**
@@ -762,14 +762,14 @@ Type `note sn/unknown1 nt/note` in the command box and enter.
 **After input:**
 ![note-step-6](images/note/note-step-6.png)
 
-Let's try adding a note but with an invalid prefix: `n/` for the `note` command.
+Let's try adding a note but with an **invalid prefix**: `n/` for the `note` command.
 
 Type `note sn/ntuc1 nt/valid note n/invalid` into the command box.
 
 **After input:**
 ![note-step-7](images/note/note-step-7.png)
 
-Let's try adding a note but with a duplicate valid prefix for the `note` command.
+Let's try adding a note but with a **duplicate** valid prefix for the `note` command.
 
 Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter.
 
@@ -802,16 +802,21 @@ stockview sn/ntuc1
 ```
 
 <h4>Below is a guided example for viewing a stock:</h4>
+<div markdown="block" class="alert alert-info">
 
+**:information_source:** 
+The links provided are for reference if you do not know how to use the respective commands mentioned.
+
+</div>
 Let's see what the `Stock View` tab looks like first before using the `stockview` command.
 
-Step 0. When you start up Warenager, click into the `Stock View` tab and it should
+**Step 0.** When you start up Warenager, click into the `Stock View` tab and it should
 look as shown in the image below.
 
 **Clicking into the `Stock View` tab:**
 ![stockview-step-0](images/stockview/stockview-step-0.png)
 
-Step 1. Start with these stocks in your stock book in your `Data` tab as shown in the image below.
+**Step 1.** Start with these stocks in your stock book in your `Data` tab as shown in the image below.
 
 ![stockview-step-1](images/stockview/stockview-step-1.png)
 
@@ -825,7 +830,7 @@ from the stock is correctly entered.
 
 Let's view the stock with serial number `COLD STORAGE1`.
 
-Step 2. Type `stockview sn/cold storage1` into the command box and enter. 
+**Step 2.** Type `stockview sn/cold storage1` into the command box and enter. 
 You will be brought to the `Stock View` tab with the stock details shown as in the image below.
 
 **After input:**
@@ -837,7 +842,7 @@ Let's try [updating](#update-inventory-update) the stock that you have just view
 You may skip this Step 3 and just read through what will happen if you do not want to
 update your stock.
 
-Step 3. Type `update sn/cold storage1 n/pineapple tart 2` into the command box and enter.
+**Step 3.** Type `update sn/cold storage1 n/pineapple tart 2` into the command box and enter.
 You will be brought back to the `Data` tab with the stock's name updated. Click back to
 the `Stock View` tab and you will see that the information for the stock that was viewed
 has been updated.
@@ -859,7 +864,7 @@ Let's try [deleting](#deleting-of-stock-delete) the stock that you have just vie
 You may skip this Step 4 and just read through what will happen if you do not want to
 delete your stock.
 
-Step 4. Type `delete sn/cold storage1` into the command box and enter.
+**Step 4.** Type `delete sn/cold storage1` into the command box and enter.
 You should be brought back to the `Data` tab with the stock deleted. Click back to the
 `Stock View` tab and you should see that the `Stock View` tab has been emptied as the stock
 is no longer in your stock book.
@@ -891,14 +896,14 @@ Type `stockview sn/unknown1` in the command box and enter.
 **After input:**
 ![stockview-unknown](images/stockview/stockview-step-5.png)
 
-Let's try viewing a stock but with an invalid prefix: `n/` for the `stockview` command.
+Let's try viewing a stock but with an **invalid prefix**: `n/` for the `stockview` command.
 
 Type `stockview sn/ntuc1 n/invalid` into the command box and enter.
 
 **After input:**
 ![stockview-invalid](images/stockview/stockview-step-6.png)
 
-Let's try viewing a stock but with a duplicate valid serial number prefix.
+Let's try viewing a stock but with a **duplicate** valid serial number prefix.
 
 Type `stockview sn/ntuc1 sn/ntuc2` into the command box and enter.
 
