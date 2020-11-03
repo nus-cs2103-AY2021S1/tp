@@ -22,12 +22,6 @@ class JsonAdaptedWeekNumber {
         this.weekNumber = weekNumber;
     }
 
-
-    @JsonValue
-    public String getWeekNumber() {
-        return weekNumber;
-    }
-
     /**
      * Converts this Jackson-friendly adapted week number object into a string.
      *

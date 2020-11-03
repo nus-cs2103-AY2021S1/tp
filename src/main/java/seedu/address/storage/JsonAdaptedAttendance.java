@@ -36,6 +36,7 @@ class JsonAdaptedAttendance {
      * Converts a given {@code Attendance} into this class for Jackson use.
      */
     public JsonAdaptedAttendance (Attendance source) {
+        assert source != null;
         boolean[] attendanceRecords = source.getIsPresent();
         List<String> attendanceRecordsString = new ArrayList<>();
         for (int i = 0; i < attendanceRecords.length; i++) {
