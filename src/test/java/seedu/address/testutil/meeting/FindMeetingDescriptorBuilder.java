@@ -14,8 +14,10 @@ import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.StartTimeContainsKeywordsPredicate;
 import seedu.address.model.meeting.VenueContainsKeywordsPredicate;
 
+//@@author Christopher-LM
 /**
  * A utility class to help with building FindPropertyDescriptor objects.
+ * @author christophermervyn
  */
 public class FindMeetingDescriptorBuilder {
 
