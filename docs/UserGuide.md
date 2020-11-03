@@ -502,6 +502,7 @@ Constraints:
 - Ingredient names should not be empty
 - Steps should not be empty
 - Tag names should not be empty
+- Quantities (`/qty`) must only appear after an `/ingredient`
 
 If an ingredient is specified without a quantity, it is treated *as if* you used `/qty 1`. This works for counted ingredients (eg. eggs), but it will cause errors for other ingredients (eg. volume of milk).
 

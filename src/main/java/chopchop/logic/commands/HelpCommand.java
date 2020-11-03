@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import java.util.function.Function;
 
+import chopchop.commons.core.Log;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.history.HistoryManager;
@@ -16,6 +17,7 @@ public class HelpCommand extends Command {
 
     private static final String METHOD_NAME_GET_CMD = "getCommandString";
     private static final String METHOD_NAME_GET_HELP = "getCommandHelp";
+    private static final Log logger = new Log(HelpCommand.class);
 
     private final Optional<String> helpCommand;
     private final Optional<String> helpTarget;
@@ -57,13 +59,12 @@ public class HelpCommand extends Command {
         var ret = CommandResult.message("%s: %s", cmdStr, cmdHelp);
 
         if (!ugSection.endsWith("Dummy")) {
-            ret = ret
-                .appending("see the", /* newline: */ true)
+            return ret.appending("see the", /* newline: */ true)
                 .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + ugSection,
                     /* newline: */ false);
+        } else {
+            return ret;
         }
-
-        return ret;
     }
 
 
@@ -94,7 +95,6 @@ public class HelpCommand extends Command {
             target = "ingredient";
         }
 
-        //todo: stats commands have 3 keywords tho
         for (var cmdName : Strings.COMMAND_NAMES) {
 
             if (!cmdName.equals(cmd)) {
@@ -107,22 +107,22 @@ public class HelpCommand extends Command {
                 + camelCasing.apply(extraTarget)
                 + "Command";
 
-            System.out.printf("searching for class '%s'\n", className);
+            logger.debug("searching for class '%s'", className);
             try {
                 return Class.forName(className);
             } catch (ClassNotFoundException e) {
                 try {
-
                     // try to find the dummy class.
                     var dummyPkg = "chopchop.logic.commands.HelpCommand$";
                     className = dummyPkg
                         + camelCasing.apply(cmdName)
                         + "CommandDummy";
 
-                    System.out.printf("searching for dummy class '%s'\n", className);
+                    logger.debug("not found, searching for dummy class '%s'", className);
                     return Class.forName(className);
 
                 } catch (ClassNotFoundException e1) {
+                    logger.debug("dummy class not found either");
                     break;
                 }
             }
@@ -143,7 +143,7 @@ public class HelpCommand extends Command {
 
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             // do nothing, but exit the branch and return the error.
-            System.err.printf("Command class '%s' had no method '%s': %s\n", cls, methodName, e);
+            logger.error("command class '%s' had no method '%s': %s", cls, methodName, e);
         }
 
         return null;
