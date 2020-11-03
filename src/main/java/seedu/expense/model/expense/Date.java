@@ -49,8 +49,12 @@ public class Date {
     public static boolean isValidDate(String test) {
         if (test.matches(VALIDATION_REGEX)) {
             try {
-                LocalDate.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-                return true;
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate date = LocalDate.parse(test, format);
+                if (date.format(format).equals(test)) {
+                    return true;
+                }
+                return false;
             } catch (DateTimeParseException e) {
                 return false;
             }

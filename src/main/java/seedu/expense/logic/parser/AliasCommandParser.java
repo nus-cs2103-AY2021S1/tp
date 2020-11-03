@@ -17,7 +17,6 @@ public class AliasCommandParser implements Parser<AliasCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AliasCommand parse(String args) throws ParseException {
-        // argMultimap stores mapping of prefixes to respective arguments
         String[] argsArr = args.trim().split("\\s+");
 
         if (argsArr.length != 2) {

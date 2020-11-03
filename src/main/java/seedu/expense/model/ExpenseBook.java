@@ -12,6 +12,7 @@ import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
+import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 import seedu.expense.model.tag.UniqueTagList;
 
@@ -111,7 +112,14 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
         budgets.topupBudget(amount);
     }
 
+    /**
+     * Tops up a category budget.
+     * @throws CategoryNotFoundException if requested category does not exist.
+     */
     public void topupCategoryBudget(Tag category, Amount amount) {
+        if (!tags.contains(category)) {
+            throw new CategoryNotFoundException(category);
+        }
         budgets.topupCategoryBudget(category, amount);
     }
 
@@ -135,6 +143,9 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      */
     public void deleteCategory(Tag tag) {
         requireNonNull(tag);
+        if (!tags.contains(tag)) {
+            throw new CategoryNotFoundException(tag);
+        }
         tags.remove(tag);
         budgets.remove(new CategoryBudget(tag));
         expenses.resetExpenseCategory(expense -> expense.getTag().equals(tag));
@@ -166,6 +177,11 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      */
     public void addExpense(Expense p) {
         requireNonNull(p);
+
+        if (!tags.contains(p.getTag())) {
+            throw new CategoryNotFoundException(p.getTag());
+        }
+
         expenses.add(p);
     }
 
@@ -177,6 +193,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      */
     public void setExpense(Expense target, Expense editedExpense) {
         requireNonNull(editedExpense);
+
+        if (!tags.contains(editedExpense.getTag())) {
+            throw new CategoryNotFoundException(editedExpense.getTag());
+        }
 
         expenses.setExpense(target, editedExpense);
     }
@@ -215,7 +235,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * @see UniqueExpenseList#tallyExpenses()
      */
     @Override
-    public double tallyExpenses() {
+    public Amount tallyExpenses() {
         return expenses.tallyExpenses();
     }
 
@@ -233,7 +253,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * @see UniqueCategoryBudgetList#tallyAmounts()
      */
     @Override
-    public double tallyBudgets() {
+    public Amount tallyBudgets() {
         return budgets.tallyAmounts();
     }
 
@@ -243,8 +263,8 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * @return tallied balance of the expense book
      */
     @Override
-    public double tallyBalance() {
-        return tallyBudgets() - tallyExpenses();
+    public Amount tallyBalance() {
+        return tallyBudgets().subtract(tallyExpenses());
     }
 
     //// util methods

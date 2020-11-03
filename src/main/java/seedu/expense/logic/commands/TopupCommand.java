@@ -6,6 +6,7 @@ import static seedu.expense.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
+import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.tag.Tag;
@@ -26,7 +27,9 @@ public class TopupCommand extends Command {
             + PREFIX_AMOUNT + "59.90 "
             + PREFIX_TAG + "Food";
 
-    public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%.02f";
+    public static final String MESSAGE_SUCCESS = "New budget amount for %s: $%s";
+    public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. "
+            + "If you need to, please add it using the \"AddCat\" command first.";
 
     private final Amount toAdd;
     private final Tag category;
@@ -51,12 +54,16 @@ public class TopupCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasCategory(category)) {
+            throw new CommandException(String.format(MESSAGE_INVALID_CATEGORY, category));
+        }
 
         model.topupCategoryBudget(category, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, category.tagName,
-                model.getTotalBudget().getAmount().asDouble()));
+                model.getCategoryBudget(category).getAmount()));
     }
 
     @Override

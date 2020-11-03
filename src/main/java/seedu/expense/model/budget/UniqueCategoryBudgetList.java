@@ -7,6 +7,7 @@ import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,15 +76,15 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
      * Calculates the sum of the budgets in the category-budgets list.
      * @return sum of budgets.
      */
-    public double tallyAmounts() {
+    public Amount tallyAmounts() {
         int size = filteredList.size();
-        double sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
-            ? defaultCategory.getAmount().asDouble()
-            : 0;
-        assert sum >= 0;
+        Amount sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
+            ? defaultCategory.getAmount()
+            : Amount.zeroAmount();
+        assert sum.greaterThanEquals(Amount.zeroAmount());
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
-            sum += i.next().getAmount().asDouble();
+            sum = sum.add(i.next().getAmount());
         }
         return sum;
     }
@@ -134,6 +135,29 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     }
 
     /**
+     * Returns the {@code CategoryBudget} corresponding to the specified category.
+     *
+     * @throws CategoryBudgetNotFoundException if the supplied category does not exist in the list of category-budgets.
+     */
+    public CategoryBudget getCategoryBudget(Tag category) {
+        requireNonNull(category);
+
+        if (category.equals(DEFAULT_TAG)) {
+            return getDefaultCategory();
+        }
+
+        List<CategoryBudget> categoryBudgets = internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .collect(Collectors.toList());
+
+        if (categoryBudgets.isEmpty()) {
+            throw new CategoryBudgetNotFoundException();
+        }
+
+        return categoryBudgets.get(0);
+    }
+
+    /**
      * Tops up the {@code CategoryBudget} that matches the specified category by the given amount {@code toAdd}.
      */
     public void topupCategoryBudget(Tag category, Amount toAdd) {
@@ -150,7 +174,7 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     @Override
     public Amount getAmount() {
-        return new Amount(tallyAmounts());
+        return tallyAmounts();
     }
 
     @Override

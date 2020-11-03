@@ -12,6 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.Statistics;
+import seedu.expense.model.expense.Amount;
 
 /**
  * A ui for the budget balance to be displayed to the user.
@@ -19,7 +20,7 @@ import seedu.expense.model.Statistics;
 public class BudgetDisplay extends UiPart<Region> {
 
     private static final String FXML = "BudgetDisplay.fxml";
-    private static final String BUDGET_BALANCE = "$%.02f / $%.02f";
+    private static final String BUDGET_BALANCE = "$%s / $%s";
     private static final String HEADER_MESSAGE = "Budget balance:";
     private static final String GREEN_BAR_STYLE_CLASS = "green-bar";
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
@@ -69,11 +70,16 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Progress as double.
      */
     private double getProgress() {
-        double budgetAmount = statistics.tallyBudgets();
-        assert budgetAmount >= 0;
-        double expensesSum = statistics.tallyExpenses();
-        assert expensesSum >= 0;
-        return 1 - expensesSum / budgetAmount;
+        Amount budgetAmount = statistics.tallyBudgets();
+        assert budgetAmount.greaterThanEquals(Amount.zeroAmount());
+        Amount expensesSum = statistics.tallyExpenses();
+        assert expensesSum.greaterThanEquals(Amount.zeroAmount());
+
+        if (budgetAmount.equals(new Amount(0))) {
+            return -1 / 0.0;
+        } else {
+            return 1 - (expensesSum.getDollarAsDoubleValue() / budgetAmount.getDollarAsDoubleValue());
+        }
 
     }
 
@@ -83,8 +89,8 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Formatted budget balance as String.
      */
     private String budgetBalance() {
-        double budgetAmount = statistics.tallyBudgets();
-        double balance = statistics.tallyBalance();
+        Amount budgetAmount = statistics.tallyBudgets();
+        Amount balance = statistics.tallyBalance();
         return String.format(BUDGET_BALANCE, balance, budgetAmount);
     }
 
@@ -130,4 +136,27 @@ public class BudgetDisplay extends UiPart<Region> {
 
     }
 
+    /**
+     * Shows the budget display
+     */
+    public void show() {
+        logger.fine("Showing budget display bar.");
+        getRoot().setVisible(true);
+    }
+
+    /**
+     * Hides the budget display.
+     */
+    public void hide() {
+        getRoot().setVisible(false);
+    }
+
+    /**
+     * Returns the visibility of budget display
+     *
+     * @return visibility of budget display
+     */
+    public boolean isVisible() {
+        return getRoot().isVisible();
+    }
 }
