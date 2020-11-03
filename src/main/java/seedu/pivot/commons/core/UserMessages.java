@@ -29,4 +29,8 @@ public class UserMessages {
     public static final String MESSAGE_ERROR_OPENING_FILE = "There was an error opening your file!";
     public static final String MESSAGE_DESKTOP_API_NOT_AVAILABLE = "Desktop API is not available, "
             + "we are unable to open your file.";
+
+    //Duplicate Messages
+    public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+
 }

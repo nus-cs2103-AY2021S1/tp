@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.documentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_DOCUMENT;
 import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
@@ -90,6 +91,12 @@ public class EditDocumentCommand extends EditCommand {
         //edit document in case
         Document editedDocument =
                 new Document(name.orElse(documentToEdit.getName()), reference.orElse(documentToEdit.getReference()));
+
+        //check for duplicate
+        if (documents.contains(editedDocument)) {
+            logger.warning("Failed to edit document: Edited to a document that exists in PIVOT");
+            throw new CommandException(MESSAGE_DUPLICATE_DOCUMENT);
+        }
 
         documents.set(documentIndex.getZeroBased(), editedDocument);
 
