@@ -10,11 +10,12 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.preset.Preset;
+import seedu.address.model.profile.Profile;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetManagerStorage {
+public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetManagerStorage, ProfileManagerStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -39,5 +40,14 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetMan
 
     @Override
     void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException;
+
+    @Override
+    Path getProfileManagerFilePath();
+
+    @Override
+    Optional<Profile> readProfileManager() throws DataConversionException;
+
+    @Override
+    void saveProfileManager(Profile profile, Path filepath) throws IOException;
 
 }
