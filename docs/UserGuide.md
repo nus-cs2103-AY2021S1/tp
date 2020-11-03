@@ -140,7 +140,6 @@ Examples:
 Steps for adding a flashcard with diagrams:
 
 ![filedirectory](images/ug/ug_add_step1.png)
-<br>
 
 ![filedirectory](images/ug/ug_add_step1.1.png)
 
