@@ -77,7 +77,7 @@ This document is written in a manner where formatting is applied to text in orde
 | ------------- | ------------------------------------------------------------ |
 | `code`        | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
 | *Italics*     | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
-| [Underline]() | Words that are underlined refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| [Underline]() | Words that are in blue and underlined when hovered over refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
 | **Bold**      | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
 
 ### 2.3 Command Format
