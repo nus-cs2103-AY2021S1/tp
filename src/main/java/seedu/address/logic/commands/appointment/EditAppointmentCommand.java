@@ -39,7 +39,7 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_APP_STARTTIME + "START_TIME] "
             + "[" + PREFIX_APP_DURATION + "DURATION_IN_MINUTES]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APP_STARTTIME + "2020-12-23 11:00 "
+            + PREFIX_APP_STARTTIME + "23/12/2020 11:00 "
             + PREFIX_APP_DURATION + "40";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited appointment:\n%1$s\n\n"
