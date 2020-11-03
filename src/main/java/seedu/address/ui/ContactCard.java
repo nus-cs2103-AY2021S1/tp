@@ -35,7 +35,7 @@ public class ContactCard extends UiPart<Region> {
     private Label isImportant;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCode} with the given {@code Contact} and index to display.
      */
     public ContactCard(Contact contact, int displayedIndex) {
         super(FXML);
@@ -47,7 +47,7 @@ public class ContactCard extends UiPart<Region> {
         if (contact.getTelegram().isPresent()) {
             telegram.setText(contact.getTelegram().get().telegramUsername);
         } else {
-            telegram.setText("No telegram");
+            telegram.setText("-");
         }
 
         contact.getTags().stream()

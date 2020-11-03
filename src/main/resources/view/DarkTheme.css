@@ -96,7 +96,8 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 10 5 5 5;
+    -fx-background-radius: 25px;
 }
 
 .list-cell:filled:even {
@@ -116,20 +117,36 @@
     -fx-border-width: 1;
 }
 
-.list-cell .label {
-    -fx-text-fill: white;
+#contactListView {
+    -fx-background-insets: 0;
+    -fx-background-radius: 15px;
+    -fx-padding: 25px 15px 10px 10px;
+}
+
+#personListView {
+    -fx-background-insets: 0;
+    -fx-background-radius: 15px;
+    -fx-padding: 25px 15px 10px 10px;
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Segoe UI";
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-fill: white;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: white;
+}
+
+.cell_small_label_header {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFEBCD;
 }
 
 .stack-pane {
@@ -345,8 +362,8 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
-    -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-padding: 5 5 5 5;
+    -fx-border-radius: 1;
+    -fx-background-radius: 10px;
+    -fx-font-size: 13;
 }
