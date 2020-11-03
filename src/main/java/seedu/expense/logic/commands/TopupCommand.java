@@ -63,7 +63,7 @@ public class TopupCommand extends Command {
 
         model.topupCategoryBudget(category, toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, category.tagName,
-                model.getCategoryBudget(category).getAmount().asDouble()));
+                model.getCategoryBudget(category).getAmount()));
     }
 
     @Override

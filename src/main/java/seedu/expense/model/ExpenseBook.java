@@ -235,7 +235,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * @see UniqueExpenseList#tallyExpenses()
      */
     @Override
-    public double tallyExpenses() {
+    public Amount tallyExpenses() {
         return expenses.tallyExpenses();
     }
 
@@ -253,7 +253,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * @see UniqueCategoryBudgetList#tallyAmounts()
      */
     @Override
-    public double tallyBudgets() {
+    public Amount tallyBudgets() {
         return budgets.tallyAmounts();
     }
 
@@ -263,8 +263,8 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * @return tallied balance of the expense book
      */
     @Override
-    public double tallyBalance() {
-        return tallyBudgets() - tallyExpenses();
+    public Amount tallyBalance() {
+        return tallyBudgets().subtract(tallyExpenses());
     }
 
     //// util methods
