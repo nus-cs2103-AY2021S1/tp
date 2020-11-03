@@ -88,7 +88,7 @@ Format: `INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLES_WO
 - You can remove all the exercise's tags by typing t/ without specifying any tags after it.
 
 Examples:
-- `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `07-09-2020`, `260`, `chest,arm`, and `[home, gym]` respectively.
+- `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `09-07-2020`, `260`, `chest,arm`, and `[home, gym]` respectively.
 
 ## 3.4. Delete : `delete`
 Deletes an exercise that a user has previously added.
