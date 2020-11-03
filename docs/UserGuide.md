@@ -1035,39 +1035,44 @@ can be found at Warenager's Developer Guide.
 
 </div>
 
-<h4>Examples</h4>
+<h4>Below is a guided example for command suggestion:</h4>
 
-```
-del
-```
-Warenager will suggest:
-```
-delete sn/<serial number>
-```
+The list shown below will be the basis reference for this guided example. <br>
 
-```
-delt sn/NUS1
-```
-Warenager will suggest:
-```
-delete sn/NUS1
-```
+![suggestion_step1](images/suggestion/suggestion_step1.png)
 
-```
-ad n/Thai Tea s/Fairprice q/100
-```
-Warenager will suggest: 
-```
-add n/Thai Tea s/Fairprice q/100 l/<location>
-```
+Suppose now we want to add a new stock with the following description:
+* name: tomato
+* source: fairprice
+* quantity: 500
+* low quantity: 100
+* location: vegetable section
 
-```
-list n/Duck q/100
-```
-Warenager will suggest: 
-```
-list lt/all
-```
+A valid input would be `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
+
+But we make a mistake and instead entered `ad n/eggplant sn/fairprice q/500 l/vegetable section lq/100`
+
+**Before input**:
+
+![suggestion_step2](images/suggestion/suggestion_step2.png)
+
+**After input**:
+
+![suggestion_step3](images/suggestion/suggestion_step3.png)
+
+As shown above, the suggestion `add n/eggplant s/<source> q/500 l/vegetable section lq/100` is generated.
+Now we can amend our input according to the suggested format.
+We now enter a valid input `add n/eggplant s/fairprice q/500 l/vegetable section lq/100`.
+
+**Before input**:
+
+![suggestion_step4](images/suggestion/suggestion_step4.png)
+
+**After input**:
+
+![suggestion_step5](images/suggestion/suggestion_step5.png)
+
+As shown above, the stock has been successfully added.
 
 ### Generates a CSV file that contains all stocks: `print`
 Generates a CSV file that contains all stocks. Csv file will be named according to the user input, and the file name
