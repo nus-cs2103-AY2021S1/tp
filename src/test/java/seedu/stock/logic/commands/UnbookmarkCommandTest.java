@@ -16,7 +16,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.commons.util.SortUtil;
-import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
 import seedu.stock.model.UserPrefs;
@@ -89,7 +88,7 @@ public class UnbookmarkCommandTest {
         SerialNumber invalidSerialNumber = new SerialNumber("ABC1");
 
         Stock firstStock = model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased());
-        Stock invalidSerialNumberStock  = new StockBuilder(firstStock).copyOfStockBuilder()
+        Stock invalidSerialNumberStock = new StockBuilder(firstStock).copyOfStockBuilder()
                 .withSerialNumber("ABC1").build();
 
         serialNumbersToUnbookmark.add(invalidSerialNumber);

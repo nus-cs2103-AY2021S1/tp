@@ -87,7 +87,7 @@ public class BookmarkCommandTest {
         SerialNumber invalidSerialNumber = new SerialNumber("ABC1");
 
         Stock firstStock = model.getFilteredStockList().get(INDEX_FIRST_STOCK.getZeroBased());
-        Stock invalidSerialNumberStock  = new StockBuilder(firstStock).copyOfStockBuilder()
+        Stock invalidSerialNumberStock = new StockBuilder(firstStock).copyOfStockBuilder()
                 .withSerialNumber("ABC1").build();
 
         serialNumbersToBookmark.add(invalidSerialNumber);
