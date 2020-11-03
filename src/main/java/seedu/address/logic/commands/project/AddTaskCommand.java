@@ -30,6 +30,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TASK_DEADLINE + "29-02-2020 00:00:00";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_DUPLICATE_TASK = "Project already contains %1$s";
 
     private final Task toAdd;
 
@@ -45,7 +46,9 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        project.addTask(toAdd);
+        if (!project.addTask(toAdd)) {
+            return new CommandResult(String.format(MESSAGE_DUPLICATE_TASK, toAdd));
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
