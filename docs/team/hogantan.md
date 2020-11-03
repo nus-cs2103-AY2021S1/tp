@@ -44,12 +44,12 @@ interested in using the product.
 * **Enhancements to existing features**:
     * Laid down the structure of the student class. ([\#42](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/42))
     * Updated the add command to accommodate student class. ([\#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62))
-    * Updated the GUI color scheme and layout. ([\#76](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/76))([\#81](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/81))
+    * Updated the GUI color scheme and layout. ([\#76](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/76) and [\#81](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/81))
     * Updated UG structure and flow. ([\#126](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/126))
     
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add` ([\#82](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/82)), `exam` ([\#117](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/117))([\#141](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/141)) and `toggle` ([\#134](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/134)).
+        * Added documentation for the features `add` ([\#82](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/82)), `exam` ([\#117](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/117) and [\#141](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/141)) and `toggle` ([\#134](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/134)).
         * Added introduction and prefaces to various sections ([\#126](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/126))
     * Developer Guide:
         * Added implementation details of the `add` ([\#100](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/100)), `exam` (to be added) `toggle` (to be added) features.
