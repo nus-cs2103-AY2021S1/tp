@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.FindTaskCommand;
@@ -38,9 +37,9 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
                                             PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
 
-        if (!isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
+        if (!Parser.isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", FindTaskCommand.MESSAGE_USAGE));
         }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
@@ -83,13 +82,4 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
         }
         values.forEach(val -> predicate.setKeyword(prefix, val));
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

@@ -42,7 +42,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TAG, PREFIX_DAY, PREFIX_START_DATE, PREFIX_END_DATE,
                 PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", LessonCommand.MESSAGE_USAGE));
         }
         Description description = Description.defaultDescription();
 
@@ -71,7 +71,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
             endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
         } else {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
         }
         if (!isStartTimeBeforeEndTime(startTime, endTime)) {
             throw new ParseException(Time.RANGE_CONSTRAINTS);

@@ -10,11 +10,12 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class DateUtil {
-
+    public static final String DATE_CONSTRAINTS =
+            "Date should be a valid date in the format of dd-MM-yyyy.";
     public static final String TIME_CONSTRAINTS =
-            "Time should be valid and in the format of HH:mm.";
+            "Time should be a valid time in the format of HH:mm.";
     public static final String DATE_TIME_CONSTRAINTS =
-            "DateTime should be in the format of dd-MM-yyyy HH:mm.";
+            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm.";
     public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
             .withResolverStyle(ResolverStyle.STRICT);

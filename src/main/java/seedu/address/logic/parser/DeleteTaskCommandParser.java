@@ -22,7 +22,8 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             return new DeleteTaskCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(),
+                            DeleteTaskCommand.MESSAGE_USAGE), pe);
         }
     }
 

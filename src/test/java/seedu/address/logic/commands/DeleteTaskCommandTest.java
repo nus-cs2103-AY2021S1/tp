@@ -75,7 +75,7 @@ public class DeleteTaskCommandTest {
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(indexes);
 
-        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+        assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_DUPLICATE_INDEX);
     }
 
     @Test

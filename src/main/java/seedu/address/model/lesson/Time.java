@@ -26,18 +26,9 @@ public class Time {
     public Time(String time) {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTime(time), DateUtil.TIME_CONSTRAINTS);
         value = LocalTime.parse(time, DateUtil.TIME_FORMATTER);
         isDefault = false;
-    }
-
-    /**
-     * Constructs a default {@code Time}.
-     *
-     * Caveat: Only called by defaultTime method.
-     */
-    private Time() {
-        value = DEFAULT_TIME; // a dummy value
-        isDefault = true;
     }
 
     /**

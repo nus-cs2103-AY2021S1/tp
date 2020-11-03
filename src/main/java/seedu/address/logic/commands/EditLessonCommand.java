@@ -38,7 +38,7 @@ public class EditLessonCommand extends Command {
     public static final String COMMAND_WORD = "edit-lesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the lesson identified "
-            + "by the index number used in the displayed task list. "
+            + "by the index number used in the displayed lesson list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
@@ -115,7 +115,7 @@ public class EditLessonCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Task} with the details of {@code taskToEdit}
+     * Creates and returns a {@code Lesson} with the details of {@code lessonToEdit}
      * edited with {@code editLessonDescriptor}.
      */
     private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
@@ -153,8 +153,8 @@ public class EditLessonCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the task with. Each non-empty field value will replace the
-     * corresponding field value of the task.
+     * Stores the details to edit the lesson with. Each non-empty field value will replace the
+     * corresponding field value of the lesson.
      */
     public static class EditLessonDescriptor {
         private Title title;

@@ -166,9 +166,9 @@ Format: `list-task`
 Users can add a deadline to PlaNus.
 <br>
 
-A deadline is a task that has a compulsary deadline date and time.
+A deadline is a task that has a compulsory deadline date and time.
 
-Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
+Format: `deadline title:TITLE [desc:DESCRIPTION] datetime:DATE_TIME [tag:MODULE_CODE]`
 
 * Adds a deadline to PlaNus,
     * with the specified title in `title:TITLE`,
