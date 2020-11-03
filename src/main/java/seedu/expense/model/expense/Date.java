@@ -51,7 +51,7 @@ public class Date {
             try {
                 LocalDate date = LocalDate.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
                 // yyyy-MM-dd
-                String reformattedTest = test.substring(6) + test.substring(2,6) + test.substring(0,2);
+                String reformattedTest = test.substring(6) + test.substring(2, 6) + test.substring(0, 2);
                 if (date.toString().equals(reformattedTest)) {
                     return true;
                 }
