@@ -38,7 +38,7 @@ import seedu.address.model.student.admin.PaymentDate;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser extends PrefixDependentParser<AddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -49,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
+        if (!areRequiredPrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
