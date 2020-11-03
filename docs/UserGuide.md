@@ -254,15 +254,15 @@ Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 Edits the indicated task in a project.
 
 Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] `
-  - INDEX field is necessary to include.
+  - Edits the task at the specified index.
+  - The index refers to the index number shown in the displayed task list.
   - Any combination and any number of the subsequent fields above can be entered.
   - The information entered will replace all the data in each respective field.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
 
-Example: `edittask 3 tn/Finish project status/true` changes the name of task 3 in the list to Finish project, and the done status to true, indicating the task is completed.
+Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list to Finish project.
 
 ### Delete a task from the project `deletetask `
 
