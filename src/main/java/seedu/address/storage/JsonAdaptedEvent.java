@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -85,8 +85,8 @@ class JsonAdaptedEvent {
 
         final StartDateTime modelStartDateTime;
 
-        if (!DateUtil.isValidDateTime(startDateTime) || startDateTime.equals("")) {
-            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
+        if (!DateTimeUtil.isValidDateTime(startDateTime) || startDateTime.equals("")) {
+            throw new IllegalValueException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelStartDateTime = new StartDateTime(startDateTime);
         }
@@ -98,8 +98,8 @@ class JsonAdaptedEvent {
 
         final EndDateTime modelEndDateTime;
 
-        if (!DateUtil.isValidDateTime(endDateTime) || endDateTime.equals("")) {
-            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
+        if (!DateTimeUtil.isValidDateTime(endDateTime) || endDateTime.equals("")) {
+            throw new IllegalValueException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelEndDateTime = new EndDateTime(endDateTime);
         }

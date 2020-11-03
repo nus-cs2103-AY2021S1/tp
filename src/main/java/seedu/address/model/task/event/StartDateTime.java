@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.task.DateTime;
 
 /**
@@ -39,21 +39,10 @@ public class StartDateTime extends DateTime {
      * @return an EndDateTime object
      */
     public static StartDateTime createStartDateTime(String date, String time) {
-        checkArgument(DateUtil.isValidDate(date), DateUtil.DATE_TIME_CONSTRAINTS);
-        checkArgument(DateUtil.isValidTime(time), DateUtil.DATE_TIME_CONSTRAINTS);
+        checkArgument(DateTimeUtil.isValidDate(date), DateTimeUtil.DATE_TIME_CONSTRAINTS);
+        checkArgument(DateTimeUtil.isValidTime(time), DateTimeUtil.DATE_TIME_CONSTRAINTS);
         String datetime = date + " " + time;
         return new StartDateTime(datetime);
-    }
-
-    /**
-     * Returns true if a given string is a valid dateTime number.
-     *
-     * @param date the string value of date to be put to test.
-     * @param time the string value of time to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidDateTime(String date, String time) {
-        return DateUtil.isValidDate(date) && DateUtil.isValidTime(time);
     }
 
     /**
