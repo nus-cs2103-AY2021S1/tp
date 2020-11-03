@@ -34,7 +34,7 @@ import seedu.address.logic.parser.meetingparser.FindMeetingCommandParser;
 import seedu.address.model.meeting.EndTime;
 import seedu.address.model.meeting.MeetingDate;
 import seedu.address.model.meeting.StartTime;
-import seedu.address.testutil.FindMeetingDescriptorBuilder;
+import seedu.address.testutil.meeting.FindMeetingDescriptorBuilder;
 
 public class FindMeetingCommandParserTest {
     private FindMeetingCommandParser parser = new FindMeetingCommandParser();

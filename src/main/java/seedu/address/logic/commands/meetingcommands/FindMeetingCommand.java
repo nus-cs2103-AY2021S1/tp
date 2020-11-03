@@ -36,6 +36,7 @@ public class FindMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings whose attributes contain"
             + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "can find by as many types of attributes in any order\n"
             + "Parameters:\n"
             + "[" + PREFIX_MEETING_BIDDER_ID + "BIDDER ID] "
             + "[" + PREFIX_MEETING_PROPERTY_ID + "PROPERTY ID] "
@@ -44,7 +45,7 @@ public class FindMeetingCommand extends Command {
             + "[" + PREFIX_MEETING_STARTTIME + "START TIME] "
             + "[" + PREFIX_MEETING_ENDTIME + "END TIME] "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MEETING_BIDDER_ID + "b12"
+            + PREFIX_MEETING_BIDDER_ID + "b12 b13"
             + PREFIX_MEETING_PROPERTY_ID + "p12";
     public static final String MESSAGE_NO_FILTERS = "At least one field to filter must be provided.";
 
@@ -63,7 +64,7 @@ public class FindMeetingCommand extends Command {
         requireNonNull(model);
         model.updateFilteredMeetingList(findMeetingDescriptor.getComposedPredicate());
         return new CommandResult(
-                String.format(Messages.MESSAGE_PROPERTY_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
+                String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
     }
 
     @Override

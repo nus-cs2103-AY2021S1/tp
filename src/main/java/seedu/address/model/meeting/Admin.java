@@ -16,10 +16,10 @@ public class Admin extends Meeting {
      *  Constructor for admin meeting.
      * @param bidderId Bidder ID.
      * @param propertyId Property ID.
-     * @param meetingDate Calendar MeetingDate.
-     * @param venue Calendar Venue.
-     * @param startTime Start Time.
-     * @param endTime End TIme.
+     * @param meetingDate MeetingDate Meeting Date.
+     * @param venue Venue Venue.
+     * @param startTime StartTime Start Time.
+     * @param endTime EndTIme End Time.
      */
     public Admin(BidderId bidderId, PropertyId propertyId, MeetingDate meetingDate, Venue venue,
                  StartTime startTime, EndTime endTime) {
@@ -31,8 +31,8 @@ public class Admin extends Meeting {
     /**
      * Returns true if either the venue, meetingDate, bidderId, start time, end time and propertyId is the same.
      *
-     * @param other The other property.
-     * @return True if both property objects represent the same meeting.
+     * @param other The other admin.
+     * @return True if both admin objects represent the same admin.
      */
     @Override
     public boolean equals(Object other) {
