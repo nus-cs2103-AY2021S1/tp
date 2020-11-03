@@ -30,14 +30,9 @@ public class AllocateCommandParser implements Parser<AllocateCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.HELP.getFullMessage()));
         }
 
-        try {
-            Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
-            Index roomIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_INDEX).get());
-            return new AllocateCommand(studentIndex, roomIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateCommand.HELP.getFullMessage()), pe);
-        }
+        Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
+        Index roomIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_INDEX).get());
+        return new AllocateCommand(studentIndex, roomIndex);
     }
 
     /**

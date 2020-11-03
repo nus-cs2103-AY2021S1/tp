@@ -220,5 +220,6 @@ public class UniqueAllocationListTest {
         UniqueAllocationList uniqueAllocationList = new UniqueAllocationList();
         UniqueAllocationList uniqueAllocationListCopy = new UniqueAllocationList();
         assertTrue(uniqueAllocationList.equals(uniqueAllocationListCopy));
+        assertFalse(uniqueAllocationList.equals(null));
     }
 }

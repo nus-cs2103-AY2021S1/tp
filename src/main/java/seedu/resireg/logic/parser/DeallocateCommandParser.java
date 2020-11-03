@@ -30,13 +30,8 @@ public class DeallocateCommandParser implements Parser<DeallocateCommand> {
                     DeallocateCommand.HELP.getFullMessage()));
         }
 
-        try {
-            Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
-            return new DeallocateCommand(studentIndex);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeallocateCommand.HELP.getFullMessage()), pe);
-        }
+        Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
+        return new DeallocateCommand(studentIndex);
     }
 
     /**

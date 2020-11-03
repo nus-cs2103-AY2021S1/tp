@@ -6,10 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_TWO;
+import static seedu.resireg.testutil.TypicalRooms.ROOM_FOUR;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_TWO;
 import static seedu.resireg.testutil.TypicalStudents.ALICE;
 import static seedu.resireg.testutil.TypicalStudents.BENSON;
+import static seedu.resireg.testutil.TypicalStudents.DANIEL;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +24,25 @@ public class AllocationTest {
     public void isRelated() {
         assertTrue(ALLOCATION_ONE.isRelatedTo(ROOM_ONE));
         assertTrue(ALLOCATION_ONE.isRelatedTo(ALICE));
+
+        assertFalse(ALLOCATION_ONE.isRelatedTo(ROOM_TWO));
+        assertFalse(ALLOCATION_ONE.isRelatedTo(BENSON));
+    }
+
+    @Test
+    public void hasSameStudent() {
+        Allocation ALLOCATION_ONE_COPY = new AllocationBuilder(ALLOCATION_ONE).build();
+        assertTrue(ALLOCATION_ONE.hasSameStudent(ALLOCATION_ONE_COPY));
+        assertTrue(ALLOCATION_ONE.hasSameRoom(ALLOCATION_ONE_COPY));
+
+        Allocation ALLOCATION_ONE_EDITED_STUDENT_ID = new AllocationBuilder(ALLOCATION_ONE)
+                .withStudentId(DANIEL.getStudentId().value).build();
+        assertFalse(ALLOCATION_ONE.hasSameStudent(ALLOCATION_ONE_EDITED_STUDENT_ID));
+
+        Allocation ALLOCATION_ONE_EDITED_ROOM = new AllocationBuilder(ALLOCATION_ONE)
+                .withFloor(ROOM_FOUR.getFloor().value)
+                .withRoomNumber(ROOM_FOUR.getRoomNumber().value).build();
+        assertFalse(ALLOCATION_ONE.hasSameRoom(ALLOCATION_ONE_EDITED_ROOM));
     }
 
     @Test

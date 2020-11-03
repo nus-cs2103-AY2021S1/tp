@@ -8,10 +8,12 @@ import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_ROOM_ALREADY_ALLOCATED;
 import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_SAME_ROOM_ALLOCATED;
+import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_STUDENT_NOT_ALLOCATED;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIFTH_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
@@ -102,6 +104,12 @@ public class ReallocateCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getRoomList().size());
         ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
         assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_studentNotAllocated_throwsCommandException() {
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FOURTH_PERSON, INDEX_FIRST_ROOM);
+        assertCommandFailure(reallocateCommand, model, history, MESSAGE_STUDENT_NOT_ALLOCATED);
     }
 
     @Test
