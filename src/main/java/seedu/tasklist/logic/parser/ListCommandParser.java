@@ -1,7 +1,5 @@
 package seedu.tasklist.logic.parser;
 
-import static seedu.tasklist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.tasklist.commons.core.index.Index;
 import seedu.tasklist.logic.commands.ListCommand;
 import seedu.tasklist.logic.parser.exceptions.ParseException;

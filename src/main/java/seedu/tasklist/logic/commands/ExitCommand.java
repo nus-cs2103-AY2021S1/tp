@@ -1,6 +1,5 @@
 package seedu.tasklist.logic.commands;
 
-import seedu.tasklist.commons.core.Messages;
 import seedu.tasklist.logic.commands.exceptions.CommandException;
 import seedu.tasklist.model.Model;
 
@@ -8,13 +7,12 @@ import seedu.tasklist.model.Model;
  * Terminates the program.
  */
 public class ExitCommand extends Command {
-    public String userInput;
 
     public static final String COMMAND_WORD = "exit";
-
     public static final String MESSAGE_INCORRECT_FORMAT = "Invalid command format! \nFormat: exit";
-
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting ProductiveNus as requested ...";
+
+    private final String userInput;
 
     public ExitCommand(String userInput) {
         this.userInput = userInput;

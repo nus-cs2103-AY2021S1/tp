@@ -1,6 +1,5 @@
 package seedu.tasklist.logic.parser;
 
-import static seedu.tasklist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tasklist.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tasklist.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -20,16 +19,12 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "-1", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-1", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
 
-        assertParseFailure(parser, "0", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "0", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
 
-        assertParseFailure(parser, "a", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
 
-        assertParseFailure(parser, "%", String.format(
-                MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "%", ListCommand.MESSAGE_INDEX_NOT_IN_RANGE);
     }
 }
