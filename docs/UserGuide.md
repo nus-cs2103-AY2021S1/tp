@@ -21,7 +21,7 @@ As a **student from the SoC in NUS**, you tend to have a **heavy workload**. Pro
 
 ## About
 This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
-Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
+You can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
 ### GUI terminologies
 The figure below shows the GUI of ProductiveNUS, with its sections labelled. 
@@ -31,10 +31,10 @@ The figure below shows the GUI of ProductiveNUS, with its sections labelled.
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
 
-| Icon        | Icon usage                                               | Box color |
-|-------------|----------------------------------------------------------|-----------|
-| :clipboard: | - Notes about the command format <br> - Pointers to note | Green     |
-| :bulb:      | - Tip                                                    | Blue      |
+| Icon        | Icon usage                                             | Box color |
+|-------------|--------------------------------------------------------|-----------|
+| :clipboard: | - Notes about the command format<br>- Pointers to note | Blue      |
+| :bulb:      | - Tip                                                  | Green     |
 
 ### Command syntax
 
@@ -72,7 +72,7 @@ You can find out more about the command terminologies here:
   e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME_OF_ASSIGNMENT [mod/MODULE_CODE]` can be used as `n/Assignment 2 mod/CS2100` or as `n/Assignment 2`.
+  e.g `n/NAME_OF_ASSIGNMENT [remind]` can be used as `n/Assignment 2 remind` or as `n/Assignment 2`.
 
 
 * Parameters can be in any order.<br>
@@ -131,7 +131,7 @@ You can delete **one or more** assignments at a time. Here is an example with st
 ![DeleteCommand2](images/DeleteCommandDiagram2.png)
 *Figure X: The displayed message and the updated list*
 
-More examples:
+Examples:
 * `delete 1`
 * `delete 2 3 1`
 
@@ -139,7 +139,6 @@ More examples:
 
  **:clipboard: Pointers to note:**<br>
 * At least one index must be **present**. For example, `delete` without any index will not work.
-* The indexes **must be a positive integer** 1, 2, 3, …​
 * The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
 </div>
@@ -165,12 +164,13 @@ Follow these steps and try importing your timetable:
    ![UserGuideUpcomingTasks](images/UserGuideUpcomingTasks.PNG)
    *Figure X: Added lesson information can be found in the `Upcoming tasks` list highlighted in red*
 
-Format: `import url/YOUR_NUSMODS_URL`
+<div markdown="block" class="alert alert-primary">
 
-* Lesson data based on your NUSMods timetable will be added into your schedule.
-* `YOUR_NUSMODS_URL` is obtained by clicking on the "Share/Sync" timetable icon at the NUSMods website.
+ **:clipboard: Pointers to note:**<br>
+* Importing a new timetable will override your previous timetable data.
+</div>
 
-Examples:
+Example:
 * `import url/https://nusmods.com/timetable/sem-1/share?CS2100=TUT:01,LAB:11,LEC:1&CS2101=&CS2103T=LEC:G16&CS2105=TUT:14,LEC:1&EC1301=TUT:S28,LEC:1&IS1103=` will 
 
 ### Listing assignments : `list`
@@ -216,13 +216,7 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
-Here is the table of prefixes used:
-| Prefix | Syntax                                                          | Examples                             | Remarks                                                                                                                                                                                                                                        |
-|--------|-----------------------------------------------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/     | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]                 | n/Tutorial n/tutorial essay          | Case insensitive                                                                                                                                                                                                                               |
-| mod/   | mod/MODULE_CODE  [MORE MODULE_CODE]                             | mod/ST2334 mod/CS2100 cs2103t        | Case insensitive                                                                                                                                                                                                                               |
-| d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).  |
-| p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                               |
+This is the table of prefixes used:
 
 | Prefix | Syntax | Examples |
 |-|-|-|
@@ -240,6 +234,7 @@ Here is the table of prefixes used:
 </div>
 
 Here is an example with steps to follow:
+
 1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
 ![FindCommand1](images/FindCommandDiagram1.png)
@@ -255,7 +250,7 @@ Here is an example with steps to follow:
 <div markdown="block" class="alert alert-primary">
 
  **:clipboard: Pointers to note:**<br>
-* `DATE_OR_TIME_OF_ASSIGNMENT` must have dates in the format **dd-MM-yyyy** or times in the format **HHmm** (24 hour).
+* `DATE_OR_TIME_OF_ASSIGNMENT` has date in the format **dd-MM-yyyy** and time in the format **HHmm** (24 hour).
 * You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
 </div>
 
@@ -294,7 +289,6 @@ For example, `remind 2 4` will set reminders for the second and fourth assignmen
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `remind` will not work.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` must be found in your assignment list.
 
 </div>
@@ -317,7 +311,6 @@ For example, `unremind 1` will remove the first assignment in `Your Reminders` (
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unremind` will not work.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` must be found in `Your Reminders`.
 
 </div>
@@ -332,22 +325,29 @@ shown with a coloured priority tag (As shown highlighted in red in the figure be
    ![UserGuidePriorityTags](images/UserGuidePriorityTags.PNG)
    *Figure X: The priority tags of assignments highlighted in red*
 
-Format: `prioritize INDEX priority/PRIORITY`
+You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
 
-* Sets the priority to the assignment at the specified `INDEX`.
-* Priority levels include LOW, MEDIUM and HIGH.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
+
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
+* The `INDEX` must be found in your assignment list.
+* Priority levels you can use are `LOW`, `MEDIUM` and `HIGH`.
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
+</div>
 
 ### Removing priority for assignments : `unprioritize`
 
-Removes a priority for the specified assignment.
-
 Format: `unprioritze INDEX`
 
-<div markdown="block" class="alert alert-primary">
+You can remove a priority tag from an assignment that has a priority tag by specifying the `INDEX` of the assignment
+you wish to have the priority tag removed.
 
+For example, `unprioritize 1` will remove the priority tag, if present, of the first assignment in your assignment list.
+
+<div markdown="block" class="alert alert-primary">
+  
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unprioritize` will not work.
 * The `INDEX` must be found in your assignment list.
