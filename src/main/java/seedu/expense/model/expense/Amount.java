@@ -99,32 +99,10 @@ public class Amount implements Comparable<Amount> {
     }
 
     /**
-     * Returns a new {@code Amount} as the result of the division of this {@code Amount}
-     * and the specified {@code Amount}.
-     * Uses the minTerm constructor so no need to divide the values by 100 beforehand.
-     */
-    public Amount divide(Amount other) {
-        requireNonNull(other);
-        assert !other.value.equals(BigDecimal.ZERO);
-
-        return new Amount(this.value.divide(other.value, ROUNDING_MODE));
-    }
-
-    /**
-     * Returns a new {@code Amount} as the result of the product of this {@code Amount}
-     * and the specified {@code Amount}.
-     * Uses the minTerm constructor so no need to divide the values by 100 beforehand.
-     */
-    public Amount multiply(Amount other) {
-        requireNonNull(other);
-        return new Amount(this.value.multiply(other.value));
-    }
-
-    /**
-     * Returns the {@code Double} value of the amount.
+     * Returns the {@code Double} dollar value of the amount.
      * Warning: use only if absolutely required due to precision loss.
      */
-    public Double getDoubleValue() {
+    public Double getDoubleDollarValue() {
         return toDollars(value).doubleValue();
     }
 

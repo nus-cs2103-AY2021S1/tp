@@ -74,10 +74,11 @@ public class BudgetDisplay extends UiPart<Region> {
         assert budgetAmount.greaterThanEquals(Amount.zeroAmount());
         Amount expensesSum = statistics.tallyExpenses();
         assert expensesSum.greaterThanEquals(Amount.zeroAmount());
+
         if (budgetAmount.equals(new Amount(0))) {
             return -1 / 0.0;
         } else {
-            return 1 - expensesSum.divide(budgetAmount).getDoubleValue();
+            return 1 - (expensesSum.getDoubleDollarValue() / budgetAmount.getDoubleDollarValue());
         }
 
     }
