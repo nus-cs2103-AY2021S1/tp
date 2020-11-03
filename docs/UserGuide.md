@@ -521,11 +521,11 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
     * The case of the letters does not matter.
     
 :information_source:Date must be in the format of **dd/mm/yyyy**. 
-    * For instance, 02/11/2020 refers to the date 2nd November 2020
+    * For instance, 2/11/2020 refers to the date 2nd November 2020
     
 :information_source: Both the inputs of mode and date are compulsory.
 
-Example: `schedule m/weekly d/02/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
+Example: `schedule m/weekly d/2/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -575,7 +575,7 @@ Action | Format, Examples
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
-**Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/02/11/2020`
+**Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
 **Help** | `help`
 **Exit** | `exit`
