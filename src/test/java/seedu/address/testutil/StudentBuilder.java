@@ -47,7 +47,7 @@ public class StudentBuilder {
     public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year Examination 2020",
             parseToDate("25/7/2020"), new Score("20/30"));
     public static final Attendance DEFAULT_ATTENDANCE = new Attendance(parseToDate("14/4/1998"),
-            "present", new Feedback("sleepy during lesson"));
+            true, new Feedback("sleepy during lesson"));
 
     // Identity fields
     private Name name;

@@ -1,8 +1,6 @@
 package seedu.address.model.student.academic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -34,12 +32,16 @@ public class FeedbackTest {
 
     @Test
     public void equals_test() {
-        assertEquals(VALID_FEEDBACK, VALID_FEEDBACK);
+        // same object -> true
+        assertTrue(VALID_FEEDBACK.equals(VALID_FEEDBACK));
 
-        assertNotEquals(VALID_FEEDBACK, "lass");
+        // same state -> true
+        assertTrue(VALID_FEEDBACK.equals(new Feedback("attentive")));
 
-        assertEquals(VALID_FEEDBACK, new Feedback("attentive"));
+        // different type -> false
+        assertFalse(VALID_FEEDBACK.equals("lass"));
 
-        assertNotEquals(VALID_FEEDBACK, new Feedback("not attentive"));
+        // different state -> false
+        assertFalse(VALID_FEEDBACK.equals(new Feedback("not attentive")));
     }
 }

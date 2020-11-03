@@ -33,8 +33,26 @@ public class JsonAdaptedQuestionTest {
     }
 
     @Test
+    public void toModelType_nullQuestion_throwsIllegalArgumentException() {
+        JsonAdaptedQuestion test = new JsonAdaptedQuestion(false, null, "");
+        assertThrows(IllegalValueException.class, test::toModelType);
+
+        test = new JsonAdaptedQuestion(false, "", "");
+        assertThrows(IllegalValueException.class, test::toModelType);
+
+        test = new JsonAdaptedQuestion(true, null, DEFAULT_SOLUTION);
+        assertThrows(IllegalValueException.class, test::toModelType);
+
+        test = new JsonAdaptedQuestion(true, "", DEFAULT_SOLUTION);
+        assertThrows(IllegalValueException.class, test::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidSolution_throwsIllegalArgumentException() {
         JsonAdaptedQuestion test = new JsonAdaptedQuestion(true, DEFAULT_QUESTION_NEWTON, "");
+        assertThrows(IllegalValueException.class, test::toModelType);
+
+        test = new JsonAdaptedQuestion(true, DEFAULT_QUESTION_NEWTON, null);
         assertThrows(IllegalValueException.class, test::toModelType);
     }
 }

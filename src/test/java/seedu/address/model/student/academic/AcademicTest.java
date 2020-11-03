@@ -37,7 +37,7 @@ public class AcademicTest {
 
         // different attendance list returns false
         Academic editedAliceAcademic = new StudentBuilder(ALICE).withAttendances(new Attendance(ATTENDANCE_DATE_BOB,
-                "present", new Feedback("sleeping"))).build().getAcademic();
+                true, new Feedback("sleeping"))).build().getAcademic();
         assertFalse(aliceAcademic.equals(editedAliceAcademic));
 
         // different exam list returns false

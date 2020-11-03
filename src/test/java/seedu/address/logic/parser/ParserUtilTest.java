@@ -511,13 +511,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttendanceStatus_validStatusWithoutWhiteSpace_returnsStatusString() throws Exception {
-        assertEquals(VALID_ATTENDANCE_STATUS, ParserUtil.parseAttendanceStatus(VALID_ATTENDANCE_STATUS));
+        assertEquals(true, ParserUtil.parseAttendanceStatus(VALID_ATTENDANCE_STATUS));
     }
 
     @Test
     public void parseAttendanceStatus_validStatusWithWhiteSpace_returnsStatusString() throws Exception {
         String statusWithWhiteSpace = WHITESPACE + VALID_ATTENDANCE_STATUS + WHITESPACE;
-        assertEquals(VALID_ATTENDANCE_STATUS, ParserUtil.parseAttendanceStatus(statusWithWhiteSpace));
+        assertEquals(true, ParserUtil.parseAttendanceStatus(statusWithWhiteSpace));
     }
 
     @Test

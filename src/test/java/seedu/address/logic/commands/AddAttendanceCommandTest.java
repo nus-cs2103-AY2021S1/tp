@@ -30,7 +30,7 @@ import seedu.address.testutil.StudentBuilder;
 public class AddAttendanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
-    private final Attendance validAttendance = new Attendance(ATTENDANCE_DATE_AMY, "present",
+    private final Attendance validAttendance = new Attendance(ATTENDANCE_DATE_AMY, true,
             new Feedback("sleepy"));
 
     @Test
@@ -124,7 +124,7 @@ public class AddAttendanceCommandTest {
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_SECOND_PERSON, validAttendance)));
 
         // different attendance -> return false;
-        Attendance altAttendance = new Attendance(ATTENDANCE_DATE_BOB, "absent", new Feedback("sleepy"));
+        Attendance altAttendance = new Attendance(ATTENDANCE_DATE_BOB, false, new Feedback("sleepy"));
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, altAttendance)));
     }
 }

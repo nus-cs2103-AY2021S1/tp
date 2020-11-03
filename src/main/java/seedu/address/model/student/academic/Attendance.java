@@ -1,12 +1,16 @@
 package seedu.address.model.student.academic;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.DateUtil.getInputFormat;
 import static seedu.address.commons.util.DateUtil.print;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
+/**
+ * Represents a Student's attendance in a lesson.
+ * Guarantees: immutable
+ */
 public class Attendance {
 
     public static final String DATE_CONSTRAINTS =
@@ -14,12 +18,12 @@ public class Attendance {
     public static final String STATUS_CONSTRAINTS =
             "Attendance status should be either 'present' or 'absent'.";
 
-    private static final String PRESENT_STATUS = "present";
-    private static final String ABSENT_STATUS = "absent";
+    public static final String PRESENT_STATUS = "present";
+    public static final String ABSENT_STATUS = "absent";
 
-    private LocalDate lessonDate;
-    private boolean isPresent;
-    private Feedback feedback;
+    private final LocalDate lessonDate;
+    private final boolean isPresent;
+    private final Optional<Feedback> feedback;
 
     /**
      * Constructs a {@code Attendance} object.
@@ -27,21 +31,29 @@ public class Attendance {
      * @param isPresent whether student was present for lesson
      * @param feedback feedback for lesson
      */
-    public Attendance(LocalDate date, String isPresent, Feedback feedback) {
-        requireAllNonNull(date, isPresent, feedback);
-        checkArgument(isValidAttendanceStatus(isPresent), STATUS_CONSTRAINTS);
+    public Attendance(LocalDate date, boolean isPresent, Feedback feedback) {
+        requireAllNonNull(date, feedback);
 
         this.lessonDate = date;
-        this.isPresent = parseAttendanceStatus(isPresent);
-        this.feedback = feedback;
+        this.isPresent = isPresent;
+        this.feedback = Optional.of(feedback);
     }
 
-    public static boolean isValidAttendanceStatus(String status) {
+    /**
+     * Constructs a {@code Attendance} object.
+     * @param date date of lesson
+     * @param isPresent whether student was present for lesson
+     */
+    public Attendance(LocalDate date, boolean isPresent) {
+        requireAllNonNull(date);
+
+        this.lessonDate = date;
+        this.isPresent = isPresent;
+        this.feedback = Optional.empty();
+    }
+
+    public static boolean isValidStatus(String status) {
         return status.equals(PRESENT_STATUS) || status.equals(ABSENT_STATUS);
-    }
-
-    public static boolean parseAttendanceStatus(String status) {
-        return status.equals(PRESENT_STATUS); // if false, then will be equal to ABSENT_STATUS
     }
 
     public LocalDate getLessonDate() {
@@ -52,18 +64,19 @@ public class Attendance {
         return getInputFormat(lessonDate);
     }
 
-    public boolean getAttendanceStatus() {
+    public boolean isStudentPresent() {
         return isPresent;
     }
 
-    public Feedback getFeedback() {
+    public Optional<Feedback> getFeedback() {
         return feedback;
     }
 
     @Override
     public String toString() {
-        return String.format("%s (%s) %s",
-                print(lessonDate), (getAttendanceStatus() ? "\u2713" : "\u2718"), getFeedback());
+        String feedback = getFeedback().map(Feedback::toString).orElse("");
+        return String.format("%1$s (%2$s) %3$s",
+                print(lessonDate), (isStudentPresent() ? "\u2713" : "\u2718"), feedback);
     }
 
     @Override
@@ -78,7 +91,7 @@ public class Attendance {
 
         Attendance other = (Attendance) obj;
         return other.getLessonDate().equals(getLessonDate())
-                && other.getAttendanceStatus() == getAttendanceStatus()
+                && other.isStudentPresent() == isStudentPresent()
                 && other.getFeedback().equals(getFeedback());
     }
 }

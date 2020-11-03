@@ -15,7 +15,7 @@ public class JsonAdaptedAttendance {
     public static final String MISSING_ATTENDANCE_FIELD_MESSAGE_FORMAT = "Attendance's %s field is missing!";
 
     private final String date;
-    private final String attendanceStatus;
+    private final boolean attendanceStatus;
     private final String feedback;
 
     /**
@@ -23,7 +23,7 @@ public class JsonAdaptedAttendance {
      */
     @JsonCreator
     public JsonAdaptedAttendance(@JsonProperty("date") String date,
-                                 @JsonProperty("attendanceStatus") String attendanceStatus,
+                                 @JsonProperty("attendanceStatus") boolean attendanceStatus,
                                  @JsonProperty("feedback") String feedback) {
         this.date = date;
         this.attendanceStatus = attendanceStatus;
@@ -35,8 +35,8 @@ public class JsonAdaptedAttendance {
      */
     public JsonAdaptedAttendance(Attendance source) {
         this.date = source.getUserInputDate();
-        this.attendanceStatus = source.getAttendanceStatus() ? "present" : "absent";
-        this.feedback = source.getFeedback().toString();
+        this.attendanceStatus = source.isStudentPresent();
+        this.feedback = source.getFeedback().map(Feedback::toString).orElse("");
     }
 
     /**
@@ -46,16 +46,18 @@ public class JsonAdaptedAttendance {
      */
     public Attendance toModelType() throws IllegalValueException {
         LocalDate modelDate = toModelDate();
-        checkAttendanceStatus();
-        Feedback modelFeedback = toModelFeedback();
 
+        if (feedback == null || feedback.isEmpty()) {
+            return new Attendance(modelDate, attendanceStatus);
+        }
+
+        Feedback modelFeedback = toModelFeedback();
         return new Attendance(modelDate, attendanceStatus, modelFeedback);
     }
 
     private LocalDate toModelDate() throws IllegalValueException {
         if (date == null || date.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_ATTENDANCE_FIELD_MESSAGE_FORMAT,
-                    "Attendance date"));
+            throw new IllegalValueException(String.format(MISSING_ATTENDANCE_FIELD_MESSAGE_FORMAT, "date"));
         }
         if (!DateUtil.isValidDate(date)) {
             throw new IllegalValueException("Invalid date format");
@@ -63,27 +65,10 @@ public class JsonAdaptedAttendance {
         return DateUtil.parseToDate(date);
     }
 
-    private void checkAttendanceStatus() throws IllegalValueException {
-        if (attendanceStatus == null || attendanceStatus.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_ATTENDANCE_FIELD_MESSAGE_FORMAT,
-                    "Attendance status"));
-        }
-
-        if (!Attendance.isValidAttendanceStatus(attendanceStatus)) {
-            throw new IllegalValueException("Invalid attendance status format");
-        }
-    }
-
     private Feedback toModelFeedback() throws IllegalValueException {
-        if (feedback == null || feedback.isEmpty()) {
-            throw new IllegalValueException(String.format(MISSING_ATTENDANCE_FIELD_MESSAGE_FORMAT,
-                    "Feedback"));
-        }
-
         if (!Feedback.isValidFeedback(feedback)) {
             throw new IllegalValueException(Feedback.MESSAGE_CONSTRAINTS);
         }
-
         return new Feedback(feedback);
     }
 

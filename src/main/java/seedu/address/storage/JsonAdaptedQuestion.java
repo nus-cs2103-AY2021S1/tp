@@ -13,7 +13,9 @@ import seedu.address.model.student.academic.question.UnsolvedQuestion;
  */
 public class JsonAdaptedQuestion {
 
-    private final boolean status;
+    public static final String MISSING_QUESTION_FIELD_MESSAGE_FORMAT = "Question's %s field is missing!";
+
+    private final boolean isResolved;
     private final String question;
     private final String solution;
 
@@ -21,9 +23,9 @@ public class JsonAdaptedQuestion {
      * Constructs a {@code JsonAdaptedQuestion} with the given {@code question}.
      */
     @JsonCreator
-    public JsonAdaptedQuestion(@JsonProperty("status") boolean status, @JsonProperty("question") String question,
+    public JsonAdaptedQuestion(@JsonProperty("status") boolean isResolved, @JsonProperty("question") String question,
                                @JsonProperty("solution") String solution) {
-        this.status = status;
+        this.isResolved = isResolved;
         this.question = question;
         this.solution = solution;
     }
@@ -32,9 +34,9 @@ public class JsonAdaptedQuestion {
      * Converts a given {@code Question} into this class for Jackson use.
      */
     public JsonAdaptedQuestion(Question source) {
-        this.status = source.isResolved();
+        this.isResolved = source.isResolved();
         this.question = source.question;
-        if (status) {
+        if (isResolved) {
             SolvedQuestion solved = (SolvedQuestion) source;
             this.solution = solved.solution;
         } else {
@@ -48,25 +50,34 @@ public class JsonAdaptedQuestion {
      * @throws IllegalValueException if there were any data constraints violated in the adapted detail.
      */
     public Question toModelType() throws IllegalValueException {
-        return status ? createModelSolved() : createModelUnsolved();
+        return isResolved ? createModelSolved() : createModelUnsolved();
     }
 
     private UnsolvedQuestion createModelUnsolved() throws IllegalValueException {
-        if (!Question.isValidQuestion(question)) {
-            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
-        }
+        checkQuestion();
         return new UnsolvedQuestion(question);
     }
 
     private SolvedQuestion createModelSolved() throws IllegalValueException {
-        if (!Question.isValidQuestion(question)) {
-            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
+        checkQuestion();
+
+        if (solution == null || solution.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_QUESTION_FIELD_MESSAGE_FORMAT, "solution"));
         }
         if (!SolvedQuestion.isValidSolution(solution)) {
             throw new IllegalValueException(SolvedQuestion.MESSAGE_SOLUTION_CONSTRAINTS);
         }
 
         return new SolvedQuestion(question, solution);
+    }
+
+    private void checkQuestion() throws IllegalValueException {
+        if (question == null || question.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_QUESTION_FIELD_MESSAGE_FORMAT, "body"));
+        }
+        if (!Question.isValidQuestion(question)) {
+            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
+        }
     }
 
 }

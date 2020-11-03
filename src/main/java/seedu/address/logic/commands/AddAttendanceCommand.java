@@ -27,7 +27,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
             + PREFIX_ATTENDANCE_DATE + "LESSON_DATE " + PREFIX_ATTENDANCE_STATUS + "ATTENDANCE_STATUS "
-            + PREFIX_ATTENDANCE_FEEDBACK + "FEEDBACK\n"
+            + "[" + PREFIX_ATTENDANCE_FEEDBACK + "FEEDBACK]\n"
             + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
             + PREFIX_ATTENDANCE_DATE + "14/02/2020 " + PREFIX_ATTENDANCE_STATUS + "present "
             + PREFIX_ATTENDANCE_FEEDBACK + "attentive";

@@ -9,8 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETA
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_STATUS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_STATUS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLASS_VENUE_AMY;
@@ -103,7 +101,7 @@ public class TypicalStudents {
             .withDetails(VALID_ADDITIONAL_DETAILS_AMY)
             .withQuestions(VALID_QUESTION_AMY)
             .withExams(new Exam(VALID_EXAM_NAME_AMY, EXAM_DATE_AMY, new Score(VALID_EXAM_SCORE_AMY)))
-            .withAttendances(new Attendance(ATTENDANCE_DATE_AMY, VALID_ATTENDANCE_STATUS_AMY,
+            .withAttendances(new Attendance(ATTENDANCE_DATE_AMY, true,
                     new Feedback(VALID_ATTENDANCE_FEEDBACK_AMY)))
             .build();
 
@@ -118,7 +116,7 @@ public class TypicalStudents {
             .withDetails(VALID_ADDITIONAL_DETAILS_BOB)
             .withSolved(DEFAULT_SOLUTION, VALID_QUESTION_BOB)
             .withExams(new Exam(VALID_EXAM_NAME_BOB, EXAM_DATE_BOB, new Score(VALID_EXAM_SCORE_BOB)))
-            .withAttendances(new Attendance(ATTENDANCE_DATE_BOB, VALID_ATTENDANCE_STATUS_BOB,
+            .withAttendances(new Attendance(ATTENDANCE_DATE_BOB, false,
                     new Feedback(VALID_ATTENDANCE_FEEDBACK_BOB)))
             .build();
 

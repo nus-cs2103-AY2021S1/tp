@@ -354,13 +354,13 @@ public class ParserUtil {
      * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code String}.
      * @throws ParseException if the given {@code attendanceStatus} is invalid.
      */
-    public static String parseAttendanceStatus(String attendanceStatus) throws ParseException {
+    public static boolean parseAttendanceStatus(String attendanceStatus) throws ParseException {
         requireNonNull(attendanceStatus);
         String formattedStatus = attendanceStatus.trim().toLowerCase();
-        if (!Attendance.isValidAttendanceStatus(formattedStatus)) {
+        if (!Attendance.isValidStatus(formattedStatus)) {
             throw new ParseException(Attendance.STATUS_CONSTRAINTS);
         }
-        return formattedStatus;
+        return formattedStatus.equals(Attendance.PRESENT_STATUS);
     }
 
     /**
