@@ -53,8 +53,8 @@ public class FoodTest {
         sameAsComparedFood = new Food(validFoodName, protein, fat, carbohydrate);
         foodWDifferentName = new Food(validFoodName2, protein, fat, carbohydrate);
         foodWDifferentProtein = new Food(validFoodName, protein1, fat, carbohydrate);
-        foodWDifferentCarbs = new Food(validFoodName, protein, fat1, carbohydrate);
-        foodWDifferentFat = new Food(validFoodName, protein, fat, carbohydrate1);
+        foodWDifferentFat = new Food(validFoodName, protein, fat1, carbohydrate);
+        foodWDifferentCarbs = new Food(validFoodName, protein, fat, carbohydrate1);
     }
 
     @Test
