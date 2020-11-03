@@ -17,7 +17,7 @@ public class CasePersonBuilder {
 
     public static final String DEFAULT_NAME = "Tom Holland";
     public static final String DEFAULT_SEX = "M";
-    public static final String DEFAULT_PHONE = "";
+    public static final String DEFAULT_PHONE = "91234567";
     public static final String DEFAULT_EMAIL = "";
     public static final String DEFAULT_ADDRESS = "";
 

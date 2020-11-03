@@ -38,9 +38,9 @@ public class CommandTestUtil {
     public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
     public static final String VALID_SEX_AMY = "F";
     public static final String VALID_SEX_BOB = "M";
+    public static final String VALID_PHONE_BOB = "91234567";
 
     public static final String INVALID_CASEPERSON_NAME = "James&";
-
 
     public static final String PREFIX_WITH_TITLE_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String PREFIX_WITH_TITLE_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;

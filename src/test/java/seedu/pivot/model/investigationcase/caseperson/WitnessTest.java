@@ -45,6 +45,15 @@ public class WitnessTest {
         assertTrue(witness.equals(
                 new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
 
+        // same name, sex, phone, different email -> returns true
+        assertTrue(witness.equals(new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE,
+                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
+
+        // same name, sex, phone, different address -> returns true
+        assertTrue(witness.equals(
+                new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL,
+                        new Address("Blk 231231"))));
+
         // same object -> returns true
         assertTrue(witness.equals(witness));
 
@@ -61,10 +70,5 @@ public class WitnessTest {
                 new Witness(DEFAULT_NAME, Sex.F, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
         assertFalse(witness.equals(
                 new Witness(DEFAULT_NAME, DEFAULT_SEX, new Phone("923"), DEFAULT_EMAIL, DEFAULT_ADDRESS)));
-        assertFalse(witness.equals(new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE,
-                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
-        assertFalse(witness.equals(
-                new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL,
-                        new Address("Blk 231231"))));
     }
 }

@@ -29,7 +29,7 @@ public class AddWitnessCommandParser implements Parser<AddWitnessCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SEX,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SEX)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SEX, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddWitnessCommand.MESSAGE_USAGE));
         }
@@ -37,7 +37,7 @@ public class AddWitnessCommandParser implements Parser<AddWitnessCommand> {
         Index index = StateManager.getState();
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Sex sex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElse(""));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElse(""));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
 

@@ -28,8 +28,6 @@ public class PhoneTest {
 
     @Test
     public void isValid_true() {
-        assertTrue(Phone.isValidPhone(BLANK));
-        assertTrue(Phone.isValidPhone(EMPTY));
         assertTrue(Phone.isValidPhone(VALID_PHONE));
         assertTrue(Phone.isValidPhone(VALID_PHONE_SHORT));
         assertTrue(Phone.isValidPhone(VALID_PHONE_LONG));
@@ -39,6 +37,8 @@ public class PhoneTest {
     public void isValid_false() {
         assertFalse(Phone.isValidPhone(INVALID_SHORT));
         assertFalse(Phone.isValidPhone(INVALID_VALUES));
+        assertFalse(Phone.isValidPhone(BLANK));
+        assertFalse(Phone.isValidPhone(EMPTY));
     }
 
     @Test

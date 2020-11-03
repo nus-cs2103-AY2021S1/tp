@@ -11,7 +11,7 @@
     "witnesses": [ {
       "name" : "Janice",
       "sex" : "F",
-      "phone" : "",
+      "phone" : "912345678",
       "email" : "",
       "address" : ""
     } ],
@@ -42,7 +42,7 @@
     "witnesses": [ {
       "name" : "Janice",
       "sex" : "F",
-      "phone" : "",
+      "phone" : "912345678",
       "email" : "",
       "address" : ""
     } ],

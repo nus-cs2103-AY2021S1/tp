@@ -6,8 +6,10 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_E
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_SEX_BOB;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -30,6 +32,7 @@ public class AddSuspectCommandParserTest {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
     public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_SEX_BOB;
+    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
 
     private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 
@@ -49,19 +52,19 @@ public class AddSuspectCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB)
-                .withSex(VALID_SEX_BOB)
+                .withSex(VALID_SEX_BOB).withPhone(VALID_PHONE_BOB)
                 .buildSuspect();
 
         // normal input
-        assertParseSuccess(parser, NAME_DESC_BOB + SEX_DESC_BOB,
+        assertParseSuccess(parser, NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 new AddSuspectCommand(index, expectedSuspect));
 
         // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + SEX_DESC_BOB,
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 new AddSuspectCommand(index, expectedSuspect));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + SEX_DESC_BOB,
+        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 new AddSuspectCommand(index, expectedSuspect));
     }
 
@@ -76,10 +79,10 @@ public class AddSuspectCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + SEX_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + SEX_DESC_BOB + PHONE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + SEX_DESC_BOB,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + SEX_DESC_BOB + PHONE_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSuspectCommand.MESSAGE_USAGE));
     }
 }
