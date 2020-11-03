@@ -288,11 +288,11 @@ delete sn/courts1 sn/courts2
 ```
 
 <h4>Below is a guided example for deleting stocks:</h4>
-Before you start any deletion, make sure to use the command `list lt/all` to list all
+Step 1.Before you start any deletion, you might want to use the command `list lt/all` to list all
 the stocks you have in Warenager. 
 ![delete_step1](images/delete/delete_step1.png)
 
-Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
+Step 2. Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
 A valid delete input would be `delete sn/courts2`.
 
 **Before input**:
@@ -304,7 +304,7 @@ A valid delete input would be `delete sn/courts2`.
 
 ![delete_step3](images/delete/delete_step3.png)
 
-Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
+Step 3. Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
 and `COURTS4`. It can be done by chaining the serial numbers when deleting.<br>
 A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
 
@@ -324,6 +324,16 @@ Stocks that do not exist in Warenager cannot be deleted. Using the same input in
 `delete sn/courts3 sn/courts`, you should expect the following:
 
 ![delete_step6](images/delete/delete_step6.png)
+
+Invalid delete command formats will also result in an error.<br>
+For example, the input `delet sn/courts3 sn/courts` will lead in an error as shown below
+as the keyword `delete` is misspelt.
+
+![delete_step7](images/delete/delete_step7.png)
+
+The input `delete` will lead in an error as shown below as the compulsory fields with `sn/` is missing.
+
+![delete_step8](images/delete/delete_step8.png)
 
 </div>
 
@@ -984,7 +994,8 @@ data tab after each startup.
 
 ![tab_startup](images/tab/tab_startup.png)
 
-Now input the command word `tab` and hit enter. This should bring you to the next tab, which is the **Statistics** tab.
+Step 1. Now input the command word `tab` and hit enter. This should bring you to the next tab,
+which is the **Statistics** tab.
 
 **Before input**
 
@@ -994,13 +1005,14 @@ Now input the command word `tab` and hit enter. This should bring you to the nex
 
 ![tab_step2](images/tab/tab_step2.png)
 
-Now input the command word `tab` again and hit enter. This should bring you to the next tab, which is the **Stock view** tab.
+Step 2. Now input the command word `tab` again and hit enter. This should bring you to the next tab,
+which is the **Stock view** tab.
 
 **After input**
 
 ![tab_step3](images/tab/tab_step3.png)
 
-Now input the command word `tab` again and hit enter. This should bring you back to the **Data** tab.
+Step 3. Now input the command word `tab` again and hit enter. This should bring you back to the **Data** tab.
 
 **After input**
 
@@ -1009,13 +1021,14 @@ Now input the command word `tab` again and hit enter. This should bring you back
 <div markdown="block" class="alert alert-warning" markdown="1">
 
 **:warning:**<br>
-Note that the above example is for a newly started-up Warenager. If you have already used the `stats` command
-input at least once, you should see the latest piechart viewed when you are in **Statistics** tab.
+Note that the above example used is a new Warenager session. If you have already used the `stats` command
+input at least once in your current Warenager session, you should see the latest piechart viewed when you
+are in **Statistics** tab.
 
 ![tab_step5](images/tab/tab_step5.png)
 
-Similarly, if you used the `stockview` command input at least once, you should see an existing table describing
-the latest stock viewed.
+Similarly, if you used the `stockview` command input at least once in your current Warenager session,
+you should see an existing table describing the latest stock viewed.
 
 ![tab_step6](images/tab/tab_step6.png)
 
