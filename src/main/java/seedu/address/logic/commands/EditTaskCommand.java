@@ -92,6 +92,9 @@ public class EditTaskCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
+        if (model.hasCalendarTask(taskToEdit)) {
+            model.setCalendarTasks(taskToEdit, editedTask);
+        }
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
@@ -99,7 +102,7 @@ public class EditTaskCommand extends Command {
 
     private void checkEditability(Task task, EditTaskDescriptor editTaskDescriptor) throws CommandException {
         if ((task instanceof Event)) {
-            if (((Event) task).isLesson()) {
+            if (task.isLesson()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_EVENT_EDIT_TYPE);
             }
             if (editTaskDescriptor.hasDeadlineAttributes()) {
@@ -200,7 +203,7 @@ public class EditTaskCommand extends Command {
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
             setTitle(toCopy.title);
             setDescription(toCopy.description);
-            setEventDate(eventDate);
+            setEventDate(toCopy.eventDate);
             setDeadlineDateTime(toCopy.deadlineDateTime);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);

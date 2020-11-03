@@ -22,7 +22,8 @@ public class DeleteLessonCommandParser implements Parser<DeleteLessonCommand> {
             return new DeleteLessonCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLessonCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(),
+                            DeleteLessonCommand.MESSAGE_USAGE), pe);
         }
     }
 

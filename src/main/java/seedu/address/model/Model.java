@@ -85,6 +85,12 @@ public interface Model {
     void deleteLesson(Lesson[] targets);
 
     /**
+     * Deletes the given task in calendar.
+     * The task must exist in PlaNus.
+     */
+    void deleteTaskInCalendar(Task[] targets);
+
+    /**
      * Mark the given array of tasks to be done.
      * The tasks must exist in PlaNus.
      */

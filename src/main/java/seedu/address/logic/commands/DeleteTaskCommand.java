@@ -41,7 +41,7 @@ public class DeleteTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
         Task[] tasksToDelete = new Task[targetIndexes.length];
         if (Index.hasDuplicateIndex(targetIndexes)) {
-            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK_INDEX);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_INDEX);
         }
         for (int i = 0; i < targetIndexes.length; i++) {
             if (targetIndexes[i].getZeroBased() >= lastShownList.size()) {
@@ -51,6 +51,11 @@ public class DeleteTaskCommand extends Command {
         }
 
         model.deleteTask(tasksToDelete);
+        for (Task task : tasksToDelete) {
+            if (model.hasCalendarTask(task)) {
+                model.deleteTaskInCalendar(new Task[]{task});
+            }
+        }
         return new CommandResult(buildMessage(tasksToDelete));
     }
 

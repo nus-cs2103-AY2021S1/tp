@@ -33,7 +33,7 @@ public class SampleDataUtil {
                     new Tag("CS1101S")),
             Event.createUserEvent(new Title("CS2105 tutorial"), new StartDateTime("25-11-2020 13:00"),
                     new EndDateTime("25-11-2020 15:00"), Description.defaultDescription(),
-                    new Tag(("neighbours")))
+                    new Tag(("CS2105")))
         };
     }
 

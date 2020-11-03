@@ -13,11 +13,12 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+For detailed instructions on how to set the application up, refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+This section describes the implementation of the design of the app.
 
 ### Architecture
 
@@ -70,7 +71,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -86,7 +87,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `PlanusParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -109,8 +110,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the PlaNus data.
+* exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
@@ -130,7 +131,7 @@ The `Model`,
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the PlaNus data in json format and read it back.
 
 ### Common classes
 
@@ -250,7 +251,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * NUS Student
-* has a lot of project works
+* has a lot of projects
 * can type fast
 * wants to track productivity
 * wants to track workload
@@ -268,13 +269,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                    | add new task to my list                    |                                     |
 | `* * *`  | student                 | know when my tasks are due                 |                                     |
 | `* * *`  | user                    | maintain a list of tasks I currently have  |                                     |
-| `* * *`  | user with a lot of task | delete my task after it is not relevant    | be focused on the unfinished tasks. |
+| `* * *`  | user with a lot of tasks| delete my task after it is not relevant   | be focused on the unfinished tasks. |
 | `* * *`  | user                    | mark my task as done after it is completed | track the status of the task        |
 | `* *  `  | user                    | find tasks by module                       |                                     |
 | `* *  `  | user                    | find tasks by due date                     |                                     |
-| `* *  `  | user                    | mark my task as done after it is completed |                                     |
 | `* * *`  | user                    | find tasks by title                        |                                     |
-| `* *  `  | user                    | find tasks by category                     |                                     |
+| `* *  `  | user                    | find tasks by tag                          |                                     |
 | `* * *`  | user                    | edit my tasks                              |                                     |
 
 *{More to be added}*
@@ -329,7 +329,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-- 1b. The lesson already exists.
+- 1b. The lesson already exists in the list.
 
   - 1b1. PlaNus shows an error message.
 
@@ -337,7 +337,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 03: Delete a task**
+**Use case 03: Add a deadline**
+
+**MSS**
+
+1. User requests to add a deadline to the list.
+
+2. PlaNus adds the deadline to the list.
+    
+    Use case ends.
+    
+**Extensions**
+
+- 1a. The given input is invalid.
+    
+    - 1a1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+- 1b. The deadline already exists in the list.
+
+    - 1b1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+<br>
+
+**Use case 04: Add an event**
+
+**MSS**
+
+1. User requests to add an event to the list.
+
+2. PlaNus adds the event to the list.
+    
+    Use case ends.
+    
+**Extensions**
+
+- 1a. The given input is invalid.
+    
+    - 1a1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+- 1b. The event already exists in the list.
+
+    - 1b1. PlaNus shows an error message.
+    
+    Use case resumes at step 1.
+    
+<br>
+
+**Use case 05: Delete a task**
 
 **MSS**
 
@@ -345,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 2. PlaNus shows a list of tasks.
 
-3. User requests to delete a specific task in the list.
+3. User requests to delete a specific task from the list.
 
 4. PlaNus deletes the task.
 
@@ -361,11 +413,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 3a1. PlaNus shows an error message.
 
-    Use case resumes at step 2.
+    Use case resumes at step 3.
 
 <br>
 
-**Use case 04: List all tasks**
+**Use case 06: List all tasks**
 
 **MSS**
 
@@ -383,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 05: Request help**
+**Use case 07: Request help**
 
 **MSS**
 
@@ -395,7 +447,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 06: Mark a task as done**
+**Use case 08: Mark a task as done**
 
 **MSS**
 
@@ -419,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 07: Find a task**
+**Use case 09: Find a task**
 
 **MSS**
 
@@ -449,7 +501,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 08: Edit a task**
+**Use case 10: Edit a task**
 
 **MSS**
 
@@ -474,7 +526,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case 09: Exit application**
+**Use case 11: Exit application**
 
 **MSS**
 
@@ -508,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Task**: A task is a collection of details about a specific task that needs to be done, including description, title, date and time.
+* **Task**: A task is a collection of details about a specific task that needs to be done, including description, title, tag, date and time.
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EditTaskCommand object
  */
-public class EditCommandParser implements Parser<EditTaskCommand> {
+public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditTaskCommand
@@ -35,7 +35,8 @@ public class EditCommandParser implements Parser<EditTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(),
+                    EditTaskCommand.MESSAGE_USAGE), pe);
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();

@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.stream.Stream;
-
 import seedu.address.logic.commands.DeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
@@ -36,9 +34,9 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
                     PREFIX_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DATE_TIME)
+        if (!Parser.arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DATE_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", DeadlineCommand.MESSAGE_USAGE));
         }
         Description description = Description.defaultDescription();
         Tag tag = Tag.defaultTag();
@@ -55,13 +53,4 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
         Deadline deadline = Deadline.createDeadline(title, deadlineDateTime, description, tag);
         return new DeadlineCommand(deadline);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
