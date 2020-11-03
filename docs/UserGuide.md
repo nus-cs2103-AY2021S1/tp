@@ -124,9 +124,9 @@ This section provides support for the commands required to perform desired actio
   `update sn/Fairprice1 n/Apple` and `update sn/Fairprice1` are both valid command formats, <br>
   but `update sn/Fairprice1 n/Apple n/Banana` is not a valid command format.
 
-* Compulsory prefixes with `...` trailing after them can be used more than one time in one command. <br>
-  For example, in `delete sn/<serial number>...`, the `sn/<serial number>` must be provided and duplicates are allowed. <br>
-  `delete sn/Fairprice1` and `delete sn/Fairprice1 sn/Ntuc1` are both valid command formats.
+* Prefixes with `...` trailing after them are allowed to be duplicated. <br>
+  For example, in `delete sn/<serial number> [sn/<serial number>]...`, the `sn/<serial number>` must be provided at least once and duplicates are allowed. <br>
+  `delete sn/Fairprice1` and `delete sn/Fairprice1 sn/Ntuc1` are both valid command formats, but `delete` is not a valid command format.
   
 * Multiple prefixes combined with `|` means only one of them can be provided at a single command. <br>
   For example, in `update sn/<serial number> [iq/<increment value> | nq/<new quantity>]`, at most one of `iq/<increment value>`
@@ -146,6 +146,9 @@ This section provides support for the commands required to perform desired actio
 * All 15 valid prefixes that are used in Warenager are <br>
   `n/<name>, s/<source>, q/<quantity>, lq/<low quantity>, l/<location>, lt/<list type>, sn/<serial number>, nq/<new quantity>,
   iq/<increment value>, nt/<note>, ni/<note index>, st/<statistics type>, by/<field>, o/<order>, fn/<file name>`.
+
+* All parameters for prefixes are case-insensitive, with the **exception** of `nt/` prefix. <br>
+  For example, `bookmark sn/Fairprice1` and `bookmark sn/FAIRPRICE1` are exactly the same.
 
 </div>
 
@@ -178,18 +181,18 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]` <br> e.g. `add n/Banana cake s/Fairprice q/100 l/Food section`
 **List** | `list lt/<list type>` <br> e.g. `list lt/bookmark`
-**Delete** | `delete sn/<serial number>...` <br> e.g. `delete sn/Fairprice1`
-**Find** | `find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]` <br> e.g. `find n/banana sn/SHENGSIONG`
-**FindExact** | `findexact [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]` <br> e.g. `findexact n/banana sn/SHENGSIONG`
+**Delete** | `delete sn/<serial number> [sn/<serial number>]...` <br> e.g. `delete sn/Fairprice1`
+**Find** | `find { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }` <br> e.g. `find n/banana sn/SHENGSIONG`
+**FindExact** | `findexact { [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>] }` <br> e.g. `findexact n/banana sn/SHENGSIONG`
 **Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/shengsiong1 nt/chicken will expire soon`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
 **StockView** | `stockview sn/<serial number>` <br> e.g. `stockview sn/ntuc1`
-**Update** | `update sn/<serial number>... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
+**Update** | `update sn/<serial number> [sn/<serial number>]... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
 **Statistics** | `stats st/<statistics type>` <br> e.g. `stats st/source-qd-ntuc`
 **Print** | `print fn/<file name>` <br> e.g. `print fn/stocks`
 **Sort** | `sort o/<order> by/<field>` <br> e.g. `sort o/descending by/quantity`
-**Bookmark** | `bookmark sn/<serial number>...` <br> e.g. `bookmark sn/China3`
-**Unbookmark** | `unbookmark sn/<serial number>...` <br> e.g. `unbookmark sn/China3`
+**Bookmark** | `bookmark sn/<serial number> [sn/<serial number>]...` <br> e.g. `bookmark sn/China3`
+**Unbookmark** | `unbookmark sn/<serial number> [sn/<serial number>]...` <br> e.g. `unbookmark sn/China3`
 **Help** | `help`
 **Clear**| `clear`
 **Tab** | `tab`
@@ -584,7 +587,7 @@ Updates the details of the desired stock(s), requires the serial number of stock
 <h4>Format</h4>
 
 ```
-update sn/<serial number>... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]
+update sn/<serial number> [sn/<serial number]... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]
 ```
 
 <div markdown="block" class="alert alert-warning">
@@ -804,7 +807,7 @@ Bookmarking a stock pushes the stock to the top of the stock list.
 <h4>Format</h4>
 
 ```
-bookmark sn/<serial number>...
+bookmark sn/<serial number> [sn/<serial number>]...
 ```
 
 <h4>Examples</h4>
@@ -822,7 +825,7 @@ Removes bookmark from the desired stock(s).
 <h4>Format</h4>
 
 ```
-unbookmark sn/<serial number>...
+unbookmark sn/<serial number> [sn/<serial number>]...
 ```
 
 <h4>Examples</h4>
