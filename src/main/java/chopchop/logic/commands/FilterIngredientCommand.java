@@ -9,7 +9,6 @@ import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.ExpiryDateOnOrBeforePredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Filters and lists all ingredients in ingredient book that match all filtering criteria.
@@ -45,12 +44,9 @@ public class FilterIngredientCommand extends Command {
         }
         model.updateFilteredIngredientList(p);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadIngredientPanel();
-        }
-
         var sz = model.getFilteredIngredientList().size();
-        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s");
+        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s")
+            .showingIngredientList();
     }
 
     @Override

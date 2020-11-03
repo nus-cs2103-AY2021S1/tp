@@ -35,7 +35,8 @@ public class DeleteRecipeCommand extends Command implements Undoable {
         this.recipe = res.getValue();
 
         model.deleteRecipe(this.recipe);
-        return CommandResult.message("Deleted recipe '%s'", this.recipe.getName());
+        return CommandResult.message("Deleted recipe '%s'", this.recipe.getName())
+            .showingRecipeList();
     }
 
     @Override
@@ -43,7 +44,8 @@ public class DeleteRecipeCommand extends Command implements Undoable {
         requireNonNull(model);
 
         model.addRecipe(this.recipe);
-        return CommandResult.message("Undo: re-added recipe '%s'", this.recipe.getName());
+        return CommandResult.message("Undo: re-added recipe '%s'", this.recipe.getName())
+            .showingRecipe(this.recipe);
     }
 
     @Override

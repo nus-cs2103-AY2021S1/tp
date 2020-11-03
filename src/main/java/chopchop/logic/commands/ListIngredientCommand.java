@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Lists all ingredients in the ingredient book to the user.
@@ -17,11 +16,8 @@ public class ListIngredientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_ENTRIES);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadIngredientPanel();
-        }
-
-        return CommandResult.message("Listed ingredients");
+        return CommandResult.message("Listed ingredients")
+            .showingIngredientList();
     }
 
     @Override

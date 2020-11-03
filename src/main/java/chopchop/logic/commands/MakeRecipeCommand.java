@@ -70,8 +70,10 @@ public class MakeRecipeCommand extends Command implements Undoable {
             }
 
         }
+
         model.addRecipeUsage(this.recipe);
-        return CommandResult.message("Made recipe '%s'", this.recipe.getName());
+        return CommandResult.message("Made recipe '%s'", this.recipe.getName())
+            .showingRecipe(this.recipe);
     }
 
     @Override

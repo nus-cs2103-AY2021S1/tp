@@ -90,7 +90,8 @@ public class EditRecipeCommand extends Command implements Undoable {
 
         model.setRecipe(this.recipe, this.editedRecipe);
         return CommandResult.message("Edited recipe '%s'%s", this.recipe.getName(),
-            editedName ? String.format(" (renamed to '%s')", newName) : "");
+            editedName ? String.format(" (renamed to '%s')", newName) : ""
+        ).showingRecipe(this.editedRecipe);
     }
 
 
@@ -250,7 +251,8 @@ public class EditRecipeCommand extends Command implements Undoable {
         enforceNonNull(model);
 
         model.setRecipe(this.editedRecipe, this.recipe);
-        return CommandResult.message("Undo: un-edited recipe '%s'", this.recipe.getName());
+        return CommandResult.message("Undo: un-edited recipe '%s'", this.recipe.getName())
+            .showingRecipe(this.recipe);
     }
 
     @Override

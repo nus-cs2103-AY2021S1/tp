@@ -2,15 +2,16 @@
 
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.model.recipe.Recipe;
 
 /**
  * Represents the result of a command execution.
@@ -24,32 +25,31 @@ public class CommandResult {
     private final boolean isStatsOutput;
     private final List<Pair<String, String>> statsMessage;
 
+    private final Panel switchedPanel;
+    private final Optional<Recipe> recipeToShow;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     private CommandResult(String message, boolean isError, boolean shouldExit, boolean isStatsOutput,
-                          List<Pair<String, String>> statsMessage) {
-        requireAllNonNull(message, statsMessage);
-
-        this.isError = isError;
-        this.shouldExit = shouldExit;
-        this.parts = List.of(Part.text(message));
-        this.isStatsOutput = isStatsOutput;
-        this.statsMessage = new ArrayList<>(statsMessage);
+                          List<Pair<String, String>> statsMessage, Panel panel, Optional<Recipe> rec) {
+        this(List.of(Part.text(message)), isError, shouldExit, isStatsOutput, statsMessage, panel, rec);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     private CommandResult(List<Part> parts, boolean isError, boolean shouldExit, boolean isStatsOutput,
-                          List<Pair<String, String>> statsMessage) {
+                          List<Pair<String, String>> statsMessage, Panel panel, Optional<Recipe> rec) {
         requireNonNull(parts);
 
         this.parts = parts;
         this.isError = isError;
         this.shouldExit = shouldExit;
         this.isStatsOutput = isStatsOutput;
-        this.statsMessage = statsMessage;
+        this.statsMessage = new ArrayList<>(statsMessage);
+        this.switchedPanel = panel;
+        this.recipeToShow = rec;
     }
 
     /**
@@ -91,7 +91,8 @@ public class CommandResult {
 
         list.add(Part.text(text));
 
-        return new CommandResult(list, this.isError, this.shouldExit, this.isStatsOutput, this.statsMessage);
+        return new CommandResult(list, this.isError, this.shouldExit, this.isStatsOutput, this.statsMessage,
+            this.switchedPanel, this.recipeToShow);
     }
 
     /**
@@ -105,7 +106,40 @@ public class CommandResult {
 
         list.add(Part.link(text, url));
 
-        return new CommandResult(list, this.isError, this.shouldExit, this.isStatsOutput, this.statsMessage);
+        return new CommandResult(list, this.isError, this.shouldExit, this.isStatsOutput, this.statsMessage,
+            this.switchedPanel, this.recipeToShow);
+    }
+
+    /**
+     * Sets the UI to show the given recipe after the command completes successfully.
+     */
+    public CommandResult showingRecipe(Recipe recipe) {
+        return new CommandResult(this.parts, this.isError, this.shouldExit, this.isStatsOutput,
+            this.statsMessage, Panel.RECIPE_DETAIL, Optional.of(recipe));
+    }
+
+    /**
+     * Sets the UI to show the recipe list after the command completes successfully.
+     */
+    public CommandResult showingRecipeList() {
+        return new CommandResult(this.parts, this.isError, this.shouldExit, this.isStatsOutput,
+            this.statsMessage, Panel.RECIPE_LIST, Optional.empty());
+    }
+
+    /**
+     * Sets the UI to show the ingredient list after the command completes successfully.
+     */
+    public CommandResult showingIngredientList() {
+        return new CommandResult(this.parts, this.isError, this.shouldExit, this.isStatsOutput,
+            this.statsMessage, Panel.INGREDIENT_LIST, Optional.empty());
+    }
+
+    /**
+     * Sets the UI to show the recommendations list after the command completes successfully.
+     */
+    public CommandResult showingRecommendationList() {
+        return new CommandResult(this.parts, this.isError, this.shouldExit, this.isStatsOutput,
+            this.statsMessage, Panel.RECOMMENDATION_LIST, Optional.empty());
     }
 
     /**
@@ -121,6 +155,21 @@ public class CommandResult {
     public ArrayList<Pair<String, String>> getStatsMessage() {
         return new ArrayList<>(this.statsMessage);
     }
+
+    /**
+     * Returns the panel to switch to
+     */
+    public Panel getSwitchedPanel() {
+        return this.switchedPanel;
+    }
+
+    /**
+     * Returns the recipe to show, if any
+     */
+    public Optional<Recipe> getDisplayedRecipe() {
+        return this.recipeToShow;
+    }
+
 
     @Override
     public String toString() {
@@ -141,12 +190,11 @@ public class CommandResult {
 
         return this.parts.equals(cr.parts)
             && this.isError == cr.isError
-            && this.shouldExit == cr.shouldExit;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.parts, this.isError, this.shouldExit, this.statsMessage);
+            && this.shouldExit == cr.shouldExit
+            && this.isStatsOutput == cr.isStatsOutput
+            && this.statsMessage.equals(cr.statsMessage)
+            && this.switchedPanel.equals(cr.switchedPanel)
+            && this.recipeToShow.equals(cr.recipeToShow);
     }
 
     /**
@@ -157,7 +205,8 @@ public class CommandResult {
     public static CommandResult message(String message, Object... args) {
         return new CommandResult(String.format(message, args),
             /* isError: */ false, /* shouldExit: */ false, /* statsMsg: */ false,
-            new ArrayList<>());
+            /* statsMsgs: */ new ArrayList<>(), /* panel: */ Panel.NONE,
+            /* recipe: */ Optional.empty());
     }
 
     /**
@@ -168,7 +217,8 @@ public class CommandResult {
     public static CommandResult error(String error, Object... args) {
         return new CommandResult(String.format(error, args),
             /* isError: */ true, /* shouldExit: */ false, /* statsMsg: */ false,
-            new ArrayList<>());
+            /* statsMsgs: */ new ArrayList<>(), /* panel: */ Panel.NONE,
+            /* recipe: */ Optional.empty());
     }
 
     /**
@@ -176,16 +226,19 @@ public class CommandResult {
      */
     public static CommandResult exit() {
         return new CommandResult(List.of(), /* isError: */ false, /* shouldExit: */ true,
-            /* statsMsg: */ false, new ArrayList<>());
+            /* statsMsg: */ false, /* statsMsgs: */ new ArrayList<>(),
+            /* panel: */ Panel.NONE, /* recipe: */ Optional.empty());
     }
 
     /**
      * Constructs a new command result from stats that contains the list of values to be output in stats box and the
      * message that indicates the status of the command.
      */
-    public static CommandResult statsMessage(List<Pair<String, String>> outputList, String message, Object... args) {
+    public static CommandResult statsMessage(List<Pair<String, String>> statsMsgs, String message, Object... args) {
         return new CommandResult(String.format(message, args),
-            /* isError: */ false, /* shouldExit: */ false, /* statsMsg: */true, outputList);
+            /* isError: */ false, /* shouldExit: */ false,
+            /* statsMsg: */ true, statsMsgs, /* panel: */ Panel.NONE,
+            /* recipe: */ Optional.empty());
     }
 
 
@@ -247,10 +300,14 @@ public class CommandResult {
                 && Objects.equals(this.isLink, other.isLink)
                 && Objects.equals(this.appendNewline, other.appendNewline);
         }
+    }
 
-        @Override
-        public int hashCode() {
-            return Objects.hash(this.url, this.text, this.isLink, this.appendNewline);
-        }
+
+    public static enum Panel {
+        NONE,
+        RECIPE_LIST,
+        INGREDIENT_LIST,
+        RECOMMENDATION_LIST,
+        RECIPE_DETAIL
     }
 }

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Displays a recipe identified by the index number or its name from the recipe book.
@@ -31,12 +30,8 @@ public class ViewRecipeCommand extends Command {
             return CommandResult.error(recipe.getError());
         }
 
-
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipeDisplay(recipe.getValue());
-        }
-
-        return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName());
+        return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName())
+            .showingRecipe(recipe.getValue());
     }
 
     @Override
