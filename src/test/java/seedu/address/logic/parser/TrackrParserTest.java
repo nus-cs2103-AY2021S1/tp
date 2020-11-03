@@ -107,6 +107,7 @@ public class TrackrParserTest {
         assertEquals(new DeleteModuleCommand(INDEX_FIRST_PERSON), command);
     }
 
+    //    Todo: deleteTutorialGroupTest
     //    @Test
     //    public void parseCommand_deleteTutorialGroup() throws Exception {
     //        DeleteTutorialGroupCommand command = (DeleteTutorialGroupCommand) parser.parseCommand(
@@ -125,10 +126,11 @@ public class TrackrParserTest {
     public void parseCommand_deleteAttendance() throws Exception {
         DeleteAttendanceCommand command = (DeleteAttendanceCommand) parser.parseCommand(
                 DeleteAttendanceCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                + " " + "week/2");
+                + " week/2");
         assertEquals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON, new int[]{2}), command);
     }
 
+    //    Example edit Test for reference, delete after
     //    @Test
     //    public void parseCommand_edit() throws Exception {
     //        Person person = new PersonBuilder().build();
@@ -145,6 +147,7 @@ public class TrackrParserTest {
         assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
     }
 
+    //    Todo: EditTutorialGroup test
     //    @Test
     //    public void parseCommand_editTutorialGroup() throws Exception {
     //        TutorialGroup tutorialGroup = new TutorialGroupBuilder().build();
@@ -157,6 +160,7 @@ public class TrackrParserTest {
     //        assertEquals(toTest, command);
     //    }
 
+    //    Todo: EditStudent test
     //    @Test
     //    public void parseCommand_editStudent() throws Exception {
     //        Student student = new StudentBuilder().build();

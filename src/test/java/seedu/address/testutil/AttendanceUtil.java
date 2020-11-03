@@ -8,7 +8,7 @@ public class AttendanceUtil {
      * Returns an add command string for adding the {@code Attendance}.
      */
     public static String getAddAttendanceCommand(Attendance attendance) {
-        String correctArgument = " 1 week/2";
+        String correctArgument = "1 week/2";
         return AddAttendanceCommand.COMMAND_WORD + " " + correctArgument;
     }
 
