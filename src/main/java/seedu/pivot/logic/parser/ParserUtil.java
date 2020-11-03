@@ -3,6 +3,7 @@ package seedu.pivot.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_MISSING_PREFIX_INVALID_COMMAND;
+import static seedu.pivot.commons.util.StringUtil.capitaliseFirstLetter;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
@@ -76,7 +77,8 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedTitle)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedTitle);
+        String formattedTitle = capitaliseFirstLetter(trimmedTitle);
+        return new Name(formattedTitle);
     }
 
     /**

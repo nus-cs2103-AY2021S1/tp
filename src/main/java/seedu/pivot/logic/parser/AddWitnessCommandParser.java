@@ -44,4 +44,6 @@ public class AddWitnessCommandParser implements Parser<AddWitnessCommand> {
         Witness witness = new Witness(name, sex, phone, email, address);
         return new AddWitnessCommand(index, witness);
     }
+
+
 }

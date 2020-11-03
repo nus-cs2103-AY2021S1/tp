@@ -65,4 +65,26 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Formats the givenString such that the first letter of each word is capitalised,
+     * and all other letters are in lower case.
+     * @param givenString String to be formatted.
+     * @return String with first letter of each word capitalised, while the rest are lower case.
+     */
+    public static String capitaliseFirstLetter(String givenString) {
+        requireNonNull(givenString);
+        if (givenString.isBlank()) {
+            return givenString;
+        }
+
+        String[] arr = givenString.trim().split(" ");
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                    .append(arr[i].substring(1).toLowerCase()).append(" ");
+        }
+        return sb.toString().trim();
+    }
 }
