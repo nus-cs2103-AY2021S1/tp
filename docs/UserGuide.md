@@ -822,6 +822,7 @@ look as shown in the image below.
 
 **:information_source:** If you already have stocks in your stockbook, you may skip Step 1.
 Make sure that the serial number of the stock you want to view is correctly entered.
+Use the `list lt/all` command to show all the stocks in the stock book in the `Data` tab.
 
 </div>
 
