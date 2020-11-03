@@ -26,8 +26,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
-    public static final String DAY_MESSAGE_CONSTRAINTS = "Day should be in the format of MON, TUE,"
-            + " ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
+    public static final String DAY_MESSAGE_CONSTRAINTS =
+            "Day should be a valid day in the format of MONDAY, TUESDAY, ..., SUNDAY (case-insensitive)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -136,9 +136,9 @@ public class ParserUtil {
     public static LocalTime parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter parser = DateUtil.TIME_FORMATTER;
         if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
         }
         return LocalTime.parse(trimmedTime, parser);
     }
@@ -152,9 +152,9 @@ public class ParserUtil {
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter parser = DateUtil.DATE_FORMATTER;
         if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+            throw new ParseException(DateUtil.DATE_CONSTRAINTS);
         }
         return LocalDate.parse(trimmedDate, parser);
     }
@@ -169,31 +169,13 @@ public class ParserUtil {
         requireNonNull(day);
         String trimmedDay = day.trim();
         String dayOfWeek = trimmedDay.toUpperCase();
-        switch (dayOfWeek) {
-        case "MON":
-        case "MONDAY":
-            return DayOfWeek.MONDAY;
-        case "TUE":
-        case "TUESDAY":
-            return DayOfWeek.TUESDAY;
-        case "WED":
-        case "WEDNESDAY":
-            return DayOfWeek.WEDNESDAY;
-        case "THU":
-        case "THURSDAY":
-            return DayOfWeek.THURSDAY;
-        case "FRI":
-        case "FRIDAY":
-            return DayOfWeek.FRIDAY;
-        case "SAT":
-        case "SATURDAY":
-            return DayOfWeek.SATURDAY;
-        case "SUN":
-        case "SUNDAY":
-            return DayOfWeek.SUNDAY;
-        default:
+        DayOfWeek result; //Default value
+        try {
+            result = DayOfWeek.valueOf(dayOfWeek);
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
         }
+        return result;
     }
 
     /**

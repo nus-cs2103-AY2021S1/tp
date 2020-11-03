@@ -71,7 +71,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
             endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
         } else {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
         }
         if (!isStartTimeBeforeEndTime(startTime, endTime)) {
             throw new ParseException(Time.RANGE_CONSTRAINTS);

@@ -13,7 +13,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
@@ -63,8 +62,8 @@ class JsonAdaptedLesson {
         tag = source.getTag().tagName;
         description = source.getDescription().value;
         dayOfWeek = source.getDayOfWeek().toString();
-        startTime = source.getStartTime().format(Time.FORMATTER);
-        endTime = source.getEndTime().format(Time.FORMATTER);
+        startTime = source.getStartTime().format(DateUtil.TIME_FORMATTER);
+        endTime = source.getEndTime().format(DateUtil.TIME_FORMATTER);
         startDate = source.getStartDate().format(DateUtil.DATE_FORMATTER);
         endDate = source.getEndDate().format(DateUtil.DATE_FORMATTER);
         logger.info("Planus lesson with title: '" + title + "' successfully converted to adapted lesson object");
@@ -119,14 +118,14 @@ class JsonAdaptedLesson {
                     LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelStartTime = LocalTime.parse(startTime, Time.FORMATTER);
+        final LocalTime modelStartTime = LocalTime.parse(startTime, DateUtil.TIME_FORMATTER);
 
         if (endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelEndTime = LocalTime.parse(endTime, Time.FORMATTER);
+        final LocalTime modelEndTime = LocalTime.parse(endTime, DateUtil.TIME_FORMATTER);
 
         if (startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
