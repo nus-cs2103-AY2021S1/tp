@@ -1,10 +1,14 @@
 package seedu.resireg.model.allocation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_TWO;
+import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_TWO;
+import static seedu.resireg.testutil.TypicalStudents.ALICE;
 import static seedu.resireg.testutil.TypicalStudents.BENSON;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +19,9 @@ import seedu.resireg.testutil.AllocationBuilder;
 public class AllocationTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Allocation allocation = new AllocationBuilder().build();
+    public void isRelated() {
+        assertTrue(ALLOCATION_ONE.isRelatedTo(ROOM_ONE));
+        assertTrue(ALLOCATION_ONE.isRelatedTo(ALICE));
     }
 
     @Test
@@ -110,5 +115,47 @@ public class AllocationTest {
                 .withStudentId(BENSON.getStudentId().value)
                 .build();
         assertFalse(ALLOCATION_ONE.equals(editedAllocationOne));
+    }
+
+    @Test
+    public void isSameHashCode() {
+        Allocation allocationOneCopy = new AllocationBuilder(ALLOCATION_ONE).build();
+        assertEquals(ALLOCATION_ONE.hashCode(), allocationOneCopy.hashCode());
+
+        Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
+                .withFloor(ROOM_TWO.getFloor().value)
+                .build();
+        assertNotEquals(ALLOCATION_ONE.hashCode(), editedAllocationOne.hashCode());
+
+        editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
+                .withRoomNumber(ROOM_TWO.getRoomNumber().value)
+                .build();
+        assertNotEquals(ALLOCATION_ONE.hashCode(), editedAllocationOne.hashCode());
+
+        editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
+                .withStudentId(BENSON.getStudentId().value)
+                .build();
+        assertNotEquals(ALLOCATION_ONE.hashCode(), editedAllocationOne.hashCode());
+    }
+
+    @Test
+    public void isSameToString() {
+        Allocation allocationOneCopy = new AllocationBuilder(ALLOCATION_ONE).build();
+        assertEquals(ALLOCATION_ONE.toString(), allocationOneCopy.toString());
+
+        Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
+                .withFloor(ROOM_TWO.getFloor().value)
+                .build();
+        assertNotEquals(ALLOCATION_ONE.toString(), editedAllocationOne.toString());
+
+        editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
+                .withRoomNumber(ROOM_TWO.getRoomNumber().value)
+                .build();
+        assertNotEquals(ALLOCATION_ONE.toString(), editedAllocationOne.toString());
+
+        editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
+                .withStudentId(BENSON.getStudentId().value)
+                .build();
+        assertNotEquals(ALLOCATION_ONE.toString(), editedAllocationOne.toString());
     }
 }

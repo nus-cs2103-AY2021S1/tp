@@ -7,6 +7,7 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_TWO;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_B;
+import static seedu.resireg.testutil.TypicalStudents.ALICE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,12 +17,24 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
 import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
+import seedu.resireg.model.student.Student;
 import seedu.resireg.testutil.AllocationBuilder;
 
 
 public class UniqueAllocationListTest {
 
     private final UniqueAllocationList uniqueAllocationList = new UniqueAllocationList();
+
+    @Test
+    public void hasStudent_studentNotInList_returnsFalse() {
+        assertFalse(uniqueAllocationList.hasStudent(ALICE));
+    }
+
+    @Test
+    public void hasStudent_studentInList_returnsTrue() {
+        uniqueAllocationList.add(ALLOCATION_ONE);
+        assertTrue(uniqueAllocationList.hasStudent(ALICE));
+    }
 
     @Test
     public void contains_nullAllocation_throwsNullPointerException() {
@@ -40,21 +53,21 @@ public class UniqueAllocationListTest {
     }
 
     @Test
-    public void contains_allocationWithSameIdentityFieldsDifferentRoomNumberInList_returnsTrue() {
+    public void conflicts_allocationWithSameIdentityFieldsDifferentRoomNumberInList_returnsTrue() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
             .withRoomNumber(ROOM_B.getRoomNumber().value)
             .build();
-        assertTrue(uniqueAllocationList.contains(editedAllocationOne));
+        assertTrue(uniqueAllocationList.conflicts(editedAllocationOne));
     }
 
     @Test
-    public void contains_allocationWithSameIdentityFieldsDifferentFloorInList_returnsTrue() {
+    public void conflicts_allocationWithSameIdentityFieldsDifferentFloorInList_returnsTrue() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
             .withFloor(ROOM_B.getFloor().value)
             .build();
-        assertTrue(uniqueAllocationList.contains(editedAllocationOne));
+        assertTrue(uniqueAllocationList.conflicts(editedAllocationOne));
     }
 
     @Test
@@ -194,5 +207,19 @@ public class UniqueAllocationListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
             uniqueAllocationList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        UniqueAllocationList uniqueAllocationList = new UniqueAllocationList();
+        UniqueAllocationList uniqueAllocationListCopy = new UniqueAllocationList();
+        assertTrue(uniqueAllocationList.equals(uniqueAllocationListCopy));
+    }
+
+    @Test
+    public void isSameHashCode() {
+        UniqueAllocationList uniqueAllocationList = new UniqueAllocationList();
+        UniqueAllocationList uniqueAllocationListCopy = new UniqueAllocationList();
+        assertTrue(uniqueAllocationList.equals(uniqueAllocationListCopy));
     }
 }
