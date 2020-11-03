@@ -30,8 +30,6 @@ public class ListCommand extends Command {
             + "If the current date and time is 24-10-2020 1200,"
             + " it will list your assignments that are due between this date and time and 27-10-2020 1200.";
 
-    public static final String MESSAGE_SUCCESS = "Listed your assignments";
-
     private final Index numberOfDays;
 
     public ListCommand(Index numberOfDays) {
