@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.model.ingredient.Ingredient;
@@ -82,10 +83,40 @@ public class Recipe {
         this.recipeImage = new RecipeImage("images/default.jpg");
     }
     /**
-     * Returns true if both recipes of the same name have at least one other identity field that is the same.
+     * Returns true if both recipes of the same name have the exact same ingredients.
      * This defines a weaker notion of equality between two recipes.
+     * This method is used to check for adding duplicate recipes in the recipe list.
      */
     public boolean isSameRecipe(Recipe otherRecipe) {
+        if (otherRecipe == this) {
+            return true;
+        }
+
+        return otherRecipe != null
+                && otherRecipe.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
+                && isSameIngredients(otherRecipe.getIngredient());
+    }
+
+    private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
+        ArrayList<Ingredient> ingredients = getIngredient();
+        if (ingredients.size() != otherIngredients.size()) {
+            return false;
+        }
+        ArrayList<String> ingredientsCopy = new ArrayList<String>(new ArrayList<Ingredient>(ingredients)
+                                            .stream().map(ingredient -> ingredient.getValue().toLowerCase())
+                                            .collect(Collectors.toList()));
+        ArrayList<String> otherIngredientsCopy = new ArrayList<String>(new ArrayList<Ingredient>(otherIngredients)
+                                            .stream().map(ingredient -> ingredient.getValue().toLowerCase())
+                                            .collect(Collectors.toList()));
+
+        Collections.sort(ingredientsCopy);
+        Collections.sort(otherIngredientsCopy);
+        return ingredientsCopy.equals(otherIngredientsCopy);
+    }
+
+
+
+    /*public boolean isSameRecipe(Recipe otherRecipe) {
         if (otherRecipe == this) {
             return true;
         }
@@ -107,7 +138,9 @@ public class Recipe {
             }
         }
         return true;
-    }
+    }*/
+
+
 
     /**
      * Converts a recipe to its command string.
@@ -125,7 +158,12 @@ public class Recipe {
                 + " " + instructions + " " + image + " " + tags;
     }
 
-    private String stringifyIngredients(ArrayList<Ingredient> ingredients) {
+    /**
+     * Converts the list of ingredients into a string, with each ingredient separated by a comma.
+     * @param ingredients the list of ingredients
+     * @return a string of the ingredienst
+     */
+    public String stringifyIngredients(ArrayList<Ingredient> ingredients) {
         int len = ingredients.size();
         String ingredientsResult = "";
         for (int i = 0; i < len; i++) {
@@ -193,12 +231,8 @@ public class Recipe {
         }
 
         Recipe otherRecipe = (Recipe) other;
-        return otherRecipe.getName().equals(getName())
-                && otherRecipe.getInstruction().equals(getInstruction())
-                && otherRecipe.getRecipeImage().equals(getRecipeImage())
-                && otherRecipe.getIngredient().equals(getIngredient())
-                && otherRecipe.getCalories().equals(getCalories())
-                && otherRecipe.getTags().equals(getTags());
+        return otherRecipe.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
+                && isSameIngredients(otherRecipe.getIngredient());
     }
 
     @Override
@@ -213,8 +247,8 @@ public class Recipe {
         builder.append(getName())
                 .append(" Ingredient: ")
                 .append(ingredients.stream()
-                        .map(item -> item.getQuantity() + " " + item.getValue())
-                        .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a))
+                .map(item -> item.getQuantity() + " " + item.getValue())
+                .reduce("", (a, b) -> b.equals("") ? a : a.trim().equals("") ? b : b + ", " + a))
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")

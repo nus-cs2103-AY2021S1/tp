@@ -36,7 +36,7 @@ public class EditRecipeCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Recipe editedRecipe = new RecipeBuilder().build();
+        Recipe editedRecipe = new RecipeBuilder().buildOtherRecipe();
         EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(editedRecipe).build();
         EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, descriptor);
 

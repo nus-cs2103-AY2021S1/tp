@@ -34,7 +34,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
      */
     public boolean contains(Ingredient toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameIngredient);
+        return internalList.stream().anyMatch(toCheck::isSameIngredientName);
     }
 
     /**
@@ -136,7 +136,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     private boolean ingredientsAreUnique(List<Ingredient> ingredients) {
         for (int i = 0; i < ingredients.size() - 1; i++) {
             for (int j = i + 1; j < ingredients.size(); j++) {
-                if (ingredients.get(i).isSameIngredient(ingredients.get(j))) {
+                if (ingredients.get(i).isSameIngredientName(ingredients.get(j))) {
                     return false;
                 }
             }
