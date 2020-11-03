@@ -20,6 +20,8 @@ public class JsonAdaptedTutorialGroupTest {
     private static final String INVALID_DAY_OF_WEEK = "M0N";
     private static final String INVALID_START_TIME = "1200";
     private static final String INVALID_END_TIME = "Thirteen O-clock";
+    private static final String INVALID_TIME_PAIR_START = "11:00";
+    private static final String INVALID_TIME_PAIR_END = "06:00";
 
 
     private static final String VALID_TUTORIAL_GROUP_ID = S12.getId().toString();
@@ -133,6 +135,19 @@ public class JsonAdaptedTutorialGroupTest {
                         null,
                         DUMMY_STUDENT_LIST);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TimeOfDay.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, tutorialGroup::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTimePair_throwsIllegalValueException() {
+        JsonAdaptedTutorialGroup tutorialGroup =
+                new JsonAdaptedTutorialGroup(
+                        VALID_TUTORIAL_GROUP_ID,
+                        VALID_DAY_OF_WEEK,
+                        INVALID_TIME_PAIR_START,
+                        INVALID_TIME_PAIR_END,
+                        DUMMY_STUDENT_LIST);
+        String expectedMessage = TimeOfDay.TIME_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutorialGroup::toModelType);
     }
 
