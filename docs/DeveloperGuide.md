@@ -283,11 +283,8 @@ The following sequence diagram shows how the unassignall operation works:
 
 The following activity diagram summarizes what happens when a user executes a unassignall command:
 
-<<<<<<< HEAD
 ![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
-=======
-![UnassignActivityDiagram](images/UnassignallActivityDiagram.png)
->>>>>>> 438d469f340f962d246e16afc57e85e0c20cc318
+
 
 #### Design consideration:
 
