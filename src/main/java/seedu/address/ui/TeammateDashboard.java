@@ -1,20 +1,15 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
-import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
 /**
