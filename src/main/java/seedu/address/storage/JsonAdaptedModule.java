@@ -18,7 +18,6 @@ public class JsonAdaptedModule {
 
     private final String moduleId;
     private final List<JsonAdaptedTutorialGroup> tutorialGroups = new ArrayList<>();
-    //private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
