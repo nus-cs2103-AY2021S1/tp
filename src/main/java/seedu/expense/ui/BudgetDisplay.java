@@ -130,4 +130,18 @@ public class BudgetDisplay extends UiPart<Region> {
 
     }
 
+    /**
+     * Shows the budget display
+     */
+    public void show() {
+        logger.fine("Showing budget display bar.");
+        getRoot().setVisible(true);
+    }
+
+    /**
+     * Hides the budget display.
+     */
+    public void hide() {
+        getRoot().setVisible(false);
+    }
 }
