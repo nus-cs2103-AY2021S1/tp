@@ -313,7 +313,7 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 ![filedirectory](images/ug/ug_review_step1.PNG)
 
-**Step 2**: We are brought to the review mode. The instructions on how to navigate review mode will be shown at the top.
+**Step 2**: We are brought into review mode. The instructions on how to navigate review mode will be shown at the top.
 
 ![filedirectory](images/ug/ug_review_step2.PNG)
 
