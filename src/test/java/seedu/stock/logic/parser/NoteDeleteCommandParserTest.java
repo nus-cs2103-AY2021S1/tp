@@ -16,8 +16,9 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_NOTE_INDEX;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_APPLE;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
+
 
 import org.junit.jupiter.api.Test;
 

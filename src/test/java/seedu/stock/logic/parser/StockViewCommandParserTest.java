@@ -12,8 +12,9 @@ import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANA
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_BANANA;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
+
 
 import org.junit.jupiter.api.Test;
 
