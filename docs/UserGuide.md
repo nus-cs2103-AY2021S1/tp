@@ -391,6 +391,7 @@ Format: `view INDEX [-a]`
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
+<br>
 
 **Steps for viewing a specific flashcard**:
 
@@ -430,7 +431,7 @@ The following information will be displayed on the view pane:
 
 <div markdown="span" class="alert alert-primary">:memo: Note: No pie chart will be shown if the flashcard has not been reviewed.    
 </div>
-
+<br>
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
