@@ -57,11 +57,11 @@ public class StudentAdminCard extends UiPart<Region> {
         phone.setText("Phone: " + student.getPhone().value);
         school.setText("School: " + student.getSchool().school);
         year.setText("Year: " + student.getYear());
-        venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
-        time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
-        fee.setText("Fee: " + student.getAdmin().getFee().toString());
-        payment.setText("Last Payment Date: " + student.getAdmin().getPaymentDate().toString());
-        details.setText("Details: \n" + student.getAdmin().getFormattedDetails());
+        venue.setText("Class Venue: " + student.getClassVenue().venue);
+        time.setText("Class Time: " + student.getClassTime().toString());
+        fee.setText("Fee: " + student.getFee().toString());
+        payment.setText("Last Payment Date: " + student.getPaymentDate().toString());
+        details.setText("Details: \n" + student.getFormattedDetails());
     }
 
     @Override

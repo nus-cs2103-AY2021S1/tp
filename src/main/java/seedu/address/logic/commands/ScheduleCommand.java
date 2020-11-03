@@ -8,5 +8,7 @@ package seedu.address.logic.commands;
 public abstract class ScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "schedule";
+
     public static final String COMMAND_SUCCESS_MESSAGE = "Here is your schedule";
+
 }
