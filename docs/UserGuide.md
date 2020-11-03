@@ -439,6 +439,8 @@ __Result:__ The previous command is undone / redone.
 
 ## 6. Commands Summary
 
+This section gives a summarised view of the commands available in NUStorage.
+
 ### 6.1. Inventory Commands Summary
 
 The following table gives a summary of the [__inventory commands__](#51-inventory-commands) for quick reference and look-ups.
@@ -477,9 +479,15 @@ The following table gives a summary of the [__universal commands__](#53-universa
 
 ## 7. FAQs
 
+This section answers some of the _frequently asked questions_.
+
 ### 7.1. How do I migrate the data to another computer?
 
-WARNING: doing so will overwrite the existing data you may have on the other device. Please make sure you make a backup before migrating data.
+<div markdown="block" class="alert alert-info">
+
+**:heavy_exclamation_mark: Doing so will OVERWRITE the existing data you may have on the other device. Please make sure you make a backup before migrating data.**
+
+</div>
 
 Steps to migrate data:
 
@@ -494,7 +502,13 @@ Currently, NUStorage does not support the merging of data between different devi
 
 ### 7.3. Can I directly modify the storage file?
 
-Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
+<div markdown="block" class="alert alert-info">
+
+**:heavy_exclamation_mark: Manually editing data in the storage file may result in a TOTAL LOSS OF DATA!**
+
+</div>
+
+Modifying the storage file is possible but NOT RECOMMENDED!
 
 ---
 
