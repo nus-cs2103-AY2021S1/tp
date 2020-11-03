@@ -26,8 +26,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
-    public static final String DAY_MESSAGE_CONSTRAINTS = "Day should be in the format of MON, TUE,"
-            + " ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
+    public static final String DAY_MESSAGE_CONSTRAINTS =
+            "Day should be a valid day in the format of MONDAY, TUESDAY, ..., SUNDAY (case-insensitive)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -138,7 +138,7 @@ public class ParserUtil {
         String trimmedTime = time.trim();
         DateTimeFormatter parser = DateUtil.TIME_FORMATTER;
         if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
         }
         return LocalTime.parse(trimmedTime, parser);
     }
