@@ -2,7 +2,6 @@ package com.eva.model.util;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -21,6 +20,7 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.person.staff.leave.LeaveTaken;
 import com.eva.model.tag.Tag;
 
 /**
@@ -51,11 +51,61 @@ public class SampleDataUtil {
     }
 
     public static Staff[] getSampleStaffs() {
-        // TODO: Add some meaningful leave samples
-        Set<Leave> leaves = new HashSet<>();
-        return Arrays.stream(getSamplePersons())
-                .map(person -> new Staff(person, leaves))
-                .toArray(Staff[]::new);
+        return new Staff[] {
+            new Staff(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+                    new Address("Blk 30 Geylang Street 29, #06-40"), new LeaveTaken(4),
+                    getTagSet("marketing"),
+                    getLeaveSet(
+                            new String[] {"10/10/2020", "12/10/2020"},
+                            new String[] {"24/02/2020"}
+                            ),
+                    getCommentSet("Character traits|2020-10-10|reassuring, tidy and punctual")),
+            new Staff(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new LeaveTaken(3),
+                    getTagSet("business"),
+                    getLeaveSet(
+                            new String[] {"14/09/2020"},
+                            new String[] {"15/07/2020"},
+                            new String[] {"29/06/2020"}
+                    ),
+                    getCommentSet("Work conflict|2020-11-10|Doesn't work well with David",
+                            "Money owed|2020-12-10|Has yet to pay for office party")),
+            new Staff(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new LeaveTaken(9),
+                    getTagSet("tech"),
+                    getLeaveSet(
+                            new String[] {"10/08/2020", "17/08/2020"},
+                            new String[] {"10/01/2020"}
+                    ),
+                    getCommentSet("Punctuality|2020-09-10|Often comes to work late",
+                            "Gossip|2010-08-10|Likes to gossip and spill tea")),
+            new Staff(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new LeaveTaken(5),
+                    getTagSet("tech"),
+                    getLeaveSet(
+                            new String[] {"10/10/2020", "12/10/2020"},
+                            new String[] {"23/12/2020", "24/12/2020"}
+                    ),
+                    getCommentSet("Work conflict|2010-10-10|Does not work well with Bernice")),
+            new Staff(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+                    new Address("Blk 47 Tampines Street 20, #17-35"), new LeaveTaken(7),
+                    getTagSet("business"),
+                    getLeaveSet(
+                            new String[] {"04/03/2020", "07/03/2020"},
+                            new String[] {"24/02/2020"},
+                            new String[] {"02/01/2020"},
+                            new String[] {"04/01/2020"}
+                    ),
+                    getCommentSet()),
+            new Staff(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"), new LeaveTaken(12),
+                    getTagSet("tech"),
+                    getLeaveSet(
+                            new String[] {"09/04/2020", "19/04/2020"},
+                            new String[] {"24/12/2020"}
+                    ),
+                    getCommentSet("Gambling|2020-11-10|Has a problem with gambling"))
+        };
     }
 
     public static Applicant[] getSampleApplicants() {
@@ -119,6 +169,10 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
+
+    /**
+     * Returns a comment set containing the list of strings given.
+     */
     public static Set<Comment> getCommentSet(String... strings) {
         List<String> list = Arrays.asList(strings);
         return list.stream()
@@ -130,9 +184,15 @@ public class SampleDataUtil {
     /**
      * Returns a leave set containing the list of strings given.
      */
-    public static Set<Leave> getLeaveSet(String... strings) {
+    public static Set<Leave> getLeaveSet(String[]... strings) {
         return Arrays.stream(strings)
-                .map(Leave::new)
+                .map(string -> {
+                    if (string.length > 1) {
+                        return new Leave(string[0], string[1]);
+                    } else {
+                        return new Leave(string[0]);
+                    }
+                })
                 .collect(Collectors.toSet());
     }
 

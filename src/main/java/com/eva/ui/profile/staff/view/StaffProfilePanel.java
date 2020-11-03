@@ -59,7 +59,7 @@ public class StaffProfilePanel extends UiPart<Region> {
             commentListPanel = new CommentListPanel(staff.getCommentList());
             commentListPanelPlaceholder.getChildren().add(commentListPanel.getRoot());
 
-            leaveInfoDisplay = new LeaveInfoDisplay(staff.getLeaveList());
+            leaveInfoDisplay = new LeaveInfoDisplay(staff.getLeaveList(), currentStaff.getLeaveTaken());
             leaveInfoPlaceholder.getChildren().add(leaveInfoDisplay.getRoot());
         }
     }

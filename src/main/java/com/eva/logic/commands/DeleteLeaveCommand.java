@@ -77,23 +77,27 @@ public class DeleteLeaveCommand extends Command {
 
         Optional<Leave> removedLeave = model.hasLeaveDate(target, date);
 
-        if (removedLeave.isPresent()) {
-            model.deleteStaffLeave(target, removedLeave.get());
-            model.setStaff(target, target); // force refresh staff model to update the leave list.
-            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-            if (panelState.equals(STAFF_LIST)) {
+        try {
+            if (removedLeave.isPresent()) {
+                model.deleteStaffLeave(target, removedLeave.get());
                 model.setStaff(target, target); // force refresh staff model to update the leave list.
                 model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-            } else if (panelState.equals(STAFF_PROFILE)) {
-                model.setStaff(target, target); // force refresh staff model to update the leave list.
-                model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-                Staff staffToView = lastShownList.get(targetIndex.getZeroBased());
-                model.setCurrentViewStaff(new CurrentViewStaff(staffToView, targetIndex));
+                if (panelState.equals(STAFF_LIST)) {
+                    model.setStaff(target, target); // force refresh staff model to update the leave list.
+                    model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+                } else if (panelState.equals(STAFF_PROFILE)) {
+                    model.setStaff(target, target); // force refresh staff model to update the leave list.
+                    model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+                    Staff staffToView = lastShownList.get(targetIndex.getZeroBased());
+                    model.setCurrentViewStaff(new CurrentViewStaff(staffToView, targetIndex));
+                }
+                return new CommandResult(String.format(MESSAGE_SUCCESS, removedLeave.get(), target.getName()),
+                        false, false, true);
+            } else {
+                throw new CommandException(String.format(MESSAGE_NO_RECORD, target.getName(), dateToString(date)));
             }
-            return new CommandResult(String.format(MESSAGE_SUCCESS, removedLeave.get(), target.getName()),
-                    false, false, true);
-        } else {
-            throw new CommandException(String.format(MESSAGE_NO_RECORD, target.getName(), dateToString(date)));
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
         }
     }
 }

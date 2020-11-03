@@ -27,13 +27,13 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="comments" />
             <FlowPane fx:id="tags" />
             <Label fx:id="applicationStatus" styleClass="cell_small_label" text="\$applicationStatus" />
             <Label fx:id="interviewDate" styleClass="cell_small_label" text="\$interviewDate" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <FlowPane fx:id="comments" />
         </VBox>
     </GridPane>
 </HBox>

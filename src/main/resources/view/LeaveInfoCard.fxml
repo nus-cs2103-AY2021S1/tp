@@ -17,14 +17,15 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="date" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="date" text="\$date" styleClass="cell_big_label" style="-fx-padding: 0 7 0 0"/>
+                <Label fx:id="status" text="\$status" />
             </HBox>
             <Label fx:id="duration" styleClass="cell_small_label" text="\$email" />
         </VBox>
