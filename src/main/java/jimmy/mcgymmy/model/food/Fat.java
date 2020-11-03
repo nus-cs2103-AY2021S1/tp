@@ -13,15 +13,18 @@ public class Fat extends Macronutrient {
     private static final int DEFAULT_FAT = 0;
 
     /**
+     * Creates a new Fat.
+     *
      * @param amount A valid amount.
      */
     public Fat(int amount) throws IllegalValueException {
         super(amount, FAT_MULTIPLIER);
     }
-    
+
     /**
-     * Create a new Fat using the default value.
+     * Creates a new Fat using the default value.
      * Mostly boilerplate code.
+     *
      * @return new Fat with default value.
      */
     public static Fat newDefault() {
