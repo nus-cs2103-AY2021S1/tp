@@ -25,10 +25,10 @@ public class DeadlineCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Do work "
-            + PREFIX_DATE_TIME + "01-01-2020 12:00 "
-            + PREFIX_DESCRIPTION + "Science experiment "
-            + PREFIX_TAG + "PC1141 ";
+            + PREFIX_TITLE + "Do experiment "
+            + PREFIX_DATE_TIME + "28-10-2020 12:00 "
+            + PREFIX_DESCRIPTION + "Ferment grapes "
+            + PREFIX_TAG + "LSM1301";
 
     public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in PlaNus.";
@@ -46,11 +46,9 @@ public class DeadlineCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEADLINE);
         }
-
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

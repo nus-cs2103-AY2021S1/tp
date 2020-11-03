@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.event.Event;
+import seedu.address.model.util.Overlap;
 
 /**
  * Adds a task to the PlaNus task list.
@@ -33,34 +34,36 @@ public class EventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in PlaNus.";
+    public static final String OVERLAP_CONSTRAINTS = "This event overlaps with another event or lesson";
 
-    private final Event toAdd;
+    private final Event event;
 
     /**
      * Creates an AddCommand to add the specified {@code Task}
      */
     public EventCommand(Event event) {
         requireNonNull(event);
-        toAdd = event;
+        this.event = event;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (model.hasTask(toAdd)) {
+        if (model.hasTask(event)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
-
-        model.addTask(toAdd);
-        model.addTaskToCalendar(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        if (Overlap.overlapWithOtherTimeSlots(model, event)) {
+            throw new CommandException(OVERLAP_CONSTRAINTS);
+        }
+        model.addTask(event);
+        model.addTaskToCalendar(event);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EventCommand // instanceof handles nulls
-                && toAdd.equals(((EventCommand) other).toAdd));
+                && event.equals(((EventCommand) other).event));
     }
 }

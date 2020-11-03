@@ -208,6 +208,7 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
     * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
     * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added event will be tracked for time analysis if it has a tag.
+  * Event must not overlap with existing events or lessons.
 
 Examples:
 
@@ -244,7 +245,6 @@ Format: `done INDEX:TIME_TAKEN...`
     * Only a deadline can be marked as done through this command, an error message will be shown if the user attempts to mark an event as done.
 * After the user has marked a deadline as done, the user cannot edit the deadline or undo the done command anymore.
 </div>
-
 
 Examples:
 

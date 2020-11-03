@@ -16,6 +16,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
+import seedu.address.model.util.Overlap;
 
 public class LessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
@@ -42,6 +43,7 @@ public class LessonCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
+    public static final String OVERLAP_CONSTRAINTS = "This lesson overlaps with another event or lesson";
 
     private final Lesson lesson;
 
@@ -57,14 +59,19 @@ public class LessonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
-        for (Task taskToAdd: tasksToAdd) {
-            if (model.hasTask(taskToAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_LESSON);
-            }
-            model.addTask(taskToAdd);
-            model.addTaskToCalendar(taskToAdd);
+        boolean isTaskInModel = tasksToAdd.stream()
+                .anyMatch(model::hasTask);
+        if (isTaskInModel) {
+            throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
-
+        if (Overlap.overlapWithOtherTimeSlots(model, lesson)) {
+            throw new CommandException(OVERLAP_CONSTRAINTS);
+        }
+        tasksToAdd.stream()
+                .forEach(task -> {
+                    model.addTask(task);
+                    model.addTaskToCalendar(task);
+                });
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }

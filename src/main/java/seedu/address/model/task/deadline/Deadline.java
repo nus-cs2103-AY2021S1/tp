@@ -71,7 +71,6 @@ public class Deadline extends Task {
     public boolean isLesson() {
         return false;
     }
-
     public boolean isDeadlineDateTimeFilled() {
         return deadlineDateTime.isFilled();
     }

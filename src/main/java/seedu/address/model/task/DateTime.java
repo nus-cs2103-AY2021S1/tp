@@ -11,7 +11,6 @@ import seedu.address.commons.util.DateUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
-
     protected final LocalDateTime value;
 
     /**
