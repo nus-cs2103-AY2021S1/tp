@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,7 +19,7 @@ import seedu.address.model.student.YearMatchPredicate;
 /**
  * Parses input arguments and creates a new FindCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindCommandParser extends PrefixDependentParser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -62,14 +61,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         return new FindCommand(findStudentDescriptor);
-    }
-
-    /**
-     * Returns true if not all of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }
