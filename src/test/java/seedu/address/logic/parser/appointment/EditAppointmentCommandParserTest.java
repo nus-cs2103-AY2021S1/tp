@@ -81,7 +81,7 @@ public class EditAppointmentCommandParserTest {
         // invalid start time
         assertParseFailure(parser, "1" + INVALID_START_TIME_DESC, AppointmentDateTime.MESSAGE_CONSTRAINTS);
         // invalid duration
-        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, ParserUtil.MESSAGE_INVALID_DURATION);
+        assertParseFailure(parser, "1" + INVALID_DURATION_DESC, ParserUtil.MESSAGE_NEGATIVE_INVALID_DURATION);
 
         // invalid patient name followed by valid patient ic
         assertParseFailure(parser, "1" + INVALID_PATIENTNAME_DESC + PATIENTIC_DESC_FIRST,

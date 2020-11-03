@@ -10,10 +10,15 @@ import java.time.format.DateTimeParseException;
 
 public class AppointmentDateTime {
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
-            "Please check if you have entered a valid date in the following format: yyyy-MM-dd HH:mm\n"
-                    + "Please note that only appointments of upcoming dates(including today) will be accepted.";
+            "Please check if you have entered a valid date in the following format: dd/MM/yyyy HH:mm\n"
+                    + "Please note that only appointments of upcoming dates (including today) will be accepted.\n"
+                    + "\nInput YYYY as 19xx to 2xxx."
+                    + "\nInput MM as 01 to 12."
+                    + "\nInput dd as 01 to 31 (29 - 31 only if it is a valid day in that month)."
+                    + "\nInput HH as 00 to 24."
+                    + "\nInput mm as 00 to 59.";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
     // rather than a regex.
 
