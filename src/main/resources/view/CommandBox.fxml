@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<StackPane styleClass="innerCommandBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane styleClass="innerCommandBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
     <URL value="@MingSoonTheme.css" />
   </stylesheets>
-  <TextField fx:id="commandTextField" styleClass="commandBox-TextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
+  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..." styleClass="commandBox-TextField">
+      <font>
+         <Font name="Ubuntu Mono" size="12.0" />
+      </font></TextField>
 </StackPane>
-

@@ -1,7 +1,5 @@
 package seedu.address.ui.bidder;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -13,15 +11,6 @@ import seedu.address.ui.UiPart;
 public class BidderCard extends UiPart<Region> {
 
     private static final String FXML = "bidder/BidderListCard.fxml";
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable names cannot be set to such keywords
-     * or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
-
 
     public final Bidder bidder;
 
@@ -50,9 +39,7 @@ public class BidderCard extends UiPart<Region> {
         name.setText("Name: " + bidder.getName().fullName);
         phone.setText("Phone: " + bidder.getPhone().value);
         bidderId.setText("Bidder Id: " + bidder.getId());
-        bidder.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().add(new Label(bidder.getTag().tagName));
     }
 
     @Override

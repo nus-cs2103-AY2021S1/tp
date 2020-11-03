@@ -20,23 +20,24 @@
 }
 .tab-pane .tab
 {
-    -fx-background-color: #e6e6e6;
-
+    -fx-background-color: #4b438c;
+    -fx-font-family: "Ubuntu Mono";
+    -fx-background-radius: 10 10 0 0;
 }
 
 .tab-pane .tab:selected
 {
-    -fx-background-color: #3c3c3c;
+    -fx-background-color: #5f55c9;
 }
 
 .tab .tab-label {
     -fx-alignment: CENTER;
-    -fx-text-fill: #828282;
-    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-font-size: 15;
     -fx-font-weight: bold;
 }
 
 .tab:selected .tab-label {
     -fx-alignment: CENTER;
-    -fx-text-fill: #96b946;
+    -fx-text-fill: white;
 }

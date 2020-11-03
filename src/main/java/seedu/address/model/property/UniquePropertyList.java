@@ -44,6 +44,20 @@ public class UniquePropertyList implements Iterable<Property> {
     }
 
     /**
+     * Returns true if the list contains an equivalent property that does not have the excludedId.
+     *
+     * @param toCheck The property to be checked.
+     * @param excludedId The property id that was exempt from being checked.
+     * @return True if the list contains such a property.
+     */
+    public boolean containsExceptPropertyId(Property toCheck, PropertyId excludedId) {
+        requireAllNonNull(toCheck, excludedId);
+        return internalList.stream().filter(property ->
+                !(property.getPropertyId().equals(excludedId)))
+                .anyMatch(toCheck::isSameProperty);
+    }
+
+    /**
      * Adds a property to the list.
      * The property must not already exist in the list.
      *
@@ -112,6 +126,7 @@ public class UniquePropertyList implements Iterable<Property> {
      */
     public void removeBySellerId(SellerId sellerId) {
         internalList.removeIf(property -> property.getSellerId().equals(sellerId));
+
     }
 
     /**

@@ -30,9 +30,9 @@
             <VBox styleClass="outerMostVBox">
 
                 <HBox VBox.vgrow="ALWAYS">
-                       <VBox alignment="CENTER" maxWidth="200" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #0f143c;">
+                       <VBox alignment="CENTER" maxWidth="200" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: black;">
                         <children>
-                            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="100.0" style="-fx-background-color: #0f143c;">
+                            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="100.0" style="-fx-background-color: black;">
                                 <children>
                                     <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                         <image>
@@ -41,21 +41,33 @@
                                     </ImageView>
                                 </children>
                             </HBox>
-                     <VBox maxWidth="180.0" prefWidth="180.0" style="-fx-background-radius: 20; -fx-background-color: #3d3770; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3),  10, 0.6, 0.0, 0.0);" translateY="-5.0" VBox.vgrow="ALWAYS">
+                     <VBox alignment="CENTER_LEFT" maxWidth="180.0" prefWidth="180.0" style="-fx-background-radius: 20; -fx-background-color: #3d3770; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3),  10, 0.6, 0.0, 0.0);" translateY="-5.0" VBox.vgrow="ALWAYS">
                         <children>
-                           <StackPane prefHeight="28.0" prefWidth="200.0">
+                           <StackPane alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="200.0" style="-fx-background-radius: 10 10 0 0; -fx-background-color: black; -fx-border-color: white; -fx-border-width: 0 0 2 0;">
                               <children>
-                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Prompter">
+                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Terminal">
                                     <font>
-                                       <Font name="Century Gothic Bold" size="22.0" />
+                                       <Font name="Ubuntu Mono" size="22.0" />
                                     </font>
                                     <StackPane.margin>
-                                       <Insets top="10.0" />
+                                       <Insets left="20.0" top="10.0" />
                                     </StackPane.margin>
                                  </Text>
                               </children>
                            </StackPane>
-                                  <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                           <StackPane style="-fx-background-color: black;">
+                              <children>
+                                 <Text fill="#02f342" strokeType="OUTSIDE" strokeWidth="0.0" text="PropertyFree@CS2103-W14-1:~$">
+                                    <font>
+                                       <Font name="Ubuntu Mono" size="13.0" />
+                                    </font>
+                                    <StackPane.margin>
+                                       <Insets top="5.0" />
+                                    </StackPane.margin>
+                                 </Text>
+                              </children>
+                           </StackPane>
+                                  <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="180.0" style="-fx-background-color: black;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                                       <padding>
                                           <Insets bottom="5" left="10" right="10" top="5" />
                                       </padding>
@@ -112,7 +124,7 @@
                                                         </ImageView>
                                                         <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Meeting Schedule">
                                                             <font>
-                                                                <Font name="Century Gothic Bold" size="28.0" />
+                                                                <Font name="Ubuntu Mono" size="28.0" />
                                                             </font>
                                                    <HBox.margin>
                                                       <Insets right="5.0" />
@@ -149,7 +161,7 @@
                            </HBox>
                                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
                                    <padding>
-                                       <Insets bottom="5" left="10" right="10" top="5"/>
+                                       <Insets bottom="5" left="10" right="10" top="5" />
                                    </padding>
                                </StackPane>
                         </children>

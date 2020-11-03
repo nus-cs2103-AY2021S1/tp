@@ -2,7 +2,6 @@ package seedu.address.logic.commands.bidder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.VALID_NAME_BOB;
@@ -12,7 +11,6 @@ import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.assertBi
 import static seedu.address.logic.commands.bidder.BidderCommandTestUtil.showBidderAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
@@ -20,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand.EditBidderDescriptor;
+import seedu.address.logic.commands.biddercommands.ListBidderCommand;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -39,7 +37,7 @@ import seedu.address.testutil.bidder.EditBidderDescriptorBuilder;
  */
 public class EditBidderCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new BidBook(),
+    private Model model = new ModelManager(new UserPrefs(), new BidBook(),
             new PropertyBook(), getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(), new MeetingBook());
 
@@ -51,7 +49,7 @@ public class EditBidderCommandTest {
         EditBidderCommand editBidderCommand = new EditBidderCommand(INDEX_FIRST_PERSON, bidderDescriptor);
 
         String expectedMessage = String.format(EditBidderCommand.MESSAGE_EDIT_BIDDER_SUCCESS, editedBidder);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setBidder(model.getFilteredBidderList().get(0), editedBidder);
@@ -65,17 +63,17 @@ public class EditBidderCommandTest {
         Bidder lastBidder = model.getFilteredBidderList().get(indexLastBidder.getZeroBased());
 
         BidderBuilder bidderInList = new BidderBuilder(lastBidder);
-        Bidder editedBidder = bidderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+
+        Bidder editedBidder = bidderInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).build();
 
         EditBidderCommand editBidderCommand = new EditBidderCommand(indexLastBidder, bidderDescriptor);
 
         String expectedMessage = String.format(EditBidderCommand.MESSAGE_EDIT_BIDDER_SUCCESS, editedBidder);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setBidder(lastBidder, editedBidder);
@@ -90,7 +88,7 @@ public class EditBidderCommandTest {
 
         String expectedMessage = String.format(EditBidderCommand.MESSAGE_EDIT_BIDDER_SUCCESS, editedBidder);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         assertBidderCommandSuccess(editBidderCommand, model, expectedMessage, expectedModel);
@@ -107,7 +105,7 @@ public class EditBidderCommandTest {
 
         String expectedMessage = String.format(EditBidderCommand.MESSAGE_EDIT_BIDDER_SUCCESS, editedBidder);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
+        ModelManager expectedModel = new ModelManager(new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setBidder(model.getFilteredBidderList().get(0), editedBidder);
@@ -120,7 +118,6 @@ public class EditBidderCommandTest {
         Bidder firstBidder = model.getFilteredBidderList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder(firstBidder).build();
         EditBidderCommand editBidderCommand = new EditBidderCommand(INDEX_SECOND_PERSON, bidderDescriptor);
-
         assertBidderCommandFailure(editBidderCommand, model, EditBidderCommand.MESSAGE_DUPLICATE_BIDDER);
     }
 
@@ -169,6 +166,8 @@ public class EditBidderCommandTest {
         // same values -> returns true
         EditBidderDescriptor copyDescriptor = new EditBidderDescriptor(DESC_AMY);
         EditBidderCommand commandWithSameValues = new EditBidderCommand(INDEX_FIRST_PERSON, copyDescriptor);
+
+        System.out.print((standardBidderCommand.equals(commandWithSameValues)));
         assertTrue(standardBidderCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -178,7 +177,7 @@ public class EditBidderCommandTest {
         assertFalse(standardBidderCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardBidderCommand.equals(new ClearCommand()));
+        assertFalse(standardBidderCommand.equals(new ListBidderCommand()));
 
         // different index -> returns false
         assertFalse(standardBidderCommand.equals(new EditBidderCommand(INDEX_SECOND_PERSON, DESC_AMY)));

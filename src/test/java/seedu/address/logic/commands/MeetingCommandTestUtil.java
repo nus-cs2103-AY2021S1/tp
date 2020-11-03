@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_BIDDER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_ENDTIME;
@@ -8,7 +9,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand;
+import seedu.address.model.Model;
 import seedu.address.model.id.PropertyId;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 
@@ -18,7 +21,7 @@ public class MeetingCommandTestUtil {
     public static final String VALID_PROPERTY_ID_B = "P2";
 
     public static final String INVALID_PROPERTY_ID_A = "P*(";
-    public static final String INVALID_PROPERTY_ID_B = "P$0";
+    public static final String INVALID_PROPERTY_ID_B = "P$@";
 
     public static final String VALID_BIDDER_ID_A = "B1";
     public static final String VALID_BIDDER_ID_B = "B2";
@@ -111,5 +114,22 @@ public class MeetingCommandTestUtil {
                 .withBidderId(VALID_BIDDER_ID_B).withVenue(VALID_VENUE_B).withDate(VALID_DATE_B)
                 .withStartTime(VALID_START_TIME_B).withEndTime(VALID_END_TIME_B).build();
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+                                            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
 
 }

@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.id.Id;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.person.seller.UniqueSellerList;
@@ -115,10 +114,6 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
         return sellers.asUnmodifiableObservableList();
     }
 
-    public Id getLastSellerId() {
-        return getSellerList().get(getSellerList().size()).getId().increment();
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -126,8 +121,4 @@ public class SellerAddressBook implements ReadOnlySellerAddressBook {
                 && sellers.equals(((SellerAddressBook) other).sellers));
     }
 
-    @Override
-    public int hashCode() {
-        return sellers.hashCode();
-    }
 }

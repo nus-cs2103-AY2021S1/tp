@@ -1,7 +1,9 @@
 package seedu.address.model.propertybook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -68,6 +70,19 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
+     * Returns true if a property with the same identity as {@code property} exists in the property book,
+     * excluding the {@code excludedId}.
+     *
+     * @param property The property to check.
+     * @param excludedId The excluded property id.
+     * @return True if the property exists.
+     */
+    public boolean hasPropertyExceptPropertyId(Property property, PropertyId excludedId) {
+        requireAllNonNull(property, excludedId);
+        return properties.containsExceptPropertyId(property, excludedId);
+    }
+
+    /**
      * Adds a property to the property book.
      * The property must not already exist in the property book.
      *
@@ -85,7 +100,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public void setProperty(Property target, Property editedProperty) {
         requireNonNull(editedProperty);
-
         properties.setProperty(target, editedProperty);
     }
 
@@ -116,6 +130,23 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     public void removePropertyBySellerId(SellerId sellerId) {
         properties.removeBySellerId(sellerId);
     }
+
+    /**
+     * Retrieves a list of properties which contain the seller id.
+     *
+     * @param sellerId seller id of which the properties will correspond to.
+     * @return list of properties which contain the seller id.
+     */
+    public ArrayList<Property> getPropertyIdBySellerId(SellerId sellerId) {
+        ArrayList<Property> propertiesWithSellerId = new ArrayList<>();
+        properties.forEach(property -> {
+            if (property.getSellerId().equals(sellerId)) {
+                propertiesWithSellerId.add(property);
+            }
+        });
+        return propertiesWithSellerId;
+    }
+
     /**
      * Gets property with {@code id} from this {@code PropertyBook}. A
      * property with this {@code id} must exist in the property book.

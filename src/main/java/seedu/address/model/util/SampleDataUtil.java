@@ -1,13 +1,6 @@
 package seedu.address.model.util;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.BidBook;
@@ -26,7 +19,6 @@ import seedu.address.model.meeting.StartTime;
 import seedu.address.model.meeting.Venue;
 import seedu.address.model.meeting.Viewing;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -41,45 +33,11 @@ import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.model.selleraddressbook.SellerAddressBook;
-import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating Books with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
-                getTagSet("colleagues"))
-        };
-    }
-
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
-    }
-
-    /**
-     * Returns a tag set containing the list of strings given.
-     */
-    public static Set<Tag> getTagSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
-    }
 
     // ================= BIDS ==================
     public static Bid[] getSampleBids() {
@@ -104,18 +62,12 @@ public class SampleDataUtil {
     // ================= BIDDERS ==================
     public static Bidder[] getSampleBidders() {
         return new Bidder[] {
-            new Bidder(new Name("Kor Ming Soon"), new Phone("1253678"), new HashSet<>(), new BidderId("B1"))
-                    .setBidderTag(),
-            new Bidder(new Name("Harsha"), new Phone("12345777"), new HashSet<>(), new BidderId("B2"))
-                    .setBidderTag(),
-            new Bidder(new Name("Marcus"), new Phone("47876428"), new HashSet<>(), new BidderId("B3"))
-                    .setBidderTag(),
-            new Bidder(new Name("Dianne Loh"), new Phone("1256781"), new HashSet<>(), new BidderId("B4"))
-                    .setBidderTag(),
-            new Bidder(new Name("Gandalf"), new Phone("1203577"), new HashSet<>(), new BidderId("B5"))
-                    .setBidderTag(),
-            new Bidder(new Name("Amos Yee"), new Phone("4072428"), new HashSet<>(), new BidderId("B6"))
-                    .setBidderTag()
+            new Bidder(new Name("Kor Ming Soon"), new Phone("1253678"), new BidderId("B1")),
+            new Bidder(new Name("Harsha"), new Phone("12345777"), new BidderId("B2")),
+            new Bidder(new Name("Marcus"), new Phone("47876428"), new BidderId("B3")),
+            new Bidder(new Name("Dianne Loh"), new Phone("1256781"), new BidderId("B4")),
+            new Bidder(new Name("Gandalf"), new Phone("1203577"), new BidderId("B5")),
+            new Bidder(new Name("Amos Yee"), new Phone("4072428"), new BidderId("B6"))
         };
     }
 
@@ -130,18 +82,12 @@ public class SampleDataUtil {
     // ================= SELLERS ==================
     public static Seller[] getSampleSellers() {
         return new Seller[] {
-            new Seller(new Name("Dianne"), new Phone("7897456"), new HashSet<>(), new SellerId("S1"))
-                .setSellerTag(),
-            new Seller(new Name("Christopher"), new Phone("12345777"), new HashSet<>(), new SellerId("S2"))
-                .setSellerTag(),
-            new Seller(new Name("Peter Parker"), new Phone("7897456"), new HashSet<>(), new SellerId("S3"))
-                .setSellerTag(),
-            new Seller(new Name("Donald Trump"), new Phone("12345777"), new HashSet<>(), new SellerId("S4"))
-                .setSellerTag(),
-            new Seller(new Name("Derp"), new Phone("7897456"), new HashSet<>(), new SellerId("S5"))
-                .setSellerTag(),
-            new Seller(new Name("Thanos"), new Phone("12345777"), new HashSet<>(), new SellerId("S6"))
-                .setSellerTag(),
+            new Seller(new Name("Dianne"), new Phone("7897456"), new SellerId("S1")),
+            new Seller(new Name("Christopher"), new Phone("12345777"), new SellerId("S2")),
+            new Seller(new Name("Peter Parker"), new Phone("7897456"), new SellerId("S3")),
+            new Seller(new Name("Donald Trump"), new Phone("12345777"), new SellerId("S4")),
+            new Seller(new Name("Derp"), new Phone("7897456"), new SellerId("S5")),
+            new Seller(new Name("Thanos"), new Phone("12345777"), new SellerId("S6"))
         };
     }
 

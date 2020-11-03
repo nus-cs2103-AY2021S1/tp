@@ -124,7 +124,8 @@ public class MainWindow extends UiPart<Stage> {
         TabBar personAndJobTabPane = new TabBar(this.logic);
         personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter("Welcome to PropertyFree, "
+                + "the one place to manage all your properties.");
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         MeetingListPanel meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());

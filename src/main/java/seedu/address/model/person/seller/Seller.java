@@ -2,12 +2,9 @@ package seedu.address.model.person.seller;
 
 import static seedu.address.model.id.SellerId.DEFAULT_SELLER_ID;
 
-import java.util.Set;
-
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.ClientPerson;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -16,58 +13,43 @@ import seedu.address.model.tag.Tag;
  */
 public class Seller extends ClientPerson {
 
-    private SellerId sellerId;
+    public static final Tag SELLER_TAG = new Tag("seller");
 
     /**
      * Constructs a Seller from name, phone and tags.
      *
      * @param name The name of the seller.
      * @param phone The phone number.
-     * @param tags Tags.
      */
-    public Seller(Name name, Phone phone, Set<Tag> tags) {
-        super(name, phone, tags, DEFAULT_SELLER_ID);
-        this.sellerId = DEFAULT_SELLER_ID;
+    public Seller(Name name, Phone phone) {
+        super(name, phone, SELLER_TAG, DEFAULT_SELLER_ID);
     }
 
     /**
      * Constructs the seller with the name, phone, tags, and id.
      *  @param name name of the seller.
      * @param phone phone number.
-     * @param tags tags.
      * @param sellerId identifier.
      */
-    public Seller(Name name, Phone phone, Set<Tag> tags, SellerId sellerId) {
-        super(name, phone, tags, sellerId);
-        this.sellerId = sellerId;
-    }
-
-    public Seller setSellerTag() {
-        tags.add(new Tag("seller"));
-        return new Seller(name, phone, tags, sellerId);
+    public Seller(Name name, Phone phone, SellerId sellerId) {
+        super(name, phone, SELLER_TAG, sellerId);
     }
 
     public Seller setDefaultSellerId() {
-        return new Seller(name, phone, tags, DEFAULT_SELLER_ID);
-    }
-
-    @Override
-    public SellerId getId() {
-        return sellerId;
+        return new Seller(name, phone, DEFAULT_SELLER_ID);
     }
 
     public void setId(SellerId updatedId) {
         super.setId(updatedId);
-        this.sellerId = updatedId;
+        this.clientId = updatedId;
     }
 
     /**
      * Returns true if both persons of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
-    @Override
-    public boolean isSamePerson(Person otherPerson) {
-        return otherPerson instanceof Seller && super.isSamePerson(otherPerson);
+    public boolean isSameSeller(Seller otherSeller) {
+        return otherSeller != null && super.isSamePerson(otherSeller);
     }
 
     /**
@@ -87,7 +69,7 @@ public class Seller extends ClientPerson {
         Seller otherSeller = (Seller) other;
         return otherSeller.getName().equals(getName())
                 && otherSeller.getPhone().equals(getPhone())
-                && otherSeller.getTags().equals(getTags());
+                && otherSeller.getTag().equals(getTag());
     }
 
 }

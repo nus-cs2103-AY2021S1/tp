@@ -39,16 +39,5 @@ public class Tag {
                 && tagName.equals(((Tag) other).tagName)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return tagName.hashCode();
-    }
-
-    /**
-     * Format state as text for viewing.
-     */
-    public String toString() {
-        return '[' + tagName + ']';
-    }
 
 }

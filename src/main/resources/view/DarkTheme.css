@@ -187,7 +187,7 @@
 }
 
 .context-menu {
-    -fx-background-color: transparent;
+    -fx-background-color: black;
 }
 
 .context-menu .label {
@@ -215,14 +215,13 @@
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
+    -fx-padding: 5 10 5 10;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
+    -fx-background-color: #6f63e7;
+    -fx-font-family: "Ubuntu Mono";
+    -fx-background-radius: 5;
+    -fx-font-size: 13pt;
+    -fx-text-fill: #2b3154;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
@@ -232,15 +231,18 @@
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+  -fx-text-fill: #2b3154;
 }
 
 .button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
+    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 0;
+    -fx-background-color: #6f63e7;
+    -fx-font-family: "Ubuntu Mono";
+    -fx-background-radius: 5;
+    -fx-font-size: 13pt;
+    -fx-text-fill: #2b3154;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:disabled, .button:default:disabled {

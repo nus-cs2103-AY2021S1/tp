@@ -4,10 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -91,20 +88,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     *
-     * @throws ParseException if there is an error when parsing.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
      * Parses a {@code String venue} into a {@code venue}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -146,7 +129,7 @@ public class ParserUtil {
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);
         } catch (java.text.ParseException e) {
-            throw new ParseException(MESSAGE_INVALID_DATE);
+            throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
         }
     }
 
@@ -202,7 +185,7 @@ public class ParserUtil {
             }
             return new Price(doublePrice);
         } catch (NumberFormatException e) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Price.MESSAGE_NOT_NUMERIC);
         }
     }
 
