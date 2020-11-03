@@ -53,7 +53,8 @@ public class EatRecipeCommand extends Command {
 
         Recipe recipeToEat = lastShownList.get(targetIndex.getZeroBased());
         model.addConsumption(new Consumption(recipeToEat));
-        return new CommandResult(String.format(MESSAGE_EAT_RECIPE_SUCCESS, extractString(recipeToEat)), ListConsumptionCommand.COMMAND_WORD);
+        return new CommandResult(String.format(MESSAGE_EAT_RECIPE_SUCCESS, extractString(recipeToEat)),
+                ListConsumptionCommand.COMMAND_WORD);
     }
 
     @Override
