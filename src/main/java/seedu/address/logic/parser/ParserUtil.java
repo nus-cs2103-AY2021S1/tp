@@ -3,12 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -40,9 +40,6 @@ import seedu.address.model.student.question.UnsolvedQuestion;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
-            .appendPattern("yyyy-MM-dd")
-            .toFormatter();
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -250,17 +247,26 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code dateToViewSchedule} into a LocalDateTime object.
+     * Parses a {@code dateToViewSchedule} into a LocalDate object.
      * @throws ParseException when input string does not follow the format
      */
     public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
         requireNonNull(dateToViewSchedule);
         String dateView = dateToViewSchedule.trim();
+
+        Pattern pattern = Pattern.compile("(?<day>[0-9]{1,2})(/)(?<month>[0-9]{1,2})(/)(?<year>[0-9]{2}|[0-9]{4})");
+
+        Matcher matcher = pattern.matcher(dateView);
+
+        if (!matcher.matches()) {
+            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE);
+        }
         try {
             return LocalDate.parse(dateView, LessonEvent.VIEW_DATE_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE_FORMAT);
+            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE);
         }
+
     }
 
     /**

@@ -5,7 +5,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
 /**
  * An Event object that encompass the the various fields that an event can contain. These includes event name, start
  * time, end time, description, and recurrence type of the event.
@@ -100,4 +99,5 @@ public class Event {
 
         return builder.toString();
     }
+
 }

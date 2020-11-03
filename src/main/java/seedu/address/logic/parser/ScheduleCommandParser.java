@@ -17,7 +17,6 @@ import seedu.address.model.schedule.ScheduleViewMode;
  * Parses input arguments and creates a new ScheduleCommand object
  */
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
-
     /**
      * Parses the given String and returns a ScheduleCommand with the view mode and viewDateTime
      * @throws ParseException if the user input does not conform the expected date format
