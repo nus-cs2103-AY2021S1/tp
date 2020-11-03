@@ -168,9 +168,9 @@ public class Patient {
                 .append(getBloodType() + "\n")
                 .append("Color Tag: ")
                 .append(getColorTag() + "\n")
-                .append("Allergies: [ ");
+                .append("Allergies:  ");
         getAllergies().forEach(builder::append);
-        builder.append(" ]");
+        builder.append(", ");
         return builder.toString();
     }
 

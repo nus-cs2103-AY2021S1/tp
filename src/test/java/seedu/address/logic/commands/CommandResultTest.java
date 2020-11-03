@@ -36,7 +36,7 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("feedback", null)));
 
         // different idx value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", null, null,
+        assertFalse(commandResult.equals(new CommandResult("feedback", null, null, null,
                                                    1, 1)));
 
         // different idx value -> returns false

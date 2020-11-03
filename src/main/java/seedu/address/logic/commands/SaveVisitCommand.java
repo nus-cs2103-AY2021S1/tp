@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -25,6 +26,7 @@ public class SaveVisitCommand extends Command {
     private String diagnosis;
     private String prescription;
     private String comments;
+    private String visitDate;
     private int visitIndex;
 
     /**
@@ -35,6 +37,7 @@ public class SaveVisitCommand extends Command {
         CollectionUtil.requireAllNonNull(patientIndex, visitIndex, visitDate);
 
         this.patientIndex = Index.fromOneBased(patientIndex);
+        this.visitDate = visitDate;
         this.visit = new Visit(visitDate);
         this.diagnosis = diagnosis;
         this.prescription = prescription;
@@ -57,6 +60,12 @@ public class SaveVisitCommand extends Command {
         Name patientName = patientToEdit.getName();
         visit.setPatientName(patientName);
         visit.setParameters(diagnosis, prescription, comments);
+        try {
+            visit.setVisitDate(visitDate);
+        } catch (DateTimeParseException exception) {
+            throw new CommandException(EditVisitCommand.MESSAGE_USAGE);
+        }
+
         Patient patientEdited;
 
         if (visitIndex != NEW_VISIT) {

@@ -278,7 +278,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isEditVisit()) {
-                visitWindow.setPreviousVisitDetails(logic, previousVisit, visitIndex, patientIndex);
+                visitWindow.setPreviousVisitDetails(logic, previousVisit, visitIndex, patientIndex, visitDate);
                 if (profileVisitPanel.isShowing()) {
                     profileVisitPanel.hide();
                 }

@@ -16,6 +16,7 @@ import javafx.stage.WindowEvent;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditVisitCommand;
 import seedu.address.logic.commands.SaveVisitCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.visit.Visit;
@@ -137,11 +138,15 @@ public class VisitFormWindow extends UiPart<Stage> {
         this.visitIndex = INVALID_VISIT_INDEX;
     }
 
-    public void setPreviousVisitDetails(Logic logic, Visit visit, int visitIndex, int patientIndex) {
+    public void setPreviousVisitDetails(Logic logic, Visit visit, int visitIndex, int patientIndex, String visitDate) {
         this.logic = logic;
         this.visitIndex = visitIndex;
         this.patientIndex = patientIndex;
-        this.visitDate = visit.getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        if (visitDate.equals(EditVisitCommand.EMPTY_VISIT_DATE)) {
+            this.visitDate = visit.getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } else {
+            this.visitDate = visitDate;
+        }
 
         String prescriptionToSet = visit.getPrescription();
         String diagnosisToSet = visit.getDiagnosis();
