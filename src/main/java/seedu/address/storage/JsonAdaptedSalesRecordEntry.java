@@ -55,7 +55,7 @@ class JsonAdaptedSalesRecordEntry {
         if (numberSold == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Drink.isValidNumberSold(numberSold)) {
+        if (Integer.valueOf(numberSold) < 0) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Integer modelNumberSold = Integer.valueOf(numberSold);
