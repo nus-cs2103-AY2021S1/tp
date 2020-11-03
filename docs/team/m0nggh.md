@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Malcolm's Project Portfolio Page
+title: Malcolm Ong's Project Portfolio Page
 ---
 
 ## Project: ZooKeep
@@ -9,7 +9,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to sort animals ([\#127](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/127), ([\#196](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/196), [\#298](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/298), [\#300](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/300))
+* **New Feature**: Added the ability to sort animals ([\#127](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/127), [\#196](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/196), [\#298](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/298), [\#300](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/300))
   * What it does: allows the user to sort all animals according to their names (alphabetical order), ids (ascending order), feed times (chronological order) or number of medical conditions (ascending order).
   * Justification: After adding a large number of animals, the user may find the need to better categorise the animals. This feature allows for the user to sort all animals based on a category they require at his own convenience.
   * Highlights: This enhancement was implemented as an extension, without modifications to current commands. This feature is flexible and can allow for more variations of sorting if necessary in the future e.g. reversed order.
@@ -40,6 +40,6 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments): ([\#148](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/148), [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199), [\#222](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/222))
 
 * **Team-based tasks**:
-  * Added and modified all use cases for the DG ([\#151](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/151), [#\301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
+  * Added and modified all use cases for the DG ([\#151](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/151), [\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
   * Created necessary issues to the repository for v1.3 & v1.4
   * Added details to the FAQ section in the UG ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
