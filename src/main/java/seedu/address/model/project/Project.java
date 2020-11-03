@@ -91,7 +91,11 @@ public class Project {
     }
 
     public boolean addTask(Task task) {
-        return tasks.add(task);
+        if(tasks.contains(task)){
+            return false;
+        }else {
+            return tasks.add(task);
+        }
     }
 
     /**
