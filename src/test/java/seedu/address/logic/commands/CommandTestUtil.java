@@ -6,6 +6,7 @@ import static seedu.address.commons.util.DateUtil.parseToDate;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
@@ -17,6 +18,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -28,11 +30,13 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.notes.EditNoteCommand;
 import seedu.address.model.Model;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.notes.EditNoteDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -71,6 +75,12 @@ public class CommandTestUtil {
     public static final String VALID_ATTENDANCE_STATUS_BOB = "absent";
     public static final String VALID_ATTENDANCE_FEEDBACK_AMY = "attentive";
     public static final String VALID_ATTENDANCE_FEEDBACK_BOB = "sick";
+    public static final String VALID_TITLE = "W10 blues";
+    public static final String VALID_DESCRIPTION = "why must i do cs2103";
+    public static final String VALID_TITLE_GRADUATION = "Graduation :(";
+    public static final String VALID_DESCRIPTION_GRADUATION = "write cards for people";
+    public static final String VALID_TITLE_RANDOM = "HEHEHEHE";
+    public static final String VALID_DESCRIPTION_RANDOM = ":)";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -94,6 +104,13 @@ public class CommandTestUtil {
 
     public static final String QUESTION_DESC_AMY = " " + PREFIX_TEXT + VALID_QUESTION_AMY;
     public static final String ADDITIONAL_DETAIL_DESC_AMY = " " + PREFIX_TEXT + VALID_ADDITIONAL_DETAILS_AMY;
+
+    public static final String TITLE_DESC_EXISTENTIAL_CRISIS = " " + PREFIX_TITLE + VALID_TITLE;
+    public static final String DESCRIPTION_DESC_EXISTENTIAL_CRISIS = " "
+            + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
+    public static final String TITLE_DESC_GRADUATION = " " + PREFIX_TITLE + VALID_TITLE_GRADUATION;
+    public static final String DESCRIPTION_DESC_GRADUATION = " "
+            + PREFIX_DESCRIPTION + VALID_DESCRIPTION_GRADUATION;
 
     public static final String QUESTION_MATH = "What is 1 + 1?";
     public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";
@@ -148,17 +165,27 @@ public class CommandTestUtil {
             + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
             + PREFIX_SCORE + "-50/-100";
 
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "BABABANBNANABBABABSNBA";
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION
+            + "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus sapienar";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_NOTE_TODO;
+    public static final EditNoteCommand.EditNoteDescriptor DESC_NOTE_EVENTS;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).build();
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).build();
+        DESC_NOTE_TODO = new EditNoteDescriptorBuilder().withTitle("todo")
+                .withDescription("watch youtube").build();
+        DESC_NOTE_EVENTS = new EditNoteDescriptorBuilder().withTitle("events")
+                .withDescription("attend practical exam").build();
     }
 
     /**

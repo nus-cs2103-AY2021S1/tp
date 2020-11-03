@@ -12,16 +12,16 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": ["owesMoney", "friends"]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : "What is Newton's Second Law?",
-      "solution" : ""
-    }, {
-      "status" : false,
-      "question" : "How do you inverse a matrix?",
-      "solution" : ""
-    }],
     "academic" : {
+      "questions": [ {
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
@@ -49,16 +49,16 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : "What is Newton's Second Law?",
-      "solution" : ""
-    }, {
-      "status" : false,
-      "question" : "How do you inverse a matrix?",
-      "solution" : ""
-    }],
     "academic" : {
+      "questions": [ {
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
@@ -86,16 +86,16 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : "What is Newton's Second Law?",
-      "solution" : ""
-    }, {
-      "status" : false,
-      "question" : "How do you inverse a matrix?",
-      "solution" : ""
-    } ],
     "academic" : {
+      "questions": [ {
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
@@ -123,16 +123,16 @@
       "paymentDate": "28/2/2018",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : "What is Newton's Second Law?",
-      "solution" : ""
-    }, {
-      "status" : false,
-      "question" : "How do you inverse a matrix?",
-      "solution" : ""
-    } ],
     "academic" : {
+      "questions": [ {
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
@@ -160,16 +160,16 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [ {
-      "status" : true,
-      "question" : "What is Newton's Second Law?",
-      "solution" : "Read your textbook"
-    }, {
-      "status" : true,
-      "question" : "How do you inverse a matrix?",
-      "solution" : "Read your textbook"
-    } ],
     "academic" : {
+      "questions": [ {
+        "status" : true,
+        "question" : "What is Newton's Second Law?",
+        "solution" : "Read your textbook"
+      }, {
+        "status" : true,
+        "question" : "How do you inverse a matrix?",
+        "solution" : "Read your textbook"
+      } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
@@ -197,16 +197,16 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : "What is Newton's Second Law?",
-      "solution" : ""
-    }, {
-      "status" : false,
-      "question" : "How do you inverse a matrix?",
-      "solution" : ""
-    } ],
     "academic" : {
+      "questions": [ {
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",
@@ -221,7 +221,8 @@
         "examDate" : "25/7/2020",
         "score" : "20/30"
       }]
-    }}, {
+    }
+  }, {
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",
@@ -233,16 +234,16 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [ {
-      "status" : false,
-      "question" : "What is Newton's Second Law?",
-      "solution" : ""
-    }, {
-      "status" : false,
-      "question" : "How do you inverse a matrix?",
-      "solution" : ""
-    } ],
     "academic" : {
+      "questions": [ {
+        "status" : false,
+        "question" : "What is Newton's Second Law?",
+        "solution" : ""
+      }, {
+        "status" : false,
+        "question" : "How do you inverse a matrix?",
+        "solution" : ""
+      } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
         "attendanceStatus" : "present",

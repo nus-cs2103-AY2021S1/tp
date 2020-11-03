@@ -1,9 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +11,6 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.admin.Admin;
-import seedu.address.model.student.question.Question;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -32,9 +27,6 @@ class JsonAdaptedStudent {
     @JsonProperty("admin")
     private final JsonAdaptedAdmin jsonAdaptedAdmin;
 
-    @JsonProperty("questions")
-    private final List<JsonAdaptedQuestion> jsonAdaptedQuestions = new ArrayList<>();
-
     @JsonProperty("academic")
     private final JsonAdaptedAcademic jsonAdaptedAcademic;
 
@@ -45,16 +37,12 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("school") String school, @JsonProperty("year") String year,
                               @JsonProperty("admin") JsonAdaptedAdmin admin,
-                              @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
                               @JsonProperty("academic") JsonAdaptedAcademic academic) {
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.jsonAdaptedAdmin = admin;
-        if (questions != null) {
-            this.jsonAdaptedQuestions.addAll(questions);
-        }
         this.jsonAdaptedAcademic = academic;
     }
 
@@ -67,11 +55,6 @@ class JsonAdaptedStudent {
         school = source.getSchool().school;
         year = String.valueOf(source.getYear().toString());
         jsonAdaptedAdmin = new JsonAdaptedAdmin(source);
-
-        jsonAdaptedQuestions.addAll(source.getQuestions().stream()
-                .map(JsonAdaptedQuestion::new)
-                .collect(Collectors.toList()));
-
         jsonAdaptedAcademic = new JsonAdaptedAcademic(source);
     }
 
@@ -87,14 +70,9 @@ class JsonAdaptedStudent {
         final Year modelYear = getModelYear();
 
         Admin admin = jsonAdaptedAdmin.toModelType();
-
-        List<Question> questions = new ArrayList<>();
-        for (JsonAdaptedQuestion question : jsonAdaptedQuestions) {
-            questions.add(question.toModelType());
-        }
-
         Academic academic = jsonAdaptedAcademic.toModelType();
-        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, academic);
+
+        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, academic);
     }
 
     private Name getModelName() throws IllegalValueException {

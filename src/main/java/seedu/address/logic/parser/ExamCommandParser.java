@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 
 import java.time.LocalDate;
 import java.util.regex.Matcher;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddExamCommand;
@@ -65,10 +64,6 @@ public class ExamCommandParser implements Parser<ExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MESSAGE_USAGE));
         }
-    }
-
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

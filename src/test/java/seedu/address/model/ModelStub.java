@@ -1,4 +1,4 @@
-package seedu.address.logic;
+package seedu.address.model;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -9,9 +9,8 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyReeve;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.notes.ReadOnlyNotebook;
+import seedu.address.model.notes.note.Note;
 import seedu.address.model.schedule.ReadOnlyEvent;
 import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Student;
@@ -20,7 +19,6 @@ import seedu.address.model.student.Student;
  * A default model stub that have all of the methods failing.
  */
 public class ModelStub implements Model {
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
@@ -97,21 +95,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void updateSortedStudentList(Comparator<? super Student> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateClassTimesToEvent() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<VEvent> getLessonEventsList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public ReadOnlyEvent getSchedule() {
         throw new AssertionError("This method should not be called.");
     }
@@ -142,8 +125,52 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void updateSortedStudentList(Comparator<? super Student> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateClassTimesToEvent() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<VEvent> getLessonEventsList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean isClashingClassTime(Student toCheck) {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void setNotebook(ReadOnlyNotebook notebook) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyNotebook getNotebook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasNote(Note note) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteNote(Note target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addNote(Note note) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setNote(Note target, Note editedNote) {
+        throw new AssertionError("This method should not be called.");
+    }
 }
