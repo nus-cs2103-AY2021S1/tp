@@ -197,10 +197,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting targetMeeting) {
         meetingBook.removeMeeting(targetMeeting);
-        // set selected meeting to be null if it is deleted
-        if (targetMeeting.equals(selectedMeeting)) {
-            setSelectedMeeting(null);
-        }
     }
 
     @Override
@@ -212,10 +208,7 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-        // replace selecting meeting to be the edited meeting if it has been edited
-        if (target.equals(selectedMeeting)) {
-            setSelectedMeeting(editedMeeting);
-        }
+
         meetingBook.setMeeting(target, editedMeeting);
     }
 

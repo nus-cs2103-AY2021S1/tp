@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
 import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2101;
 import static seedu.address.testutil.TypicalModules.CS2102;
@@ -20,18 +21,43 @@ import seedu.address.model.MeetingBook;
 import seedu.address.model.meeting.Meeting;
 
 public class TypicalMeetings {
+    public static final Meeting CS1100_MEETING = new MeetingBuilder()
+            .withName("Weekly Meeting")
+            .withDate("2020-01-05")
+            .withTime("13:00")
+            .build();
+
+    public static final Meeting CS1100_NO_MEMBERS = new MeetingBuilder()
+            .withName("Weekly Meeting")
+            .withDate("2020-01-05")
+            .withTime("13:00")
+            .withMembers(new HashSet<>(Arrays.asList(ALICE)))
+            .build();
+
+    // Edited name from Alice Pauline to Alicia
+    public static final Meeting CS1100_EDITED_MEMBER = new MeetingBuilder()
+            .withName("Weekly Meeting")
+            .withDate("2020-01-05")
+            .withTime("13:00")
+            .withMembers(new HashSet<>(Arrays.asList(ALICIA)))
+            .build();
+
     public static final Meeting CS2100_MEETING = new MeetingBuilder()
             .withModule(CS2100)
             .withName("CS2100 Meeting")
-            .withDate("2020-01-02")
+            .withDate("2020-02-02")
             .withTime("10:00")
             .withMembers(new HashSet<>(Arrays.asList(BENSON)))
+            .build();
+
+    public static final Meeting CS2100_MEETING_EDITED_NAME = new MeetingBuilder(CS2100_MEETING)
+            .withName(VALID_MEETING_NAME)
             .build();
 
     public static final Meeting CS2101_MEETING = new MeetingBuilder()
             .withModule(CS2101)
             .withName("CS2101 Meeting")
-            .withDate("2020-02-03")
+            .withDate("2020-03-03")
             .withTime("11:00")
             .withMembers(new HashSet<>(Arrays.asList(CARL)))
             .build();
@@ -39,30 +65,9 @@ public class TypicalMeetings {
     public static final Meeting CS2102_MEETING = new MeetingBuilder()
             .withModule(CS2102)
             .withName("CS2102 Meeting")
-            .withDate("2020-03-04")
+            .withDate("2020-04-04")
             .withTime("12:00")
             .withMembers(new HashSet<>(Arrays.asList(DANIEL)))
-            .build();
-
-    public static final Meeting CS2103_MEETING = new MeetingBuilder()
-            .withName("CS2103")
-            .withDate("2020-04-05")
-            .withTime("13:00")
-            .build();
-
-    public static final Meeting CS2103_NO_MEMBERS = new MeetingBuilder()
-            .withName("CS2103")
-            .withDate("2020-04-05")
-            .withTime("13:00")
-            .withMembers(new HashSet<>(Arrays.asList(ALICE)))
-            .build();
-
-    // Edited name from Alice Pauline to Alicia
-    public static final Meeting CS2103_EDITED_MEMBER = new MeetingBuilder()
-            .withName("CS2103")
-            .withDate("2020-04-05")
-            .withTime("13:00")
-            .withMembers(new HashSet<>(Arrays.asList(ALICIA)))
             .build();
 
     public static final Meeting CS2104_MEETING = new MeetingBuilder()
@@ -101,14 +106,14 @@ public class TypicalMeetings {
     }
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(CS2100_MEETING, CS2101_MEETING, CS2102_MEETING, CS2103_MEETING));
+        return new ArrayList<>(Arrays.asList(CS1100_MEETING, CS2100_MEETING, CS2101_MEETING, CS2102_MEETING));
     }
 
     public static List<Meeting> getTypicalMeetingsWithMembers() {
-        return new ArrayList<>(Arrays.asList(CS2103_NO_MEMBERS));
+        return new ArrayList<>(Arrays.asList(CS1100_NO_MEMBERS));
     }
 
     public static List<Meeting> getTypicalMeetingsWithEditedMember() {
-        return new ArrayList<>(Arrays.asList(CS2103_EDITED_MEMBER));
+        return new ArrayList<>(Arrays.asList(CS1100_EDITED_MEMBER));
     }
 }

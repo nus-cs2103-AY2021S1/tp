@@ -52,7 +52,8 @@ public class AddMeetingCommandTest {
 
         CommandResult commandResult = new AddMeetingCommand(meetingSameNameDifferentModule).execute(model);
 
-        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameNameDifferentModule), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameNameDifferentModule),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -63,7 +64,8 @@ public class AddMeetingCommandTest {
 
         CommandResult commandResult = new AddMeetingCommand(meetingSameModuleDifferentName).execute(model);
 
-        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameModuleDifferentName), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameModuleDifferentName),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -74,7 +76,8 @@ public class AddMeetingCommandTest {
 
         CommandResult commandResult = new AddMeetingCommand(meetingSameDateDifferentTime).execute(model);
 
-        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameDateDifferentTime), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameDateDifferentTime),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -85,7 +88,8 @@ public class AddMeetingCommandTest {
 
         CommandResult commandResult = new AddMeetingCommand(meetingSameDateDifferentTime).execute(model);
 
-        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameDateDifferentTime), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, meetingSameDateDifferentTime),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -104,7 +108,7 @@ public class AddMeetingCommandTest {
     @Test
     public void execute_duplicateMeetingDateAndTime_throwsCommandException() {
         Meeting meetingWithDuplicateDateTime = new MeetingBuilder(CS2104_MEETING)
-                .withDate("2020-01-02")
+                .withDate("2020-02-02")
                 .withTime("10:00")
                 .build();
         AddMeetingCommand addMeetingCommand = new AddMeetingCommand(meetingWithDuplicateDateTime);

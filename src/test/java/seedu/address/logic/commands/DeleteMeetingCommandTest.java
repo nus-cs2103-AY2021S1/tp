@@ -1,40 +1,55 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.testutil.MeetingBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalMeetings.CS2100_MEETING;
 import static seedu.address.testutil.TypicalMeetings.CS2101_MEETING;
 import static seedu.address.testutil.TypicalMeetings.CS2102_MEETING;
-import static seedu.address.testutil.TypicalMeetings.CS2104_MEETING;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
 import static seedu.address.testutil.TypicalModules.CS2105;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleBook;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
+import seedu.address.testutil.MeetingBuilder;
 
 public class DeleteMeetingCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
             new UserPrefs());
 
     @Test
-    public void execute_meetingAcceptedByModel_deleteSuccessful() throws Exception {
-        Meeting validMeeting = new MeetingBuilder(CS2100_MEETING).build();
+    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+        Meeting deletedMeeting = new MeetingBuilder(CS2100_MEETING).build();
+        DeleteMeetingCommand deleteMeetingCommand = new DeleteMeetingCommand(
+                CS2100_MEETING.getModule().getModuleName(),
+                CS2100_MEETING.getMeetingName());
 
-        CommandResult commandResult = new DeleteMeetingCommand(validMeeting).execute(model);
+        String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, deletedMeeting);
 
-        assertEquals(String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, validMeeting),
-                commandResult.getFeedbackToUser());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new MeetingBook(model.getMeetingBook()),
+                new ModuleBook(model.getModuleBook()),
+                new UserPrefs());
+        expectedModel.deleteMeeting(model.getFilteredMeetingList().get(1));
+
+        assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
