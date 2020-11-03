@@ -89,8 +89,9 @@ Given below are my contributions to the project.
     * Added implementation for the Find and FindExact features, and the Note feature.
     This includes description of the feature, mechanism, example usage scenarios,
     sequence diagrams, activity diagrams, and design considerations.
-    * Generally updated all Architecture, UI component, Logic component,
-    Model component and Storage component UML diagrams.
+    * Rebased Architecture, UI component, Logic component,
+    Model component and Storage component UML diagrams from AB3 to Warenager.
+    * In charge of UML diagrams for Model component.
     * Added documentation for the feature `find`.
     * Added documentation for the feature `findexact`.
     * Added documentation for the feature `note`.
