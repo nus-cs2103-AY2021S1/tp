@@ -299,7 +299,11 @@ These operations are exposed in the `Model` interface as `Model#clearContacts()`
 
 The following sequence diagram shows how the cclear operation works:
 
-![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+![CclearSequenceDiagram](images/ClearContactsSequenceDiagram.png)
+
+The follow activity diagram summarizes what happens when a user executes a Cclearcommand:
+
+![CclearActivityDiagram](images/CclearActivityDiagram.png)
 
 Clearing all contacts from the contact list
 
@@ -324,7 +328,11 @@ These operations are exposed in the `Model` interface as `Model#clearMod()` and 
 
 The following sequence diagram shows how the mclear operation works:
 
-![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+![MclearSequenceDiagram](images/MclearCommandSequenceDiagram.png)
+
+The follow activity diagram summarizes what happens when a user executes a Mclearcommand:
+
+![MclearActivityDiagram](images/MclearAcitivityDiagram.png)
 
 Clearing all modules from the module list
 
