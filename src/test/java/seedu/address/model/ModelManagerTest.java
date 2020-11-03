@@ -132,8 +132,7 @@ public class ModelManagerTest {
 
     @Test
     public void setPropertyBook_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.setPropertyBook(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPropertyBook(null));
     }
 
     @Test
@@ -171,14 +170,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPropertyExceptPropertyId_nullProperty_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.hasPropertyExceptPropertyId(null, new PropertyId(1)));
+        assertThrows(NullPointerException.class, () ->
+                modelManager.hasPropertyExceptPropertyId(null, new PropertyId(1)));
     }
 
     @Test
     public void hasPropertyExceptPropertyId_nullPropertyId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.hasPropertyExceptPropertyId(PROPERTY_A, null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasPropertyExceptPropertyId(PROPERTY_A, null));
     }
 
     @Test
@@ -200,14 +198,12 @@ public class ModelManagerTest {
 
     @Test
     public void deleteProperty_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.deleteProperty(null));
+        assertThrows(NullPointerException.class, () -> modelManager.deleteProperty(null));
     }
 
     @Test
     public void deleteProperty_doesNotExist_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> modelManager.deleteProperty(PROPERTY_A));
+        assertThrows(PropertyNotFoundException.class, () -> modelManager.deleteProperty(PROPERTY_A));
     }
 
     @Test
@@ -239,14 +235,12 @@ public class ModelManagerTest {
 
     @Test
     public void deletePropertyByPropertyId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.deletePropertyByPropertyId(null));
+        assertThrows(NullPointerException.class, () -> modelManager.deletePropertyByPropertyId(null));
     }
 
     @Test
     public void deletePropertyByPropertyId_propertyNotFound_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> modelManager.deletePropertyByPropertyId(new PropertyId(1)));
+        assertThrows(PropertyNotFoundException.class, () -> modelManager.deletePropertyByPropertyId(new PropertyId(1)));
     }
 
     @Test
@@ -279,14 +273,12 @@ public class ModelManagerTest {
 
     @Test
     public void addProperty_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.addProperty(null));
+        assertThrows(NullPointerException.class, () -> modelManager.addProperty(null));
     }
 
     @Test
     public void addProperty_invalidProperty_throwsInvalidSellerIdException() {
-        assertThrows(InvalidSellerIdException.class,
-                () -> modelManager.addProperty(PROPERTY_A));
+        assertThrows(InvalidSellerIdException.class, () -> modelManager.addProperty(PROPERTY_A));
     }
 
     @Test
@@ -294,22 +286,19 @@ public class ModelManagerTest {
         modelManager = TestUtil.getTypicalModelManager();
 
         // same object
-        assertThrows(DuplicatePropertyException.class,
-                () -> modelManager.addProperty(PROPERTY_A));
+        assertThrows(DuplicatePropertyException.class, () -> modelManager.addProperty(PROPERTY_A));
 
         // same property id
         Property samePropertyA = new PropertyBuilder(PROPERTY_B)
                 .withPropertyId(PROPERTY_A.getPropertyId().toString())
                 .build();
-        assertThrows(DuplicatePropertyException.class,
-                () -> modelManager.addProperty(samePropertyA));
+        assertThrows(DuplicatePropertyException.class, () -> modelManager.addProperty(samePropertyA));
 
         // same address
         Property anotherPropertyA = new PropertyBuilder(PROPERTY_B)
                 .withAddress(PROPERTY_A.getAddress().toString())
                 .build();
-        assertThrows(DuplicatePropertyException.class,
-                () -> modelManager.addProperty(anotherPropertyA));
+        assertThrows(DuplicatePropertyException.class, () -> modelManager.addProperty(anotherPropertyA));
     }
 
     @Test
@@ -335,14 +324,12 @@ public class ModelManagerTest {
 
     @Test
     public void getPropertyById_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.getPropertyById(null));
+        assertThrows(NullPointerException.class, () -> modelManager.getPropertyById(null));
     }
 
     @Test
     public void getPropertyById_propertyNotFound_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> modelManager.getPropertyById(new PropertyId(1)));
+        assertThrows(PropertyNotFoundException.class, () -> modelManager.getPropertyById(new PropertyId(1)));
     }
 
     @Test
@@ -353,8 +340,7 @@ public class ModelManagerTest {
 
     @Test
     public void containsPropertyId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.containsPropertyId(null));
+        assertThrows(NullPointerException.class, () -> modelManager.containsPropertyId(null));
     }
 
     @Test
@@ -370,21 +356,18 @@ public class ModelManagerTest {
 
     @Test
     public void setProperty_nullTarget_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.setProperty(null, PROPERTY_A));
+        assertThrows(NullPointerException.class, () -> modelManager.setProperty(null, PROPERTY_A));
     }
 
     @Test
     public void setProperty_nullEditedProperty_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.setProperty(PROPERTY_A, null));
+        assertThrows(NullPointerException.class, () -> modelManager.setProperty(PROPERTY_A, null));
     }
 
     @Test
     public void setProperty_propertyNotFound_throwsPropertyNotFoundException() {
         modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
-        assertThrows(PropertyNotFoundException.class,
-                () -> modelManager.setProperty(PROPERTY_A, PROPERTY_B));
+        assertThrows(PropertyNotFoundException.class, () -> modelManager.setProperty(PROPERTY_A, PROPERTY_B));
     }
 
     @Test
@@ -394,8 +377,7 @@ public class ModelManagerTest {
         Property editedProperty = new PropertyBuilder(PROPERTY_A)
                 .withSellerId("S100")
                 .build();
-        assertThrows(InvalidSellerIdException.class,
-                () -> modelManager.setProperty(PROPERTY_A, editedProperty));
+        assertThrows(InvalidSellerIdException.class, () -> modelManager.setProperty(PROPERTY_A, editedProperty));
     }
 
     @Test
@@ -403,22 +385,19 @@ public class ModelManagerTest {
         modelManager = TestUtil.getTypicalModelManager();
 
         // same object
-        assertThrows(DuplicatePropertyException.class,
-                () -> modelManager.setProperty(PROPERTY_A, PROPERTY_B));
+        assertThrows(DuplicatePropertyException.class, () -> modelManager.setProperty(PROPERTY_A, PROPERTY_B));
 
         // same property id
         Property sameId = new PropertyBuilder(PROPERTY_A)
                 .withPropertyId(PROPERTY_B.getPropertyId().toString())
                 .build();
-        assertThrows(DuplicatePropertyException.class,
-                () -> modelManager.setProperty(PROPERTY_A, sameId));
+        assertThrows(DuplicatePropertyException.class, () -> modelManager.setProperty(PROPERTY_A, sameId));
 
         // same address
         Property sameAddress = new PropertyBuilder(PROPERTY_A)
                 .withAddress(PROPERTY_B.getAddress().toString())
                 .build();
-        assertThrows(DuplicatePropertyException.class,
-                () -> modelManager.setProperty(PROPERTY_A, sameAddress));
+        assertThrows(DuplicatePropertyException.class, () -> modelManager.setProperty(PROPERTY_A, sameAddress));
     }
 
     @Test
@@ -442,8 +421,7 @@ public class ModelManagerTest {
 
     @Test
     public void updateFilteredPropertyList_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> modelManager.updateFilteredPropertyList(null));
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredPropertyList(null));
     }
 
     // ----------------- BIDDER ---------------------

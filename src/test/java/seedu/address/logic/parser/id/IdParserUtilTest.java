@@ -14,18 +14,14 @@ class IdParserUtilTest {
 
     @Test
     public void parsePropertyId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> IdParserUtil.parsePropertyId(null));
+        assertThrows(NullPointerException.class, () -> IdParserUtil.parsePropertyId(null));
     }
 
     @Test
     public void parsePropertyId_invalidPropertyId_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parsePropertyId(""));
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parsePropertyId("p1"));
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parsePropertyId("B1"));
+        assertThrows(ParseException.class, () -> IdParserUtil.parsePropertyId(""));
+        assertThrows(ParseException.class, () -> IdParserUtil.parsePropertyId("p1"));
+        assertThrows(ParseException.class, () -> IdParserUtil.parsePropertyId("B1"));
     }
 
     @Test
@@ -37,18 +33,14 @@ class IdParserUtilTest {
 
     @Test
     public void parseSellerId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> IdParserUtil.parseSellerId(null));
+        assertThrows(NullPointerException.class, () -> IdParserUtil.parseSellerId(null));
     }
 
     @Test
     public void parseSellerId_invalidSellerId_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parseSellerId(""));
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parseSellerId("s1"));
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parseSellerId("B1"));
+        assertThrows(ParseException.class, () -> IdParserUtil.parseSellerId(""));
+        assertThrows(ParseException.class, () -> IdParserUtil.parseSellerId("s1"));
+        assertThrows(ParseException.class, () -> IdParserUtil.parseSellerId("B1"));
     }
 
     @Test
@@ -60,18 +52,14 @@ class IdParserUtilTest {
 
     @Test
     public void parseBidderId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> IdParserUtil.parseBidderId(null));
+        assertThrows(NullPointerException.class, () -> IdParserUtil.parseBidderId(null));
     }
 
     @Test
     public void parseBidderId_invalidBidderId_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parseBidderId(""));
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parseBidderId("b1"));
-        assertThrows(ParseException.class,
-                () -> IdParserUtil.parseBidderId("S1"));
+        assertThrows(ParseException.class, () -> IdParserUtil.parseBidderId(""));
+        assertThrows(ParseException.class, () -> IdParserUtil.parseBidderId("b1"));
+        assertThrows(ParseException.class, () -> IdParserUtil.parseBidderId("S1"));
     }
 
     @Test

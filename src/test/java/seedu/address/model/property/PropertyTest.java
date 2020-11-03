@@ -245,12 +245,12 @@ class PropertyTest {
 
     @Test
     public void testToString() {
-        String expected = "Aljunied Building\n" +
-                "Property Id: P1\n" +
-                "Address: 101 Aljunied Drive\n" +
-                "Property type: HDB 2 room\n" +
-                "Asking price: $999.99\n" +
-                "Seller Id: S1";
+        String expected = "Aljunied Building\n"
+                + "Property Id: P1\n"
+                + "Address: 101 Aljunied Drive\n"
+                + "Property type: HDB 2 room\n"
+                + "Asking price: $999.99\n"
+                + "Seller Id: S1";
         assertEquals(expected, PROPERTY_A.toString());
 
         Property closed = new PropertyBuilder(PROPERTY_A)

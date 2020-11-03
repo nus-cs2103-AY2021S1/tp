@@ -117,32 +117,25 @@ public class ParserUtilTest {
 
     @Test
     public void parsePrice_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> ParserUtil.parsePrice(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePrice(null));
     }
 
     @Test
     public void parsePrice_invalidPrice_throwsParseException() {
         // no input
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePrice(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice(""));
 
         // non-numeric price
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePrice("abc"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("abc"));
 
         // <= 0 price
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePrice("-1"));
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePrice("0"));
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePrice("0.009"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("-1"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("0"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePrice("0.009"));
 
         // > 1 trillion
         String moreThanTrillion = Double.toString(Math.pow(10, 12) + 0.01);
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parsePhone(moreThanTrillion));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(moreThanTrillion));
     }
 
     @Test

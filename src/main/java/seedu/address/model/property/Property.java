@@ -3,8 +3,6 @@ package seedu.address.model.property;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
-import java.util.Objects;
-
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;

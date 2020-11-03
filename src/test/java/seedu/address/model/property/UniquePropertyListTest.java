@@ -61,15 +61,13 @@ public class UniquePropertyListTest {
 
     @Test
     public void containsExceptPropertyId_nullToCheck_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniquePropertyList.containsExceptPropertyId(null,
+        assertThrows(NullPointerException.class, () -> uniquePropertyList.containsExceptPropertyId(null,
                         new PropertyId(1)));
     }
 
     @Test
     public void containsExceptPropertyId_nullPropertyId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> uniquePropertyList.containsExceptPropertyId(PROPERTY_A,
+        assertThrows(NullPointerException.class, () -> uniquePropertyList.containsExceptPropertyId(PROPERTY_A,
                         null));
     }
 
@@ -193,13 +191,14 @@ public class UniquePropertyListTest {
     public void setProperty_editedPropertyHasNonUniqueIdentity_throwsDuplicatePropertyException() {
         uniquePropertyList.add(PROPERTY_A);
         uniquePropertyList.add(PROPERTY_B);
-        assertThrows(DuplicatePropertyException.class,
-                () -> uniquePropertyList.setProperty(PROPERTY_A, new PropertyBuilder(PROPERTY_A)
+        assertThrows(DuplicatePropertyException.class, () ->
+                uniquePropertyList.setProperty(PROPERTY_A, new PropertyBuilder(PROPERTY_A)
                         .withAddress(PROPERTY_B.getAddress().toString()).build()));
-        assertThrows(DuplicatePropertyException.class,
-                () -> uniquePropertyList.setProperty(PROPERTY_A, new PropertyBuilder(PROPERTY_A)
+        assertThrows(DuplicatePropertyException.class, () ->
+                uniquePropertyList.setProperty(PROPERTY_A, new PropertyBuilder(PROPERTY_A)
                         .withPropertyId(PROPERTY_B.getPropertyId().toString()).build()));
-        assertThrows(DuplicatePropertyException.class, () -> uniquePropertyList.setProperty(PROPERTY_A, PROPERTY_B));
+        assertThrows(DuplicatePropertyException.class, () ->
+                uniquePropertyList.setProperty(PROPERTY_A, PROPERTY_B));
     }
 
     @Test

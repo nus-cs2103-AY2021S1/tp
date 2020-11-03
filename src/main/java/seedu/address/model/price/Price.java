@@ -14,7 +14,7 @@ public class Price implements Comparable<Price> {
 
     public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0 and less than 1 trillion";
     public static final String MESSAGE_NOT_NUMERIC = "Price should be a number";
-    public static final DecimalFormat df = new DecimalFormat("#.##");
+    public static final DecimalFormat DF = new DecimalFormat("#.##");
 
     public final double price;
 
@@ -25,8 +25,8 @@ public class Price implements Comparable<Price> {
      */
     public Price(double price) {
         requireNonNull(price);
-        df.setRoundingMode(RoundingMode.DOWN);
-        double truncated = Double.parseDouble(df.format(price));
+        DF.setRoundingMode(RoundingMode.DOWN);
+        double truncated = Double.parseDouble(DF.format(price));
         checkArgument(isValidPrice(truncated), MESSAGE_CONSTRAINTS);
         this.price = truncated;
     }
@@ -35,8 +35,8 @@ public class Price implements Comparable<Price> {
      * Returns true if a given integer is a valid price.
      */
     public static boolean isValidPrice(double test) {
-        df.setRoundingMode(RoundingMode.DOWN);
-        double truncated = Double.parseDouble(df.format(test));
+        DF.setRoundingMode(RoundingMode.DOWN);
+        double truncated = Double.parseDouble(DF.format(test));
         return truncated > 0 && truncated <= Math.pow(10, 12);
     }
 

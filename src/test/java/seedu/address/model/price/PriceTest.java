@@ -48,12 +48,12 @@ public class PriceTest {
 
     @Test
     public void getPrice() {
-        assertEquals(1.00, new Price(1).getPrice());        // 0 dp
-        assertEquals(10.20, new Price(10.2).getPrice());    // 1 dp
-        assertEquals(Math.pow(10, 12), new Price(Math.pow(10, 12)).getPrice());     // max price
-        assertEquals(10.22, new Price(10.223456).getPrice());       // round down (less than 0.5)
-        assertEquals(10.55, new Price(10.559).getPrice());          // round down (more than 0.5)
-        assertEquals(10.55, new Price(10.555).getPrice());          // round down (exactly 0.5)
+        assertEquals(1.00, new Price(1).getPrice()); // 0 dp
+        assertEquals(10.20, new Price(10.2).getPrice()); // 1 dp
+        assertEquals(Math.pow(10, 12), new Price(Math.pow(10, 12)).getPrice()); // max price
+        assertEquals(10.22, new Price(10.223456).getPrice()); // round down (less than 0.5)
+        assertEquals(10.55, new Price(10.559).getPrice()); // round down (more than 0.5)
+        assertEquals(10.55, new Price(10.555).getPrice()); // round down (exactly 0.5)
     }
 
     @Test

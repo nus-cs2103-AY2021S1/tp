@@ -29,14 +29,12 @@ class PropertyParserUtilTest {
 
     @Test
     public void parsePropertyName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parsePropertyName(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parsePropertyName(null));
     }
 
     @Test
     public void parsePropertyName_invalidName_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePropertyName(INVALID_PROPERTY_NAME));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePropertyName(INVALID_PROPERTY_NAME));
     }
 
     @Test
@@ -49,14 +47,12 @@ class PropertyParserUtilTest {
 
     @Test
     public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parseAddress(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parseAddress(null));
     }
 
     @Test
     public void parsAddress_invalidAddress_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parseAddress(""));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parseAddress(""));
     }
 
     @Test
@@ -69,14 +65,12 @@ class PropertyParserUtilTest {
 
     @Test
     public void parsePropertyType_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parsePropertyType(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parsePropertyType(null));
     }
 
     @Test
     public void parsePropertyType_invalidPropertyType_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePropertyType(INVALID_PROPERTY_PROPERTY_TYPE));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePropertyType(INVALID_PROPERTY_PROPERTY_TYPE));
     }
 
     @Test
@@ -90,14 +84,12 @@ class PropertyParserUtilTest {
 
     @Test
     public void parseIsRental_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parseIsRental(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parseIsRental(null));
     }
 
     @Test
     public void parseIsRental_invalidIsRental_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parseIsRental(INVALID_PROPERTY_IS_RENTAL));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parseIsRental(INVALID_PROPERTY_IS_RENTAL));
     }
 
     @Test
@@ -111,16 +103,13 @@ class PropertyParserUtilTest {
 
     @Test
     public void parseKeywords_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parseKeywords(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parseKeywords(null));
     }
 
     @Test
     public void parseKeywords_invalidKeywords_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parseKeywords(""));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parseKeywords("\t  "));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parseKeywords(""));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parseKeywords("\t  "));
     }
 
     @Test
@@ -131,34 +120,22 @@ class PropertyParserUtilTest {
 
     @Test
     public void parsePropertyParserUtil_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parsePriceFilter(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parsePriceFilter(null));
     }
 
     @Test
     public void parsePriceFilter_invalidPriceFilter_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter(""));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("     "));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter(">> 2000"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("random price"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("500"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter(">="));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("< price"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("a"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("< -1"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("< 10000000000001"));
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parsePriceFilter("> 0"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter(""));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("     "));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter(">> 2000"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("random price"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("500"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter(">="));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("< price"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("a"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("< -1"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("< 10000000000001"));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parsePriceFilter("> 0"));
     }
 
     @Test
@@ -179,14 +156,12 @@ class PropertyParserUtilTest {
 
     @Test
     public void parseIsClosedDeal_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> PropertyParserUtil.parseIsClosedDeal(null));
+        assertThrows(NullPointerException.class, () -> PropertyParserUtil.parseIsClosedDeal(null));
     }
 
     @Test
     public void parseIsClosedDeal_invalidIsClosedDeal_throwsParseException() {
-        assertThrows(ParseException.class,
-                () -> PropertyParserUtil.parseIsClosedDeal(INVALID_PROPERTY_IS_CLOSED_DEAL));
+        assertThrows(ParseException.class, () -> PropertyParserUtil.parseIsClosedDeal(INVALID_PROPERTY_IS_CLOSED_DEAL));
     }
 
     @Test

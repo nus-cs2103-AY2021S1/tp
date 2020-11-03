@@ -142,6 +142,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
+     * @throws CommandException If there is a problem executing the command.
      */
     void addMeeting(Meeting meeting) throws CommandException;
 

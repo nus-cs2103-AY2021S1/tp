@@ -151,65 +151,53 @@ public class AddressBookParserTest {
     public void parseAddPropertyCommand_missingCompulsoryFields_throwsParseException() {
 
         // missing all fields
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(AddPropertyCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, () -> parser.parseCommand(AddPropertyCommand.COMMAND_WORD));
 
         // missing propertyName
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withPropertyName("").build()));
 
         // missing address
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withAddress("").build()));
 
         // missing propertyType
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withPropertyType("").build()));
 
         // missing sellerId
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withSellerId("").build()));
 
         // missing isRental
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withIsRental("").build()));
 
         // missing askingPrice
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withAskingPrice("").build()));
     }
 
     @Test
     public void parseAddPropertyCommand_invalidInput_throwsParseException() {
         // invalid propertyName
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withPropertyName(INVALID_PROPERTY_NAME).build()));
 
         // invalid seller id
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withSellerId(INVALID_PROPERTY_SELLER_ID).build()));
 
         // invalid property type
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withPropertyType(INVALID_PROPERTY_PROPERTY_TYPE).build()));
 
         // invalid asking price
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withAskingPrice(INVALID_PROPERTY_ASKING_PRICE).build()));
 
         // invalid is rental
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidAddPropertyCommandInput()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidAddPropertyCommandInput()
                         .withIsRental(INVALID_PROPERTY_IS_RENTAL).build()));
     }
 
@@ -225,18 +213,17 @@ public class AddressBookParserTest {
     @Test
     public void parseDeletePropertyCommand_invalidInput_throwsParseException() {
         // missing index and property id
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(DeletePropertyCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, () -> parser.parseCommand(DeletePropertyCommand.COMMAND_WORD));
 
         // invalid
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "a"));
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "0"));
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "-1"));
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "1 P1"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "a"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "0"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "-1"));
+        assertThrows(ParseException.class, () ->
+                parser.parseCommand(DeletePropertyCommand.COMMAND_WORD + "1 P1"));
     }
 
     @Test
@@ -268,46 +255,38 @@ public class AddressBookParserTest {
     public void parseEditPropertyCommand_invalidInput_throwsParseException() {
 
         // no index
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withIndex("").build()));
 
         // no fields
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(new PropertyCommandInputBuilder()
+        assertThrows(ParseException.class, () -> parser.parseCommand(new PropertyCommandInputBuilder()
                         .withCommandWord(EditPropertyCommand.COMMAND_WORD)
                         .withIndex("1")
                         .build()));
 
         // not allowed to edit property id
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withPropertyId(PROPERTY_ID_DESC_ANCHORVALE)
                         .build()));
 
         // invalid propertyName
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withPropertyName(INVALID_PROPERTY_NAME).build()));
 
         // invalid seller id
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withSellerId(INVALID_PROPERTY_SELLER_ID).build()));
 
         // invalid property type
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withPropertyType(INVALID_PROPERTY_PROPERTY_TYPE).build()));
 
         // invalid asking price
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withAskingPrice(INVALID_PROPERTY_ASKING_PRICE).build()));
 
         // invalid is rental
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidEditPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidEditPropertyCommand()
                         .withIsRental(INVALID_PROPERTY_IS_RENTAL).build()));
     }
 
@@ -321,22 +300,18 @@ public class AddressBookParserTest {
     @Test
     public void parseFindPropertyCommand_invalidInput_throwsParseException() {
         // missing all fields
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(FindPropertyCommand.COMMAND_WORD));
+        assertThrows(ParseException.class, () -> parser.parseCommand(FindPropertyCommand.COMMAND_WORD));
 
         // invalid asking price
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidFindPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidFindPropertyCommand()
                         .withAskingPrice(INVALID_PROPERTY_ASKING_PRICE).build()));
 
         // invalid is rental
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidFindPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidFindPropertyCommand()
                         .withIsRental(INVALID_PROPERTY_IS_RENTAL).build()));
 
         // invalid is closed deal
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(getValidFindPropertyCommand()
+        assertThrows(ParseException.class, () -> parser.parseCommand(getValidFindPropertyCommand()
                         .withIsClosedDeal(INVALID_PROPERTY_IS_CLOSED_DEAL)
                         .build()));
     }

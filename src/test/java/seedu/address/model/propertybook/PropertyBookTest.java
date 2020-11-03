@@ -85,14 +85,13 @@ public class PropertyBookTest {
 
     @Test
     public void hasPropertyExceptPropertyId_nullProperty_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.hasPropertyExceptPropertyId(null, new PropertyId(1)));
+        assertThrows(NullPointerException.class, () ->
+                propertyBook.hasPropertyExceptPropertyId(null, new PropertyId(1)));
     }
 
     @Test
     public void hasProperty_nullPropertyId_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.hasPropertyExceptPropertyId(PROPERTY_A, null));
+        assertThrows(NullPointerException.class, () -> propertyBook.hasPropertyExceptPropertyId(PROPERTY_A, null));
     }
 
     @Test
@@ -123,15 +122,13 @@ public class PropertyBookTest {
 
     @Test
     public void addProperty_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.addProperty(null));
+        assertThrows(NullPointerException.class, () -> propertyBook.addProperty(null));
     }
 
     @Test
     public void addProperty_duplicateProperty_throwsDuplicatePropertyException() {
         propertyBook.addProperty(PROPERTY_A);
-        assertThrows(DuplicatePropertyException.class,
-                () -> propertyBook.addProperty(PROPERTY_A));
+        assertThrows(DuplicatePropertyException.class, () -> propertyBook.addProperty(PROPERTY_A));
     }
 
     @Test
@@ -156,26 +153,21 @@ public class PropertyBookTest {
 
     @Test
     public void setProperty_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.setProperty(null, PROPERTY_A));
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.setProperty(PROPERTY_A, null));
+        assertThrows(NullPointerException.class, () -> propertyBook.setProperty(null, PROPERTY_A));
+        assertThrows(NullPointerException.class, () -> propertyBook.setProperty(PROPERTY_A, null));
     }
 
     @Test
     public void setProperty_propertyNotFound_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> propertyBook.setProperty(PROPERTY_A, PROPERTY_B));
+        assertThrows(PropertyNotFoundException.class, () -> propertyBook.setProperty(PROPERTY_A, PROPERTY_B));
     }
 
     @Test
     public void setProperty_duplicateProperty_throwsDuplicatePropertyException() {
         propertyBook.addProperty(PROPERTY_A);
         propertyBook.addProperty(PROPERTY_B);
-        assertThrows(DuplicatePropertyException.class,
-                () -> propertyBook.setProperty(PROPERTY_A, PROPERTY_B));
-        assertThrows(DuplicatePropertyException.class,
-                () -> propertyBook.setProperty(PROPERTY_A,
+        assertThrows(DuplicatePropertyException.class, () -> propertyBook.setProperty(PROPERTY_A, PROPERTY_B));
+        assertThrows(DuplicatePropertyException.class, () -> propertyBook.setProperty(PROPERTY_A,
                         new PropertyBuilder(PROPERTY_A)
                                 .withAddress(PROPERTY_B.getAddress().toString()).build()));
     }
@@ -200,14 +192,12 @@ public class PropertyBookTest {
 
     @Test
     public void removeProperty_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.removeProperty(null));
+        assertThrows(NullPointerException.class, () -> propertyBook.removeProperty(null));
     }
 
     @Test
     public void removeProperty_notInPropertyBook_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> propertyBook.removeProperty(PROPERTY_A));
+        assertThrows(PropertyNotFoundException.class, () -> propertyBook.removeProperty(PROPERTY_A));
     }
 
     @Test
@@ -219,14 +209,13 @@ public class PropertyBookTest {
 
     @Test
     public void removePropertyByPropertyId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.removePropertyByPropertyId(null));
+        assertThrows(NullPointerException.class, () -> propertyBook.removePropertyByPropertyId(null));
     }
 
     @Test
     public void removePropertyByPropertyId_notInPropertyBook_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class,
-                () -> propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId()));
+        assertThrows(PropertyNotFoundException.class, () ->
+                propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId()));
     }
 
     @Test
@@ -238,8 +227,7 @@ public class PropertyBookTest {
 
     @Test
     public void removeAllPropertiesWithSellerId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.removeAllPropertiesWithSellerId(null));
+        assertThrows(NullPointerException.class, () -> propertyBook.removeAllPropertiesWithSellerId(null));
     }
 
     @Test
@@ -274,8 +262,7 @@ public class PropertyBookTest {
 
     @Test
     public void getPropertiesBySellerId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> propertyBook.getPropertiesBySellerId(null));
+        assertThrows(NullPointerException.class, () -> propertyBook.getPropertiesBySellerId(null));
     }
 
     @Test
