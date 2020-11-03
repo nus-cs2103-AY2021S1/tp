@@ -1,6 +1,5 @@
 package seedu.expense.logic.parser;
 
-import static seedu.expense.commons.core.Messages.MESSAGE_INPUT_OVERLIMIT;
 import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -69,10 +68,6 @@ public class ExpenseBookParser {
             commandWord = aliasMap.getValue(commandWord);
         }
         final String arguments = matcher.group("arguments");
-
-        if (arguments.length() > 200) {
-            throw new ParseException(String.format(MESSAGE_INPUT_OVERLIMIT, 200));
-        }
 
         LogsCenter.getLogger(LogicManager.class).info(
                 "----------------[USER COMMAND][" + commandWord + " " + arguments + "]");
