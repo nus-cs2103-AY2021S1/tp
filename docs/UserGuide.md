@@ -187,7 +187,7 @@ Action | Format, Examples
 **Note** | `note sn/<serial number> nt/<note>` <br> e.g. `note sn/shengsiong1 nt/chicken will expire soon`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>` <br> e.g. `notedelete sn/ntuc1 ni/1`
 **StockView** | `stockview sn/<serial number>` <br> e.g. `stockview sn/ntuc1`
-**Update** | `update sn/<serial number> [sn/<serial number>]... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
+**Update** | `update sn/<serial number> [sn/<serial number>]... [iq/<increment value> `&#124;` nq/<new quantity>] [n/<name>] [l/<location>] [lq/<low quantity>]` <br> e.g. `update sn/Ntuc1 iq/+50 n/heineken` 
 **Statistics** | `stats st/<statistics type>` <br> e.g. `stats st/source-qd-ntuc`
 **Print** | `print fn/<file name>` <br> e.g. `print fn/stocks`
 **Sort** | `sort o/<order> by/<field>` <br> e.g. `sort o/descending by/quantity`
@@ -205,8 +205,8 @@ Prefix | Parameter | Parameter Description
 ------ | --------- | -----------
 **n/** | `<name>`  | The name of the stock. It is a string and only alphanumeric characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
 **s/** | `<source>`| The source of the stock. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
-**q/** | `<quantity>` | The quantity of the stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 are allowed.
-**lq/** | `<low quantity>` | The threshold of low quantity of a certain stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 are allowed.
+**q/** | `<quantity>` | The quantity of the stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 inclusive are allowed.
+**lq/** | `<low quantity>` | The threshold of low quantity of a certain stock. It is a number. <br> Only numbers between 0 and 2,147,483,647 inclusive are allowed.
 **l/** | `<location>` | The location of the stock in the warehouse. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces.
 **lt/** | `<list type>` | The type of the list user want to view. It is a string and only the following values are known to Warenager. <br> `all`, `bookmark`, `low`.
 **sn/** | `<serial number>` | The serial number of the stock. It is a string and any valid ASCII characters are allowed. <br> It must not be blank and it must not consists of only whitespaces. <br> It must always be ended by a number.
@@ -587,12 +587,12 @@ Updates the details of the desired stock(s), requires the serial number of stock
 <h4>Format</h4>
 
 ```
-update sn/<serial number> [sn/<serial number]... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]
+update sn/<serial number> [sn/<serial number]... [iq/<increment value> | nq/<new quantity>] [n/<name>] [l/<location>] [lq/<low quantity>]
 ```
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Updating nothing**
+**:information_source: Updating nothing** <br>
 Warenager recognizes updating nothing as a valid update command. 
 For example, assuming stock with serial number `FAIRPRICE1` exist, `update sn/fairprice1` will be recognized as a valid command and executed.
 Even though it essentially does nothing.
@@ -601,7 +601,7 @@ Even though it essentially does nothing.
 
 <div markdown="block" class="alert alert-warning">
 
-**:warning: In case one of serial numbers is invalid**
+**:warning: In case one of serial numbers is invalid** <br>
 If more than one serial number is passed and at least one of them is wrong (not found in the inventory list), then the command
 will not update anything and shows an error message.
 

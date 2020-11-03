@@ -166,7 +166,7 @@ public class UpdateCommand extends Command {
         Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(originalQuantity);
         String lowQuantity = updateStockDescriptor.getLowQuantity().orElse(originalQuantity.getLowQuantity());
         Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
-        Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
+        Source updatedSource = stockToUpdate.getSource();
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
         SerialNumber stockSerialNumber = stockToUpdate.getSerialNumber();
         Optional<QuantityAdder> quantityAdder = updateStockDescriptor.getQuantityAdder();
