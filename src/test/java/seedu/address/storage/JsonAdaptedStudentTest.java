@@ -109,6 +109,14 @@ public class JsonAdaptedStudentTest {
     }
 
     @Test
+    public void toModelType_nullAttendance_throwsIllegalValueException() {
+        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_STUDENT_ID,
+                VALID_TAGS, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Attendance");
+        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
@@ -117,4 +125,7 @@ public class JsonAdaptedStudentTest {
                         VALID_ATTENDANCE);
         assertThrows(IllegalValueException.class, student::toModelType);
     }
+
+
+
 }
