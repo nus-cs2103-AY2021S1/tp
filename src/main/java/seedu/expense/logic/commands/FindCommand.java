@@ -58,8 +58,10 @@ public class FindCommand extends Command {
         model.updateFilteredExpenseList(predicate);
         model.updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW,
-                        model.getFilteredExpenseList().size()));
+            String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW,
+                model.getFilteredExpenseList().size()),
+            false, false, false
+            );
     }
 
     @Override
