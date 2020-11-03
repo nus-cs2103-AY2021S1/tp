@@ -51,16 +51,6 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noLogFound() {
-        String expectedMessage = String.format(MESSAGE_LOGS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredLogList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredLogList());
-    }
-
-    @Test
     public void execute_multipleKeywords_multipleLogsFound() {
         String expectedMessage = String.format(MESSAGE_LOGS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate predicate = preparePredicate("Jumping");

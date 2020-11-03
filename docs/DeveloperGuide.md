@@ -190,16 +190,18 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 
 
 ### Find Log feature
-To find specific exercise logs, users are able to search for logs based on the exercise name. This will allow them to easily track the number of logs for a certain exercise, as well as its details.
+To find specific logs, users are able to search for logs based on certain keywords.
+This will allow them to easily find logs with a certain exercise, as well as any of its details.
 
 ![FindLogClassDiagram](images/NameContainsKeywordsPredicate.png) 
 
-The mechanism is supported by the `NameContainsKeywordsPredicate`, which checks if the user keyword input is matches any name of the exercises in the list of exercise logs. The `NameContainsKeywordsPredicate#test()` method is used to check this.
+`NameContainsKeywordsPredicate` supports this command.
+`NameContainsKeywordsPredicate#test()` checks if a Log contains all the keywords in the user input.
 
-A user can find a `Log` by executing the `find` command.
+A user can thus find a `Log` by executing the `find` command.
 
 #### Example usage scenario
-Given below is an example usage scenario and how the `find log` mechanism behaves at each step after launching the application.
+Given below is an example usage scenario and how the `find` command behaves at each step after launching the application.
 
 Step 1. The user executes the command `find Push ups`. `FixMyAbsParser` creates a new `FindCommandParser` and calls the `FindCommandParser#parse()` method.
 
@@ -207,7 +209,7 @@ Step 2. The user input is passed into the `FindCommandParser#parse()` method, wh
 
 Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindCommand` is returned with the created `NameContainsKeywordsPredicate` object as a parameter. Upon calling `FindCommand#execute()`, the model is updated through `Model#updateFilteredLogList()`, and the new filtered log list is displayed to the user.
 
-The following sequence diagram shows how the `Find Log` feature works:
+The following sequence diagram shows how the `find` feature works:
 
 ![FindLogClassDiagram](images/FindLogSequenceDiagram.png) 
 

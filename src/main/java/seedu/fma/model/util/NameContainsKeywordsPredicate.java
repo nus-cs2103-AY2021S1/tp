@@ -18,8 +18,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Log> {
 
     @Override
     public boolean test(Log log) {
+        if (keywords.isEmpty()) {
+            return false;
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordsIgnoreCase(log.toString().toLowerCase(),
+                .allMatch(keyword -> StringUtil.containsWordsIgnoreCase(log.toString().toLowerCase(),
                         keyword.toLowerCase()));
     }
 
