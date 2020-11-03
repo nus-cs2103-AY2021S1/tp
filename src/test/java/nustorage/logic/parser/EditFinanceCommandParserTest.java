@@ -27,7 +27,7 @@ public class EditFinanceCommandParserTest {
         assertParseFailure(parser, String.valueOf(VALID_AMOUNT), MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditFinanceCommand.MESSAGE_AMT_MISSING);
+        assertParseFailure(parser, "1", EditFinanceCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
