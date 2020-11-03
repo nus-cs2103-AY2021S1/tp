@@ -149,16 +149,10 @@ public class Property {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(propertyId, propertyName, address,
-                askingPrice, propertyType, sellerId, isRental, isClosedDeal);
-    }
-
-    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         if (isClosedDeal().isClosedDeal) {
-            builder.append("[CLOSED] ");
+            builder.append("[CLOSED]\n");
         }
         builder.append(getPropertyName())
                 .append("\nProperty Id: ")

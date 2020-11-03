@@ -1,5 +1,6 @@
 package seedu.address.model.property;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_ADDRESS_BEDOK;
@@ -10,17 +11,120 @@ import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALI
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_PROPERTY_ID_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_PROPERTY_TYPE_BEDOK;
 import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PROPERTY_SELLER_ID_BEDOK;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
+import seedu.address.model.price.Price;
 import seedu.address.testutil.property.PropertyBuilder;
 
 class PropertyTest {
 
     @Test
-    void isSameProperty() {
+    public void constructor_null_throwsNullPointerException() {
+
+        // null property id
+        assertThrows(NullPointerException.class, () -> new Property(
+                null,
+                new PropertyName("Name"),
+                new SellerId("S1"),
+                new Address("Address"),
+                new Price(100),
+                new PropertyType("Type"),
+                new IsRental("no"),
+                new IsClosedDeal("active")
+        ));
+
+        // null property name
+        assertThrows(NullPointerException.class, () -> new Property(
+                null,
+                new SellerId("S1"),
+                new Address("Address"),
+                new Price(100),
+                new PropertyType("Type"),
+                new IsRental("no"),
+                new IsClosedDeal("active")
+        ));
+
+        // null seller id
+        assertThrows(NullPointerException.class, () -> new Property(
+                new PropertyName("Name"),
+                null,
+                new Address("Address"),
+                new Price(100),
+                new PropertyType("Type"),
+                new IsRental("no"),
+                new IsClosedDeal("active")
+        ));
+
+        // null address
+        assertThrows(NullPointerException.class, () -> new Property(
+                new PropertyName("Name"),
+                new SellerId("S1"),
+               null,
+                new Price(100),
+                new PropertyType("Type"),
+                new IsRental("no"),
+                new IsClosedDeal("active")
+        ));
+
+        // null price
+        assertThrows(NullPointerException.class, () -> new Property(
+                new PropertyName("Name"),
+                new SellerId("S1"),
+                new Address("Address"),
+                null,
+                new PropertyType("Type"),
+                new IsRental("no"),
+                new IsClosedDeal("active")
+        ));
+
+        // null property type
+        assertThrows(NullPointerException.class, () -> new Property(
+                new PropertyName("Name"),
+                new SellerId("S1"),
+                new Address("Address"),
+                new Price(100),
+                null,
+                new IsRental("no"),
+                new IsClosedDeal("active")
+        ));
+
+        // null is rental
+        assertThrows(NullPointerException.class, () -> new Property(
+                new PropertyName("Name"),
+                new SellerId("S1"),
+                new Address("Address"),
+                new Price(100),
+                new PropertyType("Type"),
+                null,
+                new IsClosedDeal("active")
+        ));
+
+        // null is closed deal
+        assertThrows(NullPointerException.class, () -> new Property(
+                new PropertyName("Name"),
+                new SellerId("S1"),
+                new Address("Address"),
+                new Price(100),
+                new PropertyType("Type"),
+                new IsRental("no"),
+                null
+        ));
+    }
+
+    @Test
+    public void setId() {
+        PropertyId propertyId = new PropertyId(2);
+        assertEquals(propertyId, PROPERTY_A.setId(propertyId).getPropertyId());
+    }
+
+    @Test
+    public void isSameProperty() {
         // same object -> returns true
         assertTrue(PROPERTY_A.isSameProperty(PROPERTY_A));
 
@@ -72,7 +176,7 @@ class PropertyTest {
     }
 
     @Test
-    void testEquals() {
+    public void testEquals() {
 
         // same values -> return true
         Property propertyACopy = new PropertyBuilder(PROPERTY_A).build();
@@ -137,6 +241,21 @@ class PropertyTest {
                 .withAddress(VALID_PROPERTY_IS_CLOSED_DEAL_BEDOK)
                 .build();
         assertFalse(PROPERTY_A.equals(editedPropertyA));
+    }
 
+    @Test
+    public void testToString() {
+        String expected = "Aljunied Building\n" +
+                "Property Id: P1\n" +
+                "Address: 101 Aljunied Drive\n" +
+                "Property type: HDB 2 room\n" +
+                "Asking price: $999.99\n" +
+                "Seller Id: S1";
+        assertEquals(expected, PROPERTY_A.toString());
+
+        Property closed = new PropertyBuilder(PROPERTY_A)
+                .withIsClosedDeal("close")
+                .build();
+        assertEquals("[CLOSED]\n" + expected, closed.toString());
     }
 }

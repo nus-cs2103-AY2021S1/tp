@@ -90,10 +90,6 @@ public class PriceFilter implements Predicate<Price> {
         }
     }
 
-    public Price getTarget() {
-        return target;
-    }
-
     @Override
     public boolean test(Price price) {
         return compareOp.getBiFunction().apply(price, target);

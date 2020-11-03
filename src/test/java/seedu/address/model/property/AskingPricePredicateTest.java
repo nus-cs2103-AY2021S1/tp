@@ -2,6 +2,7 @@ package seedu.address.model.property;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,12 @@ import seedu.address.testutil.property.PropertyBuilder;
 class AskingPricePredicateTest {
 
     @Test
-    void test_passesFilter_returnsTrue() {
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AskingPricePredicate(null));
+    }
+
+    @Test
+    public void test_passesFilter_returnsTrue() {
         PriceFilterStub priceFilter = new PriceFilterStub();
         AskingPricePredicate askingPricePredicate = new AskingPricePredicate(priceFilter);
         Property property = new PropertyBuilder().withAskingPrice(100).build();
@@ -22,11 +28,31 @@ class AskingPricePredicateTest {
     }
 
     @Test
-    void test_failsFilter_returnsFalse() {
+    public void test_failsFilter_returnsFalse() {
         PriceFilterStub priceFilter = new PriceFilterStub();
         AskingPricePredicate askingPricePredicate = new AskingPricePredicate(priceFilter);
         Property property = new PropertyBuilder().withAskingPrice(99).build();
         assertFalse(askingPricePredicate.test(property));
+    }
+
+    @Test
+    public void equals() {
+        AskingPricePredicate askingPricePredicate =
+                new AskingPricePredicate(new PriceFilter("< 100"));
+
+        // same object
+        assertTrue(askingPricePredicate.equals(askingPricePredicate));
+
+        // different type
+        assertFalse(askingPricePredicate.equals(new PriceFilter("< 100")));
+
+        // same asking price predicate
+        assertTrue(askingPricePredicate.equals(
+                new AskingPricePredicate(new PriceFilter("< 100"))));
+
+        // different price filter
+        assertFalse(askingPricePredicate.equals(
+                new AskingPricePredicate(new PriceFilter("> 100"))));
     }
 
     /**
@@ -47,5 +73,6 @@ class AskingPricePredicateTest {
         public boolean test(Price price) {
             return price.compareTo(target) >= 0;
         }
+
     }
 }

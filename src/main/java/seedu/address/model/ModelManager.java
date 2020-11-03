@@ -557,9 +557,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSeller(Seller target) {
-        ArrayList<Property> propertiesToRemove = propertyBook.getPropertyIdBySellerId((SellerId) target.getId());
+        ArrayList<Property> propertiesToRemove = propertyBook.getPropertiesBySellerId((SellerId) target.getId());
         propertiesToRemove.forEach(this::deleteProperty);
-        propertyBook.removePropertyBySellerId((SellerId) target.getId());
+        propertyBook.removeAllPropertiesWithSellerId((SellerId) target.getId());
         sellerAddressBook.removeSeller(target);
     }
 

@@ -8,6 +8,7 @@ import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -17,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.exceptions.DuplicatePropertyException;
 import seedu.address.model.property.exceptions.PropertyNotFoundException;
@@ -81,6 +84,178 @@ public class PropertyBookTest {
     }
 
     @Test
+    public void hasPropertyExceptPropertyId_nullProperty_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.hasPropertyExceptPropertyId(null, new PropertyId(1)));
+    }
+
+    @Test
+    public void hasProperty_nullPropertyId_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.hasPropertyExceptPropertyId(PROPERTY_A, null));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_propertyNotInPropertyBook_returnsFalse() {
+
+        // not in property book
+        assertFalse(propertyBook.hasPropertyExceptPropertyId(PROPERTY_A, PROPERTY_B.getPropertyId()));
+
+        // has excluded property id
+        propertyBook.addProperty(PROPERTY_A);
+        assertFalse(propertyBook.hasPropertyExceptPropertyId(PROPERTY_A, PROPERTY_A.getPropertyId()));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_propertyInPropertyBook_returnsTrue() {
+        propertyBook.addProperty(PROPERTY_A);
+        assertTrue(propertyBook.hasPropertyExceptPropertyId(PROPERTY_A, PROPERTY_B.getPropertyId()));
+    }
+
+    @Test
+    public void hasPropertyExceptPropertyId_propertyWithSameIdentityFieldsInPropertyBook_returnsTrue() {
+        propertyBook.addProperty(PROPERTY_A);
+        Property editedPropertyA = new PropertyBuilder(PROPERTY_B)
+                .withAddress(PROPERTY_A.getAddress().toString())
+                .build();
+        assertTrue(propertyBook.hasPropertyExceptPropertyId(editedPropertyA, PROPERTY_B.getPropertyId()));
+    }
+
+    @Test
+    public void addProperty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.addProperty(null));
+    }
+
+    @Test
+    public void addProperty_duplicateProperty_throwsDuplicatePropertyException() {
+        propertyBook.addProperty(PROPERTY_A);
+        assertThrows(DuplicatePropertyException.class,
+                () -> propertyBook.addProperty(PROPERTY_A));
+    }
+
+    @Test
+    public void addProperty_existingId_success() {
+        Property added = propertyBook.addProperty(PROPERTY_A);
+        assertEquals(PROPERTY_A, added);
+    }
+
+    @Test
+    public void addProperty_defaultId_success() {
+        Property added = propertyBook.addProperty(
+                new PropertyBuilder(PROPERTY_A)
+                        .withPropertyId(PropertyId.DEFAULT_PROPERTY_ID.toString())
+                        .build());
+        assertEquals(PROPERTY_A.setId(new PropertyId(1)), added);
+        added = propertyBook.addProperty(
+                new PropertyBuilder(PROPERTY_B)
+                        .withPropertyId(PropertyId.DEFAULT_PROPERTY_ID.toString())
+                        .build());
+        assertEquals(PROPERTY_B.setId(new PropertyId(2)), added);
+    }
+
+    @Test
+    public void setProperty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.setProperty(null, PROPERTY_A));
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.setProperty(PROPERTY_A, null));
+    }
+
+    @Test
+    public void setProperty_propertyNotFound_throwsPropertyNotFoundException() {
+        assertThrows(PropertyNotFoundException.class,
+                () -> propertyBook.setProperty(PROPERTY_A, PROPERTY_B));
+    }
+
+    @Test
+    public void setProperty_duplicateProperty_throwsDuplicatePropertyException() {
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.addProperty(PROPERTY_B);
+        assertThrows(DuplicatePropertyException.class,
+                () -> propertyBook.setProperty(PROPERTY_A, PROPERTY_B));
+        assertThrows(DuplicatePropertyException.class,
+                () -> propertyBook.setProperty(PROPERTY_A,
+                        new PropertyBuilder(PROPERTY_A)
+                                .withAddress(PROPERTY_B.getAddress().toString()).build()));
+    }
+
+    @Test
+    public void setProperty_sameProperty_success() {
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.setProperty(PROPERTY_A, PROPERTY_A);
+        PropertyBook expected = new PropertyBook();
+        expected.addProperty(PROPERTY_A);
+        assertEquals(expected, propertyBook);
+    }
+
+    @Test
+    public void setProperty_sucess() {
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.setProperty(PROPERTY_A, PROPERTY_B);
+        PropertyBook expected = new PropertyBook();
+        expected.addProperty(PROPERTY_B);
+        assertEquals(expected, propertyBook);
+    }
+
+    @Test
+    public void removeProperty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.removeProperty(null));
+    }
+
+    @Test
+    public void removeProperty_notInPropertyBook_throwsPropertyNotFoundException() {
+        assertThrows(PropertyNotFoundException.class,
+                () -> propertyBook.removeProperty(PROPERTY_A));
+    }
+
+    @Test
+    public void removeProperty_success() {
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.removeProperty(PROPERTY_A);
+        assertEquals(new PropertyBook(), propertyBook);
+    }
+
+    @Test
+    public void removePropertyByPropertyId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.removePropertyByPropertyId(null));
+    }
+
+    @Test
+    public void removePropertyByPropertyId_notInPropertyBook_throwsPropertyNotFoundException() {
+        assertThrows(PropertyNotFoundException.class,
+                () -> propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId()));
+    }
+
+    @Test
+    public void removePropertyByPropertyId_success() {
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId());
+        assertEquals(new PropertyBook(), propertyBook);
+    }
+
+    @Test
+    public void removeAllPropertiesWithSellerId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.removeAllPropertiesWithSellerId(null));
+    }
+
+    @Test
+    public void removeAllPropertiesWithSellerId_success() {
+        propertyBook.removeAllPropertiesWithSellerId(PROPERTY_A.getSellerId());
+        assertEquals(new PropertyBook(), propertyBook);
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.addProperty(new PropertyBuilder(PROPERTY_B)
+                .withSellerId(PROPERTY_A.getSellerId().toString())
+                .build());
+        propertyBook.removeAllPropertiesWithSellerId(PROPERTY_A.getSellerId());
+        assertEquals(new PropertyBook(), propertyBook);
+    }
+
+
+    @Test
     public void getPropertyById_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> propertyBook.getPropertyById(null));
     }
@@ -95,6 +270,27 @@ public class PropertyBookTest {
     public void getPropertyById_propertyNotInPropertyBook_throwsPropertyNotFoundException() {
         assertThrows(PropertyNotFoundException.class, () ->
                 propertyBook.getPropertyById(PROPERTY_A.getPropertyId()));
+    }
+
+    @Test
+    public void getPropertiesBySellerId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class,
+                () -> propertyBook.getPropertiesBySellerId(null));
+    }
+
+    @Test
+    public void getPropertiesBySellerId_emptyList() {
+        assertEquals(new ArrayList<>(), propertyBook.getPropertiesBySellerId(PROPERTY_A.getSellerId()));
+    }
+
+    @Test
+    public void getPropertiesBySellerId_getsProperties() {
+        propertyBook.addProperty(PROPERTY_A);
+        propertyBook.addProperty(PROPERTY_B);
+        ArrayList<Property> result = propertyBook.getPropertiesBySellerId(PROPERTY_A.getSellerId());
+        ArrayList<Property> expected = new ArrayList<>();
+        expected.add(PROPERTY_A);
+        assertEquals(expected, result);
     }
 
     @Test
@@ -114,27 +310,34 @@ public class PropertyBookTest {
     }
 
     @Test
-    public void removePropertyByPropertyId_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> propertyBook.removePropertyByPropertyId(null));
-    }
-
-    @Test
-    public void removePropertyByPropertyId_propertyInPropertyBook_removesProperty() {
+    public void testToString() {
         propertyBook.addProperty(PROPERTY_A);
-        propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId());
-        PropertyBook expectedPropertyBook = new PropertyBook();
-        assertEquals(propertyBook, expectedPropertyBook);
-    }
-
-    @Test
-    public void removePropertyByPropertyId_propertyNotInPropertyBook_throwsPropertyNotFoundException() {
-        assertThrows(PropertyNotFoundException.class, () ->
-                propertyBook.removePropertyByPropertyId(PROPERTY_A.getPropertyId()));
+        String expected = "1 properties";
+        assertEquals(expected, propertyBook.toString());
     }
 
     @Test
     public void getPropertyList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> propertyBook.getPropertyList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        // same object
+        assertTrue(propertyBook.equals(propertyBook));
+
+        // different type
+        assertFalse(propertyBook.equals(new BidBook()));
+
+        // same property book
+        PropertyBook other = new PropertyBook();
+        other.addProperty(PROPERTY_A);
+        propertyBook.addProperty(PROPERTY_A);
+        assertTrue(propertyBook.equals(other));
+
+        // different property book
+        propertyBook.addProperty(PROPERTY_B);
+        assertFalse(propertyBook.equals(other));
     }
 
     /**

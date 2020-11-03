@@ -58,11 +58,6 @@ public class Price implements Comparable<Price> {
     }
 
     @Override
-    public int hashCode() {
-        return Double.hashCode(price);
-    }
-
-    @Override
     public int compareTo(Price o) {
         return Double.compare(this.price, o.price);
     }
