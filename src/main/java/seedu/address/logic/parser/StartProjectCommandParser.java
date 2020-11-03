@@ -14,6 +14,7 @@ public class StartProjectCommandParser implements Parser<StartProjectCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the StartProjectCommand
      * and returns a StartProjectCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public StartProjectCommand parse(String args) throws ParseException {

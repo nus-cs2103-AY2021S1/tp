@@ -204,7 +204,5 @@ public class AddCommandParserTest {
                         + REPOURL_DESC_B
                         + PROJECT_DESCRIPTION_DESC_BOB + PROJECT_TAG_DESC_HUSBAND + PROJECT_TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
-        // TODO: may add task if validation is refined.
     }
 }

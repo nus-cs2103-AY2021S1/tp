@@ -23,6 +23,9 @@ public class FindCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindCommand to find {@code Project}s with given keywords.
+     */
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

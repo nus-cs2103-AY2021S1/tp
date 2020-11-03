@@ -32,6 +32,10 @@ public class StartProjectCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a StartProjectCommand to delete the displayed project in the current list with the specified
+     * {@code Index}.
+     */
     public StartProjectCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
