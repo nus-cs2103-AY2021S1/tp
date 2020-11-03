@@ -64,4 +64,4 @@ Given below are my contributions to the project:
    1. Help fix trailing white space [forum#276](https://github.com/nus-cs2103-AY2021S1/forum/issues/276)
    2. Share how to temporary disable checkstyle [forum#260](https://github.com/nus-cs2103-AY2021S1/forum/issues/260)
    3. Explain why a test fails: [forum\#65](https://github.com/nus-cs2103-AY2021S1/forum/issues/65)
- 
+ * Reported bugs and suggestions for other teams in the class: [List of bugs and suggestions](https://github.com/aidoxe-123/ped/issues)
