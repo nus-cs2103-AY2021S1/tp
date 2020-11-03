@@ -2,6 +2,7 @@ package seedu.address.model.student.academic;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class AcademicTest {
         assertFalse(aliceAcademic.equals(6));
 
         // different attendance list returns false
-        Academic editedAliceAcademic = new StudentBuilder(ALICE).withAttendances(new Attendance("12/02/2020",
+        Academic editedAliceAcademic = new StudentBuilder(ALICE).withAttendances(new Attendance(ATTENDANCE_DATE_BOB,
                 "present", new Feedback("sleeping"))).build().getAcademic();
         assertFalse(aliceAcademic.equals(editedAliceAcademic));
     }

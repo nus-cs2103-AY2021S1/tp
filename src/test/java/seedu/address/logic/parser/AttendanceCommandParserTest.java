@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
@@ -27,7 +28,7 @@ import seedu.address.model.student.academic.Feedback;
 public class AttendanceCommandParserTest {
     private static final String ADD_ATTENDANCE_DESC = AddAttendanceCommand.COMMAND_WORD + " ";
     private static final String DELETE_ATTENDANCE_DESC = DeleteAttendanceCommand.COMMAND_WORD + " ";
-    private static final Attendance VALID_ATTENDANCE = new Attendance(VALID_ATTENDANCE_DATE_AMY,
+    private static final Attendance VALID_ATTENDANCE = new Attendance(ATTENDANCE_DATE_AMY,
             VALID_ATTENDANCE_STATUS_AMY, new Feedback(VALID_ATTENDANCE_FEEDBACK_AMY));
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
     private final AttendanceCommandParser parser = new AttendanceCommandParser();

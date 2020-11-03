@@ -2,10 +2,12 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.util.DateUtil.parseToDate;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,6 +70,7 @@ public class ParserUtilTest {
     private static final String VALID_ATTENDANCE_STATUS = "present";
     private static final String VALID_FEEDBACK = "attentive";
     private static final String WHITESPACE = " \t\r\n";
+    private static final LocalDate DATE = parseToDate(VALID_EXAM_DATE);
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -423,13 +426,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseExamDate_validDateWithoutWhiteSpace_returnsExamDateString() throws Exception {
-        assertEquals(VALID_EXAM_DATE, ParserUtil.parseExamDate(VALID_EXAM_DATE));
+        assertEquals(DATE, ParserUtil.parseExamDate(VALID_EXAM_DATE));
     }
 
     @Test
     public void parseExamDate_validDateWithWhiteSpace_returnsTrimmedExamDateString() throws Exception {
         String examDateWithWhiteSpace = WHITESPACE + VALID_EXAM_DATE + WHITESPACE;
-        assertEquals(VALID_EXAM_DATE, ParserUtil.parseExamDate(examDateWithWhiteSpace));
+        assertEquals(DATE, ParserUtil.parseExamDate(examDateWithWhiteSpace));
     }
 
     @Test
@@ -477,13 +480,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseAttendanceDate_validDateWithoutWhiteSpace_returnsExamDateString() throws Exception {
-        assertEquals(VALID_EXAM_DATE, ParserUtil.parseExamDate(VALID_ATTENDANCE_DATE));
+        assertEquals(DATE, ParserUtil.parseExamDate(VALID_ATTENDANCE_DATE));
     }
 
     @Test
     public void parseAttendanceDate_validDateWithWhiteSpace_returnsTrimmedExamDateString() throws Exception {
         String attendanceDateWithWhiteSpace = WHITESPACE + VALID_ATTENDANCE_DATE + WHITESPACE;
-        assertEquals(VALID_EXAM_DATE, ParserUtil.parseAttendanceDate(attendanceDateWithWhiteSpace));
+        assertEquals(DATE, ParserUtil.parseAttendanceDate(attendanceDateWithWhiteSpace));
     }
 
     @Test

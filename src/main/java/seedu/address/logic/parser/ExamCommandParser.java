@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.stream.Stream;
 
@@ -93,7 +94,7 @@ public class ExamCommandParser implements Parser<ExamCommand> {
         }
 
         String examName = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_EXAM_NAME).get());
-        String examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
+        LocalDate examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
         Score score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get().trim());
 
         Exam exam = new Exam(examName, examDate, score);

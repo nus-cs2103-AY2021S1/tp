@@ -1,21 +1,19 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.DateUtil.parseToDate;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.schedule.LessonEvent;
 import seedu.address.model.schedule.ScheduleViewMode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -252,19 +250,10 @@ public class ParserUtil {
      */
     public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
         requireNonNull(dateToViewSchedule);
-        String dateView = dateToViewSchedule.trim();
-
-        Pattern pattern = Pattern.compile("(?<day>[0-9]{1,2})(/)(?<month>[0-9]{1,2})(/)(?<year>[0-9]{2}|[0-9]{4})");
-
-        Matcher matcher = pattern.matcher(dateView);
-
-        if (!matcher.matches()) {
-            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE);
-        }
         try {
-            return LocalDate.parse(dateView, LessonEvent.VIEW_DATE_FORMAT);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_DATE);
+            return parseDate(dateToViewSchedule);
+        } catch (ParseException e) {
+            throw new ParseException(ScheduleViewCommand.MESSAGE_CONSTRAINTS);
         }
 
     }
@@ -275,13 +264,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code examDate} is invalid.
      */
-    public static String parseExamDate(String examDate) throws ParseException {
-        requireNonNull(examDate);
-        String trimmedExamDate = examDate.trim();
-        if (!Exam.isValidDate(trimmedExamDate)) {
-            throw new ParseException(AddExamCommand.MESSAGE_EXAM_INVALID_DATE);
+    public static LocalDate parseExamDate(String date) throws ParseException {
+        requireNonNull(date);
+        try {
+            return parseDate(date);
+        } catch (ParseException e) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
-        return trimmedExamDate;
     }
 
     /**
@@ -320,13 +309,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code lessonDate} is invalid.
      */
-    public static String parseAttendanceDate(String lessonDate) throws ParseException {
+    public static LocalDate parseAttendanceDate(String lessonDate) throws ParseException {
         requireNonNull(lessonDate);
-        String trimmedLessonDate = lessonDate.trim();
-        if (!Attendance.isValidDate(trimmedLessonDate)) {
+        try {
+            return parseDate(lessonDate);
+        } catch (ParseException e) {
             throw new ParseException(Attendance.DATE_CONSTRAINTS);
         }
-        return trimmedLessonDate;
     }
 
     /**
@@ -355,6 +344,20 @@ public class ParserUtil {
             throw new ParseException(Feedback.MESSAGE_CONSTRAINTS);
         }
         return new Feedback(trimmedFeedback);
+    }
+
+    /**
+     * Parses a date string into a LocalDate.
+     *
+     * @throws ParseException if the input is not a valid date.
+     */
+    private static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!DateUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateUtil.DATE_CONSTRAINTS);
+        }
+        return parseToDate(trimmedDate);
     }
 
 }

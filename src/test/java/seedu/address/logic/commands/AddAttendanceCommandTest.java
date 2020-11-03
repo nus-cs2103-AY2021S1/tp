@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -27,7 +29,7 @@ import seedu.address.testutil.StudentBuilder;
 public class AddAttendanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final Attendance validAttendance = new Attendance("12/02/2020", "present",
+    private final Attendance validAttendance = new Attendance(ATTENDANCE_DATE_AMY, "present",
             new Feedback("sleepy"));
 
     @Test
@@ -121,7 +123,7 @@ public class AddAttendanceCommandTest {
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_SECOND_PERSON, validAttendance)));
 
         // different attendance -> return false;
-        Attendance altAttendance = new Attendance("17/02/2020", "absent", new Feedback("sleepy"));
+        Attendance altAttendance = new Attendance(ATTENDANCE_DATE_BOB, "absent", new Feedback("sleepy"));
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, altAttendance)));
     }
 }
