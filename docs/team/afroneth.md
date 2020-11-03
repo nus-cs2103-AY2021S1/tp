@@ -49,15 +49,15 @@ Given below are my contributions to the project.
   * Managed release `v1.2.1` on GitHub
 
 * **Enhancements to existing features**:
-  * Assisted in styling of GUI [\#149](), [\#233]()
-  * Wrote additional tests for `ParserUtil`, `CommandResult`, `LogicManager` classes. [\#164](), [\#168](), [\#169]()
+  * Assisted in styling of GUI ([\#149](), [\#233]())
+  * Wrote additional tests for `ParserUtil`, `CommandResult`, `LogicManager` classes. ([\#164](), [\#168](), [\#169]())
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addpicture`, `addvisit` and `profile` [\#148]()
+    * Added documentation for the features `addpicture`, `addvisit` and `profile` ([\#148]())
   * Developer Guide:
-    * Added implementation details of the `addpicture`, `addvisit` and `profile`feature [\#83]()
-    * Added new use cases for `addpicture` functionality. [\#83]()
+    * Added implementation details of the `addpicture`, `addvisit` and `profile`feature ([\#83]())
+    * Added new use cases for `addpicture` functionality. ([\#83]())
 
 * **Community**:
   * Reported bugs and suggestions for other teams in the class (during Practical Dry Run): [Issues link](https://github.com/afroneth/ped/issues)
