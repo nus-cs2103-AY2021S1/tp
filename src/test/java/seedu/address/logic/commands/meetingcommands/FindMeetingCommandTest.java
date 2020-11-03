@@ -1,7 +1,13 @@
 package seedu.address.logic.commands.meetingcommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalMeeting.ADMINMEETING01;
+import static seedu.address.testutil.TypicalMeeting.PAPERWORKMEETING05;
+import static seedu.address.testutil.TypicalMeeting.VIEWINGMEETING03;
 import static seedu.address.testutil.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
@@ -12,6 +18,7 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.meetingcommands.FindMeetingCommand.FindMeetingDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -63,7 +70,6 @@ class FindMeetingCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    /*
     @Test
     public void execute_zeroKeywords_noMeetingFound() {
         String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 0);
@@ -93,8 +99,6 @@ class FindMeetingCommandTest {
         assertEquals(Arrays.asList(ADMINMEETING01, VIEWINGMEETING03, PAPERWORKMEETING05),
          model.getFilteredMeetingList());
     }
-
-    */
 
     /**
      * Parses {@code userInput} into a {@code BidderIdContainsKeywordsPredicate}.

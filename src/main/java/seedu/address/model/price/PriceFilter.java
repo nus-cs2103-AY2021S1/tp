@@ -70,10 +70,11 @@ public class PriceFilter implements Predicate<Price> {
      * @return True if string is a valid {@code PriceFilter}.
      */
     public static boolean isValidPriceFilter(String test) {
-        if (test == null || test.equals("")) {
+        requireNonNull(test);
+        String trimmed = test.trim();
+        if (trimmed.length() <= 1) {
             return false;
         }
-        String trimmed = test.trim();
         try {
             if (map.containsKey(trimmed.substring(0, 2))) {
                 Double.parseDouble(trimmed.substring(2));
@@ -87,6 +88,10 @@ public class PriceFilter implements Predicate<Price> {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    public Price getTarget() {
+        return target;
     }
 
     @Override

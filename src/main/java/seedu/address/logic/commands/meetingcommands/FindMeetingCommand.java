@@ -63,7 +63,7 @@ public class FindMeetingCommand extends Command {
         requireNonNull(model);
         model.updateFilteredMeetingList(findMeetingDescriptor.getComposedPredicate());
         return new CommandResult(
-                String.format(Messages.MESSAGE_PROPERTY_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
+                String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
     }
 
     @Override
