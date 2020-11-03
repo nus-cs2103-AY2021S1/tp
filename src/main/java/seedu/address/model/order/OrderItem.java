@@ -126,6 +126,18 @@ public class OrderItem extends Food {
         return Objects.hash(super.name, super.price, super.tags, quantity);
     }
 
+    /**
+     * Creates a text suitable for order.
+     */
+    public String toOrderText() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName() + " x " + getQuantity() + "\n");
+        for (Tag tag: tags) {
+            builder.append(" - " + tag.tagName + "\n");
+        }
+        return builder.toString();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
