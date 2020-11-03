@@ -161,6 +161,11 @@ Format: `editex INDEX [e/EXERCISE] [c/CALORIES]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
+![Ui](images/screenshots/editex.png)
+
+Success:
+![Ui](images/screenshots/editex_success.png)
+
 ### Deleting an exercise : `deleteex`
 
 Deletes the specified exercise.
@@ -173,7 +178,13 @@ Format: `deleteex <index>`
 
 Examples:
 
-- `list` followed by `deleteex 2`deletes the 2nd exercise.
+- `list` followed by `deleteex 1`deletes the 1st exercise.
+
+![Ui](images/screenshots/deleteex.png)
+
+Success:
+![Ui](images/screenshots/deleteex_success.png)
+
 
 ### Exiting the program : `exit`
 
