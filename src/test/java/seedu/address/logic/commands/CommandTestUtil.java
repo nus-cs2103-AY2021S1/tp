@@ -2,10 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -58,6 +62,36 @@ public class CommandTestUtil {
     public static final String VALID_MEETING_NAME = "New Meeting Name";
     public static final String VALID_DATE = "2021-01-12";
     public static final String VALID_TIME = "18:00";
+
+    public static final String VALID_MODULE_NAME_CM1111_MEETING = "CM1111";
+    public static final String VALID_MODULE_NAME_CM1112_MEETING = "CM1112";
+    public static final String VALID_MEETING_NAME_CM1111_MEETING = "CM1111 Meeting";
+    public static final String VALID_MEETING_NAME_CM1112_MEETING = "CM1112 Meeting";
+    public static final String VALID_DATE_CM1111_MEETING = "2021-10-10";
+    public static final String VALID_DATE_CM1112_MEETING = "2022-04-07";
+    public static final String VALID_TIME_CM1111_MEETING = "10:00";
+    public static final String VALID_TIME_CM1112_MEETING = "11:00";
+    public static final String VALID_PARTICIPANT_AMY = VALID_NAME_AMY;
+    public static final String VALID_PARTICIPANT_BOB = VALID_NAME_BOB;
+
+    public static final String MODULE_DESC_CM1111_MEETING = " " + PREFIX_MODULE + VALID_MODULE_NAME_CM1111_MEETING;
+    public static final String MODULE_DESC_CM1112_MEETING = " " + PREFIX_MODULE + VALID_MODULE_NAME_CM1112_MEETING;
+    public static final String MEETING_NAME_DESC_CM1111_MEETING = " " + PREFIX_NAME + VALID_MEETING_NAME_CM1111_MEETING;
+    public static final String MEETING_NAME_DESC_CM1112_MEETING = " " + PREFIX_NAME + VALID_MEETING_NAME_CM1112_MEETING;
+    public static final String DATE_DESC_CM1111_MEETING = " " + PREFIX_DATE + VALID_DATE_CM1111_MEETING;
+    public static final String DATE_DESC_CM1112_MEETING = " " + PREFIX_DATE + VALID_DATE_CM1112_MEETING;
+    public static final String TIME_DESC_CM1111_MEETING = " " + PREFIX_TIME + VALID_TIME_CM1111_MEETING;
+    public static final String TIME_DESC_CM1112_MEETING = " " + PREFIX_TIME + VALID_TIME_CM1112_MEETING;
+    public static final String PARTICIPANT_DESC_AMY
+            = " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_AMY;
+    public static final String PARTICIPANT_DESC_BOB
+            = " " + PREFIX_PARTICIPANT + VALID_PARTICIPANT_BOB;
+
+    public static final String INVALID_MODULE_NAME = " " + PREFIX_MODULE + "James&"; // '&' not allowed in module names
+    public static final String INVALID_MEETING_NAME = " " + PREFIX_NAME + "James&"; // '&' not allowed in meeting names
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020/01/12"; // '/' not allowed in dates
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "1000"; // missing ':' symbol
+    public static final String INVALID_PARTICIPANT_DESC = " " + PREFIX_PARTICIPANT + "a*"; // '*' not allowed in names
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)

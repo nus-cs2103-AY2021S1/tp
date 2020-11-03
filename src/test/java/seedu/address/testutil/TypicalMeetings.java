@@ -1,13 +1,20 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CM1111_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_NAME_CM1111_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_CM1111_MEETING;
+import static seedu.address.testutil.TypicalModules.CM1111;
 import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2101;
 import static seedu.address.testutil.TypicalModules.CS2102;
 import static seedu.address.testutil.TypicalModules.CS2104;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.ALICIA;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -80,6 +87,14 @@ public class TypicalMeetings {
             .withDate("2020-05-06")
             .withTime("14:00")
             .withMembers(new HashSet<>(Arrays.asList(ELLE)))
+            .build();
+
+    public static final Meeting CM1111_MEETING = new MeetingBuilder()
+            .withModule(CM1111)
+            .withName(VALID_MEETING_NAME_CM1111_MEETING)
+            .withDate(VALID_DATE_CM1111_MEETING)
+            .withTime(VALID_TIME_CM1111_MEETING)
+            .withMembers(new HashSet<>(Arrays.asList(AMY)))
             .build();
 
     // meeting has no members

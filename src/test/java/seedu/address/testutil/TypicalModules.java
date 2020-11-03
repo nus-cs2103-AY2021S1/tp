@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -31,6 +33,10 @@ public class TypicalModules {
     public static final Module CS2105 = new ModuleBuilder()
             .withName("CS2105")
             .withMembers(new HashSet<>(Arrays.asList(FIONA))).build();
+
+    public static final Module CM1111 = new ModuleBuilder()
+            .withName("CM1111")
+            .withMembers(new HashSet<>(Arrays.asList(AMY, BOB))).build();
 
     public static ModuleBook getTypicalModuleBook() {
         ModuleBook mb = new ModuleBook();
