@@ -1,0 +1,7 @@
+@startuml
+start
+:User executes command;
+:Unassign all contacts from all modules;
+:Update GUI to show update;
+stop
+@enduml
