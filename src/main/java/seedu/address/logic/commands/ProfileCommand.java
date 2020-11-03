@@ -47,4 +47,16 @@ public class ProfileCommand extends Command {
 
         return new CommandResult(ProfileCommand.MESSAGE_SUCCESS);
     }
+
+    @Override
+    public String toString() {
+        return "Profile added:\nAddress: " + address + "\nPhone Number: " + phone;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other != null && other instanceof ProfileCommand
+                && ((ProfileCommand) other).address.equals(address)
+                && ((ProfileCommand) other).phone.equals(phone);
+    }
 }
