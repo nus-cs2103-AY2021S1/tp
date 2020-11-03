@@ -45,6 +45,7 @@ public class JsonAdaptedTutorialGroup {
      * Converts a given {@code TutorialGroup} into this class for Jackson use.
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
+        assert source != null;
         tutorialGroupId = source.getId().toString();
         dayOfWeek = source.getDayOfWeek().toString();
         startTime = source.getStartTime().toString();
