@@ -93,6 +93,7 @@ public class NuStorageParser {
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
         }
     }
 

@@ -34,6 +34,8 @@ public class EditInventoryCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This inventory record already "
             + "exists in the InventoryWindow";
+    public static final String MESSAGE_INVALID_QUANTITY_INPUT = "You cannot change the current quantity to your "
+            + "specified quantity!";
 
     private final Index index;
     private final EditInventoryDescriptor editInventoryDescriptor;
@@ -45,20 +47,17 @@ public class EditInventoryCommand extends Command {
     public EditInventoryCommand(Index index, EditInventoryDescriptor editInventoryDescriptor) {
         requireNonNull(index);
         requireNonNull(editInventoryDescriptor);
-
         this.index = index;
         this.editInventoryDescriptor = new EditInventoryDescriptor(editInventoryDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
         List<InventoryRecord> lastShownList = model.getFilteredInventory();
-
+        System.out.println("create edited inventory record ");
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INVENTORY_DISPLAYED_INDEX);
         }
-
         InventoryRecord inventoryRecordToEdit = lastShownList.get(index.getZeroBased());
         InventoryRecord editedInventoryRecord = createEditedInventoryRecord(
                 inventoryRecordToEdit, editInventoryDescriptor);
@@ -86,12 +85,10 @@ public class EditInventoryCommand extends Command {
     private static InventoryRecord createEditedInventoryRecord(
             InventoryRecord inventoryRecord, EditInventoryDescriptor editInventoryDescriptor) {
         assert inventoryRecord != null;
-
         Integer updatedQuantity = editInventoryDescriptor.getQuantity().orElse(inventoryRecord.getQuantity());
         String updatedDescription = editInventoryDescriptor.getDescription().orElse(inventoryRecord.getItemName());
         LocalDateTime dateTime = editInventoryDescriptor.getDateTime().orElse(inventoryRecord.getDateTime());
         Double unitCost = editInventoryDescriptor.getUnitCost().orElse(inventoryRecord.getUnitCost());
-
         return new InventoryRecord(updatedDescription, updatedQuantity, unitCost, dateTime);
     }
 
@@ -124,6 +121,9 @@ public class EditInventoryCommand extends Command {
         private Double unitCost;
 
 
+        /**
+         * Creates an edit inventory descriptor.
+         */
         public EditInventoryDescriptor() {}
 
         /**
@@ -131,17 +131,17 @@ public class EditInventoryCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditInventoryDescriptor(EditInventoryDescriptor toCopy) {
-            setQuantity(toCopy.quantity);
-            setDescription(toCopy.description);
-            setDateTime(toCopy.dateTime);
-            setUnitCost(toCopy.unitCost);
+            quantity = toCopy.quantity;
+            description = toCopy.description;
+            dateTime = LocalDateTime.now();
+            unitCost = toCopy.unitCost;
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(quantity, description);
+            return CollectionUtil.isAnyNonNull(quantity, description, unitCost);
         }
 
         public void setQuantity(int quantity) {

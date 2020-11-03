@@ -65,11 +65,9 @@ public class UpdateInventoryCommand extends Command {
         } catch (CommandException ce) {
             throw new CommandException(MESSAGE_INVALID_UPDATE_OPERATION);
         }
-
-
         FinanceRecord oldFinanceRecord = model.getFinanceRecord(inventoryRecordToUpdate.getFinanceId());
         double cost = inventoryRecordToUpdate.getUnitCost();
-        FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost);
+        FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost, true);
         updatedInventoryRecord.setFinanceRecord(newFinanceRecord);
         model.setFinanceRecord(oldFinanceRecord, newFinanceRecord);
         model.setInventoryRecord(inventoryRecordToUpdate, updatedInventoryRecord);
