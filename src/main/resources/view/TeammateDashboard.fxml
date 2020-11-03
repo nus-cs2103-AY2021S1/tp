@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -17,39 +17,58 @@
          <children>
             <HBox fx:id="taskDashboardPane" alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="700.0" spacing="5" stylesheets="@Extensions.css">
                <children>
-                  <Label id="taskLabel" fx:id="teammateName" prefHeight="85.0" prefWidth="688.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$first">
+                  <Label id="Title" fx:id="teammateName" maxWidth="1.7976931348623157E308" prefHeight="85.0" prefWidth="688.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="50.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="30" top="10" />
+                     </padding>
                   </Label>
                </children>
             </HBox>
-            <Label id="taskDesc" fx:id="gitUserName" prefHeight="85.0" prefWidth="688.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$github">
+            <Label id="teammateGithub" fx:id="gitUserName" prefHeight="85.0" prefWidth="688.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$github">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="20" top="20" />
+               </padding>
             </Label>
-            <Label id="taskPD" fx:id="phone" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$phone">
+            <Label id="teammatePhone" fx:id="phone" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$phone">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="20" />
+               </padding>
             </Label>
-            <Label id="taskDeadline" fx:id="email" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$email">
+            <Label id="teammateEmail" fx:id="email" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$email">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="20" />
+               </padding>
             </Label>
-            <Label id="taskProgress" fx:id="address" layoutX="25.0" layoutY="271.0" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$address">
+            <Text id="teammateAddress" fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" text="\$address">
+               <VBox.margin>
+                  <Insets bottom="30.0" top="10" />
+               </VBox.margin>
+            </Text>
+            <Label id="Header" fx:id="header1" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="10" />
+               </padding>
             </Label>
-            <Label id="taskH1" fx:id="header1" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Label>
-            <FlowPane id="taskAssignees" fx:id="tasks" orientation="VERTICAL" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <Text id="List" fx:id="tasks" strokeType="OUTSIDE" strokeWidth="0.0" text="tasks">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
          </children>
       </VBox>
    </children>

@@ -2,11 +2,11 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane styleClass="pane-with-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -17,40 +17,80 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="91.0" prefWidth="700.0" spacing="5">
                <children>
-                  <Label id="dashboardLabel" fx:id="projectName" prefHeight="84.0" prefWidth="693.0" styleClass="cell_big_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
+                  <Label id="Title" fx:id="projectName" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="84.0" prefWidth="693.0" styleClass="cell_big_label" stylesheets="@Extensions.css" text="\$first" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="70.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="30" top="10" />
+                     </padding>
                   </Label>
                </children>
             </HBox>
-            <Label id="dashboardDeadline" fx:id="deadline" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$deadline">
+            <Label id="dashboardDeadline" fx:id="deadline" prefHeight="82.0" prefWidth="694.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$deadline" wrapText="true">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="20" top="20" />
+               </padding>
             </Label>
-            <Label id="dashboardPD" fx:id="projectDescription" prefHeight="85.0" prefWidth="688.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$projectDescription">
+            <Label id="dashboardRU" fx:id="repoUrl" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$repoUrl" wrapText="true">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="20" />
+               </padding>
             </Label>
-            <Label id="dashboardRU" fx:id="repoUrl" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$repoUrl">
+            <Label id="Header" fx:id="header1" layoutX="25.0" layoutY="384.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="10" />
+               </padding>
             </Label>
-            <Label id="dashboardH1" fx:id="header1" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
+            <Text id="dashboardPD" fx:id="projectDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="projectDesc">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Label id="Header" fx:id="header2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="10" />
+               </padding>
             </Label>
-            <FlowPane id="dashboardTM" fx:id="teammates" orientation="VERTICAL" prefWidth="700.0" stylesheets="@Extensions.css" />
-            <Label id="dashboardH2" fx:id="header2" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
+            <Text id="List" fx:id="teammates" layoutX="25.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="teammates">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+            <Label id="Header" fx:id="header3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header3">
                <font>
                   <Font size="50.0" />
                </font>
+               <padding>
+                  <Insets bottom="10" />
+               </padding>
             </Label>
-            <FlowPane id="dashboardTask" fx:id="tasks" layoutX="25.0" layoutY="412.0" orientation="VERTICAL" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <Text id="List" fx:id="tasks" layoutX="25.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tasks">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
          </children>
       </VBox>
    </children>

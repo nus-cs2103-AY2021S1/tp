@@ -5,7 +5,7 @@
 
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background: derive(#F3CE8F, 20%);
 }
 
 .tag-selector {
@@ -19,11 +19,21 @@
     -fx-text-fill: white;
 }
 
-/*----------------------------------------- Project Dashboard ---------------------------------------------------*/
-
-#dashboardLabel {
-    -fx-font: 45pt"Arial";
+#Header {
+    -fx-font: 25pt"Arial";
+    -fx-background-color: #F3CE8F;
 }
+
+#Title {
+    -fx-font: 45pt"Arial";
+    -fx-background-color: #F3CE8F;
+}
+
+#List {
+    -fx-font: 15pt"Arial";
+}
+
+/*----------------------------------------- Project Dashboard ---------------------------------------------------*/
 
 #dashboardPT {
     -fx-font: 25pt"Arial";
@@ -45,23 +55,7 @@
     -fx-font: 25pt"Arial";
 }
 
-#dashboardH1 {
-    -fx-font: 25pt"Arial";
-}
-
-#dashboardH2 {
-    -fx-font: 25pt"Arial";
-}
-
-#dashboardH3 {
-    -fx-font: 25pt"Arial";
-}
-
 /*--------------------------------------- Task Dashboard ---------------------------------------------------*/
-
-#taskLabel {
-    -fx-font: 45pt"Arial";
-}
 
 #taskDesc {
     -fx-font: 15pt"Arial";
@@ -79,15 +73,7 @@
     -fx-font: 15pt"Arial";
 }
 
-#taskH1 {
-    -fx-font: 15pt"Arial";
-}
-
-/*--------------------------------------- Teammate Dashboard ---------------------------------------------------*/
-
-#teammateLabel {
-    -fx-font: 45pt"Arial";
-}
+/*--------------------------------------- Teammate/Person Dashboard ---------------------------------------------------*/
 
 #teammateGithub {
     -fx-font: 15pt"Arial";
@@ -105,28 +91,3 @@
     -fx-font: 15pt"Arial";
 }
 
-#teammateH1 {
-    -fx-font: 15pt"Arial";
-}
-
-/*--------------------------------------- Teammate Dashboard ---------------------------------------------------*/
-
-#meetingLabel {
-    -fx-font: 45pt"Arial";
-}
-
-#meetingDesc {
-    -fx-font: 15pt"Arial";
-}
-
-#meetingPD {
-    -fx-font: 15pt"Arial";
-}
-
-#duration {
-    -fx-font: 15pt"Arial";
-}
-
-#note {
-    -fx-font: 15pt"Arial";
-}

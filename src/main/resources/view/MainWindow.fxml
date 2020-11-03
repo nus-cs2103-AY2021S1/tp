@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450.0" onCloseRequest="#handleExit" title="Taskmania" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600.0" minWidth="900.0" onCloseRequest="#handleExit" title="Taskmania" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
@@ -43,7 +43,7 @@
                                 <Insets bottom="5" left="10" right="10" top="5" />
                             </padding>
                         </StackPane>
-                        <VBox fx:id="projectList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                        <VBox fx:id="projectList" minWidth="200" prefWidth="200" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets bottom="10" left="10" right="10" top="10" />
                             </padding>
@@ -52,14 +52,14 @@
                         </VBox>
                         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
                     </VBox>
-                    <VBox minWidth="340.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                    <VBox minWidth="350.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                         <children>
-                            <StackPane fx:id="projectDashboardPlaceHolder" VBox.vgrow="ALWAYS" />
+                            <StackPane fx:id="middleDashboardPlaceHolder" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
-                    <VBox minWidth="340.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                    <VBox minWidth="350.0" prefHeight="167.0" prefWidth="182.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                         <children>
-                            <StackPane fx:id="projectAttributesDashboardPlaceHolder" VBox.vgrow="ALWAYS" />
+                            <StackPane fx:id="rightAttributesDashboardPlaceHolder" VBox.vgrow="ALWAYS" />
                         </children>
                     </VBox>
                 </children>
