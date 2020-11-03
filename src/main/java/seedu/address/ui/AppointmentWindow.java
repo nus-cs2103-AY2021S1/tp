@@ -31,10 +31,19 @@ public class AppointmentWindow extends UiPart<Stage> {
     private Label patientNric;
 
     @FXML
+    private Label patientPhone;
+
+    @FXML
     private Label patientAddress;
 
     @FXML
+    private Label patientEmail;
+
+    @FXML
     private FlowPane patientAllergies;
+
+    @FXML
+    private Label noAllergiesLabel;
 
     /**
      * Creates a Appointment Window.
@@ -74,6 +83,19 @@ public class AppointmentWindow extends UiPart<Stage> {
         patientName.setText(patient.getName().fullName);
         patientAddress.setText(patient.getAddress().value);
         patientNric.setText(patient.getNric().value);
+        patientPhone.setText(patient.getPhone().value);
+
+        String email = patient.getEmail().value;
+        if (email.isEmpty()) {
+            patientEmail.setText("NONE");
+        } else {
+            patientEmail.setText(email);
+        }
+
+        if (patient.getAllergies().isEmpty()) {
+            noAllergiesLabel.setText("NONE");
+        }
+
         // clear the lists
         patientAllergies.getChildren().clear();
         appointmentDescriptions.clear();
