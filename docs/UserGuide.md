@@ -644,7 +644,7 @@ will change **Stock 1** and **Stock 3** name to `Apple juice`.
 
 <h4>Below is a guided example for updating stocks:</h4>
 Before you start any updating activity, make sure to use the command `list lt/all` to list all
-the stocks you have in Warenager. <br>
+the stocks you have in Warenager. The list shown below will be the basis reference for this guided example. <br>
 
 ![update_step1](images/update/update_step1.png)
 
@@ -912,6 +912,52 @@ sort o/<order> by/<field>
     5. `serialnumber` - sorts the inventory by serial number
 
 </div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Regarding comparison between stocks** 
+
+For sorting by `name`, `source`, `location`, and `serialnumber`, Warenager will compare fields by
+their lexicographical order. For example, in `sort o/ascending by/name`, the stock with name `100`
+will be listed above the stock with name `2` since `100` is lexicographically smaller than `2`.
+
+For sorting by `quantity`, Warenager will compare quantity by mathematical integer ordering.
+For example, in `sort o/ascending by/quantity`, the stock with quantity `100` will be listed below
+the stock with quantity `2`, since `100` is greater than `2`.
+
+</div>
+
+<h4>Below is a guided example for sorting stocks:</h4>
+
+The list shown below will be the basis reference for this guided example. <br>
+
+![sort_step1](images/sort/sort_step1.png)
+
+In the picture above, the stock is sorted by serial number in ascending order.
+Suppose that we now want to view the stocks by name in ascending order instead. <br>
+A valid sort input would be `sort o/ascending by/name`. <br>
+
+**Before input**:
+
+![sort_step2](images/sort/sort_step2.png)
+
+
+**After input**:
+
+![sort_step3](images/sort/sort_step3.png)
+
+It is also possible to sort in descending order.
+Suppose that we now want to view the stocks by quantity in descending order. <br>
+A valid sort input would be `sort o/descending by/quantity`. <br>
+
+**Before input**:
+
+![sort_step4](images/sort/sort_step4.png)
+
+
+**After input**:
+
+![sort_step5](images/sort/sort_step5.png)
 
 <h4>Examples</h4>
 
