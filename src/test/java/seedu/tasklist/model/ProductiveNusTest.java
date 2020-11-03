@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tasklist.logic.commands.CommandTestUtil.VALID_MODULE_CODE_HW;
 import static seedu.tasklist.testutil.Assert.assertThrows;
 import static seedu.tasklist.testutil.TypicalAssignments.CS1231S_HW;
+import static seedu.tasklist.testutil.TypicalAssignments.CS2103T_TUT;
 import static seedu.tasklist.testutil.TypicalAssignments.getTypicalProductiveNus;
 
 import java.util.Arrays;
@@ -49,8 +50,8 @@ public class ProductiveNusTest {
     @Test
     public void resetData_withDuplicateAssignments_throwsDuplicateAssignmentException() {
         // Two assignments with the same identity fields
-        Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW).build();
-        List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
+        Assignment editedCs2103Lab = new AssignmentBuilder(CS2103T_TUT).withModuleCode(VALID_MODULE_CODE_HW).build();
+        List<Assignment> newAssignments = Arrays.asList(CS2103T_TUT, editedCs2103Lab);
         List<Lesson> lessonList = Arrays.asList();
         ProductiveNusStub newData = new ProductiveNusStub(newAssignments, lessonList);
 
@@ -73,12 +74,13 @@ public class ProductiveNusTest {
         assertTrue(productiveNus.hasAssignment(CS1231S_HW));
     }
 
+    // test fail because module code is different
     @Test
-    public void hasAssignment_assignmentWithSameIdentityFieldsInProductiveNusk_returnsTrue() {
+    public void hasAssignment_assignmentWithDifferentIdentityFieldsInProductiveNusk_returnsFalse() {
         productiveNus.addAssignment(CS1231S_HW);
         Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW)
                 .withModuleCode(VALID_MODULE_CODE_HW).build();
-        assertTrue(productiveNus.hasAssignment(editedCs1231sHw));
+        assertFalse(productiveNus.hasAssignment(editedCs1231sHw));
     }
 
     @Test
