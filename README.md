@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-#Wishful Shrinking
+# Wishful Shrinking
   Wishful Shrinking aims to help users become more healthy by:
   * Supplying a healthy recipes resource
   * Encouraging home cooking over store bought food
