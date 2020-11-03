@@ -260,7 +260,135 @@ of these features.
 
 #### Details of implementation
 
- 
+##### Add zoom link feature
+
+This add zoom link feature creates and adds a new `ZoomLink` with a `ModuleLesson` into a specified `Module`, if the 
+zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
+
+This feature is facilitated by the following classes:
+  * `AddZoomLinkParser`:
+    * It implements `AddZoomLinkParser#parse()` to validate and the parse the module index and zoom link details, and creates
+      a `ZoomDescriptor` object.
+  * `ZoomDescriptor`:
+    * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be added to the specified `Module`
+  * `AddZoomLinkCommand`:
+    * It implements `AddZoomLinkCommand#execute()` which executes the addition of the `ZoomLink` and its corresponding
+      `ModuleLesson` into the `Module` encapsulated in `Model`
+      
+Given below is an example usage scenario and how the mechanism for adding zoom links behaves at each step:
+Step 1. `LogicManager` receives the user input `addzoom 1 n/Lecture z/https://nus-sg.zoom.us/link` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddZoomLinkParser`
+Step 3. Additionally, `ModuleListParser` will call the `AddZoomLinkParser#parse()` method to parse the command arguments
+Step 4. This creates an `AddZoomLinkCommand` and `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
+        the updated `Module` with the added `ZoomLink` and `ModuleLesson` by calling the `Module#addZoomLink()` method
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the new zoom link
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+Given below is the sequence diagram of how the operation to add a zoom link works:
+![AddZoomLinkSequenceDiagram](images/AddZoomLinkCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddZoomLinkCommand` and `AddZoomLinkParser` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
+![AddZoomLinkActivityDiagram](images/AddZoomLinkCommandActivityDiagram.png)
+
+##### Design consideration:
+
+##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
+
+* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
+  * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
+          To access a specific zoom link, identifying its unique module lesson will suffice.
+  * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
+
+* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
+  * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
+  * Cons: Accessing a specific zoom link during the execution of a zoom link command is tedious as we have to iterate through
+          the list of zoom links that are mapped to the module lesson. This can affect the performance of the command.
+
+Alternative 1 was chosen as zoom links have to be accessed frequently. On the contrary,
+the use of alternative 2 can have negative impact on the performance of zoom link commands. Since it is unlikely that a specific
+module lesson can have multiple zoom links, 
+
+
+##### Delete zoom link feature
+
+This delete zoom link feature deletes an existing zoom link from a module using the module lesson that is mapped to the
+target zoom link.
+
+This feature is facilitated by the following classes:
+  
+  * `DeleteZoomLinkParser`:
+    * It implements `DeleteZoomLinkParser#parse()` to validate and parse the module index and module lesson provided by the user.
+    
+  * `DeleteZoomLinkCommand`:
+    * It implements `DeleteZoomLinkCommand#execute()` to delete the zoom link from the module 
+      using the unique module lesson that is mapped to the target zoom link.  
+      
+Given below is an example usage scenario and how the mechanism for deleting zoom links behaves at each step:
+Step 1. `LogicManager` receives the user input `deletezoom 1 n/Lecture` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `DeleteZoomLinkParser`
+Step 3. Additionally, `ModuleListParser` will call the `DeleteZoomLinkParser#parse()` method to parse the command arguments
+Step 4. This creates a `DeleteZoomLinkCommand` and `DeleteZoomLinkCommand#execute()` will be invoked by `LogicManager` 
+Step 5. This deletes the target zoom link identified by its unique module lesson using the `Module#deleteZoomLink()` method.
+Step 6. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module
+Step 7. A `CommandResult` from the command execution is returned to `LogicManager`
+
+
+##### Design consideration:
+
+##### Aspect: Data structure to support zoom link commands
+
+* **Alternative 1 (current choice):** Use a `HashMap` to store module lesson and zoom links in a module. Each module lesson
+                                      will be used as a key which is mapped to a zoom link (value)
+  * Pros: Checking for duplicate zoom links will be simpler and less complicated. Similarly, as each module lesson
+          is only allowed to have one zoom link, it is easier to check if the provided module lesson for the add zoom link command already exists in the module
+  * Cons: Zoom links can only be uniquely identified by their module lesson. Other zoom link commands will
+          require the module lesson to access the target zoom link.
+  
+* **Alternative 2:** Store a zoom link object as a field of module lesson and use a `HashSet` to store module lesson objects.
+  * Pros: 
+  * Cons: It is tedious to check for duplicate zoom links as we have to access the zoom link field of each module lesson in the hashset.
+  
+* **Alternative 3:** Store a zoom link object as a field of module lesson and use an `ArrayList` to store module lesson objects.
+  * Pros: Each module lesson can be identified by an index easily. This can allow users to provide
+          the index of the module lesson when executing zoom link commands, which is simpler compared to providing the module lesson name.  
+  * Cons: The process of checking for duplicate module lessons and zoom links is more tedious.
+
+
+##### Edit zoom link feature
+
+This edit zoom link feature edits an existing zoom link in a module using the module lesson that is mapped to the
+target zoom link.
+
+This feature is facilitated by the following classes:
+
+  * `EditZoomLinkParser`:
+    * It implements `EditZoomLinkParser#parse()` to validate and parse the module index, module lesson and edited zoom link provided by the user.
+      This creates a `ZoomDescriptor` object that stores the zoom link details needed for the edit zoom link command.
+    
+  * `ZoomDescriptor`  
+    * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to edit the zoom link in the specified `Module`
+    
+  * `EditZoomLinkCommand`:  
+    * It implements `EditZoomLinkCommand#execute()` which edits the target zoom link in the specified module encapsulated in `Model`
+   
+Given below is an example usage scenario and how the mechanism for editing zoom links behaves at each step:
+Step 1. `LogicManager` receives the user input `editzoom 1 n/Lecture z/https://nus-sg.zoom.us/newLink` from `Ui`
+Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditZoomLinkParser`
+Step 3. Additionally, `ModuleListParser` will call the `EditZoomLinkParser#parse()` method to parse the command arguments
+Step 4. This creates an `EditZoomLinkCommand` and `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
+        the updated `Module` with the edited `ZoomLink` by calling the `Module#editZoomLink()` method
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the edited zoom link
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`   
+
+The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure ?.?, 
+except that the respective parser and command classes are replaced with `EditZoomLinkParser` and `EditZoomLinkCommand`
+
+
 
 ### Contact List Management
 
