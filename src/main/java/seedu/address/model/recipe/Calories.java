@@ -5,9 +5,12 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.util.StringUtil;
 
 public class Calories {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Calories should only a positive Integer number, and it should not be blank";
     private static final int MIN_CALORIES = 0;
+    private static final int MAX_CALORIES = Integer.MAX_VALUE;
+    public static final String MESSAGE_CONSTRAINTS =
+            "Calories should only a positive Integer number not bigger than "
+                    + MAX_CALORIES
+                    + ", and it should not be blank";
     public final Integer value;
 
     /**

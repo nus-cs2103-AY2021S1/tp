@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DE
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MISSING_INSTRUCTIONS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MISSING_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NON_INTEGER_CALORIES_DESC;
@@ -145,12 +144,8 @@ public class EditRecipeCommandParserTest {
         // parsing it together with a invalid tag results in error
         assertParseFailure(parser, RECIPE_INDEX + TAG_DESC_MARGARITAS
             + TAG_DESC_NOODLE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, RECIPE_INDEX + TAG_DESC_MARGARITAS
-            + TAG_DESC_NOODLE + MISSING_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, RECIPE_INDEX + INVALID_TAG_DESC
             + TAG_DESC_NOODLE + TAG_DESC_MARGARITAS, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, RECIPE_INDEX + TAG_DESC_MARGARITAS
-            + MISSING_TAG_DESC + TAG_DESC_NOODLE, Tag.MESSAGE_CONSTRAINTS);
 
 
         // multiple invalid values, but only the invalid value captured is ordered

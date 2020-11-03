@@ -45,6 +45,53 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isNonZeroUnsignedFloat --------------------------------------
+
+    @Test
+    public void isNonZeroUnsignedFloat() {
+
+        // EP: empty strings
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("")); // Boundary value
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("  "));
+
+        // EP: not a number
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("a"));
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("aaa"));
+
+        // EP: zero
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("0"));
+
+        // EP: zero as prefix
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("01"));
+
+        // EP: signed numbers
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("-1"));
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("-1/2"));
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("-120.6"));
+
+        // EP: numbers with white space
+        assertTrue(StringUtil.isNonZeroUnsignedFloat(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("1 0")); // Spaces in the middle
+
+        // EP: number with 46 decimal places
+        assertFalse(StringUtil.isNonZeroUnsignedFloat("0.0000000000000000000000000000000000000000000005"));
+        // EP: number with 45 decimal places
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("0.000000000000000000000000000000000000000000005"));
+        // EP: number larger than Float.MAX_VALUE
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(Float.toString(Float.MAX_VALUE + 1)));
+        // EP: number smaller than Float.MIN_VALUE
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(Float.toString(Float.MIN_VALUE - 1)));
+
+        // EP: valid numbers, should return true
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("1")); // Boundary value
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("10"));
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("10.55"));
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("10/20"));
+        assertTrue(StringUtil.isNonZeroUnsignedFloat("10.4/10.5"));
+
+    }
+
+
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 

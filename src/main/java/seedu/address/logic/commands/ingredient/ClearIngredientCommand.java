@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 public class ClearIngredientCommand extends Command {
 
     public static final String COMMAND_WORD = "clearF";
+
     public static final String MESSAGE_SUCCESS = "Fridge's ingredients has been cleared!";
 
     private static final Logger logger = Logger.getLogger("ClearIngredientLogger");

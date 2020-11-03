@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -54,6 +55,13 @@ public class IngredientParser {
         //  throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
         //  AddIngredientCommand.MESSAGE_USAGE));
         //}
-        return ParserUtil.parseQuantity(argMultimapQuantity.getValue(PREFIX_QUANTITY).get());
+        //getting from an Optional.empty throws the no such elem exception
+        try {
+            return ParserUtil.parseQuantity(argMultimapQuantity.getValue(PREFIX_QUANTITY).get());
+        } catch (NoSuchElementException e) {
+            throw new ParseException(Ingredient.HYPHEN_CONSTRAINTS);
+        }
     }
+
+
 }
