@@ -49,19 +49,8 @@ public class CalendarView extends UiPart<Region> {
     private LocalDate datePointer;
     private LocalDate firstDayOfTheMonth;
 
-    private Image leftArrow = new Image(getClass().getResourceAsStream("/images/leftButton.png"),
-            30, 30, false, false);
-    private Image rightArrow = new Image(getClass().getResourceAsStream("/images/rightButton.png"),
-            30, 30, false, false);
-
     @FXML
     private Label mmyyyyLabel;
-
-    @FXML
-    private Button leftBtn;
-
-    @FXML
-    private Button rightBtn;
 
     @FXML
     private GridPane mmyyyyGridPane;
@@ -85,7 +74,6 @@ public class CalendarView extends UiPart<Region> {
         year = todayDate.getYear();
         yearMonth = YearMonth.of(year, month);
         firstDayOfTheMonth = yearMonth.atDay(1);
-        setUpLeftRightBtns();
         setMonthYearLabel();
         createCalenderView();
     }
@@ -102,18 +90,6 @@ public class CalendarView extends UiPart<Region> {
         LocalDate pivot = d1.withDayOfMonth(1);
         LocalDate toCheck = d2.withDayOfMonth(1);
         return pivot.equals(toCheck);
-    }
-
-    private void setUpLeftRightBtns() {
-        leftBtn.setMinSize(30, 30);
-        leftBtn.setMaxSize(30, 30);
-        rightBtn.setMinSize(30, 30);
-        rightBtn.setMaxSize(30, 30);
-
-        ImageView leftBtnView = new ImageView(leftArrow);
-        ImageView rightBtnView = new ImageView(rightArrow);
-        leftBtn.setGraphic(leftBtnView);
-        rightBtn.setGraphic(rightBtnView);
     }
 
     /**
@@ -239,32 +215,4 @@ public class CalendarView extends UiPart<Region> {
         }
     }
 
-    private void refresh() {
-        dateGridPane.getChildren().clear();
-
-        updateDayMonthYear(fixedDatePointer);
-        setUpLeftRightBtns();
-        setMonthYearLabel();
-        createCalenderView();
-    }
-
-    /**
-     * Shows previous month calendar when the left button is clicked.
-     */
-    @FXML
-    public void handleLeftBtn() {
-        fixedDatePointer = fixedDatePointer.minusMonths(1);
-        updateDayMonthYear(fixedDatePointer);
-        refresh();
-    }
-
-    /**
-     * Shows next month calendar when the right button is clicked.
-     */
-    @FXML
-    public void handRightBtn() {
-        fixedDatePointer = fixedDatePointer.plusMonths(1);
-        updateDayMonthYear(fixedDatePointer);
-        refresh();
-    }
 }

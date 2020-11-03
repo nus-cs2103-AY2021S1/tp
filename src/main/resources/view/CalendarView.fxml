@@ -20,20 +20,6 @@
         <Label fx:id="mmyyyyLabel" alignment="CENTER" styleClass="calendar-label-mmyyyy" text="MM YYYY" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
         </Label>
 
-        <Button fx:id="leftBtn" mnemonicParsing="false" onAction="#handleLeftBtn"
-                GridPane.halignment="LEFT" GridPane.valignment="CENTER">
-          <GridPane.margin>
-            <Insets left="0.0" />
-          </GridPane.margin>
-        </Button>
-
-        <Button fx:id="rightBtn" mnemonicParsing="false" onAction="#handRightBtn"
-                GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
-          <GridPane.margin>
-            <Insets right="0.0" />
-          </GridPane.margin>
-        </Button>
-
       </children>
 
     </GridPane>
