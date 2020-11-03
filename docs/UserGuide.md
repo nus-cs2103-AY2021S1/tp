@@ -724,6 +724,7 @@ Step 1. Start with these stocks in your stock book in your `Data` tab as shown i
 **:information_source:** You may also skip Step 1 and use the stocks that have notes already in your stockbook.
 Make sure that the serial number of the stock and the note index of the note you are deleting
 from the stock is correctly entered.
+Use the `list lt/all` command to show all the stocks in the stock book in the `Data` tab.
 
 </div>
 
@@ -775,29 +776,136 @@ Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter
 **After input:**
 ![note-step-8](images/note/note-step-8.png)
 
-</div>   
+</div>
 
-### Viewing all notes of a stock: `noteview`
-Views all notes of the stock specified by its serial number.
+### Viewing details of a stock: `stockview`
+Shows the details of the stock, specified by its serial number, in the `Stock View` tab.
+
+Details of the stock that are shown:
+* Name
+* Serial Number
+* Quantity left
+* Low quantity threshold
+* Location stored in warehouse
+* Notes
 
 <h4>Format</h4>
 
 ```
-noteview sn/<serial number>
+stockview sn/<serial number>
 ```
 
-<h4>Examples</h4>
+<h4>Example</h4>
 
-* Before: <br>
-
-![before](images/noteview_img1.jpg)
-
-* After command
 ```
-noteview sn/ntuc1
+stockview sn/ntuc1
 ```
 
-![after note delete1](images/noteview_img2.jpg)
+<h4>Below is a guided example for viewing a stock:</h4>
+
+Let's see what the `Stock View` tab looks like first before using the `stockview` command.
+
+Step 0. When you start up Warenager, click into the `Stock View` tab and it should
+look as shown in the image below.
+
+**Clicking into the `Stock View` tab:**
+![stockview-step-0](images/stockview/stockview-step-0.png)
+
+Step 1. Start with these stocks in your stock book in your `Data` tab as shown in the image below.
+
+![stockview-step-1](images/stockview/stockview-step-1.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source:** You may also skip Step 1 and use the stocks that have notes already in your stockbook.
+Make sure that the serial number of the stock and the note index of the note you are deleting
+from the stock is correctly entered.
+
+</div>
+
+Let's view the stock with serial number `COLD STORAGE1`.
+
+Step 2. Type `stockview sn/cold storage1` into the command box and enter. 
+You will be brought to the `Stock View` tab with the stock details shown as in the image below.
+
+**After input:**
+![stockview-step-2](images/stockview/stockview-step-2.png)
+
+You have successfully used the `stockview` command.
+
+Let's try [updating](#update-inventory-update) the stock that you have just viewed.
+You may skip this Step 3 and just read through what will happen if you do not want to
+update your stock.
+
+Step 3. Type `update sn/cold storage1 n/pineapple tart 2` into the command box and enter.
+You will be brought back to the `Data` tab with the stock's name updated. Click back to
+the `Stock View` tab and you will see that the information for the stock that was viewed
+has been updated.
+
+**After input:**
+![stockview-step-3](images/stockview/stockview-step-3.png)
+
+**Clicking back to the `Stock View` tab:**
+![stockview-step-3-2](images/stockview/stockview-step-3-2.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source:** The `Stock View` tab live updates when the details of the stock that is being
+viewed has been updated.
+
+</div>
+
+Let's try [deleting](#deleting-of-stock-delete) the stock that you have just viewed.
+You may skip this Step 4 and just read through what will happen if you do not want to
+delete your stock.
+
+Step 4. Type `delete sn/cold storage1` into the command box and enter.
+You should be brought back to the `Data` tab with the stock deleted. Click back to the
+`Stock View` tab and you should see that the `Stock View` tab has been emptied as the stock
+is no longer in your stock book.
+
+**After input:**
+![stockview-step-4](images/stockview/stockview-step-4.png)
+
+**Clicking back to the `Stock View` tab:**
+![stockview-step-4-2](images/stockview/stockview-step-4-2.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source:** The `Stock View` tab empties when the stock that is being viewed is deleted.
+
+</div>
+
+You are now done with the guided tutorial for `stockview`.
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning:** Below are some cases where `stockview` command does not work:
+You should see an error message describing what went wrong and the correct format for the `stockview` command.
+
+Continuing from the steps from the guided example above, 
+Let's try deleting a note from an **unknown** serial number.
+
+Type `stockview sn/unknown1` in the command box and enter.
+
+**After input:**
+![stockview-unknown](images/stockview/stockview-step-5.png)
+
+Let's try viewing a stock but with an invalid prefix: `n/` for the `stockview` command.
+
+Type `stockview sn/ntuc1 n/invalid` into the command box and enter.
+
+**After input:**
+![stockview-invalid](images/stockview/stockview-step-6.png)
+
+Let's try viewing a stock but with a duplicate valid serial number prefix.
+
+Type `stockview sn/ntuc1 sn/ntuc2` into the command box and enter.
+
+**After input:**
+![stockview-duplicate](images/stockview/stockview-step-7.png)
+
+</div>
 
 ### Generating statistics: `stats`
 Generates a statistical view in a pie chart depicting the target fields.
