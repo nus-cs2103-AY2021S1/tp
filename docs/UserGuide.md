@@ -281,20 +281,18 @@ Examples: `deletetask 2` deletes the second task shown in the displayed task lis
 Filters tasks in the task list by various predicates:
   - by assignee's name
   - by deadline (either a specific deadline or a time range for the deadline)
-  - by done status
   - by progress
   - by task's name
 
-Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(done/DONE_STATUS)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
+Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
   - Start date and end date in the time range follows the format *DD-MM-YYYY*
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
 
-Example: `filter done/true` filters all the tasks that are done, and displays the done tasks to the user.
+Example: `filter ta/Lucas` filters all the tasks who have Lucas assigned to them, and displays those tasks.
 
 ### List all tasks `alltasks `
 
@@ -311,16 +309,14 @@ Example: `alltasks` displays all tasks in the task list.
 Sorts tasks in the task list in ascending/descending order:
 
   - by deadline (either a specific deadline or a time range for the deadline)
-  - by done status
   - by progress
   - by task's name
 
-Format: `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)` 
+Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)` 
 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
 
