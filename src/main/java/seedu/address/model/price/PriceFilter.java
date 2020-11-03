@@ -49,13 +49,14 @@ public class PriceFilter implements Predicate<Price> {
      */
     public PriceFilter(String priceFilter) {
         requireNonNull(priceFilter);
-        checkArgument(isValidPriceFilter(priceFilter), MESSAGE_CONSTRAINTS);
-        if (map.containsKey(priceFilter.substring(0, 2))) {
-            this.compareOp = map.get(priceFilter.substring(0, 2));
-            this.target = new Price(Double.parseDouble(priceFilter.substring(2)));
-        } else if (map.containsKey(priceFilter.substring(0, 1))) {
-            this.compareOp = map.get(priceFilter.substring(0, 1));
-            this.target = new Price(Double.parseDouble(priceFilter.substring(1)));
+        String trimmed = priceFilter.trim();
+        checkArgument(isValidPriceFilter(trimmed), MESSAGE_CONSTRAINTS);
+        if (map.containsKey(trimmed.substring(0, 2))) {
+            this.compareOp = map.get(trimmed.substring(0, 2));
+            this.target = new Price(Double.parseDouble(trimmed.substring(2)));
+        } else if (map.containsKey(trimmed.substring(0, 1))) {
+            this.compareOp = map.get(trimmed.substring(0, 1));
+            this.target = new Price(Double.parseDouble(trimmed.substring(1)));
         } else {
             assert false : "Invalid price filter scenario already handled";
             this.compareOp = null;

@@ -28,7 +28,8 @@ class PriceFilterTest {
         assertTrue(PriceFilter.isValidPriceFilter("== 100"));
         assertTrue(PriceFilter.isValidPriceFilter("> 100"));
         assertTrue(PriceFilter.isValidPriceFilter(">= 100"));
-        assertTrue(PriceFilter.isValidPriceFilter("      <=     100    "));
+        assertTrue(PriceFilter.isValidPriceFilter("     <=     100    "));
+        assertTrue(PriceFilter.isValidPriceFilter("<100"));
     }
 
     @Test

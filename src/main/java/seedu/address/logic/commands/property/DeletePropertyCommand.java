@@ -57,9 +57,18 @@ public class DeletePropertyCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeletePropertyCommand // instanceof handles nulls
-                && targetIndex.equals(((DeletePropertyCommand) other).targetIndex)); // state check
+        if (this == other) {
+            return true;
+        } else if (!(other instanceof DeletePropertyCommand)) {
+            return false;
+        } else {
+            DeletePropertyCommand command = (DeletePropertyCommand) other;
+            boolean isTargetIdEqual = (this.targetId == null && command.targetId == null)
+                    || (this.targetId != null && this.targetId.equals(command.targetId));
+            boolean isTargetIndexEqual = (this.targetIndex == null && command.targetIndex == null)
+                    || (this.targetIndex != null && this.targetIndex.equals(command.targetIndex));
+            return isTargetIdEqual && isTargetIndexEqual;
+        }
     }
 
     private Property deleteByProperty(Model model) throws CommandException {
