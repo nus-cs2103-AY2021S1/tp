@@ -2,6 +2,7 @@ package com.eva.logic.parser;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static com.eva.testutil.Assert.assertThrows;
 import static com.eva.testutil.StaffUtil.getAddStaffCommand;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -46,8 +47,8 @@ public class EvaParserTest {
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+        ClearCommand command = (ClearCommand) parser.parseCommand(ClearCommand.COMMAND_WORD + " s-");
+        assertEquals(command, new ClearCommand(PREFIX_STAFF));
     }
 
     @Test

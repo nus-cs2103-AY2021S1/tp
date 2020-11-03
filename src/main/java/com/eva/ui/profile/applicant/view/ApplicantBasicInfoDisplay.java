@@ -8,7 +8,9 @@ import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 
 public class ApplicantBasicInfoDisplay extends UiPart<Region> {
     private static final String FXML = "ApplicantBasicInfoDisplay.fxml";
@@ -36,6 +38,7 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
 
     /**
      * Create ApplicantBasicInfoDIsplay object
+     *
      * @param applicant
      * @param index
      */
@@ -52,7 +55,7 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
                 ? this.applicant.getInterviewDate().get().toString()
                 : "Not set yet")
         );
-        applicationStatus.setText( this.applicant.getApplicationStatus().toString());
+        applicationStatus.setText(this.applicant.getApplicationStatus().toString());
         tags.getChildren().add(new Label("Applicant"));
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -27,10 +27,32 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            <FlowPane fx:id="tagsDetail" />
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100" >
+                    <Label fx:id="phone2" styleClass="cell_small_label_details" text="Phone: " />
+                </HBox>
+                <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />            </HBox>
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100">
+                    <Label fx:id="email2" styleClass="cell_small_label_details" text="Email: " />
+
+                </HBox>
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </HBox>
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100">
+                    <Label fx:id="address2" styleClass="cell_small_label_details" text="Address: " />
+                </HBox>
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            </HBox>
+
+<!--            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />-->
+<!--            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />-->
+<!--            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />-->
         </VBox>
     </GridPane>
 </HBox>

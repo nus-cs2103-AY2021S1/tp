@@ -15,6 +15,7 @@ import com.eva.logic.parser.Prefix;
 import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 
+
 /**
  * Clears the staff or applicants records in eva database.
  */
@@ -27,7 +28,7 @@ public class ClearCommand extends Command {
             + "parameters: LIST_TYPE-\n"
             + "Example: " + COMMAND_WORD + " s-";
     private static final String MESSAGE_WRONG_PANEL = "Please switch to %1$s list with list %2$s";
-    private Prefix type;
+    private final Prefix type;
 
     public ClearCommand(Prefix type) {
         this.type = type;
@@ -63,4 +64,12 @@ public class ClearCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, contentsCleared));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ClearCommand // instanceof handles nulls
+                && type.equals(((ClearCommand) other).type));
+    }
+
 }
