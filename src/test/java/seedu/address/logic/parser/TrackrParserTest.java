@@ -14,8 +14,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.AddStudentCommand;
+import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
+import seedu.address.logic.commands.DeleteStudentCommand;
+import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindModuleCommand;
@@ -25,19 +29,19 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.StudentUtil;
+import seedu.address.testutil.TutorialGroupBuilder;
+import seedu.address.testutil.TutorialGroupUtil;
 
 public class TrackrParserTest {
 
     private final TrackrParser parser = new TrackrParser();
 
-    //    @Test
-    //    public void parseCommand_add() throws Exception {
-    //        Person person = new PersonBuilder().build();
-    //        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-    //        assertEquals(new AddCommand(person), command);
-    //    }
     @Test
     public void parseCommand_addModule() throws Exception {
         Module module = new ModuleBuilder().build();
@@ -46,23 +50,44 @@ public class TrackrParserTest {
     }
 
     @Test
+    public void parseCommand_addTutorialGroup() throws Exception {
+        TutorialGroup tutorialGroup = new TutorialGroupBuilder().build();
+        AddTutorialGroupCommand command = (AddTutorialGroupCommand) parser.parseCommand((TutorialGroupUtil.getAddTutorialGroupCommand(tutorialGroup)));
+        assertEquals(new AddTutorialGroupCommand(tutorialGroup), command);
+    }
+
+    @Test
+    public void parseCommand_addStudent() throws Exception {
+        Student student = new StudentBuilder().build();
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddStudentCommand(student));
+        assertEquals(new AddStudentCommand(student), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
-
-    //    @Test
-    //    public void parseCommand_delete() throws Exception {
-    //        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-    //                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-    //        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
-    //    }
 
     @Test
     public void parseCommand_deleteModule() throws Exception {
         DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
                 DeleteModuleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteModuleCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteTutorialGroup() throws Exception {
+        DeleteTutorialGroupCommand command = (DeleteTutorialGroupCommand) parser.parseCommand(
+                DeleteTutorialGroupCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteTutorialGroupCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_deleteStudent() throws Exception {
+        DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
+                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteStudentCommand(INDEX_FIRST_PERSON), command);
     }
 
     //    @Test
