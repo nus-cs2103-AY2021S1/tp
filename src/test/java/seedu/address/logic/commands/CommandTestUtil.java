@@ -148,7 +148,7 @@ public class CommandTestUtil {
 
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
 
-        final String[] splitName = module.getModuleId().getId().split("\\s+");
+        final String[] splitName = module.getModuleId().toString().split("\\s+");
 
         model.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

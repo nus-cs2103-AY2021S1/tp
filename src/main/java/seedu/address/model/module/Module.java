@@ -11,6 +11,7 @@ import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 public class Module {
 
     private ModuleId moduleId;
+
     private UniqueTutorialGroupList tutorialGroups;
 
     /**
@@ -47,7 +48,7 @@ public class Module {
     }
 
     public void setId(ModuleId newId) {
-        this.moduleId.setId(newId.getId());
+        this.moduleId.setId(newId.toString());
     }
 
     public int getTotalGroups() {
