@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
@@ -62,10 +62,10 @@ class JsonAdaptedLesson {
         tag = source.getTag().tagName;
         description = source.getDescription().value;
         dayOfWeek = source.getDayOfWeek().toString();
-        startTime = source.getStartTime().format(DateUtil.TIME_FORMATTER);
-        endTime = source.getEndTime().format(DateUtil.TIME_FORMATTER);
-        startDate = source.getStartDate().format(DateUtil.DATE_FORMATTER);
-        endDate = source.getEndDate().format(DateUtil.DATE_FORMATTER);
+        startTime = source.getStartTime().format(DateTimeUtil.TIME_FORMATTER);
+        endTime = source.getEndTime().format(DateTimeUtil.TIME_FORMATTER);
+        startDate = source.getStartDate().format(DateTimeUtil.DATE_FORMATTER);
+        endDate = source.getEndDate().format(DateTimeUtil.DATE_FORMATTER);
         logger.info("Planus lesson with title: '" + title + "' successfully converted to adapted lesson object");
     }
 
@@ -118,28 +118,28 @@ class JsonAdaptedLesson {
                     LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelStartTime = LocalTime.parse(startTime, DateUtil.TIME_FORMATTER);
+        final LocalTime modelStartTime = LocalTime.parse(startTime, DateTimeUtil.TIME_FORMATTER);
 
         if (endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalTime.class.getSimpleName()));
         }
 
-        final LocalTime modelEndTime = LocalTime.parse(endTime, DateUtil.TIME_FORMATTER);
+        final LocalTime modelEndTime = LocalTime.parse(endTime, DateTimeUtil.TIME_FORMATTER);
 
         if (startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDate.class.getSimpleName()));
         }
 
-        final LocalDate modelStartDate = LocalDate.parse(startDate, DateUtil.DATE_FORMATTER);
+        final LocalDate modelStartDate = LocalDate.parse(startDate, DateTimeUtil.DATE_FORMATTER);
 
         if (endDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     LocalDate.class.getSimpleName()));
         }
 
-        final LocalDate modelEndDate = LocalDate.parse(endDate, DateUtil.DATE_FORMATTER);
+        final LocalDate modelEndDate = LocalDate.parse(endDate, DateTimeUtil.DATE_FORMATTER);
 
         return new Lesson(modelTitle, modelTag, modelDescription, modelDayOfWeek,
                 modelStartTime, modelEndTime, modelStartDate, modelEndDate);

@@ -16,7 +16,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
@@ -29,8 +29,8 @@ public class LessonTest {
         DayOfWeek day = DayOfWeek.MONDAY;
         LocalTime startTime = new Time(VALID_START_TIME_CS2103T).value;
         LocalTime endTime = new Time(VALID_END_TIME_CS2103T).value;
-        LocalDate startDate = DateUtil.toLocalDate(VALID_START_DATE_CS2103T);
-        LocalDate endDate = DateUtil.toLocalDate(VALID_END_DATE_CS2103T);
+        LocalDate startDate = DateTimeUtil.toLocalDate(VALID_START_DATE_CS2103T);
+        LocalDate endDate = DateTimeUtil.toLocalDate(VALID_END_DATE_CS2103T);
         LocalTime differentStartTime = new Time("10:00").value;
         Tag tag = new Tag(VALID_TAG);
         Description differentDescription = new Description("Different description");

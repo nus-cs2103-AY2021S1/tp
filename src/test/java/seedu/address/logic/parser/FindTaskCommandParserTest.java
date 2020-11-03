@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
@@ -69,8 +69,8 @@ public class FindTaskCommandParserTest {
         assertParseFailure(parser, " title:@@", Title.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " desc:@@", Description.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
-        assertParseFailure(parser, " date:01-01-202", DateUtil.SEARCH_DATE_CONSTRAINTS);
-        assertParseFailure(parser, " date:13", DateUtil.SEARCH_DATE_CONSTRAINTS);
+        assertParseFailure(parser, " date:01-01-202", DateTimeUtil.SEARCH_DATE_CONSTRAINTS);
+        assertParseFailure(parser, " date:13", DateTimeUtil.SEARCH_DATE_CONSTRAINTS);
 
         // one of the attribute is invalid
         assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);

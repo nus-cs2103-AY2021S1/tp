@@ -5,16 +5,16 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 
 /**
  * Represents a Lesson's time in PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class Time {
-    public static final String MESSAGE_CONSTRAINTS = DateUtil.TIME_CONSTRAINTS;
+    public static final String MESSAGE_CONSTRAINTS = DateTimeUtil.TIME_CONSTRAINTS;
     public static final String RANGE_CONSTRAINTS = "Start time should be before end time";
-    public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", DateUtil.TIME_FORMATTER);
+    public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", DateTimeUtil.TIME_FORMATTER);
     public final LocalTime value;
     public final boolean isDefault;
 
@@ -26,8 +26,8 @@ public class Time {
     public Time(String time) {
         requireNonNull(time);
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidTime(time), DateUtil.TIME_CONSTRAINTS);
-        value = LocalTime.parse(time, DateUtil.TIME_FORMATTER);
+        checkArgument(isValidTime(time), DateTimeUtil.TIME_CONSTRAINTS);
+        value = LocalTime.parse(time, DateTimeUtil.TIME_FORMATTER);
         isDefault = false;
     }
 
@@ -38,7 +38,7 @@ public class Time {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidTime(String test) {
-        return DateUtil.isValidTime(test);
+        return DateTimeUtil.isValidTime(test);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Time {
             assert value.equals(DEFAULT_TIME) : "default time using real time value.";
             return "";
         }
-        return value.format(DateUtil.TIME_FORMATTER);
+        return value.format(DateTimeUtil.TIME_FORMATTER);
     }
 
     @Override

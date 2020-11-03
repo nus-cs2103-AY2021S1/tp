@@ -1,6 +1,6 @@
 package seedu.address.model.task.deadline;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.task.DateTime;
 
 /**
@@ -18,7 +18,7 @@ public class DeadlineDateTime extends DateTime {
      */
     public DeadlineDateTime(String dateTime) {
         super(dateTime);
-        if (value.equals(DateUtil.DEFAULT_DATETIME)) {
+        if (value.equals(DateTimeUtil.DEFAULT_DATETIME)) {
             this.isFilled = false;
         } else {
             isFilled = true;
@@ -35,10 +35,10 @@ public class DeadlineDateTime extends DateTime {
 
     @Override
     public String toString() {
-        if (!isFilled || value == DateUtil.DEFAULT_DATETIME) {
+        if (!isFilled || value == DateTimeUtil.DEFAULT_DATETIME) {
             return "";
         } else {
-            return value.format(DateUtil.DATETIME_FORMATTER);
+            return value.format(DateTimeUtil.DATETIME_FORMATTER);
         }
     }
 

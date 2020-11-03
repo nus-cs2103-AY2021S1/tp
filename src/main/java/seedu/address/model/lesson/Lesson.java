@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -87,8 +87,8 @@ public class Lesson {
         while (!currentDate.isAfter(this.endDate)) {
             LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
             LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getEndTime());
-            String startDateTimeString = localStartDateTime.format(DateUtil.DATETIME_FORMATTER);
-            String endDateTimeString = localEndDateTime.format(DateUtil.DATETIME_FORMATTER);
+            String startDateTimeString = localStartDateTime.format(DateTimeUtil.DATETIME_FORMATTER);
+            String endDateTimeString = localEndDateTime.format(DateTimeUtil.DATETIME_FORMATTER);
             StartDateTime startDateTime = new StartDateTime(startDateTimeString);
             EndDateTime endDateTime = new EndDateTime(endDateTimeString);
             Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, tag);

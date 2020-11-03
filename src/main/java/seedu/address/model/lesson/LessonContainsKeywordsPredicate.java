@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.ModelContainsKeywordsPredicate;
@@ -73,27 +73,27 @@ public class LessonContainsKeywordsPredicate extends ModelContainsKeywordsPredic
         if (prefix.equals("date:")) {
             return words.stream()
                     .anyMatch(keyword -> {
-                        assert DateUtil.isValidDate(keyword) : "find keyword for date not in correct format";
+                        assert DateTimeUtil.isValidDate(keyword) : "find keyword for date not in correct format";
                         return lesson.happensOnDate(
-                                LocalDate.parse(keyword, DateUtil.DATE_FORMATTER));
+                                LocalDate.parse(keyword, DateTimeUtil.DATE_FORMATTER));
                     });
         }
 
         if (prefix.equals("time:")) {
             return words.stream()
                     .anyMatch(keyword -> {
-                        assert DateUtil.isValidTime(keyword) : "find keyword for time not in correct format";
+                        assert DateTimeUtil.isValidTime(keyword) : "find keyword for time not in correct format";
                         return lesson.periodContainsGivenTime(
-                                LocalTime.parse(keyword, DateUtil.TIME_FORMATTER));
+                                LocalTime.parse(keyword, DateTimeUtil.TIME_FORMATTER));
                     });
         }
 
         if (prefix.equals("datetime:")) {
             return words.stream()
                     .anyMatch(keyword -> {
-                        assert DateUtil.isValidDateTime(keyword) : "find keyword for date time not in correct format";
+                        assert DateTimeUtil.isValidDateTime(keyword) : "find keyword for date time not in correct format";
                         return lesson.happensOnDateTime(
-                                LocalDateTime.parse(keyword, DateUtil.DATETIME_FORMATTER)
+                                LocalDateTime.parse(keyword, DateTimeUtil.DATETIME_FORMATTER)
                         );
                     });
         }

@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.stream.Stream;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
@@ -61,17 +61,17 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         } else {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         }
         if (!isStartDateBeforeEndDate(startDate, endDate)) {
-            throw new ParseException(DateUtil.RANGE_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.RANGE_CONSTRAINTS);
         }
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()
                 && argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
             startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
             endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
         } else {
-            throw new ParseException(DateUtil.TIME_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
         }
         if (!isStartTimeBeforeEndTime(startTime, endTime)) {
             throw new ParseException(Time.RANGE_CONSTRAINTS);
@@ -82,7 +82,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         if (argMultimap.getValue(PREFIX_DAY).isPresent()) {
             dayOfWeek = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get());
         } else {
-            throw new ParseException(DateUtil.DAY_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
         }
         requireAllNonNull(startDate, endDate, startTime, endTime, dayOfWeek);
         Lesson lesson = new Lesson(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
