@@ -63,7 +63,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 * Role: Developer
 * Responsibilities: 
     * Scheduling and Tracking
-    * Deliverables and deadlines
+    * Deliverables and Deadlines
     * Testing
     
 ### Rahul
