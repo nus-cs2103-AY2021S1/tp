@@ -250,7 +250,6 @@ Examples:
 
 * Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
 * A patient can have any number of allergies (including 0).
-* Allergy cannot contain a whitespace and should consist of one single word instead.
 * The color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>.
 * Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list.
 
@@ -302,7 +301,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 * Existing values will be updated to the input values.
 * Note that only Singaporean IC format(@xxxxxxx#) is accepted for NRIC.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
-* Allergy cannot contain a whitespace and should consist of one single word instead.
 * You can remove all the patient’s allergies by typing `g/` without specifying any allergies after it. The same applies for color tags of a patient.
 
 Examples:

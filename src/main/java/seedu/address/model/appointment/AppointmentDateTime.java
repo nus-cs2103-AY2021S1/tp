@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -43,7 +44,7 @@ public class AppointmentDateTime {
      */
     public AppointmentDateTime(String dateTime, int duration) {
         assert duration > 0 : "Invalid duration";
-        requireNonNull(dateTime);
+        requireAllNonNull(dateTime, duration);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER).plusMinutes(duration);
     }
@@ -60,12 +61,36 @@ public class AppointmentDateTime {
      * Returns true if a given string is a valid AppointmentDateTime.
      */
     public static boolean isValidDateTime(String test) {
+        try {
+            LocalDateTime parsed = LocalDateTime.parse(test, DATE_TIME_FORMATTER);
+            return parsed.format(DATE_TIME_FORMATTER).equals(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid upcoming AppointmentDateTime.
+     */
+    public static boolean isValidUpcomingDateTime(String test) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         try {
             LocalDateTime parsed = LocalDateTime.parse(test, DATE_TIME_FORMATTER);
             if (parsed.isBefore(currentDateTime)) {
                 return false;
             }
+            return parsed.format(DATE_TIME_FORMATTER).equals(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid AppointmentDateTime.
+     */
+    public static boolean isValidDateTimeForJson(String test) {
+        try {
+            LocalDateTime parsed = LocalDateTime.parse(test, DATE_TIME_FORMATTER);
             return parsed.format(DATE_TIME_FORMATTER).equals(test);
         } catch (DateTimeParseException e) {
             return false;
