@@ -137,7 +137,7 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
-**Steps for adding a flashcard with diagrams**:
+**Steps for adding a flashcard with diagram**:
 
 **Step 1**: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
 
@@ -304,6 +304,7 @@ Format: `review`
 <div markdown="span" class="alert alert-primary">:memo: Note:
 The review and success frequency of a flashcard is not affected by review mode.
 </div>
+<br>
 
 **Steps for entering review mode**:
 
@@ -340,6 +341,7 @@ Format: `quiz`
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
+<br>
 
 **Steps for entering quiz mode**:
 
