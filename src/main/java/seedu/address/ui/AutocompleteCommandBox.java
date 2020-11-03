@@ -60,7 +60,7 @@ public class AutocompleteCommandBox extends CommandBox {
                 return;
             }
 
-            for (String cmdP : suggestionsList.keySet().toArray(new String[]{})){
+            for (String cmdP : suggestionsList.keySet().toArray(new String[]{})) {
                 int prefixLength = cmdP.length();
                 if (userInput.length() >= prefixLength && caretPos >= prefixLength) {
                     String substring = userInput.substring(caretPos - prefixLength);

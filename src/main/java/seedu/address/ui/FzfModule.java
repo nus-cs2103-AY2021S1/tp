@@ -1,16 +1,19 @@
 package seedu.address.ui;
 
+import java.util.List;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 import javafx.geometry.Point2D;
-import javafx.scene.control.*;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-
-import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 public class FzfModule {
 
@@ -50,7 +53,7 @@ public class FzfModule {
     private void setupMainLogic() {
         attachedTextField.addEventFilter(KeyEvent.ANY, (event) -> {
             if (isFzfMode) {
-                if(event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
+                if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.UP) {
                     System.out.println(event.getCode());
 
                     menu.fireEvent(event.copyFor(menu, menu));
@@ -59,13 +62,13 @@ public class FzfModule {
                 }
 
                 // Redirect Event to query TextField
-                query.fireEvent(event.copyFor(query,query));
+                query.fireEvent(event.copyFor(query, query));
                 refreshMenu(query.getText());
 
                 if (menu.getItems().isEmpty()) {
                     menu.hide();
                 }
-                if(!menu.isShowing()) {
+                if (!menu.isShowing()) {
                     menu.show(attachedTextField, menuX, menuY);
                 }
             }
@@ -73,19 +76,19 @@ public class FzfModule {
     }
     private void setupEntryPoints() {
         attachedTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
-                    if (event.isControlDown() && event.getCode() == KeyCode.SPACE) {
-                        TextInputControl control = (TextInputControl) event.getSource();
-                        Point2D pos = control.getInputMethodRequests().getTextLocation(0);
+            if (event.isControlDown() && event.getCode() == KeyCode.SPACE) {
+                TextInputControl control = (TextInputControl) event.getSource();
+                Point2D pos = control.getInputMethodRequests().getTextLocation(0);
 
-                        toggleFzfOff();
-                        toggleFzfOn(control.getCaretPosition(), pos.getX(), pos.getY());
-                    }
-                }
-        );
+                toggleFzfOff();
+                toggleFzfOn(control.getCaretPosition(), pos.getX(), pos.getY());
+            }
+        });
     }
     private void setupExitPoints() {
         attachedTextField.caretPositionProperty().addListener((unused1, unused2, newPosition) -> {
-            if (newPosition.intValue() < fzfStartPos || newPosition.intValue() > fzfStartPos + query.getText().length()) {
+            if (newPosition.intValue() < fzfStartPos
+                    || newPosition.intValue() > fzfStartPos + query.getText().length()) {
                 toggleFzfOff();
             }
         });
@@ -93,7 +96,7 @@ public class FzfModule {
             if (isFzfMode && event.getCode() == KeyCode.ESCAPE) {
                 toggleFzfOff();
             }
-            if(!isFzfMode) {
+            if (!isFzfMode) {
                 menu.hide();
             }
         });
@@ -101,11 +104,12 @@ public class FzfModule {
 
     private void refreshMenu(String queryText) {
         menu.getItems().clear();
-        menu.getItems().addAll(
-                optionSupplier.get().stream()
-                        .filter( x -> x.toLowerCase().contains(queryText.toLowerCase()))
-                        .map( x -> buildMenuItem(x, queryText) )
-                        .collect(Collectors.toList())
+        menu.getItems().addAll(optionSupplier
+                .get()
+                .stream()
+                .filter(x -> x.toLowerCase().contains(queryText.toLowerCase()))
+                .map(x -> buildMenuItem(x, queryText))
+                .collect(Collectors.toList())
         );
     }
     private MenuItem buildMenuItem(String option, String query) {
@@ -126,7 +130,7 @@ public class FzfModule {
 
         Text textBefore = new Text(text.substring(0, filterIndex));
         Text textAfter = new Text(text.substring(filterIndex + query.length()));
-        Text textFilter = new Text(text.substring(filterIndex,  filterIndex + query.length()));
+        Text textFilter = new Text(text.substring(filterIndex, filterIndex + query.length()));
 
         textBefore.setFill(Color.WHITE);
         textAfter.setFill(Color.WHITE);
@@ -144,7 +148,7 @@ public class FzfModule {
         }
     }
     private void toggleFzfOff() {
-        if(isFzfMode){
+        if (isFzfMode) {
             System.out.println("Fzf Toggled Off");
             isFzfMode = false;
             query.setText("");
