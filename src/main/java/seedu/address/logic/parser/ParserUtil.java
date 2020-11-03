@@ -348,8 +348,12 @@ public class ParserUtil {
     }
     ///////////////////// Scheduler /////////////////////////////
 
-    public static EventName parseEventName(String name) {
-        return new EventName(name);
+    public static EventName parseEventName(String name) throws ParseException {
+        if (EventName.isValidName(name)) {
+            return new EventName(name);
+        } else {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
@@ -363,8 +367,7 @@ public class ParserUtil {
             LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
             return new EventTime(localDateTime);
         } catch (DateTimeParseException e) {
-            throw new ParseException("Invalid date and time entered. Please follow this format: "
-                    + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
+            throw new ParseException(EventTime.MESSAGE_CONSTRAINTS);
         }
     }
 

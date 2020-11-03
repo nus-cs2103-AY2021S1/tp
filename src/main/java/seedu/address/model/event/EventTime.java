@@ -9,7 +9,8 @@ import java.util.Objects;
  * Represents the container that stores the start and end time of an Event.
  */
 public class EventTime {
-    public static final String MESSAGE_CONSTRAINTS = "Date Time can only contain numbers";
+    public static final String MESSAGE_CONSTRAINTS = "Invalid date and time entered. Please follow this format: "
+            + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)";
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     private final LocalDateTime start;
     private final LocalDateTime end;
