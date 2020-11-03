@@ -51,7 +51,16 @@ public class StockViewWindow extends UiPart<Region> {
                 setText(null);
             } else {
                 String[] headerBody = field.split(": ", 2);
-                setGraphic(new StockViewCard(upperFirst(headerBody[1]), headerBody[0]).getRoot());
+                String header = headerBody[0];
+                String body = headerBody[1];
+
+                if (header.equals("Serial Number")) {
+                    body = body.toUpperCase();
+                } else {
+                    body = upperFirst(body);
+                }
+
+                setGraphic(new StockViewCard(body, header).getRoot());
             }
         }
     }
