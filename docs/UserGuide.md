@@ -97,7 +97,7 @@ Accompanying the details of each command are figures that show an example of the
 
 NUStorage supports the storage and manipulation of inventory records. The following sections detail the commands related to inventory storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch to inventory](#531-switch-to-inventory-goto_inventory) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#531-switch-tabs-switch) section for more information.
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
@@ -215,7 +215,7 @@ __Result:__ Updated corresponding finance record.
 
 NUStorage supports the storage and manipulation of finance records. The following sections detail the commands related to finance storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch to finance](#532-switch-to-finance-goto_finance) section for more information.
+Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#531-switch-tabs-switch) section for more information.
 
 **NOTE:** that some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
@@ -332,8 +332,6 @@ In the event that we have multiple records, it can get a little tedious to locat
 
 __Format:__ `find_finance [id/ID] [aft/AFTDATE] [bef/BEFDATE] [item/YESNO]`
 
-<!-- This allows us to find finance records with a Finance ID that contains `ID` if the `ID` field is filled, that were made after `AFTDATE` if the `AFTDATE` field is filled, but before `BEFDATE` if the `BEFDATE` field is filled, and is linked to an inventory record if the `YESNO` field is filled with the `yes` parameter or stand-alone finance records if the `YESNO` field is filled with the `no` parameter. -->
-
 This command allows us to find all finance records with a finance ID that contains `ID` that were created after the date `AFTDATE` abd before the date `BEFDATE`. The parameter `[item/YESNO]` to choose between finance recrods tied to inventory records, or finance records that are stand-alone (`yes` to find only the finance records tied to inventory records, `no` to find stand-alone records only).
 
 __Example:__ `find_finance id/8 aft/2019-10-20 bef/2020-12-30 item/no`
@@ -343,7 +341,7 @@ This allows us to find finance records with IDs that contain "8", created place 
 Enter the example command into the command box as shown below:
 ![Find Finance Command](images/commands/find_finance_command.jpg)
 
-__Result:__ finance records that fit the parameters are listed. Below shows the record(s) from the image above that passes the `find_finance` criteria:
+__Result:__ Finance records that fit the parameters are listed. Below shows the record(s) from the image above that passes the `find_finance` criteria:
 
 ![Find Finance Result](images/commands/find_finance_result.jpg)
 
@@ -367,8 +365,6 @@ The `list_finance` command will result in NUStorage displaying all the finance r
 
 __Format:__ `list_finance`
 
-This command results in the listing of all finance records.
-
 __Example:__ `list_finance`
 
 Enter the example command into the command box as shown below:
@@ -383,39 +379,37 @@ __Result:__ All finance records are listed.
 
 The following are universal commands for navigating the application.
 
-#### 5.3.1. Switch to inventory: `goto_inventory`
+#### 5.3.1. Switch tabs: `switch`
 
-Switches to the inventory tab in the programme.
+Switches between the inventory and finance tabs.
 
-__Format:__ `goto_inventory`
+**:information_source: Using the command:** Below are instructions on how to use the `switch` command.
 
-__Example:__ `goto_inventory`
+__Format:__ `switch`
 
-![goto inventory command example](images/commands/goto_inventory_command.png)
+__Example:__ `switch`
 
-__Result:__ Switched to Inventory tab.
+* When on the **inventory** tab, execute the command `switch` to **switch to the finance** tab.
+  1. Make sure you are on the inventory tab first.
+  2. Then, type in the command as shown below and press enter to execute the command.
+![Switch from inventory to finance 1](images/commands/switch_command_inventory_start.jpg)
+  3. You should see the window changing to the finance tab, as shown below.
+  ![Switch from inventory to finance 1](images/commands/switch_command_inventory_tofinance.jpg)
 
-![goto inventory result example](images/commands/goto_inventory_result.png)
+<br>
 
----
+* When on the **finance** tab, execute the command `switch` to **switch to the inventory** tab.
+  1. Make sure you are on the finance tab first.
+  2. Then, type in the command as shown below and press enter to execute the command.
+  ![Switch from finance to inventory 1](images/commands/switch_command_finance_start.jpg)
+  3. You should see the window changing to the finance tab, as shown below.
+  ![Switch from finance to inventory 1](images/commands/switch_command_finance_toinventory.jpg)
 
-#### 5.3.2. Switch to finance: `goto_finance`
-
-Switches to the finance tab in the programme.
-
-__Format:__ `goto_finance`
-
-__Example:__ `goto_finance`
-
-![goto finance command example](images/commands/goto_finance_command.png)
-
-__Result:__ Switched to Finance tab.
-
-![goto finance result example](images/commands/goto_finance_result.png)
+__Result:__ Tabs switched.
 
 ---
 
-#### 5.3.3. Quit the programme: `exit`
+#### 5.3.2. Quit the programme: `exit`
 
 Saves data locally in a data file and exits the programme.
 
@@ -429,7 +423,7 @@ __Result:__ Programme terminates.
 
 ---
 
-#### 5.3.4. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
+#### 5.3.3. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
 [_This feature is planned for v2.0_]
 
@@ -439,7 +433,7 @@ __Format:__ `undo` or `redo`
   
 __Example:__ `undo` or `redo`
 
-__Result:__ Undo or redo the previous command.
+__Result:__ The previous command is undone / redone.
 
 ---
 
@@ -477,8 +471,7 @@ The following table gives a summary of the [__universal commands__](#53-universa
 |Description|Command and Example|
 |---|---|
 | __Exit programme__ | `exit` |
-| __Switch to inventory__ | `goto_inventory` |
-| __Switch to finance__ | `goto_finance` |
+| __Switch tabs__ | `switch` |
 
 ---
 
