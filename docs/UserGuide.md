@@ -13,15 +13,15 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - [Clear all flashcards](#clear-all-flashcards--clear): `clear`
         - [Delete a flashcard](#delete-a-flashcard---delete): `delete`
         - [Edit a flashcard](#edit-a-flashcard---edit): `edit`
-        - [Filter relevant flashcards](#filter-for-flashcards---filter): `filter`
+        - [Filter for flashcards](#filter-for-flashcards---filter): `filter`
         - [Favourite a flashcard](#favourite-a-flashcard---fav) : `fav`
         - [Unfavourite a flashcard](#unfavourite-a-flashcard---unfav): `unfav`
         - [Find flashcards](#find-flashcards--find): `find`
-        - [View help](#viewing-help--help): `help`
-        - [List flashcards](#list-all-flashcards--list): `list`
+        - [View help](#view-help--help): `help`
+        - [List all flashcards](#list-all-flashcards--list): `list`
         - [Review flashcards](#review-flashcards-review) : `review`
         - [Quiz flashcards](#quiz-flashcards-quiz): `quiz`
-        - [Sort flashcards](#sort-all-flashcards--sort): `sort`
+        - [Sort all flashcards](#sort-all-flashcards--sort): `sort`
         - [View a flashcard](#view-a-flashcard---view): `view`
         - [View the statistics of a flashcard](#view-the-statistics-of-flashcard-stats): `stats`
         - [Exit the program](#exit-the-program--exit): `exit`
@@ -274,7 +274,7 @@ Examples:
 * `find general important` 
 * `find GENERAL object`
 
-### Viewing help : `help`
+### View help : `help`
 
 Opens a window with a link that directs you to our user guide.
 
