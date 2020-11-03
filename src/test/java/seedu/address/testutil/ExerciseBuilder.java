@@ -88,7 +88,8 @@ public class ExerciseBuilder {
     }
 
     /**
-     * Parses the {@code muscleTags} into a {@code Set<MuscleTag>} and set it to the {@code Exercise} that we are building.
+     * Parses the {@code muscleTags} into a {@code Set<MuscleTag>}
+     * and set it to the {@code Exercise} that we are building.
      */
     public ExerciseBuilder withMuscleTags(String ... muscleTags) {
         this.muscleTags = SampleDataUtil.getMuscleTagSet(muscleTags);

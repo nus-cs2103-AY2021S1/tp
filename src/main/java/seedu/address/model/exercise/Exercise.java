@@ -4,9 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -60,7 +58,9 @@ public class Exercise {
      * Returns an immutable muscleTag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<MuscleTag> getMuscleTags() { return Collections.unmodifiableSet(muscleTags); }
+    public Set<MuscleTag> getMuscleTags() {
+        return Collections.unmodifiableSet(muscleTags);
+    }
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}

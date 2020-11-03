@@ -13,8 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_D
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MUSCLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_ARM;
+import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GYM;

@@ -37,7 +37,7 @@ public class ExerciseUtil {
         sb.append(PREFIX_DATE + exercise.getDate().toString() + " ");
         sb.append(PREFIX_CALORIES + exercise.getCalories().toString() + " ");
         exercise.getMuscleTags().stream().forEach(
-                s -> sb.append(PREFIX_MUSCLE + s.muscleTagName + " ")
+            s -> sb.append(PREFIX_MUSCLE + s.muscleTagName + " ")
         );
         exercise.getExerciseTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

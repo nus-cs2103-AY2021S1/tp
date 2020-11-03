@@ -22,7 +22,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.UpdateCommand;
+//import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
@@ -30,7 +30,7 @@ import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
-import seedu.address.testutil.EditExerciseDescriptorBuilder;
+//import seedu.address.testutil.EditExerciseDescriptorBuilder;
 import seedu.address.testutil.ExerciseBuilder;
 import seedu.address.testutil.ExerciseUtil;
 
@@ -74,7 +74,8 @@ public class ExerciseBookParserTest {
     //        UpdateCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(exercise).build();
     //        UpdateCommand command = (UpdateCommand) parser.parseCommand(
     //                UpdateCommand.COMMAND_WORD + " "
-    //                + INDEX_FIRST_EXERCISE.getOneBased() + " " + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
+    //                + INDEX_FIRST_EXERCISE.getOneBased() + " "
+    //                + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
     //        assertEquals(new UpdateCommand(INDEX_FIRST_EXERCISE, descriptor), command);
     //    }
 
