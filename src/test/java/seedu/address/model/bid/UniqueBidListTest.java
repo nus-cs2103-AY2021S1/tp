@@ -106,7 +106,7 @@ public class UniqueBidListTest {
         assertThrows(DuplicateBidException.class, () -> uniqueBidList.setBid(BID_A, BID_B));
     }
 
-    /*
+   
     @Test
     public void remove_nullBid_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueBidList.remove(null));
@@ -124,7 +124,7 @@ public class UniqueBidListTest {
         UniqueBidList expectedUniqueBidList = new UniqueBidList();
         assertEquals(expectedUniqueBidList, uniqueBidList);
     }
-*/
+
     @Test
     public void setBids_nullUniqueBidList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueBidList.setBids((UniqueBidList) null));
