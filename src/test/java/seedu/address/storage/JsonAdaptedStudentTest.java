@@ -33,7 +33,6 @@ public class JsonAdaptedStudentTest {
             .collect(Collectors.toList());
     private static final JsonAdaptedAttendance VALID_ATTENDANCE = new JsonAdaptedAttendance(BENG.getAttendance());
 
-    //Todo tests for Attendance / Participation
     @Test
     public void toModelType_validStudentDetails_returnsStudent() throws Exception {
         JsonAdaptedStudent student = new JsonAdaptedStudent(BENG);

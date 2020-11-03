@@ -19,6 +19,7 @@ public class TypicalStudents {
             .withTags("CS2103T")
             .withStudentId("A1234567X")
             .withAttendance("1", "2", "3", "6")
+            .withParticipation("96")
             .build();
 
     public static final Student BENG = new StudentBuilder()
