@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.TaskList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
@@ -13,7 +12,6 @@ public class Module {
 
     private ModuleId moduleId;
     private UniqueTutorialGroupList tutorialGroups;
-    private TaskList taskList;
 
     /**
      * Constructs an {@code Module}.
@@ -24,22 +22,7 @@ public class Module {
         requireNonNull(moduleId);
         this.moduleId = moduleId;
         this.tutorialGroups = new UniqueTutorialGroupList();
-        this.taskList = new TaskList();
     }
-
-    //    /**
-    //     * Constructs an {@code Module}.
-    //     * @param moduleId
-    //     * @param taskList
-    //     * @param tutorialGroups
-    //     */
-    //    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
-    //        requireNonNull(moduleId);
-    //        requireNonNull(tutorialGroups);
-    //        this.moduleId = moduleId;
-    //        this.tutorialGroups = tutorialGroups;
-    //        this.taskList = new TaskList(taskList);
-    //    }
 
     /**
      * Constructs an {@code Module}.
@@ -79,10 +62,6 @@ public class Module {
         return tutorialGroups;
     }
 
-    //    public List<Task> getTaskList() {
-    //        return Collections.unmodifiableList(taskList.getTaskList());
-    //    }
-
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
         tutorialGroups.addTutorialGroup(tutorialGroup);
     }
@@ -90,14 +69,6 @@ public class Module {
     public void removeTutorialGroup(TutorialGroup tutorialGroup) {
         tutorialGroups.removeTutorialGroup(tutorialGroup);
     }
-
-    //    public void addTask(Task task) {
-    //        tasks.add(task);
-    //    }
-    //
-    //    public void removeTask(Task task) {
-    //        tasks.remove(task);
-    //    }
 
     @Override
     public boolean equals(Object other) {
