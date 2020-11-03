@@ -16,7 +16,6 @@ public class DateTimeUtil {
             "Time should be a valid time in the format of HH:mm.";
     public static final String DATE_TIME_CONSTRAINTS =
             "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm.";
-    public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")
             .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
@@ -26,7 +25,7 @@ public class DateTimeUtil {
     public static final String SEARCH_TIME_CONSTRAINTS =
             "Search phrase for time should be in the format of HH:mm.";
     public static final String SEARCH_DATE_CONSTRAINTS =
-            String.format("Search phrase for date should be in the format of %1$s.", DATE_FORMAT);
+            String.format("Search phrase for date should be in the format of %1$s.", "dd-MM-yyyy");
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
     public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00",
