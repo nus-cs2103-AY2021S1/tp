@@ -215,7 +215,7 @@ Examples:
 
 Search for all flashcards matching any of the search keywords.
 
-Format: `find KEYWORD...`
+Format: `find KEYWORD [KEYWORD]...`
 * Finds all flashcards containing any of the keywords
 * The keywords are **case insensitive**
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. Eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
