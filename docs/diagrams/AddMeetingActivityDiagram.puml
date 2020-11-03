@@ -1,0 +1,32 @@
+@startuml
+start
+:User inputs add meeting commnad;
+:AddMeetingCommandParser checks input;
+if () then ([not all required fields present])
+    :Throw ParseException;
+    end
+else ([else])
+    :Parse all inputs and create AddMeetingCommand;
+    :Check if model contains module;
+    if () then ([no])
+        :Throw CommandException;
+        end
+    else ([yes])
+        :Check if model contains meeting;
+        if () then ([yes])
+            :Throw CommandException;
+            end
+        else ([no])
+            :Check if model contains another meeting at same date and time;
+            if () then ([yes])
+                :Throw CommandException;
+                end
+                else ([no])
+                    :Check if given module contains all given participants;
+                    if () then ([no])
+                        :Throw CommandException;
+                        end
+                        else ([yes])
+                            :Create new AddMeetingCommand;
+                            stop
+@enduml

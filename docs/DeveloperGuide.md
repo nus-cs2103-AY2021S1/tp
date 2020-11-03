@@ -631,6 +631,83 @@ Given below is the sequence diagram of how the mechanism behaves when called usi
 
 ![DeleteLabelSequenceDiagram](images/DeleteLabelSequenceDiagram.png)
 
+### Adding a Meeting
+
+####Implementation
+
+The add meeting mechanism is primarily facilitated by `AddMeetingCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `AddMeetingCommand` on the model, 
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+triggering a UI update in `MeetingListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+####Parsing the user input
+The parsing of the user input for `AddMeetingCommand` is facilitated by `AddMeetingCommandParser`.
+`AddMeetingCommandParser` extends Parser and implements the following methods:
+* AddMeetingCommandParser#parse — Parses the user input and returns the appropriate `AddMeetingCommand`
+
+`AddMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `AddMeetingCommand`.
+
+####Executing the user input
+
+#####Check if model contains given module
+`AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+#####Check if model contains given meeting
+`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+Meetings are identified by their modules and names for deletion, editing and viewing.
+If the given meeting already exists in the model, a `CommandException` is thrown, indicating that the user is trying to add a duplicate meeting.
+
+#####Check if model contains another meeting at same date and time
+`AddMeetingCommand` checks if the model contains another meeting at the same time and date as the given meeting.
+We assume that a user is unable to attend two meetings simultaneously at the same time and date. 
+If there is another meeting with conflicting time and date, a `CommandException` is thrown, indicating so.
+
+#####Check if given module contains given participants
+`AddMeetingCommand` checks if the given participants are members of the given module. 
+We assume that all meetings are held between memebers of the same module.
+If any one of the given participants are not members of the given module, a `CommandException` is thrown, indicating so. 
+
+####Activity Diagram
+Given below is the activity diagram of how the system behaves when called using the `meeting add` command.
+![AddMeetingActivityDiagram](images/AddMeetingActivityDiagram.png)
+
+### Deleting a Meeting
+
+####Implementation
+
+The delete meeting mechanism is primarily facilitated by `DeleteMeetingCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `DeleteMeetingCommand` on the model, 
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+triggering a UI update in `MeetingListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+####Parsing the user input
+The parsing of the user input for `DeleteMeetingCommand` is facilitated by `DeleteMeetingCommandParser`.
+`DeleteMeetingCommandParser` extends Parser and implements the following methods:
+* DeleteMeetingCommandParser#parse — Parses the user input and returns the appropriate `DeleteMeetingCommand`
+
+`DeleteMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `DeleteMeetingCommand`.
+
+####Executing the user input
+
+#####Check if model contains given module
+`AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+#####Check if model contains given meeting
+`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying delete a non existent meeting.
+
+####Activity Diagram
+Given below is the activity diagram of how the system behaves when called using the `meeting add` command.
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+
 ### Viewing a Specific Meeting's Agendas and Notes 
 
 #### Implementation:
