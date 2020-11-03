@@ -65,8 +65,8 @@ public class MainWindow extends UiPart<Stage> {
 
         this.setAccelerators();
 
-        this.primaryStage.setMinWidth(960);
-        this.primaryStage.setMinHeight(540);
+        this.primaryStage.setMinWidth(820);
+        this.primaryStage.setMinHeight(520);
     }
 
     public Stage getPrimaryStage() {
