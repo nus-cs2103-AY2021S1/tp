@@ -324,6 +324,7 @@ Stocks that do not exist in Warenager cannot be deleted. Using the same input in
 `delete sn/courts3 sn/courts`, you should expect the following:
 
 ![delete_step6](images/delete/delete_step6.png)
+
 </div>
 
 
@@ -977,6 +978,48 @@ Toggles between the tabs in Warenager.
 ```
 tab
 ```
+<h4>Below is a guided example for toggling tabs:</h4>
+In this example, Warenager is started up for the first time. Observe that you are always in the
+data tab after each startup.
+
+![tab_startup](images/tab/tab_startup.png)
+
+Now input the command word `tab` and hit enter. This should bring you to the next tab, which is the **Statistics** tab.
+
+**Before input**
+
+![tab_step1](images/tab/tab_step1.png)
+
+**After input**
+
+![tab_step2](images/tab/tab_step2.png)
+
+Now input the command word `tab` again and hit enter. This should bring you to the next tab, which is the **Stock view** tab.
+
+**After input**
+
+![tab_step3](images/tab/tab_step3.png)
+
+Now input the command word `tab` again and hit enter. This should bring you back to the **Data** tab.
+
+**After input**
+
+![tab_step4](images/tab/tab_step4.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**<br>
+Note that the above example is for a newly started-up Warenager. If you have already used the `stats` command
+input at least once, you should see the latest piechart viewed when you are in **Statistics** tab.
+
+![tab_step5](images/tab/tab_step5.png)
+
+Similarly, if you used the `stockview` command input at least once, you should see an existing table describing
+the latest stock viewed.
+
+![tab_step6](images/tab/tab_step6.png)
+
+</div>
 
 ### Saving data
 Data (all stocks in inventory in JSON) is automatically saved to
