@@ -60,6 +60,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
  the app contains some sample information.<br>
    ![Ui](images/Ui.png)
+   *Figure 1: What the app looks like on startup*
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
  open the help window.<br>
@@ -119,6 +120,7 @@ a child level of `PROJECT` and it is definitely not in `PERSON` scope because `P
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
+   *Figure 2: Help message popup*
 
 Format: `help`
 
@@ -154,7 +156,7 @@ Format: `leave`
 - Leaves the current page (clear the right-most non-empty dashboard) and shifts the scoping status to the parent scope.
 - If the app is already in the global, `PERSON_LIST`, or `PROJECT_LIST`, then the command takes no effect.
 
-# **Features** in project scope
+# **Features** in project_list scope
 
 ### Start work on an existing project `startproject `
 Initialises the project specified.
@@ -231,14 +233,13 @@ Example: `edit n/Resident Evil project /d new horror` changes the name of the pr
 
 Creates a new task and adds it to the current project.
 
-Format: `addtask (tn/TASK NAME) (tp/TASK PROGRESS) (done/TASK STATUS) (td/TASK DEADLINE) `
+Format: `addtask (tn/TASK NAME) (tp/TASK PROGRESS) (td/TASK DEADLINE) `
   - All fields above are required
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
 
-Example: `addtask tn/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, is completed, and has a deadline of 29th Feb 2020, midnight.
+Example: `addtask tn/Do User Guide tp/30 td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, and has a deadline of 29th Feb 2020, midnight.
 
 ### Assign a task to a teammate `assign `
 
@@ -433,3 +434,10 @@ Action | Format, Examples | Scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
 **Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
+
+### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **Teammate**: A person belonging to a project of the team leader's team.
+* **Participation**: The class of an object that handles the relations between a Project object and Person Object.
+* **Scope**: The confines of when certain commands will work.
