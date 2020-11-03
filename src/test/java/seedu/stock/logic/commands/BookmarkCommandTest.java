@@ -4,7 +4,6 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.INDEX_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.INDEX_SECOND_STOCK;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
