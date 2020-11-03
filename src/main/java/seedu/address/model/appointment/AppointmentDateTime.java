@@ -18,7 +18,7 @@ public class AppointmentDateTime {
                     + "\nInput MM as 01 to 12."
                     + "\nInput dd as 01 to 31 (29 - 31 only if it is a valid day in that month)."
                     + "\nInput HH as 00 to 24."
-                    + "\nInput mm as 00 to 59.";;
+                    + "\nInput mm as 00 to 59.";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
     // rather than a regex.
 
