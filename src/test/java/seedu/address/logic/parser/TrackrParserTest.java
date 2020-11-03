@@ -11,18 +11,23 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddAttendanceCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
+import seedu.address.logic.commands.AttendanceBelowCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteAttendanceCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 //import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 //import seedu.address.logic.commands.EditStudentCommand;
 //import seedu.address.logic.commands.EditTutorialGroupCommand;
+import seedu.address.logic.commands.EditParticipationCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.FindStudentCommand;
@@ -31,19 +36,24 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTutorialGroupCommand;
+import seedu.address.logic.commands.ParticipationBelowCommand;
 import seedu.address.logic.commands.PreviousViewCommand;
+import seedu.address.logic.commands.ViewAttendanceCommand;
 import seedu.address.logic.commands.ViewStudentCommand;
 import seedu.address.logic.commands.ViewTutorialGroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 //import seedu.address.model.tutorialgroup.TutorialGroupId;
 //import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.AttendanceBuilder;
+import seedu.address.testutil.AttendanceUtil;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -78,6 +88,13 @@ public class TrackrParserTest {
     }
 
     @Test
+    public void parseCommand_addAttendance() throws Exception {
+        Attendance attendance = new AttendanceBuilder().build();
+        AddAttendanceCommand command = (AddAttendanceCommand) parser.parseCommand(AttendanceUtil.getAddAttendanceCommand(attendance));
+        assertEquals(new AddAttendanceCommand(INDEX_FIRST_PERSON, new int[]{2}), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -104,6 +121,14 @@ public class TrackrParserTest {
         assertEquals(new DeleteStudentCommand(INDEX_FIRST_PERSON), command);
     }
 
+    @Test
+    public void parseCommand_deleteAttendance() throws Exception {
+        DeleteAttendanceCommand command = (DeleteAttendanceCommand) parser.parseCommand(
+                DeleteAttendanceCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + "week/2");
+        assertEquals(new DeleteAttendanceCommand(INDEX_FIRST_PERSON, new int[]{2}), command);
+    }
+
     //    @Test
     //    public void parseCommand_edit() throws Exception {
     //        Person person = new PersonBuilder().build();
@@ -115,7 +140,6 @@ public class TrackrParserTest {
 
     @Test
     public void parseCommand_editModule() throws Exception {
-        Module module = new ModuleBuilder().build();
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
         assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
@@ -142,6 +166,14 @@ public class TrackrParserTest {
     //                        + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
     //        assertEquals(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor), command);
     //    }
+
+    @Test
+    public void parseCommand_editParticipation() throws Exception {
+        EditParticipationCommand command = (EditParticipationCommand) parser.parseCommand(
+                EditParticipationCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + "score/2");
+        assertEquals(new EditParticipationCommand(INDEX_FIRST_PERSON, "2"), command);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -199,6 +231,32 @@ public class TrackrParserTest {
     }
 
     @Test
+    public void parseCommand_attendanceBelow() throws Exception {
+        assertTrue(parser.parseCommand(
+                AttendanceBelowCommand.COMMAND_WORD + " 3") instanceof AttendanceBelowCommand);
+    }
+
+    @Test
+    public void attendanceBelow_emptyIndex_throwsParseException() {
+        assertThrows(ParseException.class, "Invalid command format! \n" +
+                AttendanceBelowCommand.MESSAGE_USAGE, () -> parser.parseCommand(
+                AttendanceBelowCommand.COMMAND_WORD));
+    }
+
+    @Test
+    public void parseCommand_participationBelow() throws Exception {
+        assertTrue(parser.parseCommand(
+                ParticipationBelowCommand.COMMAND_WORD + " 3") instanceof ParticipationBelowCommand);
+    }
+
+    @Test
+    public void participationBelow_emptyIndex_throwsParseException() {
+        assertThrows(ParseException.class, "Invalid command format! \n" +
+                ParticipationBelowCommand.MESSAGE_USAGE, () -> parser.parseCommand(
+                ParticipationBelowCommand.COMMAND_WORD));
+    }
+
+    @Test
     public void parseCommand_viewTutorialGroup() throws Exception {
         ViewTutorialGroupCommand command = (ViewTutorialGroupCommand) parser.parseCommand(
                 ViewTutorialGroupCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
@@ -210,6 +268,13 @@ public class TrackrParserTest {
         ViewStudentCommand command = (ViewStudentCommand) parser.parseCommand(
                 ViewStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new ViewStudentCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_viewAttendance() throws Exception {
+        ViewAttendanceCommand command = (ViewAttendanceCommand) parser.parseCommand(
+                ViewAttendanceCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ViewAttendanceCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
