@@ -5,7 +5,6 @@ import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORM
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2100;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

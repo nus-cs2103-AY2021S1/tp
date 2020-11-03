@@ -1,13 +1,11 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
-import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
 import seedu.address.model.tutorialgroup.TutorialGroup;
