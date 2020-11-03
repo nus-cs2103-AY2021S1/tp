@@ -8,36 +8,33 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_FLOOR;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_A;
 import static seedu.resireg.testutil.TypicalStudents.AMY;
 
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import seedu.resireg.commons.core.index.Index;
-import seedu.resireg.commons.exceptions.DataConversionException;
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
-import seedu.resireg.model.ReadOnlyResiReg;
-import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.ResiReg;
-import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNameContainsKeywordPairsPredicate;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
 import seedu.resireg.model.student.Student;
-import seedu.resireg.storage.Storage;
+import seedu.resireg.testutil.EditRoomDescriptorBuilder;
 import seedu.resireg.testutil.EditStudentDescriptorBuilder;
+import seedu.resireg.testutil.StorageStub;
 
 /**
  * Contains helper methods for testing commands.
@@ -84,6 +81,8 @@ public class CommandTestUtil {
     public static final String VALID_ALIAS_ROOMS_RO = "ro";
     public static final String VALID_ALIAS_STUDENTS_ST = "st";
 
+    public static final String EMPTY_TAG_DESC = " " + PREFIX_TAG;
+
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -102,6 +101,16 @@ public class CommandTestUtil {
     public static final String ALIAS_DESC_ROOMS_RO = " " + PREFIX_ALIAS + VALID_ALIAS_ROOMS_RO;
     public static final String ALIAS_DESC_STUDENTS_STU = " " + PREFIX_ALIAS + VALID_ALIAS_STUDENTS_ST;
 
+    // descriptions corresponding to ROOM_A and ROOM_B in {@code TypicalRooms}
+    public static final String FLOOR_DESC_A = " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_A;
+    public static final String FLOOR_DESC_B = " " + PREFIX_ROOM_FLOOR + VALID_FLOOR_B;
+    public static final String ROOM_NUMBER_DESC_A = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_A;
+    public static final String ROOM_NUMBER_DESC_B = " " + PREFIX_ROOM_NUMBER + VALID_ROOM_NUMBER_B;
+    public static final String ROOM_TYPE_DESC_A = " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_A;
+    public static final String ROOM_TYPE_DESC_B = " " + PREFIX_ROOM_TYPE + VALID_ROOM_TYPE_B;
+    public static final String TAG_DESC_RENOVATED = " " + PREFIX_TAG + VALID_TAG_RENOVATED;
+    public static final String TAG_DESC_DAMAGED = " " + PREFIX_TAG + VALID_TAG_DAMAGED;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -112,6 +121,10 @@ public class CommandTestUtil {
     public static final String INVALID_FLOOR = "asfdj";
     public static final String INVALID_ROOM_NUMBER = "asdfj";
     public static final String INVALID_ROOM_TYPE = "asdfjk";
+
+    public static final String INVALID_FLOOR_DESC = " " + PREFIX_ROOM_FLOOR + INVALID_FLOOR;
+    public static final String INVALID_ROOM_NUMBER_DESC = " " + PREFIX_ROOM_NUMBER + INVALID_ROOM_NUMBER;
+    public static final String INVALID_ROOM_TYPE_DESC = " " + PREFIX_ROOM_TYPE + INVALID_ROOM_TYPE;
 
     public static final String INVALID_DATE = "asfdj";
 
@@ -125,6 +138,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditRoomCommand.EditRoomDescriptor DESC_ROOM_A;
+    public static final EditRoomCommand.EditRoomDescriptor DESC_ROOM_B;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -135,6 +150,13 @@ public class CommandTestUtil {
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withFaculty(VALID_FACULTY_BOB)
             .withStudentId(VALID_STUDENT_ID_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ROOM_A = new EditRoomDescriptorBuilder().withFloor(VALID_FLOOR_A)
+                .withRoomNumber(VALID_ROOM_NUMBER_A).withRoomType(VALID_ROOM_TYPE_A)
+                .withTags(VALID_TAG_RENOVATED).build();
+        DESC_ROOM_B = new EditRoomDescriptorBuilder().withFloor(VALID_FLOOR_B)
+                .withRoomNumber(VALID_ROOM_NUMBER_B).withRoomType(VALID_ROOM_TYPE_B)
+                .withTags(VALID_TAG_DAMAGED).build();
+
     }
 
     /**
@@ -237,55 +259,5 @@ public class CommandTestUtil {
         Student firstStudent = model.getFilteredStudentList().get(0);
         model.deleteStudent(firstStudent);
         model.saveStateResiReg();
-    }
-
-    /**
-     * A stub class for Storage.
-     */
-    private static class StorageStub implements Storage {
-        @Override
-        public Path getUserPrefsFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Path getResiRegFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Optional<ReadOnlyResiReg> readResiReg() throws DataConversionException, IOException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public Optional<ReadOnlyResiReg> readResiReg(Path filePath) throws DataConversionException, IOException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void saveResiReg(ReadOnlyResiReg resiReg) throws IOException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void saveResiReg(ReadOnlyResiReg resiReg, Path filePath) throws IOException {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void archiveResiReg(ReadOnlyResiReg resiReg) throws IOException {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 }
