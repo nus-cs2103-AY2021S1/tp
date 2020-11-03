@@ -609,40 +609,8 @@ will not update anything and shows an error message.
 
 Values to be updated are case-insensitive.
 
-<h4>Examples</h4>
-
-Stock | Details
-------| --------
-**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: Ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
-**Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
-**Stock 3** | Name: Guinness<br> Serial Number: COLDSTORAGE1<br> Source: Coldstorage<br> Quantity: 10<br> Location in warehouse: Drinks section
-
-```
-update sn/Ntuc1 n/Apple
-```
-will change **Stock 1** name to `Apple`.
-
-```
-update sn/Shengsiong1 s/Coldstorage l/Meat section
-```
-will change **Stock 2** source to `Coldstorage` and location to `Meat section`.
-
-```
-update sn/Ntuc1 iq/+50 n/heineken
-```
-will change **Stock 3** name to `heineken` and increment the quantity by `50`. **Stock 3** quantity changes to `60`.
-
-```
-update sn/Shengsiong1 s/Coldstorage nq/50 lq/60
-```
-will change **Stock 2** source to `Coldstorage`, quantity to `50`, and low quantity threshold to `60` and therefore flagging the stock because `50 < 60`.
-
-```
-update sn/Ntuc1 sn/Coldstorage1 n/Apple juice
-```
-will change **Stock 1** and **Stock 3** name to `Apple juice`.
-
 <h4>Below is a guided example for updating stocks:</h4>
+
 Before you start any updating activity, make sure to use the command `list lt/all` to list all
 the stocks you have in Warenager. The list shown below will be the basis reference for this guided example. <br>
 
@@ -1042,7 +1010,7 @@ The list shown below will be the basis reference for this guided example. <br>
 ![suggestion_step1](images/suggestion/suggestion_step1.png)
 
 Suppose now we want to add a new stock with the following description:
-* name: tomato
+* name: eggplant
 * source: fairprice
 * quantity: 500
 * low quantity: 100
