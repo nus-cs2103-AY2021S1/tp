@@ -18,6 +18,7 @@ import seedu.address.model.task.Title;
 import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
+import seedu.address.model.TimeSlot;
 
 /**
  * Lesson class to store information about a module's lessons.
