@@ -31,9 +31,14 @@ public class ReallocateCommandParser implements Parser<ReallocateCommand> {
                     ReallocateCommand.HELP.getFullMessage()));
         }
 
-        Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
-        Index roomIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_INDEX).get());
-        return new ReallocateCommand(studentIndex, roomIndex);
+        try {
+            Index studentIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_INDEX).get());
+            Index roomIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_ROOM_INDEX).get());
+            return new ReallocateCommand(studentIndex, roomIndex);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReallocateCommand.HELP.getFullMessage()), pe);
+        }
     }
 
     /**

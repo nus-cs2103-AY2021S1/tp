@@ -33,7 +33,7 @@ public class DeallocateCommandParserTest {
 
     @Test
     public void parse_invalidIndices_throwsParseException() {
-        assertParseFailure(parser, "si/a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " si/0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeallocateCommand.HELP.getFullMessage()));
     }
 }
