@@ -53,6 +53,6 @@ public class TagCommand extends Command {
         }
         OrderItem orderItem = order.get(index);
         model.tagOrderItem(orderItem, tag);
-        return new CommandResult(String.format(MESSAGE_TAG_SUCCESS, tag.tagName, index));
+        return new CommandResult(String.format(MESSAGE_TAG_SUCCESS, tag.tagName, index + 1));
     }
 }

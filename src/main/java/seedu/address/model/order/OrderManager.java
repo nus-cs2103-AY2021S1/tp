@@ -171,4 +171,12 @@ public class OrderManager implements ReadOnlyOrderManager {
         order.tagOrderItem(orderItem, tag);
         saveChanges();
     }
+
+    /**
+     * Clears all tag of {@code orderItem}.
+     */
+    public void untagOrderItem(OrderItem orderItem) {
+        order.untagOrderItem(orderItem);
+        saveChanges();;
+    }
 }

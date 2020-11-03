@@ -3,6 +3,7 @@ package seedu.address.model.order;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -212,6 +213,15 @@ public class Order implements Iterable<OrderItem> {
     public void tagOrderItem(OrderItem orderItem, Tag tag) {
         OrderItem newOrderItem = orderItem.makeCopy();
         newOrderItem.addTag(tag);
+        setOrderItem(orderItem, newOrderItem);
+    }
+
+    /**
+     * Clears all tag of {@code orderItem}.
+     */
+    public void untagOrderItem(OrderItem orderItem) {
+        OrderItem newOrderItem = orderItem.makeCopy();
+        newOrderItem.setTags(new HashSet<>());
         setOrderItem(orderItem, newOrderItem);
     }
 }

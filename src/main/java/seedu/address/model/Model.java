@@ -168,4 +168,6 @@ public interface Model {
     boolean isSelected();
 
     void tagOrderItem(OrderItem orderItem, Tag tag);
+
+    void untagOrderItem(OrderItem orderItem);
 }

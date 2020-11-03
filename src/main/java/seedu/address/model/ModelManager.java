@@ -248,6 +248,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void untagOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        orderManager.untagOrderItem(orderItem);
+    }
+
+    @Override
     public int getOrderHistorySize() {
         return orderManager.getOrderHistorySize();
     }
