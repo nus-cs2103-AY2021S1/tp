@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 
 public class RedoCommand extends Command {
@@ -20,7 +21,13 @@ public class RedoCommand extends Command {
             throw new CommandException(MESSAGE_REDO_FAILURE);
         }
 
-        String stateCommand = model.redoPivot();
-        return new CommandResult(MESSAGE_REDO_SUCCESS + stateCommand);
+        model.redoPivot();
+        String redoneCommand = model.getStateCommand();
+
+        if (model.isMainPageCommand()) {
+            StateManager.resetState();
+        }
+
+        return new CommandResult(MESSAGE_REDO_SUCCESS + redoneCommand);
     }
 }

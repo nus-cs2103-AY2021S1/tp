@@ -11,57 +11,54 @@ public class VersionedPivot extends Pivot {
     public static final String INITIAL_COMMAND = "Initial command";
     public static final int INITIAL_STATE = 0;
 
-    private final List<ReadOnlyPivot> pivotStateList = new ArrayList<>();
-    private final List<String> commands = new ArrayList<>();
+    private final List<PivotState> pivotStateList = new ArrayList<>();
 
     private int currentStatePointer;
+    private boolean isMainPageCommandResult = true;
+    private String commandResult = "";
 
     /**
-     * Create a VersionedPivot object with the list of Pivot states being
+     * Creates a VersionedPivot object with the list of Pivot states being
      * initialised with the initial state. The current state pointer points to the
      * initial state.
      * @param pivot The initial Pivot state.
      */
     public VersionedPivot(ReadOnlyPivot pivot) {
         requireNonNull(pivot);
-        pivotStateList.add(pivot);
-        commands.add(INITIAL_COMMAND);
+        pivotStateList.add(new PivotState(pivot, INITIAL_COMMAND, false));
         currentStatePointer = INITIAL_STATE;
     }
 
     /**
-     * Create a VersionedPivot object with the fields directly initialised with
+     * Creates a VersionedPivot object with the fields directly initialised with
      * the arguments.
      * @param pivotStateList The list of Pivot states.
-     * @param commands The list of commands corresponding to the Pivot states.
      * @param currentStatePointer The index of the current Pivot state in the pivotStateList.
      */
-    public VersionedPivot(List<ReadOnlyPivot> pivotStateList,
-            List<String> commands, int currentStatePointer) {
+    public VersionedPivot(List<PivotState> pivotStateList, int currentStatePointer) {
         this.pivotStateList.addAll(pivotStateList);
-        this.commands.addAll(commands);
         this.currentStatePointer = currentStatePointer;
 
     }
 
-    public List<ReadOnlyPivot> getPivotStateList() {
+    public List<PivotState> getPivotStateList() {
         return this.pivotStateList;
-    }
-
-    public List<String> getCommands() {
-        return this.commands;
     }
 
     public int getCurrentStatePointer() {
         return this.currentStatePointer;
     }
 
-    public String getStateCommand() {
-        return commands.get(currentStatePointer);
+    public String getCommandResult() {
+        return this.commandResult;
+    }
+
+    public boolean getIsMainPageCommandResult() {
+        return this.isMainPageCommandResult;
     }
 
     /**
-     * Check if the current state can be undone.
+     * Checks if the current state can be undone.
      * @return True if the currentStatePointer is not at the initial state, false otherwise.
      */
     public boolean canUndo() {
@@ -70,7 +67,7 @@ public class VersionedPivot extends Pivot {
     }
 
     /**
-     * Check if the current state can be redone.
+     * Checks if the current state can be redone.
      * @return True if the currentStatePointer is not at the most recent state, false otherwise.
      */
     public boolean canRedo() {
@@ -79,49 +76,62 @@ public class VersionedPivot extends Pivot {
     }
 
     /**
-     * Remove all states after the current state and add the current Pivot state into the list of Pivot states.
+     * Removes all states after the current state and add the current Pivot state into the list of Pivot states.
      * @param pivot Current Pivot state.
      */
-    public void commit(ReadOnlyPivot pivot, String command) {
-        requireAllNonNull(pivot, command);
-        pivotStateList.add(pivot);
-        commands.add(command);
+    public void commit(ReadOnlyPivot pivot, String command, boolean isMainPageCommand) {
+        requireAllNonNull(pivot, command, isMainPageCommand);
+        pivotStateList.add(new PivotState(pivot, command, isMainPageCommand));
         currentStatePointer++;
 
         assert currentStatePointer < pivotStateList.size() : "Index out of bounds";
     }
 
     /**
-     * Remove all states after the current state.
+     * Removes all states after the current state.
      */
     public void purgeStates() {
         int stateAfterCurrent = currentStatePointer + 1;
         for (int i = stateAfterCurrent; i < pivotStateList.size(); i++) {
             pivotStateList.remove(i);
-            commands.remove(i);
         }
     }
 
     /**
-     * Undo the previous Pivot state.
-     * @return Previous Pivot state.
+     * Updates the message of the command that was being redone or undone, as well as
+     * whether the command was a main page command.
      */
-    public ReadOnlyPivot undo() {
-        currentStatePointer--;
-        assert currentStatePointer >= 0 : "Index out of bounds";
-
-        return pivotStateList.get(currentStatePointer);
+    public void updateRedoUndoResult() {
+        PivotState currentPivotState = pivotStateList.get(currentStatePointer);
+        commandResult = currentPivotState.command;
+        isMainPageCommandResult = currentPivotState.isMainPageCommand;
     }
 
     /**
-     * Redo the most recent pivot state.
+     * Undoes the previous Pivot state.
+     * @return Previous Pivot state.
+     */
+    public ReadOnlyPivot undo() {
+        updateRedoUndoResult();
+
+        currentStatePointer--;
+        assert currentStatePointer >= 0 : "Index out of bounds";
+
+        PivotState newPivotState = pivotStateList.get(currentStatePointer);
+        return newPivotState.pivotState;
+    }
+
+    /**
+     * Redoes the most recent pivot state.
      * @return Recent pivot state.
      */
     public ReadOnlyPivot redo() {
         currentStatePointer++;
         assert currentStatePointer < pivotStateList.size() : "Index out of bounds";
 
-        return pivotStateList.get(currentStatePointer);
+        updateRedoUndoResult();
+        PivotState newPivotState = pivotStateList.get(currentStatePointer);
+        return newPivotState.pivotState;
     }
 
     @Override
@@ -136,7 +146,20 @@ public class VersionedPivot extends Pivot {
 
         VersionedPivot otherVersionedPivot = (VersionedPivot) other;
         return otherVersionedPivot.getPivotStateList().equals(getPivotStateList())
-                && otherVersionedPivot.getCommands().equals(getCommands())
-                && otherVersionedPivot.getCurrentStatePointer() == getCurrentStatePointer();
+                && otherVersionedPivot.getCurrentStatePointer() == getCurrentStatePointer()
+                && otherVersionedPivot.getCommandResult().equals(getCommandResult())
+                && otherVersionedPivot.getIsMainPageCommandResult() == getIsMainPageCommandResult();
+    }
+
+    private class PivotState {
+        final ReadOnlyPivot pivotState;
+        final String command;
+        final boolean isMainPageCommand;
+
+        private PivotState(ReadOnlyPivot pivotState, String command, boolean isMainPageCommand) {
+            this.pivotState = pivotState;
+            this.command = command;
+            this.isMainPageCommand = isMainPageCommand;
+        }
     }
 }

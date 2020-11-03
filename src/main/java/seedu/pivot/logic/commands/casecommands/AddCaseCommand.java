@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import java.util.logging.Logger;
 
@@ -14,8 +16,6 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
-
-
 
 /**
  * Adds a case to PIVOT.
@@ -61,7 +61,13 @@ public class AddCaseCommand extends AddCommand {
         }
 
         model.addCase(investigationCase);
-        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase));
+        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase), true);
+        if (StateManager.atDefaultSection()) {
+            model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
+        }
+        if (StateManager.atArchivedSection()) {
+            model.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
+        }
 
         return new CommandResult(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase));
     }

@@ -3,12 +3,12 @@ package seedu.pivot.logic.commands.archivecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_DEFAULT_SECTION;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
-import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.CommandResult;
@@ -31,7 +31,7 @@ public class ArchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";
 
-    private static final String MESSAGE_ARCHIVE_CASE_SUCCESS = "Case archived: %1$s";
+    public static final String MESSAGE_ARCHIVE_CASE_SUCCESS = "Case archived: %1$s";
     private static final Logger logger = LogsCenter.getLogger(ArchiveCommand.class);
 
     private Index targetIndex;
@@ -58,7 +58,7 @@ public class ArchiveCommand extends Command {
 
         // check case provided is valid index
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
         Case caseToArchive = lastShownList.get(targetIndex.getZeroBased());
@@ -73,7 +73,7 @@ public class ArchiveCommand extends Command {
         //model.setCase(caseToArchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
-        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
+        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase), true);
 
         return new CommandResult(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
     }

@@ -5,17 +5,27 @@ skinparam ClassBorderColor #000000
 
 title After command "clear"
 
+package CommandMessages <<rectangle>> {
+    class Message1 as "__c0:InitialCommand__"
+    class Message2 as "__c1:DeleteCase__"
+    class Message3 as "__c3:Clear__"
+}
+
 package States <<rectangle>> {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab3:AddressBook__"
+    class State1 as "__p0:Pivot__"
+    class State2 as "__p1:Pivot__"
+    class State3 as "__p3:Pivot__"
 }
 
 State1 -[hidden]right-> State2
 State2 -[hidden]right-> State3
 
+Message1 -[hidden]right-> Message2
+Message2 -[hidden]right-> Message3
+Message2 -[hidden]down-> State2
+
 class Pointer as "Current State" #FFFFF
 
 Pointer -up-> State3
-note right on link: State ab2 deleted.
+note right on link: State p2 deleted.
 @end

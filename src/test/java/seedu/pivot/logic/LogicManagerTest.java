@@ -47,8 +47,6 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() throws IOException {
-
-
         JsonPivotStorage pivotStorage =
                 new JsonPivotStorage(temporaryFolder.resolve("pivot.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));

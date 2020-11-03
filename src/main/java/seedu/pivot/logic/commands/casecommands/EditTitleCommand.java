@@ -65,7 +65,7 @@ public class EditTitleCommand extends EditCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title));
+        model.commitPivot(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title));
     }

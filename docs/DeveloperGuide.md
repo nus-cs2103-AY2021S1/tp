@@ -272,43 +272,56 @@ default file paths.
      - Pros: Makes use of existing infrastructure, lesser code and possibly lesser code duplication.
      - Cons: Increased coupling, more prone to bugs and harder to test
 
-### Undo feature (Not yet implemented)
+### Undo/Redo feature
 
-#### Proposed Implementation
+The undo/redo feature is facilitated by `VersionedPivot`. It extends `Pivot` with an undo/redo history, 
+stored internally as an `pivotStateList` and `currentStatePointer`. It also stores the corresponding commands 
+for each state in the `pivotStateList` as `commands`. Additionally, it implements the following operations:
 
-The proposed undo mechanism is facilitated by `VersionedPivot`. It extends `Pivot` with an undo history, stored internally as an `pivotStateStack`.
-`pivotStateStack` stores the entire Pivot at any point. Additionally, it implements the following operations:
-
-* `VersionedPivot#commit()` — Saves the current Pivot state in its history.
+* `VersionedPivot#canUndo()` — Indicates whether the current state can be undone.
+* `VersionedPivot#canRedo()` — Indicates whether the current state can be redone.
+* `VersionedPivot#commit(ReadOnlyPivot pivot, String command)` — Saves the current Pivot state as well as the 
+corresponding command that was called in its history.
 * `VersionePivot#undo()` — Restores the previous Pivot state from its history.
 * `VersionedPivot#redo()` — Restores a previously undone Pivot state from its history.
+* `VersionedPivot#purgeStates()` — Purges the all the states after the current pointer.
 
-These operations are exposed in the `Model` interface as `Model#commitPivot()` and `Model#undoPivot()` respectively.
+These operations are exposed in the `Model` interface as `Model#canUndoPivot()`,`Model#canRedoPivot()`, 
+`Model#commitPivot(String command)`, `Model#undoPivot()` and `Model#redoPivot()` respectively.
 
-Given below is an example usage scenario and how the undo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial Pivot state.
+Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial Pivot state,
+and the `currentStatePointer` pointing to that single Pivot state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th case in Pivot. The `delete` command calls `Model#commitPivot()`, causing the modified state of Pivot after the `delete 5` command executes to be saved in the `pivotStateStack`.
+Step 2. The user executes `delete case 5` command to delete the 5th case in Pivot. The `delete` command calls `Model#commitPivot(String command)`, 
+causing the modified state of Pivot and the command message displayed to the user after the `delete case 5` command executes to be saved in 
+`pivotStateList` and `commands` respectively. The `currentStatePointer` is shifted to the newly inserted Pivot state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls `Model#commitPivot()`, causing another modified Pivot state to be saved into the `pivotStateStack`.
+Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls `Model#commitPivot(String command)`, 
+causing another modified Pivot state and its corresponding command message to be saved into `pivotStateList` and `commands`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot()`, so the Pivot state will not be saved into the `pivotStateStack`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot(String command)`, 
+so the Pivot state and the corresponding command message will not be saved into `pivotStateList` and `commands`.
 
 </div>
 
-Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPivot()`, which will pop the current state from the `pivotStateStack`, and return the previous Pivot state, restoring Pivot to that state.
+Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. 
+The `undo` command will call `Model#undoPivot()`, which will retrieve the corresponding command message at the current state from `commands`
+to be displayed to the user the exact command that is being undone. The `currentStatePointer` will also be shifted once to the left, 
+pointing it to the previous Pivot state, and restores Pivot to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the size of the `pivotStateStack` is 1, it contains only the initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivot()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the
+initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivotk()` to check if this
+is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
 
@@ -316,13 +329,33 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will usually not call `Model#commitPivot()` or `Model#undoPivot()`. Thus, the `pivotStateStack` remains unchanged.
+The `redo` command does the opposite — it calls `Model#redoPivot()`, which shifts the `currentStatePointer` once
+to the right, pointing to the previously undone state, and restores Pivot to that state. The corresponding command message
+at this new current state will be retrieved from `commands` to be displayed to the user the exact command that is being redone.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index
+`pivotStateList.size() - 1`, pointing to the latest Pivot state, then there are no undone Pivot states to restore.
+The `redo` command uses `Model#canRedoPivot()` to check if this is the case. If so, it will return an error to the user
+rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will
+usually not call `Model#commitPivot(String command)`. Thus, the `pivotStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitPivot(String command)`. Since the `currentStatePointer` is not
+pointing at the end of the `pivotStateList`, all Pivot states after the `currentStatePointer` will be purged. Reason: It
+no longer makes sense to redo the `add case t:Lost Wallet …​` command. This is the behavior that most modern desktop
+applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -332,16 +365,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire Pivot.
+* **Alternative 1 (current implementation):** Saves the entire Pivot.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the case being deleted).
+  * Pros: Will use less memory (e.g. for `delete case`, just save the case being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 

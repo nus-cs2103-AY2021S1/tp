@@ -1,0 +1,102 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PivotParser" as PivotParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":AddDocumentCommandParser" as AddDocumentCommandParser LOGIC_COLOR
+participant ":AddDocumentCommand" as AddDocumentCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "updatedCase:Case" as updatedCase LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("add doc n:name r:reference.txt")
+activate LogicManager
+
+LogicManager -> PivotParser : parseCommand\n("add doc n:name r:reference.txt")
+activate PivotParser
+
+create AddCommandParser
+PivotParser -> AddCommandParser : parse\n("doc n:name r:reference.txt")
+activate AddCommandParser
+
+create AddDocumentCommandParser
+AddCommandParser -> AddDocumentCommandParser
+activate AddDocumentCommandParser
+
+AddDocumentCommandParser --> AddCommandParser
+deactivate AddDocumentCommandParser
+
+AddCommandParser -> AddDocumentCommandParser : parse("doc n:name r:reference.txt")
+activate AddDocumentCommandParser
+
+create AddDocumentCommand
+
+AddDocumentCommandParser -> AddDocumentCommand
+activate AddDocumentCommand
+
+AddDocumentCommand --> AddDocumentCommandParser
+deactivate AddDocumentCommand
+
+AddDocumentCommandParser --> AddCommandParser
+deactivate AddDocumentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddDocumentCommandParser -[hidden]-> AddCommandParser
+destroy AddDocumentCommandParser
+
+AddCommandParser --> PivotParser
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> PivotParser
+destroy AddCommandParser
+
+PivotParser --> LogicManager
+deactivate PivotParser
+
+LogicManager -> AddDocumentCommand : execute()
+activate AddDocumentCommand
+
+AddDocumentCommand -> Model : getFilteredCaseList()
+activate Model
+
+Model --> AddDocumentCommand : lastCaseShown
+deactivate Model
+
+AddDocumentCommand -> Model : lastCaseShown\n.get(index.getZeroBased())
+activate Model
+
+Model --> AddDocumentCommand : case in state
+deactivate Model
+
+create updatedCase
+
+AddDocumentCommand -> updatedCase
+activate updatedCase
+
+updatedCase -->AddDocumentCommand : updatedCase
+deactivate updatedCase
+
+AddDocumentCommand -> Model : setCase(stateCase, updatedCase)
+activate Model
+
+Model --> AddDocumentCommand
+deactivate Model
+
+create CommandResult
+AddDocumentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddDocumentCommand
+deactivate CommandResult
+
+AddDocumentCommand --> LogicManager : result
+deactivate AddDocumentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

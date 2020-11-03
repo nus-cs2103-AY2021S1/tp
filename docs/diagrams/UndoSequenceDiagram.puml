@@ -36,7 +36,6 @@ activate Model
 Model -> VersionedPivot : undo()
 activate VersionedPivot
 
-VersionedPivot -> VersionedPivot :resetData(ReadOnlyPivot)
 VersionedPivot --> Model :
 deactivate VersionedPivot
 
