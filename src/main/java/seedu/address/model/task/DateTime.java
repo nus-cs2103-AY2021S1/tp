@@ -11,7 +11,6 @@ import seedu.address.commons.util.DateUtil;
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
-    public static final String OVERLAP_CONSTRAINTS = "This task's timing overlaps with an existing task";
     protected final LocalDateTime value;
 
     /**

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
+import seedu.address.model.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -22,7 +23,7 @@ import seedu.address.model.task.event.StartDateTime;
 /**
  * Lesson class to store information about a module's lessons.
  */
-public class Lesson {
+public class Lesson implements TimeSlot {
     private final Title title;
     private final Tag tag;
     private final Description description;
@@ -70,6 +71,12 @@ public class Lesson {
     }
     public LocalDate getEndDate() {
         return endDate;
+    }
+    public LocalDateTime getStartDateTimeValue() {
+        return LocalDateTime.of(getStartDate(), getStartTime());
+    }
+    public LocalDateTime getEndDateTimeValue() {
+        return LocalDateTime.of(getEndDate(), getEndTime());
     }
     public Tag getTag() {
         return tag;
@@ -185,34 +192,6 @@ public class Lesson {
                 && otherLesson.getEndTime().equals(getEndTime())
                 && otherLesson.getStartDate().equals(getStartDate())
                 && otherLesson.getEndDate().equals(getEndDate());
-    }
-
-    /**
-     * Returns true if date and time of both lessons will overlap.
-     */
-    public boolean isSameTimeSlot(Lesson otherLesson) {
-        if (otherLesson == this) {
-            return true;
-        }
-        LocalDateTime startDateTime = LocalDateTime.of(getStartDate(), getStartTime());
-        LocalDateTime endDateTime = LocalDateTime.of(getEndDate(), getEndTime());
-        LocalDateTime otherStartDateTime = LocalDateTime.of(otherLesson.getStartDate(), otherLesson.getStartTime());
-        LocalDateTime otherEndDateTime = LocalDateTime.of(otherLesson.getEndDate(), otherLesson.getEndTime());
-        return otherLesson != null
-                && otherLesson.getDayOfWeek().equals(getDayOfWeek())
-                && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
-    }
-    /**
-     * Returns true if date and time of this lessons will overlap with an event.
-     */
-    public boolean isSameTimeSlot(Event otherEvent) {
-        LocalDateTime startDateTime = LocalDateTime.of(getStartDate(), getStartTime());
-        LocalDateTime endDateTime = LocalDateTime.of(getEndDate(), getEndTime());
-        LocalDateTime otherStartDateTime = otherEvent.getStartDateTimeValue();
-        LocalDateTime otherEndDateTime = otherEvent.getEndDateTimeValue();
-        return otherEvent != null
-            && getDayOfWeek().equals(otherStartDateTime.getDayOfWeek())
-            && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
     }
     @Override
     public int hashCode() {

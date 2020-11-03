@@ -2,12 +2,13 @@ package seedu.address.model.task.event;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import seedu.address.model.lesson.Lesson;
+import seedu.address.model.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -19,7 +20,7 @@ import seedu.address.model.task.deadline.Deadline;
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Event extends Task {
+public class Event extends Task implements TimeSlot {
     // Data fields
     private final StartDateTime startDateTime;
     private final EndDateTime endDateTime;
@@ -66,31 +67,8 @@ public class Event extends Task {
     public LocalDateTime getStartDateTimeValue() {
         return startDateTime.getValue();
     }
-    /**
-     * Returns true if date and time of both events will overlap.
-     */
-    public boolean isSameTimeSlot(Event otherEvent) {
-        if (otherEvent == this) {
-            return true;
-        }
-        LocalDateTime startDateTime = getStartDateTimeValue();
-        LocalDateTime endDateTime = getEndDateTimeValue();
-        LocalDateTime otherStartDateTime = otherEvent.getStartDateTimeValue();
-        LocalDateTime otherEndDateTime = otherEvent.getEndDateTimeValue();
-        return otherEvent != null
-            && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
-    }
-    /**
-     * Returns true if date and time of this event will overlap with a lesson.
-     */
-    public boolean isSameTimeSlot(Lesson otherLesson) {
-        LocalDateTime startDateTime = getStartDateTimeValue();
-        LocalDateTime endDateTime = getEndDateTimeValue();
-        LocalDateTime otherStartDateTime = LocalDateTime.of(otherLesson.getStartDate(), otherLesson.getStartTime());
-        LocalDateTime otherEndDateTime = LocalDateTime.of(otherLesson.getEndDate(), otherLesson.getEndTime());
-        return otherLesson != null
-            && otherLesson.getDayOfWeek().equals(startDateTime.getDayOfWeek())
-            && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
+    public DayOfWeek getDayOfWeek() {
+        return getStartDateTimeValue().getDayOfWeek();
     }
     /**
      * Returns an immutable tag, which throws {@code UnsupportedOperationException}

@@ -12,14 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 
-import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.lesson.Time;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.event.Event;
+import seedu.address.model.util.Overlap;
 
 public class LessonCommand extends Command {
     public static final String COMMAND_WORD = "lesson";
@@ -46,6 +43,7 @@ public class LessonCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New lesson added: %1$s";
     public static final String MESSAGE_DUPLICATE_LESSON = "This lesson already exists in PlaNus.";
+    public static final String OVERLAP_CONSTRAINTS = "This lesson overlaps with another event or lesson";
 
     private final Lesson lesson;
 
@@ -60,23 +58,14 @@ public class LessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Task> existingTasks = model.getFilteredTaskList();
-        ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
         ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
         boolean isTaskInModel = tasksToAdd.stream()
                 .anyMatch(model::hasTask);
         if (isTaskInModel) {
             throw new CommandException(MESSAGE_DUPLICATE_LESSON);
         }
-        for (Task task: existingTasks) {
-            if (task instanceof Event && ((Event) task).isSameTimeSlot(lesson)) {
-                throw new CommandException(DateTime.OVERLAP_CONSTRAINTS);
-            }
-        }
-        for (Lesson lesson: existingLessons) {
-            if (lesson.isSameTimeSlot(this.lesson)) {
-                throw new CommandException(Time.OVERLAP_CONSTRAINTS);
-            }
+        if (Overlap.overlapWithOtherTimeSlots(model, lesson)) {
+            throw new CommandException(OVERLAP_CONSTRAINTS);
         }
         tasksToAdd.stream()
                 .forEach(task -> {
