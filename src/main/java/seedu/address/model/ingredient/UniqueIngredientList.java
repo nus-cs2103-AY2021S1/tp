@@ -83,11 +83,9 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
      * @return an arraylist of ingredients that are in shortage
      */
     public ArrayList<Ingredient> findIngredientInShortage() {
-        Amount amountOfIngredient;
         ArrayList<Ingredient> ingredientsInShortage = new ArrayList<>();
         for (Ingredient ingredient : internalList) {
-            amountOfIngredient = ingredient.getAmount();
-            if (amountOfIngredient.isBelowRestockLevel()) {
+            if (ingredient.isIngredientInShortage()) {
                 ingredientsInShortage.add(ingredient);
             }
         }

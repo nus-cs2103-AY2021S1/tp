@@ -38,6 +38,14 @@ public class IngredientName {
         return Arrays.asList(INGREDIENTS).contains(ingredientName);
     }
 
+    /**
+     * Returns the name of the ingredient in string format.
+     * @return the name of the ingredient in string format.
+     */
+    public String getIngredientNameString() {
+        return ingredientName;
+    }
+
     @Override
     public String toString() {
         return ingredientName;
