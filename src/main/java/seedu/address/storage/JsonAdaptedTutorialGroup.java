@@ -23,6 +23,7 @@ public class JsonAdaptedTutorialGroup {
     private final String startTime;
     private final String endTime;
     private final String dayOfWeek;
+
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
@@ -30,14 +31,14 @@ public class JsonAdaptedTutorialGroup {
      */
     @JsonCreator
     public JsonAdaptedTutorialGroup(@JsonProperty("tutorialGroupId") String tutorialGroupId,
+                                    @JsonProperty("dayOfWeek") String dayOfWeek,
                                     @JsonProperty("startTime") String startTime,
                                     @JsonProperty("endTime") String endTime,
-                                    @JsonProperty("dayOfWeek") String dayOfWeek,
                                     @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.tutorialGroupId = tutorialGroupId;
-        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.dayOfWeek = dayOfWeek;
         this.students.addAll(students);
     }
 
