@@ -590,6 +590,15 @@ Updates the details of the desired stock(s), requires the serial number of stock
 update sn/<serial number> [sn/<serial number]... [iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]
 ```
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Updating nothing**
+Warenager recognizes updating nothing as a valid update command. 
+For example, assuming stock with serial number `FAIRPRICE1` exist, `update sn/fairprice1` will be recognized as a valid command and executed.
+Even though it essentially does nothing.
+
+</div>
+
 <div markdown="block" class="alert alert-warning">
 
 **:warning: In case one of serial numbers is invalid**
@@ -632,6 +641,48 @@ will change **Stock 2** source to `Coldstorage`, quantity to `50`, and low quant
 update sn/Ntuc1 sn/Coldstorage1 n/Apple juice
 ```
 will change **Stock 1** and **Stock 3** name to `Apple juice`.
+
+<h4>Below is a guided example for updating stocks:</h4>
+Before you start any updating activity, make sure to use the command `list lt/all` to list all
+the stocks you have in Warenager. <br>
+
+![update_step1](images/update/update_step1.png)
+
+Let's update the stock with serial number `NTUC1`. Let's update the name to `Apple` and the low quantity to `100`. Remember that the fields are **case-insensitive**. <br>
+A valid update input would be `update sn/ntuc1 n/apple lq/100`. <br>
+
+**Before input**:
+
+![update_step2](images/update/update_step2.png)
+
+
+**After input**:
+
+![update_step3](images/update/update_step3.png)
+
+Multiple stocks can also be updated at the same time. Let's update 2 stocks with serial numbers `FAIRPRICE1`
+and `FAIRPRICE3`. It can be done by chaining the serial numbers when updating.<br>
+Let's update the low quantity to `200` and the location to `Discount section`
+A valid update input would be `update sn/fairprice1 sn/fairprice3 lq/200 l/discount section`. <br>
+
+**Before input**:
+
+![update_step4](images/update/update_step4.png)
+
+
+**After input**:
+
+![update_step5](images/update/update_step5.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning: Nonexistent stocks**
+Stocks that do not exist in Warenager cannot be updated. Using the update input `update sn/fairprice4 n/peach`, you should expect the following:
+
+![update_step6](images/update/update_step6.png)
+
+</div>
+
 
 ### Adding notes to stock: `note`
 Adds a note to the stock specified, displayed in the notes column for that stock.
