@@ -1,6 +1,5 @@
 package seedu.stock.logic.parser;
 
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.BOOKMARK_COMMAND_WORD;
@@ -159,8 +158,6 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             break;
 
         case DeleteCommand.COMMAND_WORD:
-            toBeDisplayed = new StringBuilder();
-            toBeDisplayed.append(MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n" + MESSAGE_SUGGESTION);
             generateDeleteSuggestion(toBeDisplayed, argMultimap);
             break;
 

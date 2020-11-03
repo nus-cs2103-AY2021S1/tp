@@ -412,7 +412,13 @@ The same two stocks as in Step 2 should be found as they still match `n/apple`.
 **After input:**
 ![find-step-3](images/find/find-step-4.png)
 
-<h5>Below are some cases where `find` command does not work:</h5>
+You are now done with the guided tutorial for `find`.
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning:** Below are some cases where `find` command does not work:
+You will see an error message describing what went wrong
+and the correct command format for the `find` command.
 
 Continuing from the steps from the guided example above, 
 let's try finding by **entering nothing** as a keyword. 
@@ -424,8 +430,7 @@ Step 4. Type `find n/` into the command box and enter. You will see that no stoc
 
 Let's try finding with an invalid prefix for the `find` command.
 
-Step 5. Type `find nt/apple` into the command box and enter. You will see an error message describing what went wrong
-and the correct command format for the `find` command.
+Step 5. Type `find nt/apple` into the command box and enter. 
 
 **After input**:
 ![find-step-5](images/find/find-step-6.png)
@@ -433,13 +438,10 @@ and the correct command format for the `find` command.
 Let's try finding with a duplicate valid prefix for the `find` command.
 
 Step 6. Type `find n/apple n/pineapple` into the command box and enter.
-You will see an error message describing what went wrong
-and the correct command format for the `find` command.
 
 **After input**:
 ![find-step-6](images/find/find-step-7.png)
-
-You are now done with the guided tutorial for `find` and should be able to use the command with relative ease now.
+</div>
 
 ### Find exact stocks from inventory: `findexact`
 Displays a list of stocks found in the inventory that contains all keywords specified in ALL fields searched.
@@ -537,15 +539,15 @@ No stock should be found as there is no stock with the location unknown.
 **After input:**
 ![findexact-step-3](images/find/findexact-step-4.png)
 
-<div markdown="block" class="alert alert-info">
+You are now done with the guided tutorial for `findexact`.
 
-**:information_source:** For cases where the `findexact` command does not work,
+<div markdown="block" class="alert alert-warning">
+
+**:warning:** For cases where the `findexact` command does not work,
 refer to the section where the `find` command does not work, at the `find` command guided tutorial Steps 5 to 7,
 with the replacement of the `find` command with the `findexact` command.
 
 </div>
-
-You are now done with the guided tutorial for `findexact` and should be able to use the command with relative ease.
 
 ### Update inventory: `update`
 Updates the details of the desired stock(s), requires the serial number of stock(s).
@@ -651,6 +653,8 @@ You will see the note added to the stock with name Pineapple tart at note index 
 **After input:**
 ![note-step-4](images/note/note-step-4.png)
 
+You are now done with the guided tutorial for `note`.
+
 <div markdown="block" class="alert alert-warning">
 
 **:warning:** Below are some cases where `note` command does not work:
@@ -658,7 +662,7 @@ You should see an error message describing what went wrong and the correct forma
 
 Continuing from the steps from the guided example above, 
 Let's try **entering nothing** as a note. 
-Type `note sn/ntuc1 n/` into the command box and enter.
+Type `note sn/ntuc1 nt/` into the command box and enter.
 
 **After input:**
 ![note-step-5](images/note/note-step-5.png)
@@ -684,9 +688,7 @@ Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter
 **After input:**
 ![note-step-8](images/note/note-step-8.png)
 
-</div>
-
-You are now done with the guided tutorial for `note` and should be able to use the command with relative ease now.                              
+</div>                        
 
 ### Deleting note(s) from stock: `notedelete`
 Deletes a note, specified by the note's index, from the stock specified by its serial number.
@@ -744,8 +746,36 @@ You will see that all the notes of the stock with serial number `ntuc1` has been
 **After input:**
 ![notedelete-step-3](images/note/notedelete-step-3.png)
 
-You have successfully deleted all the notes from a stock.
+You are now done with the guided tutorial for `note`.
 
+<div markdown="block" class="alert alert-warning">
+
+**:warning:** Below are some cases where `notedelete` command does not work:
+You should see an error message describing what went wrong and the correct format for the `notedelete` command.
+
+Continuing from the steps from the guided example above, 
+Let's try deleting a note from an **unknown** serial number.
+
+Type `note sn/unknown1 nt/note` in the command box and enter.
+
+**After input:**
+![note-step-6](images/note/note-step-6.png)
+
+Let's try adding a note but with an invalid prefix: `n/` for the `note` command.
+
+Type `note sn/ntuc1 nt/valid note n/invalid` into the command box.
+
+**After input:**
+![note-step-7](images/note/note-step-7.png)
+
+Let's try adding a note but with a duplicate valid prefix for the `note` command.
+
+Type `note sn/ntuc1 nt/first note nt/second note` into the command box and enter.
+
+**After input:**
+![note-step-8](images/note/note-step-8.png)
+
+</div>   
 
 ### Viewing all notes of a stock: `noteview`
 Views all notes of the stock specified by its serial number.
