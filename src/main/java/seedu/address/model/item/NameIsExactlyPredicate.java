@@ -1,9 +1,12 @@
 package seedu.address.model.item;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+
 
 /**
  * Tests that a {@code Item}'s {@code Name} matches any of the keywords given.
@@ -17,6 +20,7 @@ public class NameIsExactlyPredicate implements Predicate<Item> {
 
     public String getKeyword() {
         assert(keywords.size() > 0);
+        requireNonNull(keywords);
         return keywords.get(0);
     }
 
