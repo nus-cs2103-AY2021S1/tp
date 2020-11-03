@@ -17,9 +17,7 @@ public enum Drink {
             "Drink Names should only be chosen from the given list,"
                     + " and it should not be blank";
 
-    // TODO: drink ingredients?
     private final String name;
-
 
     Drink(String name) {
         this.name = name;

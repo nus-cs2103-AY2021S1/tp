@@ -91,7 +91,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void overwrite_salesBookNew_initialisedAndUpdateSalesEntry() {
+    public void overwrite_emptySalesBook_initialiseSalesEntry() {
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, 80);
         sales.put(Drink.BSBBT, 0);
@@ -108,7 +108,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void overwrite_salesBookInitialised_updateByOverwriteSalesEntry() {
+    public void overwrite_nonEmptySalesBook_overwriteSalesEntry() {
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, 80);
         sales.put(Drink.BSBBT, 20);
@@ -132,6 +132,13 @@ public class ModelManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
+
+    @Test
+    public void getFilteredSalesRecordList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getFilteredSalesRecordList().remove(0));
+    }
+
 
     @Test
     public void equals() {
