@@ -34,6 +34,7 @@ public class AddLabelCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Labelled Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_INVALID_TAG = "Person can only have either prof or ta tag.";
 
     private final Name targetName;
     private final LabelPersonDescriptor labelPersonDescriptor;
@@ -62,6 +63,10 @@ public class AddLabelCommand extends Command {
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToLabel = filteredList.get(0);
+
+        if (!checkTag(personToLabel, labelPersonDescriptor)) {
+            throw new CommandException(MESSAGE_INVALID_TAG);
+        }
 
         Person labelledPerson = createLabelledPerson(personToLabel, labelPersonDescriptor);
 
@@ -94,6 +99,26 @@ public class AddLabelCommand extends Command {
         }
 
         return new Person(personToLabel.getName(), personToLabel.getPhone(), personToLabel.getEmail(), updatedTags);
+    }
+
+    /**
+     * Checks tags to ensure the person to label will not have both prof and ta tag.r
+     */
+    private static boolean checkTag(Person personToLabel, LabelPersonDescriptor labelPersonDescriptor) {
+        assert personToLabel != null;
+
+        Tag prof = new Tag(Tag.PROF_TAG_NAME);
+        Tag ta = new Tag(Tag.TA_TAG_NAME);
+        if (labelPersonDescriptor.tags.contains(prof) && labelPersonDescriptor.tags.contains(ta)) {
+            return false;
+        }
+        if (personToLabel.getTags().contains(prof) && labelPersonDescriptor.tags.contains(ta)) {
+            return false;
+        }
+        if (personToLabel.getTags().contains(ta) && labelPersonDescriptor.tags.contains(prof)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

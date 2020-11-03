@@ -13,7 +13,7 @@ public class Date {
     public static final String MESSAGE_DATE_CONSTRAINTS = "The date given should be a valid date";
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in the format yyyy-mm-dd and "
             + "the date given should be a valid date";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String VALIDATION_REGEX = "[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}";
     public static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("d LLL (EEE)");
 
@@ -41,19 +41,20 @@ public class Date {
     /**
      * Returns true if a given string is in a valid date format.
      */
-    private static boolean isValidFormat(String test) {
-        return test.length() == 10
-                && test.charAt(4) == '-'
-                && test.charAt(7) == '-';
+    public static boolean isValidFormat(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    private static boolean isValidDate(String test) {
+    public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test);
         } catch (DateTimeParseException e) {
+            return false;
+        }
+        if (test.startsWith("0000")) {
             return false;
         }
         return true;
