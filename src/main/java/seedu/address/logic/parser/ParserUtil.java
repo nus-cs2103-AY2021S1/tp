@@ -174,7 +174,7 @@ public class ParserUtil {
         if (!ModuleId.isValidModuleId(trimmedModule)) {
             throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
         }
-        return new ModuleId(moduleId);
+        return new ModuleId(trimmedModule);
     }
 
     /**
