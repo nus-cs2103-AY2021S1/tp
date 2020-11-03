@@ -253,7 +253,7 @@ Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 
 Edits the indicated task in a project.
 
-Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] `
+Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
   - Edits the task at the specified index.
   - The index refers to the index number shown in the displayed task list.
   - Any combination and any number of the subsequent fields above can be entered.
@@ -418,13 +418,13 @@ Action | Format, Examples | Scope
 **Delete project** | `delete INDEX` <br> e.g. `delete 2` | global scope
 **Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` | global scope
 **edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
-**Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
+**Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` | project scope
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
+**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
 **Delete Task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
-**Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS)||(done/ISDONE)``<br>e.g. `filter ta/Alice` | project scope
+**Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS))``<br>e.g. `filter ta/Alice` | project scope
 **Show all the tasks** | `alltasks` | project scope 
-**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
+**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
