@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 
 /**
  * Edits the alias of an existing commands in the alias map.
@@ -13,14 +14,18 @@ public class AliasCommand extends Command {
 
     public static final String COMMAND_WORD = "alias";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a command a customised alias.\n"
-            + "Alias must not be the same as the default command words and the 'alias' command cannot have an alias.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gives a customised alias to a command.\n"
+            + "Alias must not be the same as the default command words and the 'alias' nor 'clear alias' "
+            + "command cannot have an alias.\n"
             + "Parameters: "
-            + "[Alias you want to set for a specific command] "
-            + "[Command's current custom alias or if command has none, default command word]\n"
-            + "Example: " + COMMAND_WORD + " find " + "get ";
+            + "[desired_alias] "
+            + "[current_alias/if none, default_command]\n"
+            + "Example: " + COMMAND_WORD + " find " + "get \n"
+            + "To remove customised alias for a command, simply enter: "
+            + COMMAND_WORD + " [default_command] [current_alias]";
 
-    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s]";
+    public static final String MESSAGE_EDIT_ALIAS_SUCCESS = "Edited alias: [%s] becomes [%s] ";
+    public static final String MESSAGE_REMOVED_ALIAS_SUCCESS = "Removed alias. [%s] is no longer alias for [%s]. ";
 
     private final String previousAlias;
     private final String newAlias;
@@ -47,6 +52,9 @@ public class AliasCommand extends Command {
         } catch (IllegalArgumentException e) {
             throw new CommandException(e.getMessage());
         }
+        if (AliasMap.RESERVED_KEYWORDS.contains(newAlias)) {
+            return new CommandResult(String.format(MESSAGE_REMOVED_ALIAS_SUCCESS, previousAlias, newAlias));
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_ALIAS_SUCCESS, previousAlias, newAlias));
     }
 
@@ -58,7 +66,7 @@ public class AliasCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof AliasCommand)) {
             return false;
         }
 

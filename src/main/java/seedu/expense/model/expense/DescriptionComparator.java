@@ -20,7 +20,7 @@ public class DescriptionComparator extends SortKeyComparator {
         String s1 = o1.getDescription().toString();
         String s2 = o2.getDescription().toString();
 
-        return s1.compareTo(s2);
+        return s1.compareToIgnoreCase(s2);
     }
 
     @Override

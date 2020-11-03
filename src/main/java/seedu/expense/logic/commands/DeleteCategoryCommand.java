@@ -22,7 +22,7 @@ public class DeleteCategoryCommand extends Command {
         + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "Existing category deleted: %s";
-    public static final String MESSAGE_INVALID_CATEGORY = "This category does not exists in the expense book.";
+    public static final String MESSAGE_INVALID_CATEGORY = "The \"%s\" category does not exist in the expense book. ";
 
     private final Tag toDelete;
 
@@ -39,7 +39,7 @@ public class DeleteCategoryCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasCategory(toDelete)) {
-            throw new CommandException(MESSAGE_INVALID_CATEGORY);
+            throw new CommandException(String.format(MESSAGE_INVALID_CATEGORY, toDelete));
         }
 
         model.deleteCategory(toDelete);

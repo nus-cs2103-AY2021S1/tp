@@ -88,6 +88,7 @@ public class LogicManagerTest {
                 + DATE_DESC_FOOD + TAG_DESC_FOOD;
         Expense expectedExpense = new ExpenseBuilder(FOOD).build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.addCategory(expectedExpense.getTag());
         expectedModel.addExpense(expectedExpense);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

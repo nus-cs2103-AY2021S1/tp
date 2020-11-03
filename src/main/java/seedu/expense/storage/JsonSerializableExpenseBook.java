@@ -22,6 +22,8 @@ class JsonSerializableExpenseBook {
 
     public static final String MESSAGE_DUPLICATE_CATEGORY = "Tags list contains duplicate tags.";
     public static final String MESSAGE_DUPLICATE_EXPENSE = "Expenses list contains duplicate expense(s).";
+    public static final String MESSAGE_INVALID_CATEGORY = "Trying to add an expense to the \"%s\" category which does"
+            + " not exist in the expense book.";
 
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
     private final JsonAdaptedBudgetList budgets;
@@ -69,6 +71,9 @@ class JsonSerializableExpenseBook {
             Expense expense = jsonAdaptedExpense.toModelType();
             if (expenseBook.hasExpense(expense)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EXPENSE);
+            }
+            if (!expenseBook.containsCategory(expense.getTag())) {
+                throw new IllegalValueException(String.format(MESSAGE_INVALID_CATEGORY, expense.getTag()));
             }
             expenseBook.addExpense(expense);
         }
