@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -26,6 +27,7 @@ public class StudentBuilder {
     private Email email;
     private Set<Tag> tags;
     private StudentId studentId;
+    private Attendance attendance;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -36,6 +38,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
         studentId = new StudentId(DEFAULT_STUDENT_ID);
+        attendance = new Attendance();
     }
 
     /**
@@ -47,6 +50,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         tags = new HashSet<>(studentToCopy.getTags());
         studentId = studentToCopy.getStudentId();
+        attendance = studentToCopy.getAttendance();
     }
 
     /**
