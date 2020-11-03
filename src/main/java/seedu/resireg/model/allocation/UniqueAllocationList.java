@@ -36,6 +36,14 @@ public class UniqueAllocationList implements Iterable<Allocation> {
      */
     public boolean contains(Allocation toCheck) {
         requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::equals);
+    }
+
+    /**
+     * Returns true if the list will conflict with the given argument.
+     */
+    public boolean conflicts(Allocation toCheck) {
+        requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameAllocation);
     }
 
@@ -91,7 +99,7 @@ public class UniqueAllocationList implements Iterable<Allocation> {
             throw new AllocationNotFoundException();
         }
 
-        if (!target.isSameAllocation(editedAllocation) && contains(editedAllocation)) {
+        if (!target.equals(editedAllocation) && contains(editedAllocation)) {
             throw new DuplicateAllocationException();
         }
 
@@ -156,7 +164,7 @@ public class UniqueAllocationList implements Iterable<Allocation> {
     private boolean allocationsAreUnique(List<Allocation> allocations) {
         for (int i = 0; i < allocations.size() - 1; i++) {
             for (int j = i + 1; j < allocations.size(); j++) {
-                if (allocations.get(i).isSameAllocation(allocations.get(j))) {
+                if (allocations.get(i).equals(allocations.get(j))) {
                     return false;
                 }
             }

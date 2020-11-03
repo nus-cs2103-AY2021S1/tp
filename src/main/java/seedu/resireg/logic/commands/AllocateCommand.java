@@ -75,16 +75,12 @@ public class AllocateCommand extends Command {
         Allocation toAllocate = new Allocation(roomToAllocate.getFloor(),
                 roomToAllocate.getRoomNumber(), studentToAllocate.getStudentId());
 
-        if (!model.hasStudent(studentToAllocate)) {
-            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        } else if (!model.hasRoom(roomToAllocate)) {
-            throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
+        if (model.hasAllocation(toAllocate)) {
+            throw new CommandException(MESSAGE_ALLOCATION_EXISTS);
         } else if (model.isAllocated(studentToAllocate)) {
             throw new CommandException(MESSAGE_STUDENT_ALREADY_ALLOCATED);
         } else if (model.isAllocated(roomToAllocate)) {
             throw new CommandException(MESSAGE_ROOM_ALREADY_ALLOCATED);
-        } else if (model.hasAllocation(toAllocate)) {
-            throw new CommandException(MESSAGE_ALLOCATION_EXISTS);
         }
 
         Student studentToEdit = CreateEditCopy.createCopiedStudent(studentToAllocate);

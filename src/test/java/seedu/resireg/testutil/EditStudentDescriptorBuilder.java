@@ -29,7 +29,7 @@ public class EditStudentDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
+     * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details.
      */
     public EditStudentDescriptorBuilder(Student student) {
         descriptor = new EditStudentDescriptor();

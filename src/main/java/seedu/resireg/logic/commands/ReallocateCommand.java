@@ -75,11 +75,7 @@ public class ReallocateCommand extends Command {
             }
         }
 
-        if (!model.hasStudent(studentToReallocate)) {
-            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
-        } else if (!model.hasRoom(roomToReallocate)) {
-            throw new CommandException(MESSAGE_ROOM_NOT_FOUND);
-        } else if (toReallocate == null) {
+        if (toReallocate == null) {
             throw new CommandException(MESSAGE_STUDENT_NOT_ALLOCATED);
         } else if (toReallocate.isRelatedTo(roomToReallocate)) {
             throw new CommandException(MESSAGE_SAME_ROOM_ALLOCATED);

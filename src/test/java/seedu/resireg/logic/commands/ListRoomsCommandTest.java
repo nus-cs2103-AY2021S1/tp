@@ -36,6 +36,10 @@ import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.testutil.RoomBuilder;
 import seedu.resireg.testutil.RoomFilterBuilder;
 
+/**
+ * Unit tests for room filtering. Integration tests can be found in {@link AddRoomCommandTest},
+ * {@link EditRoomCommandTest} and {@link DeleteRoomCommandTest}.
+ */
 public class ListRoomsCommandTest {
 
     private CommandHistory history = new CommandHistory();

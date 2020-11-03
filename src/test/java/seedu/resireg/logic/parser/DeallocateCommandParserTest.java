@@ -30,4 +30,10 @@ public class DeallocateCommandParserTest {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeallocateCommand.HELP.getFullMessage()));
     }
+
+    @Test
+    public void parse_invalidIndices_throwsParseException() {
+        assertParseFailure(parser, " si/0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeallocateCommand.HELP.getFullMessage()));
+    }
 }
