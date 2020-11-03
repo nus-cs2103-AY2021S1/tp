@@ -2,24 +2,36 @@
 layout: page
 title: Dao Ngoc Hieu's Project Portfolio Page
 ---
+## Project: Wishful Shrinking
 
-## Project: WishfulShrinking
-
-WishfulShrinking is a desktop application used for managing eating habits. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Wishful Shrinking is a desktop application for managing your diet, keeping track of your on-hand ingredients, recipes, as well as the food you’ve eaten (along with their calories). While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 Given below are my contributions to the project.
+
 
 * **New Feature**: Added the ability to add recipes to the recipe list.
   * What it does: allows the user to add recipes to his/her collection.
   * Justification: This feature helps the user accumulate healthy recipes for future reference in preparing meals.
  
+* **New Feature**: Added the custom text area class for command box.
+  * What it does: handles enter key press from user and filter out other key presses.
+  * Justification: This feature improves the efficiency of the previous implementation of the command box as a text field. With a text area,
+  users can see the whole command in full view.
+  * Highlights: This enhancement requires extensive research on JavaFx components and event listeners.
+  
+* **New Feature**: Added responsive image layout.
+  * What it does: changes the image sizes according to window sizes.
+  * Justification: This feature significantly improves the look of the app.
+  * Highlights: This enhancement requires extensive research on JavaFx components and event listeners.
+
 * **New Feature**: Added UI components: Recipe, Ingredient, Consumption Card and List Panel.
   * What it does: displays information to users.
 
 * **New Feature**: Added UI components: Recipe Side Drawer.
   * What it does: displays a single recipe in full view to users.
+
   
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=daongochieu2810)
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.3` (3 releases) on GitHub
