@@ -57,10 +57,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane projectDashboardPlaceHolder;
+    private StackPane middleDashboardPlaceHolder;
 
     @FXML
-    private StackPane projectAttributesDashboardPlaceHolder;
+    private StackPane rightAttributesDashboardPlaceHolder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -148,31 +148,29 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
                 && logic.getPersonToBeDisplayedOnDashboard().isEmpty()) {
             emptyProjectDashboard = new EmptyDashboard(EMPTY_PROJECT_DASHBOARD_MSG);
-            projectDashboardPlaceHolder.getChildren().add(emptyProjectDashboard.getRoot());
+            middleDashboardPlaceHolder.getChildren().add(emptyProjectDashboard.getRoot());
         } else if (logic.getProjectToBeDisplayedOnDashBoard().isEmpty()
                 && logic.getPersonToBeDisplayedOnDashboard().isPresent()) {
             personDashboard = new PersonDashboard(logic.getPersonToBeDisplayedOnDashboard());
-            projectDashboardPlaceHolder.getChildren().add(personDashboard.getRoot());
+            middleDashboardPlaceHolder.getChildren().add(personDashboard.getRoot());
         } else if (logic.getPersonToBeDisplayedOnDashboard().isEmpty()
                 && logic.getProjectToBeDisplayedOnDashBoard().isPresent()) {
             projectDashboard = new ProjectDashboard(logic.getProjectToBeDisplayedOnDashBoard());
-            projectDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
+            middleDashboardPlaceHolder.getChildren().add(projectDashboard.getRoot());
         }
 
         if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isPresent()) {
             teammateDashboard = new TeammateDashboard(logic.getTeammateToBeDisplayedOnDashboard());
-            projectAttributesDashboardPlaceHolder.getChildren().add(teammateDashboard.getRoot());
+            rightAttributesDashboardPlaceHolder.getChildren().add(teammateDashboard.getRoot());
         } else if (logic.getTaskToBeDisplayedOnDashboard().isPresent()
                 && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
             taskDashboard = new TaskDashboard(logic.getTaskToBeDisplayedOnDashboard());
-            projectAttributesDashboardPlaceHolder.getChildren().add(taskDashboard.getRoot());
-        } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
-                && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
+            rightAttributesDashboardPlaceHolder.getChildren().add(taskDashboard.getRoot());
         } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()) {
             emptyAttributesDashboard = new EmptyDashboard(EMPTY_ATTRIBUTES_DASHBOARD_MSG);
-            projectAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
+            rightAttributesDashboardPlaceHolder.getChildren().add(emptyAttributesDashboard.getRoot());
         }
 
         resultDisplay = new ResultDisplay();

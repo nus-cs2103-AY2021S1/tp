@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Task;
 
@@ -32,7 +32,7 @@ public class TaskDashboard extends UiPart<Region> {
     @FXML
     private Label taskName;
     @FXML
-    private Label taskDescription;
+    private Text taskDescription;
     @FXML
     private Label publishDate;
     @FXML
@@ -42,7 +42,9 @@ public class TaskDashboard extends UiPart<Region> {
     @FXML
     private Label header1;
     @FXML
-    private FlowPane assignees;
+    private Label header2;
+    @FXML
+    private Text assignees;
 
     /**
      * Creates a {@code TaskDashboardCode} with the given {@code Task} to display.
@@ -51,14 +53,20 @@ public class TaskDashboard extends UiPart<Region> {
         super(FXML);
         this.task = task.get();
         taskName.setText(this.task.getTaskName());
-        taskDescription.setText("Task description: " + this.task.getDescription());
+        taskDescription.setWrappingWidth(500);
+        header1.setText("Task description: ");
+        taskDescription.setText(this.task.getDescription());
         publishDate.setText("Task published date: " + this.task.getPublishDate());
         deadline.setText("Task deadline: " + this.task.getDeadline().map(Deadline::toString).orElse("null"));
         progress.setText("Task progress: " + this.task.getProgress());
-        header1.setText("Task assignees: ");
-        this.task.getAssignees()
-                .forEach(participation -> assignees.getChildren()
-                        .add(new Label(participation)));
+        header2.setText("Task assignees: ");
+        String listOfAssignees = "";
+        int ctr1 = 1;
+        for (String t : this.task.getAssignees()) {
+            listOfAssignees += ctr1 + ". " + t + "\n";
+            ctr1++;
+        }
+        assignees.setText(listOfAssignees);
     }
 
     @Override

@@ -1,17 +1,15 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.participation.Participation;
 import seedu.address.model.person.Person;
-import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
 /**
@@ -30,7 +28,6 @@ public class TeammateDashboard extends UiPart<Region> {
      */
 
     public final Participation teammate;
-    public final List<String> listOfTasksName = new ArrayList<>();
 
     @FXML
     private HBox teammateDashboardPane;
@@ -43,11 +40,11 @@ public class TeammateDashboard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label address;
+    private Text address;
     @FXML
     private Label header1;
     @FXML
-    private FlowPane tasks;
+    private Text tasks;
 
     /**
      * Creates a {@code TaskDashboardCode} with the given {@code Task} to display.
@@ -61,26 +58,13 @@ public class TeammateDashboard extends UiPart<Region> {
         gitUserName.setText("Teammate gitUserName: " + person.getGitUserNameString());
         phone.setText("Teammate phone number: " + person.getPhone());
         email.setText("Teammate email: " + person.getEmail());
+        address.setWrappingWidth(500);
         address.setText("Teammate address: " + person.getAddress());
         header1.setText("Tasks assigned: ");
-        for (Participation p : person.getParticipations().values()) {
-            System.out.println(p);
-            String projectName = p.getProject().getProjectName().toString();
-            Project proj = p.getProject();
-            Participation pp = proj.getParticipation(person.getGitUserNameString());
-            System.out.println(projectName);
-            for (Task task : pp.getTasks()) {
-                System.out.println(task);
-                listOfTasksName.add(projectName + ": " + task.getTaskName());
-            }
-        }
-        System.out.println("fasudhasodsa");
-        for (String str : listOfTasksName) {
-            System.out.println(str);
-        }
-        this.listOfTasksName.stream()
-                .forEach(tasksName -> tasks.getChildren()
-                        .add(new Label(tasksName)));
+        AtomicInteger index = new AtomicInteger();
+        index.getAndIncrement();
+        tasks.setText(this.teammate.getTasks().stream()
+                .map(Task::getTaskName).reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
     }
 
     @Override

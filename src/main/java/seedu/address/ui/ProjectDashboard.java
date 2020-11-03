@@ -2,13 +2,16 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Project}.
@@ -34,7 +37,7 @@ public class ProjectDashboard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label projectDescription;
+    private Text projectDescription;
     @FXML
     private Label repoUrl;
     @FXML
@@ -44,11 +47,9 @@ public class ProjectDashboard extends UiPart<Region> {
     @FXML
     private Label header3;
     @FXML
-    private FlowPane tags;
+    private Text teammates;
     @FXML
-    private FlowPane teammates;
-    @FXML
-    private FlowPane tasks;
+    private Text tasks;
 
     /**
      * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
@@ -58,21 +59,29 @@ public class ProjectDashboard extends UiPart<Region> {
         this.project = project.get();
         projectName.setText(this.project.getProjectName().fullProjectName);
         deadline.setText("Project deadline: " + this.project.getDeadline().toString());
-        projectDescription.setText("Project description: " + this.project.getProjectDescription().value);
         repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
-        header1.setText("Teammates: ");
-        this.project.getTeammates().stream()
-                .forEach(participation -> teammates.getChildren().add(new Label(
-                        participation.getPerson().getPersonName().toString() + " ("
-                                + participation.getPerson().getGitUserNameString() + ")")));
+        header1.setText("Project description: ");
+        projectDescription.setWrappingWidth(500);
+        projectDescription.setText(this.project.getProjectDescription().value);
+        header2.setText("Teammates: ");
+        String listOfTeammates = "";
+        int ctr1 = 1;
+        for (Participation teammate : this.project.getTeammates()) {
+            listOfTeammates += ctr1 + ". " + teammate.getPerson().getPersonName().toString() + " ("
+                    + teammate.getPerson().getGitUserNameString() + ")" + "\n";
+            ctr1++;
+        }
+        teammates.setText(listOfTeammates);
         String headerOfListOfTasks = "Filtered List Of Tasks: ";
         if (this.project.isFullListOfTasks()) {
             headerOfListOfTasks = "All Tasks: ";
         }
-        header2.setText(headerOfListOfTasks);
-        this.project.getTasks().stream()
+        header3.setText(headerOfListOfTasks);
+        AtomicInteger index = new AtomicInteger();
+        index.getAndIncrement();
+        tasks.setText(this.project.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
-                .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
+                .map(Task::getTaskName).reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
     }
 
     @Override
