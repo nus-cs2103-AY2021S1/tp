@@ -108,6 +108,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setInventory(Inventory newInventory) {
+        requireNonNull(newInventory);
+        this.inventory.resetData(newInventory);
+    }
+
+    @Override
     public Inventory getInventory() {
         return inventory;
     }
@@ -177,6 +183,12 @@ public class ModelManager implements Model {
     public void deleteFinanceRecord(FinanceRecord target) {
         requireNonNull(target);
         financeAccount.removeFinanceRecord(target);
+    }
+
+    @Override
+    public void setFinanceAccount(FinanceAccount newFinanceAccount) {
+        requireNonNull(newFinanceAccount);
+        this.financeAccount.resetData(newFinanceAccount);
     }
 
     @Override
