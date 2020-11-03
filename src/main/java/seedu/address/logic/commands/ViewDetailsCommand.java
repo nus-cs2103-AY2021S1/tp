@@ -36,8 +36,7 @@ public class ViewDetailsCommand extends Command {
         // item is found
         if (!model.getFilteredItemList().isEmpty()) {
             assert model.getFilteredItemList().size() == 1;
-            String itemName = model.getFilteredItemList().stream().findFirst().get().getName();
-            model.updateFilteredRecipeList(recipe -> recipe.getProductName().equals(itemName));
+            model.updateFilteredRecipeList(recipe -> recipe.getProductName().equals(predicate.getKeyword()));
             return new CommandResult(MESSAGE_SUCCESS, false, false,
                     DisplayedInventoryType.DETAILED_ITEM);
         } else {
