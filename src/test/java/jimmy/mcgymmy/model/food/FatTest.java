@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 public class FatTest {
 
     @Test
+    public void newDefault_works() {
+        // If it doesnt, the thrown runtime exception will break this test.
+        Fat.newDefault();
+    }
+
+    @Test
     public void fat_isValid_correct() {
         // null fat
         assertThrows(NullPointerException.class, () -> Fat.isValid(null));

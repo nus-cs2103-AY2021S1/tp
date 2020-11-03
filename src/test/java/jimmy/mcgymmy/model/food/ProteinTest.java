@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 public class ProteinTest {
 
     @Test
+    public void newDefault_works() {
+        // If it doesnt, the thrown runtime exception will break this test.
+        Protein.newDefault();
+    }
+
+    @Test
     public void protein_isValid_correct() {
         // null protein number
         assertThrows(NullPointerException.class, () -> Protein.isValid(null));

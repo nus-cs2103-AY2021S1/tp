@@ -15,6 +15,7 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Options;
 
 import jimmy.mcgymmy.commons.core.index.Index;
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.FileUtil;
 import jimmy.mcgymmy.commons.util.StringUtil;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
@@ -58,7 +59,11 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        try {
+            return new Name(trimmedName);
+        } catch (IllegalValueException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**
@@ -89,7 +94,11 @@ public class ParserUtil {
      */
     public static Protein parseProtein(String protein) throws ParseException {
         int proteinValue = getNutrientValue(protein, Protein.MESSAGE_CONSTRAINTS);
-        return new Protein(proteinValue);
+        try {
+            return new Protein(proteinValue);
+        } catch (IllegalValueException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
 
@@ -101,7 +110,11 @@ public class ParserUtil {
      */
     public static Carbohydrate parseCarb(String carb) throws ParseException {
         int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
-        return new Carbohydrate(carbValue);
+        try {
+            return new Carbohydrate(carbValue);
+        } catch (IllegalValueException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**
@@ -112,7 +125,11 @@ public class ParserUtil {
      */
     public static Fat parseFat(String fat) throws ParseException {
         int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
-        return new Fat(fatValue);
+        try {
+            return new Fat(fatValue);
+        } catch (IllegalValueException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**
@@ -126,7 +143,7 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         try {
             return new Tag(trimmedTag);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalValueException e) {
             throw new ParseException(e.getMessage());
         }
     }
@@ -207,7 +224,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         try {
             return new Date(trimmedDate);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalValueException e) {
             throw new ParseException(e.getMessage());
         }
     }

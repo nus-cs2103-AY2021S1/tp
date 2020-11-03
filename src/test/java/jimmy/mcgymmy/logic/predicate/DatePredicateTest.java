@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.food.Name;
 import jimmy.mcgymmy.testutil.FoodBuilder;
@@ -38,7 +39,7 @@ public class DatePredicateTest {
     }
 
     @Test
-    public void test_datesEqualMultipleFormats_returnsTrue() throws ParseException {
+    public void test_datesEqualMultipleFormats_returnsTrue() throws IllegalValueException {
 
         // Same format
         DatePredicate predicate = new DatePredicate("24-10-2020");
@@ -50,7 +51,7 @@ public class DatePredicateTest {
     }
 
     @Test
-    public void test_datesNotEqual_returnsFalse() throws ParseException {
+    public void test_datesNotEqual_returnsFalse() throws IllegalValueException {
 
         DatePredicate predicate = new DatePredicate("24-10-2020");
         assertFalse(predicate.test(new FoodBuilder().withName(new Name("Apple")).withDate("24-10-2019").build()));
