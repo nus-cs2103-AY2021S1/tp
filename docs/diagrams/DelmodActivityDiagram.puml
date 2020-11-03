@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes Delmod command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([module exists])
+    :Delete specified module;
+    :Update GUI to show new module list and success message;
+else ([module does not exists])
+    :Show error message;
+endif
+stop
+@enduml

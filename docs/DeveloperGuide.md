@@ -192,6 +192,10 @@ The following sequence diagram shows how the deleting of the module works:
 
 ![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![DelmodActivityDiagram](images/DelmodActivityDiagram.png)
+
 #### Design consideration:
 
 ##### Aspect: What the delmod command deletes by
@@ -203,7 +207,7 @@ The following sequence diagram shows how the deleting of the module works:
   * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
   * Cons : Less intuitive.
   
-  Deleting a module from the module list
+####  Deleting a module from the module list
   
   a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
   
