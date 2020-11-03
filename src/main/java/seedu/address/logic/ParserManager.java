@@ -20,21 +20,13 @@ public class ParserManager {
 
     /**
      * Creates a Container the holds all the medium parsers.
-     * @param moduleListParser parses module related commands.
-     * @param todoListParser parses task related commands.
-     * @param contactListParser parses contact related commands.
-     * @param gradeTrackerParser parses grade tracker related commands.
      */
-    public ParserManager(ModuleListParser moduleListParser,
-                         TodoListParser todoListParser,
-                         ContactListParser contactListParser,
-                         GradeTrackerParser gradeTrackerParser,
-                         SchedulerParser schedulerParser) {
-        this.contactListParser = contactListParser;
-        this.todoListParser = todoListParser;
-        this.moduleListParser = moduleListParser;
-        this.gradeTrackerParser = gradeTrackerParser;
-        this.schedulerParser = schedulerParser;
+    public ParserManager() {
+        moduleListParser = new ModuleListParser();
+        contactListParser = new ContactListParser();
+        todoListParser = new TodoListParser();
+        gradeTrackerParser = new GradeTrackerParser();
+        schedulerParser = new SchedulerParser();
     }
 
     /**

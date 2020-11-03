@@ -37,12 +37,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ModuleListParser moduleListParser;
-    private final ContactListParser contactListParser;
-    private final TodoListParser todoListParser;
-    private final GradeTrackerParser gradeTrackerParser;
     private final ParserManager parserManager;
-    private final SchedulerParser schedulerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -50,13 +45,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        moduleListParser = new ModuleListParser();
-        contactListParser = new ContactListParser();
-        todoListParser = new TodoListParser();
-        gradeTrackerParser = new GradeTrackerParser();
-        schedulerParser = new SchedulerParser();
-        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser,
-                gradeTrackerParser, schedulerParser);
+        parserManager = new ParserManager();
     }
 
     @Override

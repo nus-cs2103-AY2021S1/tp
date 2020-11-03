@@ -1,21 +1,21 @@
 package seedu.address.model;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.event.EventTime;
-import seedu.address.testutil.EventUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.EventUtil.VALID_EVENT;
 
 import java.util.Collections;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import seedu.address.model.event.Event;
+import seedu.address.testutil.EventUtil;
+
+
 
 public class EventListTest {
     private static final EventList eventList = new EventList();
-    private static final EventName VALID_NAME = EventUtil.makeEventName("Test");
-    private static final EventTime VALID_DATE = EventUtil.makeEventTime("1-2-2020 1200");
-    private static final Event VALID_EVENT = EventUtil.makeEvent(VALID_NAME, VALID_DATE);
 
     @Test
     public void constructor() {

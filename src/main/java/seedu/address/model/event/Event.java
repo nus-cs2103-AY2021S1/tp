@@ -7,6 +7,8 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 
+import static java.util.Objects.requireNonNull;
+
 
 /**
  * Represents an Event to that keep tracks of the start and end time and date.
@@ -24,6 +26,7 @@ public class Event {
      */
     public Event(EventName name, EventTime time) {
         assert(name != null);
+        requireNonNull(time);
         this.name = name;
         this.time = time;
     }
