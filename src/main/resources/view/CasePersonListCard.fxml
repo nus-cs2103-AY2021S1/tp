@@ -26,7 +26,12 @@
                         </minWidth>
                     </Label>
                     <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-                    <Label fx:id="gender" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+                    <Label fx:id="gender" text="\$first" styleClass="cell_big_label" wrapText="true">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
                 </HBox>
                 <Label fx:id="phone" text="\$first" styleClass="cell_big_label" wrapText="true"/>
                 <Label fx:id="email" text="\$first" styleClass="cell_big_label" wrapText="true"/>
