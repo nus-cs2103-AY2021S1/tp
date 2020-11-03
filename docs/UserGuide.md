@@ -139,9 +139,10 @@ Examples:
 
 Steps for adding a flashcard with diagrams:
 
-![filedirectory](images/ug/ug_add_step1.png)
+Root folder containing the jar file        |  Image directory
+:-------------------------:|:-------------------------:
+![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-![filedirectory](images/ug/ug_add_step1.1.PNG)
 
 Step 1: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
 
