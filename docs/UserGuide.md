@@ -448,7 +448,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
     * It follows the format of `dd/MM/yyyy`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
     * Only dates before and *up till and including today* are accepted.
-* `VISIT_DATE`is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
+* `VISIT_DATE` is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
 
 **Example**: You want to add a visitation log to the 1st patient on the list.
 
@@ -475,11 +475,19 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 Display a new window to edit the visitation log for a specified patient.
 
-Format: `editvisit INDEX i/VISIT_INDEX`
+Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list.
 * `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
 * Both indexes **must be a positive number** 1, 2, 3, …​
+* `VISIT_DATE` refers to the new date of visitation that you wish to amend to.
+    * It follows the format of `dd/MM/yyyy`.
+    * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
+    * Only dates before and *up till and including today* are accepted.
+* `VISIT_DATE` is optional. If no visit date is being specified in the command, then the date of the visitation will remain the same.
+
+(The date "01/01/1900" is reserved for internal usage, please do not use this date!)
+
 
 **Example**: You want to edit the 1st visitation log belonging to the 2nd patient on the list.
 
@@ -541,11 +549,11 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 
 Example: You want to add an appointment with the first patient on the list.
 
-Step 1: Input `addappt 6 st/29/12/2020 16:00 d/120` into the command box and press Enter.
+**Step 1**: Input `addappt 6 st/29/12/2020 16:00 d/120` into the command box and press Enter.
 
-Step 2: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
+**Step 2**: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
-Step 3: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
+**Step 3**: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -577,11 +585,11 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 
 Example: You want to reschedule the first appointment in the appointment list.
 
-Step 1: Input `editappt 1 st/29/12/2020 17:00 d/120` into the command box and press Enter.
+**Step 1**: Input `editappt 1 st/29/12/2020 17:00 d/120` into the command box and press Enter.
 
-Step 2: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
+**Step 2**: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
-Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
+**Step 3**: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
@@ -611,9 +619,9 @@ Format: `deleteappt INDEX`
 
 Example: You want to delete your next upcoming appointment as your patient could not make it for the appointment.
 
-Step 1: Input `deleteappt 1` and press Enter.
+**Step 1**: Input `deleteappt 1` and press Enter.
 
-Step 2: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
+**Step 2**: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>

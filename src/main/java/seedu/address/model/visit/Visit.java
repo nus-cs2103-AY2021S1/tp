@@ -83,6 +83,16 @@ public class Visit implements Comparable<Visit> {
     }
 
     /**
+     * Sets visit date.
+     */
+    public void setVisitDate(String visitDate) {
+        if (isValidVisitDate(visitDate)) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            this.visitDate = LocalDate.parse(visitDate, formatter);
+        }
+    }
+
+    /**
      * Validates visit date in dd/MM/yyyy format.
      * Visit date must occur before current local machine date.
      */
