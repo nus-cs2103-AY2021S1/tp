@@ -69,7 +69,7 @@ public class JsonAdaptedTutorialGroup {
 
         if (tutorialGroupId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleId.class.getSimpleName()));
+                    TutorialGroupId.class.getSimpleName()));
         }
         if (!TutorialGroupId.isValidTutorialGroupId(tutorialGroupId)) {
             throw new IllegalValueException(TutorialGroupId.MESSAGE_CONSTRAINTS);
