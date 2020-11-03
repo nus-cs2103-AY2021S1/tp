@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
@@ -28,7 +27,9 @@ public class ArchiveCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model,
+                String.format(ArchiveCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_ARCHIVE,
+                model.getFilteredPersonList().size()));
     }
 
     @Test
@@ -42,7 +43,9 @@ public class ArchiveCommandTest {
 
         ArchiveCommand archiveCommand = new ArchiveCommand(outOfBoundIndex);
 
-        assertCommandFailure(archiveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(archiveCommand, model,
+                String.format(ArchiveCommand.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_ARCHIVE,
+                model.getFilteredPersonList().size()));
     }
 
     @Test

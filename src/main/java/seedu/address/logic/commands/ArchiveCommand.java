@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -19,12 +18,18 @@ public class ArchiveCommand extends Command {
     public static final String COMMAND_WORD = "c-archive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Archives the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Archives the employee identified by the index number used in the displayed employee list.\n"
+            + "Parameter: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Person: %1$s";
-    public static final String MESSAGE_PERSON_ALREADY_ARCHIVED = "This person has already been archived!";
+    public static final String MESSAGE_ARCHIVE_PERSON_SUCCESS = "Archived Employee: %1$s";
+    public static final String MESSAGE_PERSON_ALREADY_ARCHIVED = "This employee has already been archived!"
+            + "\nOnly employees in active list can be archived."
+            + "\nTo view all active(unarchived) employees, use command 'c-active-list'.";
+
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_ARCHIVE = "The employee index provided is "
+            + "invalid."
+            + "\nThere are only %1$s employees displayed in the employee directory pane.";
 
     private final Index targetIndex;
 
@@ -45,7 +50,8 @@ public class ArchiveCommand extends Command {
 
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX_ARCHIVE,
+                    model.getFilteredPersonList().size()));
         }
 
         Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
