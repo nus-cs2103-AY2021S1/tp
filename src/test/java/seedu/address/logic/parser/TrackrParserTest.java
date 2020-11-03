@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAttendanceCommand;
@@ -90,7 +89,8 @@ public class TrackrParserTest {
     @Test
     public void parseCommand_addAttendance() throws Exception {
         Attendance attendance = new AttendanceBuilder().build();
-        AddAttendanceCommand command = (AddAttendanceCommand) parser.parseCommand(AttendanceUtil.getAddAttendanceCommand(attendance));
+        AddAttendanceCommand command =
+            (AddAttendanceCommand) parser.parseCommand(AttendanceUtil.getAddAttendanceCommand(attendance));
         assertEquals(new AddAttendanceCommand(INDEX_FIRST_PERSON, new int[]{2}), command);
     }
 
@@ -238,8 +238,8 @@ public class TrackrParserTest {
 
     @Test
     public void attendanceBelow_emptyIndex_throwsParseException() {
-        assertThrows(ParseException.class, "Invalid command format! \n" +
-                AttendanceBelowCommand.MESSAGE_USAGE, () -> parser.parseCommand(
+        assertThrows(ParseException.class, "Invalid command format! \n"
+                + AttendanceBelowCommand.MESSAGE_USAGE, () -> parser.parseCommand(
                 AttendanceBelowCommand.COMMAND_WORD));
     }
 
@@ -251,8 +251,8 @@ public class TrackrParserTest {
 
     @Test
     public void participationBelow_emptyIndex_throwsParseException() {
-        assertThrows(ParseException.class, "Invalid command format! \n" +
-                ParticipationBelowCommand.MESSAGE_USAGE, () -> parser.parseCommand(
+        assertThrows(ParseException.class, "Invalid command format! \n"
+                + ParticipationBelowCommand.MESSAGE_USAGE, () -> parser.parseCommand(
                 ParticipationBelowCommand.COMMAND_WORD));
     }
 

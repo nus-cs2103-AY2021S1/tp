@@ -11,6 +11,10 @@ public class AttendanceBuilder {
     public AttendanceBuilder() {
     }
 
+    /**
+     * Builds and returns a Attendance with the specified attribute values.
+     * @return Predefined Attendance object
+     */
     public Attendance build() {
         Attendance attendance = new Attendance();
         attendance.addAttendance(DEFAULT_ATTENDANCE_WEEK);

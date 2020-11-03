@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
 import seedu.address.logic.commands.AddAttendanceCommand;
-import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.model.student.Attendance;
 
 public class AttendanceUtil {
