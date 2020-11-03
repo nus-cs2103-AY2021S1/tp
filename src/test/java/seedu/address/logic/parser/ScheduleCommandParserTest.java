@@ -22,14 +22,14 @@ public class ScheduleCommandParserTest {
         ScheduleViewMode viewMode = ScheduleViewMode.WEEKLY;
         LocalDate viewDate = LocalDate.of(2020, 11, 5);
 
-        assertParseSuccess(parser, " mode/weekly date/05/11/2020",
+        assertParseSuccess(parser, " m/weekly d/05/11/2020",
                 new ScheduleViewCommand(viewMode, viewDate));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         // date missing
-        assertParseFailure(parser, " mode/weekly", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " m/weekly", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ScheduleViewCommand.MESSAGE_USAGE));
 
         // both mode and date missing
@@ -37,7 +37,7 @@ public class ScheduleCommandParserTest {
                 ScheduleViewCommand.MESSAGE_USAGE));
 
         // mode missing
-        assertParseFailure(parser, " date/2020-11-05", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " d/2020-11-05", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 ScheduleViewCommand.MESSAGE_USAGE));
 
     }
@@ -45,11 +45,11 @@ public class ScheduleCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid mode
-        assertParseFailure(parser, " mode/123 date/05/11/2020",
+        assertParseFailure(parser, " m/123 d/05/11/2020",
                 ScheduleViewCommand.MESSAGE_INVALID_VIEW_MODE);
 
         //invalid date
-        assertParseFailure(parser, " mode/daily date/1234",
+        assertParseFailure(parser, " m/daily d/1234",
                 ScheduleViewCommand.MESSAGE_INVALID_DATE_FORMAT);
     }
 
