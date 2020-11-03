@@ -58,8 +58,8 @@ public class FoodCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         imageView.setImage(new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath())));
-        imageView.setFitHeight(150);
-        imageView.setFitWidth(150);
+        imageView.setFitHeight(120);
+        imageView.setFitWidth(120);
     }
 
     @Override
