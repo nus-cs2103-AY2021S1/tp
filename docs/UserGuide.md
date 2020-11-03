@@ -3,9 +3,9 @@
 Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
 
 
-This User Guide explains how you can use Bamboo to manage your personal finances.
+This User Guide explains how you can use Bamboo to manage your personal finances. Let's grow our wealth! :bamboo:
 
-Refer to Quick Start for a short tutorial on how to set up Bamboo on your system, and refer to Features for a full walk-through of Bamboo's features.
+Refer to [Quick Start](#QuickStart) for a short tutorial on how to set up Bamboo on your system, and refer to [Features](#Features) for a full walk-through of Bamboo's features.
 
 ---
 
@@ -26,7 +26,7 @@ Refer to Quick Start for a short tutorial on how to set up Bamboo on your system
 5. Type in commands with arguements in the command input box above, and press `Enter` to execute them.
 6. Use the `help` command to find out the list of commands available, or we'd recommend checking out the 
 [Features](#Features) section for a comprehensive guide!
-7. Happy saving!  
+7. Let's grow our wealth together!
 
 ## Command Format Guide
 <div markdown="span" class="alert alert-primary">
@@ -127,7 +127,59 @@ This section explains the format of commands in this User Guide.
 
 ## Usage <a name="Usage"></a>
 For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
-### Commands
+### Fields/Glossary
+1. **expense**
+    - An expense is a cost incurred in or required for something. Every entry in **Bamboo** is an expense.
+    - Bamboo treats 2 expenses as identical if they have the same **Description**, **Amount**, and **Date**.
+    - Restrictions: Bamboo cannot store duplicate expenses i.e. 2 expenses are identical according to the criterion above.  
+    - Refer to [Commands](#commands) to see how to manage expenses using Bamboo.
+
+1. **description**
+    - Description of expense.
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
+    - Prefix: `-d`
+    - Format: `-d <description>`
+    - Restrictions: Descriptions can be up to 200 characters long.
+    - Example: `-d lunch`, `-d dinner`
+
+1. **amount**
+    - Amount of money spent in expense.
+    - **NOTE**: Amounts provided must be between 0 and 10e<sup>9</sup>    
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort), [topup](#topup)
+    - Prefix: `-$`
+    - Format: `-$<dollars>[.<cents>]`
+    - Restrictions: Value provided must be between 0 and 10e<sup>9</sup>, inclusive.
+    - Example: `-$2`, `-$1.50`
+
+1. **date**
+    - Date which expense was made.
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
+    - Prefix: `-@`
+    - Format: `-@<dd-MM-yyyy>`
+    - Restrictions: Date must be a valid calendar date.
+    - Example: `-@01-07-2020`, `-@02-07-2020`
+
+1. **tag** <a name="tag"></a>
+    - Tags expense under a category. (synonymous with Category)
+    - Each tag (or category) is associated with 1 budget, and vice versa.
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [switch](#switch), [addCat](#addCat), [deleteCat](#deleteCat), [topup](#topup)
+    - Format: `t/<category>`
+    - Example: `edit t/Food`, `find -d Coffee t/Food`
+
+1. **remark** <a name="remark"></a>
+    - Additional information about an expense.
+    - Works only in complement with [remark](#remark)
+    - Format: `-r <remark>`
+    - Restrictions: Remarks can be up to 200 characters long.
+    - Example: `edit t/Food`, `find -d Coffee t/Food`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** Prefixes function with or without whitespace after. For example, `d dinner` and `-ddinner` will yield the same results.
+
+</div>
+
+### Commands  <a name="commands"></a>
 1. **Add an Expense `add`** <a name="add"></a>
     - Order of arguments is flexible.
     - If multiple fields of the same type are specified, only the last one is processed.
@@ -232,7 +284,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Expenses that fits the criteria will be presented as another list.
     - For Description, keywords are not case-sensitive, and partial word matching is supported.
     - Date input should be in the format dd-MM-yyyy.
-    - Budget Balance shown is overall budget balance (see [list](#list))
+    - Budget Balance will not be shown in this view.
     - Format: `find [-d <description>] [-@<date>]`
     - Example: `find -d Phone`, `find -d lunch -@01-07-2020`
 
@@ -245,6 +297,7 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
 
 1. **Add a Remark `remark`** <a name="remark"></a>
     - Adds a remark to an existing expense.
+    - Note: Remarks can be up to 200 characters long.
     - Format: `remark <index> -r <remark>`
     - Example: `remark 11 -r Pepper Lunch`
 
@@ -292,10 +345,13 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
         - The 2 commands specified cannot be the same.
         - New command cannot be a keyword that is already being used.
         - Original command must exist.
-        
-    NOTE: (after alias a b -> a is no longer alias for anything and has nothing to do with b)
     - Format: `alias <original_command> <new_command>`
     - Example: `alias add spent`
+    <div markdown="span" class="alert alert-primary">
+    
+    :bulb: **Note**: Only one user-provided alias can be mapped to an original alias at any point in time. If a new alias is provided for a commnad, the old user-alias will be un-mapped.
+
+    </div>
     
     ![alias_example](./images/ug_example/alias_example.PNG)
     _Map "spent" to "add" command_
@@ -318,42 +374,6 @@ For the purposes of Bamboo, the terms `Tag` and `Category` are interchangeable.
     - Example: `clear`
     
     ![clear_example](images/ug_example/clear_example.PNG)
-
-
-### Fields
-1. **description**
-    - Description of expense.
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
-    - Prefix: `-d`
-    - Format: `-d <description>`
-    - Example: `-d lunch`, `-d dinner`
-
-1. **amount**
-    - Amount of money spent in expense.
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort), [topup](#topup)
-    - Prefix: `-$`
-    - Format: `-$<amount>`
-    - Example: `-$2`, `-$1.50`
-
-1. **date**
-    - Date which expense was made.
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
-    - Prefix: `-@`
-    - Format: `-@<dd-MM-yyyy>`
-    - Example: `-@01-07-2020`, `-@02-07-2020`
-
-1. **tag** <a name="tag"></a>
-    - Tags expense under a category.
-    - Each tag (or category) is associated with 1 budget, and vice versa.
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [switch](#switch), [addCat](#addCat), [deleteCat](#deleteCat), [topup](#topup)
-    - Format: `t/<category>`
-    - Example: `edit t/Food`, `find -d Coffee t/Food`
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Note:** Prefixes function with or without whitespace after. For example, `d dinner` and `-ddinner` will yield the same results.
-
-</div>
 
 ## Command Summary <a name="CommandSummary"></a>
 
