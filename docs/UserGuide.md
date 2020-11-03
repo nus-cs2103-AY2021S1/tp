@@ -124,11 +124,6 @@ Specifically, this section covers:
 Figure 1.2: <i>The Recipe View Panel of ChopChop.</i>
 </div>
 
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
-Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
-</div>
-
 <a name="CommandBox"></a>
 ### 4.1&ensp;Command Box
 {:.no_toc}
@@ -203,6 +198,11 @@ ChopChop is able to show you your ingredients in the form of tiles, as shown in 
 4. The `Ingredient Name` of the ingredient.
 5. The `Tags` associated with the ingredient.
 
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/ingredient_panel_description.png" width="95%" /> <br />
+Figure 1.3: <i>The Ingredient View Panel of ChopChop.</i>
+</div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_display_description.png" width="95%" /> <br />
@@ -399,10 +399,24 @@ Redoes the last redoable command. All undoable commands (as described [above](#U
 <a name="ListRecommendationCommand"></a>
 #### 5.3.5&ensp;Listing Recommendations — **`list`**`recommendations`
 
-This command allows you to switch to the recommendations pane, to view recipe recommendations.
+This command allows you to switch to the recommendations pane, to view recipe recommendations. There are currently main types of recommendations that ChopChop will make:
 
-<div style="background-color: red">
-<h3 style="color: white; text-align: center">TODO ADD SCREENSHOT</h3>
+1. Recipes that only use ingredients you have
+2. Recipes that use ingredients that are about to expire
+
+In the second case, only ingredients that expire within the next week will be taken into account.
+
+**Usage**: `list recommendations`
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** For convenience, you can use either `list recommendations` or `list recommendation`.
+</div>
+
+In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week, so it recommends the Pancake recipe, which uses milk. The rest of the recipes displayed all use ingredients that you have in stock:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/list_recommendations.png" width="75%" /> <br />
+Figure 3: <i>The recommendations view</i>
 </div>
 
 
@@ -459,7 +473,7 @@ This command shows a list of all recipes in ChopChop. You can use this to switch
 Executing this command simply brings you back to the recipe list view:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/list_recipe.png" width="75%" /> <br />
+<img src="images/ug/list_recipes.png" width="75%" /> <br />
 Figure 4: <i>The recipe list view</i>
 </div>
 
@@ -848,7 +862,7 @@ This command shows a list of all recipes in ChopChop. As with the `list recipes`
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/list_ingredient.png" width="75%" /> <br />
+<img src="images/ug/list_ingredients.png" width="75%" /> <br />
 Figure 10: <i>The ingredient list view</i>
 </div>
 
