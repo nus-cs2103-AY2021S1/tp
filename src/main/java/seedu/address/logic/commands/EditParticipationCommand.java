@@ -69,7 +69,7 @@ public class EditParticipationCommand extends Command {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(
                 MESSAGE_EDIT_PARTICIPATION_SUCCESS,
-                studentWithEditedParticipation.getName().fullName,
+                studentWithEditedParticipation.getName().toString(),
                 studentWithEditedParticipation.getAttendance().getParticipationScoreAsString(),
                 studentWithEditedParticipation.getAttendance().getMaxParticipationScore())
         );
