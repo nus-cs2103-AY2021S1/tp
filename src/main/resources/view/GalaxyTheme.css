@@ -1,11 +1,12 @@
 /*----------background----------*/
 .root {
     -fx-background-image: url("../images/background_galaxy_theme.jpg");
+    -fx-background-size: cover;
 }
 
 /*----------pane----------*/
 .stack-pane {
-     -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .split-pane:horizontal .split-pane-divider {
@@ -18,31 +19,20 @@
 }
 
 .split-pane .pane-with-border {
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
 }
 
 .scroll-pane {
-       -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .scroll-pane .viewport {
-       -fx-background-color: transparent;
-}
-
-.titled-pane {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
     -fx-background-color: transparent;
 }
 
-.titled-pane > .title {
-    -fx-background-color: rgba(0, 0, 0, 0.6);
-}
-
-.titled-pane > *.content{
+.corner {
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
 }
 
 /*----------scroll bar----------*/
@@ -51,7 +41,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: rgba(0, 0, 0, 0.2);
+    -fx-background-color: rgba(0, 0, 0, 0.4);
 }
 
 /*----------menu----------*/
@@ -81,15 +71,16 @@
 
 /*----------command box----------*/
 #commandTextField {
-    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-background-color: rgba(0, 0, 0, 0.3);
     -fx-border-color: transparent;
     -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 14px;
     -fx-text-fill: white;
 }
 
 /*----------text area----------*/
 .text-area {
-    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-background-color: rgba(0, 0, 0, 0.2);
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 16px;
     -fx-text-fill: white;
@@ -167,4 +158,32 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 16px;
     -fx-text-fill: grey;
+}
+
+/*----------file explorer----------*/
+.explorer-pane .current-path-box {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+.explorer-pane .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+.file-card {
+    -fx-background-color: transparent;
+}
+
+.file-card .grid-pane {
+    -fx-background-color: transparent;
+}
+
+/*----------label box----------*/
+.label-box {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 11px;
+    -fx-background-color: #568497;
+    -fx-background-radius: 5;
+    -fx-opacity: 0.9;
 }
