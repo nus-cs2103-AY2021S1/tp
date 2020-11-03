@@ -416,6 +416,10 @@
     -fx-font-size: 11;
 }
 
+.leaves_in_card {
+    -fx-padding: 5 0;
+}
+
 #sideBar {
     -fx-background-color: #e0e8f9;
 }
