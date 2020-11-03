@@ -7,15 +7,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.ingredientcommands.SetCommand;
-import seedu.address.logic.commands.ingredientcommands.SetCommand.SetIngredientDescriptor;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetCommand.SetIngredientDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.IngredientName;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
  */
-public class SetCommandParser implements Parser<SetCommand> {
+public class IngredientSetCommandParser implements Parser<IngredientSetCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
@@ -23,29 +23,29 @@ public class SetCommandParser implements Parser<SetCommand> {
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public SetCommand parse(String args) throws ParseException {
+    public IngredientSetCommand parse(String args) throws ParseException {
 
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INGREDIENT, PREFIX_AMOUNT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_INGREDIENT, PREFIX_AMOUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IngredientSetCommand.MESSAGE_USAGE));
         }
 
         IngredientName ingredientToSet = ParserUtil.parseIngredientName(argMultimap.getValue(PREFIX_INGREDIENT).get());
 
-        SetCommand.SetIngredientDescriptor descriptor = new SetIngredientDescriptor();
+        IngredientSetCommand.SetIngredientDescriptor descriptor = new SetIngredientDescriptor();
 
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             descriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
 
         if (!descriptor.isAnyFieldEdited()) {
-            throw new ParseException(SetCommand.MESSAGE_NO_CHANGE);
+            throw new ParseException(IngredientSetCommand.MESSAGE_NO_CHANGE);
         }
 
-        return new SetCommand(ingredientToSet, descriptor);
+        return new IngredientSetCommand(ingredientToSet, descriptor);
     }
 
     /**

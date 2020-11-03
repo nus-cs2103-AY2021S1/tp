@@ -17,7 +17,7 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
 
-class SetDefaultCommandTest {
+class IngredientSetDefaultCommandTest {
 
     private static final IngredientBook stubBook = new IngredientBook();
     private static final IngredientBook stubBook2 = new IngredientBook();
@@ -52,7 +52,8 @@ class SetDefaultCommandTest {
         ReadOnlyIngredientBook defaultReadOnlyIngredientBook = stubBook;
         expectedModel.setIngredientBook(defaultReadOnlyIngredientBook);
 
-        assertCommandSuccess(new SetDefaultCommand(), model, SetDefaultCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new IngredientSetDefaultCommand(), model,
+                IngredientSetDefaultCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -101,7 +102,8 @@ class SetDefaultCommandTest {
 
         expectedModel.setIngredientBook(defaultReadOnlyIngredientBook);
 
-        assertCommandSuccess(new SetDefaultCommand(), model, SetDefaultCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new IngredientSetDefaultCommand(), model,
+                IngredientSetDefaultCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

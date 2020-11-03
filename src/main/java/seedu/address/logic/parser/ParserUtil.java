@@ -24,9 +24,17 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MINIMUM_AMOUNT_AS_STRING = "0";
+    public static final String NEGATIVE_SIGN = "-";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.";
+    public static final int MAXIMUM_AMOUNT = 999;
+    public static final int MINIMUM_AMOUNT = 0;
+    public static final String MESSAGE_EXCEED_MAXIMUM_AMOUNT = "The amount entered is greater than "
+            + "999 KG / L, which is the maximum capacity for any kind of ingredient for one stall.\n"
+            + "Please double check the current amount and enter the actual current amount !";
     public static final String MESSAGE_INVALID_INGREDIENT_NAME = "The ingredient is not found, it "
-            + "has to be chosen from : " + Arrays.toString(IngredientName.INGREDIENTS);
+            + "has to be chosen from : " + Arrays.toString(IngredientName.INGREDIENTS)
+            + "\nPlease note that ingredient names are CASE-SENSITIVE to ensure consistency.";
     public static final String MESSAGE_INVALID_NUMBER_SOLD = "The entered number of drinks sold should be a "
             + "non-negative integer.";
 
@@ -123,8 +131,15 @@ public class ParserUtil {
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedAmount) && !trimmedAmount.equals("0")) {
+        if (Integer.parseInt(trimmedAmount) == MINIMUM_AMOUNT
+            && !trimmedAmount.contains(NEGATIVE_SIGN)) {
+            return new Amount(MINIMUM_AMOUNT_AS_STRING);
+        }
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedAmount)) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
+        }
+        if (Integer.parseInt(trimmedAmount) > MAXIMUM_AMOUNT) {
+            throw new ParseException(MESSAGE_EXCEED_MAXIMUM_AMOUNT);
         }
         return new Amount(trimmedAmount);
     }
