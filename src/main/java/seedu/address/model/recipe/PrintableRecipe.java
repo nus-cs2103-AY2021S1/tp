@@ -2,7 +2,6 @@ package seedu.address.model.recipe;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.item.Item;
-import seedu.address.ui.DisplayedInventoryType;
 
 /**
  * Represents a recipe ready for display in the Inventoryinator.
@@ -10,7 +9,7 @@ import seedu.address.ui.DisplayedInventoryType;
  */
 public class PrintableRecipe extends Recipe {
 
-    private String printableIngredientList;
+    private final String printableIngredientList;
     /* Indicates if index should be altered when displayed. */
     private boolean offset;
 
@@ -40,10 +39,5 @@ public class PrintableRecipe extends Recipe {
 
     public boolean getOffset() {
         return offset;
-    }
-
-    @Override
-    public DisplayedInventoryType getType() {
-        return DisplayedInventoryType.RECIPES;
     }
 }
