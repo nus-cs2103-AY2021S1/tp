@@ -137,19 +137,19 @@ Examples:
 * `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
 * `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
-Steps for adding a flashcard with diagrams:
+**Steps for adding a flashcard with diagrams**:
 
-Step 1: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
+**Step 1**: Locate the relative file path of the image file. In this example, our file path is `images/classDiagramExample1.png` 
 
 Root folder containing the jar file        |  Image directory
 :-------------------------:|:-------------------------:
 ![filedirectory](images/ug/ug_add_step1.png) |  ![filedirectory](images/ug/ug_add_step1.1.PNG)
 
-Step 2: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`.
+**Step 2**: Type the command `add q/This is an example of a class diagram a/True d/image/classDiagramExample1.png`. Remember to include the file extension in `DIAGRAM`.
 
 ![filedirectory](images/ug/ug_add_step2.png)
 
-Step 3: The flashcard is added to the list.
+**Step 3**: The flashcard is added to the list.
 
 ![filedirectory](images/ug/ug_add_step3.png)
 
@@ -191,17 +191,17 @@ Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 * `edit 3 n/Important question! r/`
 
-Steps for editing a flashcard's category and rating:
+**Steps for editing a flashcard's category and rating**:
 
-Step 1: Locate the flashcard you wish to edit. In this example, we want to edit the flashcard at index 2.
+**Step 1**: Locate the flashcard you wish to edit. In this example, we want to edit the flashcard at index 2.
 
 ![filedirectory](images/ug/ug_edit_step1.PNG)
 
-Step 2: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`.
+**Step 2**: We want to edit the category of the flashcard to Trivial and rating to 1. Type the command `edit 2 c/Trivial r/1`.
 
 ![filedirectory](images/ug/ug_edit_step2.PNG)
 
-Step 3: The flashcard's category and rating are edited to `Trivial` and `1` respectively.
+**Step 3**: The flashcard's category and rating are edited to `Trivial` and `1` respectively.
 
 ![filedirectory](images/ug/ug_edit_step3.PNG)
 
@@ -223,13 +223,13 @@ Examples:
 *  `filter t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 
-Steps for filtering for a flashcard based on category and tag.
+**Steps for filtering for a flashcard based on category and tag**:
 
-Step 1: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`.
+**Step 1**: We want to filter for a flashcard which has a Trivial category and contains the preloaded tag. Type the command `filter c/Trivial t/preloaded`.
 
 ![filedirectory](images/ug/ug_filter_step1.PNG)
 
-Step 2: The flashcard with the category `Trivial` and tag field `preloaded` is shown.
+**Step 2**: The flashcard with the category `Trivial` and tag field `preloaded` is shown.
 
 ![filedirectory](images/ug/ug_filter_step2.PNG)
 
@@ -305,17 +305,17 @@ Format: `review`
 The review and success frequency of a flashcard is not affected by review mode.
 </div>
 
-Steps for entering review mode.
+**Steps for entering review mode**:
 
-Step 1: We want to enter review mode to review our flashcards. Type the command `review`.
+**Step 1**: We want to enter review mode to review our flashcards. Type the command `review`.
 
 ![filedirectory](images/ug/ug_review_step1.PNG)
 
-Step 2: We are brought to the review mode. The instructions on how to navigate review mode will be shown at the top.
+**Step 2**: We are brought to the review mode. The instructions on how to navigate review mode will be shown at the top.
 
 ![filedirectory](images/ug/ug_review_step2.PNG)
 
-Step 3: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, the answer of the flashcard is shown.
+**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, the answer of the flashcard is shown.
 
 ![filedirectory](images/ug/ug_review_step3.PNG)
 
@@ -341,21 +341,21 @@ Format: `quiz`
 <div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
 
-Steps for entering quiz mode.
+**Steps for entering quiz mode**:
 
-Step 1: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`.
+**Step 1**: We want to enter quiz mode to test ourselves on the current list of flashcards. Type the command `quiz`.
 
 ![filedirectory](images/ug/ug_quiz_step1.PNG)
 
-Step 2: We are brought to the quiz mode. The instructions on how to navigate quiz mode will be shown at the top.
+**Step 2**: We are brought to the quiz mode. The instructions on how to navigate quiz mode will be shown at the top.
 
 ![filedirectory](images/ug/ug_quiz_step2.PNG)
 
-Step 3: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, we will be prompted if we got the answer correct.
+**Step 3**: In this example, we will demonstrate the behaviour of the `↓ key`. Upon clicking the `↓ key`, we will be prompted if we got the answer correct.
 
 ![filedirectory](images/ug/ug_quiz_step3.PNG)
 
-Step 4: We got this answer correct so we will press `y`. This will automatically bring us to the next flashcard.
+**Step 4**: We got this answer correct so we will press `y`. This will automatically bring us to the next flashcard.
 
 ![filedirectory](images/ug/ug_quiz_step4.PNG)
 
@@ -390,21 +390,21 @@ Format: `view INDEX [-a]`
 flashcard was not modified/deleted.
 </div>
 
-Steps for viewing a specific flashcard.
+**Steps for viewing a specific flashcard**:
 
-Step 1: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`.
+**Step 1**: Locate the flashcard you wish to view. In this example, we want to view the flashcard at index 3. Type the command `view 3`.
 
 ![filedirectory](images/ug/ug_view_step1.PNG)
 
-Step 2: We will be presented with a "snapshot" of the flashcard at index 3 in the view pane.
+**Step 2**: We will be presented with a "snapshot" of the flashcard at index 3 in the view pane.
 
 ![filedirectory](images/ug/ug_view_step2.PNG)
 
-Step 3: To view the answer and notes(if applicable) of the flashcard on the view pane. Type the command `view 3 -a`.
+**Step 3**: To view the answer and notes(if applicable) of the flashcard on the view pane. Type the command `view 3 -a`.
 
 ![filedirectory](images/ug/ug_view_step3.PNG)
 
-Step 4: The answer of the flashcard is now displayed on the view pane.
+**Step 4**: The answer of the flashcard is now displayed on the view pane.
 
 ![filedirectory](images/ug/ug_view_step4.PNG)
 
@@ -433,13 +433,13 @@ The following information will be displayed on the view pane:
 flashcard was not modified/deleted.
 </div>
 
-Steps for viewing the statistics of a specific flashcard.
+**Steps for viewing the statistics of a specific flashcard**:
 
-Step 1: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`.
+**Step 1**: Locate the flashcard you wish to view the statistics of. In this example, we want to view the statistics of the flashcard at index 1. Type the command `stats 1`.
 
 ![filedirectory](images/ug/ug_stats_step1.PNG)
 
-Step 2: The statistics of the flashcard at index 1 will be displayed in the view pane.
+**Step 2**: The statistics of the flashcard at index 1 will be displayed in the view pane.
 
 ![filedirectory](images/ug/ug_stats_step2.PNG)
 
