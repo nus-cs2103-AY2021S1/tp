@@ -221,40 +221,42 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(taskmaster, differentUserPrefs)));
     }
 
-    @Test
-    void markStudentRecord_success() {
+    Session initSessionWithAliceAndBenson() {
         SessionName sName = new SessionName("Test Session");
         ArrayList<Student> stds = new ArrayList<Student>();
         stds.add(ALICE);
-        Session s = new Session(sName,
+        stds.add(BOB);
+        return new Session(sName,
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
+    }
+
+    @Test
+    void markStudentRecord_success() {
+        Session s = initSessionWithAliceAndBenson();
+        SessionName sName = new SessionName("Test Session");
         modelManager.addSession(s);
         modelManager.changeSession(sName);
         modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT);
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|PRESENT|Class Participation Score: 0.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|PRESENT|Class Participation Score: 0.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
 
         modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.ABSENT);
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|ABSENT|Class Participation Score: 0.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|ABSENT|Class Participation Score: 0.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
     }
 
     @Test
     void markStudent_noSession_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
         assertThrows(NoSessionException.class, () ->
                 modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
 
     @Test
     void markStudent_sessionNotSelected_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
+        Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () ->
                 modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
@@ -262,37 +264,29 @@ public class ModelManagerTest {
 
     @Test
     void markStudentWithNusnetId() {
+        Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
         modelManager.markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.PRESENT);
-        assertEquals(s.getStudentRecords().toString(), "[e0123456|PRESENT|Class Participation Score: 0.00]");
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|PRESENT|Class Participation Score: 0.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
         modelManager.markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.ABSENT);
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|ABSENT|Class Participation Score: 0.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|ABSENT|Class Participation Score: 0.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
     }
 
     @Test
     void markStudentWithNusnetId_noSession_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
         assertThrows(NoSessionException.class, () -> modelManager
                 .markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.PRESENT));
     }
 
     @Test
     void markStudentWithNusnetId_sessionNotSelected_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
+        Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.PRESENT));
@@ -300,45 +294,29 @@ public class ModelManagerTest {
 
     @Test
     void scoreStudent() {
+        Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
-        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
-        studentRecords.add(ALICE_STUDENT_RECORD);
-        studentRecords.add(BENSON_STUDENT_RECORD);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
         modelManager.scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE);
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 0.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|NO_RECORD|Class Participation Score: 0.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
         modelManager.scoreStudent(ALICE_STUDENT_RECORD, (VALID_SCORE_DOUBLE + 2));
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 2.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|NO_RECORD|Class Participation Score: 2.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
     }
 
     @Test
     void scoreStudent_noSession_failure() {
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
-        studentRecords.add(ALICE_STUDENT_RECORD);
-        studentRecords.add(BENSON_STUDENT_RECORD);
         assertThrows(NoSessionException.class, () -> modelManager
                 .scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE));
     }
 
     @Test
     void scoreStudent_sessionNotSelected_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        ArrayList<StudentRecord> studentRecords = new ArrayList<>();
-        studentRecords.add(ALICE_STUDENT_RECORD);
-        studentRecords.add(BENSON_STUDENT_RECORD);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
+        Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE));
@@ -346,36 +324,29 @@ public class ModelManagerTest {
 
     @Test
     void scoreStudentWithNusnetId() {
+        Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
         modelManager.scoreStudentWithNusnetId(ALICE.getNusnetId(), VALID_SCORE_DOUBLE);
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 0.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|NO_RECORD|Class Participation Score: 0.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
         modelManager.scoreStudentWithNusnetId(ALICE.getNusnetId(), (VALID_SCORE_DOUBLE + 1));
-        assertTrue(s.getStudentRecords().toString().equals("[e0123456|NO_RECORD|Class Participation Score: 1.00]"));
+        assertEquals(s.getStudentRecords().toString(),
+                "[e0123456|NO_RECORD|Class Participation Score: 1.00, "
+                        + "e0456789|NO_RECORD|Class Participation Score: 0.00]");
     }
 
     @Test
     void scoreStudentWithNusnetId_noSession_failure() {
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
         assertThrows(NoSessionException.class, () -> modelManager
                 .scoreStudentWithNusnetId(ALICE.getNusnetId(), VALID_SCORE_DOUBLE));
     }
 
     @Test
     void scoreStudentWithNusnetId_sessionNotSelected_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
+        Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreStudentWithNusnetId(ALICE.getNusnetId(), VALID_SCORE_DOUBLE));
@@ -383,34 +354,24 @@ public class ModelManagerTest {
 
     @Test
     void scoreAllStudents() {
+        Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        stds.add(BOB);
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
         modelManager.scoreAllStudents(studentRecords, VALID_SCORE_DOUBLE);
 
-        assertTrue(s.getStudentRecords().toString()
-                .equals("[e0123456|NO_RECORD|Class Participation Score: 0.00,"
-                        + " e0456789|NO_RECORD|Class Participation Score: 0.00]"));
+        assertEquals("[e0123456|NO_RECORD|Class Participation Score: 0.00,"
+                + " e0456789|NO_RECORD|Class Participation Score: 0.00]", s.getStudentRecords().toString());
         modelManager.scoreAllStudents(studentRecords, (VALID_SCORE_DOUBLE + 2));
-        assertTrue(s.getStudentRecords().toString()
-                .equals("[e0123456|NO_RECORD|Class Participation Score: 2.00,"
-                + " e0456789|NO_RECORD|Class Participation Score: 2.00]"));
+        assertEquals("[e0123456|NO_RECORD|Class Participation Score: 2.00,"
+                + " e0456789|NO_RECORD|Class Participation Score: 2.00]", s.getStudentRecords().toString());
     }
 
     @Test
     void scoreAllStudents_noSession_failure() {
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        stds.add(BOB);
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
@@ -419,16 +380,10 @@ public class ModelManagerTest {
 
     @Test
     void scoreAllStudents_sessionNotSelected_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        stds.add(BOB);
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
+        Session s = initSessionWithAliceAndBenson();
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreAllStudents(studentRecords, VALID_SCORE_DOUBLE));
@@ -436,34 +391,24 @@ public class ModelManagerTest {
 
     @Test
     void markAllStudents() {
+        Session s = initSessionWithAliceAndBenson();
         SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        stds.add(BENSON);
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
         modelManager.addSession(s);
         modelManager.changeSession(sName);
         modelManager.markAllStudentRecords(studentRecords, AttendanceType.PRESENT);
 
-        assertTrue(s.getStudentRecords().toString()
-                .equals("[e0123456|PRESENT|Class Participation Score: 0.00,"
-                        + " e0456789|PRESENT|Class Participation Score: 0.00]"));
+        assertEquals("[e0123456|PRESENT|Class Participation Score: 0.00,"
+                + " e0456789|PRESENT|Class Participation Score: 0.00]", s.getStudentRecords().toString());
         modelManager.markAllStudentRecords(studentRecords, AttendanceType.ABSENT);
-        assertTrue(s.getStudentRecords().toString()
-                .equals("[e0123456|ABSENT|Class Participation Score: 0.00,"
-                        + " e0456789|ABSENT|Class Participation Score: 0.00]"));
+        assertEquals("[e0123456|ABSENT|Class Participation Score: 0.00,"
+                + " e0456789|ABSENT|Class Participation Score: 0.00]", s.getStudentRecords().toString());
     }
 
     @Test
     void markAllStudents_noSession_failure() {
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        stds.add(BENSON);
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
@@ -473,16 +418,10 @@ public class ModelManagerTest {
 
     @Test
     void markAllStudents_sessionNotSelected_failure() {
-        SessionName sName = new SessionName("Test Session");
-        ArrayList<Student> stds = new ArrayList<Student>();
-        stds.add(ALICE);
-        stds.add(BENSON);
+        Session s = initSessionWithAliceAndBenson();
         ArrayList<StudentRecord> studentRecords = new ArrayList<>();
         studentRecords.add(ALICE_STUDENT_RECORD);
         studentRecords.add(BENSON_STUDENT_RECORD);
-        Session s = new Session(sName,
-                new SessionDateTime(LocalDateTime.now()),
-                stds);
         modelManager.addSession(s);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
