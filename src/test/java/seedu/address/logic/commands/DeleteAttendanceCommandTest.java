@@ -36,7 +36,7 @@ public class DeleteAttendanceCommandTest {
             .getAttendance().get(0).getLessonDate();
     private static final String USER_INPUT_DATE = model.getFilteredStudentList().get(0)
             .getAttendance().get(0).getUserInputDate();
-    private final Attendance validAttendance = new Attendance(USER_INPUT_DATE, "present",
+    private final Attendance validAttendance = new Attendance(TEST_DATE, true,
             new Feedback("sleepy"));
 
     @Test

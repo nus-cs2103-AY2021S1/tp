@@ -13,7 +13,7 @@ import seedu.address.model.student.academic.question.Question;
 
 /**
  * Represents all academic details of a Student in Reeve.
- * Consists of exams and attendance.
+ * Consists of questions, exams and attendance.
  */
 public class Academic {
 
@@ -142,6 +142,10 @@ public class Academic {
     }
 
     //==============QUESTION OPERATIONS==============//
+
+    /**
+     * Returns true if there is an existing {@code Question} in the question list that has the same question.
+     */
     public boolean containsQuestion(Question question) {
         return questions.stream().anyMatch(question::isSameQuestion);
     }
@@ -187,6 +191,15 @@ public class Academic {
         Academic replacement = new Academic(this);
         replacement.questions.remove(target);
         return replacement;
+    }
+
+    //==============ATTENDANCE OPERATIONS==============//
+
+    /**
+     * Returns true if there is an existing {@code Attendance} in the attendance list that shares the same date.
+     */
+    public boolean containsAttendance(Attendance other) {
+        return attendance.stream().anyMatch(other::isSameAttendance);
     }
 
 }

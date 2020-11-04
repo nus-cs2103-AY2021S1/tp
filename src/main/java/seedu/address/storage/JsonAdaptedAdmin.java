@@ -55,7 +55,7 @@ public class JsonAdaptedAdmin {
         this.classVenue = student.getClassVenue().toString();
         this.classTime = student.getClassTime().convertClassTimeToUserInputString();
         this.fee = student.getFee().convertFeeToUserInputString();
-        this.paymentDate = student.getPaymentDate().convertPaymentDateToUserInputString();
+        this.paymentDate = student.getPaymentDate().getUserInputDate();
         additionalDetails.addAll(student.getDetails().stream()
                 .map(JsonAdaptedDetail::new)
                 .collect(Collectors.toList()));
