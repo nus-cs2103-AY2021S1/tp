@@ -1149,26 +1149,43 @@ The format of `<date-time>` is as such: `yyyy-mm-dd [hh:mm]`, where `yyyy-mm-dd`
 
 If the time component is omitted, it is assumed to be midnight of the given day. If both `/before` and `/after` are omitted, then ChopChop shows recipes made on the current day, ie. from midnight to 23:59.
 
+Examples:
+- `stats recipe made` <br />
+  This shows all recipes made since the beginning of the current day
 
-For example:
-Let's say you executed `make recipe Rojak` on 23:59 hours yesterday. If you enter `stats recipe` you will not see `Rojak` listed in the statistics box.
+- `stats recipe made /after 2020-04-15` <br />
+  This shows all recipes made after the 15th of April, 2020
 
-If you enter `stats recipe /before 2020-02-13` into the command box, all recipes made prior to 2020-02-13 will be listed in the Statistics box.
+- `stats recipe made /before 2020-12-25` <br />
+  This shows all recipes made before the 25th of December, 2020
 
-If you enter `stats recipe /after 2020-02-13` into the command box, all recipes made after 2020-02-13 will be listed in the Statistics box.
+- `stats recipe made /after 2020-04-15 /before 2020-12-25` <br />
+  This shows all recipes made between the 15th of April and 25th of December
 
-If you enter `stats recipe /before 2020-10-31 /after 2020-02-13` into the command box, all recipes made within the period of 2020-02-13 to 2020-10-31 will be listed in the Statistics box.
+- `stats recipe made /after 2020-01-01 08:00 /before 2020-01-01 23:00` <br />
+  This shows all recipes made between 8am and 11pm on the 1st of January
 
-If you enter `stats recipe` into the command box without either `[/before <date-time>]` or `[/after <date-time>]`, all recipes made today be listed in the Statistics box.
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** If you are only interested in what was cooked for dinner, you can specify the time period to the nearest minute. For example, `stats recipe /before 2020-02-13 20:30 /after 2020-02-13 18:30` will show a list of recipes made within this 2-hour period.
+For example, `stats recipe made /after 2020-11-02 /before 2020-11-04 23:00` shows this output:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_recipe_made_1.png" width="45%" /> <br />
+Figure 17: <i>Showing the recipes made between a date range</i>
 </div>
+
+Meanwhile, just executing `stats recipe made` only shows the recipes made on the current day:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_recipe_made_2.png" width="45%" /> <br />
+Figure 18: <i>Showing the recipes made on the current day</i>
+</div>
+
 
 
 
 <a name="StatsRecipeClearCommand"></a>
 #### 5.6.4&ensp;Clearing Recipe History — **`stats`**`recipe clear`
+
 This command clears the history of the recipes that you've made from ChopChop. If you did this accidentally, don't worry, because you can [undo](#UndoCommand) this.
 
 **Usage**: `stats recipe clear`
@@ -1179,8 +1196,8 @@ This command clears the history of the recipes that you've made from ChopChop. I
 
 <a name="StatsIngredientRecentCommand"></a>
 #### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
-This command shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
-Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
+
+This command shows a list of the 10 most recently-used ingredients consumed by `make`-ing recipes. The output format is identical to that of [`stats recipe recent`](#StatsRecipeRecentCommand) as discussed above, so it will be omitted for brevity.
 
 **Usage**: `stats ingredient recent`
 
@@ -1188,8 +1205,10 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 <a name="StatsIngredientUsedCommand"></a>
 #### 5.6.6&ensp;Listing Ingredients within a Time Frame — **`stats`**`ingredient used`
-This command shows a list of ingredients that were used by recipes made recently within the given time frame.
-Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
+
+This command shows a list of ingredients that were used within the given time frame, arranged in descending chronological order. You can specify the lower bound (earliest date/time), upper bound (latest date/time), both, or neither.
+
+This command behaves similarly to [`stats recipe made`](#StatsRecipeMadeCommand) as discussed above, except that `made` is replaced with `used` instead. Otherwise, the arguments (`/before`, `/after`) function identically.
 
 **Usage**: `stats ingredient used`
 
@@ -1197,6 +1216,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 <a name="StatsIngredientClearCommand"></a>
 #### 5.6.7&ensp;Clearing Ingredient History — **`stats`**`ingredient clear`
+
 This command clears the history of the ingredients that you've used in ChopChop. If you did this accidentally, don't worry, because you can [undo](#UndoCommand) this.
 
 **Usage**: `stats ingredient clear`
