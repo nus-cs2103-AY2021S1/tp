@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The switching mechanism is facilitated by `ExpenseBook` and initialised by 
+The switching mechanism is facilitated by `ExpenseBook` and initialised by
 `Model#switchCategory(Tag category)`. Additionally, `ExpenseBook` implements the following operations:
 
 * `ExpenseBook#containsCategory(Tag toCheck)` — Checks if the given tag matches the tag of category budget. <a name="switchOperations"></a>
@@ -145,7 +145,7 @@ The switching mechanism is facilitated by `ExpenseBook` and initialised by
 * `ExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given predicate.
 * `ExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given predicate  .
 
-These operations are exposed in the `Model` interface as 
+These operations are exposed in the `Model` interface as
 * `Model#hasCategory(Tag toCheck)`
 * `Model#updateExpenseBookCategory(Tag category)`
 * `Model#updateFilteredExpenseList(Predicate<Expense> predicate)`
@@ -153,11 +153,11 @@ These operations are exposed in the `Model` interface as
 
 Given below is a successful usage scenario example and how the switching mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `ExpenseBook` will be initialized with the 
+Step 1. The user launches the application for the first time. The `ExpenseBook` will be initialized with the
 initial expense book state in Model.
 
-Step 2. The user executes `switch t/Food` command to switch to `ExpenseBook` with "Food" tag in category budget 
-and expenses in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`. The method then 
+Step 2. The user executes `switch t/Food` command to switch to `ExpenseBook` with "Food" tag in category budget
+and expenses in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`. The method then
 calls the operations mentioned [above](#switchOperations) causing the category budgets and expenses to be filtered.
 
 The following sequence diagram shows how the switch operation works:
@@ -166,26 +166,25 @@ The following sequence diagram shows how the switch operation works:
 ![SwitchSequenceDiagram2](images/SwitchSequenceDiagram2.png)
 ![SwitchSequenceDiagram3](images/SwitchSequenceDiagram3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 <br/>
 
-Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book, 
+Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book,
 such as `topup`, `delete`, `edit`, will usually call their respectively method in Model. As such the budget balance
 display of the application will change accordingly to reflect on their corresponding values.
 
 Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book but have strong
-relationship with altering the budget display such as `list`, will usually revert the displayed budget to the overall 
-amount instead of category-specific. In addition, the expenses calculated will be based on the displayed list total 
-amount. 
+relationship with altering the budget display such as `list`, will usually revert the displayed budget to the overall
+amount instead of category-specific. In addition, the expenses calculated will be based on the displayed list total
+amount.
 
-Step 5. The user then decides to execute the command `find`. Commands that do not modify the expense book and do not 
-have a clear relationship with the budget display such as `find`, will usually omit out the budget display after 
-their execution. However, exceptions are given to command such as `help`, `exit` which will not alter the visibility 
+Step 5. The user then decides to execute the command `find`. Commands that do not modify the expense book and do not
+have a clear relationship with the budget display such as `find`, will usually omit out the budget display after
+their execution. However, exceptions are given to command such as `help`, `exit` which will not alter the visibility
 of the current budget display.
-
 
 #### Design consideration:
 
@@ -197,7 +196,7 @@ of the current budget display.
 
 * **Alternative 2:** Create multiple expense books for each category.
   * Pros: Will be faster during execution. (Calculation and sorting/filtering are done during initialisation)
-  * Cons: Slower initialisation and higher overhead cost and more memory used. 
+  * Cons: Slower initialisation and higher overhead cost and more memory used.
 
 ### Expense Sorting Feature
 
@@ -210,7 +209,7 @@ The expense sorting command is facilitated by `UniqueExpenseList` and `ExpenseBo
 * `ExpenseBook#sort(Comparator<Expense> comparator)` — Sorts its `UniqueExpenseList` according to the comparator
  provided.
 * `UniqueExpenseList#sort(Comparator<Expense> comparator)` — Sorts its `ObservableList<Expense>` according to the
- comparator provided.  
+ comparator provided.
 
 These operations are exposed in the `Model` interface as `Model#sortExpenses(Comparator<Expense> comparator)`
 
@@ -218,15 +217,14 @@ These operations are exposed in the `Model` interface as `Model#sortExpenses(Com
 
 `SortCommand` will take in at least one, and up to three keywords which specify the order and the parameters to sort
  by (date, description, amount). The conversion of the `String` input to a `Comparator<Expense>` is facilitated by
-  `SortCommandParser#parse()`, and the **order** of the sorting parameters is implemented via the 
-  `Comparator#thenComparing()` method.
+  `SortCommandParser#parse()`, and the **order** of the sorting parameters is implemented via the `Comparator#thenComparing()` method.
  
-Command Example: 
+Command Example:
 * `sort by/date` — Sorted by chronological order.
 * `sort by/date by/descriptionR` — Sorted in chronological order, then based on reverse alphabetical
  order of descriptions.
 * `sort by/date by/amount by/description` — Sorted in following order of priority: Chronological order, then by
- increasing order of amounts, then by alphabetical order of descriptions. 
+ increasing order of amounts, then by alphabetical order of descriptions.
 
 ##### Example Usage
 Given below is an example usage scenario and how the sorting command behaves at each step.
@@ -234,7 +232,7 @@ Given below is an example usage scenario and how the sorting command behaves at 
 Step 1. The user launches the application. The `ExpenseBook` shows the list of expenses in the expense book.
 
 Step 2. The user executes `sort by/date by/descriptionR` command to sort the `Expenses` in `ExpenseBook` first by
- date, then in reverse alphabetical order of the descriptions. 
+ date, then in reverse alphabetical order of the descriptions.
  A comparator is created reflecting the above sorting.
  The `sort` command calls `Model#sort(Comparator<Expense> c)`, causing the `ExpenseBook` expenses to be
   sorted according to the comparator, and the `filteredExpenses` in `Model` to be modified since it is a listener.
@@ -245,16 +243,14 @@ The following sequence diagrams shows how the sort command works:
 ![SortSequenceDiagram Pt2](images/SortSequenceDiagram2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` and
- `Comparator<Expense>` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
- the end of diagram.
-
+ `Comparator<Expense>` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Step 3. The user then decides to execute the command `delete`. Commands that modify the expense book, such as `delete`, 
 `edit`, will usually call their respectively method in Model, but using the new index ordering of the sorted list. 
 
 Step 4. The user then decides to execute the command `list`. This will revert the display view to initial
- `ExpenseBook`. 
+ `ExpenseBook`.
 
 
 #### Design consideration:
@@ -273,22 +269,22 @@ Step 4. The user then decides to execute the command `list`. This will revert th
 
 #### Implementation
 
-The implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword for which the user wishes to create a shortcut (an alias), and takes a second keyword which determines what its alias would be. 
+The implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword for which the user wishes to create a shortcut (an alias), and takes a second keyword which determines what its alias would be.
 
 Sample usage:
 By default, the only command word for `FindCommand` is `“find”`
 
 * `alias find get` -> The user can now trigger a `FindCommand` with `“get”` command word, the alias for `"find"`.
 
-To maintain some degree of simplicity and neatness, we require that `AliasCommand` cannot have an alias for itself. 
+To maintain some degree of simplicity and neatness, we require that `AliasCommand` cannot have an alias for itself.
 
-To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs. 
+To allow for customisation to remain even after the user exits the app and subsequently restarts it, a customised alias-to-command mapping will be stored in JSON format, which can be converted to `AliasMap` and `AliasEntry` objects when Bamboo runs.
 
 The `ExpenseBookParser`'s `parseCommand()` method now takes in an AliasMap object in addition to the user input, which allows the parser to map aliases to the default keyword and allows the execution of the associated Command object.
 
 Step 1. The user launches the application for the first time. Assume no alias is present (by default, aliases in the JSON file will be the default command word).
 
-Step 2. The user executes the `alias find get` command to update the alias for `FindCommand` as `”get”`.  
+Step 2. The user executes the `alias find get` command to update the alias for `FindCommand` as `”get”`.
 This will not only update the current AliasMap object, but will also update the JSON mapping with the help of StorageManager which handles all types of storage including JsonAliasMapStorage.
 
 The following is a sequence diagram showing how it works:
@@ -308,11 +304,11 @@ Step 3. The user can now use the following command to trigger a FindCommand.
 * **Alternative 2:** Allows aliases of all command words. Does not override default command words but merely adds an alias. Reserved keywords cannot be applied unless it is for its associated subclass (i.e. removing the custom alias).
   * Pros: More flexibility than Alternative 1.
   * Cons: Restricts degree of customisation due to reserved keywords not being allowed to use as alias for other Commands.
-  
+
 * **Alternative 3:** Allows customisation of ALL command words.
   * Pros: Highest degree of flexibility, better for users who can easily get used to Command Line Apps.
   * Cons: May be messy and slower learning users may get confused.
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added}
 
 ### Default Category
 
@@ -455,12 +451,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given command format is invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
-      
+
 * 1b. The given field value is invalid.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 #### Use case U2: Top-up budget
@@ -477,12 +473,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given top-up value is invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 * 1b. The given category value is invalid.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 #### Use case U3: Delete an expense
@@ -500,12 +496,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-    
+
   Use case ends.
 
 * 3a. The given expense does not exist.
     * 3a1. Bamboo shows an error message.
-      
+
       Use case resumes at step 2.
 
 #### Use case U4: Edit an expense
@@ -525,12 +521,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
     * 2a1. Bamboo shows an error message
-      
+
       Use case ends
 
 * 3a. The given field value is invalid.
     * 3a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 #### Use case U5: List all expenses
@@ -558,12 +554,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given expense does not exist.
     * 1a1. Bamboo shows an error message.
-    
+
     Use case ends.
-    
+
 * 1b. The given field value is invalid.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 #### Use case U7: Find an expense
@@ -572,30 +568,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find expense by certain identifiers and search terms.
 2. Bamboo shows a list of expenses which match the identifiers and search terms, and shows the overall budget balance.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
-      
+
 #### Use case U8: Sort expense list
 **MSS**
 
 1. User requests to sort currently displayed expenses by certain sort criterion.
-2. Bamboo sorts the currently displayed expenses according to user-specified sort criterion. 
+2. Bamboo sorts the currently displayed expenses according to user-specified sort criterion.
 3. Bamboo displays the sorted expenses to the user with the budget balance.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 #### Use case U9: Add category 
@@ -604,95 +600,94 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new category with a user-specified category name.
 2. Bamboo creates a new category with the user-specified name and shows a success message.
 3. Bamboo lists all expenses and shows the budget balance.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 * 1b. The given category name already exists.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
 
-#### Use case U10: Delete category 
+#### Use case U10: Delete category
 Similar to U9, except it's the opposite.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 * 1b. The given category name does not exist.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 * 1c. The given category name is restricted e.g. `Default` category.
     * 1c1. Bamboo shows an error message.
-      
+
       Use case ends.
 
-#### Use case U11: Switch category 
+#### Use case U11: Switch category
 **MSS**
 
 1. User requests to switch to a user-specified category
-2. Bamboo shows all expenses which are tagged under the user-specified category, 
-along with the budget for that category.
-   
+2. Bamboo shows all expenses which are tagged under the user-specified category, along with the budget for that category.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 * 1b. The given category does not exist.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
 
-#### Use case U12: Change Command Keyword 
+#### Use case U12: Change Command Keyword
 **MSS**
 
 1. User requests to change command keyword to a user-defined string.
 2. Bamboo maps the command linked to the original command keyword to the user-defined string.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 * 1b. The user-defined string is already a command keyword.
     * 1b1. Bamboo shows an error message.
-      
+
       Use case ends.
-      
-#### Use case U13: Reset Changed Command Keyword 
+
+#### Use case U13: Reset Changed Command Keyword
 **MSS**
 
 1. User requests to reset changed command keyword to default command keyword.
 2. Bamboo clears the changed commands linked to the original command keyword.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 1a. No command keyword changed previously.
     * 1a1. Bamboo shows an error message.
-      
+
       Use case ends.
 
 ### Non-Functional Requirement
