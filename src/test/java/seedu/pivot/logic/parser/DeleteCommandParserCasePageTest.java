@@ -1,5 +1,6 @@
 package seedu.pivot.logic.parser;
 
+import static seedu.pivot.logic.commands.Command.TYPE_DESC;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.casecommands.descriptioncommands.DeleteDescriptionCommand;
 import seedu.pivot.logic.commands.documentcommands.DeleteDocumentCommand;
 import seedu.pivot.logic.commands.suspectcommands.DeleteSuspectCommand;
 import seedu.pivot.logic.commands.victimcommands.DeleteVictimCommand;
@@ -55,6 +57,11 @@ public class DeleteCommandParserCasePageTest {
     @Test
     public void parse_validArgs_returnsDeleteWitnessCommand() {
         assertParseSuccess(parser, TYPE_WITNESS + VALID_INDEX, new DeleteWitnessCommand(caseIndex, miscTypeIndex));
+    }
+
+    @Test
+    public void parse_validArgs_returnsDeleteDescriptionCommand() {
+        assertParseSuccess(parser, TYPE_DESC, new DeleteDescriptionCommand(caseIndex));
     }
 
 

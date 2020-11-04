@@ -279,22 +279,27 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setTabSelected(String tabType) {
-        switch (tabType) {
-        case TYPE_DOC:
-            caseTabPane.getSelectionModel().select(documentTab);
-            break;
-        case TYPE_SUSPECT:
-            caseTabPane.getSelectionModel().select(suspectTab);
-            break;
-        case TYPE_VICTIM:
-            caseTabPane.getSelectionModel().select(victimTab);
-            break;
-        case TYPE_WITNESS:
-            caseTabPane.getSelectionModel().select(witnessTab);
-            break;
-        default:
+        if (tabType == null) {
             caseTabPane.getSelectionModel().clearSelection();
+        } else {
+            switch (tabType) {
+            case TYPE_DOC:
+                caseTabPane.getSelectionModel().select(documentTab);
+                break;
+            case TYPE_SUSPECT:
+                caseTabPane.getSelectionModel().select(suspectTab);
+                break;
+            case TYPE_VICTIM:
+                caseTabPane.getSelectionModel().select(victimTab);
+                break;
+            case TYPE_WITNESS:
+                caseTabPane.getSelectionModel().select(witnessTab);
+                break;
+            default:
+                caseTabPane.getSelectionModel().clearSelection();
+            }
         }
+
     }
 
     /**
