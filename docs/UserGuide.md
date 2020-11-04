@@ -61,7 +61,7 @@ not be so obvious!
 
    * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list.
 
-   * **`c-clear`** : Deletes all employee contact details.
+   * **`c-clear`** : Deletes all employees.
 
    * **`exit`** : Exits the app.
 
