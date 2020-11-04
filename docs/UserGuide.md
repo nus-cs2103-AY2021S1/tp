@@ -3,7 +3,11 @@ layout: page
 title: User Guide
 ---
 
-FixMyAbs is a desktop app for managing exercises, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
+FixMyAbs is a desktop app for logging your exercises, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+
+Using FixMyAbs, you will be able to add your own custom exercises along with the calories burnt per rep. These exercises will be listed in the Exercise List. You will then be able to log your exercises, along with the number of reps you have done. FixMyAbs will automatically track the number of calories burnt, and provide you with a log of the exercises you have done. Tracking your progress has never been easier!
+
+If you are unmotivated for a workout, FixMyAbs will be your partner in helping you to change your life. 😎
 
 * Table of Contents
 {:toc}
