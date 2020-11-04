@@ -24,7 +24,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.LabelPersonDescriptorBuilder;
+import seedu.address.testutil.TagPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -115,13 +115,13 @@ public class CommandTestUtil {
                 .withMembers(VALID_PARTICIPANT_BOB).build();
     }
 
-    public static final AddLabelCommand.LabelPersonDescriptor LABEL_DESC_AMY;
-    public static final AddLabelCommand.LabelPersonDescriptor LABEL_DESC_BOB;
+    public static final AddTagCommand.TagPersonDescriptor LABEL_DESC_AMY;
+    public static final AddTagCommand.TagPersonDescriptor LABEL_DESC_BOB;
 
     static {
-        LABEL_DESC_AMY = new LabelPersonDescriptorBuilder()
+        LABEL_DESC_AMY = new TagPersonDescriptorBuilder()
                 .withTags(VALID_TAG_FRIEND).build();
-        LABEL_DESC_BOB = new LabelPersonDescriptorBuilder()
+        LABEL_DESC_BOB = new TagPersonDescriptorBuilder()
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

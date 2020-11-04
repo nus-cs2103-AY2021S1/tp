@@ -10,21 +10,21 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DeleteLabelCommand;
+import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
-public class DeleteLabelCommandParser implements Parser<DeleteLabelCommand> {
+public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
     @Override
-    public DeleteLabelCommand parse(String args) throws ParseException {
+    public DeleteTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
         // check if required prefixes are present
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLabelCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
 
         Name name;
@@ -36,10 +36,10 @@ public class DeleteLabelCommandParser implements Parser<DeleteLabelCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(tags -> tagsToDelete.addAll(tags));
 
         if (tagsToDelete.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLabelCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
 
-        return new DeleteLabelCommand(name, tagsToDelete);
+        return new DeleteTagCommand(name, tagsToDelete);
     }
 
     /**

@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
-public class ClearLabelCommand extends Command {
-    public static final String COMMAND_WORD = "label clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all labels of the person specified.\n"
+public class ClearTagCommand extends Command {
+    public static final String COMMAND_WORD = "tag clear";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears all tags of the person specified.\n"
             + "Parameters: NAME (must be name of person existing in ModDuke) "
             + "Example: " + COMMAND_WORD + " "
             + "Roy";
@@ -24,7 +24,7 @@ public class ClearLabelCommand extends Command {
     /**
      * @param targetName the specified person
      */
-    public ClearLabelCommand(Name targetName) {
+    public ClearTagCommand(Name targetName) {
         requireNonNull(targetName);
         this.targetName = targetName;
     }
@@ -41,7 +41,7 @@ public class ClearLabelCommand extends Command {
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToClear = filteredList.get(0);
-        Person clearedPerson = createClearedPerson(personToClear); // clears all labels from Person
+        Person clearedPerson = createClearedPerson(personToClear); // clears all tags from Person
 
         model.setPerson(personToClear, clearedPerson);
 
@@ -51,12 +51,12 @@ public class ClearLabelCommand extends Command {
         // update module book
         model.updatePersonInModuleBook(personToClear, clearedPerson);
 
-        return new CommandResult(String.format("All labels of person '%s' have been cleared!", targetName.toString()));
+        return new CommandResult(String.format("All tags of person '%s' have been cleared!", targetName.toString()));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToClear}
-     * but with cleared Labels.
+     * but with cleared Tags.
      */
     private static Person createClearedPerson(Person personToClear) {
         assert personToClear != null;
@@ -71,12 +71,12 @@ public class ClearLabelCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ClearLabelCommand)) {
+        if (!(other instanceof ClearTagCommand)) {
             return false;
         }
 
         // state check
-        ClearLabelCommand e = (ClearLabelCommand) other;
+        ClearTagCommand e = (ClearTagCommand) other;
         return targetName.equals(e.targetName);
     }
 }

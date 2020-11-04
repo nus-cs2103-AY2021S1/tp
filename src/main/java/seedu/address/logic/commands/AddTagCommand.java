@@ -20,35 +20,35 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
-public class AddLabelCommand extends Command {
+public class AddTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "label add";
+    public static final String COMMAND_WORD = "tag add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a label to the person specified.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the person specified.\n"
             + "Parameters: NAME (must be name of person existing in ModDuke) "
             + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + "Roy "
             + PREFIX_TAG + "classmate";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Labelled Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Tagged Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_TAG = "Person can only have either prof or ta tag.";
 
     private final Name targetName;
-    private final LabelPersonDescriptor labelPersonDescriptor;
+    private final TagPersonDescriptor tagPersonDescriptor;
 
     /**
-     * @param targetName of the person in the filtered person list to label
-     * @param labelPersonDescriptor of the label to be added
+     * @param targetName of the person in the filtered person list to tag
+     * @param tagPersonDescriptor of the tag to be added
      */
-    public AddLabelCommand(Name targetName, LabelPersonDescriptor labelPersonDescriptor) {
+    public AddTagCommand(Name targetName, TagPersonDescriptor tagPersonDescriptor) {
         requireNonNull(targetName);
-        requireNonNull(labelPersonDescriptor);
+        requireNonNull(tagPersonDescriptor);
 
         this.targetName = targetName;
-        this.labelPersonDescriptor = new LabelPersonDescriptor(labelPersonDescriptor);
+        this.tagPersonDescriptor = new TagPersonDescriptor(tagPersonDescriptor);
     }
 
     @Override
@@ -62,60 +62,60 @@ public class AddLabelCommand extends Command {
 
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
-        Person personToLabel = filteredList.get(0);
+        Person personToTag = filteredList.get(0);
 
-        if (!checkTag(personToLabel, labelPersonDescriptor)) {
+        if (!checkTag(personToTag, tagPersonDescriptor)) {
             throw new CommandException(MESSAGE_INVALID_TAG);
         }
 
-        Person labelledPerson = createLabelledPerson(personToLabel, labelPersonDescriptor);
+        Person taggedPerson = createTaggedPerson(personToTag, tagPersonDescriptor);
 
-        if (!personToLabel.isSamePerson(labelledPerson) && model.hasPerson(labelledPerson)) {
+        if (!personToTag.isSamePerson(taggedPerson) && model.hasPerson(taggedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToLabel, labelledPerson);
+        model.setPerson(personToTag, taggedPerson);
 
         // update meeting book
-        model.updatePersonInMeetingBook(personToLabel, labelledPerson);
+        model.updatePersonInMeetingBook(personToTag, taggedPerson);
 
         // update module book
-        model.updatePersonInModuleBook(personToLabel, labelledPerson);
+        model.updatePersonInModuleBook(personToTag, taggedPerson);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, labelledPerson));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, taggedPerson));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToLabel}
-     * edited with {@code labelPersonDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code personToTag}
+     * edited with {@code tagPersonDescriptor}.
      */
-    private static Person createLabelledPerson(Person personToLabel, LabelPersonDescriptor labelPersonDescriptor) {
-        assert personToLabel != null;
+    private static Person createTaggedPerson(Person personToTag, TagPersonDescriptor tagPersonDescriptor) {
+        assert personToTag != null;
 
-        Set<Tag> updatedTags = new HashSet<>(personToLabel.getTags());
+        Set<Tag> updatedTags = new HashSet<>(personToTag.getTags());
 
-        if (labelPersonDescriptor.getTags().isPresent()) {
-            updatedTags.addAll(labelPersonDescriptor.getTags().get());
+        if (tagPersonDescriptor.getTags().isPresent()) {
+            updatedTags.addAll(tagPersonDescriptor.getTags().get());
         }
 
-        return new Person(personToLabel.getName(), personToLabel.getPhone(), personToLabel.getEmail(), updatedTags);
+        return new Person(personToTag.getName(), personToTag.getPhone(), personToTag.getEmail(), updatedTags);
     }
 
     /**
-     * Checks tags to ensure the person to label will not have both prof and ta tag.r
+     * Checks tags to ensure the person to tag will not have both prof and ta tag.r
      */
-    private static boolean checkTag(Person personToLabel, LabelPersonDescriptor labelPersonDescriptor) {
-        assert personToLabel != null;
+    private static boolean checkTag(Person personToTag, TagPersonDescriptor tagPersonDescriptor) {
+        assert personToTag != null;
 
         Tag prof = new Tag(Tag.PROF_TAG_NAME);
         Tag ta = new Tag(Tag.TA_TAG_NAME);
-        if (labelPersonDescriptor.tags.contains(prof) && labelPersonDescriptor.tags.contains(ta)) {
+        if (tagPersonDescriptor.tags.contains(prof) && tagPersonDescriptor.tags.contains(ta)) {
             return false;
         }
-        if (personToLabel.getTags().contains(prof) && labelPersonDescriptor.tags.contains(ta)) {
+        if (personToTag.getTags().contains(prof) && tagPersonDescriptor.tags.contains(ta)) {
             return false;
         }
-        if (personToLabel.getTags().contains(ta) && labelPersonDescriptor.tags.contains(prof)) {
+        if (personToTag.getTags().contains(ta) && tagPersonDescriptor.tags.contains(prof)) {
             return false;
         }
         return true;
@@ -129,30 +129,30 @@ public class AddLabelCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddLabelCommand)) {
+        if (!(other instanceof AddTagCommand)) {
             return false;
         }
 
         // state check
-        AddLabelCommand e = (AddLabelCommand) other;
+        AddTagCommand e = (AddTagCommand) other;
         return targetName.equals(e.targetName)
-                && labelPersonDescriptor.equals(e.labelPersonDescriptor);
+                && tagPersonDescriptor.equals(e.tagPersonDescriptor);
     }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the
      * corresponding field value of the person.
      */
-    public static class LabelPersonDescriptor {
+    public static class TagPersonDescriptor {
         private Set<Tag> tags;
 
-        public LabelPersonDescriptor() {}
+        public TagPersonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public LabelPersonDescriptor(LabelPersonDescriptor toCopy) {
+        public TagPersonDescriptor(TagPersonDescriptor toCopy) {
             setTags(toCopy.tags);
         }
 
@@ -181,12 +181,12 @@ public class AddLabelCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof LabelPersonDescriptor)) {
+            if (!(other instanceof TagPersonDescriptor)) {
                 return false;
             }
 
             // state check
-            LabelPersonDescriptor e = (LabelPersonDescriptor) other;
+            TagPersonDescriptor e = (TagPersonDescriptor) other;
 
             return getTags().equals(e.getTags());
         }
