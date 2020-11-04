@@ -1,6 +1,5 @@
 package seedu.stock.logic.parser;
 
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT;
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandTestUtil.FILE_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
@@ -216,7 +215,7 @@ public class SuggestionCommandParserTest {
         // EP: incorrect command word with valid prefixes (single)
         String userInput = SERIAL_NUMBER_DESC_APPLE;
         SuggestionCommandParser parser = new SuggestionCommandParser("delet");
-        String expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
                 + "\n" + DeleteCommand.MESSAGE_USAGE;
         SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
@@ -228,7 +227,7 @@ public class SuggestionCommandParserTest {
 
         // EP: incorrect command word with valid prefixes (multiple)
         userInput = userInput + SERIAL_NUMBER_DESC_BANANA;
-        expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
+        expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + SERIAL_NUMBER_DESC_APPLE
                 + SERIAL_NUMBER_DESC_BANANA + "\n" + DeleteCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
@@ -237,7 +236,7 @@ public class SuggestionCommandParserTest {
         // EP: correct command word with valid prefixes (single)
         userInput = SERIAL_NUMBER_DESC_APPLE;
         parser = new SuggestionCommandParser("delete", "error message");
-        expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
+        expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
                 + "\n" + DeleteCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
@@ -249,7 +248,7 @@ public class SuggestionCommandParserTest {
 
         // EP: correct command word with valid prefixes (multiple)
         userInput = userInput + SERIAL_NUMBER_DESC_BANANA;
-        expectedSuggestionMessage = MESSAGE_INVALID_COMMAND_SERIAL_NUMBER_FORMAT + "\n"
+        expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + SERIAL_NUMBER_DESC_APPLE
                 + SERIAL_NUMBER_DESC_BANANA + "\n" + DeleteCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);

@@ -11,7 +11,7 @@
 
     <ListView fx:id="stockView" VBox.vgrow="ALWAYS" styleClass="pane-with-border-notes"/>
     <padding>
-        <Insets right="150" left="150" />
+        <Insets right="150" left="150" top="30"/>
     </padding>
 
 </VBox>
