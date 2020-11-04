@@ -424,7 +424,6 @@ public class AddModuleCommandTest {
         public void displayNonArchivedModules() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public boolean getModuleListDisplay() {
             throw new AssertionError("This method should not be called.");

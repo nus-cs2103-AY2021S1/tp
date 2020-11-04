@@ -233,6 +233,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            // Update charts for TodoList
+            todoListPanel.updateCompletionChart(logic.getFilteredTodoList());
+            todoListPanel.updateFutureBar(logic.getFilteredTodoList());
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
