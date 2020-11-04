@@ -264,7 +264,7 @@ add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]
 <h4>Examples</h4>
 
 ```
-add n/Orange s/shengshiong q/1300 l/fruits section
+add n/Orange s/Shengshiong q/1300 l/Fruits section
 add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 ```
 
