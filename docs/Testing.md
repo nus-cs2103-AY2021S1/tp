@@ -61,4 +61,5 @@ This project has three types of tests:
 1. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
    e.g. `seedu.address.storage.StorageManagerTest`
 1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
-   These tests are separated into their respective files. e.g. `seedu.address.logic.commands.CraftItemCommandTest, seedu.address.logic.commands.CraftItemCommandIntegrationTest `
+   These tests are separated into their respective files. e.g. `seedu.address.logic.commands.CraftItemCommandTest` and
+    `seedu.address.logic.commands.CraftItemCommandIntegrationTest`

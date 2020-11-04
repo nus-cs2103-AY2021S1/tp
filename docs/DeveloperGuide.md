@@ -10,13 +10,13 @@ title: Developer Guide
 This is the developer guide for `Inventoryinator` a brownfield project evolved
 from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
 
-**Inventoryinator** is a **desktop app for managing game inventories**. Our app is optimized for use via 
-the **typing** of commands, while your inventory is shown on our **Graphical User Interface (GUI)**. 
+**Inventoryinator** is a **desktop app for managing game inventories**. Our app is optimized for use via
+the **typing** of commands, while your inventory is shown on our **Graphical User Interface (GUI)**.
 If you can type fast, Inventoryinator can get your inventory management tasks done faster than traditional GUI apps.
 
-This Developer Guide will help you get familiarized with the architecture of developing Inventoryinator and provide an
-overview of the implementation of the features and components. You may use the table of
-contents below for easy access to sections in this document.
+If you would like to take part in developing Inventoryinator, this Developer Guide will help you get familiarized with the architecture
+and provide an overview of the implementation of the features and components. You may use the table of
+contents below to easily navigate to sections in this document.
 
 * Table of Contents
 {:toc}
@@ -42,9 +42,13 @@ Refer to the guide [UserGuide](UserGuide.md).
 
 ## Design
 
+This section will elaborate on the design and software patterns applied in Inventoryinator.
+
 ### Architecture
 
-![Archietecture Diagram](images/ArchitectureDiagram.png)
+This application applies the [MVC pattern](https://www.tutorialspoint.com/design_pattern/mvc_pattern.html).
+
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 Given below is a quick overview of each component.
@@ -105,6 +109,8 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 ### Logic component
+
+The Logic component of Inventoryinator applies a [command](https://refactoring.guru/design-patterns/command) behavioural design pattern. 
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -233,7 +239,7 @@ possible without breaking abstraction or heavy modifications to `Model` or `Mode
 This command was implemented to resolve the [userstory](), regarding "As a user I want to delete
  a item so that I can remove item that I no longer need to track."
 
-#### Current Implementation
+#### Implementation
 
 During the execution of an `DeleteItemCommand`, as referenced from the [architecture sequence diagram](#Architecture), 
 the input is accepted by the GUI, and passed into the `LogicManager` that calls `InventoryParser` to parse the command 
@@ -339,6 +345,9 @@ The following sequence diagram illustrates how the find items command works.
 ![FindItemSequenceDiagram](images/commandseqdiagrams/FindItemSequenceDiagram.png)
 
 ### Undo/redo feature
+
+The undo/redo feature allows users to undo and redo commands that change the state of the inventory, so that users
+can undo their mistakes.
 
 #### Implementation
 
@@ -452,7 +461,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**: manage inventory faster than a typical mouse/GUI driven app
 
-### User stories for V1.1
+### User stories for V1.4
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -491,9 +500,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
+This is a reference for technical terms that you may need to refer to when reading this developer guide.
+
 * Mainstream OS: Windows, Linux, Unix, OS-X
 * GUI: The graphical user interface is a form of user interface that allows users
  to interact with electronic devices through graphical icons and audio indicator such as primary notation.
+* Parameter: a user input to be used by the application
 * Item: An item represents an object you obtain in a game. Eg a <u>Rock</u>
 * Recipe: A recipe is associated with multiple items, and represents the consumption of items in the input,
  to produce an item of the output. Eg: 3 <u>Sticks</u> -> <u>Staff</u>
