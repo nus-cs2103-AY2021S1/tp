@@ -10,6 +10,10 @@ import static chopchop.testutil.TypicalUsages.INGREDIENT_A_A;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_A_E;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_B_A;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_B_E;
+import static chopchop.testutil.TypicalUsages.RECIPE_A_E;
+import static chopchop.testutil.TypicalUsages.RECIPE_B_E;
+import static chopchop.testutil.TypicalUsages.getUnsortedIngredientList;
+import static chopchop.testutil.TypicalUsages.getUnsortedRecipeList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +25,7 @@ import org.junit.jupiter.api.Test;
 import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
+import chopchop.model.UsageList;
 import chopchop.testutil.StubbedUsageModel;
 import chopchop.testutil.TypicalUsages;
 
@@ -79,7 +84,7 @@ class StatsIngredientUsedCommandTest {
         LocalDateTime beforeOn = LocalDateTime.of(0, 1, 2, 0, 0);
         cmd = new StatsIngredientUsedCommand(afterOn, beforeOn);
         cmdRes = cmd.execute(model, new HistoryManager());
-        expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(),
+        expectedRes = CommandResult.statsMessage(new ArrayList<>(),
             String.format("No ingredients were used on %s", afterOn.format(onFormatter)));
         assertEquals(cmdRes, expectedRes);
     }
@@ -89,8 +94,8 @@ class StatsIngredientUsedCommandTest {
         LocalDateTime after = USAGE_DATE_A0;
         var cmd = new StatsIngredientUsedCommand(after, null);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
-                TypicalUsages.getIngredientList().stream()
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(
+                TypicalUsages.getListViewIngredientList().stream()
                     .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                     .collect(Collectors.toList())
             ),
@@ -103,8 +108,8 @@ class StatsIngredientUsedCommandTest {
         LocalDateTime before = USAGE_DATE_E0;
         var cmd = new StatsIngredientUsedCommand(null, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
-                TypicalUsages.getIngredientList().stream()
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(
+                TypicalUsages.getListViewIngredientList().stream()
                     .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                     .collect(Collectors.toList())
             ),
@@ -118,7 +123,7 @@ class StatsIngredientUsedCommandTest {
         LocalDateTime after = USAGE_DATE_C;
         var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(),
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(),
             String.format("No ingredients were used between %s and %s", after.format(formatter),
                 before.format(formatter)));
         assertEquals(cmdRes, expectedRes);
@@ -142,12 +147,27 @@ class StatsIngredientUsedCommandTest {
         LocalDateTime after = USAGE_DATE_D;
         var cmd = new StatsIngredientUsedCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(
                 Arrays.asList(new Pair<>(INGREDIENT_A_E.getName(), INGREDIENT_A_E.getPrintableDate()),
                     new Pair<>(INGREDIENT_B_E.getName(), INGREDIENT_B_E.getPrintableDate()))
             ),
             String.format("Showing ingredients used between %s and %s", after.format(formatter),
                 before.format(formatter)));
+        assertEquals(cmdRes, expectedRes);
+    }
+
+    @Test
+    public void execute_unsortedUsages_ingredientsFound() {
+        LocalDateTime before = USAGE_DATE_E0;
+        LocalDateTime after = USAGE_DATE_D;
+        this.model.setIngredientUsageList(new UsageList<>(getUnsortedIngredientList()));
+        var cmd = new StatsIngredientUsedCommand(after, before);
+        var cmdRes = cmd.execute(model, new HistoryManager());
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(
+                Arrays.asList(new Pair<>(INGREDIENT_A_E.getName(), INGREDIENT_A_E.getPrintableDate()),
+                    new Pair<>(INGREDIENT_B_E.getName(), INGREDIENT_B_E.getPrintableDate()))
+            ),
+            String.format("Showing ingredients used between %s and %s", after.format(formatter), before.format(formatter)));
         assertEquals(cmdRes, expectedRes);
     }
 

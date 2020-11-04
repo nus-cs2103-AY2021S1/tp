@@ -11,6 +11,7 @@ import static chopchop.testutil.TypicalUsages.RECIPE_A_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_E;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_E;
+import static chopchop.testutil.TypicalUsages.getUnsortedRecipeList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import chopchop.commons.util.Pair;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
+import chopchop.model.UsageList;
 import chopchop.testutil.StubbedUsageModel;
 import chopchop.testutil.TypicalUsages;
 
@@ -89,7 +91,7 @@ class StatsRecipeMadeCommandTest {
         var cmd = new StatsRecipeMadeCommand(after, null);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
-                TypicalUsages.getRecipeList().stream()
+                TypicalUsages.getListViewRecipeList().stream()
                     .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                     .collect(Collectors.toList())
             ),
@@ -103,7 +105,7 @@ class StatsRecipeMadeCommandTest {
         var cmd = new StatsRecipeMadeCommand(null, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
-                TypicalUsages.getRecipeList().stream()
+                TypicalUsages.getListViewRecipeList().stream()
                     .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                     .collect(Collectors.toList())
             ),
@@ -137,6 +139,21 @@ class StatsRecipeMadeCommandTest {
     public void execute_expectedBeforeAndAfter_recipesFound() {
         LocalDateTime before = USAGE_DATE_E0;
         LocalDateTime after = USAGE_DATE_D;
+        var cmd = new StatsRecipeMadeCommand(after, before);
+        var cmdRes = cmd.execute(model, new HistoryManager());
+        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
+                Arrays.asList(new Pair<>(RECIPE_A_E.getName(), RECIPE_A_E.getPrintableDate()),
+                    new Pair<>(RECIPE_B_E.getName(), RECIPE_B_E.getPrintableDate()))
+            ),
+            String.format("Showing recipes made between %s and %s", after.format(formatter), before.format(formatter)));
+        assertEquals(cmdRes, expectedRes);
+    }
+
+    @Test
+    public void execute_unsortedUsages_recipesFound() {
+        LocalDateTime before = USAGE_DATE_E0;
+        LocalDateTime after = USAGE_DATE_D;
+        this.model.setRecipeUsageList(new UsageList<>(getUnsortedRecipeList()));
         var cmd = new StatsRecipeMadeCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
         var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(

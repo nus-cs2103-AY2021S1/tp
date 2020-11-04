@@ -4,10 +4,11 @@ import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_A;
+import static chopchop.testutil.TypicalUsages.getListViewRecipeList;
 import static chopchop.testutil.TypicalUsages.getRecipeList;
 import static chopchop.testutil.TypicalUsages.getRecipeUsageList;
 import static chopchop.testutil.TypicalUsages.getUnsortedRecipeList;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,7 +66,7 @@ class StatsRecipeRecentCommandTest {
 
     @Test
     public void execute_sortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getRecipeList().stream()
+        var expectedRes = CommandResult.statsMessage(getListViewRecipeList().stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
             "Here are your recently made recipes");
         model.setRecipeUsageList(getRecipeUsageList());
@@ -76,7 +77,7 @@ class StatsRecipeRecentCommandTest {
 
     @Test
     public void execute_unsortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getRecipeList().stream()
+        var expectedRes = CommandResult.statsMessage(getListViewRecipeList().stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
             "Here are your recently made recipes");
         model.setRecipeUsageList(new UsageList<>(getUnsortedRecipeList()));
@@ -88,7 +89,7 @@ class StatsRecipeRecentCommandTest {
     //max of 10 items in the list
     @Test
     public void execute_numerousUsages() {
-        var expectedRes = CommandResult.statsMessage(getRecipeList().stream()
+        var expectedRes = CommandResult.statsMessage(getListViewRecipeList().stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
             "Here are your recently made recipes");
         var newList = getRecipeList();

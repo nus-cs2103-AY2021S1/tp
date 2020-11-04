@@ -6,6 +6,7 @@ import static chopchop.testutil.TypicalUsages.INGREDIENT_A_A;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_B_A;
 import static chopchop.testutil.TypicalUsages.getIngredientList;
 import static chopchop.testutil.TypicalUsages.getIngredientUsageList;
+import static chopchop.testutil.TypicalUsages.getListViewIngredientList;
 import static chopchop.testutil.TypicalUsages.getUnsortedIngredientList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ class StatsIngredientRecentCommandTest {
 
     @Test
     public void execute_noRecent() {
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(),
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(),
             "No ingredients were used recently");
         var cmd = new StatsIngredientRecentCommand();
         var cmdRes = cmd.execute(StubbedUsageModel.empty(), new HistoryManager());
@@ -54,7 +55,7 @@ class StatsIngredientRecentCommandTest {
 
     @Test
     public void execute_oneRecent() {
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(
+        var expectedRes = CommandResult.statsMessage(new ArrayList<>(
                 List.of(new Pair<>(INGREDIENT_A_A.getName(), INGREDIENT_A_A.getPrintableDate()))),
             "Here are your recently used ingredients");
         model.setIngredientUsageList(new UsageList<>(List.of(INGREDIENT_A_A)));
@@ -65,7 +66,7 @@ class StatsIngredientRecentCommandTest {
 
     @Test
     public void execute_sortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getIngredientList().stream()
+        var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
             "Here are your recently used ingredients");
         model.setIngredientUsageList(getIngredientUsageList());
@@ -76,7 +77,7 @@ class StatsIngredientRecentCommandTest {
 
     @Test
     public void execute_unsortedUsages() {
-        var expectedRes = CommandResult.statsMessage(getIngredientList().stream()
+        var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
             "Here are your recently used ingredients");
         model.setIngredientUsageList(new UsageList<>(getUnsortedIngredientList()));
@@ -89,7 +90,7 @@ class StatsIngredientRecentCommandTest {
     //max of 10 items in the list
     @Test
     public void execute_numerousUsages() {
-        var expectedRes = CommandResult.statsMessage(getIngredientList().stream()
+        var expectedRes = CommandResult.statsMessage(getListViewIngredientList().stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate())).collect(Collectors.toList()),
             "Here are your recently used ingredients");
         var newList = getIngredientList();

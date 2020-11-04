@@ -53,14 +53,14 @@ class UsageListTest {
         ul.pop(RECIPE_A_B.getName());
         var expectedList = getRecipeList();
         //item on the right is removed in UsageList
-        expectedList.remove(RECIPE_A_A);
+        expectedList.remove(RECIPE_A_E);
         assertEquals(expectedList, ul.getUsageList());
     }
 
     @Test
     void getUsageList() {
         var ul = new UsageList<>();
-
+        
     }
 
     @Test

@@ -83,6 +83,11 @@ public class TypicalUsages {
             RECIPE_B_D, RECIPE_A_D, RECIPE_B_E, RECIPE_A_E));
     }
 
+    public static ArrayList<RecipeUsage> getListViewRecipeList() {
+        return new ArrayList<>(Arrays.asList(RECIPE_A_E, RECIPE_B_E, RECIPE_A_D, RECIPE_B_D,
+            RECIPE_A_C, RECIPE_B_C, RECIPE_A_B, RECIPE_B_B, RECIPE_A_A, RECIPE_B_A));
+    }
+
     public static ArrayList<RecipeUsage> getUnsortedRecipeList() {
         return new ArrayList<>(Arrays.asList(RECIPE_A_A, RECIPE_B_A, RECIPE_B_D, RECIPE_A_D, RECIPE_A_B, RECIPE_B_B,
             RECIPE_A_C, RECIPE_B_C, RECIPE_A_E, RECIPE_B_E));
@@ -93,13 +98,18 @@ public class TypicalUsages {
     }
 
     public static UsageList<IngredientUsage> getIngredientUsageList() {
-        return new UsageList<>(Arrays.asList(INGREDIENT_B_A, INGREDIENT_A_A, INGREDIENT_B_B, INGREDIENT_A_B, INGREDIENT_B_C, INGREDIENT_A_C,
-            INGREDIENT_B_D, INGREDIENT_A_D, INGREDIENT_B_E, INGREDIENT_A_E));
+        return new UsageList<>(Arrays.asList(INGREDIENT_B_A, INGREDIENT_A_A, INGREDIENT_B_B, INGREDIENT_A_B,
+            INGREDIENT_B_C, INGREDIENT_A_C, INGREDIENT_B_D, INGREDIENT_A_D, INGREDIENT_B_E, INGREDIENT_A_E));
     }
 
     public static ArrayList<IngredientUsage> getIngredientList() {
-        return new ArrayList<>(Arrays.asList(INGREDIENT_B_A, INGREDIENT_A_A, INGREDIENT_B_B, INGREDIENT_A_B, INGREDIENT_B_C, INGREDIENT_A_C,
-            INGREDIENT_B_D, INGREDIENT_A_D, INGREDIENT_B_E, INGREDIENT_A_E));
+        return new ArrayList<>(Arrays.asList(INGREDIENT_B_A, INGREDIENT_A_A, INGREDIENT_B_B, INGREDIENT_A_B,
+            INGREDIENT_B_C, INGREDIENT_A_C, INGREDIENT_B_D, INGREDIENT_A_D, INGREDIENT_B_E, INGREDIENT_A_E));
+    }
+
+    public static ArrayList<IngredientUsage> getListViewIngredientList() {
+        return new ArrayList<>(Arrays.asList(INGREDIENT_A_E, INGREDIENT_B_E, INGREDIENT_A_D, INGREDIENT_B_D,
+            INGREDIENT_A_C, INGREDIENT_B_C, INGREDIENT_A_B, INGREDIENT_B_B, INGREDIENT_A_A, INGREDIENT_B_A));
     }
 
     public static ArrayList<IngredientUsage> getUnsortedIngredientList() {

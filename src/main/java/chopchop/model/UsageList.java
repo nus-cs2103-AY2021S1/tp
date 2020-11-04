@@ -89,6 +89,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(lowerBound);
         return this.usages.stream()
             .filter(x-> x.isAfter(lowerBound))
+            .sorted(comparator)
             .collect(Collectors.toList());
     }
 
@@ -96,7 +97,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(upperBound);
         return this.usages.stream()
             .filter(x-> x.isBefore(upperBound))
-            .sorted()
+            .sorted(comparator)
             .collect(Collectors.toList());
     }
 
@@ -118,6 +119,7 @@ public class UsageList<T extends Usage> {
             return this.usages.stream()
                 .filter(x -> x.isAfter(after))
                 .filter(x -> x.isBefore(before))
+                .sorted(comparator)
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
         }
@@ -133,7 +135,7 @@ public class UsageList<T extends Usage> {
         var output = new ArrayList<T>();
         var len = sorted.size();
         int i = 0;
-        while (i < n && i < sorted.size() - 1) {
+        while (i < n && i < sorted.size()) {
             output.add(sorted.get(i));
             i++;
         }
@@ -144,7 +146,6 @@ public class UsageList<T extends Usage> {
     public List<Pair<String, String>> getMostUsed() {
         ArrayList<T> newLst = new ArrayList<>(this.usages);
         ArrayList<Pair<String, Integer>> outputLst = new ArrayList<>();
-        newLst.sort(comparator);
         for (var i : newLst) {
             int k = 0;
             for (var j : newLst) {
@@ -156,6 +157,18 @@ public class UsageList<T extends Usage> {
                 outputLst.add(new Pair<>(i.getName(), k));
             }
         }
+        outputLst.sort(new Comparator<Pair<String, Integer>>() {
+            @Override
+            public int compare(final Pair<String, Integer> o1, final Pair<String, Integer> o2) {
+                if (o1.snd() < o2.snd()) {
+                    return 1;
+                } else if (o1.snd().equals(o2.snd())) {
+                    return Integer.compare(o1.fst().compareTo(o2.fst()), 0);
+                } else {
+                    return -1;
+                }
+            }
+        });
 
         return outputLst.stream()
             .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
