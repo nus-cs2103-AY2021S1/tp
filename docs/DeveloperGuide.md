@@ -1196,6 +1196,12 @@ The following sequence diagram shows how the sort feature works for **Example 1*
 
 ![SortFeatureExample1](images/SortFeatureExample1.png)
 
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the sort feature is triggered:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
 #### Design Considerations
 
 ##### Aspect: Sorting order
