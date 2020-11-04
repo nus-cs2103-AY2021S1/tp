@@ -6,6 +6,7 @@ title: User Guide
 * Table of Contents
 {:toc}
 
+<!-- <style>body {text-align: justify}</style> -->
 
 ---------------
 ## 1&ensp;Introduction
@@ -17,7 +18,7 @@ Furthermore, our command interface also features [tab completion](#TabCompletion
 
 ### 1.1&ensp;Navigating this Document
 
-This user guide provides an in-depth guide about how to use ChopChop. Choose a topic from the Table of Contents to find answers and get step-by-step instructions. In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
+This user guide provides an in-depth guide about how to use ChopChop; simply choose a topic from the Table of Contents above to find answers or get step-by-step instructions. In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
 
 Specifically, this document covers:
 1. The components of the user interface
@@ -43,11 +44,11 @@ To start using and experimenting with ChopChop, here are the steps you can follo
 
 1. Ensure you have Java <b>11</b> or above installed in your computer; it can be obtained from [AdoptOpenJDK](https://adoptopenjdk.net).
 
-2. Download the latest <i>chopchop.jar</i> from [here](https://github.com/AY2021S1-CS2103T-T10-3/tp/releases).
+2. Download the latest <b>chopchop.jar</b> from [here](https://github.com/AY2021S1-CS2103T-T10-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ChopChop.
+3. Copy the file to the folder you want to use as the <i>home folder</i> for your ChopChop.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. The app starts with some sample data for you to experiment with.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. The app starts with some sample data for you to experiment with.<br/>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/sample_data.png" width="75%" /> <br />
@@ -69,15 +70,15 @@ ChopChop manages two key components — ingredients and recipes — and they wil
 
 The names for both ingredients and recipes are case insensitive, so <i>pAnCaKeS</i> and <i>Pancakes</i> refer to the same recipe. Note that you cannot have duplicate recipes nor ingredients in ChopChop; items are duplicates if their names are the same.
 
-### 3.1&ensp;Ingredients
+### 3.1&ensp;Recipes
+A recipe consists of a list of used ingredients (and their quantities), as well as a list of ordered steps in textual form.
+
+### 3.2&ensp;Ingredients
 An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, expiring on a certain date.
 
 For example, you might have <i>500 mL</i> of milk that you bought last week that expires tomorrow, while you have another <i>1.5 L</i> of milk that you bought today, expiring two weeks from now. ChopChop will track both these *sets*, and will intelligently use the earliest-expiring set when doing its accounting.
 
 For a more in-depth look at how ChopChop handles quantities, see [this section](#QuantitiesAndUnits).
-
-### 3.2&ensp;Recipes
-A recipe consists of a list of used ingredients (and their quantities), as well as a list of steps.
 
 
 ### 3.3&ensp;Name Constraints
@@ -100,8 +101,7 @@ Here are some examples of names that are valid and invalid:
 --------------------------------
 ## 4&ensp;Navigating the User Interface (Xue Yong)
 
-ChopChop's UI design allows users to view all of the information you need through mouse input over a few tabs. However, that might lead to a slightly steeper learning curve.
-Hence, this section aims to give you a breakdown of the GUI's various components.
+ChopChop's UI design allows users to view all of the information you need in three main tabs. However, that might lead to a slightly steeper learning curve. Hence, this section aims to give you a breakdown of the GUI's various components.
 
 Specifically, this section covers:
 1. [Command Box](#CommandBox)
@@ -172,10 +172,8 @@ ChopChop is able to save your favourite recipes — press the `Favourites` butto
 <a name="StatisticsBox"></a>
 ### 4.7&ensp;Statistics Box
 {:.no_toc}
-ChopChop is able to produce statistics based on the food you make!
-<div style="background-color: red">
-<h3 style="color: white; text-align: center">TODO NOT FINISHED</h3>
-</div>
+ChopChop is able to produce statistics based on the food you make! To view your ingredient or recipe usage statistics, simply input into the `Command Box` one of the `stats` [commands available](#GroupStatsCommands).
+
 
 
 
@@ -272,6 +270,16 @@ Since ChopChop uses `/` to denote argument names, it would seem that recipe and 
 In other contexts, the backslash (`\`) behaves like a normal character and doesn't do anything special.
 
 When tab-completing names, ChopChop will automatically insert the backslashes for you, so that you don't have to worry about it when typing your commands.
+
+<a name="DateFormats"></a>
+#### 5.1.2&ensp;Date Formats
+
+Across ChopChop, dates have the same format: `yyyy-mm-dd`. Examples include:
+- `2020-11-09` for the 9th of November, 2020
+- `2021-02-28` for the 28th of February, 2021
+
+Note that each part (the year, month, and date) must always be 4, 2, and 2 digits respectively. For months and days, add a 0 to the beginning to make up 2 digits (eg. `04` for April).
+
 
 
 <a name="TabCompletion"></a>
@@ -1091,6 +1099,7 @@ This command edits the given ingredient. Right now, it is not implemented yet!
 <a name="GroupStatsCommands"></a>
 
 ### 5.6&ensp;Statistics Commands (Travis)
+
 Whenever you make a recipe or consume an ingredient, ChopChop saves a record of the usage. You can view these records with the commands below.
 
 The output of these statistics commands are shown in the [statistics box](#StatisticsBox) on the right side of ChopChop's interface.
@@ -1098,60 +1107,85 @@ The output of these statistics commands are shown in the [statistics box](#Stati
 
 <a name="StatsRecipeTopCommand"></a>
 #### 5.6.1&ensp;Listing Top Recipes — **`stats`**`recipe top`
-This command shows a list of recipes that were made the most. The list is sorted in descending order by the number of times it was made; the first recipe in the list is the recipe that was made the most number of times. The number of usages is calculated from based on current records. So, if you have just cleared your recipe usage records,
-you will see that all recipes were made 0 times.
-Even after you delete a recipe is deleted, its past usages are still saved within ChopChop.
+
+This command shows a list of recipes that were made the most, in descending order (the recipe listed first was made the most number of times).
+
+Note that, even if a recipe was deleted (with `delete recipe`), its cooking records will still exist in ChopChop. To remove these statistics, you can use `stats recipe clear` to clear them for all recipes.
 
 **Usage**: `stats recipe top`
 
-Example:
-Let's say you executed `make recipe Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe top`, you will still see it listed as one of the top recipes.
+For example, here is the output for someone who really really loves pancakes:
 
-
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_recipe_top.png" width="45%" /> <br />
+Figure 15: <i>No pancakes were sacrificed for this picture</i>
+</div>
 
 
 <a name="StatsRecipeRecentCommand"></a>
 #### 5.6.2&ensp;Listing Recent Recipes — **`stats`**`recipe recent`
 
-This command shows a list of most recently made recipes. The list is arranged in descending chronological order; the recipe most recently made is the first item on the list.
+This command shows a list of the 10 recently made recipes, with the most recent one at the top of the list. As with the other statistics commands, deleting a recipe from ChopChop does not delete it from this list.
 
-Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
+Note that this is also the view that is displayed by default when no statistics commands have been used yet.
 
 **Usage**: `stats recipe recent`
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_recipe_recent.png" width="45%" /> <br />
+Figure 16: <i>The recently-made recipes view</i>
+</div>
 
 
 
 <a name="StatsRecipeMadeCommand"></a>
 #### 5.6.3&ensp;Listing Recipes within a Time Frame — **`stats`**`recipe made`
-This command shows a list of recipes that were made within the given time frame. The list is arranged in descending chronological order.
 
-Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will see the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown.
+This command shows a list of recipes that were made within the given time frame, arranged in descending chronological order. You can specify the lower bound (earliest date/time), upper bound (latest date/time), both, or neither.
 
 **Usage**: `stats recipe made [/before <date-time>] [/after <date-time>]`
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** If you omit both `[/before <date-time>]` and `[/after <date-time>]`, ChopChop will show you a list of recipes that were made today from 00:00 hours to tomorrow 00:00 hours.
+The format of `<date-time>` is as such: `yyyy-mm-dd [hh:mm]`, where `yyyy-mm-dd` is the [familiar date format](#DateFormats), and `hh:mm` is the optional time in 24-hour format (eg. `18:30` for 6.30pm).
+
+If the time component is omitted, it is assumed to be midnight of the given day. If both `/before` and `/after` are omitted, then ChopChop shows recipes made on the current day, ie. from midnight to 23:59.
+
+Examples:
+- `stats recipe made` <br />
+  This shows all recipes made since the beginning of the current day
+
+- `stats recipe made /after 2020-04-15` <br />
+  This shows all recipes made after the 15th of April, 2020
+
+- `stats recipe made /before 2020-12-25` <br />
+  This shows all recipes made before the 25th of December, 2020
+
+- `stats recipe made /after 2020-04-15 /before 2020-12-25` <br />
+  This shows all recipes made between the 15th of April and 25th of December
+
+- `stats recipe made /after 2020-01-01 08:00 /before 2020-01-01 23:00` <br />
+  This shows all recipes made between 8am and 11pm on the 1st of January
+
+
+For example, `stats recipe made /after 2020-11-02 /before 2020-11-04 23:00` shows this output:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_recipe_made_1.png" width="45%" /> <br />
+Figure 17: <i>Showing the recipes made between a date range</i>
 </div>
 
-For example:
-Let's say you executed `make recipe Rojak` on 23:59 hours yesterday. If you enter `stats recipe` you will not see `Rojak` listed in the statistics box.
+Meanwhile, just executing `stats recipe made` only shows the recipes made on the current day:
 
-If you enter `stats recipe /before 2020-02-13` into the command box, all recipes made prior to 2020-02-13 will be listed in the Statistics box.
-
-If you enter `stats recipe /after 2020-02-13` into the command box, all recipes made after 2020-02-13 will be listed in the Statistics box.
-
-If you enter `stats recipe /before 2020-10-31 /after 2020-02-13` into the command box, all recipes made within the period of 2020-02-13 to 2020-10-31 will be listed in the Statistics box.
-
-If you enter `stats recipe` into the command box without either `[/before <date-time>]` or `[/after <date-time>]`, all recipes made today be listed in the Statistics box.
-
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** If you are only interested in what was cooked for dinner, you can specify the time period to the nearest minute. For example, `stats recipe /before 2020-02-13 20:30 /after 2020-02-13 18:30` will show a list of recipes made within this 2-hour period.
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/stats_recipe_made_2.png" width="45%" /> <br />
+Figure 18: <i>Showing the recipes made on the current day</i>
 </div>
+
 
 
 
 <a name="StatsRecipeClearCommand"></a>
 #### 5.6.4&ensp;Clearing Recipe History — **`stats`**`recipe clear`
+
 This command clears the history of the recipes that you've made from ChopChop. If you did this accidentally, don't worry, because you can [undo](#UndoCommand) this.
 
 **Usage**: `stats recipe clear`
@@ -1162,8 +1196,8 @@ This command clears the history of the recipes that you've made from ChopChop. I
 
 <a name="StatsIngredientRecentCommand"></a>
 #### 5.6.5&ensp;Listing Recent Ingredients — **`stats`**`ingredient recent`
-This command shows a list of ingredients that were used by recipes made recently. The list is arranged in descending chronological order.
-Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
+
+This command shows a list of the 10 most recently-used ingredients consumed by `make`-ing recipes. The output format is identical to that of [`stats recipe recent`](#StatsRecipeRecentCommand) as discussed above, so it will be omitted for brevity.
 
 **Usage**: `stats ingredient recent`
 
@@ -1171,8 +1205,10 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 <a name="StatsIngredientUsedCommand"></a>
 #### 5.6.6&ensp;Listing Ingredients within a Time Frame — **`stats`**`ingredient used`
-This command shows a list of ingredients that were used by recipes made recently within the given time frame.
-Even after the ingredient is deleted, its past usages are still saved within ChopChop, and you will the ingredient listed. However, if you have just cleared your ingredient usage records, there will be no ingredients shown.
+
+This command shows a list of ingredients that were used within the given time frame, arranged in descending chronological order. You can specify the lower bound (earliest date/time), upper bound (latest date/time), both, or neither.
+
+This command behaves similarly to [`stats recipe made`](#StatsRecipeMadeCommand) as discussed above, except that `made` is replaced with `used` instead. Otherwise, the arguments (`/before`, `/after`) function identically.
 
 **Usage**: `stats ingredient used`
 
@@ -1180,6 +1216,7 @@ Even after the ingredient is deleted, its past usages are still saved within Cho
 
 <a name="StatsIngredientClearCommand"></a>
 #### 5.6.7&ensp;Clearing Ingredient History — **`stats`**`ingredient clear`
+
 This command clears the history of the ingredients that you've used in ChopChop. If you did this accidentally, don't worry, because you can [undo](#UndoCommand) this.
 
 **Usage**: `stats ingredient clear`
@@ -1197,14 +1234,16 @@ For easy reference, here are the commands that ChopChop supports, listed in alph
 <!-- why is this table in html? because markdown is the WORST of both worlds. -->
 <!-- you can't put line breaks in code blocks inside markdown table cells. sucks to be you. -->
 <!-- &lt; and &gt; all day every day. -->
-<table style="width: 100%"><thead>
+<table style="width: 100%">
+<thead>
   <tr>
     <th>Command</th>
     <th>Description</th>
     <th>Syntax Summary</th>
     <th>Undo</th>
   </tr>
-</thead><tbody>
+</thead>
+<tbody>
   <tr>
     <td><a href="#AddIngredientCommand">add ingredient</a></td>
     <td>Adds a new ingredient, or increases the quantity of an existing ingredient</td>
