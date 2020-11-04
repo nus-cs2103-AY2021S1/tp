@@ -23,16 +23,20 @@ public class CommandResult {
     /** The view of the timeline window should be shown. */
     private final boolean showTimeline;
 
+    /** Ui should trigger update in timeline window. */
+    private final boolean triggerUpdateTimeline;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean triggerUpdate,
-                         boolean showTimeline) {
+                         boolean showTimeline, boolean triggerUpdateTimeline) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.triggerUpdate = triggerUpdate;
         this.showTimeline = showTimeline;
+        this.triggerUpdateTimeline = triggerUpdateTimeline;
     }
 
     /**
@@ -40,7 +44,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -61,6 +65,10 @@ public class CommandResult {
 
     public boolean isShowTimeline() {
         return showTimeline;
+    }
+
+    public boolean isTriggerUpdateTimeline() {
+        return triggerUpdateTimeline;
     }
 
     @Override

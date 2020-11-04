@@ -631,6 +631,134 @@ Given below is the sequence diagram of how the mechanism behaves when called usi
 
 ![DeleteLabelSequenceDiagram](images/DeleteLabelSequenceDiagram.png)
 
+### Adding a Meeting
+
+####Implementation
+
+The add meeting mechanism is primarily facilitated by `AddMeetingCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `AddMeetingCommand` on the model, 
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+triggering a UI update in `MeetingListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+####Parsing the user input
+The parsing of the user input for `AddMeetingCommand` is facilitated by `AddMeetingCommandParser`.
+`AddMeetingCommandParser` extends Parser and implements the following methods:
+* AddMeetingCommandParser#parse — Parses the user input and returns the appropriate `AddMeetingCommand`
+
+`AddMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `AddMeetingCommand`.
+
+####Executing the user input
+
+#####Check if model contains given module
+`AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+#####Check if model contains given meeting
+`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+Meetings are identified by their modules and names for deletion, editing and viewing.
+If the given meeting already exists in the model, a `CommandException` is thrown, indicating that the user is trying to add a duplicate meeting.
+
+#####Check if model contains another meeting at same date and time
+`AddMeetingCommand` checks if the model contains another meeting at the same time and date as the given meeting.
+We assume that a user is unable to attend two meetings simultaneously at the same time and date. 
+If there is another meeting with conflicting time and date, a `CommandException` is thrown.
+
+#####Check if given module contains given participants
+`AddMeetingCommand` checks if the given participants are members of the given module. 
+We assume that all meetings occur between members of the same module.
+If any one of the given participants are not members of the given module, a `CommandException` is thrown. 
+
+####Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `meeting add` command.
+![AddMeetingActivityDiagram](images/AddMeetingActivityDiagram.png)
+
+### Deleting a Meeting
+
+####Implementation
+
+The delete meeting mechanism is primarily facilitated by `DeleteMeetingCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `DeleteMeetingCommand` on the model, 
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+triggering a UI update in `MeetingListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+####Parsing the user input
+The parsing of the user input for `DeleteMeetingCommand` is facilitated by `DeleteMeetingCommandParser`.
+`DeleteMeetingCommandParser` extends Parser and implements the following methods:
+* DeleteMeetingCommandParser#parse — Parses the user input and returns the appropriate `DeleteMeetingCommand`
+
+`DeleteMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `DeleteMeetingCommand`.
+
+####Executing the user input
+
+#####Check if model contains given module
+`AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+#####Check if model contains given meeting
+`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying delete a non existent meeting.
+
+####Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `meeting delete` command.
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+
+### Editing a Meeting
+
+####Implementation
+
+The edit meeting mechanism is primarily facilitated by `EditMeetingCommand`. It extends `Command` and implements the `execute` operation:
+
+* `execute(Model model)` — Executes the `EditMeetingCommand` on the model, 
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+triggering a UI update in `MeetingListPanel`
+
+This operation is exposed in the Command class as `Command#execute`
+
+####Parsing the user input
+The parsing of the user input for `EditMeetingCommand` is facilitated by `EditMeetingCommandParser`.
+`EditMeetingCommandParser` extends Parser and implements the following methods:
+* EditMeetingCommandParser#parse — Parses the user input and returns the appropriate `EditMeetingCommand`
+
+`EditMeetingCommandParser` checks that all compulsory fields are provided in the user input and throws a `ParseException` if the user does not conform to the expected format.
+The user input is the parsed in the context of the `EditMeetingCommand`.
+
+####Executing the user input
+
+#####Check if model contains given module
+`EditMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
+
+#####Check if model contains given meeting
+`EditMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying to edit a non existent meeting.
+
+#####Check if model contains edited meeting
+`EditMeetingCommand` checks if the model contains the edited meeting, identified by the unique combination of module and meeting name. 
+If the edited meeting exists in the model, a `CommandException` is thrown, indicating that the user is trying to edit the meeting into a meeting that already exists.
+
+#####Check if model contains another meeting at same date and time
+`EditMeetingCommand` checks if the model contains another meeting at the same time and date as the edited meeting.
+We assume that a user is unable to attend two meetings simultaneously at the same time and date. 
+If there is another meeting with conflicting time and date, a `CommandException` is thrown.
+
+#####Check if given module contains given participants
+`EditMeetingCommand` checks if the edited participants are members of the given module. 
+We assume that all meetings occur between members of the same module.
+If any one of the edited participants are not members of the given module, a `CommandException` is thrown. 
+
+####Activity Diagram
+Given below is the activity diagram of how the logic component behaves when called using the `meeting edit` command.
+![EditMeetingActivityDiagram](images/EditMeetingActivityDiagram.png)
+
+####EditMeetingDescriptor
+`EditMeetingDescriptor` is a nested class within EditMeetingCommand to facilitate the creation of the edited meeting.
+It stores the details to edit the meeting with and each non-empty field value will replace the corresponding field value of the given meeting.
+
 ### Viewing a Specific Meeting's Agendas and Notes 
 
 #### Implementation:
@@ -722,6 +850,48 @@ Given below is the activity diagram which illustrates the workflow of this proce
       * Using a list is not very suitable since `SelectedMeeting` is a single value.
       * Only certain JavaFX views can be used with ObservableList.
 
+###Timeline Feature
+The mechanism to display the timeline window is facilitated by `TimelineWindow`, which extends `UiPart`. 
+The components `TimelineSection` and `TimelineMeetingCard` help display various sections in the timeline window.
+
+![TimelineWindowClassDiagram](images/TimelineWindowClassDiagram.png)
+
+The `ShowTimelineCommand` triggers the timeline window to be displayed.
+
+![ShowTimelineSequenceDiagram](images/ShowTimelineSequenceDiagram.png)
+
+When the Logic signals that the `ShowTimelineCommand` has been triggered, 
+the following `handleShowTimeline` method in `MainWindow` is invoked to open the timeline window or focus on it if it is already opened.
+```
+public void handleShowTimeline() {
+    logger.info("UI show timeline triggered");
+
+    if (!timelineWindow.isShowing()) {
+        timelineWindow.show();
+    } else {
+        timelineWindow.focus();
+    }
+}
+```
+
+Whenever an update has been made to the model that affects any of the components in timeline, 
+the following `updateTimeline` method in `MainWindow` is invoked.
+```
+public void updateTimeline() {
+    timelineWindow.hide();
+    timelineWindow = timelineWindow.updateLogic(logic);
+}
+```
+The timeline window is hidden if it was open, and a new `TimelineWindow` object is created to match the new logic component.
+The following commands affect the `TimelineWindow`:
+* `EditCommand`
+* `DeleteCommand`
+* `ClearCommand`
+* `EditModuleCommand`
+* `DeleteModuleCommand`
+* `AddMeetingCommand`
+* `EditMeetingCommand`
+* `DeleteMeetingCommand`
 
 --------------------------------------------------------------------------------------------------------------------
 

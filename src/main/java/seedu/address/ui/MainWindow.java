@@ -195,15 +195,15 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
             }
         }
-        updateTimeline();
     }
 
     /**
      * Updates the timeline window whenever a change is made in meetings
      */
+    @Override
     public void updateTimeline() {
         timelineWindow.hide();
-        timelineWindow = this.timelineWindow.updateLogic(logic);
+        timelineWindow = timelineWindow.updateLogic(logic);
     }
 
     /**
@@ -266,6 +266,10 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
             if (commandResult.isShowTimeline()) {
                 handleShowTimeline();
+            }
+
+            if (commandResult.isTriggerUpdateTimeline()) {
+                updateTimeline();
             }
 
             return commandResult;

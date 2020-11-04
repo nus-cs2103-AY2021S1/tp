@@ -291,7 +291,7 @@ a/Discuss sequence diagram no/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`
 
-Deletes the specified meeting from Modduke.
+Deletes the specified meeting from Modduke, indentified by the unique combination of module and meeting name.
 
 Format: `meeting delete m/MODULE n/MEETING_NAME`
 
@@ -380,7 +380,7 @@ Format: `timeline`
 
 Note(s):
 * Meetings are displayed in chronological order, with the earliest meeting on the left side of the window
-* Meetings that have passed the current date and time are marked red
+* Meetings that have passed the date and time at the point which the application was first opened are marked red
 
 ### Exiting the program : `exit`
 
