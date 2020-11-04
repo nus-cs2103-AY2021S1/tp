@@ -352,6 +352,21 @@ public class AddModuleCommandTest {
         public void undoTodoList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void commit(int i) {
             throw new AssertionError("This method should not be called.");
