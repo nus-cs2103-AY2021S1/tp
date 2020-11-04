@@ -1,17 +1,23 @@
 package seedu.address.logic.commands.modulelistcommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.modulelistcommands.modulelistexceptions.CapCalculationException;
-import seedu.address.model.*;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleLesson;
-import seedu.address.testutil.Assert;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
 
 public class CalculateCapCommandTest {
     private Model model = new ModelManager(getTypicalModuleList(), new ModuleList(),
@@ -41,5 +47,24 @@ public class CalculateCapCommandTest {
                 model.getContactList(), model.getTodoList(), model.getEventList(), new UserPrefs());
         showModuleAtIndex(expectedModel, INDEX_FIRST_MODULE);
         assertCommandSuccess(new CalculateCapCommand(), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+
+        CalculateCapCommand calculateCapFirstCommand = new CalculateCapCommand();
+
+        // same object -> returns true
+        assertTrue(calculateCapFirstCommand.equals(calculateCapFirstCommand));
+
+        // same values -> returns true
+        CalculateCapCommand calculateCapFirstCommandCopy = new CalculateCapCommand();
+        assertTrue(calculateCapFirstCommand.equals(calculateCapFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(calculateCapFirstCommand.equals(8));
+
+        // null -> returns false
+        assertFalse(calculateCapFirstCommand.equals(null));
     }
 }

@@ -180,10 +180,9 @@ public class CommandTestUtil {
         model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
     }
-
     /**
-     * Updates {@code model}'s archived module filtered list to show only the module at the given {@code targetIndex} in the
-     * {@code model}'s archived module list.
+     * Updates {@code model}'s archived module filtered list to show only the module at the given {@code targetIndex}
+     * in the {@code model}'s archived module list.
      */
     public static void showArchivedModuleAtIndex(Model model, Index targetIndex) {
         model.displayArchivedModules();

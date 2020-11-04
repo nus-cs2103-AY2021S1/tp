@@ -1,14 +1,14 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-// import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.function.Predicate;
 
@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-// import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
@@ -28,60 +28,61 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
-// import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalModules;
 
-public class AddModuleCommandTest {
-
+public class AddCompletedModuleCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddModuleCommand(null));
+    public void constructor_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCompletedModuleCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        // ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Contact validPerson = new ContactBuilder().build();
-
-        // CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        // assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        // assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    public void execute_moduleAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingModuleAdded modelStub =
+                new ModelStubAcceptingModuleAdded();
+        Module validCompletedModule = TypicalModules.CS2030;
+        CommandResult commandResult = new AddCompletedModuleCommand(validCompletedModule).execute(modelStub);
+        assertEquals(String.format(AddCompletedModuleCommand.MESSAGE_SUCCESS, validCompletedModule),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCompletedModule), modelStub.modulesAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Contact validPerson = new ContactBuilder().build();
-        // AddCommand addCommand = new AddCommand(validPerson);
-        // ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateModule_throwsCommandException() {
+        Module validCompletedModule = TypicalModules.CS2030;
+        AddCompletedModuleCommand addCompletedModuleCommand =
+                new AddCompletedModuleCommand(validCompletedModule);
+        ModelStub modelStub = new ModelStubWithModule(validCompletedModule);
 
-        // assertThrows(CommandException.class,
-        // AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+            AddCompletedModuleCommand.MESSAGE_DUPLICATE_MODULE, () ->
+                        addCompletedModuleCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Contact alice = new ContactBuilder().withName("Alice").build();
-        Contact bob = new ContactBuilder().withName("Bob").build();
-        // AddCommand addAliceCommand = new AddCommand(alice);
-        // AddCommand addBobCommand = new AddCommand(bob);
+        Module firstModule = TypicalModules.CS2030;
+        Module secondModule = new ModuleBuilder().withName("CS2040").withGradePoint(4.0).withTag("completed").build();
+        AddCompletedModuleCommand addCompletedCS2030Command = new AddCompletedModuleCommand(firstModule);
+        AddCompletedModuleCommand addCompletedCS2040Command = new AddCompletedModuleCommand(secondModule);
 
         // same object -> returns true
-        // assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCompletedCS2030Command.equals(addCompletedCS2030Command));
 
         // same values -> returns true
-        // AddCommand addAliceCommandCopy = new AddCommand(alice);
-        // assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCompletedModuleCommand addCompletedCS2030CommandCopy = new AddCompletedModuleCommand(firstModule);
+        assertTrue(addCompletedCS2030Command.equals(addCompletedCS2030CommandCopy));
 
         // different types -> returns false
-        // assertFalse(addAliceCommand.equals(1));
+        assertFalse(addCompletedCS2030Command.equals(1));
 
         // null -> returns false
-        // assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCompletedCS2030Command.equals(null));
 
-        // different person -> returns false
-        // assertFalse(addAliceCommand.equals(addBobCommand));
+        // different module -> returns false
+        assertFalse(addCompletedCS2030Command.equals(addCompletedCS2040Command));
     }
 
     /**
@@ -449,21 +450,27 @@ public class AddModuleCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the module being added.
      */
-    public class ModelStubAcceptingPersonAdded extends ModelStub {
+    public class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasModule(Module person) {
-            requireNonNull(person);
-            return modulesAdded.stream().anyMatch(person::isSameModule);
+        public boolean hasModule(Module module) {
+            requireNonNull(module);
+            return modulesAdded.stream().anyMatch(module::isSameModule);
         }
 
         @Override
-        public void addModule(Module person) {
-            requireNonNull(person);
-            modulesAdded.add(person);
+        public boolean hasArchivedModule(Module module) {
+            requireNonNull(module);
+            return modulesAdded.stream().anyMatch(module::isSameModule);
+        }
+
+        @Override
+        public void addModule(Module module) {
+            requireNonNull(module);
+            modulesAdded.add(module);
         }
 
         @Override
