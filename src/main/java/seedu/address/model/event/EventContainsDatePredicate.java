@@ -24,8 +24,12 @@ public class EventContainsDatePredicate implements Predicate<Event> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof EventContainsDatePredicate // instanceof handles nulls
-                && dates.equals(((EventContainsDatePredicate) other).dates)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof EventContainsDatePredicate) {
+            return this.dates.equals(((EventContainsDatePredicate) other).dates);
+        } else {
+            return false;
+        }
     }
 }

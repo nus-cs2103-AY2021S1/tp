@@ -118,14 +118,6 @@ public class EditModuleParserTest {
     }
 
     @Test
-    public void parse_invalidIndex_failure() {
-        //String invalidIndex = " " + 100
-        //        + " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-        //EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
-        //assertParseFailure(parser, invalidIndex, MESSAGE_INVALID_INDEX);
-    }
-
-    @Test
     public void parse_invalidName_failure() {
         String invalidName = " " + 1
                 + " " + PREFIX_NAME + "@123";
