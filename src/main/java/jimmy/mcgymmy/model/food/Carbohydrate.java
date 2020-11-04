@@ -31,4 +31,8 @@ public class Carbohydrate extends Macronutrient {
         }
     }
 
+    @Override
+    String getMessageConstraint() {
+        return MESSAGE_CONSTRAINTS;
+    }
 }
