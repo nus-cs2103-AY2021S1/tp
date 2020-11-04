@@ -11,12 +11,13 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant ":Stock" as Stock MODEL_COLOR
 end box
 
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> StockBookParser : parseCommand()
+LogicManager -> StockBookParser : parseCommand(...)
 activate StockBookParser
 
 create UpdateCommandParser
@@ -42,8 +43,14 @@ deactivate UpdateCommandParser
 StockBookParser --> LogicManager
 deactivate StockBookParser
 
-LogicManager -> UpdateCommand : execute()
+LogicManager -> UpdateCommand : execute(...)
 activate UpdateCommand
+
+UpdateCommand -> Model : updateFilteredStockList(...)
+activate Model
+
+Model --> UpdateCommand
+deactivate Model
 
 UpdateCommand -> Model : getFilteredStockList()
 activate Model
@@ -51,39 +58,27 @@ activate Model
 Model --> UpdateCommand
 deactivate Model
 
-UpdateCommand -> UpdateStockDescriptor : getSerialNumbers()
-activate UpdateStockDescriptor
-
-UpdateStockDescriptor --> UpdateCommand
-deactivate UpdateStockDescriptor
-
 loop stocks
-    UpdateCommand -> UpdateStockDescriptor : getSerialNumbers()
-    activate UpdateStockDescriptor
+    UpdateCommand -> Stock : getSerialNumber()
+    activate Stock
 
-    UpdateStockDescriptor --> UpdateCommand
-    deactivate UpdateStockDescriptor
+    Stock --> UpdateCommand
+    deactivate Stock
 end
 
 loop stocks to update
-    UpdateCommand -> UpdateCommand : createUpdatedStock()
+    UpdateCommand -> UpdateCommand : createUpdatedStock(...)
     activate UpdateCommand
 
     UpdateCommand --> UpdateCommand
     deactivate UpdateCommand
 
-    UpdateCommand -> Model : setStock()
+    UpdateCommand -> Model : setStock(...)
     activate Model
 
     Model --> UpdateCommand
     deactivate Model
 end
-
-UpdateCommand -> Model : updateFilteredStockList()
-activate Model
-
-Model --> UpdateCommand
-deactivate Model
 
 UpdateCommand --> LogicManager
 deactivate UpdateCommand

@@ -312,6 +312,12 @@ The following sequence diagram shows how the update feature works for **Example 
 
 ![Update Example 1](images/UpdateSequenceDiagramExample1.png)
 
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the update feature is triggered:
+
+![UpdateActivityDiagram](images/UpdateActivityDiagram.png)
+
 #### Design Consideration
 
 ##### Aspect: What fields can be updated

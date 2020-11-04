@@ -1,0 +1,29 @@
+@startuml
+start
+:User enters command;
+
+:Warenager passes command input \n to their respective parsers.;
+
+if () then ([update command])
+    :UpdateCommandParser parses user input and determine \n if it is valid or not;
+    if () then ([valid input])
+        :Warenager creates the UpdateStockDescriptor;
+        :UpdateStockDescriptor gets passed to UpdateCommand;
+        :UpdateCommand executes the update;
+        if () then ([update successful])
+            :UpdateCommand generates a CommandResult;
+            :CommandResult gets displayed to the user;
+        else ([error occurs])
+            :CommandException is thrown;
+            :Error message is displayed to the user;
+        endif
+    else ([invalid input])
+        :ParseException is thrown;
+        :Warenager generates a suggestion to the user;
+    endif
+else ([non-update command])
+
+endif
+stop
+
+@enduml
