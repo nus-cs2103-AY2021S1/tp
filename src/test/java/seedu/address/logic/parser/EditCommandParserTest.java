@@ -197,7 +197,7 @@ public class EditCommandParserTest {
 //        UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 //
 //        assertParseSuccess(parser, userInput, expectedCommand);
-//    }
+//  }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
