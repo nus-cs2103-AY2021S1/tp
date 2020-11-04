@@ -28,6 +28,10 @@ public class ApplicantBuilder extends PersonBuilder {
         this.interviewDate = Optional.ofNullable(new InterviewDate(interviewDate));
     }
 
+    public void withApplicationStatus (String applicationStatus) {
+        this.applicationStatus = new ApplicationStatus(applicationStatus);
+    }
+
     @Override
     public Applicant build() {
         return new Applicant(name, phone, email, address, tags, comments,

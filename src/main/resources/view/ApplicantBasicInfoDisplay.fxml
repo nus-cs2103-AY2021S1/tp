@@ -11,9 +11,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <HBox id="cardPane" fx:id="displayPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
@@ -27,13 +24,68 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tags" />
-            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-            <Label fx:id="interviewDate" styleClass="cell_small_label" text="\$email" />
-            <Label fx:id="applicationStatus" styleClass="cell_small_label" text="\$email" />
+            <FlowPane fx:id="tags" styleClass="tagsDetail" />
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100" >
+                    <Label fx:id="phone2" styleClass="cell_small_label_details" text="Phone: " />
+                </HBox>
+                <Label fx:id="phone" styleClass="cell_small_label_details" text="\$phone" />
+            </HBox>
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100">
+                    <Label fx:id="email2" styleClass="cell_small_label_details" text="Email: " />
+
+                </HBox>
+                <Label fx:id="email" styleClass="cell_small_label_details" text="\$email" />
+            </HBox>
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100">
+                    <Label fx:id="address2" styleClass="cell_small_label_details" text="Address: " />
+                </HBox>
+                <Label fx:id="address" styleClass="cell_small_label_details" text="\$address" wrapText="true"/>
+            </HBox>
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100">
+                    <Label fx:id="interviewDate2" styleClass="cell_small_label_details" text="Interview Date: " />
+
+                </HBox>
+                <Label fx:id="interviewDate" styleClass="cell_small_label_details" text="\$interviewDate" />
+            </HBox>
+
+            <HBox>
+                <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100">
+                    <Label fx:id="applicationStatus2" styleClass="cell_small_label_details" text="Status: " />
+
+                </HBox>
+                <Label fx:id="applicationStatus" styleClass="cell_small_label_details" text="\$email" />
+            </HBox>
+<!--            <HBox>-->
+
+<!--                <VBox fx:id="details_headers_box" alignment="CENTER_LEFT" >-->
+<!--                    <Label fx:id="phone2" styleClass="cell_small_label_details" text="Phone: " />-->
+<!--                    <Label fx:id="email2" styleClass="cell_small_label_details" text="Email: " />-->
+<!--                    <Label fx:id="interviewDate2" styleClass="cell_small_label_details"-->
+<!--                           text="Interview Date: " />-->
+<!--                    <Label fx:id="applicationStatus2" styleClass="cell_small_label_details"-->
+<!--                           text="Status: " />-->
+<!--                    <Label fx:id="address2" styleClass="cell_small_label_details" text="Address: " />-->
+<!--                </VBox>-->
+<!--                <VBox fx:id="details_box">-->
+<!--                    <Label fx:id="phone" styleClass="cell_small_label_details" text="\$phone" />-->
+<!--                    <Label fx:id="email" styleClass="cell_small_label_details" text="\$email" />-->
+<!--                    <Label fx:id="interviewDate" styleClass="cell_small_label_details" text="\$interviewDate" />-->
+<!--                    <Label fx:id="applicationStatus" styleClass="cell_small_label_details" text="\$email" />-->
+<!--                    <Label fx:id="address" styleClass="cell_small_label_details" text="\$address" />-->
+<!--                </VBox>-->
+<!--            </HBox>-->
         </VBox>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
     </GridPane>
 </HBox>
 

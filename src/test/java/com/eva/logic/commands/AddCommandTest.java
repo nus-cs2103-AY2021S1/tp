@@ -26,6 +26,7 @@ import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -307,6 +308,12 @@ public class AddCommandTest {
         public void setApplicant(Applicant target, Applicant editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setApplicationStatus(Applicant applicant, ApplicationStatus status) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public void deleteApplication(Applicant target, Application toSet) {
             throw new AssertionError("This method should not be called.");

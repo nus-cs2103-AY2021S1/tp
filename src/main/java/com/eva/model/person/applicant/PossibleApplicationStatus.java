@@ -14,17 +14,15 @@ public enum PossibleApplicationStatus {
     }
 
     public static PossibleApplicationStatus getStatus(String status) {
-        if (status.equals(RECEIVED.status)) {
+        if (status.toLowerCase().equals(RECEIVED.status)) {
             return RECEIVED;
-        } else if (status.equals(PROCESSING.status)) {
+        } else if (status.toLowerCase().equals(PROCESSING.status)) {
             return PROCESSING;
-        } else if (status.equals(ACCEPTED.status)) {
+        } else if (status.toLowerCase().equals(ACCEPTED.status)) {
             return ACCEPTED;
-        } else if (status.equals(REJECTED.status)) {
+        } else if (status.toLowerCase().equals(REJECTED.status)) {
             return REJECTED;
         } else {
-            assert false;
-            // should not reach here
             throw new IllegalArgumentException();
         }
     }

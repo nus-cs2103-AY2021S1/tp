@@ -40,6 +40,7 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
 
     /**
      * Create ApplicantBasicInfoDIsplay object
+     *
      * @param applicant
      * @param index
      */
@@ -47,17 +48,15 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
         super(FXML);
         this.applicant = applicant;
 
-        name.setWrapText(true);
-        phone.setWrapText(true);
-        address.setWrapText(true);
-        email.setWrapText(true);
-
-        name.setText(this.applicant.getName().fullName);
         id.setText(index.getOneBased() + ". ");
+        name.setText(this.applicant.getName().fullName);
         phone.setText(this.applicant.getPhone().value);
         address.setText(this.applicant.getAddress().value);
         email.setText(this.applicant.getEmail().value);
-        interviewDate.setText(interviewDateToDisplay(this.applicant.getInterviewDate()));
+        interviewDate.setText((this.applicant.getInterviewDate().isPresent()
+                ? this.applicant.getInterviewDate().get().toString()
+                : "Not set yet")
+        );
         applicationStatus.setText(this.applicant.getApplicationStatus().toString());
         tags.getChildren().add(new Label("Applicant"));
         applicant.getTags().stream()

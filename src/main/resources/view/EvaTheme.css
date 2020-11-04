@@ -91,7 +91,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: transparent;
+    -fx-background-color: #e8e7e4;
 }
 
 .list-cell {
@@ -137,6 +137,17 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+}
+
+.cell_small_label_details {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-padding: 5px;
+}
+
+#tagsDetail {
+    -fx-padding: 5px;
 }
 
 .stack-pane {
