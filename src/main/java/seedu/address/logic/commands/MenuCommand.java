@@ -16,6 +16,6 @@ public class MenuCommand extends Command {
         }
         model.showDefaultMenu();
         return new CommandResult(
-                Messages.MESSAGE_MENU_LIST);
+                Messages.MESSAGE_MENU_LIST, false, false, false, true);
     }
 }

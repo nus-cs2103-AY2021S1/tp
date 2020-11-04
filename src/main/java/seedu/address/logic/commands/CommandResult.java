@@ -25,16 +25,17 @@ public class CommandResult {
      * Preset is being set in this command.
      */
     private final boolean isPreset;
-
+    private final boolean isVendor;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isPreset) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isPreset, boolean isVendor) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.isPreset = isPreset;
+        this.isVendor = isVendor;
     }
 
     /**
@@ -42,11 +43,15 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public boolean isVendor() {
+        return isVendor;
     }
 
     public boolean isShowHelp() {

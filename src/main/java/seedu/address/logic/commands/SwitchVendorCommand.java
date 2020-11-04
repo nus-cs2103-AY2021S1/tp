@@ -52,14 +52,16 @@ public class SwitchVendorCommand extends VendorCommand {
 
         Vendor currVendor = vendors.get(index);
         String message;
+        boolean isSameVendor = false;
         if (oldIndex != index) {
             model.resetOrder();
             message = String.format(MESSAGE_SELECT_VENDOR_SUCCESS, currVendor.getName());
         } else {
             message = String.format(MESSAGE_SELECT_VENDOR_SAME, currVendor.getName());
+            isSameVendor = true;
         }
 
-        return new CommandResult(message);
+        return new CommandResult(message, false, false, false, !isSameVendor);
     }
 
     @Override

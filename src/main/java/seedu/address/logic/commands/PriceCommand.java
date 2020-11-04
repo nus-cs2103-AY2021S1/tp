@@ -42,7 +42,7 @@ public class PriceCommand extends Command {
         model.updateFilteredMenuItemList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_PRICE_CONTEXT,
-                        model.getFilteredMenuItemListSize(), predicate));
+                        model.getFilteredMenuItemListSize(), predicate), false, false, false, true);
     }
 
     @Override

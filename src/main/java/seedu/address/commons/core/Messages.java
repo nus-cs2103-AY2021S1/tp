@@ -21,10 +21,13 @@ public class Messages {
             + " please add an order.";
     public static final String MESSAGE_INSUFFICIENT_ARGUMENTS = "%s command requires at least %s argument(s).\n%s";
     public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments.\n%s";
-    public static final String MESSAGE_FOOD_LISTED_OVERVIEW = "%1$d food listed!\n"
-            + "1. You can further chain the current filter with another `find` or `price` command.\n"
+    public static final String MESSAGE_CHAIN =
+            "1. You can further chain the current filter with another `find` or `price` command.\n"
             + "2. Filters can be reset with the `menu` command.";
-    public static final String MESSAGE_FOOD_LISTED_PRICE_CONTEXT = "%1$d food with price %2$s listed!";
+    public static final String MESSAGE_FOOD_LISTED_OVERVIEW = "%1$d food listed!\n" + MESSAGE_CHAIN;
+    public static final String MESSAGE_FOOD_LISTED_PRICE_CONTEXT = "%1$d food with price %2$s listed!\n"
+            + MESSAGE_CHAIN;
+    public static final String MESSAGE_FOOD_SORTED = "Food successfully sorted!\n" + MESSAGE_CHAIN;
     public static final String MESSAGE_MENU_LIST = "All food listed!";
     public static final String MESSAGE_ORDERITEM_QUANTITY_EXCEED = "Cannot have more than 100 of the an order item.";
     public static final String MESSAGE_EMPTY_PROFILE = "Please create a profile first before using the submit command.";

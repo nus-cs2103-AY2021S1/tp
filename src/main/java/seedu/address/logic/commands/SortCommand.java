@@ -29,8 +29,6 @@ public class SortCommand extends Command {
             + "sort name ascending: sorts the menu by name in ascending direction.\n"
             + "sort price: sorts the menu by price in opposite direction as last sorted.";
 
-    public static final String MESSAGE_SUCCESS = "Menu successfully sorted!";
-
     private final String sortedBy;
     private final boolean ascending;
     private final boolean toggle;
@@ -60,7 +58,7 @@ public class SortCommand extends Command {
             throw new CommandException(Messages.MESSAGE_VENDOR_NOT_SELECTED);
         }
         model.sortMenuItemBy(sortedBy, ascending, toggle);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
+        return new CommandResult(Messages.MESSAGE_FOOD_SORTED, false, false, false, true);
     }
 
     @Override

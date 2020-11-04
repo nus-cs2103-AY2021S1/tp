@@ -97,7 +97,7 @@ public class SampleDataUtil {
         menu3.add(new MenuItem("Breaded Fish Burger", 13.90, burgers,
                 "de_frank/fish_burger.png"));
         menu3.add(new MenuItem("Foie Gras Sliced Beef Roll", 18.90, hotdogs,
-                ""));
+                "invalid.png"));
         menu3.add(new MenuItem("Cheese Steak Sliders (3pcs)", 16.90, burgers,
                 "de_frank/cheese_steak_slider.png"));
 

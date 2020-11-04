@@ -42,7 +42,7 @@ public class FindCommand extends Command {
         model.updateFilteredMenuItemList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW,
-                        model.getFilteredMenuItemListSize()));
+                        model.getFilteredMenuItemListSize()), false, false, false, true);
     }
 
     @Override
