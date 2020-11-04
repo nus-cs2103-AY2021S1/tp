@@ -9,7 +9,7 @@ import jimmy.mcgymmy.model.food.Food;
 import jimmy.mcgymmy.model.macro.MacroList;
 
 class History {
-    private final Stack<Pair<McGymmy, Pair<Predicate<Food>, MacroList>>> stack;
+    protected final Stack<Pair<McGymmy, Pair<Predicate<Food>, MacroList>>> stack;
 
     History() {
         stack = new Stack<>();
@@ -34,24 +34,24 @@ class History {
 
     /**
      * Get the previous state from history
-     * @throws EmptyStackException
+     * @throws AssertionError
      */
-    void pop() throws EmptyStackException {
+    void pop() throws AssertionError {
         assert !stack.empty() : "History is empty";
         stack.pop();
     }
 
-    McGymmy peekMcGymmy() throws EmptyStackException {
+    McGymmy peekMcGymmy() throws AssertionError {
         assert !stack.empty() : "History is empty";
         return stack.peek().getKey();
     }
 
-    Predicate<Food> peekPredicate() throws EmptyStackException {
+    Predicate<Food> peekPredicate() throws AssertionError {
         assert !stack.empty() : "History is empty";
         return stack.peek().getValue().getKey();
     }
 
-    MacroList peekMacroList() throws EmptyStackException {
+    MacroList peekMacroList() throws AssertionError {
         assert !stack.empty() : "History is empty";
         return stack.peek().getValue().getValue();
     }
