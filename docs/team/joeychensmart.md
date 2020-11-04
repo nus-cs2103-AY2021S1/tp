@@ -33,10 +33,7 @@ Given below are my contributions to the project.
   * Credits: The design and implementation was inspired by [my ip](https://github.com/JoeyChenSmart/ip), but many design and implementation details were revisited and
   tweaked to fit with McGymmy (e.g. saving to storage). Both implementations also rely on the redesigned logic component above.
   
-
 * **New Feature**: Added a help command.
-  * What it does: shows a list of all commands to the user, along with a short description of each command. The user can also request for information on a specific command.
-  * Justification: allows the user to very conveniently get assistance on how to use the app, within the app itself.
   * Highlights: This feature leverages on the above redesigned logic component. Cleverly reusing information provided by the developer using the declarative style,
   this feature automatically generates help strings for each command. The design was carefully thought out to follow the DRY (don't repeat yourself) principle, to minimize
   bugs due to code duplication.
