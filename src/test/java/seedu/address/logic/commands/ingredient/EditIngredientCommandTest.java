@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOL
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex;
-import static seedu.address.logic.commands.CommandTestUtil.varyRecipeFieldsDescriptor;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
@@ -21,17 +20,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.CommandTestUtil;
-import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.WishfulShrinking;
 import seedu.address.model.ingredient.Ingredient;
-import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditIngredientDescriptorBuilder;
 import seedu.address.testutil.IngredientBuilder;
-import seedu.address.testutil.RecipeBuilder;
 
 public class EditIngredientCommandTest {
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());

@@ -2,6 +2,7 @@ package seedu.address.logic.commands.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.Field;
 import static seedu.address.logic.commands.CommandTestUtil.IDENTICAL_NAME_AND_INGREDIENT_SANDWICH_RECIPE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PASTA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SANDWICH;
@@ -29,7 +30,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showRecipeAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.varyRecipeFieldsDescriptor;
-import static seedu.address.logic.commands.CommandTestUtil.Field;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;

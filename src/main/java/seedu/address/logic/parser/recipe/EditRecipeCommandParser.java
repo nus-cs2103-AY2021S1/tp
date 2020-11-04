@@ -12,9 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;

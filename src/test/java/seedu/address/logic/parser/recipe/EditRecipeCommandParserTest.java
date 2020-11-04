@@ -3,6 +3,7 @@ package seedu.address.logic.parser.recipe;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MARGARITAS_USER_INPUT;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_NOODLE_USER_INPUT;
+import static seedu.address.logic.commands.CommandTestUtil.Field;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
@@ -12,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MISSING_INSTRUCTIONS_
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NON_INTEGER_CALORIES_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.Number;
 import static seedu.address.logic.commands.CommandTestUtil.RECIPE_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_NOODLE;
@@ -25,16 +27,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGAR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.ZERO_CALORIES_DESC;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.invalidRecipeCalorieField;
-import static seedu.address.logic.commands.CommandTestUtil.invalidRecipeIndexField;
 import static seedu.address.logic.commands.CommandTestUtil.invalidRecipeField;
+import static seedu.address.logic.commands.CommandTestUtil.invalidRecipeIndexField;
 import static seedu.address.logic.commands.CommandTestUtil.missingRecipeField;
 import static seedu.address.logic.commands.CommandTestUtil.missingRecipeFieldWithoutPrefix;
 import static seedu.address.logic.commands.CommandTestUtil.recipeDescriptor;
-import static seedu.address.logic.commands.CommandTestUtil.Field;
-import static seedu.address.logic.commands.CommandTestUtil.Number;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
 

@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARG
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_PASTA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH_SIMILAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_PASTA;
@@ -19,7 +18,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGAR
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_PASTA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWICH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWICH_SIMILAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_PASTA;

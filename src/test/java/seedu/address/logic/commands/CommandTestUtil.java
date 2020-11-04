@@ -72,7 +72,8 @@ public class CommandTestUtil {
     public static final String VALID_INGREDIENT_SANDWICH = "Kaiser Rolls Or Other Bread";
     public static final String VALID_QUANTITY_SANDWICH = "2 whole";
     public static final Integer VALID_CALORIES_SANDWICH = 70;
-    public static final String VALID_INSTRUCTION_SANDWICH = "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
+    public static final String VALID_INSTRUCTION_SANDWICH = "Make egg salad by chopping the hard boiled eggs "
+            + "and mixing in a bowl with mayonnaise, Dijon. "
             + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise."
             + "Sprinkle the mayonnaise-spread half with salt and pepper. "
             + "Lay cheese and ham on the mustard half; "
