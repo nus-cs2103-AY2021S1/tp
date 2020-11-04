@@ -192,7 +192,7 @@ public class ParserUtil {
         //Create the directory
         Path path = Path.of(directory);
         File file = new File(directory);
-        if (!file.exists()) {
+        if (!file.exists() || !file.isDirectory()) {
             throw new ParseException(String.format("Directory does not exist %s", path.toString()));
         }
         return path;
