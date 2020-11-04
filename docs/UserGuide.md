@@ -361,7 +361,7 @@ Format: `timeline`
 
 Note(s):
 * Meetings are displayed in chronological order, with the earliest meeting on the left side of the window
-* Meetings that have passed the current date and time are marked red
+* Meetings that have passed the date and time at the point which the application was first opened are marked red
 
 ### Exiting the program : `exit`
 
