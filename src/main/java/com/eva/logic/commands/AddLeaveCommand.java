@@ -88,9 +88,7 @@ public class AddLeaveCommand extends Command {
             sb.append(leave.toString()).append(", ");
         }
         model.setStaff(staffToTakeLeave, staffToTakeLeave); //force update model to update leave list.
-        if (panelState.equals(STAFF_LIST)) {
-            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-        } else if (panelState.equals(STAFF_PROFILE)) {
+        if (panelState.equals(STAFF_PROFILE)) {
             Staff staffToView = lastShownList.get(targetIndex.getZeroBased());
             model.setCurrentViewStaff(new CurrentViewStaff(staffToView, targetIndex));
         }

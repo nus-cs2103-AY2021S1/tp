@@ -15,6 +15,7 @@ import com.eva.logic.commands.EditCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 import com.eva.logic.parser.ParserUtil;
+import com.eva.logic.parser.Prefix;
 import com.eva.logic.parser.exceptions.IndexParseException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
@@ -32,7 +33,7 @@ public class AddCommentCommandParser {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
-                        PREFIX_COMMENT);
+                        PREFIX_COMMENT, new Prefix("|"));
 
         Index index;
 
@@ -43,6 +44,10 @@ public class AddCommentCommandParser {
                     AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE), pe);
         } catch (IndexParseException pe) {
             throw new ParseException(pe.getMessage());
+        }
+
+        if (argMultimap.getValue(new Prefix("|")).isPresent()) {
+            throw new ParseException("Comments does not allow '|'");
         }
 
 

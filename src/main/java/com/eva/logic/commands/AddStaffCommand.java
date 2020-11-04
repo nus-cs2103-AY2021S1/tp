@@ -55,7 +55,6 @@ public class AddStaffCommand extends Command {
 
         model.addStaff(toAdd);
         model.setPanelState(STAFF_LIST);
-        model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, true);
     }
 
