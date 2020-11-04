@@ -28,21 +28,8 @@ public class Student {
     /**
      * Constructor for Student.
      */
-    public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId) {
-        requireAllNonNull(name, phone, email, tags, studentId);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.tags.addAll(tags);
-        this.studentId = studentId;
-        this.attendance = new Attendance();
-    }
-
-    /**
-     * Constructor for Student.
-     */
     public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId, Attendance attendance) {
-        requireAllNonNull(name, phone, email, tags, studentId);
+        requireAllNonNull(name, phone, email, tags, studentId, attendance);
         this.name = name;
         this.phone = phone;
         this.email = email;

@@ -24,6 +24,7 @@ public class FindTutorialGroupCommandParser implements Parser<FindTutorialGroupC
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
+
         return new FindTutorialGroupCommand(new TutorialContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 }

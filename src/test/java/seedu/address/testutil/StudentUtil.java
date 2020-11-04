@@ -30,10 +30,10 @@ public class StudentUtil {
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + student.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + student.getEmail().value + " ");
-        sb.append(PREFIX_STUDENT_ID + student.getStudentId().value + " ");
+        sb.append(PREFIX_NAME + student.getName().toString() + " ");
+        sb.append(PREFIX_PHONE + student.getPhone().toString() + " ");
+        sb.append(PREFIX_EMAIL + student.getEmail().toString() + " ");
+        sb.append(PREFIX_STUDENT_ID + student.getStudentId().toString() + " ");
         student.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
@@ -43,10 +43,11 @@ public class StudentUtil {
      */
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME + name.fullName + " "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE + phone.value + ""));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL + email.value + " "));
-        descriptor.getStudentId().ifPresent(id -> sb.append(PREFIX_STUDENT_ID + id.value + " "));
+
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME + name.toString() + " "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE + phone.toString() + " "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL + email.toString() + " "));
+        descriptor.getStudentId().ifPresent(id -> sb.append(PREFIX_STUDENT_ID + id.toString() + " "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

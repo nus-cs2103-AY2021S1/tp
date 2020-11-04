@@ -168,7 +168,7 @@ There are three types of models:
 #### Implementation
 Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taught by the user. Each Add command
 for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
-Each command class extends `Command`. 
+Each command class extends `Command`.
 
 Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
 
@@ -177,7 +177,7 @@ Given below is an example of the interaction between the Model and the `AddModul
 #### Design Considerations
 **Aspect: List to contain the models**
 - Option 1: Generic `UniqueList` that contains the models
-    - Pros: Abstraction, 
+    - Pros: Abstraction,
     - Cons: Harder to implement
 - Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
     - Pros: Easier to implement

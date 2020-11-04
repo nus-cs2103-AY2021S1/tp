@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddAttendanceCommand;
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.AddStudentCommand;
-import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.logic.commands.AttendanceBelowCommand;
 import seedu.address.logic.commands.ClearCommand;
@@ -92,9 +91,6 @@ public class TrackrParser {
 
         case AddTutorialGroupCommand.COMMAND_WORD:
             return new AddTutorialGroupCommandParser().parse(arguments);
-
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
 
         case ViewTutorialGroupCommand.COMMAND_WORD:
             return new ViewTutorialGroupCommandParser().parse(arguments);

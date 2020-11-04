@@ -3,8 +3,6 @@ package seedu.address.model.tutorialgroup;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 public class TutorialContainsKeywordsPredicate implements Predicate<TutorialGroup> {
     private final List<String> keywords;
 
@@ -16,7 +14,7 @@ public class TutorialContainsKeywordsPredicate implements Predicate<TutorialGrou
     public boolean test(TutorialGroup tutorialGroup) {
         String idstring = tutorialGroup.getId().toString();
         return keywords.stream()
-            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tutorialGroup.getId().toString(), keyword));
+            .anyMatch(keyword -> idstring.toUpperCase().contains(keyword.toUpperCase()));
     }
 
     @Override

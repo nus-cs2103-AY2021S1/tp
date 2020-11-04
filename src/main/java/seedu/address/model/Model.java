@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleId;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
@@ -89,7 +88,7 @@ public interface Model {
      * {@code target} must exist in trackr.
      * The module identity of {@code editedModule} must not be the same as another existing module in trackr.
      */
-    void setModule(Module target, ModuleId newModuleId);
+    void setModule(Module target, Module editedModule);
 
     boolean isInModuleView();
 

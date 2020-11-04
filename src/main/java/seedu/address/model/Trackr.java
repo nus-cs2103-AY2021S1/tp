@@ -7,7 +7,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleId;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
@@ -74,9 +73,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
      * {@code target} must exist in Trackr.
      * The identity of {@code editedObject} must not be the same as another existing object.
      */
-    public void setModule(Module target, ModuleId newModuleId) {
-        requireAllNonNull(target, newModuleId);
-        moduleList.setModule(target, newModuleId);
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+        moduleList.setModule(target, editedModule);
     }
 
     /**

@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.logic.commands.AttendanceBelowCommand;
 import seedu.address.logic.commands.ParticipationBelowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.ParticipationBelowSpecifiedScorePredicate;
@@ -20,7 +19,7 @@ public class ParticipationBelowCommandParser {
             upperBound = ParserUtil.parseUpperBound(args);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AttendanceBelowCommand.MESSAGE_USAGE), pe);
+                    ParticipationBelowCommand.MESSAGE_USAGE), pe);
         }
 
         return new ParticipationBelowCommand(new ParticipationBelowSpecifiedScorePredicate(upperBound), upperBound);

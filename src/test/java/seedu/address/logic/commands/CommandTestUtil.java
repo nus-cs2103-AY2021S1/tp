@@ -104,8 +104,8 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
+            assertEquals(expectedCommandResult, result);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
@@ -148,7 +148,7 @@ public class CommandTestUtil {
 
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
 
-        final String[] splitName = module.getModuleId().getId().split("\\s+");
+        final String[] splitName = module.getModuleId().toString().split("\\s+");
 
         model.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 

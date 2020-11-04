@@ -8,14 +8,15 @@ import java.util.Objects;
 
 /**
  * Represents a Student's attendance in Trackr. This includes the student's participation score.
- * Guarantees: immutable; is valid as declared in {@link #isValidAttendance(String)} and
- * {@link #isValidParticipation(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidWeekNumber(String)} and
+ * {@link #isValidParticipationEdit(String)}
  */
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS = "Attendance covers week 1 to 13.\n"
             + "Please provide participation score in integers only (from -100 to 100).\n"
             + "Note that the minimum score is 0 and maximum score is 100.";
+    public static final String WEEK_NUMBER_CONSTRAINTS = "The week number can only be from %s to %s";
     public static final String VALIDATION_REGEX = "[-]?\\d+";
 
     // attendance
@@ -27,24 +28,38 @@ public class Attendance {
     public static final int MIN_SCORE = 0;
     public static final int MAX_SCORE = 100;
 
-    private boolean[] isPresent = new boolean[MAX_WEEK];
+    private boolean[] isPresent;
     private int value;
 
     /**
      * Constructor for Attendance.
      */
     public Attendance() {
+        this.isPresent = new boolean[MAX_WEEK];
         this.value = 0;
     }
 
     /**
      * Returns true if a given string is a valid week number.
      */
-    public static boolean isValidAttendance(String attendance) {
-        if (attendance.matches(VALIDATION_REGEX)) {
-            int week = Integer.parseInt(attendance);
+    public static boolean isValidWeekNumber(String weekNumber) {
+        if (weekNumber.matches(VALIDATION_REGEX)) {
+            int week = Integer.parseInt(weekNumber);
             return MIN_WEEK <= week
                     && week <= MAX_WEEK;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid participation score.
+     */
+    public static boolean isValidParticipationEdit(String participation) {
+        if (participation.matches(VALIDATION_REGEX)) {
+            int score = Integer.parseInt(participation);
+            return MIN_VALUE <= score
+                    && score <= MAX_SCORE;
         } else {
             return false;
         }
@@ -56,7 +71,7 @@ public class Attendance {
     public static boolean isValidParticipation(String participation) {
         if (participation.matches(VALIDATION_REGEX)) {
             int score = Integer.parseInt(participation);
-            return MIN_VALUE <= score
+            return MIN_SCORE <= score
                     && score <= MAX_SCORE;
         } else {
             return false;
@@ -76,17 +91,17 @@ public class Attendance {
     /**
      * Records the student as present on the given week number.
      */
-    public void addAttendance(String attendance) throws IllegalArgumentException {
-        checkArgument(isValidAttendance(attendance), MESSAGE_CONSTRAINTS);
-        parseAddingAttendance(attendance);
+    public void addAttendance(String weekNumber) throws IllegalArgumentException {
+        checkArgument(isValidWeekNumber(weekNumber), MESSAGE_CONSTRAINTS);
+        parseAddingAttendance(weekNumber);
     }
 
     /**
      * Records the student as absent on the given week number.
      */
-    public void deleteAttendance(String attendance) throws IllegalArgumentException {
-        checkArgument(isValidAttendance(attendance), MESSAGE_CONSTRAINTS);
-        parseDeletingAttendance(attendance);
+    public void deleteAttendance(String weekNumber) throws IllegalArgumentException {
+        checkArgument(isValidWeekNumber(weekNumber), MESSAGE_CONSTRAINTS);
+        parseDeletingAttendance(weekNumber);
     }
 
     private void parseParticipation(String participation) {
@@ -103,8 +118,16 @@ public class Attendance {
      * Adjusts the student's participation score.
      */
     public void editParticipation(String participation) {
-        checkArgument(isValidParticipation(participation), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidParticipationEdit(participation), MESSAGE_CONSTRAINTS);
         parseParticipation(participation);
+    }
+
+    /**
+     * Sets the student's participation score.
+     */
+    public void setParticipation(String participation) {
+        checkArgument(isValidParticipation(participation), MESSAGE_CONSTRAINTS);
+        value = Integer.parseInt(participation);
     }
 
     /**

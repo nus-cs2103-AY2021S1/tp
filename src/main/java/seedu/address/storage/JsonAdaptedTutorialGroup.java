@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.module.ModuleId;
 import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
@@ -23,6 +22,7 @@ public class JsonAdaptedTutorialGroup {
     private final String startTime;
     private final String endTime;
     private final String dayOfWeek;
+
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
@@ -30,14 +30,14 @@ public class JsonAdaptedTutorialGroup {
      */
     @JsonCreator
     public JsonAdaptedTutorialGroup(@JsonProperty("tutorialGroupId") String tutorialGroupId,
+                                    @JsonProperty("dayOfWeek") String dayOfWeek,
                                     @JsonProperty("startTime") String startTime,
                                     @JsonProperty("endTime") String endTime,
-                                    @JsonProperty("dayOfWeek") String dayOfWeek,
                                     @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.tutorialGroupId = tutorialGroupId;
-        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.dayOfWeek = dayOfWeek;
         this.students.addAll(students);
     }
 
@@ -45,6 +45,7 @@ public class JsonAdaptedTutorialGroup {
      * Converts a given {@code TutorialGroup} into this class for Jackson use.
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
+        assert source != null;
         tutorialGroupId = source.getId().toString();
         dayOfWeek = source.getDayOfWeek().toString();
         startTime = source.getStartTime().toString();
@@ -67,7 +68,7 @@ public class JsonAdaptedTutorialGroup {
 
         if (tutorialGroupId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ModuleId.class.getSimpleName()));
+                    TutorialGroupId.class.getSimpleName()));
         }
         if (!TutorialGroupId.isValidTutorialGroupId(tutorialGroupId)) {
             throw new IllegalValueException(TutorialGroupId.MESSAGE_CONSTRAINTS);

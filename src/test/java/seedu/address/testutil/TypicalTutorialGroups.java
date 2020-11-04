@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalStudents.getTypicalStudentList;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +21,8 @@ public class TypicalTutorialGroups {
             new TutorialGroupId("T05"),
             new DayOfWeek("MON"),
             new TimeOfDay("13:00"),
-            new TimeOfDay("14:00")
+            new TimeOfDay("14:00"),
+            getTypicalStudentList()
     );
 
     public static final TutorialGroup B06 = new TutorialGroup(
@@ -45,17 +48,17 @@ public class TypicalTutorialGroups {
     );
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code UniqueTutorialGroupList} with all the typical tutorial groups.
      */
     public static UniqueTutorialGroupList getTutorialGroupList() {
         UniqueTutorialGroupList tgl = new UniqueTutorialGroupList();
-        for (TutorialGroup tutorialGroup: getTypicalModules()) {
+        for (TutorialGroup tutorialGroup: getTypicalTutorialGroups()) {
             tgl.addTutorialGroup(tutorialGroup);
         }
         return tgl;
     }
 
-    public static List<TutorialGroup> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(T05, B06, S12));
+    public static List<TutorialGroup> getTypicalTutorialGroups() {
+        return new ArrayList<>(Arrays.asList(T05, B06, S12, V04));
     }
 }

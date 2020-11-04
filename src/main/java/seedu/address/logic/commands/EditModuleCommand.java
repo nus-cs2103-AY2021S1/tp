@@ -26,7 +26,7 @@ public class EditModuleCommand extends Command {
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[MODULE_ID] "
+            + "m/MODULE_ID \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS2100";
 
@@ -37,18 +37,18 @@ public class EditModuleCommand extends Command {
             + "Run listMod to go back to the Module view.";
 
     private final Index index;
-    private final ModuleId newModuleId;
+    private final EditModuleDescriptor editModuleDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param newModuleId details to edit the person with
+     * @param editModuleDescriptor details to edit the person with
      */
-    public EditModuleCommand(Index index, ModuleId newModuleId) {
+    public EditModuleCommand(Index index, EditModuleDescriptor editModuleDescriptor) {
         requireNonNull(index);
-        requireNonNull(newModuleId);
+        requireNonNull(editModuleDescriptor);
 
         this.index = index;
-        this.newModuleId = newModuleId;
+        this.editModuleDescriptor = editModuleDescriptor;
     }
 
     @Override
@@ -65,13 +65,13 @@ public class EditModuleCommand extends Command {
         }
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
-        Module editedModule = new Module(newModuleId);
+        Module editedModule = createEditedModule(moduleToEdit, editModuleDescriptor);
 
         if (!moduleToEdit.isSame(editedModule) && model.hasModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
 
-        model.setModule(moduleToEdit, newModuleId);
+        model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
@@ -80,13 +80,13 @@ public class EditModuleCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    // private static Module createEditedModule(Module moduleToEdit, EditModuleDescriptor editModuleDescriptor) {
-    //     assert moduleToEdit != null;
-    //
-    //     String updatedModuleId = editModuleDescriptor.getModuleId().orElse(moduleToEdit.getModuleId().toString());
-    //
-    //     return new Module(new ModuleId(updatedModuleId));
-    // }
+    private static Module createEditedModule(Module moduleToEdit, EditModuleDescriptor editModuleDescriptor) {
+        assert moduleToEdit != null;
+
+        ModuleId updatedModuleId = editModuleDescriptor.getModuleId().orElse(moduleToEdit.getModuleId());
+
+        return new Module(updatedModuleId);
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -103,7 +103,7 @@ public class EditModuleCommand extends Command {
         // state check
         EditModuleCommand e = (EditModuleCommand) other;
         return index.equals(e.index)
-                && newModuleId.equals(e.newModuleId);
+                && editModuleDescriptor.equals(e.editModuleDescriptor);
     }
 
     /**
@@ -111,7 +111,7 @@ public class EditModuleCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditModuleDescriptor {
-        private String moduleId;
+        private ModuleId moduleId;
 
         public EditModuleDescriptor() {}
 
@@ -130,11 +130,11 @@ public class EditModuleCommand extends Command {
             return CollectionUtil.isAnyNonNull(moduleId);
         }
 
-        public void setModuleId(String moduleId) {
+        public void setModuleId(ModuleId moduleId) {
             this.moduleId = moduleId;
         }
 
-        public Optional<String> getModuleId() {
+        public Optional<ModuleId> getModuleId() {
             return Optional.ofNullable(moduleId);
         }
 
