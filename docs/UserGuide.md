@@ -28,7 +28,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `Calo.jar`.
+2. Download the latest `Calo.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Calo.
 
