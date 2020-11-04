@@ -39,6 +39,22 @@ import seedu.address.model.task.Title;
 public class LessonCommandParserTest {
     private final LessonCommandParser parser = new LessonCommandParser();
     @Test
+    public void parse_overlappingLesson_returnsFalse() {
+        // start time same as end time
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                Time.RANGE_CONSTRAINTS);
+    }
+    @Test
     public void parse_invalidTime_returnsFalse() {
         // start time same as end time
         assertParseFailure(parser,
