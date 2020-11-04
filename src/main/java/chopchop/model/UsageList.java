@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -116,7 +115,7 @@ public class UsageList<T extends Usage> {
         assert n >= 0;
 
         var sorted = new ArrayList<>(this.usages);
-        Collections.sort(sorted, new Comparator<T>() { //just in case
+        sorted.sort(new Comparator<T>() {
             @Override
             public int compare(final T o1, final T o2) {
                 if (o1.getDate().compareTo(o2.getDate()) < 0) {
@@ -153,7 +152,7 @@ public class UsageList<T extends Usage> {
                 outputLst.add(new Pair<>(i.getName(), k));
             }
         }
-        Collections.sort(outputLst, new Comparator<Pair<String, Integer>>() {
+        outputLst.sort(new Comparator<Pair<String, Integer>>() {
             @Override
             public int compare(final Pair<String, Integer> o1, final Pair<String, Integer> o2) {
                 if (o1.snd() < o2.snd()) {

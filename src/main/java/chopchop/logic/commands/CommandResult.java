@@ -141,7 +141,9 @@ public class CommandResult {
 
         return this.parts.equals(cr.parts)
             && this.isError == cr.isError
-            && this.shouldExit == cr.shouldExit;
+            && this.shouldExit == cr.shouldExit
+            && this.isStatsOutput == cr.isStatsOutput
+            && this.statsMessage.equals(cr.statsMessage);
     }
 
     @Override

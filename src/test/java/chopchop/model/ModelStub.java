@@ -197,8 +197,7 @@ public class ModelStub implements Model {
 
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
-        throw new AssertionError("This method should not be cal"
-            + "ed.");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override

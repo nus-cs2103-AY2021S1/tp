@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.UsageList;
-import chopchop.testutil.StubbedModel;
+import chopchop.testutil.StubbedUsageModel;
 
 class StatsIngredientClearCommandTest {
     private Model model;
@@ -16,9 +16,9 @@ class StatsIngredientClearCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = StubbedModel.filled();
-        emptyModel = StubbedModel.empty();
-        expectedModel = StubbedModel.filled();
+        model = StubbedUsageModel.filled();
+        emptyModel = StubbedUsageModel.empty();
+        expectedModel = StubbedUsageModel.filled();
         expectedModel.setIngredientUsageList(new UsageList<>());
     }
 

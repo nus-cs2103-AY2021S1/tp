@@ -5,13 +5,11 @@ import static chopchop.testutil.TypicalUsages.RECIPE_A_B;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_C;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_D;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_E;
-import static chopchop.testutil.TypicalUsages.RECIPE_A_F;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_B;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_C;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_D;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_E;
-import static chopchop.testutil.TypicalUsages.RECIPE_B_F;
 import static chopchop.testutil.TypicalUsages.RECIPE_C_A;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
@@ -26,12 +24,12 @@ public class UsageListTest {
     public static final UsageList<RecipeUsage> REC_USAGE_1 = TypicalUsages.getRecipeUsageList();
     public static final UsageList<IngredientUsage> IND_USAGE_2 = TypicalUsages.getIngredientUsageList();
     public static final UsageList<RecipeUsage>
-        REVERSE_ORDER_REC = new UsageList<>(Arrays.asList(RECIPE_A_F, RECIPE_B_F, RECIPE_A_E,
+        REVERSE_ORDER_REC = new UsageList<>(Arrays.asList(RECIPE_A_E,
         RECIPE_B_E, RECIPE_A_D, RECIPE_B_D, RECIPE_A_C, RECIPE_B_C, RECIPE_A_B, RECIPE_B_B, RECIPE_A_A, RECIPE_B_A));
 
     @Test
     public void getUsageList_success() {
-        assert(REVERSE_ORDER_REC.getUsageList().equals(Arrays.asList(RECIPE_A_F, RECIPE_B_F, RECIPE_A_E,
+        assert(REVERSE_ORDER_REC.getUsageList().equals(Arrays.asList(RECIPE_A_E,
             RECIPE_B_E, RECIPE_A_D, RECIPE_B_D, RECIPE_A_C, RECIPE_B_C, RECIPE_A_B, RECIPE_B_B, RECIPE_A_A,
             RECIPE_B_A)));
     }

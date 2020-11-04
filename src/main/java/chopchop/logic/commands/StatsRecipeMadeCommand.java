@@ -34,7 +34,8 @@ public class StatsRecipeMadeCommand extends Command {
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
             var onAfter = this.after.format(onFormatter);
-            if (this.after.plusDays(1).equals(this.before)) {
+            if (this.after.getSecond() + this.after.getMinute() + this.after.getHour() == 0
+                    && this.after.plusDays(1).equals(this.before)) {
                 msg = String.format(isEmpty ? "No recipes were made on %s"
                                             : "Showing recipes made on %s", onAfter);
             } else {

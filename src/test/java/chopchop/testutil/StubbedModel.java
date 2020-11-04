@@ -14,7 +14,6 @@ import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.UsageList;
 import chopchop.model.usage.RecipeUsage;
@@ -129,53 +128,6 @@ public class StubbedModel extends chopchop.model.ModelStub {
     public void deleteIngredient(Ingredient target) {
         this.ingredients.remove(target);
     }
-
-    public void addRecipeUsage(RecipeUsage ru) {
-        this.recipeUsageList.add(ru);
-    }
-
-    @Override
-    public void addRecipeUsage(Recipe recipe) {
-    }
-
-    @Override
-    public void removeRecipeUsage(Recipe recipe) {
-        this.recipeUsageList.pop(recipe.getName());
-    }
-
-    @Override
-    public void addIngredientUsage(IngredientReference ingredient) {
-    }
-
-    public void addIngredientUsage(IngredientUsage iu) {
-        this.ingredientUsageList.add(iu);
-    }
-
-    @Override
-    public void removeIngredientUsage(IngredientReference ingredient) {
-        this.ingredientUsageList.pop(ingredient.getName());
-    }
-
-    @Override
-    public UsageList<RecipeUsage> getRecipeUsageList() {
-        return this.recipeUsageList;
-    }
-
-    @Override
-    public UsageList<IngredientUsage> getIngredientUsageList() {
-        return this.ingredientUsageList;
-    }
-
-    @Override
-    public void setRecipeUsageList(UsageList<RecipeUsage> ul) {
-        this.recipeUsageList.setAll(ul);
-    }
-
-    @Override
-    public void setIngredientUsageList(UsageList<IngredientUsage> ul) {
-        this.ingredientUsageList.setAll(ul);
-    }
-
 
     /**
      * Returns an empty stubbed model.
