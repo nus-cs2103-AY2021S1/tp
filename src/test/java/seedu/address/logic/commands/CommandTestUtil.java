@@ -51,14 +51,36 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
+    //valid lesson
     public static final String VALID_TITLE_CS2103T = "CS2103T Lecture";
     public static final String VALID_DESC_CS2103T = "Best lecture ever!";
+    public static final String VALID_DAY_CS2103T = "Monday";
     public static final String VALID_START_TIME_CS2103T = "12:00";
     public static final String VALID_END_TIME_CS2103T = "14:00";
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";
-    public static final String VALID_END_DATE_CS2103T = "01-05-2020";
-    public static final String VALID_TAG = "CS2103T";
+    public static final String VALID_END_DATE_CS2103T = "01-11-2020";
+    public static final String VALID_TAG_CS2103T = "CS2103T";
+    //valid lesson
+    public static final String VALID_TITLE_CS2100 = "CS2100 Lecture";
+    public static final String VALID_DESC_CS2100 = "Cool lecture!";
+    public static final String VALID_DAY_CS2100 = "Tuesday";
+    public static final String VALID_START_TIME_CS2100 = "14:00";
+    public static final String VALID_END_TIME_CS2100 = "16:00";
+    public static final String VALID_START_DATE_CS2100 = "01-11-2020";
+    public static final String VALID_END_DATE_CS2100 = "01-12-2020";
+    public static final String VALID_TAG_CS2100 = "CS2100";
+    //valid event
+    public static final String VALID_TITLE_EXPERIMENT = "Science experiment";
+    public static final String VALID_DESC_EXPERIMENT = "Do grape experiment";
+    public static final String VALID_DATE_EXPERIMENT = "01-01-2020";
+    public static final String VALID_START_TIME_EXPERIMENT = "10:00";
+    public static final String VALID_END_TIME_EXPERIMENT = "12:00";
+    public static final String VALID_TAG_EXPERIMENT = "LSM1301";
+    //valid deadline
+    public static final String VALID_TITLE_LAB = "Do weekly lab assignment";
+    public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
+    public static final String VALID_DATETIME_LAB = "01-01-2020";
+    public static final String VALID_TAG_LAB = "CS2100";
 
     /**
      * Executes the given {@code command}, confirms that <br>
