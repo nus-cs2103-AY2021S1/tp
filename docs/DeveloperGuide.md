@@ -28,7 +28,7 @@ title: Developer Guide
     - [3.3. List Features](#33-list-features)
         * [3.3.1 Implementation](#331-implementation)
         * [3.3.2 Design Consideration (**List Recipe**)](#332-design-consideration-list-recipe)
-            * [Aspect: Concern while adding a feature](#3321-aspect)
+            * [Aspect: Concern while adding the first feature](#3321-aspect)
         * [3.3.3 Design Consideration (**List Ingredient**)](#333-design-consideration-list-ingredient)
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration (**List Consumption**)](#334-design-consideration-list-consumption)
@@ -37,7 +37,7 @@ title: Developer Guide
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
         * [3.4.2 Design Consideration (**Delete Recipe**)](#342-design-consideration-delete-recipe)
-            * [Aspect: Concern while adding a new feature](#3421-aspect)
+            * [Aspect: Concern while adding the first feature](#3421-aspect)
         * [3.4.3 Design Consideration (**Delete Ingredient**)](#343-design-consideration-delete-ingredient)
             * [Aspect: Concern while adding a new feature](#3431-aspect)
         * [3.4.4 Design Consideration (**Delete Consumption**)](#344-design-consideration-delete-consumption)
@@ -250,12 +250,12 @@ API call:
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** 
 Some term in the sequence diagram above has changed to a common substitutable term:<br>
-
- * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
- - info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
- - add(type): `addRecipe(type)` or `addIngredient(type)`
- - type: `recipe` or `ingredient`
- 
+ <ul>
+ <li>AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`</li>
+ <li>info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`</li>
+ <li></li>add(type): `addRecipe(type)` or `addIngredient(type)`</li>
+ <li>type: `recipe` or `ingredient`</li>
+ </ul> 
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -282,7 +282,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Cons: Storage will contain unnecessarily duplicated items.
 
 #### 3.1.3 Design Considerations (**Add Ingredient**): <a id="313-design-consideration-add-ingredient"></a>
-##### Aspect 1: Concern while adding a new feature <a id="3131-aspect-1"></a>
+##### Aspect 1: Concern while adding the first feature <a id="3131-aspect-1"></a>
 * Workflow must be consistent with add recipe command.
 
 ##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity <a id="3132-aspect-2"></a>
@@ -365,7 +365,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After successfully fetch the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### 3.3.2 Design Consideration(**List Recipes**): <a id="332-design-consideration-list-recipe"></a>
-##### Aspect: Concern while adding a feature <a id="3321-aspect"></a>
+##### Aspect: Concern while adding the first feature <a id="3321-aspect"></a>
 * Workflow must be consistent with other commands.
 
 #### 3.3.3 Design Consideration(**List Ingredients**): <a id="333-design-consideration-list-ingredient"></a>
@@ -419,7 +419,7 @@ Given below is an example usage scenario and how the mechanism behaves:
 1. After the successful deleting of an `Consumption`, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### 3.4.2 Design Consideration Recipe (**Delete Recipe**): <a id="342-design-consideration-delete-recipe"></a>
-##### Aspect: Concern while adding a new feature <a id="3421-aspect"></a>
+##### Aspect: Concern while adding the first feature <a id="3421-aspect"></a>
 * Workflow must be consistent with other commands.
 
 #### 3.4.3 Design Consideration (**Delete Ingredient**): <a id="343-design-consideration-delete-ingredient"></a>
