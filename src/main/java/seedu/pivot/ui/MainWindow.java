@@ -118,10 +118,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label sectionLabel;
 
-    private final String homepage = "Home Page";
+    private final String homepage = "Home";
     private final String archive = "Archive";
-    private final String casePanel = "Case Panel";
-    private final String mainPanel = "Main Panel";
+    private final String casePanel = "Case Page";
+    private final String mainPanel = "Main Page";
     private String currentPage = homepage;
     private String currentPanel = mainPanel;
 
@@ -325,7 +325,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void updateSectionLabel(String firstInit) {
         String divider = " - ";
-        String preamble = "You are now at the ";
+        String preamble = "You are now at ";
         sectionLabel.setText(firstInit + preamble + currentPage + divider + currentPanel);
     }
 
