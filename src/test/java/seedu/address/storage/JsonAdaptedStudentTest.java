@@ -107,13 +107,13 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAdmin_throwsNullPointerException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
                 null, JSON_ADAPTED_ACADEMIC);
-        assertThrows(NullPointerException.class, student::toModelType);
+        assertThrows(IllegalValueException.class, student::toModelType);
     }
 
     @Test
-    public void toModelType_nullAcademic_throwsNullPointerException() {
+    public void toModelType_nullAcademic_throwsIllegakArgumentException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
                 JSON_ADAPTED_ADMIN, null);
-        assertThrows(NullPointerException.class, student::toModelType);
+        assertThrows(IllegalValueException.class, student::toModelType);
     }
 }
