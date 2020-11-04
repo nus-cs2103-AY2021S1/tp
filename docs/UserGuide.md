@@ -339,7 +339,8 @@ Examples:
 
 ### 5.10 Importing another save file: `import`
 
-You can import a previously saved file into McGymmy from your local directory
+The `import` command allows you to load a previously saved file from your local directory
+into McGymmy. This allows for easy transfer of McGymmy data between multiple computers.
 
 Format: `import FILEPATH`
 
@@ -349,6 +350,7 @@ Format: `import FILEPATH`
 
 * Imports the saved file at `FILEPATH`
 * Both relative and absolute paths work for the import feature.
+* The imported file will simply override the existing food list.
 
 </div>
 
