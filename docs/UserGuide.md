@@ -191,6 +191,7 @@ TIPS:
 Item names are case-sensitive.
 You cannot edit recipes! Please be careful when typing in your quantities.
 To add a recipe that creates an item not yet in your inventory, you will need to add the item first.
+You CAN have 0 as a quantity for an item used, we like to call these items 'catalysts'.
 ```
 
 ### Adding quantity to an item: `addq`
