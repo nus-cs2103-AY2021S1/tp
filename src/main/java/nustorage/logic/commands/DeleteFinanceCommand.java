@@ -51,4 +51,11 @@ public class DeleteFinanceCommand extends Command {
         model.deleteFinanceRecord(recordToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, recordToDelete));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteFinanceCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteFinanceCommand) other).targetIndex)); // state check
+    }
 }

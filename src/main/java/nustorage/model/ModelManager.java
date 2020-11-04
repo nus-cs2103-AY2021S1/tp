@@ -1,6 +1,5 @@
 package nustorage.model;
 
-
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -89,8 +88,12 @@ public class ModelManager implements Model {
 
     //=========== InventoryWindow ================================================================================
 
+    /**
+     * Adds a new inventory record to the list
+     */
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
+        updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
     }
 
     public ObservableList<InventoryRecord> getFilteredInventory() {
@@ -105,6 +108,12 @@ public class ModelManager implements Model {
     public void updateFilteredInventoryList(Predicate<InventoryRecord> predicate) {
         requireNonNull(predicate);
         filteredInventory.setPredicate(predicate);
+    }
+
+    @Override
+    public void setInventory(Inventory newInventory) {
+        requireNonNull(newInventory);
+        this.inventory.resetData(newInventory);
     }
 
     @Override
@@ -137,6 +146,7 @@ public class ModelManager implements Model {
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addFinanceRecord(newRecord);
+        updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCE);
     }
 
     @Override
@@ -177,6 +187,12 @@ public class ModelManager implements Model {
     public void deleteFinanceRecord(FinanceRecord target) {
         requireNonNull(target);
         financeAccount.removeFinanceRecord(target);
+    }
+
+    @Override
+    public void setFinanceAccount(FinanceAccount newFinanceAccount) {
+        requireNonNull(newFinanceAccount);
+        this.financeAccount.resetData(newFinanceAccount);
     }
 
     @Override

@@ -52,6 +52,8 @@ public interface Model {
     // --------- FinanceWindow Account ---------
     void deleteFinanceRecord(FinanceRecord target);
 
+    void setFinanceAccount(FinanceAccount newFinanceAccount);
+
     ReadOnlyFinanceAccount getFinanceAccount();
 
     void addFinanceRecord(FinanceRecord newRecord);
@@ -63,7 +65,6 @@ public interface Model {
     void deleteInventoryRecord(InventoryRecord target);
 
     void setFinanceRecord(FinanceRecord financeRecordToEdit, FinanceRecord editedFinanceRecord);
-
 
     ObservableList<FinanceRecord> getFilteredFinanceList();
 
@@ -90,6 +91,8 @@ public interface Model {
 
 
     ObservableList<InventoryRecord> getFilteredInventory();
+
+    void setInventory(Inventory newInventory);
 
     Inventory getInventory();
 

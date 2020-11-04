@@ -21,8 +21,17 @@ public class EditFinanceDescriptorBuilder {
      */
     public EditFinanceDescriptorBuilder(FinanceRecord financeRecord) {
         descriptor = new EditFinanceDescriptor();
+        descriptor.setId(financeRecord.getID());
         descriptor.setAmount(financeRecord.getAmount());
         descriptor.setDatetime(financeRecord.getDateTime());
+    }
+
+    /**
+     * Sets the {@code ID} of the {@code Finance Record} that we are building.
+     */
+    public EditFinanceDescriptorBuilder withId(int id) {
+        descriptor.setId(id);
+        return this;
     }
 
     /**

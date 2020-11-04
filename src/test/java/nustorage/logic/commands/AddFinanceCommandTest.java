@@ -31,9 +31,11 @@ public class AddFinanceCommandTest {
 
         CommandResult commandResult = new AddFinanceCommand(financeRecord).execute(modelStub);
 
+
         assertEquals(String.format(AddFinanceCommand.MESSAGE_SUCCESS, financeRecord),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(financeRecord), modelStub.financeRecordAdded);
+
     }
 
     @Test
