@@ -39,6 +39,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 * Responsibilities: 
     * Documentation
     * Javadoc Standards
+    * Internal Bug Tester
 
 ### Liu Zhengdao
 
