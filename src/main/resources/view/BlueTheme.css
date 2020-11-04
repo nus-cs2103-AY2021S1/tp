@@ -1,12 +1,12 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
@@ -22,6 +22,7 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
+    -fx-background-color: transparent, #0B1F41, transparent, #0B1F41;
 }
 
 .label-title {
@@ -45,13 +46,13 @@
 
 .tab-pane > .tab-header-area > .headers-region > .tab:top {
     -fx-border-color: #4d4d4d;
-    -fx-background-color: #515658;
+    -fx-background-color: #4673A6;
 }
 
 .tab-pane > .tab-header-area > .headers-region > .tab:selected:top {
     -fx-border-color: white #4d4d4d #4d4d4d #4d4d4d;
     -fx-border-width: 3 1 1 1;
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #2A4C6F;
 }
 
 
@@ -71,10 +72,11 @@
     -fx-background-color:transparent;
 }
 
+
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: #0B1F41;
+    -fx-control-inner-background: #0B1F41;
+    -fx-background-color: #0B1F41;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -89,10 +91,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: transparent;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -109,39 +111,40 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane:vertical .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: derive(#0B1F41, 20%);
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #2A4C6F;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #4673A6;
 }
 
 .list-cell:filled:selected {
@@ -170,17 +173,17 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+    -fx-background-color: derive(#0B1F41, 20%);
+    -fx-border-color: derive(#0B1F41, 10%);
+    -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#0B1F41, 30%);
 }
 
 .result-display {
@@ -202,8 +205,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#0B1F41, 30%);
+    -fx-border-color: derive(#0B1F41, 25%);
     -fx-border-width: 1px;
 }
 
@@ -212,17 +215,17 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#0B1F41, 30%);
+    -fx-border-color: derive(#0B1F41, 30%);
     -fx-border-width: 1px;
 }
 
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#0B1F41, 30%);
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: transparent, #0B1F41, transparent, #0B1F41;
 }
 
 .context-menu .label {
@@ -230,7 +233,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent, #0B1F41, transparent, #0B1F41;
 }
 
 .menu-bar .label {
@@ -241,7 +244,7 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: transparent, #0B1F41, transparent, #0B1F41;
 }
 
 /*
@@ -254,7 +257,7 @@
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #0B1F41;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
@@ -266,8 +269,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -294,11 +297,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #0B1F41;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #0B1F41;
 }
 
 .dialog-pane > *.label.content {
@@ -308,7 +311,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: derive(#0B1F41, 25%);
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -319,11 +322,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#0B1F41, 20%);
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#0B1F41, 50%);
     -fx-background-insets: 3;
 }
 
@@ -355,7 +358,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent #0B1F41 transparent #0B1F41;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
@@ -370,7 +373,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #0B1F41, transparent, #0B1F41;
     -fx-background-radius: 0;
 }
 
@@ -381,7 +384,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #0B1F41;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
