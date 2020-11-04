@@ -56,13 +56,13 @@ This table below will illustrate what they mean.
 
 You can follow the steps below to get CliniCal up and running:
 
-1. Ensure you have Java `11` or above installed on your Computer.
+1. Ensure you have Java `11` or above installed on your Computer. If you have not installed Java on your computer, download the installer from [Oracle](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
-1. [Download](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases) the latest `CliniCal.jar`.
+1. Download the latest version of CliniCal from [GitHub](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+1. Double-click the file, `CliniCal.jar` to start the app. The GUI similar to the below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
@@ -79,6 +79,8 @@ You can follow the steps below to get CliniCal up and running:
    * `exit` : Exits the app.
 
 1. Refer to the [**Features**](#5-features) below for details of each command or refer to the [**Command Summary**](#7-command-summary) to quickly refer to all available commands.
+
+1. Finally, if you wish to return the sample data back into its original state, you can delete the `data` folder that was generated in the same folder as `CliniCal.jar`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -132,7 +134,7 @@ This tab shows you the patient database and the details of each patient, togethe
 
 * The index used to access each patient is shown next to the patient's name.
 
-* The sample data in the figure above indicates that Bernice Yu has the <span style="color:red">red</span> color tag, meaning that Bernice Yu has high priority and requires close monitoring and follow-up actions. You are free to assign any HTML color to any patient.
+* The sample data in the figure above indicates that Bernice Yu has the <span style="color:red">red</span> color tag, meaning that Bernice Yu has high priority and requires close monitoring and follow-up actions. You are free to assign any color to any patient.
 
 * Refer to [**Patient Commands**](#52-patient-commands) for more details on how to add a patient!
 
@@ -171,6 +173,12 @@ Access help page by referring to the link provided in the message pop-up.
 
 Format: `help`
 
+<div markdown="span" class="alert alert-primary">
+
+  :bulb: **Tip:** You can press the <kbd>Esc</kbd> key to close the help popup!
+  
+</div>
+
 #### 5.1.2 Retrieving past commands: `history`
 
 View a list of past commands that you had used during the session.
@@ -191,6 +199,7 @@ Format: `clearhistory`
 
 **:information_source: Note:**<br>
 
+ * Your history is erased when you close and reopen the app. Do not close the app if you have anything in the history that needs to be undone!
  * Use with caution, `clearhistory` cannot be undone using `undo`!
 
 </div>
@@ -267,6 +276,7 @@ Examples:
 #### 5.2.2 Adding profile picture: `addpicture`
 
 Add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
+If the person has an existing profie picture, you can use this command to update the profile picture with a new picture.
 
 ![example of patient with new profile](images/addProfileExample.png)
 
@@ -313,7 +323,7 @@ Examples:
 
 **:information_source: Note:**<br>
 
-* If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant appointments, using the `editappt` command.;
+* If you have edited **patient name** or **patient NRIC**, please make sure to update the changes to any relevant appointments, using the `editappt` command.
 
 </div>
 
@@ -337,7 +347,7 @@ Examples:
 
 **:information_source: Note:**<br>
 
-* Please make sure to delete **any appointments related to the deleted patient**, using the `deleteappt` command.;
+* Please make sure to delete **any appointments related to the deleted patient**, using the `deleteappt` command.
 
 </div>
 
@@ -360,7 +370,7 @@ Format: `clear`
 
 **:information_source: Note:**<br>
 
-* Please make sure to delete **any appointments related to the deleted patient**, using the `deleteappt` command.;
+* Please make sure to delete **any appointments related to the deleted patient**, using the `deleteappt` command.
 
 </div>
 
@@ -401,9 +411,7 @@ Format: `list`
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-You can revert your previous command which modified the patient database.
-
-* Useful to view all patients after a `find` command!
+* If you are on the `Overview` screen rather than the `Patients` screen, the application may not be updated! When using list, please switch over to the patients tab to see the list of your patients.
 
 </div>
 
@@ -423,8 +431,7 @@ Format: `profile INDEX`
 
 **Step 2**: A window displaying the patient's profile will appear. All relevant patient records and visitation logs will be shown.
 
-**Step 3**: To close the patient profile window, you can click on the 'Close' button on the top-right section of the window. Alternatively, you can press
-<kbd>ESC</kbd> key on your keyboard.
+**Step 3**: To close the patient profile window, you can click on the 'Close' button on the top-right section of the window. Alternatively, you can press the <kbd>ESC</kbd> key on your keyboard.
 
 ### 5.3 Patient Visitation Commands
 
@@ -443,7 +450,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list.
 * `VISIT_DATE` refers to the date of visitation.
-    * It follows the format of `dd/MM/yyyy`.
+    * It follows the format of `dd/MM/yyyy`, for example `31/21/2020 23:59`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
     * Only dates before and *up till and including today* are accepted.
 * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
@@ -479,7 +486,7 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
 * `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
 * Both indexes **must be a positive number** 1, 2, 3, …​
 * `VISIT_DATE` refers to the new date of visitation that you wish to amend to.
-    * It follows the format of `dd/MM/yyyy`.
+    * It follows the format of `dd/MM/yyyy`, for example `31/21/2020 23:59`.
     * Do note that for numerical inputs `1-9`, you will need to include an additional `0` in front. For example, enter `05` instead of `5`.
     * Only dates before and *up till and including today* are accepted.
 * `VISIT_DATE` is optional. If no visit date is being specified in the command, then the date of the visitation will remain the same.
@@ -504,7 +511,7 @@ Format: `editvisit INDEX i/VISIT_INDEX [vd/VISIT_DATE]`
             details in each text box.
 
    * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
-   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box.
+   * You may press <kbd>SHIFT</kbd> + <kbd>TAB</kbd> on your keyboard to move to the previous text box.
 
 **Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
@@ -541,7 +548,7 @@ Format: `addappt INDEX st/APPOINTMENT_START_TIME d/DURATION`
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment.
-    * It follows the format of `dd/MM/yyyy HH:mm`.
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/21/2020 23:59`.
     * Note that you will need to input the hour (`HH`) in  the 24-hour format.
 
 * `DURATION` refers to the duration of the appointment, in minutes.
@@ -586,7 +593,7 @@ Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_START_
 * `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab.
 * `PATIENT_IC` refers to the NRIC of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
 * `APPOINTMENT_START_TIME` refers to the date and starting time of the appointment. 
-    * It follows the format of `dd/MM/yyyy HH:mm`. 
+    * It follows the format of `dd/MM/yyyy HH:mm`, for example `31/21/2020 23:59`.
     * Note that you will need to input the hour (`HH`) in  the 24-hour format. 
 * `DURATION` refers to the duration of the appointment, in minutes.
 
@@ -609,7 +616,7 @@ Example: You want to reschedule the first appointment in the appointment list.
 
 **:information_source: Note:**<br>
 
-* Please make sure to **update the changes to the relevant patient**, using the `edit` command.;
+* Please make sure to **update the changes to the relevant patient**, using the `edit` command.
 
 </div>
 
