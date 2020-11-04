@@ -21,11 +21,11 @@ public class UsageList<T extends Usage> {
         @Override
         public int compare(final T o1, final T o2) {
             if (o1.getDate().compareTo(o2.getDate()) < 0) {
-                return -1;
-            } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
-                return Integer.compare(o2.getName().compareTo(o1.getName()), 0);
-            } else {
                 return 1;
+            } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                return Integer.compare(o1.getName().compareTo(o2.getName()), 0);
+            } else {
+                return -1;
             }
         }
     };
@@ -128,24 +128,14 @@ public class UsageList<T extends Usage> {
         assert n >= 0;
 
         var sorted = new ArrayList<>(this.usages);
-        sorted.sort(new Comparator<T>() {
-            @Override
-            public int compare(final T o1, final T o2) {
-                if (o1.getDate().compareTo(o2.getDate()) < 0) {
-                    return -1;
-                } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
-                    return Integer.compare(o2.getName().compareTo(o1.getName()), 0);
-                } else {
-                    return 1;
-                }
-            }
-        });
+        sorted.sort(comparator);
 
         var output = new ArrayList<T>();
-
-        int i = sorted.size();
-        while (i-- > 0 && n-- > 0) {
+        var len = sorted.size();
+        int i = 0;
+        while (i < n && i < sorted.size() - 1) {
             output.add(sorted.get(i));
+            i++;
         }
 
         return output;
@@ -154,6 +144,7 @@ public class UsageList<T extends Usage> {
     public List<Pair<String, String>> getMostUsed() {
         ArrayList<T> newLst = new ArrayList<>(this.usages);
         ArrayList<Pair<String, Integer>> outputLst = new ArrayList<>();
+        newLst.sort(comparator);
         for (var i : newLst) {
             int k = 0;
             for (var j : newLst) {
@@ -165,18 +156,6 @@ public class UsageList<T extends Usage> {
                 outputLst.add(new Pair<>(i.getName(), k));
             }
         }
-        outputLst.sort(new Comparator<Pair<String, Integer>>() {
-            @Override
-            public int compare(final Pair<String, Integer> o1, final Pair<String, Integer> o2) {
-                if (o1.snd() < o2.snd()) {
-                    return 1;
-                } else if (o1.snd().equals(o2.snd())) {
-                    return Integer.compare(o1.fst().compareTo(o2.fst()), 0);
-                } else {
-                    return -1;
-                }
-            }
-        });
 
         return outputLst.stream()
             .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
