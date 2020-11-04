@@ -16,6 +16,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
+import seedu.address.logic.commands.UpdateCommand.EditExerciseDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.MuscleTag;
@@ -45,7 +46,7 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateCommand
                     UpdateCommand.MESSAGE_USAGE), pe);
         }
 
-        UpdateCommand.EditExerciseDescriptor editExerciseDescriptor =
+        EditExerciseDescriptor editExerciseDescriptor =
                 new UpdateCommand.EditExerciseDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
