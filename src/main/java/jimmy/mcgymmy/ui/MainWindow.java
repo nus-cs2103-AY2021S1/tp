@@ -151,6 +151,9 @@ public class MainWindow extends UiPart<Stage> {
         //Update current value to total calories and macronutrient values.
         updateGraph();
 
+        //Disable the field
+        datePicker.getEditor().setDisable(true);
+
         //Add listener to execute after date is changed
         datePicker.valueProperty()
                 .addListener((observable, oldDate, newDate) -> {

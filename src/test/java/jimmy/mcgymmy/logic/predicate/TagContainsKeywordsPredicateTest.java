@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 
 class TagContainsKeywordsPredicateTest {
@@ -39,7 +40,7 @@ class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_foodContainsTagSameAsKeywords_returnsTrue() {
+    public void test_foodContainsTagSameAsKeywords_returnsTrue() throws IllegalValueException {
         // One keyword
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singletonList("Lunch"));
         assertTrue(predicate.test(new FoodBuilder().withTags("Lunch").build()));
@@ -54,7 +55,7 @@ class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_foodDoesNotContainsTagSameAsKeywords_returnsFalse() {
+    public void test_foodDoesNotContainsTagSameAsKeywords_returnsFalse() throws IllegalValueException {
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singletonList("Lunch"));
         // food contains one tag
         assertFalse(predicate.test(new FoodBuilder().withTags("Dinner").build()));
@@ -63,7 +64,7 @@ class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_cannotCreateTagWithKeyword_returnFalse() {
+    public void test_cannotCreateTagWithKeyword_returnFalse() throws IllegalValueException {
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.singletonList(""));
         assertFalse(predicate.test(new FoodBuilder().withTags("Dinner").build()));
 
@@ -72,7 +73,7 @@ class TagContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_cannotCreateTagWithSomeKeywords() {
+    public void test_cannotCreateTagWithSomeKeywords() throws IllegalValueException {
         TagContainsKeywordsPredicate predicate =
                 new TagContainsKeywordsPredicate(Arrays.asList("AB C", "Lunch", "", "Breakfast"));
         // food contains some of the valid tag -> returns false
