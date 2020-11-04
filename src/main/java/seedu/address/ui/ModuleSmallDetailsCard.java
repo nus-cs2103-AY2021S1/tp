@@ -1,15 +1,15 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import java.util.Comparator;
-
 import seedu.address.model.module.Module;
 
-import static javafx.scene.paint.Color.WHITE;
+
 
 /**
  * An UI component that displays information of a {@code Module} except for zoom links and assignments.
@@ -48,8 +48,6 @@ public class ModuleSmallDetailsCard extends UiPart<Region> {
         module.getTagsForUi().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        name.setTextFill(WHITE);
-        modularCredits.setTextFill(WHITE);
     }
 
     @Override

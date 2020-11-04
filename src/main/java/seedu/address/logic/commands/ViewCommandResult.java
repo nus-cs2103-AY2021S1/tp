@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
 
-import java.util.List;
+
 
 public class ViewCommandResult extends CommandResult {
 
