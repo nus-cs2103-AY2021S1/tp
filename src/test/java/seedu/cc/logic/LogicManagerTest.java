@@ -38,12 +38,18 @@ import seedu.cc.testutil.ExpenseBuilder;
 public class LogicManagerTest {
     private static final int FIRST_ACCOUNT_INDEX = 0;
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
+    private static final String DATA_FILE = "CommonCents.json";
+    private static final String USERPREFS = "userPrefs.json";
+    private static final String INVALID_COMMAND = "uicfhmowqewca";
+    private static final String VALID_DELETE_COMMAND = "delete 9 c/revenue";
+    private static final String IO_EXCEPTION_FILE = "ioExceptionCommonCents.json";
+    private static final String IO_EXCEPTION_USERPREFS = "ioExceptionUserPrefs.json";
 
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager(initEmptyCommonCents(), new UserPrefs());
-    private ActiveAccount activeAccount =
+    private final Model model = new ModelManager(initEmptyCommonCents(), new UserPrefs());
+    private final ActiveAccount activeAccount =
             new ActiveAccountManager(model.getFilteredAccountList().get(FIRST_ACCOUNT_INDEX));
 
     private Logic logic;
@@ -51,21 +57,21 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonCommonCentsStorage commonCentsStorage =
-                new JsonCommonCentsStorage(temporaryFolder.resolve("CommonCents.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+                new JsonCommonCentsStorage(temporaryFolder.resolve(DATA_FILE));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve(USERPREFS));
         StorageManager storage = new StorageManager(commonCentsStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
     @Test
     public void execute_invalidCommandFormat_throwsParseException() {
-        String invalidCommand = "uicfhmowqewca";
+        String invalidCommand = INVALID_COMMAND;
         assertParseException(invalidCommand, MESSAGE_UNKNOWN_COMMAND);
     }
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9 c/revenue";
+        String deleteCommand = VALID_DELETE_COMMAND;
         assertCommandException(deleteCommand, MESSAGE_INVALID_DISPLAYED_INDEX);
     }
 
@@ -79,9 +85,9 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonCommonCentsIoExceptionThrowingStub
         JsonCommonCentsStorage commonCentsStorage =
-                new JsonCommonCentsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionCommonCents.json"));
+                new JsonCommonCentsIoExceptionThrowingStub(temporaryFolder.resolve(IO_EXCEPTION_FILE));
         JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+                new JsonUserPrefsStorage(temporaryFolder.resolve(IO_EXCEPTION_USERPREFS));
         StorageManager storage = new StorageManager(commonCentsStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 

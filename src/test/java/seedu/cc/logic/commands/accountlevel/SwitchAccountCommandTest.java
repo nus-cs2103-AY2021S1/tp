@@ -24,12 +24,14 @@ import seedu.cc.testutil.TypicalEntries;
 
 
 public class SwitchAccountCommandTest {
+    private static final String ACCOUNT_2_NAME = "Account 2";
+
     private Model model = new ModelManager(TypicalEntries.getTypicalCommonCents(), new UserPrefs());
     private ActiveAccount activeAccount = new ActiveAccountManager(TypicalEntries.getTypicalAccount());
 
     @BeforeEach
     public void addAccount() {
-        model.addAccount(new Account(new Name("Account 2")));
+        model.addAccount(new Account(new Name(ACCOUNT_2_NAME)));
     }
 
     @Test
