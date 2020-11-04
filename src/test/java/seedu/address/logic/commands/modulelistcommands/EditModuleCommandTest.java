@@ -11,8 +11,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CORE_MODULE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINKS_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2030;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
@@ -32,7 +32,6 @@ import seedu.address.model.ModuleList;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleLesson;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 
@@ -61,7 +60,7 @@ public class EditModuleCommandTest {
         Module lastModule = model.getFilteredModuleList().get(indexLastModule.getZeroBased());
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
         Module editedModule = moduleInList.withName(VALID_MODULENAME_CS2103T)
-                .withZoomLink(new ModuleLesson(VALID_TAG_LECTURE), VALID_ZOOMLINK_CS2103T)
+                .withZoomLink(VALID_TAG_LECTURE, VALID_ZOOM_LINK_CS2103T)
                 .withTags(VALID_TAG_CORE_MODULE).withMC(VALID_MC_4).build();
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder()
                 .withName(VALID_MODULENAME_CS2103T).withZoomLinks(VALID_ZOOMLINKS_CS2103T)
@@ -91,7 +90,7 @@ public class EditModuleCommandTest {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
         Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_MODULENAME_CS2030)
-                .withZoomLink(new ModuleLesson(VALID_TAG_LECTURE), VALID_ZOOMLINK_CS2030)
+                .withZoomLink(VALID_TAG_LECTURE, VALID_ZOOM_LINK_CS2030)
                 .withModularCredits(4.0).build();
         EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE,
                 new EditModuleDescriptorBuilder().withZoomLinks(VALID_ZOOMLINKS_CS2030)
