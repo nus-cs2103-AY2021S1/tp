@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -98,8 +98,8 @@ class JsonAdaptedDeadline {
             logger.info("Deadline datetime for deadline with title: '" + title + "' is empty. "
                     + "Creating a default deadline datetime for it");
             modelDeadlineDateTime = DeadlineDateTime.createNullDeadlineDateTime();
-        } else if (!DateUtil.isValidDateTime(deadlineDateTime)) {
-            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
+        } else if (!DateTimeUtil.isValidDateTime(deadlineDateTime)) {
+            throw new IllegalValueException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelDeadlineDateTime = new DeadlineDateTime(deadlineDateTime);
         }
@@ -132,8 +132,8 @@ class JsonAdaptedDeadline {
             logger.info("Done datetime for deadline with title: '" + title + "' is empty. Creating a default "
                     + "done datetime for it");
             modelDoneDateTime = DoneDateTime.createNullDoneDateTime();
-        } else if (!DateUtil.isValidDateTime(doneDateTime)) {
-            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
+        } else if (!DateTimeUtil.isValidDateTime(doneDateTime)) {
+            throw new IllegalValueException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelDoneDateTime = new DoneDateTime(doneDateTime);
         }

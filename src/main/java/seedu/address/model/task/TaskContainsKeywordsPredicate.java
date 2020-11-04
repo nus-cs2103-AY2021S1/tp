@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.ModelContainsKeywordsPredicate;
@@ -68,7 +68,7 @@ public class TaskContainsKeywordsPredicate extends ModelContainsKeywordsPredicat
         }
 
         if (prefix.equals("date:")) {
-            String dateTime = task.getDate().format(DateUtil.DATE_FORMATTER);
+            String dateTime = task.getDate().format(DateTimeUtil.DATE_FORMATTER);
             return words.stream()
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(dateTime, keyword));
         }

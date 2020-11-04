@@ -10,7 +10,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
+import seedu.address.model.TimeSlot;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
@@ -19,10 +20,11 @@ import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
 
+
 /**
  * Lesson class to store information about a module's lessons.
  */
-public class Lesson {
+public class Lesson implements TimeSlot {
     private final Title title;
     private final Tag tag;
     private final Description description;
@@ -71,6 +73,12 @@ public class Lesson {
     public LocalDate getEndDate() {
         return endDate;
     }
+    public LocalDateTime getStartDateTimeValue() {
+        return LocalDateTime.of(getStartDate(), getStartTime());
+    }
+    public LocalDateTime getEndDateTimeValue() {
+        return LocalDateTime.of(getEndDate(), getEndTime());
+    }
     public Tag getTag() {
         return tag;
     }
@@ -87,8 +95,8 @@ public class Lesson {
         while (!currentDate.isAfter(this.endDate)) {
             LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
             LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getEndTime());
-            String startDateTimeString = localStartDateTime.format(DateUtil.DATETIME_FORMATTER);
-            String endDateTimeString = localEndDateTime.format(DateUtil.DATETIME_FORMATTER);
+            String startDateTimeString = localStartDateTime.format(DateTimeUtil.DATETIME_FORMATTER);
+            String endDateTimeString = localEndDateTime.format(DateTimeUtil.DATETIME_FORMATTER);
             StartDateTime startDateTime = new StartDateTime(startDateTimeString);
             EndDateTime endDateTime = new EndDateTime(endDateTimeString);
             Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, tag);
@@ -172,7 +180,7 @@ public class Lesson {
     }
 
     /**
-     * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
+     * Returns true if both lessons of the same attributes but may contain different descriptions.
      */
     public boolean isSameLesson(Lesson otherLesson) {
         if (otherLesson == this) {
@@ -181,12 +189,35 @@ public class Lesson {
         return otherLesson != null
                 && otherLesson.getTitle().equals(getTitle())
                 && otherLesson.getDayOfWeek().equals(getDayOfWeek())
+                && otherLesson.getStartDate().equals(getStartDate())
+                && otherLesson.getEndDate().equals(getEndDate())
                 && otherLesson.getStartTime().equals(getStartTime())
                 && otherLesson.getEndTime().equals(getEndTime())
-                && otherLesson.getStartDate().equals(getStartDate())
-                && otherLesson.getEndDate().equals(getEndDate());
+                && otherLesson.getTag().equals(getTag());
     }
-
+    /**
+     * Returns true if both lessons have the same identity and data fields.
+     * This defines a stronger notion of equality between two events.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Lesson)) {
+            return false;
+        }
+        Lesson otherLesson = (Lesson) other;
+        return otherLesson != null
+                && otherLesson.getTitle().equals(getTitle())
+                && otherLesson.getDayOfWeek().equals(getDayOfWeek())
+                && otherLesson.getDescription().equals(getDescription())
+                && otherLesson.getStartDate().equals(getStartDate())
+                && otherLesson.getEndDate().equals(getEndDate())
+                && otherLesson.getStartTime().equals(getStartTime())
+                && otherLesson.getEndTime().equals(getEndTime())
+                && otherLesson.getTag().equals(getTag());
+    }
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

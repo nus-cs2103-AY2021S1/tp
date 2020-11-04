@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Time;
@@ -26,8 +26,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
-    public static final String DAY_MESSAGE_CONSTRAINTS = "Day should be in the format of MON, TUE,"
-            + " ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -89,7 +87,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         }
         return new DeadlineDateTime(trimmedDateTime);
     }
@@ -104,8 +102,11 @@ public class ParserUtil {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
         String trimmedTime = time.trim();
-        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedTime)) {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
+        }
+        if (!DateTimeUtil.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
         }
         return StartDateTime.createStartDateTime(trimmedDate, trimmedTime);
     }
@@ -119,11 +120,14 @@ public class ParserUtil {
     public static EndDateTime parseEndDateTime(String date, String time) throws ParseException {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
-        String trimmedtime = time.trim();
-        if (!EndDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+        String trimmedTime = time.trim();
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
         }
-        return EndDateTime.createEndDateTime(trimmedDate, trimmedtime);
+        if (!DateTimeUtil.isValidTime(trimmedTime)) {
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
+        }
+        return EndDateTime.createEndDateTime(trimmedDate, trimmedTime);
     }
 
 
@@ -136,9 +140,9 @@ public class ParserUtil {
     public static LocalTime parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter parser = DateTimeUtil.TIME_FORMATTER;
         if (!Time.isValidTime(trimmedTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.TIME_CONSTRAINTS);
         }
         return LocalTime.parse(trimmedTime, parser);
     }
@@ -152,9 +156,9 @@ public class ParserUtil {
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-        DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+        DateTimeFormatter parser = DateTimeUtil.DATE_FORMATTER;
+        if (!DateTimeUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateTimeUtil.DATE_CONSTRAINTS);
         }
         return LocalDate.parse(trimmedDate, parser);
     }
@@ -169,31 +173,13 @@ public class ParserUtil {
         requireNonNull(day);
         String trimmedDay = day.trim();
         String dayOfWeek = trimmedDay.toUpperCase();
-        switch (dayOfWeek) {
-        case "MON":
-        case "MONDAY":
-            return DayOfWeek.MONDAY;
-        case "TUE":
-        case "TUESDAY":
-            return DayOfWeek.TUESDAY;
-        case "WED":
-        case "WEDNESDAY":
-            return DayOfWeek.WEDNESDAY;
-        case "THU":
-        case "THURSDAY":
-            return DayOfWeek.THURSDAY;
-        case "FRI":
-        case "FRIDAY":
-            return DayOfWeek.FRIDAY;
-        case "SAT":
-        case "SATURDAY":
-            return DayOfWeek.SATURDAY;
-        case "SUN":
-        case "SUNDAY":
-            return DayOfWeek.SUNDAY;
-        default:
-            throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
+        DayOfWeek result; //Default value
+        try {
+            result = DayOfWeek.valueOf(dayOfWeek);
+        } catch (NullPointerException | IllegalArgumentException e) {
+            throw new ParseException(DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
         }
+        return result;
     }
 
     /**

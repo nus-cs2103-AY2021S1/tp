@@ -4,14 +4,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
  * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
-
     protected final LocalDateTime value;
 
     /**
@@ -21,10 +20,10 @@ public class DateTime {
      */
     public DateTime(String dateTime) {
         if (dateTime.isEmpty() || dateTime.isBlank()) {
-            value = DateUtil.DEFAULT_DATETIME;
+            value = DateTimeUtil.DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDateTime(dateTime), DateUtil.DATE_TIME_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
+            checkArgument(isValidDateTime(dateTime), DateTimeUtil.DATE_TIME_CONSTRAINTS);
+            value = LocalDateTime.parse(dateTime, DateTimeUtil.DATETIME_FORMATTER);
         }
     }
 
@@ -43,12 +42,12 @@ public class DateTime {
      * @return true if the test string is valid and false otherwise
      */
     public static boolean isValidDateTime(String test) {
-        return DateUtil.isValidDateTime(test);
+        return DateTimeUtil.isValidDateTime(test);
     }
 
     @Override
     public String toString() {
-        return value.format(DateUtil.DATETIME_FORMATTER);
+        return value.format(DateTimeUtil.DATETIME_FORMATTER);
     }
 
     @Override

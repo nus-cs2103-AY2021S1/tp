@@ -12,11 +12,18 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class TaskListPanel
-Class TaskCard
 Class LessonListPanel
 Class LessonCard
 Class StatusBarFooter
 Class CommandBox
+Class StatsSummaryPanel
+Class DataAnalysisPanel
+Class CalendarPanel
+Class CalendarDayPanel
+Class CalendarDayEventCard
+Class DeadlineCard
+Class EventCard
+Class StatsSummaryCard
 }
 
 package Model <<Rectangle>> {
@@ -38,23 +45,33 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> TaskListPanel
 MainWindow *-down-> LessonListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> CalendarPanel
+MainWindow *-down-> DataAnalysisPanel
+MainWindow *-down-> StatsSummaryPanel
+MainWindow *-down-> CalendarDayPanel
 
-TaskListPanel -down-> TaskCard
+TaskListPanel -down-> EventCard
+TaskListPanel -down-> DeadlineCard
 LessonListPanel -down-> LessonCard
+StatsSummaryPanel -down-> StatsSummaryCard
+CalendarDayPanel -down-> CalendarDayEventCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 TaskListPanel --|> UiPart
-TaskCard --|> UiPart
+EventCard --|> UiPart
+DeadlineCard --|> UiPart
 LessonListPanel --|> UiPart
 LessonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-TaskCard ..> Model
+EventCard ..> Model
+DeadlineCard ..> Model
 LessonCard ..> Model
+StatsSummaryCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
