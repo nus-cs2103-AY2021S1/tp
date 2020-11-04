@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
-import org.opentest4j.AssertionFailedError;
 
 import seedu.address.logic.ModelStub;
 import seedu.address.logic.commands.schedulercommands.DeleteEventCommand;

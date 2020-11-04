@@ -1,18 +1,18 @@
 package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+//import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.ModelStub;
-import seedu.address.logic.commands.CommandResult;
+//import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
 import seedu.address.model.EventList;

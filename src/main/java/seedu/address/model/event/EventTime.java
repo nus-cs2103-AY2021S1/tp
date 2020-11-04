@@ -12,9 +12,9 @@ public class EventTime {
     public static final String MESSAGE_CONSTRAINTS = "Invalid date and time entered. Please follow this format: "
             + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)";
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    private static final LocalDateTime nullValue = LocalDateTime.parse("2020-02-02T12:00");
     private final LocalDateTime start;
     private final LocalDateTime end;
-    private static final LocalDateTime nullValue = LocalDateTime.parse("2020-02-02T12:00");
 
     /**
      * Creates an EventTime object that stores the start and end time.
