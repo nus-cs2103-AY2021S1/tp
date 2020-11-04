@@ -154,7 +154,7 @@ public class StringUtil {
             return "";
         }
         StringBuilder str = new StringBuilder(s);
-        
+
         int currPos = 0;
         int currLineLen = 0;
         int lineNum = 0;
