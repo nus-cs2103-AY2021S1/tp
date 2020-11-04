@@ -541,11 +541,11 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Internet access.
 
     2. Test case: `help`<br>
-       Expected: Success message shown. Also shows a popup explaining how to access the help page (User Guide). The URL can be copied with "Copy URL".
+       Expected: Success message shown. Also shows a popup explaining how to access the User Guide. The URL can be copied with "Copy URL".
        
        ![help message](images/helpMessage.png)
        
-       Upon pasting the URL into the browser, the help page is displayed.
+       Upon pasting the URL into the browser, the User Guide is displayed.
        
      
 **TO UPDATE BELOW**
