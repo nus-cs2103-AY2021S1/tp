@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -79,8 +78,7 @@ public class ProjectDashboard extends UiPart<Region> {
         header3.setText(headerOfListOfTasks);
         AtomicInteger index = new AtomicInteger();
         index.getAndIncrement();
-        tasks.setText(this.project.getTasks().stream()
-                .sorted(Comparator.comparing(task -> task.taskName))
+        tasks.setText(this.project.getFilteredSortedTaskList().stream()
                 .map(Task::getTaskName).reduce("", (a, b) -> a + index.getAndIncrement() + ". " + b + "\n"));
     }
 
