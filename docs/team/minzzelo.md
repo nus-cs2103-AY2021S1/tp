@@ -57,5 +57,5 @@ Given below are my contributions to the project.
 * [#160](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/160)
 * [#168](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/168)
 
-**Review/mentoring contributions**:
+**Contributions beyond project team**:
 * Bugs reported during PE dry run: [Issue tracker](https://github.com/minzzelo/ped/issues)
