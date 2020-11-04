@@ -11,30 +11,35 @@ searching and ordering supplies, via Command Line Interface (CLI).
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to update existing stocks in the inventory.
-  * What it does: Allows the user to update the details of the desired stock.
-  * Justification: This feature improves the user experience as user can easily edit the details of
-  existing stocks. Users now do not need to remove the item and then add them back in order to
-  edit the details.
-  * Highlights: Multiple stocks are able to be updated in one step. User can update the name, source, low quantity
-  threshold, quantity, and location details of a stock.
+* **Code Contribution**
+  * Here is the link to [my code](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=AudreyFelicio&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=AudreyFelicio&tabRepo=AY2021S1-CS2103T-T15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
+  on the tP Code Dashboard.
 
-* **New Feature**: Added the ability to sort existing stocks in the inventory.
-  * What it does: Allows the user to sort the stocks in the inventory by the field the user wants.
-  * Justification: This feature improves the user experience as the user can list the existing stocks by
-  the user's order preference. Sorting in alphabetical order also helps for easier viewing of stocks.
-  * Highlights: User can sort by name, source, quantity, serial number, or location. For each field the user can also
-  further specify whether to sort in ascending or descending order.
+* **Enhancements implemented**
+  * **New Feature**: Added the ability to update existing stocks in the inventory.
+    * What it does: Allows the user to update the details of the desired stock.
+    * Justification: This feature improves the user experience as user can easily edit the details of
+    existing stocks. Users now do not need to remove the item and then add them back in order to
+    edit the details.
+    * Highlights: Multiple stocks are able to be updated in one step. User can update the name, source, low quantity
+    threshold, quantity, and location details of a stock.
+
+  * **New Feature**: Added the ability to sort existing stocks in the inventory.
+    * What it does: Allows the user to sort the stocks in the inventory by the field the user wants.
+    * Justification: This feature improves the user experience as the user can list the existing stocks by
+    the user's order preference. Sorting in alphabetical order also helps for easier viewing of stocks.
+    * Highlights: User can sort by name, source, quantity, serial number, or location. For each field the user can also
+    further specify whether to sort in ascending or descending order.
   
-* **New Feature**: Added the ability to suggest correct commands to the user.
-  * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
-  * Justification: This feature improves the user experience as the user can view and type the correct command form
-  easily after entering a faulty command. This makes the user more convenient as every time the user enters a wrong
-  command format, the user will not need to refer to the user guide or help and instead just need to type the suggested
-  message.
-  * Highlights: This feature uses the minimum edit distance heuristics to calculate the closest correct command word.
-  The suggestion for the fields and prefixes is generated based on the user input itself. The minimum edit distance
-  heuristics is implemented using dynamic programming algorithm.
+  * **New Feature**: Added the ability to suggest correct commands to the user.
+    * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
+    * Justification: This feature improves the user experience as the user can view and type the correct command form
+    easily after entering a faulty command. This makes the user more convenient as every time the user enters a wrong
+    command format, the user will not need to refer to the user guide or help and instead just need to type the suggested
+    message.
+    * Highlights: This feature uses the minimum edit distance heuristics to calculate the closest correct command word.
+    The suggestion for the fields and prefixes is generated based on the user input itself. The minimum edit distance
+    heuristics is implemented using dynamic programming algorithm.
 
 * **Git & Repository**:
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`.
