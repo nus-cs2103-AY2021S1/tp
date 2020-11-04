@@ -285,4 +285,29 @@ public class ParserUtil {
         return allInvalidPrefixes;
     }
 
+    /**
+     * Returns true if an invalid prefix for the command is present in the argument multimap.
+     * @param argumentMultimap the argument multimap to check
+     * @param validPrefixesForCommand the valid prefixes for the command
+     * @return boolean true if invalid prefix present
+     */
+    public static boolean isInvalidPrefixPresent(ArgumentMultimap argumentMultimap,
+                                                 Prefix[] validPrefixesForCommand) {
+        Prefix[] invalidPrefixesForCommand = getInvalidPrefixesForCommand(validPrefixesForCommand);
+        return isAnyPrefixPresent(argumentMultimap, invalidPrefixesForCommand);
+    }
+
+    /**
+     * Returns true if any one of the prefixes does not contain
+     * an empty {@code Optional} value in the given {@code ArgumentMultimap}.
+     * @param argumentMultimap map of prefix to keywords entered by user
+     * @param prefixes prefixes to parse
+     * @return boolean true if a prefix specified is present
+     */
+    public static boolean isAnyPrefixPresent(
+            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix ->
+                argumentMultimap.getValue(prefix).isPresent());
+    }
+
 }

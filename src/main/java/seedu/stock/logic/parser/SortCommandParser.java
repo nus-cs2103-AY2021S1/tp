@@ -19,6 +19,9 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 public class SortCommandParser implements Parser<SortCommand> {
     private static final Logger logger = LogsCenter.getLogger(SortCommandParser.class);
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[] validPrefixesForSort = { PREFIX_SORT_ORDER, PREFIX_SORT_FIELD };
+
     /**
      * Parses {@code args} into a sort command.
      *
@@ -29,7 +32,11 @@ public class SortCommandParser implements Parser<SortCommand> {
     @Override
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT_ORDER, PREFIX_SORT_FIELD);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
+
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForSort)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        }
 
         if (!argMultimap.getValue(PREFIX_SORT_FIELD).isPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
