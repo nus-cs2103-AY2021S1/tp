@@ -381,6 +381,21 @@ Some of the important operations implemented here are:
   with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
   After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
 
+* `SuggestionCommandParser#generateClearSuggestion()` <br>
+  Generates the suggestion message for a clear command.
+
+* `SuggestionCommandParser#generateTabSuggestion()` <br>
+  Generates the suggestion message for a tab command.
+
+* `SuggestionCommandParser#generateSortSuggestion()` <br>
+  Generates the suggestion message for a sort command.
+
+* `SuggestionCommandParser#generateBookmarkSuggestion()` <br>
+  Generates the suggestion message for a bookmark command.
+
+* `SuggestionCommandParser#generateUnbookmarkSuggestion()` <br>
+  Generates the suggestion message for an unbookmark command.
+
 * `SuggestionCommandParser#generateAddSuggestion()` <br>
   Generates the suggestion message for an add command.
 
@@ -411,8 +426,14 @@ Some of the important operations implemented here are:
 * `SuggestionCommandParser#generateNoteSuggestion()` <br>
   Generates the suggestion message for a note command.
 
-* `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
+* `SuggestionCommandParser#generateDeleteNoteSuggestion()` <br>
   Generates the suggestion message for a note delete command.
+
+* `SuggestionCommandParser#generateStockViewSuggestion()` <br>
+  Generates the suggestion message for a stock view command.
+
+* `SuggestionCommandParser#generatePrintSuggestion()` <br>
+  Generates the suggestion message for a print command.
 
 #### SuggestionUtil
 
