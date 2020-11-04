@@ -52,14 +52,29 @@ public class CommandBox extends UiPart<Region> {
     private void handleOnKeyPressed(KeyEvent event) {
 
         // handle shortcuts
+        handleShortcuts(event);
+
+        // handle keypresses
+        handleKeyPresses(event);
+    }
+
+    /**
+     * Handles keyboard shortcuts mapped to a particular command
+     */
+    private void handleShortcuts(KeyEvent event) {
         shortcutToCommandMap.forEach((kc, ct) -> {
             if (kc.match(event)) {
                 event.consume();
                 handleCommandEntered(ct);
             }
         });
+    }
 
-        // handle up and down keystrokes
+    /**
+     * Handles individual key presses tied to individual
+     * events
+     */
+    private void handleKeyPresses(KeyEvent event) {
         switch (event.getCode()) {
         case UP:
             event.consume();
@@ -98,7 +113,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the Enter button pressed event
+     * Handles the Enter button pressed event.
      */
     public void handleCommandEntered(String commandText) {
         try {
