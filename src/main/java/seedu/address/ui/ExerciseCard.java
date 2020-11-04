@@ -52,6 +52,7 @@ public class ExerciseCard extends UiPart<Region> {
         name.setText(exercise.getName().fullName);
         date.setText(exercise.getDate().value);
         description.setText(exercise.getDescription().value);
+        description.setWrapText(true);
         calories.setText(exercise.getCalories().toString());
         exercise.getMuscleTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.muscleTagName))
