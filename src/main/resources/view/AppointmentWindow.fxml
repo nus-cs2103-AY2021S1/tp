@@ -24,7 +24,7 @@
                                     <Font name="Consolas Bold" size="30.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="patientName" alignment="TOP_LEFT" graphicTextGap="2.0" prefHeight="66.0" prefWidth="610.0" styleClass="patientName" textAlignment="CENTER">
+                            <Label fx:id="patientName" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="patientName">
                                 <font>
                                     <Font name="Consolas Bold" />
                                 </font>
