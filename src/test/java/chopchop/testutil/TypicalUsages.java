@@ -71,16 +71,16 @@ public class TypicalUsages {
             Mass.grams(1));
 
     /**
-     * Returns a UsageList with its usages in Chronological order, first item has the highest date.
+     * Returns a UsageList with its usages in Chronological order, first item has the lowest date. (i.e. like a stack)
      */
     public static UsageList<RecipeUsage> getRecipeUsageList() {
-        return new UsageList<>(Arrays.asList(RECIPE_A_E, RECIPE_B_E, RECIPE_A_D, RECIPE_B_D, RECIPE_A_C, RECIPE_B_C,
-            RECIPE_A_B, RECIPE_B_B, RECIPE_A_A, RECIPE_B_A));
+        return new UsageList<>(Arrays.asList(RECIPE_B_A, RECIPE_A_A, RECIPE_B_B, RECIPE_A_B, RECIPE_B_C, RECIPE_A_C,
+            RECIPE_B_D, RECIPE_A_D, RECIPE_B_E, RECIPE_A_E));
     }
 
     public static ArrayList<RecipeUsage> getRecipeList() {
-        return new ArrayList<>(Arrays.asList(RECIPE_A_E, RECIPE_B_E, RECIPE_A_D, RECIPE_B_D, RECIPE_A_C, RECIPE_B_C,
-            RECIPE_A_B, RECIPE_B_B, RECIPE_A_A, RECIPE_B_A));
+        return new ArrayList<>(Arrays.asList(RECIPE_B_A, RECIPE_A_A, RECIPE_B_B, RECIPE_A_B, RECIPE_B_C, RECIPE_A_C,
+            RECIPE_B_D, RECIPE_A_D, RECIPE_B_E, RECIPE_A_E));
     }
 
     public static ArrayList<RecipeUsage> getUnsortedRecipeList() {
@@ -93,13 +93,13 @@ public class TypicalUsages {
     }
 
     public static UsageList<IngredientUsage> getIngredientUsageList() {
-        return new UsageList<>(Arrays.asList(INGREDIENT_A_E, INGREDIENT_B_E, INGREDIENT_A_D, INGREDIENT_B_D,
-            INGREDIENT_A_C, INGREDIENT_B_C, INGREDIENT_A_B, INGREDIENT_B_B, INGREDIENT_A_A, INGREDIENT_B_A));
+        return new UsageList<>(Arrays.asList(INGREDIENT_B_A, INGREDIENT_A_A, INGREDIENT_B_B, INGREDIENT_A_B, INGREDIENT_B_C, INGREDIENT_A_C,
+            INGREDIENT_B_D, INGREDIENT_A_D, INGREDIENT_B_E, INGREDIENT_A_E));
     }
 
     public static ArrayList<IngredientUsage> getIngredientList() {
-        return new ArrayList<>(Arrays.asList(INGREDIENT_A_E, INGREDIENT_B_E, INGREDIENT_A_D, INGREDIENT_B_D,
-            INGREDIENT_A_C, INGREDIENT_B_C, INGREDIENT_A_B, INGREDIENT_B_B, INGREDIENT_A_A, INGREDIENT_B_A));
+        return new ArrayList<>(Arrays.asList(INGREDIENT_B_A, INGREDIENT_A_A, INGREDIENT_B_B, INGREDIENT_A_B, INGREDIENT_B_C, INGREDIENT_A_C,
+            INGREDIENT_B_D, INGREDIENT_A_D, INGREDIENT_B_E, INGREDIENT_A_E));
     }
 
     public static ArrayList<IngredientUsage> getUnsortedIngredientList() {

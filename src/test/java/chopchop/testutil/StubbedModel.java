@@ -2,9 +2,6 @@
 
 package chopchop.testutil;
 
-import static chopchop.testutil.TypicalUsages.INGREDIENT_A_A;
-import static chopchop.testutil.TypicalUsages.INGREDIENT_B_A;
-import static chopchop.testutil.TypicalUsages.RECIPE_A_A;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -14,6 +11,7 @@ import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.UsageList;
 import chopchop.model.usage.RecipeUsage;
@@ -24,13 +22,10 @@ public class StubbedModel extends chopchop.model.ModelStub {
 
     private final EntryBook<Recipe> recipes;
     private final EntryBook<Ingredient> ingredients;
-    private final UsageList<RecipeUsage> recipeUsageList = new UsageList<>();
-    private final UsageList<IngredientUsage> ingredientUsageList = new UsageList<>();
 
     private StubbedModel(boolean isEmpty) {
         this.recipes = new EntryBook<>();
         this.ingredients = new EntryBook<>();
-
 
         if (!isEmpty) {
             this.recipes.setAll(List.of(
@@ -55,11 +50,6 @@ public class StubbedModel extends chopchop.model.ModelStub {
                 "Peanut", Optional.empty(), Optional.empty(),
                 Set.of(new Tag("brown"), new Tag("round"))
             ));
-
-            this.recipeUsageList.add(RECIPE_A_A);
-
-            this.ingredientUsageList.add(INGREDIENT_A_A);
-            this.ingredientUsageList.add(INGREDIENT_B_A);
         }
     }
 
@@ -129,6 +119,42 @@ public class StubbedModel extends chopchop.model.ModelStub {
         this.ingredients.remove(target);
     }
 
+    // do nothing for these
+    @Override
+    public void addRecipeUsage(Recipe recipe) {
+    }
+
+    @Override
+    public void removeRecipeUsage(Recipe recipe) {
+    }
+
+    @Override
+    public void addIngredientUsage(IngredientReference ingredient) {
+    }
+
+    @Override
+    public void removeIngredientUsage(IngredientReference ingredient) {
+    }
+
+    @Override
+    public UsageList<RecipeUsage> getRecipeUsageList() {
+        return new UsageList<>();
+    }
+
+    @Override
+    public UsageList<IngredientUsage> getIngredientUsageList() {
+        return new UsageList<>();
+    }
+
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> ul) {
+    }
+
+    @Override
+    public void setIngredientUsageList(UsageList<IngredientUsage> ul) {
+    }
+
+
     /**
      * Returns an empty stubbed model.
      */
@@ -141,22 +167,5 @@ public class StubbedModel extends chopchop.model.ModelStub {
      */
     public static StubbedModel filled() {
         return new StubbedModel(/* isEmpty: */ false);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-
-        if (!(obj instanceof StubbedModel)) {
-            return false;
-        }
-
-        StubbedModel other = (StubbedModel) obj;
-        return this.recipes.equals(other.recipes)
-            && this.ingredients.equals(other.ingredients)
-            && this.ingredientUsageList.equals(other.ingredientUsageList)
-            && this.recipeUsageList.equals(other.recipeUsageList);
     }
 }

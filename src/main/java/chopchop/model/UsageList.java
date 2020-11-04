@@ -17,6 +17,18 @@ import javafx.collections.ObservableList;
 
 public class UsageList<T extends Usage> {
     private final ObservableList<T> usages = FXCollections.observableArrayList();
+    private final Comparator<T> comparator = new Comparator<T>() {
+        @Override
+        public int compare(final T o1, final T o2) {
+            if (o1.getDate().compareTo(o2.getDate()) < 0) {
+                return -1;
+            } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                return Integer.compare(o2.getName().compareTo(o1.getName()), 0);
+            } else {
+                return 1;
+            }
+        }
+    };
 
     public UsageList() {}
 
@@ -84,6 +96,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(upperBound);
         return this.usages.stream()
             .filter(x-> x.isBefore(upperBound))
+            .sorted()
             .collect(Collectors.toList());
     }
 
