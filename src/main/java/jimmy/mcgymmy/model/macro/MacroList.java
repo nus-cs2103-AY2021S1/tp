@@ -24,6 +24,10 @@ public class MacroList {
      */
     public MacroList() {
         this.macros = new HashMap<>();
+        /* This may be considered 'breaking abstraction' for the MVC since we are referencing
+         a static method in a Logic class, but this is a necessary 'evil'. The alternative is
+         to have another file where we store the names of all registered commands, which is
+         undesirable since we want to keep DRY/a single source of truth. */
         this.commandNames = new HashSet<>(PrimitiveCommandParser.getRegisteredCommands());
         this.commandNames.add("macro");
     }

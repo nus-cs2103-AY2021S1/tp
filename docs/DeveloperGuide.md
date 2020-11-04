@@ -117,7 +117,7 @@ One notable difference is the use of several `Parameter` classes in the various 
 We list a few of the benefits of our redesigned solution below.
 
 1. The main motivation for this change was to facilitate the addition of the `macro` feature.
-2. The old design of the parser operated at too high an abstraction level, resulting in the developer having to create hideous objects like the `EditPersonDescriptor` to implement basic functionality.
+2. The old design of the parser operated at too high an abstraction level, resulting in the developer having to create boilerplate objects like the `EditPersonDescriptor` to implement basic functionality.
 3. The new design allows us to code in a more declarative style which is more readable and arguably "self-documenting".
 4. Hiding details of each `Parameter` behind an additional layer of abstraction allows us to automate the creation of other features such as parsers for each individual `Command` and automatially generating `help` strings.
 
@@ -392,6 +392,8 @@ _{more aspects and alternatives to be added}_
 
 As with the other class diagram for the *Logic* component above, we omit some details in the above diagram for clarity.
 
+Macros are a way for users to create shortcuts to run several commands in succession, with arguments. For more information please refer to the user guide.
+
 There are two 'parts' to the macro component:
 
 1. The creation of the macro object itself (e.g. running `macro test a; add -n \a breakfast -c 100`).
@@ -405,17 +407,29 @@ We only described parsing and execution of primitive commands in the section abo
 A short description of the process including the parsing of macros is as follows:
 
 1. If command word is `macro`, return a `NewMacroCommand` (which will create a new `macro` when executed).
-2. Else if command word is an existing macro, call that macro object's `toCommandExecutable` method and return that.
+2. Else if command word is an existing macro, call the `asCommandInstance` method in the `MacroRunner` class to create a `CommandExecutable` from the macro and return that.
 3. Else hand over to primitive command parser.
 
-#### 7.5.2 Execution of macros
+#### 7.5.2 Structure of the macro classes
+
+The main data objects for macros are the `Macro` and `MacroList` classes. These are stored in the `Model`.
+
+`Macro` is an immutable container containing data such as the name, arguments to and commands to execute in the macro as strings.
+
+`MacroList` is an immutable container of `Macro`s.
+
+Lastly, the `MacroRunner` utility class in the `Logic` component is responsible for turning these `Macro` data objects into `CommandExecutable` objects that can be run.
+
+#### 7.5.3 Execution of macros
 
 Here we detail what exactly happens in each macro's `toCommandExecutable` object.
 Throughout this section, we will use the following macro as an example: `macro test a;add -n \a breakfast 200`.
 
-1. Parameters supplied by the user are substituted into the macro's lines. For the example if the user enters `test -a rice`, `rice` will be substituted into the `\a` part of `add -n \a breakfast 200` to obtain `add -n rice breakfast 200`;
+1. Parameters supplied by the user are substituted into the macro's lines using regular expressions. For the example if the user enters `test -a rice`, `rice` will be substituted into the `\a` part of `add -n \a breakfast 200` to obtain `add -n rice breakfast 200`;
 2. Pass the list of strings to a new instance of `PrimitiveCommandParser` to get a list of `Command`s. If a `ParseException` occurs, we recast it as a `CommandException` and re-throw it.
 3. Execute all these `Command`s in sequence, and return a new `CommandResult` created from concatenating the respective `CommandResults` returned by the `Command`s. If a `CommandException` occurs in this sequence, that exception is thrown with the added message listing the commands that have executed successfully, and commands that have yet to be executed.
+
+Below is a sequence diagram summarizing the main interactions.
 
 ![Sequence diagram for macro](images/MacroSequenceDiagram.png)
 

@@ -43,7 +43,7 @@ public class MacroRunner {
     public static CommandResult executeWith(Model model, String[] substitutedCommands)
             throws CommandException {
         CollectionUtil.requireAllNonNull(model, substitutedCommands);
-        
+
         List<String> messagesToUser = new ArrayList<>();
         List<CommandExecutable> commandExecutables = parseCommands(substitutedCommands);
         int lastCommandIndex = 0;
@@ -70,7 +70,7 @@ public class MacroRunner {
             String notDoneCommands = lastCommandIndex + 1 == substitutedCommands.length ? ""
                     : "\n\n The following commands were not executed:\n"
                     + String.join("\n",
-                            Arrays.copyOfRange(substitutedCommands, lastCommandIndex + 1, substitutedCommands.length));
+                    Arrays.copyOfRange(substitutedCommands, lastCommandIndex + 1, substitutedCommands.length));
 
             String message = e.getMessage() + errorLocation + doneCommands + notDoneCommands;
             throw new CommandException(message);
