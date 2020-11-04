@@ -1,7 +1,5 @@
 package jimmy.mcgymmy.model.food;
 
-import java.util.function.Predicate;
-
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
