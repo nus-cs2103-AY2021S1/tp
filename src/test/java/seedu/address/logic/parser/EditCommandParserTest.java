@@ -178,7 +178,8 @@ public class EditCommandParserTest {
 //    @Test
 //    public void parse_multipleRepeatedFields_acceptsLast() {
 //        Index targetIndex = INDEX_FIRST_EXERCISE;
-//        String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
+//        String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+//                + DATE_DESC_PUSH_UP
 //                + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE
 //                + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
 //                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE + TAG_DESC_GYM
