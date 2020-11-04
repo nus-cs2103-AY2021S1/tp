@@ -312,6 +312,44 @@ The following sequence diagram shows how the update feature works for **Example 
 
 ![Update Example 1](images/UpdateSequenceDiagramExample1.png)
 
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the update feature is triggered:
+
+![UpdateActivityDiagram](images/UpdateActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: What fields can be updated
+
+* **Alternative 1 (current implementation):** disallow updating of serial number and source.
+  * Pros: Serial number can be made as an identifier for every stock, making it easier to implement
+    other features such as `add` and `find`. Unlocks the possibility of serial number being generated
+    by source, since the source cannot be changed.
+  * Cons: Take some degree of freedom from the user. The user cannot change serial number or source on his/her
+    own without tampering directly with the `JSON` files.
+
+* **Alternative 2:** allow updating of all fields in `Stock` class
+  * Pros: Gives the user as much freedom as he/she wants. The user can update anything as he/she sees fit.
+  * Cons: It will be harder to implement other features as the identifier for stocks which is the serial number
+  can be changed by the user. Other features that use serial number as the identifier will have to adapt
+  when the user changes the serial number.
+
+##### Aspect: How does a stock gets updated
+
+* **Alternative 1 (current implementation):** make a temporary copy and then replace original with copy
+  * Pros: Eliminates the possibility of original data getting lost. If an update is unsuccessful then only
+    the copy will be affected and not the original data. Moreover, all the fields are updated at the same time
+    since we replace the original with a copy that has been completely updated.
+  * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy
+    of the current stock, update the copy, and replace the original with the copy.
+
+* **Alternative 2:** directly change the `Stock` fields in `StockBook`
+  * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
+  * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently
+    undergoing the update to be corrupted as the original data that has been updated will be lost,
+    but some fields may not be already updated due to the midway interruption.
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
@@ -343,6 +381,21 @@ Some of the important operations implemented here are:
   with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
   After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
 
+* `SuggestionCommandParser#generateClearSuggestion()` <br>
+  Generates the suggestion message for a clear command.
+
+* `SuggestionCommandParser#generateTabSuggestion()` <br>
+  Generates the suggestion message for a tab command.
+
+* `SuggestionCommandParser#generateSortSuggestion()` <br>
+  Generates the suggestion message for a sort command.
+
+* `SuggestionCommandParser#generateBookmarkSuggestion()` <br>
+  Generates the suggestion message for a bookmark command.
+
+* `SuggestionCommandParser#generateUnbookmarkSuggestion()` <br>
+  Generates the suggestion message for an unbookmark command.
+
 * `SuggestionCommandParser#generateAddSuggestion()` <br>
   Generates the suggestion message for an add command.
 
@@ -373,8 +426,14 @@ Some of the important operations implemented here are:
 * `SuggestionCommandParser#generateNoteSuggestion()` <br>
   Generates the suggestion message for a note command.
 
-* `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
+* `SuggestionCommandParser#generateDeleteNoteSuggestion()` <br>
   Generates the suggestion message for a note delete command.
+
+* `SuggestionCommandParser#generateStockViewSuggestion()` <br>
+  Generates the suggestion message for a stock view command.
+
+* `SuggestionCommandParser#generatePrintSuggestion()` <br>
+  Generates the suggestion message for a print command.
 
 #### SuggestionUtil
 
@@ -1034,7 +1093,7 @@ Some of the important operations implemented here are:
   After the comparator is created, `Model#sortFilteredStockList()` is called with the comparator as
   its argument to sort the inventory.
 
-#### SuggestionCommandParser
+#### SortCommandParser
 
 `SortCommandParser` class implements `Parser` interface. `SortCommandParser` class is tasked with parsing the
 user inputs and generate a new `SortCommand`.
@@ -1091,6 +1150,13 @@ The utilities provided inside are:
   Generates a comparator based on quantity field. It will compare two quantity `q1`, `q2` and have the same exact
   behaviour as `SortUtil#generateNameComparator()`. This method by default sort by quantity in ascending order.
 
+* `SortUtl#generateGeneralComparator()` <br>
+  Generates a comparator based on serial number field and whether the stocks are bookmarked or low on quantity.
+  It will assign points to stock if they are bookmarked or low on quantity. Bookmarked stocks receive higher
+  points than stocks on low quantity. Stocks with larger points will be first on the resulting list.
+  For stocks with the same points, tie breaking is done by sorting them according to their serial number
+  in ascending order.
+
 #### Example Usage Scenario
 
 Given below are some example usage scenarios and how the sort mechanism behaves at each step.
@@ -1129,6 +1195,25 @@ Step 12. The sort success message is displayed to the user.
 The following sequence diagram shows how the sort feature works for **Example 1**:
 
 ![SortFeatureExample1](images/SortFeatureExample1.png)
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the sort feature is triggered:
+
+![SortActivityDiagram](images/SortActivityDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: Sorting order
+
+* **Alternative 1 (current implementation):** ascending and descending are both supported
+  * Pros: Gives more flexibility to the user. Sometimes user may want to view in ascending order, sometimes
+  user may also want to view in descending order.
+  * Cons: A slightly longer command format will be needed as user needs to pass in a prefix for the order.
+
+* **Alternative 2:** only allow ascending order.
+  * Pros: A shorter command format for user to type in. Only need to specify the field to be sorted.
+  * Cons: Gives less flexibility to the user. Less variation in behaviors.
 
 ### Print Feature
 
