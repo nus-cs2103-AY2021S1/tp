@@ -22,7 +22,7 @@ public class UndoCommand extends Command {
         }
 
         model.undoPivot();
-        String undoneCommand = model.getStateCommand();
+        String undoneCommand = model.getCommandMessage();
 
         if (model.isMainPageCommand()) {
             StateManager.resetState();

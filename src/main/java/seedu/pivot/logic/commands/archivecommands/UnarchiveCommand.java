@@ -11,6 +11,8 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.ArchiveStatus;
@@ -19,7 +21,7 @@ import seedu.pivot.model.investigationcase.Case;
 /**
  * Unarchives a case identified using it's displayed index from PIVOT.
  */
-public class UnarchiveCommand extends Command {
+public class UnarchiveCommand extends Command implements Undoable {
     public static final String COMMAND_WORD = "unarchive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -32,6 +34,7 @@ public class UnarchiveCommand extends Command {
 
     public static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
 
+    private static final Page pageType = Page.MAIN;
     private static final Logger logger = LogsCenter.getLogger(UnarchiveCommand.class);
 
     private Index targetIndex;
@@ -71,7 +74,7 @@ public class UnarchiveCommand extends Command {
         //model.setCase(caseToUnarchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_ARCHIVED_CASES);
-        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase), true);
+        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase), this);
 
         return new CommandResult(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
     }
@@ -81,6 +84,11 @@ public class UnarchiveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof UnarchiveCommand // instanceof handles nulls
                 && targetIndex.equals(((UnarchiveCommand) other).targetIndex)); // state check
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }
 
