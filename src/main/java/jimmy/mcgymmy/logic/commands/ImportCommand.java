@@ -2,7 +2,9 @@ package jimmy.mcgymmy.logic.commands;
 
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.exceptions.DataConversionException;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
@@ -17,8 +19,9 @@ public class ImportCommand extends Command {
     public static final String SHORT_DESCRIPTION = "Import a McGymmy Save file";
 
     public static final String MESSAGE_IMPORT_FOOD_SUCCESS = "Imported %s";
-    public static final String MESSAGE_IMPORT_FOOD_FAILURE = "File is invalid";
-    public static final String FILE_CONSTRAINTS = "Please select a valid .json file";
+    public static final String MESSAGE_IMPORT_FOOD_FAILURE = "Please select a valid .json file: %s";
+
+    private static final Logger importLogger = LogsCenter.getLogger(ExportCommand.class);
 
     private Parameter<Path> fileParameter = this.addParameter(
             "filepath",
@@ -39,12 +42,14 @@ public class ImportCommand extends Command {
             JsonMcGymmyStorage importedMcgymmy = new JsonMcGymmyStorage(filepath);
             Optional<ReadOnlyMcGymmy> readOnlyMcGymmyOptional = importedMcgymmy.readMcGymmy();
             if (readOnlyMcGymmyOptional.isEmpty()) {
-                throw new CommandException(MESSAGE_IMPORT_FOOD_FAILURE);
+                throw new CommandException(String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath));
             }
             model.setMcGymmy(readOnlyMcGymmyOptional.get());
+            importLogger.fine(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()));
             return new CommandResult(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()));
         } catch (DataConversionException e) {
-            throw new CommandException(MESSAGE_IMPORT_FOOD_FAILURE);
+            importLogger.warning(String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath));
+            throw new CommandException(String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath));
         }
     }
 }
