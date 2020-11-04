@@ -317,7 +317,8 @@ Examples:
 
 ### 5.9 Deleting a food item: `delete`
 
-You can delete a food item at the specified index.
+The `delete` command allows you to instantly remove a food item from the current
+displayed list of food items.
 
 Format: `delete INDEX`
 
