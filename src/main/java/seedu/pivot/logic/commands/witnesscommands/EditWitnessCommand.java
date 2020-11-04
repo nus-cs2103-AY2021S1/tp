@@ -97,4 +97,20 @@ public class EditWitnessCommand extends EditPersonCommand {
 
         return new Witness(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditWitnessCommand)) {
+            return false;
+        }
+
+        EditWitnessCommand otherEditWitnessCommand = (EditWitnessCommand) other;
+        return otherEditWitnessCommand.caseIndex.equals(caseIndex)
+                && otherEditWitnessCommand.personIndex.equals(personIndex)
+                && otherEditWitnessCommand.editPersonDescriptor.equals(editPersonDescriptor);
+    }
 }

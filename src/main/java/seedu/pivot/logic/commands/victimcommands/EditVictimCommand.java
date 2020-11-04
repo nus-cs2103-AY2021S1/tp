@@ -97,4 +97,20 @@ public class EditVictimCommand extends EditPersonCommand {
 
         return new Victim(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditVictimCommand)) {
+            return false;
+        }
+
+        EditVictimCommand otherEditVictimCommand = (EditVictimCommand) other;
+        return otherEditVictimCommand.caseIndex.equals(caseIndex)
+                && otherEditVictimCommand.personIndex.equals(personIndex)
+                && otherEditVictimCommand.editPersonDescriptor.equals(editPersonDescriptor);
+    }
 }

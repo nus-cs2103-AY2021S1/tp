@@ -4,9 +4,9 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_CASEPERSON_NAME;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_GENDER_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -29,7 +29,7 @@ public class AddVictimCommandParserTest {
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
-    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_GENDER_BOB;
+    public static final String GENDER_DESC_BOB = " " + PREFIX_GENDER + VALID_CASEPERSON_GENDER_BOB;
 
     private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
@@ -48,8 +48,8 @@ public class AddVictimCommandParserTest {
     //TODO: add all the fields in for victim here
     @Test
     public void parse_allFieldsPresent_success() {
-        Victim expectedVictim = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB).withGender(VALID_GENDER_BOB)
-                .buildVictim();
+        Victim expectedVictim = new CasePersonBuilder()
+                .withName(VALID_CASEPERSON_NAME_BOB).withGender(VALID_CASEPERSON_GENDER_BOB).buildVictim();
 
         // normal input
         assertParseSuccess(parser, NAME_DESC_BOB + GENDER_DESC_BOB,

@@ -1,27 +1,36 @@
 package seedu.pivot.logic.commands;
 
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_ADDRESS;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_EMAIL;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_GENDER_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_PHONE;
 import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_DUPLICATE_VICTIMS;
 import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_EDIT_VICTIM_SUCCESS;
+import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_EMAIL;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_NAME;
-import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 import static seedu.pivot.testutil.TypicalIndexes.SECOND_INDEX;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
+import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.commands.victimcommands.EditVictimCommand;
 import seedu.pivot.logic.state.StateManager;
-import seedu.pivot.model.Model;
-import seedu.pivot.model.ModelManager;
-import seedu.pivot.model.Pivot;
-import seedu.pivot.model.UserPrefs;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CaseBuilder;
@@ -29,11 +38,15 @@ import seedu.pivot.testutil.CasePersonBuilder;
 import seedu.pivot.testutil.EditPersonDescriptorBuilder;
 
 public class EditVictimCommandTest {
-    private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
+
+    private Victim victim = new CasePersonBuilder().buildVictim();
+    private EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().build();
+    private ModelStub modelStub;
 
     @BeforeEach
     void setUp() {
         StateManager.setState(FIRST_INDEX);
+        modelStub = new ModelStubWithCaseList();
     }
 
     @AfterAll
@@ -42,52 +55,79 @@ public class EditVictimCommandTest {
     }
 
     @Test
-    public void execute_allFieldsSpecified_success() {
-        Victim editedVictim = new CasePersonBuilder().buildVictim();
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder(editedVictim).build();
-        EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, editPersonDescriptor);
-
-        Case caseToEdit = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
-        Case editedCase = new CaseBuilder(caseToEdit).withVictims(editedVictim).build();
-
-        String expectedMessage = String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim);
-
-        Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
-        expectedModel.setCase(caseToEdit, editedCase);
-        expectedModel.commitPivot(expectedMessage, false);
-
-        assertCommandSuccess(editVictimCommand, model, expectedMessage, expectedModel);
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new EditVictimCommand(null, FIRST_INDEX, descriptor));
+        assertThrows(NullPointerException.class, () -> new EditVictimCommand(FIRST_INDEX, null, descriptor));
+        assertThrows(NullPointerException.class, () -> new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, null));
     }
 
     @Test
-    public void execute_someFieldsSpecified_success() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder()
-                .withName(DEFAULT_NAME).withEmail(DEFAULT_EMAIL).build();
+    public void equals() {
+        EditPersonDescriptor alternateDescriptor = new EditPersonDescriptorBuilder().withName(DEFAULT_NAME).build();
+        EditVictimCommand command = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, descriptor);
+
+        // same object -> returns true
+        assertTrue(command.equals(command));
+
+        // same values -> returns true
+        assertTrue(command.equals(new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, descriptor)));
+
+        // different types -> returns false
+        assertFalse(command.equals(1));
+
+        // null -> returns false
+        assertFalse(command.equals(null));
+
+        // different caseIndex -> returns false
+        assertFalse(command.equals(new EditVictimCommand(SECOND_INDEX, FIRST_INDEX, descriptor)));
+
+        // different personIndex -> returns false
+        assertFalse(command.equals(new EditVictimCommand(FIRST_INDEX, SECOND_INDEX, descriptor)));
+
+        // different descriptor -> returns false
+        assertFalse(command.equals(new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, alternateDescriptor)));
+    }
+
+    @Test
+    public void execute_allFieldsSpecified_success() throws CommandException {
+        Victim editedVictim = new CasePersonBuilder(victim)
+                .withName(VALID_CASEPERSON_NAME_AMY)
+                .withGender(VALID_CASEPERSON_GENDER_AMY)
+                .withPhone(VALID_CASEPERSON_PHONE)
+                .withEmail(VALID_CASEPERSON_EMAIL)
+                .withAddress(VALID_CASEPERSON_ADDRESS).buildVictim();
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder(editedVictim).build();
         EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, editPersonDescriptor);
 
-        Case caseToEdit = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
-        Victim victimToEdit = caseToEdit.getVictims().get(FIRST_INDEX.getZeroBased());
-        Victim editedVictim = new CasePersonBuilder(victimToEdit)
-                .withName(DEFAULT_NAME).withEmail(DEFAULT_EMAIL).buildVictim();
-        Case editedCase = new CaseBuilder(caseToEdit).withVictims(editedVictim).build();
+        String actualMessage = editVictimCommand.execute(modelStub).getFeedbackToUser();
 
         String expectedMessage = String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim);
+        assertEquals(actualMessage, expectedMessage);
+    }
 
-        Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
-        expectedModel.setCase(caseToEdit, editedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+    @Test
+    public void execute_someFieldsSpecified_success() throws CommandException {
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder()
+                .withName(VALID_CASEPERSON_NAME_AMY).withEmail(VALID_CASEPERSON_EMAIL).build();
+        EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, editPersonDescriptor);
 
-        assertCommandSuccess(editVictimCommand, model, expectedMessage, expectedModel);
+        String actualMessage = editVictimCommand.execute(modelStub).getFeedbackToUser();
+
+        Victim editedVictim = new CasePersonBuilder(victim)
+                .withName(VALID_CASEPERSON_NAME_AMY).withEmail(VALID_CASEPERSON_EMAIL).buildVictim();
+
+        String expectedMessage = String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim);
+        assertEquals(actualMessage, expectedMessage);
     }
 
     @Test
     public void execute_duplicatePerson_failure() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder().build();
+        Victim editedVictim = new CasePersonBuilder().buildVictim();
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder(editedVictim).build();
         EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, editPersonDescriptor);
 
-        String expectedMessage = String.format(MESSAGE_DUPLICATE_VICTIMS);
-
-        assertCommandFailure(editVictimCommand, model, expectedMessage);
+        String expectedMessage = MESSAGE_DUPLICATE_VICTIMS;
+        assertThrows(CommandException.class, expectedMessage, () -> editVictimCommand.execute(modelStub));
     }
 
     @Test
@@ -96,6 +136,32 @@ public class EditVictimCommandTest {
                 .withName(DEFAULT_NAME).withEmail(DEFAULT_EMAIL).build();
         EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, SECOND_INDEX, editPersonDescriptor);
 
-        assertCommandFailure(editVictimCommand, model, UserMessages.MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX);
+        String expectedMessage = UserMessages.MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX;
+        assertThrows(CommandException.class, expectedMessage, () -> editVictimCommand.execute(modelStub));
+
+    }
+
+    private class ModelStubWithCaseList extends ModelStub {
+        final List<Case> caseList;
+
+        private ModelStubWithCaseList() {
+            this.caseList = new ArrayList<>();
+            Case caseWithVictim = new CaseBuilder().withVictims(victim).build();
+            caseList.add(caseWithVictim);
+        }
+
+        @Override
+        public ObservableList<Case> getFilteredCaseList() {
+            return FXCollections.observableList(caseList);
+        }
+
+        @Override
+        public void setCase(Case target, Case editedCase) {
+            int targetIndex = caseList.indexOf(target);
+            caseList.set(targetIndex, editedCase);
+        }
+
+        @Override
+        public void commitPivot(String command, boolean isMainPageCommand) {}
     }
 }
