@@ -2,17 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -25,7 +21,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      * and returns an EditTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditTaskCommand parse(String args) throws ParseException {
+    public EditTaskCommand parse(String args) throws ParseException, MultipleAttributesException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_DATE,
@@ -40,6 +36,15 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE) ||
+                argMultimap.hasMultipleValues(PREFIX_DESCRIPTION) ||
+                argMultimap.hasMultipleValues(PREFIX_TAG) ||
+                argMultimap.hasMultipleValues(PREFIX_DATE) ||
+                argMultimap.hasMultipleValues(PREFIX_DATE_TIME) ||
+                argMultimap.hasMultipleValues(PREFIX_START_TIME) ||
+                argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+            throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
+        }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editTaskDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }

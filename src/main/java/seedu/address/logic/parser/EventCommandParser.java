@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
@@ -9,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.EventCommand;
+import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -30,7 +32,7 @@ public class EventCommandParser implements Parser<EventCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EventCommand parse(String args) throws ParseException {
+    public EventCommand parse(String args) throws ParseException, MultipleAttributesException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
                     PREFIX_DESCRIPTION, PREFIX_TAG);
@@ -38,6 +40,15 @@ public class EventCommandParser implements Parser<EventCommand> {
         if (!Parser.arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", EventCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE) ||
+                argMultimap.hasMultipleValues(PREFIX_DATE) ||
+                argMultimap.hasMultipleValues(PREFIX_START_TIME) ||
+                argMultimap.hasMultipleValues(PREFIX_END_TIME) ||
+                argMultimap.hasMultipleValues(PREFIX_DESCRIPTION) ||
+                argMultimap.hasMultipleValues(PREFIX_TAG)) {
+            throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
 
         Description description = Description.defaultDescription();

@@ -556,7 +556,7 @@ Other examples include:
     * Lists all lessons with a tag containing 'CS2040'.
 * `find-lesson date:01-01-2020` .
     * List all lessons happening on 01-01-2020.
-* `find-task title:dinner title:lunch`.
+* `find-lesson title:dinner title:lunch`.
     * List all lessons with the title including either `dinner` or `lunch`.
 * `find-lesson datetime:01-01-2020 14:00` 
     * Lists all lessons happening on 01-01-2020 at 14:00.

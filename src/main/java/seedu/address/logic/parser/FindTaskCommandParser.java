@@ -1,13 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.commons.core.Messages.*;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,6 +36,7 @@ public class FindTaskCommandParser implements Parser<FindTaskCommand> {
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", FindTaskCommand.MESSAGE_USAGE));
         }
+
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
         setKeyword(PREFIX_DESCRIPTION, argMultimap, predicate);
