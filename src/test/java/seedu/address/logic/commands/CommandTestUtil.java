@@ -80,9 +80,29 @@ public class CommandTestUtil {
     public static final String NAME_DESC_ES2660 = " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
     public static final String ZOOMLINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_ES2660;
 
+    // ================================== TodoList ===================================== //
+
+    public static final String VALID_NAME_LAB05 = "Finish Lab 5 Report";
+    public static final String VALID_NAME_LAB07 = "Finish Lab 7 Report";
+    public static final String VALID_PRIORITY_HIGH = "HIGH";
+    public static final String VALID_PRIORITY_NORMAL = "NORMAL";
+    public static final String VALID_TAG_CS2100 = "CS2100";
+    public static final String VALID_TAG_CS2105 = "CS2105";
+    public static final String VALID_DATE1 = "2020-11-05";
+    public static final String VALID_DATE2 = "2020-12-03";
+    public static final String VALID_STATUS_COMPLETED = "COMPLETED";
+    public static final String VALID_STATUS_NOT_COMPLETED = "NOT_COMPLETED";
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    ////////////////////////////////////// SCHEDULER /////////////////////////////////////
+    public static final String VALID_EVENT_NAME_1 = "CS2103T Quiz";
+    public static final String VALID_EVENT_NAME_2 = "ES2660 Essay";
+    public static final String VALID_EVENT_DATE_1 = "1-2-2020 1200";
+    public static final String VALID_EVENT_DATE_2 = "2-2-2020 1200";
+    public static final String INVALID_EVENT_NAME = "CS@2103T Quiz";
+    public static final String INVALID_EVENT_DATE = "123-2-2020 1200";
     public static final EditContactDescriptor DESC_AMY;
     public static final EditContactDescriptor DESC_BOB;
     public static final EditModuleDescriptor DESC_CS2030;

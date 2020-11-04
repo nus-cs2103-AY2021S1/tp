@@ -103,7 +103,6 @@
 
 .list-cell:filled:even {
    -fx-background-color: transparent;
-
 }
 
 .list-cell:filled:odd {
@@ -326,6 +325,7 @@
 #cardPane {
     -fx-background-color: #505050;
     -fx-border-radius: 20;
+    -fx-border-width: 0;
     -fx-background-radius: 20px;
 }
 

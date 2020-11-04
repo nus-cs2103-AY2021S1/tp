@@ -392,7 +392,7 @@ Format: `addtask` `n/TASK_NAME` `[t/TAG]...` `[p/PRIORITY]` `[d/DATE]`
 
 * You can provide more than one `TAG` e.g. `t/LAB t/DAILY`.
 
-* You can choose 4 level of `PRIORITY` i.e. `HIGHEST`, `HIGH`, `NORMAL`, `LOW`.
+* You can choose 3 level of `PRIORITY` i.e. `HIGH`, `NORMAL`, `LOW`.
 
 * Input for `PRIORITY` is not case-sensitive e.g. `highest`, `Highest` work fine.
 

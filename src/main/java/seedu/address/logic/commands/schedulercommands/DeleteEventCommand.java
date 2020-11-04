@@ -22,7 +22,13 @@ public class DeleteEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted event: %1$s";
     private final Index index;
+
+    /**
+     * Creates a DeleteEventCommand to execute by the LogicManager later on.
+     * @param index index of event to be deleted.
+     */
     public DeleteEventCommand(Index index) {
+        assert (index != null);
         this.index = index;
     }
     @Override
@@ -41,5 +47,16 @@ public class DeleteEventCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof DeleteEventCommand) {
+            return this.index.equals(((DeleteEventCommand) other).index);
+        } else {
+            return false;
+        }
     }
 }
