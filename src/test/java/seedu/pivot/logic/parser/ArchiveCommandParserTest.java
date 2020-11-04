@@ -8,7 +8,7 @@ import static seedu.pivot.logic.parser.ArchiveCommandParser.MESSAGE_CASE_INCORRE
 import static seedu.pivot.logic.parser.ArchiveCommandParser.MESSAGE_CASE_INCORRECT_SECTION_MAIN_PAGE;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ import seedu.pivot.logic.state.StateManager;
 
 public class ArchiveCommandParserTest {
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
     private ArchiveCommandParser parser = new ArchiveCommandParser();
 
     public void setUpMainPageDefaultSection() {
@@ -52,7 +52,7 @@ public class ArchiveCommandParserTest {
     @Test
     public void parseDefaultSectionCasePage_validArgs_throwsParseException() {
         setUpCasePageDefaultSection();
-        assertParseFailure(parser, TYPE_CASE + " " + INDEX_FIRST_PERSON, MESSAGE_INCORRECT_MAIN_PAGE);
+        assertParseFailure(parser, TYPE_CASE + " " + FIRST_INDEX, MESSAGE_INCORRECT_MAIN_PAGE);
         StateManager.resetState();
     }
 
@@ -90,7 +90,7 @@ public class ArchiveCommandParserTest {
     public void parseArchivedSectionMainPage_validArgs_throwsParseException() {
         setUpMainPageArchivedSection();
 
-        assertParseFailure(parser, TYPE_CASE + " " + INDEX_FIRST_PERSON,
+        assertParseFailure(parser, TYPE_CASE + " " + FIRST_INDEX,
                 MESSAGE_CASE_INCORRECT_SECTION_MAIN_PAGE);
 
     }
@@ -99,7 +99,7 @@ public class ArchiveCommandParserTest {
     public void parseArchivedSectionCasePage_validArgs_throwsParseException() {
         setUpCasePageArchivedSection();
 
-        assertParseFailure(parser, TYPE_CASE + " " + INDEX_FIRST_PERSON,
+        assertParseFailure(parser, TYPE_CASE + " " + FIRST_INDEX,
                 MESSAGE_CASE_INCORRECT_SECTION_CASE_PAGE);
     }
 

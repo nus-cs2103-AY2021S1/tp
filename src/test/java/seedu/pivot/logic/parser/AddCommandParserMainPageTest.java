@@ -1,7 +1,7 @@
 package seedu.pivot.logic.parser;
 
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,7 +29,7 @@ public class AddCommandParserMainPageTest {
     public static final String PREFIX_TITLE = " " + CliSyntax.PREFIX_TITLE.getPrefix();
     public static final String TYPE_CASE = "case";
 
-    private static Index caseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index caseIndex = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private AddCommandParser parser = new AddCommandParser();
 

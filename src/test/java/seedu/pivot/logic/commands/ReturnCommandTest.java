@@ -2,7 +2,7 @@ package seedu.pivot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import seedu.pivot.model.ModelManager;
 
 public class ReturnCommandTest {
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 

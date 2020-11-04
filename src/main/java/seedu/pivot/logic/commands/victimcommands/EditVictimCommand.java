@@ -45,7 +45,7 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
             + PREFIX_EMAIL + "newEmail@mail.com "
             + PREFIX_ADDRESS + "New Road Crescent\n\n";
 
-    public static final String MESSAGE_EDIT_VICTIMS_SUCCESS = "Edited Victim: %1$s";
+    public static final String MESSAGE_EDIT_VICTIM_SUCCESS = "Edited Victim: %1$s";
 
     private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditVictimCommand.class);
@@ -84,9 +84,9 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
                 caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim), this);
+        model.commitPivot(String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim), this);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim));
+        return new CommandResult(String.format(MESSAGE_EDIT_VICTIM_SUCCESS, editedVictim));
     }
 
     private Victim createEditedPerson(Victim victimToEdit, EditPersonDescriptor editPersonDescriptor) {
@@ -104,5 +104,21 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
     @Override
     public Page getPage() {
         return pageType;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditVictimCommand)) {
+            return false;
+        }
+
+        EditVictimCommand otherEditVictimCommand = (EditVictimCommand) other;
+        return otherEditVictimCommand.caseIndex.equals(caseIndex)
+                && otherEditVictimCommand.personIndex.equals(personIndex)
+                && otherEditVictimCommand.editPersonDescriptor.equals(editPersonDescriptor);
     }
 }

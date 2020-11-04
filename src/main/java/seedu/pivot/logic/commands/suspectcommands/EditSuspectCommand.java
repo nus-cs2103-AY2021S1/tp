@@ -68,7 +68,7 @@ public class EditSuspectCommand extends EditPersonCommand implements Undoable {
         List<Suspect> editedSuspects = caseToEdit.getSuspects();
 
         if (personIndex.getZeroBased() >= editedSuspects.size()) {
-            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_SUSPECT_DISPLAYED_INDEX);
         }
 
         Suspect suspectToEdit = editedSuspects.get(personIndex.getZeroBased());
@@ -104,5 +104,21 @@ public class EditSuspectCommand extends EditPersonCommand implements Undoable {
     @Override
     public Page getPage() {
         return pageType;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof EditSuspectCommand)) {
+            return false;
+        }
+
+        EditSuspectCommand otherEditSuspectCommand = (EditSuspectCommand) other;
+        return otherEditSuspectCommand.caseIndex.equals(caseIndex)
+                && otherEditSuspectCommand.personIndex.equals(personIndex)
+                && otherEditSuspectCommand.editPersonDescriptor.equals(editPersonDescriptor);
     }
 }

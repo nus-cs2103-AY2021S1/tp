@@ -163,6 +163,12 @@ public class VersionedPivot extends Pivot {
         }
 
         VersionedPivot otherVersionedPivot = (VersionedPivot) other;
+        System.out.println("versioned");
+        System.out.println(otherVersionedPivot.getPivotStateList().equals(getPivotStateList()));
+        System.out.println(otherVersionedPivot.getCurrentStatePointer() == getCurrentStatePointer());
+        System.out.println(otherVersionedPivot.getCommandMessageResult().equals(getCommandMessageResult()));
+        System.out.println(otherVersionedPivot.getCommandResult() == getCommandResult()
+                || otherVersionedPivot.getCommandResult().equals(getCommandResult()));
         return otherVersionedPivot.getPivotStateList().equals(getPivotStateList())
                 && otherVersionedPivot.getCurrentStatePointer() == getCurrentStatePointer()
                 && otherVersionedPivot.getCommandMessageResult().equals(getCommandMessageResult())
