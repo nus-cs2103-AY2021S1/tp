@@ -19,9 +19,11 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class ModuleBuilder {
 
-    public static final String DEFAULT_MODULENAME = "CS2020";
-    public static final String DEFAULT_MODULELESSONTYPE = "lecture";
-    public static final String DEFAULT_ZOOMLINK = "https://nus-sg.zoom.us/CS2020";
+
+    public static final String DEFAULT_MODULE_NAME = "CS2020";
+    public static final String DEFAULT_MODULE_LESSON = "lecture";
+    public static final String DEFAULT_ZOOM_LINK = "https://nus-sg.zoom.us/CS2020";
+
     public static final double DEFAULT_MODULARCREDITS = 4.0;
 
     private ModuleName moduleName;
@@ -33,7 +35,7 @@ public class ModuleBuilder {
      * Creates a {@code ModuleBuilder} with the default details.
      */
     public ModuleBuilder() {
-        moduleName = new ModuleName(DEFAULT_MODULENAME);
+        moduleName = new ModuleName(DEFAULT_MODULE_NAME);
         zoomLinkMap = new HashMap<ModuleLesson, ZoomLink>();
         //zoomLinkMap.put(new ModuleLesson(DEFAULT_MODULELESSONTYPE), new ZoomLink(DEFAULT_ZOOMLINK));
         modularCredits = new ModularCredits(DEFAULT_MODULARCREDITS);
@@ -71,9 +73,9 @@ public class ModuleBuilder {
     /**
      * Sets the {@code ZoomLinks} of the {@code Module} that we are building.
      */
-    public ModuleBuilder withZoomLink(ModuleLesson moduleLessonType, String zoomLink) {
+    public ModuleBuilder withZoomLink(String moduleLesson, String zoomLink) {
         Map<ModuleLesson, ZoomLink> updatedLinks = new HashMap<>();
-        updatedLinks.put(moduleLessonType, new ZoomLink(zoomLink));
+        updatedLinks.put(new ModuleLesson(moduleLesson), new ZoomLink(zoomLink));
         this.zoomLinkMap = updatedLinks;
         return this;
     }

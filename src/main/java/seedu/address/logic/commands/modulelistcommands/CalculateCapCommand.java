@@ -2,6 +2,9 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.Command;
@@ -26,7 +29,8 @@ public class CalculateCapCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredUnarchivedModuleList();
+        List<Module> lastShownList = new ArrayList<>();
+        lastShownList.addAll(model.getFilteredUnarchivedModuleList());
         lastShownList.addAll(model.getFilteredArchivedModuleList());
         try {
             cap = calculateCap(lastShownList);
@@ -43,7 +47,9 @@ public class CalculateCapCommand extends Command {
      * @return String containing the success message.
      */
     public String createSuccessMessage(double cap) {
-        String message = "Your CAP for completed mods has been successfully calculated : " + Double.toString(cap);
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        numberFormat.setRoundingMode(RoundingMode.HALF_UP);
+        String message = "Your CAP for completed mods has been successfully calculated : " + numberFormat.format(cap);
         return message;
     }
 
