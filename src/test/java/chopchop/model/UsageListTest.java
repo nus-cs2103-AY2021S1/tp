@@ -1,17 +1,21 @@
 package chopchop.model;
 
 import static chopchop.testutil.Assert.assertThrows;
+import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_B;
+import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_D;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_B;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_E;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_C_A;
+import static chopchop.testutil.TypicalUsages.getListViewRecipeList;
 import static chopchop.testutil.TypicalUsages.getRecipeList;
 import static chopchop.testutil.TypicalUsages.getRecipeUsageList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import chopchop.commons.util.Pair;
 import chopchop.model.usage.RecipeUsage;
@@ -27,7 +31,7 @@ class UsageListTest {
         assertEquals(new ArrayList<>(), emptyList.getUsages());
     }
 
-    @Test void getUsageCountandSetAll_success() {
+    @Test void getUsageCountAndSetAll_success() {
         assert(getRecipeUsageList().getUsageCount() == 10);
         assert(new UsageList<RecipeUsage>(new ArrayList<>()).getUsageCount() == 0);
         var elemLst10 = new UsageList<RecipeUsage>(new ArrayList<>());
@@ -60,33 +64,48 @@ class UsageListTest {
     @Test
     void getUsageList() {
         var ul = new UsageList<>();
-
+        assertEquals(ul.getUsageList(), new ArrayList<>());
     }
 
     @Test
     void getUsagesAfter() {
+        var ul = new UsageList<>(getRecipeList());
+        var lst = ul.getUsagesAfter(USAGE_DATE_B);
+        assertEquals(getListViewRecipeList().subList(0, 6), lst);
     }
 
     @Test
     void getUsagesBefore() {
+        var ul = new UsageList<>(getRecipeList());
+        var lst = ul.getUsagesBefore(USAGE_DATE_B);
+        assertEquals(getListViewRecipeList().subList(8, 10), lst);
     }
 
     @Test
     void getUsagesBetween() {
+        var ul = new UsageList<>(getRecipeList());
+        var lst = ul.getUsagesBetween(USAGE_DATE_B, USAGE_DATE_D);
+        assertEquals(getListViewRecipeList().subList(4, 6).stream()
+            .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+            .collect(Collectors.toList()), lst);
     }
 
     @Test
     void getRecentlyUsed() {
+        var ul = new UsageList<>(getRecipeList());
+        var lst = ul.getRecentlyUsed(5);
+        assertEquals(getListViewRecipeList().subList(0, 5), lst);
     }
 
     @Test
     void getMostUsed() {
+        var ul = new UsageList<>(getRecipeList());
+        var lst = ul.getMostUsed();
+        assertEquals(new ArrayList<>(Arrays.asList(
+            new Pair<>("A", "No. of times made: 5"),
+            new Pair<>("B", "No. of times made: 5")
+        )), lst);
     }
-
-    @Test
-    void testEquals() {
-    }
-
 
     @Test
     public void getMostUsed_success() {

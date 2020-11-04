@@ -1,6 +1,5 @@
 package chopchop.model.usage;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class UsageTest {

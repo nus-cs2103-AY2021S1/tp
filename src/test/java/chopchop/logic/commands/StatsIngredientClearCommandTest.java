@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.UsageList;
-import chopchop.model.attributes.Name;
 import chopchop.testutil.StubbedUsageModel;
 
 class StatsIngredientClearCommandTest {

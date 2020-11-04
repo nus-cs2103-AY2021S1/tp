@@ -10,10 +10,7 @@ import static chopchop.testutil.TypicalUsages.INGREDIENT_A_A;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_A_E;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_B_A;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_B_E;
-import static chopchop.testutil.TypicalUsages.RECIPE_A_E;
-import static chopchop.testutil.TypicalUsages.RECIPE_B_E;
 import static chopchop.testutil.TypicalUsages.getUnsortedIngredientList;
-import static chopchop.testutil.TypicalUsages.getUnsortedRecipeList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -159,7 +156,8 @@ class StatsIngredientUsedCommandTest {
                 Arrays.asList(new Pair<>(INGREDIENT_A_E.getName(), INGREDIENT_A_E.getPrintableDate()),
                     new Pair<>(INGREDIENT_B_E.getName(), INGREDIENT_B_E.getPrintableDate()))
             ),
-            String.format("Showing ingredients used between %s and %s", after.format(formatter), before.format(formatter)));
+            String.format("Showing ingredients used between %s and %s", after.format(formatter),
+                before.format(formatter)));
         assertEquals(cmdRes, expectedRes);
     }
 
