@@ -1,0 +1,35 @@
+@startuml
+!include style.puml
+
+box Ui UI_COLOR
+participant ":commandField" as CommandField UI_COLOR
+participant ":resultDisplay" as ResultDisplay UI_COLOR
+end box
+
+[-> CommandField : detectChange()
+activate CommandField
+
+CommandField -> ResultDisplay : showAutoCompleteResult(input)
+activate ResultDisplay
+
+ResultDisplay -> ResultDisplay : setText(input)
+activate ResultDisplay
+
+ResultDisplay -> ResultDisplay : getAutoCompleteResult(input, commandSuggestionList)
+activate ResultDisplay
+
+ResultDisplay <-- ResultDisplay
+deactivate ResultDisplay
+
+ResultDisplay <-- ResultDisplay
+deactivate ResultDisplay
+
+CommandField <--ResultDisplay
+deactivate ResultDisplay
+deactivate ResultDisplay
+
+[<--CommandField
+deactivate CommandField
+
+
+@enduml

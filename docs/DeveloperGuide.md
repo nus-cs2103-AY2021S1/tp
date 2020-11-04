@@ -24,11 +24,11 @@ The **_Architecture Diagram_** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/MainApp.java). It is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 - At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -64,11 +64,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `LogListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -80,9 +80,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `LogBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a log).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -99,188 +99,161 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/model/Model.java)
 
 The `Model`,
 
 - stores a `UserPref` object that represents the user’s preferences.
-- stores the address book data.
-- exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the logbook data.
+- exposes unmodifiable lists `ObservableList<Log>` and `ObservableList<Exercise>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in these lists change.
 - does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-F10-3/tp/tree/master/src/main/java/seedu/fma/storage/Storage.java)
 
 The `Storage` component,
 
 - can save `UserPref` objects in json format and read it back.
-- can save the address book data in json format and read it back.
+- can save the logbook data in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.fma.commons` package.
 
 ---
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features were implemented.
 
 ### Add Exercise feature
+The adding of Exercises is one of the core functionalities of FixMyAbs. Apart from the generic exercises provided when users first start the app, users are also able to add their own exercises, which makes FixMyAbs customizable and more suited to each user's specific needs.  
 
-- AddExCommandParsers parse user input
-- AddExercise adds the exercise in the logbook
+The mechanism is facilitated by an `Exercise` class. An `Exercise` class has `Name` and `Calories`. Calories represent the number of calories burnt per rep of the exercise.
 
-Below is how it works:
+![AddExClassDiagram](images/AddExerciseClassDiagram.png)
 
-Step 1. User executes `addex e/<exercise name> c/<calories>`
+A user can add an `Exercise`to the `LogBook` by executing the `addex` command.
 
-Step 2. `AddExCommandParser` parses user's input and creates an `AddExCommand`
+#### Example usage scenario
+Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the application.
 
-![](images/AddExCommand.png)
+Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsParser` creates a new `AddExCommandParser` and calls the `AddExCommandParser#parse()` method.
 
-Step 3: `AddExCommand` executes and adds exercise to `Model`
+Step 2. The user input is passed into the `AddExCommandParser#parse()` method and instances of `Name` and `Calories` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Exercise` constructor, and a new `Exercise` object is created as a result.
 
-![](images/AddExModel.png)
+![AddExClassDiagram](images/AddExerciseStep2.png)
 
-### Edit Exercise feature
+Step 3. A new `AddExCommand` is returned with the created `Exercise` object as a parameter. The `Exercise` object is then added to the `Model`.
 
-Edit exercise function uses following classes:
+![AddExClassDiagram](images/AddExerciseStep3.png)
 
-- `EditExCommandParser` - Parses user input.
-- `EdutExCommand` Deletes the exercise from the Exercise List.
+The following sequence diagram shows how the `Add Exercise` feature works:
 
-Below is how it works:
+![AddExClassDiagram](images/AddExerciseSequenceDiagram.png)
 
-Step 1. User executes `editex <index> [e/EXERCISE] [c/CALORIES]`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddExCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-Step 2. `EditExCommandParser` parses the user input and creates a `EditExCommand` with the target index of the exercise to be deleted.
+### Add Log feature
+The adding of Logs are the core to the functionality of FixMyAbs. Users are able to add information related to that 
+exercise log, which will then allow them to track their fitness progress and details regarding their workout.  
 
-Step 3: `EditExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is edited in `Model`.
+The mechanism is facilitated by a `Log` class. A `Log` class has `Exercise`, `Rep`, `Comment` and `LocalDateTime`.
 
-![](images/EditExDiagram.png)
+![AddLogClassDiagram](images/AddLogClassDiagram.png)
 
-### Delete Exercise feature
+A user can add a `Log`to the `LogBook` by executing the `add` command.
 
-Delete exercise function uses following classes:
+#### Example usage scenario
+Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the application.
 
-- `DeleteExCommandParsers` - Parses user input.
-- `DeleteExCommand` Deletes the exercise from the Exercise List.
+Step 1. The user executes the command `add e/Pushups r/50 c/Managed to increase to 50 reps today!`. `FixMyAbsParser` creates a new `AddCommandParser` and calls the `AddCommandParser#parse()` method.
 
-Below is how it works:
+Step 2. The user input is passed into the `AddCommandParser#parse()` method and instances of `Exercise`, `Rep` and `Comment` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Log` constructor, and a new `Log` object is created as a result. Each `Log` instantiates with a new `dateTime` field, which calls the `LocalDateTime#now()` method alongside the current system clock of the user's computer.`
 
-Step 1. User executes `deleteex <index>`.
+Step 3. A new `AddCommand` is returned with the created `Log` object as a parameter. The `Log` object is then added to the `Model`.
 
-Step 2. `DeleteExCommandParser` parses the user input and creates a `DeleteExCommand` with the target index of the exercise to be deleted.
+The following sequence diagram shows how the `Add Log` feature works:
 
-Step 3: `DeleteExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is deleted exercise from `Model`.
+![AddLogClassDiagram](images/AddLogSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
 
 ![](images/DeleteExDiagram.png)
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Find Log feature
+To find specific logs, users are able to search for logs based on certain keywords.
+This will allow them to easily find logs with a certain exercise, as well as any of its details.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+![FindLogClassDiagram](images/NameContainsKeywordsPredicate.png) 
 
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`NameContainsKeywordsPredicate` supports this command.
+`NameContainsKeywordsPredicate#test()` checks if a Log contains all the keywords in the user input.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+A user can thus find a `Log` by executing the `find` command.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+#### Example usage scenario
+Given below is an example usage scenario and how the `find` command behaves at each step after launching the application.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user executes the command `find Push ups`. `FixMyAbsParser` creates a new `FindCommandParser` and calls the `FindCommandParser#parse()` method.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 2. The user input is passed into the `FindCommandParser#parse()` method, which then creates a new `NameContainsKeywordsPredicate` object, with the user input as the parameter. This object checks if there is a match between the keyword and the tested `Log`. 
 
-Step 2. The user executes `delete 5` command to delete the 5th log in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindCommand` is returned with the created `NameContainsKeywordsPredicate` object as a parameter. Upon calling `FindCommand#execute()`, the model is updated through `Model#updateFilteredLogList()`, and the new filtered log list is displayed to the user.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+The following sequence diagram shows how the `find` feature works:
 
-Step 3. The user executes `add n/David …​` to add a new log. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+![FindLogClassDiagram](images/FindLogSequenceDiagram.png) 
 
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 4. The user now decides that adding the log was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+### Autocomplete  feature
 
-</div>
+Autocomplete feature uses following classes:
 
-The following sequence diagram shows how the undo operation works:
+- `ResultDisplay` - Displays user input.
+- `CommandBox` - CommandBox which consists of `commandTextField`
+- `LogicManager` - Implements logic between models and user interface
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+Below is how it works:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Step 1. User enters command `add`.
 
-</div>
+Step 2. `commandTextField` in `CommandBox` detects changes in the user input and parse the input into
+ `showAutoCompleteResult()` method in `ResultDisplay` 
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+Step 3: `ResultDisplay` executes method `setText` which executes `getAutoCompleteResult` method.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+Step 4: `getAutoCompleteResult` computes the result to display to the user and returns the String `result`.
 
-</div>
+Step 5: `setText` method in `ResultDisplay` receives the `result` as a parameter and display the `result` for the user.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+![AutocompleteSequenceDiagram](images/AutocompleteSequenceDiagram.png) 
 
-![UndoRedoState4](images/UndoRedoState4.png)
+### Better user interface
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the log being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Better user interface
-
-We plan to change and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel` which is similar to `LogListCard` and `LogListPanel` to the
+We changed and improve the user interface to support exercise by adding `ExerciseListCard` and `ExerciseListPanel
+` which is similar to `LogListCard` and `LogListPanel` to the
 `MainWindow`.
 
-The `UI` component will work the same
+The `UI` component works the same
 
 - Executes user commands using the `Logic` component.
 - Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-The design will look like:
+The design looks like:
 
 <img src="images/Ui-v1.3.png" width="500px">
 

@@ -129,7 +129,6 @@ public class MainWindow extends UiPart<Stage> {
         }
 
         gridBoxPlaceholder = new HBox();
-        //gridBoxPlaceholder.setBackground(new Background(new BackgroundFill(new Color())));
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         assert (resultDisplayPlaceholder.getChildren().size() > 0);
@@ -138,6 +137,10 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+
+        // For autocompletion
+        resultDisplay.setSuggestionList(logic.getCommandSuggestionList());
+        commandBox.setAutoCompleteListener(resultDisplay);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 

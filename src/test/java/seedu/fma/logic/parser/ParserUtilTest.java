@@ -18,10 +18,10 @@ import seedu.fma.model.tag.Tag;
 import seedu.fma.model.util.Name;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_NAME = "6G&6a&S^g7v";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAME = "Sit ups";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 

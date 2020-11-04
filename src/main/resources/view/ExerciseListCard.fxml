@@ -21,10 +21,6 @@
         </Label>
         <Label fx:id="name" text="\$name" styleClass="cell_big_label" />
       </HBox>
-<!--      <HBox spacing="5" alignment="CENTER_LEFT">-->
-<!--        <Label styleClass="cell_small_label" text="Reps:"/>-->
-<!--        <Label fx:id="reps" styleClass="cell_small_label" text="\$reps" />-->
-<!--      </HBox>-->
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label styleClass="cell_small_label" text="Calories Per Rep:"/>
         <Label fx:id="calories" styleClass="cell_small_label" text="\$calories" />

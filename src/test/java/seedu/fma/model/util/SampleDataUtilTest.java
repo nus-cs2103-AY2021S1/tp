@@ -27,12 +27,11 @@ class SampleDataUtilTest {
     @Test
     void testGetSampleLogs() {
         Log[] sampleLogs = {
-            new Log(logBook.getExercise(new Name("Sit ups")), new Rep("30"), new Comment("My abs hurt :(")),
-            new Log(logBook.getExercise(new Name("Pull ups")), new Rep("10"), new Comment("-"))
+            new Log(logBook.getExercise(new Name("Sit ups")), new Rep(30), new Comment("My abs hurt :(")),
+            new Log(logBook.getExercise(new Name("Pull ups")), new Rep(10), new Comment("-"))
         };
 
         for (int i = 0; i < SampleDataUtil.getSampleLogs(logBook).length; i++) {
-            // TODO: Need to check date time for logs
             assertEquals(sampleLogs[i].getExercise(), SampleDataUtil.getSampleLogs(logBook)[i].getExercise());
         }
     }

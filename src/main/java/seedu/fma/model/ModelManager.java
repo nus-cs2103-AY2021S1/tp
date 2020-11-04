@@ -38,7 +38,6 @@ public class ModelManager implements Model {
 
         this.logBook = new LogBook(logBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        // TODO: Sorting order is currently hardcoded
         SortedList<Log> sortedLogs = new SortedList<>(this.logBook.getLogList(),
                 Comparator.comparing(Log::getDateTime).reversed());
         filteredLogs = new FilteredList<>(sortedLogs);
@@ -133,7 +132,7 @@ public class ModelManager implements Model {
      * Deletes the given exercise.
      * The exercise must exist in the log book.
      *
-     * @param target
+     * @param target exercise to be deleted
      */
     @Override
     public void deleteExercise(Exercise target) {
@@ -144,7 +143,7 @@ public class ModelManager implements Model {
      * Adds the given exercise.
      * {@code exercise} must not already exist in the log book.
      *
-     * @param exercise
+     * @param exercise to be added
      */
     @Override
     public void addExercise(Exercise exercise) {
@@ -157,8 +156,8 @@ public class ModelManager implements Model {
      * The exercise identity of {@code editedExercise} must not be the same as
      * another existing exercise in the log book.
      *
-     * @param target
-     * @param editedExercise
+     * @param target exercise to be replaced
+     * @param editedExercise exercise to be set
      */
     @Override
     public void setExercise(Exercise target, Exercise editedExercise) {

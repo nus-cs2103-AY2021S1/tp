@@ -37,8 +37,16 @@ public class ExerciseBuilder {
     /**
      * Sets the {@code Name} of the {@code Exercise} that we are building.
      */
-    public ExerciseBuilder withName(String name) {
+    public ExerciseBuilder withStringName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Exercise} that we are building.
+     */
+    public ExerciseBuilder withName(Name name) {
+        this.name = name;
         return this;
     }
 

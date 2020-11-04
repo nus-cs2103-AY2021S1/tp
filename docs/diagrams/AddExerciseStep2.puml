@@ -1,0 +1,15 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+class AddExCommandParser {
++ parse(String, LogBook)
+}
+
+AddExCommandParser-->AddExCommand
+
+class AddExCommand {
++ execute(Model)
+}
+
+@enduml

@@ -62,9 +62,7 @@ public class Exercise {
             return false;
         }
 
-        Exercise otherExercise = (Exercise) other;
-        return otherExercise != null
-                && otherExercise.getName().equals(getName());
+        return ((Exercise) other).getName().equals(getName());
     }
 
     @Override

@@ -126,17 +126,10 @@ public class Log {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder
-                .append("Exercise: ")
-                .append(getExercise())
-                .append(" DateTime: ")
-                .append(getDateTime())
-                .append(" Rep: ")
-                .append(getReps())
-                .append(" Comments: ")
-                .append(getComment());
-
-        return builder.toString();
+        return getExercise().getName() + "\n"
+            + "Time: " + getPrettyDateTime() + "\n"
+            + "Rep: " + getReps() + "\n"
+            + "Calories: " + getCalories() + "\n"
+            + "Comments: " + getComment();
     }
 }

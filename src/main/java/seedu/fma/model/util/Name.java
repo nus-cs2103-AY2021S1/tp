@@ -46,9 +46,16 @@ public class Name {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && value.equals(((Name) other).value)); // state check
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Name)) {
+            return false;
+        }
+
+        return ((Name) other).value.replaceAll("\\s+", "")
+                .equals(this.value.replaceAll("\\s+", ""));
     }
 
     @Override

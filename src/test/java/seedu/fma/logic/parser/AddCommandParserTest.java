@@ -68,19 +68,6 @@ public class AddCommandParserTest {
                 new AddCommand(expectedLog), logBook);
     }
 
-    // TODO Uncomment this test once we make comments optional.
-    /*
-    @Test
-    public void parse_optionalFieldsMissing_success() {
-        Log expectedLog = new LogBuilder(VALID_LOG_A).withDateTime(LocalDateTime.now(fixedClock)).build();
-        Log.setUserClock(fixedClock);
-
-        // no comments
-        assertParseSuccess(parser, EXERCISE_DESC_A + REP_DESC_A,
-                new AddCommand(expectedLog));
-    }
-    */
-
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -106,7 +93,7 @@ public class AddCommandParserTest {
 
         // invalid rep
         assertParseFailure(parser, EXERCISE_DESC_A + INVALID_REP_DESC + COMMENT_DESC_A,
-                Rep.MESSAGE_CONSTRAINTS, logBook);
+                Rep.NUMBER_CONSTRAINTS, logBook);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_EXERCISE_DESC + INVALID_REP_DESC + COMMENT_DESC_A,

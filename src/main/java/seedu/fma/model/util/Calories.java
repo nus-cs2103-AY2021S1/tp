@@ -1,15 +1,13 @@
 package seedu.fma.model.util;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.fma.commons.util.IntegerUtil.requirePositiveInteger;
-
 /**
  * Represents calories
  */
 public class Calories {
-
+    public static final String NUMBER_CONSTRAINTS = "Don't try to break our app! "
+            + "Calories should be an integer within range 1-1000 inclusive.";
     public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be a positive number";
+            "Don't try to cheat us! Calories should be within range 1-1000 inclusive.";
 
     public final int value;
 
@@ -17,27 +15,17 @@ public class Calories {
      * Constructs a {@code Calories}.
      */
     public Calories(int value) {
-        requireNonNull(value);
-        requirePositiveInteger(value);
         this.value = value;
     }
 
     /**
      * Validates that calories is a positive integer
+     *
      * @param calories String representation of calories
      * @return True if is valid
      */
-    public static boolean isValidCalories(String calories) {
-        if (calories.length() == 0) {
-            return false;
-        }
-
-        for (char c : calories.toCharArray()) {
-            if (!Character.isDigit(c)) {
-                return false;
-            }
-        }
-        return true;
+    public static boolean isValidCalories(int calories) {
+        return 1 <= calories && calories <= 1000;
     }
 
     @Override
