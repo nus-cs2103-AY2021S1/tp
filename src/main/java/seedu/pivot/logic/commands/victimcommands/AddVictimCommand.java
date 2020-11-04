@@ -75,7 +75,7 @@ public class AddVictimCommand extends AddCommand implements Undoable {
         Case stateCase = lastShownList.get(index.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
 
-        if (updatedVictims.contains(victim)) {
+        if (updatedVictims.stream().anyMatch(victim::isSamePerson)) {
             logger.warning("Failed to add victim: Tried to add a victim that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
         }

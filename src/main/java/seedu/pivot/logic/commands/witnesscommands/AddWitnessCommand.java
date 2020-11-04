@@ -74,7 +74,7 @@ public class AddWitnessCommand extends AddCommand implements Undoable {
         Case stateCase = lastShownList.get(index.getZeroBased());
         List<Witness> updatedWitnesses = stateCase.getWitnesses();
 
-        if (updatedWitnesses.contains(witness)) {
+        if (updatedWitnesses.stream().anyMatch(witness::isSamePerson)) {
             logger.warning("Failed to add witness: Tried to add a witness that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_WITNESS);
         }
