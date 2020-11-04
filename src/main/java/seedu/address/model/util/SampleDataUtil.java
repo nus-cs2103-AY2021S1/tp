@@ -7,6 +7,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
+import seedu.address.model.notes.Notebook;
+import seedu.address.model.notes.ReadOnlyNotebook;
+import seedu.address.model.notes.note.Description;
+import seedu.address.model.notes.note.Note;
+import seedu.address.model.notes.note.Title;
 import seedu.address.model.schedule.Event;
 import seedu.address.model.schedule.EventRecurrence;
 import seedu.address.model.schedule.ReadOnlyEvent;
@@ -20,15 +25,14 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
+import seedu.address.model.student.academic.question.Question;
+import seedu.address.model.student.academic.question.SolvedQuestion;
+import seedu.address.model.student.academic.question.UnsolvedQuestion;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
-import seedu.address.model.student.question.Question;
-import seedu.address.model.student.question.SolvedQuestion;
-import seedu.address.model.student.question.UnsolvedQuestion;
-
 
 /**
  * Contains utility methods for populating {@code Reeve} with sample data.
@@ -60,7 +64,7 @@ public class SampleDataUtil {
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new School("Raffles Girls School"), new Year("Sec 3"),
                         new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                        new ClassTime("2 1900-1930"), new Fee("680"),
+                        new ClassTime("2 1900-2030"), new Fee("680"),
                         new PaymentDate("1/12/19"), getDetailList(),
                         getQuestions(), getExams(sampleExam3),
                         getAttendance(new Attendance("01/01/2020", "present",
@@ -92,6 +96,14 @@ public class SampleDataUtil {
         };
     }
 
+    public static Note[] getSampleNotes() {
+        return new Note[] {
+            new Note(new Title("Finish tp"), new Description("It's week 11!!")),
+            new Note(new Title("Mug for finals"), new Description("or die during reading week :(")),
+            new Note(new Title("relax"), new Description("Eat, watch youtube, go USS"))
+        };
+    }
+
     public static ReadOnlyReeve getSampleAddressBook() {
         Reeve sampleAb = new Reeve();
         for (Student sampleStudent : getSamplePersons()) {
@@ -106,6 +118,14 @@ public class SampleDataUtil {
                 "uidAliceLesson", EventRecurrence.WEEKLY);
         List<Event> lst = Arrays.asList(event);
         return new Scheduler(lst);
+    }
+
+    public static ReadOnlyNotebook getSampleNotebook() {
+        Notebook sampleNotebook = new Notebook();
+        for (Note sampleNote : getSampleNotes()) {
+            sampleNotebook.addNote(sampleNote);
+        }
+        return sampleNotebook;
     }
 
     /**

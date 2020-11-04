@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
+    private Notebook notebook;
     private HelpWindow helpWindow;
     private SchedulePanel schedulePanel;
 
@@ -49,10 +50,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane notebookPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane resultDisplayPlaceholder;
 
     @FXML
     private GridPane displayGridPane;
@@ -122,15 +123,14 @@ public class MainWindow extends UiPart<Stage> {
         schedulePanel = new SchedulePanel(logic.getVEventList());
         personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
 
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
         studentListPanel = new StudentListPanel(logic.getSortedStudentList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        notebook = new Notebook(logic.getNotebook().getNotesList());
+        notebookPlaceholder.getChildren().add(notebook.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -181,8 +181,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleCalendar() {
-        schedulePanel = new SchedulePanel(logic.getVEventList());
-        personListPanelPlaceholder.getChildren().add(schedulePanel.getRoot());
+        schedulePanel.updateSchedule(logic.getVEventList());
         if (logic.getScheduleViewMode().equals(ScheduleViewMode.WEEKLY)) {
             schedulePanel.setWeekView();
         }
@@ -218,6 +217,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
+    }
+
+    public Notebook getNotebookPanel() {
+        return notebook;
     }
 
     /**

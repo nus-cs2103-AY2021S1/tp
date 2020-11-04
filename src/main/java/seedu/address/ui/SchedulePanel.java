@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Logger;
 
@@ -96,8 +97,8 @@ public class SchedulePanel extends UiPart<Region> {
     /**
      * Updates the iCalendarAgenda to propagate changes to internal VEvents.
      */
-    public void updateSchedule() {
-        this.agenda.updateAppointments();
+    public void updateSchedule(List<VEvent> newData) {
+        this.vCalendar.setVEvents(newData);
     }
 
 }

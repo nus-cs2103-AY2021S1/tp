@@ -25,8 +25,7 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Scheduling: `schedule`](#339-scheduling-schedule-by-alex)
-        + [3.3.9.1. Viewing Classes schedule on a Timetable: `schedule view`  (By: Alex)](#3391-viewing-classes-on-a-timetable-schedule-view)
+    + [3.3.9 Scheduling: `schedule`](#339-viewing-lesson-schedule-schedule-by-alex)
     + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
   * [3.4 Managing Student Academic DetailsFeatures](#34-managing-student-academic-details-features)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
@@ -73,12 +72,8 @@ Table 1: Summary of symbols
 Symbol | Meaning
 -------|--------
 `command` | A grey highlight indicates a command that can be executed by **Reeve**.
-<<<<<<< HEAD
 :information_source: | Indicates important information. 
 :bulb: | Indicates tips.
-=======
-:information_source: | Indicates important information.
->>>>>>> master
 
 ## 2. Quick start
 
@@ -147,7 +142,8 @@ Format: `help`
 
 #### 3.2.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
-You can toggle between viewing your students' academic and administrative details to allow you to focus on the type of details that you are currently interested in.
+Since each student contains some administrative and academic details, this command allows you to 
+toggle between viewing these details to allow you to focus on the type of details that you are currently interested in.
 By default, the administrative details of students are shown upon starting the application.
 
 Format: `toggle`
@@ -164,7 +160,7 @@ Format: `exit`
 Reeve's student administrative features allows you to keep track of key administrative details of each of your students such as phone number, class venue, tuition fee, etc.
 Thereafter, you will be able to view, edit find or delete these students.
 
-#### 3.3.1 Adding a student: `add` (By: Alex and Hogan)
+#### 3.3.1 Adding a student: `add` (By: Hogan)
 
 You can add a student together with his/her individual administrative details into **Reeve's** student list. 
 
@@ -181,18 +177,10 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME [f/FEE] [
 * The format of `LAST_PAYMENT_DATE` is as follows:
     * `d/m/yyyy or dd/mm/yyyy` (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
 
-<<<<<<< HEAD
 * The format of `YEAR` is as follows:
     * `TYPE_OF_SCHOOL LEVEL` (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
     * `TYPE_OF_SCHOOL` can be primary(pri, p), secondary(sec, s) or jc. 
     * `LEVEL` has to correspond with the `TYPE_OF_SCHOOL` (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
-=======
-:information_source: The format of YEAR is as follows:
-* TYPE_OF_SCHOOL LEVEL (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
-* TYPE_OF_SCHOOL can be primary(pri, p), secondary(sec, s) or jc.
-* LEVEL has to correspond with the TYPE_OF_SCHOOL (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
->>>>>>> master
-<br>
 
 :information_source: | You **cannot** add duplicates of a student. Each student is uniquely identified by his/her `NAME`, `PHONE`, `SCHOOL` and `YEAR`.
 -------|-------- 
@@ -279,13 +267,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-<<<<<<< HEAD
-#### 3.3.6 Sorting the list of students: `sort` (By: Choon Siong)  
-  
-=======
 #### 3.2.6 Sorting the list of students: `sort` (By: Choon Siong)
 
->>>>>>> master
 Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
 
 Format: `sort COMPARISON_MEANS`
@@ -310,11 +293,7 @@ Format: `overdue`
 * Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
 * If all students have paid their fees within the past month, no students will be displayed.
 
-<<<<<<< HEAD
 #### 3.3.8 Managing details for a student: `detail` (By: Vaishak) 
-=======
-#### 3.2.8 Managing details for a student: `detail` (By: Vaishak)
->>>>>>> master
 
 You can add, edit or delete a detail for a specified student.
 
@@ -390,13 +369,9 @@ Format: `clear`
 Reeve's student academics features allows you to keep track of key academic details of each of your students such as questions, exams and etc.
 Thereafter, you will be able to view, edit or delete these details of each student.
 
-<<<<<<< HEAD
 #### 3.4.1 Recording questions from a student: `question` (By: Ying Gao) 
-=======
-#### 3.3.1 Recording questions from a student: `question` (By: Ying Gao)
->>>>>>> master
 
-You can add, resolve or remove questions from a specified student in **Reeve**.
+You can add, resolve or remove questions to/from a specified student in **Reeve**.
 
 General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
@@ -412,12 +387,13 @@ General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
 Adds a new question to the student.
 
-Format: `question add STUDENT_INDEX t/QUESTION`
+Format: `question add STUDENT_INDEX t/QUESTION_TEXT`
 
 * This records a new unresolved question to the student at the specified `STUDENT_INDEX`.
+* The `QUESTION_TEXT` field refers to the question the student raised, and can be a full sentence.
 
 <div markdown="block" class="alert alert-info">
-:information_source: `QUESTION` must not be empty.
+:information_source: `QUESTION_TEXT` must not be empty.
 </div>
 
 Example:
@@ -427,7 +403,7 @@ Example:
 
 Marks a student's question as resolved.
 
-Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`
+Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION_TEXT`
 
 * This resolves the question from the student at the specified `STUDENT_INDEX`
 * This resolves the question at the `QUESTION_INDEX`. The `QUESTION_INDEX` refers to the position of the question in the student's list of questions.
@@ -436,7 +412,7 @@ Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`
 
 :information_source: `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
 
-:information_source: `SOLUTION` must not be empty.
+:information_source: `SOLUTION_TEXT` must not be empty.
 
 :information_source: You can only resolve unanswered questions (i.e. questions with a cross symbol next to it).
 
@@ -459,7 +435,7 @@ Example:
 
 #### 3.4.2 Recording exams of a student: `exam` (By: Hogan)
 
-You can add or delete an exam to/from a specified student.
+You can add or delete an exam record to/from a specified student.
 
 General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
@@ -483,8 +459,6 @@ Format: `exam add STUDENT_INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
     * x/y where x and y are non-negative integers. 
     * x has to be less than or equal to y (e.g. 30/50).
 
->>>>>>> master
-
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and
 score 40/60 to the first student in **Reeve**.
@@ -494,7 +468,7 @@ score 67/100 to the fifth student in **Reeve**.
 
 ##### 3.4.2.2 Deleting an exam record for a student: `exam delete`
 
-You can delete a specific exam from a specified student in **Reeve**.
+You can delete a specific exam record from a specified student in **Reeve**.
 
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
@@ -552,7 +526,7 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * present or absent.
 </div>
 
-Examples:
+Example:
 * `attendance add 2 d/08/12/2020 a/present f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
@@ -563,10 +537,10 @@ You can delete a specific attendance record from a specified student in **Reeve*
 Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 * Deletes the attendance record with the given `ATTENDANCE_DATE` in the specified student.
-* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
+* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
 * The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
-Examples:
+Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
 ## 4. Command summary
@@ -595,6 +569,7 @@ Action | Format, Examples
 **Delete Exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX`<br> e.g. `exam delete 2 i/5`
 **Add Attendance** | `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`<br> e.g. `attendance add 2 d/08/12/2020 s/present f/attentive`
 **Delete Attendance** | `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`<br> e.g. `attendance delete 1 d/19/04/2020`
+**Schedule View** | `schedule m/VIEW_MODE d/DATE_TO_VIEW` <br> e.g. `schedule m/weekly d/2/11/2020`
 **Toggle View** | `toggle`
 **Help** | `help`
 **Exit** | `exit`
@@ -605,6 +580,8 @@ The following table provides the definitions of the various terms used in this U
 
 Term | Definition
 --------|------------------
+Detail | Any miscellaneous information regarding a student.
+Exam Record | A record of an exam detailing its name, date and the student's score.
 
 ## 6. FAQ
 This section provides the answers to Frequently Asked Questions (FAQ) by users.
@@ -613,4 +590,4 @@ This section provides the answers to Frequently Asked Questions (FAQ) by users.
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Reeve** home folder.
 
 2. Do I have to manually save my data?<br>
-Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Reeve automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.
