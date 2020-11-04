@@ -4,13 +4,32 @@ package chopchop.logic.commands;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
+import chopchop.model.EntryBook;
 import chopchop.model.Model;
+import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
+import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Mass;
+import chopchop.model.usage.IngredientUsage;
 import chopchop.testutil.StubbedModel;
+import chopchop.testutil.StubbedUsageModel;
+import chopchop.testutil.TypicalIngredients;
+import chopchop.testutil.TypicalRecipes;
 import org.junit.jupiter.api.Test;
 
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_APRICOT;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_EXPIRY_CUSTARD;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APRICOT;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_CUSTARD;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_APRICOT;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_QTY_CUSTARD;
+import static chopchop.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_APRICOT_SALAD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 
 public class MakeRecipeCommandTest {
 
@@ -42,6 +61,15 @@ public class MakeRecipeCommandTest {
 
         var c1 = runCommand(m, "make recipe apricot salad");
         assertTrue(c1.didSucceed());
+        //assertEquals(m.getRecipeUsageList(),);
+        System.out.println(m.getIngredientUsageList().getUsageList().get(0));
+        assertEquals(m.getIngredientUsageList(), new UsageList<>(Arrays.asList(
+            new IngredientUsage(VALID_INGREDIENT_NAME_APRICOT,
+                LocalDateTime.parse(VALID_INGREDIENT_EXPIRY_APRICOT + " 00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+                Count.of(3)),
+            new IngredientUsage(VALID_INGREDIENT_NAME_CUSTARD,
+                LocalDateTime.parse(VALID_INGREDIENT_EXPIRY_CUSTARD + " 00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
+                Count.of(3)))));
 
         var c2 = runCommand(m, "make recipe owo salad");
         assertTrue(c2.isError());
@@ -79,5 +107,19 @@ public class MakeRecipeCommandTest {
             var r2 = ((MakeRecipeCommand) c).undo(m);
             assertTrue(r2.didSucceed());
         }
+    }
+
+    @Test
+    void test_usages() {
+        var m = new ModelManager();
+        m.addRecipe(TypicalRecipes.APRICOT_SALAD);
+        m.addIngredient(TypicalIngredients.APRICOT);
+        m.addIngredient(TypicalIngredients.CUSTARD);
+        runCommand(m, "make recipe apricot salad");
+        assertEquals(m.getRecipeUsageList().getUsageList().get(0).getName(), VALID_RECIPE_NAME_APRICOT_SALAD);
+        assertEquals(m.getIngredientUsageList().getUsageList().get(0).getName(), VALID_INGREDIENT_NAME_APRICOT);
+        assertEquals(m.getIngredientUsageList().getUsageList().get(0).getQty(),         Count.of(3));
+        assertEquals(m.getIngredientUsageList().getUsageList().get(1).getName(), VALID_INGREDIENT_NAME_CUSTARD);
+        assertEquals(m.getIngredientUsageList().getUsageList().get(1).getQty(),         Count.of(3));
     }
 }

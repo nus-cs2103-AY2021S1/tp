@@ -32,7 +32,7 @@ public class IngredientUsage extends Usage {
 
     @Override
     public boolean equals(Object obj) {
-        return super.equals(obj)
+        return super.getName().equals(obj)
             && (obj instanceof IngredientUsage)
             && (this.qty.equals(((IngredientUsage) obj).qty));
     }
