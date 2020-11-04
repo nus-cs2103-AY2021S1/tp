@@ -1,5 +1,7 @@
 package jimmy.mcgymmy.model.food;
 
+import java.util.function.Predicate;
+
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
@@ -28,12 +30,10 @@ public abstract class Macronutrient {
         // use this instead of assert because the amount < 0 error is more because of user input than developer's fault
         AppUtil.checkArgument(isValidAmount(amount), getMessageConstraint());
 
-        assert (caloricMultiplier == 4 || caloricMultiplier == 9) : "Invalid Macronutrient Multiplier";
         // initialise variables
         this.amount = amount;
         this.caloricMultiplier = caloricMultiplier;
         this.totalCalories = caloricMultiplier * amount;
-
     }
 
     /**
