@@ -99,7 +99,8 @@ Accompanying the details of each command are figures that show an example of the
 
 NUStorage supports the storage and manipulation of inventory records. The following sections detail the commands related to inventory storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#531-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#533-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#533-switch-tabs-switch) section for more information.
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
@@ -217,7 +218,7 @@ __Result:__ Updated corresponding finance record.
 
 NUStorage supports the storage and manipulation of finance records. The following sections detail the commands related to finance storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#531-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#533-switch-tabs-switch) section for more information.
 
 **NOTE:** that some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
@@ -381,7 +382,37 @@ __Result:__ All finance records are listed.
 
 The following are universal commands for navigating the application.
 
-#### 5.3.1. Switch tabs: `switch`
+#### 5.3.1. Quit the programme: `exit`
+
+Saves data locally in a data file and exits the programme.
+
+__Format:__ `exit`
+
+__Example:__ `exit`
+
+![Exit command example](images/commands/exit_command.jpg)
+
+__Result:__ Programme terminates.
+
+---
+
+#### 5.3.2. Get help on the commands: `help`
+
+Saves data locally in a data file and exits the programme.
+
+__Format:__ `help`
+
+__Example:__ `help`
+
+![Help command example](images/commands/help_command.jpg)
+
+__Result:__ A help window is opened as shown below, redirecting user to this User Guide. Here, you can click on the `Copy URL` button to copy the link to the User Guide. Simply paste this URL into a web browser of your choice and press enter to visit the User Guide.
+
+![Help command result](images/commands/help_command_result.jpg)
+
+---
+
+#### 5.3.3. Switch tabs: `switch`
 
 Switches between the inventory and finance tabs.
 
@@ -411,21 +442,7 @@ __Result:__ Tabs switched.
 
 ---
 
-#### 5.3.2. Quit the programme: `exit`
-
-Saves data locally in a data file and exits the programme.
-
-__Format:__ `exit`
-
-__Example:__ `exit`
-
-![Exit command example](images/commands/exit_command.jpg)
-
-__Result:__ Programme terminates.
-
----
-
-#### 5.3.3. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
+#### 5.3.4. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
 [_This feature is planned for v2.0_]
 
@@ -475,6 +492,7 @@ The following table gives a summary of the [__universal commands__](#53-universa
 |Description|Command and Example|
 |---|---|
 | __Exit programme__ | `exit` |
+| __Help__ | `help` |
 | __Switch tabs__ | `switch` |
 
 ---
