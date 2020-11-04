@@ -4,7 +4,7 @@ import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static com.eva.testutil.Assert.assertThrows;
-//import static com.eva.testutil.StaffUtil.getAddStaffCommand;
+//import static com.eva.testutil.staff.StaffUtil.getAddStaffCommand;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
