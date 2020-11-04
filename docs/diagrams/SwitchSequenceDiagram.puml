@@ -9,7 +9,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
 end box
 [-> LogicManager : execute(switch)
 activate LogicManager
@@ -33,11 +32,7 @@ activate SwitchCommand
 SwitchCommand -> Model : hasCategory(category)
 activate Model
 
-Model -> ExpenseBook : containsCategory(toCheck)
-activate ExpenseBook
-
-ExpenseBook -> Model : containsCategory
-deactivate ExpenseBook
+ref over Model : hasCategory
 
 Model -> SwitchCommand : hasCategory
 deactivate Model
@@ -48,29 +43,7 @@ activate Model
 Model -> Model : updateExpenseBookCategory(category)
 activate Model
 
-Model -> Model : updateFilteredBudgetList(predicate)
-activate Model
-
-Model -> ExpenseBook : updateFilteredBudgets(predicate)
-activate ExpenseBook
-
-ExpenseBook -> Model
-deactivate ExpenseBook
-
-Model -> Model
-deactivate Model
-
-Model -> Model : updateFilteredExpenseList(predicate)
-activate Model
-
-Model -> ExpenseBook : updateFilteredExpenses(predicate)
-activate ExpenseBook
-
-ExpenseBook -> Model
-deactivate ExpenseBook
-
-Model -> Model
-deactivate Model
+ref over Model : update lists
 
 Model -> Model
 deactivate Model
