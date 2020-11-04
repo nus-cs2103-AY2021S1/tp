@@ -254,8 +254,8 @@ Examples:
 
 ### 5.6 Clearing food items: `clear`
 
-If your food list is getting clogged up, use the `clear` command to quickly delete
-all entries in the current displayed list.
+The `clear` command allows you to quickly delete
+all entries in the current displayed list, preventing your food list from getting clogged up.
 
 Format: `clear`
 
@@ -275,7 +275,7 @@ Examples:
 
 ### 5.7 Listing all food items : `list`
 
-You can view a list of all food items in McGymmy.
+The `list` command lets you display the entire list of food items stored in your McGymmy.
 
 Format: `list`
 
