@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashMap;
 
@@ -18,7 +17,7 @@ import seedu.address.model.SalesBook;
 import seedu.address.model.UserPrefs;
 
 public class SalesUpdateCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
+    private Model model = new ModelManager(new AddressBook(), new SalesBook(),
             new IngredientBook(), new UserPrefs());
 
     @Test
@@ -35,9 +34,8 @@ public class SalesUpdateCommandTest {
         SalesUpdateCommand command = new SalesUpdateCommand(sales);
 
         String expectedMessage = String.format(SalesUpdateCommand.MESSAGE_SUCCESS, sales.toString());
-        Model expectedModel =
-                new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
-                        new IngredientBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
+                new IngredientBook(), new UserPrefs());
         expectedModel.overwrite(sales);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

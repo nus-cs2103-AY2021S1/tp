@@ -202,6 +202,11 @@ public class ModelManager implements Model {
         updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
     }
 
+    @Override
+    public void sortSalesBook() {
+        salesBook.sortRecord();
+    }
+
     //=========== IngredientBook ==================================================================================
 
     @Override
