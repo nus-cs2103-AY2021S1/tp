@@ -54,7 +54,7 @@ Refer to the [Commands](#commands) section to for details of each command.
 ## Definitions
 
 Terms used in Warenager are defined here.
-If you term is not stated here, google the term to understand more.
+If your term is not stated here, google the term to understand more.
 
 Term | Definition
 --------|------------------
@@ -94,7 +94,7 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * Adding / Deleting **optional notes** to stocks
 * **Viewing** all details of a stock
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
-* **Print** to generate file for printing of stock list.
+* **Print** to generate CSV file for printing of stock list.
 * **Clear** to clear **all** existing data in Warenager.
 * **Tab** to toggle between tabs in Warenager.
 * **Listing** all stocks in Warenager.
@@ -138,7 +138,7 @@ This section provides support for the commands required to perform desired actio
   in the command.<br>
   For example, in `find { [n/<name>] [s/<source>] [l/<location>] [q/<quantity>] }`, at least one of `n/<name>`,
   `s/<source>`, `l/<location>` and `q/<quantity>` must be provided in the command. <br>
-  `find sn/fairprice n/banana` is a valid command, but `find` and `find sn/fairprice sn/ntuc` are invalid commands.
+  `find sn/Fairprice1 n/banana` is a valid command, but `find` and `find sn/Fairprice1 sn/ntuc` are invalid commands.
   
 * Prefixes given can be in any order. <br>
   For example, `update sn/Fairprice1 n/Apple` and `update n/Apple sn/Fairprice1` are both valid and behave exactly the same.
@@ -225,6 +225,7 @@ Prefix | Parameter | Parameter Description
 
 ![GUI_component](images/GUIComponents.png)
 
+**Tabs:** Displays the different tabs of the application.<br>
 **Stock Table:** Displays all stocks in your inventory.<br>
 **Result Display:** Displays the result of your command.<br>
 **Command Box:** Place to input your commands.<br>
@@ -261,6 +262,9 @@ add n/<name> s/<source> q/<quantity> l/<location> [lq/<low quantity>]
 add n/Banana cake s/Fairprice q/100 l/Food section
 add n/Sprite s/Ntuc q/1000 l/Drinks section lq/5000
 ```
+
+<h4>Below is a guided example for deleting stocks:</h4>
+
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
@@ -1302,23 +1306,42 @@ print fn/<file name>
 
 <h4>Examples</h4>
 
-
 ```
 print fn/stocks
 ```
-After executing the command, proceed to the folder which contains Warenager. Click on the `data`
-folder circled in red.
+
+<h4>Below is a guided example for deleting stocks:</h4>
+
+**Step 1.** Start by typing print fn/stocks in the command box. 
+
+![stockCsvExample](images/stockCsvExample.png)
+
+**Step 2.**  After successfully executing the command, proceed to the folder which
+ contains Warenager. Click on the `data` folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)
  
-Open `stocks.csv` folder circled in red with excel.
+**Step 3.** Open `stocks.csv` folder circled in red with excel.
 
 ![stockCsvExample2](images/stockCsvExample2.png)
 
-The stocks in your inventory will be listed according the to format shown below. The file also includes
+**Step 4.** The stocks in your inventory will be listed according the to format shown below. The file also includes
 the latest update time for the `stocks.csv`.
 
 ![stockCsvExample3](images/stockCsvExample3.png)
+
+**Step 5.** The columns and rows in the csv file will not be formatted to show the full text in a cell.
+You will need to resize the columns and row of the excel sheet to see the full text of a cell as shown below.
+
+![stockCsvExample4](images/stockCsvExample4.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning: Warning before executing print command**<br>
+`print` writes over a csv file of the same file name and is an irreversible process.
+ Do backup the data it if might be needed again.
+
+</div>
 
 ### Clearing all data in Warenager: `clear`
 Clears all the existing data in Warenager.
