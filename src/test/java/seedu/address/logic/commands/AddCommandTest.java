@@ -154,6 +154,11 @@ public class AddCommandTest {
         public void archive(Path path) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void resetTemplate() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
