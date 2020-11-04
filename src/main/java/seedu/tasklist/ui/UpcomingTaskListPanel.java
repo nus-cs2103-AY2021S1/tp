@@ -1,6 +1,6 @@
 package seedu.tasklist.ui;
 
-import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -29,7 +29,7 @@ public class UpcomingTaskListPanel extends UiPart<Region> {
     private static final long DAY_PER_WEEK = 7;
     private static final long MIN_DAY_PER_MONTH = 28;
     private static final String FXML = "UpcomingTaskListPanel.fxml";
-    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
     private static final String DUE_SOON_STYLE_CLASS = "due-soon";
     private static final String OVERDUE_STYLE_CLASS = "overdue";

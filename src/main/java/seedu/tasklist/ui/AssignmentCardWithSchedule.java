@@ -1,6 +1,6 @@
 package seedu.tasklist.ui;
 
-import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -26,7 +26,7 @@ public class AssignmentCardWithSchedule extends UiPart<Region> {
     private static final String OVERDUE_STYLE_CLASS = "overdue";
     private static final String DUE_SOON_STYLE_CLASS = "due-soon";
     private static final String DUE_IN_A_WEEK_STYLE_CLASS = "due-in-a-week";
-    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     /**

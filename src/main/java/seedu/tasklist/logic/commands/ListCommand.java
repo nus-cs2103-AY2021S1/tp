@@ -40,7 +40,7 @@ public class ListCommand extends Command {
 
     private Predicate<Assignment> showLimitedAssignments() {
         return assignment -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(Time.TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             String dateAndTimeToParse = assignment.getDeadline().value;
             LocalDateTime currentDateAndTime = LocalDateTime.now();

@@ -9,32 +9,32 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 /**
- * Represents the deadline of an assignment in the assignment list.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
+ * Represents the time found in a task in ProductiveNUS.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTime(String)}
  */
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "Deadlines should only be in the format 'dd-MM-uuuu HHmm', and contain a valid date and time";
-    public static final String DEADLINE_DATE_TIME_FORMAT = "dd-MM-uuuu HHmm";
+    public static final String TIME_DATE_TIME_FORMAT = "dd-MM-uuuu HHmm";
     public final String value;
-    private final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Constructs a {@code Time}.
      *
-     * @param deadline A valid deadline.
+     * @param time A valid time.
      */
-    public Time(String deadline) {
-        requireNonNull(deadline);
-        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
-        value = deadline;
+    public Time(String time) {
+        requireNonNull(time);
+        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
+        value = time;
     }
 
     /**
      * Constructs a {@code Time}.
      *
-     * @param deadline A valid deadline with format LocalDateTime.
+     * @param deadline A valid time with format LocalDateTime.
      */
     public Time(LocalDateTime deadline) {
         requireNonNull(deadline);
@@ -42,11 +42,11 @@ public class Time {
     }
 
     /**
-     * Returns true if a given string is a valid deadline.
+     * Returns true if a given string is a valid time.
      */
-    public static boolean isValidDeadline(String test) {
+    public static boolean isValidTime(String test) {
         try {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
                     .withResolverStyle(ResolverStyle.STRICT);
             LocalDateTime taskDate = LocalDateTime.parse(test, inputFormat);
             taskDate.format(inputFormat);
@@ -57,7 +57,7 @@ public class Time {
     }
 
     /**
-     * Returns true if the deadline is before another deadline
+     * Returns true if the time is before another time
      */
     public boolean isBefore(Time other) {
         LocalDateTime thisTime = LocalDateTime.parse(value, inputFormat);

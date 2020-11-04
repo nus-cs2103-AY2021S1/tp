@@ -57,12 +57,12 @@ public class JsonAdaptedLesson {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Time.isValidDeadline(startTime)) {
+        if (!Time.isValidTime(startTime)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelStartTime = new Time(startTime);
 
-        if (!Time.isValidDeadline(endTime)) {
+        if (!Time.isValidTime(endTime)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelEndTime = new Time(endTime);

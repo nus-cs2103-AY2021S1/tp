@@ -97,7 +97,7 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Time.isValidDeadline(deadline)) {
+        if (!Time.isValidTime(deadline)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         final Time modelDeadline = new Time(deadline);
@@ -119,10 +119,10 @@ class JsonAdaptedAssignment {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!suggestedStartTime.equals("") && !Time.isValidDeadline(suggestedStartTime)) {
+        if (!suggestedStartTime.equals("") && !Time.isValidTime(suggestedStartTime)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        if (!suggestedEndTime.equals("") && !Time.isValidDeadline(suggestedEndTime)) {
+        if (!suggestedEndTime.equals("") && !Time.isValidTime(suggestedEndTime)) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
         if (isScheduled) {

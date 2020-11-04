@@ -1,6 +1,6 @@
 package seedu.tasklist.ui;
 
-import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -39,7 +39,7 @@ public class UpcomingLessonCard extends UiPart<Region> {
 
     public final Lesson lesson;
 
-    private final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     @FXML

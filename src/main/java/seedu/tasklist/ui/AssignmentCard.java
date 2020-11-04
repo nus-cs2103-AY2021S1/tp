@@ -1,6 +1,6 @@
 package seedu.tasklist.ui;
 
-import static seedu.tasklist.model.task.Time.DEADLINE_DATE_TIME_FORMAT;
+import static seedu.tasklist.model.task.Time.TIME_DATE_TIME_FORMAT;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -34,7 +34,7 @@ public class AssignmentCard extends UiPart<Region> {
     private static final String MEDIUM_PRIORITY_STYLE_CLASS = "medium-priority";
     private static final String LOW_PRIORITY_STYLE_CLASS = "low-priority";
     private static final String NONE_PRIORITY_STYLE_CLASS = "none-priority";
-    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+    private static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(TIME_DATE_TIME_FORMAT)
             .withResolverStyle(ResolverStyle.STRICT);
 
     /**
