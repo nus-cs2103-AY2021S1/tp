@@ -254,7 +254,8 @@ Examples:
 
 ### 5.6 Clearing food items: `clear`
 
-You can clear food items currently shown in the list.
+If your food list is getting clogged up, use the `clear` command to quickly delete
+all entries in the current displayed list.
 
 Format: `clear`
 
