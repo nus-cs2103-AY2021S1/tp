@@ -10,7 +10,7 @@ Interface InventoryinatorStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonInventoryinatorStorage
+Class JsonInventoryStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
