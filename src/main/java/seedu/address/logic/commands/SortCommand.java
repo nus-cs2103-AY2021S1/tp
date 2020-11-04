@@ -62,4 +62,13 @@ public class SortCommand extends Command {
         model.sortMenuItemBy(sortedBy, ascending, toggle);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && sortedBy.equals(((SortCommand) other).sortedBy))
+                && ascending == ((SortCommand) other).ascending
+                && toggle == ((SortCommand) other).toggle;
+    }
 }

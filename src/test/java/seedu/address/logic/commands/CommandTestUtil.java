@@ -108,4 +108,22 @@ public class CommandTestUtil {
     //        assertEquals(1, model.getFilteredVendorList().size());
     //    }
 
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered vendor list and selected vendor in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailure(Command command, Model actualModel, Storage actualStorage,
+                                            String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        List<Vendor> expectedFilteredList = new ArrayList<>(actualModel.getObservableVendorList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, actualStorage));
+        assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedFilteredList, actualModel.getObservableVendorList());
+    }
+
 }
