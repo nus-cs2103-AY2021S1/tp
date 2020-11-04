@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.sales.exception.DuplicateSalesRecordException;
 import seedu.address.model.sales.exception.SalesRecordNotFoundException;
-import seedu.address.testutil.TestUtil;
 import seedu.address.testutil.TypicalSalesRecordEntries;
 
 public class UniqueSalesRecordListTest {

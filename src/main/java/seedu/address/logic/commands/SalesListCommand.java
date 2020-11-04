@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY;
 
+import seedu.address.model.Model;
+
 /**
- * Ranks the drink items in the SalesBook based on the number od
+ * Lists the drink items in the SalesBook in a descending order based on the number of drinks sold.
  */
 public class SalesListCommand extends Command {
 
@@ -15,8 +15,8 @@ public class SalesListCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed the sales of drink items recorded in a "
             + "descending order.";
 
-    public static final String MESSAGE_NO_RECORD_SUCCESS = "You have not recorded any sales yet. Use "
-            + SalesUpdateCommand.COMMAND_WORD + " to update the sales record.";
+    public static final String MESSAGE_NO_RECORD_SUCCESS = "You have not recorded any sales yet. Use \'"
+            + SalesUpdateCommand.COMMAND_WORD + "\' to update the sales record.";
 
     /**
      * Executes the command and returns the result message.

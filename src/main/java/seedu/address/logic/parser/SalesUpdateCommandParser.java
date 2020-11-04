@@ -25,8 +25,6 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
      * Parses the given {@code String} of arguments in the context of the SalesUpdateCommand
      * and returns a SalesUpdateCommand object for execution.
      *
-     * The default value is 0 for drink items which the user did not provide the input.
-     *
      * @param args user input to parse
      * @return a SalesUpdateCommand object for execution
      * @throws ParseException if {@code userInput} does not conform the expected format
