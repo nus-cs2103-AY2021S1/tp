@@ -93,6 +93,14 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     /**
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe collection.
+     */
+    public boolean hasMinimalRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return recipes.containsMinimalRecipe(recipe);
+    }
+
+    /**
      * Adds a recipe to the Wishful Shrinking.
      * The recipe must not already exist in the recipe collection.
      */
@@ -153,6 +161,14 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     //=========== Ingredient-Level Operations ===================================================================
+
+    /**
+     * Returns true if a ingredient with the same name as {@code ingredient} exists in the fridge.
+     */
+    public boolean hasMinimalIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredients.containsMinimalIngredient(ingredient);
+    }
 
     /**
      * Returns true if a ingredient with the same identity as {@code ingredient} exists in the fridge.

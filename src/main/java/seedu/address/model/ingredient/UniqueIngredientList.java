@@ -21,7 +21,7 @@ import seedu.address.model.ingredient.exceptions.IngredientNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Ingredient#isSameIngredient(Ingredient)
+ * @see Ingredient#isSameIngredientName(Ingredient)
  */
 public class UniqueIngredientList implements Iterable<Ingredient> {
 
@@ -30,11 +30,19 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent ingredient as the given argument.
+     * Returns true if the list contains an equivalent ingredient name as the given argument.
+     */
+    public boolean containsMinimalIngredient(Ingredient toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameIngredientName);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent ingredient name as the given argument.
      */
     public boolean contains(Ingredient toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameIngredientName);
+        return internalList.stream().anyMatch(toCheck::isSameIngredient);
     }
 
     /**
@@ -43,7 +51,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
      */
     public void add(Ingredient toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containsMinimalIngredient(toAdd)) {
             throw new DuplicateIngredientException();
         }
         internalList.add(toAdd);
