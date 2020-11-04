@@ -2,33 +2,23 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MUSCLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_ARM;
 import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HOUSE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SIT_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLE_ARM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLE_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HOUSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
@@ -114,8 +104,8 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC
-                            + VALID_DATE_PUSH_UP + VALID_CALORIES_PUSH_UP,
-                            Name.MESSAGE_CONSTRAINTS);
+                        + VALID_DATE_PUSH_UP + VALID_CALORIES_PUSH_UP,
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test

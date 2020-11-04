@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
@@ -33,9 +34,10 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TEMP, PREFIX_DATE, PREFIX_CALORIES);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEMP, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TEMP, PREFIX_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TEMP, PREFIX_DESCRIPTION,
+                PREFIX_DATE)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     seedu.address.logic.commands.AddExerciseFromTemplate.MESSAGE_USAGE));
@@ -50,7 +52,7 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
         }
 
         Name name = ParserUtil.parseExerciseName(template.getName());
-        Description description = ParserUtil.parseDescription(template.getDescription());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES)
