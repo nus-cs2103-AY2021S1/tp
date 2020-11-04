@@ -1,12 +1,13 @@
 package seedu.resireg.ui;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
@@ -22,11 +23,11 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
-    // keyboard shortcuts (can consider KeyboardCommandMapper similar to CommandMapper)
-    private static final KeyCombination undo =
-            new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
-    private static final KeyCombination redo =
-            new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
+    // keyboard shortcuts map
+    private static final Map<KeyCombination, String> shortcutToCommandMap =
+            Arrays.stream(KeyboardShortcutsEnum.values())
+                    .collect(Collectors.toMap(KeyboardShortcutsEnum::getKeyCombination,
+                            KeyboardShortcutsEnum::getCommandText));
 
     private final CommandExecutor commandExecutor;
     private final List<String> history;
@@ -50,16 +51,30 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleOnKeyPressed(KeyEvent event) {
 
-        if (undo.match(event)) {
-            event.consume();
-            handleCommandEntered("undo");
-        }
+        // handle shortcuts
+        handleShortcuts(event);
 
-        if (redo.match(event)) {
-            event.consume();
-            handleCommandEntered("redo");
-        }
+        // handle keypresses
+        handleKeyPresses(event);
+    }
 
+    /**
+     * Handles keyboard shortcuts mapped to a particular command
+     */
+    private void handleShortcuts(KeyEvent event) {
+        shortcutToCommandMap.forEach((kc, ct) -> {
+            if (kc.match(event)) {
+                event.consume();
+                handleCommandEntered(ct);
+            }
+        });
+    }
+
+    /**
+     * Handles individual key presses tied to individual
+     * events
+     */
+    private void handleKeyPresses(KeyEvent event) {
         switch (event.getCode()) {
         case UP:
             event.consume();
@@ -98,7 +113,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Handles the Enter button pressed event
+     * Handles the Enter button pressed event.
      */
     public void handleCommandEntered(String commandText) {
         try {

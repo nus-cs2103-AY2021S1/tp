@@ -8,6 +8,11 @@ import javafx.collections.ObservableList;
 /**
  * A class to store the history of previously executed commands.
  */
+
+/*
+ * Code for CommandHistory is adapted from addressbook-level4, which can be found at
+ * https://github.com/se-edu/addressbook-level4.
+ */
 public class CommandHistory {
     private final ObservableList<String> history = FXCollections.observableArrayList();
     private final ObservableList<String> unmodifiableHistory =

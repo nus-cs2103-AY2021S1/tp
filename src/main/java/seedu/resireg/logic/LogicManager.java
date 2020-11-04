@@ -43,7 +43,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final CommandHistory history;
-    private boolean isModified;
+    private boolean isAltered;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -53,13 +53,13 @@ public class LogicManager implements Logic {
         this.storage = storage;
         this.history = new CommandHistory();
 
-        model.getResiReg().addListener(observable -> isModified = true);
+        model.getResiReg().addListener(obs -> isAltered = true);
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
-        isModified = false;
+        isAltered = false;
 
         CommandResult commandResult;
         Map<String, Parser<Command>> map = new HashMap<>(commandWordToParserMap);
@@ -71,7 +71,7 @@ public class LogicManager implements Logic {
             history.add(commandText);
         }
 
-        if (isModified) {
+        if (isAltered) {
             logger.info("Modification present. Saving to file.");
             try {
                 storage.saveResiReg(model.getResiReg());
