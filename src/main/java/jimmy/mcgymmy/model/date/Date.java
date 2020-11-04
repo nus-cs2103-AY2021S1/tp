@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Optional;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
@@ -38,22 +39,9 @@ public class Date {
      */
     public Date(String date) throws IllegalValueException {
         requireNonNull(date);
-        boolean canParse = false;
-        for (String format : SUPPORTED_FORMATS) {
-            try {
-                // check if the date is in this format
-                this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
-                canParse = true;
-                break;
-            } catch (DateTimeParseException e) {
-                /* exception is thrown means that cannot parse date in that format
-                 if cannot parse date in any format, throw IllegalArgumentException
-                 using checkArgument below.
-                 implicit `continue;` here
-                 */
-            }
-        }
-        AppUtil.checkArgument(canParse, MESSAGE_CONSTRAINTS);
+        Optional<String> format = isValid(date);
+        AppUtil.checkArgument(format.isPresent(), MESSAGE_CONSTRAINTS);
+        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(format.get()));
     }
 
     private Date() {
@@ -72,23 +60,22 @@ public class Date {
      * @param date Date as a String.
      * @return If date can be parsed
      */
-    public static boolean isValid(String date) {
-        boolean canParse = false;
+    public static Optional<String> isValid(String date) {
+        String correctFormat = "";
         for (String format : SUPPORTED_FORMATS) {
             try {
                 // check if the date is in this format
                 LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
-                canParse = true;
-                break;
+                return Optional.of(format);
             } catch (DateTimeParseException e) {
                 /* exception is thrown means that cannot parse date in that format
-                 if cannot parse date in any format, throw IllegalArgumentException
-                 using checkArgument below.
-                 implicit `continue;` here
-                 */
+                if cannot parse date in any format, throw IllegalArgumentException
+                using checkArgument below.
+                implicit `continue;` here
+                */
             }
         }
-        return canParse;
+        return Optional.empty();
     }
 
     @Override
