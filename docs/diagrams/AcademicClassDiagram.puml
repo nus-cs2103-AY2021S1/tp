@@ -1,0 +1,21 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Academic {
+Class Academic
+Class Question
+Class Exam
+Class Attendance
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --> Academic
+
+Academic *--> "*" Question
+Academic *--> "*" Exam
+Academic *--> "*" Attendance
+
+@enduml
