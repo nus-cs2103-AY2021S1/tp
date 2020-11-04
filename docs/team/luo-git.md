@@ -5,7 +5,7 @@ title: Lu Luoyi's Project Portfolio Page
 
 ## Project: HelloFile
 
-HelloFile is a file management application created as an extension to AddressBook - Level 3 (AB3), 
+HelloFile is a file management application created as an extension to AddressBook - Level 3 (AB3),
 specifically made for tech savvy CS2103T CS students.
 By using HelloFile, students can tag frequently used files/folders with a short nickname, and open their files
 with intuitive commands.
@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   
 * **New Feature**: Added the ability to open files using a `tag`.
 (Pull request [\#91](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/91))
-  * What it does: Allows user to open previously saved tags using a tag. 
+  * What it does: Allows user to open previously saved tags using a tag.
   * Justification: This feature is central to our product, since we want users to be able to save the location of their
   files and open them with a short command.
   * Highlights: The feature is interesting to implement as JavaFX freezes in a Linux environment when the library method
@@ -62,7 +62,7 @@ Given below are my contributions to the project.
   [\#267](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/267))
   * Update Tag and TagCommand to use absolute file path.
   (Pull request [\#153](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/153))
-  * Add more predicates to enhance `FindCommand` to find characters instead of words. 
+  * Add more predicates to enhance `FindCommand` to find characters instead of words.
   (Pull request [\#118](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/118))
   * Write additional tests to increase test coverage.
   (Pull requests [\#189](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/189),
@@ -102,7 +102,7 @@ As the information age encroaches out lives, our digital footprint has become la
 When we accumulate many files from work, school and daily lives,
 we tend to spend a lot of time locating the files that we need.
 In an Internation Data Corporation (IDC) [white paper](https://denalilabs.com/static/ProductivityWhitepaper.pdf)
-published in 2012, a survey of 1200 information workers and IT professionals around the world 
+published in 2012, a survey of 1200 information workers and IT professionals around the world
 shows that they spend an average of 4.5 hours a week looking for documents. That is a lot of productivity time wasted!
 This is where our solution, HelloFile, comes in.
 
@@ -116,9 +116,9 @@ make your life easier one file at a time, and free up your precious time to spen
 
 ### Adding of Tags: TagCommand
 
-[TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java) 
+[TagCommand](https://github.com/AY2021S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/commands/TagCommand.java)
 adds a new `Tag` to `AddressBook` if the tag's `TagName` is not a duplicate and the tag's `FileAddress`
-is pointing to a valid file. 
+is pointing to a valid file.
 
 Firstly, `TagCommand` checks if the file address given is absolute or relative file path.
 If the address is relative, it converts the relative path to absolute address by concatenating the relative
@@ -143,7 +143,7 @@ which supports various desktop capabilities such as `open()`. `Desktop` ensures 
 most java-supported platforms, hence fulfilling our product's requirement to be platform independent.
 
 However, there are some significant drawback of using `java.awt.Desktop`. The platform that HelloFile operates on must
-support `Desktop`. This means that our application will never work on a headless environment. 
+support `Desktop`. This means that our application will never work on a headless environment.
 As a developer, you can check whether the environment supports `Desktop`
 using the library method `java.awt.Desktop.isDesktopSupported()`.
 
