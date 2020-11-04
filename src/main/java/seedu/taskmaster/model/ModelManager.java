@@ -131,8 +131,8 @@ public class ModelManager implements Model {
         } else {
             /*
              * Note that the implementation of this method requires that the filteredStudentRecords field is updated
-             * first, as changing the Session triggers the UI listener to call the getFilteredStudentRecordList, hence it
-             * must be loaded first.
+             * first, as changing the Session triggers the UI listener to call the getFilteredStudentRecordList, hence
+             * it must be loaded first.
              */
             assert taskmaster.hasSession(sessionName);
             filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());

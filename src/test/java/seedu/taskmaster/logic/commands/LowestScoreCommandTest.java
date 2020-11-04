@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_RECORDS_LISTED_OVERVIEW;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.taskmaster.testutil.TypicalStudents.*;
-
-import java.util.Arrays;
+import static seedu.taskmaster.testutil.TypicalStudents.getScoredTaskmaster;
+import static seedu.taskmaster.testutil.TypicalStudents.getTypicalStudentRecords;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,16 +15,13 @@ import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.record.ScoreEqualsPredicate;
-import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
-import seedu.taskmaster.model.student.NameContainsKeywordsPredicate;
-import seedu.taskmaster.testutil.TypicalStudents;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class LowestScoreCommandTest {
-    Taskmaster scoredTaskmaster = getScoredTaskmaster();
+    private Taskmaster scoredTaskmaster = getScoredTaskmaster();
     private Model model = new ModelManager(scoredTaskmaster, new UserPrefs());
     private Model expectedModel = new ModelManager(scoredTaskmaster, new UserPrefs());
 
@@ -69,12 +65,5 @@ public class LowestScoreCommandTest {
         expectedModel.updateFilteredStudentRecordList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(model.getFilteredStudentRecordList(), expectedModel.getFilteredStudentRecordList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
