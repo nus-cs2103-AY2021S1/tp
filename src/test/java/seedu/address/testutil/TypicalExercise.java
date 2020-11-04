@@ -1,10 +1,15 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLE_ARM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLE_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GYM;
 
 import java.util.ArrayList;
@@ -23,13 +28,13 @@ public class TypicalExercise {
             .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
             .withCalories(VALID_CALORIES_PUSH_UP).withMuscleTags(VALID_MUSCLE_CHEST).withTags(VALID_TAG_GYM).build();
 
-    public static final Exercise PUSH_UP = new ExerciseBuilder().withName("Push Up")
-            .withDescription("Test 1").withDate("09-10-2020").withCalories("12345")
-            .withMuscleTags("chest").build();
+    public static final Exercise PUSH_UP = new ExerciseBuilder().withName(VALID_NAME_PUSH_UP)
+            .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP)
+            .withTags(VALID_TAG_GYM).withMuscleTags(VALID_MUSCLE_CHEST).build();
 
-    public static final Exercise SIT_UP = new ExerciseBuilder().withName("Sit up")
-            .withDescription("Test 2").withDate("10-10-2020").withCalories("23456")
-            .withMuscleTags("ab").build();
+    public static final Exercise SIT_UP = new ExerciseBuilder().withName(VALID_NAME_SIT_UP)
+            .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP).withCalories(VALID_CALORIES_SIT_UP)
+            .withMuscleTags(VALID_MUSCLE_ARM).build();
 
     public static final Exercise RUN = new ExerciseBuilder().withName("Run")
             .withDescription("Test 3").withDate("17-10-2020").withCalories("12348")

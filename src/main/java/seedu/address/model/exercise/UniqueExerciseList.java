@@ -64,6 +64,26 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     /**
      * Replaces the exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the list.
+     * The exercise identity of {@code editedExercise} must not be the same as another existing exercise in the list.
+     */
+    public void setExercise(Exercise target, Exercise editedExercise) {
+        requireAllNonNull(target, editedExercise);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ExerciseNotFoundException();
+        }
+
+        if (!target.isSameExercise(editedExercise) && contains(editedExercise)) {
+            throw new DuplicateExerciseException();
+        }
+
+        internalList.set(index, editedExercise);
+    }
+
+    /**
+     * Replaces the exercise {@code target} in the list with {@code editedExercise}.
+     * {@code target} must exist in the list.
      */
     public void updateExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);

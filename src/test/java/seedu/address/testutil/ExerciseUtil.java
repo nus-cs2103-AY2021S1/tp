@@ -59,7 +59,7 @@ public class ExerciseUtil {
         if (descriptor.getMuscleTags().isPresent()) {
             Set<MuscleTag> muscleTags = descriptor.getMuscleTags().get();
             if (muscleTags.isEmpty()) {
-                sb.append(PREFIX_MUSCLE);
+                sb.append(PREFIX_MUSCLE).append(" ");
             } else {
                 muscleTags.forEach(s -> sb.append(PREFIX_MUSCLE).append(s.muscleTagName).append(" "));
             }
