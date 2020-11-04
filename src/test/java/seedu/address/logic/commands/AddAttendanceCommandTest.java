@@ -74,6 +74,16 @@ public class AddAttendanceCommandTest {
     }
 
     @Test
+    public void execute_duplicateAttendanceDateUnfilteredList_throwsCommandException() {
+        String dateToDuplicate = "14/04/1998";
+        Attendance invalidAttendance = new Attendance(dateToDuplicate, "present",
+                new Feedback("sleepy"));
+        AddAttendanceCommand command = new AddAttendanceCommand(INDEX_SECOND_PERSON, invalidAttendance);
+
+        assertCommandFailure(command, model, AddAttendanceCommand.MESSAGE_INVALID_ATTENDANCE_DATE);
+    }
+
+    @Test
     public void execute_validIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
