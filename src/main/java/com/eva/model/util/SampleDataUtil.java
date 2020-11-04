@@ -20,7 +20,6 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
-import com.eva.model.person.staff.leave.LeaveTaken;
 import com.eva.model.tag.Tag;
 
 /**
@@ -53,7 +52,7 @@ public class SampleDataUtil {
     public static Staff[] getSampleStaffs() {
         return new Staff[] {
             new Staff(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"), new LeaveTaken(4),
+                    new Address("Blk 30 Geylang Street 29, #06-40"),
                     getTagSet("marketing"),
                     getLeaveSet(
                             new String[] {"10/10/2020", "12/10/2020"},
@@ -61,7 +60,7 @@ public class SampleDataUtil {
                             ),
                     getCommentSet("Character traits|2020-10-10|reassuring, tidy and punctual")),
             new Staff(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new LeaveTaken(3),
+                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                     getTagSet("business"),
                     getLeaveSet(
                             new String[] {"14/09/2020"},
@@ -71,7 +70,7 @@ public class SampleDataUtil {
                     getCommentSet("Work conflict|2020-11-10|Doesn't work well with David",
                             "Money owed|2020-12-10|Has yet to pay for office party")),
             new Staff(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new LeaveTaken(9),
+                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                     getTagSet("tech"),
                     getLeaveSet(
                             new String[] {"10/08/2020", "17/08/2020"},
@@ -80,7 +79,7 @@ public class SampleDataUtil {
                     getCommentSet("Punctuality|2020-09-10|Often comes to work late",
                             "Gossip|2010-08-10|Likes to gossip and spill tea")),
             new Staff(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new LeaveTaken(5),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                     getTagSet("tech"),
                     getLeaveSet(
                             new String[] {"10/10/2020", "12/10/2020"},
@@ -88,7 +87,7 @@ public class SampleDataUtil {
                     ),
                     getCommentSet("Work conflict|2010-10-10|Does not work well with Bernice")),
             new Staff(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"), new LeaveTaken(7),
+                    new Address("Blk 47 Tampines Street 20, #17-35"),
                     getTagSet("business"),
                     getLeaveSet(
                             new String[] {"04/03/2020", "07/03/2020"},
@@ -98,7 +97,7 @@ public class SampleDataUtil {
                     ),
                     getCommentSet()),
             new Staff(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"), new LeaveTaken(12),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),
                     getTagSet("tech"),
                     getLeaveSet(
                             new String[] {"09/04/2020", "19/04/2020"},

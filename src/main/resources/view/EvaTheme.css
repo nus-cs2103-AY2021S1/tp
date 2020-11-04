@@ -146,7 +146,7 @@
     -fx-padding: 5px;
 }
 
-#tagsDetail {
+.tagsDetail {
     -fx-padding: 5px;
 }
 
@@ -414,6 +414,10 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+.leaves_in_card {
+    -fx-padding: 5 0;
 }
 
 #sideBar {
