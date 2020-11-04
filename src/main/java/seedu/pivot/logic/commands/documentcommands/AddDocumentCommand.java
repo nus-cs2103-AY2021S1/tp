@@ -13,13 +13,15 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Document;
 
-public class AddDocumentCommand extends AddCommand {
+public class AddDocumentCommand extends AddCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DOC
             + ": Adds a document to the opened case.\n"
@@ -32,7 +34,10 @@ public class AddDocumentCommand extends AddCommand {
 
     public static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
     public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddDocumentCommand.class);
+
     private final Index index;
     private final Document doc;
 
@@ -80,7 +85,7 @@ public class AddDocumentCommand extends AddCommand {
                 stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc), false);
+        model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc), this);
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }
@@ -91,5 +96,10 @@ public class AddDocumentCommand extends AddCommand {
                 || (other instanceof AddDocumentCommand // instanceof handles nulls
                 && doc.equals(((AddDocumentCommand) other).doc)
                 && index.equals(((AddDocumentCommand) other).index));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

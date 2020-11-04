@@ -12,13 +12,15 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 
-public class DeleteDescriptionCommand extends DeleteCommand {
+public class DeleteDescriptionCommand extends DeleteCommand implements Undoable {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
             + ": Deletes the description of the opened case.\n"
             + "Parameters: "
@@ -28,6 +30,8 @@ public class DeleteDescriptionCommand extends DeleteCommand {
     public static final String MESSAGE_DELETE_DESCRIPTION_SUCCESS = "Description deleted: %1$s";
     public static final String MESSAGE_NO_DESCRIPTION_TO_DELETE = "Cannot delete description of "
             + "case, because this case does not have a description";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(DeleteDescriptionCommand.class);
 
     private final Index index;
@@ -69,7 +73,7 @@ public class DeleteDescriptionCommand extends DeleteCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_DELETE_DESCRIPTION_SUCCESS, stateCaseDescription), false);
+        model.commitPivot(String.format(MESSAGE_DELETE_DESCRIPTION_SUCCESS, stateCaseDescription), this);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DESCRIPTION_SUCCESS, stateCaseDescription));
     }
@@ -79,5 +83,10 @@ public class DeleteDescriptionCommand extends DeleteCommand {
         return other == this // short circuit if same object
                 || (other instanceof DeleteDescriptionCommand // instanceof handles nulls
                 && index.equals(((DeleteDescriptionCommand) other).index));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

@@ -17,6 +17,8 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.EditPersonCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -28,7 +30,7 @@ import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 
-public class EditVictimCommand extends EditPersonCommand {
+public class EditVictimCommand extends EditPersonCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_VICTIM
             + ": Edits a person in the opened case in PIVOT.\n"
@@ -45,6 +47,7 @@ public class EditVictimCommand extends EditPersonCommand {
     public static final String MESSAGE_EDIT_VICTIMS_SUCCESS = "Edited Victim: %1$s";
     public static final String MESSAGE_DUPLICATE_VICTIMS = "This victim already exists in the case.";
 
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditVictimCommand.class);
 
     public EditVictimCommand(Index caseIndex, Index personIndex, EditPersonDescriptor editPersonDescriptor) {
@@ -81,7 +84,7 @@ public class EditVictimCommand extends EditPersonCommand {
                 caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim), false);
+        model.commitPivot(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim), this);
 
         return new CommandResult(String.format(MESSAGE_EDIT_VICTIMS_SUCCESS, editedVictim));
     }
@@ -96,5 +99,10 @@ public class EditVictimCommand extends EditPersonCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(victimToEdit.getAddress());
 
         return new Victim(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress);
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }

@@ -13,6 +13,8 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -22,10 +24,11 @@ import seedu.pivot.model.investigationcase.caseperson.Witness;
 /**
  * Deletes a case identified using it's displayed index from PIVOT.
  */
-public class DeleteWitnessCommand extends DeleteCommand {
+public class DeleteWitnessCommand extends DeleteCommand implements Undoable {
 
     public static final String MESSAGE_DELETE_WITNESS_SUCCESS = "Deleted witness: %1$s";
 
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(DeleteWitnessCommand.class);
 
     private final Index caseIndex;
@@ -70,7 +73,7 @@ public class DeleteWitnessCommand extends DeleteCommand {
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete), false);
+        model.commitPivot(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete), this);
         model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));
@@ -82,5 +85,10 @@ public class DeleteWitnessCommand extends DeleteCommand {
                 || (other instanceof DeleteWitnessCommand // instanceof handles nulls
                 && caseIndex.equals(((DeleteWitnessCommand) other).caseIndex)
                 && witnessIndex.equals(((DeleteWitnessCommand) other).witnessIndex)); // state check
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }
