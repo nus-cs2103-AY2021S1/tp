@@ -86,7 +86,7 @@ public class JsonModuleListStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveModuleList_nullModuleList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveModuleList(null, "SomeFile.json"));
     }
 

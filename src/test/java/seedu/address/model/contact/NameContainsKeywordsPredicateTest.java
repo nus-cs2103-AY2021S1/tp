@@ -59,12 +59,8 @@ public class NameContainsKeywordsPredicateTest {
 
     @Test
     public void test_contactNameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ContactBuilder().withName("John").build()));
-
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Amy"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Arrays.asList("Amy"));
         assertFalse(predicate.test(new ContactBuilder().withName("John Doe").build()));
 
         // Keywords match email and telegram, but does not match name
