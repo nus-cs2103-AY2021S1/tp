@@ -9,13 +9,13 @@ import seedu.resireg.logic.parser.DeleteAliasCommandParser;
 import seedu.resireg.logic.parser.DeleteCommandParser;
 import seedu.resireg.logic.parser.DeleteRoomCommandParser;
 import seedu.resireg.logic.parser.EditCommandParser;
+import seedu.resireg.logic.parser.EditRoomCommandParser;
 import seedu.resireg.logic.parser.ListRoomsCommandParser;
 import seedu.resireg.logic.parser.ListStudentsCommandParser;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ReallocateCommandParser;
 import seedu.resireg.logic.parser.RestoreCommandParser;
 import seedu.resireg.logic.parser.SetBinExpiryCommandParser;
-import seedu.resireg.logic.parser.exceptions.EditRoomCommandParser;
 
 /**
  * Enums representing all the commands in ResiReg. Each enum is bound to its command word, help, parser and a

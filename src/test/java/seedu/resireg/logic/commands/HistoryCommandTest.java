@@ -14,6 +14,10 @@ public class HistoryCommandTest {
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
+    private final String labelOne = "1" + "\t";
+    private final String labelTwo = "2" + "\t";
+    private final String labelThree = "3" + "\t";
+
     @Test
     public void execute() {
         assertCommandSuccess(new HistoryCommand(), model, history, HistoryCommand.MESSAGE_NO_HISTORY, expectedModel);
@@ -21,7 +25,7 @@ public class HistoryCommandTest {
         String firstCommand = "rooms";
         history.add(firstCommand);
         assertCommandSuccess(new HistoryCommand(), model, history,
-                String.format(HistoryCommand.MESSAGE_SUCCESS, firstCommand), expectedModel);
+                String.format(HistoryCommand.MESSAGE_SUCCESS, labelOne + firstCommand), expectedModel);
 
         String secondCommand = "invalid";
         String thirdCommand = "clear";
@@ -29,7 +33,8 @@ public class HistoryCommandTest {
         history.add(thirdCommand);
 
         String expectedMessage = String.format(HistoryCommand.MESSAGE_SUCCESS,
-                String.join("\n", thirdCommand, secondCommand, firstCommand));
+                String.join("\n",
+                        labelOne + firstCommand, labelTwo + secondCommand, labelThree + thirdCommand));
         assertCommandSuccess(new HistoryCommand(), model, history, expectedMessage, expectedModel);
     }
 

@@ -426,7 +426,8 @@ that change the state of ResiReg, which comprises of: students, rooms, allocatio
 </div>
 
 #### List previously entered commands : `history`
-Lists all the commands previously entered in reverse chronological order.
+Lists all the commands previously entered in chronological order. The positive integer
+n in front of the command specifies that it is the n<sup>th</sup> command to be entered.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
 display the previous and next command respectively in the command box.

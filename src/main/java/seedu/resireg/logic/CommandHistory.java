@@ -2,11 +2,13 @@ package seedu.resireg.logic;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Objects;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * A class to store the history of previously executed commands.
+ * A class that stores the history of previously executed commands
  */
 
 /*
@@ -17,26 +19,40 @@ public class CommandHistory {
     private final ObservableList<String> history = FXCollections.observableArrayList();
     private final ObservableList<String> unmodifiableHistory =
             FXCollections.unmodifiableObservableList(history);
+    private Integer counter = 0;
 
     public CommandHistory() {}
 
+    /**
+     * Constructs a commandHistory object
+     */
     public CommandHistory(CommandHistory commandHistory) {
         history.addAll(commandHistory.history);
+        counter = commandHistory.counter;
     }
 
     /**
-     * Appends {@code input} to the list of input entered
+     * Appends {@code input} and its corresponding position
+     * to the list of inputs previously entered.
      */
     public void add(String input) {
         requireNonNull(input);
+        counter++;
         history.add(input);
     }
 
     /**
-     * Return unmodifiable view of {@code history}
+     * Return an immutable {@code history} object.
      */
     public ObservableList<String> getHistory() {
         return unmodifiableHistory;
+    }
+
+    /**
+     * Return the number of previously entered commands.
+     */
+    public Integer getCounter() {
+        return counter;
     }
 
     @Override
@@ -53,11 +69,12 @@ public class CommandHistory {
 
         // state check
         CommandHistory other = (CommandHistory) o;
-        return history.equals(other.history);
+        return history.equals(other.history)
+                && counter.equals(other.counter);
     }
 
     @Override
     public int hashCode() {
-        return history.hashCode();
+        return Objects.hash(history, counter);
     }
 }

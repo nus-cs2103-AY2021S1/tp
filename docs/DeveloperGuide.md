@@ -276,15 +276,15 @@ The undo/redo mechanism is facilitated by `StatefulResiReg`. It extends `ResiReg
 modify the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
 The history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
 
-- `VersionedResiReg#save()` — Saves the current residence regulation state in its history.
-- `VersionedResiReg#undo()` — Restores the previous residence regulation state from its history.
-- `VersionedResiReg#redo()` — Restores a previously undone residence regulation state from its history.
+- `StatefulResiReg#save()` — Saves the current residence regulation state in its history.
+- `StatefulResiReg#undo()` — Restores the previous residence regulation state from its history.
+- `StatefulResiReg#redo()` — Restores a previously undone residence regulation state from its history.
 
 These operations are exposed in the `Model` interface as `Model#saveStateResiReg()`, `Model#undoResiReg()` and `Model#redoResiReg()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedResiReg` will be initialized with the initial residence regulation state.
+Step 1. The user launches the application for the first time. The `StatefulResiReg` will be initialized with the initial residence regulation state.
 Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` will be set to this single residence regulation state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
@@ -710,7 +710,8 @@ Use case ends.
 **MSS**
 
 1. OHS admin requests to list history of previously entered commands.
-1. ResiReg shows a history of previously entered commands in reverse chronological order.
+1. ResiReg shows all the commands previously entered in chronological order, along with numerical
+labels in front of commands that indicate position.
 
 Use case ends.
 

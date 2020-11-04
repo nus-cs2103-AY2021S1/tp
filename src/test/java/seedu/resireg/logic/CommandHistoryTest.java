@@ -46,6 +46,15 @@ class CommandHistoryTest {
     }
 
     @Test
+    void getCounter() {
+        final CommandHistory historyWithAC = new CommandHistory();
+        historyWithAC.add("a");
+        historyWithAC.add("c");
+
+        assertEquals(2, historyWithAC.getCounter());
+    }
+
+    @Test
     void equals() {
         final CommandHistory historyWithC = new CommandHistory();
         historyWithC.add("c");

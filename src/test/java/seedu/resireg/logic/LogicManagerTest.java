@@ -13,6 +13,8 @@ import static seedu.resireg.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -162,9 +164,16 @@ public class LogicManagerTest {
     private void assertHistoryCorrect(String ...expectedCommands) {
         try {
             CommandResult result = logic.execute(HistoryCommand.COMMAND_WORD);
+
+            List<String> expected = Arrays.asList(expectedCommands);
+            for (int i = 0; i < expectedCommands.length; i++) {
+                String labelled = (i + 1) + "\t" + expected.get(i);
+                expected.set(i, labelled);
+            }
+
             String expectedMessage = String.format(
                     HistoryCommand.MESSAGE_SUCCESS, String.join("\n",
-                            expectedCommands));
+                            expected));
             assertEquals(expectedMessage, result.getFeedbackToUser());
         } catch (ParseException | CommandException e) {
             throw new AssertionError("Parsing and execution of HistoryCommand.COMMAND_WORD should succeed.", e);
