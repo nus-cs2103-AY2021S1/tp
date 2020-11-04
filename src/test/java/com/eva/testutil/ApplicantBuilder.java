@@ -1,4 +1,4 @@
-package com.eva.testutil.applicant;
+package com.eva.testutil;
 
 import java.util.Optional;
 
