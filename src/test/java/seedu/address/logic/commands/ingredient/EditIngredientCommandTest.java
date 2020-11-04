@@ -47,7 +47,7 @@ public class EditIngredientCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_ingredientFieldSpecifiedUnfilteredList_success() {
         Index indexLastIngredient = Index.fromOneBased(model.getFilteredIngredientList().size());
         Ingredient lastIngredient = model.getFilteredIngredientList().get(indexLastIngredient.getZeroBased());
 
@@ -73,14 +73,8 @@ public class EditIngredientCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
                 new EditIngredientCommand.EditIngredientDescriptor());
-        Ingredient editedIngredient = model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
 
-        String expectedMessage = String.format(EditIngredientCommand.MESSAGE_NOT_EDITED,
-                editedIngredient);
-
-        Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
-
-        assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test

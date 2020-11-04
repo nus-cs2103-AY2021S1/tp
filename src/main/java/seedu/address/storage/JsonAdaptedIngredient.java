@@ -51,6 +51,9 @@ class JsonAdaptedIngredient {
         if (!Name.isValidName(value)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+        if (!Ingredient.isValidQuantity(quantity)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
         //final Name modelName = new Name(value);
 
         return new Ingredient(value, quantity);

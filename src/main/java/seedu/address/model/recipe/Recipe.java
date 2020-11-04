@@ -83,21 +83,21 @@ public class Recipe {
         this.recipeImage = new RecipeImage("images/default.jpg");
     }
     /**
-     * Returns true if both recipes of the same name have the exact same ingredients.
+     * Returns true if both recipes of the same name have the same ingredient names.
      * This defines a weaker notion of equality between two recipes.
      * This method is used to check for adding duplicate recipes in the recipe list.
      */
-    public boolean isSameRecipe(Recipe otherRecipe) {
+    public boolean isSameRecipeNameAndIngredientName(Recipe otherRecipe) {
         if (otherRecipe == this) {
             return true;
         }
 
         return otherRecipe != null
                 && otherRecipe.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
-                && isSameIngredients(otherRecipe.getIngredient());
+                && isSameIngredientNames(otherRecipe.getIngredient());
     }
 
-    private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
+    private boolean isSameIngredientNames(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
         if (ingredients.size() != otherIngredients.size()) {
             return false;
@@ -114,9 +114,12 @@ public class Recipe {
         return ingredientsCopy.equals(otherIngredientsCopy);
     }
 
-
-
-    /*public boolean isSameRecipe(Recipe otherRecipe) {
+    /**
+     * Returns true if both recipes have the same fields.
+     * This defines a weaker notion of equality between two recipes.
+     * This method is used to check for editing duplicate recipes in the recipe list.
+     */
+    public boolean isSameRecipe(Recipe otherRecipe) {
         if (otherRecipe == this) {
             return true;
         }
@@ -132,15 +135,20 @@ public class Recipe {
 
     private boolean isSameIngredients(ArrayList<Ingredient> otherIngredients) {
         ArrayList<Ingredient> ingredients = getIngredient();
-        for (int i = 0; i < ingredients.size(); i++) {
-            if (!ingredients.get(i).isSameIngredient(otherIngredients.get(i))) {
-                return false;
-            }
+        if (ingredients.size() != otherIngredients.size()) {
+            return false;
         }
-        return true;
-    }*/
+        ArrayList<String> ingredientsCopy = new ArrayList<String>(new ArrayList<Ingredient>(ingredients)
+                .stream().map(ingredient -> ingredient.toString())
+                .collect(Collectors.toList()));
+        ArrayList<String> otherIngredientsCopy = new ArrayList<String>(new ArrayList<Ingredient>(otherIngredients)
+                .stream().map(ingredient -> ingredient.toString())
+                .collect(Collectors.toList()));
 
-
+        Collections.sort(ingredientsCopy);
+        Collections.sort(otherIngredientsCopy);
+        return ingredientsCopy.equals(otherIngredientsCopy);
+    }
 
     /**
      * Converts a recipe to its command string.

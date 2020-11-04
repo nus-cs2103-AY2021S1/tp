@@ -39,6 +39,19 @@ public class TypicalRecipes {
             .withTags("healthy")
             .build();
 
+    public static final Recipe SANDWICH_DIFF_QTY = new RecipeBuilder().withName("Sandwich")
+            .withIngredient("Kaiser Rolls Or Other Bread", "2 cups")
+            .withCalories(70)
+            .withInstruction(
+                    "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
+                            + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise."
+                            + "Sprinkle the mayonnaise-spread half with salt and pepper. "
+                            + "Lay cheese and ham on the mustard half; "
+                            + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.")
+            .withRecipeImage("images/sandwich.jpeg")
+            .withTags("healthy")
+            .build();
+
     public static final Recipe PASTA = new RecipeBuilder().withName("Pasta")
             .withIngredient("Pasta", "12 ounces")
             .withCalories(80)
