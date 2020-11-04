@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalPersons.DESC_B;
 import static seedu.address.testutil.TypicalPersons.DESC_C;
@@ -45,9 +46,12 @@ public class NewTeammateCommandTest {
         String expectedResult = String.format(NewTeammateCommand.MESSAGE_NEW_TEAMMATE_SUCCESS,
             DESC_A.getGitUserNameString());
 
-        CommandResult commandResult = newTeammateCommand.execute(model);
-
-        assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        try {
+            CommandResult commandResult = newTeammateCommand.execute(model);
+            assertEquals(expectedResult, commandResult.getFeedbackToUser());
+        } catch (Exception e) {
+            fail();
+        }
 
     }
 
