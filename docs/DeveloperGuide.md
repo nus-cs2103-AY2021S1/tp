@@ -246,6 +246,16 @@ or
 API call:
 
 ![AddSequenceDiagram](images/implementation/AddSequence.png)
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* All prefixes must be preceded by a space.<br>
+   e.g ` t/`, ` i/`
+
+* All commands are **case-sensitive**.<br>
+  e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
+</div>
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Some term in the sequence diagram above has changed to a common substitutable term:<br>
