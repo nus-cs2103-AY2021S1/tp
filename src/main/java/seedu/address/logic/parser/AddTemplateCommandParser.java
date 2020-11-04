@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.lang.Integer.parseInt;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.stream.Stream;
@@ -11,7 +10,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddTemplateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
-import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Template;
 

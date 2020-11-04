@@ -223,4 +223,6 @@ Examples:<br>
 | *Help* | `help`|
 | *Exit* | `exit`|
 | *Recall*   | `recall NAME`
+| *Create*   | `create n/NAME c/CALORIES` <br> e.g., `create n/pushup c/100`
+| *Addt*     | `addt temp/NAME at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260`
 
