@@ -206,7 +206,8 @@ public class ParserUtil {
      * @throws ParseException when outputPath is empty.
      */
     public static String parseOutputName(String outputPath) throws ParseException {
-        if (outputPath.trim().equals("")) {
+        outputPath = outputPath.trim();
+        if (outputPath.equals("")) {
             throw new ParseException("Filename cannot be empty");
         }
         if (!outputPath.contains(".json")) {
