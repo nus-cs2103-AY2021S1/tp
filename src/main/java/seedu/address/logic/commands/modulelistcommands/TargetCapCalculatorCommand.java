@@ -46,8 +46,8 @@ public class TargetCapCalculatorCommand extends Command {
         requireNonNull(model);
         double capNeeded;
         List<Module> lastShownList = new ArrayList<>();
-        lastShownList.addAll(model.getFilteredUnarchivedModuleList());
-        lastShownList.addAll(model.getFilteredArchivedModuleList());
+        lastShownList.addAll(model.getModuleList().getModuleList());
+        lastShownList.addAll(model.getArchivedModuleList().getModuleList());
         try {
             capNeeded = calculateCapNeeded(lastShownList);
         } catch (CapCalculationException capCalculationException) {
