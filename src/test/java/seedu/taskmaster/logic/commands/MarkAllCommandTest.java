@@ -20,26 +20,20 @@ public class MarkAllCommandTest {
     private Model model = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
 
     @Test
-    public void execute_markAllStudentsAsPresent_success() {
+    public void execute_success() {
         model.changeSession(new SessionName("Typical session"));
         List<StudentRecord> studentRecords = model.getFilteredStudentRecordList();
-        MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.PRESENT);
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
         expectedModel.changeSession(new SessionName("Typical session"));
+
+        MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.PRESENT);
         expectedModel.markAllStudentRecords(studentRecords, AttendanceType.PRESENT);
         String expectedMessage = String.format(MarkAllCommand.MESSAGE_MARK_ALL_SUCCESS, AttendanceType.PRESENT);
         assertCommandSuccess(markAllCommand, model, expectedMessage, expectedModel);
-    }
 
-    @Test
-    public void execute_markAllStudentsAsAbsent_success() {
-        model.changeSession(new SessionName("Typical session"));
-        List<StudentRecord> studentRecords = model.getFilteredStudentRecordList();
-        MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.ABSENT);
-        Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
-        expectedModel.changeSession(new SessionName("Typical session"));
+        markAllCommand = new MarkAllCommand(AttendanceType.ABSENT);
         expectedModel.markAllStudentRecords(studentRecords, AttendanceType.ABSENT);
-        String expectedMessage = String.format(MarkAllCommand.MESSAGE_MARK_ALL_SUCCESS, AttendanceType.ABSENT);
+        expectedMessage = String.format(MarkAllCommand.MESSAGE_MARK_ALL_SUCCESS, AttendanceType.ABSENT);
         assertCommandSuccess(markAllCommand, model, expectedMessage, expectedModel);
     }
 
