@@ -23,7 +23,7 @@ import com.eva.model.person.applicant.ApplicationStatus;
  */
 public class SetApplicationStatusCommand extends Command {
 
-    public static final String COMMAND_WORD = "setappstatus";
+    public static final String COMMAND_WORD = "setas";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets application status of the specified applicant "
             + "Parameters: "
@@ -72,10 +72,9 @@ public class SetApplicationStatusCommand extends Command {
         Applicant targetApplicant = lastShownList.get(targetIndex.getZeroBased());
         ApplicationStatus oldApplicationStatus = targetApplicant.getApplicationStatus();
         model.setApplicationStatus(targetApplicant, newApplicationStatus);
-        model.setApplicant(targetApplicant, targetApplicant);        if (panelState.equals(APPLICANT_LIST)) {
+        model.setApplicant(targetApplicant, targetApplicant);
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
-        } else if (panelState.equals(APPLICANT_PROFILE)) {
-            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        if (panelState.equals(APPLICANT_PROFILE)) {
             Applicant applicantToView = lastShownList.get(targetIndex.getZeroBased());
             model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, targetIndex));
         }
