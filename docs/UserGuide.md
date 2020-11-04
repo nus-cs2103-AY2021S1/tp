@@ -755,6 +755,7 @@ Term | Explanation
 # 8. Command summary <a id="8-command-summary"></a>
 
 ## Recipe-Related Command <a id="81-recipe-related-commands"></a>
+
 Features | Format, Examples
 --------|------------------
 Add recipe | addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst/INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]... <br> e.g. addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy
@@ -769,6 +770,7 @@ Recommend recipe | recommend
 Clear all recipes | clearR
 
 ## Fridge-Related Command <a id="82-ingredient-related-commands"></a>
+
 Features | Format, Examples
 --------|------------------
 Add ingredient to the Fridge | addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] <br> e.g. addF i/banana -3/4 cups, green peas -200g, salmon fish
@@ -780,6 +782,7 @@ Search for ingredient in the Fridge | searchF KEYWORD [MORE_KEYWORDS] <br> e.g. 
 Clear all ingredients from the Fridge | clearF
 
 ## Consumption-Related Command <a id="83-consumption-related-commands"></a>
+
 Features | Format, Examples
 --------|------------------
 Eat recipe| eatR INDEX <br> e.g. eatR 3
@@ -788,6 +791,7 @@ Delete recipe eaten| deleteC INDEX <br> e.g. deleteC 3
 Clear all consumed recipes | clearC
 
 ## Miscellaneous Command <a id="84-miscellaneous-commands"></a>
+
 Features | Format, Examples
 --------|------------------
 Help | help
