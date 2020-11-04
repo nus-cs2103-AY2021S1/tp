@@ -203,7 +203,7 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 
 * Adds an event to PlaNus,
     * with the specified title in `title:TITLE`,
-    * with the specified description in `description:DESCRIPTION`,
+    * with the specified description in `desc:DESCRIPTION`,
     * on the date specified in `date:DATE`, starting from the time specified in `from:START_TIME` to the time specified in `to:END_TIME`,
     * with a tag in `tag:MODULE_CODE` indicating the module of which this deadline belongs to.
   * the added event will be tracked for time analysis if it has a tag.

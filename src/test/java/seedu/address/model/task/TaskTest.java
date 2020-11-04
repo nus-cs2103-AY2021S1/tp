@@ -37,15 +37,15 @@ public class TaskTest {
         editedAlice = new DeadlineBuilder(DEADLINE1).withTitle(VALID_TITLE_BOB).build();
         assertFalse(DEADLINE1.isSameTask(editedAlice));
 
-        // same title, same dateTime, different attributes -> returns true
+        // same title, same dateTime, different attributes -> returns false
         editedAlice = new DeadlineBuilder(DEADLINE1).withDescription(VALID_DESCRIPTION_BOB)
                 .withTag(VALID_TAG_HUSBAND).build();
-        assertTrue(DEADLINE1.isSameTask(editedAlice));
+        assertFalse(DEADLINE1.isSameTask(editedAlice));
 
 
-        // same title, same dateTime, same type, different attributes -> returns true
+        // same title, same dateTime, different attributes -> returns false
         editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND).build();
-        assertTrue(DEADLINE1.isSameTask(editedAlice));
+        assertFalse(DEADLINE1.isSameTask(editedAlice));
     }
 
     @Test

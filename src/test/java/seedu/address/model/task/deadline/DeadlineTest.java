@@ -28,7 +28,7 @@ public class DeadlineTest {
         assertFalse(DEADLINE1.isSameTask(editedAlice));
 
         // same title, same dateTime, same type, different attributes -> returns true
-        editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND).build();
+        editedAlice = new DeadlineBuilder(DEADLINE1).build();
         assertTrue(DEADLINE1.isSameTask(editedAlice));
     }
 

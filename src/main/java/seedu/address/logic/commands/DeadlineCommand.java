@@ -20,8 +20,8 @@ public class DeadlineCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a deadline to PlaNus.\n"
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE "
-            + PREFIX_DATE_TIME + "DEADLINE_DATE_TIME "
+            + PREFIX_TITLE + "TITLE \n"
+            + PREFIX_DATE_TIME + "DEADLINE_DATE_TIME \n"
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] \n"
             + "[" + PREFIX_TAG + "TAG] \n"
             + "Example: " + COMMAND_WORD + " "

@@ -46,7 +46,7 @@ public class PlanusTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND)
+        Task editedAlice = new DeadlineBuilder(DEADLINE1)
                 .build();
         List<Task> newTasks = Arrays.asList(DEADLINE1, editedAlice);
         PlanusStub newData = new PlanusStub(newTasks);
@@ -73,8 +73,7 @@ public class PlanusTest {
     @Test
     public void hasTask_taskWithSameIdentityFieldsInPlanus_returnsTrue() {
         planus.addTask(DEADLINE1);
-        Task editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND)
-                .build();
+        Task editedAlice = new DeadlineBuilder(DEADLINE1).build();
         assertTrue(planus.hasTask(editedAlice));
     }
 
