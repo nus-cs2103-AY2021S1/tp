@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "addi Bob’s 6th regret -q 8"
+title After command "addi -n Bob’s 6th regret -q 8"
 
 package States <<rectangle>> {
     class State1 as "__inv0:Inventory__"

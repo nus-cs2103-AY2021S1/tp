@@ -349,14 +349,14 @@ the initial inventory state, and the `currentStatePointer` pointing to that sing
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deli Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
+Step 2. The user executes `deli -n Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
 the inventory. The `deli` command calls `Model#commitInventory()`, causing the modified state of the inventory
-after the `deli Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
+after the `deli -n Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
 `currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addi Bob’s 6th regret -q 8` (a `AddItemCommand`) to add a new item.
+Step 3. The user executes `addi -n Bob’s 6th regret -q 8` (a `AddItemCommand`) to add a new item.
 The `addi` command also calls `Model#commitInventory()`, causing another modified inventory state to be
 saved into the `inventoryStateList`.
 
@@ -391,13 +391,13 @@ rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as 
 `listi`, will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
-Thus, the `inventoryinatorStateList` remains unchanged.
+Thus, the `inventoryStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitInventory()`. Since the `currentStatePointer`
 is not pointing at the end of the `inventoryStateList`, all inventory states after the `currentStatePointer`
-will be purged. Reason: It no longer makes sense to redo the `addi Bob’s 6th regret -q 8` command. This is the
+will be purged. Reason: It no longer makes sense to redo the `addi -n Bob’s 6th regret -q 8` command. This is the
 behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
