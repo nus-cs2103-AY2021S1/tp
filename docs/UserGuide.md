@@ -72,12 +72,12 @@ Add an exercise to the application, with calories burnt, muscles worked and tags
 
 ![add command message](images/addCommandMessage.png)
 
-Format: `add n/EXERCISE d/DESCRIPTION at/DATE [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]..`
+Format: `add n/EXERCISE d/DESCRIPTION [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TAG]...`
 
 - The format for the DATE should be in the form of DD-MM-YYYY.
 
 Examples:
-- `add n/running d/10 mins at/31-12-2020 c/100 m/chest,arm t/home t/gym`
+- `add n/running d/10 mins at/31-12-2020 c/100 m/chest m/arm t/home t/gym`
 
 ## 3.3. Update exercises : `update`
 
@@ -92,15 +92,15 @@ Update an existing exercise.
 ### After
 ![after update](images/exerciseAfterUpdate.png)
 
-Format: `INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]...`
+Format: `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLE]... [t/TAG]...`
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values of the exercise will be updated to the input values.
-- When editing tags, the existing tags of the exercise will be removed i.e adding of tags is not cumulative.
-- You can remove all the exercise's tags by typing t/ without specifying any tags after it.
+- When editing tags/muscles, the existing tags/muscles of the exercise will be removed i.e adding of tags/muscles is not cumulative.
+- You can remove all the exercise/muscle's tags by typing t/ or m/ respectively (without specifying any tags after it).
 
 Examples:
-- `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `07-09-2020`, `260`, `chest,arm`, and `[home, gym]` respectively.
+- `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest m/arm t/home t/gym` Updates the exercise, the description, the date, calories burnt, muscles worked, and tags of the 1st exercise to be `push up`, `30`,  `09-07-2020`, `260`, `[chest, arm]`, and `[home, gym]` respectively.
 
 ## 3.4. Delete : `delete`
 Deletes an exercise that a user has previously added.
