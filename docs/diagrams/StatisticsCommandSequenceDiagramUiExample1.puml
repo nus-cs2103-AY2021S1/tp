@@ -15,14 +15,20 @@ activate UiManager
 UiManager -> MainWindow : fillInnerParts()
 activate MainWindow
 
-MainWindow -> MainWindow : executeCmd(cmdTxt)
+MainWindow -> MainWindow : executeCommand(commandText)
 activate MainWindow
 
-MainWindow -> MainWindow : handleStats(data, details)
+MainWindow -> MainWindow : handleStatistics(statisticsData, otherStatisticsDetails)
 activate MainWindow
 
-MainWindow -> StatisticsWindow : show(data, details);
+MainWindow --> StatisticsWindow : updateData(statisticsData, otherStatisticsDetails)
 activate StatisticsWindow
+
+StatisticsWindow --> StatisticsWindow : updateDataForSourceStatistics(statisticsData)
+activate StatisticsWindow
+
+StatisticsWindow --> StatisticsWindow
+deactivate StatisticsWindow
 
 StatisticsWindow --> MainWindow
 deactivate StatisticsWindow

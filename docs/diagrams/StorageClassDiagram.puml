@@ -7,18 +7,26 @@ skinparam classBackgroundColor STORAGE_COLOR
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
 Interface StockBookStorage <<Interface>>
+Interface SerialNumberSetsBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonStockBookStorage
+Class JsonSerialNumberSetsBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> StockBookStorage
+StorageManager o--> SerialNumberSetsBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
+
 JsonStockBookStorage .left.|> StockBookStorage
 JsonStockBookStorage .down.> JsonSerializableStockBookStorage
-JsonSerializableStockBookStorage .right.> JsonSerializableStock
-JsonSerializableStock .right.> JsonAdaptedTag
+JsonSerializableStockBookStorage .left.> JsonAdaptedStock
+
+JsonSerialNumberSetsBookStorage .left.|> SerialNumberSetsBookStorage
+JsonSerialNumberSetsBookStorage .down.> JsonSerializableSerialNumberSetsBookStorage
+JsonSerializableSerialNumberSetsBookStorage .left.> JsonAdaptedSerialNumberSet
+
 @enduml
