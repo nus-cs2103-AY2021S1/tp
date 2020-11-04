@@ -8,7 +8,7 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class InventoryinatorParser
+Class InventoryParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
@@ -35,8 +35,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" InventoryinatorParser
-InventoryinatorParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" InventoryParser
+InventoryParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser
