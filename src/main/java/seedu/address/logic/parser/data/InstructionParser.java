@@ -20,8 +20,10 @@ public class InstructionParser {
         String[] instructionsToken = instructionString.split("\\.");
         ArrayList<Instruction> instructions = new ArrayList<>();
         for (int i = 0; i < instructionsToken.length; i++) {
-            String instr = (i + 1) + ") " + instructionsToken[i].trim();
-            instructions.add(new Instruction(instr));
+            if(!instructionsToken[i].trim().equals("")) {
+                String instr = instructionsToken[i].trim();
+                instructions.add(new Instruction(instr));
+            }
         }
         return instructions;
     }
