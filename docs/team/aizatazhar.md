@@ -9,67 +9,45 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 Given below are my contributions to the project.
 
-<!-- 
-  TODO: Update links for pull requests 
--->
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=aizatazhar&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=aizatazhar&zR=AY2021S1-CS2103T-W15-4%2Ftp%5Bmaster%5D&zACS=130.23529411764707&zS=2020-08-14&zFS=aizatazhar&zU=2020-11-04&zMG=false&zFTF=commit&zFGS=groupByRepos)
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=aizatazhar&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zA=aizatazhar&zR=AY2021S1-CS2103T-W15-4%2Ftp%5Bmaster%5D&zACS=74.66666666666667&zS=2020-08-14&zFS=aizat&zU=2020-10-04&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+* **New Feature**: Snapshot feature ([\#124](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/124))
+  * What it does: saves a snapshot of the `ZooKeepBook` data at the point in time when the command is executed as a `.json` file
+  with the user specified file name.
+  * Justification: Zookeepers would need to frequently back up their animal data (e.g. at the end of every
+  day) to keep track of the condition of their animals as time passes.
+  * Highlights: It creates a separate folder within the `data` directory and ensures that any existing file
+  in this directory will not be overridden due to execution of the command.
 
 * **Enhancements to existing features**:
-  * Morphed Address class to Species class ([\#60]())
-
+  * Morphed `Address` class to `Species` class ([\#60](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/60))
+  * Renamed `AddressBook` instances in code to `ZooKeepBook` ([\#90](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/90))
+  * Updated the UI ([\#112](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/112))
+  * Update help feature to have a clickable URL ([#228](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/228))
+  
 * **Documentation**:
   * User Guide:
-      * Added documentation for all our proposed features for milestone 1.2 ([\#26](), [\#32]())
-
+      * Added documentation for all our proposed features for milestone 1.2 ([\#26](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/26))
+      * Added additional FAQs ([#207](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/207), [#267](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/267/))
+      * Added documentation for snapshot feature to UG ([#137](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/137))
+      * Added expected outcomes for every command ([#234](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/234))
+      
+  * Developer Guide:
+      * Updated links to code within the DG ([#185](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/185))
+      * Updated `AddressBook` documentation and UML diagrams to reflect `ZooKeep` in Architecture, Logic and UI sections ([#186](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/186), [#198](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/198))
+      * Added documentation for snapshot feature to DG ([#137](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/137), [#156](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/156))
+      
 * **Tools**:
-  * Integrated Codecov to the team repo to monitor code coverage ([\#45]())
-  * Integrated Codacy to the team repo to enforce code quality ([\#56]())
+  * Set up Codecov to monitor code coverage ([\#45](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/45))
+  * Set up Codacy to enforce code quality ([\#56](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/56)))
 
 * **Project management**:
-  * Created issues detailing the high-level tasks for milestone 1.2
+  * Created issues detailing the high-level tasks for [milestone 1.2](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaizatazhar+milestone%3Av1.2+) 
+  * Created issues on UG/DG feedback received for [milestone 1.3](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaizatazhar+milestone%3Av1.3)
+  * Created issues for some [bugs I found](https://github.com/AY2021S1-CS2103T-W15-4/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Aaizatazhar+label%3Atype.bug)
 
 * **Community**:
+  * Reviewed teammates' [PRs](https://github.com/AY2021S1-CS2103T-W15-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aaizatazhar)
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/219), [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/245))
   * Reported typos found on various parts of module website (examples: [1](https://github.com/se-edu/se-book/issues/94), [2](https://github.com/se-edu/guides/pull/1), [3](https://github.com/nus-cs2103-AY2021S1/website/issues/6), [4](https://github.com/se-edu/addressbook-level3/issues/52))
   * Reported broken link on module website ([1](https://github.com/nus-cs2103-AY2021S1/website/issues/7))
-
-<!--- Templates/Suggestions
-
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
-
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
-
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
-  * Developer Guide:
-    * Added implementation details of the `delete` feature.
-
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
-
--->
