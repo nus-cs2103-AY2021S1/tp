@@ -28,6 +28,7 @@ public class JsonSerializableModuleListTest {
                 JsonSerializableModuleList.class).get();
         ModuleList moduleListFromFile = dataFromFile.toModelType();
         ModuleList typicalModuleModuleList = TypicalModules.getTypicalModuleList();
+        boolean equal = moduleListFromFile.equals(typicalModuleModuleList);
         assertEquals(moduleListFromFile, typicalModuleModuleList);
     }
 
