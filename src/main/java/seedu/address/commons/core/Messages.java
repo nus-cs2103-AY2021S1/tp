@@ -14,4 +14,5 @@ public class Messages {
     public static final String MESSAGE_ERROR_OPENING_URL =
             "An error occurred while opening the Medical record in your browser \n%1$s";
     public static final String MESSAGE_OPEN_URL_SUCCESS = "Medical Record open successfully on your browser \n%1$s";
+    public static final String MESSAGE_SUCCESS_FINDING_SINGLE_NRIC = "Patient with the NRIC found! \n%1$s";
 }

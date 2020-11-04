@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    protected static AppointmentWindow appointmentWindow;
+    public static AppointmentWindow appointmentWindow;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -154,7 +154,6 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Appointment Window.
      */
     public void handleShowAppt() {
-        appointmentWindow.setAppointmentWindow(logic.getFilteredPatientList().get(0));
         if (appointmentWindow.isShowing()) {
             appointmentWindow.focus();
         } else {
@@ -199,12 +198,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAppointment()) {
-                if (logic.getFilteredPatientList().size() != 1) {
-                    logger.info("Parse exception: Patient not found - " + commandText);
-                    throw new ParseException("Patient not found!");
-                } else {
-                    handleShowAppt();
-                }
+               handleShowAppt();
             }
 
             if (commandResult.isExit()) {
