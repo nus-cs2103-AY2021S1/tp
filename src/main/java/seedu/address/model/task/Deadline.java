@@ -14,7 +14,8 @@ import java.time.format.ResolverStyle;
  */
 public class Deadline {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should only be in the format 'dd-MM-uuuu HHmm', and contain a valid date and time";
+            "Deadlines should only be in the format 'dd-MM-yyyy HHmm'"
+                    + "\nDate and time (24 hour format) should be valid.";
     public static final String DEADLINE_DATE_TIME_FORMAT = "dd-MM-uuuu HHmm";
     public final String value;
     private final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
