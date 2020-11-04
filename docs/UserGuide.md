@@ -39,19 +39,19 @@
 
 ## 1. Introduction
 
-__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their 
-student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User 
-Interface (GUI). If you are a TA with a fast typing speed, __Trackr__ is the app for you! You can start by familiarising 
-yourself with the information regarding how this document is designed in 
+__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their
+student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User
+Interface (GUI). If you are a TA with a fast typing speed, __Trackr__ is the app for you! You can start by familiarising
+yourself with the information regarding how this document is designed in
 [Section 2, "About this document"](#2-about-this-document).
 
 
 
 ## 2. About this document
 
-Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can 
-provide to make your TA experience less troublesome. This section will provide information regarding the use of this 
-document, namely how to navigate through this document, what the technical terms mean and how to interpret the 
+Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can
+provide to make your TA experience less troublesome. This section will provide information regarding the use of this
+document, namely how to navigate through this document, what the technical terms mean and how to interpret the
 formatting used.
 
 ### 2.1 Glossary
@@ -100,9 +100,9 @@ Commands you provide in the command line follow specific rules. These are the ru
 ### 3.1 Setting Up
 Get started by installing __Trackr__ with the following steps:
 
-1. Ensure you have Java 11 or above installed. The latest version of Java can be found 
+1. Ensure you have Java 11 or above installed. The latest version of Java can be found
 [here](https://www.java.com/en/download/).
-2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). 
+2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases).
 Look for the file trackr.jar.
 3. Copy the file to a folder you wish to use as your home folder for __Trackr__
 4. Double-click trackr.jar to start the app. The GUI (Figure 3.1) should appear in a few seconds.
@@ -113,17 +113,17 @@ Figure 3.1 Trackr GUI
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
 commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
-type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
+type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of
 all the commands are listed in [Section 4, "Features"](#4-features).
 
 ![CommandExample](images/CommandExample.png) <br>
 Figure 3.2 Command example
 
 ### 3.3 Switching Views
-__Trackr__ allows you to switch the current view from Module View (Figure 3.3.1) to Tutorial Group View (Figure 3.3.2) 
-to Student View (Figure 3.3.3) depending on your current need. This is done using the commands `listMod`, `viewTG`, and 
-`viewStudent`. You may wish to navigate back from Student View to Tutorial Group View or from Tutorial Group View to 
-Module View. This is achieved using `prevView`. The correct syntax for these commands are shown in 
+__Trackr__ allows you to switch the current view from Module View (Figure 3.3.1) to Tutorial Group View (Figure 3.3.2)
+to Student View (Figure 3.3.3) depending on your current need. This is done using the commands `listMod`, `viewTG`, and
+`viewStudent`. You may wish to navigate back from Student View to Tutorial Group View or from Tutorial Group View to
+Module View. This is achieved using `prevView`. The correct syntax for these commands are shown in
 [Section 4, "Features"](#4-features). The top of the app shows the view you are currently in.
 
 ![ModuleView](images/ModuleView.png) <br>
@@ -160,7 +160,7 @@ Adds a module to the module list.
 
 Format: `addMod m/MODULE_CODE`
 
-Note: 
+Note:
 
 - Modules should not share the same name.
 - It is recommended to use the exact code of the module.
@@ -175,14 +175,14 @@ Expected Outcome:
 - From the example above, the result box will display the following message:
 
     New module added: CS2100
-    
+
 #### 4.2.3 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
 
 Format: `deleteMod INDEX`
 
-Note: 
+Note:
 
 - `INDEX` refers to the index number shown in the Module view.
 - `INDEX` must be a positive integer starting from 1.
@@ -238,9 +238,9 @@ Note:
 Example:
 
 - Editing the module code of the first module to be _CS2020_.
-    
+
     - `editMod 1 m/CS2020`
-    
+
 ### 4.3 Tutorial Group features
 
 #### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
@@ -254,8 +254,8 @@ Example: `viewTG 1`
 #### 4.3.2 Add a Tutorial Group to a Module: `addTG`
 You can add a Tutorial Group to the Module you are viewing using this command.
 
-> - You can only use this command when you are viewing Tutorial Groups of the Module you intend to add the Tutorial Group to.   
-> - This command can also be used after the findTG command while displaying only Tutorial Groups you searched for.   
+> - You can only use this command when you are viewing Tutorial Groups of the Module you intend to add the Tutorial Group to.
+> - This command can also be used after the findTG command while displaying only Tutorial Groups you searched for.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `addTG tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
@@ -265,7 +265,7 @@ Example: `addTG tg/T03 day/MON start/08:00 end/10:00`
 #### 4.3.3 Find a Tutorial Group: `findTG`
 If you need to quickly find a Tutorial from a list of Tutorials, use this command.
 
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `findTG TARGET_TG_CODE`
@@ -277,14 +277,14 @@ To search for a Tutorial Group with code B014
 #### 4.3.4 Return to Tutorial Group List: `listTG`
 After using the findTG command, you can use listTG to quickly return to the list of all Tutorial Groups in the Module.
 
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `listTG`
 
 #### 4.3.5 Delete a Tutorial Group from a Module: `deleteTG`
 You can use this command to delete a Tutorial Group you have previously added to a Module.
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `deleteTG TG_INDEX`
@@ -295,7 +295,7 @@ To delete Tutorial Group with the index 2 in the currently displayed list.
 
 #### 4.3.6 Edit a Tutorial Group: `editTG`
 You can use this command to edit a Tutorial Group you have previously added to a Module.
-> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> - You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in.
 > - Refer to 4.2.1 - View all Tutorial Groups in a Module
 
 Format: `editTG TG_INDEX tg/TG_CODE day/MON/TUE/WED/THU/FRI start/HH:MM end/HH:MM`
@@ -325,7 +325,7 @@ Example:
 
 - Views all students of tutorial group at _index 1_.
     - `viewStudent 1`
-    
+
 Expected Outcome:
 
 ![ViewStudentCommand](images/ViewStudentCommand.png)
@@ -350,11 +350,11 @@ Example:
 - Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
 and tag _student_ to the current tutorial group in view.
   - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
-  
+
 Expected Outcome:
 
 ![AddStudentCommand](images/AddStudentCommand.png)
-    
+
 #### 4.4.3 Delete a student: `deleteStudent`
 
 Deletes a student based on the given `INDEX`.
@@ -370,13 +370,13 @@ Note:
 Example:
 
 - Deletes the second student in the Student view.
-  
+
     - `deleteStudent 2`
-    
+
 Expected Outcome:
 
 ![DeleteStudentCommand](images/DeleteStudentCommand.png)
-    
+
 #### 4.4.4 Edit a student: `editStudent`
 
 Edits a student at the given `INDEX` with the provided details.
@@ -395,13 +395,13 @@ Note:
 Example:
 
 - Editing the phone number and email address of the first student to be _97654321_ and _jtan@u.nus.edu_.
-    
+
     - `editStudent 1 p/97654321 e/jtan@u.nus.edu`
-    
+
 Expected Outcome:
 
 ![EditStudentCommand](images/EditStudentCommand.png)
-    
+
 #### 4.4.5 Find a student: `findStudent`
 
 Finds and lists all students in the current Student view whose name contains any of the given keywords.
@@ -420,7 +420,7 @@ Example:
 - Finds a student with `KEYWORD` _john_.
 
     - `findStudent john`
-    
+
 Expected Outcome:
 
 ![FindStudentCommand](images/FindStudentCommand.png)
@@ -433,14 +433,14 @@ Format: `listStudent`
 
 Note:
 
-- This is a quick way to view all of your students in the current Student view again after using the `findStudent` 
+- This is a quick way to view all of your students in the current Student view again after using the `findStudent`
 command.
 - `listStudent` command only works in Student view.
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
-__A:__ This happens when the input command is of the wrong syntax or does not exist. You may go to the [Command Format](#23-command-format) to 
-view the list of commands and their accepted formats.
+__A:__ This happens when the input command is of the wrong syntax or does not exist. You may go to the
+[Command Format](#23-command-format) to view the list of commands and their accepted formats.
 
 __Q:__ How do I save my data? <br>
 __A:__ When you issue a new command, __Trackr__ automatically updates the local save file immediately. This ensures that
@@ -457,19 +457,19 @@ for MacOS and Linux users.
 Command | Summary
 --------|--------
 `listMod` | Views all modules in __Trackr__.
-`addMod m/MODULE_CODE` | Adds a new module to the current Module view. 
-`deleteMod INDEX` | Deletes a module from the current Module view. 
-`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view. 
-`editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code. 
+`addMod m/MODULE_CODE` | Adds a new module to the current Module view.
+`deleteMod INDEX` | Deletes a module from the current Module view.
+`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view.
+`editMod INDEX m/MODULE_CODE` | Edits the module code in the specified index to be the new module code.
 
 ### 6.2 Tutorial Group commands
 
 Command | Summary
 --------|--------
-`viewTG MODULE_INDEX` | Views all Tutorial Groups in a Module. 
-`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module. 
-`findTG TARGET_TG_CODE` | Finds a Tutorial Group. 
-`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module. 
+`viewTG MODULE_INDEX` | Views all Tutorial Groups in a Module.
+`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module.
+`findTG TARGET_TG_CODE` | Finds a Tutorial Group.
+`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module.
 
 ### 6.3 Student commands
 
