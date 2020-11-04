@@ -39,7 +39,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
     private final LocalDate attendanceDate;
 
     /**
-     * Creates an EditAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
+     * Creates a DeleteAttendanceCommand to delete the specified {@code Attendance} to the student
      * at the specified {@code Index}.
      */
     public DeleteAttendanceCommand(Index index, LocalDate attendanceDate) {

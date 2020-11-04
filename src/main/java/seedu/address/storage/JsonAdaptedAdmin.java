@@ -38,7 +38,7 @@ public class JsonAdaptedAdmin {
                             @JsonProperty("classTime") String classTime,
                             @JsonProperty("fee") String fee,
                             @JsonProperty("paymentDate") String paymentDate,
-                            @JsonProperty("additionalDetails") List<JsonAdaptedDetail> additionalDetails) {
+                            @JsonProperty("details") List<JsonAdaptedDetail> additionalDetails) {
         this.classVenue = classVenue;
         this.classTime = classTime;
         this.fee = fee;

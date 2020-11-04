@@ -12,15 +12,17 @@ public class DetailTest {
     }
 
     @Test
-    public void constructor_invalidAdditionalDetail_throwsIllegalArgumentException() {
-        String invalidAdditionalDetail = "";
-        assertThrows(IllegalArgumentException.class, () -> new Detail(invalidAdditionalDetail));
+    public void constructor_invalidDetail_throwsIllegalArgumentException() {
+        String invalidDetail = "";
+        assertThrows(IllegalArgumentException.class, () -> new Detail(invalidDetail));
     }
 
     @Test
-    public void isValidAdditionalDetail() {
+    public void isValidDetail() {
         // null detail
-        assertThrows(NullPointerException.class, () -> Detail.isValidAdditionalDetail(null));
+        assertThrows(NullPointerException.class, () -> Detail.isValidDetail(null));
+
+        //
     }
 
 }

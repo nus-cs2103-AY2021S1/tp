@@ -41,7 +41,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
     private final Attendance attendanceToAdd;
 
     /**
-     * Creates an AddAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
+     * Creates an AddAttendanceCommand to add the specified {@code Attendance} to the student
      * at the specified {@code Index}.
      */
     public AddAttendanceCommand(Index index, Attendance attendanceToAdd) {
