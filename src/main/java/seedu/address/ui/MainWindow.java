@@ -269,7 +269,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
             }
 
             return commandResult;
-        } catch (CommandException e) {
+        } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
