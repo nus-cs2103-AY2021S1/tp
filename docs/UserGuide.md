@@ -177,9 +177,14 @@ Examples:
 
 ### 5.3 Tagging food items : `tag`
 
-You can tag a food item in McGymmy.
+Tags are customisable labels that help organise your food items. The `tag` command enables
+you to tag food items with a specific label, which allows you to locate and filter the food
+items with greater ease and create a more organised food list. 
 
 Format: `tag INDEX -t TAG_NAME`
+
+Examples:
+* `tag 1 -t Breakfast` - adds the `Breakfast` tag to the first food item in your list.
 
 <div markdown="block" class="alert alert-info">
 
