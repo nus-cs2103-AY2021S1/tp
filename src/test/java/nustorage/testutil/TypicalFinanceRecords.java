@@ -14,7 +14,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import nustorage.model.FinanceAccount;
+import nustorage.model.Inventory;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.InventoryRecord;
 
 public class TypicalFinanceRecords {
 
@@ -22,6 +24,7 @@ public class TypicalFinanceRecords {
     public static final FinanceRecord RECORD_B = new FinanceRecord(AMOUNT_B, DATE_TIME_B);
     public static final FinanceRecord RECORD_C = new FinanceRecord(AMOUNT_C, DATE_TIME_C);
     public static final FinanceRecord RECORD_D = new FinanceRecord(AMOUNT_D, DATE_TIME_D);
+
 
     private TypicalFinanceRecords() {} // prevents instantiation
 
@@ -32,6 +35,17 @@ public class TypicalFinanceRecords {
         FinanceAccount fa = new FinanceAccount();
         for (FinanceRecord record : getTypicalFinanceRecords()) {
             fa.addFinanceRecord(record);
+        }
+        return fa;
+    }
+
+    public static FinanceAccount getTypicalFinanceWithInventory() {
+        FinanceAccount fa = getTypicalFinanceAccount();
+        List<InventoryRecord> typicalInventoryRecords = TypicalInventoryRecords.getTypicalInventoryRecords();
+        for (InventoryRecord record: typicalInventoryRecords) {
+            FinanceRecord financeRecord = new FinanceRecord(record.getQuantity() * record.getUnitCost(), true);
+            record.setFinanceRecord(financeRecord);
+            fa.addFinanceRecord(financeRecord);
         }
         return fa;
     }
