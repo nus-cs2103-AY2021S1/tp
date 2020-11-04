@@ -31,9 +31,9 @@ import seedu.address.model.person.FullNameMatchesKeywordPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.TagPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TagPersonDescriptorBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 public class AddressBookParserTest {
