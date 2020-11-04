@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.recipe.Instruction;
-import seedu.address.model.recipe.Name;
 
 /**
  * Jackson-friendly version of {@link Instruction}.
