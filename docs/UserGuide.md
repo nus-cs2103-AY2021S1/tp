@@ -338,7 +338,7 @@ Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 Note:
 
 - Students should not share the same student ID within the same tutorial group.
-- Phone numbers should only be 8 digits long.
+- Phone numbers should only contain numbers, and it should be at least 3 digits long.
 - Student IDs begin and end with a capital letter and should have 7 digits (e.g. A1243567X).
 - A student can have any number of tags, including 0.
 
