@@ -43,19 +43,19 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-Inventoryinator .up.|> ReadOnlyInventoryinator
+ModelManager .up.|> ReadOnlyModelManager
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" Inventoryinator
+ModelManager o--> "1" ModelManager
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-Inventoryinator o--> "1" UniqueItemList
+ModelManager o--> "1" UniqueItemList
 UniqueItemList o--> "*" Item
-Inventoryinator o--> "*" LocationIdManager
+ModelManager o--> "*" LocationIdManager
 LocationIdManager o--> "*" Item
-Inventoryinator o--> "1" UniqueRecipesManager
+ModelManager o--> "1" UniqueRecipesManager
 UniqueRecipesManager o--> "*" Recipe
 
 Recipe *--> RecipeID

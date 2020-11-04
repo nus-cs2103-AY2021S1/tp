@@ -5,7 +5,7 @@ title: EndUserPersona
 * Table of Contents
 {:toc}
 
-# EndUserPersona
+# End User Persona
 
 This page documents the Persona of our target audiences, and how we would like to bring value to them through
 `Inventoryinator`. These personas are structured in such that we capture the target group's needs in their day-to-day lives in the before scenario
@@ -132,7 +132,7 @@ hot cakes. She then runs to her warehouse to check whether she has the materials
 
 #### Scenario 2 (After):
 After checking the in-game market, Aila opens the `Inventoryinator`, opens up the recipe for the hot item, and
-realizes she is missing 250k bear asses, 129k rat whiskers, and 2k phoenix beaks. She quickly contacts her
+realizes she is missing 250000 bear asses, 129000 rat whiskers, and 2000 phoenix beaks. She quickly contacts her
 suppliers, then proceeds to crafting.
 
 ### Persona #5

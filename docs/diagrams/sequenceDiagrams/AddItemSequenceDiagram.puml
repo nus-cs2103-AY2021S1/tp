@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addi banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+[-> LogicManager : execute("addi -n banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
 activate LogicManager
 
-LogicManager -> InventoryParser : parseCommand("addi banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+LogicManager -> InventoryParser : parseCommand("addi -n banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
 activate InventoryParser
 
 create AddItemCommandParser
@@ -26,7 +26,7 @@ activate AddItemCommandParser
 AddItemCommandParser --> InventoryParser
 deactivate AddItemCommandParser
 
-InventoryParser -> AddItemCommandParser : parse("banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
+InventoryParser -> AddItemCommandParser : parse("-n banana -q 44 -d edible banana \n-l Bob’s banana farm, Bob's home")
 activate AddItemCommandParser
 
 create AddItemCommand
@@ -48,7 +48,7 @@ deactivate InventoryParser
 LogicManager -> AddItemCommand : execute()
 activate AddItemCommand
 
-AddItemCommand -> Model : addItem("banana", 44, "edible banana",\n [Bob’s banana farm, Bob's home])
+AddItemCommand -> Model : addItem(item)
 activate Model
 
 Model --> AddItemCommand

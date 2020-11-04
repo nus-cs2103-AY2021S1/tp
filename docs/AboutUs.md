@@ -22,10 +22,11 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[team portfolio](https://github.com/AY2021S1-CS2103T-F13-1)]
 
 * Role: Project Manager
-* Responsibilities: 
+* Responsibilities:
     * Workflow Assignment
     * Team Lead
     * Git Expert
+    * Whitespace Expert
     
 ### Stephen Tan
 
@@ -36,9 +37,10 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[portfolio](team/stephentan.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
     * Documentation
     * Javadoc Standards
+    * Light Mode Advocate
 
 ### Liu Zhengdao
 
@@ -49,9 +51,10 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[portfolio](team/liuzhengdao.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
     * GUI Expert
     * Code Quality
+    * Dark Mode Heretic
 
 ### Kheng Hun
 
@@ -61,11 +64,13 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[portfolio](team/siewkhenghun.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
     * Scheduling and Tracking
     * Deliverables and Deadlines
     * Testing
+    * Main Feature Developer
     
+
 ### Rahul
 
 ![rahul](images/rahul0506.png)
@@ -75,6 +80,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 [[portfolio](team/rahul.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
     * Continuous Integration
-    * DevOps
+    * IntelliJ Expert
+    * Gaming Expert

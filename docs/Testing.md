@@ -19,7 +19,7 @@ This page will document our testing for classes in Inventoryinator. Segmented in
 
    1. Download the jar file and copy into an empty folder
    ```
-    java -jar InvInator.java
+    java -jar inventoryinator.jar
    ```
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample items and recipes.
@@ -32,13 +32,11 @@ This page will document our testing for classes in Inventoryinator. Segmented in
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. TODO
 ### Saving data
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-TODO
+   1. Delete the data file and restart. The application will generate a valid default save file.
+   
 ## Running tests
 
 There are two ways to run tests.
@@ -63,13 +61,5 @@ This project has three types of tests:
 1. *Integration tests* that are checking the integration of multiple code units (those code units are assumed to be working).<br>
    e.g. `seedu.address.storage.StorageManagerTest`
 1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
-   e.g. `seedu.address.logic.LogicManagerTest`
-
-## UnitTesting
-TODO
-## Integration Testing
-TODO
-## Hybrid Testing
-TODO
-## Acceptance testing
-TODO
+   These tests are separated into their respective files. e.g. `seedu.address.logic.commands.CraftItemCommandTest` and
+    `seedu.address.logic.commands.CraftItemCommandIntegrationTest`
