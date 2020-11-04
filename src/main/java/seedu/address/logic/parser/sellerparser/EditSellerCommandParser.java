@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.person.seller.Seller.SELLER_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.sellercommands.EditSellerCommand;
@@ -14,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.id.SellerId;
 
 /**
  * Parses input arguments and creates a new EditSellerCommand object
@@ -50,6 +52,9 @@ public class EditSellerCommandParser implements Parser<EditSellerCommand> {
         if (!editSellerDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditSellerCommand.MESSAGE_NOT_EDITED);
         }
+
+        editSellerDescriptor.setTag(SELLER_TAG);
+        editSellerDescriptor.setSellerId(SellerId.DEFAULT_SELLER_ID);
 
         return new EditSellerCommand(index, editSellerDescriptor);
     }

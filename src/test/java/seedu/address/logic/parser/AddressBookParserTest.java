@@ -80,7 +80,7 @@ public class AddressBookParserTest {
         EditBidderCommand command = (EditBidderCommand) parser.parseCommand(EditBidderCommand.COMMAND_WORD
                 + " " + INDEX_FIRST_PERSON.getOneBased()
                 + " " + BidderUtil.getEditBidderDescriptorDetails(descriptor));
-        //assertEquals(new EditBidderCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditBidderCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class AddressBookParserTest {
         EditSellerCommand command = (EditSellerCommand) parser.parseCommand(EditSellerCommand.COMMAND_WORD
                 + " " + INDEX_FIRST_PERSON.getOneBased()
                 + " " + SellerUtil.getEditSellerDescriptorDetails(descriptor));
-        //assertEquals(new EditSellerCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditSellerCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test

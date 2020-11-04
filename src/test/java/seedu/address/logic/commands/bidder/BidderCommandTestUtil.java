@@ -52,9 +52,9 @@ public class BidderCommandTestUtil {
 
     static {
         DESC_AMY = new EditBidderDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withId(VALID_ID_BIDDER).build();
+                .withPhone(VALID_PHONE_AMY).withBidderId(VALID_ID_BIDDER).build();
         DESC_BOB = new EditBidderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withId(VALID_ID_BIDDER).build();
+                .withPhone(VALID_PHONE_BOB).withBidderId(VALID_ID_BIDDER).build();
     }
 
     /**
