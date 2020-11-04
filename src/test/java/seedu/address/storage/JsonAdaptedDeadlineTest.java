@@ -8,7 +8,7 @@ import static seedu.address.testutil.TypicalTasks.DEADLINE1;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Deadline;
@@ -54,7 +54,7 @@ public class JsonAdaptedDeadlineTest {
         JsonAdaptedDeadline task =
                 new JsonAdaptedDeadline(VALID_TITLE, INVALID_DATE_TIME, VALID_DESCRIPTION, VALID_DATE_TIME, 1,
                         VALID_TAG, VALID_STATUS);
-        String expectedMessage = DateUtil.DATE_TIME_CONSTRAINTS;
+        String expectedMessage = DateTimeUtil.DATE_TIME_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 
