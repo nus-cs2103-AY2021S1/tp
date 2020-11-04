@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 
 /**
@@ -48,7 +47,8 @@ public class ArchiveModuleCommandTest {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
         Module moduleToArchive = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         ArchiveModuleCommand archiveModuleCommand = new ArchiveModuleCommand(INDEX_FIRST_MODULE);
-        String expectedMessage = String.format(ArchiveModuleCommand.MESSAGE_ARCHIVE_MODULE_SUCCESS, moduleToArchive);
+        String expectedMessage = String.format(ArchiveModuleCommand.MESSAGE_ARCHIVE_MODULE_SUCCESS,
+                moduleToArchive.getName());
         Model expectedModel = new ModelManager(model.getModuleList(), new ModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.archiveModule(moduleToArchive);

@@ -17,9 +17,9 @@ import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 public class UnarchiveModuleCommandTest {
     private Model model = new ModelManager(new ModuleList(), getTypicalModuleList(), new ContactList(), new TodoList(),
             new EventList(), new UserPrefs());
-
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        model.displayArchivedModules();
         Module moduleToUnarchive = model.getArchivedModuleList().getModuleList()
                 .get(INDEX_FIRST_MODULE.getZeroBased());
         UnarchiveModuleCommand unarchiveModuleCommand = new UnarchiveModuleCommand(INDEX_FIRST_MODULE);
@@ -27,6 +27,7 @@ public class UnarchiveModuleCommandTest {
                 moduleToUnarchive.getName().getName());
         Model expectedModel = new ModelManager(new ModuleList(), model.getArchivedModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
+        expectedModel.displayArchivedModules();
         expectedModel.unarchiveModule(moduleToUnarchive);
         assertCommandSuccess(unarchiveModuleCommand, model, expectedMessage, expectedModel);
     }
@@ -41,11 +42,14 @@ public class UnarchiveModuleCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showArchivedModuleAtIndex(model, INDEX_FIRST_MODULE);
-        Module moduleToUnarchive = model.getFilteredArchivedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        model.displayArchivedModules();
+        Module moduleToUnarchive = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         UnarchiveModuleCommand unarchiveModuleCommand = new UnarchiveModuleCommand(INDEX_FIRST_MODULE);
-        String expectedMessage = String.format(ArchiveModuleCommand.MESSAGE_ARCHIVE_MODULE_SUCCESS, moduleToUnarchive);
+        String expectedMessage = String.format(UnarchiveModuleCommand.MESSAGE_UNARCHIVE_MODULE_SUCCESS,
+                moduleToUnarchive.getName());
         Model expectedModel = new ModelManager(new ModuleList(), model.getArchivedModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
+        expectedModel.displayArchivedModules();
         expectedModel.unarchiveModule(moduleToUnarchive);
         showNoModule(expectedModel);
         assertCommandSuccess(unarchiveModuleCommand, model, expectedMessage, expectedModel);
@@ -87,7 +91,8 @@ public class UnarchiveModuleCommandTest {
      * Updates {@code model}'s filtered list to show no one.
      */
     private void showNoModule(Model model) {
-        model.updateFilteredArchivedModuleList(p -> false);
-        assertTrue(model.getFilteredArchivedModuleList().isEmpty());
+        model.displayArchivedModules();
+        model.updateFilteredModuleList(p -> false);
+        assertTrue(model.getFilteredModuleList().isEmpty());
     }
 }

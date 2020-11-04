@@ -105,8 +105,7 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            //assertEquals(expectedCommandResult, result);
-            boolean equal = expectedModel.equals(actualModel);
+            assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
@@ -156,11 +155,12 @@ public class CommandTestUtil {
      * {@code model}'s archived module list.
      */
     public static void showArchivedModuleAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredArchivedModuleList().size());
-        Module module = model.getFilteredArchivedModuleList().get(targetIndex.getZeroBased());
+        model.displayArchivedModules();
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitName = module.getName().fullName.split("\\s+");
-        model.updateFilteredArchivedModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-        assertEquals(1, model.getFilteredArchivedModuleList().size());
+        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredModuleList().size());
     }
 
 }

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.modulelistcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 //import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 //import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -29,23 +31,17 @@ public class ListModuleCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalModuleList(), new ModuleList(), new ContactList(), new TodoList(),
                 new EventList(), new UserPrefs());
-        expectedModel = new ModelManager(model.getModuleListDisplayed(), new ModuleList(), new ContactList(),
+        expectedModel = new ModelManager(model.getModuleList(), new ModuleList(), new ContactList(),
                 new TodoList(), new EventList(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        //assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_archivedListDisplayed_showsSameList() {
         assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        //showModuleAtIndex(model, INDEX_FIRST_PERSON);
-        // assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showModuleAtIndex(model, INDEX_FIRST_MODULE);
+        assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
