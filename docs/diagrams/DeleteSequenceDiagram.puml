@@ -49,13 +49,7 @@ deactivate CommonCentsParser
 LogicManager -> DeleteAccountCommand : execute()
 activate DeleteAccountCommand
 
-DeleteAccountCommand -> Model : getAccountFromFilterList(1)
-activate Model
-
-Model --> DeleteAccountCommand : retrievedExpense
-deactivate Model
-
-DeleteAccountCommand -> Model : deleteExpense(retrievedExpense)
+DeleteAccountCommand -> Model : deleteAccount(1)
 activate Model
 
 Model --> DeleteAccountCommand
@@ -73,9 +67,6 @@ deactivate CommandResult
 
 CommandResultFactory --> DeleteAccountCommand : result
 deactivate CommandResultFactory
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-CommandResultFactory -[hidden]-> DeleteAccountCommand
-destroy CommandResultFactory
 
 DeleteAccountCommand --> LogicManager : result
 deactivate DeleteAccountCommand

@@ -88,11 +88,11 @@ or affect the `Model` directly (e.g. adding an account).
 the result of the command execution and is passed back to the `Ui`,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteacc 1")` API call.
 
 ![Interactions Inside the Logic Component for the `deleteacc 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteAccountCommandParser`, `DeleteAccountCommand` and `CommandResultFactory` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
 </div>
 
 ### Model component
@@ -131,6 +131,97 @@ Classes used by multiple components are in the `seedu.cc.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Undo feature
+
+#### Proposed Implementation
+
+The undo mechanism is facilitated by `ActiveAccountManager` which implements the interface `ActiveAccount`. The `ActiveAccountManager` 
+stores its previous state as an `ActiveAccount` attribute when a entry command is executed. On the other hand, the `ActiveAccount` sets the previous 
+state as its current state when the undo commands is executed. As such, it implements the following operations:
+
+* `ActiveAccountManager#setPreviousState()` — Saves a copy of the current `ActiveAccountManager` state as an attribute in `ActiveAccountManager`.
+* `ActiveAccountManager#returnToPreviousState()` — Restores the previous `ActiveAccountManager` state from its attribute.
+
+These operations are exposed in the `ActiveAccount` interface as `ActiveAccount#setPreviousState()` and `ActiveAccount#returnToPreviousState()` respectively.
+
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
+
+Prelude. When the user first runs Common Cents, `ActiveAccountManager` does not store any previous states as shown in the diagram below.
+
+![UndoState0](images/UndoState0.png)
+
+Step 1. The user executes `delete 5 c/expense` command to delete the 5th expense in the expense list in the Account in `ActiveAccountManager`. The `delete` command calls `ActiveAccountManager#setPreviousState()` initially, 
+causing a copy of the `ActiveAccountManager` state before the `delete 5 c/expense` command executes to be saved as an attribute. After this, the `delete 5 c/expense` command executes and the
+model is updated according to the modified account in ActiveAccount.
+
+![UndoState1](images/UndoState1.png)
+
+Step 3. The user executes `add c/expense …​` to add a new expense. The `add` command calls `ActiveAccountManager#setPreviousState()` initially, 
+causing a copy of the `ActiveAccountManager` state before the command executes to be saved as an attribute. After this, the `add c/expense …​` command executes and the
+model is updated according to the modified account in ActiveAccount.
+
+![UndoState2](images/UndoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ActiveAccountManager#setPreviousState()`, so the state will not be saved into its attribute.
+
+</div>
+
+Step 4. The user now decides that adding the expense was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `ActiveAccountManager#returnToPreviousState()`, 
+which will set data of the previous state attribute to the current `ActiveAccountManager`. 
+
+![UndoState3](images/UndoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `ActiveAccountManager` does not have a previous state 
+(i.e The `previousState` attribute in `ActiveAccountManager` is empty)then there are no previous `ActiveAccountManager` states to restore. 
+The `undo` command uses `Model#hasNoPreviousState()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**:<br>
+ * The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+ * Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+   of the undo command. 
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `ActiveAccountManager#setPreviousState()` is only called in `add`, `delete`, `edit`, and `clear` commands. 
+Hence, the `undo` command only works on the previously stated commands which interacts with entries.
+
+</div>
+
+#### Design consideration:
+
+##### Aspect: How undo executes
+
+* **Alternative 1 (current choice):** Saves the entire ActiveAccount.
+  * Pros: Easy to implement.
+  * Cons: 
+    * May have performance issues in terms of memory usage. 
+    * Only allow undo command to work for commands dealing with entries.
+  
+* **Alternative 2:** Saves the entire Model and ActiveAccount 
+  * Pros: More commands can be undone, for instance commands dealing with accounts.
+  * Cons: 
+    * May have performance issues in terms of memory usage. 
+    * We must ensure that the implementation is done with considerations over how Model and ActiveAccount interacts 
+    (i.e avoid unnecessary changes to Model and ActiveAccount that can result in errors).
+
+* **Alternative 3:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the entry being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+  
+
+_{more aspects and alternatives to be added}
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -167,7 +258,8 @@ The following sequence diagram shows how an edit account operation works:
 ![EditAccountSequenceDiagram](images/EditAccountSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
-Some of the interactions with the utility classes, such as `CommandResult` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
+* The lifeline for `EditAccountCommandParser` and `EditAccountCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, their lifeline reach the end of diagram.
+* Some of the interactions with the utility classes, such as `CommandResult`, `CommandResultFactory` and `Storage` are left out of the sequence diagram as their roles are not significant in the execution
 of the edit account command. 
 </div>
 
@@ -284,86 +376,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How get total expenses/revenues executes:
 * Alternative 1 (current choice): Calculates the total expenses/revenues in the by retrieving the expense/revenue list. 
     * Pros: Easy to implement.
- 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedCommonCents`. It extends `CommonCents` with an undo/redo history, stored internally as an `commonCentsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedCommonCents#commit()` — Saves the current CommonCents state in its history.
-* `VersionedCommonCents#undo()` — Restores the previous CommonCents state from its history.
-* `VersionedCommonCents#redo()` — Restores a previously undone CommonCents state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitCommonCents()`, `Model#undoCommonCents()` and `Model#redoCommonCents()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedCommonCents` will be initialized with the initial Common Cents state, and the `currentStatePointer` pointing to that single Common Cents state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the Common Cents. The `delete` command calls `Model#commitCommonCents()`, causing the modified state of the Common Cents after the `delete 5` command executes to be saved in the `commonCentsStateList`, and the `currentStatePointer` is shifted to the newly inserted Common Cents state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCommonCents()`, causing another modified Common Cents state to be saved into the `commonCentsStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCommonCents()`, so the Common Cents state will not be saved into the `commonCentsStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommonCents()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous Common Cents state, and restores the Common Cents to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CommonCents state, then there are no previous CommonCents states to restore. The `undo` command uses `Model#canUndoCommonCents()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoCommonCents()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Common Cents to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `commonCentsStateList.size() - 1`, pointing to the latest Common Cents state, then there are no undone CommonCents states to restore. The `redo` command uses `Model#canRedoCommonCents()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the Common Cents, such as `list`, will usually not call `Model#commitCommonCents()`, `Model#undoCommonCents()` or `Model#redoCommonCents()`. Thus, the `commonCentsStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitCommonCents()`. Since the `currentStatePointer` is not pointing at the end of the `commonCentsStateList`, all Common Cents states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire Common Cents.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}
 
 ### \[Proposed\] Data archiving
 
