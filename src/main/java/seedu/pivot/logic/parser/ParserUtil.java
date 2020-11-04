@@ -34,22 +34,24 @@ import seedu.pivot.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index provided is invalid. "
+            + "Index should be a positive non-zero unsigned integer.";
 
     /**
-     * Obtains the parsed index and throws relevant parse exception based on messageUsage
+     * Obtains the parsed index and throws relevant parse exception based on indexString
      * @param indexString
      * @param messageUsage
      * @return Index
      * @throws ParseException if specified index is invalid (not non-zero unsigned integer)
      */
     public static Index getParsedIndex(String indexString, String messageUsage) throws ParseException {
-        try {
-            return ParserUtil.parseIndex(indexString);
-        } catch (ParseException pe) {
+        String trimmedIndex = indexString.trim();
+        if (trimmedIndex.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, messageUsage));
         }
+
+        return parseIndex(indexString);
     }
 
     /**

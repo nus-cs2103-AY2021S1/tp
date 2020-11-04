@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.victimcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_VICTIM;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
@@ -42,8 +43,6 @@ public class AddVictimCommand extends AddCommand implements Undoable {
             + PREFIX_ADDRESS + "Blk 123";
 
     public static final String MESSAGE_ADD_VICTIM_SUCCESS = "New victim added: %1$s";
-    public static final String MESSAGE_DUPLICATE_VICTIM = "This victim already exists in the case";
-
     private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddVictimCommand.class);
 

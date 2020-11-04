@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.documentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_DOCUMENT;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
 
@@ -33,8 +34,6 @@ public class AddDocumentCommand extends AddCommand implements Undoable {
             + PREFIX_REFERENCE + "test1.txt";
 
     public static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
-
     private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(AddDocumentCommand.class);
 

@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.suspectcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_SUSPECT;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
@@ -45,7 +46,6 @@ public class EditSuspectCommand extends EditPersonCommand implements Undoable {
             + PREFIX_ADDRESS + "New Road Crescent\n\n";
 
     public static final String MESSAGE_EDIT_SUSPECT_SUCCESS = "Edited Suspect: %1$s";
-    public static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
 
     private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditSuspectCommand.class);
