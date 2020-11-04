@@ -1,22 +1,21 @@
 package nustorage.logic.commands;
 
 import static nustorage.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static nustorage.testutil.TypicalIndexes.INDEX_FIRST;
 import static nustorage.logic.commands.UpdateInventoryCommand.MESSAGE_UPDATE_INVENTORY_SUCCESS;
-import static org.junit.jupiter.api.Assertions.fail;
+import static nustorage.testutil.TypicalIndexes.INDEX_FIRST;
 
+import org.junit.jupiter.api.Test;
+
+import nustorage.logic.commands.UpdateInventoryCommand.UpdateInventoryDescriptor;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
 import nustorage.model.UserPrefs;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
-import nustorage.logic.commands.UpdateInventoryCommand;
-import nustorage.logic.commands.UpdateInventoryCommand.UpdateInventoryDescriptor;
 import nustorage.testutil.InventoryRecordBuilder;
 import nustorage.testutil.TypicalFinanceRecords;
 import nustorage.testutil.TypicalInventoryRecords;
 import nustorage.testutil.UpdateInventoryDescriptorBuilder;
-import org.junit.jupiter.api.Test;
 
 public class UpdateInventoryCommandTest {
     private Model model = new ModelManager(TypicalFinanceRecords

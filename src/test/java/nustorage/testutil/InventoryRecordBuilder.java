@@ -72,6 +72,11 @@ public class InventoryRecordBuilder {
         return this;
     }
 
+    /**
+     * sets a specific finance ID to the builder
+     * @param financeId the finance ID to be set
+     * @return the builder with the updated finance ID
+     */
     public InventoryRecordBuilder withFinanceId(int financeId) {
         this.financeId = financeId;
         return this;
@@ -81,6 +86,10 @@ public class InventoryRecordBuilder {
         return new InventoryRecord(itemName, quantity, cost, dateTime);
     }
 
+    /**
+     * builds with a defined ID
+     * @return a inventory record with a specific finance ID
+     */
     public InventoryRecord buildWithDefinedFinanceID() {
         return new InventoryRecord(itemName, quantity, cost, dateTime, financeId);
     }

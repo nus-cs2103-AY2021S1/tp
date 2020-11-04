@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import nustorage.model.FinanceAccount;
-import nustorage.model.Inventory;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
