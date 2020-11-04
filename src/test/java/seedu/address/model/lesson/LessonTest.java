@@ -2,7 +2,13 @@ package seedu.address.model.lesson;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103T;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

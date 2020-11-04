@@ -1,9 +1,11 @@
 package seedu.address.model.tag;
 
-import static seedu.address.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 public class TagTest {
 
     @Test
@@ -12,9 +14,9 @@ public class TagTest {
     }
 
     @Test
-    public void tagNotFilled_UseDefaultTag() {
+    public void tagNotFilled_useDefaultTag() {
         Tag defaultTag = Tag.defaultTag();
-        assertTrue(defaultTag.tagName.equals(""));
+        assertEquals("", defaultTag.tagName);
     }
 
     @Test

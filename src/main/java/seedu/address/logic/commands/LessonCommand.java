@@ -68,9 +68,9 @@ public class LessonCommand extends Command {
             throw new CommandException(OVERLAP_CONSTRAINTS);
         }
         tasksToAdd.forEach(task -> {
-                    model.addTask(task);
-                    model.addTaskToCalendar(task);
-                });
+            model.addTask(task);
+            model.addTaskToCalendar(task);
+        });
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }
