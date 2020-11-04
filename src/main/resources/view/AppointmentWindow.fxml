@@ -17,73 +17,111 @@
         <Scene stylesheets="@Hospify.css">
             <VBox styleClass="background-babyBlue">
                 <children>
-               <VBox alignment="CENTER">
-                  <children>
+                    <VBox alignment="CENTER">
+                        <children>
                             <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" text="APPOINTMENT SCHEDULE">
                                 <font>
                                     <Font name="Consolas Bold" size="30.0" />
                                 </font>
                             </Label>
-                            <Label id="patientName" fx:id="patientName" alignment="TOP_LEFT">
+                            <Label fx:id="patientName" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="patientName">
                                 <font>
                                     <Font name="Consolas Bold" />
                                 </font>
                             </Label>
-                     <HBox spacing="8.0">
-                         <children>
-                           <HBox>
+                            <VBox>
+                                <children>
+                           <FlowPane hgap="5.0" vgap="5.0">
                               <children>
-                                  <Label styleClass="text-dark" text="NRIC: ">
-                                      <font>
-                                          <Font name="Consolas Bold" />
-                                      </font>
-                                  </Label>
-                                   <Label fx:id="patientNric" alignment="TOP_LEFT">
-                                       <font>
-                                           <Font name="Consolas Bold" />
-                                       </font>
-                                   </Label>
+                                            <HBox>
+                                                <children>
+                                                    <Label styleClass="text-dark" text="NRIC: ">
+                                                        <font>
+                                                            <Font name="Consolas Bold" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label fx:id="patientNric" alignment="TOP_LEFT">
+                                                        <font>
+                                                            <Font name="Consolas Bold" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </HBox>
+                                            <HBox>
+                                                <children>
+                                                    <Label styleClass="text-dark" text="PHONE: ">
+                                                        <font>
+                                                            <Font name="Consolas Bold" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label fx:id="patientPhone" alignment="TOP_LEFT">
+                                                        <font>
+                                                            <Font name="Consolas Bold" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </HBox>
+                                            <HBox>
+                                                <Label styleClass="text-dark" text="ADDRESS: ">
+                                                    <font>
+                                                        <Font name="Consolas Bold" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="patientAddress" alignment="TOP_LEFT">
+                                                    <font>
+                                                        <Font name="Consolas Bold" />
+                                                    </font>
+                                                </Label>
+                                            </HBox>
                               </children>
-                           </HBox>
-                             <HBox>
-                                 <Label styleClass="text-dark" text="ADDRESS: ">
-                                     <font>
-                                         <Font name="Consolas Bold" />
-                                     </font>
-                                 </Label>
-                                 <Label fx:id="patientAddress" alignment="TOP_LEFT">
-                                     <font>
-                                         <Font name="Consolas Bold" />
-                                     </font>
-                                 </Label>
-                             </HBox>
-                             <HBox>
-                                 <Label styleClass="text-dark" text="ALLERGIES: ">
-                                     <font>
-                                         <Font name="Consolas Bold" />
-                                     </font>
-                                 </Label>
-                                 <FlowPane id="allergies" fx:id="patientAllergies" hgap="5.0">
-                                     <VBox.margin>
-                                         <Insets />
-                                     </VBox.margin>
-                                 </FlowPane>
-                             </HBox>
-                         </children>
-                     </HBox>
-                  </children>
-                  <VBox.margin>
-                     <Insets left="20.0" top="10.0" />
-                  </VBox.margin>
-               </VBox>
+                           </FlowPane>
+                                    <FlowPane rowValignment="TOP">
+                                        <children>
+                                            <Label styleClass="text-dark" text="EMAIL: ">
+                                                <font>
+                                                    <Font name="Consolas Bold" />
+                                                </font>
+                                            </Label>
+                                            <Label fx:id="patientEmail" alignment="TOP_LEFT" wrapText="true">
+                                                <font>
+                                                    <Font name="Consolas Bold" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </FlowPane>
+                                    <FlowPane prefWrapLength="800.0" rowValignment="TOP">
+                                        <children>
+                                            <Label styleClass="card_label_important" text="ALLERGIES: ">
+                                                <font>
+                                                    <Font name="Consolas Bold" />
+                                                </font>
+                                            </Label>
+                                            <Label fx:id="noAllergiesLabel">
+                                            </Label>
+                                            <FlowPane id="allergies" fx:id="patientAllergies" hgap="5.0" prefWrapLength="700.0" vgap="3.0">
+                                                <VBox.margin>
+                                                    <Insets />
+                                                </VBox.margin>
+                                            </FlowPane>
+                                        </children>
+                                    </FlowPane>
+                                </children>
+                            </VBox>
+                        </children>
+                        <VBox.margin>
+                            <Insets left="20.0" top="10.0" />
+                        </VBox.margin>
+                    </VBox>
                     <TableView id="appointmentTable" fx:id="appointmentTable" editable="true" minHeight="500.0" stylesheets="@Hospify.css" VBox.vgrow="SOMETIMES">
                         <columns>
                             <TableColumn editable="false" minWidth="150.0" prefWidth="-1.0" styleClass="bold" text="DATE">
-                                <cellValueFactory><PropertyValueFactory property="date" />
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="date" />
                                 </cellValueFactory>
                             </TableColumn>
                             <TableColumn editable="false" minWidth="800.0" prefWidth="-1.0" text="DESCRIPTION">
-                                <cellValueFactory><PropertyValueFactory property="description" />
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="description" />
                                 </cellValueFactory>
                             </TableColumn>
                         </columns>

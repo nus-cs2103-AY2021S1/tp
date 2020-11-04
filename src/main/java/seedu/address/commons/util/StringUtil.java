@@ -92,4 +92,103 @@ public class StringUtil {
         return index.compareTo(BigInteger.valueOf(1)) >= 0
                 && index.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) <= 0;
     }
+
+    /**
+     * Breaks a string using newline. stringBreaker will try
+     * to break strings into words so that sentences keeps its meaning.
+     *
+     * @param s               String to format.
+     * @param charBuffer      Buffer for the number of characters in a line.
+     * @param charPerLine     Approximate chars per line.
+     * @param upperBufferOnly True if line must be minimum the charPerLine specified.
+     * @return Formatted String.
+     */
+    public static String stringBreaker(String s, int charBuffer, int charPerLine, boolean upperBufferOnly) {
+        StringBuilder str = new StringBuilder(s);
+        int currPos = 0;
+        int currLineLen = 0;
+        while (currPos < str.length()) {
+            if (currLineLen >= charPerLine + charBuffer) {
+                str.insert(currPos, '\n');
+                currLineLen = 0;
+            } else if (!upperBufferOnly && currLineLen >= charPerLine - charBuffer) {
+                if (str.charAt(currPos) == ' ') {
+                    while (str.charAt(currPos) == ' ') {
+                        str.deleteCharAt(currPos);
+                    }
+                    str.insert(currPos, '\n');
+                    currLineLen = 0;
+                }
+            } else if (upperBufferOnly && currLineLen >= charPerLine) {
+                if (str.charAt(currPos) == ' ') {
+                    while (str.charAt(currPos) == ' ') {
+                        str.deleteCharAt(currPos);
+                    }
+                    str.insert(currPos, '\n');
+                    currLineLen = 0;
+                }
+            }
+            currPos++;
+            currLineLen++;
+        }
+        return str.toString();
+    }
+
+    /**
+     * Breaks a string using newline. stringBreaker will try
+     * to break strings into words so that sentences keeps its meaning.
+     * If string exceeds maxLines, append ellipsis while keeping length
+     * within buffer.
+     *
+     * @param s               String to format.
+     * @param charBuffer      Buffer for the number of characters in a line.
+     * @param charPerLine     Approximate chars per line.
+     * @param upperBufferOnly True if line must be minimum the charPerLine specified.
+     * @param maxLines        Max Lines of the formatted string.
+     * @param ellipsis        ellipsis for overflow text.
+     * @return Formatted String.
+     */
+    public static String stringBreaker(String s, int charBuffer, int charPerLine,
+                                       boolean upperBufferOnly, int maxLines, String ellipsis) {
+        if (charBuffer < 0 || charPerLine < 0 || maxLines < 0 || ellipsis.length() > charPerLine + charBuffer) {
+            return "";
+        }
+        StringBuilder str = new StringBuilder(s);
+
+        int currPos = 0;
+        int currLineLen = 0;
+        int lineNum = 0;
+        while (currPos < str.length() && lineNum < maxLines) {
+            if (currLineLen >= charPerLine + charBuffer) {
+                str.insert(currPos, '\n');
+                currLineLen = -1;
+                lineNum++;
+            } else if (!upperBufferOnly && currLineLen >= charPerLine - charBuffer) {
+                if (str.charAt(currPos) == ' ') {
+                    while (str.charAt(currPos) == ' ') {
+                        str.deleteCharAt(currPos);
+                    }
+                    str.insert(currPos, '\n');
+                    currLineLen = -1;
+                    lineNum++;
+                }
+            } else if (upperBufferOnly && currLineLen >= charPerLine) {
+                if (str.charAt(currPos) == ' ') {
+                    while (str.charAt(currPos) == ' ') {
+                        str.deleteCharAt(currPos);
+                    }
+                    str.insert(currPos, '\n');
+                    currLineLen = -1;
+                    lineNum++;
+                }
+            }
+            currPos++;
+            currLineLen++;
+        }
+        // if there are still text left, append ellipsis
+        if (currPos < str.length()) {
+            return str.substring(0, currPos - ellipsis.length()).concat(ellipsis);
+        }
+        return str.toString();
+    }
 }
