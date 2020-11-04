@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -23,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    public static AppointmentWindow appointmentWindow;
+    protected static AppointmentWindow appointmentWindow;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -81,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -108,6 +110,16 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
     }
+
+    /**
+     * Updates the appointmentWindow of currently residing in MainWindow
+     *
+     * @param patient
+     */
+    public static void updateAppointmentWindow(Patient patient) {
+        appointmentWindow.setAppointmentWindow(patient);
+    }
+
 
     /**
      * Fills up all the placeholders of this window.
@@ -198,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAppointment()) {
-               handleShowAppt();
+                handleShowAppt();
             }
 
             if (commandResult.isExit()) {

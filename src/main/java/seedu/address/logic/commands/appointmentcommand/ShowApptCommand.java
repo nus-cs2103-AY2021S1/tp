@@ -39,7 +39,7 @@ public class ShowApptCommand extends Command {
             throw new CommandException("No patient with the NRIC found!");
         }
 
-        MainWindow.appointmentWindow.setAppointmentWindow(filteredList.get(0));
+        MainWindow.updateAppointmentWindow(filteredList.get(0));
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_SUCCESS_FINDING_SINGLE_NRIC,
