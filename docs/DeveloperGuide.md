@@ -220,6 +220,7 @@ While not itself a component, various utility types are placed in the `chopchop.
 This section explains, in detail, the implementation of some noteworthy features.
 
 
+<a name="ImplCommandParser"></a>
 ### 4.1&ensp;Command Parser
 
 Main developer: **zhiayang**
@@ -326,7 +327,7 @@ After abstracting out functions that resolve an item reference, code complexity 
 
 
 
-
+<a name="ImplTabCompletion"></a>
 ### 4.2&ensp;Tab Completion
 
 Main developer: **zhiayang**
@@ -351,7 +352,7 @@ Most notably, each command (or, ideally, its parser) should 'own' the knowledge 
 
 
 
-
+<a name="ImplQuantities"></a>
 ### 4.3&ensp;Quantity and Unit Handling
 
 Main developer: **zhiayang**
@@ -409,7 +410,7 @@ In the current implementation, there are a number of specific units of Volume (*
 
 
 
-
+<a name="ImplHelpCommand"></a>
 ### 4.4&ensp;Help Command
 
 Main developer: **zhiayang**
@@ -458,7 +459,7 @@ When extending ChopChop to include new commands, it is important to follow these
 
 
 
-
+<a name="ImplUsageList"></a>
 ### 4.5&ensp;UsageList model
 
 This section details the design considerations of the statistics feature.
@@ -483,7 +484,7 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 
 
 
-
+<a name="ImplTopRecipes"></a>
 ### 4.6&ensp;View Top Recipes Feature
 The view top recipes feature allows the user to see the recipes that were made the most number of times based on saved records.
 It is executed with StatsRecipeTopCommand.
