@@ -279,11 +279,11 @@ of the current budget display.
   * Pros: Will be faster during execution. (Calculation and sorting/filtering are done during initialisation)
   * Cons: Slower initialisation and higher overhead cost and more memory used. 
 
-### \[Proposed\] Expense Sorting Feature
+### Expense Sorting Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed expense sorting command is facilitated by `UniqueExpenseList` and `ExpenseBook`. In addition
+The expense sorting command is facilitated by `UniqueExpenseList` and `ExpenseBook`. In addition
 , a new `Command` subclass, `SortCommand`, is required.   Specifically, the following operations are relevant to this
  command:
 
@@ -349,11 +349,11 @@ Step 4. The user then decides to execute the command `list`. This will revert th
   * Pros: Greater degree of customisation with regards to GUI.
   * Cons: Difficult to implement as it requires the creation of multiple subclasses of `ListCommand`.
 
-### \[Proposed\] Customisation of Command Keywords using Alias Feature
+### Customisation of Command Keywords using Alias Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword for which the user wishes to create a shortcut (an alias), and takes a second keyword which determines what its alias would be. 
+The implementation for the customisation of `COMMAND_WORD` field for various `Command` subclasses is by introducing another `Command` subclass, called the `AliasCommand`. This command takes in a command keyword for which the user wishes to create a shortcut (an alias), and takes a second keyword which determines what its alias would be. 
 
 Sample usage:
 By default, the only command word for `FindCommand` is `“find”`
@@ -377,6 +377,7 @@ The following is a sequence diagram showing how it works:
 Step 3. The user can now use the following command to trigger a FindCommand.
 
 * `get -d lunch at macs`
+
 #### Design consideration:
 
 ##### Aspect: How alias executes
@@ -393,24 +394,24 @@ Step 3. The user can now use the following command to trigger a FindCommand.
   * Cons: May be messy and slower learning users may get confused.
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Default Category
+### Default Category
 
 The function of the default category is to subsume all "untagged" `expenses` under some category.
 This is especially important for possible occasions such as when the User uses the application without any categories,
 or when the User deletes a category that existing `expenses` are linked to.
 
-#### Proposed Implementation
+#### Implementation
 
 The default category generally functions the same way as any user-created category, except that it cannot be deleted or
 renamed. It is contained separately from the user-created categories (if any) for this reason. If a new ExpenseBook is
 started, the default category is automatically initialized so that the User can use the full range of the basic
 features even without creating customized categories.
 
-### \[Proposed\] Graphical Representation Feature
+### Graphical Representation Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed graphical representation feature will allow the user to view a pie chart of his total spending, with each wedge representing the percentage of spending that corresponds to a specific tag.
+The graphical representation feature will allow the user to view a pie chart of his/her total spending, with each wedge representing the percentage of spending that corresponds to a specific tag.
 This graphical representation will be displayed on `GraphDisplayWindow` upon the execution of `GraphCommand`. This mechanism will be facilitated by `PieChartData` to retrieve the required data from `ExpenseBook`.
 `PieChartData` extends `ChartData` which allows abstracting out the implementation of different graphical representation formats for future versions.
 
@@ -443,7 +444,7 @@ The following activity diagram summarizes what happens when a user enters a grap
   * UI formatting is separated from the backend logic.
   * Allows for dynamic updating of graphs.
 
-* **Data re-retrieved upon every execution**
+* **Data retrieval occurs upon every execution**
   * Updates graph accordingly.
   * Will not show outdated graphs.
 
@@ -496,11 +497,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                                                                                 | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | user                                       | add a new expense                                                                                    |                                                                        |
+| `* * *`  | user                                       | add a new expense                                                                                    | update my new spending                                                 |
 | `* * *`  | user                                       | delete an expense                                                                                    | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | set a budget                                                                                         | track if I am sticking to my financial goals                           |
-| `* * *`  | user                                       | top up a budget                                                                                      |                                                                        |
-| `* * *`  | user                                       | edit an expense                                                                                      |                                                                        |
+| `* * *`  | user                                       | top up a budget                                                                                      | increase my spending limit                                             |
+| `* * *`  | user                                       | edit an expense                                                                                      | change details of the expense that is outdated or wrong                |
 | `* *`    | organized user                             | categorise my expenditure                                                                            | better segregate and manage various areas of my spending               |
 | `* *`    | new user                                   | use a help command                                                                                   | refer to instructions when I forget how to use the App                 |
 | `* *`    | efficient user                             | customise my command keywords                                                                        | customize my user experience and workflow according to my preferences  |
@@ -510,9 +511,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user who likes to see progress             | use a progress tracker to motivate myself                                                            | keep working at saving up                                              |
 | `*`      | cautious user                              | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
 | `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
-| `stretch`| careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
-| `stretch`| user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
-| `stretch`| forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
+| `*`      | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
+| `*`      | user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
+| `*`      | forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
 
 *{More to be added}*
 
@@ -534,15 +535,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given command format is invalid.
     * 1a1. Bamboo shows an error message.
+      
+      Use case ends.
+      
+* 1b. The given field value is invalid.
+    * 1b1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U2: Top-up budget
 
 **MSS**
 
-1. User requests to top up budget by an amount he provides.
-2. Bamboo tops up the user's budget by the amount given by the user.
-3. Bamboo lists all expenses and shows the budget balance.
+1. User requests to top up a specified budget by an amount and category he provides.
+2. Bamboo tops up the user's budget in the category and by the amount given by the user.
+3. Bamboo updates the budget balance.
 
     Use case ends.
 
@@ -550,6 +557,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The given top-up value is invalid.
     * 1a1. Bamboo shows an error message.
+      
+      Use case ends.
+
+* 1b. The given category value is invalid.
+    * 1b1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U3: Delete an expense
@@ -567,12 +580,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-
+    
   Use case ends.
 
 * 3a. The given expense does not exist.
     * 3a1. Bamboo shows an error message.
-
+      
       Use case resumes at step 2.
 
 #### Use case U4: Edit an expense
@@ -585,15 +598,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. Bamboo edits the expense.
 5. Bamboo feedbacks to user what was changed.
 6. Bamboo lists all expenses and shows the new budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty.
     * 2a1. Bamboo shows an error message
+      
       Use case ends
+
 * 3a. The given field value is invalid.
     * 3a1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U5: List all expenses
@@ -614,13 +631,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a remark to specified expense item.
 2. Bamboo adds remark to specified expense item.
 3. Bamboo lists all expenses and shows the budget balance.
+
    Use case ends.
 
 **Extensions**
 
 * 1a. The given expense does not exist.
     * 1a1. Bamboo shows an error message.
+    
     Use case ends.
+    
+* 1b. The given field value is invalid.
+    * 1b1. Bamboo shows an error message.
+      
+      Use case ends.
 
 #### Use case U7: Find an expense
 
@@ -628,12 +652,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to find expense by certain identifiers and search terms.
 2. Bamboo shows a list of expenses which match the identifiers and search terms, and shows the overall budget balance.
+   
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      
       Use case ends.
       
 #### Use case U8: Sort expense list
@@ -642,12 +668,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to sort currently displayed expenses by certain sort criterion.
 2. Bamboo sorts the currently displayed expenses according to user-specified sort criterion. 
 3. Bamboo displays the sorted expenses to the user with the budget balance.
+   
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U9: Add category 
@@ -656,15 +684,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new category with a user-specified category name.
 2. Bamboo creates a new category with the user-specified name and shows a success message.
 3. Bamboo lists all expenses and shows the budget balance.
+   
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      
       Use case ends.
+
 * 1b. The given category name already exists.
     * 1b1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U10: Delete category 
@@ -674,12 +706,17 @@ Similar to U9, except it's the opposite.
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      
       Use case ends.
+
 * 1b. The given category name does not exist.
     * 1b1. Bamboo shows an error message.
+      
       Use case ends.
+
 * 1c. The given category name is restricted e.g. `Default` category.
     * 1c1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U11: Switch category 
@@ -688,15 +725,19 @@ Similar to U9, except it's the opposite.
 1. User requests to switch to a user-specified category
 2. Bamboo shows all expenses which are tagged under the user-specified category, 
 along with the budget for that category.
+   
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      
       Use case ends.
+
 * 1b. The given category does not exist.
     * 1b1. Bamboo shows an error message.
+      
       Use case ends.
 
 #### Use case U12: Change Command Keyword 
@@ -704,15 +745,19 @@ along with the budget for that category.
 
 1. User requests to change command keyword to a user-defined string.
 2. Bamboo maps the command linked to the original command keyword to the user-defined string.
+   
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      
       Use case ends.
+
 * 1b. The user-defined string is already a command keyword.
     * 1b1. Bamboo shows an error message.
+      
       Use case ends.
 
 ### Non-Functional Requirement
@@ -756,6 +801,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   Alternatively, enter `java -jar expensebook-v1.4.jar` in Command Prompt after switching to the directory with the jar file.
 
 1. Saving window preferences
 
