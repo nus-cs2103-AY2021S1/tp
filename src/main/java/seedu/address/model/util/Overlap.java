@@ -33,7 +33,7 @@ public class Overlap {
                 && second != null
                 && first.getDayOfWeek().equals(second.getDayOfWeek())
                 && Overlap.isOverlappingTimePeriod(first.getStartDateTimeValue(), first.getEndDateTimeValue(),
-                first.getStartDateTimeValue(), second.getStartDateTimeValue());
+                second.getStartDateTimeValue(), second.getEndDateTimeValue());
     }
     /**
      * Checks if a time slot overlaps with an existing lesson in PlaNus.
@@ -65,6 +65,6 @@ public class Overlap {
      * Checks if a time slot overlaps with an existing lesson or event in PlaNus.
      */
     public static boolean overlapWithOtherTimeSlots(Model model, TimeSlot timeSlot) {
-        return overlapWithOtherLessons(model, timeSlot) && overlapWithOtherEvents(model, timeSlot);
+        return overlapWithOtherLessons(model, timeSlot) || overlapWithOtherEvents(model, timeSlot);
     }
 }

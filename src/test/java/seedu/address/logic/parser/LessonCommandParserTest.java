@@ -36,53 +36,41 @@ public class LessonCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsLessonCommand() { //TODO:ZIJIAN
+    public void parse_validArgs_returnsLessonCommand() {
         Lesson expectedLesson = new Lesson(new Title(VALID_TITLE_CS2103T), new Tag(VALID_TAG_CS2103T),
                 new Description(VALID_DESC_CS2103T), DayOfWeek.MONDAY, LocalTime.of(12,0), 
                 LocalTime.of(14,0), LocalDate.of(2020,1,1),
                 LocalDate.of(2020,11,1));
-        System.out.println(expectedLesson);
         LessonCommand expectedLessonCommand = new LessonCommand(expectedLesson);
         // no leading and trailing whitespaces
-        System.out.println(String.format("%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
-                LessonCommand.COMMAND_WORD,
-                PREFIX_TITLE, VALID_TITLE_CS2103T,
-                PREFIX_TAG, VALID_TAG_CS2103T,
-                PREFIX_DAY, VALID_DAY_CS2103T,
-                PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
-                PREFIX_START_TIME, VALID_START_TIME_CS2103T,
-                PREFIX_END_TIME, VALID_END_TIME_CS2103T,
-                PREFIX_START_DATE, VALID_START_DATE_CS2103T,
-                PREFIX_END_DATE, VALID_END_DATE_CS2103T
-        ));
-//        assertParseSuccess(parser,
-//                String.format("%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
-//                        LessonCommand.COMMAND_WORD,
-//                        PREFIX_TITLE, VALID_TITLE_CS2103T, 
-//                        PREFIX_TAG, VALID_TAG_CS2103T, 
-//                        PREFIX_DAY, VALID_DAY_CS2103T,
-//                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
-//                        PREFIX_START_TIME, VALID_START_TIME_CS2103T, 
-//                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
-//                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
-//                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
-//                ),
-//                expectedLessonCommand
+        assertParseSuccess(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T, 
+                        PREFIX_TAG, VALID_TAG_CS2103T, 
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T, 
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedLessonCommand
         );
 
-//        // multiple whitespaces between keywords
-//        assertParseSuccess(parser,
-//                String.format("%s %s    %s  %s   %s  %s %s %s %s %s %s %s %s %s %s %s",
-//                        PREFIX_TITLE, VALID_TITLE_CS2103T,
-//                        PREFIX_TAG, VALID_TAG_CS2103T,
-//                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
-//                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
-//                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
-//                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
-//                        PREFIX_START_DATE, VALID_START_DATE_CS2103T
-//                ),
-//                expectedLessonCommand
-//        );
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser,
+                String.format(" %s %s %s %s %s    %s %s   %s  %s   %s %s   %s %s   %s %s  %s  ",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedLessonCommand
+        );
     }
 
     @Test
