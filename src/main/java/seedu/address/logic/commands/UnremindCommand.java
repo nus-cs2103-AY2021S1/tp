@@ -35,6 +35,8 @@ public class UnremindCommand extends NegateCommand {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNREMIND_ASSIGNMENT_SUCCESS = "Removed reminder for Assignment: %1$s";
+    public static final String MESSAGE_INVALID_DISPLAYED_REMINDERS_INDEX = "The assignment's Your reminders index "
+            + "provided is invalid";
 
     /**
      * Constructs an UnremindCommand to remove reminders from the specified assignment.
@@ -50,7 +52,7 @@ public class UnremindCommand extends NegateCommand {
         List<Assignment> remindedAssignmentsList = model.getRemindedAssignmentsList();
 
         if (getTargetIndex().getZeroBased() >= remindedAssignmentsList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_DISPLAYED_REMINDERS_INDEX);
         }
 
         Assignment assignmentToUnremind = remindedAssignmentsList.get(getTargetIndex().getZeroBased());
