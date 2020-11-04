@@ -9,7 +9,9 @@ import seedu.address.model.item.Item;
  */
 public class PrintableRecipe extends Recipe {
 
-    private String printableIngredientList;
+    private final String printableIngredientList;
+    /* Indicates if index should be altered when displayed. */
+    private boolean offset;
 
     /**
      * Every field must be present and not null.
@@ -21,9 +23,21 @@ public class PrintableRecipe extends Recipe {
         StringBuilder sb = new StringBuilder();
         ingredients.forEach(ingredient -> sb.append(ingredient.toString(filteredItemList)).append(" "));
         this.printableIngredientList = sb.toString();
+        offset = false;
     }
 
     public String getPrintableIngredients() {
         return this.printableIngredientList;
+    }
+
+    /**
+     * Used only in view details command to toggle an offset of the recipe index.
+     */
+    public void includeOffset() {
+        offset = true;
+    }
+
+    public boolean getOffset() {
+        return offset;
     }
 }

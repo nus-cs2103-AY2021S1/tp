@@ -35,15 +35,15 @@ public class AddQuantityToItemCommand extends Command {
     public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name must be provided.";
     public static final String MESSAGE_QUANTITY_NOT_PROVIDED = "Quantity must be provided.";
     public static final String MESSAGE_NEGATIVE_QUANTITY = "Quantity will become negative.";
-
+    public static final String MESSAGE_OVERFLOW_QUANTITY = "Quantity will overflow.";
     private static final Logger logger = LogsCenter.getLogger(AddQuantityToItemCommand.class);
-
     private final String itemName;
     private final Quantity quantity;
     private boolean hasCommit; // determines if model.commit should be called in edit item command
 
     /**
      * Constructor for add quantity to item command.
+     *
      * @param quantity quantity to add to the item, can be negative
      */
     public AddQuantityToItemCommand(String itemName, Quantity quantity) {
@@ -56,6 +56,7 @@ public class AddQuantityToItemCommand extends Command {
 
     /**
      * Constructor used when add quantity to item command is part of crafting
+     *
      * @param quantity quantity to add to the item, can be negative
      */
     public AddQuantityToItemCommand(String itemName, Quantity quantity, boolean hasCommit) {
@@ -78,11 +79,15 @@ public class AddQuantityToItemCommand extends Command {
 
         Item itemToEdit = itemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(()-> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
-        assert(itemToEdit != null);
-        assert(itemToEdit.getQuantity() != null);
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
+        assert (itemToEdit != null);
+        assert (itemToEdit.getQuantity() != null);
 
         if ((itemToEdit.getQuantity().getNumber() + quantity.toInt()) < 0) {
+            // check for overflow
+            if (itemToEdit.getQuantity().getNumber() >= 0 && quantity.toInt() >= 0) {
+                throw new CommandException(MESSAGE_OVERFLOW_QUANTITY);
+            }
             throw new CommandException(MESSAGE_NEGATIVE_QUANTITY);
         }
 

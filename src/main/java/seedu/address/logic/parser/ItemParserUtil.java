@@ -82,7 +82,7 @@ public class ItemParserUtil {
         if (!Quantity.isValidQuantityAllowNegative(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        return new Quantity(trimmedQuantity);
+        return new Quantity(trimmedQuantity, true);
     }
 
     /**
