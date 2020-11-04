@@ -308,6 +308,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setBidBook(ReadOnlyBidBook bidBook) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ReadOnlyBidBook getBidBook() {
         throw new AssertionError("This method should not be called.");
     }

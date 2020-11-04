@@ -89,6 +89,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * @return The added property.
      */
     public Property addProperty(Property p) {
+        requireNonNull(p);
         return properties.add(p);
     }
 
@@ -108,6 +109,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
+        requireNonNull(key);
         properties.remove(key);
     }
 
@@ -118,6 +120,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      * @param propertyId The propertyId of the property to be removed.
      */
     public void removePropertyByPropertyId(PropertyId propertyId) {
+        requireNonNull(propertyId);
         properties.removeByPropertyId(propertyId);
     }
 
@@ -127,24 +130,8 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      *
      * @param sellerId the sellerId of which to remove the property.
      */
-    public void removePropertyBySellerId(SellerId sellerId) {
-        properties.removeBySellerId(sellerId);
-    }
-
-    /**
-     * Retrieves a list of properties which contain the seller id.
-     *
-     * @param sellerId seller id of which the properties will correspond to.
-     * @return list of properties which contain the seller id.
-     */
-    public ArrayList<Property> getPropertyIdBySellerId(SellerId sellerId) {
-        ArrayList<Property> propertiesWithSellerId = new ArrayList<>();
-        properties.forEach(property -> {
-            if (property.getSellerId().equals(sellerId)) {
-                propertiesWithSellerId.add(property);
-            }
-        });
-        return propertiesWithSellerId;
+    public void removeAllPropertiesWithSellerId(SellerId sellerId) {
+        properties.removeAllWithSellerId(sellerId);
     }
 
     /**
@@ -156,6 +143,23 @@ public class PropertyBook implements ReadOnlyPropertyBook {
      */
     public Property getPropertyById(PropertyId propertyId) {
         return properties.getPropertyById(propertyId);
+    }
+
+    /**
+     * Retrieves a list of properties which contain the seller id.
+     *
+     * @param sellerId seller id of which the properties will correspond to.
+     * @return list of properties which contain the seller id.
+     */
+    public ArrayList<Property> getPropertiesBySellerId(SellerId sellerId) {
+        requireNonNull(sellerId);
+        ArrayList<Property> propertiesWithSellerId = new ArrayList<>();
+        properties.forEach(property -> {
+            if (property.getSellerId().equals(sellerId)) {
+                propertiesWithSellerId.add(property);
+            }
+        });
+        return propertiesWithSellerId;
     }
 
     /**
@@ -173,7 +177,6 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     @Override
     public String toString() {
         return properties.asUnmodifiableObservableList().size() + " properties";
-        // TODO: refine later
     }
 
     @Override
@@ -188,8 +191,4 @@ public class PropertyBook implements ReadOnlyPropertyBook {
                 && properties.equals(((PropertyBook) other).properties));
     }
 
-    @Override
-    public int hashCode() {
-        return properties.hashCode();
-    }
 }

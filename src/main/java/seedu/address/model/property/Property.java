@@ -3,8 +3,6 @@ package seedu.address.model.property;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
 
-import java.util.Objects;
-
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.price.Price;
@@ -149,16 +147,10 @@ public class Property {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(propertyId, propertyName, address,
-                askingPrice, propertyType, sellerId, isRental, isClosedDeal);
-    }
-
-    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         if (isClosedDeal().isClosedDeal) {
-            builder.append("[CLOSED] ");
+            builder.append("[CLOSED]\n");
         }
         builder.append(getPropertyName())
                 .append("\nProperty Id: ")

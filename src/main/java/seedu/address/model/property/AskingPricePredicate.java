@@ -1,5 +1,7 @@
 package seedu.address.model.property;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.function.Predicate;
 
 import seedu.address.model.price.PriceFilter;
@@ -11,7 +13,13 @@ public class AskingPricePredicate implements Predicate<Property> {
 
     private final PriceFilter priceFilter;
 
+    /**
+     * Constructs the {@code AskingPricePredicate} with the specified {@code priceFilter}.
+     *
+     * @param priceFilter The specified PriceFilter.
+     */
     public AskingPricePredicate(PriceFilter priceFilter) {
+        requireNonNull(priceFilter);
         this.priceFilter = priceFilter;
     }
 

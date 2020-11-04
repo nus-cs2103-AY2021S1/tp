@@ -49,9 +49,4 @@ public class Address {
                 && value.equals(((Address) other).value)); // state check
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

@@ -36,7 +36,8 @@ public class UniqueBidList implements Iterable<Bid> {
      *
      * @param bidderId The bidder id specified.
      */
-    public void removeByBidderId(BidderId bidderId) {
+    public void removeAllWithBidderId(BidderId bidderId) {
+        requireNonNull(bidderId);
         internalBidList.removeIf(bid -> bid.getBidderId().equals(bidderId));
     }
 
@@ -66,7 +67,7 @@ public class UniqueBidList implements Iterable<Bid> {
      *
      * @param propertyId The propertyId of the property to be deleted.
      */
-    public void removeByPropertyId(PropertyId propertyId) {
+    public void removeAllWithPropertyId(PropertyId propertyId) {
         requireNonNull(propertyId);
         internalBidList.removeIf(bid -> bid.getPropertyId().equals(propertyId));
     }

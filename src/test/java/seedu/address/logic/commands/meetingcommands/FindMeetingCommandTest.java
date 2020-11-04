@@ -71,7 +71,6 @@ class FindMeetingCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-
     @Test
     public void execute_zeroKeywords_noMeetingFound() {
         String expectedMessage = String.format(MESSAGE_MEETINGS_LISTED_OVERVIEW, 0);
@@ -102,7 +101,6 @@ class FindMeetingCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredMeetingList());
 
     }
-
 
     @Test
     public void execute_multipleKeywords_multipleMeetingFound() {
@@ -162,7 +160,6 @@ class FindMeetingCommandTest {
         assertEquals(Arrays.asList(VIEWINGMEETING03),
                 model.getFilteredMeetingList());
     }
-
 
     /**
      * Parses {@code userInput} into a {@code BidderIdContainsKeywordsPredicate}.

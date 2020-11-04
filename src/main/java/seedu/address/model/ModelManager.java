@@ -132,19 +132,13 @@ public class ModelManager implements Model {
         userPrefs.setGuiSettings(guiSettings);
     }
 
-    @Override
-    public Path getPropertyBookFilePath() {
-        return userPrefs.getPropertyBookFilePath();
-    }
-
-    @Override
-    public void setPropertyBookFilePath(Path propertyBookFilePath) {
-        requireNonNull(propertyBookFilePath);
-        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
-    }
-
-
     //=========== BidBook ================================================================================
+
+
+    @Override
+    public void setBidBook(ReadOnlyBidBook bidBook) {
+        this.bidBook.resetData(bidBook);
+    }
 
     @Override
     public ReadOnlyBidBook getBidBook() {
@@ -233,6 +227,17 @@ public class ModelManager implements Model {
     //=========== PropertyBook ================================================================================
 
     @Override
+    public Path getPropertyBookFilePath() {
+        return userPrefs.getPropertyBookFilePath();
+    }
+
+    @Override
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
+    }
+
+    @Override
     public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
         this.propertyBook.resetData(propertyBook);
     }
@@ -257,15 +262,15 @@ public class ModelManager implements Model {
     @Override
     public void deleteProperty(Property target) {
         PropertyId propertyId = target.getPropertyId();
-        bidBook.removeBidsByPropertyId(propertyId);
-        meetingBook.removeMeetingsByPropertyId(propertyId);
+        bidBook.removeAllBidsWithPropertyId(propertyId);
+        meetingBook.removeAllMeetingsWithPropertyId(propertyId);
         propertyBook.removeProperty(target);
     }
 
     @Override
     public void deletePropertyByPropertyId(PropertyId propertyId) {
-        bidBook.removeBidsByPropertyId(propertyId);
-        meetingBook.removeMeetingsByPropertyId(propertyId);
+        bidBook.removeAllBidsWithPropertyId(propertyId);
+        meetingBook.removeAllMeetingsWithPropertyId(propertyId);
         propertyBook.removePropertyByPropertyId(propertyId);
     }
 
@@ -295,10 +300,10 @@ public class ModelManager implements Model {
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
+        requireAllNonNull(target, editedProperty);
         if (!isValidProperty(editedProperty)) {
             throw new InvalidSellerIdException();
         }
-        requireAllNonNull(target, editedProperty);
         propertyBook.setProperty(target, editedProperty);
     }
 
@@ -421,8 +426,8 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteBidder(Bidder target) {
-        bidBook.removeByBidderId((BidderId) target.getId());
-        meetingBook.removeMeetingByBidderId((BidderId) target.getId());
+        bidBook.removeAllBidsWithBidderId((BidderId) target.getId());
+        meetingBook.removeAllMeetingsWithBidderId((BidderId) target.getId());
         bidderAddressBook.removeBidder(target);
     }
 
@@ -486,9 +491,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSeller(Seller target) {
-        ArrayList<Property> propertiesToRemove = propertyBook.getPropertyIdBySellerId((SellerId) target.getId());
+        ArrayList<Property> propertiesToRemove = propertyBook.getPropertiesBySellerId((SellerId) target.getId());
         propertiesToRemove.forEach(this::deleteProperty);
-        propertyBook.removePropertyBySellerId((SellerId) target.getId());
+        propertyBook.removeAllPropertiesWithSellerId((SellerId) target.getId());
         sellerAddressBook.removeSeller(target);
     }
 
