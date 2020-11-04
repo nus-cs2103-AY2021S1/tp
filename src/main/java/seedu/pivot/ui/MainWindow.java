@@ -125,6 +125,10 @@ public class MainWindow extends UiPart<Stage> {
     private String currentPage = homepage;
     private String currentPanel = mainPanel;
 
+    // For changing CSS
+    private final String darkThemeResource = getClass().getResource("/view/DarkTheme.css").toExternalForm();
+    private final String blueThemeResource = getClass().getResource("/view/BlueTheme.css").toExternalForm();
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -165,7 +169,20 @@ public class MainWindow extends UiPart<Stage> {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 if (newValue != null) {
-                    currentPage = newValue.equals(ArchiveStatus.DEFAULT) ? homepage : archive;
+                    boolean isDefaultPage = newValue.equals(ArchiveStatus.DEFAULT);
+                    currentPage = isDefaultPage ? homepage : archive;
+
+                    if (isDefaultPage) {
+                        primaryStage.getScene().getStylesheets().remove(darkThemeResource);
+                        if (!primaryStage.getScene().getStylesheets().contains(blueThemeResource)) {
+                            primaryStage.getScene().getStylesheets().add(blueThemeResource);
+                        }
+                    } else {
+                        primaryStage.getScene().getStylesheets().remove(blueThemeResource);
+                        if (!primaryStage.getScene().getStylesheets().contains(darkThemeResource)) {
+                            primaryStage.getScene().getStylesheets().add(darkThemeResource);
+                        }
+                    }
                 }
                 updateSectionLabel(EMPTY);
             }
