@@ -22,6 +22,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
+import seedu.address.model.item.Quantity;
 import seedu.address.testutil.ItemBuilder;
 
 public class AddQuantityToItemCommandIntegrationTest {
@@ -29,6 +30,9 @@ public class AddQuantityToItemCommandIntegrationTest {
     private Model model;
     private Model expectedModel;
     private Item apple;
+    private Quantity incrementedQuantity = new Quantity(VALID_QUANTITY_INCREMENT + "");
+    private Quantity decrementedQuantity = new Quantity(VALID_QUANTITY_DECREMENT + "", true);
+    private Quantity invalidDecrementedQuantity = new Quantity(INVALID_QUANTITY_DECREMENT + "", true);
 
     /**
      * Sets up model to contain an item list with only the item apple in it.
@@ -45,7 +49,8 @@ public class AddQuantityToItemCommandIntegrationTest {
 
     @Test
     public void constructor_throwsNullException() {
-        assertThrows(NullPointerException.class, () -> new AddQuantityToItemCommand(null, 0));
+        assertThrows(NullPointerException.class, () ->
+                new AddQuantityToItemCommand(null, new Quantity(0 + "")));
     }
 
     /**
@@ -53,7 +58,7 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @Test
     public void execute_addQuantity_success() {
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_INCREMENT);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, incrementedQuantity);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_INCREASED_QUANTITY).build();
@@ -68,7 +73,7 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @Test
     public void execute_decreaseQuantity_success() {
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, VALID_QUANTITY_DECREMENT);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, decrementedQuantity);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_DECREASED_QUANTITY).build();
@@ -84,7 +89,7 @@ public class AddQuantityToItemCommandIntegrationTest {
      */
     @Test
     public void execute_decreaseQuantityToNegative_throwsException() {
-        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, INVALID_QUANTITY_DECREMENT);
+        AddQuantityToItemCommand aic = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE, invalidDecrementedQuantity);
         String expectedMessage = AddQuantityToItemCommand.MESSAGE_NEGATIVE_QUANTITY;
 
         assertInventoryCommandFailure(aic, model, expectedMessage);

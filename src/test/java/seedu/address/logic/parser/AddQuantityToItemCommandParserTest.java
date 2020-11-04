@@ -8,10 +8,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddQuantityToItemCommand;
+import seedu.address.model.item.Quantity;
 
 public class AddQuantityToItemCommandParserTest {
 
     private final AddQuantityToItemCommandParser parser = new AddQuantityToItemCommandParser();
+    private Quantity validQuantity = new Quantity(VALID_QUANTITY_INT + "");
 
     /**
      * Test creation of add quantity command.
@@ -20,7 +22,7 @@ public class AddQuantityToItemCommandParserTest {
     public void parse_validArgs_returnsAddQuantityToItemCommand() {
         String userInput = "addq -n " + VALID_ITEM_NAME_APPLE + " -q " + VALID_QUANTITY_INT;
         AddQuantityToItemCommand expectedCommand = new AddQuantityToItemCommand(VALID_ITEM_NAME_APPLE,
-                VALID_QUANTITY_INT);
+                validQuantity);
 
         //expected user input constructs successful edit item command
         assertParseSuccess(parser, userInput, expectedCommand);

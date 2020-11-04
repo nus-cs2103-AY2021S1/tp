@@ -45,8 +45,10 @@ public class CraftItemCommandIntegrationTest {
         CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("2"), Index.fromZeroBased(0));
         String expectedMessage = String.format(CraftItemCommand.MESSAGE_SUCCESS, APPLE.getName(), 2);
         // simulate crafting in expected model manually
-        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana", -3);
-        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple", 2);
+        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana",
+                new Quantity(-3 + "", true));
+        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple",
+                new Quantity(2 + ""));
         use3Bananas.execute(expectedModel);
         craft1Apple.execute(expectedModel);
 
@@ -62,8 +64,10 @@ public class CraftItemCommandIntegrationTest {
         String expectedMessage = CraftItemCommand.MESSAGE_MISSING_RECIPE_INDEX
                 + String.format(CraftItemCommand.MESSAGE_SUCCESS, APPLE.getName(), 2);
         // simulate crafting in expected model manually
-        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana", -3);
-        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple", 2);
+        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana",
+                new Quantity(-3 + "", true));
+        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple",
+                new Quantity(2 + ""));
         use3Bananas.execute(expectedModel);
         craft1Apple.execute(expectedModel);
 
@@ -78,8 +82,10 @@ public class CraftItemCommandIntegrationTest {
         CraftItemCommand cic = new CraftItemCommand(APPLE.getName(), new Quantity("1"), Index.fromZeroBased(0));
         String expectedMessage = String.format(CraftItemCommand.MESSAGE_SUCCESS_EXCESS, APPLE.getName(), 2, 1);
         // simulate crafting in expected model manually
-        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana", -3);
-        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple", 2);
+        AddQuantityToItemCommand use3Bananas = new AddQuantityToItemCommand("Banana",
+                new Quantity(-3 + "", true));
+        AddQuantityToItemCommand craft1Apple = new AddQuantityToItemCommand("Apple",
+                new Quantity(2 + ""));
         use3Bananas.execute(expectedModel);
         craft1Apple.execute(expectedModel);
 

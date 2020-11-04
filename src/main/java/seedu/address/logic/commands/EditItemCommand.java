@@ -50,8 +50,10 @@ public class EditItemCommand extends Command {
 
     private final String itemName;
     private final EditItemDescriptor editItemDescriptor;
+    private boolean hasCommit; // determines if model.commit should be called
 
     /**
+     * Default constructor of edit item command.
      * @param itemName of the item in the filtered item list to edit
      * @param editItemDescriptor details to edit the item with
      */
@@ -61,6 +63,21 @@ public class EditItemCommand extends Command {
 
         this.itemName = itemName;
         this.editItemDescriptor = new EditItemDescriptor(editItemDescriptor);
+        this.hasCommit = true;
+    }
+
+    /**
+     * Constructor for when edit item command is called from other commands
+     * @param itemName of the item in the filtered item list to edit
+     * @param editItemDescriptor details to edit the item with
+     */
+    public EditItemCommand(String itemName, EditItemDescriptor editItemDescriptor, boolean hasCommit) {
+        requireNonNull(itemName);
+        requireNonNull(editItemDescriptor);
+
+        this.itemName = itemName;
+        this.editItemDescriptor = new EditItemDescriptor(editItemDescriptor);
+        this.hasCommit = hasCommit;
     }
 
     @Override
@@ -93,7 +110,9 @@ public class EditItemCommand extends Command {
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
 
-        model.commitInventory();
+        if (hasCommit) {
+            model.commitInventory();
+        }
 
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
@@ -132,7 +151,8 @@ public class EditItemCommand extends Command {
         // state check
         EditItemCommand e = (EditItemCommand) other;
         return itemName.equals(e.itemName)
-                && editItemDescriptor.equals(e.editItemDescriptor);
+                && editItemDescriptor.equals(e.editItemDescriptor)
+                && hasCommit == e.hasCommit;
     }
 
     /**

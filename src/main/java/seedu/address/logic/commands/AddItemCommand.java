@@ -73,7 +73,6 @@ public class AddItemCommand extends Command {
 
     /**
      * Checks if the item has any default parameters set
-     * TODO expand this criteria
      * @param itemToAdd item to check
      * @return boolean to check
      */
