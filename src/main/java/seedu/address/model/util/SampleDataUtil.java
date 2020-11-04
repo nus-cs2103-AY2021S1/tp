@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import static seedu.address.commons.util.DateUtil.parseToDate;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +42,9 @@ import seedu.address.model.student.admin.PaymentDate;
 public class SampleDataUtil {
     public static Student[] getSamplePersons() {
         //Sample Exams
-        Exam sampleExam1 = new Exam("CA2", "13/3/2020", new Score("34/50"));
-        Exam sampleExam2 = new Exam("End of Year 2020", "5/11/2020", new Score("50/50"));
-        Exam sampleExam3 = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
+        Exam sampleExam1 = new Exam("CA2", parseToDate("13/3/2020"), new Score("34/50"));
+        Exam sampleExam2 = new Exam("End of Year 2020", parseToDate("13/3/2020"), new Score("50/50"));
+        Exam sampleExam3 = new Exam("Mid Year 2020", parseToDate("13/3/2020"), new Score("26/50"));
 
         return new Student[]{
             new Student(new Name("Alex Yeoh"), new Phone("87438807"),
@@ -51,7 +53,7 @@ public class SampleDataUtil {
                         new ClassTime("1 1400-1500"), new Fee("430"),
                         new PaymentDate("23/4/19"), getDetailList("clever"),
                         getQuestions("How do birds fly?"), getExams(sampleExam1, sampleExam2),
-                        getAttendance(new Attendance("14/04/1998", "present",
+                        getAttendance(new Attendance(parseToDate("06/05/2010"), true,
                                 new Feedback("attentive")))),
             new Student(new Name("Bernice Yu"), new Phone("99272758"),
                         new School("Montford Secondary School"), new Year("Sec 4"),
@@ -59,7 +61,7 @@ public class SampleDataUtil {
                         new ClassTime("1 1500-1600"), new Fee("50"),
                         new PaymentDate("30/6/20"), getDetailList(),
                         getSolvedQuestions("Read your textbook", "Explain heat flow."), getExams(),
-                        getAttendance(new Attendance("06/05/2010", "absent",
+                        getAttendance(new Attendance(parseToDate("06/05/2010"), false,
                                 new Feedback("was sick")))),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new School("Raffles Girls School"), new Year("Sec 3"),
@@ -67,7 +69,7 @@ public class SampleDataUtil {
                         new ClassTime("2 1900-2030"), new Fee("680"),
                         new PaymentDate("1/12/19"), getDetailList(),
                         getQuestions(), getExams(sampleExam3),
-                        getAttendance(new Attendance("01/01/2020", "present",
+                        getAttendance(new Attendance(parseToDate("06/05/2010"), true,
                                 new Feedback("prepared well")))),
             new Student(new Name("David Li"), new Phone("91031282"),
                         new School("Anderson Primary School"), new Year("P2"),
@@ -75,7 +77,7 @@ public class SampleDataUtil {
                         new ClassTime("6 0800-0950"), new Fee("12"),
                         new PaymentDate("24/7/20"), getDetailList("friend"),
                         getQuestions("How do birds fly?", "Explain heat flow."), getExams(),
-                        getAttendance(new Attendance("26/10/2020", "absent",
+                        getAttendance(new Attendance(parseToDate("06/05/2010"), false,
                                 new Feedback("productive session")))),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"),
                         new School("National Junior College"), new Year("J1"),
@@ -83,7 +85,7 @@ public class SampleDataUtil {
                         new ClassTime("3 1300-1400"), new Fee("0"),
                         new PaymentDate("7/4/20"), getDetailList("clever", "friend"),
                         getQuestions(), getExams(),
-                        getAttendance(new Attendance("25/12/2020", "present",
+                        getAttendance(new Attendance(parseToDate("06/05/2010"), true,
                                 new Feedback("studied through christmas")))),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"),
                         new School("Catholic High School"), new Year("J2"),
@@ -91,7 +93,7 @@ public class SampleDataUtil {
                         new ClassTime("4 2000-2130"), new Fee("38"),
                         new PaymentDate("19/12/19"), getDetailList("rude"),
                         getQuestions(), getExams(sampleExam2, sampleExam3),
-                        getAttendance(new Attendance("20/04/98", "present",
+                        getAttendance(new Attendance(parseToDate("06/05/2010"), false,
                                 new Feedback("unprepared"))))
         };
     }

@@ -50,7 +50,7 @@ public class ScheduleCommandParserTest {
 
         //invalid date
         assertParseFailure(parser, " m/daily d/1234",
-                ScheduleViewCommand.MESSAGE_INVALID_DATE);
+                ScheduleViewCommand.MESSAGE_CONSTRAINTS);
     }
 
     @Test
