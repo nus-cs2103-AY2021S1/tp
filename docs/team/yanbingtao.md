@@ -5,9 +5,9 @@ title: Yan BingTao's Project Portfolio Page
 
 ## Project: tCheck
 
-tCheck is a desktop application that helps bubble tea store managers manage the contact information, store’s
-inventory and historical sales data. It is optimized for CLI users to update and retrieve the information more
-efficiently.
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of the
+ (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is optimized
+  for CLI users to update and retrieve the information more efficiently.
 
 Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=T12-2&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
