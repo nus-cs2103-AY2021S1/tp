@@ -61,6 +61,8 @@ public class ViewModuleCommand extends Command {
             displayZoomLinkList.add(displayZoomLink);
         }
         viewCommandResult.setDisplayZoomLinks(displayZoomLinkList);
+        viewCommandResult.setAssignments(moduleToView.getGradeTracker().getAssignments());
+        viewCommandResult.setModule(moduleToView);
         return viewCommandResult;
     }
 

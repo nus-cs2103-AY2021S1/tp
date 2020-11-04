@@ -25,9 +25,10 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="lessonName" styleClass="cell_big_label" text="\$first" />
-                <Label fx:id="link" styleClass="cell_big_label" text="\$first" onMouseClicked="#copyZoomLink"/>
+                <Label fx:id="assignmentName" styleClass="cell_big_label" text="\$first" />
             </HBox>
+         <Label fx:id="assignmentPercentage" styleClass="cell_big_label" text="\$first" />
+         <Label fx:id="assignmentResult" styleClass="cell_big_label" text="\$first" />
         </VBox>
         <rowConstraints>
             <RowConstraints />
