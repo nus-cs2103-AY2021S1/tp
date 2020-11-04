@@ -34,6 +34,7 @@ import static seedu.address.testutil.TypicalRecipes.NOODLE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.recipe.AddRecipeCommand;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Calories;
@@ -137,6 +138,24 @@ public class AddRecipeCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS
                 + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS
                 + TAG_DESC_MARGARITAS, Name.MESSAGE_CONSTRAINTS);
+
+        //empty ingredient names
+        String recipeWithInvalidIngredient1 =
+                CommandTestUtil.missingRecipeField(CommandTestUtil.Field.EMPTY_IG_NAME_1);
+        assertParseFailure(parser, recipeWithInvalidIngredient1, Ingredient.MESSAGE_CONSTRAINTS);
+
+        String recipeWithInvalidIngredient2 =
+                CommandTestUtil.missingRecipeField(CommandTestUtil.Field.EMPTY_IG_NAME_2);
+        assertParseFailure(parser, recipeWithInvalidIngredient2, Ingredient.MESSAGE_CONSTRAINTS);
+
+        String recipeWithInvalidIngredient3 =
+                CommandTestUtil.missingRecipeField(CommandTestUtil.Field.EMPTY_IG_NAME_3);
+        assertParseFailure(parser, recipeWithInvalidIngredient3, Ingredient.MESSAGE_CONSTRAINTS);
+
+        String recipeWithInvalidIngredient4 =
+                CommandTestUtil.missingRecipeField(CommandTestUtil.Field.EMPTY_IG_NAME_4);
+        assertParseFailure(parser, recipeWithInvalidIngredient4, Ingredient.MESSAGE_CONSTRAINTS);
+
 
         // invalid ingredients
         assertParseFailure(parser, NAME_DESC_MARGARITAS + INVALID_INGREDIENT_DESC + CALORIES_DESC_MARGARITAS

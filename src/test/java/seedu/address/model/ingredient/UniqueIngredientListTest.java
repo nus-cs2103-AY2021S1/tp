@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIngredients.MANGO;
 import static seedu.address.testutil.TypicalIngredients.POTATO;
+import static seedu.address.testutil.TypicalIngredients.POTATO1;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,21 +30,57 @@ public class UniqueIngredientListTest {
     @Test
     public void contains_ingredientNotInList_returnsFalse() {
         assertFalse(uniqueIngredientList.contains(POTATO));
+        assertFalse(uniqueIngredientList.contains(POTATO1));
     }
 
     @Test
     public void contains_ingredientInList_returnsTrue() {
         uniqueIngredientList.add(POTATO);
         assertTrue(uniqueIngredientList.contains(POTATO));
+        assertFalse(uniqueIngredientList.contains(POTATO1));
     }
 
     @Test
     public void contains_ingredientWithSameIdentityFieldsInList_returnsTrue() {
         uniqueIngredientList.add(POTATO);
-        Ingredient editedAlice = new IngredientBuilder(POTATO)
+        Ingredient editedIngredient = new IngredientBuilder(POTATO)
                 .build();
-        assertTrue(uniqueIngredientList.contains(editedAlice));
+        Ingredient editedIngredient1 = new IngredientBuilder(POTATO1)
+                .build();
+        assertTrue(uniqueIngredientList.contains(editedIngredient));
+        assertFalse(uniqueIngredientList.contains(editedIngredient1));
     }
+
+
+    @Test
+    public void containsMinimalIngredient_nullIngredient_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueIngredientList.containsMinimalIngredient(null));
+    }
+
+    @Test
+    public void containsMinimalIngredient_ingredientNotInList_returnsFalse() {
+        assertFalse(uniqueIngredientList.containsMinimalIngredient(POTATO));
+        assertFalse(uniqueIngredientList.containsMinimalIngredient(POTATO1));
+    }
+
+    @Test
+    public void containsMinimalIngredient_ingredientInList_returnsTrue() {
+        uniqueIngredientList.add(POTATO);
+        assertTrue(uniqueIngredientList.containsMinimalIngredient(POTATO));
+        assertTrue(uniqueIngredientList.containsMinimalIngredient(POTATO1));
+    }
+
+    @Test
+    public void containsMinimalIngredient_ingredientWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueIngredientList.add(POTATO);
+        Ingredient editedIngredient = new IngredientBuilder(POTATO)
+                .build();
+        Ingredient editedIngredient1 = new IngredientBuilder(POTATO1)
+                .build();
+        assertTrue(uniqueIngredientList.containsMinimalIngredient(editedIngredient));
+        assertTrue(uniqueIngredientList.containsMinimalIngredient(editedIngredient1));
+    }
+
 
     @Test
     public void add_nullIngredient_throwsNullPointerException() {
@@ -83,11 +120,11 @@ public class UniqueIngredientListTest {
     @Test
     public void setIngredient_editedIngredientHasSameIdentity_success() {
         uniqueIngredientList.add(POTATO);
-        Ingredient editedAlice = new IngredientBuilder(POTATO)
+        Ingredient editedIngredient = new IngredientBuilder(POTATO)
                 .build();
-        uniqueIngredientList.setIngredient(POTATO, editedAlice);
+        uniqueIngredientList.setIngredient(POTATO, editedIngredient);
         UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
-        expectedUniqueIngredientList.add(editedAlice);
+        expectedUniqueIngredientList.add(editedIngredient);
         assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
     }
 
@@ -98,6 +135,13 @@ public class UniqueIngredientListTest {
         UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
         expectedUniqueIngredientList.add(MANGO);
         assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
+
+        uniqueIngredientList.remove(MANGO);
+        uniqueIngredientList.add(POTATO);
+        uniqueIngredientList.setIngredient(POTATO, POTATO1);
+        UniqueIngredientList expectedUniqueIngredientList1 = new UniqueIngredientList();
+        expectedUniqueIngredientList1.add(POTATO1);
+        assertEquals(expectedUniqueIngredientList1, uniqueIngredientList);
     }
 
     @Test

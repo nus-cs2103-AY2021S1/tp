@@ -77,7 +77,10 @@ public class EditRecipeDescriptorBuilder {
      * that we are building.
      */
     public EditRecipeDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        Set<Tag> tagSet =
+                Stream.of(tags).map(tag -> tag != "" ? new Tag(tag) : null)
+                        .filter(tagName -> tagName != null)
+                        .collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }

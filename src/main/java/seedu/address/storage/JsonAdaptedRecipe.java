@@ -26,7 +26,6 @@ class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
-    //private final ArrayList<Instruction> instruction;
     private final List<JsonAdaptedInstruction> instruction = new ArrayList<>();
     private final RecipeImage recipeImage;
     private final ArrayList<Ingredient> ingredients;

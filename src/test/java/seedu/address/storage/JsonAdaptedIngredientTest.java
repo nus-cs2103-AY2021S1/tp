@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedIngredient.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIngredients.VALID_INGREDIENT1;
+import static seedu.address.testutil.TypicalIngredients.VALID_INGREDIENT2;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +23,8 @@ public class JsonAdaptedIngredientTest {
 
     @Test
     public void toModelType_validIngredientDetails_returnsIngredient() throws Exception {
-        JsonAdaptedIngredient ingredientReturn = new JsonAdaptedIngredient(VALID_INGREDIENT1);
-        Ingredient ingredient = VALID_INGREDIENT1;
+        JsonAdaptedIngredient ingredientReturn = new JsonAdaptedIngredient(VALID_INGREDIENT2);
+        Ingredient ingredient = VALID_INGREDIENT2;
         assertEquals(ingredient, ingredientReturn.toModelType());
     }
 

@@ -28,7 +28,6 @@ public class JsonAdaptedRecipeTest {
     private static final String VALID_NAME = PASTA.getName().toString();
     private static final ArrayList<Ingredient> VALID_INGREDIENT = PASTA.getIngredient();
     private static final int VALID_CALORIES = PASTA.getCalories().value;
-    //private static final ArrayList<Instruction> VALID_INSTRUCTION = PASTA.getInstruction();
     private static final List<JsonAdaptedInstruction> VALID_INSTRUCTION = PASTA.getInstruction().stream()
             .map(JsonAdaptedInstruction::new)
             .collect(Collectors.toList());
