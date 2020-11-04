@@ -46,10 +46,10 @@ public class PropertyCard extends UiPart<Region> {
         propertyId.setText("Property Id: " + property.getPropertyId().toString());
         propertyName.setText(property.getPropertyName().toString());
         propertyName.setWrappingWidth(150);
-        address.setText("Address: " + property.getAddress().toString());
+        address.setText("Addr: " + property.getAddress().toString());
         sellerId.setText("Seller Id: " + property.getSellerId().toString());
         askingPrice.setText("Asking price: " + property.getAskingPrice().toString());
-        propertyType.setText("Property type: " + property.getPropertyType().toString());
+        propertyType.setText("Type: " + property.getPropertyType().toString());
         isRental.setText("Is rental: " + property.getIsRental().toString());
     }
 

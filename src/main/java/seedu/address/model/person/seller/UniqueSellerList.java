@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.id.Id;
 import seedu.address.model.id.SellerId;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -24,7 +23,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Seller#isSamePerson(Person)
+ * @see Seller#isSameSeller(Seller)
  */
 public class UniqueSellerList implements Iterable<Seller> {
 
@@ -37,7 +36,7 @@ public class UniqueSellerList implements Iterable<Seller> {
      */
     public boolean contains(Seller toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameSeller);
     }
 
     /**
@@ -149,7 +148,7 @@ public class UniqueSellerList implements Iterable<Seller> {
     private boolean sellersAreUnique(List<Seller> sellers) {
         for (int i = 0; i < sellers.size() - 1; i++) {
             for (int j = i + 1; j < sellers.size(); j++) {
-                if (sellers.get(i).isSamePerson(sellers.get(j))) {
+                if (sellers.get(i).isSameSeller(sellers.get(j))) {
                     return false;
                 }
             }

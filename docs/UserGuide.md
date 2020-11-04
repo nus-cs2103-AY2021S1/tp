@@ -81,6 +81,8 @@ and ```seller``` are created automatically and ***cannot be modified***.
 - ```Tag```: visual identifier for clients
 - ```Id```: Unique ID assigned to each client for identification.
 
+💡 Note also that PropertyFree assumes that all phone numbers are unique, and as such will not allow duplicates of
+phone number. 
 # Bidder Features
 
 ## **Addition of Bidder**
@@ -100,10 +102,10 @@ Expected Output:
 
 ```java
 New bidder added:   
-    Name: Marcus Duigan 
-    Phone number: 12345678
-    Id: B1
-    Tag: bidder
+Name: Marcus Duigan 
+Phone number: 12345678
+Id: B1
+Tag: bidder
 ```
 
 ## Searching for **Bidder**
@@ -161,10 +163,10 @@ Expected Output:
 
 ```java
 Edited Bidder:
-	Name: Marcus Weagle Duigan
-	Phone: 987654321
-	Id: B1
-	Tag: bidder
+Name: Marcus Weagle Duigan
+Phone: 987654321
+Id: B1
+Tag: bidder
 ```
 
 The index will only correspond to the original list, NOT the filtered list (when used in search).
@@ -186,10 +188,10 @@ Expected Output:
 
 ```java
 Deleted Bidder:
-	Name: Marcus Weagle Duigan
-	Phone: 987654321
-	Id: B1
-	Tag: bidder
+Name: Marcus Weagle Duigan
+Phone: 987654321
+Id: B1
+Tag: bidder
 ```
 
 The index will only correspond to the original list, NOT the filtered list (when used in search).
@@ -213,10 +215,10 @@ Expected Output:
 
 ```java
 New seller added:
-    Name: Kor Ming Soon
-    Phone number: 12345778 
-    Id: S1
-    Tag: seller
+Name: Kor Ming Soon
+Phone number: 12345778 
+Id: S1
+Tag: seller
 ```
 
 ## Searching for **Seller**
@@ -274,10 +276,10 @@ Expected Output:
 
 ```java
 Edited Seller:
-	Name: Joven Kor Ming Soon
-	Phone: 987654321
-	Id: S1
-	Tag: seller
+Name: Joven Kor Ming Soon
+Phone: 987654321
+Id: S1
+Tag: seller
 ```
 
 The index will only correspond to the original list, NOT the filtered list (when used in search).
@@ -299,10 +301,10 @@ Expected Output:
 
 ```java
 Deleted Seller:
-	Name: Joven Kor Ming Soon
-	Phone: 987654321
-	Id: B1
-	Tag: seller
+Name: Joven Kor Ming Soon
+Phone: 987654321
+Id: B1
+Tag: seller
 ```
 
 The index will only correspond to the original list, NOT the filtered list (when used in search).
