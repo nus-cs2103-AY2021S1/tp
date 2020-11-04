@@ -127,6 +127,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void clear_empty_mcGymmyHasCorrectContent() {
+        McGymmy expected = new McGymmyBuilder().build();
+        modelManager.clearFilteredFood();
+        assertEquals(expected, modelManager.getMcGymmy());
+    }
+
+    @Test
+    public void clear_nonEmpty_mcGymmyHasCorrectContent() {
+        McGymmy expected = new McGymmyBuilder().build();
+        modelManager.addFood(getChickenRice());
+        modelManager.addFood(getNasiLemak());
+        modelManager.clearFilteredFood();
+        assertEquals(expected, modelManager.getMcGymmy());
+    }
+
+    @Test
     public void undo_undoAfterAddFood_mcGymmyHasCorrectContent() {
         modelManager.addFood(getChickenRice());
         McGymmy expected = new McGymmyBuilder().withFood(TypicalFoods.getChickenRice()).build();
