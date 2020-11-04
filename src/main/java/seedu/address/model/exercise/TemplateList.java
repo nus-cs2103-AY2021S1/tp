@@ -90,7 +90,14 @@ public class TemplateList {
                 return true;
             }
         }
-
         return false;
+    }
+
+    /**
+     * Empty the content of TemplateList.
+     */
+    public static void reset() {
+        list.clear();
+        observableList.clear();
     }
 }

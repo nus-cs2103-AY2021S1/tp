@@ -116,6 +116,11 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     @Override
+    public void resetTemplate() {
+        TemplateList.reset();
+    }
+
+    @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
 

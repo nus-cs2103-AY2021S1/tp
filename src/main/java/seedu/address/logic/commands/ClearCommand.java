@@ -18,6 +18,7 @@ public class ClearCommand extends CommandForExercise {
     public CommandResult execute(ExerciseModel model) {
         requireNonNull(model);
         model.setExerciseBook(new ExerciseBook());
+        model.resetTemplate();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
