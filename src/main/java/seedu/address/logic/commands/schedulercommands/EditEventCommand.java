@@ -80,6 +80,17 @@ public class EditEventCommand extends Command {
         return false;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof EditEventCommand) {
+            return this.descriptor.equals(((EditEventCommand) other).descriptor);
+        } else {
+            return false;
+        }
+    }
+
     private static Event createEditedEvent(Event toEdit, EditEventDescriptor descriptor) {
         requireNonNull(toEdit);
         requireNonNull(descriptor);
@@ -98,7 +109,10 @@ public class EditEventCommand extends Command {
         private EventTime eventTime;
         private Set<Tag> tags;
 
-        public EditEventDescriptor() {}
+        public EditEventDescriptor() {
+            this.eventName = new EventName();
+            this.eventTime = new EventTime();
+        }
 
         /**
          * Represents the constructor that creates the container to hold the changes.

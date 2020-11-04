@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -31,7 +32,7 @@ public class CommandParserTestUtil {
         try {
             parser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");
-        } catch (ParseException pe) {
+        } catch (ParseException pe ) {
             assertEquals(expectedMessage, pe.getMessage());
         }
     }

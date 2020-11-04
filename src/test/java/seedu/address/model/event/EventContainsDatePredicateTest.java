@@ -1,7 +1,7 @@
 package seedu.address.model.event;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.event.EventBuilder;
 
 import java.util.Arrays;
 import java.util.Collections;

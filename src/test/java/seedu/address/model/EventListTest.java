@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.EventUtil.VALID_EVENT;
+import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 
 import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.event.Event;
-import seedu.address.testutil.EventUtil;
+import seedu.address.testutil.event.EventUtil;
 
 
 

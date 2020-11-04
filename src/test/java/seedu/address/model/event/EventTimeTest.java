@@ -1,7 +1,7 @@
 package seedu.address.model.event;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EventUtil;
+import seedu.address.testutil.event.EventUtil;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;

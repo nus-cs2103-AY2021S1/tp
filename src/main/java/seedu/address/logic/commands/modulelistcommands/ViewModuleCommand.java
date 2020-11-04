@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.schedulercommands.ViewEventCommand;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
@@ -60,5 +61,16 @@ public class ViewModuleCommand extends Command {
     @Override
     public boolean isExit() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof ViewModuleCommand) {
+            return this.index.equals(((ViewModuleCommand) other).index);
+        } else {
+            return false;
+        }
     }
 }

@@ -42,4 +42,15 @@ public class DeleteEventCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof DeleteEventCommand) {
+            return this.index.equals(((DeleteEventCommand) other).index);
+        } else {
+            return false;
+        }
+    }
 }

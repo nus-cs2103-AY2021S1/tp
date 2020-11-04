@@ -15,6 +15,11 @@ public class EventTime {
     private final LocalDateTime start;
     private final LocalDateTime end;
 
+    public EventTime() {
+        this.start = LocalDateTime.now();
+        this.end = LocalDateTime.now();
+    }
+
     /**
      * Creates an EventTime object that stores the start and end time.
      * @param start start time and date.

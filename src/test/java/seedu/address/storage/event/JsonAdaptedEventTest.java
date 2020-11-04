@@ -6,13 +6,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.storage.JsonAdaptedEvent;
-import seedu.address.testutil.EventUtil;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.EventUtil.VALID_EVENT;
+import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 
 
 public class JsonAdaptedEventTest {

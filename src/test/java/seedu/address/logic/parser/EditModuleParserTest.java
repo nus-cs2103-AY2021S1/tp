@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import org.junit.jupiter.api.Test;
 
@@ -115,14 +116,6 @@ public class EditModuleParserTest {
         String missingFields = " ";
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().build();
         assertParseFailure(parser, missingFields, MESSAGE_INVALID_FORMAT);
-    }
-
-    @Test
-    public void parse_invalidIndex_failure() {
-        //String invalidIndex = " " + 100
-        //        + " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-        //EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
-        //assertParseFailure(parser, invalidIndex, MESSAGE_INVALID_INDEX);
     }
 
     @Test

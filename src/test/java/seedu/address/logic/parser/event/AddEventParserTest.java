@@ -1,24 +1,16 @@
 package seedu.address.logic.parser.event;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
-import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
 import seedu.address.logic.parser.schedulerparsers.AddEventParser;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
-import seedu.address.model.module.ModularCredits;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleName;
-import seedu.address.testutil.EventBuilder;
-import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.event.EventBuilder;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 

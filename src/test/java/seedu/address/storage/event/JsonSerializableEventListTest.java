@@ -5,7 +5,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.EventList;
 import seedu.address.storage.JsonSerializableEventList;
-import seedu.address.testutil.EventUtil;
+import seedu.address.testutil.event.EventUtil;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

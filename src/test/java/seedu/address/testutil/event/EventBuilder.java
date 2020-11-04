@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.event;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +8,6 @@ import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-
 
 
 /**

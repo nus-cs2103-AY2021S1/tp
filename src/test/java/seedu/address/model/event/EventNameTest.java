@@ -3,7 +3,7 @@ package seedu.address.model.event;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.EventUtil.VALID_NAME;
+import static seedu.address.testutil.event.EventUtil.VALID_NAME;
 
 public class EventNameTest {
 

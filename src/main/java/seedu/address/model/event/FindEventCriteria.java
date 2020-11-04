@@ -39,8 +39,12 @@ public class FindEventCriteria {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindEventCriteria // instanceof handles nulls
-                && predicateList.equals(((FindEventCriteria) other).predicateList));
+        if (this == other) {
+            return true;
+        } else if (other instanceof FindEventCriteria) {
+            return this.predicateList.equals(((FindEventCriteria) other).predicateList);
+        } else {
+            return false;
+        }
     }
 }

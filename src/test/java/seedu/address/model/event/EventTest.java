@@ -1,11 +1,11 @@
 package seedu.address.model.event;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EventUtil;
+import seedu.address.testutil.event.EventUtil;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.EventUtil.*;
+import static seedu.address.testutil.event.EventUtil.*;
 
 public class EventTest {
 

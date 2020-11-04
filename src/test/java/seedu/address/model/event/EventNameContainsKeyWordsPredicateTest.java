@@ -1,9 +1,7 @@
 package seedu.address.model.event;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
-import seedu.address.testutil.ContactBuilder;
-import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.event.EventBuilder;
 
 import java.util.Arrays;
 import java.util.Collections;

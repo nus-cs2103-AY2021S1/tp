@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.event;
 
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
