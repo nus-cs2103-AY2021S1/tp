@@ -156,7 +156,7 @@ public class LogicManager implements Logic {
                     });
             break;
         case UNCHANGED:
-            assert false;
+            assert false : "unchanged called in getInventoryList";
             break;
         default:
             throw new IllegalStateException("This inventoryType is not valid" + inventoryType);
