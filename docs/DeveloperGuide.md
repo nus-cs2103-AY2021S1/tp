@@ -7,7 +7,7 @@ Reeve - Developer Guide
 ## Introduction
 Welcome to Reeve!
 
-Reeve is an integrated platform specifically catered to Primary, Secondary and Tertiary education private tutors to better manage their students' individual needs. 
+Reeve is an integrated platform specifically catered to Primary, Secondary and Tertiary education private tutors to better manage their students' individual needs.
 It contains  students' particulars, administrative and academic details.
 
 Reeve is optimized for users that are very comfortable with typing as it works on a Command Line Interface (CLI).
@@ -15,7 +15,7 @@ Reeve is optimized for users that are very comfortable with typing as it works o
 Students' details are displayed in a neat and organized manner through the use of a Graphical User Interface (GUI).
 
 If you are looking for an application to better allow you to track your students' administrative and academic details so that you can better meet their needs? Look no further!
-  
+
 ## 1. About
 
 ## 2. Understanding the Guide
@@ -160,11 +160,11 @@ The student administrative details feature keeps track of essential administrati
 
 The following describes the flow of how `AddCommand` is performed.
 
-1. Upon successfully parsing the user input, the `AddCommand#execute(Model model)` is called which checks whether 
+1. Upon successfully parsing the user input, the `AddCommand#execute(Model model)` is called which checks whether
 the added student already exists in the `UniqueStudentList`.
-2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined, 
+2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined,
 a `CommandException` is thrown and the student will not be added.
-3. If the added student is not a duplicate, then the `Model#addStudent(Student student)` is called to add the student. 
+3. If the added student is not a duplicate, then the `Model#addStudent(Student student)` is called to add the student.
 A new `CommandResult` is returned with a success message and the added student.
 4. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
 
@@ -173,6 +173,70 @@ The following activity diagram summarizes the flow of events when the `AddComman
 ![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
 
 Figure ___. Activity Diagram for AddStudentCommand
+
+#### 5.1.2 Edit Student Command
+
+The edit student feature allows the tutor to edit a particular student within **Reeve**.
+It is handled by the `EditCommand`.
+
+The following describes the flow of how `EditCommand` is executed.
+
+1. Upon successfully parsing the user input, `EditCommand#execute(Model model)` is called to edit the existing student to the new edited student.
+2. `Model#setStudent(Student student)` is called to replace the student with edited student within the model.
+3. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is then called to update the student list with the new edited student.
+4. A new `CommandResult` is returned with a successful message indicating that the student has been edited.
+5. The edited student is now shown on the student list.
+
+
+The following sequence diagram shows how the `EditCommand` execution works.
+
+![EditSequence](images/EditStudentSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `EditCommand` execution
+
+The following activity diagram summarises the flow of events when `EditCommand` is executed.
+
+![EditActivity](images/EditStudentActivityDiagram.png)
+
+Figure \___. Activity diagram for `EditCommand` execution
+
+#### 5.1.5 Overdue Command
+
+The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
+
+The following describes the flow of how `OverdueCommand` is executed.
+
+1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
+2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
+3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
+
+The following sequence diagram shows how the `OverdueCommand` execution works.
+
+![OverdueSequence](images/OverdueSequenceDiagram.png)
+
+Figure \___. Sequence diagram for `OverdueCommand` execution
+
+The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
+
+![OverdueActivity](images/OverdueActivityDiagram.png)
+
+Figure \___. Activity diagram for `OverdueCommand` execution
+
+#### 5.1.6 Schedule Command
+
+This section describes the operations that `ScheduleCommand` performs.
+
+1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
+2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
+3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
+4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
+5. The StudentListPanel is then populated with the students that have lesson on the day.
+
+The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
+
+![ScheduleActivity](images/ScheduleActivityDiagram.png)
+
+Figure \___. Activity diagram for `ScheduleCommand` execution
 
 ### 5.2 Student questions features
 
@@ -254,27 +318,23 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 
 Figure \___. Activity diagram for `DeleteQuestionCommand` execution
 
-### 5.3 Overdue payment filter feature
+### 5.3 Student Find Command
 
-The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
+This is an explanation of how `FindCommand` works.
 
-The following describes the flow of how `OverdueCommand` is executed.
+This is an activity diagram showing the high level idea of how `FindCommand` is executed.
 
-1. Upon successfully parsing the user input, `OverdueCommand#execute(Model model)` is called to filter all students in Reeve whose last date of payment was more than a month ago.
-2. `Model#updateFilteredStudentsList(Predicate<Student> predicate)` is called to find only students that match the above condition. A new `CommandResult` is returned with a successful message indicating the number of matching students.
-3. The filtered student list replaces the displayed list on the GUI and a success message is shown in the result display.
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
-The following sequence diagram shows how the question adding operation works.
+This is a sequence diagram together with an explanation of the implementation.
 
-![OverdueSequence](images/OverdueSequenceDiagram.png)
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
-Figure \___. Sequence diagram for `OverdueCommand` execution
-
-The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
-
-![OverdueActivity](images/OverdueActivityDiagram.png)
-
-Figure \___. Activity diagram for `OverdueCommand` execution
+ 1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
+ 2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
+ 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
+ 4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
+ 5. A new `CommandResult` will be returned with the success message.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | expert user               | view my students' preferred tutoring location         | figure out how to get that location                                                 |
 | `* * *`  | expert user               | edit my students' personal details                    | get rid of outdated data                                                            |
 | `* * *`  | expert user               | view my student's details                             | refer to them when needed                                                           |
-| `* * *`  | expert user               | add additional details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
+| `* * *`  | expert user               | add details to each student                | add other miscellaneous details which can allow me to better cater to student needs |
 | `* * *`  | long-time user            | delete students' data                                 | remove irrelevant data of students who are no longer my tutees                      |
 | `* * *`  | expert user               | find a student's record                               | retrieve students' data with ease                                                   |
 
@@ -536,7 +596,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC08: Finding all students with overdue tuition fees**
+**UC07: Finding all students with overdue tuition fees**
 
 **MSS**
 

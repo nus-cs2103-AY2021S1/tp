@@ -13,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.question.Question;
+import seedu.address.model.student.academic.question.Question;
 
 /**
  * Deletes a specified question of a student at the displayed index in Reeve.
@@ -22,6 +22,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_SUCCESS = "Question removed from %1$s: %2$s";
     public static final String MESSAGE_BAD_QUESTION_INDEX = "There is no question at this index";
+    public static final String COMMAND_WORD = "delete";
 
     private static Logger logger = Logger.getLogger("Delete Question Log");
 
@@ -43,7 +44,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
         requireNonNull(model);
         logger.log(Level.INFO, "Beginning command execution");
 
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             logger.log(Level.WARNING, "Handling non-existent student error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

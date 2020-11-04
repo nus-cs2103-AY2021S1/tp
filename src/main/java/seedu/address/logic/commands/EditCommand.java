@@ -24,12 +24,11 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
-import seedu.address.model.student.question.Question;
 
 /**
  * Edits the details of an existing student in Reeve.
@@ -65,7 +64,7 @@ public class EditCommand extends Command {
     private final EditAdminDescriptor editAdminDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index of the student in the sorted student list to edit
      * @param editStudentDescriptor details to edit the student with
      * @param editAdminDescriptor admin details to edit the student with
      */
@@ -82,7 +81,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -93,6 +92,12 @@ public class EditCommand extends Command {
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        ClassTime studentToEditClassTime = studentToEdit.getAdmin().getClassTime();
+        ClassTime editedStudentClassTime = editedStudent.getAdmin().getClassTime();
+        if (!(editedStudentClassTime.equals(studentToEditClassTime)) && model.isClashingClassTime(editedStudent)) {
+            throw new CommandException(Messages.MESSAGE_CLASHING_LESSON);
         }
 
         model.setStudent(studentToEdit, editedStudent);
@@ -113,27 +118,27 @@ public class EditCommand extends Command {
         School updatedSchool = editStudentDescriptor.getSchool().orElse(studentToEdit.getSchool());
         Year updatedYear = editStudentDescriptor.getYear().orElse(studentToEdit.getYear());
 
-        Admin updatedAdmin;
+        // Academic should not be edited through this command
+        Academic academic = studentToEdit.getAcademic();
+
         if (editAdminDescriptor.isAnyFieldEdited()) {
             ClassTime updatedClassTime = editAdminDescriptor.getClassTime()
-                    .orElse(studentToEdit.getAdmin().getClassTime());
+                    .orElse(studentToEdit.getClassTime());
             ClassVenue updatedClassVenue = editAdminDescriptor.getClassVenue()
-                    .orElse(studentToEdit.getAdmin().getClassVenue());
+                    .orElse(studentToEdit.getClassVenue());
             Fee updatedFee = editAdminDescriptor.getFee()
-                    .orElse(studentToEdit.getAdmin().getFee());
+                    .orElse(studentToEdit.getFee());
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
-                    .orElse(studentToEdit.getAdmin().getPaymentDate());
+                    .orElse(studentToEdit.getPaymentDate());
 
             // Additional Details cannot be edited through this channel
-            updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
-                    studentToEdit.getAdmin().getDetails());
+            return new Student(updatedName, updatedPhone, updatedSchool, updatedYear,
+                    updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate, studentToEdit.getDetails(),
+                    academic);
         } else {
-            updatedAdmin = studentToEdit.getAdmin();
+            return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, studentToEdit.getAdmin(),
+                    academic);
         }
-
-        // Questions should not be edited through this command
-        List<Question> questions = studentToEdit.getQuestions();
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions);
     }
 
     @Override
