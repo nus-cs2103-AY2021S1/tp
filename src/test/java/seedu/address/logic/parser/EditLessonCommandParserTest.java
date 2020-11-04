@@ -1,0 +1,175 @@
+package seedu.address.logic.parser;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2100;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103T;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.util.DateTimeUtil;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Title;
+
+public class EditLessonCommandParserTest {
+
+    private final EditLessonCommandParser parser = new EditLessonCommandParser();
+
+    @Test
+    public void parse_emptyArgs_returnsFalse() {
+        //empty title
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_TITLE, ""),
+                Title.MESSAGE_CONSTRAINTS);
+
+        //empty tag
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_TAG, ""),
+                Tag.MESSAGE_CONSTRAINTS);
+
+        //empty day
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DAY, ""),
+                DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
+
+        //empty description
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DESCRIPTION, ""),
+                Description.MESSAGE_CONSTRAINTS);
+
+        //empty start time
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_START_TIME, ""),
+                DateTimeUtil.TIME_CONSTRAINTS);
+
+        //empty end time
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_END_TIME, ""),
+                DateTimeUtil.TIME_CONSTRAINTS);
+
+        //empty start date
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_START_DATE, ""),
+                DateTimeUtil.DATE_CONSTRAINTS);
+
+        //empty end date
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_END_DATE, ""),
+                DateTimeUtil.DATE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_multipleAttributes_returnsFalse() {
+        String expectedErrorMessage = MESSAGE_MULTIPLE_ATTRIBUTES;
+
+        //multiple titles
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple tags
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple days
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple description
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple start times
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple end times
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple start dates
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2100
+                ),
+                expectedErrorMessage);
+
+        //multiple end dates
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2100
+                ),
+                expectedErrorMessage);
+    }
+}

@@ -76,11 +76,23 @@ public class CommandTestUtil {
     public static final String VALID_START_TIME_EXPERIMENT = "10:00";
     public static final String VALID_END_TIME_EXPERIMENT = "12:00";
     public static final String VALID_TAG_EXPERIMENT = "LSM1301";
+    //valid event
+    public static final String VALID_TITLE_MEETING = "Project meeting";
+    public static final String VALID_DESC_MEETING = "Important meeting";
+    public static final String VALID_DATE_MEETING = "01-01-2020";
+    public static final String VALID_START_TIME_MEETING = "20:00";
+    public static final String VALID_END_TIME_MEETING = "22:00";
+    public static final String VALID_TAG_MEETING = "CS2101";
     //valid deadline
     public static final String VALID_TITLE_LAB = "Do weekly lab assignment";
     public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
-    public static final String VALID_DATETIME_LAB = "01-01-2020";
+    public static final String VALID_DATETIME_LAB = "01-01-2020 23:59";
     public static final String VALID_TAG_LAB = "CS2100";
+    //valid deadline
+    public static final String VALID_TITLE_ESSAY = "Do final essay";
+    public static final String VALID_DESC_ESSAY = "At least 800 words";
+    public static final String VALID_DATETIME_ESSAY = "01-01-2020 23:59";
+    public static final String VALID_TAG_ESSAY = "ES2660";
 
     /**
      * Executes the given {@code command}, confirms that <br>

@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.exceptions;
 
-public class MultipleAttributesException extends ParseException {
+public class MultipleAttributesException extends Exception {
 
     public MultipleAttributesException(String message) {
         super(message);

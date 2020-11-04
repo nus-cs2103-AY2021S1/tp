@@ -46,6 +46,16 @@ public class LessonCommandParser implements Parser<LessonCommand> {
                 PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", LessonCommand.MESSAGE_USAGE));
         }
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
+                || argMultimap.hasMultipleValues(PREFIX_DAY)
+                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
+                || argMultimap.hasMultipleValues(PREFIX_TAG)
+                || argMultimap.hasMultipleValues(PREFIX_START_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_END_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+            throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
+        }
         Description description = Description.defaultDescription();
 
         assert argMultimap.getValue(PREFIX_TITLE).isPresent() : "prefix title is missing";
@@ -58,16 +68,6 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         LocalTime endTime;
         DayOfWeek dayOfWeek;
 
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
-                || argMultimap.hasMultipleValues(PREFIX_DAY)
-                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
-                || argMultimap.hasMultipleValues(PREFIX_TAG)
-                || argMultimap.hasMultipleValues(PREFIX_START_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_END_DATE)
-                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
-                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
-            throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
-        }
         if (argMultimap.getValue(PREFIX_START_DATE).isPresent()
                 && argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
