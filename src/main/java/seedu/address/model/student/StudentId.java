@@ -9,9 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class StudentId {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Student IDs should only contain alphanumeric characters (with capital alphabets)"
-                    + " and no spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Student IDs begin and end with a capital letter "
+                    + "and should have 7 digits (e.g. A1243567X)";
 
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
 
