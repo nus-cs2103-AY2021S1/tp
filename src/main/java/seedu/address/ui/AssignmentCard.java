@@ -43,8 +43,10 @@ public class AssignmentCard extends UiPart<Region> {
         this.assignment = assignment;
         id.setText(displayedIndex + ". ");
         this.assignmentName.setText(assignment.getAssignmentName().get().assignmentName);
-        this.assignmentPercentage.setText(assignment.getAssignmentPercentage().get().toString());
-        this.assignmentResult.setText(assignment.getAssignmentResult().get().toString());
+        this.assignmentPercentage.setText("Percentage Accessed % : "
+                + assignment.getAssignmentPercentage().get().toString());
+        this.assignmentResult.setText("Result : "
+                + assignment.getAssignmentResult().get().toString());
     }
 
     @Override

@@ -53,6 +53,7 @@ public class ViewModuleCommand extends Command {
         viewCommandResult.setTextArea(moduleToView.toViewTextArea());
         viewCommandResult.setZoomLinks(moduleToView.getAllLinks().values().stream().collect(Collectors.toList()));
         viewCommandResult.setAssignments(moduleToView.getGradeTracker().getAssignments());
+        viewCommandResult.setModule(moduleToView);
         //viewCommandResult.setZoomLinksToCopy(moduleToView.getAllLinks()
         // .values().stream().collect(Collectors.toList()));
         return viewCommandResult;
