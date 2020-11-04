@@ -398,7 +398,7 @@ __Result:__ Programme terminates.
 
 #### 5.3.2. Get help on the commands: `help`
 
-Saves data locally in a data file and exits the programme.
+Opens a help window that links to this User Guide.
 
 __Format:__ `help`
 
