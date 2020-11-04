@@ -166,6 +166,11 @@ public interface Model {
     void updateStudentRecords(List<StudentRecord> studentRecords);
 
     /**
+     * Updates the filter of the filtered student list to show a random student.
+     */
+    void showRandomStudent();
+
+    /**
      * Clears the attendance statuses of all students in the student list.
      */
     void clearAttendance();

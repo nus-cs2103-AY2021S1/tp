@@ -253,6 +253,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void showRandomStudent() {
+        StudentRecord randomRecord = taskmaster.getRandomStudentRecord();
+    }
+
+    //=========== Current Session Accessor =================================================================
+    @Override
     public SimpleObjectProperty<Session> getCurrentSession() {
         return this.taskmaster.getCurrentSession();
     }

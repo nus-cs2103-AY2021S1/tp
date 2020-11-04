@@ -298,6 +298,20 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         currentSession.get().scoreAllParticipation(nusnetIds, score);
     }
 
+    /**
+     * Returns a random Student Record from the current Session.
+     * @return A random Student Record
+     */
+    public StudentRecord getRandomStudentRecord() {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        } else if (currentSession.isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+
+        return currentSession.get().getRandomStudentRecord();
+    }
+
     /* Util Methods */
 
     @Override
