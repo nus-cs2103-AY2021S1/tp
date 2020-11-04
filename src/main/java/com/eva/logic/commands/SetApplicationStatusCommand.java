@@ -4,6 +4,7 @@ import static com.eva.commons.core.PanelState.APPLICANT_LIST;
 import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
+import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 
@@ -66,12 +68,19 @@ public class SetApplicationStatusCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+
         Applicant targetApplicant = lastShownList.get(targetIndex.getZeroBased());
         ApplicationStatus oldApplicationStatus = targetApplicant.getApplicationStatus();
         model.setApplicationStatus(targetApplicant, newApplicationStatus);
-        model.setApplicant(targetApplicant, targetApplicant);
+        model.setApplicant(targetApplicant, targetApplicant);        if (panelState.equals(APPLICANT_LIST)) {
+        model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        } else if (panelState.equals(APPLICANT_PROFILE)) {
+            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+            Applicant applicantToView = lastShownList.get(targetIndex.getZeroBased());
+            model.setCurrentViewApplicant(new CurrentViewApplicant(applicantToView, targetIndex));
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetApplicant.getName(), newApplicationStatus,
-                oldApplicationStatus));
+                oldApplicationStatus), false, false, true);
     }
 
     @Override

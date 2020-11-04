@@ -27,7 +27,7 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <FlowPane fx:id="tagsDetail" />
+            <FlowPane fx:id="tags" styleClass="tagsDetail" />
 
             <HBox>
                 <HBox  HBox.hgrow="NEVER" prefWidth="100" maxWidth="100" minWidth="100" >
