@@ -55,6 +55,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/diwu-yi.png" width="200px">
 
 [[github](https://github.com/Diwu-Yi)]
-[[portfolio](team/zhangyi.md)]
+[[portfolio](team/diwu-yi.md)]
 
 * Role: Project Tester and Contributor
