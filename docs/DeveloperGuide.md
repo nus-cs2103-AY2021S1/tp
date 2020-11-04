@@ -17,7 +17,7 @@ title: Developer Guide
         * [3.1.1 Implementation](#311-implementation)
         * [3.1.2 Design Consideration (**Add Recipe**)](#312-design-consideration-add-recipe)
             * [Aspect 1: Concern while adding the first feature](3121-aspect-1)
-            * [Aspect 2: Should we allow adding duplicated recipes](3122-aspect2)
+            * [Aspect 2: Should we allow adding duplicated recipes](3122-aspect-2)
         * [3.1.3 Design Consideration (**Add Ingredient**)](#313-design-consideration-add-ingredient)
             * [Aspect 1: Concern while adding the first feature](3131-aspect-1)
             * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](3132-aspect2)
