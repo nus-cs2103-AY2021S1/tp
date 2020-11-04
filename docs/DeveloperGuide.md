@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 This Developer Guide specifies the architecture, design, implementation and use cases for **ResiReg**, as well as our considerations behind key design decisions.
 
-It is intended for developers, software testers, open-source contrubitors and any like-minded persons who wish to contribute this project or gain deeper insights about **ResiReg**.
+It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
 
 ## Setting Up
 
@@ -86,7 +86,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -109,7 +109,7 @@ Notes:
 1. `LogicManager` generates a map of command words to `Parser`s from `CommandWordEnum` and a list of the current aliases from `Model`.
 1. `LogicManager` passes this map to `ResiRegParser`, which parses the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -271,9 +271,17 @@ the `Allocation` association class (alternative 4).
 ### Undo/redo feature
 
 #### Implementation
+The undo/redo mechanism is added to allow users of `ResiReg` to revert to a previous state
+or return to the future state (that is the previously current state), undoing or redoing 
+changes made to the state of `ResiReg`.
 
-The undo/redo mechanism is facilitated by `StatefulResiReg`. It extends `ResiReg` with an undo/redo history, for commands that
+This mechanism is facilitated by `StatefulResiReg`, an instance of which is stored inside `ModelManager`. It extends `ResiReg` with an undo/redo history, for commands that
 modify the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
+
+The class diagram below gives a pictorial representation of the class structure.
+
+![UndoRedoClassDiagram](images/UndoRedoClassDiagram.png)
+
 The history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
 
 - `StatefulResiReg#save()` — Saves the current residence regulation state in its history.
@@ -289,7 +297,7 @@ Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` wi
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 3` command to delete the 3rd person in the residence regulation. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the residence regulation before the `delete 3` command executes
+Step 2. The user executes `delete 3` command to delete the 3rd student in the residence regulation. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the residence regulation before the `delete 3` command executes
 to be saved in the `undoStatesStack` and setting `currState` to be the state of the resident regulation after command execution.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -341,9 +349,15 @@ As before, the current state `stateBeforeClear` clear will be pushed into `undoS
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command, 
+that is not `undo` or `redo`:
 
 ![SaveActivityDiagram](images/SaveActivityDiagram.png)
+
+Separately, the following activity diagram summarizes what happens when a user executes
+the `undo` command. (The activity diagram for redo is largely similar).
+
+![UndoActivityDiagram](images/UndoActivityDiagram.png)
 
 #### Design consideration:
 ##### How undo & redo executes
@@ -355,8 +369,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 - **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+  - Cons: We must ensure that the implementation of each individual command is correct.
 
 ##### Aspect: Data structure to support the undo/redo commands
 
@@ -365,14 +379,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 
   - Pros: Closer to the command pattern than the alternative below, meaning a change from Alternative 1
     to Alternative 2 in how undo & redo executes will incur less additional work.
-  - Cons: May have performance issues in terms of memory usage due to holding an additional reference and
+  - Cons: 
+    - May have performance issues in terms of memory usage due to holding an additional reference and
     managing two data structures.
+    - Follows the Separation of Concerns principle, so the management of 
+    undoing and redoing can be viewed separately for easier understanding.
 
 - **Alternative 2:** Use a list to store the history.
   - Pros: Better performance in terms of memory usage as compared to Alternative 1 and
     has a simpler implementation.
-  - Cons: Further away from the command pattern than Alternative 1, so shifting to Alternative 2
-    in how undo & redo executes will incur more additional work.
+  - Cons: 
+    - Further away from the command pattern than Alternative 1, so shifting to Alternative 2
+    in how undo & redo executes will incur more additional work. 
+    - Also, goes against the Separation
+    of Concerns principle since the management of both undoing and redoing
+    is handled together.
 
 ### Data archiving for semester
 Allocations of a student to a room are valid only for a given semester. This implies that ResiReg should support the archival and creation of multiple semesters, so that the data can be managed and stored in an organized fashion that suits the OHS admin. The `archive` command accomplishes this by allowing the user to achive the current semester's allocations, and advance to a new semester which pre-fills the Student and Room details.
