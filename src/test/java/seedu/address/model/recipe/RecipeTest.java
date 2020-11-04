@@ -33,12 +33,14 @@ public class RecipeTest {
 
         // same ingredients and quantity -> returns true
         editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH).build();
+                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                        .build();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // same ingredients and diff quantity -> returns true
         editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_MARGARITAS).build();
+                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_MARGARITAS)
+                        .build();
         assertTrue(SANDWICH.isSameRecipeNameAndIngredientName(editedSandwich));
 
         // different ingredients and quantity -> returns false

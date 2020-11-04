@@ -41,7 +41,7 @@ public class CommandTestUtil {
 
     public enum Field {
         INGREDIENT, RECIPE_NAME, CALORIES, TAG, INDEX, INSTRUCTIONS, RECIPE_IMAGE,
-        INGREDIENT_NAME, INGREDIENT_QUANTITY, EMPTY_IG_NAME_1, EMPTY_IG_NAME_2,  EMPTY_IG_NAME_3,  EMPTY_IG_NAME_4
+        INGREDIENT_NAME, INGREDIENT_QUANTITY, EMPTY_IG_NAME_1, EMPTY_IG_NAME_2, EMPTY_IG_NAME_3, EMPTY_IG_NAME_4
     }
 
     public enum Number {
@@ -396,6 +396,12 @@ public class CommandTestUtil {
         }
     }
 
+    /**
+     * Generate the fields of a EditRecipeDescriptor with all valid fields except one
+     * missing field which is specified by the argument.
+     * @param field field to be empty
+     * @return EditRecipeDescriptor
+     */
     public static final EditRecipeCommand.EditRecipeDescriptor recipeDescriptor(Field field) {
         switch (field) {
         case INGREDIENT:

@@ -1,14 +1,10 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-//import java.util.Set;
 import seedu.address.logic.commands.ingredient.AddIngredientCommand;
 import seedu.address.logic.commands.ingredient.EditIngredientCommand;
-import seedu.address.logic.commands.recipe.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.model.ingredient.Ingredient;
 
 /**

@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.data;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIngredients.POTATO1;
 import static seedu.address.testutil.TypicalIngredients.VALID_INGREDIENT2;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.testutil.IngredientBuilder;
@@ -38,6 +36,6 @@ public class IngredientParserTest {
     @Test
     public void parse_noSpaceBeforeHyphen_throwsParseException() {
         assertThrows(ParseException.class, Ingredient.HYPHEN_CONSTRAINTS, ()
-                -> IngredientParser.getIngredientQuantity(INVALID_INGREDIENT_NO_SPACE_BEFORE_HYPHEN));
+            -> IngredientParser.getIngredientQuantity(INVALID_INGREDIENT_NO_SPACE_BEFORE_HYPHEN));
     }
 }

@@ -79,7 +79,6 @@ public class RecipeUtil {
                         .append(instr.stream()
                                 .map(item -> item.toString() + ". ")
                                 .reduce("", (a, b) -> a + b).trim()).append(" "));
-//        descriptor.getInstruction().ifPresent(instr -> sb.append(PREFIX_INSTRUCTION).append(" "));
         descriptor.getRecipeImage().ifPresent(img -> sb.append(PREFIX_RECIPE_IMAGE).append(img).append(" "));
         descriptor.getCalories().ifPresent(cal -> sb.append(PREFIX_CALORIES).append(cal.value).append(" "));
         if (descriptor.getTags().isPresent()) {

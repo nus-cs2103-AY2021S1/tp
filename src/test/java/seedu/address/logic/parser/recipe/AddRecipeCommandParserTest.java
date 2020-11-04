@@ -17,7 +17,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.RECIPE_IMAGE_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.RECIPE_IMAGE_DESC_NOODLE;
-import static seedu.address.logic.commands.CommandTestUtil.RECIPE_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
