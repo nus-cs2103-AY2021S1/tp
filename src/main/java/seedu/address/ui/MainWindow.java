@@ -199,7 +199,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, MultipleAttributesException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            MultipleAttributesException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

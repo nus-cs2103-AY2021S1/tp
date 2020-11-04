@@ -42,12 +42,12 @@ public class EventCommandParser implements Parser<EventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", EventCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE) ||
-                argMultimap.hasMultipleValues(PREFIX_DATE) ||
-                argMultimap.hasMultipleValues(PREFIX_START_TIME) ||
-                argMultimap.hasMultipleValues(PREFIX_END_TIME) ||
-                argMultimap.hasMultipleValues(PREFIX_DESCRIPTION) ||
-                argMultimap.hasMultipleValues(PREFIX_TAG)) {
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
+                || argMultimap.hasMultipleValues(PREFIX_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_END_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
+                || argMultimap.hasMultipleValues(PREFIX_TAG)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
 

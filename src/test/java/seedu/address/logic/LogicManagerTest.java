@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -73,7 +74,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, ParseException, MultipleAttributesException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);

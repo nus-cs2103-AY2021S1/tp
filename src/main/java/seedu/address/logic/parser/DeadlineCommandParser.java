@@ -41,10 +41,10 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", DeadlineCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE) ||
-                argMultimap.hasMultipleValues(PREFIX_DATE_TIME) ||
-                argMultimap.hasMultipleValues(PREFIX_DESCRIPTION) ||
-                argMultimap.hasMultipleValues(PREFIX_TAG)) {
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
+                || argMultimap.hasMultipleValues(PREFIX_DATE_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
+                || argMultimap.hasMultipleValues(PREFIX_TAG)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         Description description = Description.defaultDescription();

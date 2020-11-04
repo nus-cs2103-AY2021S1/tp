@@ -58,14 +58,14 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         LocalTime endTime;
         DayOfWeek dayOfWeek;
 
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE) ||
-                argMultimap.hasMultipleValues(PREFIX_DAY) ||
-                argMultimap.hasMultipleValues(PREFIX_DESCRIPTION) ||
-                argMultimap.hasMultipleValues(PREFIX_TAG) ||
-                argMultimap.hasMultipleValues(PREFIX_START_DATE) ||
-                argMultimap.hasMultipleValues(PREFIX_END_DATE) ||
-                argMultimap.hasMultipleValues(PREFIX_START_TIME) ||
-                argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
+                || argMultimap.hasMultipleValues(PREFIX_DAY)
+                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
+                || argMultimap.hasMultipleValues(PREFIX_TAG)
+                || argMultimap.hasMultipleValues(PREFIX_START_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_END_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         if (argMultimap.getValue(PREFIX_START_DATE).isPresent()

@@ -3,7 +3,13 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
@@ -36,13 +42,13 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
-        if (argMultimap.hasMultipleValues(PREFIX_TITLE) ||
-                argMultimap.hasMultipleValues(PREFIX_DESCRIPTION) ||
-                argMultimap.hasMultipleValues(PREFIX_TAG) ||
-                argMultimap.hasMultipleValues(PREFIX_DATE) ||
-                argMultimap.hasMultipleValues(PREFIX_DATE_TIME) ||
-                argMultimap.hasMultipleValues(PREFIX_START_TIME) ||
-                argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
+                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
+                || argMultimap.hasMultipleValues(PREFIX_TAG)
+                || argMultimap.hasMultipleValues(PREFIX_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_DATE_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
             throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {

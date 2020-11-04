@@ -52,7 +52,7 @@ public class ArgumentMultimap {
     }
 
     public boolean hasMultipleValues(Prefix prefix) {
-        return getAllValues(prefix).size() > 1 ;
+        return getAllValues(prefix).size() > 1;
     }
 
     /**

@@ -45,7 +45,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException, MultipleAttributesException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException,
+            MultipleAttributesException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
