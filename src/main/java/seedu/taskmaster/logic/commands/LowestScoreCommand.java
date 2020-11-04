@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.taskmaster.commons.core.Messages;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
+import seedu.taskmaster.model.session.exceptions.SessionException;
 
 public class LowestScoreCommand extends Command {
     public static final String COMMAND_WORD = "lowest-score";
@@ -19,7 +20,11 @@ public class LowestScoreCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.showLowestScoringStudents();
+        try {
+            model.showLowestScoringStudents();
+        } catch (SessionException se) {
+            throw new CommandException(se.getMessage());
+        }
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW, model.getFilteredStudentRecordList().size()));
