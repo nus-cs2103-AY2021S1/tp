@@ -36,6 +36,7 @@ public class AutocompleteModule {
     }
 
     public static AutocompleteModule attachTo(TextField tf) {
+        requireNonNull(tf);
         return new AutocompleteModule(tf);
     }
 
@@ -54,12 +55,12 @@ public class AutocompleteModule {
         attachedTextField.caretPositionProperty().addListener((unused1, unused2, newPosition) -> {
             String userInput = attachedTextField.getText();
             int caretPos = newPosition.intValue();
-            if (caretPos == 0) {
-                toggleAutocompleteModeOff();
-                hasSetPrefix = false;
-                return;
+            if (isAutocompleteMode) {
+                if (caretPos < commandPrefixPos) {
+                    toggleAutocompleteModeOff();
+                    hasSetPrefix = false;
+                }
             }
-
             for (String cmdP : suggestionsList.keySet().toArray(new String[]{})) {
                 int prefixLength = cmdP.length();
                 if (userInput.length() >= prefixLength && caretPos >= prefixLength) {
@@ -67,12 +68,6 @@ public class AutocompleteModule {
                     if (!isAutocompleteMode && substring.equals(cmdP)) {
                         commandPrefixPos = caretPos;
                         toggleAutocompleteModeOn(cmdP);
-                    }
-                    if (isAutocompleteMode) {
-                        if (caretPos < commandPrefixPos) {
-                            toggleAutocompleteModeOff();
-                            hasSetPrefix = false;
-                        }
                     }
                 }
             }
@@ -120,14 +115,15 @@ public class AutocompleteModule {
         attachedTextField.addEventFilter(KeyEvent.KEY_PRESSED, (event -> {
             if (isAutocompleteMode && (
                     event.getCode() == KeyCode.BACK_SPACE
-                            || event.getCode() == KeyCode.ENTER)) {
+                            || event.getCode() == KeyCode.ENTER
+                            || (event.getCode() == KeyCode.W && event.isControlDown())
+            )) {
                 hasSetPrefix = false;
-                if (event.getCode() == KeyCode.BACK_SPACE) {
-                    return;
+                if (event.getCode() == KeyCode.ENTER) {
+                    toggleAutocompleteModeOff();
+                    removePrefixFromCompletion();
+                    event.consume();
                 }
-                toggleAutocompleteModeOff();
-                removePrefixFromCompletion();
-                event.consume();
             }
         }));
     }
