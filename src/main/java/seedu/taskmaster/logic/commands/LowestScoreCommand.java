@@ -2,6 +2,7 @@ package seedu.taskmaster.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.taskmaster.commons.core.Messages;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 
@@ -20,6 +21,7 @@ public class LowestScoreCommand extends Command {
 
         model.showLowestScoringStudents();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredStudentList().size()));
+        return new CommandResult(
+                String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW, model.getFilteredStudentRecordList().size()));
     }
 }

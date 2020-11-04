@@ -20,6 +20,8 @@ import seedu.taskmaster.model.record.ScoreEqualsPredicate;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.session.exceptions.NoSessionException;
+import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -124,14 +126,19 @@ public class ModelManager implements Model {
      */
     @Override
     public void changeSession(SessionName sessionName) {
-        /*
-         * Note that the implementation of this method requires that the filteredStudentRecords field is updated first
-         * changing the Session triggers the UI listener to call the getFilteredStudentRecordList, hence it must be
-         * loaded first.
-         */
-        assert taskmaster.hasSession(sessionName);
-        filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());
-        filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+        if (sessionName == null) {
+            filteredStudentRecords = null;
+        } else {
+            /*
+             * Note that the implementation of this method requires that the filteredStudentRecords field is updated
+             * first, as changing the Session triggers the UI listener to call the getFilteredStudentRecordList, hence it
+             * must be loaded first.
+             */
+            assert taskmaster.hasSession(sessionName);
+            filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());
+            filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+        }
+
         taskmaster.changeSession(sessionName);
     }
 
@@ -247,6 +254,13 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<StudentRecord> getFilteredStudentRecordList() {
+        if (taskmaster.getSessionList().size() == 0) {
+            throw new NoSessionException();
+        }
+        if (getCurrentSession().isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+
         if (filteredStudentRecords == null) {
             return new ObservableListBase<StudentRecord>() {
                 @Override
