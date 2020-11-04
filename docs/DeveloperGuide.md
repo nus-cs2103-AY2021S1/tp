@@ -7,25 +7,25 @@ title: Developer Guide
 
 -----------------
 
-## **Introduction**
+## 1&ensp;Introduction
 
 For more information on the ChopChop application itself, read the [_User Guide_](UserGuide.md) instead.
 
 This developer guide specifies the design architecture and details some of the software design decisions in the implementation of the ChopChop application. It is intended to be read by contributors, testers, and future maintainers.
 
-## **Setting Up**
+## 2&ensp;Setting Up
 
 To setup the development environment, refer to [_Setting up and getting started_](SettingUp.md).
 
 -------------
-## **Design**
+## 3&ensp;Design
 
 This section of the developer guide details the overall design of ChopChop, including the various subcomponents and how they fit together.
 
-### Component Architecture
+### 3.1&ensp;Component Architecture
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ArchitectureDiagram.png" width="450" /> <br />
+<img src="images/dg/cls-overall.png" style="width: 70%" /> <br />
 Figure 1: <i>The architecture diagram of ChopChop</i>
 </div>
 
@@ -62,7 +62,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete recipe #1`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ArchitectureSequenceDiagram.png" width="574" /> <br />
+<img src="images/ArchitectureSequenceDiagram.png" style="width: 75%" /> <br />
 Figure 2: <i>A sequence diagram showing the execution of <code>delete recipe #1</code></i>
 </div>
 
@@ -73,7 +73,7 @@ The following sections break down the various components in greater detail.
 
 
 ----------------
-### UI Component
+### 3.2&ensp;UI Component
 
 The *UI* component is responsible for all the user-facing views in the graphical user interface. This includes displaying recipes and ingredients, receiving command input from the user, and printing command results to the user.
 
@@ -100,14 +100,14 @@ The `UI` component:
 
 
 -------------------
-### Logic Component
+### 3.3&ensp;Logic Component
 
 The *Logic* component is responsible for parsing command input, executing commands, and updating the Model component of any changes to data caused by running a command.
 
 The class diagram of the Logic component is shown below:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/LogicClassDiagram.png" /> <br />
+<img src="diagrams/logic/cls-overall.png" /> <br />
 Figure 4: <i>The class diagram of the Logic component</i>
 </div>
 
@@ -116,14 +116,14 @@ Figure 4: <i>The class diagram of the Logic component</i>
 This is the general flow of events when a command is executed:
 1. `Logic` uses its `CommandParser` to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. deleting a recipe).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user, or to switch the currently active pane.
 1. After command execution, the command is saved by the `HistoryManager` to keep track of command history, and to allow for undoing/redoing of commands.
 
 For example, this is a sequence diagram showing the deletion of a recipe:
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/DeleteSequenceDiagram.png" /> <br />
+<img src="images/dg/seq_delete_recipe.png" style="width: 95%" /> <br />
 Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1</code> in the Logic component</i>
 </div>
 
@@ -137,7 +137,7 @@ Figure 5: <i>A sequence diagram showing the execution of <code>delete recipe #1<
 
 
 -------------------
-### Model Component
+### 3.4&ensp;Model Component
 
 The *Model* component is responsible for holding the data of the application (eg. the recipes and ingredients) in-memory during execution, and mediating access to this data for each of the other components of the system.
 
@@ -169,7 +169,7 @@ Only when a recipe is made are the references are resolved to their actual ingre
 
 
 ---------------------
-### Storage Component
+### 3.5&ensp;Storage Component
 
 The storage component is responsible for the saving and loading of the usage data for recipe and ingredient, the user preferences, and more importantly the recipe and ingredient data, to and from disk. Both pieces of data are stored in Javascript Object Notation (JSON) files, which is a human-readable (and editable) plain-text format.
 
@@ -198,7 +198,7 @@ For example, the `JsonSerializableIngredientUsageList` contains `JsonAdaptedUsag
 
 
 ------------------
-### Utility Classes
+### 3.6&ensp;Utility Classes
 
 While not itself a component, various utility types are placed in the `chopchop.commons` package; these are used by all the components in ChopChop, and comprise three sub-parts in their respective packages:
 
@@ -215,12 +215,13 @@ While not itself a component, various utility types are placed in the `chopchop.
 
 
 -----------------------------
-## **Implementation Details**
+## 4&ensp;Implementation Details
 
 This section explains, in detail, the implementation of some noteworthy features.
 
 
-### Command Parser
+<a name="ImplCommandParser"></a>
+### 4.1&ensp;Command Parser
 
 Main developer: **zhiayang**
 
@@ -228,31 +229,84 @@ The command parser is part of the *Logic* component, and is responsible for taki
 
 Shown below is the class diagram for the various Parser components:
 <div style="text-align: center; padding-bottom: 2em">
-<h2 style="background-color: pink">TODO: class diagram for Parser stuff</h2>
-Figure 9: <i>The class diagram for the parser</i>
+<img src="diagrams/logic/cls-parser.png" style="width: 85%"> <br />
+Figure 999: <i>The class diagram for the parser</i>
 </div>
 
 Notably, there are various wrapper classes to ensure type safety, namely `CommandArguments`, `ArgName`, and `ItemReference`, used instead of passing raw strings around in an error-prone manner.
 
 Furthermore, instead of pointlessly instantiating objects that do not store any state, all of the parsing work (save the main `CommandParser`) is done by static methods, in the various `_CommandParser` classes (eg. `AddCommandParser`, `ListCommandParser`).
 
-One of the more complex commands to parse is the `add recipe` command; here is the sequence diagram detailing how it is parsed:
+The `CommonParser` class holds common methods for each parser, for example quantity parsing and validation (eg. preventing negative quantities), checking for unsupported named arguments, etc.
+
+<i>Developer's note: object-oriented programming (OOP) is meant to encapsulate an objects behaviour with its data. None of the parser classes are stateful, so they do not contain data. Thus, it is pointless to make them instanced objects when static methods will suffice. If Java had namespaces, then that is what the various command-parser-classes would have been instead.</i>
+
+
+#### 4.1.1&ensp;ArgName
+
+This was inherited from AB3's `Prefix` class, but eventually evolved to include more functionality, due to the addition of *edit-arguments* for edit commands. It serves as an abstraction over the raw string of argument names (eg. `/step`), and also holds information about the components of the argument (eg. `/step:edit:3`).
+
+
+#### 4.1.2&ensp;ItemReference
+
+Again, this is similar to AB3's `Index` class, but it gained the ability to refer to items by name as well as by index. Commands take an item reference so they do not need to know whether the user referred to an item by its index or by its name.
+
+
+#### 4.1.3&ensp;Anatomy of a (parsed) Command
+
+During and after parsing, a command is represented by an instance of `CommandArguments`, which holds these fields:
+1. The command name
+2. The unnamed arguments
+3. The list of named arguments
+
+Given the following command string: <br />
+`add recipe The Best Pancakes /ingredient Magic /qty 999 /step Poof` <br />
+these are its components (here, `<a, b>` denotes a pair of `a` and `b`):
+1. Command name: `add`
+2. Unnamed arguments: `recipe The Best Pancakes`
+3. Named arguments: `[<ArgName(ingredient), Magic>, <ArgName(qty), 999>, <ArgName(step), Poof>]`
+
+Unlike in AB3, the absolute order of named arguments matters, because a `/qty` argument must refer to the `/ingredient` argument immediately preceeding it; thus, the named arguments are stored in a list instead of a map.
+
+For most commands, they take an additional <i>target</i>; this is typically the first word of the unnamed arguments (in this case, `recipe`). For historical reasons, `CommandArguments` does not have a separate field for the target. It does have a `getFirstWordFromRemaining()` method however, which abstracts away this common functionality.
+
+
+
+
+#### 4.1.4&ensp;Parsing Sequence
+
+One of the more complex commands to parse is the `add recipe` command; here is the sequence diagram detailing how it is parsed. For the sake of clarity, the command string will be omitted; you can assume that we are parsing `add recipe Pancakes /ingredient Milk /qty 400ml /ingredient Flour /qty 200g /ingredient Eggs 2 /step Add ingredients /step Mix /step Cook`:
+
 <div style="text-align: center; padding-bottom: 2em">
-<h2 style="background-color: pink">TODO: sequence diagram for <code>add recipe</code></h2>
-Figure 10: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
+<img src="diagrams/logic/seq-parser-add-recipe.png" style="width: 95%"> <br />
+Figure 999: <i>A sequence diagram for parsing an <code>add recipe</code> command</i>
 </div>
 
 
 <h4>Design Considerations</h4>
 **1. Use of exceptions**
 
-The parser written in an exception-free manner, using monadic result types (`Result`, `Optional`) instead.
+The current parser is written in an exception-free manner, using monadic result types (`Result`, `Optional`) and their composition (`map`, `then`) instead.
+
   - Option A: use exceptions
-    - Pros: easier interfacing with the rest of ChopChop and existing AB3 code
-    - Cons: harder to visualise error source and propagation
+    - Pros: easier interfacing with existing AB3 code
+    - Cons: harder to visualise error source and propagation, calling site gets cluttered with syntactic `try-catch` noise
   - **Option B (chosen)**: use monadic types
     - Pros: more explicit, easier to visualise error source and propagation
-    - Cons: harder to write
+    - Cons: slightly harder to write
+
+Since the parser was going to be heavily refactored if not completely rewritten, removing exceptions was the chosen option. An excerpt of this style can be seen below:
+```java
+return ItemReference.parse(name)
+    .then(ref -> Result.transpose(qtys
+        .stream()
+        .findFirst()
+        .map(CommonParser::parseQuantity))
+        .map(qty -> new DeleteIngredientCommand(ref, qty)));
+```
+Here, `Result<T>` is similar to a Java `Optional<T>`, but also encapsulating a descriptive error message in the form of a string.
+
+<i>Developer's note: when it comes down to it, this is a stylistic choice, so I went with what I preferred.</i>
 
 **2. Numbered vs named item references**
 
@@ -268,15 +322,131 @@ ChopChop allows referring to items (recipes and ingredients) both by their full 
     - Pros: best of both worlds
     - Cons: slightly more code to implement
 
+After abstracting out functions that resolve an item reference, code complexity did not increase significantly, and ease-of-use was greatly improved; thus, option C was chosen.
 
 
 
 
-### Quantity and Unit Handling
+<a name="ImplTabCompletion"></a>
+### 4.2&ensp;Tab Completion
 
 Main developer: **zhiayang**
 
-blah blah blah blah
+This feature allows the user to quickly type in commands and complete long recipe and ingredient names, and greatly reduces the tedium of using a command-line application. Its implementation is not particularly clever and can be described mostly by a state machine.
+
+The main brains of the tab completer lies in determining which <i>kind</i> of item to complete (eg. a command name or a recipe name), and it can be (roughly) represented by the activity diagram below:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="diagrams/logic/act-tabcomplete.png" style="width: 45%"> <br />
+Figure 999: <i>A high-level activity diagram for the tab completer</i>
+</div>
+
+<i>Developer's note: the activity diagram could have been made a lot more detailed, but it would have been completely unreadable.</i>
+
+Most of the logic and complexity of the completer lies in determining which commands require targets, which require ingredient names and so on, and whether or not they should be completed at the given point (ie. the cursor position and the preceeding text).
+
+In the current implementation, some parts are hardcoded with knowledge about which commands accept which arguments; this can be improved, but there were a number of unanswered questions regarding the implementation details, so it will be left to a future iteration to improve upon the abstraction.
+
+Most notably, each command (or, ideally, its parser) should 'own' the knowledge of the arguments that it accepts and the valid targets, so information can be decentralised from the autocompleter.
+
+
+
+
+<a name="ImplQuantities"></a>
+### 4.3&ensp;Quantity and Unit Handling
+
+Main developer: **zhiayang**
+
+As an application dealing with ingredients, one of the core requirements of ChopChop is being able to track quantities of ingredients, and perform arithmetic on them when cooking recipes (consuming) and refilling those ingredients.
+
+The relationships between the various quantity-related classes are shown below:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="diagrams/model/cls-quantity.png" style="width: 45%"> <br />
+Figure 999: <i>The class diagram for the quantity components</i>
+</div>
+
+The `Quantity` interface contains a static method that handles parsing a quantity from a string; in the current implementation, it needs to have explicit knowledge about the supported units (in the sense that it lists `Mass`, `Count`, etc). It attempts to parse the input with each unit's parser and returns the first one that succeeds:
+```java
+return Result.flatten(
+    Result.ofOptional(
+        knownUnits.stream()
+            .map(fn -> num.then(n -> fn.apply(n, unit.toString())))
+            .filter(Result::hasValue)
+            .findFirst(),
+        String.format("Unknown unit '%s' (from '%s')", unit, input))
+    );
+```
+
+These units are handled as a base `count` and a `ratio`; this allows them to handle arithmetic operations (add, subtract) among themselves. Naturally, only compatible dimensions can interoperate, eg. `Mass` with `Mass`, `Count` with `Count`, etc.
+
+In the current implementation, there are a number of specific units of Volume (*mL*, *L*, *tsp*, *tbsp*, *cup*), and for Mass (*mg*, *g*, *kg*). These units and their ratios are currently hardcoded into the application, but a future extension would allow users to specify their own units (perhaps in a configuration file) that can allow them to use units like *lb*, *oz*, etc.
+
+<h4>Design Considerations</h4>
+**1. Unit representation**
+
+  - Option A: represent units as a simple string
+    - Pros: easier to implement
+    - Cons: less intuitive for the user, only exactly-compatible units can be added
+  - **Option B (chosen)**: represent units in a typed manner
+    - Pros: intuitive unit handling for the user
+    - Cons: more implementation effort, supported units must be known in advance
+
+  The extra implementation effort was deemed to be acceptable to allow for a better user experience. Mainly, the ability to let recipes specify a quantity as *3 cups*, while keeping track of the ingredient in *litres* was a key feature, to save the user the hassle of converting these units before keying them into the application.
+
+  Furthermore, this implementation also allows *rescaling* the quantity, so that `1700mL` can be better displayed as `1.7L`.
+
+**2. User extensible units**
+  - Option A: support custom user-defined units
+    - Pros: more flexible from the user's perspective
+    - Cons: more implementation effort, necessary to integrate (eg. defining units via command line)
+  - **Option B (chosen)**: only allow a fixed set of units
+    - Pros: less implementation work
+    - Cons: less flexible from the user's perspective
+
+  Option B was chosen here due to the limited time available to work on the application. The primary mitigation was to include more commonly-used units built into ChopChop, for instance teaspoons, tablespoons, and cups for volumes.
+
+
+
+
+
+<a name="ImplHelpCommand"></a>
+### 4.4&ensp;Help Command
+
+Main developer: **zhiayang**
+
+To improve the user experience for first-time users, a robust help command was implemented into ChopChop. Unlike the AB3 'solution' of simply opening a dialog with a link to the User Guide, ChopChop's help is able to provide a clickable link directly to the correct section in the User Guide for that specific command.
+
+For example, here is the output of `help add recipe`:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/help_message_2.png" style="width: 45%"> <br />
+Figure 999: <i>The output of `help add recipe`</i>
+</div>
+
+This requires two pieces to cooperate:
+1. The User Guide must have predictable anchor links that are independent of section numbers and/or formatting
+2. Each Command class must have a predictable mapping to said anchor links
+
+To solve the first problem, each section in the UG has an explicitly-named HTML `<a>` tag, corresponding to the name of the command's class in the Java code, like so:
+```markdown
+<a name="AddRecipeCommand"></a>
+#### 5.4.3&ensp;Adding Recipes — **`add`**`recipe`
+```
+
+This also solves the second problem, because the mapping of the command to its anchor is exactly the class name of the command. However, since the user is asking for help, it is likely that they would not know the necessary arguments to pass to the command, so it is not feasible to require a valid command to be passed to `help`.
+
+In this instance, we cannot make use of polymorphism on instance methods, so reflection was used instead. This relies two things:
+1. All command classes must live in the package `chopchop.logic.commands`
+2. All command classes must follow the format `<name><target>Command`. For example, `AddRecipeCommand`, or `DeleteIngredientCommand`.
+
+Since the command syntax looks like `add recipe <args>`, it is trivial to transform that into `AddRecipeCommand`, search for the class in the appropriate package using reflection, and call its static methods to get its help blurb (in the figure above, that is "Adds a new recipe").
+
+For the statistics commands taking 2 keywords (eg. `stats recipe top`), they are similarly transformed into `StatsRecipeTopCommand`.
+
+When extending ChopChop to include new commands, it is important to follow these existing guidelines so that the help command continues to work automatically.
+
+
 
 
 
@@ -289,19 +459,15 @@ blah blah blah blah
 
 
 
-
-### UsageList model
+<a name="ImplUsageList"></a>
+### 4.5&ensp;UsageList model
 
 This section details the design considerations of the statistics feature.
-
-#### Implementation
-
 
 TODO: class diagram for the stats class (StatsBox, UsageList, JsonAdaptedUsage, etc)
 
 
-
-#### Design considerations
+<h4>Design Considerations</h4>
 
 Aspect 1: The data to store for statistics feature
 * Consideration 1: todo
@@ -316,11 +482,12 @@ Aspect 2: `getMostMadeRecipeList` return a List of `Pair<String, String>` or `Us
 Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </i>
 </div>
 
-### View top recipes feature
+
+
+<a name="ImplTopRecipes"></a>
+### 4.6&ensp;View Top Recipes Feature
 The view top recipes feature allows the user to see the recipes that were made the most number of times based on saved records.
 It is executed with StatsRecipeTopCommand.
-
-#### Implementation
 
 The sequence diagram below shows the sequence of interactions between `Model` where the UsageList is contained in and the `Logic` components after the user executes StatsRecipeTopCommand with the user input `stats recipe top`.
 <div style="text-align: center; padding-bottom: 2em">
@@ -340,7 +507,7 @@ Figure ???: <i>The sequence diagram of the execution of StatsRecipeTopCommand </
 <h2 style="background-color: #1077ff">TODO: stuff below isn't done</h2>
 
 
-### Undo/redo feature
+### 4.7&ensp;Undo/redo feature
 
 #### Proposed Implementation
 
@@ -410,7 +577,7 @@ The following activity diagram summarises what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5&ensp;Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -420,16 +587,21 @@ The following activity diagram summarises what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
 
-### Product scope
+## **Appendices**
+{:.owo}
+
+
+## A&ensp;Requirements
+
+### A.1&ensp;Product scope
 
 **Target user profile**: People that cook daily, who need a way to manage recipes and their fridge contents.
 
 **Value proposition**: Manages recipes and fridge inventory/expiry, and automatically suggests recipes to cook.
 
 
-### User stories
+### A.2&ensp;User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -442,7 +614,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | person on a diet                      | sort recipes based on calorie count                                               | choose to cook lower-calorie meals                     |
 | `*`      | busy mother                           | enter the list of recipes I want to cook for the week                             | find out which groceries I need to buy                 |
 
-### Use cases
+### A.3&ensp;Use cases
 
 (For all use cases below, the **System** is the `Food Recipe Management System (FRMS)` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -639,7 +811,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-### Non-Functional Requirements
+### A.4&ensp;Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java 11 or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -650,14 +822,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 7. Should be able to manage recipes in a interactive manner (like Google Assistant)
 8. Should have input sanitisation
 
-### Glossary
+### A.5&ensp;Glossary
 
 * **Mainstream OS:** Latest version of Windows, MacOS or any Linux distro
 * **Recipe:** List of ingredients and steps needed to cook a dish
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## B&ensp;Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -666,7 +838,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### B.1&ensp;Launch and shutdown
 
 1. Initial launch
 
@@ -683,7 +855,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Deleting a person
+### B.2&ensp;Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -700,10 +872,58 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases … }_
 
-### Saving data
+### B.3&ensp;Saving data
 
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases … }_
+
+
+
+
+
+## C&ensp;Effort
+
+With 10 being the baseline of AB3, we estimate the effort required to deliver the current version of ChopChop at **16**.
+
+
+### C.1&ensp;Major Implementation Efforts
+
+These are the components which have involved significant effort on our part to (re)implement, including significant new features as well as improvements and extensions to existing AB3 features.
+
+#### C.1.1&ensp;GUI
+asdf
+
+#### C.1.2&ensp;Command Parser
+In order to fit the required behaviour of ChopChop (strictly ordered parameters, unnamed parameters) and to reduce pointless enterprise-style OOP, AB3's command parser was rewritten using a different paradigm. This involved a non-trivial amount of effort, and the new implementation was designed to interface with the (then-existing) AB3 code in the rest of the application.
+
+In addition, a comprehensive set of tests were written for each command parser to achieve close to 100% code coverage for the parser.
+
+
+#### C.1.3&ensp;Statistics and Recommendations
+csdf
+
+#### C.1.4&ensp;Automated GUI Testing
+dsdf
+
+#### C.1.5&ensp;Tab Completion
+To ensure ease of use and reduce typing tedium for potential users, PE testers, and ourselves during manual testing, tab completion was deemed to be an imoprtant aspect of the CLI-nature of ChopChop from the beginning, although it was only implemented in version 1.3.
+
+Significant effort was undertaken to ensure that the completer works in all cases, including within the help command, and is able to provide contextually-appropriate completions (eg. providing ingredient names after `/ingredient`). Furthermore, this component is also comprehensively tested, with a near 100% code coverage as well.
+
+
+#### C.1.6&ensp;Command History
+fsdf
+
+
+### C.2&ensp;Minor Implementation Efforts
+
+These are components that are either straightforward extensions of existing AB3 features, or new features that were not extremely hard or intensive to implement.
+
+#### C.2.1&ensp;Storage and Model Updates
+asdf
+
+#### C.2.2&ensp;Utility Classes
+A set of utility classes, namely `Pair`, `Result`, and `Either` were written to facilitate a functional programming style in various ChopChop components. These classes are comprehensively tested and well-documented as well.

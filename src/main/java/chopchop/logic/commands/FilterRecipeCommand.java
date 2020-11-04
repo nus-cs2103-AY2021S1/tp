@@ -9,7 +9,6 @@ import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.model.recipe.Recipe;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Filters and lists all recipes in recipe book that match all filtering criteria.
@@ -45,12 +44,9 @@ public class FilterRecipeCommand extends Command {
         }
         model.updateFilteredRecipeList(p);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipePanel();
-        }
-
         var sz = model.getFilteredRecipeList().size();
-        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s");
+        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s")
+            .showingRecipeList();
     }
 
     @Override

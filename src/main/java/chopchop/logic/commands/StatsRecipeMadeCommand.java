@@ -28,40 +28,19 @@ public class StatsRecipeMadeCommand extends Command {
         }
     }
 
-    private String getMessage(boolean isEmpty) {
-        DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
-        String msg;
-        if (this.before != null && this.after != null) {
-            var before = this.before.format(formatter);
-            var after = this.after.format(formatter);
-            var onAfter = this.after.format(onFormatter);
-            if (this.after.getSecond() + this.after.getMinute() + this.after.getHour() == 0
-                    && this.after.plusDays(1).equals(this.before)) {
-                msg = String.format(isEmpty ? "No recipes were made on %s"
-                                            : "Showing recipes made on %s", onAfter);
-            } else {
-                msg = String.format(isEmpty ? "No recipes were made between %s and %s"
-                                            : "Showing recipes made between %s and %s", after, before);
-            }
-        } else if (this.before != null) {
-            var before = this.before.format(formatter);
-            msg = String.format(isEmpty ? "No recipes were made before %s"
-                                        : "Showing recipes made before %s", before);
-        } else {
-            var before = this.after.format(formatter);
-            msg = String.format(isEmpty ? "No recipes were made after %s"
-                                        : "Showing recipes made after %s", before);
-        }
-        return msg;
-    }
-
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
         enforceNonNull(model);
 
         var output = model.getRecipeUsageList().getUsagesBetween(after, before);
-        return CommandResult.statsMessage(output, getMessage(output.isEmpty()));
+
+        if (!checkValidDateRange(this.after, this.before)) {
+            return CommandResult.error("'after' date cannot be later than 'before' date");
+        }
+
+        return CommandResult.statsMessage(output,
+            formatSubtitle(output.isEmpty(), "recipes", "made", this.after, this.before)
+        );
     }
 
     @Override
@@ -75,5 +54,49 @@ public class StatsRecipeMadeCommand extends Command {
 
     public static String getCommandHelp() {
         return "Shows recipes that were made in a given time frame";
+    }
+
+    /**
+     * Formats the subtitle according to the given parameters.
+     * This method is also used by StatsIngredientUsedCommand.
+     */
+    static String formatSubtitle(boolean isEmpty, String item, String verb,
+        LocalDateTime after, LocalDateTime before) {
+
+        var onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        if (before != null && after != null) {
+            var lower = after.format(formatter);
+            var upper = before.format(formatter);
+            var thisDay = after.format(onFormatter);
+
+            if (after.getSecond() + after.getMinute() + after.getHour() == 0
+                && after.plusDays(1).equals(before)) {
+                return String.format(isEmpty ? "No %s were %s on %s"
+                                             : "Showing %s %s on %s", item, verb, thisDay);
+            } else {
+                return String.format(isEmpty ? "No %s were %s between %s and %s"
+                                             : "Showing %s %s between %s and %s", item, verb, lower, upper);
+            }
+        } else if (before != null) {
+            var upper = before.format(formatter);
+            return String.format(isEmpty ? "No %s were %s before %s"
+                                         : "Showing %s %s before %s", item, verb, upper);
+        } else {
+            var lower = after.format(formatter);
+            return String.format(isEmpty ? "No %s were %s after %s"
+                                         : "Showing %s %s after %s", item, verb, lower);
+        }
+    }
+
+    /**
+     * Checks whether the date range is valid, ie. whether lower is before upper.
+     */
+    static boolean checkValidDateRange(LocalDateTime lower, LocalDateTime upper) {
+        if (upper == null || lower == null) {
+            return true;
+        }
+        return upper.isAfter(lower);
     }
 }

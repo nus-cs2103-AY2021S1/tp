@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.
@@ -28,12 +27,9 @@ public class FindIngredientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredIngredientList(predicate);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadIngredientPanel();
-        }
-
         var sz = model.getFilteredIngredientList().size();
-        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s");
+        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s")
+            .showingIngredientList();
     }
 
     @Override

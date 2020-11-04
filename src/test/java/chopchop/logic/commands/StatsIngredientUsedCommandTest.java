@@ -31,7 +31,7 @@ import chopchop.testutil.TypicalUsages;
 
 class StatsIngredientUsedCommandTest {
     private final DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private Model model;
     private Model emptyModel;
@@ -119,25 +119,17 @@ class StatsIngredientUsedCommandTest {
 
     @Test
     public void execute_afterMoreThanBefore_noIngredientsFound() {
-        LocalDateTime before = USAGE_DATE_A;
-        LocalDateTime after = USAGE_DATE_C;
-        var cmd = new StatsIngredientUsedCommand(after, before);
+        var cmd = new StatsIngredientUsedCommand(USAGE_DATE_C, USAGE_DATE_A);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<>(),
-            String.format("No ingredients were used between %s and %s", after.format(formatter),
-                before.format(formatter)));
+        var expectedRes = CommandResult.error("'after' date cannot be later than 'before' date");
         assertEquals(cmdRes, expectedRes);
     }
 
     @Test
     public void execute_afterEqualBefore_noIngredientsFound() {
-        LocalDateTime before = USAGE_DATE_C;
-        LocalDateTime after = USAGE_DATE_C;
-        var cmd = new StatsIngredientUsedCommand(after, before);
+        var cmd = new StatsIngredientUsedCommand(USAGE_DATE_C, USAGE_DATE_C);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<>(),
-            String.format("No ingredients were used between %s and %s", after.format(formatter),
-                before.format(formatter)));
+        var expectedRes = CommandResult.error("'after' date cannot be later than 'before' date");
         assertEquals(cmdRes, expectedRes);
     }
 

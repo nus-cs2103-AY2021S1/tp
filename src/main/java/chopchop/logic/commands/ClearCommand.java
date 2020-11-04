@@ -41,7 +41,8 @@ public class ClearCommand extends Command implements Undoable {
             cmd.execute(model, historyManager);
         });
 
-        return CommandResult.message("Cleared all data");
+        return CommandResult.message("Cleared all data")
+            .showingRecipeList();
     }
 
     @Override
@@ -53,7 +54,8 @@ public class ClearCommand extends Command implements Undoable {
             cmd.undo(model);
         });
 
-        return CommandResult.message("Undo: restored all data");
+        return CommandResult.message("Undo: restored all data")
+            .showingRecipeList();
     }
 
     @Override

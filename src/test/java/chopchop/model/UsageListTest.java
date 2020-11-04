@@ -60,7 +60,7 @@ class UsageListTest {
     @Test
     void getUsageList() {
         var ul = new UsageList<>();
-        
+
     }
 
     @Test

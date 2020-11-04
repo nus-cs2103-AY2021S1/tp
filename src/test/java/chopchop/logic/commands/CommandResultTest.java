@@ -3,6 +3,10 @@
 package chopchop.logic.commands;
 
 import java.util.List;
+import java.util.Optional;
+
+import chopchop.commons.util.Pair;
+import chopchop.testutil.TypicalRecipes;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +37,8 @@ public class CommandResultTest {
         assertFalse(CommandResult.message("asdf").isStatsOutput());
         assertTrue(CommandResult.statsMessage(List.of(), "asdf").isStatsOutput());
         assertTrue(CommandResult.statsMessage(List.of(), "asdf").getStatsMessage().isEmpty());
+
+
     }
 
     @Test
@@ -46,12 +52,44 @@ public class CommandResultTest {
 
         assertEquals(c1, c1);
         assertEquals(c1, c2);
-        assertEquals(c1.hashCode(), c2.hashCode());
 
         assertNotEquals(c1, "asdf");
         assertNotEquals(c2, c4);
         assertNotEquals(c3, c5);
         assertNotEquals(c1, c6);
+
+        var d4 = c1.showingRecipe(TypicalRecipes.APRICOT_SALAD);
+        var d5 = c1.showingRecipeList();
+        var d6 = c1.showingIngredientList();
+        var d7 = c1.showingRecommendationList();
+        var d8 = c1.showingRecipe(TypicalRecipes.CUSTARD_SALAD);
+
+        assertNotEquals(c1, d4);
+        assertNotEquals(c1, d5);
+        assertNotEquals(c1, d6);
+        assertNotEquals(c1, d7);
+        assertNotEquals(d4, d8);
+
+        assertEquals(c1.getSwitchedPanel(), CommandResult.Panel.NONE);
+        assertEquals(d4.getSwitchedPanel(), CommandResult.Panel.RECIPE_DETAIL);
+        assertEquals(d5.getSwitchedPanel(), CommandResult.Panel.RECIPE_LIST);
+        assertEquals(d6.getSwitchedPanel(), CommandResult.Panel.INGREDIENT_LIST);
+        assertEquals(d7.getSwitchedPanel(), CommandResult.Panel.RECOMMENDATION_LIST);
+
+        assertEquals(d4.getDisplayedRecipe(), Optional.of(TypicalRecipes.APRICOT_SALAD));
+
+
+        var e1 = CommandResult.statsMessage(List.of(Pair.of("A", "B")), "asdf");
+        var e2 = CommandResult.statsMessage(List.of(Pair.of("C", "D")), "asdf");
+
+        assertNotEquals(e1, e2);
+
+        var f1 = c1.appending("asdf", false);
+        var f2 = c1.appending("usdf", false);
+        var f3 = c1.appending("asdf", false);
+
+        assertEquals(f1, f3);
+        assertNotEquals(f1, f2);
     }
 
     @Test

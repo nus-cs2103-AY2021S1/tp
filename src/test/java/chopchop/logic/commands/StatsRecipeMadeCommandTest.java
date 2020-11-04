@@ -29,7 +29,7 @@ import chopchop.testutil.TypicalUsages;
 
 class StatsRecipeMadeCommandTest {
     private final DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     private Model model;
     private Model emptyModel;
@@ -119,8 +119,7 @@ class StatsRecipeMadeCommandTest {
         LocalDateTime after = USAGE_DATE_C;
         var cmd = new StatsRecipeMadeCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(),
-            String.format("No recipes were made between %s and %s", after.format(formatter), before.format(formatter)));
+        var expectedRes = CommandResult.error("'after' date cannot be later than 'before' date");
         assertEquals(cmdRes, expectedRes);
     }
 
@@ -130,8 +129,7 @@ class StatsRecipeMadeCommandTest {
         LocalDateTime after = USAGE_DATE_C;
         var cmd = new StatsRecipeMadeCommand(after, before);
         var cmdRes = cmd.execute(model, new HistoryManager());
-        var expectedRes = CommandResult.statsMessage(new ArrayList<Pair<String, String>>(),
-            String.format("No recipes were made between %s and %s", after.format(formatter), before.format(formatter)));
+        var expectedRes = CommandResult.error("'after' date cannot be later than 'before' date");
         assertEquals(cmdRes, expectedRes);
     }
 

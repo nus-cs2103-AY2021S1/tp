@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Lists all recommended recipes in the recipe book to the user.
@@ -16,11 +15,8 @@ public class ListRecommendationCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecommendationPanel();
-        }
-
-        return CommandResult.message("Listed recommendations");
+        return CommandResult.message("Listed recommendations")
+            .showingRecommendationList();
     }
 
     @Override

@@ -14,10 +14,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/zhiayang.png" width="200px">
 
 [[github](http://github.com/zhiayang)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/zhiayang.md)]
 
 * Role: Technical Lead
-* Responsibilities: Command UI and Parser
+* Responsibilities: Command Parser, code integration
 
 ### Seow Alex
 
@@ -33,9 +33,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/trav1st.png" width="200px">
 
 [[github](http://github.com/trav1st)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/trav1st.md)]
 
 * Role: Testing / Deliverables and Deadlines
+* Responsibilities: Statistics and Storage
 
 ### Teh Xue Yong
 
@@ -51,6 +52,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/hjl99.png" width="200px">
 
 [[github](http://github.com/hjl99)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/hjl99.md)]
 
 * Role: Deliverables and Deadlines / Scheduling and Tracking

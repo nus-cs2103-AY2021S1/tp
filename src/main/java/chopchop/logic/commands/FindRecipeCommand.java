@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Finds and lists all recipes whose name contains any of the argument keywords.
@@ -28,12 +27,9 @@ public class FindRecipeCommand extends Command {
         requireNonNull(model);
         model.updateFilteredRecipeList(predicate);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipePanel();
-        }
-
         var sz = model.getFilteredRecipeList().size();
-        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s");
+        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s")
+            .showingRecipeList();
     }
 
     @Override
