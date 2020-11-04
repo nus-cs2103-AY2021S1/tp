@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Duration {
 
     public static final int NULL_VALUE = -1;
-    public static final String INVALID_DURATION_FORMAT = "The valid of duration is not valid";
+    public static final String INVALID_DURATION_FORMAT = "The duration must be a positive integer";
     public final int valueInMinutes;
     public final boolean isFill;
     /**
@@ -18,12 +18,12 @@ public class Duration {
      */
     public Duration(int valueInMinutes) {
         if (valueInMinutes == NULL_VALUE) {
-            this.isFill = true;
+            this.isFill = false;
             this.valueInMinutes = valueInMinutes;
         } else {
             checkArgument(isValidDuration(valueInMinutes), Duration.INVALID_DURATION_FORMAT);
             this.valueInMinutes = valueInMinutes;
-            this.isFill = false;
+            this.isFill = true;
         }
     }
 
@@ -39,7 +39,7 @@ public class Duration {
     }
 
     public static boolean isValidDuration(int duration) {
-        return duration == NULL_VALUE || duration >= 0;
+        return duration >= 0;
     }
 
     @Override

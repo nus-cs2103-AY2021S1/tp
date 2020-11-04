@@ -151,10 +151,14 @@ class JsonAdaptedDeadline {
 
         final Duration modelDuration;
 
-        if (!Duration.isValidDuration(duration)) {
-            throw new IllegalValueException(Duration.INVALID_DURATION_FORMAT);
+        if (duration == Duration.NULL_VALUE) {
+            modelDuration = Duration.createNullDuration();
         } else {
-            modelDuration = new Duration(duration);
+            if (!Duration.isValidDuration(duration)) {
+                throw new IllegalValueException(Duration.INVALID_DURATION_FORMAT);
+            } else {
+                modelDuration = new Duration(duration);
+            }
         }
 
         final Tag modelTag;

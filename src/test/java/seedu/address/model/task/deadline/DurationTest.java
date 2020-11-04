@@ -19,9 +19,10 @@ public class DurationTest {
 
         // invalid duration
         assertFalse(Duration.isValidDuration(-10)); // negative number
+        assertFalse(Duration.isValidDuration(Duration.NULL_VALUE)); // default value
 
         // valid duration
-        assertTrue(Duration.isValidDuration(Duration.NULL_VALUE)); // default value
+
         assertTrue(Duration.isValidDuration(120)); // positive numbers only
     }
 }
