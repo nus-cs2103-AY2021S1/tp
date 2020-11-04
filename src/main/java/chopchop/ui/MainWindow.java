@@ -162,6 +162,10 @@ public class MainWindow extends UiPart<Stage> {
             DisplayNavigator.loadIngredientPanel();
             break;
 
+        case RECOMMENDATION_LIST:
+            DisplayNavigator.loadRecommendationPanel();
+            break;
+
         default:
             break;
         }
