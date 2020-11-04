@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -61,8 +60,8 @@ public class EditContactParser implements Parser<EditContactCommand> {
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             parseTelegramForEdit(argMultimap.getValue(PREFIX_TELEGRAM).get())
-                    .ifPresentOrElse(telegram -> editContactDescriptor.setTelegram(telegram),
-                            () -> editContactDescriptor.setTelegramDeleted());
+                    .ifPresentOrElse(telegram -> editContactDescriptor.setTelegram(telegram), () ->
+                            editContactDescriptor.setTelegramDeleted());
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);
@@ -86,7 +85,7 @@ public class EditContactParser implements Parser<EditContactCommand> {
         if (telegram.isBlank()) {
             return Optional.empty();
         }
-        Telegram editedTelegram =  ParserUtil.parseTelegram(telegram);
+        Telegram editedTelegram = ParserUtil.parseTelegram(telegram);
         return Optional.of(editedTelegram);
     }
 
