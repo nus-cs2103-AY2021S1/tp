@@ -250,7 +250,7 @@ public class AddRecipeCommandTest {
         @Override
         public boolean hasMinimalRecipe(Recipe recipe) {
             requireNonNull(recipe);
-            return this.recipe.isSameRecipeNameAndIngredient(recipe);
+            return this.recipe.isSameRecipeNameAndIngredientName(recipe);
         }
     }
 
@@ -269,7 +269,7 @@ public class AddRecipeCommandTest {
         @Override
         public boolean hasMinimalRecipe(Recipe recipe) {
             requireNonNull(recipe);
-            return recipesAdded.stream().anyMatch(recipe::isSameRecipeNameAndIngredient);
+            return recipesAdded.stream().anyMatch(recipe::isSameRecipeNameAndIngredientName);
         }
 
         @Override

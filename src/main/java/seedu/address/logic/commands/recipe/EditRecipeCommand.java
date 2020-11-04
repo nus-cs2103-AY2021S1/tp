@@ -95,7 +95,8 @@ public class EditRecipeCommand extends Command {
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
         Recipe editedRecipe = createEditedRecipe(recipeToEdit, editRecipeDescriptor);
 
-        if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
+        //if recipe name or ingredient name changes, check if it has changed to an existing recipe
+        if (!recipeToEdit.isSameRecipeNameAndIngredientName(editedRecipe) && model.hasMinimalRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
@@ -103,7 +104,6 @@ public class EditRecipeCommand extends Command {
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
         if (recipeToEdit.isSameRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_NOT_EDITED);
-            //return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedRecipe));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
 

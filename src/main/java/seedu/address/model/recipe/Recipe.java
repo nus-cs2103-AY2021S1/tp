@@ -87,7 +87,7 @@ public class Recipe {
      * This defines a weaker notion of equality between two recipes.
      * This method is used to check for adding duplicate recipes in the recipe list.
      */
-    public boolean isSameRecipeNameAndIngredient(Recipe otherRecipe) {
+    public boolean isSameRecipeNameAndIngredientName(Recipe otherRecipe) {
         if (otherRecipe == this) {
             return true;
         }

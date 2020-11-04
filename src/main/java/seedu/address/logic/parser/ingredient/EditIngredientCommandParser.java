@@ -52,6 +52,7 @@ public class EditIngredientCommandParser implements Parser<EditIngredientCommand
         }
 
         if (!editIngredientDescriptor.isAnyFieldEdited()) {
+            System.out.println("is any ingredient field non null");
             throw new ParseException(EditIngredientCommand.MESSAGE_NOT_EDITED);
         }
 

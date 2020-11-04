@@ -6,11 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_INGREDIENT_MARGA
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INGREDIENT_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INGREDIENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INGREDIENT;
 import static seedu.address.testutil.TypicalIngredients.getTypicalWishfulShrinking;
 
@@ -18,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -47,7 +51,7 @@ public class EditIngredientCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_ingredientFieldSpecifiedUnfilteredList_success() {
         Index indexLastIngredient = Index.fromOneBased(model.getFilteredIngredientList().size());
         Ingredient lastIngredient = model.getFilteredIngredientList().get(indexLastIngredient.getZeroBased());
 
@@ -73,14 +77,8 @@ public class EditIngredientCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
                 new EditIngredientCommand.EditIngredientDescriptor());
-        Ingredient editedIngredient = model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
 
-        String expectedMessage = String.format(EditIngredientCommand.MESSAGE_NOT_EDITED,
-                editedIngredient);
-
-        Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
-
-        assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test

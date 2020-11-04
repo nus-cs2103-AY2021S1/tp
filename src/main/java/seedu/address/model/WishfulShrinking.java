@@ -238,10 +238,6 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     @Override
     public boolean equals(Object other) {
-        if (recipes.equals(((WishfulShrinking) other).recipes)) {
-
-
-        }
         return other == this // short circuit if same object
                 || (other instanceof WishfulShrinking // instanceof handles nulls
                 && recipes.equals(((WishfulShrinking) other).recipes));

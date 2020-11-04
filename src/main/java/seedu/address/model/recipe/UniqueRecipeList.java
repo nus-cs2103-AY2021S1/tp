@@ -41,7 +41,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
      */
     public boolean containsMinimalRecipe(Recipe toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameRecipeNameAndIngredient);
+        return internalList.stream().anyMatch(toCheck::isSameRecipeNameAndIngredientName);
     }
 
     /**
@@ -142,7 +142,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     private boolean recipesAreUnique(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size() - 1; i++) {
             for (int j = i + 1; j < recipes.size(); j++) {
-                if (recipes.get(i).isSameRecipeNameAndIngredient(recipes.get(j))) {
+                if (recipes.get(i).isSameRecipeNameAndIngredientName(recipes.get(j))) {
                     return false;
                 }
             }
