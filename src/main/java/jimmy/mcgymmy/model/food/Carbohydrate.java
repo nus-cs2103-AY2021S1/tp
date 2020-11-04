@@ -7,8 +7,8 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
  */
 public class Carbohydrate extends Macronutrient {
     private static final int CARBOHYDRATE_MULTIPLIER = 4;
-    public static final String MESSAGE_CONSTRAINTS = "Carbohydrate" + Macronutrient.MESSAGE_CONSTRAINTS;
     private static final int DEFAULT_CARBOHYDRATE = 0;
+    public static final String MESSAGE_CONSTRAINTS = "Carbohydrate" + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * @param amount A valid amount.
