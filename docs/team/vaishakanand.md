@@ -42,3 +42,4 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/71), [\#77](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/77), [#56](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/56)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/VaishakAnand/ped/issues/5), [2](https://github.com/VaishakAnand/ped/issues/2), [3](https://github.com/VaishakAnand/ped/issues/3))
+
