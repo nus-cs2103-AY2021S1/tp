@@ -254,7 +254,6 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code details} is used internally.
          */
         public EditAdminDescriptor(EditAdminDescriptor toCopy) {
             setTime(toCopy.time);
