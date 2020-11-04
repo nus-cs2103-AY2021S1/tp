@@ -107,9 +107,9 @@ public class EditStudentCommand extends Command {
         Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
         StudentId updatedStudentId = editStudentDescriptor.getStudentId().orElse(studentToEdit.getStudentId());
-        Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
+        Attendance attendance = studentToEdit.getAttendance();
 
-        return new Student(updatedName, updatedPhone, updatedEmail, updatedTags, updatedStudentId, updatedAttendance);
+        return new Student(updatedName, updatedPhone, updatedEmail, updatedTags, updatedStudentId, attendance);
     }
 
     @Override
@@ -140,7 +140,6 @@ public class EditStudentCommand extends Command {
         private Email email;
         private Set<Tag> tags;
         private StudentId studentId;
-        private Attendance attendance;
 
         public EditStudentDescriptor() {}
 
@@ -154,7 +153,6 @@ public class EditStudentCommand extends Command {
             setEmail(toCopy.email);
             setTags(toCopy.tags);
             setStudentId(toCopy.studentId);
-            setAttendance(toCopy.attendance);
         }
 
         /**
@@ -196,14 +194,6 @@ public class EditStudentCommand extends Command {
             return Optional.ofNullable(studentId);
         }
 
-        public void setAttendance(Attendance attendance) {
-            this.attendance = attendance;
-        }
-
-        public Optional<Attendance> getAttendance() {
-            return Optional.ofNullable(attendance);
-        }
-
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -240,8 +230,7 @@ public class EditStudentCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getTags().equals(e.getTags())
-                    && getStudentId().equals(e.getStudentId())
-                    && getAttendance().equals(e.getAttendance());
+                    && getStudentId().equals(e.getStudentId());
         }
     }
 }

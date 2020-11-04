@@ -29,7 +29,7 @@ public class Student {
      * Constructor for Student.
      */
     public Student(Name name, Phone phone, Email email, Set<Tag> tags, StudentId studentId, Attendance attendance) {
-        requireAllNonNull(name, phone, email, tags, studentId);
+        requireAllNonNull(name, phone, email, tags, studentId, attendance);
         this.name = name;
         this.phone = phone;
         this.email = email;
