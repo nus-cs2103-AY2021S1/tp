@@ -28,6 +28,10 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
      */
     void scoreAllParticipation(List<NusnetId> nusnetIds, int score);
 
+    /**
+     * Returns the lowest score amongst all students in the student list.
+     */
+    int getLowestScore();
 
     void setStudentRecords(StudentRecordListManager replacement);
 
