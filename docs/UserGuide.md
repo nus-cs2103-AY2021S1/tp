@@ -758,41 +758,41 @@ Term | Explanation
 
 Features | Format, Examples
 --------|------------------
-Add recipe | `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst/INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...` <br> e.g. `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
-List recipes | `recipes`
-Delete recipe | `deleteR INDEX`<br> e.g. `deleteR 3`
-Edit recipe | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR 2 n/Apple salad i/apple`
-Get edit recipe info | `editR INDEX` <br> e.g. `editR 2`
-Select recipe| `selectR INDEX` <br> e.g. `selectR 3`
-Close recipe drawer| `close`
-Search for recipe | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]` <br> e.g. `searchR i/lettuce tomato, searchR n/salad, searchR t/healthy`
-Recommend recipe | `recommend`
-Clear all recipes | `clearR`
+**Add recipe** | `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES [img/IMAGE] inst/INSTRUCTION[. MORE INSTRUCTIONS] [t/TAG]...` <br> e.g. `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
+**List recipes** | `recipes`
+**Delete recipe** | `deleteR INDEX`<br> e.g. `deleteR 3`
+**Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR 2 n/Apple salad i/apple`
+**Get edit recipe info** | `editR INDEX` <br> e.g. `editR 2`
+**Select recipe** | `selectR INDEX` <br> e.g. `selectR 3`
+**Close recipe drawer**| `close`
+**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]` <br> e.g. `searchR i/lettuce tomato, searchR n/salad, searchR t/healthy`
+**Recommend recipe** | `recommend`
+**Clear all recipes** | `clearR`
 
 ## Fridge-Related Command <a id="82-ingredient-related-commands"></a>
 
 Features | Format, Examples
 --------|------------------
-Add ingredient to the Fridge | `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]` <br> e.g. `addF i/banana -3/4 cups, green peas -200g, salmon fish`
-List ingredients in the Fridge | `fridge`
-Delete ingredient from the Fridge | `deleteF INDEX`<br> e.g. `deleteF 3`
-Edit ingredient in the Fridge | `editF INDEX i/INGREDIENTS [ -QUANTITY]` <br> e.g. `editF 3 i/apple sauce -20.0g`
-Get edit ingredient info | `editF INDEX` <br> e.g. `editF 2`
-Search for ingredient in the Fridge | `searchF KEYWORD [MORE_KEYWORDS]` <br> e.g. `searchF avocado`
-Clear all ingredients from the Fridge | `clearF`
+**Add ingredient to the Fridge** | `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]` <br> e.g. `addF i/banana -3/4 cups, green peas -200g, salmon fish`
+**List ingredients in the Fridge** | `fridge`
+**Delete ingredient from the Fridge** | `deleteF INDEX`<br> e.g. `deleteF 3`
+**Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]` <br> e.g. `editF 3 i/apple sauce -20.0g`
+**Get edit ingredient info** | `editF INDEX` <br> e.g. `editF 2`
+**Search for ingredient in the Fridge** | `searchF KEYWORD [MORE_KEYWORDS]` <br> e.g. `searchF avocado`
+**Clear all ingredients from the Fridge** | `clearF`
 
 ## Consumption-Related Command <a id="83-consumption-related-commands"></a>
 
 Features | Format, Examples
 --------|------------------
-Eat recipe| `eatR INDEX` <br> e.g. `eatR 3`
-List recipes eaten | `calories`
-Delete recipe eaten| `deleteC INDEX` <br> e.g. `deleteC 3`
-Clear all consumed recipes | `clearC`
+**Eat recipe** | `eatR INDEX` <br> e.g. `eatR 3`
+**List recipes eaten** | `calories`
+**Delete recipe eaten** | `deleteC INDEX` <br> e.g. `deleteC 3`
+**Clear all consumed recipes** | `clearC`
 
 ## Miscellaneous Command <a id="84-miscellaneous-commands"></a>
 
 Features | Format, Examples
 --------|------------------
-Help | `help`
-Exit | `exit`
+**Help** | `help`
+**Exit** | `exit`
