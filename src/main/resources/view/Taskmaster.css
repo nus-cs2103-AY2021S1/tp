@@ -190,6 +190,22 @@
     -fx-padding: 8 1 8 1;
 }
 
+#currentView {
+    -fx-background-color: #313638;
+}
+
+#viewName {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+#viewDateTime {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;

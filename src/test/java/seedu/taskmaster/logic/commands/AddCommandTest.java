@@ -200,6 +200,15 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void showLowestScoringStudents() {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public void markStudentRecord(StudentRecord studentRecord, AttendanceType attendanceType) {

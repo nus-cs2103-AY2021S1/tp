@@ -90,6 +90,13 @@ public class Session {
     }
 
     /**
+     * Returns the lowest score amongst all students in the student list.
+     */
+    public double getLowestScore() {
+        return studentRecords.getLowestScore();
+    }
+
+    /**
      * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD.
      */
     public void clearAttendance() {
