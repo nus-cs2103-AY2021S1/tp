@@ -5,7 +5,6 @@ import java.util.Optional;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
-import com.eva.testutil.PersonBuilder;
 
 
 public class ApplicantBuilder extends PersonBuilder {
