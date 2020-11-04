@@ -132,7 +132,7 @@ Please take note of the following:
 * This command only accepts one tag or one label but not both.
 * Please ensure that you have read permission to the files that you want to open.
 <div markdown="block" class="alert alert-info">
-**:infomartion_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
+**:information_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
 </div>
 
 Format: `open t>TAG_NAME` or `open l>LABEL`
@@ -158,7 +158,10 @@ Examples:
 
 ### Renaming a tag : `retag`
 
-Renames a tag.
+Renames a tag. <br>
+Changes the specified tag's nickname into the new one. 
+Note that this command can only change nickname.
+It can't change any other information.
 
 Format: `retag o>OLD_TAG_NAME t>NEW_TAG_NAME`
 
@@ -186,7 +189,9 @@ Examples:
 
 ### Deleting multiple labels from a tag : `unlabel`
 
-Delete one or more label from a tag.
+Delete one or more label from a tag. <br>
+If some labels are invalid, all the other valid labels will be deleted from the tag, 
+and the invalid ones will be shown to the user.
 
 Format: ` unlabel t>TAG_NAME l>LABEL1 [l>LABEL2]...`
 
@@ -221,7 +226,7 @@ Changes the current directory of the HelloFile internal File Explorer. <br>
 You can change the current directory in 3 ways:
 By using `f>` to go to a folder using an absolute path,
 by using `./` to go to a folder using a relative path,
-or using '../' to go to the parent folder.
+or using `../` to go to the parent folder.
 Alternative, you can click on the folder in the *File Explorer Panel* to navigate.
 
 Format 1: `cd f>ABSOLUTE_FILE_PATH`
