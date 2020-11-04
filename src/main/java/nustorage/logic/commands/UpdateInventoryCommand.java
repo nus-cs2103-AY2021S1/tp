@@ -67,7 +67,8 @@ public class UpdateInventoryCommand extends Command {
         }
         FinanceRecord oldFinanceRecord = model.getFinanceRecord(inventoryRecordToUpdate.getFinanceId());
         double cost = inventoryRecordToUpdate.getUnitCost();
-        FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost, true);
+        FinanceRecord newFinanceRecord = new FinanceRecord(inventoryRecordToUpdate.getFinanceId(),
+                updatedInventoryRecord.getQuantity() * cost, inventoryRecordToUpdate.getDateTime(), true);
         updatedInventoryRecord.setFinanceRecord(newFinanceRecord);
         model.setFinanceRecord(oldFinanceRecord, newFinanceRecord);
         model.setInventoryRecord(inventoryRecordToUpdate, updatedInventoryRecord);
@@ -90,7 +91,7 @@ public class UpdateInventoryCommand extends Command {
         }
 
         String itemDescription = inventoryRecord.getItemName();
-        LocalDateTime newDateTime = LocalDateTime.now();
+        LocalDateTime newDateTime = inventoryRecord.getDateTime();
 
         return new InventoryRecord(itemDescription, newQuantity, unitCost, newDateTime);
     }
