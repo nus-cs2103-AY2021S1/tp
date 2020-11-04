@@ -99,7 +99,7 @@ class FixMyAbsParserTest {
     void parseCommand_containsAddExCommand_returnsAddExCommand() throws ParseException {
         FixMyAbsParser parser = new FixMyAbsParser();
         assertTrue(parser.parseCommand(AddExCommand.COMMAND_WORD
-                + " e/love c/100000", logBook) instanceof AddExCommand);
+                + " e/love c/100", logBook) instanceof AddExCommand);
     }
 
     @Test

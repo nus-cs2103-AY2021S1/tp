@@ -9,8 +9,8 @@ import static seedu.fma.logic.commands.CommandTestUtil.VALID_DATE_TIME_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_STR;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_STR;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_INT;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_B_INT;
 import static seedu.fma.testutil.Assert.assertThrows;
 import static seedu.fma.testutil.TypicalLogs.LOG_A;
 import static seedu.fma.testutil.TypicalLogs.LOG_B;
@@ -37,7 +37,7 @@ public class LogTest {
         assertEquals(VALID_EXERCISE_A, logA.getExercise());
         assertEquals(VALID_REP_A, logA.getReps());
         Calories calories = new Calories(VALID_EXERCISE_A.getCaloriesPerRep()
-                .value * Integer.parseInt(VALID_REP_A_STR));
+                .value * VALID_REP_A_INT);
         assertTrue(calories.equals(logA.getCalories()));
     }
 
@@ -93,7 +93,7 @@ public class LogTest {
         assertFalse(LOG_A == editedLog);
 
         // different reps -> returns false
-        editedLog = new LogBuilder(LOG_A).withReps(VALID_REP_B_STR).build();
+        editedLog = new LogBuilder(LOG_A).withReps(VALID_REP_B_INT).build();
         assertFalse(LOG_A == editedLog);
 
         // different comment -> returns false

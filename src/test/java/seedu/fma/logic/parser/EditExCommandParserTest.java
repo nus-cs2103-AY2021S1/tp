@@ -81,7 +81,7 @@ public class EditExCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_EXERCISE_DESC, Name.MESSAGE_CONSTRAINTS, logBook); // invalid exercise
-        assertParseFailure(parser, "1" + INVALID_CALORIES_DESC_A, Calories.MESSAGE_CONSTRAINTS, logBook); // invalid rep
+        assertParseFailure(parser, "1" + INVALID_CALORIES_DESC_A, Calories.NUMBER_CONSTRAINTS, logBook); // invalid rep
 
         // invalid exercise followed by valid rep
         assertParseFailure(parser, "1" + INVALID_EXERCISE_DESC + CALORIES_DESC_A,
