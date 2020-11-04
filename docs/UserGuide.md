@@ -203,9 +203,13 @@ Examples:
 
 ### 5.4 Untagging food items : `untag`
 
-You can untag a food item in McGymmy.
+Wrongly tagged a food item? Not to worry, the `untag` command allows for quick and easy
+removal of a specified tag.
 
 Format: `untag INDEX -t TAG_NAME`
+
+Examples:
+* `untag 1 -t Breakfast` - removes the `Breakfast` tag from the first food item in your list.
 
 <div markdown="block" class="alert alert-info">
 
