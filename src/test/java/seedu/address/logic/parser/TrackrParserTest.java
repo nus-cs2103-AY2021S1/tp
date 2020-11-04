@@ -24,6 +24,7 @@ import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 //import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
 //import seedu.address.logic.commands.EditStudentCommand;
 //import seedu.address.logic.commands.EditTutorialGroupCommand;
 import seedu.address.logic.commands.EditParticipationCommand;
@@ -144,7 +145,9 @@ public class TrackrParserTest {
     public void parseCommand_editModule() throws Exception {
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
-        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
+        EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
+        editModuleDescriptor.setModuleId(new ModuleId("CS21"));
+        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, editModuleDescriptor), command);
     }
 
     //    Todo: EditTutorialGroup test

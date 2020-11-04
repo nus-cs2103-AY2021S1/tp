@@ -44,21 +44,19 @@ public class UniqueModuleList implements Iterable<Module> {
      * {@code target} must exist in the list.
      * The identity of {@code editedObject} must not be the same as another existing object in the list.
      */
-    public void setModule(Module target, ModuleId newModuleId) {
-        requireAllNonNull(target, newModuleId);
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new ShowableNotFoundException();
         }
 
-        Module moduleWithNewModuleId = new Module(newModuleId);
-
-        if (!target.isSame(moduleWithNewModuleId) && contains(moduleWithNewModuleId)) {
+        if (!target.isSame(editedModule) && contains(editedModule)) {
             throw new DuplicateShowableException();
         }
 
-        internalList.get(index).setId(newModuleId);
+        internalList.set(index, editedModule);
     }
 
     /**
