@@ -160,7 +160,10 @@ public class MainWindow extends UiPart<Stage> {
         if (bool) {
             mainListPanel = new StudentListPanel(logic.getFilteredStudentList());
         } else {
-            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
+            String sessionName = currentSession.get().getSessionName().name;
+            String sessionDateTime = currentSession.get().getSessionDateTime().getDisplayDateTimeString();
+            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList(),
+                    sessionName, sessionDateTime);
         }
     }
 
