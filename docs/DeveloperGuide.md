@@ -247,10 +247,15 @@ API call:
 
 ![AddSequenceDiagram](images/implementation/AddSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
-**Note:** Some term in the sequence diagram above has changed to a common substitutable term:<br>
- 
+* All prefixes must be preceded by a space.<br>
+   e.g ` t/`, ` i/`
+
+* All commands are **case-sensitive**.<br>
+  e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
+
 * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
 
 * info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
