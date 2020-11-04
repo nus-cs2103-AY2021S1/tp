@@ -233,12 +233,6 @@ allowing you to easily locate past entries.
 
 Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
 
-Examples:
-* `find` - finds all food items
-* `find -n Sushi -d 20/04/2020` - finds all food items with the word "Sushi" in it's name and date "20/04/2020"
-* `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
-* `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
-
 <div markdown="block" class="alert alert-info">
 
 :information_source:
@@ -249,6 +243,12 @@ Examples:
 * `KEYWORDS` and `WORDS_IN_NAME` are not case sensitive but `WORDS_IN_TAG` is case sensitive.
 
 </div>
+
+Examples:
+* `find` - finds all food items
+* `find -n Sushi -d 20/04/2020` - finds all food items with the word "Sushi" in it's name and date "20/04/2020"
+* `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
+* `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
 
 ![find_command_example](images/CommandImagesForUG/Find.png)
 
@@ -297,9 +297,6 @@ McGymmy.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
-Examples:
-*  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
-
 <div markdown="block" class="alert alert-info">
 
 :information_source:
@@ -313,6 +310,9 @@ Examples:
 
 </div>
 
+Examples:
+*  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
+
 ![edit command example](images/CommandImagesForUG/Edit.png)
 
 ### 5.9 Deleting a food item: `delete`
@@ -321,9 +321,6 @@ The `delete` command allows you to instantly remove a food item from the current
 displayed list of food items.
 
 Format: `delete INDEX`
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
 
 <div markdown="block" class="alert alert-info">
 
@@ -335,6 +332,9 @@ Examples:
 
 </div>
 
+Examples:
+* `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
+
 ![delete command example](images/CommandImagesForUG/Delete.png)
 
 ### 5.10 Importing another save file: `import`
@@ -343,10 +343,6 @@ The `import` command allows you to load a previously saved file from your local 
 into McGymmy. This allows for easy transfer of McGymmy data between multiple computers.
 
 Format: `import FILEPATH`
-
-Examples:
-* For Windows users: `import c:/mcgymmy/save_file.json` imports `save_file.json` from the `c:/mcgymmy` directory into McGymmy.
-* For Mac users: `import /Users/<username>/Desktop/save_file.json` imports `save_file.json` from the Desktop into McGymmy.
 
 <div markdown="block" class="alert alert-info">
 
@@ -357,6 +353,10 @@ Examples:
 * The imported file will simply override the existing food list.
 
 </div>
+
+Examples:
+* For Windows users: `import c:/mcgymmy/save_file.json` imports `save_file.json` from the `c:/mcgymmy` directory into McGymmy.
+* For Mac users: `import /Users/<username>/Desktop/save_file.json` imports `save_file.json` from the Desktop into McGymmy.
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
@@ -373,7 +373,9 @@ Examples:
 
 ### 5.11 Exporting your save file to a folder: `export`
 
-You can export a saved file to a folder to your local directory
+The `export` command allows you to export your current food list as file on
+your computer. This would make it easy to send and transfer your existing McGymmy data
+between multiple computers.
 
 Format: `export DIRPATH [-o FILENAME]`
 
