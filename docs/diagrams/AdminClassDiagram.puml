@@ -13,9 +13,6 @@ Class PaymentDate
 Class Details
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside --> Admin
-
 Admin *--> ClassVenue
 Admin *--> ClassTime
 Admin *--> Fee

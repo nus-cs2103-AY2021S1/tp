@@ -37,7 +37,7 @@ MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StudentListPanel
 MainWindow *-down-> StatusBarFooter
 
-StudentListPanel -down-> StudentAdminCard
+StudentListPanel --> StudentAdminCard
 StudentListPanel --> StudentAcademicCard
 
 MainWindow -left-|> UiPart
@@ -51,7 +51,7 @@ StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
 StudentAcademicCard ..> Model
-StudentAdminCard ..> Model
+StudentAdminCard .right.> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

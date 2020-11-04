@@ -11,8 +11,6 @@ Class Exam
 Class Attendance
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside --> Academic
 
 Academic *--> "*" Question
 Academic *--> "*" Exam
