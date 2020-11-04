@@ -71,6 +71,14 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static AddressBook getDeletedTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static AddressBook getEditedTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Person person : getEditedTypicalPersons()) {
@@ -81,6 +89,10 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getDeletedTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
     public static List<Person> getEditedTypicalPersons() {

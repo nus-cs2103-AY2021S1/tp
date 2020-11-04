@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.util.SampleDataUtil;
 
 public class MeetingBuilder {
-    public static final String DEFAULT_MODULE = "CS2103";
+    public static final String DEFAULT_MODULE = "CS1100";
     public static final String DEFAULT_NAME = "Weekly Meeting";
     public static final String DEFAULT_DATE = "2020-10-03";
     public static final String DEFAULT_TIME = "10:00";
