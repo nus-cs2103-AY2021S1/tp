@@ -5,16 +5,16 @@ title: Tan Ying Hui's Project Portfolio Page
 
 ## Project: tCheck
 
-tCheck is a desktop application that helps bubble tea store managers manage the staffs’ contact information, 
-store’s inventory and historical sales data. It is optimized for CLI users to update and retrieve the information more 
-efficiently.
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
+the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is 
+optimized for CLI users to update and retrieve the information more efficiently.
 
 Given below are my contributions to the project.
  
 * **Implementation**: Implemented model `SalesBook`, and other related models, which are used to store sales tracking
  information.
   * What it does: Allows the app to record the sales data, as given by the user.
-  * Justification: This is a necessary step for the app to work as stated.
+  * Justification: This is a necessary step for the app to work as stated.   
  
 * **New Feature**: Added ability to add and update sales of drinks.
   * What it does: Allows the user to add and update the sales of drink items, in the Sales Tracker, with a single
