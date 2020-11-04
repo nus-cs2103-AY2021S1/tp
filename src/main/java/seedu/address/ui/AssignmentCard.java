@@ -36,7 +36,7 @@ public class AssignmentCard extends UiPart<Region> {
     private Label assignmentResult;
 
     /**
-     * Creates a {@code ZoomLinkCard} with the given {@code ZoomLink} and index to display.
+     * Creates a {@code AssignmentCard} with the given {@code Assignment} and index to display.
      */
     public AssignmentCard(Assignment assignment, int displayedIndex) {
         super(FXML);
@@ -57,14 +57,13 @@ public class AssignmentCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ZoomLinkCard)) {
+        if (!(other instanceof Assignment)) {
             return false;
         }
 
         // state check
         AssignmentCard card = (AssignmentCard) other;
         return id.getText().equals(card.id.getText())
-                //&& moduleLesson.equals(((ZoomLinkCard) other).moduleLesson)
-                && assignment.equals(((ZoomLinkCard) other).zoomLink);
+                && assignment.equals(((AssignmentCard) other).assignment);
     }
 }
