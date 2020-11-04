@@ -5,7 +5,10 @@ title: Tian Fang's Project Portfolio Page
 
 ## Project: Taskmania
 
-Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than a traditional point and click interface.
+Taskmania (based off AB3) is a **desktop app for a project leader to manage team members and tasks** to be finished in a
+ software project, optimized for use via a Command Line Interface (CLI) while still having the benefits of a 
+ Graphical User Interface (GUI). If you can type fast, Taskmania can allow you to manage your team faster than 
+ a traditional point and click interface.
 
 Given below are my contributions to the project.
 
