@@ -258,9 +258,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String input} into a {@ScheduleViewMode}.
+     * Parses {@code String input} into a {@code ScheduleViewMode}.
      * Case of the input string is ignored.
-     * @throws ParseException when given input string is not one of the view mode.
+     *
+     * @throws ParseException if the given {@code string} is of a valid view mode.
      */
     public static ScheduleViewMode parseViewMode(String input) throws ParseException {
 
@@ -275,7 +276,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code dateToViewSchedule} into a LocalDate object.
+     * Parses a {@code String dateToViewSchedule} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
      * @throws ParseException when input string does not follow the format
      */
     public static LocalDate parseViewDate(String dateToViewSchedule) throws ParseException {
@@ -319,7 +322,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code String}.
+     * Parses a {@code String attendanceStatus} into a {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed, and case is ignored.
+     *
      * @throws ParseException if the given {@code attendanceStatus} is invalid.
      */
     public static boolean parseAttendanceStatus(String attendanceStatus) throws ParseException {
@@ -347,9 +352,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a date string into a LocalDate.
+     * Parses a {@code String date} into a {@code LocalDate}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the input is not a valid date.
+     * @throws ParseException if the given {@code date} is not a valid date.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
