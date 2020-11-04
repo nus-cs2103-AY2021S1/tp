@@ -152,7 +152,7 @@ public class AddMeetingCommand extends Command {
 
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
-                false, false, true, false);
+                false, false, false, false, true);
     }
 
     @Override

@@ -851,6 +851,31 @@ Given below is the activity diagram which illustrates the workflow of this proce
       * Only certain JavaFX views can be used with ObservableList.
 
 ###Timeline Feature
+The mechanism to display the timeline window is facilitated by `TimelineWindow`, which extends `UiPart`. 
+The components `TimelineSection` and `TimelineMeetingCard` help display various sections in the timeline window.
+
+![TimelineWindowClassDiagram](images/TimelineWindowClassDiagram.png)
+
+The `ShowTimelineCommand` triggers the timeline window to be displayed.
+
+![ShowTimelineSequenceDiagram](images/ShowTimelineSequenceDiagram.png)
+
+When the Logic signals that the `ShowTimelineCommand` has been triggered, 
+the following `handleShowTimeline` method in `MainWindow` is invoked to open the timeline window or focus on it if it is already opened.
+```
+public void handleShowTimeline() {
+    logger.info("UI show timeline triggered");
+
+    if (!timelineWindow.isShowing()) {
+        timelineWindow.show();
+    } else {
+        timelineWindow.focus();
+    }
+}
+```
+
+Whenever an update has been made to the model that affects any of the components in timeline, 
+the following `updateTimeline` method in `MainWindow` is invoked.
 
 
 --------------------------------------------------------------------------------------------------------------------
