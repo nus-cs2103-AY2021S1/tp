@@ -55,7 +55,7 @@ public class EditSuspectCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToEdit, editedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, editSuspectCommand);
 
         assertCommandSuccess(editSuspectCommand, model, expectedMessage, expectedModel);
     }
@@ -76,7 +76,7 @@ public class EditSuspectCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToEdit, editedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, editSuspectCommand);
 
         assertCommandSuccess(editSuspectCommand, model, expectedMessage, expectedModel);
     }

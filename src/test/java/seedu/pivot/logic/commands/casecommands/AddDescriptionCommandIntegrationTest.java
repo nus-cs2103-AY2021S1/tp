@@ -33,12 +33,12 @@ public class AddDescriptionCommandIntegrationTest {
         Case expectedCase = new CaseBuilder(caseToUpdate).withDescription("New Description").build();
         Description description = new Description("New Description");
 
-        AddCommand command = new AddDescriptionCommand(FIRST_INDEX, description);
+        AddDescriptionCommand command = new AddDescriptionCommand(FIRST_INDEX, description);
 
         String expectedMessage = String.format(AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, description);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();
@@ -66,13 +66,13 @@ public class AddDescriptionCommandIntegrationTest {
         Case expectedCase = new CaseBuilder(caseToUpdate).withDescription("New Description").build();
         Description description = new Description("New Description");
 
-        AddCommand command = new AddDescriptionCommand(FIRST_INDEX, description);
+        AddDescriptionCommand command = new AddDescriptionCommand(FIRST_INDEX, description);
 
         String expectedMessage = String.format(AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, description);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         showCaseAtIndex(expectedModel, FIRST_INDEX);
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();

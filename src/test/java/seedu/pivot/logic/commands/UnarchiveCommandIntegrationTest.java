@@ -51,7 +51,7 @@ public class UnarchiveCommandIntegrationTest {
         expectedModel.deleteCase(caseToUnarchive);
         expectedModel.addCase(unarchivedCase);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, unarchiveCommand);
 
         assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
     }
@@ -79,7 +79,7 @@ public class UnarchiveCommandIntegrationTest {
         expectedModel.deleteCase(caseToUnarchive);
         expectedModel.addCase(unarchivedCase);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, unarchiveCommand);
 
         assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
     }

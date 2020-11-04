@@ -48,14 +48,14 @@ public class DeleteCaseCommandIntegrationTest {
         setUpDefaultSection();
 
         Case caseToDelete = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
+        DeleteCaseCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
 
         String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
 
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, deleteCommand);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -65,14 +65,14 @@ public class DeleteCaseCommandIntegrationTest {
         setUpArchivedSection();
 
         Case caseToDelete = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
+        DeleteCaseCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
 
         String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
 
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, deleteCommand);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -104,14 +104,14 @@ public class DeleteCaseCommandIntegrationTest {
         showCaseAtIndex(model, FIRST_INDEX); // filter the list
 
         Case caseToDelete = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
+        DeleteCaseCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
 
         String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
 
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, deleteCommand);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -123,14 +123,14 @@ public class DeleteCaseCommandIntegrationTest {
         showCaseAtIndex(model, FIRST_INDEX); // filter the list
 
         Case caseToDelete = model.getFilteredCaseList().get(FIRST_INDEX.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
+        DeleteCaseCommand deleteCommand = new DeleteCaseCommand(FIRST_INDEX);
 
         String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
 
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, deleteCommand);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

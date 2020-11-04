@@ -41,12 +41,12 @@ public class AddWitnessCommandIntegrationTest {
         // CASE: ALICE, WITHOUT Witness
         Case expectedCase = new CaseBuilder(caseToUpdate).addWitnesses(DEFAULT_WITNESS).build();
 
-        AddCommand command = new AddWitnessCommand(FIRST_INDEX, DEFAULT_WITNESS);
+        AddWitnessCommand command = new AddWitnessCommand(FIRST_INDEX, DEFAULT_WITNESS);
 
         String expectedMessage = String.format(AddWitnessCommand.MESSAGE_ADD_WITNESS_SUCCESS, DEFAULT_WITNESS);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();
@@ -73,13 +73,13 @@ public class AddWitnessCommandIntegrationTest {
         // CASE: ALICE, WITHOUT Witness
         Case expectedCase = new CaseBuilder(caseToUpdate).addWitnesses(DEFAULT_WITNESS).build();
 
-        AddCommand command = new AddWitnessCommand(FIRST_INDEX, DEFAULT_WITNESS);
+        AddWitnessCommand command = new AddWitnessCommand(FIRST_INDEX, DEFAULT_WITNESS);
 
         String expectedMessage = String.format(AddWitnessCommand.MESSAGE_ADD_WITNESS_SUCCESS, DEFAULT_WITNESS);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         showCaseAtIndex(expectedModel, FIRST_INDEX);
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();

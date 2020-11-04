@@ -102,7 +102,7 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCase(expectedCase);
         expectedModel.commitPivot(
-                String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, expectedCase), true);
+                String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, expectedCase), new AddCaseCommand(expectedCase));
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 

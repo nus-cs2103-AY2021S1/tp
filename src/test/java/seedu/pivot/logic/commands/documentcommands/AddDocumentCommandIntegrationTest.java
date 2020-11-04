@@ -35,12 +35,12 @@ public class AddDocumentCommandIntegrationTest {
         Case expectedCase = new CaseBuilder(caseToUpdate).withDocument(DEFAULT_NAME.getAlphaNum(),
                 DEFAULT_REFERENCE.getFileName()).build();
 
-        AddCommand command = new AddDocumentCommand(FIRST_INDEX, DEFAULT_DOCUMENT);
+        AddDocumentCommand command = new AddDocumentCommand(FIRST_INDEX, DEFAULT_DOCUMENT);
 
         String expectedMessage = String.format(AddDocumentCommand.MESSAGE_ADD_DOCUMENT_SUCCESS, DEFAULT_DOCUMENT);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();
@@ -68,13 +68,13 @@ public class AddDocumentCommandIntegrationTest {
         Case expectedCase = new CaseBuilder(caseToUpdate).withDocument(DEFAULT_NAME.getAlphaNum(),
                 DEFAULT_REFERENCE.getFileName()).build();
 
-        AddCommand command = new AddDocumentCommand(FIRST_INDEX, DEFAULT_DOCUMENT);
+        AddDocumentCommand command = new AddDocumentCommand(FIRST_INDEX, DEFAULT_DOCUMENT);
 
         String expectedMessage = String.format(AddDocumentCommand.MESSAGE_ADD_DOCUMENT_SUCCESS, DEFAULT_DOCUMENT);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         showCaseAtIndex(expectedModel, FIRST_INDEX);
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();

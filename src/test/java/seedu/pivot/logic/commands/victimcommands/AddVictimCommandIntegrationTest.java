@@ -40,12 +40,12 @@ public class AddVictimCommandIntegrationTest {
         // CASE: ALICE, WITHOUT Victim
         Case expectedCase = new CaseBuilder(caseToUpdate).addVictims(DEFAULT_VICTIM).build();
 
-        AddCommand command = new AddVictimCommand(FIRST_INDEX, DEFAULT_VICTIM);
+        AddVictimCommand command = new AddVictimCommand(FIRST_INDEX, DEFAULT_VICTIM);
 
         String expectedMessage = String.format(AddVictimCommand.MESSAGE_ADD_VICTIM_SUCCESS, DEFAULT_VICTIM);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();
@@ -72,13 +72,13 @@ public class AddVictimCommandIntegrationTest {
         // CASE: ALICE, WITHOUT Victim
         Case expectedCase = new CaseBuilder(caseToUpdate).addVictims(DEFAULT_VICTIM).build();
 
-        AddCommand command = new AddVictimCommand(FIRST_INDEX, DEFAULT_VICTIM);
+        AddVictimCommand command = new AddVictimCommand(FIRST_INDEX, DEFAULT_VICTIM);
 
         String expectedMessage = String.format(AddVictimCommand.MESSAGE_ADD_VICTIM_SUCCESS, DEFAULT_VICTIM);
         ModelManager expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         showCaseAtIndex(expectedModel, FIRST_INDEX);
         expectedModel.setCase(caseToUpdate, expectedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, command);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         StateManager.resetState();

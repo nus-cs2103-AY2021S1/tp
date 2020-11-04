@@ -45,7 +45,7 @@ public class AddCaseCommandIntegrationTest {
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.addCase(validCase);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, new AddCaseCommand(validCase));
 
         assertCommandSuccess(new AddCaseCommand(validCase), model, expectedMessage, expectedModel);
     }
@@ -59,7 +59,7 @@ public class AddCaseCommandIntegrationTest {
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.addCase(validCase);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, new AddCaseCommand(validCase));
 
         assertCommandSuccess(new AddCaseCommand(validCase), model, expectedMessage, expectedModel);
     }

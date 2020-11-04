@@ -55,7 +55,7 @@ public class EditWitnessCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToEdit, editedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, editWitnessCommand);
 
         assertCommandSuccess(editWitnessCommand, model, expectedMessage, expectedModel);
     }
@@ -76,7 +76,7 @@ public class EditWitnessCommandIntegrationTest {
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToEdit, editedCase);
         showCaseAtIndex(expectedModel, FIRST_INDEX);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, editWitnessCommand);
 
         assertCommandSuccess(editWitnessCommand, model, expectedMessage, expectedModel);
     }
@@ -97,7 +97,7 @@ public class EditWitnessCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToEdit, editedCase);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, editWitnessCommand);
 
         assertCommandSuccess(editWitnessCommand, model, expectedMessage, expectedModel);
     }
@@ -121,7 +121,7 @@ public class EditWitnessCommandIntegrationTest {
         Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.setCase(caseToEdit, editedCase);
         showCaseAtIndex(expectedModel, FIRST_INDEX);
-        expectedModel.commitPivot(expectedMessage, false);
+        expectedModel.commitPivot(expectedMessage, editWitnessCommand);
 
         assertCommandSuccess(editWitnessCommand, model, expectedMessage, expectedModel);
     }

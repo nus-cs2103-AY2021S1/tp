@@ -162,6 +162,6 @@ public class EditVictimCommandTest {
         }
 
         @Override
-        public void commitPivot(String command, boolean isMainPageCommand) {}
+        public void commitPivot(String commandMessage, Undoable command) {}
     }
 }

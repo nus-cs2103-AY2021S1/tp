@@ -51,7 +51,7 @@ public class ArchiveCommandIntegrationTest {
         expectedModel.deleteCase(caseToArchive);
         expectedModel.addCase(archivedCase);
         expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, archiveCommand);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
@@ -79,7 +79,7 @@ public class ArchiveCommandIntegrationTest {
         expectedModel.deleteCase(caseToArchive);
         expectedModel.addCase(archivedCase);
         expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
-        expectedModel.commitPivot(expectedMessage, true);
+        expectedModel.commitPivot(expectedMessage, archiveCommand);
 
         assertCommandSuccess(archiveCommand, model, expectedMessage, expectedModel);
     }
