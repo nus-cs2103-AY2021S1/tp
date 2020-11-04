@@ -26,6 +26,7 @@ import seedu.address.logic.commands.consumption.ListConsumptionCommand;
 import seedu.address.logic.commands.ingredient.AddIngredientCommand;
 import seedu.address.logic.commands.ingredient.ClearIngredientCommand;
 import seedu.address.logic.commands.ingredient.DeleteIngredientCommand;
+import seedu.address.logic.commands.ingredient.EditIngredientCommand;
 import seedu.address.logic.commands.ingredient.GetEditIngredientCommand;
 import seedu.address.logic.commands.ingredient.ListIngredientsCommand;
 import seedu.address.logic.commands.ingredient.SearchIngredientCommand;
@@ -33,6 +34,7 @@ import seedu.address.logic.commands.recipe.AddRecipeCommand;
 import seedu.address.logic.commands.recipe.ClearRecipeCommand;
 import seedu.address.logic.commands.recipe.CloseCommand;
 import seedu.address.logic.commands.recipe.DeleteRecipeCommand;
+import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.logic.commands.recipe.GetEditRecipeCommand;
 //import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.logic.commands.recipe.ListRecipesCommand;
@@ -45,6 +47,8 @@ import seedu.address.model.ingredient.IngredientContainsKeywordsPredicate;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
 //import seedu.address.testutil.EditRecipeDescriptorBuilder;
+import seedu.address.testutil.EditIngredientDescriptorBuilder;
+import seedu.address.testutil.EditRecipeDescriptorBuilder;
 import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.IngredientUtil;
 import seedu.address.testutil.RecipeBuilder;
@@ -125,14 +129,25 @@ public class WishfulShrinkingParserTest {
         assertEquals(new SelectRecipeCommand(INDEX_FIRST_CONSUMPTION), command);
     }
 
-    //@Test
-    //public void parseCommand_edit() throws Exception {
-    //    Recipe recipe = new RecipeBuilder().build();
-    //    EditRecipeCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
-    //    EditRecipeCommand command = (EditRecipeCommand) parser.parseCommand(EditRecipeCommand.COMMAND_WORD + " "
-    //            + INDEX_FIRST_RECIPE.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(descriptor));
-    //    assertEquals(new EditRecipeCommand(INDEX_FIRST_RECIPE, descriptor), command);
-    //}
+//    @Test
+//    public void parseCommand_editRecipe() throws Exception {
+//        Recipe recipe = new RecipeBuilder().build();
+//        EditRecipeCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
+//        EditRecipeCommand command = (EditRecipeCommand) parser.parseCommand(EditRecipeCommand.COMMAND_WORD + " "
+//                + INDEX_FIRST_RECIPE.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(descriptor));
+//        assertEquals(new EditRecipeCommand(INDEX_FIRST_RECIPE, descriptor), command);
+//    }
+
+    @Test
+    public void parseCommand_editIngredient() throws Exception {
+        Ingredient ingredient = new IngredientBuilder().build();
+        EditIngredientCommand.EditIngredientDescriptor descriptor =
+                new EditIngredientDescriptorBuilder(ingredient).build();
+        EditIngredientCommand command =
+                (EditIngredientCommand) parser.parseCommand(EditIngredientCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_INGREDIENT.getOneBased() + " " + IngredientUtil.getEditIngredientDescriptorDetails(descriptor));
+        assertEquals(new EditIngredientCommand(INDEX_FIRST_INGREDIENT, descriptor), command);
+    }
 
 
     @Test

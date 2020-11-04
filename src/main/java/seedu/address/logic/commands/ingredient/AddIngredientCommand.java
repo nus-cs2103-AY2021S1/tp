@@ -54,7 +54,7 @@ public class AddIngredientCommand extends Command {
 
         StringBuilder ingredientsAdded = new StringBuilder();
         for (Ingredient ingredient : toAdd) {
-            if (model.hasIngredient(ingredient)) {
+            if (model.hasMinimalIngredient(ingredient)) {
                 throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
             }
             ingredientsAdded.append(ingredient + ", ");

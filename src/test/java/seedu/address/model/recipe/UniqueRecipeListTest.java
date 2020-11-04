@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.MARGARITAS;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
+import static seedu.address.testutil.TypicalRecipes.SANDWICH_DIFF_QTY;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,9 +41,39 @@ public class UniqueRecipeListTest {
     @Test
     public void contains_recipeWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRecipeList.add(SANDWICH);
-        Recipe editedAlice = new RecipeBuilder(SANDWICH)
+        Recipe editedRecipe = new RecipeBuilder(SANDWICH)
                 .build();
-        assertTrue(uniqueRecipeList.contains(editedAlice));
+        assertTrue(uniqueRecipeList.contains(editedRecipe));
+    }
+
+    @Test
+    public void containsMinimalRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRecipeList.containsMinimalRecipe(null));
+    }
+
+    @Test
+    public void containsMinimalRecipe_recipeNotInList_returnsFalse() {
+        assertFalse(uniqueRecipeList.containsMinimalRecipe(SANDWICH));
+    }
+
+    @Test
+    public void containsMinimalRecipe_recipeInList_returnsTrue() {
+        uniqueRecipeList.add(SANDWICH);
+        assertTrue(uniqueRecipeList.containsMinimalRecipe(SANDWICH));
+
+        assertTrue(uniqueRecipeList.containsMinimalRecipe(SANDWICH_DIFF_QTY));
+    }
+
+    @Test
+    public void containsMinimalRecipe_recipeWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueRecipeList.add(SANDWICH);
+        Recipe editedRecipe = new RecipeBuilder(SANDWICH)
+                .build();
+        assertTrue(uniqueRecipeList.containsMinimalRecipe(editedRecipe));
+
+        Recipe editedRecipe1 = new RecipeBuilder(SANDWICH_DIFF_QTY)
+                .build();
+        assertTrue(uniqueRecipeList.containsMinimalRecipe(editedRecipe1));
     }
 
     @Test
@@ -54,6 +85,8 @@ public class UniqueRecipeListTest {
     public void add_duplicateRecipe_throwsDuplicateRecipeException() {
         uniqueRecipeList.add(SANDWICH);
         assertThrows(DuplicateRecipeException.class, () -> uniqueRecipeList.add(SANDWICH));
+
+        assertThrows(DuplicateRecipeException.class, () -> uniqueRecipeList.add(SANDWICH_DIFF_QTY));
     }
 
     @Test
@@ -83,11 +116,11 @@ public class UniqueRecipeListTest {
     @Test
     public void setRecipe_editedRecipeHasSameIdentity_success() {
         uniqueRecipeList.add(SANDWICH);
-        Recipe editedAlice = new RecipeBuilder(SANDWICH)
+        Recipe editedRecipe = new RecipeBuilder(SANDWICH)
                 .build();
-        uniqueRecipeList.setRecipe(SANDWICH, editedAlice);
+        uniqueRecipeList.setRecipe(SANDWICH, editedRecipe);
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
-        expectedUniqueRecipeList.add(editedAlice);
+        expectedUniqueRecipeList.add(editedRecipe);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
     }
 
@@ -98,6 +131,13 @@ public class UniqueRecipeListTest {
         UniqueRecipeList expectedUniqueRecipeList = new UniqueRecipeList();
         expectedUniqueRecipeList.add(MARGARITAS);
         assertEquals(expectedUniqueRecipeList, uniqueRecipeList);
+
+        uniqueRecipeList.remove(MARGARITAS);
+        uniqueRecipeList.add(SANDWICH);
+        uniqueRecipeList.setRecipe(SANDWICH, SANDWICH_DIFF_QTY);
+        UniqueRecipeList expectedUniqueRecipeList2 = new UniqueRecipeList();
+        expectedUniqueRecipeList2.add(SANDWICH_DIFF_QTY);
+        assertEquals(expectedUniqueRecipeList2, uniqueRecipeList);
     }
 
     @Test

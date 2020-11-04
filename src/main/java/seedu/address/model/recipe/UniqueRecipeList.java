@@ -37,12 +37,20 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     }
 
     /**
+     * Returns true if the list contains an equivalent recipe as the given argument.
+     */
+    public boolean containsMinimalRecipe(Recipe toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameRecipeNameAndIngredient);
+    }
+
+    /**
      * Adds a recipe to the list.
      * The recipe must not already exist in the list.
      */
     public void add(Recipe toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
+        if (containsMinimalRecipe(toAdd)) {
             throw new DuplicateRecipeException();
         }
         internalList.add(toAdd);
@@ -134,7 +142,7 @@ public class UniqueRecipeList implements Iterable<Recipe> {
     private boolean recipesAreUnique(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size() - 1; i++) {
             for (int j = i + 1; j < recipes.size(); j++) {
-                if (recipes.get(i).isSameRecipe(recipes.get(j))) {
+                if (recipes.get(i).isSameRecipeNameAndIngredient(recipes.get(j))) {
                     return false;
                 }
             }

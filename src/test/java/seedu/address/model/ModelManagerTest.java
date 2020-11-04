@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.PASTA;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
+import static seedu.address.testutil.TypicalRecipes.SANDWICH_DIFF_QTY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,12 +81,32 @@ public class ModelManagerTest {
     @Test
     public void hasRecipe_recipeNotInWishfulShrinking_returnsFalse() {
         assertFalse(modelManager.hasRecipe(SANDWICH));
+        assertFalse(modelManager.hasRecipe(SANDWICH_DIFF_QTY));
     }
 
     @Test
     public void hasRecipe_recipeInWishfulShrinking_returnsTrue() {
         modelManager.addRecipe(SANDWICH);
         assertTrue(modelManager.hasRecipe(SANDWICH));
+        assertFalse(modelManager.hasRecipe(SANDWICH_DIFF_QTY));
+    }
+
+    @Test
+    public void hasMinimalRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasMinimalRecipe(null));
+    }
+
+    @Test
+    public void hasMinimalRecipe_recipeNotInWishfulShrinking_returnsFalse() {
+        assertFalse(modelManager.hasMinimalRecipe(SANDWICH));
+        assertFalse(modelManager.hasMinimalRecipe(SANDWICH_DIFF_QTY));
+    }
+
+    @Test
+    public void hasMinimalRecipe_recipeInWishfulShrinking_returnsTrue() {
+        modelManager.addRecipe(SANDWICH);
+        assertTrue(modelManager.hasMinimalRecipe(SANDWICH));
+        assertTrue(modelManager.hasMinimalRecipe(SANDWICH_DIFF_QTY));
     }
 
     @Test
