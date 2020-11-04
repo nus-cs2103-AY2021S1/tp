@@ -45,6 +45,20 @@ Given below are my contributions to the project.
     * Refactoring DG from AB3 to SWEe!
 
 * **Review/Mentoring Contributions**:
-
+    * [#25](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/25)
+    * [#36](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/36)
+    * [#37](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/37)
+    * [#41](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/41)
+    * [#52](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/52)
+    * [#57](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/57)
+    * [#75](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/75)
+    * [#84](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/84)
+    * [#93](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/93)
+    * [#99](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/99)
+    * [#153](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/153)
+    * [#157](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/157)
+    * [#171](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/171)
+      
 * **Contributions beyond project team**:
+    * Bugs reported during PE Dry Run: [Issue Tracker](https://github.com/kimberlyohq/ped/issues)
 
