@@ -24,9 +24,12 @@ import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 //import seedu.address.logic.commands.DeleteTutorialGroupCommand;
 import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.logic.commands.EditModuleCommand.EditModuleDescriptor;
 //import seedu.address.logic.commands.EditStudentCommand;
 //import seedu.address.logic.commands.EditTutorialGroupCommand;
 import seedu.address.logic.commands.EditParticipationCommand;
+import seedu.address.logic.commands.EditStudentCommand;
+//import seedu.address.logic.commands.EditTutorialGroupCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.commands.FindStudentCommand;
@@ -50,9 +53,9 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 //import seedu.address.model.tutorialgroup.TutorialGroupId;
-//import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.AttendanceBuilder;
 import seedu.address.testutil.AttendanceUtil;
+import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -144,7 +147,9 @@ public class TrackrParserTest {
     public void parseCommand_editModule() throws Exception {
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
-        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
+        EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
+        editModuleDescriptor.setModuleId(new ModuleId("CS21"));
+        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, editModuleDescriptor), command);
     }
 
     //    Todo: EditTutorialGroup test
@@ -161,15 +166,15 @@ public class TrackrParserTest {
     //    }
 
     //    Todo: EditStudent test
-    //    @Test
-    //    public void parseCommand_editStudent() throws Exception {
-    //        Student student = new StudentBuilder().build();
-    //        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
-    //        EditStudentCommand command = (EditStudentCommand) parser.parseCommand(
-    //                EditStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-    //                        + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-    //        assertEquals(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor), command);
-    //    }
+    @Test
+    public void parseCommand_editStudent() throws Exception {
+        Student student = new StudentBuilder().build();
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
+        EditStudentCommand command = (EditStudentCommand) parser.parseCommand(
+                EditStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
+        assertEquals(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
 
     @Test
     public void parseCommand_editParticipation() throws Exception {

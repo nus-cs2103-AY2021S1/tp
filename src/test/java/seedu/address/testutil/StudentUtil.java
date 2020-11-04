@@ -45,10 +45,9 @@ public class StudentUtil {
         StringBuilder sb = new StringBuilder();
 
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME + name.toString() + " "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE + phone.toString() + ""));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE + phone.toString() + " "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL + email.toString() + " "));
         descriptor.getStudentId().ifPresent(id -> sb.append(PREFIX_STUDENT_ID + id.toString() + " "));
-
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

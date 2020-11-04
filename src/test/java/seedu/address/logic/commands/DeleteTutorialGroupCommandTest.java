@@ -25,7 +25,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleId;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.TypicalModules;
@@ -251,7 +250,7 @@ public class DeleteTutorialGroupCommandTest {
         }
 
         @Override
-        public void setModule(Module target, ModuleId newModuleId) {
+        public void setModule(Module target, Module editedModule) {
             throw new AssertionError("This method should not be called.");
         }
 
