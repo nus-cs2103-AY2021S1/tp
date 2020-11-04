@@ -104,6 +104,7 @@ public class Patient {
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
                 && otherPatient.getNric().equals(getNric())
+                && otherPatient.getMedicalRecord().equals(getMedicalRecord())
                 && (otherPatient.getPhone().equals(getPhone()) || otherPatient.getEmail().equals(getEmail()));
     }
 

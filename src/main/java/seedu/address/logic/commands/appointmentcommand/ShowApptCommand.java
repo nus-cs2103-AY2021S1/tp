@@ -16,7 +16,7 @@ public class ShowApptCommand extends Command {
     public static final String COMMAND_WORD = "showAppt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Show Appointment(s) of a patient\n"
-            + "Parameters: [NRIC]\n"
+            + "Parameters: NRIC\n"
             + "Example: " + COMMAND_WORD + " S1234567A\n";
 
     private final NricPredicate predicate;

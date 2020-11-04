@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -58,6 +59,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Hospify.";
     public static final String MESSAGE_DUPLICATE_NRIC = "This NRIC already belongs to an existing patient in Hospify";
+    public static final String MESSAGE_DUPLICATE_MR_URL = "This Medial Record URL already belongs to an existing "
+            + "patient in Hospify";
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -85,13 +88,22 @@ public class EditCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
         Patient editedPatient = createEditedPatient(patientToEdit, editPatientDescriptor);
+        List<Patient> patientsLessPatientToEdit = lastShownList.stream().filter(x -> !x.equals(patientToEdit))
+                .collect(Collectors.toList());
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
         }
 
-        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatientWithNric(editedPatient.getNric())) {
-            throw new CommandException(MESSAGE_DUPLICATE_NRIC);
+        if (!patientToEdit.isSamePatient(editedPatient)) {
+            for (Patient patient : patientsLessPatientToEdit) {
+                if (patient.getNric().equals(editedPatient.getNric())) {
+                    throw new CommandException(MESSAGE_DUPLICATE_NRIC);
+                }
+                if (patient.getMedicalRecord().equals(editedPatient.getMedicalRecord())) {
+                    throw new CommandException(MESSAGE_DUPLICATE_MR_URL);
+                }
+            }
         }
 
         model.setPatient(patientToEdit, editedPatient);

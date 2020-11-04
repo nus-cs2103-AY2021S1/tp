@@ -16,6 +16,6 @@ public class CountCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         return new CommandResult("There are "
-            + String.valueOf(model.count()) + " records.");
+            + String.valueOf(model.count()) + " record(s).");
     }
 }

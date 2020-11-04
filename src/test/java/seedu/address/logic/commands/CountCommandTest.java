@@ -19,7 +19,7 @@ public class CountCommandTest {
 
     @Test
     void execute_defaultCount_success() {
-        String expectedMessage = "There are 7 records.";
+        String expectedMessage = "There are 7 record(s).";
 
         CountCommand countCommand = new CountCommand();
 
@@ -31,7 +31,7 @@ public class CountCommandTest {
         Patient patientToDelete = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         model.deletePatient(patientToDelete);
 
-        String expectedMessage = "There are 6 records.";
+        String expectedMessage = "There are 6 record(s).";
 
         CountCommand countCommand = new CountCommand();
 
@@ -46,7 +46,7 @@ public class CountCommandTest {
         model.addPatient(HOON);
         model.addPatient(IDA);
 
-        String expectedMessage = "There are 9 records.";
+        String expectedMessage = "There are 9 record(s).";
 
         CountCommand countCommand = new CountCommand();
 
