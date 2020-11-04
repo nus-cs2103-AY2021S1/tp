@@ -43,20 +43,20 @@ public class EditZoomLinkCommand extends Command {
     private final Logger logger = LogsCenter.getLogger(EditZoomLinkCommand.class);
 
     private final Index index;
-    private final EditZoomDescriptor editZoomDescriptor;
+    private final ZoomDescriptor zoomDescriptor;
 
     /**
      * Creates and initialises a new EditZoomLinkCommand object.
      *
      * @param index Index of the module containing the zoom link to be edited.
-     * @param editZoomDescriptor EditZoomDescriptor object that stores details of the edited zoom link
+     * @param zoomDescriptor EditZoomDescriptor object that stores details of the edited zoom link
      *                           and the module lesson that the zoom link to be edited belongs to.
      */
-    public EditZoomLinkCommand(Index index, EditZoomDescriptor editZoomDescriptor) {
-        requireAllNonNull(index, editZoomDescriptor);
+    public EditZoomLinkCommand(Index index, ZoomDescriptor zoomDescriptor) {
+        requireAllNonNull(index, zoomDescriptor);
         assert index.getZeroBased() >= 0 : "zero based index must be non-negative";
         this.index = index;
-        this.editZoomDescriptor = editZoomDescriptor;
+        this.zoomDescriptor = zoomDescriptor;
         logger.info("Editing the zoom link of the module at index " + index.getOneBased());
     }
 
@@ -70,8 +70,8 @@ public class EditZoomLinkCommand extends Command {
         }
 
         Module moduleToEdit = lastShownList.get(index.getZeroBased());
-        ZoomLink editedLink = editZoomDescriptor.getZoomLink();
-        ModuleLesson lesson = editZoomDescriptor.getModuleLesson();
+        ZoomLink editedLink = zoomDescriptor.getZoomLink();
+        ModuleLesson lesson = zoomDescriptor.getModuleLesson();
 
         if (moduleToEdit.containsLink(editedLink)) {
             throw new CommandException(MESSAGE_DUPLICATE_ZOOM);
@@ -103,7 +103,7 @@ public class EditZoomLinkCommand extends Command {
         // state check
         EditZoomLinkCommand e = (EditZoomLinkCommand) other;
         return index.equals(e.index)
-                && editZoomDescriptor.equals(e.editZoomDescriptor);
+                && zoomDescriptor.equals(e.zoomDescriptor);
     }
 
     @Override

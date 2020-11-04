@@ -9,9 +9,20 @@ import java.util.Objects;
  * Represents the container that stores the start and end time of an Event.
  */
 public class EventTime {
+    public static final String MESSAGE_CONSTRAINTS = "Invalid date and time entered. Please follow this format: "
+            + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)";
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    private static final LocalDateTime nullValue = LocalDateTime.parse("2020-02-02T12:00");
     private final LocalDateTime start;
     private final LocalDateTime end;
+
+    /**
+     * Creates an EventTime object that stores the start and end time.
+     */
+    public EventTime() {
+        this.start = nullValue;
+        this.end = nullValue;
+    }
 
     /**
      * Creates an EventTime object that stores the start and end time.
@@ -74,8 +85,12 @@ public class EventTime {
             return false;
         } else if (otherTime instanceof EventTime) {
             EventTime other = (EventTime) otherTime;
-            return this.getStart().isEqual(other.getStart())
-                    && this.getEnd().isEqual(other.getEnd());
+            if (this.getEnd() == null) {
+                return this.getStart().isEqual(other.getStart());
+            } else {
+                return this.getStart().isEqual(other.getStart())
+                        && this.getEnd().isEqual(other.getEnd());
+            }
         } else {
             return false;
         }
