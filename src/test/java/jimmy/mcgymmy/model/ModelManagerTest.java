@@ -31,10 +31,12 @@ import jimmy.mcgymmy.testutil.TypicalFoods;
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+    private Model expectedModel = new ModelManager();
 
     @BeforeEach
     public void setup() {
         modelManager = new ModelManager();
+        expectedModel = new ModelManager();
     }
 
     @Test
@@ -141,6 +143,31 @@ public class ModelManagerTest {
         modelManager.clearFilteredFood();
         assertEquals(expected, modelManager.getMcGymmy());
     }
+
+    @Test
+    public void fnd_empty_mcGymmyHasCorrectContent() {
+        
+        modelManager.updateFilteredFoodList((food) -> food.getName()
+                .fullName.contains(getChickenRice().getName().fullName));
+
+        assertEquals(expectedModel.getFilteredFoodList(), modelManager.getFilteredFoodList());
+    }
+
+    @Test
+    public void fnd_nonEmpty_mcGymmyHasCorrectContent() {
+
+        expectedModel.addFood(getChickenRice());
+
+        modelManager.addFood(getChickenRice());
+        modelManager.addFood(getNasiLemak());
+        modelManager.updateFilteredFoodList((food) -> food.getName()
+                        .fullName.contains(getChickenRice().getName().fullName));
+
+        assertEquals(expectedModel.getFilteredFoodList(), modelManager.getFilteredFoodList());
+    }
+
+    // find first add two test find empty and non empty
+    // find first then clear
 
     @Test
     public void undo_undoAfterAddFood_mcGymmyHasCorrectContent() {
