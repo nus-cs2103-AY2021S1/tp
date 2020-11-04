@@ -7,16 +7,18 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTutorialGroupCommand;
 import seedu.address.logic.commands.EditTutorialGroupCommand.EditTutorialGroupDescriptor;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class EditTutorialGroupCommandParser implements Parser<EditTutorialGroupCommand> {
 
+    /**
+     * Main parse command in for EditTutorialGroup, parses user input to return a command to be executed
+     * @param args
+     * @throws ParseException
+     */
     public EditTutorialGroupCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =

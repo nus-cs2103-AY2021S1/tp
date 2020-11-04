@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.EditTutorialGroupCommand.EditTutorialGroupDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -21,7 +22,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-import seedu.address.logic.commands.EditTutorialGroupCommand.EditTutorialGroupDescriptor;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.TutorialGroupBuilder;
 

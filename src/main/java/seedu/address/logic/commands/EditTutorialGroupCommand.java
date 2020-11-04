@@ -15,8 +15,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.Module;
-import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorialgroup.DayOfWeek;
 import seedu.address.model.tutorialgroup.TimeOfDay;
 import seedu.address.model.tutorialgroup.TutorialGroup;
@@ -49,12 +47,14 @@ public class EditTutorialGroupCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;
-    private TutorialGroupId tutorialGroupId;
-    private DayOfWeek dayOfWeek;
-    private TimeOfDay startTime;
-    private TimeOfDay endTime;
     private EditTutorialGroupDescriptor editTutorialGroupDescriptor;
 
+
+    /**
+     * Constructor for EditTutorialGroupCommand
+     * @param index
+     * @param editTutorialGroupDescriptor
+     */
     public EditTutorialGroupCommand(Index index, EditTutorialGroupDescriptor editTutorialGroupDescriptor) {
         this.index = index;
         this.editTutorialGroupDescriptor = editTutorialGroupDescriptor;
@@ -74,15 +74,8 @@ public class EditTutorialGroupCommand extends Command {
         }
 
         TutorialGroup tutorialGroupToEdit = lastShownList.get(index.getZeroBased());
-        UniqueStudentList originalStudentList = tutorialGroupToEdit.getUniqueStudentList();
         TutorialGroup editedTutorialGroup;
-
-        if (editTutorialGroupDescriptor == null) {
-            editedTutorialGroup = new TutorialGroup(tutorialGroupId,
-                dayOfWeek, startTime, endTime, originalStudentList);
-        } else {
-            editedTutorialGroup = createEditedTutorialGroup(tutorialGroupToEdit, editTutorialGroupDescriptor);
-        }
+        editedTutorialGroup = createEditedTutorialGroup(tutorialGroupToEdit, editTutorialGroupDescriptor);
 
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
 
@@ -113,7 +106,7 @@ public class EditTutorialGroupCommand extends Command {
     }
 
     public static class EditTutorialGroupDescriptor {
-        private TutorialGroupId Id;
+        private TutorialGroupId tutorialGroupId;
         private DayOfWeek dayOfWeek;
         private TimeOfDay startTime;
         private TimeOfDay endTime;
@@ -125,12 +118,16 @@ public class EditTutorialGroupCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTutorialGroupDescriptor(EditTutorialGroupDescriptor toCopy) {
-            setId(toCopy.Id);
+            setId(toCopy.tutorialGroupId);
             setDayOfWeek(toCopy.dayOfWeek);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
         }
 
+        /**
+         * Constructor for EditTutorialGroupDescriptor
+         * @param tutorialGroup
+         */
         public EditTutorialGroupDescriptor(TutorialGroup tutorialGroup) {
             setId(tutorialGroup.getId());
             setDayOfWeek(tutorialGroup.getDayOfWeek());
@@ -142,15 +139,15 @@ public class EditTutorialGroupCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(Id, dayOfWeek, startTime, endTime);
+            return CollectionUtil.isAnyNonNull(tutorialGroupId, dayOfWeek, startTime, endTime);
         }
 
-        public void setId(TutorialGroupId Id) {
-            this.Id = Id;
+        public void setId(TutorialGroupId tutorialGroupId) {
+            this.tutorialGroupId = tutorialGroupId;
         }
 
         public Optional<TutorialGroupId> getId() {
-            return Optional.ofNullable(Id);
+            return Optional.ofNullable(tutorialGroupId);
         }
 
         public void setDayOfWeek(DayOfWeek dayOfWeek) {

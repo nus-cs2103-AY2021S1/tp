@@ -145,6 +145,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String name} into a {@code Name}.
+     *
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -162,6 +163,11 @@ public class ParserUtil {
         return timeOfDays;
     }
 
+    /**
+     * Parses user input into a single TimeOfDay
+     * @param startTime
+     * @throws ParseException if invalid startTime String provided
+     */
     public static TimeOfDay parseTimeOfDay(String startTime) throws ParseException {
         requireNonNull(startTime);
         String trimmedStartTime = startTime.trim();
