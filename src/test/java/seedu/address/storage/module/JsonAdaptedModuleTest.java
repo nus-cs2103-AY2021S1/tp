@@ -15,7 +15,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
-import seedu.address.storage.*;
+import seedu.address.storage.JsonAdaptedAssignment;
+import seedu.address.storage.JsonAdaptedGradeTracker;
+import seedu.address.storage.JsonAdaptedModule;
+import seedu.address.storage.JsonAdaptedTag;
+import seedu.address.storage.JsonAdaptedZoomLink;
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_MODULE_NAME = "R@chel";
