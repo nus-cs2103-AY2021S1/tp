@@ -1,8 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.commons.core.Messages.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -56,6 +55,12 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_multipleAttributes_throwsMultipleAttributesException() {
+        String multipleAttributesCommand = "edit-task 1 title:1 title:2";
+        assertMultipleAttributesException(multipleAttributesCommand, MESSAGE_MULTIPLE_ATTRIBUTES);
+    }
+
+    @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListTaskCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListTaskCommand.MESSAGE_SUCCESS, model);
@@ -86,6 +91,14 @@ public class LogicManagerTest {
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
+    }
+
+    /**
+     * Executes the command, confirms that a MultipleAttributeException is thrown and that the result message is correct.
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertMultipleAttributesException(String inputCommand, String expectedMessage) {
+        assertCommandFailure(inputCommand, MultipleAttributesException.class, expectedMessage);
     }
 
     /**

@@ -19,7 +19,7 @@ public class CommandParserTestUtil {
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);
-        } catch (ParseException | MultipleAttributesException pe) {
+        } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
         }
     }
@@ -32,7 +32,7 @@ public class CommandParserTestUtil {
         try {
             parser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");
-        } catch (ParseException | MultipleAttributesException pe) {
+        } catch (ParseException pe) {
             assertEquals(expectedMessage, pe.getMessage());
         }
     }

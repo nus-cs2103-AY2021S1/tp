@@ -52,14 +52,14 @@ public class ParserUtil {
         if (trimmed.equals("")) {
             throw new ParseException(MESSAGE_MISSING_INDEX);
         }
-        String[] splited = trimmed.split(" ");
-        int length = splited.length;
+        String[] split = trimmed.split(" ");
+        int length = split.length;
         Index[] indexes = new Index[length];
         for (int i = 0; i < length; i++) {
-            if (!StringUtil.isNonZeroUnsignedInteger(splited[i])) {
+            if (!StringUtil.isNonZeroUnsignedInteger(split[i])) {
                 throw new ParseException(MESSAGE_INVALID_INDEX);
             }
-            indexes[i] = Index.fromOneBased(Integer.parseInt(splited[i]));
+            indexes[i] = Index.fromOneBased(Integer.parseInt(split[i]));
         }
         return indexes;
     }
