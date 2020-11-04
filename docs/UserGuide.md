@@ -135,6 +135,8 @@ location and tags). You will be able to edit these fields later on.
 **EXAMPLE:**
 - `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm -t delicious, consumable
 
+![UG addi](images/UG images/UG addi.png =300)
+
 This command adds a new entry of 44 <u>banana</u>, with description <u>edible banana</u>, 
 found at location <u>Bob’s banana farm</u> and tags <u>delicious</u>, <u>consumable</u> to your inventory.
 
