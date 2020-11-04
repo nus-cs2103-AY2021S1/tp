@@ -21,7 +21,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=Jillzyt&tabRepo=AY2021S1-CS2103-F10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.4` (3 releases) on GitHub
+  * Managed `v1.3` milestone on GitHub
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#82](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/82), [\#70](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/70))
@@ -35,4 +35,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#40](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/40
-  ), [\#62](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/62)
+  ), [\#62](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/62), [\#173](https://github.com/AY2021S1-CS2103-F10-3/tp
+  /pull/173), [\#174](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/174)
