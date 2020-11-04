@@ -1,28 +1,25 @@
 package seedu.address.logic.parser.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.commands.schedulercommands.EditEventCommand.EditEventDescriptor;
-import seedu.address.logic.commands.schedulercommands.EditEventCommand;
-import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
-import seedu.address.logic.parser.schedulerparsers.EditEventParser;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventName;
-import seedu.address.model.module.ModularCredits;
-import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.grade.GradePoint;
-import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditModuleDescriptorBuilder;
-import seedu.address.testutil.event.EditEventDescriptorBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_2;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.schedulercommands.EditEventCommand;
+import seedu.address.logic.commands.schedulercommands.EditEventCommand.EditEventDescriptor;
+import seedu.address.logic.parser.schedulerparsers.EditEventParser;
+import seedu.address.model.event.EventName;
+import seedu.address.testutil.event.EditEventDescriptorBuilder;
 
 public class EditEventParserTest {
     private static final int INDEX = 1;

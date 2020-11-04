@@ -1,14 +1,15 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.event.EventBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.event.EventBuilder;
 
 public class EventNameContainsKeyWordsPredicateTest {
 
@@ -17,14 +18,17 @@ public class EventNameContainsKeyWordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("second");
         List<String> secondPredicateKeywordList = Arrays.asList("second", "third");
 
-        EventNameContainsKeyWordsPredicate firstPredicate = new EventNameContainsKeyWordsPredicate(firstPredicateKeywordList);
-        EventNameContainsKeyWordsPredicate secondPredicate = new EventNameContainsKeyWordsPredicate(secondPredicateKeywordList);
+        EventNameContainsKeyWordsPredicate firstPredicate =
+                new EventNameContainsKeyWordsPredicate(firstPredicateKeywordList);
+        EventNameContainsKeyWordsPredicate secondPredicate =
+                new EventNameContainsKeyWordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EventNameContainsKeyWordsPredicate firstPredicateCopy = new EventNameContainsKeyWordsPredicate(firstPredicateKeywordList);
+        EventNameContainsKeyWordsPredicate firstPredicateCopy =
+                new EventNameContainsKeyWordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +44,8 @@ public class EventNameContainsKeyWordsPredicateTest {
     @Test
     public void test_eventNameContainsKeywords_returnsTrue() {
         // One keyword
-        EventNameContainsKeyWordsPredicate predicate = new EventNameContainsKeyWordsPredicate(Collections.singletonList("Test"));
+        EventNameContainsKeyWordsPredicate predicate =
+                new EventNameContainsKeyWordsPredicate(Collections.singletonList("Test"));
         assertTrue(predicate.test(new EventBuilder().withName("Homework test").build()));
 
         // Multiple keywords

@@ -3,9 +3,10 @@ package seedu.address.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
-import java.util.ArrayList;
 
 import seedu.address.logic.ModelStub;
 import seedu.address.logic.commands.schedulercommands.DeleteEventCommand;
@@ -26,7 +27,8 @@ public class DeleteEventCommandTest {
         Index index = Index.fromZeroBased(1);
         CommandResult commandResult = new DeleteEventCommand(index).execute(modelStub);
 
-        assertEquals(String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS, VALID_EVENT), commandResult.getFeedbackToUser());
+        assertEquals(String.format(DeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS, VALID_EVENT),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(VALID_EVENT), modelStub.eventsDeleted);
          */
     }

@@ -1,13 +1,16 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.event.EventUtil;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.event.EventUtil;
 
 public class EventTimeTest {
 
@@ -51,21 +54,21 @@ public class EventTimeTest {
     @Test
     public void getStart() {
         EventTime time = EventUtil.makeEventTime(VALID_DATE_STRING_1, VALID_DATE_STRING_2);
-        LocalDateTime time_one = EventUtil.makeLocalDateTime(VALID_DATE_STRING_1);
-        assertEquals(time.getStart(), time_one);
+        LocalDateTime timeOne = EventUtil.makeLocalDateTime(VALID_DATE_STRING_1);
+        assertEquals(time.getStart(), timeOne);
     }
 
     @Test
     public void getEnd() {
         EventTime time = EventUtil.makeEventTime(VALID_DATE_STRING_1, VALID_DATE_STRING_2);
-        LocalDateTime time_two = EventUtil.makeLocalDateTime(VALID_DATE_STRING_2);
-        assertEquals(time.getEnd(), time_two);
+        LocalDateTime timeTwo = EventUtil.makeLocalDateTime(VALID_DATE_STRING_2);
+        assertEquals(time.getEnd(), timeTwo);
     }
 
     @Test
     public void isEqual() {
-        EventTime time_one = EventUtil.makeEventTime(VALID_DATE_STRING_1, VALID_DATE_STRING_2);
-        EventTime time_two = EventUtil.makeEventTime(VALID_DATE_STRING_1, VALID_DATE_STRING_2);
-        assertTrue(time_one.equals(time_two));
+        EventTime timeOne = EventUtil.makeEventTime(VALID_DATE_STRING_1, VALID_DATE_STRING_2);
+        EventTime timeTwo = EventUtil.makeEventTime(VALID_DATE_STRING_1, VALID_DATE_STRING_2);
+        assertTrue(timeOne.equals(timeTwo));
     }
 }

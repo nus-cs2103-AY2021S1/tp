@@ -7,12 +7,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 
 import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.event.Event;
 import seedu.address.testutil.event.EventUtil;
-
-
 
 public class EventListTest {
     private static final EventList eventList = new EventList();
@@ -56,7 +55,8 @@ public class EventListTest {
     @Test
     public void setEvent_from_existingList() {
         eventList.addEvent(VALID_EVENT);
-        Event newEvent = EventUtil.makeEvent(EventUtil.makeEventName("Hello"), EventUtil.makeEventTime("2-3-2021 1300"));
+        Event newEvent = EventUtil.makeEvent(EventUtil.makeEventName("Hello"),
+                EventUtil.makeEventTime("2-3-2021 1300"));
         eventList.setEvent(VALID_EVENT, newEvent);
         assertTrue(eventList.hasEvent(newEvent));
         assertFalse(eventList.hasEvent(VALID_EVENT));

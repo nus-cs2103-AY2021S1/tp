@@ -76,7 +76,7 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-////////////////////////////////////////// SCHEDULER /////////////////////////////////////
+    ////////////////////////////////////// SCHEDULER /////////////////////////////////////
     public static final String VALID_EVENT_NAME_1 = "CS2103T Quiz";
     public static final String VALID_EVENT_NAME_2 = "ES2660 Essay";
     public static final String VALID_EVENT_DATE_1 = "1-2-2020 1200";

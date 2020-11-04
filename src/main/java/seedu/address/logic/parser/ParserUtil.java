@@ -346,8 +346,15 @@ public class ParserUtil {
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
     }
+
     ///////////////////// Scheduler /////////////////////////////
 
+    /**
+     * Checks and parses the given input into an EventName.
+     * @param name name of event.
+     * @return EventName the container for the name.
+     * @throws ParseException invalid name.
+     */
     public static EventName parseEventName(String name) throws ParseException {
         if (EventName.isValidName(name)) {
             return new EventName(name);

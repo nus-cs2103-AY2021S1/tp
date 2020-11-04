@@ -1,14 +1,15 @@
 package seedu.address.model.event;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.event.EventBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.event.EventBuilder;
 
 public class EventContainsDatePredicateTest {
 
@@ -40,7 +41,8 @@ public class EventContainsDatePredicateTest {
     @Test
     public void test_eventDateContainsKeywords_returnsTrue() {
         // One keyword
-        EventContainsDatePredicate predicate = new EventContainsDatePredicate(Collections.singletonList("2020-02-01T12:00"));
+        EventContainsDatePredicate predicate =
+                new EventContainsDatePredicate(Collections.singletonList("2020-02-01T12:00"));
         assertTrue(predicate.test(new EventBuilder().withName("Homework").withDate("1-2-2020 1200").build()));
     }
 

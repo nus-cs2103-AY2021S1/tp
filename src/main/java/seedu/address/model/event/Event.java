@@ -1,14 +1,13 @@
 package seedu.address.model.event;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-
-import static java.util.Objects.requireNonNull;
-
 
 /**
  * Represents an Event to that keep tracks of the start and end time and date.

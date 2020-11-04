@@ -1,16 +1,22 @@
 package seedu.address.logic;
 
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ModuleList;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
-
-import java.nio.file.Path;
-import java.util.Comparator;
-import java.util.function.Predicate;
 
 /**
  * A default model stub that have all of the methods failing.

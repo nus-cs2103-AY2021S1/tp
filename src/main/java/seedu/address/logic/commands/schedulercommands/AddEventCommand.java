@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.schedulerparsers.AddEventParser;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
@@ -60,7 +59,7 @@ public class AddEventCommand extends Command {
     public boolean equals(Object other) {
         if (this == other) {
             return true;
-        } else  if (other instanceof AddEventCommand) {
+        } else if (other instanceof AddEventCommand) {
             return this.event.equals(((AddEventCommand) other).event);
         } else {
             return false;

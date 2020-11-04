@@ -1,15 +1,14 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
-import seedu.address.logic.commands.schedulercommands.ViewEventCommand;
-import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
-import seedu.address.logic.parser.schedulerparsers.ViewEventParser;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
+import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 
 public class ViewModuleParserTest {
     private ViewModuleParser parser = new ViewModuleParser();

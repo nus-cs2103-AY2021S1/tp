@@ -1,18 +1,26 @@
 package seedu.address.logic.parser.event;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENT_NAME;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_2;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
 import seedu.address.logic.parser.schedulerparsers.AddEventParser;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
 import seedu.address.testutil.event.EventBuilder;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class AddEventParserTest {
     private static final String multipleNames = " " + PREFIX_NAME + VALID_EVENT_NAME_1

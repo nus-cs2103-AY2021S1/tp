@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.ModelStub;
@@ -16,9 +16,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.schedulercommands.AddEventCommand;
 import seedu.address.model.EventList;
-import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyEventList;
-import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.event.Event;
 import seedu.address.testutil.event.EventBuilder;
 
@@ -53,26 +51,26 @@ public class AddEventCommandTest {
 
     @Test
     public void equals() {
-        Event cs2100_quiz = new EventBuilder().withName("CS2100 Quiz").build();
-        Event es2660_essay = new EventBuilder().withName("ES2660 Essay").build();
-        AddEventCommand add_cs2100_quizCommand = new AddEventCommand(cs2100_quiz);
-        AddEventCommand add_es2660_essayCommand = new AddEventCommand(es2660_essay);
+        Event cs2100Quiz = new EventBuilder().withName("CS2100 Quiz").build();
+        Event es2660Essay = new EventBuilder().withName("ES2660 Essay").build();
+        AddEventCommand addCs2100QuizCommand = new AddEventCommand(cs2100Quiz);
+        AddEventCommand addEs2660EssayCommand = new AddEventCommand(es2660Essay);
 
         // same object -> returns true
-        assertTrue(add_cs2100_quizCommand.equals(add_cs2100_quizCommand));
+        assertTrue(addCs2100QuizCommand.equals(addCs2100QuizCommand));
 
         // same values -> returns true
-        AddEventCommand add_cs2100_quizCommandCopy = new AddEventCommand(cs2100_quiz);
-        assertTrue(add_cs2100_quizCommandCopy.equals(add_cs2100_quizCommandCopy));
+        AddEventCommand addCs2100QuizCommandCopy = new AddEventCommand(cs2100Quiz);
+        assertTrue(addCs2100QuizCommandCopy.equals(addCs2100QuizCommandCopy));
 
         // different types -> returns false
-        assertFalse(add_cs2100_quizCommand.equals(1));
+        assertFalse(addCs2100QuizCommand.equals(1));
 
         // null -> returns false
-        assertFalse(add_cs2100_quizCommand.equals(null));
+        assertFalse(addCs2100QuizCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(add_cs2100_quizCommand.equals(add_es2660_essayCommand));
+        assertFalse(addCs2100QuizCommand.equals(addEs2660EssayCommand));
     }
 
     /**

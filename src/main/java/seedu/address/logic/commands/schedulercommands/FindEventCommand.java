@@ -52,7 +52,7 @@ public class FindEventCommand extends Command {
     @Override
     public boolean equals(Object other) {
         if (this == other) {
-            return  true;
+            return true;
         } else if (other instanceof FindEventCommand) {
             return this.criteria.equals(((FindEventCommand) other).criteria);
         } else {

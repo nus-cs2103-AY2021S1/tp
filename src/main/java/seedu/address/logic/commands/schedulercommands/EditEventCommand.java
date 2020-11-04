@@ -109,6 +109,9 @@ public class EditEventCommand extends Command {
         private EventTime eventTime;
         private Set<Tag> tags;
 
+        /**
+         * Represents the constructor that creates the container to hold the changes.
+         */
         public EditEventDescriptor() {
             this.eventName = new EventName();
             this.eventTime = new EventTime();
