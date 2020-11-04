@@ -2,8 +2,8 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULELESSONTYPE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULELESSONTYPE_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
@@ -33,7 +33,7 @@ public class DeleteZoomLinkCommandTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+        ModuleLesson validLesson = new ModuleLesson(VALID_MODULE_LESSON_LECTURE);
         assertThrows(NullPointerException.class, () -> new DeleteZoomLinkCommand(null, validLesson));
     }
 
@@ -45,7 +45,7 @@ public class DeleteZoomLinkCommandTest {
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+        ModuleLesson validLesson = new ModuleLesson(VALID_MODULE_LESSON_LECTURE);
         DeleteZoomLinkCommand deleteZoomLinkCommand = new DeleteZoomLinkCommand(INDEX_FIRST_MODULE, validLesson);
         assertThrows(NullPointerException.class, () -> deleteZoomLinkCommand.execute(null));
     }
@@ -53,7 +53,7 @@ public class DeleteZoomLinkCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_deleteSuccess() {
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+        ModuleLesson validLesson = new ModuleLesson(VALID_MODULE_LESSON_LECTURE);
 
         Module updatedModule = moduleToUpdate.deleteZoomLink(validLesson);
 
@@ -73,7 +73,7 @@ public class DeleteZoomLinkCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         int outOfBoundIndex = model.getFilteredModuleList().size() + 1;
         Index invalidIndex = Index.fromOneBased(outOfBoundIndex);
-        ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+        ModuleLesson validLesson = new ModuleLesson(VALID_MODULE_LESSON_LECTURE);
 
         DeleteZoomLinkCommand deleteZoomLinkCommand = new DeleteZoomLinkCommand(invalidIndex, validLesson);
 
@@ -87,7 +87,7 @@ public class DeleteZoomLinkCommandTest {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+        ModuleLesson validLesson = new ModuleLesson(VALID_MODULE_LESSON_LECTURE);
         Module updatedModule = moduleToUpdate.deleteZoomLink(validLesson);
         DeleteZoomLinkCommand deleteZoomLinkCommand = new DeleteZoomLinkCommand(INDEX_FIRST_MODULE, validLesson);
 
@@ -106,7 +106,7 @@ public class DeleteZoomLinkCommandTest {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
         Index outOfBoundIndex = INDEX_SECOND_MODULE;
-        ModuleLesson validLesson = new ModuleLesson(VALID_MODULELESSONTYPE);
+        ModuleLesson validLesson = new ModuleLesson(VALID_MODULE_LESSON_LECTURE);
         // ensures that outOfBoundIndex is still in bounds of module list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleList().getModuleList().size());
 
@@ -118,7 +118,7 @@ public class DeleteZoomLinkCommandTest {
     @Test
     public void execute_invalidModuleLesson_throwsCommandException() {
         Index validIndex = INDEX_FIRST_MODULE;
-        ModuleLesson invalidModuleLesson = new ModuleLesson(VALID_MODULELESSONTYPE_ES2660);
+        ModuleLesson invalidModuleLesson = new ModuleLesson(VALID_MODULE_LESSON_TUTORIAL);
         DeleteZoomLinkCommand deleteZoomLinkCommand = new DeleteZoomLinkCommand(validIndex, invalidModuleLesson);
 
         assertCommandFailure(deleteZoomLinkCommand, model, DeleteZoomLinkCommand.MESSAGE_INVALID_ZOOM_LINK);
@@ -129,16 +129,16 @@ public class DeleteZoomLinkCommandTest {
     public void equals() {
 
         DeleteZoomLinkCommand deleteFirstCommand = new DeleteZoomLinkCommand(INDEX_FIRST_MODULE,
-                new ModuleLesson(VALID_MODULELESSONTYPE));
+                new ModuleLesson(VALID_MODULE_LESSON_LECTURE));
         DeleteZoomLinkCommand deleteSecondCommand = new DeleteZoomLinkCommand(INDEX_SECOND_MODULE,
-                new ModuleLesson(VALID_MODULELESSONTYPE_ES2660));
+                new ModuleLesson(VALID_MODULE_LESSON_TUTORIAL));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
         DeleteZoomLinkCommand deleteFirstCommandCopy = new DeleteZoomLinkCommand(INDEX_FIRST_MODULE,
-                new ModuleLesson(VALID_MODULELESSONTYPE));
+                new ModuleLesson(VALID_MODULE_LESSON_LECTURE));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

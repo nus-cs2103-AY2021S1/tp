@@ -296,6 +296,21 @@ public class AddContactCommandTest {
         }
 
         @Override
+        public void undoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }

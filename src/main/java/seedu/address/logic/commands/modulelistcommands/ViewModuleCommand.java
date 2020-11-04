@@ -3,11 +3,13 @@ package seedu.address.logic.commands.modulelistcommands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ViewCommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -47,7 +49,12 @@ public class ViewModuleCommand extends Command {
 
         Module moduleToView = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
+        ViewCommandResult viewCommandResult = new ViewCommandResult(String.format(MESSAGE_SUCCESS, moduleToView));
+        viewCommandResult.setTextArea(moduleToView.toViewTextArea());
+        viewCommandResult.setZoomLinks(moduleToView.getAllLinks().values().stream().collect(Collectors.toList()));
+        //viewCommandResult.setZoomLinksToCopy(moduleToView.getAllLinks()
+        // .values().stream().collect(Collectors.toList()));
+        return viewCommandResult;
     }
 
     @Override

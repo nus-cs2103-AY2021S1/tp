@@ -2,10 +2,10 @@ package seedu.address.logic.commands.modulelistcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULELESSONTYPE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULELESSONTYPE_ES2660;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2030;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2030;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
@@ -28,7 +28,6 @@ import seedu.address.model.ModuleList;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleLesson;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ZoomDescriptorBuilder;
 
@@ -61,14 +60,14 @@ public class EditZoomLinkCommandTest {
     public void execute_validZoomLinkAndLessonUnfilteredList_editSuccess() {
         Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Module moduleWithEditedZoom = new ModuleBuilder(moduleToUpdate)
-                .withZoomLink(new ModuleLesson(VALID_MODULELESSONTYPE), VALID_ZOOMLINK_CS2103T).build();
+                .withZoomLink(VALID_MODULE_LESSON_LECTURE, VALID_ZOOM_LINK_CS2103T).build();
 
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2103T).build();
         EditZoomLinkCommand editZoomLinkCommand = new EditZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
 
         String expectedMessage = String.format(EditZoomLinkCommand.MESSAGE_EDIT_ZOOM_SUCCESS,
-                VALID_ZOOMLINK_CS2103T, VALID_MODULELESSONTYPE);
+                VALID_ZOOM_LINK_CS2103T, VALID_MODULE_LESSON_LECTURE);
 
         Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
@@ -82,14 +81,14 @@ public class EditZoomLinkCommandTest {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
         Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         Module moduleWithEditedZoom = new ModuleBuilder(moduleInFilteredList)
-                .withZoomLink(new ModuleLesson(VALID_MODULELESSONTYPE), VALID_ZOOMLINK_CS2103T).build();
+                .withZoomLink(VALID_MODULE_LESSON_LECTURE, VALID_ZOOM_LINK_CS2103T).build();
 
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2103T).build();
         EditZoomLinkCommand editZoomLinkCommand = new EditZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
 
         String expectedMessage = String.format(EditZoomLinkCommand.MESSAGE_EDIT_ZOOM_SUCCESS,
-                VALID_ZOOMLINK_CS2103T, VALID_MODULELESSONTYPE);
+                VALID_ZOOM_LINK_CS2103T, VALID_MODULE_LESSON_LECTURE);
 
         Model expectedModel = new ModelManager(new ModuleList(model.getModuleList()), new ArchivedModuleList(),
                 new ContactList(), new TodoList(), new EventList(), new UserPrefs());
@@ -103,7 +102,7 @@ public class EditZoomLinkCommandTest {
         int outOfBoundIndex = model.getFilteredModuleList().size() + 1;
         Index invalidIndex = Index.fromOneBased(outOfBoundIndex);
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2030).build();
         EditZoomLinkCommand editZoomLinkCommand = new EditZoomLinkCommand(invalidIndex, descriptor);
 
         assertCommandFailure(editZoomLinkCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
@@ -125,7 +124,7 @@ public class EditZoomLinkCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < moduleListSize);
 
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2030).build();
         EditZoomLinkCommand editZoomLinkCommand = new EditZoomLinkCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editZoomLinkCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
@@ -134,7 +133,7 @@ public class EditZoomLinkCommandTest {
     @Test
     public void execute_duplicateZoomLink_throwsCommandException() {
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2030).build();
         EditZoomLinkCommand editZoomLinkCommand = new EditZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
 
         assertCommandFailure(editZoomLinkCommand, model, EditZoomLinkCommand.MESSAGE_DUPLICATE_ZOOM);
@@ -143,7 +142,7 @@ public class EditZoomLinkCommandTest {
     @Test
     public void execute_invalidLesson_throwsCommandException() {
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).withZoomLink(VALID_ZOOMLINK_CS2103T).build();
+                .withModuleLesson(VALID_MODULE_LESSON_TUTORIAL).withZoomLink(VALID_ZOOM_LINK_CS2103T).build();
         EditZoomLinkCommand command = new EditZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
 
         assertCommandFailure(command, model, EditZoomLinkCommand.MESSAGE_INVALID_LESSON);
@@ -153,12 +152,12 @@ public class EditZoomLinkCommandTest {
     public void equals() {
 
         ZoomDescriptor descriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2030).build();
         final EditZoomLinkCommand standardCommand = new EditZoomLinkCommand(INDEX_FIRST_MODULE, descriptor);
 
         // same index and descriptor -> returns true
         ZoomDescriptor copyDescriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+                .withModuleLesson(VALID_MODULE_LESSON_LECTURE).withZoomLink(VALID_ZOOM_LINK_CS2030).build();
         EditZoomLinkCommand commandWithSameValues = new EditZoomLinkCommand(INDEX_FIRST_MODULE, copyDescriptor);
 
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -180,7 +179,7 @@ public class EditZoomLinkCommandTest {
 
         // different descriptor, same index -> returns false
         ZoomDescriptor editedDescriptor = new ZoomDescriptorBuilder()
-                .withModuleLesson(VALID_MODULELESSONTYPE_ES2660).withZoomLink(VALID_ZOOMLINK_CS2030).build();
+                .withModuleLesson(VALID_MODULE_LESSON_TUTORIAL).withZoomLink(VALID_ZOOM_LINK_CS2030).build();
         assertFalse(standardCommand.equals(new EditZoomLinkCommand(INDEX_FIRST_MODULE, editedDescriptor)));
     }
 

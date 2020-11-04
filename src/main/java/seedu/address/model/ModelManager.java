@@ -37,6 +37,7 @@ public class ModelManager implements Model {
     private final VersionedContactList versionedContactList;
     private final TodoList todoList;
     private final EventList eventList;
+    private final VersionedEventList versionedEventList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModulesDisplay;
@@ -48,7 +49,7 @@ public class ModelManager implements Model {
     private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
     private int accessPointer;
-    private List<Integer> accessSequence;
+    private final List<CommandType> accessSequence;
     private boolean isArchiveModuleOnDisplay = false;
     private FilteredList<Module> mainList;
 
@@ -73,19 +74,20 @@ public class ModelManager implements Model {
         this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
         this.eventList = new EventList(eventList);
+        this.versionedEventList = new VersionedEventList(eventList);
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredModulesDisplay = new FilteredList<Module>(this.moduleListDisplay.getModuleList());
-        filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
-        filteredArchivedModules = new FilteredList<Module>(this.archivedModuleList.getModuleList());
-        sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
-        filteredContacts = new FilteredList<Contact>(sortedContacts);
-        filteredEvents = new FilteredList<Event>(this.eventList.getEventList());
-        sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
-        filteredTasks = new FilteredList<Task>(sortedTasks);
+        filteredModulesDisplay = new FilteredList<>(this.moduleListDisplay.getModuleList());
+        filteredModules = new FilteredList<>(this.moduleList.getModuleList());
+        filteredArchivedModules = new FilteredList<>(this.archivedModuleList.getModuleList());
+        sortedContacts = new SortedList<>(this.contactList.getContactList());
+        filteredContacts = new FilteredList<>(sortedContacts);
+        filteredEvents = new FilteredList<>(this.eventList.getEventList());
+        sortedTasks = new SortedList<>(this.todoList.getTodoList());
+        filteredTasks = new FilteredList<>(sortedTasks);
         accessPointer = 0;
         accessSequence = new ArrayList<>();
-        accessSequence.add(0);
+        accessSequence.add(CommandType.NULL);
     }
     /**
      * Initializes a ModelManager with a blank moduleList, archivedModuleList, contactList, todoList,
@@ -189,19 +191,15 @@ public class ModelManager implements Model {
         accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedModuleList.commit(moduleList);
         versionedArchivedModuleList.commit(archivedModuleList);
-        accessSequence.add(1);
+        accessSequence.add(CommandType.MODULE);
         accessPointer += 1;
     }
 
     @Override
     public void undoModuleList() throws VersionedListException {
         assert accessPointer >= 0;
-        try {
-            versionedModuleList.undo();
-            versionedArchivedModuleList.undo();
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
-        }
+        versionedModuleList.undo();
+        versionedArchivedModuleList.undo();
         setModuleList(versionedModuleList.getCurrentModuleList());
         setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
     }
@@ -209,12 +207,8 @@ public class ModelManager implements Model {
     @Override
     public void redoModuleList() throws VersionedListException {
         assert accessPointer >= 0;
-        try {
-            versionedModuleList.redo();
-            versionedArchivedModuleList.redo();
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
-        }
+        versionedModuleList.redo();
+        versionedArchivedModuleList.redo();
         setModuleList(versionedModuleList.getCurrentModuleList());
         setArchivedModuleList(versionedArchivedModuleList.getCurrentModuleList());
     }
@@ -331,29 +325,21 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedContactList.commit(contactList);
-        accessSequence.add(2);
+        accessSequence.add(CommandType.CONTACT);
         accessPointer += 1;
     }
 
     @Override
     public void undoContactList() throws VersionedListException {
         assert accessPointer >= 0;
-        try {
-            versionedContactList.undo();
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
-        }
+        versionedContactList.undo();
         setContactList(versionedContactList.getCurrentContactList());
     }
 
     @Override
     public void redoContactList() throws VersionedListException {
         assert accessPointer >= 0;
-        try {
-            versionedContactList.redo();
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
-        }
+        versionedContactList.redo();
         setContactList(versionedContactList.getCurrentContactList());
     }
 
@@ -399,29 +385,21 @@ public class ModelManager implements Model {
         assert accessPointer >= 0;
         accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedTodoList.commit(todoList);
-        accessSequence.add(3);
+        accessSequence.add(CommandType.TODO);
         accessPointer += 1;
     }
 
     @Override
     public void undoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
-        try {
-            versionedTodoList.undo();
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
-        }
+        versionedTodoList.undo();
         setTodoList(versionedTodoList.getCurrentTodoList());
     }
 
     @Override
     public void redoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
-        try {
-            versionedTodoList.redo();
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
-        }
+        versionedTodoList.redo();
         setTodoList(versionedTodoList.getCurrentTodoList());
     }
 
@@ -432,6 +410,8 @@ public class ModelManager implements Model {
             commitModuleList();
         } else if (type == 2) {
             commitContactList();
+        } else if (type == 4) {
+            commitEventList();
         } else {
             commitTodoList();
         }
@@ -441,17 +421,15 @@ public class ModelManager implements Model {
         if (accessPointer == 0) {
             throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
         }
-        int pointer = accessSequence.get(accessPointer);
-        try {
-            if (pointer == 1) {
-                undoModuleList();
-            } else if (pointer == 2) {
-                undoContactList();
-            } else {
-                undoTodoList();
-            }
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
+        CommandType pointer = accessSequence.get(accessPointer);
+        if (pointer == CommandType.MODULE) {
+            undoModuleList();
+        } else if (pointer == CommandType.CONTACT) {
+            undoContactList();
+        } else if (pointer == CommandType.TODO) {
+            undoTodoList();
+        } else if (pointer == CommandType.EVENT) {
+            undoEventList();
         }
         accessPointer -= 1;
     }
@@ -460,21 +438,18 @@ public class ModelManager implements Model {
         if (accessPointer >= accessSequence.size() - 1) {
             throw new VersionedListException(MESSAGE_NO_REDO_HISTORY);
         }
-        int pointer = accessSequence.get(accessPointer + 1);
-        try {
-            if (pointer == 1) {
-                redoModuleList();
-            } else if (pointer == 2) {
-                redoContactList();
-            } else {
-                redoTodoList();
-            }
-        } catch (VersionedListException versionedListException) {
-            throw versionedListException;
+        CommandType pointer = accessSequence.get(accessPointer + 1);
+        if (pointer == CommandType.MODULE) {
+            redoModuleList();
+        } else if (pointer == CommandType.CONTACT) {
+            redoContactList();
+        } else if (pointer == CommandType.TODO) {
+            redoTodoList();
+        } else if (pointer == CommandType.EVENT) {
+            redoEventList();
         }
         accessPointer += 1;
     }
-
     //=========== Filtered Module List Accessors =============================================================
 
     /**
@@ -625,9 +600,28 @@ public class ModelManager implements Model {
         this.eventList.setEvent(target, editedEvent);
     }
 
-    // TODO: Yet to be implemented
-    //@Override
-    //public void commitEventList() {}
+    @Override
+    public void commitEventList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
+        versionedEventList.commit(eventList);
+        accessSequence.add(CommandType.EVENT);
+        accessPointer += 1;
+    }
+
+    @Override
+    public void undoEventList() throws VersionedListException {
+        assert accessPointer >= 0;
+        versionedEventList.undo();
+        setEventList(versionedEventList.getCurrentEventList());
+    }
+
+    @Override
+    public void redoEventList() throws VersionedListException {
+        assert accessPointer >= 0;
+        versionedEventList.redo();
+        setEventList(versionedEventList.getCurrentEventList());
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -650,5 +644,11 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredModules.equals(other.filteredModules);
     }
-
+    private enum CommandType {
+        NULL,
+        MODULE,
+        CONTACT,
+        TODO,
+        EVENT
+    }
 }

@@ -55,17 +55,17 @@ public class TypicalContacts {
     private TypicalContacts() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code ContactList} with all the typical contacts.
      */
     public static ContactList getTypicalContactList() {
         ContactList list = new ContactList();
-        for (Contact contact : getTypicalPersons()) {
+        for (Contact contact : getTypicalContacts()) {
             list.addContact(contact);
         }
         return list;
     }
 
-    public static List<Contact> getTypicalPersons() {
+    public static List<Contact> getTypicalContacts() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }
