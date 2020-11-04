@@ -40,7 +40,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
-        } catch (CommandException | ParseException | MultipleAttributesException e) {
+        } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
     }

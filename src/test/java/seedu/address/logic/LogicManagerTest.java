@@ -1,7 +1,9 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -79,7 +81,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException, MultipleAttributesException {
+            Model expectedModel) throws CommandException, ParseException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -94,7 +96,8 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that a MultipleAttributeException is thrown and that the result message is correct.
+     * Executes the command, confirms that a MultipleAttributeException is thrown
+     * and that the result message is correct.
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertMultipleAttributesException(String inputCommand, String expectedMessage) {
