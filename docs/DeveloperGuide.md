@@ -217,21 +217,21 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The proposed switching mechanism is facilitated by `ExpenseBook` and initialised by 
+The switching mechanism is facilitated by `ExpenseBook` and initialised by 
 `Model#switchCategory(Tag category)`. Additionally, `ExpenseBook` implements the following operations:
 
 * `ExpenseBook#containsCategory(Tag toCheck)` — Checks if the given tag matches the tag of category budget. <a name="switchOperations"></a>
 * `ExpenseBook#updateExpenseBookCategory(Tag category)` - Updates the expense to only show expenses and budgets that matches the category.
-* `ExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given tag.
-* `ExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given tag.
+* `ExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given predicate.
+* `ExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given predicate  .
 
 These operations are exposed in the `Model` interface as 
-* `hasCategory(Tag toCheck)`
-* `updateExpenseBookCategory(Tag category)`
+* `Model#hasCategory(Tag toCheck)`
+* `Model#updateExpenseBookCategory(Tag category)`
 * `Model#updateFilteredExpenseList(Predicate<Expense> predicate)`
 * `Model#updateFilteredBudgetList(Predicate<CategoryBudget> predicate)`
 
-Given below is an example usage scenario and how the switching mechanism behaves at each step.
+Given below is a successful usage scenario example and how the switching mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `ExpenseBook` will be initialized with the 
 initial expense book state in Model.
@@ -242,7 +242,7 @@ calls the operations mentioned [above](#switchOperations) causing the category b
 
 The following sequence diagram shows how the switch operation works:
 
-![UndoSequenceDiagram](images/SwitchSequenceDiagram.png)
+![SwitchSequenceDiagram](images/SwitchSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -254,15 +254,22 @@ Step 3. The user then decides to execute the command `topup`. Commands that modi
 such as `topup`, `delete`, `edit`, will usually call their respectively method in Model. As such the budget balance
 display of the application will change accordingly to reflect on their corresponding values.
 
-Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book, 
-such as `list`, `find`, will usually revert the displayed budget to the overall amount instead of category-specific. 
-In addition, the expenses calculated will be based on the displayed list total amount. 
+Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book but have strong
+relationship with altering the budget display such as `list`, will usually revert the displayed budget to the overall 
+amount instead of category-specific. In addition, the expenses calculated will be based on the displayed list total 
+amount. 
+
+Step 5. The user then decides to execute the command `find`. Commands that do not modify the expense book and do not 
+have a clear relationship with the budget display such as `find`, will usually omit out the budget display after 
+their execution. However, exceptions are given to command such as `help`, `exit` which will not alter the visibility 
+of the current budget display.
+
 
 #### Design consideration:
 
 ##### Aspect: How Category switching executes
 
-* **Alternative 1 (current choice):** Filters the entire expense book by tag.
+* **Alternative 1 (current choice):** Filters the entire expense book by category tag.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of execution speed. (Require repeated calculation and filtering)
 
