@@ -12,6 +12,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 
+import javafx.util.Pair;
 import jimmy.mcgymmy.commons.core.Messages;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.ClearCommand;
@@ -77,11 +78,11 @@ public class PrimitiveCommandParser {
      * @throws ParseException if an argument to the command is not in the correct format
      */
     public CommandExecutable parse(String text) throws ParseException {
-        ParserUtil.HeadTailString headTail = ParserUtil.HeadTailString.splitString(text);
-        if (headTail.getHead().equals("")) {
+        Pair<String, String[]> headTail = ParserUtil.splitString(text);
+        if (headTail.getKey().equals("")) {
             throw new ParseException("Please enter a command.");
         }
-        return parsePrimitiveCommand(headTail.getHead(), headTail.getTail());
+        return parsePrimitiveCommand(headTail.getKey(), headTail.getValue());
     }
 
     /**
@@ -117,6 +118,9 @@ public class PrimitiveCommandParser {
             throw new ParseException(message);
         }
     }
+
+    // NOTE: the following methods that deal with ParameterSets should be relocated to the ParameterSet
+    // class, but there's not enough time to do this properly so we'll defer this change to v1.5.
 
     /**
      * Helper function that takes values in the commons-cli CommandLine object
