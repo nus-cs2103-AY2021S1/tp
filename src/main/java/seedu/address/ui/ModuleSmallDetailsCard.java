@@ -44,7 +44,9 @@ public class ModuleSmallDetailsCard extends UiPart<Region> {
         super(FXML);
         this.module = module;
         name.setText(module.getName().fullName);
+        name.setStyle("-fx-text-fill: white");
         modularCredits.setText(module.getModularCredits().toString() + " modular credits");
+        modularCredits.setStyle("-fx-text-fill: white");
         module.getTagsForUi().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
