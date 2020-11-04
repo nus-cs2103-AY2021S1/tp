@@ -9,6 +9,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import static java.util.Objects.requireNonNull;
+
 
 public class AutocompleteCommandBox extends CommandBox {
 
@@ -18,7 +20,6 @@ public class AutocompleteCommandBox extends CommandBox {
     private boolean isAutocompleteMode = false;
     private boolean hasSetPrefix = false;
     private String modeType = "";
-    private int autoCompletePos;
     private int commandPrefixPos;
 
 
@@ -47,6 +48,9 @@ public class AutocompleteCommandBox extends CommandBox {
      */
 
     public void setupAutocompletionListeners(String commandPrefix, Supplier<List<String>> suggestionsDataGenerator) {
+        requireNonNull(commandPrefix);
+        requireNonNull(suggestionsDataGenerator);
+
         Suggestions suggestions = new Suggestions(suggestionsDataGenerator);
         suggestionsList.put(commandPrefix, suggestions);
     }
@@ -67,10 +71,9 @@ public class AutocompleteCommandBox extends CommandBox {
                     if (!isAutocompleteMode && substring.equals(cmdP)) {
                         commandPrefixPos = caretPos;
                         toggleAutocompleteModeOn(cmdP);
-                        autoCompletePos = newPosition.intValue();
                     }
                     if (isAutocompleteMode) {
-                        if (caretPos < autoCompletePos) {
+                        if (caretPos < commandPrefixPos) {
                             toggleAutocompleteModeOff();
                             hasSetPrefix = false;
                         }
@@ -84,7 +87,7 @@ public class AutocompleteCommandBox extends CommandBox {
             if (isAutocompleteMode && event.getCode() == KeyCode.TAB) {
                 Suggestions suggestions = suggestionsList.get(modeType);
                 if (!hasSetPrefix) {
-                    String prefix = this.getCommandTextField().getText().substring(autoCompletePos);
+                    String prefix = this.getCommandTextField().getText().substring(commandPrefixPos);
                     suggestions.setPrefix(prefix);
                     hasSetPrefix = true;
                 }
@@ -92,12 +95,12 @@ public class AutocompleteCommandBox extends CommandBox {
                     // Shift + TAB : Previous Suggestion
                     String prev = suggestions.prevSuggestion();
                     int endIndex = this.getCommandTextField().caretPositionProperty().getValue();
-                    this.getCommandTextField().replaceText(autoCompletePos, endIndex, prev);
+                    this.getCommandTextField().replaceText(commandPrefixPos, endIndex, prev);
                 } else {
                     // TAB : Next Suggestion
                     String next = suggestions.nextSuggestion();
                     int endIndex = this.getCommandTextField().caretPositionProperty().getValue();
-                    this.getCommandTextField().replaceText(autoCompletePos, endIndex, next);
+                    this.getCommandTextField().replaceText(commandPrefixPos, endIndex, next);
                 }
                 if (suggestions.isBackToPrefix()) {
                     hasSetPrefix = false;
