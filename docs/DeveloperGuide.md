@@ -115,10 +115,10 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#52-ui-component): The UI of the App.
+* [**`Logic`**](#53-logic-component): The command executor.
+* [**`Model`**](#54-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#55-storage-component): Reads data from, and writes data to, the hard disk.
 
 Each of the four components,
 
