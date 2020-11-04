@@ -36,7 +36,7 @@ public class EditInventoryCommand extends Command {
             + "exists in the InventoryWindow";
     public static final String MESSAGE_INVALID_QUANTITY_INPUT = "You cannot change the current quantity to your "
             + "specified quantity!";
-
+    public static final String MESSAGE_INVALID_ITEM_NAME = "Item name cannot be empty";
     private final Index index;
     private final EditInventoryDescriptor editInventoryDescriptor;
 
