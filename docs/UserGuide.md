@@ -16,6 +16,8 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.9. Save](#39-save)
   - [3.10. Archive : `archive`](#310-archive--archive)
   - [3.11. Recall : `recall`](#311-recall--recall)
+  - [3.12. Add templates : `create`](#312-add-templates--create)
+  - [3.13. Add an exercise using template : `addt`](#313-add-an-exercise-using-template--addt)
 - [4. FAQ](#4-faq)
 - [5. Command summary](#5-command-summary)
 
@@ -162,27 +164,6 @@ Examples:
     at <mark>C:\Users\UserName\App\data\archived_file.json</mark>  
 </div>
 
-#### Add templates : `create`
-Adds an exercise template.
-
-Format: `create n/NAME d/DESCRIPTION c/CALORIES`  
-
-Examples:<br>
-- `create n/pushup d/half an hour c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
-
-#### Add an exercise using template : `addt`
-Adds an exercise using template.
-
-Format: `addt n/NAME at/DATE [c/CALORIES]`  
-- The format for the DATE should be in the form of DD-MM-YYYY.     
-
-- The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
-
-Examples:<br>
-- `addt n/pushup at/09-07-2020 c/260` Creates the exercise using the template called pushup with the date 09-07-2020 and calories 260.
-
-- `addt n/pushup at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020 and default calories 100.
-
 ## 3.11. Recall : `recall`
 Recalls the most recent exercise with the specified name.
 
@@ -193,6 +174,29 @@ Format: `recall NAME`
 
 Example:
 - `recall run` finds the most recent exercise with the name "run".
+
+## 3.12. Add templates : `create`
+Adds an exercise template.
+
+Format: `create n/NAME c/CALORIES`  
+
+Examples:<br>
+- `create n/pushup c/100` Creates the exercise template with the name push up, description half an hour and calories 100.
+
+## 3.13. Add an exercise using template : `addt`
+Adds an exercise using template.
+
+Format: `addt temp/NAME d/DESCRIPTION at/DATE [c/CALORIES]`  
+- The format for the DATE should be in the form of DD-MM-YYYY.     
+
+- The user can input calorie value to overwrite the default calorie value defined by the template. If the user inputs no calories, then the exercise will have the default calorie value in the template.
+
+Examples:<br>
+- `addt temp/pushup d/half an hour at/09-07-2020 c/260` Creates the exercise using the template called pushup with the date 09-07-2020, description half an hour and calories 260.
+
+- `addt temp/pushup d/half an hour at/09-06-2020` Creates the exercise using the template called pushup with the date 09-06-2020, description half an hour and default calories 100.
+
+
 
 ---
 ## 4. FAQ
