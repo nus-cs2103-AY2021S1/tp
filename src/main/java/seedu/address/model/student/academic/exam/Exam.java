@@ -1,5 +1,7 @@
 package seedu.address.model.student.academic.exam;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +29,7 @@ public class Exam {
      * @param score score obtained.
      */
     public Exam(String examName, String examDate, Score score) {
+        requireAllNonNull(examName, examDate, score);
         this.examName = examName;
         LocalDate formattedDate;
         try {
