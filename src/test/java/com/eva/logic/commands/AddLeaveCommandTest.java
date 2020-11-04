@@ -1,24 +1,32 @@
 package com.eva.logic.commands;
 
-//import static com.eva.testutil.Assert.assertThrows;
+//import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static com.eva.testutil.Assert.assertThrows;
+//import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
+import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
+import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static java.util.Objects.requireNonNull;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
-//import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
-//import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-//import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;
+
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.PanelState;
-//import com.eva.logic.commands.exceptions.CommandException;
+import com.eva.commons.core.index.Index;
 import com.eva.model.Model;
+import com.eva.model.ModelManager;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
+import com.eva.model.UserPrefs;
 import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
@@ -27,29 +35,50 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
-//import com.eva.testutil.PersonBuilder;
+import com.eva.testutil.PersonBuilder;
+import com.eva.testutil.staff.StaffBuilder;
 
 import javafx.collections.ObservableList;
 
 class AddLeaveCommandTest {
 
+    public static final Index INDEX = Index.fromZeroBased(1);
+    public static final Staff STAFF = new StaffBuilder().build();
+    public static final List<Leave> LEAVE_LIST = new ArrayList<>(STAFF.getLeaves());
+    private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+            getTypicalApplicantDatabase(), new UserPrefs());
+
+    @Test
+    public void constructor_nullIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddLeaveCommand(null, LEAVE_LIST));
+    }
+
+    @Test
+    public void constructor_nullLeaveList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddLeaveCommand(INDEX, null));
+    }
+
     /*
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void execute_leaveAcceptedByModelOnStaffList_addSuccessful() throws Exception {
+        Staff staffToAddLeave = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+
+        ModelManager expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
+                model.getApplicantDatabase(), new UserPrefs());
+        StringBuilder sb = new StringBuilder();
+        for (Leave leave : LEAVE_LIST) {
+            expectedModel.addStaffLeave(staffToAddLeave, leave);
+            sb.append(leave.toString()).append(", ");
+        }
+
+        String expectedMessage = String.format(AddLeaveCommand.MESSAGE_SUCCESS, staffToAddLeave.getName(), sb);
+
+        assertCommandSuccess(addLeaveCommand, model, expectedMessage, expectedModel);
     }
+     */
 
-    @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        AddCommandTest.ModelStubAcceptingPersonAdded modelStub = new AddCommandTest.ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    }
-
+    /*
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
@@ -58,6 +87,7 @@ class AddLeaveCommandTest {
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
+    */
 
     @Test
     public void equals() {
@@ -82,7 +112,6 @@ class AddLeaveCommandTest {
         // different person -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
-     */
 
     /**
      * A default model stub that have all of the methods failing.
@@ -332,18 +361,31 @@ class AddLeaveCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithStaff extends ModelStub {
-        private final Staff staff;
+    private class ModelStubWithStaffWithPanelState extends ModelStub {
+        private final ArrayList<Staff> staffList;
+        private PanelState panelState;
 
-        ModelStubWithStaff(Staff staff) {
+        ModelStubWithStaffWithPanelState(Staff staff, PanelState panelState) {
             requireNonNull(staff);
-            this.staff = staff;
+            this.staffList = new ArrayList<>();
+            staffList.add(staff);
+            this.panelState = panelState;
         }
 
         @Override
         public boolean hasStaff(Staff staff) {
             requireNonNull(staff);
-            return this.staff.equals(staff);
+            return this.staffList.stream().anyMatch(staff::equals);
+        }
+
+        @Override
+        public void setPanelState(PanelState panelState) {
+            this.panelState = panelState;
+        }
+
+        @Override
+        public PanelState getPanelState() {
+            return this.panelState;
         }
     }
 }
