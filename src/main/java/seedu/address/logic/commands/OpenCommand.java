@@ -37,6 +37,9 @@ public class OpenCommand extends Command {
     public static final String MESSAGE_LABEL_NOT_FOUND = "No tag found with the label %s!";
     public static final String MESSAGE_ERROR = "Error opening %s: ";
     public static final String MESSAGE_FILE_NOT_FOUND = "The file: %s doesn't exist.";
+    public static final String MESSAGE_FILE_NO_PERMISSION = "You have no permission to open %s.";
+    public static final String MESSAGE_ENV_NOT_DESKTOP_SUPPORTED = "Sorry, open command is not supported"
+            + "in your platform.";
 
     private final TagName tagName;
     private final Label label;
@@ -89,6 +92,11 @@ public class OpenCommand extends Command {
             tagsToOpen = tagList;
         }
 
+        // Check if environment is desktop supported before opening files
+        if (!Desktop.isDesktopSupported()) {
+            throw new CommandException(MESSAGE_ENV_NOT_DESKTOP_SUPPORTED);
+        }
+
         // Perform open and get a set of opened tags
         Map<Tag, String> openResults = openTags(tagsToOpen);
 
@@ -128,6 +136,9 @@ public class OpenCommand extends Command {
             File file = new File(tag.getFileAddress().value);
             if (!file.exists()) {
                 result.put(tag, String.format(MESSAGE_ERROR + MESSAGE_FILE_NOT_FOUND,
+                        tag.getTagName(), tag.getFileAddress()));
+            } else if (!file.canRead()) {
+                result.put(tag, String.format(MESSAGE_ERROR + MESSAGE_FILE_NO_PERMISSION,
                         tag.getTagName(), tag.getFileAddress()));
             } else {
                 // Use concurrent threads here to avoid JavaFX freeze in Linux
