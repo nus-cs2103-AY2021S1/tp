@@ -2,8 +2,8 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LESSON_TUTORIAL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOM_LINK_ES2660;
 
@@ -20,15 +20,15 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
     // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/cs2030").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2030").build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/cs2101").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2101").build();
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/cs2105").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2105").build();
     public static final Module CS1101S = new ModuleBuilder().withName("CS1101S")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/cs1101s").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/cS1101S").build();
     public static final Module IS1103 = new ModuleBuilder().withName("IS1103")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/is1103").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/IS1103").build();
 
     // Manually added
     public static final Module CS1231S = new ModuleBuilder().withName("CS1231S")
@@ -38,10 +38,9 @@ public class TypicalModules {
 
     // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2103T = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
-        .withZoomLink(VALID_MODULE_LESSON, VALID_ZOOM_LINK_CS2103T).build();
-
+        .withZoomLink(VALID_MODULE_LESSON_LECTURE, VALID_ZOOM_LINK_CS2103T).build();
     public static final Module ES2660 = new ModuleBuilder().withName(VALID_MODULENAME_ES2660)
-        .withZoomLink(VALID_MODULE_LESSON_ES2660, VALID_ZOOM_LINK_ES2660).build();
+        .withZoomLink(VALID_MODULE_LESSON_TUTORIAL, VALID_ZOOM_LINK_ES2660).build();
 
     private TypicalModules() {} // prevents instantiation
 
