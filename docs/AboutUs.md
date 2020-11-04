@@ -44,6 +44,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/fanminj.png" width="200px">
 
-[[github](http://github.com/fanminj)][[portfolio]](team/fanminj.md)
+[[github](http://github.com/fanminj)][[portfolio](team/fanminj.md)]
 
 -   Role: Programmer
