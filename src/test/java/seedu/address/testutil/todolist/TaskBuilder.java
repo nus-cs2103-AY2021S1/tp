@@ -96,7 +96,18 @@ public class TaskBuilder {
         return this;
     }
 
+    /**
+     * Builds a task.
+     *
+     * @return a task
+     */
     public Task build() {
-        return new Task(name, tags, priority, date, status);
+        // the date created is set to now
+        Task temp = new Task(name);
+        temp = temp.setTags(tags);
+        temp = temp.setPriority(priority);
+        temp = temp.setDate(date);
+        temp = temp.setStatus(status);
+        return temp;
     }
 }
