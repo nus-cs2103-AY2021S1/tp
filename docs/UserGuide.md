@@ -272,7 +272,7 @@ a/Discuss sequence diagram no/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`
 
-Deletes the specified meeting from Modduke.
+Deletes the specified meeting from Modduke, indentified by the unique combination of module and meeting name.
 
 Format: `meeting delete m/MODULE n/MEETING_NAME`
 
