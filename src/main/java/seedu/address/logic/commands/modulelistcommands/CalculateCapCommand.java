@@ -78,7 +78,7 @@ public class CalculateCapCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddModuleCommand); // instanceof handles nulls
+                || (other instanceof CalculateCapCommand); // instanceof handles nulls
     }
     /**
      * Indicates if the application session has ended.
