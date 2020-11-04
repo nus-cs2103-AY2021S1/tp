@@ -25,7 +25,7 @@ public class ConfigTest {
     }
 
     @Test
-    public void loggerLevel_Correct() {
+    public void loggerLevelCorrect() {
         Config defaultConfig = new Config();
 
         //Check default level
