@@ -312,6 +312,38 @@ The following sequence diagram shows how the update feature works for **Example 
 
 ![Update Example 1](images/UpdateSequenceDiagramExample1.png)
 
+#### Design Consideration
+
+##### Aspect: What fields can be updated
+
+* **Alternative 1 (current implementation):** disallow updating of serial number and source.
+  * Pros: Serial number can be made as an identifier for every stock, making it easier to implement
+    other features such as `add` and `find`. Unlocks the possibility of serial number being generated
+    by source, since the source cannot be changed.
+  * Cons: Take some degree of freedom from the user. The user cannot change serial number or source on his/her
+    own without tampering directly with the `JSON` files.
+
+* **Alternative 2:** allow updating of all fields in `Stock` class
+  * Pros: Gives the user as much freedom as he/she wants. The user can update anything as he/she sees fit.
+  * Cons: It will be harder to implement other features as the identifier for stocks which is the serial number
+  can be changed by the user. Other features that use serial number as the identifier will have to adapt
+  when the user changes the serial number.
+
+##### Aspect: How does a stock gets updated
+
+* **Alternative 1 (current implementation):** make a temporary copy and then replace original with copy
+  * Pros: Eliminates the possibility of original data getting lost. If an update is unsuccessful then only
+    the copy will be affected and not the original data. Moreover, all the fields are updated at the same time
+    since we replace the original with a copy that has been completely updated.
+  * Cons: Slower than just directly change the stock fields in the `StockBook` as we need to make a copy
+    of the current stock, update the copy, and replace the original with the copy.
+
+* **Alternative 2:** directly change the `Stock` fields in `StockBook`
+  * Pros: Will be significantly faster than making a copy since we directly change the `Stock` itself.
+  * Cons: At a risk of data corruption. Interrupting the update midway will cause the `Stock` currently
+    undergoing the update to be corrupted as the original data that has been updated will be lost,
+    but some fields may not be already updated due to the midway interruption.
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
