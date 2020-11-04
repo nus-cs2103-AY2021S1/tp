@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -9,15 +11,20 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
 import seedu.address.model.profile.Profile;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
@@ -26,6 +33,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.TypicalModel;
+import seedu.address.testutil.TypicalVendors;
 
 public class SubmitCommandTest {
 
@@ -43,6 +51,42 @@ public class SubmitCommandTest {
                 new JsonUserPrefsStorage(TYPICAL_USERPREFS_FILEPATH),
                 new JsonPresetManagerStorage(TYPICAL_PRESET_FILEPATH),
                 new JsonProfileManagerStorage(TYPICAL_PROFILE_FILEPATH));
+    }
+
+    public static Storage getStorageWithoutProfile() {
+        return new StorageManager(new JsonAddressBookStorage(TYPICAL_ADDRESSBOOK_FILEPATH),
+                new JsonUserPrefsStorage(TYPICAL_USERPREFS_FILEPATH),
+                new JsonPresetManagerStorage(TYPICAL_PRESET_FILEPATH), null
+                );
+    }
+
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
+        assertCommandFailure(new SubmitCommand(),
+                model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
+    }
+
+    @Test
+    public void execute_emptyOrder_throwsException() {
+        Model model = TypicalModel.getModelManagerWithMenu();
+        assertCommandFailure(new SubmitCommand(),
+                model, Messages.MESSAGE_EMPTY_ORDER);
+    }
+
+    @Test
+    public void execute_invalidProfile_throwsException() {
+        //TODO invalid profile breaks the code
+        Model model = TypicalModel.getModelManagerWithMenu();
+        Storage storage = getStorageWithoutProfile();
+        try {
+            model.addOrderItem(new OrderItem("Prata", 1.00, new HashSet<>(), 1));
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
+
+//        assertCommandFailure(new SubmitCommand(), model, storage, Messages.MESSAGE_EMPTY_PROFILE);
     }
 
     @Test

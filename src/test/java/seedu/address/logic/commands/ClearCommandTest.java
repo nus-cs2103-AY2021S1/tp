@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -39,9 +41,15 @@ public class ClearCommandTest {
         return model;
     }
 
+    @Test
+    public void execute_vendorNotSelected_throwsException() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
+        assertCommandFailure(new ClearCommand(), model, Messages.MESSAGE_VENDOR_NOT_SELECTED);
+    }
 
     @Test
-    public void clear_emptyOrder_success() {
+    public void execute_emptyOrder_success() {
         Model model = initialiseModel();
         Model expectedModel = initialiseModel();
         OrderItem orderItem = new OrderItem(new MenuItem("Prata", 1, new HashSet<>(), ""), 1);
@@ -55,7 +63,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void clear_nonEmptyOrder_success() {
+    public void execute_nonEmptyOrder_success() {
         Model model = initialiseModel();
         setOrderManager(model);
         Model expectedModel = initialiseModel();
