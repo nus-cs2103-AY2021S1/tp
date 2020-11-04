@@ -155,7 +155,7 @@ Success:
 
 Edits an existing exercise in the application, either with new name, or new calories per rep.
 
-Format: `editex INDEX [e/EXERCISE] [c/CALORIES]`
+Format: `editex <index> [e/EXERCISE] [c/CALORIES]`
 
 * Edits the existing exercise at the specified `INDEX`. The index refers to the index number shown in the displayed exercise list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
