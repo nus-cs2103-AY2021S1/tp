@@ -30,6 +30,18 @@ deactivate ExpenseBookParser
 LogicManager -> SwitchCommand : execute()
 activate SwitchCommand
 
+SwitchCommand -> Model : hasCategory(category)
+activate Model
+
+Model -> ExpenseBook : containsCategory(toCheck)
+activate ExpenseBook
+
+ExpenseBook -> Model : containsCategory
+deactivate ExpenseBook
+
+Model -> SwitchCommand : hasCategory
+deactivate Model
+
 SwitchCommand -> Model : switchCategory(category)
 activate Model
 
@@ -41,12 +53,26 @@ activate Model
 
 Model -> ExpenseBook : updateFilteredBudgets(predicate)
 activate ExpenseBook
+
+ExpenseBook -> Model
+deactivate ExpenseBook
+
+Model -> Model
 deactivate Model
 
 Model -> Model : updateFilteredExpenseList(predicate)
 activate Model
 
 Model -> ExpenseBook : updateFilteredExpenses(predicate)
+activate ExpenseBook
+
+ExpenseBook -> Model
+deactivate ExpenseBook
+
+Model -> Model
+deactivate Model
+
+Model -> Model
 deactivate Model
 
 Model --> SwitchCommand
