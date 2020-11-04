@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
+import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.model.date.Date;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
@@ -65,17 +66,14 @@ class JsonAdaptedFood {
     }
 
     private void checkNull(Object item, String className) throws IllegalValueException {
-        if (item == null) {
-            throw new IllegalValueException(String.format(JsonAdaptedFood.MISSING_FIELD_MESSAGE_FORMAT, className));
-        }
+        AppUtil.checkArgument(item != null,
+                String.format(JsonAdaptedFood.MISSING_FIELD_MESSAGE_FORMAT, className));
     }
 
-    private <T>void checkValid(T item, String className,
-                            Predicate<T> isValid, String classError) throws IllegalValueException {
+    private <T>void checkValid(T item, String className, Predicate<T> isValid, String classError)
+            throws IllegalValueException {
         checkNull(item, className);
-        if (!isValid.test(item)) {
-            throw new IllegalValueException(classError);
-        }
+        AppUtil.checkArgument(isValid.test(item), classError);
     }
 
     /**
@@ -85,14 +83,14 @@ class JsonAdaptedFood {
      */
     public Food toModelType() throws IllegalValueException {
 
+        //Check all variables
+        checkValid(fat, Fat.class.getSimpleName(), Fat::isValid, Fat.MESSAGE_CONSTRAINTS);
+        checkValid(date, Date.class.getSimpleName(), Date::isValid, Date.MESSAGE_CONSTRAINTS);
         checkValid(name, Name.class.getSimpleName(), Name::isValidName, Name.MESSAGE_CONSTRAINTS);
         checkValid(protein, Protein.class.getSimpleName(), Protein::isValid, Protein.MESSAGE_CONSTRAINTS);
-        checkValid(fat, Fat.class.getSimpleName(), Fat::isValid, Fat.MESSAGE_CONSTRAINTS);
-        checkValid(carbs, Carbohydrate.class.getSimpleName(),
-                Carbohydrate::isValid, Carbohydrate.MESSAGE_CONSTRAINTS);
-        checkValid(date, Date.class.getSimpleName(), Date::isValid, Date.MESSAGE_CONSTRAINTS);
+        checkValid(carbs, Carbohydrate.class.getSimpleName(), Carbohydrate::isValid, Carbohydrate.MESSAGE_CONSTRAINTS);
 
-        //Load Tags.
+        //Load Tags using a for loop due to IllegalValueException.
         final List<Tag> foodTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             foodTags.add(tag.toModelType());
@@ -106,6 +104,7 @@ class JsonAdaptedFood {
         final Protein modelProtein = new Protein(Integer.parseInt(protein));
         final Carbohydrate modelCarbohydrate = new Carbohydrate(Integer.parseInt(carbs));
 
+        //Return the Food item.
         return new Food(modelName, modelProtein, modelFat, modelCarbohydrate, modelTags, modelDate);
     }
 
