@@ -137,7 +137,9 @@ We will follow the following convention for each command's format:
 
 ### 5.1 Viewing help : `help`
 
-You can view information on the available commands in the terminal.
+Stuck and unsure of how to execute a certain command? The `help` command allows you to view
+information on all available commands. It also enables you to display detailed information on specific
+commands. This way, you won't have any trouble utilising McGymmy to its full potential.
 
 Format: `help [COMMAND]`
 
