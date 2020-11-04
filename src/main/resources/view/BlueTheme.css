@@ -17,7 +17,7 @@
     -fx-opacity: 1;
 }
 
-.label-dark {
+.label-section-dark {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;

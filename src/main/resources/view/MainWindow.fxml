@@ -39,7 +39,7 @@
                 </MenuBar>
 
                 <AnchorPane styleClass="pane-with-border">
-                    <Label fx:id="sectionLabel" alignment="CENTER" minHeight="30" styleClass="label-dark" text="Section" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <Label fx:id="sectionLabel" alignment="CENTER" minHeight="30" styleClass="label-section-dark" text="Section" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <padding>
                             <Insets bottom="5" top="5" />
                         </padding>
