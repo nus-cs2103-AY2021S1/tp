@@ -245,6 +245,10 @@ The following sequence diagram shows how the unassign operation works:
 
 ![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a unassign command:
+
+![UnassignActivityDiagram](images/UnassignActivityDiagram.png)
+
 #### Unassigning a certain instructor from one or more modules
 a. Prerequisites : Unassign all instructors from all modules using the `unassignall` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
 Contact on index `1` is an instructor of module with module code `CS2103` and `CS2100`, while contact on index `2` is an instructor of module with module code `CS2100` and `CS1010S`.
@@ -266,6 +270,7 @@ Expected : Similar to previous.
 
 { more test cases ... }
 
+
 ### Unassignall feature
 
 The assign feature is facilitated by `UnassignallCommand` and `UnassignallCommandParser`.
@@ -275,6 +280,11 @@ Then, the `unassignAllInstructors()` operation is called in both `UniqueModuleLi
 The following sequence diagram shows how the unassignall operation works:
 
 ![UnassignallSequenceDiagram](images/UnassignallSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a unassignall command:
+
+![UnassignallActivityDiagram](images/UnassignallActivityDiagram.png)
+
 
 #### Design consideration:
 
