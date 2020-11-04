@@ -53,15 +53,19 @@ public class Staff extends Person {
         super(name, phone, email, address, tags, comments);
         requireNonNull(leaves);
         this.leaves.addAll(leaves);
-        leaveTaken = new LeaveTaken();
+        int leaveLength = leaves.stream().mapToInt(Leave::getLeaveLength).sum();
+        leaveTaken = new LeaveTaken(leaveLength);
     }
 
     /**
      * Every field must be present and not null.
+     * Only for storage use.
+     *
      * @param name
      * @param phone
      * @param email
      * @param address
+     * @param leaveTaken
      * @param tags
      * @param leaves
      */
@@ -91,5 +95,4 @@ public class Staff extends Person {
     public LeaveTaken getLeaveTaken() {
         return leaveTaken;
     }
-
 }

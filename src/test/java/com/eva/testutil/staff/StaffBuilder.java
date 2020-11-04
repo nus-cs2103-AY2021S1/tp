@@ -132,7 +132,8 @@ public class StaffBuilder {
     }
 
     /**
-     * Parses the {@code leaves} into a {@code Set<Leave>} and set it to the {@code Staff} that we are building.
+     * Parses the {@code leaveTaken} into a {@code LeaveTaken} and set it to the {@code Staff} that we are building.
+     * This is not a method that should be used by anything other than storage.
      */
     public StaffBuilder withLeaveTaken(int leaveTaken) {
         this.leaveTaken = new LeaveTaken(leaveTaken);
