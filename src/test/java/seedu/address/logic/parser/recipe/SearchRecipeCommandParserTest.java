@@ -27,7 +27,7 @@ public class SearchRecipeCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsSearchRecipeCommand() {
         // no leading and trailing whitespaces in name
         SearchRecipeCommand expectedSearchRecipeCommand =
                 new SearchRecipeCommand(new NameContainsKeywordsPredicate(Arrays.asList("Pork", "Sandwich")));

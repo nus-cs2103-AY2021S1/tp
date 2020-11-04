@@ -38,14 +38,6 @@ class JsonSerializableWishfulShrinking {
         this.recipes.addAll(recipes);
     }
 
-    /*
-     * Constructs a {@code JsonSerializableWishfulShrinking} with the given ingredients.
-     */
-    /*@JsonCreator
-    public JsonSerializableWishfulShrinking(@JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients) {
-        this.ingredients.addAll(ingredients);
-    }*/
-
     /**
      * Converts a given {@code ReadOnlyWishfulShrinking} into this class for Jackson use.
      *

@@ -43,7 +43,7 @@ public class RecommendCommand extends Command {
     }
 
     /**
-     * Gets all the ingredients in the user's fridge
+     * Gets all the ingredients in the user's fridge.
      * @param model the model to update
      * @return a list of the ingredients in the user's fridge
      */

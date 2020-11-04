@@ -19,6 +19,10 @@ import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.RecommendPredicate;
 
+
+/**
+ * Contains integration tests (interaction with the Model) for {@code RecommendCommand}.
+ */
 public class RecommendCommandTest {
     private Model model;
     private Model expectedModel;

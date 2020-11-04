@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-//import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,7 +26,8 @@ class JsonAdaptedRecipe {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Recipe's %s field is missing!";
 
     private final String name;
-    private final ArrayList<Instruction> instruction;
+    //private final ArrayList<Instruction> instruction;
+    private final List<JsonAdaptedInstruction> instruction = new ArrayList<>();
     private final RecipeImage recipeImage;
     private final ArrayList<Ingredient> ingredients;
     private final Integer calories;
@@ -38,13 +38,15 @@ class JsonAdaptedRecipe {
      */
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
-                             @JsonProperty("instruction") ArrayList<Instruction> instruction,
+                             @JsonProperty("instruction") List<JsonAdaptedInstruction> instruction,
                              @JsonProperty("recipeImage") RecipeImage recipeImage,
                              @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
                              @JsonProperty("calories") Integer calories,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
-        this.instruction = instruction;
+        if (instruction != null) {
+            this.instruction.addAll(instruction);
+        }
         this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
@@ -58,7 +60,9 @@ class JsonAdaptedRecipe {
      */
     public JsonAdaptedRecipe(Recipe source) {
         name = source.getName().fullName;
-        instruction = source.getInstruction();
+        instruction.addAll(source.getInstruction().stream()
+                .map(JsonAdaptedInstruction::new)
+                .collect(Collectors.toList()));
         recipeImage = source.getRecipeImage();
         ingredients = source.getIngredient();
         calories = source.getCalories().value;
@@ -88,18 +92,23 @@ class JsonAdaptedRecipe {
 
         if (instruction == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    String.class.getSimpleName()));
+                    Instruction.class.getSimpleName()));
         }
-        for (Instruction instr : instruction) {
+        final List<Instruction> recipeInstructions = new ArrayList<>();
+        for (JsonAdaptedInstruction instr : instruction) {
+            recipeInstructions.add(instr.toModelType());
+        }
+
+        for (Instruction instr : recipeInstructions) {
             if (!Instruction.isValidInstruction(instr)) {
                 throw new IllegalValueException(Instruction.MESSAGE_CONSTRAINTS);
             }
         }
-        final ArrayList<Instruction> modelInstruction = new ArrayList<>(instruction);
+        final ArrayList<Instruction> modelInstruction = new ArrayList<>(recipeInstructions);
 
         if (recipeImage == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    String.class.getSimpleName()));
+                    RecipeImage.class.getSimpleName()));
         }
         final RecipeImage modelRecipeImage = recipeImage;
 

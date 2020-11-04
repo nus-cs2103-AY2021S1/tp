@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Name;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.recipe.Tag;
 
 public class ParserUtilTest {
@@ -42,6 +43,7 @@ public class ParserUtilTest {
     private static final String VALID_INGREDIENT_1 = VALID_INGREDIENT_NAME + " -" + VALID_INGREDIENT_QUANTITY_1;
     private static final String VALID_TAG_1 = "healthy";
     private static final String VALID_TAG_2 = "yummy";
+    private static final String VALID_IMAGE = "image.jpg";
 
     private static final String INVALID_INGREDIENT = INVALID_INGREDIENT_NAME + VALID_INGREDIENT_QUANTITY;
     private static final String INVALID_INGREDIENT_0 = VALID_INGREDIENT_NAME + INVALID_INGREDIENT_QUANTITY_0;
@@ -196,4 +198,27 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    @Test
+    public void parseImage_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseImage((String) null));
+    }
+
+    @Test
+    public void parseImage_whitespace_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseImage("         "));
+    }
+
+    @Test
+    public void parseImage_validImageWithoutWhitespace_returnsRecipeImage() throws Exception {
+        RecipeImage expectedImage = new RecipeImage(VALID_IMAGE);
+        assertEquals(expectedImage, ParserUtil.parseImage(VALID_IMAGE));
+    }
+
+    @Test
+    public void parseImage_validImageWithWhitespace_returnsRecipeImage() throws Exception {
+        RecipeImage expectedImage = new RecipeImage(VALID_IMAGE);
+        assertEquals(expectedImage, ParserUtil.parseImage(VALID_IMAGE + "          "));
+    }
+
 }

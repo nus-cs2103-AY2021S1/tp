@@ -1,14 +1,11 @@
 package seedu.address.storage;
 
-//import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Name;
-//import seedu.address.model.recipe.Tag;
 
 /**
  * Jackson-friendly version of {@link Ingredient}.
@@ -48,12 +45,16 @@ class JsonAdaptedIngredient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
         }
+        if (quantity == null) {
+            throw new IllegalValueException(Ingredient.HYPHEN_CONSTRAINTS);
+        }
         if (!Name.isValidName(value)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
-        //final Name modelName = new Name(value);
+        if (!Ingredient.isValidQuantity(quantity)) {
+            throw new IllegalValueException(Ingredient.HYPHEN_CONSTRAINTS);
+        }
 
         return new Ingredient(value, quantity);
     }
-
 }

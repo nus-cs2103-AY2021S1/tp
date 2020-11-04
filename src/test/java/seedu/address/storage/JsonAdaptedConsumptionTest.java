@@ -39,7 +39,7 @@ public class JsonAdaptedConsumptionTest {
 
 
     @Test
-    public void toModelType_validConsumptionDetails_returnsRecipe() throws Exception {
+    public void toModelType_validConsumptionDetails_returnsConsumption() throws Exception {
         JsonAdaptedConsumption consumpReturn = new JsonAdaptedConsumption(PASTA);
         Consumption consump = new Consumption(PASTA);
         assertEquals(consump, consumpReturn.toModelType());

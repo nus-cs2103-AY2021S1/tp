@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.ingredient;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.DUPLICATE_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MARGARITAS;
@@ -57,5 +58,16 @@ public class AddIngredientCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_MARGARITAS
                         + INGREDIENT_DESC_MARGARITAS,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddIngredientCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_duplicateValue_failure() {
+        Ingredient expectedIngredient = new IngredientBuilder(MANGO).build();
+        ArrayList<Ingredient> arr = new ArrayList<>();
+        arr.add(expectedIngredient);
+        arr.add(expectedIngredient);
+
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + DUPLICATE_INGREDIENT_DESC,
+                AddIngredientCommand.MESSAGE_ADD_DUPLICATE_INGREDIENTS);
     }
 }

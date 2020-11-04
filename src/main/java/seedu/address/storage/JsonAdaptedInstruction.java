@@ -41,10 +41,6 @@ public class JsonAdaptedInstruction {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(instruction)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        //final Name modelName = new Name(value);
 
         return new Instruction(instruction);
     }

@@ -133,6 +133,7 @@ public class CommandTestUtil {
     public static final String INVALID_INGREDIENT_QUANTITY = " " + PREFIX_QUANTITY
             + "2@3a"; // only alphanumeric, full stop, forward slash allowed
     public static final String MISSING_INGREDIENT_DESC = " " + PREFIX_INGREDIENT;
+    public static final String DUPLICATE_INGREDIENT_DESC = " " + PREFIX_INGREDIENT + "chicken, Chicken";
 
     //Invalid Calories with prefix
     public static final String NEGATIVE_CALORIES_DESC = " " + PREFIX_CALORIES
@@ -155,6 +156,7 @@ public class CommandTestUtil {
 
     //Invalid Recipe Image
     public static final String MISSING_IMAGE_DESC = " " + PREFIX_RECIPE_IMAGE;
+    public static final String INVALID_IMAGE_DESC = " " + PREFIX_RECIPE_IMAGE + "akdsnkja.jpg";
 
     //Invalid Recipe Index
     public static final String NEGATIVE_RECIPE_INDEX = "-1";

@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Calories;
-import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.RecipeImage;
 
@@ -31,7 +28,10 @@ public class JsonAdaptedRecipeTest {
     private static final String VALID_NAME = PASTA.getName().toString();
     private static final ArrayList<Ingredient> VALID_INGREDIENT = PASTA.getIngredient();
     private static final int VALID_CALORIES = PASTA.getCalories().value;
-    private static final ArrayList<Instruction> VALID_INSTRUCTION = PASTA.getInstruction();
+    //private static final ArrayList<Instruction> VALID_INSTRUCTION = PASTA.getInstruction();
+    private static final List<JsonAdaptedInstruction> VALID_INSTRUCTION = PASTA.getInstruction().stream()
+            .map(JsonAdaptedInstruction::new)
+            .collect(Collectors.toList());
     private static final RecipeImage VALID_RECIPE_IMAGE = PASTA.getRecipeImage();
     private static final List<JsonAdaptedTag> VALID_TAGS = PASTA.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -98,8 +98,8 @@ public class JsonAdaptedRecipeTest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedConsumption consump = new JsonAdaptedConsumption(VALID_NAME, VALID_INSTRUCTION,
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_INSTRUCTION,
                 VALID_RECIPE_IMAGE, VALID_INGREDIENT, null, invalidTags);
-        assertThrows(IllegalValueException.class, consump::toModelType);
+        assertThrows(IllegalValueException.class, recipe::toModelType);
     }
 }
