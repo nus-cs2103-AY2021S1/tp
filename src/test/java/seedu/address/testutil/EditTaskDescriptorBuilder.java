@@ -65,16 +65,16 @@ public class EditTaskDescriptorBuilder {
     /**
      * Sets the {@code TaskDescription} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withTaskDescription(String TaskDescription) {
-        descriptor.setTaskDescription(TaskDescription);
+    public EditTaskDescriptorBuilder withTaskDescription(String taskDescription) {
+        descriptor.setTaskDescription(taskDescription);
         return this;
     }
 
     /**
      * Sets the {@code TaskDescription} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withProgress(String Progress) {
-        descriptor.setProgress(Double.parseDouble(Progress));
+    public EditTaskDescriptorBuilder withProgress(String progress) {
+        descriptor.setProgress(Double.parseDouble(progress));
         return this;
     }
 

@@ -1,39 +1,27 @@
 package seedu.address.logic.commands.project;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_A;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_NAME_B;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showProjectAtIndex;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.global.EditCommand;
-import seedu.address.logic.commands.global.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.participation.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.*;
-
-import java.util.HashMap;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalTasks;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
@@ -142,7 +130,7 @@ public class EditTaskCommandTest {
         model.enter(project);
         project.addTask(SampleDataUtil.generateTask(SampleDataUtil.getTask4()));
         project.addTask(SampleDataUtil.generateTask(SampleDataUtil.getTask6()));
-        project.updateTaskFilter(x->x.getTaskName().contains("Write"));
+        project.updateTaskFilter(x -> x.getTaskName().contains("Write"));
         Task editedTask = project.getFilteredSortedTaskList().get(0);
         EditTaskCommand.EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(ParserUtil.parseIndex("2"), descriptor);

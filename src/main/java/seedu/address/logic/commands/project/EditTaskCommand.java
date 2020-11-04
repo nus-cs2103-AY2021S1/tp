@@ -73,7 +73,7 @@ public class EditTaskCommand extends Command {
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
-        if(!project.addTask(editedTask)){
+        if (!project.addTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
@@ -95,13 +95,14 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws CommandException {
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)
+            throws CommandException {
         assert taskToEdit != null;
-        if(!editTaskDescriptor.getTaskName().isPresent()
-        && !editTaskDescriptor.getDeadline().isPresent()
-        && !editTaskDescriptor.getProgress().isPresent()
-        && !editTaskDescriptor.getTaskDescription().isPresent()
-        && !editTaskDescriptor.getAssignees().isPresent()){
+        if (!editTaskDescriptor.getTaskName().isPresent()
+                && !editTaskDescriptor.getDeadline().isPresent()
+                && !editTaskDescriptor.getProgress().isPresent()
+                && !editTaskDescriptor.getTaskDescription().isPresent()
+                && !editTaskDescriptor.getAssignees().isPresent()) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
