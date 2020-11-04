@@ -174,9 +174,9 @@ Adds a project to the project list.
 Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Repo URL must be a valid link
+  - Repo URL must be a valid link.
   - Description can be anything, as long as it is not blank.
-  - Any number of tags can be added, separated by space " ".
+  - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag.
 
 Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` 
 
