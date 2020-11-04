@@ -132,7 +132,7 @@ Please take note of the following:
 * This command only accepts one tag or one label but not both.
 * Please ensure that you have read permission to the files that you want to open.
 <div markdown="block" class="alert alert-info">
-**:Tip: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
+**:infomartion_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
 </div>
 
 Format: `open t>TAG_NAME` or `open l>LABEL`
@@ -172,8 +172,8 @@ Examples:
 
 Adds one or more label to an existing tag.<br>
 You can use label to categorise tags.
-<div markdown="block" class="alert alert-info">
-**:Warning: Duplicated labels will only be added once.**
+<div markdown="block" class="alert alert-warning">
+**:warning: Duplicated labels will only be added once.**
 </div>
 
 Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
@@ -247,8 +247,8 @@ Format: `ls`
 
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
-<div markdown="block" class="alert alert-info">
-**Warning: Command history will be deleted once the app is closed!
+<div markdown="block" class="alert alert-warning">
+**warning: Command history will be deleted once the app is closed!
 </div>
 
 Format: `undo`
@@ -260,8 +260,8 @@ Format: `undo`
 
 Redo a recently executed command.<br>
 Redo only exists when undo has been executed.
-<div markdown="block" class="alert alert-info">
-**Warning: Command history will be deleted once the app is closed!
+<div markdown="block" class="alert alert-warning">
+**warning: Command history will be deleted once the app is closed!
 </div>
 
 Format: `redo`
@@ -272,8 +272,8 @@ Format: `redo`
 ### Clearing all tags : `clear`
 
 Clears the list of all tags.<br>
-<div markdown="block" class="alert alert-info">
-**:Warning: All tags will be deleted!**
+<div markdown="block" class="alert alert-warning">
+**:warning: All tags will be deleted!**
 </div>
 
 Format: `clear`
@@ -317,7 +317,7 @@ HelloFile allows you to resize the view of each sub components for a clearer vie
 
 ### Persistent customisation
 All of your customisation options are saved and persists even when you close the application. HelloFile remembers your choices
- so you can your time on more productive pursuits.
+ so you can spend your time on more productive pursuits.
 
 --------------------------------------------------------------------------------------------------------------------
 
