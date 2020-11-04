@@ -57,8 +57,8 @@ public class CommandTestUtil {
     // for caseperson
     public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
     public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
-    public static final String VALID_CASEPERSON_GENDER_AMY = "F";
-    public static final String VALID_CASEPERSON_GENDER_BOB = "M";
+    public static final String VALID_CASEPERSON_SEX_AMY = "F";
+    public static final String VALID_CASEPERSON_SEX_BOB = "M";
     public static final String VALID_CASEPERSON_PHONE = "91234567";
     public static final String VALID_CASEPERSON_EMAIL = "peterjack@example.com";
     public static final String VALID_CASEPERSON_ADDRESS = "Bishan Blk 123";

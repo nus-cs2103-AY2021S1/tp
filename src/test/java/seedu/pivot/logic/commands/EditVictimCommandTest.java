@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_ADDRESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_EMAIL;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_GENDER_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_PHONE;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_SEX_AMY;
 import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_DUPLICATE_VICTIMS;
 import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_EDIT_VICTIM_SUCCESS;
 import static seedu.pivot.testutil.Assert.assertThrows;
@@ -92,7 +92,7 @@ public class EditVictimCommandTest {
     public void execute_allFieldsSpecified_success() throws CommandException {
         Victim editedVictim = new CasePersonBuilder(victim)
                 .withName(VALID_CASEPERSON_NAME_AMY)
-                .withGender(VALID_CASEPERSON_GENDER_AMY)
+                .withGender(VALID_CASEPERSON_SEX_AMY)
                 .withPhone(VALID_CASEPERSON_PHONE)
                 .withEmail(VALID_CASEPERSON_EMAIL)
                 .withAddress(VALID_CASEPERSON_ADDRESS).buildVictim();

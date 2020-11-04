@@ -7,9 +7,9 @@ import static seedu.pivot.logic.commands.suspectcommands.EditSuspectCommand.MESS
 import static seedu.pivot.logic.commands.suspectcommands.EditSuspectCommand.MESSAGE_EDIT_SUSPECT_SUCCESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_ADDRESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_EMAIL;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_GENDER_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_PHONE;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_SEX_AMY;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_EMAIL;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_NAME;
@@ -92,7 +92,7 @@ public class EditSuspectCommandTest {
     public void execute_allFieldsSpecified_success() throws CommandException {
         Suspect editedSuspect = new CasePersonBuilder(suspect)
                 .withName(VALID_CASEPERSON_NAME_AMY)
-                .withGender(VALID_CASEPERSON_GENDER_AMY)
+                .withGender(VALID_CASEPERSON_SEX_AMY)
                 .withPhone(VALID_CASEPERSON_PHONE)
                 .withEmail(VALID_CASEPERSON_EMAIL)
                 .withAddress(VALID_CASEPERSON_ADDRESS).buildSuspect();
