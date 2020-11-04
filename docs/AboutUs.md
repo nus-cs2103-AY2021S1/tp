@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/zhiayang.md)]
 
 * Role: Technical Lead
-* Responsibilities: Command UI and Parser
+* Responsibilities: Command Parser, code integration
 
 ### Seow Alex
 
