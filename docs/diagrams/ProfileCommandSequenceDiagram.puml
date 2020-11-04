@@ -21,17 +21,17 @@ end box
 [--> MainWindow : executeCommand(commandText)
 activate MainWindow
 
-MainWindow -> LogicManager : execute(isDisplayProfile)
+MainWindow -> LogicManager : execute("profile 1")
 activate LogicManager
 
-LogicManager -> CliniCalParser : parseCommand(isDisplayProfile)
+LogicManager -> CliniCalParser : parseCommand("profile 1")
 activate CliniCalParser
 
 create ProfileCommandParser
 CliniCalParser -> ProfileCommandParser
 activate ProfileCommandParser
 
-ProfileCommandParser -> ProfileCommandParser : parse(isDisplayProfile)
+ProfileCommandParser -> ProfileCommandParser : parse("profile 1")
 activate ProfileCommandParser
 
 ProfileCommandParser <-- ProfileCommandParser : patientIndex
@@ -51,13 +51,13 @@ CliniCalParser --> LogicManager : p
 deactivate CliniCalParser
 destroy ProfileCommandParser
 
-LogicManager -> ProfileCommand : execute(model)
+LogicManager -> ProfileCommand : execute()
 activate ProfileCommand
 
 ProfileCommand -> Model : getFilteredPatientList()
 activate Model
 
-ProfileCommand <-- Model: observableList
+ProfileCommand <-- Model: ObservableList<Patient>
 deactivate Model
 
 create CommandResult
@@ -87,9 +87,9 @@ activate ProfileWindow
 MainWindow <-- ProfileWindow
 MainWindow -> ProfileWindow : handleProfilePanel()
 MainWindow <-- ProfileWindow
+MainWindow -> ProfileWindow : show()
+MainWindow <-- ProfileWindow
 deactivate ProfileWindow
-
-MainWindow --> ProfileWindow : show()
 
 [<--MainWindow
 deactivate MainWindow
