@@ -23,6 +23,7 @@ public class DeleteEventCommand extends Command {
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted event: %1$s";
     private final Index index;
     public DeleteEventCommand(Index index) {
+        assert (index != null);
         this.index = index;
     }
     @Override

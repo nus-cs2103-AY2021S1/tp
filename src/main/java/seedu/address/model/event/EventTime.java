@@ -14,13 +14,14 @@ public class EventTime {
     private static final DateTimeFormatter validDateFormat = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
     private final LocalDateTime start;
     private final LocalDateTime end;
+    private static final LocalDateTime nullValue = LocalDateTime.parse("2020-02-02T12:00");
 
     /**
      * Creates an EventTime object that stores the start and end time.
      */
     public EventTime() {
-        this.start = LocalDateTime.now();
-        this.end = LocalDateTime.now();
+        this.start = nullValue;
+        this.end = nullValue;
     }
 
     /**

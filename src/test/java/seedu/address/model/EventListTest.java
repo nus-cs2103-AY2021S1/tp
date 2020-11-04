@@ -15,6 +15,7 @@ import seedu.address.testutil.event.EventUtil;
 
 public class EventListTest {
     private static final EventList eventList = new EventList();
+    private static final EventList emptyList = new EventList();
 
     @Test
     public void constructor() {
@@ -28,6 +29,7 @@ public class EventListTest {
 
     @Test
     public void copyData_from_existingList() {
+        eventList.resetData(emptyList);
         eventList.addEvent(VALID_EVENT);
         EventList copy = new EventList(eventList);
         assertEquals(eventList, copy);
@@ -35,12 +37,14 @@ public class EventListTest {
 
     @Test
     public void hasEvent_from_existingList() {
+        eventList.resetData(emptyList);
         eventList.addEvent(VALID_EVENT);
         assertTrue(eventList.hasEvent(VALID_EVENT));
     }
 
     @Test
     public void clearList_from_existingList() {
+        eventList.resetData(emptyList);
         EventList empty = new EventList();
         eventList.resetData(empty);
         assertEquals(eventList, empty);
@@ -48,12 +52,14 @@ public class EventListTest {
 
     @Test
     public void addEvent_to_existingList() {
+        eventList.resetData(emptyList);
         eventList.addEvent(VALID_EVENT);
         assertTrue(eventList.hasEvent(VALID_EVENT));
     }
 
     @Test
     public void setEvent_from_existingList() {
+        eventList.resetData(emptyList);
         eventList.addEvent(VALID_EVENT);
         Event newEvent = EventUtil.makeEvent(EventUtil.makeEventName("Hello"),
                 EventUtil.makeEventTime("2-3-2021 1300"));
@@ -64,6 +70,7 @@ public class EventListTest {
 
     @Test
     public void removeEvent_from_existingList() {
+        eventList.resetData(emptyList);
         eventList.addEvent(VALID_EVENT);
         eventList.removeEvent(VALID_EVENT);
         assertFalse(eventList.hasEvent(VALID_EVENT));

@@ -17,7 +17,7 @@ import seedu.address.model.event.Event;
 public class DeleteEventCommandTest {
     @Test
     public void constructor_nullEvent_throwsNullPointerException() {
-        assertThrows(AssertionFailedError.class, () -> new DeleteEventCommand(null));
+        assertThrows(AssertionError.class, () -> new DeleteEventCommand(null));
     }
 
     @Test
