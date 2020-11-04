@@ -141,6 +141,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteSession(SessionName sessionName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void changeSession(SessionName sessionName) {
             throw new AssertionError("This method should not be called.");
         }
@@ -207,22 +212,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public void markAllStudents(List<Student> students, AttendanceType attendanceType) {
+        public void markAllStudentRecords(List<StudentRecord> studentRecords, AttendanceType attendanceType) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void scoreStudent(Student target, int score) {
+        public void scoreStudent(StudentRecord target, double score) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void scoreStudentWithNusnetId(NusnetId nusnetId, int score) {
+        public void scoreStudentWithNusnetId(NusnetId nusnetId, double score) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void scoreAllStudents(List<Student> students, int score) {
+        public void scoreAllStudents(List<StudentRecord> students, double score) {
             throw new AssertionError("This method should not be called.");
         }
 

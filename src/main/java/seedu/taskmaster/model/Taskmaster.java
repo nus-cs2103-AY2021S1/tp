@@ -63,6 +63,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * {@code students} must not contain duplicate students.
      */
     public void setStudents(List<Student> students) {
+        currentSession.setValue(null);
         this.students.setStudents(students);
     }
 
@@ -88,11 +89,21 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     /* Session-Level Operations */
 
     /**
+     * Deletes the session with {@code sessionName}.
+     * {@code sessionName} must already exist in the session list.
+     */
+    public void deleteSession(SessionName sessionName) {
+        currentSession.setValue(null);
+        sessions.delete(sessionName);
+    }
+
+    /**
      * Adds a session to the session list.
      * The session must not already exist in the session list.
      */
     public void addSession(Session session) {
         sessions.add(session);
+        currentSession.setValue(session);
     }
 
     /**
@@ -135,6 +146,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * The student must not already exist in the student list.
      */
     public void addStudent(Student student) {
+        currentSession.setValue(null);
         students.add(student);
     }
 
@@ -146,7 +158,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
-
+        currentSession.setValue(null);
         students.setStudent(target, editedStudent);
     }
 
@@ -155,6 +167,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * {@code key} must exist in the student list.
      */
     public void removeStudent(Student key) {
+        currentSession.setValue(null);
         students.remove(key);
     }
 
@@ -204,13 +217,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of all students represented by their {@code nusnetIds} in the {@code studentRecordList}
+     * Marks the attendance of all student records represented by {@code nusnetIds} in the {@code studentRecordList}
      * of the {@code currentSession}, with the given {@code attendanceType}.
      *
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType)
+    public void markAllStudentRecords(List<NusnetId> nusnetIds, AttendanceType attendanceType)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetIds != null;
         assert attendanceType != null;
@@ -223,7 +236,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.get().markAllStudents(nusnetIds, attendanceType);
+        currentSession.get().markAllStudentAttendances(nusnetIds, attendanceType);
     }
 
     /**
@@ -232,7 +245,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreStudent(Student target, int score)
+    public void scoreStudent(StudentRecord target, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert target != null;
 
@@ -252,7 +265,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreStudentWithNusnetId(NusnetId nusnetId, int score)
+    public void scoreStudentWithNusnetId(NusnetId nusnetId, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetId != null;
 
@@ -272,7 +285,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      * @throws NoSessionException If the session list is empty.
      * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void scoreAllStudents(List<NusnetId> nusnetIds, int score)
+    public void scoreAllStudents(List<NusnetId> nusnetIds, double score)
             throws NoSessionException, NoSessionSelectedException {
         assert nusnetIds != null;
 

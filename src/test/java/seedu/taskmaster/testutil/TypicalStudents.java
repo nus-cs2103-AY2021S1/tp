@@ -112,19 +112,24 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code Taskmaster} with all the typical students and 1 session.
+     * Returns a {@code Session} with all the typical students.
+     */
+    public static Session getTypicalSession() {
+        return new Session(
+                new SessionName("Typical session"),
+                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
+                getTypicalStudents());
+    }
+
+    /**
+     * Returns a {@code Taskmaster} with all the typical students and 1 session.
      */
     public static Taskmaster getTypicalTaskmaster() {
         Taskmaster typicalTaskmaster = new Taskmaster();
         for (Student student : getTypicalStudents()) {
             typicalTaskmaster.addStudent(student);
         }
-        Session typicalSession = new Session(
-                new SessionName("Typical session"),
-                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
-                getTypicalStudents());
-        typicalTaskmaster.addSession(typicalSession);
-
+        typicalTaskmaster.addSession(getTypicalSession());
         return typicalTaskmaster;
     }
 
@@ -134,21 +139,13 @@ public class TypicalStudents {
      */
     public static SessionList getTypicalSessionList() {
         SessionList sessionList = new SessionListManager();
-
-        Session typicalSession = new Session(
-                new SessionName("Typical session"),
-                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
-                getTypicalStudents());
-
+        Session typicalSession = getTypicalSession();
         sessionList.add(typicalSession);
-
         Session typicalSession2 = new Session(
                 new SessionName("Typical session 2"),
                 new SessionDateTime(LocalDateTime.of(2020, 1, 1, 13, 0)),
                 getTypicalStudents());
-
         sessionList.add(typicalSession2);
-
         return sessionList;
     }
 

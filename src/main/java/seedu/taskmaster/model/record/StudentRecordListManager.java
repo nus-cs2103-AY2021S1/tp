@@ -70,7 +70,7 @@ public class StudentRecordListManager implements StudentRecordList {
      * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
      */
     @Override
-    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
+    public void markAllStudentAttendances(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
         for (NusnetId nusnetId : nusnetIds) {
             markStudentAttendance(nusnetId, attendanceType);
         }
@@ -81,7 +81,7 @@ public class StudentRecordListManager implements StudentRecordList {
      * Updates participation score of a student represented by their {@code nusnetId} to {@code score}.
      */
     @Override
-    public void scoreStudentParticipation(NusnetId nusnetId, int score) {
+    public void scoreStudentParticipation(NusnetId nusnetId, double score) {
         requireAllNonNull(nusnetId);
 
         boolean isFound = false;
@@ -108,7 +108,7 @@ public class StudentRecordListManager implements StudentRecordList {
      * Updates participation score of all students in the list of {@code nusnetIds} with {@code attendanceType}.
      */
     @Override
-    public void scoreAllParticipation(List<NusnetId> nusnetIds, int score) {
+    public void scoreAllParticipation(List<NusnetId> nusnetIds, double score) {
         for (NusnetId nusnetId : nusnetIds) {
             scoreStudentParticipation(nusnetId, score);
         }

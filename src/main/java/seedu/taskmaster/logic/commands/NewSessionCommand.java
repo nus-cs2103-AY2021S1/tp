@@ -16,7 +16,7 @@ import seedu.taskmaster.model.session.SessionName;
  */
 public class NewSessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "session";
+    public static final String COMMAND_WORD = "add-session";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the session list. "
             + "Parameters: "
@@ -30,7 +30,7 @@ public class NewSessionCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SESSION = "Cannot add session:\n"
             + "A session with the same name already exists in the session list";
 
-    protected StudentRecordList studentRecordList = null;
+    private StudentRecordList studentRecordList = null;
     private final SessionName sessionName;
     private final SessionDateTime sessionDateTime;
 
@@ -68,10 +68,19 @@ public class NewSessionCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof NewSessionCommand // instanceof handles nulls
-                && sessionName.equals(((NewSessionCommand) other).sessionName)
-                && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
-                && studentRecordList.equals(((NewSessionCommand) other).studentRecordList));
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+        if (studentRecordList == null) {
+            return other instanceof NewSessionCommand
+                    && sessionName.equals(((NewSessionCommand) other).sessionName)
+                    && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
+                    && ((NewSessionCommand) other).studentRecordList == null;
+        } else {
+            return other instanceof NewSessionCommand // instanceof handles nulls
+                    && sessionName.equals(((NewSessionCommand) other).sessionName)
+                    && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
+                    && studentRecordList.equals(((NewSessionCommand) other).studentRecordList);
+        }
     }
 }
