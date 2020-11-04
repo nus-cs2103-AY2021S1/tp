@@ -266,10 +266,10 @@ descriptions and tags.
 **SYNOPSIS:**
 - `listi`
 
-<img height="400" src="images/UG images/UG listi.png"/>
-
 **DESCRIPTION:**
 Lists all items that are in your inventory, and their quantities, descriptions and tags.
+
+<img height="400" src="images/UG images/UG listi.png"/>
 
 ### Listing all recipes: `listr`
 ###### (Implemented by: Kheng Hun)
@@ -284,10 +284,10 @@ will also see the recipe description.
 **SYNOPSIS:**
 - `listr`
 
-<img height="400" src="images/UG images/UG listr.png"/>
-
 **DESCRIPTION:**
 Lists all recipes, products, descriptions and their ingredients.
+
+<img height="400" src="images/UG images/UG listr.png"/>
 
 ### Deleting an item: `deli`
 ###### (Implemented by: Stephen)
