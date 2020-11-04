@@ -1,6 +1,8 @@
 package jimmy.mcgymmy.logic.predicate;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -24,20 +26,20 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
+        assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
         NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        assertEquals(firstPredicateCopy, firstPredicate);
 
         // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
+        assertNotEquals(firstPredicate, 1);
 
         // null -> returns false
-        assertFalse(firstPredicate.equals(null));
+        assertNotEquals(firstPredicate, null);
 
         // different food -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
+        assertNotEquals(secondPredicate, firstPredicate);
     }
 
     @Test
@@ -66,7 +68,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new FoodBuilder().withName(new Name("Apple")).build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carrot"));
+        predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Carrot"));
         assertFalse(predicate.test(new FoodBuilder().withName(new Name("Apple Banana")).build()));
 
         // Keywords match protein, fat and carbs, but does not match name
