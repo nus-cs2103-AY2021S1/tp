@@ -297,8 +297,6 @@ public class ParserUtil {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
         switch(priorityAllUpperCase) {
-        case("HIGHEST"):
-            return Priority.HIGHEST;
         case("HIGH"):
             return Priority.HIGH;
         case("NORMAL"):
