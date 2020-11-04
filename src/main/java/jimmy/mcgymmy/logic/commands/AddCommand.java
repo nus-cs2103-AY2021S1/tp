@@ -2,6 +2,7 @@ package jimmy.mcgymmy.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.ParserUtil;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.logic.parser.parameter.Parameter;
@@ -77,22 +78,20 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // rewriting this class as an example, tags not implemented.
         Name newName = nameParameter.consume();
-        Protein newProtein = this.proteinParameter.getValue().orElse(new Protein(0));
-        Fat newFat = this.fatParameter.getValue().orElse(new Fat(0));
-        Carbohydrate newCarb = this.carbParameter.getValue().orElse(new Carbohydrate(0));
+        Protein newProtein = this.proteinParameter.getValue().orElse(Protein.newDefault());
+        Fat newFat = this.fatParameter.getValue().orElse(Fat.newDefault());
+        Carbohydrate newCarb = this.carbParameter.getValue().orElse(Carbohydrate.newDefault());
         Date newDate = this.dateParameter.getValue().orElse(Date.currentDate());
         Food toAdd = new Food(newName, newProtein, newFat, newCarb, newDate);
-
         if (this.tagParameter.getValue().isPresent()) {
             Tag newTag = this.tagParameter.getValue().get();
             toAdd = toAdd.addTag(newTag);
         }
-
         model.addFood(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
     }
 }

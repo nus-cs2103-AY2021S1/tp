@@ -309,8 +309,7 @@ The following sequence diagram shows how the import operation works:
 
 The proposed undo mechanism is facilitated by `ModelManager` and `History`.
 `History` pairs `ReadOnlyMcGymmy` and `Predicate<Food>` gotten from `ModelManager` into a pair, then store multiple pairs of different versions in a stack, with the most recent version on top.
-Whenever there is a change to either `ModelManager`'s data or filter predicate, `ModelManager` will pass itself into `History` to be checked and saved in the stack.
-If `History` recognizes there is no change between the current state and the previous state, it will not save the current state to its stack.
+Whenever there is a change to either `ModelManager`'s data, filter predicate, or macro list, `ModelManager` will pass itself into `History` to be saved into the stack.
 Additionally, `ModelManager` implements the following operations:
 
 * `ModelManager#canUndo()` - Checks if there is any older state stored in history.
