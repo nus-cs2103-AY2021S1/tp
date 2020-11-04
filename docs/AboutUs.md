@@ -22,6 +22,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/whitelio)]
 
+[[portfolio](./team/whitelio.md)]
+
 * Role: Developer
 * Responsibilities: Data
 
@@ -40,6 +42,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/jeminsieow)]
 
+[[portfolio](./team/jeminsieow.md)]
+
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
@@ -50,6 +54,6 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/jillzyt)]
 
-[[portfolio](/team/yutingzeng.md)]
+[[portfolio](./team/yutingzeng.md)]
 * Role: Developer
 * Responsibilities: UI
