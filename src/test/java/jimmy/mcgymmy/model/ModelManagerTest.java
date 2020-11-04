@@ -145,7 +145,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void fnd_empty_mcGymmyHasCorrectContent() {
+    public void find_empty_mcGymmyHasCorrectContent() {
         modelManager.updateFilteredFoodList((food) -> food.getName()
                 .fullName.contains(getChickenRice().getName().fullName));
 
@@ -153,7 +153,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void fnd_nonEmpty_mcGymmyHasCorrectContent() {
+    public void find_nonEmpty_mcGymmyHasCorrectContent() {
         expectedModel.addFood(getChickenRice());
         modelManager.addFood(getChickenRice());
         modelManager.addFood(getNasiLemak());
@@ -163,7 +163,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void fndThenClear_nonEmpty_mcGymmyHasCorrectContent() {
+    public void findThenClear_nonEmpty_mcGymmyHasCorrectContent() {
         expectedModel.addFood(getChickenRice());
         modelManager.addFood(getChickenRice());
         modelManager.addFood(getNasiLemak());
