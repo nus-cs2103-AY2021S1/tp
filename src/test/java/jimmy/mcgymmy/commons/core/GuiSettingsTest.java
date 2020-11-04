@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 class GuiSettingsTest {
     private static final GuiSettings DEFAULT_SETTINGS = new GuiSettings();
     private static final GuiSettings DEFAULT_SETTINGS_2 = new GuiSettings();
-    private static final GuiSettings DIFFERENT_SETTINGS_1 =  new GuiSettings(100, 100, 10, 10);
-    private static final GuiSettings DIFFERENT_SETTINGS_2 =  new GuiSettings(100, 100, 10, 10);
+    private static final GuiSettings DIFFERENT_SETTINGS_1 = new GuiSettings(100, 100, 10, 10);
+    private static final GuiSettings DIFFERENT_SETTINGS_2 = new GuiSettings(100, 100, 10, 10);
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
     private static final double OTHER_HEIGHT = 100;

@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 public class ConfigTest {
 
-    private static Path DEFAULT_PREF_PATH = Paths.get("preferences.json");
-    private static Path TEST_PREF_PATH = Paths.get("dummy.json");
+    private static final Path DEFAULT_PREF_PATH = Paths.get("preferences.json");
+    private static final Path TEST_PREF_PATH = Paths.get("dummy.json");
 
     @Test
     public void toString_defaultObject_stringReturned() {
