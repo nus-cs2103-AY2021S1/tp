@@ -4,30 +4,30 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
+import seedu.address.logic.commands.AddTagCommand.TagPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
  */
-public class LabelPersonDescriptorBuilder {
+public class TagPersonDescriptorBuilder {
 
-    private LabelPersonDescriptor descriptor;
+    private TagPersonDescriptor descriptor;
 
-    public LabelPersonDescriptorBuilder() {
-        descriptor = new LabelPersonDescriptor();
+    public TagPersonDescriptorBuilder() {
+        descriptor = new TagPersonDescriptor();
     }
 
-    public LabelPersonDescriptorBuilder(LabelPersonDescriptor descriptor) {
-        this.descriptor = new LabelPersonDescriptor(descriptor);
+    public TagPersonDescriptorBuilder(TagPersonDescriptor descriptor) {
+        this.descriptor = new TagPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-    public LabelPersonDescriptorBuilder(Person person) {
-        descriptor = new LabelPersonDescriptor();
+    public TagPersonDescriptorBuilder(Person person) {
+        descriptor = new TagPersonDescriptor();
         descriptor.setTags(person.getTags());
     }
 
@@ -35,13 +35,13 @@ public class LabelPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public LabelPersonDescriptorBuilder withTags(String... tags) {
+    public TagPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }
 
-    public LabelPersonDescriptor build() {
+    public TagPersonDescriptor build() {
         return descriptor;
     }
 }

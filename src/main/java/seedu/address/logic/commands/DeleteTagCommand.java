@@ -15,8 +15,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-public class DeleteLabelCommand extends Command {
-    public static final String COMMAND_WORD = "label delete";
+public class DeleteTagCommand extends Command {
+    public static final String COMMAND_WORD = "tag delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the given tag(s) from the person identified by the name used in the displayed person list.\n"
@@ -26,7 +26,7 @@ public class DeleteLabelCommand extends Command {
             + "Roy "
             + PREFIX_TAG + "classmate";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Labelled Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Tagged Person: %1$s";
 
     private final Name targetName;
     private final Set<Tag> tags;
@@ -35,7 +35,7 @@ public class DeleteLabelCommand extends Command {
      * @param targetName of the person in the filtered person list to edit
      * @param tags the set of tags to be removed from the person
      */
-    public DeleteLabelCommand(Name targetName, Set<Tag> tags) {
+    public DeleteTagCommand(Name targetName, Set<Tag> tags) {
         this.targetName = targetName;
         this.tags = tags;
     }
@@ -53,7 +53,7 @@ public class DeleteLabelCommand extends Command {
         List<Person> filteredList = model.getFilteredPersonList().stream()
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToEdit = filteredList.get(0);
-        Person editedPerson = createEditedPerson(personToEdit, tags); // deletes the given labels from Person
+        Person editedPerson = createEditedPerson(personToEdit, tags); // deletes the given tags from Person
 
         model.setPerson(personToEdit, editedPerson);
 
@@ -68,7 +68,7 @@ public class DeleteLabelCommand extends Command {
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * with labels in {@code tags} removed.
+     * with tags in {@code tags} removed.
      */
     private static Person createEditedPerson(Person personToEdit, Set<Tag> tags) throws CommandException {
         assert personToEdit != null;
@@ -89,7 +89,7 @@ public class DeleteLabelCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteLabelCommand // instanceof handles nulls
-                && targetName.equals(((DeleteLabelCommand) other).targetName)); // state check
+                || (other instanceof DeleteTagCommand // instanceof handles nulls
+                && targetName.equals(((DeleteTagCommand) other).targetName)); // state check
     }
 }

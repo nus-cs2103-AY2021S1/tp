@@ -503,34 +503,34 @@ Given below is the activity diagram of how the mechanism behaves when called usi
 
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
-### Labelling Contacts
+### Tagging Contacts
 
-The mechanism to label contacts is facilitated by `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand`. They
+The mechanism to tag contacts is facilitated by `AddTagCommand`, `ClearTagCommand` and `DeleteTagCommand`. They
 extends `Command` and implement the following methods:
 
-* `AddLabelCommand#execute` - Adds the specified labels to the specified Person in the AddressBook according to the user input.
-* `ClearLabelCommand#execute` - Clears all labels of the specified Person in the AddressBook in the user input.
-* `DeleteLabelCommand#execute` - Deletes the specified labels from the specified Person in the AddressBook according to the user input.
+* `AddTagCommand#execute` - Adds the specified tags to the specified Person in the AddressBook according to the user input.
+* `ClearTagCommand#execute` - Clears all tags of the specified Person in the AddressBook in the user input.
+* `DeleteTagCommand#execute` - Deletes the specified tags from the specified Person in the AddressBook according to the user input.
 These operations are exposed in the `LogicManager` class as `LogicManager#execute`.
 
 #### Parsing User Input
 
-The parsing of user input for `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` is facilitated by
-`AddLabelCommandParser`, `ClearLabelCommandParser` and `DeleteLabelCommandParser` respectively. They extend `Parser`
+The parsing of user input for `AddTagCommand`, `ClearTagCommand` and `DeleteTagCommand` is facilitated by
+`AddTagCommandParser`, `ClearTagCommandParser` and `DeleteTagCommandParser` respectively. They extend `Parser`
 and implement the following methods:
 
-* `AddLabelCommandParser#parse` - Parses the user input and returns the appropriate AddLabelCommand
-* `ClearLabelCommandParser#parse` - Parses the user input and returns the appropriate ClearLabelCommand
-* `DeleteLabelCommandParser#parse` - Parses the user input and returns the appropriate DeleteLabelCommand
+* `AddTagCommandParser#parse` - Parses the user input and returns the appropriate AddTagCommand
+* `ClearTagCommandParser#parse` - Parses the user input and returns the appropriate ClearTagCommand
+* `DeleteTagCommandParser#parse` - Parses the user input and returns the appropriate DeleteTagCommand
 
-All three parsers are identical except that they return their respective commands and `AddLabelCommandParser` and `DeleteLabelCommandParser`
+All three parsers are identical except that they return their respective commands and `AddTagCommandParser` and `DeleteTagCommandParser`
 parses for the `t/` prefix in the arguments.
 
 ##### Obtaining a Name Object
 
 All three parsers call `ParserUtil#parseName` to obtain a `Name` object based on the given name in the user input.
-`AddLabelCommandParser` and `DeleteLabelCommandParser` pass in the preamble of the argument into `ParserUtil#parseName`,
-while `ClearLabelCommandParser` passes in the entire argument.
+`AddTagCommandParser` and `DeleteTagCommandParser` pass in the preamble of the argument into `ParserUtil#parseName`,
+while `ClearTagCommandParser` passes in the entire argument.
 
 Parse Name Code Snippet :
 ```
@@ -546,7 +546,7 @@ is passed into the respective command object that will be returned by each parse
 
 ##### Obtaining a List of Tags
 
-This is only applicable to `AddLabelCommandParser` and `DeleteLabelCommandParser`. Both parsers obtain a List of 
+This is only applicable to `AddTagCommandParser` and `DeleteTagCommandParser`. Both parsers obtain a List of 
 Strings that follow the `t/` prefix from the argument. Then it obtains a Set of Tags Strings.
 
 Obtaining Set of Tag Strings Code Snippet:
@@ -560,33 +560,33 @@ return Optional.of(ParserUtil.parseTags(tagSet));
 The above code snippet checks for an empty String in the List of Strings. If it has an empty String, then it returns
 an empty `Optional` object. Otherwise, it returns an `Optional` of the Set with the Strings in the given List.
 
-Then both parsers check if the `Optional` object is empty. If it is, a `ParseException` is thrown. Otherwise, `AddLabelCommandParser`
-passes the Set of Strings inside the `Optional` into a `LabelPersonDescriptor` which is passed into the `AddLabelCommand`
-while `DeleteLabelCommandParser` passes the Set of Strings into the `DeleteCommand`. These commands are the commands
+Then both parsers check if the `Optional` object is empty. If it is, a `ParseException` is thrown. Otherwise, `AddTagCommandParser`
+passes the Set of Strings inside the `Optional` into a `TagPersonDescriptor` which is passed into the `AddTagCommand`
+while `DeleteTagCommandParser` passes the Set of Strings into the `DeleteCommand`. These commands are the commands
 that will be returned by each parser respectively.
 
 #### Modifying the Specified Person
 
-`AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` will first check if there is a Person with the `Name` object
+`AddTagCommand`, `ClearTagCommand` and `DeleteTagCommand` will first check if there is a Person with the `Name` object
 given by their parsers using `model#hasPersonName`. If there does not exist a Person, then a `CommandException` is thrown.
 Otherwise, the Person with the name is obtained from the AddressBook. This Person is then modified by each command accordingly.
-* `AddLabelCommand` - Adds tags to the Person based on the `LabelPersonDescriptor` given by `AddLabelCommandParser`
+* `AddTagCommand` - Adds tags to the Person based on the `TagPersonDescriptor` given by `AddTagCommandParser`
 
 Adding Tags Code Snippet :
 ```
-Set<Tag> updatedTags = new HashSet<>(personToLabel.getTags());
+Set<Tag> updatedTags = new HashSet<>(personToTag.getTags());
 
-if (labelPersonDescriptor.getTags().isPresent()) {
-    updatedTags.addAll(labelPersonDescriptor.getTags().get());
+if (tagPersonDescriptor.getTags().isPresent()) {
+    updatedTags.addAll(tagPersonDescriptor.getTags().get());
 }
 
-return new Person(personToLabel.getName(), personToLabel.getPhone(), personToLabel.getEmail(), updatedTags);
+return new Person(personToTag.getName(), personToTag.getPhone(), personToTag.getEmail(), updatedTags);
 ```
-* `ClearLabelCommand` - Clears all tags of the Person
+* `ClearTagCommand` - Clears all tags of the Person
 ```
 return new Person(personToClear.getName(), personToClear.getPhone(), personToClear.getEmail(), new HashSet<>());
 ```
-* `DeleteLabelCommand` - Deletes all tags from the Person based on the Set of Strings given by `DeleteLabelCommandParser`.
+* `DeleteTagCommand` - Deletes all tags from the Person based on the Set of Strings given by `DeleteTagCommandParser`.
 Throws a `CommandException` if the Person does not have a specifed tag.
 ```
 if (tags.stream().allMatch(tag -> personToEdit.getTags().contains(tag))) {
@@ -608,28 +608,28 @@ Once they have obtained the modified Person, they replace the original Person wi
 Updating Modduke Code Snippet :
 
 ```
-model.setPerson(personToLabel, labelledPerson);
+model.setPerson(personToTag, taggedPerson);
 
-model.updatePersonInMeetingBook(personToLabel, labelledPerson);
+model.updatePersonInMeetingBook(personToTag, taggedPerson);
 
-model.updatePersonInModuleBook(personToLabel, labelledPerson);
+model.updatePersonInModuleBook(personToTag, taggedPerson);
 ```
 
 The above code snippet updates the Person in each of the three books.
 
 #### Sequence Diagram
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `label add` command.
+Given below is the sequence diagram of how the mechanism behaves when called using the `tag add` command.
 
-![AddLabelSequenceDiagram](images/AddLabelSequenceDiagram.png)
+![AddTagSequenceDiagram](images/AddTagSequenceDiagram.png)
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `label clear` command.
+Given below is the sequence diagram of how the mechanism behaves when called using the `tag clear` command.
 
-![ClearLabelSequenceDiagram](images/ClearLabelSequenceDiagram.png)
+![ClearTagSequenceDiagram](images/ClearTagSequenceDiagram.png)
 
-Given below is the sequence diagram of how the mechanism behaves when called using the `label delete` command.
+Given below is the sequence diagram of how the mechanism behaves when called using the `tag delete` command.
 
-![DeleteLabelSequenceDiagram](images/DeleteLabelSequenceDiagram.png)
+![DeleteTagSequenceDiagram](images/DeleteTagSequenceDiagram.png)
 
 ### Adding a Meeting
 
@@ -939,7 +939,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | NUS Student                                | Edit an existing contact                                                                                                 | Change their contact details if it has changed                                                                     |
 | `* * *`  | NUS Student                                | View my entire list of contacts                                                                                          | Select who I want to contact                                                                                       |
 | `* * *`  | NUS Student                                | Clear all contacts                                                                                                       | Reset my contacts                                                                                                  |
-| `* * *`  | NUS Student                                | Label my contacts based on the individual's relationship with me (e.g. TA, Professor, Classmate)                         | Easily identify the contacts relevant to my query                                                                  |
+| `* * *`  | NUS Student                                | Tag my contacts based on the individual's relationship with me (e.g. TA, Professor, Classmate)                         | Easily identify the contacts relevant to my query                                                                  |
 | `* * *`  | NUS Student                                | Create meetings for events such as projects or assignments                                                               | I can keep track of commitments and upcoming work                                                                  |
 | `* * *`  | NUS Student                                | Add relevant contacts to a meeting                                                                                       | Keep track of who is participating in the meeting and their contact information                                    |
 | `* * *`  | Forgetful NUS Student                      | Assign a meeting a timeslot and date                                                                                     | Track exactly when I am supposed to meet                                                                           |
@@ -1051,14 +1051,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC05: Label a Contact**
+**UC05: Tag a Contact**
 
 **MSS**
 
 1.  User requests to list contacts
 2.  Modduke shows a list of contacts
-3.  User requests to label a specific contact in the list
-4.  Modduke labels the contact
+3.  User requests to tag a specific contact in the list
+4.  Modduke tags the contact
 
  Use case ends.
 

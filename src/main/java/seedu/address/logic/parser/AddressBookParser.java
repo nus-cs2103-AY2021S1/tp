@@ -7,13 +7,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLabelCommand;
+import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ClearLabelCommand;
+import seedu.address.logic.commands.ClearTagCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CopyCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteLabelCommand;
+import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -86,14 +86,14 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case AddLabelCommand.COMMAND_WORD:
-            return new AddLabelCommandParser().parse(arguments);
+        case AddTagCommand.COMMAND_WORD:
+            return new AddTagCommandParser().parse(arguments);
 
-        case DeleteLabelCommand.COMMAND_WORD:
-            return new DeleteLabelCommandParser().parse(arguments);
+        case DeleteTagCommand.COMMAND_WORD:
+            return new DeleteTagCommandParser().parse(arguments);
 
-        case ClearLabelCommand.COMMAND_WORD:
-            return new ClearLabelCommandParser().parse(arguments);
+        case ClearTagCommand.COMMAND_WORD:
+            return new ClearTagCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(commandVerb + arguments);
