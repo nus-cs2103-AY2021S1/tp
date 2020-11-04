@@ -42,6 +42,7 @@ public class ExamTest {
         assertTrue(Exam.isValidExamName("a123!")); // all characters
 
         assertFalse(Exam.isValidExamName(""));
+        assertFalse(Exam.isValidExamName("       "));
     }
 
     @Test

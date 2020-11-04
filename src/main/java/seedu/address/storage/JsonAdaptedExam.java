@@ -53,6 +53,9 @@ public class JsonAdaptedExam {
             throw new IllegalValueException(String.format(MISSING_EXAM_FIELD_MESSAGE_FORMAT,
                     "Exam Name"));
         }
+        if (!Exam.isValidExamName(examName)) {
+            throw new IllegalValueException(Exam.MESSAGE_CONSTRAINTS);
+        }
 
         if (examDate == null || examDate.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_EXAM_FIELD_MESSAGE_FORMAT,

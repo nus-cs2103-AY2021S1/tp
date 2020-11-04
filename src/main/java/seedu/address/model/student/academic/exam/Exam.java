@@ -13,7 +13,14 @@ import java.util.Objects;
  */
 public class Exam {
 
-    public static final String MESSAGE_CONSTRAINTS = "Exam names should not be should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Exam names can take any values, and "
+            + "should not be should not be blank.";
+
+    /*
+     * Exam names must have at least 1 alphabet with spaces in between allowed.
+     * First character cannot be empty string if not empty string becomes valid school.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String examName;
     private final LocalDate examDate;
@@ -36,7 +43,7 @@ public class Exam {
     }
 
     public static boolean isValidExamName(String test) {
-        return !test.isEmpty();
+        return test.matches(VALIDATION_REGEX);
     }
 
     public String getName() {

@@ -44,12 +44,14 @@ public class JsonAdaptedExamTest {
 
     @Test
     public void toModelType_invalidString_throwsException() {
+        String invalidName = "    ";
         String invalidDate = "23.9.2019";
         String invalidScore = "50/20";
 
-        // invalid string has already been tested above
+        JsonAdaptedExam exam = new JsonAdaptedExam(invalidName, VALID_DATE, VALID_SCORE);
+        assertThrows(IllegalValueException.class, exam::toModelType);
 
-        JsonAdaptedExam exam = new JsonAdaptedExam(VALID_NAME, invalidDate, VALID_SCORE);
+        exam = new JsonAdaptedExam(VALID_NAME, invalidDate, VALID_SCORE);
         assertThrows(IllegalValueException.class, exam::toModelType);
 
         exam = new JsonAdaptedExam(VALID_NAME, VALID_DATE, invalidScore);
