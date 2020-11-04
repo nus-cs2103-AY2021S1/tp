@@ -16,6 +16,9 @@ import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.macro.Macro;
 
+/**
+ * Utility class that deals with the execution of macro objects.
+ */
 public class MacroRunner {
 
     public static CommandExecutable asCommandInstance(Macro macro, CommandLine args) {

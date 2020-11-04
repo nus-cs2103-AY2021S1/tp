@@ -5,6 +5,9 @@ import jimmy.mcgymmy.logic.parser.parameter.Parameter;
 import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.macro.MacroList;
 
+/**
+ * Removes a macro from the model.
+ */
 public class RemoveMacroCommand extends Command {
     public static final String COMMAND_WORD = "remmacro";
     public static final String SHORT_DESCRIPTION = "Remove a macro in McGymmy.";
