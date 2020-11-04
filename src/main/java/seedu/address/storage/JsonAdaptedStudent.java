@@ -56,9 +56,9 @@ class JsonAdaptedStudent {
      */
     public JsonAdaptedStudent(Student source) {
         assert source != null;
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
+        name = source.getName().toString();
+        phone = source.getPhone().toString();
+        email = source.getEmail().toString();
         studentId = source.getStudentId().toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

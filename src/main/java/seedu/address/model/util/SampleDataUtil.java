@@ -8,6 +8,7 @@ import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -35,7 +36,7 @@ public class SampleDataUtil {
 
     public static Student[] getSampleStudents() {
         return new Student[] {new Student(new Name("john"), new Phone("12345678"), new Email("hello@email.com"),
-                        getTagSet("friends"), new StudentId("A1234567X"))
+                        getTagSet("friends"), new StudentId("A1234567X"), new Attendance())
         };
     }
 

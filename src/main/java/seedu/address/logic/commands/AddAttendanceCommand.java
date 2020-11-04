@@ -73,7 +73,7 @@ public class AddAttendanceCommand extends Command {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(
                 MESSAGE_ADD_ATTENDANCE_SUCCESS,
-                studentWithAddedAttendance.getName().fullName,
+                studentWithAddedAttendance.getName().toString(),
                 studentWithAddedAttendance.getAttendance().listOutAttendedWeeks())
         );
     }

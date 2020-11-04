@@ -50,10 +50,10 @@ public class StudentCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
-        phone.setText(student.getPhone().value);
-        email.setText(student.getEmail().value);
-        studentId.setText(student.getStudentId().value);
+        name.setText(student.getName().toString());
+        phone.setText(student.getPhone().toString());
+        email.setText(student.getEmail().toString());
+        studentId.setText(student.getStudentId().toString());
         attendance.setText(student.getAttendance().toString());
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

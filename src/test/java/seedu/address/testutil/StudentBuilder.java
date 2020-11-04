@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
@@ -26,6 +27,7 @@ public class StudentBuilder {
     private Email email;
     private Set<Tag> tags;
     private StudentId studentId;
+    private Attendance attendance;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -36,6 +38,7 @@ public class StudentBuilder {
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
         studentId = new StudentId(DEFAULT_STUDENT_ID);
+        attendance = new Attendance();
     }
 
     /**
@@ -47,6 +50,7 @@ public class StudentBuilder {
         email = studentToCopy.getEmail();
         tags = new HashSet<>(studentToCopy.getTags());
         studentId = studentToCopy.getStudentId();
+        attendance = studentToCopy.getAttendance();
     }
 
     /**
@@ -60,7 +64,7 @@ public class StudentBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,7 +93,28 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String... weekNumbers) {
+        Attendance newAttendance = new Attendance();
+        for (String weekNumber : weekNumbers) {
+            newAttendance.addAttendance(weekNumber);
+        }
+        newAttendance.setParticipation(attendance.getParticipationScoreAsString());
+        attendance = newAttendance;
+        return this;
+    }
+
+    /**
+     * Sets the participation score of the {@code Student} that we are building.
+     */
+    public StudentBuilder withParticipation(String participationScoreAsString) {
+        attendance.setParticipation(participationScoreAsString);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, tags, studentId);
+        return new Student(name, phone, email, tags, studentId, attendance);
     }
 }

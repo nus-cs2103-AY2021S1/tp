@@ -1,13 +1,13 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Attendance;
-import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of week number.
  */
 class JsonAdaptedWeekNumber {
 
@@ -17,7 +17,7 @@ class JsonAdaptedWeekNumber {
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
-    public JsonAdaptedWeekNumber(String weekNumber) {
+    public JsonAdaptedWeekNumber(@JsonProperty("weekNumber") String weekNumber) {
         this.weekNumber = weekNumber;
     }
 

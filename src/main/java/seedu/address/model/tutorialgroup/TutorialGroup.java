@@ -8,11 +8,11 @@ public class TutorialGroup {
 
     // Identity fields
     private final TutorialGroupId tutorialGroupId;
-    private final UniqueStudentList students;
     private DayOfWeek dayOfWeek;
     private TimeOfDay startTime;
     private TimeOfDay endTime;
 
+    private final UniqueStudentList students;
 
     /**
      * Constructor for Tutorial Group
@@ -87,11 +87,6 @@ public class TutorialGroup {
      */
     public void addStudent(Student student) {
         students.addStudent(student);
-    }
-
-    //DELETE
-    public void deleteStudent(Student student) {
-        students.removeStudent(student);
     }
 
     /**
