@@ -5,13 +5,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Calories {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be at least 1 digit long, or must be an integer";
+            "Calories should be a integer, greater or equal to 0";
 
-    /*
-     * The first character must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\d+";
 
     public final String value;
 
@@ -33,7 +28,15 @@ public class Calories {
      * Returns true if a given string is a valid input.
      */
     public static boolean isValidCalories(String test) {
-        return test.matches(VALIDATION_REGEX);
+        int x;
+        try {
+            x = Integer.parseInt(test);
+        } catch (Exception err) {
+            //Exception rises when test can't be parsed into Integer.
+            return false;
+        }
+        //A valid calories burnt must be 0 or more.
+        return x >= 0;
     }
 
 
