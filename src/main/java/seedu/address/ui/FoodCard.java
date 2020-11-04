@@ -56,6 +56,7 @@ public class FoodCard extends UiPart<Region> {
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        System.out.println(item.getFilePath());
 
         imageView.setImage(new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath())));
         imageView.setFitHeight(120);

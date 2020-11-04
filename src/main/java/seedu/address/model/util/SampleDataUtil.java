@@ -36,8 +36,8 @@ public class SampleDataUtil {
         burgers.add(new Tag("Burger"));
 
         Menu menu1 = new Menu();
-        menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(), "butter_chicken.png"));
-        menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), "pattaya.png"));
+        menu1.add(new MenuItem("Butter Chicken", 7, new HashSet<>(), "al_amaan/butter_chicken.png"));
+        menu1.add(new MenuItem("Pattaya", 5.5, new HashSet<>(), "al_amaan/pattaya.png"));
 
         HashSet<Tag> vegTags = new HashSet<>();
         HashSet<Tag> spicyTags = new HashSet<>();
@@ -45,23 +45,24 @@ public class SampleDataUtil {
         vegTags.add(new Tag("Vegetarian"));
 
         menu1.add(new MenuItem("Veg Briyani", 5, new HashSet<>(vegTags),
-                "veg_briyani.png"));
+                "al_amaan/veg_briyani.png"));
         menu1.add(new MenuItem("Cheese Fries", 4, new HashSet<>(),
-                "cheese_fries.png"));
+                "al_amaan/cheese_fries.png"));
         menu1.add(new MenuItem("Kampong Style Fried Rice", 4.8, new HashSet<>(),
-                "kampong.png"));
+                "al_amaan/kampong.png"));
         //note that this is fried rice
         menu1.add(new MenuItem("Sambal Chicken Fried Rice", 4.8, new HashSet<>(),
-                "sambal_chicken.png"));
-        menu1.add(new MenuItem("Roti John", 4, new HashSet<>(), "roti_john.png"));
+                "al_amaan/sambal_chicken.png"));
+        menu1.add(new MenuItem("Roti John", 4, new HashSet<>(), "al_amaan/roti_john.png"));
 
         // Add cold and hot
-        menu1.add(new MenuItem("Milo Cold", 1.5, drinks, "milo.png"));
-        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "milo.png"));
+        menu1.add(new MenuItem("Milo Cold", 1.5, drinks, "al_amaan/milo.png"));
+        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "al_amaan/ilo.png"));
 
-        menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "milo_dino.png"));
+        menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "al_amaan/milo_dino.png"));
         menu1.add(new MenuItem("Milo Godzilla", 3, drinks,
-                "milo_god.png"));
+                "al_amaan/milo_god.png"));
+
 
         Menu menu2 = new Menu();
         HashSet<Tag> tagList = new HashSet<>();
@@ -71,19 +72,22 @@ public class SampleDataUtil {
         menu2.add(new MenuItem("Water", 3, drinks, ""));
 
         Menu menu3 = new Menu();
-        menu3.add(new MenuItem("Cream of Mushroom Soup", 6.90, starters, ""));
-        menu3.add(new MenuItem("Chicken Caesar Salad", 8.90, starters, ""));
-        menu3.add(new MenuItem("Salmon Bonito Salad", 9.90, starters, ""));
-        menu3.add(new MenuItem("Foie Gras Sliced Beef Roll", 18.90, hotdogs, ""));
-        menu3.add(new MenuItem("Signatire Cheesy Spicy Coney Hotdog(Beef)", 13.90, hotdogs, ""));
-        menu3.add(new MenuItem("Bacon & Cheese Hotdog", 13.90, hotdogs, ""));
-        menu3.add(new MenuItem("Mozzarella Corn Dog (2pcs)", 12.90, hotdogs, ""));
-        menu3.add(new MenuItem("Sauerkraut Hotdog", 11.90, hotdogs, ""));
-        menu3.add(new MenuItem("Plain Hotdog", 9.90, hotdogs, ""));
-        menu3.add(new MenuItem("Signature Ribeye Burger", 17.90, burgers, ""));
-        menu3.add(new MenuItem("Chicken Cutlet Burger", 13.90, burgers, ""));
-        menu3.add(new MenuItem("Breaded Fish Burger", 13.90, burgers, ""));
-        menu3.add(new MenuItem("Cheese Steak Sliders (3pcs)", 16.90, burgers, ""));
+        menu3.add(new MenuItem("Foie Gras Sliced Beef Roll", 18.90, hotdogs,
+                "de_frank/bacon_cheese_hotdog.png"));
+        menu3.add(new MenuItem("Bacon & Cheese Hotdog", 13.90, hotdogs,
+                "de_frank/bacon_cheese_hotdog.png"));
+        menu3.add(new MenuItem("Mozzarella Corn Dog (2pcs)", 12.90, hotdogs,
+                "de_frank/corn_dog.png"));
+        menu3.add(new MenuItem("Sauerkraut Hotdog", 11.90, hotdogs,
+                "de_frank/sauerkraut_hotdog.png"));
+        menu3.add(new MenuItem("Signature Ribeye Burger", 17.90, burgers,
+                "de_frank/ribeye_burger.png"));
+        menu3.add(new MenuItem("Chicken Cutlet Burger", 13.90, burgers,
+                "de_frank/chicken_burger.png"));
+        menu3.add(new MenuItem("Breaded Fish Burger", 13.90, burgers,
+                "de_frank/fish_burger"));
+        menu3.add(new MenuItem("Cheese Steak Sliders (3pcs)", 16.90, burgers,
+                "de_frank/cheese_steak_slider"));
 
         return new Vendor[]{
             new Vendor(new Name("Al Amaan Restaurant"), new Phone("67740637"),
