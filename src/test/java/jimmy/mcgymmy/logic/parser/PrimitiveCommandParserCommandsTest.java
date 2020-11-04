@@ -25,16 +25,6 @@ public class PrimitiveCommandParserCommandsTest {
     private final PrimitiveCommandParser parser = new PrimitiveCommandParser();
 
     @Test
-    public void defaultCommands_added() {
-        // if this breaks, you need to add the command in McGymmyParser.addDefaultCommands
-        String[] commands = {"add", "edit", "delete", "clear", "find", "delete", "list"};
-        Set<String> registeredCommands = parser.getRegisteredCommands();
-        for (String command : commands) {
-            assertTrue(registeredCommands.contains(command));
-        }
-    }
-
-    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parse(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
     }
@@ -134,7 +124,7 @@ public class PrimitiveCommandParserCommandsTest {
 
     @Test
     public void parseCommand_helpCommands() throws Exception {
-        // Should suffice to check "help [COMMAND]" works.
+        // Should suffice to check "help [COMMAND NAME]" appears.
         Model model = new ModelManager();
         PrimitiveCommandHelpUtil helpUtil = new PrimitiveCommandHelpUtil(
                 parser.getCommandTable(),
