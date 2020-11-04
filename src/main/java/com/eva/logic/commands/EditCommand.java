@@ -31,6 +31,7 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+import com.eva.model.person.staff.leave.LeaveTaken;
 import com.eva.model.tag.Tag;
 
 
@@ -199,6 +200,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private LeaveTaken leaveTaken;
         private Set<Tag> tags;
         private Set<Comment> comments;
         private Set<Leave> leaves;
@@ -216,6 +218,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setLeaveTaken(toCopy.leaveTaken);
             setTags(toCopy.tags);
             setComments(toCopy.comments);
             setLeaves(toCopy.leaves);
@@ -227,7 +230,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, comments,
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, leaveTaken, tags, comments,
                     leaves, applicationStatus, interviewDate);
         }
 
@@ -261,6 +264,14 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setLeaveTaken(LeaveTaken leaveTaken) {
+            this.leaveTaken = leaveTaken;
+        }
+
+        public Optional<LeaveTaken> getLeaveTaken() {
+            return Optional.ofNullable(leaveTaken);
         }
 
         /**

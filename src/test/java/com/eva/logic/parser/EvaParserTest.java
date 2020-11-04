@@ -30,7 +30,7 @@ import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.staff.Staff;
 //import com.eva.testutil.EditPersonDescriptorBuilder;
 //import com.eva.testutil.PersonBuilder;
-import com.eva.testutil.StaffBuilder;
+import com.eva.testutil.staff.StaffBuilder;
 
 
 public class EvaParserTest {

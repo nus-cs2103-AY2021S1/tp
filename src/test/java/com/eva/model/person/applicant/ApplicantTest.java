@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import com.eva.testutil.ApplicantBuilder;
+import com.eva.testutil.applicant.ApplicantBuilder;
 
 public class ApplicantTest {
 
