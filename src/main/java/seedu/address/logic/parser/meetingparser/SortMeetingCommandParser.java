@@ -12,7 +12,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.MeetingTimeComparator;
+import seedu.address.model.meeting.MeetingDateComparator;
 
 /**
  * Parses input arguments and creates a new SortMeetingCommand object
@@ -33,7 +33,7 @@ public class SortMeetingCommandParser implements Parser<SortMeetingCommand> {
         }
 
         Boolean isAscending = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_MEETING_ORDER).orElse(null));
-        MeetingTimeComparator comparator = new MeetingTimeComparator();
+        MeetingDateComparator comparator = new MeetingDateComparator();
         return new SortMeetingCommand(comparator, isAscending);
     }
 
