@@ -26,7 +26,7 @@ import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
@@ -174,7 +174,7 @@ public class LessonCommandParserTest {
                         PREFIX_START_DATE, VALID_START_DATE_CS2103T,
                         PREFIX_END_DATE, VALID_END_DATE_CS2103T
                 ),
-                DateUtil.DAY_MESSAGE_CONSTRAINTS);
+                DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
         //empty start time
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
@@ -186,7 +186,7 @@ public class LessonCommandParserTest {
                         PREFIX_START_DATE, VALID_START_DATE_CS2103T,
                         PREFIX_END_DATE, VALID_END_DATE_CS2103T
                 ),
-                DateUtil.TIME_CONSTRAINTS);
+                DateTimeUtil.TIME_CONSTRAINTS);
         //empty end time
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
@@ -198,7 +198,7 @@ public class LessonCommandParserTest {
                         PREFIX_START_DATE, VALID_START_DATE_CS2103T,
                         PREFIX_END_DATE, VALID_END_DATE_CS2103T
                 ),
-                DateUtil.TIME_CONSTRAINTS);
+                DateTimeUtil.TIME_CONSTRAINTS);
         //empty start date
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
@@ -210,7 +210,7 @@ public class LessonCommandParserTest {
                         PREFIX_START_DATE, "",
                         PREFIX_END_DATE, VALID_END_DATE_CS2103T
                 ),
-                DateUtil.DATE_CONSTRAINTS);
+                DateTimeUtil.DATE_CONSTRAINTS);
         //empty start date
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
@@ -222,7 +222,7 @@ public class LessonCommandParserTest {
                         PREFIX_START_DATE, VALID_START_DATE_CS2103T,
                         PREFIX_END_DATE, ""
                 ),
-                DateUtil.DATE_CONSTRAINTS);
+                DateTimeUtil.DATE_CONSTRAINTS);
     }
 
     @Test

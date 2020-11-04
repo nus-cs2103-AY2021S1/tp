@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 
 /**
  * Represents a Lesson's time in PlaNus task list.
@@ -13,7 +13,7 @@ import seedu.address.commons.util.DateUtil;
  */
 public class Time {
     public static final String RANGE_CONSTRAINTS = "Start time should be before end time";
-    public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", DateUtil.TIME_FORMATTER);
+    public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", DateTimeUtil.TIME_FORMATTER);
     public static final String VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
     public final LocalTime value;
     public final boolean isDefault;
@@ -25,8 +25,8 @@ public class Time {
      */
     public Time(String time) {
         requireNonNull(time);
-        checkArgument(isValidTime(time), DateUtil.TIME_CONSTRAINTS);
-        value = LocalTime.parse(time, DateUtil.TIME_FORMATTER);
+        checkArgument(isValidTime(time), DateTimeUtil.TIME_CONSTRAINTS);
+        value = LocalTime.parse(time, DateTimeUtil.TIME_FORMATTER);
         isDefault = false;
     }
 
@@ -46,7 +46,7 @@ public class Time {
             assert value.equals(DEFAULT_TIME) : "default time using real time value.";
             return "";
         }
-        return value.format(DateUtil.TIME_FORMATTER);
+        return value.format(DateTimeUtil.TIME_FORMATTER);
     }
 
     @Override

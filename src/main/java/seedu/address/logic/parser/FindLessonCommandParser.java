@@ -13,7 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
@@ -72,14 +72,14 @@ public class FindLessonCommandParser implements Parser<FindLessonCommand> {
             if (prefix.equals(PREFIX_DESCRIPTION) && !Description.isValidDescription(trimmed)) {
                 throw new ParseException(Description.SEARCH_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_DATE) && !DateUtil.isValidDate(trimmed)) {
-                throw new ParseException(DateUtil.SEARCH_DATE_CONSTRAINTS);
+            if (prefix.equals(PREFIX_DATE) && !DateTimeUtil.isValidDate(trimmed)) {
+                throw new ParseException(DateTimeUtil.SEARCH_DATE_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_DATE_TIME) && !DateUtil.isValidDateTime(trimmed)) {
-                throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+            if (prefix.equals(PREFIX_DATE_TIME) && !DateTimeUtil.isValidDateTime(trimmed)) {
+                throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_TIME) && !DateUtil.isValidTime(trimmed)) {
-                throw new ParseException(DateUtil.SEARCH_TIME_CONSTRAINTS);
+            if (prefix.equals(PREFIX_TIME) && !DateTimeUtil.isValidTime(trimmed)) {
+                throw new ParseException(DateTimeUtil.SEARCH_TIME_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_TAG) && !Tag.isValidTagName(trimmed)) {
                 throw new ParseException(Tag.SEARCH_CONSTRAINTS);

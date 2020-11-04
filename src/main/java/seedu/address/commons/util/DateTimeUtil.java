@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
-public class DateUtil {
+public class DateTimeUtil {
     public static final String DATE_CONSTRAINTS =
             "Date should be a valid date in the format of dd-MM-yyyy.";
     public static final String TIME_CONSTRAINTS =
@@ -67,6 +67,6 @@ public class DateUtil {
      */
     public static LocalDate toLocalDate(String input) {
         checkArgument(isValidDate(input), DATE_TIME_CONSTRAINTS);
-        return LocalDate.parse(input, DateUtil.DATE_FORMATTER);
+        return LocalDate.parse(input, DateTimeUtil.DATE_FORMATTER);
     }
 }
