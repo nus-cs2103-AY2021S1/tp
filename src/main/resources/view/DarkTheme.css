@@ -324,8 +324,9 @@
 }
 
 #cardPane {
-    -fx-background-color: #404040;
-    -fx-background-radius: 15px;
+    -fx-background-color: #505050;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20px;
 }
 
 #commandTypeLabel {
