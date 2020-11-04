@@ -18,7 +18,7 @@ public class Overlap {
     /**
      * Checks if 2 tasks or lessons overlap with one another.
      */
-    public static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
+    private static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
                                                   LocalDateTime endB) {
         return (startA.isBefore(endB)) && (endA.isAfter(startB));
     }
