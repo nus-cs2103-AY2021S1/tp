@@ -100,8 +100,10 @@ Commands you provide in the command line follow specific rules. These are the ru
 ### 3.1 Setting Up
 Get started by installing __Trackr__ with the following steps:
 
-1. Ensure you have Java 11 or above installed. The latest version of Java can be found [here](https://www.java.com/en/download/).
-2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). Look for the file trackr.jar.
+1. Ensure you have Java 11 or above installed. The latest version of Java can be found 
+[here](https://www.java.com/en/download/).
+2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). 
+Look for the file trackr.jar.
 3. Copy the file to a folder you wish to use as your home folder for __Trackr__
 4. Double-click trackr.jar to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
@@ -118,10 +120,11 @@ all the commands are listed in [Section 4, "Features"](#4-features).
 Figure 3.2 Command example
 
 ### 3.3 Switching Views
-__Trackr__ allows you to switch the current view from `Modules` (Figure 3.3.1) to `Tutorial Groups` (Figure 3.3.2) 
-to `Students` (Figure 3.3.3) depending on your current need. This is done using the commands `listMod`, `viewTG`, and `viewStudent`. 
-The correct syntax for these commands are shown in [Section 4, "Features"](#4-features). The top of the app shows the view
-you are currently in.
+__Trackr__ allows you to switch the current view from Module View (Figure 3.3.1) to Tutorial Group View (Figure 3.3.2) 
+to Student View (Figure 3.3.3) depending on your current need. This is done using the commands `listMod`, `viewTG`, and 
+`viewStudent`. You may wish to navigate back from Student View to Tutorial Group View or from Tutorial Group View to 
+Module View. This is achieved using `prevView`. The correct syntax for these commands are shown in 
+[Section 4, "Features"](#4-features). The top of the app shows the view you are currently in.
 
 ![ModuleView](images/ModuleView.png) <br>
 Figure 3.3.1 Module View
