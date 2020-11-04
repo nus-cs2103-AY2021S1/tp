@@ -96,8 +96,8 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC
-                            + VALID_DATE_PUSH_UP + VALID_CALORIES_PUSH_UP,
-                            Name.MESSAGE_CONSTRAINTS);
+                        + VALID_DATE_PUSH_UP + VALID_CALORIES_PUSH_UP,
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -108,12 +108,12 @@ public class EditCommandParserTest {
 
         UpdateCommand.EditExerciseDescriptor descriptor =
                 new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
-                                                    .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                                                    .withDate(VALID_DATE_PUSH_UP)
-                                                    .withCalories(VALID_CALORIES_PUSH_UP)
-                                                    .withMuscleTags(VALID_MUSCLE_CHEST)
-                                                    .withTags(VALID_TAG_GYM, VALID_TAG_HOUSE)
-                                                    .build();
+                        .withDescription(VALID_DESCRIPTION_PUSH_UP)
+                        .withDate(VALID_DATE_PUSH_UP)
+                        .withCalories(VALID_CALORIES_PUSH_UP)
+                        .withMuscleTags(VALID_MUSCLE_CHEST)
+                        .withTags(VALID_TAG_GYM, VALID_TAG_HOUSE)
+                        .build();
 
         UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 
@@ -197,7 +197,8 @@ public class EditCommandParserTest {
 //        UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 //
 //        assertParseSuccess(parser, userInput, expectedCommand);
-//  }
+//    }
+
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
