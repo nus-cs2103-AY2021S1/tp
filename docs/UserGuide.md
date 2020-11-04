@@ -8,6 +8,9 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.1. Viewing help : `help`](#31-viewing-help--help)
   - [3.2. Add exercises : `add`](#32-add-exercises--add)
   - [3.3. Update exercises : `update`](#33-update-exercises--update)
+    - [Before](#before)
+    - [Command](#command)
+    - [After](#after)
   - [3.4. Delete : `delete`](#34-delete--delete)
   - [3.5. List: `list`](#35-list-list)
   - [3.6. Find exercises: `find`](#36-find-exercises-find)
@@ -18,8 +21,8 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.11. Recall : `recall`](#311-recall--recall)
   - [3.12. Add templates : `create`](#312-add-templates--create)
   - [3.13. Add an exercise using template : `addt`](#313-add-an-exercise-using-template--addt)
-- [4. FAQ](#4-faq)
-- [5. Command summary](#5-command-summary)
+  - [4. FAQ](#4-faq)
+  - [5. Command summary](#5-command-summary)
 
 # 2. Quick start
 
@@ -80,7 +83,14 @@ Examples:
 
 Update an existing exercise.
 
-![update command message](images/updateCommandMessage.png)
+### Before
+![before update](images/exerciseBeforeUpdate.png)
+
+### Command
+![update command](images/updateCommand.png)
+
+### After
+![after update](images/exerciseAfterUpdate.png)
 
 Format: `INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [m/MUSCLES_WORKED] [t/TAG]...`
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
@@ -225,4 +235,3 @@ Examples:<br>
 | *Recall*   | `recall NAME`
 | *Create*   | `create n/NAME c/CALORIES` <br> e.g., `create n/pushup c/100`
 | *Addt*     | `addt temp/NAME at/DATE [c/CALORIES]` <br> e.g., `addt temp/pushup d/half an hour at/09-07-2020 c/260`
-
