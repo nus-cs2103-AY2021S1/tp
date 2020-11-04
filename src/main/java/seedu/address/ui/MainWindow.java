@@ -143,11 +143,11 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
-        commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
+        commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
                 .map(p -> p.getName().fullName).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mdname/", () -> logic.getFilteredModuleList().stream()
+        commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()
                 .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mtname/", () -> logic.getFilteredMeetingList().stream()
+        commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
                 .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 

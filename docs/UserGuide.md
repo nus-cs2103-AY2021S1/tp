@@ -69,16 +69,35 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+### Fuzzy Finding Completion (Fzf)
+
+Currently Modduke supports Fuzzy Finding Completion from v1.4 onward. You can trigger the `fzf` mode
+using `ctrl + space`. Currently our fzf will search through all contact names, module names and meeting names and will
+match entries that contain the prefix entered.
+
+![Fzf Example](images/FzfCompletionExample.gif)
+
+You can exit `fzf` mode by manually pressing `esc`. You will also be taken automatically out of `fzf` mode once you select one 
+of the fzf options by navigating to desired option using arrow keys and making the selection by pressing `enter`. Alternatively, 
+you can make the selection using your mouse. 
+
+Note that the intuitive `tab` and `shift-tab` navigation is currently NOT supported in v1.4 although you can use these keys to jump to the first option in the fzf menu.
+
 ### Autocompletion
 
-Currently Modduke supports autocompletion for the following fields in v1.3.
+Currently Modduke supports autocompletion for the following fields for v1.3 onward. Note that this is a legacy
+feature and most of its functionality can be achieved using our newer Fzf completion.
 
-* Contact Name -  Triggered using `cname/`
-* Module Name -  Triggered using `mdname/`
-* Meeting Name -  Triggered using `mtname/`
+* Contact Name -  Triggered using `cn/`
+* Module Name -  Triggered using `mdn/`
+* Meeting Name -  Triggered using `mtn/`
 
 Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode.
 Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions.
+
+Note that this autocompletion can only be triggered at the end of input string e.g.
+- `contact edit cname/` will trigger the autocomplete but
+- `contact edit cname/ p/98830181` this would not as there is text after the prefix.
 
 ![Autocomplete Example](images/AutocompleteExample.gif)
 
@@ -376,6 +395,7 @@ Modduke's data is saved in the hard disk automatically after any command that ch
 ### Command Line Shortcuts
 
 `Ctrl-U` --- Clears CommandBox
+`Ctrl-W` --- Deletes text from the cursor position to previous word
 
 --------------------------------------------------------------------------------------------------------------------
 
