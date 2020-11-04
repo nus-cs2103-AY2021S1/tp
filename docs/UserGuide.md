@@ -406,12 +406,13 @@ Expected Outcome:
 
 Finds and lists all students in the current Student view whose name contains any of the given keywords.
 
-Format: `findStudent KEYWORD`
+Format: `findStudent KEYWORD [KEYWORD]...`
 
 Note:
 
 - `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
-- The search will look for matches in the student's name.
+- The search will look for matches, including partial match, in the student's name (e.g. _jo_ will match _John_,
+ however, _jhn_ will not match _John_).
 - If no student matching the keyword is found, the Student view will be empty.
 
 Example:
