@@ -6,7 +6,6 @@ import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.ArchivedModuleList;
 import seedu.address.model.ContactList;
 import seedu.address.model.EventList;
 import seedu.address.model.Model;
@@ -33,9 +32,9 @@ public class ClearContactCommandTest {
 
     @Test
     public void execute_nonEmptyContactList_success() {
-        Model model = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        Model model = new ModelManager(new ModuleList(), new ModuleList(),
                 getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
-        Model expectedModel = new ModelManager(new ModuleList(), new ArchivedModuleList(),
+        Model expectedModel = new ModelManager(new ModuleList(), new ModuleList(),
                 getTypicalContactList(), new TodoList(), new EventList(), new UserPrefs());
         expectedModel.setContactList(new ContactList());
 

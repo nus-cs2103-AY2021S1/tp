@@ -359,21 +359,6 @@ public class ModelStub implements Model {
     public void displayNonArchivedModules() {
         throw new AssertionError("This method should not be called.");
     }
-
-    @Override
-    public ObservableList<Module> getFilteredArchivedModuleList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ObservableList<Module> getFilteredUnarchivedModuleList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredArchivedModuleList(Predicate<Module> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
     @Override
     public boolean getModuleListDisplay() {
         throw new AssertionError("This method should not be called.");
