@@ -1,7 +1,9 @@
 package seedu.address.model.student.academic.exam;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.util.DateUtil.parseToDate;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -30,6 +32,16 @@ public class ExamTest {
         assertThrows(NullPointerException.class, () -> new Exam(VALID_EXAM_NAME, VALID_EXAM_DATE_DEF, null));
         assertThrows(NullPointerException.class, () -> new Exam(null, VALID_EXAM_DATE_DEF, VALID_SCORE));
         assertThrows(NullPointerException.class, () -> new Exam(VALID_EXAM_NAME, null, VALID_SCORE));
+    }
+
+    @Test
+    public void isValidExamName() {
+        assertTrue(Exam.isValidExamName("Test")); // all letters
+        assertTrue(Exam.isValidExamName("2384")); // all numbers
+        assertTrue(Exam.isValidExamName("$*#")); // all special characters
+        assertTrue(Exam.isValidExamName("a123!")); // all characters
+
+        assertFalse(Exam.isValidExamName(""));
     }
 
     @Test

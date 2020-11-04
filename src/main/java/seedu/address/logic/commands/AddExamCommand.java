@@ -39,8 +39,6 @@ public class AddExamCommand extends ExamCommand {
 
     public static final String MESSAGE_EXAM_ADDED_SUCCESS = "New exam added to %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_EXAM = "%1$s already exists under %2$s";
-    public static final String MESSAGE_EXAM_INVALID_NAME = "Invalid Exam name. Exam names should be should "
-            + "only contain alphanumeric characters and spaces, and it should not be blank";
 
     private final Index index;
     private final Exam toAdd;

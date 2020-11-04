@@ -10,7 +10,6 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.notes.note.Description;
@@ -22,6 +21,7 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.academic.question.Question;
 import seedu.address.model.student.academic.question.SolvedQuestion;
@@ -297,8 +297,8 @@ public class ParserUtil {
     public static String parseExamName(String examName) throws ParseException {
         requireNonNull(examName);
         String trimmedExamName = examName.trim();
-        if (trimmedExamName.isEmpty()) {
-            throw new ParseException(AddExamCommand.MESSAGE_EXAM_INVALID_NAME);
+        if (!Exam.isValidExamName(trimmedExamName)) {
+            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
         return trimmedExamName;
     }

@@ -1,5 +1,6 @@
 package seedu.address.model.student.academic.exam;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.DateUtil.getInputFormat;
 import static seedu.address.commons.util.DateUtil.print;
@@ -11,6 +12,9 @@ import java.util.Objects;
  * Represents an Exam in Reeve that can be assigned to a {@code Student}.
  */
 public class Exam {
+
+    public static final String MESSAGE_CONSTRAINTS = "Invalid Exam name. Exam names should be should "
+            + "only contain alphanumeric characters and spaces, and it should not be blank";
 
     private final String examName;
     private final LocalDate examDate;
@@ -25,9 +29,15 @@ public class Exam {
      */
     public Exam(String examName, LocalDate examDate, Score score) {
         requireAllNonNull(examName, examDate, score);
+        checkArgument(isValidExamName(examName), MESSAGE_CONSTRAINTS);
+
         this.examName = examName;
         this.examDate = examDate;
         this.score = score;
+    }
+
+    public static boolean isValidExamName(String test) {
+        return !test.isEmpty();
     }
 
     public String getName() {
