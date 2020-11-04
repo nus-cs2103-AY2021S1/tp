@@ -7,8 +7,8 @@ import jimmy.mcgymmy.commons.util.CollectionUtil;
 public abstract class Macronutrient {
     public static final String MESSAGE_CONSTRAINTS = "values should only contain non-negative integer values.";
 
-    private static final int LOWER_BOUND = 0;
-    private static final int UPPER_BOUND = 1000;
+    private static final int LOWER_BOUND = 0; //Inclusive
+    private static final int UPPER_BOUND = 1000; //Non inclusive
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
 
     private final int amount;
