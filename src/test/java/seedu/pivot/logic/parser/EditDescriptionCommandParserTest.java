@@ -11,12 +11,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.casecommands.descriptioncommands.AddDescriptionCommand;
+import seedu.pivot.logic.commands.casecommands.descriptioncommands.EditDescriptionCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Description;
 
-public class AddDescriptionCommandParserTest {
+public class EditDescriptionCommandParserTest {
 
     public static final String PREFIX_DESC = " " + CliSyntax.PREFIX_DESC.getPrefix();
     public static final String VALID_DESC = "I am a valid description!";
@@ -25,7 +25,7 @@ public class AddDescriptionCommandParserTest {
 
     private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 
-    private AddDescriptionCommandParser parser = new AddDescriptionCommandParser();
+    private EditDescriptionCommandParser parser = new EditDescriptionCommandParser();
 
     @BeforeAll
     public static void setStateZero() {
@@ -41,7 +41,7 @@ public class AddDescriptionCommandParserTest {
     public void parse_prefixPresent_success() {
         // normal input
         assertParseSuccess(parser, PREFIX_DESC + VALID_DESC,
-                new AddDescriptionCommand(index, new Description(VALID_DESC)));
+                new EditDescriptionCommand(index, new Description(VALID_DESC)));
     }
 
     @Test
@@ -49,7 +49,7 @@ public class AddDescriptionCommandParserTest {
         // missing prefix
         assertThrows(ParseException.class, () -> parser.parse(VALID_DESC));
         assertParseFailure(parser, VALID_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddDescriptionCommand.MESSAGE_USAGE));
+                EditDescriptionCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -62,6 +62,4 @@ public class AddDescriptionCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(PREFIX_DESC + BLANK_DESC));
         assertParseFailure(parser, PREFIX_DESC + BLANK_DESC, Description.MESSAGE_CONSTRAINTS);
     }
-
 }
-

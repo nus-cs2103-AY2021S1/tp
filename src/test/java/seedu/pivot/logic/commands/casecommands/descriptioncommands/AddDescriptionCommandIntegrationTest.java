@@ -1,10 +1,11 @@
-package seedu.pivot.logic.commands.casecommands;
+package seedu.pivot.logic.commands.casecommands.descriptioncommands;
 
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,7 @@ public class AddDescriptionCommandIntegrationTest {
     public void execute_validIndexAndValidDescriptionUnfilteredList_success() {
         StateManager.setState(INDEX_FIRST_PERSON);
         Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // CASE: ALICE, WITHOUT DESCRIPTIONS
+        // CASE: ALICE_PAULINE_ASSAULT, WITHOUT DESCRIPTIONS
         Case expectedCase = new CaseBuilder(caseToUpdate).withDescription("New Description").build();
         Description description = new Description("New Description");
 
@@ -43,15 +44,15 @@ public class AddDescriptionCommandIntegrationTest {
     }
 
     @Test
-    public void execute_validIndexAndDuplicateDescriptionUnfilteredList_throwsCommandException() {
-        StateManager.setState(INDEX_FIRST_PERSON);
-        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // CASE: ALICE, WITHOUT DESCRIPTIONS
+    public void execute_validIndexWithExistingDescriptionUnfilteredList_throwsCommandException() {
+        StateManager.setState(INDEX_SECOND_PERSON);
+        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // CASE: BENSON_MEIER_ROBBERY, WITH DESCRIPTIONS
         Description description = caseToUpdate.getDescription();
 
-        AddCommand command = new AddDescriptionCommand(INDEX_FIRST_PERSON, description);
+        AddCommand command = new AddDescriptionCommand(INDEX_SECOND_PERSON, description);
 
-        assertCommandFailure(command, model, AddDescriptionCommand.MESSAGE_DUPLICATE_DESCRIPTION);
+        assertCommandFailure(command, model, AddDescriptionCommand.MESSAGE_DESCRIPTION_ALREADY_EXISTS);
         StateManager.resetState();
     }
 
@@ -60,7 +61,7 @@ public class AddDescriptionCommandIntegrationTest {
         showCaseAtIndex(model, INDEX_FIRST_PERSON);
         StateManager.setState(INDEX_FIRST_PERSON);
         Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // CASE: ALICE, WITHOUT DESCRIPTIONS
+        // CASE: ALICE_PAULINE_ASSAULT, WITHOUT DESCRIPTIONS
         Case expectedCase = new CaseBuilder(caseToUpdate).withDescription("New Description").build();
         Description description = new Description("New Description");
 
@@ -75,17 +76,4 @@ public class AddDescriptionCommandIntegrationTest {
         StateManager.resetState();
     }
 
-    @Test
-    public void execute_validIndexAndDuplicateDescriptionFilteredList_throwsCommandException() {
-        showCaseAtIndex(model, INDEX_FIRST_PERSON);
-        StateManager.setState(INDEX_FIRST_PERSON);
-        Case caseToUpdate = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        // CASE: ALICE, WITHOUT DESCRIPTIONS
-        Description description = caseToUpdate.getDescription();
-
-        AddCommand command = new AddDescriptionCommand(INDEX_FIRST_PERSON, description);
-
-        assertCommandFailure(command, model, AddDescriptionCommand.MESSAGE_DUPLICATE_DESCRIPTION);
-        StateManager.resetState();
-    }
 }

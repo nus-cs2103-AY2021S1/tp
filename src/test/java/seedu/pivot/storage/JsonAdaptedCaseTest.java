@@ -18,7 +18,6 @@ import seedu.pivot.model.investigationcase.Title;
 
 public class JsonAdaptedCaseTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_DESCRIPTION = "Esm@nd@";
     private static final String INVALID_DOCUMENT_REFERENCE = "invalid :across ?/\0 OS";
     private static final String INVALID_DOCUMENT_NAME = " ";
     private static final String INVALID_STATUS = "status";
@@ -74,16 +73,6 @@ public class JsonAdaptedCaseTest {
         JsonAdaptedCase person = new JsonAdaptedCase(null, VALID_DESCRIPTION, VALID_STATUS,
                 VALID_DOCUMENTS, VALID_SUSPECTS, VALID_VICTIMS, VALID_WITNESSES, VALID_TAGS, VALID_ARCHIVE_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidDescription_throwsIllegalValueException() {
-        JsonAdaptedCase person =
-                new JsonAdaptedCase(VALID_NAME, INVALID_DESCRIPTION, VALID_STATUS,
-                        VALID_DOCUMENTS,
-                        VALID_SUSPECTS, VALID_VICTIMS, VALID_WITNESSES, VALID_TAGS, VALID_ARCHIVE_STATUS);
-        String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

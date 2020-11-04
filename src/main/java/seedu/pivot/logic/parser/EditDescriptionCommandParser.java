@@ -6,14 +6,14 @@ import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_DESC;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.casecommands.descriptioncommands.AddDescriptionCommand;
+import seedu.pivot.logic.commands.casecommands.descriptioncommands.EditDescriptionCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Description;
 
-public class AddDescriptionCommandParser implements Parser<AddDescriptionCommand> {
+public class EditDescriptionCommandParser implements Parser<EditDescriptionCommand> {
     @Override
-    public AddDescriptionCommand parse(String args) throws ParseException {
+    public EditDescriptionCommand parse(String args) throws ParseException {
         assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
 
         ArgumentMultimap argMultimap =
@@ -22,12 +22,12 @@ public class AddDescriptionCommandParser implements Parser<AddDescriptionCommand
         if (!arePrefixesPresent(argMultimap, PREFIX_DESC)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddDescriptionCommand.MESSAGE_USAGE));
+                    EditDescriptionCommand.MESSAGE_USAGE));
         }
 
         Description description = ParserUtil.parseDescription(argMultimap
-                        .getValue(PREFIX_DESC).orElse(""));
+                .getValue(PREFIX_DESC).orElse(""));
         Index index = StateManager.getState();
-        return new AddDescriptionCommand(index, description);
+        return new EditDescriptionCommand(index, description);
     }
 }

@@ -79,7 +79,7 @@ class JsonAdaptedCase {
      */
     public JsonAdaptedCase(Case source) {
         title = source.getTitle().getAlphaNum();
-        description = source.getDescription().getAlphaNum();
+        description = source.getDescription().toString();
         status = source.getStatus().name();
         archiveStatus = source.getArchiveStatus().toString();
         documents.addAll(source.getDocuments().stream()
@@ -127,10 +127,7 @@ class JsonAdaptedCase {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
-        if (!Description.isValidDescription(description)) {
-            logger.warning("Description is invalid. Check data");
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        }
+
         final Description modelDescription = new Description(description);
 
         if (status == null) {

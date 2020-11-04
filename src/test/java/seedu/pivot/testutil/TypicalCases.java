@@ -45,6 +45,7 @@ public class TypicalCases {
     public static final Case BENSON_MEIER_ROBBERY = new CaseBuilder().withTitle("Benson Meier Robbery")
             .withStatus("CLOSED")
             .withDocument("name", "test1.txt")
+            .withDescription("Was hit with a very big banana!")
             .withVictims(TOM)
             .withWitnesses(JANICE)
             .withTags("owesMoney", "friends")
