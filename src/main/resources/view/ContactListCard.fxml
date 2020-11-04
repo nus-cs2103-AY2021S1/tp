@@ -27,7 +27,7 @@
           </minWidth>
         </Label>
         <Label wrapText="true" fx:id="name" styleClass="cell_big_label" text="\$first" />
-        <Label fx:id="isImportant" styleClass="cell_small_label" text="\$isImportant" />
+        <Label fx:id="isImportant" styleClass="cell_important_label" text="" />
       </HBox>
       <HBox>
         <Label textAlignment="JUSTIFY" wrapText="true" styleClass="cell_small_label_header" text="Email: " />
@@ -37,7 +37,7 @@
         <Label styleClass="cell_small_label_header" text="Telegram: " />
         <Label fx:id="telegram" styleClass="cell_small_label" text="\$telegram" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="contactTags" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

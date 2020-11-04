@@ -30,7 +30,7 @@ public class ContactCard extends UiPart<Region> {
     @FXML
     private Label telegram;
     @FXML
-    private FlowPane tags;
+    private FlowPane contactTags;
     @FXML
     private Label isImportant;
 
@@ -43,7 +43,10 @@ public class ContactCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(contact.getName().getName());
         email.setText(contact.getEmail().value);
-        isImportant.setText(contact.getIsImportantForUi());
+        if (contact.isImportant()) {
+            isImportant.setStyle("-fx-background-color: #708090");
+            isImportant.setText("Important");
+        }
         if (contact.getTelegram().isPresent()) {
             telegram.setText(contact.getTelegram().get().telegramUsername);
         } else {
@@ -52,7 +55,7 @@ public class ContactCard extends UiPart<Region> {
 
         contact.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> contactTags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

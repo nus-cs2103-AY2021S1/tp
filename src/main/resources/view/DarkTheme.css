@@ -96,37 +96,27 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 10 5 5 5;
-    -fx-background-radius: 25px;
+    -fx-padding: 5px;
+    -fx-border-width: 5;
+    -fx-border-color: transparent;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+   -fx-background-color: transparent;
+
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
-}
-
-#contactListView {
-    -fx-background-insets: 0;
-    -fx-background-radius: 15px;
-    -fx-padding: 25px 15px 10px 10px;
-}
-
-#personListView {
-    -fx-background-insets: 0;
-    -fx-background-radius: 15px;
-    -fx-padding: 25px 15px 10px 10px;
 }
 
 .cell_big_label {
@@ -140,6 +130,15 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: white;
+}
+
+.cell_important_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 20px;
+    -fx-padding: 5 5 5 5;
 }
 
 .cell_small_label_header {
@@ -325,8 +324,8 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
+    -fx-background-color: #404040;
+    -fx-background-radius: 15px;
 }
 
 #commandTypeLabel {
@@ -366,6 +365,20 @@
     -fx-border-radius: 1;
     -fx-background-radius: 10px;
     -fx-font-size: 13;
+}
+
+#contactTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#contactTags .label {
+    -fx-text-fill: white;
+    -fx-background-color: #db7093;
+    -fx-padding: 2 8;
+    -fx-border-radius: 1;
+    -fx-background-radius: 10px;
+    -fx-font-size: 11;
 }
 
 #zoomLinkList .content {
