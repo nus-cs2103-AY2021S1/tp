@@ -292,7 +292,8 @@ Format: `list`
 
 ### 5.8 Editing a food item : `edit`
 
-You can edit the details of a food item at the specified index.
+The `edit` command allows for quick and easy changes to be made on existing food items in
+McGymmy.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
