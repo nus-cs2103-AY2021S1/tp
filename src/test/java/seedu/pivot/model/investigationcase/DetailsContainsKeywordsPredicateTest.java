@@ -50,7 +50,7 @@ public class DetailsContainsKeywordsPredicateTest {
     public void test_caseContainsKeywords_returnsTrue() {
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
                 Collections.singletonList("Bank"));
-        // Multiple keywords, muliple fields
+        // Multiple keywords, multiple fields
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
 
         // Only one matching keyword, one field
@@ -64,6 +64,11 @@ public class DetailsContainsKeywordsPredicateTest {
         // Mixed-case keywords, multiple fields
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("bAnK", "roBerRy"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
+
+        // Keywords that are a substring of details in case
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("bA", "rob"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
+
     }
 
     @Test
@@ -76,12 +81,21 @@ public class DetailsContainsKeywordsPredicateTest {
         // Multiple keywords, one field
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Bank", "Robbery"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
+
+        // Keyword is a substring of title
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("ba", "bery"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
+
     }
 
     @Test
     public void test_caseStatusContainsKeywords_returnsTrue() {
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
                 Collections.singletonList("ACTIVE"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").withStatus("ACTIVE").build()));
+
+        // Keyword is a substring of status
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("act"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").withStatus("ACTIVE").build()));
     }
 
@@ -90,6 +104,11 @@ public class DetailsContainsKeywordsPredicateTest {
         // One keyword
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
                 Collections.singletonList("Bank"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Robbery")
+                .withDescription("Million dollars in XXX bank").build()));
+
+        // Keyword is a substring of description
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("dollar"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Robbery")
                 .withDescription("Million dollars in XXX bank").build()));
     }
@@ -102,6 +121,12 @@ public class DetailsContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
                 .withDocument("Evidence found at Scene", "evidence1.txt")
                 .build()));
+
+        // Keyword is a substring of document
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("evi", "txt"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withDocument("Evidence found at Scene", "evidence1.txt")
+                .build()));
     }
 
     @Test
@@ -109,6 +134,13 @@ public class DetailsContainsKeywordsPredicateTest {
         // Keywords match some fields in victims
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
                 Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withVictims(new CasePersonBuilder().withName("Janice").withSex("F")
+                        .withEmail("alice@email.com").withAddress("123 Main Street").buildVictim())
+                .build()));
+
+        // Keyword is substring of victim
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("alice"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
                 .withVictims(new CasePersonBuilder().withName("Janice").withSex("F")
                         .withEmail("alice@email.com").withAddress("123 Main Street").buildVictim())
