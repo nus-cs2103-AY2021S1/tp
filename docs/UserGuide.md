@@ -151,6 +151,41 @@ Format: `addex e/<exercise> c/<calories per rep>`
 Success:
 ![Ui](images/screenshots/v1.3addex_success.png)
 
+### Editing an exercise: `editex`
+
+Edits an existing exercise in the application, either with new name, or new calories per rep.
+
+Format: `editex <index> [e/EXERCISE] [c/CALORIES]`
+
+* Edits the existing exercise at the specified `INDEX`. The index refers to the index number shown in the displayed exercise list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+![Ui](images/screenshots/editex.png)
+
+Success:
+![Ui](images/screenshots/editex_success.png)
+
+### Deleting an exercise : `deleteex`
+
+Deletes the specified exercise.
+
+Format: `deleteex <index>`
+
+- Deletes the log at the specified `<index>`.
+- The index refers to the index number shown in the list of exercises.
+- The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `list` followed by `deleteex 1`deletes the 1st exercise.
+
+![Ui](images/screenshots/deleteex.png)
+
+Success:
+![Ui](images/screenshots/deleteex_success.png)
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
