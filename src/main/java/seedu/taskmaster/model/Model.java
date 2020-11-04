@@ -72,6 +72,12 @@ public interface Model {
     void setSessions(List<Session> sessions);
 
     /**
+     * Deletes the session with {@code sessionName}.
+     * {@code sessionName} must already exist in the session list.
+     */
+    void deleteSession(SessionName sessionName);
+
+    /**
      * Adds the given session.
      * {@code session} must not already exist in the session list.
      */
@@ -158,14 +164,14 @@ public interface Model {
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
      * The student must exist in the student list.
      */
-    void scoreStudent(Student target, int score);
+    void scoreStudent(StudentRecord target, double score);
 
-    void scoreStudentWithNusnetId(NusnetId nusnetId, int score);
+    void scoreStudentWithNusnetId(NusnetId nusnetId, double score);
 
     /**
      * Marks the attendances of all {@code students} with the given {@code attendanceType}
      */
-    void scoreAllStudents(List<Student> students, int score);
+    void scoreAllStudents(List<StudentRecord> students, double score);
 
     /**
      * Updates the corresponding attendance statuses with the Attendances in the given list.

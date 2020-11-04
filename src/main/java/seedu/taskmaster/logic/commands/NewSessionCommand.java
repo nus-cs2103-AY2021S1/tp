@@ -16,7 +16,7 @@ import seedu.taskmaster.model.session.SessionName;
  */
 public class NewSessionCommand extends Command {
 
-    public static final String COMMAND_WORD = "session";
+    public static final String COMMAND_WORD = "add-session";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a session to the session list. "
             + "Parameters: "
@@ -30,7 +30,7 @@ public class NewSessionCommand extends Command {
     public static final String MESSAGE_DUPLICATE_SESSION = "Cannot add session:\n"
             + "A session with the same name already exists in the session list";
 
-    protected StudentRecordList studentRecordList = null;
+    private StudentRecordList studentRecordList = null;
     private final SessionName sessionName;
     private final SessionDateTime sessionDateTime;
 

@@ -20,6 +20,8 @@ public interface SessionList extends Iterable<Session> {
 
     void add(Session toAdd);
 
+    void delete(SessionName toDelete);
+
     /**
      * Returns true if there are no sessions in the session list.
      */
