@@ -205,7 +205,10 @@ If the keyword matches its name and/or label partially, it will also be found an
 
 Format: `find KEYWORD`
 
+Tagging file:
 ![before](images/screenshots/pre_find_command.png)
+
+Executing find command:
 ![after](images/screenshots/find_command.png)
         
 Examples:
@@ -240,7 +243,10 @@ Lists all added tags.
 
 Format: `ls`
 
+Before executing command:
 ![before](images/screenshots/find_command.png)
+
+After executing command:
 ![after](images/screenshots/list_command.png)
 
 ### Undoing command : `undo`
@@ -253,7 +259,10 @@ You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear
 
 Format: `undo`
 
+Before executing command:
 ![before](images/screenshots/clear_command.png)
+
+After executing command:
 ![after](images/screenshots/undo_command.png)
 
 ### Redoing command : `redo`
@@ -266,7 +275,10 @@ Redo only exists when undo has been executed.
 
 Format: `redo`
 
+Before executing command:
 ![before](images/screenshots/undo_command.png)
+
+After executing command:
 ![after](images/screenshots/redo_command.png)
 
 ### Clearing all tags : `clear`
@@ -307,12 +319,14 @@ HelloFile comes in light and dark themes. To change the theme, navigate to the t
 and select `view`, followed by `theme`. A new pop up window will be shown with available themes along with a quick preview
  as illustrated below.
 ![Fig. 1](images/screenshots/changing_themes.png)
+
 ![Fig. 2](images/screenshots/changing_themes2.png)
 
 ### Changing view sizes
 HelloFile allows you to resize the view of each sub components for a clearer view of tags and folders. You can simply
  drag each view to the size desired.
 ![Fig. 3. Resizing taskbar](images/screenshots/taskbar_resize.png)
+
 ![Fig. 4. Resizing filebar](images/screenshots/filebar_resize.png)
 
 ### Persistent customisation
