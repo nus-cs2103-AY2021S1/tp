@@ -75,5 +75,4 @@ public class ConfigTest {
         config4.setUserPrefsFilePath(TEST_PREF_PATH);
         assertEquals(config3, config4);
     }
-
 }
