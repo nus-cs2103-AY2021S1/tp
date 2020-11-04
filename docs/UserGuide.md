@@ -410,7 +410,8 @@ Examples:
 
 ### 5.12 Undoing the previous command : `undo`
 
-Undoes the change made by the previous command
+The `undo` command allows you to reverse the change of the previous command. This makes
+it easier to reverse mistakes made in McGymmy.
 
 Format: `undo`
 
