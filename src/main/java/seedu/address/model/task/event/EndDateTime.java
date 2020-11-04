@@ -45,11 +45,6 @@ public class EndDateTime extends DateTime {
         String datetime = date + " " + time;
         return new EndDateTime(datetime);
     }
-
-    public static boolean isValidDateTime(String date, String time) {
-        return DateTimeUtil.isValidDate(date) && DateTimeUtil.isValidTime(time);
-    }
-
     /**
      * Creates a new EndDateTime object with the date changed.
      *
