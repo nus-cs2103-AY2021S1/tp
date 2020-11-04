@@ -21,7 +21,7 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" styleClass="order_food_name" text="\$first" />
-                <Pane HBox.hgrow="ALWAYS" />
+                <Pane maxWidth="30.0" HBox.hgrow="ALWAYS" />
             <VBox alignment="BASELINE_CENTER">
                <children>
                       <Label fx:id="quantity" alignment="CENTER" styleClass="order_food_quantity" text="\$quantity" />

@@ -58,6 +58,7 @@ public class DeletePresetCommand extends PresetCommand {
         } catch (IOException | DataConversionException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-        return new CommandResult(String.format(Messages.MESSAGE_PRESET_DELETE_SUCCESS, presetName), false, false, true);
+        return new CommandResult(String.format(Messages.MESSAGE_PRESET_DELETE_SUCCESS, presetName),
+                false, false, true, false);
     }
 }

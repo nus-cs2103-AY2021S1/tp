@@ -231,7 +231,6 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            updateMenu();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -239,6 +238,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isVendor()) {
+                updateMenu();
             }
 
             return commandResult;

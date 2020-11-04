@@ -10,7 +10,7 @@
 
 <fx:root minHeight="600.0" minWidth="900.0" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/food/default-menu-item.jpg" />
   </icons>
   <scene>
     <Scene fill="BLACK">
@@ -19,7 +19,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox style="-fx-background-color: white;">
+      <VBox style="-fx-background-color: black;">
         <MenuBar fx:id="menuBar" minWidth="-Infinity" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -43,7 +43,7 @@
               </padding>
               <children>
                 <Label style="-fx-text-fill: white;" text="Vendors" />
-                <StackPane fx:id="vendorListPanelPlaceholder" maxHeight="-Infinity" minWidth="-Infinity" prefWidth="200.0" />
+                <StackPane fx:id="vendorListPanelPlaceholder" minWidth="-Infinity" prefWidth="200.0" VBox.vgrow="ALWAYS" />
               </children>
             </VBox>
 

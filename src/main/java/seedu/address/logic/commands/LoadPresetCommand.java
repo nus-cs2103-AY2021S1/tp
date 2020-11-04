@@ -56,7 +56,7 @@ public class LoadPresetCommand extends PresetCommand {
                 String removeComma = message.toString().trim();
                 removeComma = removeComma.substring(0, removeComma.length() - 1);
                 return new CommandResult(PresetCommand.MESSAGE_DISPLAY_ALL_PRESETS + removeComma,
-                        false, false, true);
+                        false, false, true, false);
             }
             List<OrderItem> orderItems = allLists.get(currentIndex)
                     .stream()
@@ -73,7 +73,7 @@ public class LoadPresetCommand extends PresetCommand {
             throw new CommandException(Messages.MESSAGE_PRESET_LOAD_ERROR);
         }
         return new CommandResult(String.format(Messages.MESSAGE_PRESET_LOAD_SUCCESS, presetName),
-                false, false, true);
+                false, false, true, false);
     }
 
     @Override

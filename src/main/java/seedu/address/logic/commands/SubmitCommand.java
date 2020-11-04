@@ -54,6 +54,7 @@ public class SubmitCommand extends Command {
         }
 
         StringBuilder orderText = new StringBuilder();
+        orderText.append(profileText);
         for (OrderItem orderItem: order) {
             orderText.append(orderItem.toOrderText());
         }
@@ -72,7 +73,6 @@ public class SubmitCommand extends Command {
         if (copySuccess) {
             feedback.append(CLIPBOARD_SUCCESS_MESSAGE);
         }
-        feedback.append(profileText.toString());
         feedback.append(orderText.toString());
         feedback.append(String.format(ESTIMATE_TOTAL_MESSAGE, order.getTotal()));
 
