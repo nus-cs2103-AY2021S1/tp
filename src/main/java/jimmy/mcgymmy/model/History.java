@@ -1,6 +1,5 @@
 package jimmy.mcgymmy.model;
 
-import java.util.EmptyStackException;
 import java.util.Stack;
 import java.util.function.Predicate;
 
