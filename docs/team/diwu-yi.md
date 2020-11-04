@@ -4,9 +4,7 @@ title: Zhang Yi's Project Portfolio Page
 ---
 
 ## Project: tCheck
-tCheck is a desktop application designed to digitalize inventory keeping and employee management for bubble tea chains.
-tCheck offers an integrated system to efficiently manage a T-Sugar (an imaginary bubble tea brand) shop, by providing sales tracking, ingredient tracking and employees' contact management in one platform.
-
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is optimized for CLI users to update and retrieve the information more efficiently.
   
 Given below are my contributions to the project.
 
