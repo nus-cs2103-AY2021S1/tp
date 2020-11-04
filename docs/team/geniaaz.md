@@ -49,19 +49,18 @@ Given below are my contributions to the project.
   * Changes made: 
     * Tests added to increase path coverage for Teammate classes
 
-* **Documentation**: {22/10/20}: Rewrite entire UG to improve clarity  
-
-
+* **Documentation**: {22/10/20}: Rewrite entire UG to improve clarity (Pull requests [\#171](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/171)) 
 
 
 * **Documentation**:
   * User Guide:
     * Came up with the content outline of the first draft of modified User Guide.
     * Added general introduction of the application (Pull request [\#27](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/27)).
-    * Modified the original AB3 UG on manipulation of persons to fit for Taskmania's management for project.
+    * Rewrite entire UG to improve clarity
   * Developer Guide:
     * Adapted first draft for target user profile, value proposition, and user stories to the format that fit in Developer Guide.
     * Added glossaries in the first draft (Pull request [\#44](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/44)).
+    * Modify Architecture and AddTeamamte sections in DG (Pull request [\#44] 
 
 * **Community**:
 
