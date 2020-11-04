@@ -80,7 +80,9 @@ public class EditDocumentCommand extends EditCommand {
         List<Document> documents = stateCase.getDocuments();
 
         //document index validation in model
-        if (documentIndex.getZeroBased() >= documents.size()) {
+        int zeroIndex = documentIndex.getZeroBased();
+        boolean isOutOfBounds = zeroIndex >= documents.size();
+        if (isOutOfBounds) {
             logger.info("Invalid index: " + documentIndex.getOneBased());
             throw new CommandException(UserMessages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
         }
