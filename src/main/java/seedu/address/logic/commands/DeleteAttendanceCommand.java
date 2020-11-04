@@ -73,7 +73,7 @@ public class DeleteAttendanceCommand extends Command {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(
                 MESSAGE_DELETE_ATTENDANCE_SUCCESS,
-                studentWithDeletedAttendance.getName().fullName,
+                studentWithDeletedAttendance.getName().toString(),
                 studentWithDeletedAttendance.getAttendance().listOutAttendedWeeks())
         );
     }

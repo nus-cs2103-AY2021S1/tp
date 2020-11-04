@@ -18,7 +18,6 @@ public class JsonAdaptedModule {
 
     private final String moduleId;
     private final List<JsonAdaptedTutorialGroup> tutorialGroups = new ArrayList<>();
-    //private final List<JsonAdaptedTask> tasks = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
@@ -56,7 +55,7 @@ public class JsonAdaptedModule {
 
         if (moduleId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "Module ID"));
+                    ModuleId.class.getSimpleName()));
         }
         if (!ModuleId.isValidModuleId(moduleId)) {
             throw new IllegalValueException(ModuleId.MESSAGE_CONSTRAINTS);

@@ -179,20 +179,20 @@ public class ModelManagerTest {
 
         // different module filteredList -> returns false
 
-        String[] moduleKeywords = CS2103T.getModuleId().getId().split("\\s+");
+        String[] moduleKeywords = CS2103T.getModuleId().toString().split("\\s+");
 
         modelManager.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
 
         // different tutorial group filteredList -> returns false
-        String[] tutorialGroupKeywords = T05.getId().id.split("\\s+");
+        String[] tutorialGroupKeywords = T05.getId().toString().split("\\s+");
         modelManager.updateFilteredTutorialGroupList(
                         new TutorialContainsKeywordsPredicate(Arrays.asList(tutorialGroupKeywords))
         );
         assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
 
         // different student filteredList -> returns false
-        String[] studentKeywords = ALEX.getName().fullName.split("\\s+");
+        String[] studentKeywords = ALEX.getName().toString().split("\\s+");
         modelManager.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(studentKeywords)));
         assertFalse(modelManager.equals(new ModelManager(trackr, userPrefs)));
 

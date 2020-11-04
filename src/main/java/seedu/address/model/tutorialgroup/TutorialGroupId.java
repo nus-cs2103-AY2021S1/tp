@@ -18,7 +18,7 @@ public class TutorialGroupId {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String id;
+    private final String id;
 
     /**
      * Constructs a {@code TutorialGroupId}.

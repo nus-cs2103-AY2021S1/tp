@@ -42,7 +42,7 @@ public class ViewAttendanceCommand extends Command {
 
         Student student = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                student.getName().fullName,
+                student.getName().toString(),
                 student.getAttendance().listOutAttendedWeeks())
         );
     }

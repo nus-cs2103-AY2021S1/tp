@@ -18,7 +18,7 @@ public class TimeOfDay {
             "Start time is supposed to be BEFORE End time";
 
 
-    public final LocalTime time;
+    private final LocalTime time;
 
     /**
      * Constructs a {@code TimeOfDay}.
