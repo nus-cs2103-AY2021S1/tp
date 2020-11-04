@@ -322,6 +322,9 @@ displayed list of food items.
 
 Format: `delete INDEX`
 
+Examples:
+* `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
+
 <div markdown="block" class="alert alert-info">
 
 :information_source:
@@ -331,9 +334,6 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd food item in McGymmy.
 
 ![delete command example](images/CommandImagesForUG/Delete.png)
 
