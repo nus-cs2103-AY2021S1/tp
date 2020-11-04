@@ -62,7 +62,7 @@ public class SampleDataUtil {
     // ================= BIDDERS ==================
     public static Bidder[] getSampleBidders() {
         return new Bidder[] {
-            new Bidder(new Name("Kor Ming Soon"), new Phone("1253678"), new BidderId("B1")),
+            new Bidder(new Name("Kor Ming Soon"), new Phone("123456789"), new BidderId("B1")),
             new Bidder(new Name("Harsha"), new Phone("12345777"), new BidderId("B2")),
             new Bidder(new Name("Marcus"), new Phone("47876428"), new BidderId("B3")),
             new Bidder(new Name("Dianne Loh"), new Phone("1256781"), new BidderId("B4")),
@@ -82,12 +82,12 @@ public class SampleDataUtil {
     // ================= SELLERS ==================
     public static Seller[] getSampleSellers() {
         return new Seller[] {
-            new Seller(new Name("Dianne"), new Phone("7897456"), new SellerId("S1")),
-            new Seller(new Name("Christopher"), new Phone("12345777"), new SellerId("S2")),
-            new Seller(new Name("Peter Parker"), new Phone("7897456"), new SellerId("S3")),
+            new Seller(new Name("Dianne"), new Phone("12345"), new SellerId("S1")),
+            new Seller(new Name("Christopher"), new Phone("123456"), new SellerId("S2")),
+            new Seller(new Name("Peter Parker"), new Phone("1234567"), new SellerId("S3")),
             new Seller(new Name("Donald Trump"), new Phone("12345777"), new SellerId("S4")),
             new Seller(new Name("Derp"), new Phone("7897456"), new SellerId("S5")),
-            new Seller(new Name("Thanos"), new Phone("12345777"), new SellerId("S6"))
+            new Seller(new Name("Thanos"), new Phone("123456789"), new SellerId("S6"))
         };
     }
 
