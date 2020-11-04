@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import seedu.address.logic.textFieldModules.AutocompleteModule;
-import seedu.address.logic.textFieldModules.FzfModule;
+import seedu.address.logic.textfieldmodules.AutocompleteModule;
+import seedu.address.logic.textfieldmodules.FzfModule;
 
 
 public class AutocompleteCommandBox extends CommandBox {
 
-    AutocompleteModule autocompleteModule;
+    private AutocompleteModule autocompleteModule;
 
     /**
      * Creates a {@code AutocompleteCommandBox} with the given {@code CommandExecutor}.

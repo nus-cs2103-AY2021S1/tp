@@ -1,4 +1,4 @@
-package seedu.address.logic.textFieldModules;
+package seedu.address.logic.textfieldmodules;
 
 import java.util.List;
 import java.util.function.Supplier;

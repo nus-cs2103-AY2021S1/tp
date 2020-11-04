@@ -1,18 +1,17 @@
-package seedu.address.logic.textFieldModules;
+package seedu.address.logic.textfieldmodules;
 
-import javafx.collections.ObservableList;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import org.w3c.dom.Text;
-import seedu.address.ui.CommandBox;
+import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+
 
 public class AutocompleteModule {
     public static final String AC_MODE_STYLE_CLASS = "autocomplete-mode";
@@ -22,7 +21,7 @@ public class AutocompleteModule {
     private boolean hasSetPrefix = false;
     private String modeType = "";
     private int commandPrefixPos;
-    
+
     private TextField attachedTextField;
 
     private AutocompleteModule(TextField textField) {
@@ -192,6 +191,11 @@ public class AutocompleteModule {
         private int index = 0;
         private final Supplier<List<String>> listSupplier;
 
+        /**
+         * Encapsulations a Suggestions object that allows users to generate suggestions based on
+         * given prefix
+         * @param listSupplier  List supplier from which suggestions will be generated
+         */
         public Suggestions(Supplier<List<String>> listSupplier) {
             this.listSupplier = listSupplier;
             this.suggestions = listSupplier.get().stream().sorted().collect(Collectors.toList());
@@ -205,6 +209,9 @@ public class AutocompleteModule {
             index = index - 1 < 0 ? suggestions.size() - 1 : index - 1;
         }
 
+        /**
+         * Generates the next best suggestion.
+         */
         public String nextSuggestion() {
             if (!hasSuggestion()) {
                 return prefix;
@@ -213,6 +220,9 @@ public class AutocompleteModule {
             return suggestions.get(index);
         }
 
+        /**
+         * Generates the previous best suggestion.
+         */
         public String prevSuggestion() {
             if (!hasSuggestion()) {
                 return prefix;
@@ -221,11 +231,11 @@ public class AutocompleteModule {
             return suggestions.get(index);
         }
 
-        public boolean hasSuggestion() {
+        private boolean hasSuggestion() {
             return suggestions.size() != 0;
         }
 
-        public void setPrefix(String prefix) {
+        private void setPrefix(String prefix) {
             this.index = 0;
             this.prefix = prefix;
             suggestions = listSupplier.get().stream().filter(x -> x.toLowerCase().startsWith(prefix.toLowerCase()))
@@ -234,10 +244,13 @@ public class AutocompleteModule {
             suggestions.add(0, prefix);
         }
 
-        public boolean isBackToPrefix() {
+        private boolean isBackToPrefix() {
             return index == 0;
         }
 
+        /**
+         * Returns full list of suggestions.
+         */
         public List<String> getFilteredList() {
             return suggestions;
         }
