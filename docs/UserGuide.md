@@ -295,11 +295,11 @@ delete sn/courts1 sn/courts2
 ```
 
 <h4>Below is a guided example for deleting stocks:</h4>
-Before you start any deletion, make sure to use the command `list lt/all` to list all
+Step 1.Before you start any deletion, you might want to use the command `list lt/all` to list all
 the stocks you have in Warenager. 
 ![delete_step1](images/delete/delete_step1.png)
 
-Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
+Step 2. Let's delete the stock with serial number `COURTS2`. The fields are **not** case-sensitive.<br>
 A valid delete input would be `delete sn/courts2`.
 
 **Before input**:
@@ -311,7 +311,7 @@ A valid delete input would be `delete sn/courts2`.
 
 ![delete_step3](images/delete/delete_step3.png)
 
-Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
+Step 3. Multiple stocks can also be deleted at the same time. Let's delete 2 stocks with serial numbers `COURTS3`
 and `COURTS4`. It can be done by chaining the serial numbers when deleting.<br>
 A valid delete input would be `delete sn/courts3 sn/courts4`.<br>
 
@@ -331,6 +331,28 @@ Stocks that do not exist in Warenager cannot be deleted. Using the same input in
 `delete sn/courts3 sn/courts`, you should expect the following:
 
 ![delete_step6](images/delete/delete_step6.png)
+
+Invalid delete command formats will also result in an error.<br>
+For example, the input `delet sn/courts3 sn/courts4` will lead in an error as shown below
+as the keyword `delete` is misspelt.
+
+![delete_step7](images/delete/delete_step7.png)
+
+The input `delete` will lead in an error as shown below as the compulsory fields with `sn/` is missing.
+
+![delete_step8](images/delete/delete_step8.png)
+
+The input `delete sn/serial` will lead in an error as shown below as the serial number is invalid. This is
+also true for inputs with no serial numbers like `delete sn/`.
+
+![delete_step9](images/delete/delete_step9.png)
+
+The `delete sn/courts1 q/20` will lead in an error as shown below even though the serial number `courts1`
+is found. This is because the prefix `q/` is not allowed, and it is not just limited to `q/`. In delete
+commands, only the prefix `/sn` is allowed.
+
+![delete_step10](images/delete/delete_step10.png)
+
 </div>
 
 
@@ -1201,6 +1223,51 @@ Toggles between the tabs in Warenager.
 ```
 tab
 ```
+<h4>Below is a guided example for toggling tabs:</h4>
+In this example, Warenager is started up for the first time. Observe that you are always in the
+data tab after each startup.
+
+![tab_startup](images/tab/tab_startup.png)
+
+Step 1. Now input the command word `tab` and hit enter. This should bring you to the next tab,
+which is the **Statistics** tab.
+
+**Before input**
+
+![tab_step1](images/tab/tab_step1.png)
+
+**After input**
+
+![tab_step2](images/tab/tab_step2.png)
+
+Step 2. Now input the command word `tab` again and hit enter. This should bring you to the next tab,
+which is the **Stock view** tab.
+
+**After input**
+
+![tab_step3](images/tab/tab_step3.png)
+
+Step 3. Now input the command word `tab` again and hit enter. This should bring you back to the **Data** tab.
+
+**After input**
+
+![tab_step4](images/tab/tab_step4.png)
+
+<div markdown="block" class="alert alert-warning" markdown="1">
+
+**:warning:**<br>
+Note that the above example used is a new Warenager session. If you have already used the `stats` command
+input at least once in your current Warenager session, you should see the latest piechart viewed when you
+are in **Statistics** tab.
+
+![tab_step5](images/tab/tab_step5.png)
+
+Similarly, if you used the `stockview` command input at least once in your current Warenager session,
+you should see an existing table describing the latest stock viewed.
+
+![tab_step6](images/tab/tab_step6.png)
+
+</div>
 
 ### Saving data
 Data (all stocks in inventory in JSON) is automatically saved to

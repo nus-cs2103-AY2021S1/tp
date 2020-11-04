@@ -24,7 +24,7 @@ activate MainWindow
 MainWindow --> StatisticsWindow : updateData(statisticsData, otherStatisticsDetails)
 activate StatisticsWindow
 
-StatisticsWindow --> StatisticsWindow : updateDataForSourceStatistics(statisticsData)
+StatisticsWindow --> StatisticsWindow : updateDataForSourceQuantityDistributionStatistics(statisticsData)
 activate StatisticsWindow
 
 StatisticsWindow --> StatisticsWindow

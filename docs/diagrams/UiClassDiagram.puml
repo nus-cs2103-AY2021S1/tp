@@ -15,6 +15,8 @@ Class StockListPanel
 Class StockCard
 Class StatusBarFooter
 Class CommandBox
+Class StatisticsWindow
+Class StockViewWindow
 }
 
 package Model <<Rectangle>> {
@@ -35,6 +37,8 @@ MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StockListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow -> StatisticsWindow
+MainWindow -> StockViewWindow
 
 StockListPanel -down-> StockCard
 
@@ -46,6 +50,8 @@ StockListPanel --|> UiPart
 StockCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+StatisticsWindow -down|> UiPart
+StockViewWindow -down|> UiPart
 
 StockCard ..> Model
 UiManager -right-> Logic
@@ -55,6 +61,7 @@ StockListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml

@@ -19,7 +19,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the Warenager. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete sn/ntuc1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -119,6 +119,7 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the stock book data in json format and read it back.
+* can save the serial number sets book data in json format and read it back.
 
 ### Common classes
 
@@ -887,7 +888,7 @@ methods will be read here and supplied to the pie chart.
 
 Some of the more important operations implemented here are:
 
-* `StatisticsWindow#refreshData()` <br>
+* `StatisticsWindow#updateData()` <br>
   This method clears all the current data in the piechart and inserts the correct data depending on the Statistics type
   from `otherStatisticsDetails` in the `CommandResult` object. It then calls the respective methods needed to extract
   the compiled data.
@@ -924,16 +925,16 @@ Step 5. The `SourceStatisticsCommand#execute()` is then called by the `Logic Man
 
 Step 6. When the `UiManager` calls the `SourceQuantityDistributionStatisticsCommand#execute()` method, this will invoke
         `MainWindow#execute()`. This `CommandResult` is of the statistics class, leading to the `MainWindow#handleStatistics()`
-         method call. This leads to the `StatisticsWindow#show()` method call.
+         method call.
 
-Step 7. `StatisticsWindow#show()` will then call the `StatisticsWindow#refreshData()` which in turn will determine display the
+Step 7. `MainWindow#handleStatistics()` will then call the `StatisticsWindow#updateData()` which in turn will determine display the
         data in the desired format, based on the type of statistics from `otherStatisticsDetails` in `CommandResult` from Step 5.
-        In this case, `Source Statistics` will be displayed.
+        In this case, `StatisticsWindow#updateDataForSourceStatistics()` will be called.
 
 Step 8. This will then update the pie chart with both the relevant data, format, and title to suit the type of statistics
         to be shown. The UI of the window to be shown is customised by the styling based on the `StatisticsWindow.fxml` file.
  
-Step 9. The updated piechart will be shown in a popup window.
+Step 9. Warenager jumps to the **Statistics** tab and the updated piechart is displayed accordingly.
 
 **Example 2: Calling statistics for Source Quantity Distribution**
 
@@ -957,16 +958,16 @@ Step 5. The `SourceQuantityDistributionStatisticsCommand#execute()` is then call
 
 Step 6. When the `UiManager` calls the `SourceQuantityDistributionStatisticsCommand#execute()` method, this will invoke
         `MainWindow#execute()`. This `CommandResult` is of the statistics class, leading to the `MainWindow#handleStatistics()`
-        method call. This leads to the `StatisticsWindow#show()` method call.
+        method call.
 
-Step 7. `StatisticsWindow#show()` will then call the `StatisticsWindow#refreshData()` which in turn will determine display the
+Step 7. `MainWindow#handleStatistics()` will then call the `StatisticsWindow#updateData()` which in turn will determine display the
         data in the desired format, based on the type of statistics from `otherStatisticsDetails` in `CommandResult` from Step 5.
-        In this case, `Source Quantity Distribution Statistics` will be displayed.
+        In this case, `StatisticsWindow#updateDataForSourceQuantityDistributionStatistics()` will be called.
 
 Step 8. This will then update the pie chart with both the relevant data, format, and title to suit the type of statistics
         to be shown. The UI of the window to be shown is customised by the styling based on the `StatisticsWindow.fxml` file.
 
-Step 9. The updated piechart will be shown in a popup window.
+Step 9. Warenager jumps to the **Statistics** tab and the updated piechart is displayed accordingly.
 
 #### Sequence Diagram
 
@@ -978,6 +979,16 @@ The following sequence diagram shows how the Ui aspect of the statistics feature
 
 ![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png)
 
+#### Sequence Diagram
+
+The following sequence diagram shows how the Logic aspect of the statistics feature works for **Example 2**:
+
+![Statistics-Logic Example 2](images/StatisticsCommandSequenceDiagramLogicExample2.png)
+
+The following sequence diagram shows how the Ui aspect of the statistics feature works for **Example 2**:
+
+![Statistics-Ui Example 2](images/StatisticsCommandSequenceDiagramUiExample2.png)
+
 #### Activity Diagram
 
 The following activity diagram summarizes what happens when the statistics feature is triggered:
@@ -988,12 +999,11 @@ The following activity diagram summarizes what happens when the statistics featu
 
 ##### Aspect: UI view for statistics
 
-* **Alternative 1 (current implementation):** Pop up window.
-  * Pros: Window can be resized for clearer view. Reduces panel usage since it does not share a common space
-          with the stockcards display.
-  * Cons: May impede typing speed if statistics are viewed very often.
+* **Alternative 1 (current implementation):** Display in alternate tab.
+  * Pros: Reduces panel usage since it does not share a common space with the stockcards display.
+  * Cons: May require users to change tabs when a stock is updated.
 
-* **Alternative 2:** Side-by-side view beside the stock cards.
+* **Alternative 2:** Side-by-side view beside the stock cards in the same tab.
   * Pros: Reduce interruption between typing.
   * Cons: Statistical views are not often used but rather, only after huge changes over time. In order to display the
           piechart properly, there needs to be a sufficiently large area. This leads to a huge portion of display space
@@ -1009,11 +1019,9 @@ With the expansion of more data fields for each stock, there will be more variet
 shown based on these new fields.
 
 ### Sort Feature
-
 The mechanism for sort feature is facilitated by `SortCommandParser, SortCommand, SortUtil`.
 
 #### SortCommand
-
 `SortCommand` class extends `Command` interface. `SortCommand` class is tasked with creating a new `CommandResult`
 with the sort result to be displayed to the user as its argument. The sort message generated is based on the sorted
 field.
@@ -1331,19 +1339,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given format is missing the field header sn/.
 
-    * 3a1. Warenager shows an error message and tells user to use the proper format.
+    * 3a1. Warenager shows an error message and tells user to use the proper format, giving a suggestion.
+
+      Use case resumes at step 2.
+      
+* 3b. The given command word is mistyped.
+
+    * 3b1. Warenager shows an error message and tells user to use the proper format, giving a suggestion.
+
+      Use case resumes at step 2.
+      
+* 3c. All inputted serial numbers are not found.
+
+    * 3c1. Warenager shows an error message and tells user which serial numbers are not found, giving a suggestion.
 
       Use case resumes at step 2.
 
-* 3b. All inputted serial numbers are not found.
+* 3d. Some inputted serial numbers are not found.
 
-    * 3b1. Warenager shows an error message and tells user which serial numbers are not found.
-
-      Use case resumes at step 2.
-
-* 3c. Some inputted serial numbers are not found.
-
-     * 3c1. Warenager deletes the found stocks and tells user which serial numbers are not found.
+     * 3d1. Warenager deletes the found stocks and tells user which serial numbers are not found, giving a suggestion.
 
        Use case resumes at step 2.
 
@@ -1954,7 +1968,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case 21: Exit Warenager
+#### Use case 21: Clearing Warenager's data
+
+**MSS**
+
+1.  User requests to clear data in Warenager.
+2.  Warenager shows that all data are successfully cleared.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+
+    * 1a1. Warenager shows an error message, giving a suggestion.
+
+     Use case resumes at step 1.
+     
+* 1b. The given command word is mistyped.
+
+    * 1b1. Warenager shows an error message and tells user to use the proper format, giving a suggestion.
+
+      Use case resumes at step 1.
+      
+#### Use case 22: Toggling tabs in Warenager.
+
+**MSS**
+
+1.  User requests to toggle tabs in Warenager.
+2.  Warenager toggles to next tab, or back to the first if the current tab is the last one.
+
+    Use case ends.
+
+**Extensions**
+* 1a. The given format has an additional header.
+
+    * 1a1. Warenager shows an error message, giving a suggestion.
+
+     Use case resumes at step 1.
+     
+* 1b. The given command word is mistyped.
+
+    * 1b1. Warenager shows an error message and tells user to use the proper format, giving a suggestion.
+
+      Use case resumes at step 1.
+      
+#### Use case 23: Exit Warenager
 
 **MSS**
 
@@ -1970,9 +2028,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Warenager shows an error message.
 
      Use case resumes at step 1.
-
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -2043,8 +2098,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting stocks from a given list.
 
-   1. Prerequisites: List all stocks by default or use the `find` command. Multiple stocks in the list.
-
    1. Test case: `delete sn/1111111`<br>
       Expected: Stock with the serial number 1111111 is deleted from the inventory.
       Details of the deleted stock shown in the status message.
@@ -2058,16 +2111,20 @@ testers are expected to do more *exploratory* testing.
       Details of the deleted stock shown in the status message.
 
    1. Test case: `delete sn/1111111 sn/33333333` (no stock has the serial number `33333333`) <br>
-        Expected: Only the existing stock with the serial number 1111111 is deleted.
-        Details of this deleted stock shown in the status message.
-        Serial number `33333333` which does not belong to any stock will be shown in status message as well.
+      Expected: Only the existing stock with the serial number 1111111 is deleted.
+      Details of this deleted stock shown in the status message.
+      Serial number `33333333` which does not belong to any stock will be shown in status message as well.
 
+   1. Test case: `delet sn/1111111`<br>
+      Expected: No stock deleted due to unknown command word `delet`.
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
+      
    1. Test case: `delete 1111111`<br>
       Expected: No stock deleted due to invalid format from missing sn/.
-      Error details shown in the status message. Status bar remains the same.
+      Error details shown in the status message. Status bar remains the same. Suggestion message will be shown too.
 
    1. Other incorrect delete commands to try: `delete`, `delete sn/absdsa`
-      (where serial number is not an integer or is a negative integer)<br>
+      (where serial number is invalid)<br>
       Expected: Similar to previous.
 
 ### Finding a stock
@@ -2211,15 +2268,15 @@ testers are expected to do more *exploratory* testing.
 1. Generating statistics for a target field.
 
     1. Test case: `stats st/source`<br>
-       Expected: A pie chart describing the distribution of source companies for the entire inventory is popped up.
-       Details of the successful generation of statistics are shown in the status message.
+       Expected: Warenager switches to **Statistics** tab. A pie chart describing the distribution of source companies
+        for the entire inventory is shown.
 
     1. Test case: `stats st/source-qd-ntuc` (the source company `ntuc` exists) <br>
-       Expected: A pie chart describing the distribution of stocks in `ntuc` is popped up.
-       Details of the successful generation of statistics are shown in the status message.
+       Expected: Warenager switches to **Statistics** tab. A pie chart describing the distribution of stocks in `ntuc` company
+        is shown.
 
     1. Test case: `stats st/source-qd-fair price` (the source company `fair price` does not exist)<br>
-       Expected: No pop ups describing the statistics will be given or shown.
+       Expected: Warenager remains in the current tab. Pie chart is not updated.
        Error details shown in the status message. Suggestion message will be shown too.
 
    1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`
@@ -2270,9 +2327,9 @@ testers are expected to do more *exploratory* testing.
 1. Deleting a note from stock.
 
     1. Test case: `notedelete sn/ntuc1 ni/1`
-    Expected: Note with index 1 is deleted from the stock with serial number ntuc1
-    and display is removed from the notes column for the stock.
-    Details of the stock with successful note deleted is shown in status message.
+        Expected: Note with index 1 is deleted from the stock with serial number ntuc1
+        and display is removed from the notes column for the stock.
+        Details of the stock with successful note deleted is shown in status message.
 
    1. Test case: `notedelete sn/ntuc1 ni/noninteger`<br>
       Expected: No note deleted as note index given is not a positive integer.
@@ -2306,9 +2363,57 @@ testers are expected to do more *exploratory* testing.
       Expected: No note delete due to empty input for field note index.
       Error details shown in the status message. Suggestion message will be shown too.
 
+### Toggling between tabs in Warenager
+
+1. Toggle between tabs in Warenager using `tab` command input.
+
+    1. Test case: `tab`<br> (Warenager is currently at a tab that is not the last)
+        Expected: Warenager toggles to the next tab.
+        
+    1. Test case: `tab`<br> (Warenager is currently at the last tab)
+       Expected: Warenager toggles back to the first tab.
+       Details of the successful toggling between tabs is shown.
+       
+    1. Test case: `tabss`<br>
+       Expected: Warenager jumps back to the **Data** tab, or remains in the **Data** tab if it is
+       already at the tab.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect statistics commands to try: `ta`, `tab sn/ntuc1`
+      Expected: Similar to previous.
+
+### Clearing data in Warenager
+
+1. Clear all the data in Warenager using `clear` command input.
+
+    1. Test case: `clear`<br>
+        Expected: Warenager clears its data.
+        Details of the successful clearing is shown.
+      
+    1. Test case: `clear all`<br>
+       Expected: Warenager do not clear any data.
+       Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Other incorrect statistics commands to try: `cle`, `clear sn/ntuc1`
+      Expected: Similar to previous.
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. While in a Warenager session, delete the json files under `/data` directory.
+       Expected: Warenager functions as per normal.
+        
+    1. While in a Warenager session, edit the json files under `/data` directory.
+       Expected: Warenager ignores any changes in the json files and overwrites them with new
+       data based on the uneditted data.
+       
+    1. While not in a Warenager session, delete the json files under `/data` directory. Then start Warenager.
+       Expected: Warenager accepts the current content of the files as empty and functions as per normal.
+              
+    1. While not in a Warenager session, corrupt the json files under `/data` directory. Then start Warenager.
+       Expected: Warenager senses the corrupted files, replaces them with empty content and functions as per normal.
+        
+                
+        
 
