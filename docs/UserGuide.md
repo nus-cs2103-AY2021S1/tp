@@ -431,7 +431,10 @@ For example, if the user calls the following commands in sequence:
 
 ### 5.13 Creating a macro command : `macro`
 
-Adds a macro to run several commands in succession.
+Macros are custom shortcuts that ease the diet-tracking process. It allows you to create custom
+commands by combining multiple commands together. This is a powerful tool that removes the need for
+repetitive long-winded command execution. The `macro` command specifically stores a new macro into
+your McGymmy system.
 
 *__WARNING:__* this is an advanced feature!
 
@@ -484,7 +487,8 @@ Examples:
 
 ### 5.14 List all macros : `listmacro`
 
-Displays information on the available macros in the terminal.
+The `listmacro` command displays information on the available macros in the terminal, which allows you to keep track of
+all macros currently in the McGymmy system.
 
 Format: `listmacro [macro]`
 
@@ -496,7 +500,7 @@ Examples:
 
 ### 5.15 Deleting a macro: `remmacro`
 
-Deletes the given macro.
+The `remmacro` command allows you to remove an existing macro from your McGymmy system.
 
 Format: `remmacro MACRONAME`
 
