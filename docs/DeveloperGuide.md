@@ -111,7 +111,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#56-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
