@@ -95,6 +95,7 @@ public class JsonAdaptedTask {
         for (JsonAdaptedTag tag : tags) {
             taskTags.add(tag.toModelType());
         }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TaskName.class.getSimpleName()));
@@ -103,31 +104,33 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
         final TaskName modelTaskName = new TaskName(name);
-        // final Tag modelTag = tag.toModelType();
 
-        if (priority == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Priority.class.getSimpleName()));
+        Priority modelPriority = null;
+        if (priority != null) {
+            if (!Priority.isValidPriority(priority)) {
+                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+            }
+            modelPriority = Priority.valueOf(priority);
         }
-        if (!Priority.isValidPriority(priority)) {
-            throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+
+        Date modelDate = null;
+        if (date != null) {
+            if (!Date.isValidDate(date)) {
+                throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+            }
+            modelDate = new Date(date);
         }
-        final Priority modelPriority = Priority.valueOf(priority);
-        if (date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Date.class.getSimpleName()));
-        }
-        if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-        }
-        final Date modelDate = new Date(date);
+
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Status.class.getSimpleName()));
         }
         final Status modelStatus = Status.valueOf(status);
+
         final Set<Tag> modelTags = new HashSet<>(taskTags);
+
         final LocalDate modelDateCreated = LocalDate.parse(dateCreated);
+
         return new Task(modelTaskName, modelTags, modelPriority, modelDate, modelStatus, modelDateCreated);
     }
 }
