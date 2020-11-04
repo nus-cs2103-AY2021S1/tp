@@ -334,7 +334,7 @@ All of your customisation options are saved and persists even when you close the
 **Q**: Can I contribute to the project?<br>
 **A**: Sorry, as this is a school project, we are not accepting any contributors at this period.
 
-**Q**: Why does list command use `ls` as the keyword instead of `list`?
+**Q**: Why does list command use `ls` as the keyword instead of `list`? <br>
 **A**: In most command lines, `ls` is the default keyword for listing files and folders. We would like the transition 
 from command line to HelloFile to be as smooth as possible for our target users.
 
@@ -344,7 +344,7 @@ from command line to HelloFile to be as smooth as possible for our target users.
 
 Action | Format, Examples
 --------|------------------
-**Tag** | `tag t>TAG_NAME f>FILE_PATH , [l>LABEL]` <br> e.g., `tag t>newTag f>c:>myfolder>file.jpg l>MyFile` or `tag t>newTag f>c:/myfolder/file.jpg` 
+**Tag** | `tag t>TAG_NAME f>FILE_PATH [l>LABEL]` <br> e.g., `tag t>newTag f>c:/myfolder/file.jpg l>MyFile` or `tag t>newTag f>c:/myfolder/file.jpg` 
 **Show** | `show t>TAG_NAME`
 **Untag** | `untag t>TAG_NAME`
 **Retag** | `retag o>OLD_TAG_NAME t>NEW_TAG_NAME` <br> e.g., `retag o>mytag t>newtag`
