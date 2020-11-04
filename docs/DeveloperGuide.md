@@ -16,23 +16,23 @@ title: Developer Guide
     - [3.1. Add Features](#31-add-features)
         * [3.1.1 Implementation](#311-implementation)
         * [3.1.2 Design Consideration (**Add Recipe**)](#312-design-consideration-add-recipe)
-            * [Aspect 1: Concern while adding the first feature](3121-aspect-1)
-            * [Aspect 2: Should we allow adding duplicated recipes](3122-aspect-2)
+            * [Aspect 1: Concern while adding the first feature](#3121-aspect-1)
+            * [Aspect 2: Should we allow adding duplicated recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration (**Add Ingredient**)](#313-design-consideration-add-ingredient)
-            * [Aspect 1: Concern while adding the first feature](3131-aspect-1)
-            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](3132-aspect2)
+            * [Aspect 1: Concern while adding the first feature](#3131-aspect-1)
+            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect2)
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
         * [3.2.1 Implementation](#321-implementation)
         * [3.2.2 Design Consideration](#322-design-consideration)
-            * [Aspect: What are the informations to extract from a recipe and save in consumptionList](3221-aspect)
+            * [Aspect: What are the informations to extract from a recipe and save in consumptionList](#3221-aspect)
     - [3.3. List Features](#33-list-features)
         * [3.3.1 Implementation](#331-implementation)
         * [3.3.2 Design Consideration (**List Recipe**)](#332-design-consideration-list-recipe)
-            * [Aspect: Concern while adding a feature](3321-aspect)
+            * [Aspect: Concern while adding a feature](#3321-aspect)
         * [3.3.3 Design Consideration (**List Ingredient**)](#333-design-consideration-list-ingredient)
-             * [Aspect: Concern while adding a new feature](3331-aspect)
+             * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration (**List Consumption**)](#334-design-consideration-list-consumption)
-             * [Aspect 1: Concern while adding a new feature](3341-aspect-1)
+             * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)
              * [Aspect 2: What are the informations to list from a recipe in consumption list](3342-aspect-2)
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
@@ -63,8 +63,8 @@ title: Developer Guide
     - [3.8. Search Features](#38-search-features)
         * [3.8.1 Implementation](#381-implementation)
         * [3.8.2 Design Consideration (**Search Recipe**)](#382-design-consideration-search-recipe)
-            * [Aspect 1: Concern while adding a new feature](3821-aspect-1)
-            * [Aspect 2: How do we successfully search and filter the recipes based on the user’ search](3822-aspect-2)
+            * [Aspect 1: Concern while adding a new feature](#3821-aspect-1)
+            * [Aspect 2: How do we successfully search and filter the recipes based on the user’ search](#3822-aspect-2)
         * [3.8.3 Design Consideration (**Sreach Ingredient**)](#383-design-consideration-search-ingredient)
             * [Aspect: Concern while adding a new feature](#3831-aspect)
     - [3.9. Recommend Feature](#39-recommend-feature)
@@ -249,12 +249,12 @@ API call:
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** 
-Some term in the sequence diagram above has changed to a common substitutable term:
+Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
-* AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
-* info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
-* add(type): `addRecipe(type)` or `addIngredient(type)`
-* type: `recipe` or `ingredient`
+ * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
+ * info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
+ * add(type): `addRecipe(type)` or `addIngredient(type)`
+ * type: `recipe` or `ingredient`
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
