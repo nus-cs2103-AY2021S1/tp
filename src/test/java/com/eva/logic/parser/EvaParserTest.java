@@ -3,7 +3,7 @@ package com.eva.logic.parser;
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static com.eva.testutil.Assert.assertThrows;
-import static com.eva.testutil.StaffUtil.getAddStaffCommand;
+//import static com.eva.testutil.StaffUtil.getAddStaffCommand;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.eva.logic.commands.AddStaffCommand;
+//import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 //import com.eva.logic.commands.EditCommand;
@@ -27,22 +27,24 @@ import com.eva.logic.commands.HelpCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 //import com.eva.model.person.Person;
-import com.eva.model.person.staff.Staff;
+//import com.eva.model.person.staff.Staff;
 //import com.eva.testutil.EditPersonDescriptorBuilder;
 //import com.eva.testutil.PersonBuilder;
-import com.eva.testutil.staff.StaffBuilder;
+//import com.eva.testutil.staff.StaffBuilder;
 
 
 public class EvaParserTest {
 
     private final EvaParser parser = new EvaParser();
 
+    /*
     @Test
     public void parseCommand_addStaff() throws Exception {
         Staff staff = new StaffBuilder().build();
         AddStaffCommand command = (AddStaffCommand) parser.parseCommand(getAddStaffCommand(staff));
         assertEquals(new AddStaffCommand(staff), command);
     }
+     */
 
     @Test
     public void parseCommand_clear() throws Exception {
