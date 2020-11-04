@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.address.testutil.TypicalExercise.PULL_UP;
-//import static seedu.address.testutil.TypicalExercise.PUSH_UP;
-//import static seedu.address.testutil.TypicalExercise.SIT_UP;
-//import static seedu.address.testutil.TypicalExercise.SQUAT;
 import static seedu.address.testutil.TypicalExercise.getTypicalExerciseBook;
 
 import java.util.Arrays;
