@@ -55,6 +55,7 @@ public class CommandTestUtil {
     public static final String VALID_TUTORIAL_GROUP_DAY_MON = "MON";
     public static final String VALID_TUTORIAL_GROUP_1300 = "13:00";
     public static final String VALID_TUTORIAL_GROUP_1500 = "15:00";
+    public static final String INVALID_TUTORIAL_GROUP_1500 = "1500";
 
     public static final String VALID_MODULE_CS2103T = "CS2103T";
     public static final String VALID_MODULE_CS2040 = "CS2040";

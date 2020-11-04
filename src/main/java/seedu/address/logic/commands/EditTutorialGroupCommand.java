@@ -105,6 +105,14 @@ public class EditTutorialGroupCommand extends Command {
             updatedEndTime, tutorialGroupToEdit.getUniqueStudentList());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof EditTutorialGroupCommand // instanceof handles nulls
+            && index.equals(((EditTutorialGroupCommand) other).index)
+            && editTutorialGroupDescriptor.equals(((EditTutorialGroupCommand) other).editTutorialGroupDescriptor)); // state check
+    }
+
     public static class EditTutorialGroupDescriptor {
         private TutorialGroupId tutorialGroupId;
         private DayOfWeek dayOfWeek;
