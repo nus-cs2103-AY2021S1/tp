@@ -27,13 +27,15 @@ public class StatsRecipeMadeCommand extends Command {
     }
 
     private String getMessage(boolean isEmpty) {
-        DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        var onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
         String msg;
         if (this.before != null && this.after != null) {
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
             var onAfter = this.after.format(onFormatter);
+
             if (this.after.plusDays(1).equals(this.before)) {
                 msg = String.format(isEmpty ? "No recipes were made on %s"
                                             : "Showing recipes made on %s", onAfter);

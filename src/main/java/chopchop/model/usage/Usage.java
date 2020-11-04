@@ -25,7 +25,7 @@ public abstract class Usage {
     }
 
     public String getPrintableDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return this.date.format(formatter);
     }
 

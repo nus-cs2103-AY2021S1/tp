@@ -28,7 +28,7 @@ public class StatsIngredientUsedCommand extends Command {
 
     private String getMessage(boolean isEmpty) {
         DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String msg;
         if (this.before != null && this.after != null) {
             var before = this.before.format(formatter);
