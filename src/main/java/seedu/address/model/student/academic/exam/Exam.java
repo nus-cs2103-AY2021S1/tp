@@ -25,7 +25,6 @@ public class Exam {
      */
     public Exam(String examName, LocalDate examDate, Score score) {
         requireAllNonNull(examName, examDate, score);
-
         this.examName = examName;
         this.examDate = examDate;
         this.score = score;
@@ -68,7 +67,7 @@ public class Exam {
 
     @Override
     public String toString() {
-        return " " + examName + "\n\t- Date: " + print(examDate) + "\n\t- Score: "
-                + score + " (" + score.getScorePercentage() + "%)";
+        return "- " + examName + "\n\t-> Date: " + print(examDate) + "\n\t-> Score: "
+                + score + " (" + score.getScorePercentage() + "%)\n";
     }
 }
