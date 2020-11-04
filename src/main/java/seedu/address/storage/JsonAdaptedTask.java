@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -31,14 +32,19 @@ public class JsonAdaptedTask {
     private final String priority;
     private final String date;
     private final String status;
+    private final String dateCreated;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("name") String name, @JsonProperty("tag") List<JsonAdaptedTag> tags,
-                              @JsonProperty("priority") String priority,
-                           @JsonProperty("date") String date, @JsonProperty("status") String status) {
+    public JsonAdaptedTask(
+            @JsonProperty("name") String name,
+            @JsonProperty("tag") List<JsonAdaptedTag> tags,
+            @JsonProperty("priority") String priority,
+            @JsonProperty("date") String date,
+            @JsonProperty("status") String status,
+            @JsonProperty("dateCreated") String dateCreated) {
         this.name = name;
         this.priority = priority;
         this.date = date;
@@ -46,12 +52,14 @@ public class JsonAdaptedTask {
         if (tags != null) {
             this.tags.addAll(tags);
         }
+        this.dateCreated = dateCreated;
     }
 
     /**
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
+        assert source.getName().isPresent();
         name = source.getName().get().getValue();
         if (source.getPriority().isEmpty()) {
             priority = null;
@@ -73,6 +81,8 @@ public class JsonAdaptedTask {
                     .map(JsonAdaptedTag::new)
                     .collect(Collectors.toList()));
         }
+        assert source.getDateCreated().isPresent();
+        dateCreated = source.getDateCreated().get().toString();
     }
 
     /**
@@ -102,7 +112,7 @@ public class JsonAdaptedTask {
         if (!Priority.isValidPriority(priority)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
-        final Priority modelPriority = Priority.getPriority(priority);
+        final Priority modelPriority = Priority.valueOf(priority);
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Date.class.getSimpleName()));
@@ -115,8 +125,9 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Status.class.getSimpleName()));
         }
-        final Status modelStatus = Status.getStatus(status);
+        final Status modelStatus = Status.valueOf(status);
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTaskName, modelTags, modelPriority, modelDate, modelStatus);
+        final LocalDate modelDateCreated = LocalDate.parse(dateCreated);
+        return new Task(modelTaskName, modelTags, modelPriority, modelDate, modelStatus, modelDateCreated);
     }
 }

@@ -3,11 +3,13 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 
 /**
@@ -40,7 +42,11 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private Label status;
+    private Label redStatus;
+    @FXML
+    private Label orangeStatus;
+    @FXML
+    private Label greenStatus;
     @FXML
     private ProgressBar progressBar;
     @FXML
@@ -59,7 +65,13 @@ public class TaskCard extends UiPart<Region> {
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         priority.setText(task.getPriorityForUi());
         date.setText(task.getDateForUi());
-        status.setText(task.getStatusForUi());
+        if (task.getStatus().get().equals(Status.COMPLETED)) {
+            greenStatus.setText("COMPLETED");
+        } else if (task.isOverdue()) {
+            redStatus.setText("OVERDUE");
+        } else {
+            orangeStatus.setText("NOT COMPLETED");
+        }
         progressBar.setProgress(task.getProgressPercentageForUi());
         remainingDays.setText(task.getDaysUntilDeadlineForUi());
     }

@@ -2,6 +2,7 @@ package seedu.address.model.task;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -28,6 +29,7 @@ public class Task {
 
     /**
      * Initial constructor to avoid having null as arguments.
+     * Should be only used to add a new task.
      *
      * @param name name of the task
      */
@@ -37,7 +39,7 @@ public class Task {
         this.priority = null;
         this.date = null;
         this.status = Status.NOT_COMPLETED;
-        this.dateCreated = LocalDate.of(2020, 10, 26);
+        this.dateCreated = LocalDate.now();
     }
 
     /**
@@ -48,15 +50,16 @@ public class Task {
      * @param priority priority of the task
      * @param date date of the task
      * @param status status of the task
+     * @param dateCreated date creation of the task
      */
-    public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status) {
-        requireNonNull(name);
+    public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status, LocalDate dateCreated) {
+        requireAllNonNull(name, status);
         this.name = name;
         this.tags.addAll(tags);
         this.priority = priority;
         this.date = date;
         this.status = status;
-        this.dateCreated = LocalDate.of(2020, 10, 26);
+        this.dateCreated = dateCreated;
     }
 
     public Optional<TaskName> getName() {
@@ -64,7 +67,7 @@ public class Task {
     }
 
     public Task setName(TaskName name) {
-        return new Task(name, this.tags, this.priority, this.date, this.status);
+        return new Task(name, this.tags, this.priority, this.date, this.status, this.dateCreated);
     }
 
     public Optional<Set<Tag>> getTags() {
@@ -72,7 +75,7 @@ public class Task {
     }
 
     public Task setTags(Set<Tag> tags) {
-        return new Task(this.name, tags, this.priority, this.date, this.status);
+        return new Task(this.name, tags, this.priority, this.date, this.status, this.dateCreated);
     }
 
     public Optional<Priority> getPriority() {
@@ -80,7 +83,7 @@ public class Task {
     }
 
     public Task setPriority(Priority priority) {
-        return new Task(this.name, this.tags, priority, this.date, this.status);
+        return new Task(this.name, this.tags, priority, this.date, this.status, this.dateCreated);
     }
 
     public Optional<Date> getDate() {
@@ -88,7 +91,7 @@ public class Task {
     }
 
     public Task setDate(Date date) {
-        return new Task(this.name, this.tags, this.priority, date, this.status);
+        return new Task(this.name, this.tags, this.priority, date, this.status, this.dateCreated);
     }
 
     public Optional<Status> getStatus() {
@@ -97,7 +100,12 @@ public class Task {
     }
 
     public Task setStatus(Status status) {
-        return new Task(this.name, this.tags, this.priority, this.date, status);
+        return new Task(this.name, this.tags, this.priority, this.date, status, this.dateCreated);
+    }
+
+    public Optional<LocalDate> getDateCreated() {
+        assert dateCreated != null;
+        return Optional.of(dateCreated);
     }
 
     /**
@@ -173,6 +181,30 @@ public class Task {
             && otherTask.getStatus().equals(getStatus());
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder
+            .append(" *Name: ")
+            .append(getName().isPresent() ? getName().get() : "")
+            .append("\n")
+            .append(" *Tag: ")
+            .append(getTags().isPresent() ? getTags().get() : "")
+            .append("\n")
+            .append(" *Priority: ")
+            .append(getPriority().isPresent() ? getPriority().get() : "")
+            .append("\n")
+            .append(" *Date: ")
+            .append(getDate().isPresent() ? getDate().get() : "")
+            .append("\n")
+            .append(" *Status: ")
+            .append(getStatus().isPresent() ? getStatus().get() : "")
+            .append("\n");
+        return builder.toString();
+    }
+
+    // ============================ UI getter ================================ //
+
     /**
      * Returns string representing of the name of the task for the UI.
      *
@@ -189,9 +221,9 @@ public class Task {
      * @return set of tags to be displayed in the UI.
      */
     public Set<Tag> getTagsForUi() {
-        if (this.tags == null) {
+        if (this.tags.isEmpty()) {
             HashSet<Tag> defaultTags = new HashSet<>();
-            defaultTags.add(new Tag("TagsNotProvided"));
+            defaultTags.add(new Tag("NoTags"));
             return defaultTags;
         } else {
             return this.tags;
@@ -205,9 +237,17 @@ public class Task {
      */
     public String getPriorityForUi() {
         if (this.priority == null) {
-            return "Priority not provided";
-        } else {
-            return this.priority.toString();
+            return "-  -  -  -";
+        }
+        switch(priority) {
+        case HIGH:
+            return "★★★★";
+        case NORMAL:
+            return "★★★";
+        case LOW:
+            return "★★";
+        default:
+            return "-  -  -  -";
         }
     }
 
@@ -218,7 +258,7 @@ public class Task {
      */
     public String getDateForUi() {
         if (this.date == null) {
-            return "Date not provided";
+            return "-   -   -   -";
         } else {
             return this.date.toString();
         }
@@ -232,9 +272,9 @@ public class Task {
     public String getStatusForUi() {
         assert this.status != null;
         if (status == Status.COMPLETED) {
-            return "Completed";
+            return "COMPLETED";
         } else {
-            return "Not completed";
+            return "NOT COMPLETED";
         }
     }
 
@@ -243,13 +283,9 @@ public class Task {
      *
      * @return number of days as double
      */
-    public double getDaysSinceCreated() {
-        if (date == null) {
-            return 0;
-        } else {
-            LocalDate currentDate = LocalDate.now();
-            return dateCreated.until(currentDate, DAYS);
-        }
+    private double getDaysSinceCreated() {
+        LocalDate currentDate = LocalDate.now();
+        return dateCreated.until(currentDate, DAYS);
     }
 
     /**
@@ -257,7 +293,7 @@ public class Task {
      *
      * @return number of days as double
      */
-    public double getDaysFromCreatedToDeadline() {
+    private double getDaysFromCreatedToDeadline() {
         if (date == null) {
             return 0;
         } else {
@@ -270,9 +306,9 @@ public class Task {
      *
      * @return number of days as double
      */
-    public double getDaysUntilDeadline() {
-        LocalDate currentDate = LocalDate.now();
-        return currentDate.until(date.getValue(), DAYS);
+    private double getDaysUntilDeadline() {
+        LocalDate tomorrow = LocalDate.now();
+        return tomorrow.until(date.getValue(), DAYS);
     }
 
     /**
@@ -281,11 +317,23 @@ public class Task {
      * @return double value from 0 to 1
      */
     public double getProgressPercentageForUi() {
+        if (this.status.equals(Status.COMPLETED)) {
+            return 1;
+        }
+
         if (date == null) {
             return 0;
-        } else {
-            return getDaysSinceCreated() / getDaysFromCreatedToDeadline();
         }
+
+        if (getDaysUntilDeadline() < 0) {
+            return -1;
+        }
+
+        if (getDaysFromCreatedToDeadline() == 0) {
+            return 1;
+        }
+
+        return getDaysSinceCreated() / getDaysFromCreatedToDeadline();
     }
 
     /**
@@ -295,36 +343,36 @@ public class Task {
      */
     public String getDaysUntilDeadlineForUi() {
         String toDisplay = "Remaining days : ";
+
+        if (this.status.equals(Status.COMPLETED)) {
+            toDisplay += "-";
+            return toDisplay;
+        }
+
         if (date == null) {
-            toDisplay += "unknown";
+            toDisplay += "∞";
+            return toDisplay;
+        }
+
+        int remainingDays = (int) getDaysUntilDeadline();
+        if (remainingDays < 0) {
+            toDisplay += "!!!";
         } else {
-            int remainingDays = (int) getDaysUntilDeadline();
             toDisplay += String.valueOf(remainingDays);
         }
-        return toDisplay + " ";
+
+        return toDisplay;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder
-                .append(" *Name: ")
-                .append(getName().isPresent() ? getName().get() : "")
-                .append("\n")
-                .append(" *Tag: ")
-                //.append(getTags().isPresent() ? getTags().get() : "")
-                .append(getTags().isPresent() ? getTags().get() : "")
-                .append("\n")
-                .append(" *Priority: ")
-                .append(getPriority().isPresent() ? getPriority().get() : "")
-                .append("\n")
-                .append(" *Date: ")
-                .append(getDate().isPresent() ? getDate().get() : "")
-                .append("\n")
-                .append(" *Status: ")
-                .append(getStatus().isPresent() ? getStatus().get() : "")
-                .append("\n");
-        return builder.toString();
+    /**
+     * Returns true if this task is overdue.
+     *
+     * @return true if this task is overdue and date is not null;
+     */
+    public boolean isOverdue() {
+        if (date == null) {
+            return false;
+        }
+        return LocalDate.now().isAfter(date.getValue());
     }
-
 }
