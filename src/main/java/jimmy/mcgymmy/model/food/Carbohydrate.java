@@ -8,7 +8,6 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 public class Carbohydrate extends Macronutrient {
     private static final int CARBOHYDRATE_MULTIPLIER = 4;
     private static final int DEFAULT_CARBOHYDRATE = 0;
-    public static final String MESSAGE_CONSTRAINTS = "Carbohydrate" + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * @param amount A valid amount.
@@ -29,10 +28,5 @@ public class Carbohydrate extends Macronutrient {
             assert false : "Error in creation of default";
             throw new IllegalArgumentException("Error in creation using default values.");
         }
-    }
-
-    @Override
-    String getMessageConstraint() {
-        return MESSAGE_CONSTRAINTS;
     }
 }

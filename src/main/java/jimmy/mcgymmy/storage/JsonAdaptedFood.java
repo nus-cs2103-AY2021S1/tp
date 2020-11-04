@@ -86,7 +86,7 @@ class JsonAdaptedFood {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Protein.class.getSimpleName()));
         }
         if (!Protein.isValid(protein)) {
-            throw new IllegalValueException(Protein.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Protein.newDefault().getMessageConstraint());
         }
         final Protein modelProtein = new Protein(Integer.parseInt(protein));
 
@@ -94,7 +94,7 @@ class JsonAdaptedFood {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Fat.class.getSimpleName()));
         }
         if (!Fat.isValid(fat)) {
-            throw new IllegalValueException(Fat.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Fat.newDefault().getMessageConstraint());
         }
         final Fat modelFat = new Fat(Integer.parseInt(fat));
 
@@ -103,7 +103,7 @@ class JsonAdaptedFood {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Carbohydrate.class.getSimpleName()));
         }
         if (!Carbohydrate.isValid(carbs)) {
-            throw new IllegalValueException(Carbohydrate.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Carbohydrate.newDefault().getMessageConstraint());
         }
         final Carbohydrate modelCarbohydrate = new Carbohydrate(Integer.parseInt(carbs));
 

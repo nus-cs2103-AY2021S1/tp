@@ -5,7 +5,7 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    protected static final String MESSAGE_CONSTRAINTS =
+    private static final String MESSAGE_CONSTRAINTS =
             " can only contain non-negative integers less than 1000";
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
     private final int amount;
@@ -46,7 +46,9 @@ public abstract class Macronutrient {
         return amount >= 0 && amount < 1000;
     }
 
-    abstract String getMessageConstraint();
+    public String getMessageConstraint() {
+        return this.getMacronutrientType() + MESSAGE_CONSTRAINTS;
+    }
 
     @Override
     public String toString() {
