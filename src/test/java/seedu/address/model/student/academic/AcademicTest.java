@@ -3,7 +3,9 @@ package seedu.address.model.student.academic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DATE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_EXAM_FYE;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
@@ -83,5 +85,22 @@ public class AcademicTest {
         Academic acadWithQuestion = aliceAcademic.deleteQuestion(new UnsolvedQuestion(DEFAULT_QUESTION_MATH));
         Academic expected = new StudentBuilder(ALICE).withQuestions().build().getAcademic();
         assertEquals(expected, acadWithQuestion);
+    }
+
+    @Test
+    public void containsAttendance() {
+        Feedback amyFeedback = new Feedback(VALID_ATTENDANCE_FEEDBACK_AMY);
+        Attendance standard = new Attendance(ATTENDANCE_DATE_AMY, true, amyFeedback);
+        Academic aliceAcademic = new StudentBuilder(ALICE).withAttendances(standard).build().getAcademic();
+        assertTrue(aliceAcademic.containsAttendance(standard));
+
+        Attendance test = new Attendance(ATTENDANCE_DATE_AMY, false, amyFeedback);
+        assertTrue(aliceAcademic.containsAttendance(test));
+
+        test = new Attendance(ATTENDANCE_DATE_AMY, true);
+        assertTrue(aliceAcademic.containsAttendance(test));
+
+        test = new Attendance(ATTENDANCE_DATE_BOB, true, amyFeedback);
+        assertFalse(aliceAcademic.containsAttendance(test));
     }
 }

@@ -133,6 +133,7 @@ public class CommandTestUtil {
             + PREFIX_ATTENDANCE_FEEDBACK + VALID_ATTENDANCE_FEEDBACK_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_BOB + " "
             + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_BOB;
+
     public static final LocalDate ATTENDANCE_DATE_AMY = parseToDate(VALID_ATTENDANCE_DATE_AMY);
     public static final LocalDate ATTENDANCE_DATE_BOB = parseToDate(VALID_ATTENDANCE_DATE_BOB);
 

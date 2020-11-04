@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,11 +67,12 @@ public class AddAttendanceCommand extends AttendanceCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
         Student studentToAddAttendance = lastShownList.get(index.getZeroBased());
+        if (studentToAddAttendance.containsAttendance(attendanceToAdd)) {
+            throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
+        }
 
-        List<Attendance> attendanceList = new ArrayList<>(studentToAddAttendance.getAttendance());
-        this.updateAttendanceList(attendanceList);
-
-        Student updatedStudent = super.updateStudentAttendance(studentToAddAttendance, attendanceList);
+        List<Attendance> updatedAttendance = updateAttendanceList(studentToAddAttendance.getAttendance());
+        Student updatedStudent = updateStudentAttendance(studentToAddAttendance, updatedAttendance);
 
         model.setStudent(studentToAddAttendance, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -81,14 +81,9 @@ public class AddAttendanceCommand extends AttendanceCommand {
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), attendanceToAdd));
     }
 
-    private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
-        boolean containsAttendanceAtDate = attendanceList
-                .stream()
-                .anyMatch(attendance -> attendance.getLessonDate().equals(attendanceToAdd.getLessonDate()));
+    private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) {
+        assert attendanceList.stream().noneMatch(attendanceToAdd::isSameAttendance);
 
-        if (containsAttendanceAtDate) {
-            throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
-        }
         attendanceList.add(attendanceToAdd);
         return attendanceList;
     }

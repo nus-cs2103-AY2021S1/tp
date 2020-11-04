@@ -58,6 +58,14 @@ public class Attendance {
         return lessonDate;
     }
 
+    /**
+     * Returns true if the given date matches the lesson date of an Attendance object.
+     * This is a weaker notion of equality between Attendance objects.
+     */
+    public boolean isSameAttendance(Attendance date) {
+        return lessonDate.equals(date.lessonDate);
+    }
+
     public String getUserInputDate() {
         return getInputFormat(lessonDate);
     }

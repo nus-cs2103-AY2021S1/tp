@@ -90,4 +90,21 @@ public class AttendanceTest {
         assertEquals(expected, test.toString());
     }
 
+    @Test
+    public void isSameAttendance() {
+        Attendance test = new Attendance(VALID_DATE, true, VALID_FEEDBACK);
+        assertTrue(VALID_ATTENDANCE.isSameAttendance(test));
+        test = new Attendance(VALID_DATE, true);
+        assertTrue(VALID_ATTENDANCE.isSameAttendance(test));
+
+        test = new Attendance(VALID_DATE, false, VALID_FEEDBACK);
+        assertTrue(VALID_ATTENDANCE.isSameAttendance(test));
+        test = new Attendance(VALID_DATE, false);
+        assertTrue(VALID_ATTENDANCE.isSameAttendance(test));
+
+        LocalDate otherDate = parseToDate("28/2/20");
+        test = new Attendance(otherDate, true, VALID_FEEDBACK);
+        assertFalse(VALID_ATTENDANCE.isSameAttendance(test));
+    }
+
 }

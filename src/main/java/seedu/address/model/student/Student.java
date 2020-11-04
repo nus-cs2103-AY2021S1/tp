@@ -170,6 +170,10 @@ public class Student {
     }
 
     //==============QUESTION OPERATIONS==============//
+
+    /**
+     * Returns true if there is an existing {@code Question} in the question list that has the same question.
+     */
     public boolean containsQuestion(Question question) {
         return academic.containsQuestion(question);
     }
@@ -207,6 +211,15 @@ public class Student {
         requireNonNull(target);
 
         return new Student(name, phone, school, year, admin, academic.deleteQuestion(target));
+    }
+
+    //==============ATTENDANCE OPERATIONS==============//
+
+    /**
+     * Returns true if there is an existing {@code Attendance} in the attendance list that shares the same date.
+     */
+    public boolean containsAttendance(Attendance attendance) {
+        return academic.containsAttendance(attendance);
     }
 
     //==============ADMIN ACCESSORS==============//
