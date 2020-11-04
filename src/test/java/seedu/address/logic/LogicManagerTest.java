@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExercise.PUSH_UP;

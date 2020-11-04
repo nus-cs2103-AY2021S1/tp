@@ -3,7 +3,6 @@ package seedu.address.model.exercise;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HOUSE;
 import static seedu.address.testutil.Assert.assertThrows;
