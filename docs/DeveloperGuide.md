@@ -249,8 +249,7 @@ API call:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** 
-
+:information_source: **Note** <br>
 Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
 * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
@@ -349,8 +348,9 @@ The following sequence diagram shows how list operation works when `execute(reci
 
 ![ListSequenceDiagram](images/implementation/ListSequence.png)
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** 
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note** <br> 
 Some term in the sequence diagram above has changed to a common substitutable term:
 
 * userInput: `recipes`, `fridge` or `calories`
