@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Jaylen Lee's Project Portfolio Page
+title: Lee Jian Hui's Project Portfolio Page
 ---
 
 ## Project: Bamboo
@@ -20,23 +20,33 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly because a user can recover from adding the wrong category into the expense book and better manage their expenses if there is a certain category that they are no longer interested in or have no more need for.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The designing process too was challenging as there are many variables to be concerned with as budget and expense are both intricately linked with category.
   * Credits: N.A
+  
+* **New Component**: Added a class containing a list of unique tag.
+  * What it does: contains a list of unique tags and allows tag list specified function.
+  * Justification: This component improves the execution significantly because categories can now be parsed and loaded to be used by the expensebook.
+  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+  * Credits: N.A
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jaylenlee&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false)
 
 * **Project management**:
-  * Managed releases `v1.2` - `v1.4` (4 releases) on GitHub
+  * Assisted in assigning PRs to corresponding issues and milestones
+  * Reviewed and merged PRs
 
 * **Enhancements to existing features**:
   * Refactoring of names of existing classes to more suitable names (Pull requests [\#37](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/37), [\#47](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/47))
   * Modifying classes to encourage more abstraction barriers (Pull request [\#77](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/77))
-
+  * Fixing of bugs that causes unideal results (Pull request [\#155](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/155), [\#156](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/156))
+  * Setting character limits to textfield input to prevent excessive amount of input to lag the application (Pull request [\#158](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/158))
+  
 * **Documentation**:
   * User Guide:
     * Added initial documentation for basic features. [\#11](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/11)
+    * Updated documentation to v1.2 [\#48](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/48)
     * Added documentation for the features `help`, `deleteCat` and `switch` [\#91](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/91)
     * Added example screenshots to features in Usage 
   * Developer Guide:
-    * Added implementation details of the `switch` feature.
+    * Added implementation details of the `switch` feature. [\#66](https://github.com/AY2021S1-CS2103-W14-3/tp/pull/66)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 
