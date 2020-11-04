@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.regex.Matcher;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAttendanceCommand;
@@ -21,7 +20,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 
-public class AttendanceCommandParser implements Parser<AttendanceCommand> {
+public class AttendanceCommandParser extends PrefixDependentParser<AttendanceCommand> {
 
     private static final String ERROR_ADD_ATTENDANCE =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttendanceCommand.MESSAGE_USAGE);
@@ -109,9 +108,5 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
         }
 
         return new DeleteAttendanceCommand(index, lessonDate);
-    }
-
-    private boolean areRequiredPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
