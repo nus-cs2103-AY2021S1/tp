@@ -1,12 +1,20 @@
 package jimmy.mcgymmy.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
 
 import org.junit.jupiter.api.Test;
 
 public class ConfigTest {
+
+    private static Path DEFAULT_PREF_PATH = Paths.get("preferences.json");
+    private static Path TEST_PREF_PATH = Paths.get("dummy.json");
 
     @Test
     public void toString_defaultObject_stringReturned() {
@@ -17,11 +25,55 @@ public class ConfigTest {
     }
 
     @Test
+    public void loggerLevel_Correct() {
+        Config defaultConfig = new Config();
+
+        //Check default level
+        assertEquals(defaultConfig.getLogLevel(), Level.INFO);
+        assertNotSame(defaultConfig.getLogLevel(), Level.SEVERE);
+
+        //Check setLogLevel
+        defaultConfig.setLogLevel(Level.SEVERE);
+        assertEquals(defaultConfig.getLogLevel(), Level.SEVERE);
+        assertNotSame(defaultConfig.getLogLevel(), Level.INFO);
+    }
+
+    @Test
+    public void getPathTest() {
+
+        //Check if getPath is correct
+        Config defaultConfig = new Config();
+        assertEquals(defaultConfig.getUserPrefsFilePath(), DEFAULT_PREF_PATH);
+
+        //Check set path
+        defaultConfig.setUserPrefsFilePath(TEST_PREF_PATH);
+        assertEquals(TEST_PREF_PATH, defaultConfig.getUserPrefsFilePath());
+
+        //Check for inequality
+        assertNotSame(DEFAULT_PREF_PATH, defaultConfig.getUserPrefsFilePath());
+    }
+
+    @Test
     public void equalsMethod() {
         Config defaultConfig = new Config();
         assertNotNull(defaultConfig);
-        assertTrue(defaultConfig.equals(defaultConfig));
-    }
 
+        //Test same object
+        assertEquals(defaultConfig, defaultConfig);
+
+        //2 Object with Same type
+        Config defaultConfig2 = new Config();
+        assertEquals(defaultConfig2, defaultConfig);
+
+        //Same type of object with different types
+        Config config3 = new Config();
+        config3.setUserPrefsFilePath(TEST_PREF_PATH);
+        assertNotEquals(config3, defaultConfig);
+
+        //2 Modified Configs
+        Config config4 = new Config();
+        config4.setUserPrefsFilePath(TEST_PREF_PATH);
+        assertEquals(config3, config4);
+    }
 
 }
