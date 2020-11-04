@@ -13,8 +13,7 @@ import java.util.Objects;
  */
 public class Exam {
 
-    public static final String MESSAGE_CONSTRAINTS = "Invalid Exam name. Exam names should be should "
-            + "only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Exam names should not be should not be blank.";
 
     private final String examName;
     private final LocalDate examDate;
