@@ -172,7 +172,7 @@ Format: `remark INDEX r/[REMARK]`
 
 * Adds a remark to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * You can remove the contact’s remark by typing `r/` without specifying any remark after it.
-    
+
 Examples:
 *  `remark 1 r/Wears red glasses` adds the remark “Wears red glasses” to the 1st contact in the list.
 *  `remark 2 r/` erases the remark of the 2nd contact in the list.
@@ -194,9 +194,9 @@ Examples:
 * `find n/alex yeoh` returns all contacts with names containing `alex` and `yeoh`.
 * `find n/victor tan d/computing` returns all contacts with names containing `victor` and `tan` and with departments
 containing `computing`.
- 
+
 ### Module Management
- 
+
 #### Adding a module: `addmod`
 
 Adds a new module to the active semester.
@@ -216,6 +216,7 @@ Deletes a module from the active semester.
 Format: `delmod m/MODULE_CODE`
 
 * Deletes the `MODULE_CODE` specified from the active semester. The `MODULE_CODE` **must exist** in the active semester in the first place.
+The command takes in **only one** `MODULE_CODE` parameter and does not allow for the deletion of multiple modules.
 
 Examples:
 * `delmod m/CS50` deletes the existing module with code `CS50` from the active semester.
@@ -227,17 +228,23 @@ Finds all modules in the active semester that match the given fields.
 
 Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR_NAME]`
 
-* The search is case-insensitive. e.g. `cs50` will match `CS50`.
-* Partial words will be matched. e.g. `database` will match `Database Systems`.
+* `MODULE_CODE` parameter **does not** allow for multiple keywords. e.g. `cs1 cs2` would not be allowed.
+* `MODULE_NAME` and `INSTRUCTOR_NAME` parameters support search for multiple keywords. The keywords should be seperated by a spacing.
+* Partial words will be matched for `MODULE_CODE` and `MODULE_NAME` parameters. e.g. `data` will match `Database Systems`.
+* Full keywords would be required for `INSTRUCTOR_NAME` parameter. e.g. `John` will match `John Lennon` but `Joh` will not match.
+* The search is case-insensitive for all parameters. e.g. `cs50` will match `CS50`.
 * The order of the keywords do not matter. e.g. `Statistics and Probability` will match `Probability and Statistics`.
 * At least one of the optional fields must be provided.
 
 Examples :
 
-* `findmod m/cs210` returns all modules with codes containing `cs210`.
+* `findmod m/cs210` returns all modules with codes containing `CS210`.
 * `findmod n/programming` returns all modules with names containing `programming`.
+* `findmod n/software methodology` returns all the modules with names containing `software` **or** `methodology`.
 * `findmod m/CS2 n/security i/Alex` returns all modules with codes containing `CS2`, names containing `programming`,
-and instructors with names containing `Alex`.
+**and** instructors with names containing `Alex`.
+* `findmod m/CS2 n/Software Programming i/Damith` returns all modules with codes containing `CS2` **and**
+names containing `Software` **or** `Programming` **and** instructors with names `Damith`.
 
 ### Instructor Assignment
 
@@ -271,7 +278,7 @@ Format: `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​`
 * Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. All `MODULE_CODE` **must be unique** and the contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
 * You can unassign the contact from all modules in the active semester by typing `m/`
         without specifying any module codes after it.
-    
+
 Examples :
 * `unassign 1 m/CS3233` Unassigns the contact at index 1 from the existing module with code `CS3233`.
 * `unassign 3 m/CS2100 m/CS2106` Unassigns the contact at from 3 to the existing modules with codes `CS2100` and `CS2106`.

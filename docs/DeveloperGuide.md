@@ -169,50 +169,86 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
+### Find module by module attributes feature
+
+#### Implementation
+
+The find module mechanism is facilitated by `FindModCommand` and `FindModCommandParser`. It allows users to search for modules based on their respective attributes which are the module code, module name and instructors teaching the module.
+It uses `ModelManager#updateFilteredModuleList(Predicate p)` which is exposed in the Model interface as `Model#updateFilteredModuleList(Predicate p)`.
+The method updates the current module list and filters it according to the given predicate which will then be reflected accordingly in the GUI.
+
+The following sequence diagram shows how the find module by module attributes operation works:
+
+![FindmodActivityDiagram](images/FindmodSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a findmod command:
+
+![FindmodActivityDiagram](images/FindmodActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How findmod executes
+
+* **Alternative 1 (current choice):** AND searching from multiple attributes and OR searching between keywords for module name and instructor attributes. Module code attribute only allows single keywords.
+  * Pros : Provides the ability to narrow down the search results by adding more attributes while also allowing more flexible search within the attributes. Single keyword for module code attribute allows for more focused module code searches.
+  * Cons : Unable to search for multiple modules with different module attributes and unable to search for multiple modules with different module codes.
+
+* **Alternative 2:** And searching across attributes and disallow multiple keyword search across all attributes.
+  * Pros : Provides the ability for a very focused module search.
+  * Cons : Attributes like instructor name and module name might be difficult to remember, and might be difficult to find with just one keyword.
+
 ### Deleting Module feature
 
 #### Implementation
 
 The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
-It deletes the module based on the specified module code inputted by the user.
-For example, “delmod m/CS2103” deletes the existing CS2103 module in FaculType.
-
-Currently, `DelmodCommand` implements the following operations:
-
-* `DelmodCommandParser#parse(String)` - Parses the arguments of the delmod command. In the given example above, the arguments will be “ m/CS2103”.
-
-And `DelmodCommand` implements the following:
-
-* `DelmodCommand#execute(Model)` - Executes the deletion of the specified module in the given FaculType model.
+It uses an operation `AddressBook#removeModule()` which is exposed in the `Model` interface as `Model#deleteModule()`.
+Then, the `removeModuleWithCode()` operation is called in `UniqueModuleList`. `UniqueModuleList#removeModuleWithCode()` will remove the module with the specified code
+from the module list.
 
 Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
 
-Step 1. The user executes the command `delmod m/CS2103`. 
+Step 1. The user launches the application. Facultype is initialized with the module `CS2103` in the addressbook.
 
-Step 2. The command will be brought to the LogicManager class, where it will be recognized as a `delmod` command and 
-LogicManager will call `DelmodCommandParser#parse(String)` with ` m/CS2103` as the arguments.
+Step 2. The user executes the command `delmod m/CS2103` to delete the module with the module code CS2103 in the addressbook.
 
-Step 3. `DelmodCommandParser` then obtains the `ModuleCode` from the arguments and forms the `DelmodCommand` with that specified `ModuleCode`.
-The `DelmodCommand` is then returned to the `LogicManager`.
+Step 3. The `delmod` command then calls `Model#deleteModule()` after checking for the existence of the specified module.
 
-Step 4. `LogicManager` then calls `DelmodCommand#execute(Model)`. 
-
-Step 5. The `Module` with the specified `ModuleCode`, if already existing in FaculType, will be deleted. 
+Step 4. The Module with the specified module code, will be deleted from the `UniqueModuleList` in the addressbook.
 
 The following sequence diagram shows how the deleting of the module works:
 
 ![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a delmod command:
+
+![DelmodActivityDiagram](images/DelmodActivityDiagram.png)
+
 #### Design consideration:
 
 ##### Aspect: What the delmod command deletes by
 * **Alternative 1 (current choice):** Deletes a module based on the module code.
- * Pros : More intuitive to the Dean to delete by the module code.
- * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
+  * Pros : More intuitive to the Dean to delete by the module code.
+  * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
 
 * **Alternative 2:** Deletes a module based on the index of the module list.
- * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
- * Cons : Less intuitive.
+  * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
+  * Cons : Less intuitive.
+
+####  Deleting a module from the module list
+
+  a. Prerequisites:  Delete a module from the module list using the `delmod` command. There are only 3 modules with module codes `CS2103`, `CS2100`, `CS1010S` in FaculType.
+
+  b. Test case: `delmod m/CS2103`
+  Expected: Module with module code `CS2103` would be deleted from the module list.
+
+  c. Test case: `delmod m/CS1101S`
+  Expected: No module is deleted from the module list since `CS1101S` is not a module that exists in the module list. Error details shown in the status message. Status bar remains the same.
+
+  d. Test case: `delmod m/CS2103 m/CS2100`
+  Expected: No module is deleted from the module list because `delmod` does not allow for multiple deletions. Error details shown in the status message. Status bar remains the same.
+
+  { more test cases ... }
 
 ### Assign feature
 
@@ -293,17 +329,17 @@ The following activity diagram summarizes what happens when a user executes a un
 * **Alternative 1 (current choice):** Unassigns all instructors from all modules.
  * Pros : More efficient to unassign all instructors from all modules.
  * Cons : Less efficient to unassign a certain instructor from all modules he/she teaches.
- 
+
 * **Alternative 2:** Unassign a certain instructor from all modules he/she teaches.
  * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
  * Cons : Less efficient to unassign all instructors from all modules.
- 
+
 ### Clear all contacts feature
 
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearContacts()` — Clear all contacts from the list.  
+* `AddressBook#clearContacts()` — Clear all contacts from the list.
 
 These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
 
@@ -328,7 +364,7 @@ Expected : Error message saying "Contact list is already empty".
 #### Implementation
 
 It implements the following operations:
-* `AddressBook#clearMod()` — Clear all modules from the list.  
+* `AddressBook#clearMod()` — Clear all modules from the list.
 
 These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
 
@@ -524,19 +560,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType adds the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. The attributes are in an invalid format.
-    
+
     * 1a1. FaculType shows an error message.
-    
+
       Use case resumes at step 1.
-      
+
 * 1b. The contact to be added already exists.
 
     * 1b1. FaculType shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: Delete a contact**
@@ -572,13 +608,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType edits the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The list is empty.
 
     Use case ends.
-    
+
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
@@ -590,7 +626,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. FaculType shows an error message.
     
       Use case resumes at step 2.
-      
+ 
 **Use case: Find a contact**
 
 **MSS**
@@ -601,13 +637,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType shows the contact(s)
 
     Use case ends.
-   
+
 **Extensions**
 
 *  2a. The list is empty.
-   
+
    Use case ends.
-      
+ 
 **Use case: Add or update a remark**
 
 **MSS**
@@ -618,19 +654,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType adds/edits the contact's remark
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The list is empty.
 
     Use case ends.
-    
+
 *   3a. The given index is invalid.
 
     * 3a1. FaculType shows an error message.
-    
+
       Use case resumes at step 2.
-      
+
 **Use case: Add a module**
 
 **MSS**
@@ -639,13 +675,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  FaculType adds the module
 
     Use case ends.
-    
+
 **Extensions**
 
 *   1a. The module code already exists.
-    
+
     * 1a1. FaculType shows an error message.
-        
+ 
       Use case resumes at step 1.
 
 **Use case: Delete a module**
@@ -659,17 +695,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-    
+
 *   1a. The module list is empty.
-    
+
     Use case ends.
-    
+
 *   2a. The given module code does not exist.
 
     * 2a1. FaculType shows an error message.
-    
+
     Use case resumes at step 1.
-    
+
 **Use case: Find a module**
 
 **MSS**
@@ -680,11 +716,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  FaculType shows the module(s)
 
    Use case ends.
-   
+
 **Extensions**
 
 *  2a. The module list is empty.
-   
+
    Use case ends.
 
 **Use case: Assign a contact to a module**
@@ -699,27 +735,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  FaculType assigns the contact to the module
 
     Use case ends.
-    
+
 **Extensions**
 
 *   2a. The contact list is empty.
 
     Use case ends.
-    
+
 *   4a. The module list is empty.
 
     Use case ends.
-    
+
 *   5a. The given contact does not exist.
-    
+
     *   5a1. FaculType shows an error message.
-    
+
     Use case resumes at step 4.
-        
+
 *   5b. The given module does not exist.
 
     * 5b2. FaculType shows an error message.
-    
+
     Use case resumes at step 4.
 
 ### Non-Functional Requirements
@@ -806,7 +842,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `find n/`<br>
       Expected: No contacts filtered. Error details shown in the status message. Status bar remains the same.
-      
+
    1. Other incorrect find commands to try: `find p/abcdef`, `find`, `find Alice`, `...`
       Expected: Similar to previous.
 
