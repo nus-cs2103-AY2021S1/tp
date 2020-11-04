@@ -9,7 +9,7 @@ import seedu.address.model.module.ZoomLink;
 /**
  * Jackson-friendly version of {@link ZoomLink}.
  */
-class JsonAdaptedZoomLink {
+public class JsonAdaptedZoomLink {
 
     private final String link;
 

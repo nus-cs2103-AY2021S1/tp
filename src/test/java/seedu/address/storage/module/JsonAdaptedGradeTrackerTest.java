@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -15,6 +15,8 @@ import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.storage.JsonAdaptedAssignment;
+import seedu.address.storage.JsonAdaptedGradeTracker;
 
 public class JsonAdaptedGradeTrackerTest {
     /*public static final JsonAdaptedAssignment INVALID_ASSIGNMENT = new JsonAdaptedAssignment(

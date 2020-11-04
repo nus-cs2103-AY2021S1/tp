@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -18,6 +18,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.storage.JsonModuleListStorage;
 
 public class JsonModuleListStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonModuleListStorageTest");

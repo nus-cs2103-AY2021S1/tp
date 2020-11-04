@@ -24,7 +24,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Module}.
  */
-class JsonAdaptedModule {
+public class JsonAdaptedModule {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Module's %s field is missing!";
 

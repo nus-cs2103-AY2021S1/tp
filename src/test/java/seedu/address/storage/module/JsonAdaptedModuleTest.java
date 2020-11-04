@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
+import seedu.address.storage.*;
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_MODULE_NAME = "R@chel";

@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.storage.module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedAssignment.MISSING_FIELD_MESSAGE_FORMAT;
@@ -11,6 +11,7 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
+import seedu.address.storage.JsonAdaptedAssignment;
 
 public class JsonAdaptedAssignmentTest {
     private static final String VALID_ASSIGNMENT_NAME = "ASSIGNMENT1";
