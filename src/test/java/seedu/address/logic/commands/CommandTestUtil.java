@@ -6,18 +6,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
+import seedu.address.model.ModuleList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 
 
@@ -32,6 +38,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_TELEGRAM_AMY = "@amytele";
+    public static final String VALID_TELEGRAM_BOB = "@bobtele";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_CORE_MODULE = "Core";
@@ -52,11 +59,11 @@ public class CommandTestUtil {
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
 
-    public static final String VALID_MODULELESSONTYPE = "Lecture";
-    public static final String VALID_MODULELESSONTYPE_ES2660 = "Tutorial";
-    public static final String VALID_ZOOMLINK_CS2030 = "https://nus-sg.zoom.us/CS2030";
-    public static final String VALID_ZOOMLINK_CS2103T = "https://nus-sg.zoom.us/CS2103T";
-    public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/ES2660";
+    public static final String VALID_MODULE_LESSON_LECTURE = "Lecture";
+    public static final String VALID_MODULE_LESSON_TUTORIAL = "Tutorial";
+    public static final String VALID_ZOOM_LINK_CS2103T = "https://nus-sg.zoom.us/CS2103t";
+    public static final String VALID_ZOOM_LINK_ES2660 = "https://nus-sg.zoom.us/ES2660";
+    public static final String VALID_ZOOM_LINK_CS2030 = "https://nus-sg.zoom.us/CS2030";
     public static final HashMap<ModuleLesson, ZoomLink> VALID_ZOOMLINKS_CS2030 = new HashMap<>();
     public static final HashMap<ModuleLesson, ZoomLink> VALID_ZOOMLINKS_CS2103T = new HashMap<>();
     public static final HashMap<ModuleLesson, ZoomLink> VALID_ZOOMLINKS_ES2660 = new HashMap<>();
@@ -69,9 +76,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_TUTORIAL = "Tutorial";
 
     public static final String NAME_DESC_CS2103T = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
-    public static final String ZOOMLINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T;
+    public static final String ZOOMLINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_CS2103T;
     public static final String NAME_DESC_ES2660 = " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
-    public static final String ZOOMLINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_ES2660;
+    public static final String ZOOMLINK_DESC_ES2660 = " " + PREFIX_ZOOM_LINK + VALID_ZOOM_LINK_ES2660;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -83,22 +90,28 @@ public class CommandTestUtil {
     public static final String VALID_EVENT_DATE_2 = "2-2-2020 1200";
     public static final String INVALID_EVENT_NAME = "CS@2103T Quiz";
     public static final String INVALID_EVENT_DATE = "123-2-2020 1200";
-
-    //public static final EditCommand.EditModuleDescriptor DESC_AMY;
-    //public static final EditCommand.EditModuleDescriptor DESC_BOB;
+    public static final EditContactDescriptor DESC_AMY;
+    public static final EditContactDescriptor DESC_BOB;
     public static final EditModuleDescriptor DESC_CS2030;
     public static final EditModuleDescriptor DESC_CS2103T;
-    //public static final EditCommand.EditModuleDescriptor DESC_BOB;
 
     static {
-        VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2030));
-        VALID_ZOOMLINKS_CS2103T.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_CS2103T));
-        VALID_ZOOMLINKS_ES2660.put(new ModuleLesson(VALID_MODULELESSONTYPE), new ZoomLink(VALID_ZOOMLINK_ES2660));
+        VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_CS2030));
+        VALID_ZOOMLINKS_CS2103T.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE),
+                new ZoomLink(VALID_ZOOM_LINK_CS2103T));
+        VALID_ZOOMLINKS_ES2660.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_ES2660));
         DESC_CS2030 = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2030)
                 .withZoomLinks(VALID_ZOOMLINKS_CS2030).withTags(VALID_TAG_CORE_MODULE)
                 .build();
         DESC_CS2103T = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2103T)
                 .withZoomLinks(VALID_ZOOMLINKS_CS2103T).withTags(VALID_TAG_CORE_MODULE)
+                .build();
+        DESC_AMY = new EditContactDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withEmail(VALID_EMAIL_AMY).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_FRIEND)
+                .build();
+        DESC_BOB = new EditContactDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withEmail(VALID_EMAIL_BOB).withTelegram(VALID_TELEGRAM_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
                 .build();
     }
 
@@ -111,8 +124,7 @@ public class CommandTestUtil {
             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            //assertEquals(expectedCommandResult, result);
-            boolean equal = expectedModel.equals(actualModel);
+            assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
@@ -138,10 +150,10 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        // ModuleList expectedModuleList = new ModuleList(actualModel.getAddressBook());
+        ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
         // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
-        // assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         // assertEquals(expectedModuleList, actualModel.getAddressBook());
         // assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
@@ -155,12 +167,18 @@ public class CommandTestUtil {
         final String[] splitName = module.getName().fullName.split("\\s+");
         model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
+    }
 
-        // Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        // final String[] splitName = person.getName().fullName.split("\\s+");
-        // model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        // assertEquals(1, model.getFilteredPersonList().size());
+    /**
+     * Updates {@code model}'s filtered list to show only the contact at the given {@code targetIndex} in the
+     * {@code model}'s contact list.
+     */
+    public static void showContactAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredContactList().size());
+        Contact contact = model.getFilteredContactList().get(targetIndex.getZeroBased());
+        final String[] splitName = contact.getName().getName().split("\\s+");
+        model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredContactList().size());
     }
 
 }
