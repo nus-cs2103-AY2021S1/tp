@@ -70,14 +70,16 @@ public class EditIngredientCommand extends Command {
         Ingredient ingredientToEdit = lastShownList.get(index.getZeroBased());
         Ingredient editedIngredient = createEditedIngredient(ingredientToEdit, editIngredientDescriptor);
 
-        if (!ingredientToEdit.isSameIngredient(editedIngredient) && model.hasIngredient(editedIngredient)) {
+        //if ingredient name change, check if it has changed to an existing ingredient
+        if (!ingredientToEdit.isSameIngredientName(editedIngredient) && model.hasMinimalIngredient(editedIngredient)) {
             throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
         }
 
         model.setIngredient(ingredientToEdit, editedIngredient);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         if (ingredientToEdit.isSameIngredient(editedIngredient)) {
-            return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient));
+            throw new CommandException(MESSAGE_NOT_EDITED);
+            //return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient));
         }
 
         assert(!editedIngredient.equals(ingredientToEdit));

@@ -103,6 +103,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasMinimalRecipe(Recipe recipe) {
+        requireNonNull(recipe);
+        return wishfulShrinking.hasMinimalRecipe(recipe);
+    }
+
+    @Override
     public void deleteRecipe(Recipe target) {
         wishfulShrinking.removeRecipe(target);
     }
@@ -148,6 +154,12 @@ public class ModelManager implements Model {
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return wishfulShrinking.hasIngredient(ingredient);
+    }
+
+    @Override
+    public boolean hasMinimalIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return wishfulShrinking.hasMinimalIngredient(ingredient);
     }
 
     @Override
