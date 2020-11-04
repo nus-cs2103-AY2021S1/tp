@@ -16,6 +16,8 @@ import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.EditCommand;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -24,7 +26,7 @@ import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Reference;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 
-public class EditDocumentCommand extends EditCommand {
+public class EditDocumentCommand extends EditCommand implements Undoable {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DOC
             + ": Edits the document of the opened case at the specified index.\n"
@@ -38,6 +40,8 @@ public class EditDocumentCommand extends EditCommand {
 
 
     public static final String MESSAGE_EDIT_DOCUMENT_SUCCESS = "Edited document: %1$s";
+
+    private static final Page pageType = Page.CASE;
     private static final Logger logger = LogsCenter.getLogger(EditDocumentCommand.class);
 
     private final Index index;
@@ -99,8 +103,13 @@ public class EditDocumentCommand extends EditCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument), false);
+        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument), this);
 
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }
