@@ -3,6 +3,7 @@ package seedu.pivot.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_CASE_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.logic.commands.Command.TYPE_DESC;
 import static seedu.pivot.logic.commands.Command.TYPE_DOC;
 import static seedu.pivot.logic.commands.Command.TYPE_STATUS;
 import static seedu.pivot.logic.commands.Command.TYPE_SUSPECT;
@@ -57,6 +58,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             return new EditWitnessCommandParser().parse(arguments);
         case TYPE_VICTIM:
             return new EditVictimCommandParser().parse(arguments);
+        case TYPE_DESC:
+            return new EditDescriptionCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));
