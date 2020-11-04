@@ -149,12 +149,18 @@ public class CommandTestUtil {
         final String[] splitName = module.getName().fullName.split("\\s+");
         model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredModuleList().size());
+    }
 
-        // Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        // final String[] splitName = person.getName().fullName.split("\\s+");
-        // model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        // assertEquals(1, model.getFilteredPersonList().size());
+    /**
+     * Updates {@code model}'s archived module filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s archived module list.
+     */
+    public static void showArchivedModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredArchivedModuleList().size());
+        Module module = model.getFilteredArchivedModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getName().fullName.split("\\s+");
+        model.updateFilteredArchivedModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredArchivedModuleList().size());
     }
 
 }
