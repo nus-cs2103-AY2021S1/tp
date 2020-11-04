@@ -47,10 +47,6 @@ public class Module {
                 .map(List::size).reduce(Integer::sum).orElse(0);
     }
 
-    public void setId(ModuleId newId) {
-        this.moduleId.setId(newId.toString());
-    }
-
     public int getTotalGroups() {
         return this.tutorialGroups.size();
     }

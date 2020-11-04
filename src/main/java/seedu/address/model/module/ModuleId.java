@@ -38,10 +38,6 @@ public class ModuleId {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public void setId(String newId) {
-        this.id = newId;
-    }
-
     @Override
     public String toString() {
         return id;
