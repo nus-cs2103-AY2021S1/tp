@@ -78,6 +78,9 @@ This section details the notations used to specify the command formats in the [c
   * Date must be formatted in `YYYY-MM-DD`.
   * Time must be formatted in `HH:mm`.
   * e.g. input of `2020-01-01` will show up as `01 Jan 2020` as the date, and `13:00` will show up as `13:00` as the time in NUStorage's response box.
+* Parameters can be switched around.
+  * They do NOT need to come in the order as specified by the formats.
+  * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
 
 </div>
 
