@@ -16,8 +16,9 @@ Given below are my contributions to the project.
   * Highlights: User can use their mouse to drag and drop profile pictures onto the patient's profile. This makes it easier for the user to add profile pictures, without having
                 to waste time specifying the image's filepath.
   * Credits: 
-    1. For manipulation of images in JavaFX: https://www.tutorialspoint.com/javafx/javafx_images.htm
-    2. For implementing drag and drop feature: https://examples.javacodegeeks.com/desktop-java/javafx/event-javafx/javafx-drag-drop-example/
+    1. Manipulation of images in JavaFX: https://www.tutorialspoint.com/javafx/javafx_images.htm
+    2. Implement drag and drop feature: https://examples.javacodegeeks.com/desktop-java/javafx/event-javafx/javafx-drag-drop-example/,
+       https://www.genuinecoder.com/drag-and-drop-in-javafx-html/
 
 * **New Feature**: Added a profile display command.
   * What it does: Displays the patient's profile on a separate window.
@@ -25,7 +26,10 @@ Given below are my contributions to the project.
   * Highlights: This command displays the patient's profile on a separate popup window, which allows the user to focus on one individual patient. This helps
                 to declutter the main window.
   * Credits: 
-    1. For popup windows: https://www.geeksforgeeks.org/javafx-popup-class/
+    1. Implement popup windows: https://www.geeksforgeeks.org/javafx-popup-class/, https://quollwriter.wordpress.com/2019/04/08/how-to-create-a-popup-pane-in-javafx/,
+                          https://github.com/AY1920S1-CS2103T-F12-2/main, https://gist.github.com/jewelsea/1926196,
+    2. Populate separate panel with custom list: https://docs.oracle.com/javafx/2/ui_controls/list-view.htm
+    3. Custom list cell: https://stackoverflow.com/questions/25246496/javafx-custom-list-cell-updateitem-being-called-a-lot
     2. Existing AB3 codebase: https://github.com/se-edu/addressbook-level3
     
 * **New Feature**: Added the ability to add a new visitation log.
