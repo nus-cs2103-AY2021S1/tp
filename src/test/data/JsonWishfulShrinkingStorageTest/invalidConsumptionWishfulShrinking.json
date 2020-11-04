@@ -1,5 +1,143 @@
 {
-  "recipes" : [ ],
+  "recipes" : [ {
+    "name" : "Easter Leftover Sandwich",
+    "instruction" : [ {
+      "instruction" : "1) Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon"
+    }, {
+      "instruction" : "2) Halve the rolls and spread one half with Dijon, the other half with mayonnaise"
+    }, {
+      "instruction" : "3) Sprinkle the mayonnaise-spread half with salt and pepper"
+    }, {
+      "instruction" : "4) Lay cheese and ham on the mustard half; lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half"
+    } ],
+    "recipeImage" : {
+      "imagePath" : "images/sandwich.jpeg"
+    },
+    "ingredients" : [ {
+      "value" : "Hard Boiled Eggs ",
+      "quantity" : "12 whole "
+    }, {
+      "value" : "Mayonnaise ",
+      "quantity" : "1/2 cup "
+    }, {
+      "value" : "Grainy Dijon Mustard ",
+      "quantity" : "3 Tablespoons "
+    }, {
+      "value" : "taste Salt And Pepper ",
+      "quantity" : " to "
+    }, {
+      "value" : "Dashes Worcestershire Sauce ",
+      "quantity" : " Several "
+    }, {
+      "value" : "Slices Baked Ham ",
+      "quantity" : " Leftover "
+    }, {
+      "value" : "whole Kaiser Rolls Or Other Bread ",
+      "quantity" : " 2 "
+    } ],
+    "calories" : 7,
+    "tagged" : [ "health" ]
+  }, {
+    "name" : "Pasta with Pesto Cream Sauce",
+    "instruction" : [ {
+      "instruction" : "1) Cook pasta until al dente"
+    }, {
+      "instruction" : "2) Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food processor or blender"
+    }, {
+      "instruction" : "3) Turn machine on, then drizzle in olive oil while it mixes"
+    }, {
+      "instruction" : "4) Continue blending until combined, adding additional olive oil if needed"
+    }, {
+      "instruction" : "5) Set aside"
+    }, {
+      "instruction" : "6) Heat cream and butter in a small saucepan over medium-low heat"
+    }, {
+      "instruction" : "7) Add pesto and stir"
+    }, {
+      "instruction" : "8) Drain pasta and place in a serving bowl"
+    }, {
+      "instruction" : "9) Pour pesto cream over the top"
+    }, {
+      "instruction" : "10) Toss to combine, add diced tomatoes and toss quickly"
+    }, {
+      "instruction" : "11) Serve immediately"
+    } ],
+    "recipeImage" : {
+      "imagePath" : "images/pesto1.jpg"
+    },
+    "ingredients" : [ {
+      "value" : "Fresh Basil Leaves ",
+      "quantity" : "3/4 cups "
+    }, {
+      "value" : "Grated Parmesan Cheese ",
+      "quantity" : "1/2 cup "
+    }, {
+      "value" : "Pine Nuts ",
+      "quantity" : "3 Tablespoons "
+    }, {
+      "value" : "Garlic Peeled ",
+      "quantity" : "2 cloves "
+    }, {
+      "value" : "Extra Virgin Olive Oil ",
+      "quantity" : "1/3 cup "
+    }, {
+      "value" : "Heavy Cream ",
+      "quantity" : "1/2 cup "
+    }, {
+      "value" : "Butter ",
+      "quantity" : "2 Tablespoons "
+    }, {
+      "value" : "Grated Parmesan ",
+      "quantity" : "1/4 cup "
+    }, {
+      "value" : "Pasta ",
+      "quantity" : "12 ounces "
+    }, {
+      "value" : "Tomatoes Diced ",
+      "quantity" : "2 whole "
+    } ],
+    "calories" : 8,
+    "tagged" : [ "health" ]
+  }, {
+    "name" : "Herb Roasted Pork Tenderloin with Preserves",
+    "instruction" : [ {
+      "instruction" : "1) Preheat oven to 350 degrees"
+    }, {
+      "instruction" : "2) In a small bowl, combine garlic, basil, oregano, thyme, parsley, and sage"
+    }, {
+      "instruction" : "3) Generously season meat with salt and pepper"
+    }, {
+      "instruction" : "4) Add to pan, and cook on all sides until dark golden brown"
+    }, {
+      "instruction" : "5) Wrap in foil, bake until meat is 150 degrees internally at the widest, thickest part of the tenderloin (about 25 minutes)"
+    }, {
+      "instruction" : "6) When pork has come to temperature, remove and let rest, tented with foil, for at least five minutes to lock in juices"
+    } ],
+    "recipeImage" : {
+      "imagePath" : "images/pork.jpeg"
+    },
+    "ingredients" : [ {
+      "value" : "Pork Tenderloins ",
+      "quantity" : "2 whole "
+    }, {
+      "value" : "Salt And Pepper ",
+      "quantity" : "to taste "
+    }, {
+      "value" : "Herbs De Provence ",
+      "quantity" : "8 Tablespoons "
+    }, {
+      "value" : "Preserves fig or Peach or Plum ",
+      "quantity" : "1 cup "
+    }, {
+      "value" : "Water ",
+      "quantity" : "1 cup "
+    }, {
+      "value" : "Vinegar ",
+      "quantity" : "1 Tablespoon "
+    } ],
+    "calories" : 10,
+    "tagged" : [ "health" ]
+  } ],
   "ingredients" : [ ],
   "consumption" : [ {
     "name" : "",
@@ -38,6 +176,106 @@
       "quantity" : " 2 "
     } ],
     "calories" : 7,
+    "tagged" : [ "health" ]
+  }, {
+    "name" : "Pasta with Pesto Cream Sauce",
+    "instruction" : [ {
+      "instructions" : "1) Cook pasta until al dente"
+    }, {
+      "instructions" : "2) Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food processor or blender"
+    }, {
+      "instructions" : "3) Turn machine on, then drizzle in olive oil while it mixes"
+    }, {
+      "instructions" : "4) Continue blending until combined, adding additional olive oil if needed"
+    }, {
+      "instructions" : "5) Set aside"
+    }, {
+      "instructions" : "6) Heat cream and butter in a small saucepan over medium-low heat"
+    }, {
+      "instructions" : "7) Add pesto and stir"
+    }, {
+      "instructions" : "8) Drain pasta and place in a serving bowl"
+    }, {
+      "instructions" : "9) Pour pesto cream over the top"
+    }, {
+      "instructions" : "10) Toss to combine, add diced tomatoes and toss quickly"
+    }, {
+      "instructions" : "11) Serve immediately"
+    } ],
+    "recipeImage" : {
+      "imagePath" : "images/pesto1.jpg"
+    },
+    "ingredients" : [ {
+      "value" : "Fresh Basil Leaves ",
+      "quantity" : "3/4 cups "
+    }, {
+      "value" : "Grated Parmesan Cheese ",
+      "quantity" : "1/2 cup "
+    }, {
+      "value" : "Pine Nuts ",
+      "quantity" : "3 Tablespoons "
+    }, {
+      "value" : "Garlic Peeled ",
+      "quantity" : "2 cloves "
+    }, {
+      "value" : "Extra Virgin Olive Oil ",
+      "quantity" : "1/3 cup "
+    }, {
+      "value" : "Heavy Cream ",
+      "quantity" : "1/2 cup "
+    }, {
+      "value" : "Butter ",
+      "quantity" : "2 Tablespoons "
+    }, {
+      "value" : "Grated Parmesan ",
+      "quantity" : "1/4 cup "
+    }, {
+      "value" : "Pasta ",
+      "quantity" : "12 ounces "
+    }, {
+      "value" : "Tomatoes Diced ",
+      "quantity" : "2 whole "
+    } ],
+    "calories" : 8,
+    "tagged" : [ "health" ]
+  }, {
+    "name" : "Herb Roasted Pork Tenderloin with Preserves",
+    "instruction" : [ {
+      "instructions" : "1) Preheat oven to 350 degrees"
+    }, {
+      "instructions" : "2) In a small bowl, combine garlic, basil, oregano, thyme, parsley, and sage"
+    }, {
+      "instructions" : "3) Generously season meat with salt and pepper"
+    }, {
+      "instructions" : "4) Add to pan, and cook on all sides until dark golden brown"
+    }, {
+      "instructions" : "5) Wrap in foil, bake until meat is 150 degrees internally at the widest, thickest part of the tenderloin (about 25 minutes)"
+    }, {
+      "instructions" : "6) When pork has come to temperature, remove and let rest, tented with foil, for at least five minutes to lock in juices"
+    } ],
+    "recipeImage" : {
+      "imagePath" : "images/pork.jpeg"
+    },
+    "ingredients" : [ {
+      "value" : "Pork Tenderloins ",
+      "quantity" : "2 whole "
+    }, {
+      "value" : "Salt And Pepper ",
+      "quantity" : "to taste "
+    }, {
+      "value" : "Herbs De Provence ",
+      "quantity" : "8 Tablespoons "
+    }, {
+      "value" : "Preserves fig or Peach or Plum ",
+      "quantity" : "1 cup "
+    }, {
+      "value" : "Water ",
+      "quantity" : "1 cup "
+    }, {
+      "value" : "Vinegar ",
+      "quantity" : "1 Tablespoon "
+    } ],
+    "calories" : 10,
     "tagged" : [ "health" ]
   } ]
 }

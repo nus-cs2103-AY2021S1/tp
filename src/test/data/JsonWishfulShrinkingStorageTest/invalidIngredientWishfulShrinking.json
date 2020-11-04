@@ -4,6 +4,12 @@
     "value" : "",
     "quantity" : "100"
   }, {
+    "value" : "a",
+    "quantity" : "1000"
+  }, {
+    "value" : "1",
+    "quantity" : ""
+  }, {
     "value" : "b",
     "quantity" : ""
   } ],
