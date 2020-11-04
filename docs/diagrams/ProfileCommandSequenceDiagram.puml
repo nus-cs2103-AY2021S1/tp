@@ -1,4 +1,5 @@
 @startuml
+skinparam defaultFontSize 20
 !include style.puml
 box UI UI_COLOR_T2
 participant ":MainWindow" as MainWindow UI_COLOR

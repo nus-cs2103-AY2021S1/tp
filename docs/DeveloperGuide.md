@@ -329,7 +329,7 @@ This feature comprises the `AddProfilePictureCommand` class. Given below is an e
     <em style="color:#CC5500">Figure 18. Logic Component Interactions for AddProfilePicture Command</em>
 </p>
 
-Step 1. User inputs `addpicture 1 f/data/images/png` to add profile picture to the first patient. 
+Step 1. User inputs "addpicture 1 f/data/images/png" command to add profile picture to the first patient. 
 
 Step 2. User input is parsed to obtain the patient index and file path of the desired profile picture.
 
@@ -552,17 +552,11 @@ The mechanism utilises the following classes and methods to display the patients
    * `ProfileCommandParser#parse` - Parses the input to return a `ProfileCommand` object
    * `ProfileCommand#execute` - Executes the command to display patient profile
    * `ProfileWindow#setup` - Loads all relevant details of the `Patient` into `ProfileWindow`
-   * `MainWindow#handleProfilePanel` - Displays `ProfileWindow`
+   * `MainWindow#handleProfilePanel` - Displays patient's profile
 
 Given below is an example usage scenario and how the mechanism behaves at each step.
 
-<p align="center">
-    <img src="images/ProfileCommandSequenceDiagram.png" width="350"/>
-    <br>
-    <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
-</p>
-
-Step 1. User inputs `profile 1` command to display the first patient's profile.
+Step 1. User inputs "profile 1" command to display the first patient's profile.
 
 Step 2. Input command is parsed to obtain the patient's index, and a `ProfileCommand` object is returned. 
 
@@ -572,6 +566,14 @@ Step 4. Next, `MainWindow#executeCommand` method is executed which in turn calls
         loaded with all relevant details that belongs to the first `Patient`. 
 
 Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display the first patient's profile.
+
+<p align="center">
+    <img src="images/ProfileCommandSequenceDiagram.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
+</p>
+
+The following activity diagram summarizes the main steps taken to display the patient's profile.
 
 <p align="center">
     <img src="images/ProfileCommandActivityDiagram.png" width="350"/>
