@@ -43,28 +43,28 @@ public class ArchiveCommandParserTest {
 
     // Tests for Default Page
     @Test
-    public void parseCasePage_emptyArg_throwsParseException() {
+    public void parseDefaultSectionCasePage_emptyArg_throwsParseException() {
         setUpCasePageDefaultSection();
         assertParseFailure(parser, "     ", MESSAGE_INCORRECT_MAIN_PAGE);
         StateManager.resetState();
     }
 
     @Test
-    public void parseCasePage_validArgs_throwsParseException() {
+    public void parseDefaultSectionCasePage_validArgs_throwsParseException() {
         setUpCasePageDefaultSection();
         assertParseFailure(parser, TYPE_CASE + " " + INDEX_FIRST_PERSON, MESSAGE_INCORRECT_MAIN_PAGE);
         StateManager.resetState();
     }
 
     @Test
-    public void parseMainPage_emptyArg_throwsParseException() {
+    public void parseDefaultSectionMainPage_emptyArg_throwsParseException() {
         setUpMainPageDefaultSection();
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parseMainPage_invalidCommandFormat_throwsParseException() {
+    public void parseDefaultSectionMainPage_invalidCommandFormat_throwsParseException() {
         setUpMainPageDefaultSection();
         assertParseFailure(parser, TYPE_DOC + " 1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, ArchiveCommand.MESSAGE_USAGE));
@@ -74,7 +74,7 @@ public class ArchiveCommandParserTest {
     }
 
     @Test
-    public void parseMainPage_validArgs_returnsFindCommand() {
+    public void parseDefaultSectionMainPage_validArgs_returnsFindCommand() {
         setUpMainPageDefaultSection();
 
         // no leading and trailing whitespaces
