@@ -1,6 +1,10 @@
 package seedu.address.ui;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -58,7 +62,15 @@ public class FoodCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         System.out.println(item.getFilePath());
 
-        imageView.setImage(new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath())));
+        Image image =  new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath()));
+        Image defaultImage =  new Image(this.getClass().getResourceAsStream("/images/food/al_amaan/milo.png"));
+        System.out.println(image);
+        if (image.isError()) {
+            imageView.setImage(defaultImage);
+        } else {
+            imageView.setImage(image);
+        }
+
         imageView.setFitHeight(120);
         imageView.setFitWidth(120);
     }
