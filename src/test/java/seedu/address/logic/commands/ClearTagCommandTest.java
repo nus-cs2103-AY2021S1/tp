@@ -21,7 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-public class ClearLabelCommandTest {
+public class ClearTagCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
             new UserPrefs());
@@ -30,9 +30,9 @@ public class ClearLabelCommandTest {
     public void execute_personWithTags_success() {
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person clearedPerson = new PersonBuilder(personInFilteredList).withTags().build();
-        ClearLabelCommand labelCommand = new ClearLabelCommand(personInFilteredList.getName());
+        ClearTagCommand tagCommand = new ClearTagCommand(personInFilteredList.getName());
 
-        String expectedMessage = String.format("All labels of person '%s' have been cleared!",
+        String expectedMessage = String.format("All tags of person '%s' have been cleared!",
                 clearedPerson.getName().toString());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
@@ -41,7 +41,7 @@ public class ClearLabelCommandTest {
                 new UserPrefs());
         expectedModel.setPerson(personInFilteredList, clearedPerson);
 
-        assertCommandSuccess(labelCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -49,9 +49,9 @@ public class ClearLabelCommandTest {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person personInFilteredList = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
         Person clearedPerson = new PersonBuilder(personInFilteredList).withTags().build();
-        ClearLabelCommand labelCommand = new ClearLabelCommand(personInFilteredList.getName());
+        ClearTagCommand tagCommand = new ClearTagCommand(personInFilteredList.getName());
 
-        String expectedMessage = String.format("All labels of person '%s' have been cleared!",
+        String expectedMessage = String.format("All tags of person '%s' have been cleared!",
                 clearedPerson.getName().toString());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
@@ -60,12 +60,12 @@ public class ClearLabelCommandTest {
                 new UserPrefs());
         expectedModel.setPerson(personInFilteredList, clearedPerson);
 
-        assertCommandSuccess(labelCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidName_failure() {
-        ClearLabelCommand labelCommand = new ClearLabelCommand(new Name("Fake"));
-        assertCommandFailure(labelCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
+        ClearTagCommand tagCommand = new ClearTagCommand(new Name("Fake"));
+        assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
     }
 }

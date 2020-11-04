@@ -24,7 +24,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-public class DeleteLabelCommandTest {
+public class DeleteTagCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), getTypicalMeetingBook(), getTypicalModuleBook(),
             new UserPrefs());
     private Model modelWithMembersInMeetings = new ModelManager(getTypicalAddressBook(),
@@ -39,20 +39,20 @@ public class DeleteLabelCommandTest {
         tagsToDelete.add(tags.iterator().next());
         tags.removeAll(tagsToDelete);
 
-        Person labelledPerson = new Person(firstPerson.getName(), firstPerson.getPhone(), firstPerson.getEmail(),
+        Person taggedPerson = new Person(firstPerson.getName(), firstPerson.getPhone(), firstPerson.getEmail(),
                 tags);
 
-        DeleteLabelCommand labelCommand = new DeleteLabelCommand(firstPerson.getName(), tagsToDelete);
+        DeleteTagCommand tagCommand = new DeleteTagCommand(firstPerson.getName(), tagsToDelete);
 
-        String expectedMessage = String.format(DeleteLabelCommand.MESSAGE_DELETE_PERSON_SUCCESS, labelledPerson);
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_PERSON_SUCCESS, taggedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new MeetingBook(model.getMeetingBook()),
                 new ModuleBook(model.getModuleBook()),
                 new UserPrefs());
-        expectedModel.setPerson(firstPerson, labelledPerson);
+        expectedModel.setPerson(firstPerson, taggedPerson);
 
-        assertCommandSuccess(labelCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -62,19 +62,19 @@ public class DeleteLabelCommandTest {
         Set<Tag> tagsToDelete = new HashSet<>();
         tagsToDelete.add(new Tag("fake"));
 
-        DeleteLabelCommand labelCommand = new DeleteLabelCommand(firstPerson.getName(), tagsToDelete);
+        DeleteTagCommand tagCommand = new DeleteTagCommand(firstPerson.getName(), tagsToDelete);
 
         // one non-existent tag
-        assertCommandFailure(labelCommand, model, String.format("The person '%s' does not have all the tags provided.",
+        assertCommandFailure(tagCommand, model, String.format("The person '%s' does not have all the tags provided.",
                 firstPerson.getName().toString()));
 
         HashSet<Tag> tags = new HashSet<>(firstPerson.getTags());
         tagsToDelete.add(tags.iterator().next());
 
-        labelCommand = new DeleteLabelCommand(firstPerson.getName(), tagsToDelete);
+        tagCommand = new DeleteTagCommand(firstPerson.getName(), tagsToDelete);
 
         // one existent tag and one non-existent tag
-        assertCommandFailure(labelCommand, model, String.format("The person '%s' does not have all the tags provided.",
+        assertCommandFailure(tagCommand, model, String.format("The person '%s' does not have all the tags provided.",
                 firstPerson.getName().toString()));
     }
 
@@ -82,8 +82,8 @@ public class DeleteLabelCommandTest {
     public void execute_invalidPersonNameUnfilteredList_failure() {
         Set<Tag> tags = new HashSet<>();
         tags.add(new Tag("Tag"));
-        DeleteLabelCommand labelCommand = new DeleteLabelCommand(new Name("Fake"), tags);
+        DeleteTagCommand tagCommand = new DeleteTagCommand(new Name("Fake"), tags);
 
-        assertCommandFailure(labelCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
+        assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
     }
 }

@@ -16,12 +16,12 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLabelCommand;
-import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
+import seedu.address.logic.commands.AddTagCommand;
+import seedu.address.logic.commands.AddTagCommand.TagPersonDescriptor;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ClearLabelCommand;
+import seedu.address.logic.commands.ClearTagCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteLabelCommand;
+import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -31,9 +31,9 @@ import seedu.address.model.person.FullNameMatchesKeywordPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.LabelPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.TagPersonDescriptorBuilder;
 import seedu.address.testutil.TypicalPersons;
 
 public class AddressBookParserTest {
@@ -73,30 +73,30 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_labelAdd() throws Exception {
+    public void parseCommand_tagAdd() throws Exception {
         Person person = new PersonBuilder().build();
-        LabelPersonDescriptor descriptor = new LabelPersonDescriptorBuilder(person).build();
-        AddLabelCommand command = (AddLabelCommand) parser.parseCommand(AddLabelCommand.COMMAND_WORD + " "
-            + person.getName() + " " + PersonUtil.getLabelPersonDescriptorDetails(descriptor));
-        assertEquals(new AddLabelCommand(person.getName(), descriptor), command);
+        TagPersonDescriptor descriptor = new TagPersonDescriptorBuilder(person).build();
+        AddTagCommand command = (AddTagCommand) parser.parseCommand(AddTagCommand.COMMAND_WORD + " "
+            + person.getName() + " " + PersonUtil.getTagPersonDescriptorDetails(descriptor));
+        assertEquals(new AddTagCommand(person.getName(), descriptor), command);
     }
 
     @Test
-    public void parseCommand_labelDelete() throws Exception {
+    public void parseCommand_tagDelete() throws Exception {
         Person person = new PersonBuilder().build();
         Set<Tag> tags = new HashSet<>();
         tags.add(new Tag("Tag"));
-        DeleteLabelCommand command = (DeleteLabelCommand) parser.parseCommand(DeleteLabelCommand.COMMAND_WORD + " "
+        DeleteTagCommand command = (DeleteTagCommand) parser.parseCommand(DeleteTagCommand.COMMAND_WORD + " "
                 + person.getName() + " " + "t/Tag");
-        assertEquals(new DeleteLabelCommand(person.getName(), tags), command);
+        assertEquals(new DeleteTagCommand(person.getName(), tags), command);
     }
 
     @Test
-    public void parseCommand_labelClear() throws Exception {
+    public void parseCommand_tagClear() throws Exception {
         Person person = new PersonBuilder().build();
-        ClearLabelCommand command = (ClearLabelCommand) parser.parseCommand(ClearLabelCommand.COMMAND_WORD + " "
+        ClearTagCommand command = (ClearTagCommand) parser.parseCommand(ClearTagCommand.COMMAND_WORD + " "
                 + person.getName());
-        assertEquals(new ClearLabelCommand(person.getName()), command);
+        assertEquals(new ClearTagCommand(person.getName()), command);
     }
 
     @Test

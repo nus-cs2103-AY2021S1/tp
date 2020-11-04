@@ -5,14 +5,14 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearLabelCommand;
+import seedu.address.logic.commands.ClearTagCommand;
 import seedu.address.model.person.Name;
 
-public class ClearLabelCommandParserTest {
+public class ClearTagCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearLabelCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearTagCommand.MESSAGE_USAGE);
 
-    private ClearLabelCommandParser parser = new ClearLabelCommandParser();
+    private ClearTagCommandParser parser = new ClearTagCommandParser();
 
     @Test
     public void parse_invalidPreamble_failure() {
