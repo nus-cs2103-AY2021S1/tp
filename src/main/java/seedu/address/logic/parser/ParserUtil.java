@@ -26,8 +26,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_MISSING_INDEX = "Index is not supplied in the argument.";
-    public static final String DAY_MESSAGE_CONSTRAINTS =
-            "Day should be a valid day in the format of MONDAY, TUESDAY, ..., SUNDAY (case-insensitive)";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -173,7 +171,7 @@ public class ParserUtil {
         try {
             result = DayOfWeek.valueOf(dayOfWeek);
         } catch (NullPointerException | IllegalArgumentException e) {
-            throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.DAY_MESSAGE_CONSTRAINTS);
         }
         return result;
     }

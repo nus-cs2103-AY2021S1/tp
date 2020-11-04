@@ -25,7 +25,7 @@ public class DateUtil {
     public static final String SEARCH_DATE_CONSTRAINTS =
             "Search phrase for date should be in the format of dd-MM-yyyy.";
     public static final String DAY_MESSAGE_CONSTRAINTS =
-            "Day should be in the format of MON, TUE, ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
+            "Day should be in the format of MONDAY, TUESDAY, ..., SUNDAY";
     public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", DATETIME_FORMATTER);
     public static final String RANGE_CONSTRAINTS = "Start date should be before end date";
 
