@@ -45,4 +45,3 @@ Interface (GUI). It is written in Java, and currently has over 10kLoC.
 
 - Reviewing / mentoring contributions:
     - PRs reviewed: [link](https://github.com/AY2021S1-CS2103T-W12-2/tp/pulls?q=is%3Apr+reviewed-by%3Afanminj)
-    

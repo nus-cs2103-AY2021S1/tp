@@ -438,7 +438,7 @@ command.
 - `listStudent` command only works in Student view.
 
 ## 5. FAQ
-__Q:__ Why did the command I input change colour from white to red? <br> 
+__Q:__ Why did the command I input change colour from white to red? <br>
 __A:__ This happens when the input command is of the wrong syntax or does not exist. You may go to the
 [Command Format](#23-command-format) to view the list of commands and their accepted formats.
 
