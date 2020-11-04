@@ -174,6 +174,9 @@ public class Deadline extends Task {
     @Override
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
+            if (this.isDone()) {
+                return 1;
+            }
             if (deadlineDateTime.isFilled) {
                 return getDeadlineDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
             } else {
@@ -181,16 +184,23 @@ public class Deadline extends Task {
             }
         } else { //otherTask instanceof Deadline
             Deadline deadline = (Deadline) otherTask;
-            if (deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
-                return getDeadlineDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
-            } else if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled) {
-                return 1;
-            } else if (!deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
-                return -1;
+            if (this.isDone() == deadline.isDone()) {
+                if (deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
+                    return getDeadlineDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
+                } else if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled) {
+                    return 1;
+                } else if (!deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
+                    return -1;
+                } else {
+                    return getTitle().toString().compareTo(deadline.getTitle().toString());
+                }
             } else {
-                return getTitle().toString().compareTo(deadline.getTitle().toString());
+                if (this.isDone()) {
+                    return 1;
+                } else {
+                    return -1;
+                }
             }
         }
     }
-
 }
