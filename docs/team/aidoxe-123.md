@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Huynh Thai Duong's Project Portfolio Page
+title: Thai Duong's Project Portfolio Page
 ---
 
 ## Project: McGymmy
