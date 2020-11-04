@@ -1,5 +1,7 @@
 package chopchop.logic.commands;
 
+import static chopchop.commons.util.Enforce.enforceNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -56,6 +58,8 @@ public class StatsIngredientUsedCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
+        enforceNonNull(model);
+
         var output = model.getIngredientUsageList().getUsagesBetween(after, before);
         return CommandResult.statsMessage(output, getMessage(output.isEmpty()));
     }

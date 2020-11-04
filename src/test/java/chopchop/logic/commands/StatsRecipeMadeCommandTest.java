@@ -1,6 +1,7 @@
 package chopchop.logic.commands;
 
 
+import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_A;
 import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_A0;
 import static chopchop.testutil.TypicalUsages.Date.USAGE_DATE_C;
@@ -144,5 +145,11 @@ class StatsRecipeMadeCommandTest {
             ),
             String.format("Showing recipes made between %s and %s", after.format(formatter), before.format(formatter)));
         assertEquals(cmdRes, expectedRes);
+    }
+
+    @Test
+    public void execute_nullModel_nullPointerException() {
+        var cmd = new StatsRecipeMadeCommand(null, null);
+        assertThrows(AssertionError.class, () -> cmd.execute(null, new HistoryManager()));
     }
 }

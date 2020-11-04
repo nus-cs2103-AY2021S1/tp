@@ -1,6 +1,7 @@
 package chopchop.logic.commands;
 
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_A_A;
 import static chopchop.testutil.TypicalUsages.INGREDIENT_B_A;
 import static chopchop.testutil.TypicalUsages.getIngredientList;
@@ -97,5 +98,11 @@ class StatsIngredientRecentCommandTest {
         var cmd = new StatsIngredientRecentCommand();
         var cmdRes = cmd.execute(model, new HistoryManager());
         assertEquals(expectedRes, cmdRes);
+    }
+
+    @Test
+    public void execute_nullModel_nullPointerException() {
+        var cmd = new StatsIngredientRecentCommand();
+        assertThrows(AssertionError.class, () -> cmd.execute(null, new HistoryManager()));
     }
 }

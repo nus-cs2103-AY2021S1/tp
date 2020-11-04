@@ -1,5 +1,6 @@
 package chopchop.logic.commands;
 
+import static chopchop.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,5 +53,11 @@ class StatsRecipeTopCommandTest {
                 new Pair<>("B", "No. of times made: 3"))
         ), "Here are your top recipes");
         assertEquals(expectedRes, res);
+    }
+
+    @Test
+    public void execute_nullModel_nullPointerException() {
+        var cmd = new StatsRecipeTopCommand();
+        assertThrows(AssertionError.class, () -> cmd.execute(null, new HistoryManager()));
     }
 }

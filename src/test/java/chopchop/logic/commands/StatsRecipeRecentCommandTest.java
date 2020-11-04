@@ -1,6 +1,7 @@
 package chopchop.logic.commands;
 
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static chopchop.testutil.Assert.assertThrows;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_B_A;
 import static chopchop.testutil.TypicalUsages.getRecipeList;
@@ -98,4 +99,9 @@ class StatsRecipeRecentCommandTest {
         assertEquals(expectedRes, cmdRes);
     }
 
+    @Test
+    public void execute_nullModel_nullPointerException() {
+        var cmd = new StatsRecipeRecentCommand();
+        assertThrows(AssertionError.class, () -> cmd.execute(null, new HistoryManager()));
+    }
 }

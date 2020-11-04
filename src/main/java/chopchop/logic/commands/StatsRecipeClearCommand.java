@@ -1,5 +1,6 @@
 package chopchop.logic.commands;
 
+import static chopchop.commons.util.Enforce.enforceNonNull;
 import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.history.HistoryManager;
@@ -20,7 +21,7 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
      */
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
-        requireNonNull(model);
+        enforceNonNull(model);
 
         this.usages = model.getRecipeUsageList();
         model.setRecipeUsageList(new UsageList<>());
