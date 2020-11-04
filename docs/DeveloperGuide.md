@@ -62,11 +62,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel
+`, `IngredientListPanel`, `SalesRecordListPanel`, `CalendarView`, `StatusBarFooter` etc. All these, including the
+ `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the
+[`MainWindow`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -97,7 +102,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+![Structure of the Person Model Component](images/PersonModelClassDiagram.png)
+
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -107,7 +114,10 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP
+) model is given below. It has a `Tag` list in the `tCheck` application, which `Person` references. This allows
+ `tCheck` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,12 +127,13 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 * can save the ingredient book data in json format and read it back.
+* can save the sales book data in json format and read it back.
 
 ### Common classes
 
@@ -766,37 +777,51 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 (For all use cases below, the **System** is the `tCheck` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use Case: UC01 - Archive a contact detail of an employee**
+**Use Case: UC01 - Archive an employee**
 
 **MSS**
 
-1. User chooses to archive one employee’s contact details. 
-2. tCheck requests for details of the employee to archive.
-3. User enters the archive details.
-4. tCheck will move this corresponding contact detail into the archive and displays a success message.
+1. User gives command to list all employees.
+2. User archives an employee from employee directory. 
+3. tCheck will move this corresponding employee into the archive and displays a success message.
      
      Use case ends.
 
 
 **Extensions**
 
-* 3a. tCheck detects an incorrect input format or is unable to find the entered data.
+* 2a. tCheck detects an incorrect input format.
         
-        * 3a1. tCheck requests for the correct data.
+        * 2a1. tCheck requests the user to re-enter with the correct format.
         
-    	* 3a2. User enters new data.
+    	* 2a2. User enters new data.
     	
-    	Steps 3a1-3a2 are repeated until the data entered are correct.
+    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
     	
-    	Use case resumes from step 4.
+    	Use case resumes from step 3.
 
+* 2b. tCheck detects that the specified employee does not exist.
+        
+        * 2b1. tCheck requests the user to re-enter a valid index that corresponds with an existing employee.
+        
+        * 2b2. User enters new index.
+        
+        Steps 2b1-2b2 are repeated until the index entered is a valid index.
+        
+        Use case resumes from step 3.
 
-**Use Case: UC02 - Archive all contact details**
+* 2c. tCheck detects that the specified employee has already been archived.
+        
+        * 2c1. tCheck returns the error message to the user.
+        
+        Use case ends.
+
+**Use Case: UC02 - Archive all employees**
 
 **MSS**
 
-1. User chooses to archive all employee’s contact details. 
-2. User enters the request to archive all employees’ contact details.
+1. User gives command to list all employees.
+1. User archives all employees. 
 3. tCheck will move all contact details into the archive and displays a success message.
 
      Use case ends.
@@ -806,15 +831,15 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 * 2a. tCheck detects an incorrect input format.
 
-        * 2a1. tCheck requests for the input to be in the correct format.
+        * 2a1. tCheck requests the user to re-enter with the correct format.
         
-      	* 2a2. User enters new data.
+    	* 2a2. User enters new data.
+    	
+    	Steps 2a1-2a2 are repeated until the data entered is in the correct format.
+    	
+    	Use case resumes from step 3.
       	
-      	Steps 2a1-2a2 are repeated until the data entered are correct.
-      	
-      	Use case resumes from step 3.
-      	
-* 2b. tCheck detects an empty contact list.
+* 2b. tCheck detects an empty employee directory.
 
    	    * 2b1. tCheck shows a warning message.
    	    
@@ -897,16 +922,16 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  Should be able to respond within 1 second for each operation.
-4.  Should be able to function fully without connecting to internet.
+3.  Should be able to respond within 2 second for each operation.
+4.  Should be able to function fully without access to internet.
 5.  Should be for a single user.
-6.  Should not handle the printing of the report (i.e. sales report).
-7.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+6.  Data files should remain unchanged when transferring from a computer to another.
+7.  Should not attempt to make any change in all data files.
+8.  Should not handle the printing of the report (i.e. sales report).
+9.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
  be able to accomplish most of the tasks faster using commands than using the mouse.
-8.  A user without prior experience on inventory management system should be able to accomplish most of the tasks
+10.  A user without prior experience on inventory management system should be able to accomplish most of the tasks
  using commands. 
-
-*{More to be added}*
 
 ### Glossary
 
@@ -958,6 +983,24 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### F.1 Archiving an employee
+
+1. Archiving an employee and hides his/her info from the active/unarchived employee directory.
+
+   1. Prerequisites: List all active(unarchived) employees using the `c-active-list` command. Multiple
+    unarchived employees in the employee directory. The following test cases assumes the commands are run on
+    unmodified sample data.
+
+   1. Test case: `c-archive 1`<br>
+      Expected: First employee is archived from the list. Details of the archived contact shown in the status message.
+
+   1. Test case: `delete 0`<br>
+      Expected: No person is archived. Error details shown in the status message.
+
+   1. Other incorrect archive commands to try: `archive`, `c-archive x`, `...` (where x is larger than the list size
+   )<br>
+      Expected: No person is archived. Error details shown in the status message.
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files

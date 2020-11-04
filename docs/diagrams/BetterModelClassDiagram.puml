@@ -16,5 +16,7 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Phone
+Person *--> EmergencyContact
 Person *--> Address
+Person *--> ArchiveStatus
 @enduml

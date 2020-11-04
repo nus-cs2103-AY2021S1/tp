@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Person {
+Class Person
+Class Name
+Class Phone
+Class EmergencyContact
+Class Address
+Class ArchiveStatus
+Class UniquePersonList
+}
+
+Package Tag {
+Class Tag
+}
+
+
+AddressBook *--> "1" UniquePersonList
+UniquePersonList o--> "*" Person
+ModelManager o-left-> "1" AddressBook
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" EmergencyContact
+Person *--> "1" Address
+Person *--> "1" ArchiveStatus
+Person *--> "*" Tag
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+
+
+ModelManager -down->"1" Person : filtered list
+@enduml
