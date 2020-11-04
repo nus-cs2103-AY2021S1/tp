@@ -8,6 +8,7 @@ participant ":UpdateCommandParser" as UpdateCommandParser LOGIC_COLOR
 participant ":SuggestionCommandParser" as SuggestionCommandParser LOGIC_COLOR
 participant ":SuggestionCommand" as SuggestionCommand LOGIC_COLOR
 participant ":ParseException" as ParseException LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -28,11 +29,11 @@ create UpdateCommandParser
 StockBookParser -> UpdateCommandParser
 activate UpdateCommandParser
 
-UpdateCommandParser -> UpdateCommandParser : parse()
-activate UpdateCommandParser
-
-UpdateCommandParser --> UpdateCommandParser
+UpdateCommandParser --> StockBookParser
 deactivate UpdateCommandParser
+
+StockBookParser -> UpdateCommandParser : parse(args)
+activate UpdateCommandParser
 
 create ParseException
 UpdateCommandParser -> ParseException
@@ -48,18 +49,21 @@ create SuggestionCommandParser
 StockBookParser -> SuggestionCommandParser
 activate SuggestionCommandParser
 
-SuggestionCommandParser -> SuggestionCommandParser : parse(args)
+SuggestionCommandParser --> StockBookParser
+deactivate SuggestionCommandParser
+
+StockBookParser -> SuggestionCommandParser : parse(args)
 activate SuggestionCommandParser
 
 loop all command words
-    SuggestionCommandParser -> SuggestionUtil : minimumEditDistance()
+    SuggestionCommandParser -> SuggestionUtil : minimumEditDistance(...)
     activate SuggestionUtil
 
     SuggestionUtil --> SuggestionCommandParser
     deactivate SuggestionUtil
 end
 
-SuggestionCommandParser -> SuggestionCommandParser : generateUpdateSuggestion()
+SuggestionCommandParser -> SuggestionCommandParser : generateUpdateSuggestion(...)
 activate SuggestionCommandParser
 
 SuggestionCommandParser --> SuggestionCommandParser
@@ -72,9 +76,6 @@ activate SuggestionCommand
 SuggestionCommand --> SuggestionCommandParser
 deactivate SuggestionCommand
 
-SuggestionCommandParser --> SuggestionCommandParser
-deactivate SuggestionCommandParser
-
 SuggestionCommandParser --> StockBookParser
 deactivate SuggestionCommandParser
 
@@ -84,11 +85,18 @@ deactivate StockBookParser
 LogicManager -> SuggestionCommand : execute()
 activate SuggestionCommand
 
-SuggestionCommand -> Model : updateFilteredStockList()
+SuggestionCommand -> Model : updateFilteredStockList(...)
 activate Model
 
 Model --> SuggestionCommand
 deactivate Model
+
+create CommandException
+SuggestionCommand -> CommandException
+activate CommandException
+
+CommandException --> SuggestionCommand
+deactivate CommandException
 
 SuggestionCommand --> LogicManager
 deactivate SuggestionCommand

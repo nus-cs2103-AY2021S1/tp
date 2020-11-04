@@ -13,8 +13,6 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY_DESCRIPTION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER_DESCRIPTION;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE_DESCRIPTION;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +43,11 @@ public class UpdateCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Format: "
             + COMMAND_WORD + " "
-            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "... "
+            + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + " "
+            + "[" + PREFIX_SERIAL_NUMBER + PREFIX_SERIAL_NUMBER_DESCRIPTION + "]... "
             + "[" + PREFIX_INCREMENT_QUANTITY + PREFIX_INCREMENT_QUANTITY_DESCRIPTION + " | "
             + PREFIX_NEW_QUANTITY + PREFIX_NEW_QUANTITY_DESCRIPTION + "] "
             + "[" + PREFIX_NAME + PREFIX_NAME_DESCRIPTION + "] "
-            + "[" + PREFIX_SOURCE + PREFIX_SOURCE_DESCRIPTION + "] "
             + "[" + PREFIX_LOCATION + PREFIX_LOCATION_DESCRIPTION + "] "
             + "[" + PREFIX_LOW_QUANTITY + PREFIX_LOW_QUANTITY_DESCRIPTION + "]\n"
             + "Example: "
@@ -166,7 +164,7 @@ public class UpdateCommand extends Command {
         Quantity updatedQuantity = updateStockDescriptor.getQuantity().orElse(originalQuantity);
         String lowQuantity = updateStockDescriptor.getLowQuantity().orElse(originalQuantity.getLowQuantity());
         Name updatedName = updateStockDescriptor.getName().orElse(stockToUpdate.getName());
-        Source updatedSource = updateStockDescriptor.getSource().orElse(stockToUpdate.getSource());
+        Source updatedSource = stockToUpdate.getSource();
         Location updatedLocation = updateStockDescriptor.getLocation().orElse(stockToUpdate.getLocation());
         SerialNumber stockSerialNumber = stockToUpdate.getSerialNumber();
         Optional<QuantityAdder> quantityAdder = updateStockDescriptor.getQuantityAdder();

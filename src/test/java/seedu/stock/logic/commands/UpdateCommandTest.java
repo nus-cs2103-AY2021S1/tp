@@ -7,7 +7,6 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_BANANA;
-import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
@@ -39,21 +38,6 @@ public class UpdateCommandTest {
     @Test
     public void execute_onlyQuantityUpdated_success() {
         Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withQuantity("2101").build();
-        UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
-        UpdateCommand updateCommand = new UpdateCommand(descriptor);
-
-        String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
-
-        Model expectedModel = new ModelManager(new StockBook(model.getStockBook()), new UserPrefs(),
-                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
-        expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
-
-        assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_onlySourceUpdated_success() {
-        Stock updatedStock = new StockBuilder(TypicalStocks.BANANA).withSource("Value$").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -117,12 +101,10 @@ public class UpdateCommandTest {
         Stock lastStock = model.getFilteredStockList().get(indexLastStock.getZeroBased());
 
         StockBuilder stockInList = new StockBuilder(lastStock);
-        Stock updatedStock = stockInList.withName(VALID_NAME_APPLE).withSource(VALID_SOURCE_APPLE)
-                .withLocation(VALID_LOCATION_APPLE).build();
+        Stock updatedStock = stockInList.withName(VALID_NAME_APPLE).withLocation(VALID_LOCATION_APPLE).build();
 
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder().withName(VALID_NAME_APPLE)
-                .withSource(VALID_SOURCE_APPLE).withLocation(VALID_LOCATION_APPLE)
-                .withSerialNumber(updatedStock.getSerialNumber().toString()).build();
+                .withLocation(VALID_LOCATION_APPLE).withSerialNumber(updatedStock.getSerialNumber().toString()).build();
         UpdateCommand editCommand = new UpdateCommand(descriptor);
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_UPDATE_STOCK_SUCCESS, "\n" + updatedStock);
@@ -168,13 +150,13 @@ public class UpdateCommandTest {
     @Test
     public void execute_multipleStocksUpdated_success() {
         Stock updatedStockApple = new StockBuilder(TypicalStocks.APPLE).withName("Ice Cream")
-                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE)
+                .withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE)
                 .withQuantity("2000").build();
         Stock updatedStockBanana = new StockBuilder(TypicalStocks.BANANA).withName("Ice Cream")
-                .withSource("Magnum").withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
+                .withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
                 .withQuantity("2103").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
-                .withName("Ice Cream").withSource("Magnum")
+                .withName("Ice Cream")
                 .withLocation("Freezer One").withSerialNumber(VALID_SERIAL_NUMBER_APPLE, VALID_SERIAL_NUMBER_BANANA)
                 .build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);

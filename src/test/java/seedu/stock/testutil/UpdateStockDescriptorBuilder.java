@@ -38,7 +38,6 @@ public class UpdateStockDescriptorBuilder {
         descriptor.setSerialNumbers(currentSerialNumber);
         descriptor.setQuantity(stock.getQuantity());
         descriptor.setLocation(stock.getLocation());
-        descriptor.setSource(stock.getSource());
     }
 
     /**

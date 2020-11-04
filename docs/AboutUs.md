@@ -33,7 +33,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/audreyfelicio.png" width="200px">
 
 [[github](https://github.com/AudreyFelicio)]
-[[portfolio](team/audrey.md)]
+[[portfolio](team/audreyfelicio.md)]
 
 * Role: Developer
 * Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature,

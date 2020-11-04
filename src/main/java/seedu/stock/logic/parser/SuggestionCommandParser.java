@@ -370,7 +370,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateUpdateSuggestion(StringBuilder toBeDisplayed,
             ArgumentMultimap argMultimap) throws ParseException {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
-                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION,
+                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_LOCATION,
                 PREFIX_LOW_QUANTITY);
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
         boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
@@ -634,7 +634,11 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         for (int i = 0; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
             String description = "";
-            if (argMultimap.getValue(currentPrefix).isPresent()) {
+            boolean isPresent = argMultimap.getValue(currentPrefix).isPresent();
+            if (currentPrefix.equals(PREFIX_LOW_QUANTITY) && !isPresent) {
+                continue;
+            }
+            if (isPresent) {
                 description = argMultimap.getValue(currentPrefix).get();
             }
             if (!checkIfParameterValid(currentPrefix, description)) {
