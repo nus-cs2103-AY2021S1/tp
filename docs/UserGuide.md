@@ -284,17 +284,23 @@ Shows a list of all employees in the contact list.
 
 Format: `c-list`
 
-#### 3.3 Listing all employees who are working today: `c-today`
+#### 3.3 Locating all employees who are available to work today: `c-today`
 
-Shows a list of all active(unarchived) employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
+Finds employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
 
 Format: `c-today`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.
+* The application will automatically get today's day based on the current computer's date.
+* Only full words will be marched. e.g `Fri` will not match `Friday`
 
 Examples:
-* Assume today is `Wednesday`, after command `c-today`, all employees whose tags contain `Wednesday` will be
-  listed out. 
+* Let's say today is `Wednesday`. You want to find out who are the available manpower for today. You can follow these
+ instructions.
+
+Finding today's available manpower:
+1. Type `c-today` into the _Command Box_.
+2. Press `Enter` to execute
 
 #### 3.4 Listing all employees who are working tomorrow: `c-tomorrow`
 
