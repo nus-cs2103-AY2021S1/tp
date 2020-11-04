@@ -39,7 +39,7 @@ public class Date {
      */
     public Date(String date) throws IllegalValueException {
         requireNonNull(date);
-        Optional<String> format = isValid(date);
+        Optional<String> format = getFormat(date);
         AppUtil.checkArgument(format.isPresent(), MESSAGE_CONSTRAINTS);
         this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern(format.get()));
     }
@@ -60,7 +60,11 @@ public class Date {
      * @param date Date as a String.
      * @return If date can be parsed
      */
-    public static Optional<String> isValid(String date) {
+    public static boolean isValid(String date) {
+        return getFormat(date).isPresent();
+    }
+
+    private static Optional<String> getFormat(String date) {
         String correctFormat = "";
         for (String format : SUPPORTED_FORMATS) {
             try {
