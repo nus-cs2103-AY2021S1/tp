@@ -9,24 +9,24 @@ Wishful Shrinking is a desktop application for managing your diet, keeping track
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to get recommended recipes.
+* **New Feature**: Added the ability to get recommended recipes. (Pull requests [\#109](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/109))
   * What it does: allows the user to get recipes that they can make based on their fridge, that is the recipes whose ingredients are all present in their fridge.
   * Justification: This feature improves the product significantly because a user can easily search for what recipes they are able to make, which the ingredient that are already present in their fridge.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   
-* **New Feature**: Added the ability to add ingredients to the user's fridge.
+* **New Feature**: Added the ability to add ingredients to the user's fridge. (Pull requests [\#41](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/41))
   * What it does: allows the user to add ingredients to their fridge in Wishful Shrinking.
   * Justification: This feature improves the product significantly because a user can now save ingredients that they have into the fridge, which is essential in using the `recommend` recipes feature.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was built off from the "add contacts" feature in AddressBook Level 3 and refactored to add ingredients instead of contacts.
   
-* **New Feature**: Added the ability to search for an ingredient in the fridge.
+* **New Feature**: Added the ability to search for an ingredient in the fridge. (Pull requests [\#47](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/47))
   * What it does: allows the user to search for an ingredient in the fridge by its name.
   * Justification: This feature improves the product significantly because a user can now easily search for an ingredient by its name to see whether it is present in the fridge.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   * Credits: This feature was built off from the "search for contact by name" feature in AddressBook Level 3.
   
-* **New Feature**: Added the ability to delete a consumed recipe in the consumption list.
+* **New Feature**: Added the ability to delete a consumed recipe in the consumption list. (Pull requests [\#78](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/78))
   * What it does: allows the user to delete a recipe that they have eaten in the consumption list.
   * Justification: This feature improves the product significantly because a user can now delete the recipes that they do not want anymore or have mistakenly added from the consumption list.
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
@@ -56,4 +56,5 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#115](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/115), [\#175](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/175), [\#173](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/173)
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/caitlinjee/ped/issues/1), [2](https://github.com/caitlinjee/ped/issues/2), [3](https://github.com/caitlinjee/ped/issues/3), [4](https://github.com/caitlinjee/ped/issues/4))
 
