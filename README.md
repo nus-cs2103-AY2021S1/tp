@@ -1,10 +1,11 @@
 [![CI Status](https://github.com/AY2021S1-CS2103T-T15-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S1-CS2103T-T15-3/tp/actions)
 
 # About Warenager
-**Warenager** is an **inventory application** to help tech-savvy warehouse managers
-to keep track of items in their warehouse. It **optimizes management tasks for warehouse
-managers** including but not exhaustive of updating, searching and ordering supplies,
-via Command Line Interface (CLI).
+**Warenager** is an **inventory management application** to help warehouse managers
+of small scale companies keep track of stocks in their warehouse.
+It **optimizes inventory management tasks** for warehouse managers including but not
+exhaustive of **updating, searching and sorting stocks** via Command Line Interface (CLI),
+while still having the benefits of a Graphical User Interface (GUI).
 
 ## User interface
 ![Ui](docs/images/Ui.png)

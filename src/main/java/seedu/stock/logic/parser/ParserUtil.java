@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 import java.util.ArrayList;
@@ -8,10 +9,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.StringUtil;
+import seedu.stock.logic.commands.DeleteCommand;
+import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
@@ -195,10 +199,26 @@ public class ParserUtil {
 
         //invalid input if it does not start with "sn/" as it is a confirmed invalid header.
         if (!serialNumbers.trim().startsWith("sn/")) {
-            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(serialNumbers, PREFIX_SERIAL_NUMBER);
+        Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+        Prefix[] validPrefixesForDelete = {PREFIX_SERIAL_NUMBER };
+        Prefix[] invalidPrefixesForDelete = ParserUtil.getInvalidPrefixesForCommand(validPrefixesForDelete);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(serialNumbers, allPossiblePrefixes);
+
+        boolean areAllPrefixesPresent =
+                Stream.of(validPrefixesForDelete).allMatch(prefix -> argMultimap.getValue(prefix).isPresent());
+
+        boolean isAnyPrefixPresent =
+                Stream.of(invalidPrefixesForDelete).anyMatch(prefix -> argMultimap.getValue(prefix).isPresent());
+
+        // Check if command format is correct
+        if (!areAllPrefixesPresent || isAnyPrefixPresent || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    NoteCommand.MESSAGE_USAGE));
+        }
 
         List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
 
