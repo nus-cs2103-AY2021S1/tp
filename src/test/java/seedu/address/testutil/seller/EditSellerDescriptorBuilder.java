@@ -60,4 +60,5 @@ public class EditSellerDescriptorBuilder {
     public EditSellerDescriptor build() {
         return descriptor;
     }
+
 }

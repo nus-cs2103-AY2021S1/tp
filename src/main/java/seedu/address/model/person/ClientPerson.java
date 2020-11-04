@@ -35,17 +35,29 @@ public abstract class ClientPerson extends Person {
         this.clientId = updatedId;
     }
 
+    /**
+     * checks if the other client is the same in any regard.
+     *
+     * @param otherClient the other client checked against.
+     * @return if the client contains the same information .
+     */
+    public boolean isSameClient(ClientPerson otherClient) {
+        return otherClient != null && ((this == otherClient)
+                || this.getName().equals(otherClient.getName())
+                || this.getPhone().equals(otherClient.getPhone()));
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("\nName:")
+        builder.append("\nName: ")
                 .append(getName())
                 .append("\nPhone: ")
                 .append(getPhone())
                 .append("\nId: ")
                 .append(getId())
-                .append("\nTags: ")
-                .append(getId());
+                .append("\nTag: ")
+                .append(getTag());
         return builder.toString();
     }
 }

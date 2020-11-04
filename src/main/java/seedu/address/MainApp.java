@@ -121,16 +121,16 @@ public class MainApp extends Application {
                 logger.info("BidBook Data file not found. Will be starting with a sample BidBook");
             }
             if (!bidderAddressBookOptional.isPresent()) {
-                logger.info("Bidder Data file not found. Will be starting with a sample bidderAddressBook");
+                logger.info("BidderAddressBook Data file not found. Will be starting with a sample bidderAddressBook");
             }
             if (!sellerAddressBookOptional.isPresent()) {
-                logger.info("Seller Data file not found. Will be starting with a sample sellerAddressBook");
+                logger.info("SellerAddressBook Data file not found. Will be starting with a sample sellerAddressBook");
             }
             if (!meetingBookOptional.isPresent()) {
-                logger.info("Meeting Data file not found. Will be starting with a sample meetingBook");
+                logger.info("MeetingBook Data file not found. Will be starting with a sample meetingBook");
             }
             if (!propertyBookOptional.isPresent()) {
-                logger.info("Property data file not found. Will be starting with a sample PropertyBook");
+                logger.info("PropertyBook data file not found. Will be starting with a sample PropertyBook");
             }
             initialBidData = bidBookOptional.orElseGet(SampleDataUtil::getSampleBidBook);
             initialBidderData = bidderAddressBookOptional.orElseGet(SampleDataUtil::getSampleBidderAddressBook);

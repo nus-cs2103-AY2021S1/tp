@@ -89,7 +89,7 @@ public class AddSellerCommandTest {
         @Override
         public boolean hasSeller(Seller seller) {
             requireNonNull(seller);
-            return this.seller.isSamePerson(seller);
+            return this.seller.isSameSeller(seller);
         }
     }
 
@@ -103,7 +103,7 @@ public class AddSellerCommandTest {
         @Override
         public boolean hasSeller(Seller seller) {
             requireNonNull(seller);
-            return sellersAdded.stream().anyMatch(seller::isSamePerson);
+            return sellersAdded.stream().anyMatch(seller::isSameSeller);
         }
 
         @Override

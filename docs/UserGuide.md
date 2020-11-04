@@ -73,6 +73,253 @@ Displays a link to this User Guide.
 
 ---
 
+
+# Client
+Clients of PropertyFree consists of both bidders and sellers.
+
+- ```Sellers``` are the owners of the properties listed in PropertyFree.
+- ```Bidders``` are the interested properties who place a bid on a property.
+
+💡 Note that the ```Tag``` and ```Id``` for both ```bidder```
+and ```seller``` are created automatically and ***cannot be modified***.
+- ```Tag```: visual identifier for clients
+- ```Id```: Unique ID assigned to each client for identification.
+
+💡 Note also that PropertyFree assumes that all phone numbers are unique, and as such will not allow duplicates of
+phone number. 
+# Bidder Features
+
+## **Adding a Bidder**
+
+Adds a bidder to the bidder list.
+
+- Command: `add-b`
+- Format: `add-b n/BIDDER_NAME p/PHONE_NUMBER`
+
+Example:
+
+```
+add-b n/Marcus Duigan p/12345678
+```
+
+Expected Output:
+
+```
+New bidder added:   
+Name: Marcus Duigan 
+Phone number: 12345678
+Id: B1
+Tag: bidder
+```
+
+## Searching for **Bidder**
+
+User can search for a list of bidders based on their name. The returned list will retain names that matched with the keywords supplied.
+
+- Command: `find-b`
+- Format: **`find-b [KEYWORDS]`**
+
+Example:
+
+```
+find-b duigan
+```
+
+Expected Output:
+
+```
+1 bidders listed.
+```
+
+## View List **of Bidder**
+
+Brings user to the bidder tab and shows the whole list of bidders. Can be used after filtering / searching bidders.
+
+- Command: `list-b`
+- Format: `list-b`
+
+Example:
+
+```
+list-b
+```
+
+Expected Output:
+
+```
+Listed all bidders.
+```
+
+## Edit **of Bidder**
+
+Edits the information of a bidder who is corresponding to the index in the list of bidders. Names, phone number and tags can be edited. 
+
+- Command: `edit-b`
+- Format: `edit-b <INDEX> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+
+Example:
+
+
+```
+edit-b 1 n/Marcus Weagle Duigan p/987654321
+```
+
+Expected Output:
+
+```
+Edited Bidder:
+Name: Marcus Weagle Duigan
+Phone: 987654321
+Id: B1
+Tag: bidder
+```
+
+The index will only correspond to the original list, NOT the filtered list (when used in search).???
+
+## Delete **Bidder**
+
+Deletes the bidder that is corresponding to the index of the bidder in the list of the bidders.
+
+- Command: `delete-b`
+- Format: `delete-b <INDEX_NUMBER>`
+
+> - Deletes the bidder at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bidder list. The index must be a **positive integer** 1, 2, 3...
+
+
+Example:
+
+```
+delete-b 1 
+```
+
+Expected Output:
+
+```java
+Deleted Bidder:
+Name: Marcus Weagle Duigan
+Phone: 987654321
+Id: B1
+Tag: bidder
+All related bids and meetings have been deleted.
+```
+
+The index will only correspond to the original list, NOT the filtered list (when used in search).
+
+# Seller Features
+
+## **Addition of Seller**
+
+Adds a seller to the seller list.
+
+- Command: `add-s`
+- Format: `add-s n/SELLER_NAME p/PHONE_NUMBER`
+
+Example:
+
+```
+add-s n/Kor Ming Soon p/12345778 
+```
+
+Expected Output:
+
+```
+New seller added:
+Name: Kor Ming Soon
+Phone number: 12345778 
+Id: S1
+Tag: seller
+```
+
+## Searching for **Seller**
+
+User can search for a list of sellers based on their name. The returned list will retain names that matched with the keywords supplied.
+
+- Command: `find-s`
+- Format: **`find-s [KEYWORDS]`**
+
+Example:
+
+```
+find-s Ming
+```
+
+Expected Output:
+
+```
+1 seller(s) listed.
+```
+
+## View List **of Seller**
+
+Brings user to the seller tab and shows the whole list of sellers. Can be used after filtering / searching sellers.
+
+- Command: `list-s`
+- Format: `list-s`
+
+Example:
+
+```
+list-b
+```
+
+Expected Output:
+
+```
+Listed all sellers.
+```
+
+## Edit **of Seller**
+
+Edits the information of a seller who is corresponding to the index in the list of sellers. Names, phone number and tags can be edited. 
+
+- Command: `edit-s`
+- Format: `edit-s <INDEX> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
+
+Example:
+
+```java
+edit-s 1 n/Joven Kor Ming Soon p/987654321
+```
+
+Expected Output:
+
+```
+Edited Seller:
+Name: Joven Kor Ming Soon
+Phone: 987654321
+Id: S1
+Tag: seller
+```
+
+The index will only correspond to the original list, NOT the filtered list (when used in search).
+
+## Delete **Seller**
+
+- Command: `delete-s`
+- Format: `delete-s <INDEX_NUMBER>`
+
+> - Deletes the seller at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed seller list. The index must be a **positive integer** 1, 2, 3...
+
+Example:
+
+```
+delete-s 1 
+```
+
+Expected Output:
+
+```
+Deleted Seller:
+Name: Joven Kor Ming Soon
+Phone: 987654321
+Id: B1
+Tag: seller
+All related properties and meetings have been deleted.
+```
+
+The index will only correspond to the original list, NOT the filtered list (when used in search).
+
+
 # Property Features
 
 ## Adding a property: 
@@ -82,8 +329,7 @@ Adds a property and its relevant details to the property list.
 - Command:  `add-p`
 - Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL`
 
-> - ```IS_RENTAL``` can be the following format : Yes / yes / Y / y or No / no / N / n
-> - Warning: The ```SELLER_ID``` must exist inside the seller list to be added successfully.
+:warning: The seller id must exist inside the seller list.
 
 Example:
 
@@ -102,35 +348,26 @@ Asking price: $100.00
 Seller Id: S1
 ```
 
+💡 ```IS_RENTAL``` can be the following format : Yes / yes / Y / y or No / no / N / n
+
 ## Listing all properties
 
 Command: `list-p`  
 Shows a list of all properties in the property list.  
 
-Example:
-
-```
-list-p
-```
-
-Expected Output: 
-
-```
-Listed all properties.
-```
+Expected Output: `Listed all properties.`
 
 ## Editing a property
 
 Edits an existing property in the property list.  
 
 - Command: `edit-p`
-- Format: `edit-p <INDEX_NUMBER> [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]`
+- Format: `edit-p INDEX [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]`
 
-> - Edits the property at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
+> - Edits the property at the specified INDEX, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
 > - At least one optional field must be provided.
 > - Existing values will be updated to the input values.
 > - All other values will remain the same.
-> - Warning: The ```SELLER_ID``` must exist inside the seller list to be edited successfully.
 
 Example:
 
@@ -181,23 +418,23 @@ Displays all properties whose names contains either `Cove` or `Sunrise`, asking 
 Deletes a property listing from the property list.
 
 - Command: `delete-p`
-- Format: `delete-p PROPERTY_ID` or `delete-p <INDEX_NUMBER>`
+- Format: `delete-p PROPERTY_ID` or `delete-p INDEX`
 
-> - Deletes the property at the specified ```INDEX_NUMBER``` or with the specified ```PROPERTY_ID```.
+> - Deletes the property at the specified INDEX or with the specified PROPERTY_ID.
 > - The index refers to the index shown on the displayed property list.
 > - The index must be a **positive number** e.g. 1, 2, 3,...
 
 Examples:
 
-Delete the property whose property id is `P23`.
 ```
 delete-p P23
 ```
-Delete the fifth property in the property list.
+Deletes the property whose property id is `P23`.
+
 ```
 delete-p 5
 ```
-
+Deletes the fifth property in the property list.
 
 Expected Output:
 ```
@@ -210,238 +447,6 @@ Seller id: S2
 ```
 
 ---
-
-# Bidder Features
-
-## **Adding a Bidder**
-
-Adds a bidder to the bidder list.
-
-- Command: `add-b`
-- Format: `add-b n/BIDDER_NAME p/PHONE_NUMBER`
-
-Example:
-
-```
-add-b n/Marcus Duigan p/12345678
-```
-
-Expected Output:
-
-```
-New bidder added:   
-    Name: Marcus Duigan 
-    Phone number: 12345678
-    Id: B1
-    Tags: [bidder]
-```
-
-## Searching for **Bidder**
-
-User can search for a list of bidders based on their name. The returned list will retain names that matched with the keywords supplied.
-
-- Command: `find-b`
-- Format: **`find-b [KEYWORDS]`**
-
-Example:
-
-```
-find-b duigan
-```
-
-Expected Output:
-
-```
-1 bidders listed.
-```
-
-## View List **of Bidder**
-
-Brings user to the bidder tab and shows the whole list of bidders. Can be used after filtering / searching bidders.
-
-- Command: `list-b`
-- Format: `list-b`
-
-Example:
-
-```
-list-b
-```
-
-Expected Output:
-
-```
-Listed all bidders.
-```
-
-## Edit **of Bidder**
-
-Edits the information of a bidder who is corresponding to the index in the list of bidders. Names, phone number and tags can be edited. 
-
-- Command: `edit-b`
-- Format: `edit-b <INDEX> [n/NEW_NAME] [p/NEW_PHONE_NUMER]`
-
-Example:
-
-```
-edit-b 1 n/Marcus Weagle Duigan p/987654321
-```
-
-Expected Output:
-
-```
-Edited Bidder:
-	Name: Marcus Weagle Duigan
-	Phone: 987654321
-	Id: B1
-	Tags: B1???
-```
-
-The index will only correspond to the original list, NOT the filtered list (when used in search).???
-
-## Delete **Bidder**
-
-Deletes the bidder that is corresponding to the index of the bidder in the list of the bidders.
-
-- Command: `delete-b`
-- Format: `delete-b <INDEX_NUMBER>`
-
-> - Deletes the bidder at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed bidder list. The index must be a **positive integer** 1, 2, 3...
-
-
-Example:
-
-```
-delete-b 1 
-```
-
-Expected Output:
-
-```
-Deleted Bidder: 
-Name:Marcus
-Phone: 47876428
-Id: B3
-Tags: B3
-All related bids and meetings have been deleted.
-```
-The index will only correspond to the original list, NOT the filtered list (when used in search).
-
-# Seller Features
-
-## **Addition of Seller**
-
-Adds a seller to the seller list.
-
-- Command: `add-s`
-- Format: `add-s n/SELLER_NAME p/PHONE_NUMBER t/TAGS`
-
-Example:
-
-```
-add-s n/Kor Ming Soon p/12345778 
-```
-
-Expected Output:
-
-```
-New seller added:
-    Name: Kor Ming Soon
-    Phone number: 12345778 
-    Id: S1
-    Tags: [seller]
-```
-
-## Searching for **Seller**
-
-User can search for a list of sellers based on their name. The returned list will retain names that matched with the keywords supplied.
-
-- Command: `find-s`
-- Format: **`find-s [KEYWORDS]`**
-
-Example:
-
-```
-find-s Ming
-```
-
-Expected Output:
-
-```
-1 seller(s) listed.
-```
-
-## View List **of Seller**
-
-Brings user to the seller tab and shows the whole list of sellers. Can be used after filtering / searching sellers.
-
-- Command: `list-s`
-- Format: `list-s`
-
-Example:
-
-```
-list-b
-```
-
-Expected Output:
-
-```
-Listed all sellers.
-```
-
-## Edit **of Seller**
-
-Edits the information of a seller who is corresponding to the index in the list of sellers. Names, phone number and tags can be edited. 
-
-- Command: `edit-s`
-- Format: `edit-s <INDEX> [n/NEW_NAME] [p/NEW_PHONE_NUMER] [t/NEW_TAGS]`
-
-Example:
-
-```
-edit-s 1 n/Joven Kor Ming Soon p/987654321 t/SELLER
-```
-
-Expected Output:
-
-```
-Edited Seller:
-	Name: Joven Kor Ming Soon
-	Phone: 987654321
-	Id: S1
-	Tags: [SELLER]
-```
-
-The index will only correspond to the original list, NOT the filtered list (when used in search).
-
-## Delete **Seller**
-
-
-
-- Command: `delete-s`
-- Format: `delete-s <INDEX_NUMBER>`
-
-> - Deletes the seller at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed seller list. The index must be a **positive integer** 1, 2, 3...
-
-Example:
-
-```
-delete-s 1 
-```
-
-Expected Output:
-
-```
-Deleted Seller:
-	Name: Joven Kor Ming Soon
-	Phone: 987654321
-	Id: B1
-	Tags: [SELLER]
-```
-
-The index will only correspond to the original list, NOT the filtered list (when used in search).
-
 
 # Bid Features
 

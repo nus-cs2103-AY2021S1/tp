@@ -99,7 +99,8 @@ public class EditBidderCommandTest {
         showBidderAtIndex(model, INDEX_FIRST_PERSON);
 
         Bidder bidderInFilteredList = model.getFilteredBidderList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Bidder editedBidder = new BidderBuilder(bidderInFilteredList).withName(VALID_NAME_BOB).build();
+        Bidder editedBidder = new BidderBuilder(bidderInFilteredList)
+                .withName(VALID_NAME_BOB).build();
         EditBidderCommand editBidderCommand = new EditBidderCommand(INDEX_FIRST_PERSON,
                 new EditBidderDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
