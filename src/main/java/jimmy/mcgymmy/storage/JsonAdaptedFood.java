@@ -90,7 +90,7 @@ class JsonAdaptedFood {
         checkValid(fat, Fat.class.getSimpleName(), Fat::isValid, Fat.MESSAGE_CONSTRAINTS);
         checkValid(carbs, Carbohydrate.class.getSimpleName(),
                 Carbohydrate::isValid, Carbohydrate.MESSAGE_CONSTRAINTS);
-        checkValid(date, Date.class.getSimpleName(), (obj) -> Date.isValid(obj).isPresent(), Date.MESSAGE_CONSTRAINTS);
+        checkValid(date, Date.class.getSimpleName(), Date::isValid, Date.MESSAGE_CONSTRAINTS);
 
         //Load Tags.
         final List<Tag> foodTags = new ArrayList<>();
