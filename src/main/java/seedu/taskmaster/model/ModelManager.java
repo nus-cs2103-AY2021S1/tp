@@ -296,6 +296,7 @@ public class ModelManager implements Model {
         filteredSessions.setPredicate(predicate);
     }
 
+    @Override
     public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
         requireNonNull(predicate);
         filteredStudentRecords.setPredicate(predicate);

@@ -242,7 +242,12 @@ public class AddCommandTest {
 
         @Override
         public void updateStudentRecords(List<StudentRecord> studentRecords) {
-            throw new AssertionError("This method should not be called");
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void showRandomStudent() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

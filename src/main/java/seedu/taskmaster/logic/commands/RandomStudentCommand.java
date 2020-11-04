@@ -1,10 +1,10 @@
 package seedu.taskmaster.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.session.exceptions.SessionException;
-
-import static java.util.Objects.requireNonNull;
 
 public class RandomStudentCommand extends Command {
     public static final String COMMAND_WORD = "random-student";
