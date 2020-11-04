@@ -297,6 +297,9 @@ McGymmy.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
+Examples:
+*  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
+
 <div markdown="block" class="alert alert-info">
 
 :information_source:
@@ -306,13 +309,9 @@ Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* To view the list of supported date formats, see *Appendix A*.
 
 </div>
-
-Examples:
-*  `edit 3 -n banana -p 120` Changes the `name` and `protein` values of the 3rd item in the list to `banana` and `120` respectively.
-
-:information_source:  To view the list of supported date formats, see *Appendix A*.<br>
 
 ![edit command example](images/CommandImagesForUG/Edit.png)
 
