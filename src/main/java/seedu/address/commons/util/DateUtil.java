@@ -17,10 +17,6 @@ public class DateUtil {
     public static final String DATE_CONSTRAINTS = "Dates should be a valid date in the form dd/mm/yyyy, "
             + "and should not be blank";
 
-    public static final String DATE_CONSTRAINT_NO_FUTURE = "Dates should be a valid date in the form dd/mm/yy, "
-            + "should not be blank, "
-            + "and should not be future-dated";
-
     public static final Pattern DATE_PATTERN =
             Pattern.compile("(?<day>[0-9]{1,2})(/)(?<month>[0-9]{1,2})(/)(?<year>[0-9]{2}|[0-9]{4})");
 

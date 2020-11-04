@@ -44,13 +44,11 @@ public class ParserUtilTest {
     private static final String INVALID_QUESTION = "";
     private static final String INVALID_SOLUTION = " ";
     private static final String INVALID_EXAM_NAME = " ";
-    private static final String INVALID_EXAM_DATE_FORMAT = "23-9-2019";
-    private static final String INVALID_EXAM_DATE_ALPHABETS = "abcdef";
     private static final String INVALID_SCORE_LARGER = "100/50";
     private static final String INVALID_SCORE_NEGATIVE = "-50/-100";
-    private static final String INVALID_ATTENDANCE_DATE_FORMAT = "23-9-2019";
-    private static final String INVALID_ATTENDANCE_DATE_ALPHABETS = "abcdef";
     private static final String INVALID_ATTENDANCE_STATUS = "you wot m8";
+    private static final String INVALID_DATE_ALPHABETS = "abcdef";
+    private static final String INVALID_DATE_FORMAT = "23-9-2019";
     private static final String INVALID_FEEDBACK = " ";
     private static final String INVALID_TITLE = "What is the meaning of life?";
     private static final String INVALID_DESCRIPTION = "Lorem ipsum dolor sit amet, consectetur"
@@ -72,15 +70,13 @@ public class ParserUtilTest {
     private static final String VALID_QUESTION = "Why can't humans fly?";
     private static final String VALID_SOLUTION = "Read your textbook.";
     private static final String VALID_EXAM_NAME = "Mid Year 2020";
-    private static final String VALID_EXAM_DATE = "23/9/2019";
+    private static final String VALID_DATE = "23/9/2019";
     private static final String VALID_SCORE = "50/100";
-    private static final String VALID_ATTENDANCE_DATE = "23/9/2019";
     private static final String VALID_ATTENDANCE_STATUS = "present";
     private static final String VALID_FEEDBACK = "attentive";
     private static final String VALID_TITLE = "meaning of life";
     private static final String VALID_DESCRIPTION = "Lorem ipsum dolor";
     private static final String WHITESPACE = " \t\r\n";
-    private static final LocalDate DATE = parseToDate(VALID_EXAM_DATE);
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -420,32 +416,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseExamDate_null_throwNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamDate(null));
-    }
-
-    @Test
-    public void parseExamDate_invalidDateWrongFormat_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_FORMAT));
-    }
-
-    @Test
-    public void parseExamDate_invalidDateAlphabets_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_ALPHABETS));
-    }
-
-    @Test
-    public void parseExamDate_validDateWithoutWhiteSpace_returnsExamDateString() throws Exception {
-        assertEquals(DATE, ParserUtil.parseExamDate(VALID_EXAM_DATE));
-    }
-
-    @Test
-    public void parseExamDate_validDateWithWhiteSpace_returnsTrimmedExamDateString() throws Exception {
-        String examDateWithWhiteSpace = WHITESPACE + VALID_EXAM_DATE + WHITESPACE;
-        assertEquals(DATE, ParserUtil.parseExamDate(examDateWithWhiteSpace));
-    }
-
-    @Test
     public void parseScore_null_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseScore(null));
     }
@@ -471,32 +441,6 @@ public class ParserUtilTest {
         String scoreWithWhiteSpace = WHITESPACE + VALID_SCORE + WHITESPACE;
         Score expectedScore = new Score(VALID_SCORE);
         assertEquals(expectedScore, ParserUtil.parseScore(scoreWithWhiteSpace));
-    }
-
-    @Test
-    public void parseAttendanceDate_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAttendanceDate(null));
-    }
-
-    @Test
-    public void parseAttendanceDate_invalidDateWrongFormat_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAttendanceDate(INVALID_ATTENDANCE_DATE_FORMAT));
-    }
-
-    @Test
-    public void parseAttendanceDate_invalidDateAlphabets_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAttendanceDate(INVALID_ATTENDANCE_DATE_ALPHABETS));
-    }
-
-    @Test
-    public void parseAttendanceDate_validDateWithoutWhiteSpace_returnsExamDateString() throws Exception {
-        assertEquals(DATE, ParserUtil.parseExamDate(VALID_ATTENDANCE_DATE));
-    }
-
-    @Test
-    public void parseAttendanceDate_validDateWithWhiteSpace_returnsTrimmedExamDateString() throws Exception {
-        String attendanceDateWithWhiteSpace = WHITESPACE + VALID_ATTENDANCE_DATE + WHITESPACE;
-        assertEquals(DATE, ParserUtil.parseAttendanceDate(attendanceDateWithWhiteSpace));
     }
 
     @Test
@@ -566,6 +510,30 @@ public class ParserUtilTest {
     public void parseDescription_validDescriptionWithWhiteSpace_returnsDescriptionString() throws Exception {
         String descriptionWithWhiteSpace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         assertEquals(new Description(VALID_DESCRIPTION), ParserUtil.parseDescription(descriptionWithWhiteSpace));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidDate_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_ALPHABETS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseDate_validDate_returnsDate() throws Exception {
+        LocalDate expected = parseToDate(VALID_DATE);
+        assertEquals(expected, ParserUtil.parseDate(VALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validDateWithWhiteSpace_returnsTrimmedDate() throws Exception {
+        String dateWithWhiteSpace = WHITESPACE + VALID_DATE + WHITESPACE;
+        LocalDate expected = parseToDate(VALID_DATE);
+        assertEquals(expected, ParserUtil.parseDate(dateWithWhiteSpace));
     }
 
 }

@@ -89,7 +89,7 @@ public class ExamCommandParser implements Parser<ExamCommand> {
         }
 
         String examName = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_EXAM_NAME).get());
-        LocalDate examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
+        LocalDate examDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
         Score score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get().trim());
 
         Exam exam = new Exam(examName, examDate, score);

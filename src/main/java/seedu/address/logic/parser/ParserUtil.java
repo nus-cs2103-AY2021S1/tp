@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.DateUtil.parseToDate;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
-import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.academic.question.Question;
 import seedu.address.model.student.academic.question.SolvedQuestion;
@@ -291,21 +289,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String examDate} into a {@code Exam} formatted {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code examDate} is invalid.
-     */
-    public static LocalDate parseExamDate(String date) throws ParseException {
-        requireNonNull(date);
-        try {
-            return parseDate(date);
-        } catch (ParseException e) {
-            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
-        }
-    }
-
-    /**
      * Parses a {@code String examName} into a {@code Exam} format {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -333,21 +316,6 @@ public class ParserUtil {
             throw new ParseException(Score.MESSAGE_CONSTRAINTS);
         }
         return new Score(trimmedScore);
-    }
-
-    /**
-     * Parses a {@code String lessonDate} into a {@code Attendance} formatted {@code String}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code lessonDate} is invalid.
-     */
-    public static LocalDate parseAttendanceDate(String lessonDate) throws ParseException {
-        requireNonNull(lessonDate);
-        try {
-            return parseDate(lessonDate);
-        } catch (ParseException e) {
-            throw new ParseException(Attendance.DATE_CONSTRAINTS);
-        }
     }
 
     /**
@@ -383,13 +351,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the input is not a valid date.
      */
-    private static LocalDate parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
         if (!DateUtil.isValidDate(trimmedDate)) {
             throw new ParseException(DateUtil.DATE_CONSTRAINTS);
         }
-        return parseToDate(trimmedDate);
+        return DateUtil.parseToDate(trimmedDate);
     }
 
 }

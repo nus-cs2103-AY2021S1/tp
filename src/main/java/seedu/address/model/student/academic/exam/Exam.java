@@ -12,9 +12,6 @@ import java.util.Objects;
  */
 public class Exam {
 
-    public static final String MESSAGE_CONSTRAINTS = "Exam dates should be in the form dd/mm/yy, "
-            + "and should not be blank";
-
     private final String examName;
     private final LocalDate examDate;
     private final Score score;

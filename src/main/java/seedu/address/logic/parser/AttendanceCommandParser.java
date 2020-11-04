@@ -64,7 +64,7 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
             LocalDate attendanceDate =
-                    ParserUtil.parseAttendanceDate(argMultimap.getValue(PREFIX_ATTENDANCE_DATE).get());
+                    ParserUtil.parseDate(argMultimap.getValue(PREFIX_ATTENDANCE_DATE).get());
             boolean isStudentPresent = ParserUtil.parseAttendanceStatus(
                     argMultimap.getValue(PREFIX_ATTENDANCE_STATUS).get());
             attendance = getAttendance(argMultimap, attendanceDate, isStudentPresent);
@@ -103,7 +103,7 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
         LocalDate lessonDate;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            lessonDate = ParserUtil.parseAttendanceDate(argMultimap.getValue(PREFIX_ATTENDANCE_DATE).get());
+            lessonDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ATTENDANCE_DATE).get());
         } catch (ParseException pe) {
             throw new ParseException(ERROR_DEL_ATTENDANCE, pe);
         }

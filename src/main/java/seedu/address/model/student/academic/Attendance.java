@@ -13,8 +13,6 @@ import java.util.Optional;
  */
 public class Attendance {
 
-    public static final String DATE_CONSTRAINTS =
-            "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
     public static final String STATUS_CONSTRAINTS =
             "Attendance status should be either 'present' or 'absent'.";
 
