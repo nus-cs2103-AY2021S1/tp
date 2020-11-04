@@ -104,6 +104,8 @@ Note how the app contains some sample data.<br>
 
 **:information_source: Notes about the command format:**<br>
 
+<!-- TODO: Define applicant and staff panel -->
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -118,9 +120,9 @@ Note how the app contains some sample data.<br>
 
 </div>
 
-
 Note: Once any change is made to the data from the commands below, the data is saved in the hard disk. 
 There is no need to save manually. <br>
+
 ### 3.1. Common Commands
 #### 3.1.1. View : `view`
 
@@ -151,15 +153,21 @@ Examples:
 * `find -staff Doe`
 * `find -applicant John`
 
+#### 3.1.4. Clear all entries : `clear`
+
+In any case that you might want to remove all staff or applicant records, you can always use the `clear` command. <br>
+However do note that in order to execute this command on staff, make sure you are viewing the staff panel. 
+Similarly, the clear command for applicants works only when viewing the applicants panel. 
+
+Format: `clear CLEAR_TYPE-`
+
+Examples:
+If you wish to clear all staff records: `clear s-` <br>
+If you wish to clear all applicant records: `clear a-` <br>
+
 ### 3.2. General Commands
 
-#### 3.2.1. Clear all entries : `clear`
-
-Clears all entries from Eva.
-
-Format: `clear`
-
-#### 3.2.2. Find help : `help`
+#### 3.2.1. Find help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -167,7 +175,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### 3.2.3. Exit the program : `exit`
+#### 3.2.2. Exit the program : `exit`
 
 Exits the program. 
 
@@ -253,7 +261,9 @@ Examples:
 
 
 ### 3.4. Applicant commands
-
+In this section, you will get familiar with all the functionality related to applicants in Eva. Using these commands 
+you will be able to manage records of applicants and their applications. 
+   
 #### 3.4.1 Add an applicant: `adda`
 
 Adds an applicant to Eva.
@@ -325,7 +335,7 @@ Example:
 * `delapp 1`
 
 #### 3.4.6. Set application status: `setas`
-[This feature is coming soon] <br>
+ 
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
 Format: `setas INDEX NEW_APPLICATION_STATUS`
