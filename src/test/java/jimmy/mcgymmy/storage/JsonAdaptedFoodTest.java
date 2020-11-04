@@ -62,7 +62,7 @@ public class JsonAdaptedFoodTest {
     public void toModelType_invalidProtein_throwsIllegalValueException() {
         JsonAdaptedFood food =
                 new JsonAdaptedFood(VALID_NAME, INVALID_PROTEIN, VALID_FAT, VALID_CARBS, VALID_DATE, VALID_TAGS);
-        String expectedMessage = Protein.newDefault().getMessageConstraint();
+        String expectedMessage = Protein.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
 
@@ -70,7 +70,7 @@ public class JsonAdaptedFoodTest {
     public void toModelType_invalidFat_throwsIllegalValueException() {
         JsonAdaptedFood food =
                 new JsonAdaptedFood(VALID_NAME, VALID_PROTEIN, INVALID_FAT, VALID_CARBS, VALID_DATE, VALID_TAGS);
-        String expectedMessage = Fat.newDefault().getMessageConstraint();
+        String expectedMessage = Fat.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
 
@@ -78,7 +78,7 @@ public class JsonAdaptedFoodTest {
     public void toModelType_invalidCarbs_throwsIllegalValueException() {
         JsonAdaptedFood food =
                 new JsonAdaptedFood(VALID_NAME, VALID_PROTEIN, VALID_FAT, INVALID_CARBS, VALID_DATE, VALID_TAGS);
-        String expectedMessage = Carbohydrate.newDefault().getMessageConstraint();
+        String expectedMessage = Carbohydrate.MESSAGE_CONSTRAINTS;
         Assert.assertThrows(IllegalValueException.class, expectedMessage, food::toModelType);
     }
 

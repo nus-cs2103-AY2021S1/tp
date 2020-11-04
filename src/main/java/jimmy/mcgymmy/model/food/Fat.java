@@ -9,6 +9,7 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 public class Fat extends Macronutrient {
     private static final int FAT_MULTIPLIER = 9;
     private static final int DEFAULT_FAT = 0;
+    public static final String MESSAGE_CONSTRAINTS = "Fat" + Macronutrient.MESSAGE_CONSTRAINTS;
 
     /**
      * Creates a new Fat.
@@ -31,5 +32,10 @@ public class Fat extends Macronutrient {
             assert false : "Error in creation of default";
             throw new IllegalArgumentException("Error in creation using default values.");
         }
+    }
+
+    @Override
+    String getMessageConstraint() {
+        return MESSAGE_CONSTRAINTS;
     }
 }

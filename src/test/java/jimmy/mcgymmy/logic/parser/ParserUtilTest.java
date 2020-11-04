@@ -60,8 +60,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, Index.MESSAGE_INDEX_TOO_LARGE, () ->
+<<<<<<< HEAD
+        assertThrows(ParseException.class, ParserUtil.MESSAGE_INDEX_TOO_LARGE, () ->
                 ParserUtil.parseIndex(Long.toString((long) Integer.MAX_VALUE + 1)));
+=======
+        assertThrows(ParseException.class,
+                Index.MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(
+                        Long.toString(((long) Integer.MAX_VALUE + 1))));
+>>>>>>> master
     }
 
     @Test

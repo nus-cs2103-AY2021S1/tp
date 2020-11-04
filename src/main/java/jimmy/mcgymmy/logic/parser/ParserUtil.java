@@ -99,7 +99,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Protein} is invalid.
      */
     public static Protein parseProtein(String protein) throws ParseException {
-        int proteinValue = getNutrientValue(protein, Protein.newDefault().getMessageConstraint());
+        int proteinValue = getNutrientValue(protein, Protein.MESSAGE_CONSTRAINTS);
         try {
             return new Protein(proteinValue);
         } catch (IllegalValueException e) {
@@ -115,7 +115,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code carb} is invalid.
      */
     public static Carbohydrate parseCarb(String carb) throws ParseException {
-        int carbValue = getNutrientValue(carb, Carbohydrate.newDefault().getMessageConstraint());
+        int carbValue = getNutrientValue(carb, Carbohydrate.MESSAGE_CONSTRAINTS);
         try {
             return new Carbohydrate(carbValue);
         } catch (IllegalValueException e) {
@@ -130,7 +130,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code fat} is invalid.
      */
     public static Fat parseFat(String fat) throws ParseException {
-        int fatValue = getNutrientValue(fat, Fat.newDefault().getMessageConstraint());
+        int fatValue = getNutrientValue(fat, Fat.MESSAGE_CONSTRAINTS);
         try {
             return new Fat(fatValue);
         } catch (IllegalValueException e) {
