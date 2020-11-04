@@ -45,3 +45,4 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with review comments): [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/jiaqi20/ped/issues/1), [2](https://github.com/jiaqi20/ped/issues/2), [3](https://github.com/jiaqi20/ped/issues/3))
+  
