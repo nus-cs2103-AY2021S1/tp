@@ -138,8 +138,8 @@ We will follow the following convention for each command's format:
 ### 5.1 Viewing help : `help`
 
 Stuck and unsure of how to execute a certain command? The `help` command allows you to view
-information on all available commands. It also enables you to display detailed information on specific
-commands. This way, you won't have any trouble utilising McGymmy to its full potential.
+information on all available commands. It also enables you to display detailed information on a specific
+command. This way, you won't have any trouble utilising McGymmy to its full potential.
 
 Format: `help [COMMAND]`
 
@@ -151,7 +151,9 @@ Examples:
 
 ### 5.2 Adding a food item: `add`
 
-You can add a food item to McGymmy.
+The `add` command allows you to store your food items into McGymmy with ease. You can also
+specify additional details for your food item entry, creating a more detailed and customisable
+diet-tracking experience.
 
 Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE] [-t TAG]`
 
@@ -166,7 +168,7 @@ Examples:
 
 :information_source:
  * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
- * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer.<br>
+ * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, not exceeding 1000g.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
 
 </div>
