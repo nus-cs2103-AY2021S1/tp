@@ -237,16 +237,14 @@ Multiple ingredients are separated by `,`.
   Sample images | Replace IMAGE in img/IMAGE with the **file path**<br> (refer to table [below](#table) ) | img/images/healthy1.jpg | Sample image is displayed
   Invalid image | NA | 1. Invalid local file path<br><br>2. Invalid URL<br><br>3. No internet connection | Default image will be displayed
   No image input | NA | NA | Default image will be displayed since `IMAGE` is **OPTIONAL FIELD**
-
  
-* Here is the table <a id="table"></a> containing built-in sample images provided by Wishful Shrinking:
+* Here is the table <a id="table"></a> containing built-in **sample images** provided by Wishful Shrinking:
 
      Image | File Path | Image | File Path
      --------|--------------|--------|-------------
      <img src="images/healthy1.png" width="150" height="100"> | images/healthy1.jpg | <img src="images/healthy4.png" width="150" height="100"> | images/healthy4.jpg
      <img src="images/healthy2.png" width="150" height="100"> | images/healthy2.jpg | <img src="images/healthy5.png" width="150" height="100"> | images/healthy5.jpg
      <img src="images/healthy3.png" width="150" height="100"> | images/healthy3.jpg | <img src="images/healthy6.png" width="150" height="100"> | images/healthy6.jpg
-     
 
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
  step of the instruction based on the end of a sentence, indicated by a `.`.
@@ -313,7 +311,6 @@ Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -Q
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple ingredients are separated by `,`.
 </div> 
-
 
 * `CALORIES` **must be a positive integer** e.g. 150, 200...
 * `IMAGE` can be in two formats:
@@ -762,10 +759,10 @@ Features | Format, Examples
 **List recipes** | `recipes`
 **Delete recipe** | `deleteR INDEX`<br> e.g. `deleteR 3`
 **Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...` <br> e.g. `editR 2 n/Apple salad i/apple`
-**Get edit recipe info** | `editR INDEX` <br> e.g. `editR 2`
-**Select recipe** | `selectR INDEX` <br> e.g. `selectR 3`
+**Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
+**Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
 **Close recipe drawer**| `close`
-**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]` <br> e.g. `searchR i/lettuce tomato, searchR n/salad, searchR t/healthy`
+**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]`<br> e.g. `searchR i/lettuce tomato, searchR n/salad, searchR t/healthy`
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
 
@@ -773,21 +770,21 @@ Features | Format, Examples
 
 Features | Format, Examples
 --------|------------------
-**Add ingredient to the Fridge** | `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]` <br> e.g. `addF i/banana -3/4 cups, green peas -200g, salmon fish`
+**Add ingredient to the Fridge** | `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`<br> e.g. `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 **List ingredients in the Fridge** | `fridge`
 **Delete ingredient from the Fridge** | `deleteF INDEX`<br> e.g. `deleteF 3`
-**Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]` <br> e.g. `editF 3 i/apple sauce -20.0g`
-**Get edit ingredient info** | `editF INDEX` <br> e.g. `editF 2`
-**Search for ingredient in the Fridge** | `searchF KEYWORD [MORE_KEYWORDS]` <br> e.g. `searchF avocado`
+**Edit ingredient in the Fridge** | `editF INDEX i/INGREDIENTS [ -QUANTITY]`<br> e.g. `editF 3 i/apple sauce -20.0g`
+**Get edit ingredient info** | `editF INDEX`<br> e.g. `editF 2`
+**Search for ingredient in the Fridge** | `searchF KEYWORD [MORE_KEYWORDS]`<br> e.g. `searchF avocado`
 **Clear all ingredients from the Fridge** | `clearF`
 
 ## Consumption-Related Command <a id="83-consumption-related-commands"></a>
 
 Features | Format, Examples
 --------|------------------
-**Eat recipe** | `eatR INDEX` <br> e.g. `eatR 3`
+**Eat recipe** | `eatR INDEX`<br> e.g. `eatR 3`
 **List recipes eaten** | `calories`
-**Delete recipe eaten** | `deleteC INDEX` <br> e.g. `deleteC 3`
+**Delete recipe eaten** | `deleteC INDEX`<br> e.g. `deleteC 3`
 **Clear all consumed recipes** | `clearC`
 
 ## Miscellaneous Command <a id="84-miscellaneous-commands"></a>
