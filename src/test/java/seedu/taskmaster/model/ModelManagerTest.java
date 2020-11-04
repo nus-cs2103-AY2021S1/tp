@@ -256,6 +256,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
+        modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () ->
                 modelManager.markStudentRecord(ALICE_STUDENT_RECORD, AttendanceType.PRESENT));
     }
@@ -294,6 +295,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
+        modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .markStudentWithNusnetId(ALICE.getNusnetId(), AttendanceType.PRESENT));
     }
@@ -340,6 +342,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
+        modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreStudent(ALICE_STUDENT_RECORD, VALID_SCORE_DOUBLE));
     }
@@ -377,6 +380,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
+        modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreStudentWithNusnetId(ALICE.getNusnetId(), VALID_SCORE_DOUBLE));
     }
@@ -430,6 +434,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
+        modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .scoreAllStudents(studentRecords, VALID_SCORE_DOUBLE));
     }
@@ -484,6 +489,7 @@ public class ModelManagerTest {
                 new SessionDateTime(LocalDateTime.now()),
                 stds);
         modelManager.addSession(s);
+        modelManager.changeSession(null);
         assertThrows(NoSessionSelectedException.class, () -> modelManager
                 .markAllStudentRecords(studentRecords, AttendanceType.PRESENT));
     }
