@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Supplier;
@@ -9,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import static java.util.Objects.requireNonNull;
 
 
 public class AutocompleteCommandBox extends CommandBox {
