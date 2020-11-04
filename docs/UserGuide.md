@@ -99,8 +99,8 @@ Accompanying the details of each command are figures that show an example of the
 
 NUStorage supports the storage and manipulation of inventory records. The following sections detail the commands related to inventory storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#533-switch-tabs-switch) section for more information.
-Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#533-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
@@ -218,7 +218,7 @@ __Result:__ Updated corresponding finance record.
 
 NUStorage supports the storage and manipulation of finance records. The following sections detail the commands related to finance storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#533-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
 
 **NOTE:** that some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
@@ -382,7 +382,30 @@ __Result:__ All finance records are listed.
 
 The following are universal commands for navigating the application.
 
-#### 5.3.1. Quit the programme: `exit`
+#### 5.3.1. Clear records: `clear`
+
+Deletes all data stored locally.
+
+**:heavy_exclamation_mark: Executing this command DELETES ALL RECORDS AND CAN NOT BE UNDONE!**
+
+__Format:__ `clear`
+
+__Example:__ `clear`
+
+When on either tab, enter the command `clear` and press enter to execute.
+![Clear command example inventory](images/commands/clear_command_inventory.jpg)
+![Clear command example finance](images/commands/clear_command_finance.jpg)
+
+__Result:__ All records currently stored in NUStorage are deleted as seen below.
+
+![Clear command result inventory](images/commands/clear_command_result_inventory.jpg)
+![Clear command result finance](images/commands/clear_command_result_finance.jpg)
+
+**NOTE:** This command can be executed even if there are no records stored in NUStorage. There will be no effects when executing this command on an empty NUStorage.
+
+---
+
+#### 5.3.2. Quit the programme: `exit`
 
 Saves data locally in a data file and exits the programme.
 
@@ -396,7 +419,7 @@ __Result:__ Programme terminates.
 
 ---
 
-#### 5.3.2. Get help on the commands: `help`
+#### 5.3.3. Get help on the commands: `help`
 
 Opens a help window that links to this User Guide.
 
@@ -412,7 +435,7 @@ __Result:__ A help window is opened as shown below, redirecting user to this Use
 
 ---
 
-#### 5.3.3. Switch tabs: `switch`
+#### 5.3.4. Switch tabs: `switch`
 
 Switches between the inventory and finance tabs.
 
@@ -442,7 +465,7 @@ __Result:__ Tabs switched.
 
 ---
 
-#### 5.3.4. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
+#### 5.3.5. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
 [_This feature is planned for v2.0_]
 
@@ -491,6 +514,7 @@ The following table gives a summary of the [__universal commands__](#53-universa
 
 |Description|Command and Example|
 |---|---|
+| __Clear records__ | `clear` |
 | __Exit programme__ | `exit` |
 | __Help__ | `help` |
 | __Switch tabs__ | `switch` |
