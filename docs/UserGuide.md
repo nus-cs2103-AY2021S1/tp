@@ -25,7 +25,7 @@
         + [3.3.8.1 Adding a detail: `detail add`](#3381-adding-a-detail-detail-add)
         + [3.3.8.2 Editing a detail: `detail edit`](#3382-editing-a-detail-detail-edit)
         + [3.3.8.3 Deleting a detail: `detail delete`](#3383-deleting-a-detail-detail-delete)
-    + [3.3.9 Scheduling: `schedule` (By: Alex)](#339-scheduling-schedule-by-alex)
+    + [3.3.9 Viewing lesson schedule: `schedule` (By: Alex)](#339-viewing-lesson-schedule-schedule-by-alex)
     + [3.3.10 Clearing all entries: `clear`](#3310-clearing-all-entries-clear)
   * [3.4 Features for managing student academic details](#34-features-for-managing-student-academic-details)
     + [3.4.1 Recording questions from a student: `question` (By: Ying Gao)](#341-recording-questions-from-a-student-question-by-ying-gao)
@@ -344,7 +344,7 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.3.9 Scheduling: `schedule` (By: Alex) 
+#### 3.3.9 Viewing lesson schedule: `schedule` (By: Alex) 
 
 You can view your upcoming classes on a timetable in either a daily or weekly format.
 
