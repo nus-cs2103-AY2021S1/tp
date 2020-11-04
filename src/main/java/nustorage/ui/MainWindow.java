@@ -130,6 +130,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     public void fillInnerParts() {
+        assert financePlaceholder != null;
+        assert inventoryPlaceholder != null;
+        assert resultDisplayPlaceholder != null;
+        assert commandBoxPlaceholder != null;
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
