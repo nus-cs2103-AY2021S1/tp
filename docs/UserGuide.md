@@ -344,6 +344,10 @@ into McGymmy. This allows for easy transfer of McGymmy data between multiple com
 
 Format: `import FILEPATH`
 
+Examples:
+* For Windows users: `import c:/mcgymmy/save_file.json` imports `save_file.json` from the `c:/mcgymmy` directory into McGymmy.
+* For Mac users: `import /Users/<username>/Desktop/save_file.json` imports `save_file.json` from the Desktop into McGymmy.
+
 <div markdown="block" class="alert alert-info">
 
 :information_source:
@@ -353,10 +357,6 @@ Format: `import FILEPATH`
 * The imported file will simply override the existing food list.
 
 </div>
-
-Examples:
-* For Windows users: `import c:/mcgymmy/save_file.json` imports `save_file.json` from the `c:/mcgymmy` directory into McGymmy.
-* For Mac users: `import /Users/<username>/Desktop/save_file.json` imports `save_file.json` from the Desktop into McGymmy.
 
 ![Import command example](images/CommandImagesForUG/Import.png)
 
