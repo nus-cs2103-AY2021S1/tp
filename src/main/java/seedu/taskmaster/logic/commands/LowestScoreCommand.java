@@ -7,7 +7,7 @@ import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 
 public class LowestScoreCommand extends Command {
-    public static final String COMMAND_WORD = "lowest_score";
+    public static final String COMMAND_WORD = "lowest-score";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the student(s) with the lowest "
             + "class participation score.\n"
