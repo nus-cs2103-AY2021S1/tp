@@ -82,7 +82,6 @@ public class IngredientSetAllCommand extends Command {
         IngredientBook toSet = new IngredientBook();
         IngredientBook filledBook = IngredientSetCommand.fillIngredientBookHelper(toSet);
 
-
         if (noChangeToCurrentAmount(model, milkAmount, pearlAmount, bobaAmount,
                 blackTeaAmount, greenTeaAmount, brownSugarAmount)) {
             throw new CommandException(MESSAGE_NO_CHANGE);
