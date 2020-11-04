@@ -227,7 +227,9 @@ Examples:
 
 ### 5.5 Finding a food item: `find`
 
-You can find food items based on the keywords supplied.
+Easy and quick filtering of food items is made possible via the `find` command.
+This command allows you to specify certain criteria to filter the current food list by,
+allowing you to easily locate past entries.
 
 Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
 
