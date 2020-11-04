@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_DATE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_FEEDBACK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_STATUS_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -75,6 +76,13 @@ public class AttendanceCommandParserTest {
 
         // missing index, valid prefix
         assertParseFailure(parser, ADD_ATTENDANCE_DESC + ATTENDANCE_DESC_AMY, expectedMessage);
+    }
+
+    @Test
+    public void parse_addAttendanceInvalidFeedback_throwsParseException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAttendanceCommand.MESSAGE_USAGE);
+        String invalidFeedbackDesc = " " + PREFIX_ATTENDANCE_FEEDBACK + "#48as8@3"; // invalid special characters
+        assertParseFailure(parser, ADD_ATTENDANCE_DESC + ATTENDANCE_DESC_AMY + invalidFeedbackDesc, expectedMessage);
     }
 
     @Test
