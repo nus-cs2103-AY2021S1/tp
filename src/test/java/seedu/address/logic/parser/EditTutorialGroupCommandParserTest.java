@@ -25,7 +25,7 @@ import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 public class EditTutorialGroupCommandParserTest {
 
-    EditTutorialGroupCommandParser parser = new EditTutorialGroupCommandParser();
+    private EditTutorialGroupCommandParser parser = new EditTutorialGroupCommandParser();
 
     @Test
     public void parse_allValidArgs_returnsEditTutorialGroupCommand() {
@@ -36,8 +36,8 @@ public class EditTutorialGroupCommandParserTest {
             new EditTutorialGroupDescriptor(expectedTutorialGroup);
         EditTutorialGroupCommand editTutorialGroupCommand =
             new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editTutorialGroupDescriptor);
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + " " +
-            TUTORIAL_GROUP_ID_B014, editTutorialGroupCommand);
+        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + " "
+            + TUTORIAL_GROUP_ID_B014, editTutorialGroupCommand);
     }
 
     @Test
@@ -48,21 +48,18 @@ public class EditTutorialGroupCommandParserTest {
 
         EditTutorialGroupCommand editTutorialGroupCommand =
             new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editTutorialGroupDescriptor);
-        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + " " +
-            PREFIX_TUTORIAL_GRP + VALID_TUTORIAL_GROUP_B014, editTutorialGroupCommand);
+        assertParseSuccess(parser, INDEX_FIRST_PERSON.getOneBased() + " "
+            + PREFIX_TUTORIAL_GRP + VALID_TUTORIAL_GROUP_B014, editTutorialGroupCommand);
     }
 
     @Test
     public void parse_oneValidOneInvalidArgs_throwsParseException() {
-
         EditTutorialGroupDescriptor editTutorialGroupDescriptor = new EditTutorialGroupDescriptor();
         editTutorialGroupDescriptor.setId(new TutorialGroupId("B014"));
 
-        EditTutorialGroupCommand editTutorialGroupCommand =
-            new EditTutorialGroupCommand(INDEX_FIRST_PERSON, editTutorialGroupDescriptor);
-        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + " " +
-            PREFIX_TUTORIAL_GRP + VALID_TUTORIAL_GROUP_B014 + " " +
-            PREFIX_TUTORIAL_GRP_START_TIME + INVALID_TUTORIAL_GROUP_1500, String.format(MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + " "
+            + PREFIX_TUTORIAL_GRP + VALID_TUTORIAL_GROUP_B014 + " "
+            + PREFIX_TUTORIAL_GRP_START_TIME + INVALID_TUTORIAL_GROUP_1500, String.format(MESSAGE_CONSTRAINTS));
     }
 
 

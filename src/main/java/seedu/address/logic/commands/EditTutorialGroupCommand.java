@@ -110,7 +110,8 @@ public class EditTutorialGroupCommand extends Command {
         return other == this // short circuit if same object
             || (other instanceof EditTutorialGroupCommand // instanceof handles nulls
             && index.equals(((EditTutorialGroupCommand) other).index)
-            && editTutorialGroupDescriptor.equals(((EditTutorialGroupCommand) other).editTutorialGroupDescriptor)); // state check
+            && editTutorialGroupDescriptor.equals(((EditTutorialGroupCommand) other)
+            .editTutorialGroupDescriptor)); // state check
     }
 
     public static class EditTutorialGroupDescriptor {
