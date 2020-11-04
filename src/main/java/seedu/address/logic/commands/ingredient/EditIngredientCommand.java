@@ -82,7 +82,7 @@ public class EditIngredientCommand extends Command {
             //return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient));
         }
 
-        assert(!editedIngredient.equals(ingredientToEdit));
+        assert(!editedIngredient.isSameIngredient(ingredientToEdit));
 
         return new CommandResult(String.format(MESSAGE_EDIT_INGREDIENT_SUCCESS, editedIngredient));
     }
