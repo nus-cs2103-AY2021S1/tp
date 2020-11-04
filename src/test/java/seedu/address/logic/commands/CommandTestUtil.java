@@ -54,13 +54,51 @@ public class CommandTestUtil {
     public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_MARGARITAS;
     public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_NOODLE;
     public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_CLEAR_TAGS;
+    public static final EditRecipeCommand.EditRecipeDescriptor IDENTICAL_NAME_AND_INGREDIENT_SANDWICH_RECIPE;
+    public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_SIMILAR_SANDWICH;
+    public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME;
+    public static final EditRecipeCommand.EditRecipeDescriptor
+            VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME_AND_INGREDIENT_NAME;
+    public static final EditRecipeCommand.EditRecipeDescriptor VALID_DESCRIPTOR_SIMILAR_SANDWICH_INGREDIENT_NAME;
 
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 
+    //CHOCOLATE
+    public static final String VALID_INGREDIENT_CHOCOLATE = "Chocolate";
+    public static final String VALID_QUANTITY_CHOCOLATE = "3/4 cups";
+
     //SANDWICH
     public static final String VALID_INGREDIENT_SANDWICH = "Kaiser Rolls Or Other Bread";
     public static final String VALID_QUANTITY_SANDWICH = "2 whole";
+    public static final Integer VALID_CALORIES_SANDWICH = 70;
+    public static final String VALID_INSTRUCTION_SANDWICH = "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
+            + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise."
+            + "Sprinkle the mayonnaise-spread half with salt and pepper. "
+            + "Lay cheese and ham on the mustard half; "
+            + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.";
+    public static final String VALID_RECIPE_IMAGE_SANDWICH = "images/sandwich.jpeg";
+    public static final String VALID_TAG_SANDWICH = "healthy";
+
+    //SANDWICH SIMILAR
+    public static final String VALID_INGREDIENT_SANDWICH_SIMILAR = "Kaiser Rolls Or Other Breads";
+    public static final String VALID_QUANTITY_SANDWICH_SIMILAR = "2 wholes";
+
+    //PASTA
+    public static final String VALID_INGREDIENT_PASTA = "Pasta";
+    public static final String VALID_QUANTITY_PASTA = "12 ounces";
+    public static final Integer VALID_CALORIES_PASTA = 80;
+    public static final String VALID_INSTRUCTION_PASTA = "Cook pasta until al dente. "
+            + "Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food "
+            + "processor or blender."
+            + " Turn machine on, then drizzle in olive oil while it mixes. "
+            + "Continue blending until combined, adding additional olive oil if needed. Set aside. "
+            + "Heat cream and butter in a small saucepan over medium-low heat. Add pesto and stir. "
+            + "Drain pasta and place in a serving bowl. Pour pesto cream over the top. "
+            + "Toss to combine, add diced tomatoes and toss quickly. "
+            + "Serve immediately.";
+    public static final String VALID_RECIPE_IMAGE_PASTA = "images/pesto1.jpg";
+    public static final String VALID_TAG_PASTA = "health";
 
     // NOODLE
     public static final String VALID_NAME_NOODLE = "Buttery Lemon Parsley Noodles";
@@ -122,6 +160,8 @@ public class CommandTestUtil {
             + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS;
 
     public static final String CLEAR_TAGS = "";
+
+    //Empty ingredients separated by commas and whitespaces
     public static final String EMPTY_INGREDIENT_1 = ", ";
     public static final String EMPTY_INGREDIENT_2 = " , ";
     public static final String EMPTY_INGREDIENT_3 = " , ,";
@@ -173,7 +213,6 @@ public class CommandTestUtil {
 
     public static final String INGREDIENT_INDEX = "1";
     public static final String RECIPE_INDEX = "1";
-
 
     /**
      * Generate the arguments of a recipe with all recipe fields except the recipe
@@ -398,6 +437,69 @@ public class CommandTestUtil {
 
     /**
      * Generate the fields of a EditRecipeDescriptor with all valid fields except one
+     * varied field which is specified by the argument.
+     * @param field field to be varied
+     * @return EditRecipeDescriptor
+     */
+    public static final EditRecipeCommand.EditRecipeDescriptor varyRecipeFieldsDescriptor(Field field) {
+        switch(field) {
+        case INGREDIENT_QUANTITY:
+            return new EditRecipeDescriptorBuilder().withName("Sandwich")
+                    .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_PASTA)
+                    .withCalories(VALID_CALORIES_SANDWICH)
+                    .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                    .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                    .withTags(VALID_TAG_SANDWICH).build();
+        case INGREDIENT_NAME:
+            return new EditRecipeDescriptorBuilder().withName("Sandwich")
+                    .withIngredient(VALID_INGREDIENT_PASTA, VALID_QUANTITY_SANDWICH)
+                    .withCalories(VALID_CALORIES_SANDWICH)
+                    .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                    .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                    .withTags(VALID_TAG_SANDWICH).build();
+        case CALORIES:
+            return new EditRecipeDescriptorBuilder().withName("Sandwich")
+                    .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                    .withCalories(VALID_CALORIES_PASTA)
+                    .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                    .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                    .withTags(VALID_TAG_SANDWICH).build();
+        case RECIPE_IMAGE:
+            return new EditRecipeDescriptorBuilder().withName("Sandwich")
+                    .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                    .withCalories(VALID_CALORIES_SANDWICH)
+                    .withImage(VALID_RECIPE_IMAGE_NOODLE)
+                    .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                    .withTags(VALID_TAG_SANDWICH).build();
+        case INSTRUCTIONS:
+            return new EditRecipeDescriptorBuilder().withName("Sandwich")
+                    .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                    .withCalories(VALID_CALORIES_SANDWICH)
+                    .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                    .withInstruction(VALID_INSTRUCTION_PASTA)
+                    .withTags(VALID_TAG_SANDWICH).build();
+        case TAG:
+            return new EditRecipeDescriptorBuilder().withName("Sandwich")
+                    .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                    .withCalories(VALID_CALORIES_SANDWICH)
+                    .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                    .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                    .withTags(VALID_TAG_PASTA).build();
+        case RECIPE_NAME:
+            return new EditRecipeDescriptorBuilder().withName("Pasta")
+                    .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                    .withCalories(VALID_CALORIES_SANDWICH)
+                    .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                    .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                    .withTags(VALID_TAG_SANDWICH).build();
+        default:
+            System.out.println("Not supposed to enter here");
+            return null;
+        }
+    }
+
+    /**
+     * Generate the fields of a EditRecipeDescriptor with all valid fields except one
      * missing field which is specified by the argument.
      * @param field field to be empty
      * @return EditRecipeDescriptor
@@ -454,6 +556,38 @@ public class CommandTestUtil {
                 .withImage(VALID_RECIPE_IMAGE_MARGARITAS)
                 .withInstruction(VALID_INSTRUCTION_MARGARITAS)
                 .withTags(CLEAR_TAGS).build();
+        IDENTICAL_NAME_AND_INGREDIENT_SANDWICH_RECIPE = new EditRecipeDescriptorBuilder().withName("Pasta")
+                .withIngredient(VALID_INGREDIENT_PASTA, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_SANDWICH)
+                .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                .withTags(VALID_TAG_SANDWICH).build();
+        VALID_DESCRIPTOR_SIMILAR_SANDWICH = new EditRecipeDescriptorBuilder().withName("Sandwich similar")
+                .withIngredient(VALID_INGREDIENT_SANDWICH_SIMILAR, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_SANDWICH)
+                .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                .withTags(VALID_TAG_SANDWICH).build();
+        VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME = new EditRecipeDescriptorBuilder().withName("Sandwich")
+                .withIngredient(VALID_INGREDIENT_SANDWICH_SIMILAR, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_SANDWICH)
+                .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                .withTags(VALID_TAG_SANDWICH).build();
+        VALID_DESCRIPTOR_SIMILAR_SANDWICH_NAME_AND_INGREDIENT_NAME = new EditRecipeDescriptorBuilder().withName(
+                "Sandwich")
+                .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_SANDWICH)
+                .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                .withTags(VALID_TAG_SANDWICH).build();
+        VALID_DESCRIPTOR_SIMILAR_SANDWICH_INGREDIENT_NAME = new EditRecipeDescriptorBuilder().withName(
+                "Sandwich similar")
+                .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+                .withCalories(VALID_CALORIES_SANDWICH)
+                .withImage(VALID_RECIPE_IMAGE_SANDWICH)
+                .withInstruction(VALID_INSTRUCTION_SANDWICH)
+                .withTags(VALID_TAG_SANDWICH).build();
     }
 
     static {

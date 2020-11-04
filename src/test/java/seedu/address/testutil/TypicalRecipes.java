@@ -2,17 +2,31 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PASTA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SANDWICH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_PASTA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_SANDWICH_SIMILAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_PASTA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INSTRUCTION_SANDWICH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_PASTA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWICH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SANDWICH_SIMILAR;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_PASTA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECIPE_IMAGE_SANDWICH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PASTA;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SANDWICH;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,46 +41,27 @@ import seedu.address.model.recipe.Recipe;
 public class TypicalRecipes {
 
     public static final Recipe SANDWICH = new RecipeBuilder().withName("Sandwich")
-            .withIngredient("Kaiser Rolls Or Other Bread", "2 whole")
-            .withCalories(70)
-            .withInstruction(
-                    "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
-                    + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise."
-                    + "Sprinkle the mayonnaise-spread half with salt and pepper. "
-                    + "Lay cheese and ham on the mustard half; "
-                    + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.")
-            .withRecipeImage("images/sandwich.jpeg")
-            .withTags("healthy")
+            .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH)
+            .withCalories(VALID_CALORIES_SANDWICH)
+            .withInstruction(VALID_INSTRUCTION_SANDWICH)
+            .withRecipeImage(VALID_RECIPE_IMAGE_SANDWICH)
+            .withTags(VALID_TAG_SANDWICH)
             .build();
 
     public static final Recipe SANDWICH_DIFF_QTY = new RecipeBuilder().withName("Sandwich")
-            .withIngredient("Kaiser Rolls Or Other Bread", "2 cups")
-            .withCalories(70)
-            .withInstruction(
-                    "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon. "
-                            + "Halve the rolls and spread one half with Dijon, the other half with mayonnaise."
-                            + "Sprinkle the mayonnaise-spread half with salt and pepper. "
-                            + "Lay cheese and ham on the mustard half; "
-                            + "lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half.")
-            .withRecipeImage("images/sandwich.jpeg")
-            .withTags("healthy")
+            .withIngredient(VALID_INGREDIENT_SANDWICH, "2 cups")
+            .withCalories(VALID_CALORIES_SANDWICH)
+            .withInstruction(VALID_INSTRUCTION_SANDWICH)
+            .withRecipeImage(VALID_RECIPE_IMAGE_SANDWICH)
+            .withTags(VALID_TAG_SANDWICH)
             .build();
 
     public static final Recipe PASTA = new RecipeBuilder().withName("Pasta")
-            .withIngredient("Pasta", "12 ounces")
-            .withCalories(80)
-            .withInstruction(
-                    "Cook pasta until al dente. "
-                    + "Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food "
-                    + "processor or blender."
-                    + " Turn machine on, then drizzle in olive oil while it mixes. "
-                    + "Continue blending until combined, adding additional olive oil if needed. Set aside. "
-                    + "Heat cream and butter in a small saucepan over medium-low heat. Add pesto and stir. "
-                    + "Drain pasta and place in a serving bowl. Pour pesto cream over the top. "
-                    + "Toss to combine, add diced tomatoes and toss quickly. "
-                    + "Serve immediately.")
-            .withRecipeImage("images/pesto1.jpg")
-            .withTags("healthy")
+            .withIngredient(VALID_INGREDIENT_PASTA, VALID_QUANTITY_PASTA)
+            .withCalories(VALID_CALORIES_PASTA)
+            .withInstruction(VALID_INSTRUCTION_PASTA)
+            .withRecipeImage(VALID_RECIPE_IMAGE_PASTA)
+            .withTags(VALID_TAG_PASTA)
             .build();
 
     public static final Recipe PORK = new RecipeBuilder().withName("Roasted Pork")
@@ -237,6 +232,7 @@ public class TypicalRecipes {
     }
 
     public static List<Recipe> getTypicalRecipes() {
-        return new ArrayList<>(Arrays.asList(SANDWICH, PASTA, PORK, FLORENTINE, ENCHILADAS, EGGS, PATTY));
+        return new ArrayList<>(Arrays.asList(SANDWICH, PASTA, PORK, FLORENTINE, ENCHILADAS,
+                EGGS, PATTY));
     }
 }
