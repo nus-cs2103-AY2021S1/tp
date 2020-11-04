@@ -11,13 +11,17 @@ import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.collections.transformation.FilteredList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.ScoreEqualsPredicate;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.session.exceptions.NoSessionException;
+import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -31,6 +35,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Session> filteredSessions;
+    private FilteredList<StudentRecord> filteredStudentRecords;
 
     /**
      * Initializes a ModelManager with the given Taskmaster, SessionList, and userPrefs.
@@ -47,6 +52,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
         filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
+        filteredStudentRecords = null;
     }
 
     public ModelManager(ReadOnlyTaskmaster taskmaster, ReadOnlyUserPrefs userPrefs) {
@@ -121,8 +127,24 @@ public class ModelManager implements Model {
         updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
+    /**
+     * Changes the Session to the Session with that name.
+     */
     @Override
     public void changeSession(SessionName sessionName) {
+        if (sessionName == null) {
+            filteredStudentRecords = null;
+        } else {
+            /*
+             * Note that the implementation of this method requires that the filteredStudentRecords field is updated
+             * first, as changing the Session triggers the UI listener to call the getFilteredStudentRecordList, hence
+             * it must be loaded first.
+             */
+            assert taskmaster.hasSession(sessionName);
+            filteredStudentRecords = new FilteredList<>(taskmaster.getSession(sessionName).getStudentRecords());
+            filteredStudentRecords.setPredicate(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
+        }
+
         taskmaster.changeSession(sessionName);
     }
 
@@ -238,7 +260,28 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<StudentRecord> getFilteredStudentRecordList() {
-        return new FilteredList<>(this.taskmaster.getStudentRecordList());
+        if (taskmaster.getSessionList().size() == 0) {
+            throw new NoSessionException();
+        }
+        if (getCurrentSession().isNull().get()) {
+            throw new NoSessionSelectedException();
+        }
+
+        if (filteredStudentRecords == null) {
+            return new ObservableListBase<StudentRecord>() {
+                @Override
+                public StudentRecord get(int i) {
+                    return null;
+                }
+
+                @Override
+                public int size() {
+                    return 0;
+                }
+            };
+        } else {
+            return filteredStudentRecords;
+        }
     }
 
     @Override
@@ -250,6 +293,19 @@ public class ModelManager implements Model {
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
+        requireNonNull(predicate);
+        filteredStudentRecords.setPredicate(predicate);
+    }
+
+
+    @Override
+    public void showLowestScoringStudents() {
+        double lowestScore = taskmaster.getLowestScore();
+        filteredStudentRecords.setPredicate(new ScoreEqualsPredicate(lowestScore));
     }
 
     @Override
