@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 
+import jimmy.mcgymmy.commons.core.LogsCenter;
+import jimmy.mcgymmy.commons.util.CollectionUtil;
+import jimmy.mcgymmy.logic.LogicManager;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.commands.CommandResult;
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
@@ -20,6 +24,7 @@ import jimmy.mcgymmy.model.macro.Macro;
  * Utility class that deals with the execution of macro objects.
  */
 public class MacroRunner {
+    private static final Logger LOGGER = LogsCenter.getLogger(LogicManager.class);
 
     public static CommandExecutable asCommandInstance(Macro macro, CommandLine args) {
         return model -> executeWith(model, substituteAll(args, macro.getRawCommands()));
@@ -37,19 +42,24 @@ public class MacroRunner {
      */
     public static CommandResult executeWith(Model model, String[] substitutedCommands)
             throws CommandException {
+        CollectionUtil.requireAllNonNull(model, substitutedCommands);
+        
         List<String> messagesToUser = new ArrayList<>();
         List<CommandExecutable> commandExecutables = parseCommands(substitutedCommands);
         int lastCommandIndex = 0;
         try {
+            LOGGER.info("----------------[BEGIN MACRO EXECUTION]");
             for (lastCommandIndex = 0; lastCommandIndex < commandExecutables.size(); lastCommandIndex++) {
                 CommandResult result = commandExecutables.get(lastCommandIndex).execute(model);
                 if (result.isExit()) {
+                    LOGGER.info("----------------[LAST COMMAND IS EXIT][TERMINATING]");
                     return result;
                 }
                 messagesToUser.add(result.getFeedbackToUser());
             }
             return new CommandResult(String.join("\n", messagesToUser));
         } catch (CommandException e) {
+            LOGGER.info("----------------[MACRO EXECUTION FAILED][" + e.getMessage() + "]");
             /* note: not factoring out code below because its only used here and its
                purpose/what it's doing is obvious, and factoring it out will be very messy. */
             String errorLocation = "\n\nAn error occurred when executing this command:\n"
@@ -79,6 +89,7 @@ public class MacroRunner {
         PrimitiveCommandParser parser = new PrimitiveCommandParser();
         List<CommandExecutable> commandExecutables = new ArrayList<>();
         try {
+            LOGGER.info("----------------[BEGIN MACRO PARSING]");
             for (String rawCommand : rawCommands) {
                 commandExecutables.add(parser.parse(rawCommand));
             }

@@ -7,6 +7,7 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 
 /**
  * Macro class that deals with user-created macros.
+ * Immutable for defensive coding.
  */
 public class Macro {
     private final String name;

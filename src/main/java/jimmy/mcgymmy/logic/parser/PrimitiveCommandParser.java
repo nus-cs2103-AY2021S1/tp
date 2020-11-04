@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -13,7 +14,9 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 
 import javafx.util.Pair;
+import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.core.Messages;
+import jimmy.mcgymmy.logic.LogicManager;
 import jimmy.mcgymmy.logic.commands.AddCommand;
 import jimmy.mcgymmy.logic.commands.ClearCommand;
 import jimmy.mcgymmy.logic.commands.Command;
@@ -42,6 +45,7 @@ public class PrimitiveCommandParser {
     private static final Map<String, String> commandDescriptionTable = new HashMap<>();
     private final CommandLineParser parser;
     private final PrimitiveCommandHelpUtil helpUtil;
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     static {
         addCommand(AddCommand.COMMAND_WORD, AddCommand.SHORT_DESCRIPTION, AddCommand::new);
@@ -106,14 +110,17 @@ public class PrimitiveCommandParser {
         if (!commandTable.containsKey(commandName)) {
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
+        logger.info("----------------[PARSING PRIMITIVE COMMAND][" + commandName + "]");
         Command result = commandTable.get(commandName).get();
         ParameterSet parameterSet = result.getParameterSet();
         Options options = parameterSet.asOptions();
         try {
             CommandLine cmd = this.parser.parse(options, arguments);
             this.provideValuesToParameterSet(cmd, parameterSet);
+            logger.info("----------------[PARSE SUCCESSFUL]");
             return result;
         } catch (org.apache.commons.cli.ParseException | ParseException e) {
+            logger.info("----------------[PARSE ERROR][" + e.getMessage() + "]");
             String message = e.getMessage() + "\n" + helpUtil.getUsage(commandName, parameterSet);
             throw new ParseException(message);
         }

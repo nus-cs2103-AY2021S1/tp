@@ -13,7 +13,7 @@ import jimmy.mcgymmy.model.macro.exceptions.DuplicateMacroException;
 
 /**
  * Immutable container for macros. Ensures a macro's name is not taken before
- * allowing it to be added.
+ * allowing it to be added. Defensive by being immutable.
  */
 public class MacroList {
     private final Map<String, Macro> macros;

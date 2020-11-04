@@ -1,6 +1,7 @@
 package jimmy.mcgymmy.logic.parser;
 
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -8,7 +9,9 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 
 import javafx.util.Pair;
+import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.core.Messages;
+import jimmy.mcgymmy.logic.LogicManager;
 import jimmy.mcgymmy.logic.commands.CommandExecutable;
 import jimmy.mcgymmy.logic.macro.MacroRunner;
 import jimmy.mcgymmy.logic.macro.NewMacroCommand;
@@ -22,6 +25,7 @@ import jimmy.mcgymmy.model.macro.MacroList;
 public class McGymmyParser {
     private MacroList macroList;
     private final PrimitiveCommandParser primitiveCommandParser;
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     /**
      * Constructor for McGymmyParser, but create a new macroList.
@@ -79,6 +83,7 @@ public class McGymmyParser {
      * @throws ParseException if declaration has the wrong format.
      */
     private CommandExecutable parseCreateMacro(String declaration) throws ParseException {
+        logger.info("----------------[PARSING CREATE MACRO]");
         // note: following line also trims whitespace between semicolons.
         Pair<String, String[]> headTail = ParserUtil.splitString(declaration, " *; *");
         String[] tailWithoutBlanks = Arrays.stream(headTail.getValue())
@@ -96,6 +101,7 @@ public class McGymmyParser {
      * @throws ParseException If the arguments to the macro are invalid.
      */
     private CommandExecutable parseRunMacro(String commandName, String[] arguments) throws ParseException {
+        logger.info("----------------[PARSING RUN MACRO]");
         CommandLineParser commandLineParser = new DefaultParser();
         Macro macro = this.macroList.getMacro(commandName);
         Options options = macro.getOptions();
@@ -103,6 +109,7 @@ public class McGymmyParser {
             CommandLine args = commandLineParser.parse(options, arguments);
             return MacroRunner.asCommandInstance(macro, args);
         } catch (org.apache.commons.cli.ParseException e) {
+            logger.info("----------------[PARSE ERROR][" + e.getMessage() + "]");
             String formattedHelp = ParserUtil.getUsageFromHelpFormatter(commandName, "", options);
             throw new ParseException(e.getMessage() + "\n" + formattedHelp);
         }
