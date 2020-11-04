@@ -48,7 +48,7 @@ Refer to the features below for details of each command.
 
 1. Please ensure that you have Java `11` or above installed in your Computer.
 
-1. You have to download the latest `mcgymmy.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
+1. You can download the latest `mcgymmy.jar` [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
 
 1. Afterwards, copy the file to the folder you want to use as the _home folder_ for your McGymmy.
 
@@ -80,7 +80,7 @@ Each of the commands explained below will have an image which shows the output.
 
 ![Usage](images/CommandImagesForUG/Usage.png)
 
-If you are just looking for a particular command:
+If you are looking for a particular command:
 1. Press `Ctrl-F` for Windows and other operating systems, `CMD + F` for Mac OS.
 1. Search for the command in the search bar.
 
@@ -118,18 +118,18 @@ We will follow the following convention for each command's format:
 * Prefixes that precede parameters represent *flags* that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as *flag-less* parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
   e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
+* Flag-less parameters always have to be the first parameter after the command word.<br>
+  e.g. in `edit 1 -n chicken`, the flag-less parameter is `1` and the `n` parameter is `chicken`. However for `edit -n chicken 1`, there is no flag-less parameter, and the `n` parameter is `chicken 1`.
+  
 * Items in square brackets are optional.<br>
   e.g. `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
 
 * Parameters and optional parameters with flags can be in any order.<br>
   e.g. if the command specifies `-c CARBS -p PROTEIN [-f FATS]`, `-p PROTEIN [-f FATS] -c CARBS` is also acceptable.
 
-* Flag-less parameters always have to be the first parameter after the command word.<br>
-  e.g. in `edit 1 -n chicken`, the flag-less parameter is `1` and the `n` parameter is `chicken`. However for `edit -n chicken 1`, there is no flag-less parameter, and the `n` parameter is `chicken 1`.
-  
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[commnand;]…​` can be used as ` ` (i.e. 0 times), `delete 1;`, `delete 2; delete 1;` etc.
+
 * Entering the same parameter twice will concatenate the inputs.<br>
   e.g. in `add -n potato -n chip`, the `n` parameters will be concatenated to `potato chip`, and a new item with the name `potato chip` will be created.
 
