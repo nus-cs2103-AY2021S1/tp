@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.SortCommand.MESSAGE_INVALID_FIELD;
 import static seedu.stock.logic.commands.SortCommand.MESSAGE_INVALID_ORDER;
-import static seedu.stock.logic.parser.CliSyntax.*;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
-        if(ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForSort)) {
+        if (ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForSort)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
 

@@ -11,7 +11,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.sun.jdi.connect.Connector;
 import seedu.stock.commons.core.Messages;
 import seedu.stock.commons.core.index.Index;
 import seedu.stock.commons.util.StringUtil;
