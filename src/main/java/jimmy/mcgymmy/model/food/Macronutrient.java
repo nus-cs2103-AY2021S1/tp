@@ -6,7 +6,7 @@ import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
     protected static final String MESSAGE_CONSTRAINTS =
-            " amount can only take in value larger than 0 and less than 1000";
+            " can only contain non-negative integers less than 1000";
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
     private final int amount;
     private final int caloricMultiplier;
