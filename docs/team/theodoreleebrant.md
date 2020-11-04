@@ -69,3 +69,4 @@ Given below are my contributions to the project.
     * Managed and configured the code coverage tools (using [codecov.io](https://www.codecov.io))
     * Configured the github CI to include the codecov tool after intermittent failure
     * Configured the YAML file for code coverage settings
+    
