@@ -26,7 +26,7 @@ public class EditModuleCommand extends Command {
             + "by the index number used in the displayed module list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "m/MODULE_ID \n"
+            + "m/MODULE_CODE \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE + "CS2100";
 

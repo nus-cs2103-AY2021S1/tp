@@ -28,7 +28,9 @@ public class TypicalModulesPopulatedWithTutorialGroups {
         Trackr tr = new Trackr();
         for (Module module: getTypicalModules()) {
             for (TutorialGroup tutorialGroup : TypicalTutorialGroups.getTutorialGroupList()) {
-                module.addTutorialGroup(tutorialGroup);
+                if (!module.getUniqueTutorialGroupList().contains(tutorialGroup)) {
+                    module.addTutorialGroup(tutorialGroup);
+                }
             }
             tr.addModule(module);
         }
@@ -45,10 +47,14 @@ public class TypicalModulesPopulatedWithTutorialGroups {
             trackr.addModule(module);
         }
         for (TutorialGroup tutorialGroup : getTutorialGroupList()) {
-            trackr.addTutorialGroup(tutorialGroup, CS2103T);
+            if (!CS2103T.getUniqueTutorialGroupList().contains(tutorialGroup)) {
+                trackr.addTutorialGroup(tutorialGroup, CS2103T);
+            }
         }
         for (Student student : getTypicalStudents()) {
-            trackr.addStudent(CS2103T, T05, student);
+            if (!T05.getUniqueStudentList().contains(student)) {
+                trackr.addStudent(CS2103T, T05, student);
+            }
         }
         return trackr;
     }

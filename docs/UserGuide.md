@@ -12,11 +12,11 @@
 4. [Features](#4-features)<br>
    4.1 [View help: `help`](#41-view-help-help)<br>
    4.2 [Module features](#42-module-features)<br>
-   --- 4.2.1 [List all modules: `listMod`](#421-list-all-modules-listmod)<br>
-   --- 4.2.2 [Add a module: `addMod`](#422-add-a-module-addmod)<br>
-   --- 4.2.3 [Delete a module: `deleteMod`](#423-delete-a-module-deletemod)<br>
+   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
+   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
+   --- 4.2.3 [Edit a module: `editMod`](#423-edit-a-module-editmod)<br>
    --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
-   --- 4.2.5 [Edit a module: `editMod`](#425-edit-a-module-editmod)<br>
+   --- 4.2.5 [List all modules: `listMod`](#425-list-all-modules-listmod)<br>
    4.3 [Tutorial group features](#43-tutorial-group-features)<br>
    --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
    --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
@@ -146,15 +146,7 @@ Format: `help`
 
 ### 4.2 Module features
 
-#### 4.2.1 List all modules: `listMod`
-
-Shows all the modules you have added in the Module view.
-
-Format: `listMod`
-
-> You should perform the following features while in the Module view.
-
-#### 4.2.2 Add a module: `addMod`
+#### 4.2.1 Add a module: `addMod`
 
 Adds a module to the module list.
 
@@ -162,7 +154,7 @@ Format: `addMod m/MODULE_CODE`
 
 Note:
 
-- Modules should not share the same name.
+- Modules should not share the same code.
 - It is recommended to use the exact code of the module.
 
 Example:
@@ -176,7 +168,7 @@ Expected Outcome:
 
     New module added: CS2100
 
-#### 4.2.3 Delete a module: `deleteMod`
+#### 4.2.2 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
 
@@ -198,7 +190,27 @@ Expected Outcome:
 - From the example above, the result box will display the following message:
 
     Module deleted: module at index 2
+    
+#### 4.2.3 Edit a module: `editMod`
 
+Edits a module with the provided details.
+
+Format: `editMod INDEX m/MODULE_CODE`
+
+Note:
+
+- `INDEX` refers to the index number shown in the Module view.
+- `INDEX` must be a positive integer starting from 1.
+- New module code must be provided.
+- Existing values will be updated to the given values.
+- New module code should not already exist.
+
+Example:
+
+- Editing the module code of the first module to be _CS2020_.
+
+    - `editMod 1 m/CS2020`
+    
 #### 4.2.4 Find a module: `findMod`
 
 Finds and lists all modules in the current Module view whose field contains any of the given keywords.
@@ -221,26 +233,13 @@ Expected Outcome:
 
 - From the example given above, the Module view will display the modules matching the criteria:
 
-#### 4.2.5 Edit a module: `editMod`
+#### 4.2.5 List all modules: `listMod`
 
-Edits a module with the provided details.
+Shows all the modules you have added in the Module view.
 
-Format: `editMod INDEX m/MODULE_CODE`
+Format: `listMod`
 
-Note:
-
-- `INDEX` refers to the index number shown in the Module view.
-- `INDEX` must be a positive integer starting from 1.
-- New module code must be provided.
-- Existing values will be updated to the given values.
-- New module code should not already exist.
-
-Example:
-
-- Editing the module code of the first module to be _CS2020_.
-
-    - `editMod 1 m/CS2020`
-
+> You should perform the following features while in the Module view.
 ### 4.3 Tutorial Group features
 
 #### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
