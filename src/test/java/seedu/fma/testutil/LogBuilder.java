@@ -12,7 +12,7 @@ import seedu.fma.model.log.Rep;
  */
 public class LogBuilder {
 
-    public static final String DEFAULT_REPS = "50";
+    public static final int DEFAULT_REPS = 50;
     public static final String DEFAULT_COMMENT = "This exercise was really tiring";
     public static final int DEFAULT_YEAR = 2020;
     public static final int DEFAULT_MONTH = 1; // January
@@ -57,7 +57,7 @@ public class LogBuilder {
     /**
      * Sets the {@code Rep} of the {@code Log} that we are building.
      */
-    public LogBuilder withReps(String reps) {
+    public LogBuilder withReps(int reps) {
         this.reps = new Rep(reps);
         return this;
     }

@@ -93,7 +93,7 @@ public class AddCommandParserTest {
 
         // invalid rep
         assertParseFailure(parser, EXERCISE_DESC_A + INVALID_REP_DESC + COMMENT_DESC_A,
-                Rep.MESSAGE_CONSTRAINTS, logBook);
+                Rep.NUMBER_CONSTRAINTS, logBook);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_EXERCISE_DESC + INVALID_REP_DESC + COMMENT_DESC_A,

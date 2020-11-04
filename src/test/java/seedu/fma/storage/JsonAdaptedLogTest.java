@@ -57,7 +57,7 @@ public class JsonAdaptedLogTest {
     public void toModelType_invalidReps_throwsIllegalValueException() {
         JsonAdaptedLog log =
                 new JsonAdaptedLog(VALID_EXERCISE, VALID_DATETIME, INVALID_REPS, VALID_COMMENT);
-        String expectedMessage = Rep.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Rep.NUMBER_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, () -> log.toModelType(logBook));
     }
 

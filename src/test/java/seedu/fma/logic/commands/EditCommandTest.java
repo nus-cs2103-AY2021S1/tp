@@ -8,7 +8,7 @@ import static seedu.fma.logic.commands.CommandTestUtil.EDIT_LOG_DESCRIPTOR_B;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_COMMENT_A_STR;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_A;
 import static seedu.fma.logic.commands.CommandTestUtil.VALID_EXERCISE_B;
-import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_STR;
+import static seedu.fma.logic.commands.CommandTestUtil.VALID_REP_A_INT;
 import static seedu.fma.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.fma.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.fma.logic.commands.CommandTestUtil.showLogAtIndex;
@@ -42,7 +42,7 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         //specify all fields
         Log editedLog = new LogBuilder().withExercise(VALID_EXERCISE_B).withComment("This is boring")
-                .withReps("200").build();
+                .withReps(200).build();
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder(editedLog).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_LOG, descriptor);
 
@@ -61,10 +61,10 @@ public class EditCommandTest {
 
         LogBuilder logInList = new LogBuilder(lastLog);
         Log editedLog = logInList.withExercise(VALID_EXERCISE_A).withComment(VALID_COMMENT_A_STR)
-                .withReps(VALID_REP_A_STR).build();
+                .withReps(VALID_REP_A_INT).build();
 
         EditLogDescriptor descriptor = new EditLogDescriptorBuilder().withExercise(VALID_EXERCISE_A)
-                .withComment(VALID_COMMENT_A_STR).withReps(VALID_REP_A_STR).build();
+                .withComment(VALID_COMMENT_A_STR).withReps(VALID_REP_A_INT).build();
         EditCommand editCommand = new EditCommand(indexLastLog, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LOG_SUCCESS, editedLog);
@@ -135,8 +135,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_LOG, EDIT_LOG_DESCRIPTOR_A);
 
         // same values -> returns true
-        EditCommand.EditLogDescriptor copyDescriptor = EDIT_LOG_DESCRIPTOR_A;
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_LOG, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_LOG, EDIT_LOG_DESCRIPTOR_A);
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
