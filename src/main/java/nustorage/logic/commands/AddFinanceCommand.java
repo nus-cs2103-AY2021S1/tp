@@ -3,7 +3,6 @@ package nustorage.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static nustorage.model.Model.PREDICATE_SHOW_ALL_FINANCE;
 
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
@@ -41,7 +40,6 @@ public class AddFinanceCommand extends Command {
         requireNonNull(model);
 
         model.addFinanceRecord(newRecord);
-        model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCE);
         return new CommandResult(String.format(MESSAGE_SUCCESS, newRecord));
     }
 
