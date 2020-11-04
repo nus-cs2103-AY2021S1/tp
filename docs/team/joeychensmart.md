@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * What I changed: Replaced the existing parser with the [Apache commons-cli](https://github.com/apache/commons-cli) library, and made the creation of commands follow
   a more declarative style. Also eliminated the need for parsers for each command.
   * Justification: I found that the old architecture was problematic as it required the programmer to create a lot of boilerplate just to achieve simple tasks.
-  This new architecture also made it easier for me to implement the macro feature below. For more information on the justification, you can visit
+  For more information, you can visit
   [the pull request](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/39).
   * Highlights: Developers now need to write about half the amount of code to get new features working (instead of creating a command and a parser class, now they only
   needed to create the command class). The code in each command class was also neater, and more intuitive by virtue of being more declarative.
