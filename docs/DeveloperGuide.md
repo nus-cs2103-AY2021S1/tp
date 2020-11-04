@@ -20,7 +20,7 @@ title: Developer Guide
             * [Aspect 2: Should we allow adding duplicated recipes](#3122-aspect-2)
         * [3.1.3 Design Consideration (**Add Ingredient**)](#313-design-consideration-add-ingredient)
             * [Aspect 1: Concern while adding the first feature](#3131-aspect-1)
-            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect2)
+            * [Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity](#3132-aspect-2)
     - [3.2. Eat Recipe Feature](#32-eat-recipe-feature)
         * [3.2.1 Implementation](#321-implementation)
         * [3.2.2 Design Consideration](#322-design-consideration)
@@ -33,7 +33,7 @@ title: Developer Guide
              * [Aspect: Concern while adding a new feature](#3331-aspect)
         * [3.3.4 Design Consideration (**List Consumption**)](#334-design-consideration-list-consumption)
              * [Aspect 1: Concern while adding a new feature](#3341-aspect-1)
-             * [Aspect 2: What are the informations to list from a recipe in consumption list](3342-aspect-2)
+             * [Aspect 2: What are the informations to list from a recipe in consumption list](#3342-aspect-2)
     - [3.4. Delete Features](#34-delete-features)
         * [3.4.1 Implementation](#341-implementation)
         * [3.4.2 Design Consideration (**Delete Recipe**)](#342-design-consideration-delete-recipe)
@@ -252,9 +252,10 @@ API call:
 Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
  * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
- * info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
- * add(type): `addRecipe(type)` or `addIngredient(type)`
- * type: `recipe` or `ingredient`
+ - info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
+ - add(type): `addRecipe(type)` or `addIngredient(type)`
+ - type: `recipe` or `ingredient`
+ 
 </div>
 
 Given below is an example usage scenario and how the mechanism behaves:
@@ -531,7 +532,7 @@ Command and Parser make use of Substitutability:
 
 The following sequence diagram shows how select recipe operation works when `execute(selectR 1)` API call:
 
-![SelectRecipeSequence](images/SelectRecipeSequence.png)
+![SelectRecipeSequence](images/implementation/SelectRecipeSequence.png)
 
 Given below is an example usage scenario and how the mechanism behaves:
 1. User inputs the select recipe command followed by an index specifying the recipe.
@@ -592,7 +593,7 @@ Given below is an example usage scenario and how the mechanism behaves:
   * Pros: Harder to implement.
   * Cons: User's can filter the recipes by two or three fields at once, making filtering more efficient
 
-#### 3.8.3 Design Considerations (**Search Ingredient**) <a id="83-design-consideration-search-ingredient"></a>
+#### 3.8.3 Design Considerations (**Search Ingredient**) <a id="383-design-consideration-search-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3831-aspect"></a>
 * Workflow must be consistent with other searching commands e.g. search recipe.
 
@@ -986,7 +987,7 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. **Appendix: *Instructions for Manual tTesting*** <a id="6-appendix-instructions-for-manual-testing"></a>
+## 6. **Appendix: *Instructions for Manual Testing*** <a id="6-appendix-instructions-for-manual-testing"></a>
 
 Given below are instructions to test the app manually.
 
