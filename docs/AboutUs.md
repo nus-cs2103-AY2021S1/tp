@@ -33,9 +33,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/trav1st.png" width="200px">
 
 [[github](http://github.com/trav1st)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/trav1st.md)]
 
 * Role: Testing / Deliverables and Deadlines
+* Responsibilities: Statistics and Storage
 
 ### Teh Xue Yong
 
