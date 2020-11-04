@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static javafx.scene.input.KeyCombination.CONTROL_DOWN;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.logging.Logger;
@@ -8,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -72,6 +75,22 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         setAccelerators();
+
+        primaryStage.getScene().getAccelerators().put(
+                new KeyCodeCombination(KeyCode.RIGHT, CONTROL_DOWN), new Runnable() {
+                    @Override
+                    public void run() {
+                        calendarView.handToNext();
+                    }
+                });
+
+        primaryStage.getScene().getAccelerators().put(
+                new KeyCodeCombination(KeyCode.LEFT, CONTROL_DOWN), new Runnable() {
+                    @Override
+                    public void run() {
+                        calendarView.handleToPrev();
+                    }
+                });
 
         helpWindow = new HelpWindow();
     }

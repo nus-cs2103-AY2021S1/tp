@@ -37,6 +37,8 @@ import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand;
 import seedu.address.logic.commands.biddercommands.FindBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
+import seedu.address.logic.commands.calendarnavigation.NextCalendarNavigationCommand;
+import seedu.address.logic.commands.calendarnavigation.PrevCalendarNavigationCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.EditPropertyCommand;
@@ -64,6 +66,37 @@ public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
+
+    // ====================== CALENDAR NAVIGATION ============================ //
+    @Test
+    public void calendarNavigation_nextCommandThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(NextCalendarNavigationCommand.COMMAND_WORD + "rubbish"));
+
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("TESITNG" + NextCalendarNavigationCommand.COMMAND_WORD + " p/testing"));
+    }
+
+    @Test
+    public void calendarNavigation_nextCommandSuccess() throws ParseException {
+        assertTrue(parser.parseCommand(NextCalendarNavigationCommand.COMMAND_WORD)
+                instanceof NextCalendarNavigationCommand);
+    }
+
+    @Test
+    public void calendarNavigation_prevCommandThrowsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(PrevCalendarNavigationCommand.COMMAND_WORD + "what"));
+
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand("TESITNG" + PrevCalendarNavigationCommand.COMMAND_WORD + " p/testing"));
+    }
+
+    @Test
+    public void calendarNavigation_prevCommandSuccess() throws ParseException {
+        assertTrue(parser.parseCommand(PrevCalendarNavigationCommand.COMMAND_WORD)
+                instanceof PrevCalendarNavigationCommand);
+    }
 
     // ====================== BIDDER ============================ //
     @Test
