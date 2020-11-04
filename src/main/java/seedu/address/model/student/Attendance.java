@@ -28,13 +28,14 @@ public class Attendance {
     public static final int MIN_SCORE = 0;
     public static final int MAX_SCORE = 100;
 
-    private boolean[] isPresent = new boolean[MAX_WEEK];
+    private boolean[] isPresent;
     private int value;
 
     /**
      * Constructor for Attendance.
      */
     public Attendance() {
+        this.isPresent = new boolean[MAX_WEEK];
         this.value = 0;
     }
 
