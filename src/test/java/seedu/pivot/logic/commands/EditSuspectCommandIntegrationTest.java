@@ -1,6 +1,6 @@
 package seedu.pivot.logic.commands;
 
-import static seedu.pivot.logic.commands.suspectcommands.EditSuspectCommand.MESSAGE_DUPLICATE_SUSPECT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_SUSPECT;
 import static seedu.pivot.logic.commands.suspectcommands.EditSuspectCommand.MESSAGE_EDIT_SUSPECT_SUCCESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;

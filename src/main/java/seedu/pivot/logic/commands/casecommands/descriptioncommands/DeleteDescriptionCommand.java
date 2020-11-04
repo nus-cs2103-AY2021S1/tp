@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands.casecommands;
+package seedu.pivot.logic.commands.casecommands.descriptioncommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.Page;
 import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
@@ -20,44 +20,35 @@ import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 
-/**
- * Adds a Description to an opened Case in PIVOT.
- */
-public class AddDescriptionCommand extends AddCommand implements Undoable {
-
+public class DeleteDescriptionCommand extends DeleteCommand implements Undoable {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_DESC
-            + ": Adds a description to opened case in PIVOT. "
+            + ": Deletes the description of the opened case.\n"
             + "Parameters: "
             + PREFIX_DESC + "DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD + " "
-            + TYPE_DESC + " "
-            + PREFIX_DESC + "7 people arrested for rioting";
+            + "Example: " + COMMAND_WORD + " " + TYPE_DESC;
 
-    public static final String MESSAGE_ADD_DESCRIPTION_SUCCESS = "New description added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DESCRIPTION = "This description already exists for the case!";
+    public static final String MESSAGE_DELETE_DESCRIPTION_SUCCESS = "Description deleted: %1$s";
+    public static final String MESSAGE_NO_DESCRIPTION_TO_DELETE = "Cannot delete description of "
+            + "case, because this case does not have a description";
 
     private static final Page pageType = Page.CASE;
-    private static final Logger logger = LogsCenter.getLogger(AddDescriptionCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(DeleteDescriptionCommand.class);
 
     private final Index index;
-    private final Description description;
 
     /**
-     * Creates an AddDescriptionCommand to add the specified {@code Description}.
+     * Creates an DeleteDescriptionCommand to update the specified { @code Description } for a { @code Case }.
      *
      * @param index Index of the Case in PIVOT.
-     * @param description Description to be added.
      */
-    public AddDescriptionCommand(Index index, Description description) {
+    public DeleteDescriptionCommand(Index index) {
         requireNonNull(index);
-        requireNonNull(description);
         this.index = index;
-        this.description = description;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        logger.info("Adding description to current case...");
+        logger.info("Deleting description of current case...");
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
@@ -68,28 +59,30 @@ public class AddDescriptionCommand extends AddCommand implements Undoable {
         Case stateCase = lastShownList.get(index.getZeroBased());
         Description stateCaseDescription = stateCase.getDescription();
 
-        // check for same description
-        if (stateCaseDescription.equals(this.description)) {
-            logger.warning("Failed to add description: Tried to add a description that exists in PIVOT");
-            throw new CommandException(MESSAGE_DUPLICATE_DESCRIPTION);
+        // check for no description
+        if (!stateCaseDescription.hasDescription()) {
+            logger.warning("Failed to delete description: Tried to delete description for a "
+                    + "case with no description in PIVOT");
+            throw new CommandException(MESSAGE_NO_DESCRIPTION_TO_DELETE);
         }
 
+        Description deletedDescription = new Description("");
+
         // create new updated case
-        Case updatedCase = new Case(stateCase.getTitle(), this.description, stateCase.getStatus(),
+        Case updatedCase = new Case(stateCase.getTitle(), deletedDescription, stateCase.getStatus(),
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description), this);
+        model.commitPivot(String.format(MESSAGE_DELETE_DESCRIPTION_SUCCESS, stateCaseDescription), this);
 
-        return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
+        return new CommandResult(String.format(MESSAGE_DELETE_DESCRIPTION_SUCCESS, stateCaseDescription));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddDescriptionCommand // instanceof handles nulls
-                && index.equals(((AddDescriptionCommand) other).index)
-                && description.equals(((AddDescriptionCommand) other).description));
+                || (other instanceof DeleteDescriptionCommand // instanceof handles nulls
+                && index.equals(((DeleteDescriptionCommand) other).index));
     }
 
     @Override

@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.Undoable;
@@ -23,9 +24,9 @@ import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CasePersonBuilder;
@@ -44,7 +45,7 @@ public class AddVictimCommandTest {
 
     @Test
     public void equals() {
-        Victim alternateVictim = new Victim(new Name("Alice"), Gender.F,
+        Victim alternateVictim = new Victim(new Name("Alice"), Sex.F,
                 new Phone("92345678"), new Email("alice@hello.com"), new Address("Blk 345"));
         Index alternateIndex = Index.fromZeroBased(1000);
 
@@ -92,7 +93,7 @@ public class AddVictimCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         AddCommand command = new AddVictimCommand(FIRST_INDEX, TEST_VICTIM);
         assertThrows(CommandException.class,
-                AddVictimCommand.MESSAGE_DUPLICATE_VICTIM, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_DUPLICATE_VICTIM, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 

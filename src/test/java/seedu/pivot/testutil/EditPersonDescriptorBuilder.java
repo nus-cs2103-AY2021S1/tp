@@ -4,9 +4,9 @@ import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 
 public class EditPersonDescriptorBuilder {
     private EditPersonDescriptor descriptor;
@@ -26,7 +26,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder(CasePerson person) {
         this.descriptor = new EditPersonDescriptor();
         this.descriptor.setName(person.getName());
-        this.descriptor.setGender(person.getGender());
+        this.descriptor.setSex(person.getSex());
         this.descriptor.setPhone(person.getPhone());
         this.descriptor.setEmail(person.getEmail());
         this.descriptor.setAddress(person.getAddress());
@@ -41,10 +41,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Gender} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Sex} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withGender(String gender) {
-        descriptor.setGender(Gender.createGender(gender));
+    public EditPersonDescriptorBuilder withSex(String sex) {
+        descriptor.setSex(Sex.createSex(sex));
         return this;
     }
 

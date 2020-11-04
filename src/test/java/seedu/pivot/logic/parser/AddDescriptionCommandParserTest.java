@@ -11,7 +11,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.casecommands.AddDescriptionCommand;
+import seedu.pivot.logic.commands.casecommands.descriptioncommands.AddDescriptionCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Description;
@@ -19,7 +19,9 @@ import seedu.pivot.model.investigationcase.Description;
 public class AddDescriptionCommandParserTest {
 
     public static final String PREFIX_DESC = " " + CliSyntax.PREFIX_DESC.getPrefix();
-    public static final String VALID_DESC = "I am a valid description";
+    public static final String VALID_DESC = "I am a valid description!";
+    public static final String EMPTY_DESC = "";
+    public static final String BLANK_DESC = " ";
 
     private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
@@ -48,6 +50,17 @@ public class AddDescriptionCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse(VALID_DESC));
         assertParseFailure(parser, VALID_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddDescriptionCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidDescription_throwsParseException() {
+        // Empty description
+        assertThrows(ParseException.class, () -> parser.parse(PREFIX_DESC + EMPTY_DESC));
+        assertParseFailure(parser, PREFIX_DESC + EMPTY_DESC, Description.MESSAGE_CONSTRAINTS);
+
+        // Blank description
+        assertThrows(ParseException.class, () -> parser.parse(PREFIX_DESC + BLANK_DESC));
+        assertParseFailure(parser, PREFIX_DESC + BLANK_DESC, Description.MESSAGE_CONSTRAINTS);
     }
 
 }

@@ -1,8 +1,8 @@
 package seedu.pivot.logic.commands;
 
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_VICTIM;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_DUPLICATE_VICTIMS;
 import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_EDIT_VICTIM_SUCCESS;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_EMAIL;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_NAME;
@@ -85,7 +85,7 @@ public class EditVictimCommandIntegrationTest {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder().build();
         EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, editPersonDescriptor);
 
-        String expectedMessage = String.format(MESSAGE_DUPLICATE_VICTIMS);
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_VICTIM);
 
         assertCommandFailure(editVictimCommand, model, expectedMessage);
     }

@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.casecommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_TITLE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.Page;
 import seedu.pivot.logic.commands.Undoable;
+import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
@@ -53,7 +55,7 @@ public class EditTitleCommand extends EditCommand implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         logger.info("Updating title to current case...");
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
@@ -68,6 +70,12 @@ public class EditTitleCommand extends EditCommand implements Undoable {
         Case updatedCase = new Case(title, stateCase.getDescription(), stateCase.getStatus(),
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags(), stateCase.getArchiveStatus());
+
+        if (model.hasCase(updatedCase)) {
+            logger.warning("Failed to add case: Tried to edit a title that exists in PIVOT");
+            throw new CommandException(MESSAGE_DUPLICATE_TITLE);
+        }
+
         model.setCase(stateCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title), this);
 

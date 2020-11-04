@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.Undoable;
@@ -24,9 +25,9 @@ import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CasePersonBuilder;
@@ -45,7 +46,7 @@ public class AddSuspectCommandTest {
 
     @Test
     public void equals() {
-        Suspect alternateSuspect = new Suspect(new Name("Alice"), Gender.F,
+        Suspect alternateSuspect = new Suspect(new Name("Alice"), Sex.F,
                 new Phone("92345678"), new Email("alice@hello.com"), new Address("Blk 345"));
         Index alternateIndex = Index.fromZeroBased(1000);
 
@@ -93,7 +94,7 @@ public class AddSuspectCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         AddCommand command = new AddSuspectCommand(FIRST_INDEX, TEST_SUSPECT);
         assertThrows(CommandException.class,
-                AddSuspectCommand.MESSAGE_DUPLICATE_SUSPECT, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_DUPLICATE_SUSPECT, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 

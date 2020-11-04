@@ -29,4 +29,12 @@ public class UserMessages {
     public static final String MESSAGE_ERROR_OPENING_FILE = "There was an error opening your file!";
     public static final String MESSAGE_DESKTOP_API_NOT_AVAILABLE = "Desktop API is not available, "
             + "we are unable to open your file.";
+
+    //Duplicate Messages
+    public static final String MESSAGE_DUPLICATE_TITLE = "A case with this title already exists.";
+    public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+    public static final String MESSAGE_DUPLICATE_WITNESS = "This witness already exists in the case.";
+    public static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
+    public static final String MESSAGE_DUPLICATE_VICTIM = "This victim already exists in the case.";
+
 }

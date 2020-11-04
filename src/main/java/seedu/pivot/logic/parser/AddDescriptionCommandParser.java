@@ -6,7 +6,7 @@ import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_DESC;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.casecommands.AddDescriptionCommand;
+import seedu.pivot.logic.commands.casecommands.descriptioncommands.AddDescriptionCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Description;

@@ -1,9 +1,9 @@
 package seedu.pivot.logic.commands;
 
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_WITNESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
-import static seedu.pivot.logic.commands.witnesscommands.EditWitnessCommand.MESSAGE_DUPLICATE_WITNESS;
 import static seedu.pivot.logic.commands.witnesscommands.EditWitnessCommand.MESSAGE_EDIT_WITNESS_SUCCESS;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_EMAIL;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_NAME;

@@ -30,7 +30,7 @@ public class FindCommandParserTest {
     @Test
     public void parseCasePage_validArgs_throwsParseException() {
         StateManager.setState(index);
-        assertParseFailure(parser, "     ", MESSAGE_INCORRECT_MAIN_PAGE);
+        assertParseFailure(parser, "keyword", MESSAGE_INCORRECT_MAIN_PAGE);
         StateManager.resetState();
     }
 

@@ -2,6 +2,9 @@ package seedu.pivot.logic.commands.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -51,9 +54,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
-    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;
-
     // for caseperson
     public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
     public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
@@ -64,6 +64,16 @@ public class CommandTestUtil {
     public static final String VALID_CASEPERSON_ADDRESS = "Bishan Blk 123";
 
     public static final String INVALID_CASEPERSON_NAME = "James&";
+
+    // inputs
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_CASEPERSON_NAME_BOB;
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_CASEPERSON_NAME;
+    public static final String SEX_DESC_BOB = " " + PREFIX_SEX + VALID_CASEPERSON_SEX_BOB;
+    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_CASEPERSON_PHONE;
+
+    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
+    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;
 
     static {
         EDIT_CASE_DESCRIPTOR_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_AMY)

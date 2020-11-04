@@ -217,12 +217,6 @@ public class VersionedPivot extends Pivot {
             }
 
             PivotState otherPivotState = (PivotState) other;
-            System.out.println("pivotstate");
-            System.out.println("hellooooo");
-            System.out.println(otherPivotState.pivotState.equals(pivotState));
-            System.out.println(otherPivotState.commandMessage.equals(commandMessage));
-            System.out.println(otherPivotState.getCommand() == getCommand()
-                    || otherPivotState.getCommand().equals(getCommand()));
             return otherPivotState.getPivotState().equals(getPivotState())
                     && otherPivotState.getCommandMessage().equals(getCommandMessage())
                     && (otherPivotState.getCommand() == getCommand()

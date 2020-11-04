@@ -3,12 +3,12 @@ package seedu.pivot.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_VICTIM;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_ADDRESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_EMAIL;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_PHONE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_SEX_AMY;
-import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_DUPLICATE_VICTIMS;
 import static seedu.pivot.logic.commands.victimcommands.EditVictimCommand.MESSAGE_EDIT_VICTIM_SUCCESS;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.CasePersonBuilder.DEFAULT_EMAIL;
@@ -92,7 +92,7 @@ public class EditVictimCommandTest {
     public void execute_allFieldsSpecified_success() throws CommandException {
         Victim editedVictim = new CasePersonBuilder(victim)
                 .withName(VALID_CASEPERSON_NAME_AMY)
-                .withGender(VALID_CASEPERSON_SEX_AMY)
+                .withSex(VALID_CASEPERSON_SEX_AMY)
                 .withPhone(VALID_CASEPERSON_PHONE)
                 .withEmail(VALID_CASEPERSON_EMAIL)
                 .withAddress(VALID_CASEPERSON_ADDRESS).buildVictim();
@@ -126,7 +126,7 @@ public class EditVictimCommandTest {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptorBuilder(editedVictim).build();
         EditVictimCommand editVictimCommand = new EditVictimCommand(FIRST_INDEX, FIRST_INDEX, editPersonDescriptor);
 
-        String expectedMessage = MESSAGE_DUPLICATE_VICTIMS;
+        String expectedMessage = MESSAGE_DUPLICATE_VICTIM;
         assertThrows(CommandException.class, expectedMessage, () -> editVictimCommand.execute(modelStub));
     }
 

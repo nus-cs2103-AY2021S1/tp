@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.Undoable;
@@ -89,7 +90,7 @@ public class AddDocumentCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         AddCommand command = new AddDocumentCommand(DEFAULT_INDEX, DEFAULT_DOCUMENT);
         assertThrows(CommandException.class,
-                AddDocumentCommand.MESSAGE_DUPLICATE_DOCUMENT, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_DUPLICATE_DOCUMENT, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 

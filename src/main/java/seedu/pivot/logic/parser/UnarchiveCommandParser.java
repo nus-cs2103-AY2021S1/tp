@@ -17,10 +17,10 @@ import seedu.pivot.logic.state.StateManager;
  */
 public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
 
-    private static final String MESSAGE_INCORRECT_SECTION_MAIN_PAGE = "Invalid command. "
+    public static final String MESSAGE_INCORRECT_SECTION_MAIN_PAGE = "Invalid command. "
             + "Type 'list archive' to see cases that you can unarchive.";
 
-    private static final String MESSAGE_INCORRECT_SECTION_CASE_PAGE = "Invalid command. "
+    public static final String MESSAGE_INCORRECT_SECTION_CASE_PAGE = "Invalid command. "
             + "Return to the main page and type 'list archive' to see cases that you can unarchive.";
 
     /**

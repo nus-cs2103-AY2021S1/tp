@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.Undoable;
@@ -23,14 +24,15 @@ import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CasePersonBuilder;
 
 public class AddWitnessCommandTest {
+
     private static final Witness TEST_WITNESS = new CasePersonBuilder().buildWitness();
 
     @Test
@@ -42,7 +44,7 @@ public class AddWitnessCommandTest {
 
     @Test
     public void equals() {
-        Witness alternateWitness = new Witness(new Name("Alice"), Gender.F,
+        Witness alternateWitness = new Witness(new Name("Alice"), Sex.F,
                 new Phone("92345678"), new Email("alice@hello.com"), new Address("Blk 345"));
         Index alternateIndex = Index.fromZeroBased(1000);
 
@@ -90,7 +92,7 @@ public class AddWitnessCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         AddCommand command = new AddWitnessCommand(FIRST_INDEX, TEST_WITNESS);
         assertThrows(CommandException.class,
-                AddWitnessCommand.MESSAGE_DUPLICATE_WITNESS, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_DUPLICATE_WITNESS, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 
