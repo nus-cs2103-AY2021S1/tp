@@ -119,7 +119,7 @@ public class ModelManager implements Model {
     //=========== Versioned Pivot ===========================================================================
     @Override
     public void commitPivot(String commandMessage, Undoable command) {
-        requireNonNull(commandMessage);
+        requireAllNonNull(commandMessage, command);
         this.versionedPivot.purgeStates();
         this.versionedPivot.commit(new Pivot(this.pivot), commandMessage, command);
     }
