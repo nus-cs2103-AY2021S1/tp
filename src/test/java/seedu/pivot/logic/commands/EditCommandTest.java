@@ -40,7 +40,7 @@
 //    public void execute_allFieldsSpecifiedUnfilteredList_success() {
 //        Case editedCase = new CaseBuilder()
 //                .withDocument("name", "test1.txt")
-//                .withWitnesses(new CasePersonBuilder().withName("Janice").withGender("F").buildWitness())
+//                .withWitnesses(new CasePersonBuilder().withName("Janice").withSex("F").buildWitness())
 //                .build();
 //        EditCommand.EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(editedCase).build();
 //        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);

@@ -299,6 +299,7 @@ public class MainWindow extends UiPart<Stage> {
                 caseTabPane.getSelectionModel().clearSelection();
             }
         }
+
     }
 
     /**

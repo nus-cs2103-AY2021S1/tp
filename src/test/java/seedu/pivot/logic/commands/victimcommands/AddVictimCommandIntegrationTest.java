@@ -16,19 +16,19 @@ import seedu.pivot.model.UserPrefs;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.testutil.CaseBuilder;
 
 public class AddVictimCommandIntegrationTest {
     private static final Name DEFAULT_NAME = new Name("Test Name");
-    private static final Gender DEFAULT_GENDER = Gender.createGender("m");
+    private static final Sex DEFAULT_SEX = Sex.createSex("m");
     private static final Phone DEFAULT_PHONE = new Phone("91234567");
     private static final Address DEFAULT_ADDRESS = new Address("Blk 123");
     private static final Email DEFAULT_EMAIL = new Email("abc@gmail.com");
-    private static final Victim DEFAULT_VICTIM = new Victim(DEFAULT_NAME, DEFAULT_GENDER,
+    private static final Victim DEFAULT_VICTIM = new Victim(DEFAULT_NAME, DEFAULT_SEX,
             DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
     private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
 
