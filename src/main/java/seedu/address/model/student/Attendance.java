@@ -9,7 +9,7 @@ import java.util.Objects;
 /**
  * Represents a Student's attendance in Trackr. This includes the student's participation score.
  * Guarantees: immutable; is valid as declared in {@link #isValidWeekNumber(String)} and
- * {@link #isValidParticipation(String)}
+ * {@link #isValidParticipationEdit(String)}
  */
 public class Attendance {
 
@@ -54,10 +54,23 @@ public class Attendance {
     /**
      * Returns true if a given string is a valid participation score.
      */
-    public static boolean isValidParticipation(String participation) {
+    public static boolean isValidParticipationEdit(String participation) {
         if (participation.matches(VALIDATION_REGEX)) {
             int score = Integer.parseInt(participation);
             return MIN_VALUE <= score
+                    && score <= MAX_SCORE;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given string is a valid participation score.
+     */
+    public static boolean isValidParticipation(String participation) {
+        if (participation.matches(VALIDATION_REGEX)) {
+            int score = Integer.parseInt(participation);
+            return MIN_SCORE <= score
                     && score <= MAX_SCORE;
         } else {
             return false;
@@ -104,8 +117,16 @@ public class Attendance {
      * Adjusts the student's participation score.
      */
     public void editParticipation(String participation) {
-        checkArgument(isValidParticipation(participation), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidParticipationEdit(participation), MESSAGE_CONSTRAINTS);
         parseParticipation(participation);
+    }
+
+    /**
+     * Sets the student's participation score.
+     */
+    public void setParticipation(String participation) {
+        checkArgument(isValidParticipation(participation), MESSAGE_CONSTRAINTS);
+        value = Integer.parseInt(participation);
     }
 
     /**

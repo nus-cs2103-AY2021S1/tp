@@ -64,7 +64,7 @@ public class StudentBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Student} that we are building.
      */
-    public StudentBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -93,7 +93,28 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Attendance} of the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendance(String... weekNumbers) {
+        Attendance newAttendance = new Attendance();
+        for (String weekNumber : weekNumbers) {
+            newAttendance.addAttendance(weekNumber);
+        }
+        newAttendance.setParticipation(attendance.getParticipationScoreAsString());
+        attendance = newAttendance;
+        return this;
+    }
+
+    /**
+     * Sets the participation score of the {@code Student} that we are building.
+     */
+    public StudentBuilder withParticipation(String participationScoreAsString) {
+        attendance.setParticipation(participationScoreAsString);
+        return this;
+    }
+
     public Student build() {
-        return new Student(name, phone, email, tags, studentId);
+        return new Student(name, phone, email, tags, studentId, attendance);
     }
 }

@@ -16,7 +16,7 @@ public class DayOfWeek {
             "Day of the week can only be MON/TUE/WED/THU/FRI/SAT/SUN";
 
 
-    public final String day;
+    private final String day;
 
     /**
      * Constructs a {@code DayOfWeek}.

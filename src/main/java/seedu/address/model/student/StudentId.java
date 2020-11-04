@@ -15,7 +15,7 @@ public class StudentId {
 
     public static final String VALIDATION_REGEX = "^[A-Z]\\d{7}[A-Z]$";
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs a {@code StudentId}
