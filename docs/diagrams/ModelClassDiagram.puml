@@ -8,6 +8,7 @@ Package Model <<Rectangle>>{
 Interface ReadOnlyPlanus <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
+Interface TimeSlot <<Interface>>
 Class Planus
 Class ReadOnlyPlanus
 Class Model
@@ -17,12 +18,38 @@ Class ReadOnlyUserPrefs
 
 Package Task {
 Class Task
+Class Event
+Class Deadline
+Class Lesson
+Class Calendar
 Class Title
-Class DateTime
 Class Description
-Class Type
 Class Tag
 Class UniqueTaskList
+}
+
+Package Deadline {
+Class Deadline
+Class DeadlineDateTime
+Class DoneDateTime
+Class Duration
+Class Status
+}
+
+Package Event {
+Class Event
+Class EndDateTime
+Class StartDateTime
+}
+
+Package Lesson {
+Class Lesson
+Class Time
+Class UniqueLessonList
+}
+
+Package Calendar {
+Class Calendar
 }
 
 Package Tag {
@@ -44,14 +71,34 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 Planus *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
 Task *--> Title
-Task *--> DateTime
 Task *--> Description
-Task *--> Type
-Task *--> "*" Tag
+Task *--> Tag
 
-Title -[hidden]right-> DateTime
-DateTime -[hidden]right-> Type
-Type -[hidden]right-> Description
+Event --|> Task
+Event .up.|> TimeSlot
+Event *--> EndDateTime
+Event *--> StartDateTime
+
+Deadline --|> Task
+Deadline *--> DeadlineDateTime
+Deadline *--> DoneDateTime
+Deadline *--> Status
+Deadline *--> Duration
+
+Lesson --|> TimeSlot
+Planus *--> "1" UniqueLessonList
+UniqueLessonList o--> "*" Lesson
+Lesson *--> Title
+Lesson *--> Description
+Lesson *--> Tag
+Lesson *--> Time
+
+Planus *.left.> "1" Calendar
+
+Title -[hidden]right-> Tag
+Tag -[hidden]right-> Description
 
 ModelManager -->"1" Task : filtered list
+ModelManager -->"1" Lesson : filtered list
+ModelManager -->"1" Calendar : filtered list
 @enduml
