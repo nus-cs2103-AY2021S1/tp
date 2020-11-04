@@ -57,7 +57,7 @@ public class SubmitCommandTest {
         return new StorageManager(new JsonAddressBookStorage(TYPICAL_ADDRESSBOOK_FILEPATH),
                 new JsonUserPrefsStorage(TYPICAL_USERPREFS_FILEPATH),
                 new JsonPresetManagerStorage(TYPICAL_PRESET_FILEPATH), null
-                );
+        );
     }
 
     @Test
@@ -86,7 +86,7 @@ public class SubmitCommandTest {
             Assertions.assertTrue(false);
         }
 
-//        assertCommandFailure(new SubmitCommand(), model, storage, Messages.MESSAGE_EMPTY_PROFILE);
+        //        assertCommandFailure(new SubmitCommand(), model, storage, Messages.MESSAGE_EMPTY_PROFILE);
     }
 
     @Test

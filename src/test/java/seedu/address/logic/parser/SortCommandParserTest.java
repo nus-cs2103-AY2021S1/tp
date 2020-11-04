@@ -1,13 +1,14 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.SortCommand;
-
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_INSUFFICIENT_ARGUMENTS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_TOO_MANY_ARGUMENTS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.SortCommand;
 
 public class SortCommandParserTest {
 
@@ -39,7 +40,7 @@ public class SortCommandParserTest {
                 String.format(MESSAGE_TOO_MANY_ARGUMENTS,
                 SortCommand.COMMAND_WORD, 2, SortCommand.MESSAGE_USAGE)));
 
-       // Invalid String
+        // Invalid String
         assertParseFailure(parser, "a", SortCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "j", SortCommand.MESSAGE_USAGE);
         assertParseFailure(parser, "p 1", SortCommand.MESSAGE_USAGE);
