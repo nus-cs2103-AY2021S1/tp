@@ -218,7 +218,7 @@ These operations are exposed in the `Model` interface as `Model#sortExpenses(Com
 `SortCommand` will take in at least one, and up to three keywords which specify the order and the parameters to sort
  by (date, description, amount). The conversion of the `String` input to a `Comparator<Expense>` is facilitated by
   `SortCommandParser#parse()`, and the **order** of the sorting parameters is implemented via the `Comparator#thenComparing()` method.
- 
+
 Command Example:
 * `sort by/date` — Sorted by chronological order.
 * `sort by/date by/descriptionR` — Sorted in chronological order, then based on reverse alphabetical
@@ -246,8 +246,7 @@ The following sequence diagrams shows how the sort command works:
  `Comparator<Expense>` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 3. The user then decides to execute the command `delete`. Commands that modify the expense book, such as `delete`, 
-`edit`, will usually call their respectively method in Model, but using the new index ordering of the sorted list. 
+Step 3. The user then decides to execute the command `delete`. Commands that modify the expense book, such as `delete`, `edit`, will usually call their respectively method in Model, but using the new index ordering of the sorted list.
 
 Step 4. The user then decides to execute the command `list`. This will revert the display view to initial
  `ExpenseBook`.
@@ -594,7 +593,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-#### Use case U9: Add category 
+#### Use case U9: Add category
 **MSS**
 
 1. User requests to add a new category with a user-specified category name.

@@ -46,5 +46,4 @@ deactivate ExpenseBook
 
 [<--Model
 deactivate Model
-
 @enduml
