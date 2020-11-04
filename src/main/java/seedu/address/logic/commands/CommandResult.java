@@ -26,6 +26,12 @@ public class CommandResult {
     /** Ui should trigger update in timeline window. */
     private final boolean triggerUpdateTimeline;
 
+    /** Ui should set to light theme. */
+    private final boolean triggerLightTheme;
+
+    /** Ui should set to light theme. */
+    private final boolean triggerDarkTheme;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -37,6 +43,8 @@ public class CommandResult {
         this.triggerUpdate = triggerUpdate;
         this.showTimeline = showTimeline;
         this.triggerUpdateTimeline = triggerUpdateTimeline;
+        this.triggerLightTheme = false;
+        this.triggerDarkTheme = false;
     }
 
     /**
@@ -45,6 +53,21 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified triggerLightTheme and triggerDarkTheme,
+     * and other fields set to false.
+     */
+    public CommandResult(String feedbackToUser, boolean triggerLightTheme, boolean triggerDarkTheme) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.triggerUpdate = false;
+        this.showTimeline = false;
+        this.triggerUpdateTimeline = false;
+        this.triggerLightTheme = triggerLightTheme;
+        this.triggerDarkTheme = triggerDarkTheme;
     }
 
     public String getFeedbackToUser() {
@@ -70,6 +93,14 @@ public class CommandResult {
     public boolean isTriggerUpdateTimeline() {
         return triggerUpdateTimeline;
     }
+    public boolean isTriggerLightTheme() {
+        return triggerLightTheme;
+    }
+
+    public boolean isTriggerDarkTheme() {
+        return triggerDarkTheme;
+    }
+
 
     @Override
     public boolean equals(Object other) {
