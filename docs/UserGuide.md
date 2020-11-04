@@ -132,7 +132,9 @@ Please take note of the following:
 * This command only accepts one tag or one label but not both.
 * Please ensure that you have read permission to the files that you want to open.
 <div markdown="block" class="alert alert-info">
+
 **:information_source: You can tag many files that you want to open at the same time with the same label, so you can open them at once.**
+
 </div>
 
 Format: `open t>TAG_NAME` or `open l>LABEL`
@@ -176,7 +178,9 @@ Examples:
 Adds one or more label to an existing tag.<br>
 You can use label to categorise tags.
 <div markdown="block" class="alert alert-warning">
+
 **:warning: Duplicated labels will only be added once.**
+
 </div>
 
 Format: `label t>TAG_NAME l>LABEL1 [l>LABEL2]...`
@@ -259,7 +263,8 @@ After executing command:
 Undo a recently executed command.<br>
 You can undo these commands: `tag`, `retag`, `untag`, `label`, `unlabel`, `clear`, and `redo`.
 <div markdown="block" class="alert alert-warning">
-**warning: Command history will be deleted once the app is closed!
+
+**:warning: Command history will be deleted once the app is closed!**
 </div>
 
 Format: `undo`
@@ -275,7 +280,9 @@ After executing command:
 Redo a recently executed command.<br>
 Redo only exists when undo has been executed.
 <div markdown="block" class="alert alert-warning">
-**warning: Command history will be deleted once the app is closed!
+
+**:warning: Command history will be deleted once the app is closed!**
+
 </div>
 
 Format: `redo`
@@ -290,7 +297,9 @@ After executing command:
 
 Clears the list of all tags.<br>
 <div markdown="block" class="alert alert-warning">
+
 **:warning: All tags will be deleted!**
+
 </div>
 
 Format: `clear`
