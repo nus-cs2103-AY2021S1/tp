@@ -172,10 +172,8 @@ ChopChop is able to save your favourite recipes — press the `Favourites` butto
 <a name="StatisticsBox"></a>
 ### 4.7&ensp;Statistics Box
 {:.no_toc}
-ChopChop is able to produce statistics based on the food you make!
-<div style="background-color: red">
-<h3 style="color: white; text-align: center">TODO NOT FINISHED</h3>
-</div>
+ChopChop is able to produce statistics based on the food you make! To view your ingredient or recipe usage statistics, simply input into the `Command Box` one of the `stats` [commands available](#GroupStatsCommands).
+
 
 
 
