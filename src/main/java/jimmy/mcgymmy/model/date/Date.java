@@ -67,6 +67,30 @@ public class Date {
         return new Date();
     }
 
+    /**
+     * Checks of the date format is valid.
+     * @param date Date as a String.
+     * @return If date can be parsed
+     */
+    public static boolean isValid(String date) {
+        boolean canParse = false;
+        for (String format : SUPPORTED_FORMATS) {
+            try {
+                // check if the date is in this format
+                LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
+                canParse = true;
+                break;
+            } catch (DateTimeParseException e) {
+                /* exception is thrown means that cannot parse date in that format
+                 if cannot parse date in any format, throw IllegalArgumentException
+                 using checkArgument below.
+                 implicit `continue;` here
+                 */
+            }
+        }
+        return canParse;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this
