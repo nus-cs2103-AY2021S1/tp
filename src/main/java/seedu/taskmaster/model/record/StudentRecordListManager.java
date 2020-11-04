@@ -138,11 +138,11 @@ public class StudentRecordListManager implements StudentRecordList {
      * Returns the lowest score amongst all students in the student list.
      */
     @Override
-    public int getLowestScore() {
-        int lowestScore = Integer.MAX_VALUE;
+    public double getLowestScore() {
+        double lowestScore = Integer.MAX_VALUE;
         for (int i = 0; i < internalList.size(); i++) {
             StudentRecord studentRecord = internalList.get(i);
-            int score = studentRecord.getClassParticipation().getRawScore();
+            double score = studentRecord.getClassParticipation().getRawScore();
 
             if (score < lowestScore) {
                 lowestScore = score;

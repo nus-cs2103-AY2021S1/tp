@@ -304,7 +304,7 @@ public class ModelManager implements Model {
 
     @Override
     public void showLowestScoringStudents() {
-        int lowestScore = taskmaster.getLowestScore();
+        double lowestScore = taskmaster.getLowestScore();
         filteredStudentRecords.setPredicate(new ScoreEqualsPredicate(lowestScore));
     }
 

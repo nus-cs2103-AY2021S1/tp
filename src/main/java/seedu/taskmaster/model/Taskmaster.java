@@ -308,7 +308,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     /**
      * Returns the lowest score amongst all students in the student list.
      */
-    public int getLowestScore() throws NoSessionException, NoSessionSelectedException {
+    public double getLowestScore() throws NoSessionException, NoSessionSelectedException {
         if (sessions.isEmpty()) {
             throw new NoSessionException();
         } else if (currentSession.isNull().get()) {

@@ -7,9 +7,9 @@ import seedu.taskmaster.model.student.NameContainsKeywordsPredicate;
 
 public class ScoreEqualsPredicate implements Predicate<StudentRecord> {
 
-    private final int desiredScore;
+    private final double desiredScore;
 
-    public ScoreEqualsPredicate(int desiredScore) {
+    public ScoreEqualsPredicate(double desiredScore) {
         this.desiredScore = desiredScore;
     }
 

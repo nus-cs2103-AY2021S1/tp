@@ -92,9 +92,6 @@ public class TaskmasterParser {
         case DeleteSessionCommand.COMMAND_WORD:
             return new DeleteSessionCommandParser().parse(arguments);
 
-        case ParticipationCommand.COMMAND_WORD:
-            return new ParticipationCommandParser().parse(arguments);
-            
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

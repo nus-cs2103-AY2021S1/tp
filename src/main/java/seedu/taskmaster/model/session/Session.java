@@ -92,7 +92,7 @@ public class Session {
     /**
      * Returns the lowest score amongst all students in the student list.
      */
-    public int getLowestScore() {
+    public double getLowestScore() {
         return studentRecords.getLowestScore();
     }
 
