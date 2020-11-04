@@ -189,7 +189,7 @@ public class CommandTestUtil {
     public static void showContactAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredContactList().size());
         Contact contact = model.getFilteredContactList().get(targetIndex.getZeroBased());
-        final String[] splitName = contact.getName().getName().split("\\s+");
+        final String[] splitName = contact.getName().toString().split("\\s+");
         model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredContactList().size());
     }
