@@ -1335,9 +1335,9 @@ print fn/<file name>
 print fn/stocks
 ```
 
-<h4>Below is a guided example for deleting stocks:</h4>
+<h4>Below is a guided example for creating CSV file:</h4>
 
-**Step 1.** Let's create a CSV file named `stocks`. Start by typing print fn/stocks in the command box. 
+**Step 1.** Let's create a CSV file with a file name of `stocks`. Start by typing `print fn/stocks` in the command box. 
 
 ![stockCsvExample](images/stockCsvExample.png)
 
