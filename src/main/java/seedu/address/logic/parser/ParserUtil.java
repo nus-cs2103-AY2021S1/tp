@@ -162,6 +162,15 @@ public class ParserUtil {
         return timeOfDays;
     }
 
+    public static TimeOfDay parseTimeOfDay(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!TimeOfDay.isValidTimeOfDay(trimmedStartTime)) {
+            throw new ParseException(TimeOfDay.MESSAGE_CONSTRAINTS);
+        }
+        return new TimeOfDay(trimmedStartTime);
+    }
+
     /**
      * Parses a {@code String module id} into a {@code ModuleId}.
      * Leading and trailing whitespaces will be trimmed.
