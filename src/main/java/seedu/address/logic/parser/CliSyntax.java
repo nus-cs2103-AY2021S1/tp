@@ -50,13 +50,15 @@ public class CliSyntax {
     public static final Prefix[] FIND_SUPPORTED_PREFIXES =
             new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
 
-    public static final Prefix[] COMMAND_PREFIXES =
-            new Prefix[] {PREFIX_INDEX, PREFIX_TEXT};
+    public static final Prefix[] COMMAND_PREFIXES = new Prefix[] {PREFIX_INDEX, PREFIX_TEXT};
 
     public static final Prefix[] EXAM_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_EXAM_NAME, PREFIX_EXAM_DATE, PREFIX_SCORE};
 
     public static final Prefix[] ATTENDANCE_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_ATTENDANCE_DATE, PREFIX_ATTENDANCE_STATUS, PREFIX_ATTENDANCE_FEEDBACK};
+
+    public static final Prefix[] ATTENDANCE_COMMAND_COMPULSORY_PREFIXES =
+            new Prefix[] {PREFIX_ATTENDANCE_DATE, PREFIX_ATTENDANCE_STATUS};
 
 }

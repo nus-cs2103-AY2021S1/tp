@@ -513,22 +513,23 @@ General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
 You can add an attendance record to a specified student in **Reeve**.
 
-Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBACK`
+Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS [f/FEEDBACK]`
 
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
 
 <div markdown="block" class="alert alert-info">
-:information_source: The format of LESSON_DATE is as follows:
+:information_source: The format of `LESSON_DATE` is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
-:information_source: The format of ATTENDANCE_STATUS is as follows:
-* present or absent.
+:information_source: `ATTENDANCE_STATUS` can only be either "present" or "absent".
 </div>
 
-Example:
-* `attendance add 2 d/08/12/2020 a/present f/attentive` adds the attendance record with the date 8 Dec 2020,
-status of present and feedback of attentive, to the 2nd student in **Reeve**.
+Examples:
+* `attendance add 1 d/31/10/2020 a/absent` adds to the 1st student in **Reeve** a new attendance record for a
+lesson on 31 Oct 2020, where he was absent, and the tutor has no feedback for him.
+* `attendance add 2 d/08/12/2020 a/present f/attentive` adds to the 2nd student in **Reeve** a new attendance record
+for a lesson on 8 Dec 2020, where he was present, and the tutor noted he was attentive.
 
 ##### 3.4.3.2 Deleting an attendance record for a student: `attendance delete`
 
