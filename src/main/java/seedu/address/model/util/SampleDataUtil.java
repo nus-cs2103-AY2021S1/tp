@@ -57,7 +57,7 @@ public class SampleDataUtil {
 
         // Add cold and hot
         menu1.add(new MenuItem("Milo Cold", 1.5, drinks, "al_amaan/milo.png"));
-        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "al_amaan/ilo.png"));
+        menu1.add(new MenuItem("Milo Hot", 1.3, drinks, "al_amaan/milo.png"));
 
         menu1.add(new MenuItem("Milo Dinosaur", 2.5, drinks, "al_amaan/milo_dino.png"));
         menu1.add(new MenuItem("Milo Godzilla", 3, drinks,
@@ -68,12 +68,22 @@ public class SampleDataUtil {
         HashSet<Tag> tagList = new HashSet<>();
         tagList.add(new Tag("Egg"));
         tagList.add(new Tag("Cheese"));
-        menu2.add(new MenuItem("Prata", 1.0, tagList, ""));
-        menu2.add(new MenuItem("Water", 3, drinks, ""));
+        menu2.add(new MenuItem("Pattaya", 6.5, new HashSet<>(), "makan_xpress/pattaya.png"));
+        menu2.add(new MenuItem("Roti John Chicken", 5.5, new HashSet<>(),
+                "al_amaan/roti_john.png"));
+        menu2.add(new MenuItem("Meatball Spaghetti", 7.7, new HashSet<>(),
+                "makan_xpress/meatball_spagetti.png"));
+        menu2.add(new MenuItem("Naan", 1.7, new HashSet<>(), "makan_xpress/naan.png"));
+        menu2.add(new MenuItem("Tandoori", 6.5, new HashSet<>(), "makan_xpress/tandoori.png"));
+        menu2.add(new MenuItem("Plain Prata", 1.2, new HashSet<>(), "makan_xpress/prata.png"));
+        menu2.add(new MenuItem("Tom Yam", 6.5, new HashSet<>(), "makan_xpress/tomyam.png"));
+        menu2.add(new MenuItem("Nasi Goreng Ikan Bilis", 4.5, new HashSet<>(),
+                "makan_xpress/nasi_goreng.png"));
+        menu2.add(new MenuItem("Milo Cold", 2, drinks, "al_amaan/milo.png"));
+        menu2.add(new MenuItem("Teh Ping Cold", 2, drinks, "al_amaan/teh_ping.png"));
+
 
         Menu menu3 = new Menu();
-        menu3.add(new MenuItem("Foie Gras Sliced Beef Roll", 18.90, hotdogs,
-                "de_frank/bacon_cheese_hotdog.png"));
         menu3.add(new MenuItem("Bacon & Cheese Hotdog", 13.90, hotdogs,
                 "de_frank/bacon_cheese_hotdog.png"));
         menu3.add(new MenuItem("Mozzarella Corn Dog (2pcs)", 12.90, hotdogs,
@@ -85,21 +95,23 @@ public class SampleDataUtil {
         menu3.add(new MenuItem("Chicken Cutlet Burger", 13.90, burgers,
                 "de_frank/chicken_burger.png"));
         menu3.add(new MenuItem("Breaded Fish Burger", 13.90, burgers,
-                "de_frank/fish_burger"));
+                "de_frank/fish_burger.png"));
+        menu3.add(new MenuItem("Foie Gras Sliced Beef Roll", 18.90, hotdogs,
+                ""));
         menu3.add(new MenuItem("Cheese Steak Sliders (3pcs)", 16.90, burgers,
-                "de_frank/cheese_steak_slider"));
+                "de_frank/cheese_steak_slider.png"));
 
         return new Vendor[]{
             new Vendor(new Name("Al Amaan Restaurant"), new Phone("67740637"),
-                    new Email("alamaanrestaurant@gmail.com"),
-                    new Address("12 Clementi Road, Singapore 129742"),
-                    getTagSet("halal"), menu1),
-            new Vendor(new Name("Local Indian Store"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"), menu2),
+                        new Email("alamaanrestaurant@gmail.com"),
+                        new Address("12 Clementi Road, Singapore 129742"),
+                        getTagSet("halal"), menu1),
+            new Vendor(new Name("Xpress Makan Avenue"), new Phone("91076367"), new Email("xpressmakanavenue@gmail.com"),
+                        new Address("14 Clementi Road, Singapore 129743"),
+                        getTagSet("halal"), menu2),
             new Vendor(new Name("BeFrank"), new Phone("97652509"), new Email("charlotte@example.com"),
-                    new Address("28 Clementi Road, Singapore 129754"),
-                    getTagSet("western"), menu3)
+                        new Address("28 Clementi Road, Singapore 129754"),
+                        getTagSet("western"), menu3)
 
         };
     }

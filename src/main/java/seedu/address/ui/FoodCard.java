@@ -57,13 +57,13 @@ public class FoodCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         System.out.println(item.getFilePath());
 
-        Image image = new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath()));
-        Image defaultImage = new Image(this.getClass().getResourceAsStream("/images/food/al_amaan/milo.png"));
-        System.out.println(image);
-        if (image.isError()) {
-            imageView.setImage(defaultImage);
-        } else {
+        try {
+            Image image = new Image(this.getClass().getResourceAsStream("/images/food/" + item.getFilePath()));
             imageView.setImage(image);
+        } catch (NullPointerException e) {
+            Image defaultImage = new Image(this.getClass()
+                    .getResourceAsStream("/images/food/default-menu-item.jpg"));
+            imageView.setImage(defaultImage);
         }
 
         imageView.setFitHeight(120);
