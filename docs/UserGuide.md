@@ -43,13 +43,13 @@ contents below for easy access to sections in this document.
 
    * **`listi`** : This shows you all items stored in your inventory.
 
-   * **`addi`**`-n banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to your inventory.
+   * **`addi`**`-n banana -q 44 -d edible banana -l Bobs Banana Farm` : Adds an item named `banana` to your inventory.
 
    * **`addq`**`-n banana -q 10` Adds a quantity of 10 to the number of `banana` you own.
 
    * **`deli`**`-n banana` : Deletes the `banana` item from your inventory.
 
-   * **`delr`**`-n banana -r 1` : Deletes the first recipe from the `banana` item of your inventory.
+   * **`delr`**`-n banana -i 1` : Deletes the first recipe from the `banana` item of your inventory.
 
    * **`exit`** : Exits the application.
 
@@ -85,10 +85,10 @@ Action | Format
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
 **Add Quantity to Item** | `addq` **-n \<item name\>** **-q \<qty\>**
 **Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag, …\>**
-**Craft Item** | `craft` **-n \<item name\>** **-q \<quantity\>** \[-r \<index\>\]
+**Craft Item** | `craft` **-n \<item name\>** **-q \<quantity\>** \[-i \<index\>\]
 **Check craft** | `check` **-n \<item name\>** **-q \<quantity\>** 
 **Delete Item** | `deli` **-n \<item name\>**
-**Delete Recipe** | `delr` **-n \<item name\> -r index**
+**Delete Recipe** | `delr` **-n \<item name\> -i index**
 **Edit Item** | `edit` **-o \<item name\>** \[-n \<name\>\] \[-q \<qty\>\] \[-d \<desc\>\] \[-t \<tag, …\>\]
 **Find Item by Name** | `find` **\<string, ...\>**
 **Find Item by Tag** | `findt` **\<string, ...\>**
@@ -107,6 +107,15 @@ Action | Format
 In this section, you can find a comprehensive list of Inventoryinator's commands and their descriptions, as of v1.4.
 For each command, you will find a written description of the command's functions. For experienced users, you can
 refer to the more succinct name, synopsis, description and example sections to directly access the information you need.
+
+```
+NOTE:
+We have removed all apostrophes (') from our example commands, but that does not mean you can't use them.
+We have only done so because github (or something else) formats apostrophes to be different from the ones 
+on our keyboard, which affects our Inventoryinator's case-sensitive commands.
+Now, you can copy and paste our example commands without worry.
+:)
+```
 
 ### Adding an item: `addi`
 ###### (Implemented by: Zhengdao)
@@ -133,12 +142,12 @@ location and tags). You will be able to edit these fields later on.
 - Adds an item to your inventory, with the given input.
 
 **EXAMPLE:**
-- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bob’s banana farm -t delicious, consumable
+- `addi` -n <u>banana</u> -q 44 -d edible banana -l Bobs banana farm -t delicious, consumable
 
-<img height="300" src="images/UG images/UG addi.png"/>
+<img height="400" src="images/UG images/UG addi.png"/>
 
 This command adds a new entry of 44 <u>banana</u>, with description <u>edible banana</u>, 
-found at location <u>Bob’s banana farm</u> and tags <u>delicious</u>, <u>consumable</u> to your inventory.
+found at location <u>Bobs banana farm</u> and tags <u>delicious</u>, <u>consumable</u> to your inventory.
 
 ```
 TIPS:
@@ -171,11 +180,11 @@ and a description for the recipe. If you do not provide these fields, they will 
  do note that all items mentioned in the command must exist in the item listing.
 
 **EXAMPLE:**
-- `addr` -n <u>Bob’s anvil</u> **-items** <u>block of iron</u>\[3\], <u>iron ingot</u>\[4\]
+- `addr` -n <u>Bobs anvil</u> **-items** <u>block of iron</u>\[3\], <u>iron ingot</u>\[4\]
 
-<img height="300" src="images/UG images/UG addr.png"/>
+<img height="400" src="images/UG images/UG addr.png"/>
 
-This command adds a recipe to craft <u>Bob’s anvil</u>, which takes 3 <u>blocks of iron</u> and 4 <u>iron ingots</u>.
+This command adds a recipe to craft <u>Bobs anvil</u>, which takes 3 <u>blocks of iron</u> and 4 <u>iron ingots</u>.
 
 ```
 TIPS:
@@ -204,11 +213,11 @@ quantity, provide a negative number.
 - Adds the quantity to the item in your inventory.
 
 **EXAMPLE:**
-- `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
+- `addq` -n <u>Bobs 6th regret</u> -q <u>8</u>
 
-<img height="300" src="images/UG images/UG addq.png"/>
+<img height="400" src="images/UG images/UG addq.png"/>
 
-Adds <u>8</u> more <u>Bob’s 6th regrets</u> to your inventory.
+Adds <u>8</u> more <u>Bobs 6th regrets</u> to your inventory.
 
 ```
 TIPS:
@@ -233,11 +242,11 @@ tags to, and the tags that you wish to add.
 - Adds the tags to the item in your inventory.
 
 **EXAMPLE:**
-- `addt` -n <u>Bob's 9th horse</u> -t <u>consumable</u>
+- `addt` -n <u>Bobs 9th horse</u> -t <u>consumable</u>
 
-<img height="300" src="images/UG images/UG addt.png"/>
+<img height="400" src="images/UG images/UG addt.png"/>
 
-Adds the <u>consumable</u> tag to the item <u>Bob's 9th horse</u> in your inventory.
+Adds the <u>consumable</u> tag to the item <u>Bobs 9th horse</u> in your inventory.
 
 ```
 TIPS:
@@ -257,7 +266,7 @@ descriptions and tags.
 **SYNOPSIS:**
 - `listi`
 
-<img height="300" src="images/UG images/UG listi.png"/>
+<img height="400" src="images/UG images/UG listi.png"/>
 
 **DESCRIPTION:**
 Lists all items that are in your inventory, and their quantities, descriptions and tags.
@@ -275,7 +284,7 @@ will also see the recipe description.
 **SYNOPSIS:**
 - `listr`
 
-<img height="300" src="images/UG images/UG listr.png"/>
+<img height="400" src="images/UG images/UG listr.png"/>
 
 **DESCRIPTION:**
 Lists all recipes, products, descriptions and their ingredients.
@@ -298,11 +307,11 @@ or produce the item from your inventory. You will need to provide the item name 
  and all recipes associated with the item
 
 **EXAMPLE:**
-- `deli` -n <u>Bob’s 28th finger</u>
+- `deli` -n <u>Bobs 28th finger</u>
 
-<img height="300" src="images/UG images/UG deli.png"/>
+<img height="400" src="images/UG images/UG deli.png"/>
 
-Deletes the item with the name <u>Bob’s 28th finger</u> from your inventory.
+Deletes the item with the name <u>Bobs 28th finger</u> from your inventory.
 
 ```
 TIPS:
@@ -320,7 +329,7 @@ recipe and the index of the recipe in the product item.
 - `delr` - deletes a recipe
 
 **SYNOPSIS:**
-- `delr` **-n \<item name\>** **-r index**
+- `delr` **-n \<item name\>** **-i index**
 
 **DESCRIPTION:**
 - **n:** name of the product item of the recipe to be deleted
@@ -328,11 +337,11 @@ recipe and the index of the recipe in the product item.
 - Deletes the recipe in your inventory with the corresponding recipe index in the given item.
 
 **EXAMPLE:**
-- `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
+- `delr` -n <u>Bobs 28th finger</u> -i <u>1</u>
 
-<img height="300" src="images/UG images/UG delr.png"/>
+<img height="400" src="images/UG images/UG delr.png"/>
 
-Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u> from your inventory.
+Deletes the <u>first recipe</u> of the item <u>Bobs 28th finger</u> from your inventory.
 
 ```
 TIPS:
@@ -360,11 +369,11 @@ case-insensitive.
 **EXAMPLE:**
 - `find` <u>bob</u>, <u>alice</u>
 
-<img height="300" src="images/UG images/UG find.png"/>
+<img height="400" src="images/UG images/UG find.png"/>
 
 - Returns the items whose names match/ contain <u>bob</u> or <u>alice</u>, like: 
-  - Bob’s 9000th crush
-  - Alice's sword
+  - Bobs 9000th crush
+  - Alices sword
   - Little bob
 
 ```
@@ -391,12 +400,12 @@ to search for items that have any tags in your search parameters.
 **EXAMPLE:**
 - `findt` <u>delic</u>, <u>yummy</u>
 
-<img height="300" src="images/UG images/UG findt.png"/>
+<img height="400" src="images/UG images/UG findt.png"/>
 
 - Returns the items whose tags match/contain "delic" or "yummy", like: 
-  - Bob’s Banana tags: [<u>tuturu</u>, <u>yummy</u>]
-  - Alice's Apple tags: [<u>delicate</u>]
-  - Kim's Kiwi tags: [<u>yummy</u>, <u>delicious</u>]
+  - Bobs Banana tags: [<u>tuturu</u>, <u>yummy</u>]
+  - Alices Apple tags: [<u>delicate</u>]
+  - Kims Kiwi tags: [<u>yummy</u>, <u>delicious</u>]
 
 ```
 TIPS:
@@ -419,11 +428,11 @@ You will need to provide the item name of the item you wish to view.
 - **item name:** item to view
 
 **EXAMPLE:**
-- `view` <u>Bob’s bitten fingernail clipping</u> -r 
+- `view` <u>Bobs bitten fingernail clipping</u>
 
-<img height="300" src="images/UG images/UG view.png"/>
+<img height="400" src="images/UG images/UG view.png"/>
 
-View all details of the item with the name <u>Bob’s bitten fingernail clipping</u>.
+View all details of the item with the name <u>Bobs bitten fingernail clipping</u>.
 
 ```
 TIPS:
@@ -456,7 +465,7 @@ Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u>.
 
 - `edit` -o <u> Iron Ore</u> -q <u>20</u> -d <u>mined</u>  
 
-<img height="300" src="images/UG images/UG edit.png"/>
+<img height="400" src="images/UG images/UG edit.png"/>
 
 Edits the item named <u>Iron Ore</u> to have quantity of <u>20</u> and description of <u>mined</u>.
 
@@ -481,9 +490,9 @@ quantities reduced by the amount required to craft the desired quantity of the p
 Crafts quantity of the specified item using the specified recipe.
 
 **EXAMPLE:**
-- 'craft' -n <u>Iron Sword</u> -q <u>3</u> -i <u>2</u>
+- `craft` -n <u>Iron Sword</u> -q <u>3</u> -i <u>2</u>
 
-<img height="300" src="images/UG images/UG craft.png"/>
+<img height="400" src="images/UG images/UG craft.png"/>
 
 Crafts 3 <u>Iron Swords</u> using the second recipe in the list which may craft it. 3 <u>Iron Swords</u> will be
 added to your inventory.
@@ -511,9 +520,9 @@ desired item. You will need to provide the item name and quantity of the item yo
 Checks if it is possible for you to craft a quantity of the specified item using any recipe in your inventory.
 
 **EXAMPLE:**
-- 'check' -n <u>Iron Sword</u> -q <u>5</u>  
+- `check` -n <u>Iron Sword</u> -q <u>5</u>  
 
-<img height="300" src="images/UG images/UG check.png"/>
+<img height="400" src="images/UG images/UG check.png"/>
 
 Checks and displays if any recipe in the recipe list can craft 5 (or more) <u>Iron Swords</u>
 based on your current inventory.
@@ -536,7 +545,7 @@ Deletes all items and recipes. Your inventory will be empty after executing this
 - `cleari` followed by `listi`
     - `listi` will indicate "You have no items in your inventory now."
 
-<img height="300" src="images/UG images/UG cleari.png"/>
+<img height="400" src="images/UG images/UG cleari.png"/>
 
 ### Clear all recipes: `clearr`
 ###### (Implemented by: Zhengdao)
@@ -556,7 +565,7 @@ Deletes all recipes.
 - `clearr` followed by `listr`
     - `listr` will indicate "You have no recipes in your inventory now."
 
-<img height="300" src="images/UG images/UG clearr.png"/>
+<img height="400" src="images/UG images/UG clearr.png"/>
 
 ### Undo a command: `undo`
 ###### (Implemented by: Jing Lin)
@@ -579,7 +588,7 @@ considers commands that adds, removes, or changes an item or recipe.
 - `addq -n Apple -q 10` followed by `undo`
     - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>.
 
-<img height="300" src="images/UG images/UG undo.png"/>
+<img height="400" src="images/UG images/UG undo.png"/>
 
 ### Redo a command: `redo`
 ###### (Implemented by: Jing Lin)
@@ -601,7 +610,7 @@ Reverses the effect of the previous undo command.
     - First command adds 10 <u>Apples</u>, `undo` removes the 10 <u>Apples</u>,
       `redo` re-adds the 10 <u>Apples</u>.
 
-<img height="300" src="images/UG images/UG redo.png"/>
+<img height="400" src="images/UG images/UG redo.png"/>
 
 ### Viewing help: `help`
 This command opens a dialog box with a link to this user guide. If you're here, you don't need this command! :)
