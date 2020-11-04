@@ -42,7 +42,6 @@ public class NewMacroCommand implements CommandExecutable {
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) {
-            // TODO better errors?
             throw new CommandException("Error: missing macro name.");
         }
     }

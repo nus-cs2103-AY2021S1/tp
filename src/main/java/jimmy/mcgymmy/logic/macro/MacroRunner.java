@@ -85,13 +85,11 @@ public class MacroRunner {
             return commandExecutables;
 
         } catch (ParseException e) {
-            // TODO better error message
-            throw new CommandException("Macro failed to parse: " + e.getMessage());
+            throw new CommandException("Error when executing the macro: \n" + e.getMessage());
         }
     }
 
     private static String substitute(CommandLine args, String line) {
-        // TODO possibly use a StringBuilder here instead for performance.
         for (Iterator<Option> i = args.iterator(); i.hasNext(); ) {
             Option option = i.next();
             String from = option.getOpt();
