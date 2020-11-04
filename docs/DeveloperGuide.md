@@ -759,6 +759,21 @@ along with the budget for that category.
     * 1b1. Bamboo shows an error message.
       
       Use case ends.
+      
+#### Use case U13: Reset Changed Command Keyword 
+**MSS**
+
+1. User requests to reset changed command keyword to default command keyword.
+2. Bamboo clears the changed commands linked to the original command keyword.
+   
+   Use case ends.
+
+**Extensions**
+
+* 1a. No command keyword changed previously.
+    * 1a1. Bamboo shows an error message.
+      
+      Use case ends.
 
 ### Non-Functional Requirement
 
