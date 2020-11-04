@@ -72,7 +72,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -224,10 +224,10 @@ They are:
  
 |Priority Type   |Syntax  |Picture   |
 |---|---|---|
-|Undefined   |`l/undefined`,`l/u`, `l/U`   |![help message](images/Priority Bar/UndefinedPriority.png)  |
-|Low   |`l/low`,`l/l`, `l/L`    |![help message](images/Priority Bar/LowPriority.png)   |
-|Medium   |`l/medium`,`l/m`, `l/M`    |![help message](images/Priority Bar/MediumPriority.png)   |
-|High   |`l/high`,`l/h`, `l/H`    |![help message](images/Priority Bar/HighPriority.png)   |
+|Undefined   |`l/undefined`,`l/u`, `l/U`   |![Undefined Priority](images/Priority Bar/UndefinedPriority.png)  |
+|Low   |`l/low`,`l/l`, `l/L`    |![Low Priority](images/Priority Bar/LowPriority.png)   |
+|Medium   |`l/medium`,`l/m`, `l/M`    |![Medium Priority](images/Priority Bar/MediumPriority.png)   |
+|High   |`l/high`,`l/h`, `l/H`    |![High Priority](images/Priority Bar/HighPriority.png)   |
 
 Note: 
 * If a client is not assigned a priority, I4I would automatically assign an undefined priority to the client.
