@@ -27,7 +27,7 @@ public class CasePersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label gender;
+    private Label sex;
     @FXML
     private Label phone;
     @FXML
@@ -50,7 +50,7 @@ public class CasePersonCard extends UiPart<Region> {
         this.casePerson = casePerson;
         id.setText(displayedIndex + ". ");
         name.setText(casePerson.getName().toString());
-        gender.setText("(" + casePerson.getGender().toString() + ")");
+        sex.setText("(" + casePerson.getSex().toString() + ")");
 
         String checkPhone = casePerson.getPhone().toString();
         boolean phoneTest = !checkPhone.isBlank();

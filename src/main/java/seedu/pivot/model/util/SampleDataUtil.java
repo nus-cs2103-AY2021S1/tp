@@ -17,9 +17,9 @@ import seedu.pivot.model.investigationcase.Status;
 import seedu.pivot.model.investigationcase.Title;
 import seedu.pivot.model.investigationcase.caseperson.Address;
 import seedu.pivot.model.investigationcase.caseperson.Email;
-import seedu.pivot.model.investigationcase.caseperson.Gender;
 import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Sex;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
@@ -31,15 +31,15 @@ import seedu.pivot.model.tag.Tag;
 public class SampleDataUtil {
 
     private static final List<Suspect> sampleSuspects = new ArrayList<>(
-            List.of(new Suspect(new Name("Tom"), Gender.M, new Phone("91234567"),
+            List.of(new Suspect(new Name("Tom"), Sex.M, new Phone("91234567"),
                     new Email("abc@gmail.com"), new Address("Blk 123 Beach Road"))));
     private static final List<Witness> sampleWitnesses = new ArrayList<>(
-            List.of(new Witness(new Name("John"), Gender.M, new Phone("91234567"),
+            List.of(new Witness(new Name("John"), Sex.M, new Phone("91234567"),
                             new Email("abc@gmail.com"), new Address("Blk 123 Beach Road")),
-                    new Witness(new Name("Janice"), Gender.F, new Phone("91234567"),
+                    new Witness(new Name("Janice"), Sex.F, new Phone("91234567"),
                             new Email("abc@gmail.com"), new Address("Blk 123 Beach Road"))));
     private static final List<Victim> sampleVictims = new ArrayList<>(
-            List.of(new Victim(new Name("Mary"), Gender.F, new Phone("91234567"),
+            List.of(new Victim(new Name("Mary"), Sex.F, new Phone("91234567"),
                             new Email("abc@gmail.com"), new Address("Blk 123 Beach Road"))));
     private static final List<Document> sampleDocuments =
             List.of(new Document(new Name("name"), new Reference("test1.txt")));

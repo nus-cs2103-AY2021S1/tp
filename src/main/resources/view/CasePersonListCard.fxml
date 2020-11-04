@@ -32,7 +32,7 @@
                         </minWidth>
                     </Label>
                     <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-                    <Label fx:id="gender" text="\$first" styleClass="cell_big_label" wrapText="true">
+                    <Label fx:id="sex" text="\$first" styleClass="cell_big_label" wrapText="true">
                         <minWidth>
                             <!-- Ensures that the label text is never truncated -->
                             <Region fx:constant="USE_PREF_SIZE" />

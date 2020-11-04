@@ -24,11 +24,12 @@ import seedu.pivot.model.investigationcase.caseperson.Witness;
 public class TypicalCases {
 
     // CasePersons
-    public static final Suspect PETER = new CasePersonBuilder().withName("Peter").withGender("M").withPhone("912345678")
+    public static final Suspect PETER = new CasePersonBuilder().withName("Peter").withSex("M").withPhone("912345678")
             .withEmail("peter@gmail.com").withAddress("Blk 123").buildSuspect();
-    public static final Victim TOM = new CasePersonBuilder().withName("Tom").withGender("M").withPhone("912345678")
+    public static final Victim TOM = new CasePersonBuilder().withName("Tom").withSex("M").withPhone("912345678")
             .withEmail("tom@gmail.com").withAddress("Blk 123").buildVictim();
-    public static final Witness JANICE = new CasePersonBuilder().withName("Janice").withGender("F").buildWitness();
+    public static final Witness JANICE = new CasePersonBuilder().withName("Janice").withSex("F")
+            .withPhone("912345678").buildWitness();
 
     // Cases
     // The cases here are linked to the test file: typicalPersonsPivot.json
@@ -44,6 +45,7 @@ public class TypicalCases {
     public static final Case BENSON_MEIER_ROBBERY = new CaseBuilder().withTitle("Benson Meier Robbery")
             .withStatus("CLOSED")
             .withDocument("name", "test1.txt")
+            .withDescription("Was hit with a very big banana!")
             .withVictims(TOM)
             .withWitnesses(JANICE)
             .withTags("owesMoney", "friends")

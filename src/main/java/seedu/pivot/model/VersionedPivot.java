@@ -6,6 +6,9 @@ import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
+
 public class VersionedPivot extends Pivot {
 
     public static final String INITIAL_COMMAND = "Initial command";
@@ -14,8 +17,8 @@ public class VersionedPivot extends Pivot {
     private final List<PivotState> pivotStateList = new ArrayList<>();
 
     private int currentStatePointer;
-    private boolean isMainPageCommandResult = true;
-    private String commandResult = "";
+    private Undoable commandResult = null;
+    private String commandMessageResult = "";
 
     /**
      * Creates a VersionedPivot object with the list of Pivot states being
@@ -25,7 +28,7 @@ public class VersionedPivot extends Pivot {
      */
     public VersionedPivot(ReadOnlyPivot pivot) {
         requireNonNull(pivot);
-        pivotStateList.add(new PivotState(pivot, INITIAL_COMMAND, false));
+        pivotStateList.add(new PivotState(pivot, null, INITIAL_COMMAND));
         currentStatePointer = INITIAL_STATE;
     }
 
@@ -35,9 +38,12 @@ public class VersionedPivot extends Pivot {
      * @param pivotStateList The list of Pivot states.
      * @param currentStatePointer The index of the current Pivot state in the pivotStateList.
      */
-    public VersionedPivot(List<PivotState> pivotStateList, int currentStatePointer) {
+    public VersionedPivot(List<PivotState> pivotStateList, int currentStatePointer,
+            Undoable commandResult, String commandMessageResult) {
         this.pivotStateList.addAll(pivotStateList);
         this.currentStatePointer = currentStatePointer;
+        this.commandResult = commandResult;
+        this.commandMessageResult = commandMessageResult;
 
     }
 
@@ -49,12 +55,21 @@ public class VersionedPivot extends Pivot {
         return this.currentStatePointer;
     }
 
-    public String getCommandResult() {
+    public Undoable getCommandResult() {
         return this.commandResult;
     }
 
-    public boolean getIsMainPageCommandResult() {
-        return this.isMainPageCommandResult;
+    public String getCommandMessageResult() {
+        return this.commandMessageResult;
+    }
+
+    /**
+     * Checks if the Command being undone or redone is a main page or case page command.
+     * @return True if the Command is a main page command, False otherwise.
+     */
+    public boolean isMainPageCommand() {
+        Page page = this.commandResult.getPage();
+        return page.equals(Page.MAIN);
     }
 
     /**
@@ -79,9 +94,9 @@ public class VersionedPivot extends Pivot {
      * Removes all states after the current state and add the current Pivot state into the list of Pivot states.
      * @param pivot Current Pivot state.
      */
-    public void commit(ReadOnlyPivot pivot, String command, boolean isMainPageCommand) {
-        requireAllNonNull(pivot, command, isMainPageCommand);
-        pivotStateList.add(new PivotState(pivot, command, isMainPageCommand));
+    public void commit(ReadOnlyPivot pivot, String commandMessage, Undoable command) {
+        requireAllNonNull(pivot, commandMessage, command);
+        pivotStateList.add(new PivotState(pivot, command, commandMessage));
         currentStatePointer++;
 
         assert currentStatePointer < pivotStateList.size() : "Index out of bounds";
@@ -95,6 +110,9 @@ public class VersionedPivot extends Pivot {
         for (int i = stateAfterCurrent; i < pivotStateList.size(); i++) {
             pivotStateList.remove(i);
         }
+
+        commandResult = null;
+        commandMessageResult = "";
     }
 
     /**
@@ -103,8 +121,8 @@ public class VersionedPivot extends Pivot {
      */
     public void updateRedoUndoResult() {
         PivotState currentPivotState = pivotStateList.get(currentStatePointer);
+        commandMessageResult = currentPivotState.commandMessage;
         commandResult = currentPivotState.command;
-        isMainPageCommandResult = currentPivotState.isMainPageCommand;
     }
 
     /**
@@ -147,19 +165,56 @@ public class VersionedPivot extends Pivot {
         VersionedPivot otherVersionedPivot = (VersionedPivot) other;
         return otherVersionedPivot.getPivotStateList().equals(getPivotStateList())
                 && otherVersionedPivot.getCurrentStatePointer() == getCurrentStatePointer()
-                && otherVersionedPivot.getCommandResult().equals(getCommandResult())
-                && otherVersionedPivot.getIsMainPageCommandResult() == getIsMainPageCommandResult();
+                && otherVersionedPivot.getCommandMessageResult().equals(getCommandMessageResult())
+                && (otherVersionedPivot.getCommandResult() == getCommandResult()
+                        || otherVersionedPivot.getCommandResult().equals(getCommandResult()));
     }
 
-    private class PivotState {
+    public static class PivotState {
         final ReadOnlyPivot pivotState;
-        final String command;
-        final boolean isMainPageCommand;
+        final Undoable command;
+        final String commandMessage;
 
-        private PivotState(ReadOnlyPivot pivotState, String command, boolean isMainPageCommand) {
+        /**
+         * Creates a PivotState with a PIVOT state, the command that caused the change in state, and its corresponding
+         * message that was displayed to the user when the command was used.
+         * @param pivotState PIVOT state.
+         * @param command Command that caused the change in PIVOT state.
+         * @param commandMessage Message displayed to user when command was used.
+         */
+        public PivotState(ReadOnlyPivot pivotState, Undoable command, String commandMessage) {
             this.pivotState = pivotState;
             this.command = command;
-            this.isMainPageCommand = isMainPageCommand;
+            this.commandMessage = commandMessage;
+        }
+
+        public ReadOnlyPivot getPivotState() {
+            return this.pivotState;
+        }
+
+        public String getCommandMessage() {
+            return this.commandMessage;
+        }
+
+        public Undoable getCommand() {
+            return this.command;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            if (other == this) {
+                return true;
+            }
+
+            if (!(other instanceof PivotState)) {
+                return false;
+            }
+
+            PivotState otherPivotState = (PivotState) other;
+            return otherPivotState.getPivotState().equals(getPivotState())
+                    && otherPivotState.getCommandMessage().equals(getCommandMessage())
+                    && (otherPivotState.getCommand() == getCommand()
+                            || otherPivotState.getCommand().equals(getCommand()));
         }
     }
 }

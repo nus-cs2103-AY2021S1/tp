@@ -12,6 +12,8 @@ import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.Command;
 import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.Page;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
@@ -21,7 +23,7 @@ import seedu.pivot.model.investigationcase.Case;
 /**
  * Archives a case identified using it's displayed index from PIVOT.
  */
-public class ArchiveCommand extends Command {
+public class ArchiveCommand extends Command implements Undoable {
     public static final String COMMAND_WORD = "archive";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -32,6 +34,8 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " case 1";
 
     public static final String MESSAGE_ARCHIVE_CASE_SUCCESS = "Case archived: %1$s";
+
+    private static final Page pageType = Page.MAIN;
     private static final Logger logger = LogsCenter.getLogger(ArchiveCommand.class);
 
     private Index targetIndex;
@@ -73,7 +77,7 @@ public class ArchiveCommand extends Command {
         //model.setCase(caseToArchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
-        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase), true);
+        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase), this);
 
         return new CommandResult(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
     }
@@ -83,5 +87,10 @@ public class ArchiveCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof ArchiveCommand // instanceof handles nulls
                 && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
+    }
+
+    @Override
+    public Page getPage() {
+        return pageType;
     }
 }
