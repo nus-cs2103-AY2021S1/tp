@@ -25,19 +25,18 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
      */
     public AddTemplateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CALORIES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CALORIES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTemplateCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
 
-        Template template = new Template(name.fullName, description.value,
+        Template template = new Template(name.fullName,
                                         parseInt(calories.value));
 
         return new AddTemplateCommand(template);
@@ -51,19 +50,18 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
      */
     public Template parseTemp(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CALORIES);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CALORIES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTemplateCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
 
-        Template template = new Template(name.fullName, description.value, parseInt(calories.value));
+        Template template = new Template(name.fullName, parseInt(calories.value));
 
         return template;
     }

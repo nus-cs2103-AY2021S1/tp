@@ -11,7 +11,6 @@ import java.util.Set;
 
 public class Template {
     private String name;
-    private String description;
     private Integer calories;
     private Set<MuscleTag> muscleTags = new HashSet<>();
     private Set<ExerciseTag> tags = new HashSet<>();
@@ -23,22 +22,16 @@ public class Template {
      * All fields must be non-null
      *
      * @param name        name of the template
-     * @param description description of the template
      * @param calories    calories of the template
      */
-    public Template(String name, String description, Integer calories) {
-        requireAllNonNull(name, description, calories);
+    public Template(String name, Integer calories) {
+        requireAllNonNull(name, calories);
         this.name = name;
-        this.description = description;
         this.calories = calories;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public Integer getCalories() {
@@ -57,10 +50,6 @@ public class Template {
         this.name = name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setCalories(Integer calories) {
         this.calories = calories;
     }
@@ -74,13 +63,12 @@ public class Template {
     public String toString() {
         return "Template{"
                 + "name:'" + name + '\''
-                + ", description:'" + description
                 + '\'' + ", calories:"
                 + calories + '}';
     }
 
     public String parseToArgument() {
-        return "n/" + getName() + " d/" + getDescription() + " c/" + getCalories();
+        return "n/" + getName() + " c/" + getCalories();
     }
 
     /**
