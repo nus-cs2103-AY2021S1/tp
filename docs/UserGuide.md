@@ -17,7 +17,7 @@
     + [3.2.5 Deleting a student: `delete`](#325-deleting-a-student-delete)
     + [3.2.6 Sorting the list of students: `sort` (By: Choon Siong)](#326-sorting-the-list-of-students-sort-by-choon-siong)
     + [3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#327-finding-students-with-overdue-fees-overdue-by-ying-gao)
-    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-additional-details-for-a-student-detail-by-vaishak)
+    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-details-for-a-student-detail-by-vaishak)
         + [3.2.8.1 Adding a detail: `detail add`](#3281-adding-a-detail-detail-add)
         + [3.2.8.2 Editing a detail: `detail edit`](#3282-editing-a-detail-detail-edit)
         + [3.2.8.3 Deleting a detail: `detail delete`](#3283-deleting-a-detail-detail-delete)
@@ -35,10 +35,7 @@
         + [3.3.3.1 Adding an attendance record to a student: `attendance add`](#3331-adding-an-attendance-record-to-a-student-attendance-add)
         + [3.3.3.2 Deleting an attendance record for a student: `attendance delete`](#3332-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.4 Miscellaneous Features](#34-miscellaneous-features)
-    + [3.4.1 Scheduling: `schedule`](#341-scheduling-schedule-coming-soon)
-        + [3.4.1.1. Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#3411-viewing-personal-schedule-on-a-timetable-schedule-view--by-alex-coming-soon)
-        + [3.4.1.2. Adding events to the schedule: `schedule add`](#3412-adding-events-to-the-schedule-schedule-add-coming-soon)
-        + [3.4.1.3. Delete events on the schedule: `schedule delete`](#3413-delete-events-on-the-schedule-schedule-delete-coming-soon)
+    + [3.4.1 Scheduling: `schedule` (By: Alex)](#341-viewing-lesson-schedule-schedule-by-alex)
     + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan)
     + [3.4.3 Viewing help: `help`](#343-viewing-help-help)
     + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program-exit)
@@ -334,7 +331,7 @@ Thereafter, you will be able to view, edit or delete these details of each stude
 
 #### 3.3.1 Recording questions from a student: `question` (By: Ying Gao)
 
-You can add, resolve or remove questions from a specified student in **Reeve**.
+You can add, resolve or remove questions to/from a specified student in **Reeve**.
 
 General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
@@ -350,12 +347,13 @@ General Format: `question COMMAND_WORD STUDENT_INDEX DETAILS`
 
 Adds a new question to the student.
 
-Format: `question add STUDENT_INDEX t/QUESTION`
+Format: `question add STUDENT_INDEX t/QUESTION_TEXT`
 
 * This records a new unresolved question to the student at the specified `STUDENT_INDEX`.
+* The `QUESTION_TEXT` field refers to the question the student raised, and can be a full sentence.
 
 <div markdown="block" class="alert alert-info">
-:information_source: `QUESTION` must not be empty.
+:information_source: `QUESTION_TEXT` must not be empty.
 </div>
 
 Example:
@@ -365,7 +363,7 @@ Example:
 
 Marks a student's question as resolved.
 
-Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`
+Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION_TEXT`
 
 * This resolves the question from the student at the specified `STUDENT_INDEX`
 * This resolves the question at the `QUESTION_INDEX`. The `QUESTION_INDEX` refers to the position of the question in the student's list of questions.
@@ -374,7 +372,7 @@ Format: `question solve STUDENT_INDEX i/QUESTION_INDEX t/SOLUTION`
 
 :information_source: `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
 
-:information_source: `SOLUTION` must not be empty.
+:information_source: `SOLUTION_TEXT` must not be empty.
 
 :information_source: You can only resolve unanswered questions (i.e. questions with a cross symbol next to it).
 
@@ -397,7 +395,7 @@ Example:
 
 #### 3.3.2 Recording exams of a student: `exam` (By: Hogan)
 
-You can add or delete an exam to/from a specified student.
+You can add or delete an exam record to/from a specified student.
 
 General Format: `exam COMMAND_WORD_EXAM STUDENT_INDEX PARAMETERS`
 
@@ -432,7 +430,7 @@ score 67/100 to the fifth student in **Reeve**.
 
 ##### 3.3.2.2 Deleting an exam record for a student: `exam delete`
 
-You can delete a specific exam from a specified student in **Reeve**.
+You can delete a specific exam record from a specified student in **Reeve**.
 
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
@@ -487,7 +485,7 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE a/ATTENDANCE_STATUS f/FEEDBA
 * present or absent.
 </div>
 
-Examples:
+Example:
 * `attendance add 2 d/08/12/2020 a/present f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of present and feedback of attentive, to the 2nd student in **Reeve**.
 
@@ -498,19 +496,17 @@ You can delete a specific attendance record from a specified student in **Reeve*
 Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
 
 * Deletes the attendance record with the given `ATTENDANCE_DATE` in the specified student.
-* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
+* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**.
 * The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
-Examples:
+Example:
 * `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
 ### 3.4 Miscellaneous Features
 
-#### 3.4.1 Scheduling: `schedule` (By: Alex) 
+#### 3.4.1 Viewing lesson schedule: `schedule` (By: Alex)
 
-##### 3.4.1.1 Viewing classes on a Timetable: `**schedule**`  
-
-Display the classes that the user has on a timetable. The timetable can be viewed in either a daily or weekly format.
+You can view your upcoming classes on a timetable in either a daily or weekly format.
 
 Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
 
@@ -525,7 +521,8 @@ Format: `schedule m/VIEW_MODE d/DATE_TO_VIEW`
     
 :information_source: Both the inputs of mode and date are compulsory.
 
-Example: `schedule m/weekly d/2/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
+Example:
+* `schedule m/weekly d/2/11/2020` Shows the schedule of classes in the week of 2nd November 2020.
 
 #### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
@@ -586,6 +583,8 @@ The following table provides the definitions of the various terms used in this U
 
 Term | Definition
 --------|------------------
+Detail | Any miscellaneous information regarding a student.
+Exam Record | A record of an exam detailing its name, date and the student's score.
 
 ## 6. FAQ
 This section provides the answers to Frequently Asked Questions (FAQ) by users.
@@ -594,4 +593,4 @@ This section provides the answers to Frequently Asked Questions (FAQ) by users.
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Reeve** home folder.
 
 2. Do I have to manually save my data?<br>
-Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Reeve automatically saves data in the hard disk automatically after any command that changes the data. There is no need to save manually.

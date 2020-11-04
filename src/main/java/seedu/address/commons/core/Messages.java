@@ -13,4 +13,5 @@ public class Messages {
     public static final String MESSAGE_CLASHING_LESSON = "You have another lesson that clashes with this lesson!";
     public static final String MESSAGE_STUDENTS_SORTED = "Students sorted by %s";
 
+    public static final String MESSAGE_INVALID_NOTE_DISPLAYED_INDEX = "The note index provided is invalid";
 }

@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,7 +35,7 @@ public class EditDetailCommandTest {
     private static final String TEST_CORRECT_DETAIL = "eats flies";
     private static final String TEST_WRONG_DETAIL = "drinks flies";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -76,7 +77,7 @@ public class EditDetailCommandTest {
         String expectedMessage = String.format(EditDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), detail);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
@@ -118,7 +119,7 @@ public class EditDetailCommandTest {
         String expectedMessage = String.format(EditDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), detail);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);

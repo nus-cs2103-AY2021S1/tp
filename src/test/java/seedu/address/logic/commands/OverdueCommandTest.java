@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.model.student.admin.Fee.FREE_OF_CHARGE;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_FEE;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -29,8 +30,8 @@ public class OverdueCommandTest {
         int studentsWhoHaveNotPaid = 1;
         Model model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
 
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -39,8 +40,8 @@ public class OverdueCommandTest {
         studentsWhoHaveNotPaid = 3;
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
 
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -49,8 +50,8 @@ public class OverdueCommandTest {
         studentsWhoHaveNotPaid = 0;
         model = getDateAdjustedModel(studentsWhoHaveNotPaid);
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
 
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
 
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
@@ -63,7 +64,7 @@ public class OverdueCommandTest {
         Model model = getFeeAdjustedModel(freeloaders);
         int studentsWhoHaveNotPaid = model.getSortedStudentList().size() - freeloaders;
         String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
-        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
@@ -71,7 +72,7 @@ public class OverdueCommandTest {
         model = getFeeAdjustedModel(freeloaders);
         studentsWhoHaveNotPaid = model.getSortedStudentList().size() - freeloaders;
         expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, studentsWhoHaveNotPaid);
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), model.getNotebook());
         expectedModel.updateFilteredStudentList(new OverdueFeePredicate());
         assertCommandSuccess(new OverdueCommand(), model, expectedMessage, expectedModel);
 
@@ -94,7 +95,7 @@ public class OverdueCommandTest {
             Student replacement = new StudentBuilder(toReplace).withPaymentDate(date.format(FORMAT)).build();
             reeve.setStudent(toReplace, replacement);
         }
-        return new ModelManager(reeve, new UserPrefs());
+        return new ModelManager(reeve, new UserPrefs(), getTypicalNotebook());
     }
 
     /**
@@ -116,7 +117,7 @@ public class OverdueCommandTest {
             Student replacement = new StudentBuilder(toReplace).withFee(fee).withPaymentDate(date).build();
             reeve.setStudent(toReplace, replacement);
         }
-        return new ModelManager(reeve, new UserPrefs());
+        return new ModelManager(reeve, new UserPrefs(), getTypicalNotebook());
 
     }
 

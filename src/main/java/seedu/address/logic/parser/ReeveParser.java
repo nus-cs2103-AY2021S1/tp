@@ -23,7 +23,9 @@ import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.ToggleStudentCardCommand;
+import seedu.address.logic.commands.notes.NoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.notes.NotebookParser;
 
 /**
  * Parses user input.
@@ -100,6 +102,9 @@ public class ReeveParser {
 
         case ToggleStudentCardCommand.COMMAND_WORD:
             return new ToggleStudentCardCommand();
+
+        case NoteCommand.COMMAND_WORD:
+            return new NotebookParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

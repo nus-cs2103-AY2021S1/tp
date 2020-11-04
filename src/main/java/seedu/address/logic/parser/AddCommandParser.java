@@ -17,7 +17,6 @@ import static seedu.address.model.student.admin.PaymentDate.TODAY;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -39,7 +38,7 @@ import seedu.address.model.student.admin.PaymentDate;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCommand> {
+public class AddCommandParser extends PrefixDependentParser<AddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
@@ -50,7 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, ALL_PREFIXES);
 
-        if (!arePrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
+        if (!areRequiredPrefixesPresent(argMultimap, COMPULSORY_PREFIXES)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -75,13 +74,4 @@ public class AddCommandParser implements Parser<AddCommand> {
                 questions, exams, attendanceList);
         return new AddCommand(student);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
