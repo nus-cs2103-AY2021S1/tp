@@ -876,7 +876,22 @@ public void handleShowTimeline() {
 
 Whenever an update has been made to the model that affects any of the components in timeline, 
 the following `updateTimeline` method in `MainWindow` is invoked.
-
+```
+public void updateTimeline() {
+    timelineWindow.hide();
+    timelineWindow = timelineWindow.updateLogic(logic);
+}
+```
+The timeline window is hidden if it was open, and a new `TimelineWindow` object is created to match the new logic component.
+The following commands affect the `TimelineWindow`:
+* `EditCommand`
+* `DeleteCommand`
+* `ClearCommand`
+* `EditModuleCommand`
+* `DeleteModuleCommand`
+* `AddMeetingCommand`
+* `EditMeetingCommand`
+* `DeleteMeetingCommand`
 
 --------------------------------------------------------------------------------------------------------------------
 
