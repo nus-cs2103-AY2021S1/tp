@@ -157,7 +157,7 @@ Success:
 
 ### Editing an exercise: `editex`
 
-Edits an existing exercise in the application, either with new name, or new calories per rep.
+Edits an existing exercise in the application, either with a new name, or new calories per rep.
 
 Format: `editex <index> [e/EXERCISE] [c/CALORIES]`
 

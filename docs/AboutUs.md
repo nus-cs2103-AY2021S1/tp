@@ -40,6 +40,8 @@ We are a team based in the [School of Computing, National University of Singapor
 
 [[github](http://github.com/jeminsieow)]
 
+[[portfolio](./team/jeminsieow.md)]
+
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
