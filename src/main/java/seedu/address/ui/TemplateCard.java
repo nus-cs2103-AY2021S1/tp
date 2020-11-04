@@ -29,8 +29,6 @@ public class TemplateCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label description;
-    @FXML
     private Label calories;
 
     /**
@@ -41,7 +39,6 @@ public class TemplateCard extends UiPart<Region> {
         this.template = template;
         id.setText(displayedIndex + ". ");
         name.setText(template.getName());
-        description.setText(template.getDescription());
         calories.setText((template.getCalories()).toString());
     }
 

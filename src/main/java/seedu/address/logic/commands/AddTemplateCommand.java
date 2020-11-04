@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.io.IOException;
@@ -18,11 +17,9 @@ public class AddTemplateCommand extends CommandForExercise {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates an exercise template. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION"
-            + PREFIX_CALORIES + "CALORIES]\n"
+            + PREFIX_CALORIES + "CALORIES\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "running "
-            + PREFIX_DESCRIPTION + "10 mins "
             + PREFIX_CALORIES + "100";
 
     public static final String MESSAGE_SUCCESS = "New template created: %1$s";

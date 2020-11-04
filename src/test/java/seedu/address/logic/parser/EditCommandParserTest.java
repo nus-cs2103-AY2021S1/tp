@@ -2,32 +2,22 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_ARM;
 import static seedu.address.logic.commands.CommandTestUtil.MUSCLE_DESC_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HOUSE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SIT_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLE_ARM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLE_CHEST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HOUSE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -106,8 +96,8 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_DESCRIPTION_DESC
-                            + VALID_DATE_PUSH_UP + VALID_CALORIES_PUSH_UP,
-                            Name.MESSAGE_CONSTRAINTS);
+                        + VALID_DATE_PUSH_UP + VALID_CALORIES_PUSH_UP,
+                Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -118,12 +108,12 @@ public class EditCommandParserTest {
 
         UpdateCommand.EditExerciseDescriptor descriptor =
                 new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
-                                                    .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                                                    .withDate(VALID_DATE_PUSH_UP)
-                                                    .withCalories(VALID_CALORIES_PUSH_UP)
-                                                    .withMuscleTags(VALID_MUSCLE_CHEST)
-                                                    .withTags(VALID_TAG_GYM, VALID_TAG_HOUSE)
-                                                    .build();
+                        .withDescription(VALID_DESCRIPTION_PUSH_UP)
+                        .withDate(VALID_DATE_PUSH_UP)
+                        .withCalories(VALID_CALORIES_PUSH_UP)
+                        .withMuscleTags(VALID_MUSCLE_CHEST)
+                        .withTags(VALID_TAG_GYM, VALID_TAG_HOUSE)
+                        .build();
 
         UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
 
@@ -185,28 +175,6 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-//    @Test
-//    public void parse_multipleRepeatedFields_acceptsLast() {
-//        Index targetIndex = INDEX_FIRST_EXERCISE;
-//        String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
-//                + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE
-//                + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
-//                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLE_DESC_CHEST + TAG_DESC_HOUSE + TAG_DESC_GYM
-//                + NAME_DESC_SIT_UP + DESCRIPTION_DESC_SIT_UP + DATE_DESC_SIT_UP + CALORIES_DESC_SIT_UP
-//                + MUSCLE_DESC_ARM + TAG_DESC_HOUSE + TAG_DESC_GYM;
-//
-//        UpdateCommand.EditExerciseDescriptor descriptor =
-//                new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
-//                        .withDescription(VALID_DESCRIPTION_SIT_UP)
-//                        .withDate(VALID_DATE_SIT_UP)
-//                        .withCalories(VALID_CALORIES_SIT_UP)
-//                        .withMuscleTags(VALID_MUSCLE_ARM)
-//                        .withTags(VALID_TAG_HOUSE, VALID_TAG_GYM).build();
-//
-//        UpdateCommand expectedCommand = new UpdateCommand(targetIndex, descriptor);
-//
-//        assertParseSuccess(parser, userInput, expectedCommand);
-//    }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
