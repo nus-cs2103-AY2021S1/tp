@@ -28,6 +28,7 @@ import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -148,8 +149,9 @@ public class AddCommentCommand extends CommentCommand {
         } else if (personToEdit instanceof Applicant) {
             ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
             Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
+            Application application = ((Applicant) personToEdit).getApplication();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, updatedComments, interviewDate, applicationStatus);
+                    updatedTags, updatedComments, interviewDate, applicationStatus, application);
         }
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
     }
