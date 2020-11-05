@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -44,6 +46,8 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TimelineWindow timelineWindow;
+
+    private CommandHistory commandHistory = new CommandHistory();
 
     @FXML
     private VBox mainContainer;
@@ -180,6 +184,25 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
                 .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+
+        commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
+            if (event.getCode() == KeyCode.UP) {
+                Optional<String> historyText = commandHistory.up();
+                if (historyText.isPresent()) {
+                    commandBox.setCommandTextField(historyText.get());
+                }
+            }
+        });
+
+        commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
+            if (event.getCode() == KeyCode.DOWN) {
+                Optional<String> historyText = commandHistory.down();
+                if (historyText.isPresent()) {
+                    commandBox.setCommandTextField(historyText.get());
+                }
+            }
+        });
     }
 
     /**
@@ -189,6 +212,10 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private String getTheme() {
         String[] stylesheet = mainContainer.getStylesheets().get(0).split("/");
         return stylesheet[stylesheet.length - 1];
+    }
+
+    private void commandHistoryListener(){
+
     }
 
     /**
@@ -218,6 +245,24 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
                 .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
+            if (event.getCode() == KeyCode.UP) {
+                Optional<String> historyText = commandHistory.up();
+                if (historyText.isPresent()) {
+                    commandBox.setCommandTextField(historyText.get());
+                }
+            }
+        });
+
+        commandBox.getCommandTextField().addEventFilter(KeyEvent.KEY_PRESSED, (event) -> {
+            if (event.getCode() == KeyCode.DOWN) {
+                Optional<String> historyText = commandHistory.down();
+                if (historyText.isPresent()) {
+                    commandBox.setCommandTextField(historyText.get());
+                }
+            }
+        });
 
         if (logic.getSelectedMeeting() != null) {
             MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(), 1);
@@ -364,10 +409,12 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 setStylesheet(LIGHT_THEME, false);
             }
 
+            commandHistory.addCommand(commandText);
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            commandHistory.addCommand(commandText);
             throw e;
         }
     }

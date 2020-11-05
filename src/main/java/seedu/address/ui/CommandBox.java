@@ -98,6 +98,12 @@ public class CommandBox extends UiPart<Region> {
         return commandTextField;
     }
 
+
+    public void setCommandTextField(String text) {
+        this.commandTextField.clear();
+        this.commandTextField.replaceSelection(text);
+    }
+
     /**
      * Represents a function that can execute commands.
      */
