@@ -422,11 +422,18 @@ In the second case, only ingredients that expire within the next week will be ta
 :bulb: **Tip:** For convenience, you can use either `list recommendations` or `list recommendation`.
 </div>
 
-In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week, so it recommends the Pancake recipe, which uses milk. The rest of the recipes displayed all use ingredients that you have in stock:
+In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/list_recommendations.png" width="75%" /> <br />
-Figure 3: <i>The recommendations view</i>
+<img src="images/ug/list_recommendations_1.png" width="40%" /> <br />
+Figure 3.1: <i>There's some milk expiring on the 9th of November</i>
+</div>
+
+So it highlights the Pancake recipe, which uses milk, while the rest of the recipes displayed all use ingredients that you have in stock:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/list_recommendations_2.png" width="75%" /> <br />
+Figure 3.2: <i>The recommendations view</i>
 </div>
 
 
