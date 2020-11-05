@@ -35,7 +35,7 @@ public class SalesListCommand extends Command {
         if (model.isEmptySalesBook()) {
             return new CommandResult(MESSAGE_NO_RECORD_SUCCESS);
         } else {
-            model.updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
+            model.updateFilteredSalesRecordList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }

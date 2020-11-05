@@ -1033,6 +1033,27 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Updating sales of drinks
+
+1. Update the sales of a drink item while all sales are being shown.
+
+    1. Prerequisites: List all sales using the `s-list` command. The full list of drinks sales will be shown.
+    
+    1. Test case: `s-update BSBM/123`
+       Expected: The sales number for `BSBM` changes to 123. There is no order in this updated list of drink sales.
+       
+    1. Test case: `s-update BSBM/321 BSBBT/40 BSPM/988`
+       Expected: The sales number for `BSBM`, `BSBBT` and `BSPM` changes to 321, 40, and 988 respectively. There is no 
+       order in this updated list of drink sales.
+       
+    1. Test case: `s-update BSBM/999999999999999`
+       Expected: No sales update is performed. Error details shown in the Result Display. User is able to edit the
+       input.
+       
+    1. Other incorrect `s-update` commands to try: `s-update`, `s-update AAAA/32`
+       Expected: Similar to previous.
+
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
