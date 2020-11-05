@@ -71,13 +71,12 @@ public class ApplicantBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withTags(String ... tags) {
+    public ApplicantBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
     /**
-     *
      * Parses the {@code comments} into a {@code Set<Comment>} and set it to the {@code Applicant} that we are building.
      */
     public ApplicantBuilder withComments(String... comments) {
@@ -114,7 +113,7 @@ public class ApplicantBuilder {
         return this;
     }
 
-    public ApplicantBuilder withApplicationStatus (String applicationStatus) {
+    public ApplicantBuilder withApplicationStatus(String applicationStatus) {
         this.applicationStatus = new ApplicationStatus(applicationStatus);
         return this;
     }
