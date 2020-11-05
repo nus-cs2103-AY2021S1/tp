@@ -12,6 +12,7 @@ import seedu.address.model.task.deadline.Duration;
  */
 public class DoneCommandParser implements Parser<DoneCommand> {
 
+    static final String MAXIMUM_INTEGER = "2147483647";
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteTaskCommand
      * and returns a DeleteTaskCommand object for execution.
@@ -40,7 +41,7 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage(), DoneCommand.MESSAGE_USAGE), pe);
         } catch (NumberFormatException ne) {
-            throw new ParseException("should be a positive number and the maximum duration is 2147483647 minutes");
+            throw new ParseException("should be a positive number and the maximum duration is " + MAXIMUM_INTEGER + " minutes");
         }
     }
 
