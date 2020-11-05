@@ -425,8 +425,10 @@ in the command box will execute the command as well.
 that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
 </div>
 
-#### List previously entered commands : `history`
-Lists all the commands previously entered in reverse chronological order.
+#### List previously entered nonempty commands : `history`
+Lists all nonempty commands that were previously entered in chronological order. A positive integer
+n is also listed for each command, in front of it and separated by a tab. 
+This integer specifies that the command is the n<sup>th</sup> command to be entered.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
 display the previous and next command respectively in the command box.

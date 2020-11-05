@@ -16,7 +16,7 @@ public class StatefulResiReg extends ResiReg {
     private ReadOnlyResiReg currState; // current state
 
     /**
-     * Creates a {@code VersionedResiReg} with the given {@code ReadOnlyResiReg}.
+     * Creates a {@code StatefulResiReg} with the given {@code ReadOnlyResiReg}.
      */
     public StatefulResiReg(ReadOnlyResiReg initialState) {
         super(initialState);

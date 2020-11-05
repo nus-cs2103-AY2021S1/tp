@@ -1,27 +1,33 @@
 package seedu.resireg.ui;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
- * Has a pointer that points to an element in the list, and is able to iterate through the list.
+ * A class that contains a pointer to an element in the list, for
+ * easier iteration through the list.
+ */
+/*
+ * Code for ListPtr is adapted from addressbook-level4, which can be found at
+ * https://github.com/se-edu/addressbook-level4.
  */
 public class ListPtr {
     private List<String> list;
     private int index;
 
     /**
-     * Constructs a {@code ListElementPtr} object using a list.
+     * Constructs a {@code ListPtr} object using a list.
      * The pointer points to the last element in the {@code list}.
      */
     public ListPtr(List<String> list) {
-        this.list = new ArrayList<>(list);
+        this.list = new LinkedList<>(list);
         index = this.list.size() - 1;
     }
 
     /**
      * Appends {@code item} to the end of the list.
+     * Guaranteed to be O(1)
      */
     public void add(String item) {
         list.add(item);

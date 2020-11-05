@@ -30,6 +30,8 @@ public class CommandBox extends UiPart<Region> {
                             KeyboardShortcutsEnum::getCommandText));
 
     private final CommandExecutor commandExecutor;
+
+    // history related fields
     private final List<String> history;
     private ListPtr iterator;
 
@@ -42,9 +44,9 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor, List<String> history) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        this.history = history;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        this.history = history;
         iterator = new ListPtr(history);
     }
 

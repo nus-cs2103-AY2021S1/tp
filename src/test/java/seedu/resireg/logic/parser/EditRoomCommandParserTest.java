@@ -32,7 +32,6 @@ import org.junit.jupiter.api.Test;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.EditRoomCommand;
 import seedu.resireg.logic.commands.EditRoomCommand.EditRoomDescriptor;
-import seedu.resireg.logic.parser.exceptions.EditRoomCommandParser;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;

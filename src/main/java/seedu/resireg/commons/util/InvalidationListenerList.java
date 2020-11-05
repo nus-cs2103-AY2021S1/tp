@@ -2,7 +2,7 @@ package seedu.resireg.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -18,7 +18,7 @@ import javafx.beans.Observable;
  * which can be found at https://github.com/se-edu/addressbook-level4.
  */
 public class InvalidationListenerList {
-    private final ArrayList<InvalidationListener> listeners = new ArrayList<>();
+    private final LinkedList<InvalidationListener> listeners = new LinkedList<>();
 
     /**
      * Calls {@link InvalidationListener#invalidated(Observable)} on all added listeners.
@@ -28,15 +28,12 @@ public class InvalidationListenerList {
      * @param obs The {@code Observable} that turned invalid.
      */
     public void callListeners(Observable obs) {
-        ArrayList<InvalidationListener> copy = new ArrayList<>(listeners);
-
-        for (InvalidationListener listener : copy) {
-            listener.invalidated(obs);
-        }
+        LinkedList<InvalidationListener> copy = new LinkedList<>(listeners);
+        copy.forEach((listener) -> listener.invalidated(obs));
     }
 
     /**
-     * Adds {@code listener} to the list.
+     * Adds {@code listener} to the list. Guaranteed to be O(1).
      * If the same listener is added multiple times, it will be notified multiple times as well.
      */
     public void addListener(InvalidationListener listener) {

@@ -1,4 +1,4 @@
-package seedu.resireg.logic.parser.exceptions;
+package seedu.resireg.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -11,10 +11,7 @@ import static seedu.resireg.logic.parser.ParserUtil.parseTagsForEdit;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.EditRoomCommand;
 import seedu.resireg.logic.commands.EditRoomCommand.EditRoomDescriptor;
-import seedu.resireg.logic.parser.ArgumentMultimap;
-import seedu.resireg.logic.parser.ArgumentTokenizer;
-import seedu.resireg.logic.parser.Parser;
-import seedu.resireg.logic.parser.ParserUtil;
+import seedu.resireg.logic.parser.exceptions.ParseException;
 
 public class EditRoomCommandParser implements Parser<EditRoomCommand> {
     @Override
