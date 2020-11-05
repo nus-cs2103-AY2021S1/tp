@@ -36,6 +36,7 @@ class AutocompleteModuleTest {
     }
 
     @Test
+    @Disabled
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithEmptyPrefix_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
