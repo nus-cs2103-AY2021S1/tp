@@ -1,0 +1,68 @@
+{
+  "modules" : [ {
+    "name" : "CS2030",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS2030"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }, {
+    "name" : "CS2101",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS2101"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }, {
+    "name" : "CS2105",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS2105"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }, {
+    "name" : "CS1101S",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/CS1101S"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }, {
+    "name" : "IS1103",
+    "zoomLinks" : [ {
+      "lesson" : "Lecture",
+      "link" : "https://nus-sg.zoom.us/IS1103"
+    } ],
+    "gradeTracker" : {
+      "assignments" : [ ],
+      "grade" : 0.0,
+      "gradePoint" : null
+    },
+    "modularCredits" : "4.0",
+    "tagged" : [ ]
+  }]
+}
