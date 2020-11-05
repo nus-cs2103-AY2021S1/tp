@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/AboutUs/door-oof.png" width="200px">
 
 [[github](https://github.com/Door-oof)]
-[[portfolio](team/dora.md)]
+[[portfolio](team/door-oof.md)]
 
 * Role: Developer
 * Responsibilities: NA
