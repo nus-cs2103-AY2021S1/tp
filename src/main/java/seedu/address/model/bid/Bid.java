@@ -66,6 +66,22 @@ public class Bid {
                 && otherBid.getBidderId().equals(getBidderId());
     }
 
+    /**
+     * compares one bid with another bid to see if any fields have been edited
+     * @param otherBid bid to compare to
+     * @return true if there is have been no fields edited
+     */
+    public boolean isBidBeenEdited(Bid otherBid) {
+        if (otherBid == this) {
+            return true;
+        }
+
+        return otherBid != null
+                && otherBid.getPropertyId().equals(getPropertyId())
+                && otherBid.getBidderId().equals(getBidderId())
+                && otherBid.getBidAmount().equals(getBidAmount());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
