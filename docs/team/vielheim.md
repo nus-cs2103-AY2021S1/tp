@@ -23,6 +23,7 @@ Given below are my contributions to the project.
   * **Manage Team Progress and Tasks**:
     * Setting up Team Github Repo/Org: [Github Link](https://github.com/AY2021S1-CS2103-F09-2/tp)
     * Maintaining Issue Tracker and Milestones
+    * Maintain existing documentation: README.md, AboutUs.md and SettingUp.md (Pull requests [\#44](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/44), [\#51](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/51), [\#71](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/71))
     
   * **Code Quality and Standardisation**:
     * Ensured that the code follows the Coding Style/Principles taught in class (such as applying SLAP and having proper abstractions). (Pull request [\#138](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/138))
@@ -51,8 +52,3 @@ Given below are my contributions to the project.
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
