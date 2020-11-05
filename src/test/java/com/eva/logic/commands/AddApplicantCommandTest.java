@@ -16,9 +16,7 @@ import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.ApplicantBuilder;
-import com.eva.testutil.PersonBuilder;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
