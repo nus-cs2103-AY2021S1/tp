@@ -72,6 +72,11 @@ public class InventoryRecordBuilder {
         return this;
     }
 
+    public InventoryRecordBuilder withQuantity(int quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
     /**
      * sets a specific finance ID to the builder
      * @param financeId the finance ID to be set
