@@ -42,7 +42,7 @@ You can reach us at the email `e0388997@u.nus.edu`
 <img src="images/constancensq.png" width="200px">
 
 [[github](http://github.com/constancensq)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/constancensq.md)]
 
 * Role: Documentation
 * Responsibilities: Responsible for the quality of various project documents.
