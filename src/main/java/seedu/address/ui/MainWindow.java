@@ -298,7 +298,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         logger.info("UI show timeline triggered");
 
         if (!timelineWindow.isShowing()) {
-            timelineWindow.show();
+            timelineWindow.show(getTheme());
         } else {
             timelineWindow.focus();
         }

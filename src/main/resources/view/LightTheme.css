@@ -460,3 +460,21 @@
 .tooltip-text {
     -fx-text-fill: -fx-label-color;
 }
+
+.timeline-window {
+    -fx-background-color: -fx-primary-color;
+}
+
+.timeline-box {
+    -fx-background-color: -fx-secondary-color; 
+    -fx-background-radius: 20; 
+    -fx-border-radius: 20;
+}
+
+.timeline-section {
+    -fx-background-color: -fx-primary-color;
+}
+
+.line {
+    -fx-stroke: -fx-label-color;
+}

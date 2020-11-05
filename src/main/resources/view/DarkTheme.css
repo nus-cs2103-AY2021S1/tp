@@ -474,7 +474,25 @@
 }
 
 .help-window {
-        -fx-background-color: derive(#121212, 10%);
-        -fx-border-color: derive(#121212, 10%);
-        -fx-border-top-width: 1px;
+    -fx-background-color: derive(#121212, 10%);
+    -fx-border-color: derive(#121212, 10%);
+    -fx-border-top-width: 1px;
+}
+
+.timeline-window {
+    -fx-background-color: derive(#121212, 10%);
+}
+
+.timeline-section {
+    -fx-background-color: derive(#121212, 10%);
+}
+
+.timeline-box {
+    -fx-background-color: #272C3F; 
+    -fx-background-radius: 20; 
+    -fx-border-radius: 20;
+}
+
+.line {
+    -fx-stroke: white;
 }
