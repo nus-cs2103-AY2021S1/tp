@@ -226,8 +226,8 @@
 }
 
 .ingredient-number, .ingredient-quantity {
-   -fx-font-size: 14px;
-   -fx-padding: 12px;
+    -fx-font-size: 14px;
+    -fx-padding: 12px;
 }
 
 .ingredient-expiry-date {

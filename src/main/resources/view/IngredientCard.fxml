@@ -17,7 +17,8 @@
         </graphic>
     </Button>
     <Label fx:id="index" styleClass="ingredient-number" StackPane.alignment="TOP_LEFT" mouseTransparent="true"/>
-    <Label fx:id="quantity" styleClass="ingredient-quantity" StackPane.alignment="TOP_RIGHT" mouseTransparent="true"/>
+    <Label fx:id="quantity" styleClass="ingredient-quantity" StackPane.alignment="TOP_RIGHT" mouseTransparent="true"
+           maxWidth="100.0" alignment="CENTER_RIGHT" textOverrun="CENTER_ELLIPSIS"/>
     <FlowPane fx:id="tagList" styleClass="ingredient-tags" maxHeight="-Infinity" maxWidth="148.0"
               StackPane.alignment="BOTTOM_CENTER" hgap="4" vgap="2" mouseTransparent="true"/>
 </StackPane>

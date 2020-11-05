@@ -92,7 +92,7 @@ public class MainWindow extends UiPart<Stage> {
         this.statsOutput = new StatsBox(this.model);
         this.pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
-        var displayController = new DisplayController(logic);
+        var displayController = new DisplayController(this.logic, this.model);
         DisplayNavigator.setDisplayController(displayController);
         this.displayPlaceholder.getChildren().setAll(displayController.getRoot());
 
@@ -160,6 +160,10 @@ public class MainWindow extends UiPart<Stage> {
 
         case INGREDIENT_LIST:
             DisplayNavigator.loadIngredientPanel();
+            break;
+
+        case RECOMMENDATION_LIST:
+            DisplayNavigator.loadRecommendationPanel();
             break;
 
         default:

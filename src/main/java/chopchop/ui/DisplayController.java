@@ -2,8 +2,11 @@
 
 package chopchop.ui;
 
+import static chopchop.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
+
 import chopchop.MainApp;
 import chopchop.logic.Logic;
+import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -21,6 +24,7 @@ public class DisplayController extends UiPart<Region> {
     private static final String WELCOME_MESSAGE = "Welcome to ChopChop, a food recipe management system!";
     private static final String NOTIFICATION_MESSAGE = "Feature will be coming soon!!";
 
+    private final Model model;
     private final Region welcomeMessage;
     private final RecipeViewPanel recipeViewPanel;
     private final IngredientViewPanel ingredientViewPanel;
@@ -42,8 +46,9 @@ public class DisplayController extends UiPart<Region> {
      * Creates a {@code DisplayController} with the given {@code Logic}.
      * @param logic
      */
-    public DisplayController(Logic logic) {
+    public DisplayController(Logic logic, Model model) {
         super(FXML);
+        this.model = model;
         this.recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
         this.ingredientViewPanel = new IngredientViewPanel(logic.getFilteredIngredientList());
         this.recommendationViewPanel = new RecommendationViewPanel(logic.getRecommendedRecipeList(),
@@ -161,6 +166,7 @@ public class DisplayController extends UiPart<Region> {
      */
     @FXML
     public void handleRecipePanel() {
+        this.model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES);
         this.displayRecipeList();
     }
 
@@ -169,6 +175,7 @@ public class DisplayController extends UiPart<Region> {
      */
     @FXML
     public void handleIngredientPanel() {
+        this.model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_ENTRIES);
         this.displayIngredientList();
     }
 
@@ -177,6 +184,7 @@ public class DisplayController extends UiPart<Region> {
      */
     @FXML
     public void handleRecommendations() {
+        this.model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES);
         this.displayRecommendationList();
     }
 }
