@@ -15,7 +15,6 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
-import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -239,12 +238,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void undoEventList() throws VersionedListException {
+    public void undoEventList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void redoEventList() throws VersionedListException {
+    public void redoEventList() {
         throw new AssertionError("This method should not be called.");
     }
 
