@@ -17,13 +17,13 @@ public class Email {
             + "2. This is followed by a '@' and then a domain name. "
             + "The domain name must:\n"
             + "    - be at least 2 characters long\n"
-            + "    - start and end with alphanumeric characters\n"
+            + "    - start and end with alphabet characters\n"
             + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
     // alphanumeric and special characters
     private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
+    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[A-Za-z]+"; // alphabet characters
     private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
+    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[.]{1}[A-Za-z]{2,4}$"; // alphabet characters
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
