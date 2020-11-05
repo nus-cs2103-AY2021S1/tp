@@ -29,7 +29,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.1.9 Recommending recipes : `recommend`](#recommend-recipe)
         * [5.1.10 Clearing all recipes : `clearR`](#clear-recipe) 
         <br><br>
-    - [5.2 Fridge-related Commands](#52-ingredient-related-commands)
+    - [5.2 Fridge-related Commands](#52-fridge-related-commands)
         * [5.2.1 Adding an ingredient: `addF`](#add-ingredient)
         * [5.2.2 Listing all ingredients : `fridge`](#list-ingredient)
         * [5.2.3 Deleting an ingredient : `deleteF`](#delete-ingredient)
@@ -72,7 +72,7 @@ Wishful Shrinking is your desktop diet manager. It is an app that helps you **ma
 2. **Recommend recipes** to improve ease of home cooking 
 3. **Track daily food and calorie** intake<br><br>
 
-Wishful Shrinking targets **busy office workers** who tend to discount healthy eating. Office workers are also more
+Wishful Shrinking targets **office workers** who tend to discount healthy eating. Office workers are also more
  familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
  Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
 
@@ -104,7 +104,7 @@ t/ | TAG | Recipe tag
 
 ## 2.3 Format <a id="23-format"></a>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info show-whitespaces">
 
 **:information_source: Notes about the command format:**<br>
 
@@ -126,9 +126,9 @@ t/ | TAG | Recipe tag
 
 * Items in the more format `[<character> MORE ITEM]` means there can be **more than 1** item, separated by the
  specified character. It is not necessary to specify the prefix before each item. <br> 
- e.g `instr/INSTRUCTION[. MORE INSTRUCTION]` can be used as `instr/Open baked beans and serve` or `instr/Boil pasta
- . Fry pasta with meat sauce. Serve meat pasta.`.
- e.g `n/[ MORE NAMES]` can be used as `n/salad` or `n/salad pie`.
+ e.g `instr/INSTRUCTION[. MORE INSTRUCTION]` can be used as `instr/Open baked beans and serve` or `instr/Open
+  baked beans. Fry beans. Serve.`.
+ e.g `n/[ MORE NAMES]` can be used as `n/salad` or `n/salad pie apple`.
 
 * `INDEX` **must be a positive integer** e.g. 1, 2, 3...<br>
   e.g. the `INDEX` in `deleteR INDEX` and `editF INDEX` must be a positive integer that is present in the
@@ -194,7 +194,7 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
 ## 5.1 Recipe-related Commands <a id="51-recipe-related-commands"></a>
 
 The Recipe-related commands include [`addR`](#add-recipe), [`recipes`](#list-recipe), [`deleteR`](#delete-recipe
-), [`editR`](#edit-recipe), [`get editR`](#get-edit-recipe), [`selectR`](#select-recipe), [`close`](#close-recipe
+), [`editR`](#edit-recipe), [get `editR`](#get-edit-recipe), [`selectR`](#select-recipe), [`close`](#close-recipe
 ), [`searchR`](#search-recipe), [`recommend`](#recommend-recipe) and [`clearR`](#clear-recipe). These are the commands in Wishful Shrinking that
 are relevant only to Recipes.
 <br><br><br>
@@ -299,7 +299,7 @@ Edits the specified recipe from the Recipe List.
 <br><br><br>
 
 Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] 
-[inst/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...`
+[instr/INSTRUCTION[. MORE INSTRUCTIONS]] [t/TAG]...`
 
 * Edits the recipe at the specified `INDEX`.
 * The index refers to the index number shown in the displayed Recipe List.
@@ -431,7 +431,7 @@ Shows a list of all recipes in the Recipe List that can be made with the ingredi
 
 Format: `recommend`
 
-* Recipes are only recommended if you your Fridge contains all of a recipe ingredients.
+* Recipes are only recommended if your Fridge contains all of a recipe's ingredients.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
     Ingredient quantity is not taken into account when determining whether an ingredient is present in your Fridge.
 </div>
@@ -456,7 +456,7 @@ Format: `clearR`
 ## 5.2 Fridge-related Commands <a id="52-fridge-related-commands"></a>
 
 The Fridge-related commands include [`addF`](#add-ingredient), [`Fridge`](#list-ingredient), [`deleteF`](#delete-ingredient), 
-[`editF`](#edit-ingredient), [`get editF`](#get-edit-ingredient), [`searchF`](#search-ingredient) and [`clearF
+[`editF`](#edit-ingredient), [get `editF`](#get-edit-ingredient), [`searchF`](#search-ingredient) and [`clearF
 `](#clear-ingredient). These are the
  commands in Wishful Shrinking that are relevant only to the Fridge.
 <br><br><br>
@@ -465,8 +465,7 @@ The Fridge-related commands include [`addF`](#add-ingredient), [`Fridge`](#list-
 
 Adds an ingredient to the Fridge.
 
-<br>  The image below is what Wishful Shrinking looks like after you have added an ingredient to the Fridge. <br
-><br>
+<br>  The image below is what Wishful Shrinking looks like after you have added an ingredient to the Fridge. <br><br>
 <img src="images/feature/ingredient/AddIngredientImage.png" width="550" height="300">
 <br><br><br>
 
@@ -581,8 +580,7 @@ Examples:
 Finds ingredients in the Fridge that contain any of the given keywords.
 
 <br>  The image below is what Wishful Shrinking looks like after you have searched for ingredients in the Fridge
-. <br
-><br>
+ <br><br>
 <img src="images/feature/ingredient/SearchIngredientImage.png" width="550" height="300">
 <br><br><br>
 
