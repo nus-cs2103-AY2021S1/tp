@@ -174,10 +174,6 @@
     -fx-text-fill: -fx-label-color;
 }
 
-.result-display .content {
-    -fx-background-color: -fx-primary-color;
-}
-
 .status-bar {
     -fx-background-color: derive(-fx-primary-color, 14%);
 }
@@ -369,7 +365,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: derive(-fx-primary-color, 40%);
     -fx-background-radius: 0;
 }
 

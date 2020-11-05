@@ -239,12 +239,16 @@
     -fx-opacity: 0.87;
 }
 
+.menu-item .label {
+    -fx-text-fill: white;
+}
+
 .menu .left-container {
     -fx-background-color: black;
 }
 
 .menu-item:focused {
-    -fx-background-color: derive(#272C3F, 14%)
+    -fx-background-color: derive(#272C3F, 14%);
 }
 
 /*
