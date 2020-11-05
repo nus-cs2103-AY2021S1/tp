@@ -55,7 +55,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/CONTACT_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/CONTACT_NAME` is also acceptable.
-  
+
 * All parameters are `CASE-SENSITIVE` unless stated otherwise.<br>
 
 * The `CONTACT_NAME` parameter refers to the full name of the contact.
@@ -71,7 +71,36 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Note(s):
+* Can be activated by the F1 key.
+* Can be activated by clicking the context menu.
+
+### Setting light theme: `light`
+
+Sets the application to the light theme.
+
+![help message](images/lightTheme.png)
+
+Format: `light`
+
+Note(s):
+* Can be activated by the F2 key.
+* Can be activated by clicking the context menu.
+* If the help window or timeline window was opened and a change of theme was done, they must be closed and reopened for the change of theme to take effect.
+
+### Setting dark theme: `dark`
+
+Sets the application to the dark theme.
+
+![help message](images/darkTheme.png)
+
+Format: `dark`
+
+Note(s):
+* Can be activated by the F3 key.
+* Can be activated by clicking the context menu.
+* If the help window or timeline window was opened and a change of theme was done, they must be closed and reopened for the change of theme to take effect.
+
 
 ### Fuzzy Finding Completion (Fzf)
 
@@ -81,9 +110,9 @@ match entries that contain the prefix entered.
 
 ![Fzf Example](images/FzfCompletionExample.gif)
 
-You can exit `fzf` mode by manually pressing `esc`. You will also be taken automatically out of `fzf` mode once you select one 
-of the fzf options by navigating to desired option using arrow keys and making the selection by pressing `enter`. Alternatively, 
-you can make the selection using your mouse. 
+You can exit `fzf` mode by manually pressing `esc`. You will also be taken automatically out of `fzf` mode once you select one
+of the fzf options by navigating to desired option using arrow keys and making the selection by pressing `enter`. Alternatively,
+you can make the selection using your mouse.
 
 Note that the intuitive `tab` and `shift-tab` navigation is currently NOT supported in v1.4 although you can use these keys to jump to the first option in the fzf menu.
 
@@ -114,7 +143,7 @@ Adds a contact to Modduke.
 
 # Format: `contact add n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
-Note(s): 
+Note(s):
 * All fields are required except those in square brackets. No duplicate names.
 * CONTACT_NAME must be alphanumeric.
 * PHONE_NUMBER must be at least 3 digits but not longer than 20 digits.
@@ -223,8 +252,8 @@ Creates a Module with a given name and members .
 
 Format: `module add n/MODULE_NAME p/MEMBER_NAME [p/MEMBER_NAME]...`
 
-Note(s): 
-* A Module can have more than 1 member but can only have one name. 
+Note(s):
+* A Module can have more than 1 member but can only have one name.
 * Need at least 1 member.
 * Professors and TA's can also be added in the same format as other contacts.
 * Note that module names are case-sensitive.
@@ -238,7 +267,7 @@ Finds and displays all the contacts of the module specified.
 
 Format: `module list m/MODULE_NAME`
 
-Note(s): 
+Note(s):
 * To reset the contacts list in the gui you can do the contact list command
 * Note that module names are case-sensitive.
 
@@ -251,13 +280,13 @@ Edits a Module based on the inputted details.
 
 Format: `module edit m/MODULE_NAME [n/NEW_MODULE_NAME] [p/MEMBER_NAME]...`
 
-Note(s): 
+Note(s):
 * At least one change has to be present (either the module name or the participants or both)
 * Note that if you change the participants, the old participants will be overwritten and replaced by the newly
-added participants. 
-* You can change either the module name, the participants or both. 
+added participants.
+* You can change either the module name, the participants or both.
 * Changes to module will affect meetings based on that module, so if the meeting does not include any of the new module
-participants, it will be deleted. 
+participants, it will be deleted.
 * Note that module names are case-sensitive.
 
 Example(s):
@@ -269,8 +298,8 @@ Deletes a module with a specific name.
 
 Format: `module delete m/MODULE_NAME`
 
-Note(s): 
-* All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module 
+Note(s):
+* All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module
 carefully.
 * Note that module names are case-sensitive.
 
@@ -290,7 +319,7 @@ Note(s):
 * The combination of module and meeting name must be unique
 
 Example(s):
-*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 p/Jay p/Roy p/Jerryl p/Yeeloon p/Ekam 
+*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 p/Jay p/Roy p/Jerryl p/Yeeloon p/Ekam
 a/Discuss sequence diagram no/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`
@@ -312,7 +341,7 @@ Edits a given meeting. Listed below are the meeting details that can be changed:
 5. Agenda
 6. Note
 
-Format: `meeting edit m/MODULE n/MEETING_NAME [nn/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... 
+Format: `meeting edit m/MODULE n/MEETING_NAME [nn/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]...
 [a/AGENDA]... [no/NOTES]...`
 
 Note(s):
@@ -323,9 +352,9 @@ Note(s):
 * All the newly provided fields will override previous fields
 
 Example(s):
-* `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be 
+* `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be
 `2020-09-27` and `14:00` respectively
-* `meeting edit m/CS2103 n/Meeting nn/Group Discussion` edits the name of Meeting to be `Group Discussion` in the 
+* `meeting edit m/CS2103 n/Meeting nn/Group Discussion` edits the name of Meeting to be `Group Discussion` in the
 module CS2103
 
 ### Listing all meetings : `meeting list`

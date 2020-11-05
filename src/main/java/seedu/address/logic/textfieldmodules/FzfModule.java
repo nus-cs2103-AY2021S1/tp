@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-
 public class FzfModule {
 
     private Supplier<List<String>> optionSupplier;
@@ -135,7 +134,7 @@ public class FzfModule {
     private TextFlow buildTextFlow(String text, String query) {
         if (query.length() == 0) {
             Text t = new Text(text);
-            t.setFill(Color.WHITE);
+            t.setFill(Color.GRAY);
             return new TextFlow(t);
         }
         int filterIndex = text.toLowerCase().indexOf(query.toLowerCase());
@@ -144,9 +143,10 @@ public class FzfModule {
         Text textAfter = new Text(text.substring(filterIndex + query.length()));
         Text textFilter = new Text(text.substring(filterIndex, filterIndex + query.length()));
 
-        textBefore.setFill(Color.WHITE);
-        textAfter.setFill(Color.WHITE);
-        textFilter.setFill(Color.ORANGE);
+        textBefore.setFill(Color.GRAY);
+        textAfter.setFill(Color.GRAY);
+        textFilter.setFill(Color.DARKORANGE);
+
 
         return new TextFlow(textBefore, textFilter, textAfter);
     }

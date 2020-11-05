@@ -12,12 +12,14 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearTagCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CopyCommand;
+import seedu.address.logic.commands.DarkThemeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightThemeCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ShowTimelineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -64,6 +66,12 @@ public class AddressBookParser {
 
         case CopyCommand.COMMAND_WORD:
             return new CopyCommandParser().parse(commandVerb + arguments);
+
+        case LightThemeCommand.COMMAND_WORD:
+            return new LightThemeCommand();
+
+        case DarkThemeCommand.COMMAND_WORD:
+            return new DarkThemeCommand();
 
         default:
             break;

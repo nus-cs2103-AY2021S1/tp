@@ -13,7 +13,7 @@
   </icons>
   <scene>
     <Scene fill="#121212">
-         <HBox alignment="CENTER" prefWidth="1195.0" style="-fx-background-color: #121212;">
+         <HBox fx:id="timelineContainer" alignment="CENTER" prefWidth="1195.0" styleClass="timeline-window">
             <opaqueInsets>
                <Insets left="10.0" right="10.0" top="10.0" />
             </opaqueInsets>
@@ -21,9 +21,9 @@
                <Insets left="10.0" right="10.0" top="10.0" />
             </padding>
             <children>
-               <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" prefWidth="1195.0" style="-fx-background-color: #121212;" styleClass="scroll-bar" stylesheets="@DarkThemeTimeline.css" vbarPolicy="NEVER">
+               <ScrollPane fx:id="scrollPane" hbarPolicy="ALWAYS" prefWidth="1195.0" styleClass="scroll-bar" vbarPolicy="NEVER">
                   <content>
-                     <HBox fx:id="container" prefHeight="410.0" prefWidth="1195.0" style="-fx-background-color: #121212;">
+                     <HBox fx:id="container" prefHeight="410.0" prefWidth="1195.0" styleClass="timeline-window">
                         <opaqueInsets>
                            <Insets />
                         </opaqueInsets></HBox>
