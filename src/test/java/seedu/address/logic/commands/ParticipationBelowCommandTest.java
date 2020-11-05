@@ -6,11 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModulesPopulatedWithTutorialGroups.getTypicalTrackr;
-import static seedu.address.testutil.TypicalStudents.ALEX;
 import static seedu.address.testutil.TypicalStudents.BENG;
 import static seedu.address.testutil.TypicalStudents.CHARLIE;
 import static seedu.address.testutil.TypicalStudents.DAVID;
-import static seedu.address.testutil.TypicalStudents.ELIZABETH;
 import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalTutorialGroups.T05;
 
@@ -95,7 +93,8 @@ public class ParticipationBelowCommandTest {
     //        model.setViewToStudent(T05);
     //        expectedModel.setViewToTutorialGroup(CS2103T);
     //        expectedModel.setViewToStudent(T05);
-    //        String expectedMessage = String.format(ParticipationBelowCommand.MESSAGE_PARTICIPATION_BELOW_SUCCESS, 101);
+    //        String expectedMessage = String.format(ParticipationBelowCommand.MESSAGE_PARTICIPATION_BELOW_SUCCESS,
+    //                101);
     //        ParticipationBelowSpecifiedScorePredicate predicate = preparePredicate(101);
     //        ParticipationBelowCommand command = new ParticipationBelowCommand(predicate, 101);
     //        expectedModel.updateFilteredStudentList(predicate);
