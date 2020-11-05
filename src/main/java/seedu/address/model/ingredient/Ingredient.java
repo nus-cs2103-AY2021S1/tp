@@ -82,13 +82,13 @@ public class Ingredient {
      * @return true if the ingredient is a solid ingredient, false otherwise.
      */
     public boolean isSolidIngredient() {
-        Set<String> names = new HashSet<String>();
-        names.add(BOBA);
-        names.add(PEARL);
-        names.add(BROWN_SUGAR);
+        Set<String> ingredientNames = new HashSet<>();
+        ingredientNames.add(BOBA);
+        ingredientNames.add(PEARL);
+        ingredientNames.add(BROWN_SUGAR);
         String ingredientName = this.getIngredientNameAsString();
 
-        if (names.contains(ingredientName)) {
+        if (ingredientNames.contains(ingredientName)) {
             return true;
         } else {
             return false;
