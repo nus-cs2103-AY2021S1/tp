@@ -174,6 +174,9 @@ public class Deadline extends Task {
     @Override
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
+            if (((Event) otherTask).isEnded()) {
+                return -1;
+            }
             if (this.isDone()) {
                 return 1;
             }
