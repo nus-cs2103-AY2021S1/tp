@@ -26,10 +26,6 @@ public class TimetableRetriever {
 
     private static final LocalDate SEMESTER_1_START_DATE = LocalDate.of(2020, 8, 10);
     private static final LocalDate SEMESTER_2_START_DATE = LocalDate.of(2021, 1, 11);
-    private static final LocalDate SPECIAL_1_START_DATE = LocalDate.of(2021, 5, 10);
-    private static final LocalDate SPECIAL_2_START_DATE = LocalDate.of(2021, 6, 21);
-    private static final LocalDate[] startDateArray = { SEMESTER_1_START_DATE, SEMESTER_2_START_DATE,
-                                                        SPECIAL_1_START_DATE, SPECIAL_2_START_DATE };
     private static final DateTimeFormatter LOCAL_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     /**
@@ -37,7 +33,7 @@ public class TimetableRetriever {
      */
     public static List<Lesson> retrieveLessons(TimetableData timetableData) throws IOException, ParseException {
         int semester = timetableData.getSemester();
-        LocalDate startDate = startDateArray[semester - 1];
+        LocalDate startDate = semester == 1 ? SEMESTER_1_START_DATE : SEMESTER_2_START_DATE;
         String[] moduleCodeArray = timetableData.getModuleCodeArray();
         String[] moduleLessonArray = timetableData.getModuleLessonArray();
 
@@ -87,15 +83,9 @@ public class TimetableRetriever {
         JSONParser jsonParser = new JSONParser();
         JSONObject moduleData = (JSONObject) jsonParser.parse(inline);
         JSONArray semesterData = (JSONArray) moduleData.get("semesterData");
-        for (int iter = 0; iter < semesterData.size(); iter++) {
-            JSONObject temp = (JSONObject) semesterData.get(iter);
-            if ((long) temp.get("semester") == (long) sem) {
-                JSONObject bothSemesterTimetableData = (JSONObject) semesterData.get(iter);
-                JSONArray semesterSpecificTimetableData = (JSONArray) bothSemesterTimetableData.get("timetable");
-                return semesterSpecificTimetableData;
-            }
-        }
-        throw new ParseException(0);
+        JSONObject bothSemesterTimetableData = (JSONObject) semesterData.get(sem - 1);
+        JSONArray semesterSpecificTimetableData = (JSONArray) bothSemesterTimetableData.get("timetable");
+        return semesterSpecificTimetableData;
     }
 
     private static String[] getSpecificModuleLessonArray(String[] moduleLessonArray, int index) {
