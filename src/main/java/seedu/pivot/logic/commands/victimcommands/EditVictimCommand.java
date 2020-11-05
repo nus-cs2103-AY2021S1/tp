@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.victimcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_SUSPECT;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_DUPLICATE_VICTIM;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +11,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -75,7 +77,17 @@ public class EditVictimCommand extends EditPersonCommand implements Undoable {
         Victim editedVictim = createEditedPerson(victimToEdit, editPersonDescriptor);
 
         if (editedVictims.contains(editedVictim)) {
+            logger.info("Failed to edit victim: The edited victim has the same name, sex, phone, "
+                    + "email and address as an existing victim in PIVOT.");
             throw new CommandException(MESSAGE_DUPLICATE_VICTIM);
+        }
+
+        List<Victim> victimsToNotEdit = new ArrayList<>(editedVictims);
+        victimsToNotEdit.remove(victimToEdit);
+        if (victimsToNotEdit.stream().anyMatch(editedVictim:: isSamePerson)) {
+            logger.info("Failed to edit victim: The edited victim has the same name, sex, phone as an "
+                    + "existing victim in PIVOT.");
+            throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
         }
 
         editedVictims.set(personIndex.getZeroBased(), editedVictim);

@@ -10,6 +10,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -75,6 +76,16 @@ public class EditWitnessCommand extends EditPersonCommand implements Undoable {
         Witness editedWitness = createEditedPerson(witnessToEdit, editPersonDescriptor);
 
         if (editedWitnesses.contains(editedWitness)) {
+            logger.info("Failed to edit witness: The edited witness has the same name, sex, phone, "
+                    + "email and address as an existing witness in PIVOT.");
+            throw new CommandException(MESSAGE_DUPLICATE_WITNESS);
+        }
+
+        List<Witness> witnessesToNotEdit = new ArrayList<>(editedWitnesses);
+        witnessesToNotEdit.remove(witnessToEdit);
+        if (witnessesToNotEdit.stream().anyMatch(editedWitness:: isSamePerson)) {
+            logger.info("Failed to edit witness: The edited witness has the same name, sex, phone as an "
+                    + "existing witness in PIVOT.");
             throw new CommandException(MESSAGE_DUPLICATE_WITNESS);
         }
 

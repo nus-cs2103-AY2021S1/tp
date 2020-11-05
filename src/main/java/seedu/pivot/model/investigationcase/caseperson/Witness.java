@@ -16,8 +16,22 @@ public class Witness extends CasePerson {
     }
 
     /**
+     * Returns true if both cases have the same name, sex and phone.
+     * This defines a weaker notion of equality between two witnesses.
+     */
+    public boolean isSamePerson(Witness otherWitness) {
+        if (otherWitness == this) {
+            return true;
+        }
+
+        return otherWitness.getName().equals(getName())
+                && otherWitness.getSex().equals(getSex())
+                && otherWitness.getPhone().equals(getPhone());
+    }
+
+    /**
      * Returns true if both suspects have the same identity and data fields.
-     * This defines a stronger notion of equality between two suspects.
+     * This defines a stronger notion of equality between two witnesses.
      */
     @Override
     public boolean equals(Object other) {
@@ -32,7 +46,9 @@ public class Witness extends CasePerson {
         Witness otherWitness = (Witness) other;
         return otherWitness.getName().equals(getName())
                 && otherWitness.getSex().equals(getSex())
-                && otherWitness.getPhone().equals(getPhone());
+                && otherWitness.getPhone().equals(getPhone())
+                && otherWitness.getEmail().equals(getEmail())
+                && otherWitness.getAddress().equals(getAddress());
     }
 
 }
