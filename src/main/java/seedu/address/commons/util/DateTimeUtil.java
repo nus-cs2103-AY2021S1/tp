@@ -16,7 +16,7 @@ public class DateTimeUtil {
     public static final String TIME_CONSTRAINTS =
             "Time should be a valid time in the format of HH:mm.";
     public static final String DATE_TIME_CONSTRAINTS =
-            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm.";
+            "DateTime should be a valid date and time in the format of dd-MM-yyyy HH:mm. e.g. 29-11-2020 23:59";
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should be in the format of MONDAY, TUESDAY, ..., SUNDAY";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu")

@@ -107,10 +107,11 @@ public class Deadline extends Task {
         if (otherDeadline == this) {
             return true;
         }
-
         return otherDeadline != null
                 && otherDeadline.getTitle().equals(getTitle())
-                && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime());
+                && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime())
+                && otherDeadline.getDescription().equals(getDescription())
+                && otherDeadline.getTag().equals(getTag());
     }
 
     public LocalDateTime getDeadlineDateTimeValue() {
