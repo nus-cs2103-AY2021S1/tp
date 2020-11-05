@@ -247,7 +247,9 @@ API call:
 Some term in the sequence diagram above has changed to a common substitutable term:<br>
 
 * AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
+
 * info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
+
 * add(type): `addRecipe(type)` or `addIngredient(type)`
 
 * type: `recipe` or `ingredient`
