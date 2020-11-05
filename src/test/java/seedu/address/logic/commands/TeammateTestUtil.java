@@ -59,6 +59,6 @@ public class TeammateTestUtil {
         + "May Theresa";
     public static final String INVALID_TEAMMATE_PHONE_DESC_A = " " + PREFIX_TEAMMATE_PHONE + "3818djfjjd";
     public static final String INVALID_TEAMMATE_EMAIL_DESC_A = " " + PREFIX_TEAMMATE_EMAIL + "hey @";
-    public static final String INVALID_TEAMMATE_ADDRESS_DESC_A = " " + PREFIX_TEAMMATE_ADDRESS + "  the Platform  ";
+    public static final String INVALID_TEAMMATE_ADDRESS_DESC_A = " " + PREFIX_TEAMMATE_ADDRESS + " ";
 
 }

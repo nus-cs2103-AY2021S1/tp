@@ -27,6 +27,7 @@ public class EditTeammateDescriptorBuilder {
      */
     public EditTeammateDescriptorBuilder(Person teammate) {
         descriptor = new EditTeammateDescriptor();
+        descriptor.setGitUserName(teammate.getGitUserName());
         descriptor.setTeammateName(teammate.getPersonName());
         descriptor.setPhone(teammate.getPhone());
         descriptor.setEmail(teammate.getEmail());
