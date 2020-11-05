@@ -64,7 +64,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     /**
      * Replaces the given finance record {@code target} in the list with {@code editedRecord}.
      * {@code target} must exist in NUStorage.
-     * The unique ID of {@code editedRecord} must not be the same as another existing finance record in the address book.
+     * The unique ID of {@code editedRecord} must not match any existing record in NUStorage.
      */
     public void setFinanceRecord(FinanceRecord target, FinanceRecord editedRecord) {
         requireNonNull(editedRecord);

@@ -58,6 +58,8 @@ Interested? Read on to get [started](#3-quick-start-guide)!
 
 ## 4. Command Formats
 
+This section details the notations used to specify the command formats in the [commands](#5-commands) and [commands summary](#6-commands-summary) sections.
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -76,6 +78,9 @@ Interested? Read on to get [started](#3-quick-start-guide)!
   * Date must be formatted in `YYYY-MM-DD`.
   * Time must be formatted in `HH:mm`.
   * e.g. input of `2020-01-01` will show up as `01 Jan 2020` as the date, and `13:00` will show up as `13:00` as the time in NUStorage's response box.
+* Parameters can be switched around.
+  * They do NOT need to come in the order as specified by the formats.
+  * E.g. `create_item i/iPad q/100` and `create_item q/100 i/iPad` are both accepted.
 
 </div>
 
@@ -85,9 +90,9 @@ Interested? Read on to get [started](#3-quick-start-guide)!
 
 This section shows the commands that can be used with NUStorage. It is divided into three sections:
 
-1. Inventory commands
-2. Finance account commands
-3. Universal commands
+1. [Inventory commands](#51-inventory-commands)
+2. [Finance commands](#52-finance-commands)
+3. [Universal commands](#53-universal-commands)
 
 Accompanying the details of each command are figures that show an example of the command and the result of executing the command.
 
@@ -97,7 +102,8 @@ Accompanying the details of each command are figures that show an example of the
 
 NUStorage supports the storage and manipulation of inventory records. The following sections detail the commands related to inventory storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch to inventory](#531-switch-to-inventory-goto_inventory) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
+Commands in this section are best executed when you are in the inventory tab. If you don not know how to switch to the inventory tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
 
 #### 5.1.1. Add items to inventory: `create_inventory`
 
@@ -215,7 +221,7 @@ __Result:__ Updated corresponding finance record.
 
 NUStorage supports the storage and manipulation of finance records. The following sections detail the commands related to finance storage, given in alphabetical order.
 
-Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch to finance](#532-switch-to-finance-goto_finance) section for more information.
+Commands in this section are best executed when you are in the finance tab. If you don not know how to switch to the finance tab, please refer to the [switch between tabs](#534-switch-tabs-switch) section for more information.
 
 **NOTE:** that some of these commands only work for [stand-alone finance records](#8-glossary-and-terms) (i.e. finance records that are not attached to any inventory records).
 
@@ -332,8 +338,6 @@ In the event that we have multiple records, it can get a little tedious to locat
 
 __Format:__ `find_finance [id/ID] [aft/AFTDATE] [bef/BEFDATE] [item/YESNO]`
 
-<!-- This allows us to find finance records with a Finance ID that contains `ID` if the `ID` field is filled, that were made after `AFTDATE` if the `AFTDATE` field is filled, but before `BEFDATE` if the `BEFDATE` field is filled, and is linked to an inventory record if the `YESNO` field is filled with the `yes` parameter or stand-alone finance records if the `YESNO` field is filled with the `no` parameter. -->
-
 This command allows us to find all finance records with a finance ID that contains `ID` that were created after the date `AFTDATE` abd before the date `BEFDATE`. The parameter `[item/YESNO]` to choose between finance recrods tied to inventory records, or finance records that are stand-alone (`yes` to find only the finance records tied to inventory records, `no` to find stand-alone records only).
 
 __Example:__ `find_finance id/8 aft/2019-10-20 bef/2020-12-30 item/no`
@@ -343,7 +347,7 @@ This allows us to find finance records with IDs that contain "8", created place 
 Enter the example command into the command box as shown below:
 ![Find Finance Command](images/commands/find_finance_command.jpg)
 
-__Result:__ finance records that fit the parameters are listed. Below shows the record(s) from the image above that passes the `find_finance` criteria:
+__Result:__ Finance records that fit the parameters are listed. Below shows the record(s) from the image above that passes the `find_finance` criteria:
 
 ![Find Finance Result](images/commands/find_finance_result.jpg)
 
@@ -367,8 +371,6 @@ The `list_finance` command will result in NUStorage displaying all the finance r
 
 __Format:__ `list_finance`
 
-This command results in the listing of all finance records.
-
 __Example:__ `list_finance`
 
 Enter the example command into the command box as shown below:
@@ -383,39 +385,30 @@ __Result:__ All finance records are listed.
 
 The following are universal commands for navigating the application.
 
-#### 5.3.1. Switch to inventory: `goto_inventory`
+#### 5.3.1. Clear records: `clear`
 
-Switches to the inventory tab in the programme.
+Deletes all data stored locally.
 
-__Format:__ `goto_inventory`
+**:heavy_exclamation_mark: Executing this command DELETES ALL RECORDS AND CAN NOT BE UNDONE!**
 
-__Example:__ `goto_inventory`
+__Format:__ `clear`
 
-![goto inventory command example](images/commands/goto_inventory_command.png)
+__Example:__ `clear`
 
-__Result:__ Switched to Inventory tab.
+When on either tab, enter the command `clear` and press enter to execute.
+![Clear command example inventory](images/commands/clear_command_inventory.jpg)
+![Clear command example finance](images/commands/clear_command_finance.jpg)
 
-![goto inventory result example](images/commands/goto_inventory_result.png)
+__Result:__ All records currently stored in NUStorage are deleted as seen below.
 
----
+![Clear command result inventory](images/commands/clear_command_result_inventory.jpg)
+![Clear command result finance](images/commands/clear_command_result_finance.jpg)
 
-#### 5.3.2. Switch to finance: `goto_finance`
-
-Switches to the finance tab in the programme.
-
-__Format:__ `goto_finance`
-
-__Example:__ `goto_finance`
-
-![goto finance command example](images/commands/goto_finance_command.png)
-
-__Result:__ Switched to Finance tab.
-
-![goto finance result example](images/commands/goto_finance_result.png)
+**NOTE:** This command can be executed even if there are no records stored in NUStorage. There will be no effects when executing this command on an empty NUStorage.
 
 ---
 
-#### 5.3.3. Quit the programme: `exit`
+#### 5.3.2. Quit the programme: `exit`
 
 Saves data locally in a data file and exits the programme.
 
@@ -429,7 +422,53 @@ __Result:__ Programme terminates.
 
 ---
 
-#### 5.3.4. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
+#### 5.3.3. Get help on the commands: `help`
+
+Opens a help window that links to this User Guide.
+
+__Format:__ `help`
+
+__Example:__ `help`
+
+![Help command example](images/commands/help_command.jpg)
+
+__Result:__ A help window is opened as shown below, redirecting user to this User Guide. Here, you can click on the `Copy URL` button to copy the link to the User Guide. Simply paste this URL into a web browser of your choice and press enter to visit the User Guide.
+
+![Help command result](images/commands/help_command_result.jpg)
+
+---
+
+#### 5.3.4. Switch tabs: `switch`
+
+Switches between the inventory and finance tabs.
+
+**:information_source: Using the command:** Below are instructions on how to use the `switch` command.
+
+__Format:__ `switch`
+
+__Example:__ `switch`
+
+* When on the **inventory** tab, execute the command `switch` to **switch to the finance** tab.
+  1. Make sure you are on the inventory tab first.
+  2. Then, type in the command as shown below and press enter to execute the command.
+![Switch from inventory to finance 1](images/commands/switch_command_inventory_start.jpg)
+  3. You should see the window changing to the finance tab, as shown below.
+  ![Switch from inventory to finance 1](images/commands/switch_command_inventory_tofinance.jpg)
+
+<br>
+
+* When on the **finance** tab, execute the command `switch` to **switch to the inventory** tab.
+  1. Make sure you are on the finance tab first.
+  2. Then, type in the command as shown below and press enter to execute the command.
+  ![Switch from finance to inventory 1](images/commands/switch_command_finance_start.jpg)
+  3. You should see the window changing to the finance tab, as shown below.
+  ![Switch from finance to inventory 1](images/commands/switch_command_finance_toinventory.jpg)
+
+__Result:__ Tabs switched.
+
+---
+
+#### 5.3.5. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
 [_This feature is planned for v2.0_]
 
@@ -439,11 +478,13 @@ __Format:__ `undo` or `redo`
   
 __Example:__ `undo` or `redo`
 
-__Result:__ Undo or redo the previous command.
+__Result:__ The previous command is undone / redone.
 
 ---
 
 ## 6. Commands Summary
+
+This section gives a summarised view of the commands available in NUStorage.
 
 ### 6.1. Inventory Commands Summary
 
@@ -476,17 +517,24 @@ The following table gives a summary of the [__universal commands__](#53-universa
 
 |Description|Command and Example|
 |---|---|
+| __Clear records__ | `clear` |
 | __Exit programme__ | `exit` |
-| __Switch to inventory__ | `goto_inventory` |
-| __Switch to finance__ | `goto_finance` |
+| __Help__ | `help` |
+| __Switch tabs__ | `switch` |
 
 ---
 
 ## 7. FAQs
 
+This section answers some of the _frequently asked questions_.
+
 ### 7.1. How do I migrate the data to another computer?
 
-WARNING: doing so will overwrite the existing data you may have on the other device. Please make sure you make a backup before migrating data.
+<div markdown="block" class="alert alert-info">
+
+**:heavy_exclamation_mark: Doing so will OVERWRITE the existing data you may have on the other device. Please make sure you make a backup before migrating data.**
+
+</div>
 
 Steps to migrate data:
 
@@ -501,7 +549,13 @@ Currently, NUStorage does not support the merging of data between different devi
 
 ### 7.3. Can I directly modify the storage file?
 
-Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
+<div markdown="block" class="alert alert-info">
+
+**:heavy_exclamation_mark: Manually editing data in the storage file may result in a TOTAL LOSS OF DATA!**
+
+</div>
+
+Modifying the storage file is possible but NOT RECOMMENDED!
 
 ---
 

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
 
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
@@ -27,6 +26,7 @@ public class CreateInventoryRecordCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New Inventory record created: %1$s";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the Inventory";
     public static final String MESSAGE_INVALID_QUANTITY = "The provided quantity is invalid";
+    public static final String MESSAGE_INVALID_ITEM_NAME = "Item name must be provided";
     private final InventoryRecord newInventoryRecord;
     private final FinanceRecord newFinanceRecord;
 
@@ -52,8 +52,6 @@ public class CreateInventoryRecordCommand extends Command {
         model.addInventoryRecord(newInventoryRecord);
         newInventoryRecord.setFinanceRecord(newFinanceRecord);
         model.addFinanceRecord(newFinanceRecord);
-
-        model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, newInventoryRecord));
     }

@@ -6,7 +6,7 @@ title: About Us
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg), formed
 to fulfill the team project requirements of [CS2103T](https://nusmods.com/modules/CS2103T/software-engineering)
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `nustorage[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -36,48 +36,44 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/fizzyagent.md)]
 
 * Role: Team Lead
-* Responsibilities: NA
+* Responsibilities: Finance components, Testing and Documentation
 
 ### Dora Heng
 
 <img src="images/AboutUs/door-oof.png" width="200px">
 
 [[github](https://github.com/Door-oof)]
-[[portfolio](team/dora.md)]
+[[portfolio](team/door-oof.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: UI, Testing and Documentation
 
 ### Goh Ee Liang
 
 <img src="images/AboutUs/elgoh.png" width="200px">
 
 [[github](https://github.com/Elgoh)]
-[[portfolio](team/eeliang.md)]
+[[portfolio](team/elgoh.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: Inventory components, Testing and Documentation
 
-### Chen XiHao
+### Chen Xihao
 
 <img src="images/AboutUs/howtoosee.png" width="200px">
 
 [[github](https://github.com/howtoosee)]
-[[portfolio](team/xihao.md)]
+[[portfolio](team/howtoosee.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: Storage components, Testing and Documentation
 
 ### Lim Yu Yang
 
 <img src="images/AboutUs/ironbiscuit.png" width="200px">
 
 [[github](https://github.com/IronBiscuit)]
-[[portfolio](team/yuyang.md)]
+[[portfolio](team/ironbiscuit.md)]
 
 * Role: Developer
-* Responsibilities: NA
-
-
-
-
+* Responsibilities: UI, Testing and Documentation
