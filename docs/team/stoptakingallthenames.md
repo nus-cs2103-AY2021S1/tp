@@ -20,7 +20,7 @@ Given below are my contributions to the project.
 * **Feature Addition**: Added the ability to store tuition fee payment data and find all students with overdue fees.
   * Highlights: In order to implement monitoring of payment dates, I had to create a more manual approach to parsing strings into dates as the `parse()` method in the LocalDate API was too lenient.
 
-* **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=stoptakingallthenames&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+* **Code contribution**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=stoptakingallthenames)
 
 * **Project management**:
   * Managed releases `v1.2` and `v1.3` (2 releases) on GitHub.
@@ -29,7 +29,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Wrote additional tests for existing and new features to increase coverage ([\#75](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/75)).
-  * Enhanced code quality to ensure adherence to abstraction levels, improve defensiveness and reduce coupling ([\#103](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103) and [\#194](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/194)).
+  * Enhanced code quality to ensure adherence to abstraction levels, improve defensiveness and reduce coupling ([\#103](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103)
+    and [\#194](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/194)).
   * Added utility and classes methods to minimise code duplication ([\#211](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/211) and [\#213](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/213)).
 
 * **Documentation**:
@@ -37,9 +38,12 @@ Given below are my contributions to the project.
     * Documented the `overdue` ([\#79](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/79)) and `question` ([\#71](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103)) features.
     * Did cosmetic tweaks to existing documentation of features: ([\#140](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/140) and [\#212](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/194)).
   * Developer Guide:
-    * Added implementation details of the `overdue` ([\#105](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/105)) and `question` ([\#103](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103)) features.
+    * Added implementation details of the `overdue` ([\#105](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/105)) and `question` ([\#103](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/103))
+      features.
     * Included sequence and activity diagrams for the above features.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60), [\#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62), [\#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68), [\#214](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/214)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/StopTakingAllTheNames/ped/issues/1), [2](https://github.com/StopTakingAllTheNames/ped/issues/5), [3](https://github.com/StopTakingAllTheNames/ped/issues/2))
+  * PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/60), [\#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62),
+    [\#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68), [\#214](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/214)
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/StopTakingAllTheNames/ped/issues/1),
+    [2](https://github.com/StopTakingAllTheNames/ped/issues/5), [3](https://github.com/StopTakingAllTheNames/ped/issues/2))
