@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRecipes.SANDWICH;
+import static seedu.address.testutil.TypicalRecipes.SANDWICH_DIFF_QTY;
 import static seedu.address.testutil.TypicalRecipes.getTypicalWishfulShrinking;
 
 import java.util.Arrays;
@@ -62,21 +63,56 @@ public class WishfulShrinkingTest {
     @Test
     public void hasRecipe_recipeNotInWishfulShrinking_returnsFalse() {
         assertFalse(wishfulShrinking.hasRecipe(SANDWICH));
+        assertFalse(wishfulShrinking.hasRecipe(SANDWICH_DIFF_QTY));
     }
 
     @Test
     public void hasRecipe_recipeInWishfulShrinking_returnsTrue() {
         wishfulShrinking.addRecipe(SANDWICH);
         assertTrue(wishfulShrinking.hasRecipe(SANDWICH));
+        assertFalse(wishfulShrinking.hasRecipe(SANDWICH_DIFF_QTY));
     }
 
     @Test
     public void hasRecipe_recipeWithSameIdentityFieldsInWishfulShrinking_returnsTrue() {
         wishfulShrinking.addRecipe(SANDWICH);
-        Recipe editedAlice = new RecipeBuilder(SANDWICH)
+        Recipe editedRecipe = new RecipeBuilder(SANDWICH)
                 .build();
-        assertTrue(wishfulShrinking.hasRecipe(editedAlice));
+        Recipe editedRecipe1 = new RecipeBuilder(SANDWICH_DIFF_QTY)
+                .build();
+        assertTrue(wishfulShrinking.hasRecipe(editedRecipe));
+        assertFalse(wishfulShrinking.hasRecipe(editedRecipe1));
     }
+
+    @Test
+    public void hasMinimalRecipe_nullRecipe_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> wishfulShrinking.hasMinimalRecipe(null));
+    }
+
+    @Test
+    public void hasMinimalRecipe_recipeNotInWishfulShrinking_returnsFalse() {
+        assertFalse(wishfulShrinking.hasMinimalRecipe(SANDWICH));
+        assertFalse(wishfulShrinking.hasMinimalRecipe(SANDWICH_DIFF_QTY));
+    }
+
+    @Test
+    public void hasMinimalRecipe_recipeInWishfulShrinking_returnsTrue() {
+        wishfulShrinking.addRecipe(SANDWICH);
+        assertTrue(wishfulShrinking.hasMinimalRecipe(SANDWICH));
+        assertTrue(wishfulShrinking.hasMinimalRecipe(SANDWICH_DIFF_QTY));
+    }
+
+    @Test
+    public void hasMinimalRecipe_recipeWithSameIdentityFieldsInWishfulShrinking_returnsTrue() {
+        wishfulShrinking.addRecipe(SANDWICH);
+        Recipe editedRecipe = new RecipeBuilder(SANDWICH)
+                .build();
+        Recipe editedRecipe1 = new RecipeBuilder(SANDWICH_DIFF_QTY)
+                .build();
+        assertTrue(wishfulShrinking.hasMinimalRecipe(editedRecipe));
+        assertTrue(wishfulShrinking.hasMinimalRecipe(editedRecipe1));
+    }
+
 
     @Test
     public void getRecipeList_modifyList_throwsUnsupportedOperationException() {

@@ -68,6 +68,12 @@ public interface Model {
     boolean hasRecipe(Recipe recipe);
 
     /**
+     * Returns true if a recipe with the same recipe name and ingredient names as {@code recipe} exists in the
+     * recipe collection.
+     */
+    boolean hasMinimalRecipe(Recipe recipe);
+
+    /**
      * Deletes the given recipe.
      * The recipe must exist in the Wishful Shrinking.
      */
@@ -135,6 +141,11 @@ public interface Model {
      * Returns true if an ingredient with the same identity as {@code ingredient} exists in the fridge.
      */
     boolean hasIngredient(Ingredient ingredient);
+
+    /**
+     * Returns true if an ingredient with the same name as {@code ingredient} exists in the fridge.
+     */
+    boolean hasMinimalIngredient(Ingredient ingredient);
 
     /**
      * Deletes the given ingredient.

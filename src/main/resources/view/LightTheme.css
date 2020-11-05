@@ -5,28 +5,24 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #32325D;
+    -fx-text-fill: green;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #32325D;
+    -fx-text-fill: green;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: #32325D;
+    -fx-text-fill: green;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
 }
 
 .tab-pane {
@@ -66,7 +62,6 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -109,13 +104,18 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #32325d;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green;
+}
+
+.cell_medium_label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: green;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #32325d;
 }
@@ -136,7 +136,6 @@
 
 .result-display {
     -fx-background-color: whitesmoke;
-    -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #32325d;
 }
@@ -146,7 +145,6 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #32325d;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -186,7 +184,6 @@
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
     -fx-text-fill: black;
     -fx-opacity: 0.9;
 }
@@ -260,14 +257,14 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color :derive(dodgerblue,90.0%);
+    -fx-background-color : #3e7b91;
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
 
 .scroll-bar:horizontal .thumb:hover,
 .scroll-bar:vertical .thumb:hover {
-    -fx-background-color :derive(#4D4C4F,10.0%);
+    -fx-background-color : #3e7b91;
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }
@@ -285,7 +282,6 @@
 #commandTextField {
     -fx-background-color: transparent #383838 transparent #383838;
     -fx-background-insets: 0;
-    -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: black;
 }
@@ -311,4 +307,8 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+#leftPanel, #resultDisplayPlaceholder, #messageArea {
+    -fx-background-color: linear-gradient(to top, #16a085 0%, #004f08 100%);
+
 }

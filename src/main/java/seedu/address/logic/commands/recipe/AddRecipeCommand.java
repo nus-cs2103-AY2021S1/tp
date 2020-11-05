@@ -58,12 +58,12 @@ public class AddRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (model.hasRecipe(toAdd)) {
+        if (model.hasMinimalRecipe(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
         model.addRecipe(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListRecipesCommand.COMMAND_WORD);
     }
 
     @Override

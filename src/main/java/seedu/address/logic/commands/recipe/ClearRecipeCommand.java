@@ -25,6 +25,6 @@ public class ClearRecipeCommand extends Command {
         requireNonNull(model);
         logger.log(Level.INFO, "Clearing Recipes List .......");
         model.clearRecipe();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, ListRecipesCommand.COMMAND_WORD);
     }
 }
