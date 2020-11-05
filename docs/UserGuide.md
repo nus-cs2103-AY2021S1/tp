@@ -11,7 +11,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Set Up
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -19,23 +19,52 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 1. Copy the file to the folder you want to use as the _home folder_ for PIVOT.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Run the command `java -jar pivot.jar` using the Command Line to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
+    ![Home Page at Main](images/home_main.png)
+   
+## Navigating PIVOT
+
+1. When you first start the app, you will be at the `Home` section, `Main` Page. In the image below, the `navigation bar` is highlighted. It shows where you are in the app at any point in time. The `Command Line` allows you to enter the commands, and the feedback is displayed in the `Result Display`.
+
+    ![Home Page at Main, highlighted navigation](images/home_main_nav.png)
+
+1. The left panel highlighted in the image below is the `Main Page` of the app. It lists all of the `Cases` stored in PIVOT. By using a `Main Page Command`,  you can interact with the `Cases` in this page. (Refer to [Features](#features) below for the commands)
+
+1. By typing `open case 1`, the right panel is updated. This is `Case Page` of the app (highlighted below). It displays the `Case` information. By using a `Case Page Command`,  you can interact with the `Case` details in this page. (Refer to [Features](#features) below for the commands)
+
+    ![Home Page at Case, highlighted main and case page](images/home_case_nav.png)
+    
+1. By typing `return`, the right panel is closed and the app returns to the `Main Page`. Notice the changes in the `navigation bar`.
+
+1. By typing `list archive`, the page changes colour. You are now at the `Archive` section. The layout is the same as the `Home` section, as well as the commands that can be used.
+
+    ![Archive Page at Main, highlighted navigation bar](images/archive_main.png)
+
+1. If either of the `Pages` are too small, the `adjustable divider` can be shifted to provide more space to either page!
+
+    ![Adjustable Divider Vertical](images/adjustable_panel_vertical.png)
+ 
+1. Likewise, if the `Result Display` is insufficient to display the feedback, its `divider` can also be shifted up! Take note the `Result Display` is scrollable too!
+
+   ![Adjustable Divider Horizontal](images/adjustable_panel_horizontal.png)
+    
+## Quick Start
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list case`** : Lists all cases.
+   * **`list case`** : Lists all unarchived `Cases`.
 
-   * **`add case`** t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
+   * **`add case t:Kovan double murders`** : Adds a `Case` named `Kovan double murders` to PIVOT.
    
-   * **`open case`**`1` : Opens the 1st case shown in the current list in the right panel with more details.
+   * **`open case 1`** : Opens the first `Case` listed in the `Main Page`. Its details are shown in the `Case Page`.
    
-   * **`add victim`**`n:Joseph g:M` : Adds a victim in the current opened case.
+   * **`add victim n:Joseph sex:M p:91234567`** : Adds a victim into the currently opened case.
    
-   * **`return`** : Returns to the main page and closes the details on the right panel.
+   * **`return`** : Returns to the `Main Page` and closes the `Case Page`.
 
-   * **`delete`**`case 3` : Deletes the 3rd case shown in the current list.
+   * **`delete case 3`** : Deletes the 3rd case shown in the current list.
 
    * **`exit`** : Exits the app.
 
