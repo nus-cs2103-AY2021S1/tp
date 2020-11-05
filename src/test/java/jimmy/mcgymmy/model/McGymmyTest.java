@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.food.Fridge;
 import jimmy.mcgymmy.testutil.FoodBuilder;
+import jimmy.mcgymmy.testutil.McGymmyBuilder;
 import jimmy.mcgymmy.testutil.TypicalFoods;
 
 public class McGymmyTest {
@@ -70,5 +72,16 @@ public class McGymmyTest {
     @Test
     public void getFoodList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> mcGymmy.getFoodList().remove(0));
+    }
+
+    @Test
+    public void hashCode_returnsCorrectHashCode() {
+        Food ChickenRice = TypicalFoods.getChickenRice();
+        Food Apple = TypicalFoods.getApple();
+        Fridge fridge = new Fridge();
+        fridge.add(ChickenRice);
+        fridge.add(Apple);
+        McGymmy mcGymmy = new McGymmyBuilder().withFood(ChickenRice).withFood(Apple).build();
+        assertEquals(fridge.hashCode(), mcGymmy.hashCode());
     }
 }
