@@ -8,21 +8,22 @@ participant ":EditAccountCommandParser" as EditAccountCommandParser LOGIC_COLOR
 participant "u:EditAccountCommand" as EditAccountCommand LOGIC_COLOR
 end box
 
-box ActiveAccount ACTIVEACCOUNT_COLOR_T1
-participant ":ActiveAccountManager" as ActiveAccount LOGIC_COLOR
-end box
+'box ActiveAccount ACTIVEACCOUNT_COLOR_T1
+'participant ":ActiveAccountManager" as ActiveAccount LOGIC_COLOR
+'end box
 
 box Model MODEL_COLOR_T1
+participant ":ActiveAccountManager" as ActiveAccount MODEL_COLOR
 participant ":ModelManager" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("editacc 1")
+[-> LogicManager : execute("editacc 1 n/new name")
 activate LogicManager
 
-LogicManager -> CommonCentsParser: parseCommand("editacc 1")
+LogicManager -> CommonCentsParser: parseCommand("editacc 1 n/new name")
 activate CommonCentsParser
 
-CommonCentsParser -> EditAccountCommandParser: parse("editacc 1")
+CommonCentsParser -> EditAccountCommandParser: parse("1 n/new name")
 activate EditAccountCommandParser
 
 create EditAccountCommand
@@ -34,39 +35,33 @@ deactivate EditAccountCommand
 
 EditAccountCommandParser --> CommonCentsParser
 deactivate EditAccountCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAccountCommandParser -[hidden]-> CommonCentsParser
+destroy EditAccountCommandParser
 
 CommonCentsParser --> LogicManager
 deactivate CommonCentsParser
 
-LogicManager -> EditAccountCommand: execute(model, activeAccount)
+LogicManager -> EditAccountCommand: execute()
 activate EditAccountCommand
 
-EditAccountCommand -> ActiveAccount: getAccount()
+EditAccountCommand -> ActiveAccount: setName("new name")
 activate ActiveAccount
 
 ActiveAccount --> EditAccountCommand
 deactivate ActiveAccount
 
-EditAccountCommand -> ActiveAccount: setName(name)
-activate ActiveAccount
-
-ActiveAccount --> EditAccountCommand
-deactivate ActiveAccount
-
-EditAccountCommand -> ActiveAccount: getAccount()
-activate ActiveAccount
-
-ActiveAccount --> EditAccountCommand
-deactivate ActiveAccount
-
-EditAccountCommand -> Model: setAccount(target, editedAccount)
+EditAccountCommand -> Model: setAccount()
 activate Model
 
 Model --> EditAccountCommand
 deactivate Model
 
-EditAccountCommand --> LogicManager
+EditAccountCommand --> LogicManager : result
 deactivate EditAccountCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAccountCommand -[hidden]-> LogicManager
+destroy EditAccountCommand
 
 deactivate LogicManager
 @enduml

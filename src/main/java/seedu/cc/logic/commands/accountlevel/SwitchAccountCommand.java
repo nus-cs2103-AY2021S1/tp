@@ -53,7 +53,7 @@ public class SwitchAccountCommand extends Command {
         }
 
         Account currentActiveAccount = activeAccount.getAccount();
-        Account toBeSwitched = accounts.get(index);
+        Account toBeSwitched = model.getAccountFromFilteredList(index);
         boolean isAccountActive = currentActiveAccount.isSameAccount(toBeSwitched);
         if (isAccountActive) {
             throw new CommandException(MESSAGE_ACTIVE_ACCOUNT);
