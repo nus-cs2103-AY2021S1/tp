@@ -80,8 +80,8 @@ of the **XYZListPanel**.
 
 **API** : `Logic.java`
 
-1. Logic uses the `ParserManager` class to create the respective `Parser` classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
-   `GradeTrackerParser` and `SchedulerParser`. Depending on the user command, the user command will be parsed by the relevant Parser class.
+1. `Logic` uses the `ParserManager` class to create the respective classes: `ModuleListParser`, `ContactListParser`, `TodoListParser`,
+   `GradeTrackerParser` and `SchedulerParser` which will parse the user command.
 2. This results in a `Command` object which is executed by `LogicManager`.
 3. The command execution can affect the Model (e.g. adding a module).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -262,7 +262,7 @@ of these features.
 
 ##### Add zoom link feature
 
-This add zoom link feature creates and adds a new `ZoomLink` with a `ModuleLesson` into a specified `Module`, if the 
+This feature creates and adds a new `ZoomLink` for a `ModuleLesson` into a specific `Module`, if the 
 zoom link does not already exist in the module. Each `ModuleLesson` in a `Module` is only allowed to have one `ZoomLink`.
 
 This feature is facilitated by the following classes:
@@ -279,9 +279,10 @@ Given below is an example usage scenario and how the mechanism for adding zoom l
 Step 1. `LogicManager` receives the user input `addzoom 1 n/Lecture z/https://nus-sg.zoom.us/link` from `Ui`
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `AddZoomLinkParser`
 Step 3. Additionally, `ModuleListParser` will call the `AddZoomLinkParser#parse()` method to parse the command arguments
-Step 4. This creates an `AddZoomLinkCommand` and `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
+Step 4. This creates an `AddZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the `ZoomLink` and `ModuleLesson` to be added
+Step 5. `AddZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the added `ZoomLink` and `ModuleLesson` by calling the `Module#addZoomLink()` method
-Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the new zoom link
+Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the newly added zoom link
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
 Given below is the sequence diagram of how the operation to add a zoom link works:
@@ -289,7 +290,6 @@ Given below is the sequence diagram of how the operation to add a zoom link work
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddZoomLinkCommand` and `AddZoomLinkParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
 
 The following activity diagram summarizes what happens when a user executes the `AddZoomLinkCommand`:
@@ -297,33 +297,34 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ##### Design consideration:
 
-##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
+##### Aspect: How to encapsulate zoom links and module lesson fields
 
-* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
-  * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
-          To access a specific zoom link, identifying its unique module lesson will suffice.
-  * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
+* **Alternative 1:** Store zoom link and module lesson as strings 
 
-* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
-  * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
-  * Cons: Accessing a specific zoom link during the execution of a zoom link command is tedious as we have to iterate through
-          the list of zoom links that are mapped to the module lesson. This can affect the performance of the command.
+  * Pros: Easier to implement as we do not need to create extra classes to encapsulate these objects.
+  * Cons: Does not adhere to OOP principles as higher level classes such as `Parser` need to be aware of lower level details, such 
+          as the regular expression of a zoom link.
 
-Alternative 1 was chosen as zoom links have to be accessed frequently. On the contrary,
-the use of alternative 2 can have negative impact on the performance of zoom link commands. Since it is unlikely that a specific
-module lesson can have multiple zoom links, 
+* **Alternative 2 (current choice):** Create classes to represent `ZoomLink` and `ModuleLesson` objects
 
+  * Pros: Adheres strongly to OOP principles as we are able to abstract out the lower level details of `ZoomLink` and `ModuleLesson` into their respective classes.
+          We will be able to better demonstrate the behaviour of the respective `ZoomLink` and `ModuleLesson` objects.
+          It facilitates future development of the project if zoom link or module lesson were to have certain states or behaviour that have to be implemented. 
+  * Cons: Additional classes have to be implemented to encapsulate zoom link and module lesson. These classes may appear to be
+          unnecessary since zoom link and module lesson do not currently have significant states or behaviour.
+
+Alternative 1 was chosen since it followed OOP principles which is a good practice in a SE project. Also, it provides
+greater flexibility for expansion of the project.
 
 ##### Delete zoom link feature
 
-This delete zoom link feature deletes an existing zoom link from a module using the module lesson that is mapped to the
+This feature deletes an existing zoom link from a module using the module lesson that is mapped to the
 target zoom link.
 
 This feature is facilitated by the following classes:
   
   * `DeleteZoomLinkParser`:
     * It implements `DeleteZoomLinkParser#parse()` to validate and parse the module index and module lesson provided by the user.
-    
   * `DeleteZoomLinkCommand`:
     * It implements `DeleteZoomLinkCommand#execute()` to delete the zoom link from the module 
       using the unique module lesson that is mapped to the target zoom link.  
@@ -340,28 +341,27 @@ Step 7. A `CommandResult` from the command execution is returned to `LogicManage
 
 ##### Design consideration:
 
-##### Aspect: Data structure to support zoom link commands
+##### Aspect: Limit on the number of zoom links that can be mapped to each module lesson
 
-* **Alternative 1 (current choice):** Use a `HashMap` to store module lesson and zoom links in a module. Each module lesson
-                                      will be used as a key which is mapped to a zoom link (value)
-  * Pros: Checking for duplicate zoom links will be simpler and less complicated. Similarly, as each module lesson
-          is only allowed to have one zoom link, it is easier to check if the provided module lesson for the add zoom link command already exists in the module
-  * Cons: Zoom links can only be uniquely identified by their module lesson. Other zoom link commands will
-          require the module lesson to access the target zoom link.
-  
-* **Alternative 2:** Store a zoom link object as a field of module lesson and use a `HashSet` to store module lesson objects.
-  * Pros: 
-  * Cons: It is tedious to check for duplicate zoom links as we have to access the zoom link field of each module lesson in the hashset.
-  
-* **Alternative 3:** Store a zoom link object as a field of module lesson and use an `ArrayList` to store module lesson objects.
-  * Pros: Each module lesson can be identified by an index easily. This can allow users to provide
-          the index of the module lesson when executing zoom link commands, which is simpler compared to providing the module lesson name.  
-  * Cons: The process of checking for duplicate module lessons and zoom links is more tedious.
+* **Alternative 1 (current choice):** Each module lesson can only be mapped to a single zoom link
+  * Pros: The execution of a zoom link command is less complicated as each zoom link is uniquely identified by its module lesson. 
+          The implementation of the command is easier as we only need to identify the correct module lesson and
+          remove the key value pair from the hashmap.
+  * Cons: Creates a restriction for users as they are only allowed to add one zoom link for each module lesson.
+
+* **Alternative 2:** Each module lesson can be mapped to multiple zoom links
+  * Pros: This creates more freedom and flexibility for users to add multiple zoom links for the same lesson.
+  * Cons: Locating the specific zoom link to remove is tedious as we have to iterate through the list of zoom links that are mapped to the module lesson. 
+          Additionally, we need to implement a mechanism to allow users to specify the exact zoom link to be deleted since using the module
+          name is not sufficient.
+
+Alternative 1 was chosen as it was significantly simpler to implement and did not violate any key design principles.
+We also took into consideration the fact that it is unlikely for a single lesson to have multiple zoom links.
 
 
 ##### Edit zoom link feature
 
-This edit zoom link feature edits an existing zoom link in a module using the module lesson that is mapped to the
+This feature edits an existing zoom link in a module using the module lesson that is mapped to the
 target zoom link.
 
 This feature is facilitated by the following classes:
@@ -371,23 +371,64 @@ This feature is facilitated by the following classes:
       This creates a `ZoomDescriptor` object that stores the zoom link details needed for the edit zoom link command.
     
   * `ZoomDescriptor`  
-    * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to edit the zoom link in the specified `Module`
+    * It stores and encapsulates the `ZoomLink` and `ModuleLesson` objects which will be used to execute the command to edit the zoom link 
     
   * `EditZoomLinkCommand`:  
     * It implements `EditZoomLinkCommand#execute()` which edits the target zoom link in the specified module encapsulated in `Model`
    
+
 Given below is an example usage scenario and how the mechanism for editing zoom links behaves at each step:
 Step 1. `LogicManager` receives the user input `editzoom 1 n/Lecture z/https://nus-sg.zoom.us/newLink` from `Ui`
 Step 2. `LogicManager` calls `ModuleListParser#parseCommand()` to create an `EditZoomLinkParser`
 Step 3. Additionally, `ModuleListParser` will call the `EditZoomLinkParser#parse()` method to parse the command arguments
-Step 4. This creates an `EditZoomLinkCommand` and `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
+Step 4. This creates an `EditZoomLinkCommand` using a `ZoomDescriptor` object that encapsulates the edited zoom link
+Step 5. `EditZoomLinkCommand#execute()` will be invoked by `LogicManager` to create
         the updated `Module` with the edited `ZoomLink` by calling the `Module#editZoomLink()` method
 Step 5. The `Model#setModule()` operation exposed in the `Model` interface is invoked to replace the target module with the updated module containing the edited zoom link
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`   
 
 The sequence diagram of how the operation to edit a zoom link works is similar to the one in figure ?.?, 
-except that the respective parser and command classes are replaced with `EditZoomLinkParser` and `EditZoomLinkCommand`
+except that the respective parser and command classes are `EditZoomLinkParser` and `EditZoomLinkCommand`
 
+##### Design consideration:
+
+##### Aspect: How to implement the command to edit zoom link
+
+* **Alternative 1:** Reuse the same `Parser` and `Command` classes used by the `AddZoomLink` command to implement the `EditZoomLink` command at the same time 
+                     since the two commands have very similar implementations.
+
+  * Pros: Reduces the amount of code that has to be written, as well as the number of classes that have to be implemented. 
+  * Cons: Violates the **Single Responsibility Principle** since the same parser and command classes have 2 separate responsibilities and have to perform 2 different operations.
+
+* **Alternative 2 (current choice):** Implement the `EditZoomLink` command separately.
+
+  * Pros: Adheres to the Single Responsibility Principle and it is easier to implement the function since we do not need to handle 
+          2 separate commands at the same time.
+  * Cons: Repetition of code may occur.
+  
+Alternative 2 was chosen since it was a good practice to follow key designing principles. Using alternative 1 would complicate
+the implementation of the command since we had to handle 2 different cases and this can increase the occurrences of bugs.
+
+
+##### Aspect: Data structure to support zoom link commands
+
+* **Alternative 1 (current choice):** Use a `HashMap` to store module lesson and zoom links in a module. Each module lesson
+                                      will be used as a key which is mapped to a zoom link.
+  * Pros: Checking for duplicate zoom links will be simpler.
+  * Cons: Zoom links can only be uniquely identified by their module lesson. Any operation involving zoom link objects would
+          require the module lesson that the zoom link is mapped to.
+  
+* **Alternative 2:** Encapsulate a zoom link object as a field of module lesson and use a `HashSet` to store module lesson objects.
+  * Pros: It is easy to check for duplicate module lessons.
+  * Cons: It is tedious to check for duplicate zoom links as we have to access the zoom link field of each module lesson in the hashset.
+  
+* **Alternative 3:** Encapsulate a zoom link object as a field of module lesson and use an `ArrayList` to store module lesson objects.
+  * Pros: It is easy to identify module lessons by index. Users can provide the index of the module lesson for zoom link commands, 
+          which is simpler compared to providing the module lesson name.  
+  * Cons: The process of checking for duplicate module lessons and zoom links in the module is more tedious.
+
+Alternative 1 was chosen since checking for duplicate zoom links occurs frequently during the execution of 
+zoom link related commands.
 
 
 ### Contact List Management
