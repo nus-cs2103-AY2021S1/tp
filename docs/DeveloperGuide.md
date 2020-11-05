@@ -534,7 +534,7 @@ The following activity diagram shows how the reset all ingredients' levels opera
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Editing the ingredient level may be more error-prone.
 
-### \[Completed\] Archive person's contact information feature
+### Archiving employee feature
 
 When employees are no longer working in the store, their contact information would usually be deleted, or kept in
 the archive. tCheck simulates this archive, storing these contact information in the app so that the user can still
@@ -542,7 +542,7 @@ retrieve them back when needed. For example, when an employee is rehired by the 
 this specific employee's contact information back to the currently active contact information list from the
 archived record.
 
-The completed archive person's contact information feature consists of four commands with slightly different
+The archiving-employee feature consists of four commands with slightly different
 formats, which complement one another, to provide a set of useful commands for enhanced user experiences. The four
 commands are :
 
@@ -551,7 +551,7 @@ commands are :
 * `c-archive-all` — Archives all persons in the displayed person list.
 * `c-archive-list` — Shows a list of all archived persons' contact details.
 
-#### Completed Implementation
+#### Implementation
 
 The archiving of persons is facilitated by the `ArchiveStatus` attribute of a person. The following methods in the
  `Person` class and the `Model` interface facilitate this feature:
@@ -570,7 +570,7 @@ The archiving of persons is facilitated by the `ArchiveStatus` attribute of a pe
 
 Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechanism works in steps based on different scenarios. Two activity diagrams are provided before each detailed explanation to describe how tCheck handles an archiving/unarchiving commands. Three sequence diagrams are attached after the description 
 
-##### 1. Archiving a person
+##### 1. Archiving an employee
 
 *Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
 
@@ -588,7 +588,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 *Figure Archive-3. Sequence diagram representation of archiving a person*
 
-##### 2. Unarchiving a person
+##### 2. Unarchiving an employee
 
 ![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
 
@@ -608,7 +608,7 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 *Figure Archive-5. Sequence diagram representation of unarchiving a person*
 
-##### 3. Archiving all persons
+##### 3. Archiving all employees
 User can archive all persons' contact information by entering the `c-archive-all` command. The following steps describe how this behavior is implemented:
 
 Step 1: The user archives all `Person`s in the current observable `PersonList` with command `c-archive-all`. `ArchiveAllCommand` is created with the parsed arguments, and executed.
