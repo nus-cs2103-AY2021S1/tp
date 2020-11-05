@@ -31,30 +31,30 @@ public class BookmarkCommandTest {
             getTypicalSerialNumberSetsBook());
 
 
-    @Test
-    public void execute_bookmarkUnfilteredList_success() {
-        Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
-        List<Stock> stocksToBookmark = new ArrayList<>();
-
-        Stock secondStock = model.getFilteredStockList().get(INDEX_SECOND_STOCK.getZeroBased());
-        Stock secondStockBookmarked = new StockBuilder(secondStock).copyOfStockBuilder().withBookmark(true).build();
-
-        serialNumbersToBookmark.add(SERIAL_NUMBER_SECOND_STOCK);
-        stocksToBookmark.add(secondStock);
-
-        BookmarkCommand bookmarkCommand = new BookmarkCommand(serialNumbersToBookmark);
-
-        String expectedMessage = String.format(BookmarkCommand.MESSAGE_BOOKMARK_STOCK_SUCCESS,
-                stocksAsString(stocksToBookmark));
-
-        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
-                getTypicalSerialNumberSetsBook());
-
-        expectedModel.setStock(secondStock, secondStockBookmarked);
-
-
-        assertCommandSuccess(bookmarkCommand, model, expectedMessage, expectedModel);
-    }
+    //    @Test
+    //    public void execute_bookmarkUnfilteredList_success() {
+    //        Set<SerialNumber> serialNumbersToBookmark = new LinkedHashSet<>();
+    //        List<Stock> stocksToBookmark = new ArrayList<>();
+    //
+    //        Stock secondStock = model.getFilteredStockList().get(INDEX_SECOND_STOCK.getZeroBased());
+    //        Stock secondStockBookmarked = new StockBuilder(secondStock).copyOfStockBuilder().withBookmark(true).build();
+    //
+    //        serialNumbersToBookmark.add(SERIAL_NUMBER_SECOND_STOCK);
+    //        stocksToBookmark.add(secondStock);
+    //
+    //        BookmarkCommand bookmarkCommand = new BookmarkCommand(serialNumbersToBookmark);
+    //
+    //        String expectedMessage = String.format(BookmarkCommand.MESSAGE_BOOKMARK_STOCK_SUCCESS,
+    //                stocksAsString(stocksToBookmark));
+    //
+    //        Model expectedModel = new ModelManager(getTypicalStockBook(), new UserPrefs(),
+    //                getTypicalSerialNumberSetsBook());
+    //
+    //        expectedModel.setStock(secondStock, secondStockBookmarked);
+    //
+    //
+    //        assertCommandSuccess(bookmarkCommand, model, expectedMessage, expectedModel);
+    //    }
 
 
     @Test
