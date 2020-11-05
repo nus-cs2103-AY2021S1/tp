@@ -8,6 +8,10 @@ import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_B;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_C;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_D;
+import static nustorage.logic.commands.CommandTestUtil.ID_A;
+import static nustorage.logic.commands.CommandTestUtil.ID_B;
+import static nustorage.logic.commands.CommandTestUtil.ID_C;
+import static nustorage.logic.commands.CommandTestUtil.ID_D;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,16 +23,16 @@ import nustorage.model.record.InventoryRecord;
 
 public class TypicalFinanceRecords {
 
-    public static final FinanceRecord RECORD_A = new FinanceRecord(AMOUNT_A, DATE_TIME_A);
-    public static final FinanceRecord RECORD_B = new FinanceRecord(AMOUNT_B, DATE_TIME_B);
-    public static final FinanceRecord RECORD_C = new FinanceRecord(AMOUNT_C, DATE_TIME_C);
-    public static final FinanceRecord RECORD_D = new FinanceRecord(AMOUNT_D, DATE_TIME_D);
+    public static final FinanceRecord RECORD_A = new FinanceRecord(ID_A, AMOUNT_A, DATE_TIME_A, false);
+    public static final FinanceRecord RECORD_B = new FinanceRecord(ID_B, AMOUNT_B, DATE_TIME_B, false);
+    public static final FinanceRecord RECORD_C = new FinanceRecord(ID_C, AMOUNT_C, DATE_TIME_C, false);
+    public static final FinanceRecord RECORD_D = new FinanceRecord(ID_D, AMOUNT_D, DATE_TIME_D, false);
 
 
     private TypicalFinanceRecords() {} // prevents instantiation
 
     /**
-     * Returns an {@code FinanceAccount} with all the typical persons.
+     * Returns an {@code FinanceAccount} with all the typical finance records.
      */
     public static FinanceAccount getTypicalFinanceAccount() {
         FinanceAccount fa = new FinanceAccount();

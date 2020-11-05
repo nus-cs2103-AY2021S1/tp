@@ -31,9 +31,25 @@ public class FinanceRecord {
      * Constructs a {@code FinanceWindow Record}.
      *
      * @param amount Amount of the transaction.
+     * @param hasInventory Flag if the transaction is linked to an inventory record.
      */
     public FinanceRecord(double amount, boolean hasInventory) {
         id = this.hashCode();
+        this.amount = amount;
+        this.dateTime = LocalDateTime.now();
+        this.hasInventory = hasInventory;
+        this.uiUsableIndex = "" + uiUsableIndex;
+    }
+
+    /**
+     * Constructs a {@code FinanceWindow Record}.
+     *
+     * @param id Unique ID of the transaction.
+     * @param amount Amount of the transaction.
+     * @param hasInventory Flag if the transaction is linked to an inventory record.
+     */
+    public FinanceRecord(int id, double amount, boolean hasInventory) {
+        this.id = id;
         this.amount = amount;
         this.dateTime = LocalDateTime.now();
         this.hasInventory = hasInventory;
@@ -60,6 +76,7 @@ public class FinanceRecord {
      * @param id ID of the transaction.
      * @param amount Amount of the transaction.
      * @param dateTime Date of the transaction.
+     * @param hasInventory Flag if the transaction is linked to an inventory record.
      */
     public FinanceRecord(int id, double amount, LocalDateTime dateTime, boolean hasInventory) {
         this.id = id;
@@ -73,6 +90,7 @@ public class FinanceRecord {
      *
      * @param amount Amount of the transaction.
      * @param dateTime Date of the transaction.
+     * @param hasInventory Flag if the transaction is linked to an inventory record.
      */
     public FinanceRecord(double amount, LocalDateTime dateTime, boolean hasInventory) {
         this.id = this.hashCode();

@@ -15,8 +15,7 @@ import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all finance records by ID, dates, or links to inventory records
  */
 public class FindFinanceCommand extends Command {
 
@@ -92,7 +91,12 @@ public class FindFinanceCommand extends Command {
         return this;
     }
 
-    private Predicate<FinanceRecord> getPredicate() {
+    /**
+     * Returns the predicate used to filter finance record, mainly for testing purposes
+     *
+     * @return Predicate used to filter finance record
+     */
+    public Predicate<FinanceRecord> getPredicate() {
         return record -> {
 
             if (filterInventory.isPresent() && filterInventory.get() != record.taggedToInventory()) {
@@ -125,8 +129,20 @@ public class FindFinanceCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof FindFinanceCommand // instanceof handles nulls
-                && this.getPredicate().equals(((FindFinanceCommand) other).getPredicate())); // state check
+
+        if (other == this) {
+            return true; // short circuit if same object
+        }
+
+        if (other instanceof FindFinanceCommand) {
+            FindFinanceCommand command = (FindFinanceCommand) other;
+
+            return (this.idMatch.equals(command.idMatch)
+                    && this.afterDatetime.equals(command.afterDatetime)
+                    && this.beforeDatetime.equals(command.beforeDatetime)
+                    && this.filterInventory.equals(command.filterInventory));
+        }
+
+        return false;
     }
 }
