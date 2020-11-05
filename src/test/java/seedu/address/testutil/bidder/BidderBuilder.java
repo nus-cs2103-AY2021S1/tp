@@ -10,7 +10,7 @@ import seedu.address.model.person.bidder.Bidder;
  */
 public class BidderBuilder {
 
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_NAME = "Kor Ming Soon";
     public static final String DEFAULT_PHONE = "85355255";
     public static final BidderId DEFAULT_BIDDER_ID = new BidderId(0);
 

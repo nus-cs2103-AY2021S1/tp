@@ -3,7 +3,6 @@ package seedu.address.logic.commands.biddercommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -22,8 +21,7 @@ public class AddBidderCommand extends Command {
             + "\n" + PREFIX_PHONE + "PHONE "
             + "\n" + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_TAG + "bidder ";
+            + PREFIX_PHONE + "98765432 ";
 
     public static final String MESSAGE_SUCCESS = "New bidder added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This bidder already exists in the bidder address book";

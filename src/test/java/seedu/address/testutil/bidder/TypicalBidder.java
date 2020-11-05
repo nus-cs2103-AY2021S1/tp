@@ -18,21 +18,21 @@ import seedu.address.model.person.bidder.Bidder;
 public class TypicalBidder {
 
     public static final Bidder ALICE = new BidderBuilder().withName("Alice Pauline")
-            .withPhone("94351253").withId(1).build();
+            .withPhone("99999").withId(1).build();
     public static final Bidder BIDDER_ALICE = new BidderBuilder().withName("Alice Pauline")
-            .withPhone("94351253").withId(1).build();
+            .withPhone("88888").withId(1).build();
     public static final Bidder BENSON = new BidderBuilder().withName("Benson Meier")
-            .withId(2).build();
+            .withPhone("1212").withId(2).build();
     public static final Bidder CARL = new BidderBuilder().withName("Carl Kurz")
-            .withPhone("95352563").withPhone("9482442").withId(3).build();
+            .withPhone("77777").withId(3).build();
     public static final Bidder DANIEL = new BidderBuilder().withName("Daniel Meier")
-            .withPhone("87652533").withId(4).build();
+            .withPhone("66666").withId(4).build();
     public static final Bidder ELLE = new BidderBuilder().withName("Elle Meyer")
-            .withPhone("9482224").withId(5).build();
+            .withPhone("55555").withId(5).build();
     public static final Bidder FIONA = new BidderBuilder().withName("Fiona Kunz")
-            .withPhone("9482427").withId(6).build();
-    public static final Bidder GEORGE = new BidderBuilder()
-            .withName("George Best").withPhone("9482442").withId(7).build();
+            .withPhone("44444").withId(6).build();
+    public static final Bidder BIDDER_GEORGE = new BidderBuilder().withName("George Best")
+            .withPhone("33333").withId(7).build();
 
     // Manually added
     public static final Bidder HOON = new BidderBuilder().withName("Hoon Meier").withPhone("8482424").build();
@@ -56,6 +56,6 @@ public class TypicalBidder {
     }
 
     public static List<Bidder> getTypicalBidders() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, BIDDER_GEORGE));
     }
 }

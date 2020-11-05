@@ -23,13 +23,13 @@ public class SellerTest {
         // null -> returns false
         assertFalse(ALICE.isSameSeller(null));
 
-        // different phone and email -> returns false
+        // different phone but same name -> returns true
         Seller editedAlice = new SellerBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.isSameSeller(editedAlice));
+        assertTrue(ALICE.isSameSeller(editedAlice));
 
-        // different name -> returns false
+        // different name but same phone -> returns true
         editedAlice = new SellerBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameSeller(editedAlice));
+        assertTrue(ALICE.isSameSeller(editedAlice));
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new SellerBuilder(ALICE).build();

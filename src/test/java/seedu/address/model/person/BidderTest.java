@@ -22,13 +22,13 @@ public class BidderTest {
         // null -> returns false
         assertFalse(ALICE.isSameBidder(null));
 
-        // different phone and email -> returns false
+        // different phone but same name -> returns true
         Bidder editedAlice = new BidderBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.isSameBidder(editedAlice));
+        assertTrue(ALICE.isSameBidder(editedAlice));
 
-        // different name -> returns false
+        // different name but same phone -> returns true
         editedAlice = new BidderBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameBidder(editedAlice));
+        assertTrue(ALICE.isSameBidder(editedAlice));
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new BidderBuilder(ALICE).build();
