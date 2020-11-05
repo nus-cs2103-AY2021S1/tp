@@ -329,15 +329,17 @@ This feature comprises the `AddProfilePictureCommand` class. Given below is an e
     <em style="color:#CC5500">Figure 18. Logic Component Interactions for AddProfilePicture Command</em>
 </p>
 
-Step 1. User input is parsed to obtain the patient index and file path of the desired profile picture.
+Step 1. User inputs "addpicture 1 f/data/images/png" command to add profile picture to the first patient. 
 
-Step 2. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called.
+Step 2. User input is parsed to obtain the patient index and file path of the desired profile picture.
 
-Step 3. The `StorageManager#addPicture` method is then called which adds the desired profile picture to the specified patient.
+Step 3. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called.
 
-Step 4. Next, the patient's profile picture is updated in the `Model` by calling the `Model#setPatient` method.
+Step 4. The `StorageManager#addPicture` method is then called which adds the desired profile picture to the specified patient.
 
-Step 5. As a result of the successful update of the patient's profile picture, a `CommandResult` object is instantiated and returned to `LogicManager`.
+Step 5. Next, the patient's profile picture is updated in the `Model` by calling the `Model#setPatient` method.
+
+Step 6. As a result of the successful update of the patient's profile picture, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### 3.2.2 Design consideration
 
@@ -537,7 +539,64 @@ The following sequence diagram shows how the up down arrow key mechanism works:
         * Users require less time to peek through all commands stored in commandHistory as it does not include invalid commands.
     * Cons:
         * Users cannot edit invalid commands and will need to spend more time to retype the valid command.
+        
+### 3.6 Display Profile feature
 
+#### 3.6.1 Implementation
+
+This feature allows users to view individual patients' profile on a separate window. The profile window displays all relevant details that belongs
+to the patient, including past visitation logs. 
+
+The mechanism utilises the following classes and methods to display the patients' profile:
+
+   * `ProfileCommandParser#parse` - Parses the input to return a `ProfileCommand` object
+   * `ProfileCommand#execute` - Executes the command to display patient profile
+   * `ProfileWindow#setup` - Loads all relevant details of the `Patient` into `ProfileWindow`
+   * `MainWindow#handleProfilePanel` - Displays patient's profile
+
+Given below is an example usage scenario and how the mechanism behaves at each step.
+
+Step 1. User inputs "profile 1" command to display the first patient's profile.
+
+Step 2. Input command is parsed to obtain the patient's index, and a `ProfileCommand` object is returned. 
+
+Step 3. The `ProfileCommand#execute(Model model)` method is called and this returns a `CommandResult` object with the first `Patient` instance.
+
+Step 4. Next, `MainWindow#executeCommand` method is executed which in turn calls `ProfileWindow#setup` method. This causes `ProfileWindow` to be 
+        loaded with all relevant details that belongs to the first `Patient`. 
+
+Step 5. Finally, `MainWindow#handleProfilePanel()` method is executed to display the first patient's profile.
+
+<p align="center">
+    <img src="images/ProfileCommandSequenceDiagram.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 26. Sequence Diagram for ProfileCommand</em>
+</p>
+
+The following activity diagram summarizes the main steps taken to display the patient's profile.
+
+<p align="center">
+    <img src="images/ProfileCommandActivityDiagram.png" width="350"/>
+    <br>
+    <em style="color:#CC5500">Figure 27. Activity Diagram for steps 1 to 5</em>
+</p>
+
+#### 3.6.2 Design Considerations
+##### 3.6.2.1 Aspect: How patient's details are retrieved and displayed in ProfileWindow
+
+* **Current Implementation:** Patient details are obtained solely from `Patient` class.
+    * Pros:
+        * Easy to implement as mechanism can be extended from existing AB3 architecture.
+    * Cons:
+        * Increases coupling between `Patient` class and `ProfileWindow` class. This may lead to unforeseen dependency issues.
+ * **Alternative Implementation:** Utilize a separate `Profile` class to copy and store patient's details everytime `ProfileCommand` is issued.
+    * Pros:
+        * Less coupling between `Patient` and `ProfileWindow` class. Instead, `Profile` class will act as a facade class as part of Facade pattern architecture.
+    * Cons:
+        * Requires re-implementation of current codebase which might introduce subtle bugs.
+        * Need to ensure that functionality of the `Profile` facade class is optimized. Our team assessed that the current 
+          implementation is better as it is less prone to introduce new bugs to our existing codebase.
+        
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
