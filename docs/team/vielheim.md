@@ -9,13 +9,20 @@ PIVOT is a desktop application to assist the police investigators in keeping tra
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Implemented `Suspect` class in PIVOT. (Pull request [\#78](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/78))
+  * What was done: Set up the base class `Suspect` and refactored relevant components of a `Case` to accommodate for the `Suspect`.
+  * What it does: The base class and the refactored components will then further be used by the team to develop the `Case` class, a major component in PIVOT.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation was carefully designed to integrate with the existing commands, keeping in mind of future extensions.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+* **New Feature**: Implemented `Description` class in PIVOT. (Pull request [\#81](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/81))
+  * What was done: Set up the base class `Description` and refactored relevant components of a `Case` to accommodate for the `Suspect`. Abstracted most of the common functionalities of `Description`, `Title` and `Name` into a parent `Alphanumeric` class.
+  * What it does: The base class and the refactored components will then further be used by the team to develop the `Case` class, a major component in PIVOT.
+  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation was carefully designed to integrate with the existing commands, keeping in mind of future extensions.
+
+* **New Feature**: Implemented `AddDescriptionCommand` in PIVOT. (Pull request [\#126](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/126))
+  * What was done: Set up the command class as well as its `Parser` to parse the command in PIVOT.
+  * What it does: The user can now add a `Description` to a `Case` by calling `add desc d:[description]`.
+  * Highlights: This enhancement builds on existing commands and allows extensions for commands added in the future. It follows existing design structures for its implementation. It was carefully designed to integrate with the existing commands, keeping in mind of future extensions.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=Vielheim&tabRepo=AY2021S1-CS2103-F09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
