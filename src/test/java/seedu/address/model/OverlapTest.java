@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2000;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_CS2103T;
 import static seedu.address.model.util.Overlap.isSameTimeSlot;
@@ -20,6 +21,8 @@ public class OverlapTest {
         assertTrue(isSameTimeSlot(VALID_LESSON_CS2103T, VALID_LESSON_CS2103T));
         //same event
         assertTrue(isSameTimeSlot(VALID_EVENT_EXPERIMENT, VALID_EVENT_EXPERIMENT));
+        //different lesson same time slot
+        assertTrue(isSameTimeSlot(VALID_LESSON_CS2103T, VALID_LESSON_CS2000));
     }
     @Test
     public void isSameTimeSlot_returnsFalse() {
@@ -33,6 +36,7 @@ public class OverlapTest {
         //lesson does not exist in model yet
         assertFalse(overlapWithOtherTimeSlots(modelManager, VALID_LESSON_CS2100));
         assertFalse(overlapWithOtherTimeSlots(modelManager, VALID_LESSON_CS2103T));
+        assertFalse(overlapWithOtherTimeSlots(modelManager, VALID_LESSON_CS2000));
         //event does not exist in model yet
         assertFalse(overlapWithOtherTimeSlots(modelManager, VALID_EVENT_EXPERIMENT));
     }
@@ -46,5 +50,7 @@ public class OverlapTest {
         //lesson exists in model
         assertTrue(overlapWithOtherTimeSlots(modelManager, VALID_LESSON_CS2100));
         assertTrue(overlapWithOtherTimeSlots(modelManager, VALID_LESSON_CS2103T));
+        //lesson clashes with existing lesson
+        assertTrue(overlapWithOtherTimeSlots(modelManager, VALID_LESSON_CS2000));
     }
 }

@@ -67,10 +67,6 @@ public class LessonCommand extends Command {
         if (Overlap.overlapWithOtherTimeSlots(model, lesson)) {
             throw new CommandException(OVERLAP_CONSTRAINTS);
         }
-        tasksToAdd.forEach(task -> {
-            model.addTask(task);
-            model.addTaskToCalendar(task);
-        });
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }

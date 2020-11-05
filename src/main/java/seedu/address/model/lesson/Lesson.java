@@ -240,9 +240,9 @@ public class Lesson implements TimeSlot {
                 .append(" End Time: ")
                 .append(getEndTime())
                 .append(" Start Date: ")
-                .append(getStartDate())
+                .append(getStartDate().format(DateTimeUtil.DATE_FORMATTER))
                 .append(" End Date: ")
-                .append(getEndDate());
+                .append(getEndDate().format(DateTimeUtil.DATE_FORMATTER));
         return builder.toString();
     }
 

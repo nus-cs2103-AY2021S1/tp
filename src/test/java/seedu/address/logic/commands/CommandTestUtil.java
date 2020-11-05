@@ -81,6 +81,19 @@ public class CommandTestUtil {
             LocalTime.of(12, 0), LocalTime.of(14, 0),
             LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
     //valid lesson
+    public static final String VALID_TITLE_CS2000 = "CS2103T Lecture";
+    public static final String VALID_DESC_CS2000 = "Best lecture ever!";
+    public static final String VALID_DAY_CS2000 = "Monday";
+    public static final String VALID_START_TIME_CS2000 = "13:00";
+    public static final String VALID_END_TIME_CS2000 = "14:00";
+    public static final String VALID_START_DATE_CS2000 = "01-01-2020";
+    public static final String VALID_END_DATE_CS2000 = "01-11-2020";
+    public static final String VALID_TAG_CS2000 = "CS2103T";
+    public static final Lesson VALID_LESSON_CS2000 = new Lesson(new Title(VALID_TITLE_CS2000),
+            new Tag(VALID_TAG_CS2000), new Description(VALID_DESC_CS2000), DayOfWeek.MONDAY,
+            LocalTime.of(13, 0), LocalTime.of(14, 0),
+            LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
+    //valid lesson
     public static final String VALID_TITLE_CS2100 = "CS2100 Lecture";
     public static final String VALID_DESC_CS2100 = "Cool lecture!";
     public static final String VALID_DAY_CS2100 = "Tuesday";
