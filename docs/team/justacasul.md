@@ -2,7 +2,7 @@
 layout: page
 title: Liu Zheng Dao's Project Portfolio Page
 ---
-<img src="../images/justacasul.png" height=225>
+<img src="../images/justacasul.png" height=200>
 
 ## Project: Inventoryinator
 
