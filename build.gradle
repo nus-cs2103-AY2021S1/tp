@@ -21,7 +21,6 @@ checkstyle {
 }
 
 test {
-    jvmArgs "-Dheadless=${project.hasProperty('headless') ? project.headless : false}"
     useJUnitPlatform()
     finalizedBy jacocoTestReport
 }

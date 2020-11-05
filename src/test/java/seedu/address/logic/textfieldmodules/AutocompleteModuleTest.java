@@ -8,6 +8,7 @@ import static seedu.address.testutil.SimulatedKeyPress.TAB_EVENT;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -51,6 +52,7 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
+    @Disabled
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithNonEmptyPrefix_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -74,6 +76,7 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
+    @Disabled
     public void textFieldWithAutocompleteModule_lockInFirstSuggestions_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -98,6 +101,7 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
+    @Disabled
     public void textFieldWithAutocompleteModule_getFirstSuggestionWithPrefixWithNoMatch_prefixReturned(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -121,6 +125,7 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
+    @Disabled
     public void textFieldWithAutocompleteModule_iterateThroughAllSuggestionsForward_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);
@@ -143,6 +148,7 @@ class AutocompleteModuleTest {
         assertEquals(expected, actual);
     }
     @Test
+    @Disabled
     public void textFieldWithAutocompleteModule_iterateThroughAllSuggestionsBackward_success(FxRobot robot) {
         // Setup
         AutocompleteModule ac = AutocompleteModule.attachTo(textField);

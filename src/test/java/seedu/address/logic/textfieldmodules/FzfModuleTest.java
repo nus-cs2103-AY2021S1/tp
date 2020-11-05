@@ -7,6 +7,7 @@ import static seedu.address.testutil.SimulatedKeyPress.DOWN_ARROW_EVENT;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -37,6 +38,7 @@ class FzfModuleTest {
     }
 
     @Test
+    @Disabled
     public void textFieldWithFzfModule_lockInFirstSuggestion_success(FxRobot robot) {
 
         textField.fireEvent(CTRL_SPACE_EVENT);
@@ -51,6 +53,7 @@ class FzfModuleTest {
     }
 
     @Test
+    @Disabled
     public void textFieldWithFzfModule_nonEmptyQuery_validNumberOfSuggestions(FxRobot robot) {
 
         String query = "br";
