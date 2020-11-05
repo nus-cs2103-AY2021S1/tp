@@ -67,7 +67,8 @@ public class UpdateInventoryCommand extends Command {
         }
         FinanceRecord oldFinanceRecord = model.getFinanceRecord(inventoryRecordToUpdate.getFinanceId());
         double cost = inventoryRecordToUpdate.getUnitCost();
-        FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost, true);
+        FinanceRecord newFinanceRecord = new FinanceRecord(inventoryRecordToUpdate.getFinanceId(),
+                updatedInventoryRecord.getQuantity() * cost, true);
         updatedInventoryRecord.setFinanceRecord(newFinanceRecord);
         model.setFinanceRecord(oldFinanceRecord, newFinanceRecord);
         model.setInventoryRecord(inventoryRecordToUpdate, updatedInventoryRecord);
@@ -96,8 +97,7 @@ public class UpdateInventoryCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the inventory with.
      */
     public static class UpdateInventoryDescriptor {
         private Integer changeInQuantity;

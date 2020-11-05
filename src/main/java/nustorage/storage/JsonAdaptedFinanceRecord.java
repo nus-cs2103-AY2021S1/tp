@@ -52,7 +52,7 @@ class JsonAdaptedFinanceRecord {
     /**
      * Converts this Jackson-friendly adapted finance record object into the model's {@code FinanceRecord} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted finance record.
      */
     public FinanceRecord toModelType() throws IllegalValueException {
 
