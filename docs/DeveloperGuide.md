@@ -30,6 +30,8 @@ This Developer Guide specifies the architecture, design, implementation and use 
 
 It is intended for developers, software testers, open-source contrubitors and any like-minded persons who wish to contribute this project or gain deeper insights about **ResiReg**.
 
+**Note about sequence diagrams**: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+
 ## Setting Up
 
 Refer to the guide [here](./SettingUp.md).
@@ -117,9 +119,6 @@ Notes:
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-student 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete-student 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 ### Model component
 
