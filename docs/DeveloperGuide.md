@@ -106,7 +106,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -114,6 +114,12 @@ The `Model`,
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
+
+![Structure of the SalesRecordEntry sub-component](images/SaleRecordEntryModelClassDiagram.png)
+
+The `SalesRecordEntry` sub-component,
+* stores the sales book data
+* exposes an unmodifiable `ObservableList<SalesRecordEntry>` that can be 'observed'. The UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -161,7 +167,7 @@ Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSPBT` : Brown Sugar Pearl Black Tea
 * `BSPGT` : Brown Sugar Pearl Green Tea
 
-#### Completed Implementation
+#### Implementation
     
 The completed mechanism to record the sales data is facilitated by the `SalesBook`. It implements the
 `ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically in the user interface.
@@ -191,9 +197,9 @@ when it is executed. This is because the current `SalesBook` is empty. It calls
 `Model#overwrite(Map<Drink, Integer> salesInput)`, which will save the sales data into the `UniqueSalesRecordList` in 
 the `SalesBook`. The other `Drink` types whose sales numbers were not given will be initialised to 0.
 
-Step 3: The user realises he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to record
-that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the `SalesBook` has 
-already been initialised, when the `s-update` command executes, it calls 
+Step 3: The user realises that he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to
+record that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the
+`SalesBook` has  already been initialised, when the `s-update` command executes, it calls 
 `Model#overwrite(Map<Drink, Integer> salesInput)` which will only overwrite the sales data for the `Drink` items that
 were given in the user input will be overwritten.
  
@@ -216,18 +222,18 @@ The following activity diagram summarises what happens when a user executes the 
 user in the `s-update` command
     *  Pros: More intuitive and convenient for the user. If the user made any error or miss out any details, he can
      correct the sales data with a shorter command.
-    *  Cons: Less easy to implement
+    *  Cons: Less easy to implement.
 
 * **Alternative 2**: Replace the sales record based on what has been given by the user, for every
   `s-update` command
-    * Pros: Easy to implement
+    * Pros: Easy to implement.
     * Cons: May not be intuitive and convenient for the user, as the user would have to ensure that his command has
      no error and contains all information. If he made an error or left something out, he would have to retype the
       entire command again.
 
-#### Aspect: How to implement `Drink` types
+##### Aspect: How to implement `Drink` types
 * **Alternative 1 (current choice)**: Implement `Drink` type as an Enumeration class
-    * Pros: Simple to implement. Since there is only a fixed set of drink items to represent, we can use an Enumeration
+    * Pros: Simple to implement. Since there is only a fixed set of drink items to represent, we can use an enumeration
      class to represent the types of `Drink`s. It is also easier to add more types of drinks in the future.
     * Cons: If more functionalities are required from `Drink` in the future, then it may not be feasible to use an
      Enumeration class.
@@ -236,6 +242,52 @@ user in the `s-update` command
     * Pros: It can can be extended more easily if there is a greater variety of drinks to store in the future.
     * Cons: There are not many operations to do with `Drink`s. It is only used to represent a constant set of
      drink types.
+     
+### \[Completed\] Listing Sales Data of the Drinks
+
+tCheck allows users to view a list of the recorded sales data of drinks. 
+The list of drinks shown is ordered in descending order (i.e. ranked from the most to least sales).
+The command to use this feature is: `s-list`.
+
+#### Implementation
+
+The completed mechanism to list the sales data in descending order is facilitated by the `UniqueSalesRecordList`.
+This is a list of `SalesRecordEntry`, containing the `numberSold` for a type of `Drink`. It implements the following
+operations:
+
+* `UniqueSalesRecordList#sort()`  —  Sorts the `SalesRecordEntry` in the list in descending order based on its
+ `numberSold`.
+* `UniqueSalesRecordList#asUnmodifiableObservableList()`  —  Returns the list as an unmodifiable form.
+ 
+These operations are exposed in the `SalesBook` as `SalesBook#sortRecord()` and `SalesBook#getSalesRecord()` 
+respectively. They are further exposed in the `Model` interface as `Model#sortSalesBook()` and 
+`Model#updateFilteredSalesRecordList(Predicate<SalesRecordEntry>)` respectively.
+ 
+Given below is an example usage scenario and how the listing of sales data mechanism behave at each step.
+
+Step 1. The user has updated the sales data by using the updating sales data feature described in the above section. 
+The `SalesBook` now contains an unsorted `UniqueSalesRecordList` with the updated sales data.
+
+Step 2. The user executes the `s-list` command to view the list of sales data. The `s-list` command calls 
+`Model#sortSalesBook()`, which will sort the `UniqueSalesRecordList` in the `SalesBook`. Subsequently, the command
+calls `Model#updateFilteredSalesRecordList(Predicate<SalesRecordEntry>)` to show the updated and sorted
+ `UniqueSalesRecordList` in the user interface.
+ 
+The following sequence diagram shows how the sales list operation works:
+
+![SalesListSequenceDiagram](images/SalesListSequenceDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: How to order the items in the list
+* **Alternative 1 (current choice)**: Order the items in descending order
+    * Pros: It may be more valuable to the user. The user can use the sorted list to assist business operations.
+    For example, the user may wish to stock more ingredients for the drink type that has the most sales.
+    * Cons: Less easy to implement.
+
+* **Alternative 2**: Order the items in no particular order
+    * Pros: Simple to implement.
+    * Cons: It may prove useless as recording sales data will refresh the graphical user interface.
      
 ## \[Completed\] Finding sales data of some drinks
   

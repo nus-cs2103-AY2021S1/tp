@@ -34,10 +34,10 @@ create SalesUpdateCommand
 SalesUpdateCommandParser -> SalesUpdateCommand : SalesUpdateCommand(sales)
 activate SalesUpdateCommand
 
-SalesUpdateCommand -> SalesUpdateCommandParser
+SalesUpdateCommand --> SalesUpdateCommandParser
 deactivate SalesUpdateCommand
 
-SalesUpdateCommandParser -> AddressBookParser : s
+SalesUpdateCommandParser --> AddressBookParser : s
 deactivate SalesUpdateCommandParser
 
 AddressBookParser --> LogicManager : s
@@ -56,10 +56,10 @@ create CommandResult
 SalesUpdateCommand -> CommandResult : CommandResult(message)
 activate CommandResult
 
-CommandResult -> SalesUpdateCommand
+CommandResult --> SalesUpdateCommand
 deactivate CommandResult
 
-SalesUpdateCommand -> LogicManager : result
+SalesUpdateCommand --> LogicManager : result
 deactivate SalesUpdateCommand
 
 [<--LogicManager
