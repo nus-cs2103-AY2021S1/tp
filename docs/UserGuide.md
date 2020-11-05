@@ -582,9 +582,11 @@ Format: `exit`
 
 #### 4.3 Saving the data :
 
-All tCheck data (i.e. contact details, ingredient data, sales data) are saved in the hard disk automatically after any
- command that changes the data. There is no need to save manually by entering any command.
+All tCheck data (i.e. ingredient data, sales data, employees' data) will be saved in the hard disk as json
+ file automatically after each command executes. There is no need to save manually by entering any command.
  
+ **:information_source: Notes:**<br>
+ * User should not attempt to make any change in all data files.
  
 ## Command summary <a name="command-summary"></a>
 
