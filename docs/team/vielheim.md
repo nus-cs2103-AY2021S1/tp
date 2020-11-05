@@ -41,10 +41,13 @@ Given below are my contributions to the project.
     
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Adapted AB3 Introduction for PIVOT (Pull request [\#45](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/45))
+    * Updated Command Summary for PIVOT (Pull request [\#182](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/182))
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Updated Target User Profile, Value Proposition and User Stories. (Pull request [\#61](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/61))
+    * Updated Non-Functional Requirements and Glossary. (Pull request [\#64](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/64))
+    * Added Documentation for `State` and `Ui` Components. Included Class Diagrams for the Components for clarity (Pull request [\#149](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/149))
+    * Added `OpenCaseCommand` and `ReturnCommand`. Included Sequence Diagrams for the Commands for clarity (Pull request [\#149](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/149))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
