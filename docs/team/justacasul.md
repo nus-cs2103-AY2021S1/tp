@@ -44,7 +44,7 @@ Given below are my contributions to the project.
     such as the description which would normally be truncated, or the recipes that will create this item.
   * Highlights: Implementing this feature resulted in the change of `CommandResult` to allow for changing parts of the 
     GUI while the program is still running.
-  * Credits: Rahul was the one who suggested looking at how `executeCommand` handled the `help` command.
+  * Credits: Rahul(@Rahul0506) was the one who suggested looking at how `executeCommand` handled the `help` command.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=justacasul&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -55,7 +55,7 @@ Given below are my contributions to the project.
     [\#145](https://github.com/AY2021S1-CS2103T-F13-1/tp/issues/145) 
 
 * **Enhancements to existing features**:
-  * update `deli` and `delr` commands to delete the item completely. 
+  * Update `deli` and `delr` commands to delete the item completely. 
   [\#63](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/63),
   [\#66](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/66)
   * Update `addq` command to show an error messages and handle non-integers and overflows.
