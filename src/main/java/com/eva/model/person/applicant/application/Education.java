@@ -83,4 +83,20 @@ public class Education {
                 .append("\n");
         return builder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Education)) {
+            return false;
+        }
+
+        Education otherEducation = (Education) other;
+        return otherEducation.getSchoolName().equals(getSchoolName())
+                && otherEducation.getStartDate().equals(getStartDate())
+                && otherEducation.getEndDate().equals(getEndDate());
+    }
 }

@@ -1,5 +1,7 @@
 package com.eva.model.person.applicant.application;
 
+import com.eva.model.person.applicant.Applicant;
+
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -81,4 +83,21 @@ public class Application {
                 .append(educationString);
         return builder.toString();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Application)) {
+            return false;
+        }
+
+        Application otherApplication = (Application) other;
+        return otherApplication.getEducationSection().equals(getEducationSection())
+                && otherApplication.getExperienceSection().equals(getExperienceSection())
+                && otherApplication.getApplicantName().equals(getApplicantName());
+    }
+
 }

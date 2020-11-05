@@ -56,6 +56,7 @@ public class Applicant extends Person {
 
     /**
      * Creates an Applicant object from a Person Object.
+     *
      * @param person
      * @param interviewDate
      * @param status
@@ -102,17 +103,39 @@ public class Applicant extends Person {
         return applicationStatus;
     }
 
-    public void setApplication(Application application) {
-        assert application != null;
-        this.application = application;
+    public void setApplicationStatus(ApplicationStatus status) {
+        this.applicationStatus = status;
     }
 
     public Application getApplication() {
         return application;
     }
 
-    public void setApplicationStatus(ApplicationStatus status) {
-        this.applicationStatus = status;
+    public void setApplication(Application application) {
+        assert application != null;
+        this.application = application;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Applicant)) {
+            return false;
+        }
+
+        Applicant otherApplicant = (Applicant) other;
+        return otherApplicant.getName().equals(getName())
+                && otherApplicant.getPhone().equals(getPhone())
+                && otherApplicant.getEmail().equals(getEmail())
+                && otherApplicant.getAddress().equals(getAddress())
+                && otherApplicant.getTags().equals(getTags())
+                && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
+                && otherApplicant.getInterviewDate().equals(getInterviewDate())
+                && otherApplicant.getApplication().equals(getApplication());
+
     }
 
     @Override
