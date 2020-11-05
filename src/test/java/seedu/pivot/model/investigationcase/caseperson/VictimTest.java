@@ -39,21 +39,13 @@ public class VictimTest {
                 new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
         Witness witness =
                 new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
+
         assertNotEquals(victim, witness);
         assertNotEquals(victim, suspect);
 
         // same values -> returns true
         assertTrue(victim.equals(
                 new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
-
-        // same name, sex, phone, different email -> returns true
-        assertTrue(victim.equals(new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE,
-                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
-
-        // same name, sex, phone, different address -> returns true
-        assertTrue(victim.equals(
-                new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL,
-                        new Address("Blk 231231"))));
 
         // same object -> returns true
         assertTrue(victim.equals(victim));
@@ -71,5 +63,20 @@ public class VictimTest {
                 new Victim(DEFAULT_NAME, Sex.F, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
         assertFalse(victim.equals(
                 new Victim(DEFAULT_NAME, DEFAULT_SEX, new Phone("923"), DEFAULT_EMAIL, DEFAULT_ADDRESS)));
+    }
+
+    @Test
+    public void isSamePerson() {
+        Victim victim =
+                new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
+
+        // same name, sex, phone, different email -> returns true
+        assertTrue(victim.isSamePerson(new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE,
+                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
+
+        // same name, sex, phone, different address -> returns true
+        assertTrue(victim.isSamePerson(
+                new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL,
+                        new Address("Blk 231231"))));
     }
 }

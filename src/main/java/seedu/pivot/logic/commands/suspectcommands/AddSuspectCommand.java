@@ -72,7 +72,7 @@ public class AddSuspectCommand extends AddCommand implements Undoable {
         Case openCase = lastShownList.get(index.getZeroBased());
         List<Suspect> updatedSuspects = openCase.getSuspects();
 
-        if (updatedSuspects.contains(suspect)) {
+        if (updatedSuspects.stream().anyMatch(suspect::isSamePerson)) {
             logger.warning("Failed to add suspect: Tried to add a suspect that exists in PIVOT");
             throw new CommandException(MESSAGE_DUPLICATE_SUSPECT);
         }

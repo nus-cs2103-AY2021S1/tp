@@ -188,6 +188,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return pivot.equals(other.pivot)
+                && versionedPivot.equals(other.versionedPivot)
                 && userPrefs.equals(other.userPrefs)
                 && filteredCases.equals(other.filteredCases);
     }

@@ -43,36 +43,7 @@ public abstract class EditCommand extends Command {
             + "Parameters: INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " suspect 1 e:newEmail@mail.com a:new road crescent\n\n";
 
-    //public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    //public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in PIVOT.";
-
-
-
-
-    //    @Override
-    //    public CommandResult execute(Model model) throws CommandException {
-    //        requireNonNull(model);
-    //        List<Case> lastShownList = model.getFilteredCaseList();
-    //
-    //        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
-    //
-    //        if (index.getZeroBased() >= lastShownList.size()) {
-    //            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-    //        }
-    //
-    //        Case caseToEdit = lastShownList.get(index.getZeroBased());
-    //        Case editedCase = createEditedCase(caseToEdit, editCaseDescriptor);
-    //
-    //        if (!caseToEdit.isSameCase(editedCase) && model.hasCase(editedCase)) {
-    //            throw new CommandException(MESSAGE_DUPLICATE_CASE);
-    //        }
-    //
-    //        model.setCase(caseToEdit, editedCase);
-    //        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
-    //        return new CommandResult(String.format(MESSAGE_EDIT_CASE_SUCCESS, editedCase));
-    //    }
-
 
     /**
      * Creates and returns a {@code Case} with the details of {@code caseToEdit}
@@ -248,12 +219,7 @@ public abstract class EditCommand extends Command {
 
             return getTitle().equals(e.getTitle())
                     && getStatus().equals(e.getStatus())
-                    //&& getDescription().equals(e.getDescription())
                     && getStatus().equals(e.getStatus())
-                    //&& getSuspects().equals(e.getSuspects())
-                    //&& getVictims().equals(e.getVictims())
-                    //&& getWitnesses().equals(e.getWitnesses())
-                    //&& getDocuments().equals(e.getDocuments())
                     && getTags().equals(e.getTags());
         }
 

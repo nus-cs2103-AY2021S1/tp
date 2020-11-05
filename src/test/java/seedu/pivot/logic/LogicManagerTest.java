@@ -19,6 +19,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.ListCommand;
+import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.parser.exceptions.ParseException;
@@ -97,9 +98,11 @@ public class LogicManagerTest {
         StateManager.resetState();
         String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + PREFIX_WITH_TITLE_AMY;
         Case expectedCase = new CaseBuilder(AMY_BEE_DISAPPEARANCE).withTags().build();
+        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCase(expectedCase);
-        String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
+        expectedModel.commitPivot(
+                String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, expectedCase), new AddCaseCommand(expectedCase));
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 

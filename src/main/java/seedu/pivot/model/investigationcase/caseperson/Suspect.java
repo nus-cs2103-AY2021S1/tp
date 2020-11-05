@@ -15,6 +15,20 @@ public class Suspect extends CasePerson {
     }
 
     /**
+     * Returns true if both cases have the same name, sex and phone.
+     * This defines a weaker notion of equality between two suspects.
+     */
+    public boolean isSamePerson(Suspect otherSuspect) {
+        if (otherSuspect == this) {
+            return true;
+        }
+
+        return otherSuspect.getName().equals(getName())
+                && otherSuspect.getSex().equals(getSex())
+                && otherSuspect.getPhone().equals(getPhone());
+    }
+
+    /**
      * Returns true if both suspects have the same identity and data fields.
      * This defines a stronger notion of equality between two suspects.
      */
@@ -31,6 +45,8 @@ public class Suspect extends CasePerson {
         Suspect otherSuspect = (Suspect) other;
         return otherSuspect.getName().equals(getName())
                 && otherSuspect.getSex().equals(getSex())
-                && otherSuspect.getPhone().equals(getPhone());
+                && otherSuspect.getPhone().equals(getPhone())
+                && otherSuspect.getEmail().equals(getEmail())
+                && otherSuspect.getAddress().equals(getAddress());
     }
 }
