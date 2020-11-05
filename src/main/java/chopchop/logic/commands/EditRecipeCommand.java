@@ -13,7 +13,7 @@ import java.util.function.BiFunction;
 
 import chopchop.commons.util.Result;
 import chopchop.logic.edit.EditOperationType;
-import chopchop.logic.edit.IngredientEditDescriptor;
+import chopchop.logic.edit.IngredientRefEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
 import chopchop.logic.edit.StepEditDescriptor;
 import chopchop.logic.edit.TagEditDescriptor;
@@ -97,7 +97,7 @@ public class EditRecipeCommand extends Command implements Undoable {
 
 
 
-    private Result<List<IngredientReference>> performIngredientEdits(List<IngredientEditDescriptor> edits) {
+    private Result<List<IngredientReference>> performIngredientEdits(List<IngredientRefEditDescriptor> edits) {
 
         // this is a reference.
         var ingredients = new ArrayList<>(this.recipe.getIngredients());

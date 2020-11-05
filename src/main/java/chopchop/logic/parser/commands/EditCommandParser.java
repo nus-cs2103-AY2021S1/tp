@@ -9,7 +9,7 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.commons.util.Result;
 import chopchop.logic.edit.EditOperationType;
-import chopchop.logic.edit.IngredientEditDescriptor;
+import chopchop.logic.edit.IngredientRefEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
 import chopchop.logic.edit.StepEditDescriptor;
 import chopchop.logic.edit.TagEditDescriptor;
@@ -54,7 +54,7 @@ public class EditCommandParser {
                 Optional<String> editedName = Optional.empty();
                 var tagEdits = new ArrayList<Result<TagEditDescriptor>>();
                 var stepEdits = new ArrayList<Result<StepEditDescriptor>>();
-                var ingrEdits = new ArrayList<Result<IngredientEditDescriptor>>();
+                var ingrEdits = new ArrayList<Result<IngredientRefEditDescriptor>>();
 
                 for (int i = 0; i < args.getAllArguments().size(); i++) {
 
@@ -132,8 +132,8 @@ public class EditCommandParser {
 
 
 
-    private static Result<IngredientEditDescriptor> parseIngredientEdit(ArgName argName, String ingredientName,
-        Optional<Quantity> qty) {
+    private static Result<IngredientRefEditDescriptor> parseIngredientEdit(ArgName argName, String ingredientName,
+                                                                           Optional<Quantity> qty) {
 
         var components = argName.getComponents();
         if (components.isEmpty()) {
@@ -151,7 +151,7 @@ public class EditCommandParser {
         }
 
         return ensureNoArgsForDeleteAndGetOperationType("quantity", "ingredient", op, qty.isEmpty())
-            .map(kind -> new IngredientEditDescriptor(kind, ingredientName, qty));
+            .map(kind -> new IngredientRefEditDescriptor(kind, ingredientName, qty));
     }
 
 

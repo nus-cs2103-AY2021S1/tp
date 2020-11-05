@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import chopchop.model.attributes.Quantity;
 
-public class IngredientEditDescriptor extends EditDescriptor {
+public class IngredientRefEditDescriptor extends EditDescriptor {
 
     private final Optional<Quantity> ingredientQuantity;
     private final String ingredientName;
@@ -23,7 +23,7 @@ public class IngredientEditDescriptor extends EditDescriptor {
      * @param name     the name of the ingredient to edit
      * @param qty      the new quantity of the ingredient; should only be present iff type is EDIT or ADD
      */
-    public IngredientEditDescriptor(EditOperationType editType, String name, Optional<Quantity> qty) {
+    public IngredientRefEditDescriptor(EditOperationType editType, String name, Optional<Quantity> qty) {
 
         super(editType);
 
@@ -52,10 +52,10 @@ public class IngredientEditDescriptor extends EditDescriptor {
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        } else if (!(obj instanceof IngredientEditDescriptor)) {
+        } else if (!(obj instanceof IngredientRefEditDescriptor)) {
             return false;
         } else {
-            var other = (IngredientEditDescriptor) obj;
+            var other = (IngredientRefEditDescriptor) obj;
             return this.getEditType() == other.getEditType()
                 && this.ingredientQuantity.equals(other.ingredientQuantity)
                 && this.ingredientName.equalsIgnoreCase(other.ingredientName);
