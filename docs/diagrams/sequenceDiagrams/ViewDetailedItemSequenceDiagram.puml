@@ -44,7 +44,16 @@ destroy ViewDetailsCommandParser
 InventoryParser --> LogicManager
 deactivate InventoryParser
 
-'not sure whether model is required inside execute()
+LogicManager -> Model: resetItemFilters()
+activate Model
+Model --> LogicManager
+deactivate Model
+
+LogicManager -> Model: resetRecipeFilters()
+activate Model
+Model --> LogicManager
+deactivate Model
+
 LogicManager -> ViewDetailsCommand : execute()
 activate ViewDetailsCommand
 
@@ -67,6 +76,6 @@ ViewDetailsCommand --> LogicManager : commandResult
 deactivate ViewDetailsCommand
 
 destroy CommandResult
-[<--LogicManager
+[<--LogicManager : commandResult
 deactivate LogicManager
 @enduml
