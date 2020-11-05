@@ -42,15 +42,15 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String LIST_DESCRIPTION = "list lt/<list type>";
 
-    public static final String DELETE_DESCRIPTION = "delete sn/<serial number>...";
+    public static final String DELETE_DESCRIPTION = "delete sn/<serial number> [sn/<serial number>]...";
 
     public static final String FIND_DESCRIPTION = "find [n/<name>] [sn/<serial number>] [s/<source>] [l/<location>]";
 
     public static final String FINDEXACT_DESCRIPTION = "findexact [n/<name>] [sn/<serial number>]"
             + " [s/<source>] [l/<location>]";
 
-    public static final String UPDATE_DESCRIPTION = "update sn/<serial number>... [iq/<increment value> | "
-            + "nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]";
+    public static final String UPDATE_DESCRIPTION = "update sn/<serial number> [sn/<serial number>]..."
+            + "[iq/<increment value> | nq/<new quantity>] [n/<name>] [s/<source>] [l/<location>] [lq/<low quantity>]";
 
     public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note>\n"
             + "noteview sn/<serial number>\n"
@@ -60,9 +60,9 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String SORT_DESCRIPTION = "sort o/<order> by/<field>";
 
-    public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number>...";
+    public static final String BOOKMARK_DESCRIPTION = "bookmark sn/<serial number> [sn/<serial number>]...";
 
-    public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number>...";
+    public static final String UNBOOKMARK_DESCRIPTION = "unbookmark sn/<serial number> [sn/<serial number>]...";
 
     public static final String PRINT_DESCRIPTION = "print fn/<file name>";
 
