@@ -25,7 +25,7 @@ public class AssignmentResult {
      * Returns true if a given double is a valid assignment result.
      */
     public static boolean isValidAssignmentResult(double test) {
-        if (test <= 1 && test >= 0) {
+        if (test <= 100 && test >= 0) {
             return true;
         } else {
             return false;

@@ -18,9 +18,9 @@ public class Assignment {
             "Assignment result should be in the range 0.00 to 1.00";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final AssignmentName assignmentName;
-    public final AssignmentPercentage assignmentPercentage;
-    public final AssignmentResult assignmentResult;
+    private final AssignmentName assignmentName;
+    private final AssignmentPercentage assignmentPercentage;
+    private final AssignmentResult assignmentResult;
 
     /**
      * Constructs a {@code Assignment}.

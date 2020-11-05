@@ -108,7 +108,7 @@ public class CommandTestUtil {
     public static final EditModuleDescriptor DESC_CS2030;
     public static final EditModuleDescriptor DESC_CS2103T;
 
-    // ================================== GradeTracker ===================================== //
+    // ================================== GradeTrackerTest ===================================== //
     public static final String VALID_ASSIGNMENT_NAME_1 = "Quiz 1";
     public static final String VALID_ASSIGNMENT_NAME_2 = "Oral Presentation 2";
     public static final double VALID_ASSIGNMENT_PERCENTAGE_1 = 10;
