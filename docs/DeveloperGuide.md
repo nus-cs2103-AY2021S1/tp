@@ -934,43 +934,39 @@ Priorities: 1 (must have), 2 (nice to have), 3 (unlikely to have)
         
        	Use case resumes from step 6.
 
-**UC05 - Set sales level for all types of drinks**
+**UC05 - Set the sales volume for all types of drinks**
 
 **MSS**
 
 1. User chooses to set the sales volume for a type of drink.
 2. tCheck requests for the drink name.
 3. User enters the name of the drink.
-4. tCheck requests for the number of that type of drink sold on that day.
+4. tCheck requests for the number of that type of drink sold.
 5. User enters the number of that type of drink sold.
-6. tCheck will set the sales level for this drink and displays a success message.
-     Steps 1-6 are repeated until the sales of all types of drinks are updated.
+6. tCheck will set the sales for this drink to the given number and display a success message.
+   Steps 1-6 are repeated until the sales of all types of drinks have been updated.
      
-     Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 3a. tCheck is unable to find the entered name.
 
-  	    * 3a1. tCheck requests for the correct data.
-  	    
-  	    * 3a2. User enters new data.
-  	    
-        Steps 3a1-3a2 are repeated until the data entered are correct.
-        
-      	Use case resumes from step 4.
+    * 3a1. tCheck requests for the correct data.
+    * 3a2. User enters new data. 
+  	
+  	Steps 3a1-3a2 are repeated until the data entered are correct.
+    
+    Use case resumes from step 4.
       	
-* 5a. tCheck detects an invalid sales amount.
+* 5a. tCheck detects an invalid sales number.
+ 	* 5a1. tCheck requests for the correct data.
+ 	* 5a2. User enters new data.
+ 	
+ 	Steps 5a1-5a2 are repeated until the data entered are correct.
+    
+    Use case resumes from step 6.
 
- 	    * 5a1. tCheck requests for the correct data.
- 	    
- 	    * 5a2. User enters new data.
- 	    
-        Steps 5a1-5a2 are repeated until the data entered are correct.
-        
-     	Use case resumes from step 6.
-     	
-*{More to be added}*
 
 ### Non-Functional Requirements
 
