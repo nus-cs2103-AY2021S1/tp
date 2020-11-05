@@ -97,7 +97,7 @@ public class Event extends Task implements TimeSlot {
     }
     /**
      * Returns true if both events of the same title, start and end datetime.
-     * This defines a strong notion of equality between two events to allow recurring events yet preventing duplicates.
+     * This defines a weak notion of equality between two events to allow recurring events yet preventing duplicates.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
