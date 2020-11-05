@@ -255,8 +255,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * can type fast
 * wants to track productivity and workload
 
-**Value proposition**: Allows NUS students to manage their tasks and visualize 
-their workload and productivity.
+**Value proposition**: Allows NUS students to manage their tasks and visualise 
+them on a calendar as well as time spent on tasks and lessons so as to improve their productivity.
+
 
 
 ### User stories
@@ -278,7 +279,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | user                    | find completed and uncompleted deadlines   | have a quick glance of what are to be completed. |
 | `* * *`  | user                    | edit my tasks                              |                                     |
 | `* * *`  | user                    | maintain a list of lessons I currently have  | track  my lessons.                |
-| `* * *`  | user with a lot of tasks| delete my lesson after it is not relevant   | focus on only the lessons I currently take. |
+| `* * *`  | user with a lot of lessons| delete my lesson after it is not relevant   | focus on only the lessons I currently take. |
 | `* *  `  | user                    | find lesson by module code                 | easily know what lessons are associated with a particular module |
 | `* *  `  | user                    | find lesson by date                        | easily know what lessons I have on a particular date.            |
 | `* *  `  | user                    | find lesson by time                        | easily know what lessons I have on a particular time.            |
@@ -454,7 +455,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A task will be edited only if the edited task is still valid.
+* A task will be edited only if the task is still valid after being edited.
 
 **MSS**
 
@@ -574,7 +575,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees**
 
-* A lesson will be edited only if the edited lesson is still valid.
+* A lesson will be edited only if the lesson is still valid after being edited.
 
 **MSS**
 
@@ -664,7 +665,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 5. The product should be lightweight and should not exceed 20mb in size.
 
-6. Documentation should be easy to read and user-centric with proper highlighting.
+6. Documentation should be easy to read and user-centric with proper callouts and markdowns.
 
 7. The source code should be open source.
 
@@ -677,6 +678,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 or a **deadline**.
 * **lesson**: A lesson is a collection of details of a specific lesson which happens in a recurring
 manner with a specified start and end date and a start and end time.
+* **tag**: A tag is an attribute that can be associated with a task or lesson to represent a module code. PlaNus' time analysis
+feature is based on the tags of the tasks and lessons.
+* **description**: A description is one or two sentences used to explain or add remarks to a task or lesson. It can be optional.
 
 --------------------------------------------------------------------------------------------------------------------
 
