@@ -76,8 +76,4 @@ deactivate AddCommand
 AddCommand -[hidden]-> LogicManager
 destroy AddCommand
 
-
-
-
-
 @enduml
