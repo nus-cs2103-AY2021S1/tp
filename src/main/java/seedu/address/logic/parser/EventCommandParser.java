@@ -19,6 +19,7 @@ import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
 
+/**
  * Parses input arguments and creates a new AddCommand object
  */
 public class EventCommandParser implements Parser<EventCommand> {

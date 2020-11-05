@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LAB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_TIME_EXPERIMENT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_TIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATETIME_EXPERIMENT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EXPERIMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_EXPERIMENT;
@@ -60,7 +60,7 @@ public class TypicalTasks {
             .withTitle(VALID_TITLE_LAB).withDeadlineDateTime(VALID_DATETIME_LAB)
             .withDescription(VALID_DESC_LAB).withTag(VALID_TAG_LAB).build();
     public static final Event EVENT_TEST = new EventBuilder().withTitle(VALID_TITLE_EXPERIMENT)
-            .withStartDateTime(VALID_START_DATE_TIME_EXPERIMENT).withEndDateTime(VALID_END_DATE_TIME_EXPERIMENT)
+            .withStartDateTime(VALID_START_DATETIME_EXPERIMENT).withEndDateTime(VALID_END_DATETIME_EXPERIMENT)
             .withDescription(VALID_DESC_EXPERIMENT).withTag(VALID_TAG_EXPERIMENT).build();
 
     private TypicalTasks() {} // prevents instantiation
