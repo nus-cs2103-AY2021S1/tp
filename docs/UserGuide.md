@@ -290,29 +290,67 @@ Finds employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc
 
 Format: `c-today`
 
+**:information_source: Note:**<br>
+* In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
+. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
+tag(s) by using editing employee's information feature (Refer to `c-edit` command).
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The application will automatically get today's day based on the current computer's date.
 * Only full words will be marched. e.g `Fri` will not match `Friday`
 
 Examples:
-* Let's say today is `Wednesday`. You want to find out who are the available manpower for today. You can follow these
- instructions.
+* Let's say today is `Thursday`. You want to find out who are the available manpower for today. You can follow these
+ steps.
 
-Finding today's available manpower:
+Steps to find today's available manpower:
 1. Type `c-today` into the _Command Box_.
-2. Press `Enter` to execute
+2. Press `Enter` to execute.
 
-#### 3.4 Listing all employees who are working tomorrow: `c-tomorrow`
+Outcome:
+1. The _Result Display_ will show 3 information:
+    
+    a. Today's day. (eg. Today is THURSDAY.)
+    
+    b. Total number of employees who are available today.
+    
+    c. The success message.
+2. The available manpower for today will be listed in the _Employee Directory_ pane.
 
-Shows a list of all active(unarchived) employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
+{Screenshot}
+
+#### 3.4 Locating all employees who are available to work tomorrow: `c-tomorrow`
+
+Finds employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
 
 Format: `c-tomorrow`
 
+**:information_source: Note:**<br>
+* In tCheck, if an employee contains a tag for a specific day, it means this employee is available on that day
+. You may set an employee's tags when adding the employee into tCheck (Refer to `c-add` command), or edit the
+tag(s) by using editing employee's information feature (Refer to `c-edit` command).
 * The search is case-insensitive. e.g `Friday` will match `friday`.
+* The application will automatically get tomorrow's day based on the current computer's date.
+* Only full words will be marched. e.g `Fri` will not match `Friday`
 
 Examples:
-* Assume today were `Wednesday`, tomorrow would be `Thursday`, after command `c-tomorrow`, all employees whose
-tags contain `Thursday` will be listed out. 
+* Let's say tomorrow is `Friday`. You want to find out who are the available manpower for tomorrow. You can follow these
+ steps.
+
+Steps to find tomorrow's available manpower:
+1. Type `c-tomorrow` into the _Command Box_.
+2. Press `Enter` to execute.
+
+Outcome:
+1. The _Result Display_ will show 3 information:
+    
+    a. Tomorrow's day. (eg. Today is FRIDAY.)
+    
+    b. Total number of employees who are available tomorrow.
+    
+    c. The success message.
+2. The available manpower for tomorrow will be listed in the _Employee Directory_ pane.
+
+{Screenshot}
   
 #### 3.5 Editing a person : `c-edit`
 
@@ -351,22 +389,35 @@ Examples:
 * `c-find John` returns `john` and `John Doe`.
 * `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
-#### 3.7 Locating persons based on matching tags: `c-tag-find`
+#### 3.7 Locating employees based on matching tags: `c-tag-find`
 
-Finds all active(unarchived) contacts that contain the KEYWORD(s) in their tags.
+Finds all employees whose tags contain the one or more `KEYWORD(s)`.
 
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
 
+**:information_source: Note:**<br>
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
 * Only the tag names are searched.
-* Only full words will be matched e.g. `PartTime` will not match `PartTimes`.
-* Employees whose tag(s) matching at least one keyword will be listed in the `Employee Contact DeatailL` pane
- (i.e. `OR` search).  e.g. `Friday Monday` will return employees whose tags contain `Friday` or `Monday`.
+* Only full words will be matched. e.g. `Fri` will not match `Friday`.
+* Employees whose tag(s) matching at least one keyword will be listed in the _Employee Directory_ pane
+ (i.e. `OR` search).  e.g. `Friday Monday` will find employees whose tags contain `Friday` or `Monday`.
+
 
 Examples:
-* `c-tag-find friday` returns all employees whose tags contain `friday`.
-* `c-tag-find friday parttime` returns all employees whose tags contain `friday`, `parttime`.<br>
+* Let's say you want to find out who are the available to work on `Monday` or `Friday`. In this case, the two key
+ words are `Monday` and `Friday`. You can follow these steps.
+
+Steps to find employees who are available to work on `Monday` or `Friday`:
+1. Type `c-tag-find monday friday` into the _Command Box_.
+2. Press `Enter` to execute.
+
+Outcome:
+1. The _Result Display_ will show the total number of employees who are can work on `Friday` or `Monday`.
+
+2. Employees who are can work on `Friday` or `Monday` will be listed in the _Employee Directory_ pane.
+
+{Screenshot}
 
 #### 3.8 Deleting a person : `c-delete`
 
