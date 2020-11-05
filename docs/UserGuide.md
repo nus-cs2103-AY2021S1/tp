@@ -141,7 +141,7 @@ Note that this autocompletion can only be triggered at the end of input string e
 
 Adds a contact to Modduke.
 
-# Format: `contact add n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
+Format: `contact add n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Note(s):
 * All fields are required except those in square brackets. No duplicate names.
@@ -170,7 +170,7 @@ Example(s):
 
 Edits an existing contact in Modduke.
 
-Format: `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL] [m/MODULE]`
+Format: `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]`
 
 Note: At least one optional field must be provided
 
