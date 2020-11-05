@@ -195,7 +195,7 @@ list-b
 Expected Output:
 
 ```
-Listed all bidders.
+Listed all bidder(s).
 ```
 
 ## Edit **of Bidder**
@@ -313,7 +313,7 @@ list-s
 Expected Output:
 
 ```
-Listed all sellers.
+Listed all seller(s).
 ```
 
 ## Edit **of Seller**
