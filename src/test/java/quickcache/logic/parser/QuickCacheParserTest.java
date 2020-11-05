@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.Messages;
+import quickcache.logic.commands.AddMultipleChoiceQuestionCommand;
 import quickcache.logic.commands.AddOpenEndedQuestionCommand;
 import quickcache.logic.commands.ClearCommand;
 import quickcache.logic.commands.DeleteCommand;
@@ -50,6 +51,18 @@ public class QuickCacheParserTest {
         AddOpenEndedQuestionCommand command = (AddOpenEndedQuestionCommand)
             parser.parseCommand(FlashcardUtil.getAddCommand(flashcard));
         assertEquals(new AddOpenEndedQuestionCommand(flashcard), command);
+    }
+
+    @Test
+    public void parseCommand_addMcq() throws Exception {
+        String[] choices = {"first", "second", "third", "fourth"};
+        Flashcard flashcard = new FlashcardBuilder().withMultipleChoiceQuestion("MCQ", choices)
+                .withAnswer("2").build();
+        Flashcard finalFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("MCQ", choices)
+                .withAnswer("second").build();
+        AddMultipleChoiceQuestionCommand command = (AddMultipleChoiceQuestionCommand)
+                parser.parseCommand(FlashcardUtil.getAddMcqCommand(flashcard));
+        assertEquals(new AddMultipleChoiceQuestionCommand(finalFlashcard), command);
     }
 
     @Test
