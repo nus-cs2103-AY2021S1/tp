@@ -10,7 +10,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
-import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.model.module.grade.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -101,6 +101,16 @@ public class ModuleBuilder {
     public ModuleBuilder withTag(String tag) {
         Set<Tag> updatedTag = new HashSet<Tag>(this.tags);
         updatedTag.add(new Tag(tag));
+        return this;
+    }
+
+    /**
+     * Adds the {@code Assignment} to the {@code Module} that we are building.
+     */
+    public ModuleBuilder withAssignment(String assignmentName, double assignmentPercentage, double assignmentResult) {
+        Assignment assignment = new AssignmentBuilder().withAssignmentName(assignmentName)
+                .withAssignmentPercentage(assignmentPercentage).withAssignmentResult(assignmentResult).build();
+        this.gradeTracker.addAssignment(assignment);
         return this;
     }
 
