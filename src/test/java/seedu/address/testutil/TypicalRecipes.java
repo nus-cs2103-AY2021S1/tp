@@ -168,7 +168,7 @@ public class TypicalRecipes {
                             + "Place the burgers on the bottom half, then top with tomato slices and basil leaves."
                             + " Lay avocado slices on the top half, using the spread to make them stay put. "
                             + "Sprinkle a little salt and pepper on the avocados, "
-                                    + "then place the top half on the bottom half, smush it together...and dig in!")
+                                    + "then place the top half on the bottom half, smush it together and dig in!")
             .withRecipeImage("images/burger1.jpg")
             .withTags("healthy")
             .build();

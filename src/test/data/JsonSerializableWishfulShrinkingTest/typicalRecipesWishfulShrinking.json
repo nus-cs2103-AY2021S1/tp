@@ -3,13 +3,13 @@
   "recipes" : [ {
     "name": "Sandwich",
     "instruction" : [ {
-    "instructions" : "1) Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon"
+    "instructions" : "Make egg salad by chopping the hard boiled eggs and mixing in a bowl with mayonnaise, Dijon"
   }, {
-    "instructions" : "2) Halve the rolls and spread one half with Dijon, the other half with mayonnaise"
+    "instructions" : "Halve the rolls and spread one half with Dijon, the other half with mayonnaise"
   }, {
-      "instructions" : "3) Sprinkle the mayonnaise-spread half with salt and pepper"
+      "instructions" : "Sprinkle the mayonnaise-spread half with salt and pepper"
     }, {
-      "instructions" : "4) Lay cheese and ham on the mustard half; lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half"
+      "instructions" : "Lay cheese and ham on the mustard half; lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half"
     } ],
     "recipeImage" : {
       "imagePath" : "images/sandwich.jpeg"
@@ -23,27 +23,27 @@
   }, {
     "name": "Pasta",
     "instruction" : [ {
-      "instructions" : "1) Cook pasta until al dente"
+      "instructions" : "Cook pasta until al dente"
     }, {
-      "instructions" : "2) Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food processor or blender"
+      "instructions" : "Add basil leaves, 1/2 cup Parmesan, pine nuts, and salt and pepper to food processor or blender"
     }, {
-      "instructions" : "3) Turn machine on, then drizzle in olive oil while it mixes"
+      "instructions" : "Turn machine on, then drizzle in olive oil while it mixes"
     }, {
-      "instructions" : "4) Continue blending until combined, adding additional olive oil if needed"
+      "instructions" : "Continue blending until combined, adding additional olive oil if needed"
     }, {
-      "instructions" : "5) Set aside"
+      "instructions" : "Set aside"
     }, {
-      "instructions" : "6) Heat cream and butter in a small saucepan over medium-low heat"
+      "instructions" : "Heat cream and butter in a small saucepan over medium-low heat"
     }, {
-      "instructions" : "7) Add pesto and stir"
+      "instructions" : "Add pesto and stir"
     }, {
-      "instructions" : "8) Drain pasta and place in a serving bowl"
+      "instructions" : "Drain pasta and place in a serving bowl"
     }, {
-      "instructions" : "9) Pour pesto cream over the top"
+      "instructions" : "Pour pesto cream over the top"
     }, {
-      "instructions" : "10) Toss to combine, add diced tomatoes and toss quickly"
+      "instructions" : "Toss to combine, add diced tomatoes and toss quickly"
     }, {
-      "instructions" : "11) Serve immediately"
+      "instructions" : "Serve immediately"
     }  ],
     "recipeImage" : {
       "imagePath" : "images/pesto1.jpg"
@@ -57,17 +57,17 @@
   }, {
     "name": "Roasted Pork",
     "instruction" : [ {
-      "instructions" : "1) Preheat oven to 350 degrees"
+      "instructions" : "Preheat oven to 350 degrees"
     }, {
-      "instructions" : "2) In a small bowl, combine garlic, basil, oregano, thyme, parsley, and sage"
+      "instructions" : "In a small bowl, combine garlic, basil, oregano, thyme, parsley, and sage"
     }, {
-      "instructions" : "3) Generously season meat with salt and pepper"
+      "instructions" : "Generously season meat with salt and pepper"
     }, {
-      "instructions" : "4) Add to pan, and cook on all sides until dark golden brown"
+      "instructions" : "Add to pan, and cook on all sides until dark golden brown"
     }, {
-      "instructions" : "5) Wrap in foil, bake until meat is 150 degrees internally at the widest, thickest part of the tenderloin (about 25 minutes)"
+      "instructions" : "Wrap in foil, bake until meat is 150 degrees internally at the widest, thickest part of the tenderloin (about 25 minutes)"
     }, {
-      "instructions" : "6) When pork has come to temperature, remove and let rest, tented with foil, for at least five minutes to lock in juices"
+      "instructions" : "When pork has come to temperature, remove and let rest, tented with foil, for at least five minutes to lock in juices"
     }],
     "recipeImage" : {
       "imagePath" : "images/pork.jpeg"
@@ -81,31 +81,31 @@
   } , {
     "name": "Florentine Pasta",
     "instruction" : [ {
-      "instructions" : "1) Cook pasta according to package directions in lightly salted water"
+      "instructions" : "Cook pasta according to package directions in lightly salted water"
     }, {
-      "instructions" : "2) Cut chicken breasts into chunks and sprinkle on salt and pepper"
+      "instructions" : "Cut chicken breasts into chunks and sprinkle on salt and pepper"
     }, {
-      "instructions" : "3) Heat butter and olive oil over high heat in a large skillet"
+      "instructions" : "Heat butter and olive oil over high heat in a large skillet"
     }, {
-      "instructions" : "4) Add chicken chunks in a single layer and do not stir for a minute or two in order to allow the chicken to brown on the first side"
+      "instructions" : "Add chicken chunks in a single layer and do not stir for a minute or two in order to allow the chicken to brown on the first side"
     }, {
-      "instructions" : "5) Turn the chicken and brown on the other side"
+      "instructions" : "Turn the chicken and brown on the other side"
     }, {
-      "instructions" : "6) Cook until done, then remove chicken from the skillet"
+      "instructions" : "Cook until done, then remove chicken from the skillet"
     }, {
-      "instructions" : "7) Add garlic and quickly stir to avoid burning"
+      "instructions" : "Add garlic and quickly stir to avoid burning"
     }, {
-      "instructions" : "8) After about 30 seconds, pour in wine and broth, stirring to deglaze the pan"
+      "instructions" : "After about 30 seconds, pour in wine and broth, stirring to deglaze the pan"
     }, {
-      "instructions" : "9) Allow the liquid to bubble up, then continue cooking until it's reduced by at least half (most of the surface of the liquid should be bubbling at this point)"
+      "instructions" : "Allow the liquid to bubble up, then continue cooking until it's reduced by at least half (most of the surface of the liquid should be bubbling at this point)"
     }, {
-      "instructions" : "10) Turn off the heat"
+      "instructions" : "Turn off the heat"
     }, {
-      "instructions" : "11) Add spinach, tomatoes, chicken, and cooked pasta to the skillet"
+      "instructions" : "Add spinach, tomatoes, chicken, and cooked pasta to the skillet"
     }, {
-      "instructions" : "12) Toss to combine; the spinach will wilt as you toss everything"
+      "instructions" : "Toss to combine; the spinach will wilt as you toss everything"
     }, {
-      "instructions" : "13) Add plenty of Parmesan shavings and toss to combine"
+      "instructions" : "Add plenty of Parmesan shavings and toss to combine"
     } ],
     "recipeImage" : {
       "imagePath" : "images/florentine1.jpeg"
@@ -119,11 +119,11 @@
   }, {
     "name": "Enchiladas",
     "instruction" : [ {
-      "instructions" : "1) In a small skillet, saute onions with the butter over medium-low heat until the onions are nice and golden brown"
+      "instructions" : "In a small skillet, saute onions with the butter over medium-low heat until the onions are nice and golden brown"
     }, {
-      "instructions" : "2) In a small saucepan, combine green enchilada sauce with green chilies and heat until very warm"
+      "instructions" : "In a small saucepan, combine green enchilada sauce with green chilies and heat until very warm"
     }, {
-      "instructions" : "3) In the oven (on a baking sheet) or microwave, melt cheese all over the top of each tortilla so that it covers most of the surface area"
+      "instructions" : "In the oven (on a baking sheet) or microwave, melt cheese all over the top of each tortilla so that it covers most of the surface area"
     } ],
     "recipeImage" : {
       "imagePath" : "images/enchilada1.jpeg"
@@ -137,23 +137,23 @@
   }, {
     "name": "Easter Eggs",
     "instruction" : [ {
-      "instructions" : "1) In a large saucepan, melt butter over low heat"
+      "instructions" : "In a large saucepan, melt butter over low heat"
     }, {
-      "instructions" : "2) Add marshmallows and stir until melted"
+      "instructions" : "Add marshmallows and stir until melted"
     }, {
-      "instructions" : "3) Remove from heat, then add rice cereal and stir until well coated"
+      "instructions" : "Remove from heat, then add rice cereal and stir until well coated"
     }, {
-      "instructions" : "4) Lightly spray interior of the plastic eggs with non-stick cooking spray"
+      "instructions" : "Lightly spray interior of the plastic eggs with non-stick cooking spray"
     }, {
-      "instructions" : "5) If mixture is too sticky, you can also spray your hands"
+      "instructions" : "If mixture is too sticky, you can also spray your hands"
     }, {
-      "instructions" : "6) Fill both sides of the plastic egg with rice cereal mixture, slightly over-filling one side"
+      "instructions" : "Fill both sides of the plastic egg with rice cereal mixture, slightly over-filling one side"
     }, {
-      "instructions" : "7) Press chocolate egg in the center on one side of the egg, then close the plastic egg to shape it"
+      "instructions" : "Press chocolate egg in the center on one side of the egg, then close the plastic egg to shape it"
     }, {
-      "instructions" : "8) (It should be full enough to meet with a little resistance as you close it"
+      "instructions" : "(It should be full enough to meet with a little resistance as you close it"
     }, {
-      "instructions" : "9) ) Gently release the rice cereal egg from the mold, decorate with your choice of sprinkles and set aside in egg crate until set"
+      "instructions" : ") Gently release the rice cereal egg from the mold, decorate with your choice of sprinkles and set aside in egg crate until set"
     } ],
     "recipeImage" : {
       "imagePath" : "images/easter.jpeg"
@@ -167,19 +167,19 @@
   }, {
     "name": "Patty Melts",
     "instruction" : [ {
-      "instructions" : "1) In a medium skillet, melt 2 tablespoons of butter over medium-low heat"
+      "instructions" : "In a medium skillet, melt 2 tablespoons of butter over medium-low heat"
     }, {
-      "instructions" : "2) Throw in the sliced onions and cook slowly for 20 to 25 minutes, stirring occasionally, until the onions are golden brown and soft"
+      "instructions" : "Throw in the sliced onions and cook slowly for 20 to 25 minutes, stirring occasionally, until the onions are golden brown and soft"
     }, {
-      "instructions" : "3) In a medium bowl, mix together the ground beef, salt & pepper, and Worcestershire"
+      "instructions" : "In a medium bowl, mix together the ground beef, salt & pepper, and Worcestershire"
     }, {
-      "instructions" : "4) Form into 4 patties"
+      "instructions" : "Form into 4 patties"
     }, {
-      "instructions" : "5) Melt 2 tablespoons butter in a separate skillet over medium heat"
+      "instructions" : "Melt 2 tablespoons butter in a separate skillet over medium heat"
     }, {
-      "instructions" : "6) Cook the patties on both sides until totally done in the middle"
+      "instructions" : "Cook the patties on both sides until totally done in the middle"
     }, {
-      "instructions" : "7) Assemble patty melts"
+      "instructions" : "Assemble patty melts"
     } ],
     "recipeImage" : {
       "imagePath" : "images/party.jpeg"

@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -68,42 +67,34 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
             editRecipeDescriptor.setIngredient(ingredients);
         }
+        if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
+            Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
+            editRecipeDescriptor.setCalories(calories);
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+            editRecipeDescriptor.setTags(tagList);
+        }
         if (argMultimap.getValue(PREFIX_INSTRUCTION).isPresent()) {
             String instructionString = argMultimap.getValue(PREFIX_INSTRUCTION).get();
             ArrayList<Instruction> instructions = InstructionParser.parse(instructionString);
             editRecipeDescriptor.setInstruction(instructions);
-
             if (instructions.size() == 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         EditRecipeCommand.MESSAGE_EMPTY_INSTRUCTIONS));
             }
         }
-        if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
-            Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-            editRecipeDescriptor.setCalories(calories);
-        }
-        /*
         if (argMultimap.getValue(PREFIX_RECIPE_IMAGE).isPresent()) {
-            String recipeImageString = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+            String img = "";
+            try {
+                img = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+            } catch (NoSuchElementException e) {
+                img = "images/default.jpg";
+            }
             ImageParser imageParser = new ImageParser();
-            RecipeImage recipeImage = imageParser.parse(recipeImageString);
+            RecipeImage recipeImage = imageParser.parse(img);
             editRecipeDescriptor.setRecipeImage(recipeImage);
-        }*/
-
-        String img = "";
-        try {
-            img = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
-        } catch (NoSuchElementException e) {
-            img = "images/default.jpg";
         }
-        ImageParser imageParser = new ImageParser();
-        RecipeImage recipeImage = imageParser.parse(img);
-        editRecipeDescriptor.setRecipeImage(recipeImage);
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            editRecipeDescriptor.setTags(tagList);
-        }
-
         if (!editRecipeDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditRecipeCommand.MESSAGE_NOT_EDITED);
         }
