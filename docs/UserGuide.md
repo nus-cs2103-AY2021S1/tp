@@ -422,11 +422,18 @@ In the second case, only ingredients that expire within the next week will be ta
 :bulb: **Tip:** For convenience, you can use either `list recommendations` or `list recommendation`.
 </div>
 
-In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week, so it recommends the Pancake recipe, which uses milk. The rest of the recipes displayed all use ingredients that you have in stock:
+In this example, ChopChop knows about some <i>Milk</i> that is about to expire within the next week:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/list_recommendations.png" width="75%" /> <br />
-Figure 3: <i>The recommendations view</i>
+<img src="images/ug/list_recommendations_1.png" width="40%" /> <br />
+Figure 3.1: <i>There's some milk expiring on the 9th of November</i>
+</div>
+
+So it highlights the Pancake recipe, which uses milk, while the rest of the recipes displayed all use ingredients that you have in stock:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/list_recommendations_2.png" width="75%" /> <br />
+Figure 3.2: <i>The recommendations view</i>
 </div>
 
 
@@ -539,7 +546,7 @@ After pressing <kbd>enter</kbd>, you will see this view, showing your newly crea
 Figure 5.2: <i>The recipe detail view</i>
 </div>
 
-If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list:
+If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list (ChopChop won't actually highlight it, but we do here for clarity):
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
@@ -662,48 +669,54 @@ Figure 6.2: <i>The command to add a new ingredient to the recipe</i>
 Next, adding the eggs and milk in one go:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
+<img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
 Figure 6.3: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity using `/ingredient:edit`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
+<img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
 Figure 6.4: <i>Editing an ingredient to change its quantity</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
+<img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
 Figure 6.5: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps with `/step:add`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 6.6: <i>Adding the first step</i>
+<img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
+Figure 6.6: <i>Multiple steps can be added at the same time</i>
 </div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
+Figure 6.7: <i>The finished recipe</i>
+</div>
+
+Wait, we forgot to mix the ingredients together! Let's fix it by inserting a new step 2 with `/step:add:2`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 6.7: <i>Adding steps 2 and 3</i>
+Figure 6.8: <i>Adding a new step in the second position</i>
 </div>
 
-Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it with `/step:edit:2`:
+Oh no, we also forgot the most important thing — syrup! So let's modify the last step (4) to include syrup with `/step:edit:4`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 6.8: <i>Editing the second step</i>
-</div>
-
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_11.png" width="75%" /> <br />
-Figure 6.9: <i>The actual completed recipe</i>
+<img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
+Figure 6.9: <i>Editing the last step</i>
 </div>
 
 And now the pancake recipe is complete!
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
+Figure 6.10: <i>The finished recipe</i>
+</div>
 
 
 
@@ -748,7 +761,7 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 8.1: <i>The starting state of the application</i>
+Figure 8.1: <i>The initial list of recipes</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
