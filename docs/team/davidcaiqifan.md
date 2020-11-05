@@ -40,7 +40,7 @@ Given below are my contributions to the project.
   * Justification: This feature improves the product significantly and fits the purpose of the application very well because the application is academic focused. The user likely want to be able to plan his/her future academic score.
   * Highlights: This enhancement required careful design considerations because it made use of multiple properties across modules. It also required certain mathematical formulas to be crafted in which made it more challenging than usual to implement.
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=davidcaiqifan)
 * **Project management**:
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
   * Approved pull requests
