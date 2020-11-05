@@ -490,7 +490,20 @@
 .timeline-box {
     -fx-background-color: #272C3F;
     -fx-background-radius: 20;
+	-fx-border-color: white;
     -fx-border-radius: 20;
+}
+
+.timeline_datetime_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: white;
+}
+
+.timeline_meetingname_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
 }
 
 .line {

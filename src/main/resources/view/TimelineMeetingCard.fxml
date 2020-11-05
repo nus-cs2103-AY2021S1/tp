@@ -18,13 +18,13 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <Label fx:id="time" styleClass="cell_small_label" text="time" textFill="WHITE">
+      <Label fx:id="time" styleClass="timeline_datetime_label" text="time" textFill="WHITE">
             <graphic>
-            <Label fx:id="date" styleClass="cell_small_label" text="date" textFill="WHITE" />
+            <Label fx:id="date" styleClass="timeline_datetime_label" text="date" textFill="WHITE" />
             </graphic>
          </Label>
-         <Label fx:id="module" styleClass="cell_big_label" text="\$module" textFill="WHITE" />
-     <Label fx:id="name" styleClass="cell_big_label" text="\$name" textFill="WHITE" />
+         <Label fx:id="module" styleClass="timeline_meetingname_label" text="\$module" textFill="WHITE" />
+     <Label fx:id="name" styleClass="timeline_meetingname_label" text="\$name" textFill="WHITE" />
       <FlowPane fx:id="participants" styleClass="participants" />
     </VBox>
       <rowConstraints>
