@@ -11,6 +11,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_DURATION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import org.junit.jupiter.api.Test;
@@ -89,8 +91,8 @@ public class DoneCommandTest {
 
     @Test
     public void execute_incorrectStatusTask_throwsCommandException() {
-        Index[] indexes = {INDEX_SECOND_TASK};
-        int[] durations = {INDEX_SECOND_DURATION};
+        Index[] indexes = {INDEX_FOURTH_TASK};
+        int[] durations = {INDEX_FOURTH_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 
