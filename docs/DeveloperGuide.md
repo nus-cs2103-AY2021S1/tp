@@ -86,13 +86,6 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deleteF 1")` API call.
-
-![Interactions Inside the Logic Component for the `deleteF 1` Command](images/appendix/ingredient/DeleteIngredientSequence.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteIngredientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)

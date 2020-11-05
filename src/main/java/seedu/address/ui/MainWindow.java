@@ -16,12 +16,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -41,6 +43,7 @@ import seedu.address.model.recipe.Recipe;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static String themeColor = "linear-gradient(to top, #16a085 0%, #004f08 100%);";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -63,9 +66,6 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
-    private MenuItem helpMenuItem;
-
-    @FXML
     private StackPane listPanelPlaceholder;
 
     @FXML
@@ -73,11 +73,26 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
     @FXML
     private VBox leftPanel;
 
+    @FXML
+    private HBox nav;
+
+    @FXML
+    private Label recipeOption;
+
+    @FXML
+    private Label fridgeOption;
+
+    @FXML
+    private Label consumptionOption;
+
+
     private JFXDrawersStack drawersStack;
     private JFXDrawer leftDrawer;
+    private ScrollPane leftDrawerPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -91,17 +106,11 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
-        setAccelerators();
-
         helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
-    }
-
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
     }
 
     /**
@@ -160,16 +169,34 @@ public class MainWindow extends UiPart<Stage> {
     void fillRecipePanel() {
         recipeListPanel = new RecipeListPanel(logic.getFilteredRecipeList());
         listPanelPlaceholder.getChildren().add(recipeListPanel.getRoot());
+        nav.getChildren().get(0).setStyle("-fx-background-color: " + themeColor);
+        recipeOption.setStyle("-fx-text-fill: white;");
+        fridgeOption.setStyle("");
+        consumptionOption.setStyle("");
+        nav.getChildren().get(1).setStyle("");
+        nav.getChildren().get(2).setStyle("");
     }
 
     void fillIngredientPanel() {
         ingredientListPanel = new IngredientListPanel(logic.getFilteredIngredientList());
         listPanelPlaceholder.getChildren().add(ingredientListPanel.getRoot());
+        nav.getChildren().get(1).setStyle("-fx-background-color: " + themeColor);
+        fridgeOption.setStyle("-fx-text-fill: white;");
+        recipeOption.setStyle("");
+        consumptionOption.setStyle("");
+        nav.getChildren().get(0).setStyle("");
+        nav.getChildren().get(2).setStyle("");
     }
 
     void fillConsumptionPanel() {
         consumptionListPanel = new ConsumptionListPanel(logic.getFilteredConsumptionList());
         listPanelPlaceholder.getChildren().add(consumptionListPanel.getRoot());
+        nav.getChildren().get(2).setStyle("-fx-background-color: " + themeColor);
+        consumptionOption.setStyle("-fx-text-fill: white;");
+        fridgeOption.setStyle("");
+        recipeOption.setStyle("");
+        nav.getChildren().get(0).setStyle("");
+        nav.getChildren().get(1).setStyle("");
     }
 
     /**
@@ -202,10 +229,19 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.setHeight(600);
         primaryStage.setX(500);
         primaryStage.setY(100);
-        leftPanel.setPrefWidth(500);
+        leftPanel.setPrefWidth(400);
+        nav.setPrefWidth(120);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            leftPanel.setPrefWidth(primaryStage.getWidth() / 2);
+            final double leftPanelSize = primaryStage.getWidth() / 2.5;
+            final double leftDrawerPaneSize = primaryStage.getWidth() / 2.6;
+            leftPanel.setPrefWidth(leftPanelSize);
+            leftDrawer.setMinWidth(leftDrawerPaneSize);
+            leftDrawer.setMaxWidth(leftDrawerPaneSize);
+            if (leftDrawerPane != null) {
+                leftDrawerPane.setMinWidth(leftDrawerPaneSize);
+                leftDrawerPane.setMaxWidth(leftDrawerPaneSize);
+            }
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 
@@ -229,12 +265,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void showDrawer(Recipe selected) {
-        double drawerSize = primaryStage.getWidth() / 2.08;
+        double drawerSize = primaryStage.getWidth() / 2.6;
         leftDrawer.setDefaultDrawerSize(drawerSize);
         //keep drawer width updated
         leftDrawer.setMaxWidth(drawerSize);
         leftDrawer.setMinWidth(drawerSize);
-        ScrollPane leftDrawerPane = new ScrollPane();
+        leftDrawerPane = new ScrollPane();
         leftDrawerPane.setFitToWidth(true);
         leftDrawerPane.setContent(new SingleRecipeCard(selected).getRoot());
         final KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e ->
@@ -267,9 +303,6 @@ public class MainWindow extends UiPart<Stage> {
             ParseException, IOException, URISyntaxException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             //handle showing single recipe
             Recipe selected = commandResult.getRecipe();
             if (selected != null) {
@@ -277,7 +310,16 @@ public class MainWindow extends UiPart<Stage> {
             }
             //handle closing drawer
             if (commandResult.isClose()) {
+                if (leftDrawer.isClosed()) {
+                    commandResult = new CommandResult("Drawer is already closed!");
+                    logger.info("Result: " + commandResult.getFeedbackToUser());
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    return commandResult;
+                }
                 hideDrawer();
+            } else if (leftDrawer.isOpened()) {
+                CommandException commandException = new CommandException("Close drawer first!");
+                throw commandException;
             }
 
             if (commandResult.isShowHelp()) {
@@ -302,7 +344,8 @@ public class MainWindow extends UiPart<Stage> {
                 listPanelPlaceholder.getChildren().clear();
                 fillConsumptionPanel();
             }
-
+            logger.info("Result: " + commandResult.getFeedbackToUser());
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

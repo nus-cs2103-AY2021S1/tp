@@ -20,47 +20,31 @@ import seedu.address.model.recipe.Recipe;
 
 /**
  * Contains integration tests (interaction with the Model and Logic) and unit tests for
- * {@code DeleteRecipeCommand}.
+ * {@code SelectRecipeCommand}.
  */
-public class DeleteRecipeCommandTest {
+public class SelectRecipeCommandTest {
 
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Recipe recipeToDelete = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(INDEX_FIRST_RECIPE);
+        Recipe recipeToSelect = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
+        SelectRecipeCommand selectRecipeCommand = new SelectRecipeCommand(INDEX_FIRST_RECIPE);
 
-        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete);
+        String expectedMessage = String.format(SelectRecipeCommand.MESSAGE_SELECT_RECIPE_SUCCESS,
+                selectRecipeCommand.separateRecipeString(recipeToSelect));
 
         ModelManager expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
-        expectedModel.deleteRecipe(recipeToDelete);
 
-        assertCommandSuccess(deleteRecipeCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(selectRecipeCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
-        DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(outOfBoundIndex);
+        SelectRecipeCommand selectRecipeCommand = new SelectRecipeCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
-
-        Recipe recipeToDelete = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(INDEX_FIRST_RECIPE);
-
-        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete);
-
-        Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
-        expectedModel.deleteRecipe(recipeToDelete);
-        showNoRecipe(expectedModel);
-
-        assertCommandSuccess(deleteRecipeCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(selectRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -71,31 +55,31 @@ public class DeleteRecipeCommandTest {
         // ensures that outOfBoundIndex is still in bounds of recipe collection list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getWishfulShrinking().getRecipeList().size());
 
-        DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(outOfBoundIndex);
+        SelectRecipeCommand selectRecipeCommand = new SelectRecipeCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+        assertCommandFailure(selectRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteRecipeCommand deleteFirstCommand = new DeleteRecipeCommand(INDEX_FIRST_RECIPE);
-        DeleteRecipeCommand deleteSecondCommand = new DeleteRecipeCommand(INDEX_SECOND_RECIPE);
+        SelectRecipeCommand selectFirstCommand = new SelectRecipeCommand(INDEX_FIRST_RECIPE);
+        SelectRecipeCommand selectSecondCommand = new SelectRecipeCommand(INDEX_SECOND_RECIPE);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(selectFirstCommand.equals(selectFirstCommand));
 
         // same values -> returns true
-        DeleteRecipeCommand deleteFirstCommandCopy = new DeleteRecipeCommand(INDEX_FIRST_RECIPE);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        SelectRecipeCommand selectFirstCommandCopy = new SelectRecipeCommand(INDEX_FIRST_RECIPE);
+        assertTrue(selectFirstCommand.equals(selectFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(selectFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(selectFirstCommand.equals(null));
 
         // different recipe -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(selectFirstCommand.equals(selectSecondCommand));
     }
 
     /**

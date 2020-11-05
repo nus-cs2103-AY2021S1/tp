@@ -25,6 +25,6 @@ public class ClearConsumptionCommand extends Command {
         logger.log(Level.INFO, "Clearing Consumption List .......");
         requireNonNull(model);
         model.clearConsumption();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, ListConsumptionCommand.COMMAND_WORD);
     }
 }
