@@ -39,9 +39,9 @@
                     </padding>
                <HBox VBox.vgrow="ALWAYS">
                   <children>
-                          <StackPane fx:id="listPanelPlaceholder" />
+                          <StackPane fx:id="listPanelPlaceholder" minWidth="500.0" />
          
-                                     <StackPane fx:id="displayPlaceholder" minHeight="180.0" styleClass="pane-with-border">
+                                     <StackPane fx:id="displayPlaceholder" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                              <padding>
                                  <Insets bottom="5" left="10" right="10" top="5" />
                              </padding>
