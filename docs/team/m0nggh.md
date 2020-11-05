@@ -1,6 +1,6 @@
 ---
 layout: page
-title: John Doe's Project Portfolio Page
+title: Malcolm Ong's Project Portfolio Page
 ---
 
 ## Project: ZooKeep
@@ -9,38 +9,37 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to sort animals ([\#127](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/127), [\#196](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/196), [\#298](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/298), [\#300](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/300))
+  * What it does: allows the user to sort all animals according to their names (alphabetical order), ids (ascending order), feed times (chronological order) or number of medical conditions (ascending order).
+  * Justification: After adding a large number of animals, the user may find the need to better categorise the animals. This feature allows for the user to sort all animals based on a category they require at his own convenience.
+  * Highlights: This enhancement was implemented as an extension, without modifications to current commands. This feature is flexible and can allow for more variations of sorting if necessary in the future e.g. reversed order.
+  * Credits: The sort feature was implemented with the help of different animal comparators.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=m0nggh)
 
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Deleted the email field from AB3 since ZooKeep does not require it ([\#68](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/68))
+  * Refactored human references to animals in ZooKeep ([\#94](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/94), [\#95](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/95))
+  * Standardised ZooKeep feeding time references to feed time ([\#276](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/276))
+  * Wrote additional tests for existing features to increase coverage from 71% to 75% ([\#127](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/127), [\#196](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/196), [\#274](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/274))
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the feature `sort` ([\#226](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/226))
+    * Modified the description to be more user-centric ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
+    * Included a legend to explain the relevant symbols ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
+    * Distinguished the features to basic and advanced features for the user ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
+    * Refined the ID constraints for different features ([\#298](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/298))
+    * Added details to the FAQ section ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Added user profile, value proposition and user stories ([\#33](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/33))
+    * Added implementation details of the `sort` feature ([\#145](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/145), [\#150](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/150))
+    * Added numbering for TOC ([\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
+    * Modified formatting and edited details in the appendix ([\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
+    * Added and modified all use cases ([\#151](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/151), [\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * PRs reviewed (with non-trivial review comments): ([\#148](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/148), [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199), [\#222](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/222))
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+* **Team-based tasks**:
+  * Created necessary issues to the repository for v1.3 & v1.4
