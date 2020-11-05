@@ -40,7 +40,7 @@ public class EditStudentCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         model.setViewToTutorialGroup(moduleInView);
         model.setViewToStudent(tgInView);
-        Student editedStudent = new StudentBuilder().build();
+        Student editedStudent = new StudentBuilder().withStudentId("A1234567T").build();
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditStudentCommand editCommand = new EditStudentCommand(INDEX_FIRST_PERSON, descriptor);
 
