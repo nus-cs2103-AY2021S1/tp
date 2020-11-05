@@ -130,11 +130,27 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+Figure ___. Class diagram for `Storage` component
 
-The `Storage` component,
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+As shown above, the `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save `Reeve` data in json format and read it back.
+* stores `Student` and `Note` data from the `Model` component in `JsonSerializableReeve` and `JsonSerializableNotebook` objects respectively.
+
+The `JsonSerializableReeve` component stores `JsonAdaptedStudent` objects converted from the `Student` objects in the `Model` component.
+Each `JsonAdaptedStudent` object also contains json-friendly versions of `Student` data as shown in the below class diagram.
+
+![Structure of JsonSerializableReeve](images/JsonSerializableReeveClassDiagram.png)
+
+Figure ___. Class diagram for `JsonSerializableReeve` component
+
+The `JsonSerializableNotebook` component stores `JsonAdaptedNote` objects converted from `Note` objects in the `Model` component, as shown in the below class diagram.
+
+![Structure of JsonSerializableNotebook](images/JsonSerializableNotebookClassDiagram.png)
+
+Figure ___. Class diagram for `JsonSerializableNotebook` component
 
 ### 4.6 Common classes
 
