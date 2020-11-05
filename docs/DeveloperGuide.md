@@ -768,22 +768,33 @@ with phone number, using a prefix to identify them.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
+The product provides an integrated system for the purpose of sales tracking, ingredient track and manpower management.
 
-* To manage the employees' contact information digitally
-    * The product will provide a platform to allow the user to save his/ her employees’ contact 
-      information (eg. emergency contacts, address etc).
-    * It can manage contacts faster than a typical mouse/GUI driven app 
+* To digitise sales tracking and provide simple sales data analytics
+    * Current Implementation at v1.4:
+        * The product can be used to keep a record of the number of each type of bubble tea sold.
+        * The sales data can be analysed to give the user an insight of how the store is performing. This would allow 
+          the user to see which kind of bubble tea sells better and consider adopting similar ideas when creating 
+          new drinks.
+            * This is currently done through the sorting function when listing sales.
+    * Proposed added value for future implementations:
+        * Given the number of each type of bubble tea sold, the product can provide the user with the revenue for each day.
+        * The product can also help the user keep track of the daily revenue changes, and the revenue for each
+          type of product. This can also be analysed to give a better insight of the store's performance. 
+        * The product integrates sales tracking and ingredient inventory tracking to provide the user with greater
+          convenience. Given the number of each type of bubble tea sold, the user need not manually update the
+          ingredient inventory as frequently, as the product can perform those calculations for the user.
 * To digitise inventory keeping
     * The product will help to digitise inventory keeping, and thus helps to save the user’s time and prevent 
       human error in calculation. It does not ensure that the employees use the same amount of ingredients in making 
       the drinks. The user only needs to enter the number of each type of bubble tea sold on the day. It will notify the user
       which ingredients are running low on stock and remind him/ her to restock them soon. 
     * The product could also help the user calculate the total cost for restocking.
-* To digitise daily revenue tracking
-    * Given the number of each type of bubble tea sold, the product can provide the user with the revenue for each day.
-    * The product also helps Amy to keep track of the daily revenue changes, and the revenue for each type of product. 
-      This would allow Amy to check which kind of bubble tea sells better and consider adopting similar ideas when 
-      making new products. 
+* To manage the employees' contact information digitally
+    * The product will provide a platform to allow the user to save his/ her employees’ contact 
+      information (eg. emergency contacts, address etc).
+    * It can manage contacts faster than a typical mouse/GUI driven app 
+
 
 
 ### User stories
