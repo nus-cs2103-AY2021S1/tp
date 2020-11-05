@@ -762,7 +762,7 @@ Features | Format, Examples
 **Get edit recipe info** | `editR INDEX`<br> e.g. `editR 2`
 **Select recipe** | `selectR INDEX`<br> e.g. `selectR 3`
 **Close recipe drawer**| `close`
-**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]`<br> e.g. `searchR` i/lettuce tomato, searchR n/salad, searchR t/healthy
+**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]`<br> e.g. `searchR` i/lettuce tomato, `searchR` n/salad, `searchR` t/healthy
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
 
