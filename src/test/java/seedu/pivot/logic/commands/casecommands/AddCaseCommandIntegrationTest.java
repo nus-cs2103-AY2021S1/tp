@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
+import seedu.pivot.model.Pivot;
 import seedu.pivot.model.UserPrefs;
 import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
@@ -40,12 +41,13 @@ public class AddCaseCommandIntegrationTest {
         setUpDefaultSection();
         Case validCase = new CaseBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
+        String expectedMessage = String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase);
+        Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.addCase(validCase);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
+        expectedModel.commitPivot(expectedMessage, new AddCaseCommand(validCase));
 
-        assertCommandSuccess(new AddCaseCommand(validCase), model,
-                String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase), expectedModel);
+        assertCommandSuccess(new AddCaseCommand(validCase), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -53,12 +55,13 @@ public class AddCaseCommandIntegrationTest {
         setUpArchivedSection();
         Case validCase = new CaseBuilder().withArchiveStatus(ArchiveStatus.ARCHIVED).build();
 
-        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
+        String expectedMessage = String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase);
+        Model expectedModel = new ModelManager(new Pivot(model.getPivot()), new UserPrefs());
         expectedModel.addCase(validCase);
         expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
+        expectedModel.commitPivot(expectedMessage, new AddCaseCommand(validCase));
 
-        assertCommandSuccess(new AddCaseCommand(validCase), model,
-                String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase), expectedModel);
+        assertCommandSuccess(new AddCaseCommand(validCase), model, expectedMessage, expectedModel);
     }
 
     @Test

@@ -7,7 +7,6 @@ import static seedu.pivot.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-
 public class SuspectTest {
     private static final Name DEFAULT_NAME = new Name("Test Name");
     private static final Phone DEFAULT_PHONE = new Phone("91234567");
@@ -39,21 +38,13 @@ public class SuspectTest {
                 new Victim(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
         Witness witness =
                 new Witness(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
+
         assertNotEquals(witness, suspect);
         assertNotEquals(victim, suspect);
 
         // same values -> returns true
         assertTrue(suspect.equals(
                 new Suspect(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
-
-        // same name, sex, phone, different email -> returns true
-        assertTrue(suspect.equals(new Suspect(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE,
-                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
-
-        // same name, sex, phone, different address -> returns true
-        assertTrue(suspect.equals(
-                new Suspect(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL,
-                        new Address("Blk 231231"))));
 
         // same object -> returns true
         assertTrue(suspect.equals(suspect));
@@ -71,5 +62,20 @@ public class SuspectTest {
                 new Suspect(DEFAULT_NAME, Sex.F, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
         assertFalse(suspect.equals(
                 new Suspect(DEFAULT_NAME, DEFAULT_SEX, new Phone("923"), DEFAULT_EMAIL, DEFAULT_ADDRESS)));
+    }
+
+    @Test
+    public void isSamePerson() {
+        Suspect suspect =
+                new Suspect(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
+
+        // same name, sex, phone, different email -> returns true
+        assertTrue(suspect.isSamePerson(new Suspect(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE,
+                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
+
+        // same name, sex, phone, different address -> returns true
+        assertTrue(suspect.isSamePerson(
+                new Suspect(DEFAULT_NAME, DEFAULT_SEX, DEFAULT_PHONE, DEFAULT_EMAIL,
+                        new Address("Blk 231231"))));
     }
 }

@@ -73,7 +73,7 @@ public class DeleteVictimCommandTest {
     public void execute_victimDeletedByModel_success() throws CommandException {
         StateManager.setState(DEFAULT_CASE_INDEX);
         Case testCase = new CaseBuilder()
-                .withVictims(DEFAULT_VICTIM).build();
+                .addVictims(DEFAULT_VICTIM).build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 
