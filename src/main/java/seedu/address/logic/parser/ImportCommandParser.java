@@ -26,11 +26,6 @@ public class ImportCommandParser {
         }
 
         String url = argMultimap.getValue(PREFIX_TIMETABLE_URL).get();
-
-        if (!TimetableUrlParser.isValidUrl(url)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
-        }
-
         TimetableData data = TimetableUrlParser.parseTimetableUrl(url);
         return new ImportCommand(data);
     }
