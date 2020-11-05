@@ -22,7 +22,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/juncheng98.png" width="200px">
 
 [[github](http://github.com/JunCheng98)]
-[[portfolio](team/JunCheng98.md)]
+[[portfolio](team/juncheng98.md)]
 
 * Role: Developer
 * Responsibilities: Code quality
