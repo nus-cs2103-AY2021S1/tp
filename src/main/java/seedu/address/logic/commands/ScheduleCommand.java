@@ -37,13 +37,9 @@ public class ScheduleCommand extends Command {
     public static final int MIN_HOURS = 1;
     public static final String COMMAND_WORD = "schedule";
     public static final String MESSAGE_SCHEDULE_ASSIGNMENT_SUCCESS = "Schedule Assignment: %1$s";
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Schedule the assignment identified by the index number used in the displayed assignment list. "
-            + "The suggested time will be within working hours from " + START_TIME + " to " + END_TIME + "\n"
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " INDEX (must be a positive integer) "
             + PREFIX_EXPECTED_HOURS + "EXPECTED HOURS (must be between " + MIN_HOURS + " and " + MAX_HOURS + " hours) "
-            + PREFIX_DO_BEFORE + "BEFORE "
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_EXPECTED_HOURS + "2 " + PREFIX_DO_BEFORE + "23-12-2020 2359";
+            + PREFIX_DO_BEFORE + "BEFORE ";
 
     private static final LocalTime WORKING_START_TIME = LocalTime.parse(START_TIME, DateTimeFormatter.ISO_TIME);
     private static final LocalTime WORKING_END_TIME = LocalTime.parse(END_TIME, DateTimeFormatter.ISO_TIME);
