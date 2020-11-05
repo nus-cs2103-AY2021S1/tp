@@ -552,15 +552,15 @@ with phone number, using a prefix to identify them.
 
 **Target user profile**:
 
-* is the store manager of a T*ger Sugar milk tea shop
+* is the store manager of a milk tea shop of the (imaginary) brand T-sugar
 * is very busy with daily operations and has little time for manual writing or recording
 * is a fast typist
-* has many employees (both part-time and full-time) to manage
+* has many part-time and full-time employees to manage
 * needs to save all the employees’ contact numbers
-* cares about the daily revenue
+* cares about the daily sales
 * does an inventory check daily to ensure that ingredients are sufficient
   for the shop to operate smoothly
-* needs to keep track of the daily revenue
+* needs to keep track of the daily sales
 * prefers desktop apps over other types
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
