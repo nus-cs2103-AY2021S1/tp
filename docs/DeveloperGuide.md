@@ -459,7 +459,8 @@ Figure ?.? Class Diagram for Contact class
 
 ##### Add contact feature
 
-The add contact feature creates and adds a new `Contact`, using contact details provided by the users, into the contact list if the contact does not already exist. 
+This feature creates and adds a new `Contact` into the contact list if the contact does not already exist. 
+
 This feature is facilitated by the following classes:
 
  * `AddContactParser`:
@@ -472,7 +473,7 @@ Given below is an example usage scenario and how the mechanism for adding contac
 Step 1. `LogicManager` receives the user input `addcontact n/John e/john@gmail.com te/@johndoe` from `Ui`
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create an `AddContactParser`
 Step 3. Additionally, `ContactListParser` will call the `AddContactParser#parse()` method to parse the command arguments
-Step 4. This creates an `AddContactCommand` and `AddContactCommand#execute()` will be invoked by `LogicManager` to add the new contact
+Step 4. This creates an `AddContactCommand` and `AddContactCommand#execute()` will be invoked by `LogicManager` to excecute the command to add the contact
 Step 5. The `Model#addContact()` operation exposed in the `Model` interface is invoked to add the new contact
 Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
 
@@ -482,7 +483,6 @@ Figure ?.? Sequence diagram for the execution of `AddContactCommand`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddContactCommand` and `AddContactParser` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
 </div>
 
 
@@ -586,7 +586,7 @@ Given below is the sequence diagram of how the operation to edit a contact works
 Alternative 1 was chosen as it would make future changes to any class easier and less error-prone, 
 hence increasing the ease of maintenance, since there was less coupling between the 2 classes.
 
-##### Implementation of `EditContactCommand`
+##### Aspect: Implementation of `EditContactCommand`
 
 * **Alternative 1 (current choice):** 
   * Pros: Reduces coupling between the command classes and `EditContactCommand` can be implemented without restrictions,
@@ -620,6 +620,7 @@ This feature is facilitated by the following classes:
     * It implements `FindContactParser#parse()` to parse and validate the user input
     * It creates predicate objects using the command arguments and adds them to the list of predicates in
       `FindContactCriteria`
+    * It implements `FindContactParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
 
   * `FindContactCriteria`:
     * It stores all the predicates which will be used to test for matching contacts
@@ -631,7 +632,7 @@ This feature is facilitated by the following classes:
 
     * Predicate objects that can be stored in `FindContactCriteria`:
       * `ContactNameContainsKeywordsPredicate`:
-        * Tests if a given contact matches at least one of the name keywords provided (case-insensitive)
+        * Tests if the name of a given contact matches at least one of the name keywords provided (case-insensitive)
       * `ContactContainsTagsPredicate`:
         * Tests if a given contact contains at least one of the search tags provided (case-insensitive)
 
@@ -690,7 +691,44 @@ Given below is the sequence diagram showing the interaction between `FindContact
           parameters provided.
 
 
+#### Find Task Feature
 
+The find task feature is crucial as it enables users to retrieve tasks efficiently rather than having to scan through their
+entire todo list to find the desired task. This can also contribute to a better management of user tasks which is important since Cap 5 Buddy
+is an application to track module related details and information. To ensure that searching for tasks is refined and accurate, this feature enables users to search using multiple parameters.
+
+The search parameters that can be used to find tasks include: `Name`, `Date`, `Tag`, `Priority` and `Status`. If multiple search
+parameters are provided by users, only tasks that fulfil all the search criteria will be returned.
+
+This feature is facilitated by the following classes:
+
+  * `FindTaskParser`:
+    * It implements `FindTaskParser#parse()` to parse and validate the user input
+    * It creates predicate objects using the command arguments and adds them to the list of predicates in
+      `FindTaskCriteria`
+    * It implements `FindTaskParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
+    
+  * `FindTaskCriteria`:
+    * It stores all the predicates which will be used to test for matching contacts
+    * It implements the following operations:
+      * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
+        to test for matching contacts
+      * `FindTaskCriteria#getFindTaskPredicate():` To compose all predicates into a 
+        single predicate
+        
+  * Predicate objects that can be stored in `FindTaskCriteria`:
+    * `TaskNameContainsKeywordsPredicate`:
+      * Tests if the name of a given task matches at least one of the name keywords provided (case-insensitive)
+    * `ContactContainsTagsPredicate`:
+      * Tests if a given task contains at least one of the search tags provided (case-insensitive)
+    * `TaskMatchesDatePredicate`:
+      * Tests if the date of a given task matches the search date exactly.
+    * `TaskMatchesPriorityPredicate`:
+      * Tests if the priority of a given task matches the search priority exactly.
+    * `TaskMatchesStatusPredicate`:
+      * Tests if the status of a given task matches the search status exactly.
+      
+  ![FindTaskCriteriaClassDiagram] 
 
 ### \[Proposed\] Calculate CAP feature
 
