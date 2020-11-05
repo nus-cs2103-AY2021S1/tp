@@ -56,6 +56,7 @@ public class TypicalStocks {
     public static final Index INDEX_FIRST_STOCK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_STOCK = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_STOCK = Index.fromOneBased(3);
+    public static final Index INDEX_FOURTH_STOCK = Index.fromOneBased(4);
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = ALMOND.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = BANANA.getSerialNumber();
