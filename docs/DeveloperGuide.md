@@ -616,12 +616,16 @@ Use case ends.
 Use case ends.
 
 **Extensions**
+  
+- 2a. ResiReg shows an empty list of students or empty list of rooms.
+  
+  Use case ends.
 
 - 3a. Student belongs to an existing room allocation, room belongs to an existing room allocation, room does not exist or student does not exist.
 
   - ResiReg shows an error message.
 
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
 #### Use case: UC05 - Delete a room allocation for a student
 
@@ -724,14 +728,7 @@ Use case ends.
    
       Use case ends.
       
-#### Use case: UC10 - View piechart of allocated and unallocated rooms
-**MSS**
-1. OHS admin requests to view a piechart of allocated and unallocated rooms.
-1. ResiReg shows a piechart of allocated rooms and unallocated rooms on the Statistics tab.
-
-Use case ends.
-
-#### Use case: UC11 - Archive command
+#### Use case: UC10 - Archive command
 
 **MSS**
 
@@ -740,7 +737,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use case: UC12 - Find rooms which match a specific criteria
+#### Use case: UC11 - Find rooms which match a specific criteria
 
 **MSS**
 
@@ -761,11 +758,11 @@ Use case ends.
 
     Use case resumes at step 1.
     
-#### Use case: UC13 - Find students which match a specific criteria
+#### Use case: UC12 - Find students which match a specific criteria
 
-Similar to <u>UC12 - Find rooms which match a specific criteria</u>, just replace rooms with students.
+Similar to <u>UC11 - Find rooms which match a specific criteria</u>, just replace rooms with students.
 
-#### Use case: UC14 - Add a room
+#### Use case: UC13 - Add a room
 
 **MSS**
 
@@ -780,11 +777,11 @@ Use case ends.
   - ResiReg shows an error message.
   -  Use case starts over.
 
-#### Use case: UC15 - Delete a room
+#### Use case: UC14 - Delete a room
 
 Similar to <u>UC02 - delete a student</u>, just replace student with room.
 
-#### Use case: UC16 - Edit a room
+#### Use case: UC15 - Edit a room
 
 Similar to <u>UC03 - edit a student</u>, just replace student with room.
 
