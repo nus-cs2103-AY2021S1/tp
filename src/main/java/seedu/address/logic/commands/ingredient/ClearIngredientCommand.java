@@ -26,6 +26,6 @@ public class ClearIngredientCommand extends Command {
         logger.log(Level.INFO, "Clearing Fridge Ingredient .......");
         requireNonNull(model);
         model.clearIngredient();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, ListIngredientsCommand.COMMAND_WORD);
     }
 }
