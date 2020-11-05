@@ -114,7 +114,7 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 </div>
 
 
-#### 1.1 Updating the number of drinks sold for the day : `s-update`
+#### 1.1 Updating the number of drinks sold : `s-update`
 Updates the number of drinks sold for each drink type as given in the user input.
 
 
@@ -134,8 +134,8 @@ The record in tCheck will be overwritten by the input that you provide. <br>
  
  </div>
 
-#### 1.2 Listing the number of drinks sold for the day : `s-list`
-Shows a list of all types of drinks sold for the current day.
+#### 1.2 Listing the number of drinks sold : `s-list`
+Shows a list of all types of drinks sold in the Sales Tracker.
 
 Format: `s-list`
 
@@ -155,6 +155,12 @@ Examples:
 * `s-find BSBBT` returns `BSBBT`'s sales data.
 * `s-find BSBBT BSBM` returns `BSBBT`'s sales data and `BSBM`'s sales data.<br>
  
+#### 1.4 Ranking the list of drinks sold : `s-rank`
+Shows a ranked list of all types of drinks sold in the Sales Tracker. The list of drinks
+is ranked from the most popular to least popular.
+  
+Format: `s-rank`
+
  
 ### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
@@ -457,6 +463,8 @@ Action | Format, Examples
 **Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
 **Find**| `s-find KEYWORD [MORE_KEYWORDS] ...` <br> e.g., `s-find BSBM BSBBT`
+**Rank**| `s-rank`
+
 
 ### Ingredients  Tracking
 

@@ -106,11 +106,18 @@ public class SalesBook implements ReadOnlySalesBook {
         return record.isEmpty();
     }
 
+    /**
+     * Sorts the sales record in descending order.
+     */
+    public void sortRecord() {
+        record.sort();
+    }
+
     //// util methods
 
     /**
      * Returns an unmodifiable view of the list of sales records.
-     * This map will not contain any duplicate drink items.
+     * This list will not contain any duplicate sales records.
      */
     @Override
     public ObservableList<SalesRecordEntry> getSalesRecord() {

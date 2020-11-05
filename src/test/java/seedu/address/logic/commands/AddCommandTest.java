@@ -141,11 +141,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void addIngredient(Ingredient ingredient) {
             throw new AssertionError("This method should not be called.");
         }
@@ -212,7 +207,16 @@ public class AddCommandTest {
         @Override
         public void overwrite(Map<Drink, Integer> salesInput) {
             throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void sortSalesBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

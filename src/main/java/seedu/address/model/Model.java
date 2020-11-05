@@ -140,15 +140,10 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Adds an SalesRecordEntry to the Salesbook.
-     */
-    void addSalesRecordEntry(SalesRecordEntry salesRecordEntry);
-
-    /**
      * Adds an ingredient to the ingredient book.
      * The ingredient must not already exist in the ingredient book.
      */
-    public void addIngredient(Ingredient ingredient);
+    void addIngredient(Ingredient ingredient);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -169,16 +164,39 @@ public interface Model {
      */
     ArrayList<Ingredient> findIngredientInShortage();
 
+    /**
+     * Replaces sales book data with the data in {@code salesBook}.
+     */
     void setSalesBook(ReadOnlySalesBook salesBook);
 
+    /**
+     * Returns the SalesBook.
+     */
     SalesBook getSalesBook();
 
+    /**
+     * Returns true if the SalesBook does not contain any sales record.
+     * @return
+     */
     boolean isEmptySalesBook();
 
+    /**
+     * Overwrite the sales records in SalesBook based on the given {@Code salesInput}
+     * @param salesInput
+     */
     void overwrite(Map<Drink, Integer> salesInput);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Sorts the sales records in the SalesBook in descending order
+     */
+    void sortSalesBook();
 
+    /**
+     * Adds an SalesRecordEntry to the SalesBook.
+     */
+    void addSalesRecordEntry(SalesRecordEntry salesRecordEntry);
+
+    /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
     /**
