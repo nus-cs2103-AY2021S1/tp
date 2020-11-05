@@ -40,7 +40,7 @@ public class TopupCommandTest {
         ModelStub modelStub = new ModelStub();
         Amount validAmount = new Amount("1");
         CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount.asDouble()),
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount),
                 commandResult.getFeedbackToUser());
         assertEquals(validAmount, modelStub.budgets.getAmount());
     }

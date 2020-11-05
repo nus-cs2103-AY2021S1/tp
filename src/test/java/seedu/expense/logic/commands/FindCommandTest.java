@@ -70,7 +70,8 @@ public class FindCommandTest {
         DescriptionContainsKeywordsPredicate namePredicate = preparePredicate("CannotBeNotFound");
         FindCommand command = new FindCommand(namePredicate, datePredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, false);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredExpenseList());
     }
 
@@ -82,7 +83,8 @@ public class FindCommandTest {
         DescriptionContainsKeywordsPredicate namePredicate = preparePredicate("ZARA Phone Swee");
         FindCommand command = new FindCommand(namePredicate, datePredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false, false);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Arrays.asList(ZARA, PHONE_BILL, SWEE_CHOON), model.getFilteredExpenseList());
     }
 
