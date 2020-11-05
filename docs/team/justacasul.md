@@ -2,7 +2,7 @@
 layout: page
 title: Liu Zheng Dao's Project Portfolio Page
 ---
-<img src="../images/justacasul.png" height=300>
+<img src="../images/justacasul.png" height=250>
 
 ## Project: Inventoryinator
 
@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the `addi` command, as well as all related structures required to add, store and load items 
     and locations. [\#17](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/17)
-  * What it does: Adds an item, complete with it's name, details, locations, quantity, and tags, to the inventory.
+  * What it does: Adds an item to the inventory.
   * Justification: This feature is the core of Inventoryinator. It is needed for displaying items, adding recipes,
     using items in recipes for crafting, etc.
   * Highlights: Adding this feature lays the groundwork required for breaking off from AB3 and creating our own product.
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
     
 * **New Feature**: Added the `listi` command that lists all items in the inventory. 
     [\#17](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/17) (yes I did do them all in one PR)
-  * What it does: Lists all items in the inventory on the GUI.
+  * What it does: Displays all items in the inventory on the GUI.
   * Justification: This feature is required for users to know which items they have, and what quantities they are at.
   * Highlights: `listi` lays the groundwork for the future implementation of `listr`, a command to list all recipes.
   * Credits: Almost entirely refactored from `list` command of AB3.
@@ -33,19 +33,18 @@ Given below are my contributions to the project.
     [\#17](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/17) 
     [\#76](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/76) (update for clearing related recipes) 
   * What it does: Removes all items and related recipes from the inventory.
-  * Justification: This feature is a nice addition for users who want to start afresh, possibly on a new game or account.
+  * Justification: This feature is for users who want to start afresh, on a new game or account.
   * Highlights: Adding this feature lays the groundwork required for breaking off from AB3 and creating our own product.
-  * Credits: Initially almost entirely refactored from `clear` command of AB3, but later on, some changes were required
-    for deleting related recipes.
+  * Credits: Initially refactored from `clear` command of AB3, then changed to accomodate deleting related recipes.
     
 * **New Feature**: Added the `view` command to view the detailed information of a single item. 
     [\#44](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/44)
-  * What it does: Views an item, as well as it's details, quantity, tags and recipes that will create this item.
+  * What it does: Displays the item with it's details, quantity, tags and recipes that will create said item.
   * Justification: This feature is required for users who wish to view more detailed information regarding the item,
     such as the description which would normally be truncated, or the recipes that will create this item.
   * Highlights: Implementing this feature resulted in the change of `CommandResult` to allow for changing parts of the 
     GUI while the program is still running.
-  * Credits: Rahul(@Rahul0506) was the one who suggested looking at how `executeCommand` handled the `help` command.
+  * Credits: Rahul(@Rahul0506) suggested looking at how `executeCommand` handled the `help` command.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=justacasul&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
