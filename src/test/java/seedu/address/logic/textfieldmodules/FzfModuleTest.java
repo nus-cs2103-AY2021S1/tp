@@ -56,8 +56,8 @@ class FzfModuleTest {
         String query = "br";
 
         textField.fireEvent(CTRL_SPACE_EVENT);
-        robot.write(query);
         robot.sleep(1000);
+        robot.write(query);
 
         long expected = sampleNameList.stream().filter(x -> x.toLowerCase().contains(query)).count();
         long actual = fzfModule.getMenu().getItems().stream().count();
