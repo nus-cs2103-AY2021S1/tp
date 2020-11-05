@@ -75,12 +75,10 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Notes about the command format
 
-## Features
-
+This section will give you some useful information about the various command formats and notations you will see in [Features](#features).
 <div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in add `q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/`What is my name?
@@ -108,23 +106,37 @@ must be specified exactly.
 
 </div>
 
+## Common Input Fields
+
+This section will help you understand the different fields and their restrictions. 
+
+Input Field | Restrictions and how to specify
+-----------|-----------------------
+`q/QUESTION`    | This is the question on the flashcard.<br>`QUESTION` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
+`a/ANSWER`      | This is the answer on the flashcard.<br>`ANSWER` has no character limit or restrictions (eg. can have spaces).<br>Cannot be empty.
+`c/CATEGORY`    | This is the category of the flashcard.<br>`CATEGORY` must be alphanumeric and have a maximum of 50 characters. It can consist of multiple words but there should only be 1 space between words.<br>Cannot be empty.
+`r/RATING`      | This is the star rating of the flashcard.<br>`RATING` must be a number between 1 and 5 inclusive.<br>Can be empty.
+`d/DIAGRAM`     | This is the diagram of the flashcard (associated with a question in the view pane).<br>`DIAGRAM` must be a valid relative or absolute path. <br>Currently only supports file path **without** spaces.<br>Only supports the following images file types: jpg, png, jpeg, bmp, gif<br>Can be empty.
+`n/NOTE`        | This is the notes of the flashcard (associated with an answer in the view pane).<br>`NOTE` has no character limit or restrictions.<br>Can be empty.
+`t/TAG`         | These are tags of the flashcard. A flashcard can have more than one tag.<br>`TAG` must be alphanumeric and have a maximum of 50 characters.<br>Must **only** be one word.<br>Cannot be empty.
+`INDEX`         | `INDEX` refers to the index number shown in the displayed flashcard list.<br>Every visible flashcard on the display list has an `INDEX`.<br>`INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+`KEYWORD`      | `KEYWORD` has no character limit but must be one word (no spaces).
+
+<div markdown="span" class="alert alert-primary">:memo: Note:</div>
+
+* **Can be empty** means you can specify the prefix but not pass a value.<br>eg. passing `r/` is valid. 
+* **Cannot be empty** means you have to specify a value when you specify the prefix.<br>eg. passing `c/` is invalid.
+
+
+## Features
+
 ### Add a flashcard : `add`
 
 Adds a flashcard.
 
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t/TAG]...`
 
-* `RATING` must be a number between 1 and 5 inclusive.
-* `CATEGORY` must be alphanumeric and have a maximum of 50 characters. 
-     It can consist of multiple words but there should only be 1 space between words.
-* `DIAGRAM` can be defined by a valid relative or absolute path and only supports file path without spaces in it. Unintended behaviour may occur if file path with spaces is used. eg. `d/image s/diagram.png`
-* `DIAGRAM` only supports the following image file types.
-  * jpeg
-  * png
-  * bmp
-  * jpg
-  * gif
-* `TAG` must be alphanumeric, have a maximum of 50 characters and should be 1 word.
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category is not specified, the flashcard will have the <b>General</b> category.
@@ -166,9 +178,8 @@ Deletes the specified flashcard.
 
 Format: `delete INDEX`
 
-* Deletes the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Deletes the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
@@ -179,12 +190,11 @@ Edits a flashcard.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...`
 
-* Edits the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* Edits the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
 * Although all fields are optional, a minimum of one field has to be given.
-* Specifying empty values to note, rating, tag or diagram eg. `r/` will remove the corresponding field in the flashcard.
-* Although question, answer and category are optional values, you are not allowed to specify an empty value to those attributes 
+* Specifying empty values to NOTE, RATING, TAG or DIAGRAM eg. `r/` will remove the corresponding field in the flashcard.
+* Although QUESTION, ANSWER and CATEGORY are optional values, you are not allowed to specify an empty value to those attributes 
 once the prefix is declared e.g. `c/` is not allowed and will not remove category.
 
 Examples:
@@ -213,6 +223,8 @@ This will return all the flashcards whose fields match all the fields specified 
 
 Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* `f/yes` filters for favourited flashcards while `f/no` filters for unfavourited flashcards.
 * Filters the specified flashcard based on category, rating, favourite status or tags.
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
@@ -240,9 +252,8 @@ Favourites the specified flashcard.
 
 Format: `fav INDEX`
 
-* Favourites the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Favourites the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
@@ -253,9 +264,8 @@ Unfavourites the specified flashcard.
 
 Format: `unfav INDEX`
 
-* Unfavourites the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Unfavourites the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
@@ -265,8 +275,9 @@ Examples:
 Searches for all flashcards matching any of the search keywords.
 
 Format: `find KEYWORD [KEYWORD]...`
-* Finds all flashcards containing any of the keywords
-* The keywords are **case insensitive**
+* Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
+* Finds all flashcards containing any of the keywords.
+* The keywords are **case insensitive**.
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. Eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
 
 Examples: 
@@ -384,9 +395,8 @@ Views the specified flashcard. A "snapshot" of the flashcard is taken and displa
 
 Format: `view INDEX [-a]`
 
-* Views the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Views the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
@@ -418,9 +428,8 @@ View the statistics of a flashcard.
 
 Format: `stats INDEX`
 
-* Shows the statistics of the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer greater than 0**. eg. 1, 2, 3, …
+* Shows the statistics of the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
