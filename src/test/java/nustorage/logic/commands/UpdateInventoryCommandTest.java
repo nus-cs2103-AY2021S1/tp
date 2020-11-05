@@ -40,4 +40,29 @@ public class UpdateInventoryCommandTest {
         Model expectedModel = model;
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_decreaseInQuantityParsed_success() {
+        InventoryRecord oldInventoryRecord = model.getFilteredInventory().get(0);
+        InventoryRecord updatedInventoryRecord = new InventoryRecordBuilder(oldInventoryRecord)
+                .withQuantity(0)
+                .build();
+        int changeInQuantity = updatedInventoryRecord.getQuantity() - oldInventoryRecord.getQuantity();
+        FinanceRecord newFinanceRecord =
+                new FinanceRecord(oldInventoryRecord.getFinanceId(),
+                        updatedInventoryRecord.getQuantity() * updatedInventoryRecord.getUnitCost(),
+                        updatedInventoryRecord.getDateTime(),
+                        true);
+        updatedInventoryRecord.setFinanceRecord(newFinanceRecord);
+        UpdateInventoryDescriptor descriptor = new UpdateInventoryDescriptorBuilder(changeInQuantity).build();
+        UpdateInventoryCommand command = new UpdateInventoryCommand(INDEX_FIRST, descriptor);
+        String expectedMessage = String.format(MESSAGE_UPDATE_INVENTORY_SUCCESS, updatedInventoryRecord);
+        Model expectedModel = model;
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_decreaseInQuantityBeyondZeroParsed_failure() {
+        
+    }
 }
