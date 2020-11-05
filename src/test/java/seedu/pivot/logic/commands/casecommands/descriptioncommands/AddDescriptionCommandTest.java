@@ -1,8 +1,10 @@
-package seedu.pivot.logic.commands.casecommands;
+package seedu.pivot.logic.commands.casecommands.descriptioncommands;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.pivot.logic.commands.casecommands.descriptioncommands.AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.AddCommand;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
@@ -55,53 +58,54 @@ public class AddDescriptionCommandTest {
         // null -> returns false
         assertFalse(testCommand.equals(null));
 
-        // different person -> returns false
+        // different description -> returns false
         assertFalse(testCommand.equals(new AddDescriptionCommand(indexOne, descriptionTwo)));
+
+        // different index -> returns false
         assertFalse(testCommand.equals(new AddDescriptionCommand(indexTwo, descriptionOne)));
+
+        // different description and index -> returns false
         assertFalse(testCommand.equals(new AddDescriptionCommand(indexTwo, descriptionTwo)));
     }
 
     @Test
     public void execute_validDescription_success() throws CommandException {
+
         // Setup
         Description newDesc = new Description("New Description");
-        Description blankDesc = new Description(""); // Allows blank
         Index index = Index.fromZeroBased(0);
         StateManager.setState(index);
 
-        // Generate Case with Old Description
-        Case testCase = new CaseBuilder().withDescription("Old Description").build();
+        // Generate Case with no description
+        Case testCase = new CaseBuilder().build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 
-        // Update Case
+        // Add a description to a Case
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
-        AddCommand descCommand = new AddDescriptionCommand(index, newDesc);
-        assertEquals(String.format(AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, newDesc),
-                descCommand.execute(modelStub).getFeedbackToUser());
-        AddCommand blankDescCommand = new AddDescriptionCommand(index, blankDesc);
-        assertEquals(String.format(AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, blankDesc),
-                blankDescCommand.execute(modelStub).getFeedbackToUser());
+        AddCommand command = new AddDescriptionCommand(index, newDesc);
+        assertEquals(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, newDesc),
+                command.execute(modelStub).getFeedbackToUser());
         StateManager.resetState();
     }
 
     @Test
-    public void execute_sameDescription_throwsCommandException() {
+    public void execute_descriptionAlreadyExists_throwsCommandException() {
         // Setup
-        Description newDesc = new Description("Old Description");
+        Description anotherDesc = new Description("Another Description");
         Index index = Index.fromZeroBased(0);
         StateManager.setState(index);
 
-        // Generate Case with Old Description
-        Case testCase = new CaseBuilder().withDescription("Old Description").build();
+        // Generate Case with Existing Description
+        Case testCase = new CaseBuilder().withDescription("Existing Description").build();
         List<Case> caseList = new ArrayList<>();
         caseList.add(testCase);
 
-        // Update Case
+        // Try to add Description to a case with a existing description
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
-        AddCommand command = new AddDescriptionCommand(index, newDesc);
+        AddCommand command = new AddDescriptionCommand(index, anotherDesc);
         assertThrows(CommandException.class,
-                AddDescriptionCommand.MESSAGE_DUPLICATE_DESCRIPTION, () -> command.execute(modelStub));
+                AddDescriptionCommand.MESSAGE_DESCRIPTION_ALREADY_EXISTS, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 
@@ -131,7 +135,7 @@ public class AddDescriptionCommandTest {
         }
 
         @Override
-        public void commitPivot(String command) {}
+        public void commitPivot(String commandMessage, Undoable command) {}
     }
 
 }

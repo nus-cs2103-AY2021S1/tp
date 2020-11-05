@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.GuiSettings;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 
@@ -94,14 +95,17 @@ public interface Model {
      */
     void updateFilteredCaseList(Predicate<Case> predicate);
 
-    void commitPivot(String command);
+    void commitPivot(String commandMessage, Undoable command);
 
     boolean canRedoPivot();
 
-    String redoPivot();
+    void redoPivot();
 
     boolean canUndoPivot();
 
-    String undoPivot();
+    void undoPivot();
 
+    String getCommandMessage();
+
+    boolean isMainPageCommand();
 }

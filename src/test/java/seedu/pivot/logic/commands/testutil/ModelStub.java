@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.GuiSettings;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ReadOnlyPivot;
 import seedu.pivot.model.ReadOnlyUserPrefs;
@@ -86,7 +87,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void commitPivot(String command) {
+    public void commitPivot(String commandMessage, Undoable command) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -96,7 +97,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String redoPivot() {
+    public void redoPivot() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -106,7 +107,19 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public String undoPivot() {
+    public void undoPivot() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public String getCommandMessage() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isMainPageCommand() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
 }

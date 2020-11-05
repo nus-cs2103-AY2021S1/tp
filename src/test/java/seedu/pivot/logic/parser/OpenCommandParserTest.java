@@ -3,8 +3,9 @@ package seedu.pivot.logic.parser;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.pivot.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -20,10 +21,10 @@ public class OpenCommandParserTest {
     public static final String INVALID_TYPE = "IAmWrongFormat";
     public static final String TYPE_CASE = "case";
     public static final String VALID_INDEX = " " + "1";
-    public static final String INVALID_INDEX = " " + "A";
-    //public static final String EMPTY_STRING =  "";
+    public static final String INVALID_NONEMPTY_INDEX = " " + "A";
+    public static final String INVALID_EMPTY_INDEX = " ";
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private OpenCommandParser parser = new OpenCommandParser();
 
@@ -63,9 +64,13 @@ public class OpenCommandParserTest {
         assertParseFailure(parser, INVALID_TYPE + VALID_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 OpenCaseCommand.MESSAGE_USAGE));
 
-        //Invalid Index
-        assertThrows(ParseException.class, () -> parser.parse(TYPE_CASE + INVALID_INDEX));
-        assertParseFailure(parser, TYPE_CASE + INVALID_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        //Invalid non empty Index
+        assertThrows(ParseException.class, () -> parser.parse(TYPE_CASE + INVALID_NONEMPTY_INDEX));
+        assertParseFailure(parser, TYPE_CASE + INVALID_NONEMPTY_INDEX, MESSAGE_INVALID_INDEX);
+
+        //Invalid empty index
+        assertThrows(ParseException.class, () -> parser.parse(TYPE_CASE + INVALID_EMPTY_INDEX));
+        assertParseFailure(parser, TYPE_CASE + INVALID_EMPTY_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 OpenCaseCommand.MESSAGE_USAGE));
     }
 }

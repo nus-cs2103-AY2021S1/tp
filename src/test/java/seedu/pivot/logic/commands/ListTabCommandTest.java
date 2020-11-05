@@ -7,7 +7,7 @@ import static seedu.pivot.logic.commands.Command.TYPE_DOC;
 import static seedu.pivot.logic.commands.Command.TYPE_SUSPECT;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class ListTabCommandTest {
 
     @BeforeEach
     public void setUp() {
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
         StateManager.resetTabState();
         model = new ModelManager(getTypicalPivot(), new UserPrefs());
     }

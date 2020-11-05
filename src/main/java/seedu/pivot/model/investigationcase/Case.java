@@ -102,7 +102,7 @@ public class Case {
     }
 
     /**
-     * Returns true if both cases of the same name have at least one other identity field that is the same.
+     * Returns true if both cases have the same title.
      * This defines a weaker notion of equality between two cases.
      */
     public boolean isSameCase(Case otherCase) {
@@ -111,8 +111,7 @@ public class Case {
         }
 
         return otherCase != null
-                && otherCase.getTitle().equals(getTitle())
-                && otherCase.getStatus().equals(getStatus());
+                && otherCase.getTitle().equals(getTitle());
     }
 
     /**

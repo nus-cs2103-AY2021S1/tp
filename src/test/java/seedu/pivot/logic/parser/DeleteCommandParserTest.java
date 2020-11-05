@@ -4,8 +4,9 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_CASE_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.pivot.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -24,10 +25,10 @@ public class DeleteCommandParserTest {
     public static final String VALID_TYPE_MAIN_PAGE = "case";
     public static final String VALID_TYPE_CASE_PAGE = "victim";
     public static final String VALID_INDEX = " " + "1";
-    public static final String INVALID_INDEX = " " + "A";
-    //public static final String EMPTY_STRING =  "";
+    public static final String INVALID_NONEMPTY_INDEX = " " + "A";
+    public static final String INVALID_EMPTY_INDEX = " ";
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 
@@ -63,9 +64,15 @@ public class DeleteCommandParserTest {
                 DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
 
         //Invalid Index
-        assertThrows(ParseException.class, () -> parser.parse(VALID_TYPE_MAIN_PAGE + INVALID_INDEX));
-        assertParseFailure(parser, VALID_TYPE_MAIN_PAGE + INVALID_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertThrows(ParseException.class, () -> parser.parse(VALID_TYPE_MAIN_PAGE + INVALID_NONEMPTY_INDEX));
+        assertParseFailure(parser, VALID_TYPE_MAIN_PAGE + INVALID_NONEMPTY_INDEX, MESSAGE_INVALID_INDEX);
+
+        //Invalid empty Index
+        assertThrows(ParseException.class, () -> parser.parse(VALID_TYPE_MAIN_PAGE + INVALID_EMPTY_INDEX));
+        assertParseFailure(parser, VALID_TYPE_MAIN_PAGE + INVALID_EMPTY_INDEX,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
+
 
         //Invalid type for Main page
         assertThrows(ParseException.class, () -> parser.parse(INVALID_TYPE_MAIN_PAGE + VALID_INDEX));
@@ -100,8 +107,13 @@ public class DeleteCommandParserTest {
                 DeleteCommand.MESSAGE_USAGE_CASE_PAGE));
 
         //Invalid Index
-        assertThrows(ParseException.class, () -> parser.parse(VALID_TYPE_CASE_PAGE + INVALID_INDEX));
-        assertParseFailure(parser, VALID_TYPE_CASE_PAGE + INVALID_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertThrows(ParseException.class, () -> parser.parse(VALID_TYPE_CASE_PAGE + INVALID_NONEMPTY_INDEX));
+        assertParseFailure(parser, VALID_TYPE_CASE_PAGE + INVALID_NONEMPTY_INDEX, MESSAGE_INVALID_INDEX);
+
+        //Invalid empty Index
+        assertThrows(ParseException.class, () -> parser.parse(VALID_TYPE_CASE_PAGE + INVALID_EMPTY_INDEX));
+        assertParseFailure(parser, VALID_TYPE_CASE_PAGE + INVALID_EMPTY_INDEX,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteCommand.MESSAGE_USAGE_CASE_PAGE));
 
         //Invalid type for Case page
