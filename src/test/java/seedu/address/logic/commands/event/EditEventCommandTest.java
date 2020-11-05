@@ -1,43 +1,40 @@
 package seedu.address.logic.commands.event;
 
-import javafx.collections.FXCollections;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_NAME_1;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
+import static seedu.address.logic.commands.schedulercommands.EditEventCommand.EditEventDescriptor;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
+import static seedu.address.testutil.event.EventUtil.DEFAULT_EVENT;
+import static seedu.address.testutil.event.EventUtil.VALID_DATE;
+import static seedu.address.testutil.event.EventUtil.VALID_DATE_STRING;
+import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
+import static seedu.address.testutil.event.TypicalIndexes.INDEX_FIRST_EVENT;
+import static seedu.address.testutil.event.TypicalIndexes.INDEX_SECOND_EVENT;
+
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.ModelStub;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
-import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.schedulercommands.EditEventCommand;
-import seedu.address.model.*;
-import seedu.address.model.contact.Contact;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
-import seedu.address.model.event.EventTime;
-import seedu.address.testutil.ContactBuilder;
-import seedu.address.testutil.EditContactDescriptorBuilder;
 import seedu.address.testutil.event.EditEventDescriptorBuilder;
 import seedu.address.testutil.event.EventBuilder;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalContacts.getTypicalContactList;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CONTACT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CONTACT;
-import static seedu.address.logic.commands.schedulercommands.EditEventCommand.EditEventDescriptor;
-import static seedu.address.testutil.event.EventUtil.*;
-import static seedu.address.testutil.event.TypicalIndexes.INDEX_FIRST_EVENT;
-import static seedu.address.testutil.event.TypicalIndexes.INDEX_SECOND_EVENT;
 
 public class EditEventCommandTest {
 

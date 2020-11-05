@@ -16,7 +16,6 @@ import seedu.address.logic.commands.contactlistcommands.EditContactDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.Model;
-import seedu.address.model.ModuleList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
 import seedu.address.model.event.Event;

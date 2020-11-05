@@ -1,41 +1,35 @@
 package seedu.address.logic.commands.event;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.logic.ModelStub;
-import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
-import seedu.address.logic.commands.schedulercommands.FindEventCommand;
-import seedu.address.model.EventList;
-import seedu.address.model.contact.ContactContainsTagsPredicate;
-import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
-import seedu.address.model.contact.FindContactCriteria;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventContainsDatePredicate;
-import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
-import seedu.address.model.event.FindEventCriteria;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.FindContactCriteriaBuilder;
-import seedu.address.testutil.event.FindEventCriteriaBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.event.EventUtil.VALID_EVENT;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.commons.core.Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.event.EventUtil.*;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import seedu.address.logic.ModelStub;
+import seedu.address.logic.commands.schedulercommands.FindEventCommand;
+import seedu.address.model.EventList;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventContainsDatePredicate;
+import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
+import seedu.address.model.event.FindEventCriteria;
+import seedu.address.testutil.event.FindEventCriteriaBuilder;
 
 
 public class FindEventCommandTest {
@@ -49,7 +43,7 @@ public class FindEventCommandTest {
     }
 
     @Test
-    public void executeName_multipleKeywords_EventFound() {
+    public void executeName_multipleKeywords_eventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
         EventNameContainsKeyWordsPredicate predicate = prepareNamePredicate("test cs2101");
         alwaysHaveFind.addEvent(VALID_EVENT);
@@ -79,7 +73,7 @@ public class FindEventCommandTest {
     }
 
     @Test
-    public void executeDate_multipleKeywords_EventFound() {
+    public void executeDate_multipleKeywords_eventFound() {
         String expectedMessage = String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, 1);
         EventContainsDatePredicate predicate = prepareDatePredicate(VALID_EVENT_DATE_1);
         alwaysHaveFind.addEvent(VALID_EVENT);
