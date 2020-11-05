@@ -515,10 +515,9 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
-<br>
+
 **Q**: I am not free during the time that my assignment has been scheduled. How do I reschedule?<br>
 **A**:
-<br>
 You can reschedule by using the schedule command on that assignment again.<br>
 
 1. Type the schedule command into the Command Box with the index of the assignment that you want to reschedule. You can refer to the diagram below.<br>
@@ -535,8 +534,9 @@ You can paste the command into the command box after step 2 and repeat step 1-2 
    ![UserGuideRescheduleSuccess](images/UserGuideRescheduleSuccess.PNG)
    *Figure 20b: New suggested time for assignment labelled*
 <br>
+
 **Q**: I double-clicked the productivenus.jar file but the app is not starting. What should I do?
-**A**: 
+**A**: <br>
 *For Windows Users:*
 1. Open the folder where you have downloaded and saved the productivenus.jar file.
 2. Copy the file directory of the folder. You can refer to the labelled diagram below.<br>
