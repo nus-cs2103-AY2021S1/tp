@@ -404,7 +404,7 @@ The following sequence diagram shows how delete operation works when `execute(de
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** 
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
 
@@ -455,7 +455,7 @@ The following sequence diagram shows how edit operation works when `execute("edi
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** 
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
 
@@ -512,7 +512,7 @@ The following sequence diagram shows how get edit operation works when `execute(
 ![GetEditSequence](images/implementation/GetEditSequence.png)
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** 
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
 
@@ -585,7 +585,7 @@ The following sequence diagram shows how search operation works when `execute("s
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** 
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
 
@@ -663,7 +663,7 @@ The following sequence diagram shows how clear operation works when `execute(cle
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Note:** 
+:information_source: **Note** 
 
 Some term in the sequence diagram above has changed to a common substitutable term:
 
