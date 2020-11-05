@@ -16,32 +16,41 @@ Figure 1. UI of Cap 5 Buddy.
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jonasngs))
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=jonasngs)
 
 * **Major enhancement:** Implement feature to find items using multiple search parameters
 
-  * What it does: 
+  * What it does: This feature allows the user to efficiently search for the desired contact, task or event using multiple search parameter. This ensures that module related
+                  information and details can be retrieved easily whenever needed.
   
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+  * Justification: Finding the necessary module related information is crucial for users given that users may require the specific information 
+                   at any given moment. Additionally, as users might store large numbers of different contacts, tasks and events in their application,
+                   there is a need to provide a feature that allows users to conduct more accurate and refined searches. Finding items
+                   using a single parameter, similar to the `FindCommand` feature provided by `Addressbook-level3` which searches for contacts based on a single name parameter,
+                   may yield many search results. This can hinder user experience as users might have to scan through the search results again. As such,
+                   implementing a feature which allows users to find items using more than one search parameter can narrow down the search results, increasing
+                   the probability of users being able to retrieve their intended search result.
+  
   * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
   
   * Relevant Pull requests: 
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
 
 * **Project management**:
   * Set up the GitHub team repo and organization
   * Managed releases `v1.2`, `v1.3` (2 releases) on GitHub
-  * Managed milestones `V1.1`, `V1.3`. Closed the milestone when all issues have been completed before the deadline.
+  * Managed milestones `V1.1`, `V1.3`. Closed the milestone when all issues have been completed before the stipulated deadline.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
   * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
+
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
+    * Added documentation for the Contact list management features 
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
@@ -52,6 +61,5 @@ Given below are my contributions to the project.
   * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+
 
