@@ -4,7 +4,7 @@ import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class DeleteTeammateParticipationParser implements Parser<DeleteTeammateParticipationCommand> {
+public class DeleteTeammateParticipationCommandParser implements Parser<DeleteTeammateParticipationCommand> {
 
     /**
      * Parses {@code userInput} into a command and returns it.

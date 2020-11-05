@@ -26,17 +26,19 @@ public class AddTeammateParticipationCommand extends Command {
         + "Example: " + COMMAND_WORD + " LucasTai98 ";
 
     private static final Logger logger = Logger.getLogger("AddTeammateParticipationCommandLogger");
-    private final Person toAdd;
+//    private final Person toAdd;
+    private final GitUserIndex gitUserIndex;
 
     /**
      * Adds an existing teammate to a project,
      */
     public AddTeammateParticipationCommand(GitUserIndex index) {
         requireNonNull(index);
-        toAdd = Person.getPersonFromList(index);
-        if (isNull(toAdd)) {
-            logger.log(Level.INFO, "Teammate not retrieved");
-        }
+//        toAdd = Person.getPersonFromList(index);
+        gitUserIndex = index;
+//        if (isNull(toAdd)) {
+//            logger.log(Level.INFO, "Teammate not retrieved");
+//        }
     }
 
     /**
@@ -49,6 +51,7 @@ public class AddTeammateParticipationCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
+        Person toAdd = Person.getPersonFromList(gitUserIndex);
         toAdd.addProject(project);
         project.addParticipation(toAdd);
         model.addParticipation(project.getParticipation(toAdd.getGitUserNameString()));
@@ -61,7 +64,6 @@ public class AddTeammateParticipationCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof AddTeammateParticipationCommand) // instanceof handles nulls
-            && toAdd.equals(((AddTeammateParticipationCommand) other).toAdd); // state check
+            && gitUserIndex.equals(((AddTeammateParticipationCommand) other).gitUserIndex); // state check
     }
-
 }

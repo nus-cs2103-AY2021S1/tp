@@ -56,7 +56,7 @@ public class AddTeammateParticipationCommandTest {
     }
 
     @Test
-    public void execute_invalidGitUserIndex() {
+    public void execute_invalidGitUserIndex_success() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -64,7 +64,7 @@ public class AddTeammateParticipationCommandTest {
         AddTeammateParticipationCommand addTeammateParticipationCommand =
             new AddTeammateParticipationCommand(GIT_USERINDEX_INVALID_TEAMMATE);
 
-        assertThrows(NullPointerException.class, ()-> addTeammateParticipationCommand.execute(model));
+        assertThrows(NullPointerException.class, () -> addTeammateParticipationCommand.execute(model));
     }
 
     @Test

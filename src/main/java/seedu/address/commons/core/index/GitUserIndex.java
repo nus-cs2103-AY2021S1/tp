@@ -41,8 +41,7 @@ public class GitUserIndex {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof Index // instanceof handles nulls
+            || (other instanceof GitUserIndex // instanceof handles nulls
             && uniqueGitUserIndex.equals(((GitUserIndex) other).uniqueGitUserIndex)); // state check
     }
-
 }

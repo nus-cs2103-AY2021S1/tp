@@ -12,18 +12,18 @@ import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.project.AddTeammateParticipationCommand;
+import seedu.address.logic.commands.project.DeleteTeammateParticipationCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.project.Project;
 
-public class AddTeammateParticipationCommandParsertest {
+public class DeleteTeammateParticipationCommandParserTest {
 
-    private AddTeammateParticipationCommandParser parser = new AddTeammateParticipationCommandParser();
+    private DeleteTeammateParticipationCommandParser parser = new DeleteTeammateParticipationCommandParser();
 
     @Test
-    public void parse_validArgs_returnAddTeammateParticipationCommand() {
+    public void parse_validArgs_returnDeleteTeammateParticipationCommand() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -31,7 +31,7 @@ public class AddTeammateParticipationCommandParsertest {
         model.addParticipation(project.getParticipation(DESC_A.getGitUserNameString()));
 
         assertParseSuccess(parser, VALID_TEAMMATE_GIT_USERNAME_A,
-            new AddTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE));
+            new DeleteTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE));
     }
 
     @Test

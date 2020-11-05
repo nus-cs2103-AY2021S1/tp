@@ -159,7 +159,7 @@ public class MainCatalogueParser {
 
         case DeleteTeammateParticipationCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
-                return new DeleteTeammateParticipationParser().parse(arguments);
+                return new DeleteTeammateParticipationCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
