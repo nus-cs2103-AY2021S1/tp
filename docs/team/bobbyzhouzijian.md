@@ -70,3 +70,4 @@ My code contributions to PlaNus can be found via the [RepoSense link](https://nu
   [\#142](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/142), [\#158](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/158),
   [\#165](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/165), [\#166](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/166),
   [\#173](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/173), [\#209](https://github.com/AY2021S1-CS2103T-T12-3/tp/pull/209)
+  * Reported bugs and suggestions for other teams in the class via this [repo](https://github.com/BobbyZhouZijian/ped/issues)
