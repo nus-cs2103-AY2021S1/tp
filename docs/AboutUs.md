@@ -49,13 +49,14 @@ You can reach us via the issues tracker of this [repository](https://github.com/
 
 [[github](https://github.com/justacasul)] 
 
-[[portfolio](team/liuzhengdao.md)]
+[[portfolio](team/justacasul.md)]
 
 * Role: Developer
 * Responsibilities:
     * GUI Expert
+    * UI Designer
     * Code Quality
-    * Dark Mode Heretic
+    * Full-Stack Developer
 
 ### Kheng Hun
 
