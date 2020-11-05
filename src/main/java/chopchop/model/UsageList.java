@@ -5,18 +5,30 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.model.exceptions.EntryNotFoundException;
 import chopchop.model.usage.Usage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class UsageList<T extends Usage> {
     private final ObservableList<T> usages = FXCollections.observableArrayList();
+    private final Comparator<T> comparator = new Comparator<T>() {
+        @Override
+        public int compare(final T o1, final T o2) {
+            if (o1.getDate().compareTo(o2.getDate()) < 0) {
+                return 1;
+            } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                return Integer.compare(o1.getName().compareTo(o2.getName()), 0);
+            } else {
+                return -1;
+            }
+        }
+    };
 
     public UsageList() {}
 
@@ -62,6 +74,7 @@ public class UsageList<T extends Usage> {
                 return;
             }
         }
+        throw new EntryNotFoundException();
     }
 
     public List<T> getUsageList() {
@@ -76,6 +89,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(lowerBound);
         return this.usages.stream()
             .filter(x-> x.isAfter(lowerBound))
+            .sorted(comparator)
             .collect(Collectors.toList());
     }
 
@@ -83,6 +97,7 @@ public class UsageList<T extends Usage> {
         requireNonNull(upperBound);
         return this.usages.stream()
             .filter(x-> x.isBefore(upperBound))
+            .sorted(comparator)
             .collect(Collectors.toList());
     }
 
@@ -104,6 +119,7 @@ public class UsageList<T extends Usage> {
             return this.usages.stream()
                 .filter(x -> x.isAfter(after))
                 .filter(x -> x.isBefore(before))
+                .sorted(comparator)
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
         }
@@ -114,24 +130,14 @@ public class UsageList<T extends Usage> {
         assert n >= 0;
 
         var sorted = new ArrayList<>(this.usages);
-        Collections.sort(sorted, new Comparator<T>() { //just in case
-            @Override
-            public int compare(final T o1, final T o2) {
-                if (o1.getDate().compareTo(o2.getDate()) < 0) {
-                    return -1;
-                } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
-                    return Integer.compare(o2.getName().compareTo(o1.getName()), 0);
-                } else {
-                    return 1;
-                }
-            }
-        });
+        sorted.sort(comparator);
 
         var output = new ArrayList<T>();
-
-        int i = sorted.size();
-        while (i-- > 0 && n-- > 0) {
+        var len = sorted.size();
+        int i = 0;
+        while (i < n && i < sorted.size()) {
             output.add(sorted.get(i));
+            i++;
         }
 
         return output;
@@ -151,7 +157,7 @@ public class UsageList<T extends Usage> {
                 outputLst.add(new Pair<>(i.getName(), k));
             }
         }
-        Collections.sort(outputLst, new Comparator<Pair<String, Integer>>() {
+        outputLst.sort(new Comparator<Pair<String, Integer>>() {
             @Override
             public int compare(final Pair<String, Integer> o1, final Pair<String, Integer> o2) {
                 if (o1.snd() < o2.snd()) {
@@ -167,6 +173,15 @@ public class UsageList<T extends Usage> {
         return outputLst.stream()
             .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        return (obj instanceof UsageList) && ((UsageList<?>) obj).getUsageList().equals(this.usages);
     }
 
 }

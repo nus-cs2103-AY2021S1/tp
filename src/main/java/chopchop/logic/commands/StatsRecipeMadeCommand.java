@@ -1,5 +1,7 @@
 package chopchop.logic.commands;
 
+import static chopchop.commons.util.Enforce.enforceNonNull;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -28,6 +30,8 @@ public class StatsRecipeMadeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
+        enforceNonNull(model);
+
         var output = model.getRecipeUsageList().getUsagesBetween(after, before);
 
         if (!checkValidDateRange(this.after, this.before)) {
@@ -67,7 +71,8 @@ public class StatsRecipeMadeCommand extends Command {
             var upper = before.format(formatter);
             var thisDay = after.format(onFormatter);
 
-            if (after.plusDays(1).equals(before)) {
+            if (after.getSecond() + after.getMinute() + after.getHour() == 0
+                && after.plusDays(1).equals(before)) {
                 return String.format(isEmpty ? "No %s were %s on %s"
                                              : "Showing %s %s on %s", item, verb, thisDay);
             } else {
@@ -89,6 +94,9 @@ public class StatsRecipeMadeCommand extends Command {
      * Checks whether the date range is valid, ie. whether lower is before upper.
      */
     static boolean checkValidDateRange(LocalDateTime lower, LocalDateTime upper) {
+        if (upper == null || lower == null) {
+            return true;
+        }
         return upper.isAfter(lower);
     }
 }

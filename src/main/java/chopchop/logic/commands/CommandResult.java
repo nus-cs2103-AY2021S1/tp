@@ -197,6 +197,7 @@ public class CommandResult {
             && this.recipeToShow.equals(cr.recipeToShow);
     }
 
+
     /**
      * Constructs a new command result that only shows a message.
      *

@@ -1,6 +1,6 @@
 package chopchop.logic.commands;
 
-import static java.util.Objects.requireNonNull;
+import static chopchop.commons.util.Enforce.enforceNonNull;
 
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
@@ -9,7 +9,7 @@ public class StatsRecipeTopCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
-        requireNonNull(model);
+        enforceNonNull(model);
 
         var output = model.getMostMadeRecipeList();
         return CommandResult.statsMessage(output, output.isEmpty()

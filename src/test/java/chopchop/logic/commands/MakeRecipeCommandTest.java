@@ -5,10 +5,17 @@ package chopchop.logic.commands;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.CommandParser;
 import chopchop.model.Model;
+import chopchop.model.ModelManager;
+import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Mass;
 import chopchop.testutil.StubbedModel;
+import chopchop.testutil.TypicalIngredients;
+import chopchop.testutil.TypicalRecipes;
 import org.junit.jupiter.api.Test;
 
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_APRICOT;
+import static chopchop.logic.commands.CommandTestUtil.VALID_INGREDIENT_NAME_CUSTARD;
+import static chopchop.logic.commands.CommandTestUtil.VALID_RECIPE_NAME_APRICOT_SALAD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -79,5 +86,19 @@ public class MakeRecipeCommandTest {
             var r2 = ((MakeRecipeCommand) c).undo(m);
             assertTrue(r2.didSucceed());
         }
+    }
+
+    @Test
+    void test_usages() {
+        var m = new ModelManager();
+        m.addRecipe(TypicalRecipes.APRICOT_SALAD);
+        m.addIngredient(TypicalIngredients.APRICOT);
+        m.addIngredient(TypicalIngredients.CUSTARD);
+        runCommand(m, "make recipe apricot salad");
+        assertEquals(m.getRecipeUsageList().getUsageList().get(0).getName(), VALID_RECIPE_NAME_APRICOT_SALAD);
+        assertEquals(m.getIngredientUsageList().getUsageList().get(0).getName(), VALID_INGREDIENT_NAME_APRICOT);
+        assertEquals(m.getIngredientUsageList().getUsageList().get(0).getQty(),         Count.of(3));
+        assertEquals(m.getIngredientUsageList().getUsageList().get(1).getName(), VALID_INGREDIENT_NAME_CUSTARD);
+        assertEquals(m.getIngredientUsageList().getUsageList().get(1).getQty(),         Count.of(3));
     }
 }

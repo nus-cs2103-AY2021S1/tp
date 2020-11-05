@@ -1,5 +1,6 @@
 package chopchop.logic.commands;
 
+import static chopchop.commons.util.Enforce.enforceNonNull;
 import static chopchop.logic.commands.StatsRecipeMadeCommand.checkValidDateRange;
 import static chopchop.logic.commands.StatsRecipeMadeCommand.formatSubtitle;
 
@@ -30,6 +31,8 @@ public class StatsIngredientUsedCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
+        enforceNonNull(model);
+
         var output = model.getIngredientUsageList().getUsagesBetween(after, before);
 
         if (!checkValidDateRange(this.after, this.before)) {

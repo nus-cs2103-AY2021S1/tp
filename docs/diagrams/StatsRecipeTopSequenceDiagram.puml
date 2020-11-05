@@ -22,7 +22,7 @@ activate CommandParser
 
 CommandParser -> CommandParser : parseArgs("stats recipe top")
 activate CommandParser
-CommandParser --> CommandParser : res
+CommandParser --> CommandParser
 deactivate CommandParser
 
 CommandParser -> StatsCommandParser : parseStatsCommand(res)

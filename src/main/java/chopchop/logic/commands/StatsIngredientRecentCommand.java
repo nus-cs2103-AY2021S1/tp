@@ -1,5 +1,7 @@
 package chopchop.logic.commands;
 
+import static chopchop.commons.util.Enforce.enforceNonNull;
+
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
@@ -18,6 +20,8 @@ public class StatsIngredientRecentCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
+        enforceNonNull(model);
+
         var output = model.getRecentlyUsedIngredients(N_MOST_RECENT);
         var msgOutput = output.stream()
             .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
