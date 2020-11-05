@@ -115,7 +115,7 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-![Structure of the SalesRecordEntry sub-component](images/SaleRecordEntryModelClassDiagram.png)
+![Structure of the SalesRecordEntry sub-component](images/SalesRecordEntryModelClassDiagram.png)
 
 The `SalesRecordEntry` sub-component,
 * stores the sales book data
@@ -770,30 +770,35 @@ with phone number, using a prefix to identify them.
 **Value proposition**:
 The product provides an integrated system for the purpose of sales tracking, ingredient track and manpower management.
 
-* To digitise sales tracking and provide simple sales data analytics
+* To digitalise sales tracking and provide simple sales data analytics
     * Current Implementation at v1.4:
-        * The product can be used to keep a record of the number of each type of bubble tea sold.
+        * The product can keep a record of the number of each type of bubble tea sold.
         * The sales data can be analysed to give the user an insight of how the store is performing. This would allow 
           the user to see which kind of bubble tea sells better and consider adopting similar ideas when creating 
           new drinks.
             * This is currently done through the sorting function when listing sales.
     * Proposed added value for future implementations:
         * Given the number of each type of bubble tea sold, the product can provide the user with the revenue for each day.
-        * The product can also help the user keep track of the daily revenue changes, and the revenue for each
-          type of product. This can also be analysed to give a better insight of the store's performance. 
+        * The product can also help the user track the daily revenue changes, and the revenue for each
+          type of bubble tea. This can also be analysed to give a better insight of the store's performance. 
         * The product integrates sales tracking and ingredient inventory tracking to provide the user with greater
-          convenience. Given the number of each type of bubble tea sold, the user need not manually update the
-          ingredient inventory as frequently, as the product can perform those calculations for the user.
-* To digitise inventory keeping
-    * The product will help to digitise inventory keeping, and thus helps to save the user’s time and prevent 
-      human error in calculation. It does not ensure that the employees use the same amount of ingredients in making 
-      the drinks. The user only needs to enter the number of each type of bubble tea sold on the day. It will notify the user
-      which ingredients are running low on stock and remind him/ her to restock them soon. 
-    * The product could also help the user calculate the total cost for restocking.
-* To manage the employees' contact information digitally
-    * The product will provide a platform to allow the user to save his/ her employees’ contact 
-      information (eg. emergency contacts, address etc).
-    * It can manage contacts faster than a typical mouse/GUI driven app 
+          time saving. Given the number of each type of bubble tea sold, the user need not manually update the
+          ingredient inventory as frequently, as the product can perform calculations to update them for the user.
+* To digitalise ingredient inventory keeping
+    * Current Implementation at v1.4:
+        * The product can keep a record of the amount of ingredient remaining.
+        * The product can remind the user when he needs to restock soon.
+    * Proposed added value for future implementations:
+        * The product will help to digitise inventory keeping, and thus help to save the user’s time and prevent 
+          human error in calculation. It does not ensure that the employees use the same amount of ingredients in making 
+          the drinks. The user only needs to enter the number of each type of bubble tea sold on the day. 
+        * The product could also help the user calculate the total cost for restocking.
+* To assist in manpower management
+    * Current implementation at v1.4:
+        * The product will provide a platform to allow the user to manage employees’ contact 
+          information (e.g. contact number, emergency contact, address etc).
+        * The product allows the user to find available manpower for specific days.
+
 
 
 
