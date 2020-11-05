@@ -40,6 +40,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `delete`, `add`, `edit`, abd `addmcq` feature.
 
+* **Contribution to team based task**:
+  * Responsible for the code quality of QuickCache.
+  
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#115](), [\#85](), [\#19](), [\#42]()
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/GilbertTan19/ped/issues/1), [2](https://github.com/GilbertTan19/ped/issues/2), [3](https://github.com/GilbertTan19/ped/issues/3))
