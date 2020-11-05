@@ -44,7 +44,7 @@ public class MeetingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         typeOfMeeting.setText(getMeetingType(meeting));
         bidderId.setText("Bidder Id: " + meeting.getBidderId().toString());
-        propertyId.setText("Property Id: " + meeting.getPropertyId().toString());
+        propertyId.setText("Prop. Id: " + meeting.getPropertyId().toString());
         meetingDate.setText("Date: " + meeting.getMeetingDate().date);
         venue.setText("Venue: " + meeting.getVenue().venue);
         startTime.setText("Start: " + meeting.getStartTime().startTime);
