@@ -94,6 +94,9 @@ title: Developer Guide
     - [6.1 Launch and Shutdown](#61-launch-and-shutdown)
     - [6.2 Deleting a Recipe](#62-deleting-a-recipe)
     - [6.3 Saving Data](#63-saving-data)
+7. [Appendix: Model Component](#7-appendix-model-component)
+    - [7.1 Recipe](#71-recipe)
+    - [7.2 Ingredient](#72-ingredient)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,6 +185,13 @@ The `UI` component,
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W10-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The more details of the Recipe, Ingredient, Consumption class diagrams
+ is attached at the [back](#7-appendix-model-component)
+
+</div>
 
 The `Model`,
 
@@ -1036,3 +1046,11 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## 7. **Appendix: *Model Component*** <a id="7-model-component"></a>
+
+### 7.1 Recipe <a id="71-recipe"></a>
+![Recipe in Model Component](images/ModelClass_Recipe.png)
+
+### 7.2 Ingredient <a id="72-ingredient"></a>
+![Ingredient in Model Component](images/ModelClass_Ingredient.png)

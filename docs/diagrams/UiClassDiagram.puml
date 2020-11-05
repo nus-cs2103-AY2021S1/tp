@@ -31,44 +31,48 @@ Class HiddenLogic #FFFFFF
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Ui
+HiddenOutside ...> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
-MainWindow *-down-> CommandBox
-MainWindow *-down-> ResultDisplay
-MainWindow *-down-> RecipeListPanel
-MainWindow *-down-> ConsumptionListPanel
-MainWindow *-down-> IngredientListPanel
-MainWindow *-down-> StatusBarFooter
-MainWindow *-down-> SingleRecipeCard
+MainWindow ---> HelpWindow
+MainWindow *-down--> CommandBox
+MainWindow *-down--> ResultDisplay
+MainWindow *-down--> RecipeListPanel
+MainWindow *-down--> ConsumptionListPanel
+MainWindow *-down--> IngredientListPanel
+MainWindow *-down--> StatusBarFooter
+MainWindow *-down--> SingleRecipeCard
 
-RecipeListPanel -down-> RecipeCard
+RecipeListPanel -down--> RecipeCard
 
-MainWindow -left-|> UiPart
+MainWindow -left--|> UiPart
 
-ResultDisplay --|> UiPart
-CommandBox --|> UiPart
-RecipeListPanel --|> UiPart
-RecipeCard --|> UiPart
-IngredientCard --|> UiPart
-IngredientListPanel --|> UiPart
-SingleRecipeCard --|> UiPart
-ConsumptionCard --|> UiPart
-ConsumptionListPanel --|> UiPart
-StatusBarFooter --|> UiPart
-HelpWindow -down-|> UiPart
+ResultDisplay ---|> UiPart
+CommandBox ---|> UiPart
+RecipeListPanel ---|> UiPart
+RecipeCard ---|> UiPart
+IngredientCard ---|> UiPart
+IngredientListPanel ---|> UiPart
+SingleRecipeCard ------|> UiPart
+ConsumptionCard ---|> UiPart
+ConsumptionListPanel ---|> UiPart
+StatusBarFooter ---|> UiPart
+HelpWindow -down--|> UiPart
 
-IngredientListPanel --> IngredientCard
-ConsumptionListPanel --> ConsumptionCard
+IngredientListPanel ---> IngredientCard
+ConsumptionListPanel ---> ConsumptionCard
 
-RecipeCard ..> Model
-ConsumptionCard ..> Model
-IngredientCard ..> Model
-SingleRecipeCard ..> Model
+RecipeCard .....> Model
+ConsumptionCard .....> Model
+IngredientCard .....> Model
+SingleRecipeCard .....> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
+
+RecipeCard -[hidden]right-> IngredientCard
+IngredientCard -[hidden]right-> ConsumptionCard
+ConsumptionCard -[hidden]right-> SingleRecipeCard
 
 RecipeListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
