@@ -41,6 +41,14 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
     ![Archive Page at Main, highlighted navigation bar](images/archive_main.png)
 
+1. If either of the `Pages` are too small, the `adjustable divider` can be shifted to provide more space to either page!
+
+    ![Adjustable Divider Vertical](images/adjustable_panel_vertical.png)
+ 
+1. Likewise, if the `Result Display` is insufficient to display the feedback, its `divider` can also be shifted up! Take note the `Result Display` is scrollable too!
+
+   ![Adjustable Divider Horizontal](images/adjustable_panel_horizontal.png)
+    
 ## Quick Start
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
