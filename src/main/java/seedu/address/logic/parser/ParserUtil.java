@@ -166,7 +166,7 @@ public class ParserUtil {
         requireNonNull(imgPath);
         String trimmedPath = imgPath.trim();
         if (!RecipeImage.isValidImage(trimmedPath)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseException(RecipeImage.MESSAGE_CONSTRAINTS);
         }
         return new RecipeImage(trimmedPath);
     }

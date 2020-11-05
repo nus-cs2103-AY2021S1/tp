@@ -106,7 +106,7 @@ public class ImageParser {
      * @param folder Name of folder.
      * @return List of paths from a folder.
      */
-    private List<Path> getPathsFromResourceJar(String folder)
+    public List<Path> getPathsFromResourceJar(String folder)
             throws URISyntaxException, IOException {
 
         List<Path> result;

@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -56,6 +54,18 @@ public class JsonWishfulShrinkingStorageTest {
     @Test
     public void readWishfulShrinking_invalidRecipeWishfulShrinking_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readWishfulShrinking("invalidRecipeWishfulShrinking.json"));
+    }
+
+    @Test
+    public void readWishfulShrinking_invalidIngredientWishfulShrinking_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () ->
+                readWishfulShrinking("invalidIngredientWishfulShrinking.json"));
+    }
+
+    @Test
+    public void readWishfulShrinking_invalidConsumptionWishfulShrinking_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () ->
+                readWishfulShrinking("invalidConsumptionWishfulShrinking.json"));
     }
 
     @Test

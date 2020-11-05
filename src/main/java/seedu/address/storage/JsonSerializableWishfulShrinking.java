@@ -38,14 +38,6 @@ class JsonSerializableWishfulShrinking {
         this.recipes.addAll(recipes);
     }
 
-    /*
-     * Constructs a {@code JsonSerializableWishfulShrinking} with the given ingredients.
-     */
-    /*@JsonCreator
-    public JsonSerializableWishfulShrinking(@JsonProperty("ingredients") List<JsonAdaptedIngredient> ingredients) {
-        this.ingredients.addAll(ingredients);
-    }*/
-
     /**
      * Converts a given {@code ReadOnlyWishfulShrinking} into this class for Jackson use.
      *
@@ -61,10 +53,6 @@ class JsonSerializableWishfulShrinking {
             ArrayList<Instruction> instruction = consump.getRecipe().getInstruction();
             RecipeImage recipeImage = consump.getRecipe().getRecipeImage();
             int calories = consump.getRecipe().getCalories().value;
-            /*Set<Tag> tags = consump.getRecipe().getTags();
-            if (tags != null) {
-                jsonTags.addAll(tags);
-            }*/
             List<JsonAdaptedTag> jsonTags = new ArrayList<>();
             jsonTags.addAll(consump.getRecipe().getTags().stream()
                     .map(JsonAdaptedTag::new)

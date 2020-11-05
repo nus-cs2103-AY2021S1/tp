@@ -3,13 +3,16 @@ package seedu.address.logic.parser.recipe;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.DUPLICATE_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.INGREDIENT_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.INSTRUCTION_DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_IMAGE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INGREDIENT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MISSING_IMAGE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.NEGATIVE_CALORIES_DESC;
@@ -75,6 +78,11 @@ public class AddRecipeCommandParserTest {
         Recipe expectedRecipe = new RecipeBuilder(NOODLE).build();
         assertParseSuccess(parser, NAME_DESC_NOODLE + INGREDIENT_DESC_NOODLE
                         + CALORIES_DESC_NOODLE + INSTRUCTION_DESC_NOODLE + RECIPE_IMAGE_DESC_NOODLE,
+                new AddRecipeCommand(expectedRecipe));
+
+        // no image
+        assertParseSuccess(parser, NAME_DESC_NOODLE + INGREDIENT_DESC_NOODLE
+                        + CALORIES_DESC_NOODLE + INSTRUCTION_DESC_NOODLE,
                 new AddRecipeCommand(expectedRecipe));
     }
 
@@ -154,10 +162,24 @@ public class AddRecipeCommandParserTest {
                 + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS
                 + TAG_DESC_MARGARITAS, Ingredient.MESSAGE_CONSTRAINTS);
 
+        //duplicate ingredients
+        assertParseFailure(parser, NAME_DESC_MARGARITAS + DUPLICATE_INGREDIENT_DESC
+                + CALORIES_DESC_MARGARITAS + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS
+                + TAG_DESC_MARGARITAS, AddRecipeCommand.MESSAGE_DUPLICATE_INGREDIENTS);
+
         // invalid calories
         assertParseFailure(parser, NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + NEGATIVE_CALORIES_DESC
                 + INSTRUCTION_DESC_MARGARITAS + RECIPE_IMAGE_DESC_MARGARITAS + TAG_DESC_MARGARITAS,
                 Calories.MESSAGE_CONSTRAINTS);
+
+        // invalid image
+        assertParseFailure(parser, NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + VALID_CALORIES_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + MISSING_IMAGE_DESC + TAG_DESC_MARGARITAS,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + VALID_CALORIES_MARGARITAS
+                        + INSTRUCTION_DESC_MARGARITAS + INVALID_IMAGE_DESC + TAG_DESC_MARGARITAS,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_MARGARITAS + INGREDIENT_DESC_MARGARITAS + CALORIES_DESC_MARGARITAS

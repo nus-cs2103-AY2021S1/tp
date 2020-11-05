@@ -78,4 +78,25 @@ public class CommandResultTest {
                 GetEditIngredientCommand.COMMAND_WORD).hashCode());
 
     }
+
+    @Test
+    public void getAttributesOnInitialization() {
+        CommandResult commandResult = new CommandResult("feedback");
+
+        assertFalse(commandResult.isShowHelp());
+
+        assertFalse(commandResult.isExit());
+
+        assertFalse(commandResult.isShowRecipe());
+
+        assertFalse(commandResult.isShowIngredient());
+
+        assertFalse(commandResult.isShowConsumption());
+
+        assertFalse(commandResult.isEditRecipe());
+
+        assertFalse(commandResult.isEditIngredient());
+
+        assertFalse(commandResult.isClose());
+    }
 }
