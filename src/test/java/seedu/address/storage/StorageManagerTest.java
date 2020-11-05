@@ -61,7 +61,7 @@ public class StorageManagerTest {
 
     @Test
     public void getUserPrefsFilePath() {
-        assertEquals(storageManager.getUserPrefsFilePath(),getTempFilePath("prefs"));
+        assertEquals(storageManager.getUserPrefsFilePath(), getTempFilePath("prefs"));
     }
 
     @Test
