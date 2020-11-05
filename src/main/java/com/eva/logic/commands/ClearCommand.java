@@ -27,7 +27,7 @@ public class ClearCommand extends Command {
             + ": clears all records of staffs or applicants according to parameters.\n"
             + "parameters: LIST_TYPE-\n"
             + "Example: " + COMMAND_WORD + " s-";
-    private static final String MESSAGE_WRONG_PANEL = "Please switch to %1$s list with list %2$s";
+    public static final String MESSAGE_WRONG_PANEL = "Please switch to %1$s list with list %2$s";
     private final Prefix type;
 
     public ClearCommand(Prefix type) {
@@ -58,9 +58,6 @@ public class ClearCommand extends Command {
                         String.format(MESSAGE_WRONG_PANEL, contentsCleared, type)));
             }
             model.setApplicantDatabase(new EvaDatabase<>());
-
-        } else {
-            assert false;
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, contentsCleared));
     }

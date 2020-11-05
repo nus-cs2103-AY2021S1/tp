@@ -401,7 +401,10 @@ public class ModelManager implements Model {
                 && staffDatabase.equals(other.staffDatabase)
                 && applicantDatabase.equals(other.applicantDatabase)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredStaffs.equals(other.filteredStaffs)
+                && filteredApplicants.equals(other.filteredApplicants);
+
     }
 
 }
