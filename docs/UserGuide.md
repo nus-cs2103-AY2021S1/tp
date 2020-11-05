@@ -998,7 +998,7 @@ Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
 
 This command deletes a specific ingredient from ChopChop. Similar to the `add ingredient` command, this command also allows you to delete quantities of ingredients instead of the whole ingredient. In this scenario, ChopChop will intelligently remove the earliest-expiring ingredients first.
 
-If `/qty` is not specified, then the behaviour of this command is to completely remove the ingredient from ChopChop. Worry not: if you accidentally delete something, you can always `undo` it.
+If `/qty` is not specified, then the behaviour of this command is to completely remove the ingredient from ChopChop. Worry not: if you accidentally delete something, you can always [`undo`](#UndoCommand) it.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:** If specified, the quantity needs to have compatible units with the existing ingredient; see [this section](#QuantitiesAndUnits) for how it works.
