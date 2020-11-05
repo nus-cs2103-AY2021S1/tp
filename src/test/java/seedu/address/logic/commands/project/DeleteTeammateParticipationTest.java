@@ -53,23 +53,26 @@ public class DeleteTeammateParticipationTest {
 
     @Test
     public void equals() {
-        DeleteTeammateParticipationCommand addFirst = new DeleteTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-        DeleteTeammateParticipationCommand addSecond = new DeleteTeammateParticipationCommand(GIT_USERINDEX_FIRST_TEAMMATE);
-        DeleteTeammateParticipationCommand addThird = new DeleteTeammateParticipationCommand(GIT_USERINDEX_SECOND_TEAMMATE);
+        DeleteTeammateParticipationCommand deleteFirst = new DeleteTeammateParticipationCommand(
+            GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateParticipationCommand deleteSecond = new DeleteTeammateParticipationCommand(
+            GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateParticipationCommand deleteThird = new DeleteTeammateParticipationCommand(
+            GIT_USERINDEX_SECOND_TEAMMATE);
 
         // same object -> returns true
-        assertTrue(addFirst.equals(addFirst));
+        assertTrue(deleteFirst.equals(deleteFirst));
 
         // same values -> returns true
-        assertTrue(addFirst.equals(addSecond));
+        assertTrue(deleteFirst.equals(deleteSecond));
 
         // different types -> returns false
-        assertFalse(addFirst.equals(1));
+        assertFalse(deleteFirst.equals(1));
 
         // null -> returns false
-        assertFalse(addFirst.equals(null));
+        assertFalse(deleteFirst.equals(null));
 
         // different gitUserName -> returns false
-        assertFalse(addFirst.equals(addThird));
+        assertFalse(deleteFirst.equals(deleteThird));
     }
 }

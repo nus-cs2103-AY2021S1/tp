@@ -1,10 +1,14 @@
 package seedu.address.logic.commands.project;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_SECOND_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
@@ -58,5 +62,30 @@ public class DeleteTeammateCommandTest {
         Participation participation = project.getParticipation(GIT_USERINDEX_SECOND_TEAMMATE.getGitUserName());
         model.addPerson(person);
         assertThrows(NullPointerException.class, () -> model.addParticipation(participation));
+    }
+
+    @Test
+    public void equals() {
+        DeleteTeammateCommand deleteFirst = new DeleteTeammateCommand(
+            GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateCommand deleteSecond = new DeleteTeammateCommand(
+            GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateCommand deleteThird = new DeleteTeammateCommand(
+            GIT_USERINDEX_SECOND_TEAMMATE);
+
+        // same object -> returns true
+        assertTrue(deleteFirst.equals(deleteFirst));
+
+        // same values -> returns true
+        assertTrue(deleteFirst.equals(deleteSecond));
+
+        // different types -> returns false
+        assertFalse(deleteFirst.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteFirst.equals(null));
+
+        // different gitUserName -> returns false
+        assertFalse(deleteFirst.equals(deleteThird));
     }
 }
