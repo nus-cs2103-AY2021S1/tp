@@ -158,4 +158,8 @@ public class FzfModule {
             query.setText("");
         }
     }
+
+    public ContextMenu getMenu() {
+        return menu;
+    }
 }
