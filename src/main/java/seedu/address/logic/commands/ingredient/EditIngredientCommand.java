@@ -78,8 +78,7 @@ public class EditIngredientCommand extends Command {
         model.setIngredient(ingredientToEdit, editedIngredient);
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         if (ingredientToEdit.isSameIngredient(editedIngredient)) {
-            return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedIngredient),
-                    ListIngredientsCommand.COMMAND_WORD);
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
 
         assert(!editedIngredient.equals(ingredientToEdit));
