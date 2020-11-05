@@ -16,7 +16,7 @@ You can reach us at the email `jordany@comp.nus.edu.sg` or our supervisor at `da
 
 [[homepage](https://limziyang.com/)]
 [[github](http://github.com/Ziyang-98)]
-[[portfolio](team/ziyang98.md)]
+[[portfolio](team/ziyang-98.md)]
 
 * Role: Team Lead
 * Responsibilities: Responsible for overall project coordination
