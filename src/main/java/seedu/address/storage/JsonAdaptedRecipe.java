@@ -76,10 +76,6 @@ class JsonAdaptedRecipe {
      * @throws IllegalValueException if there were any data constraints violated in the adapted recipe.
      */
     public Recipe toModelType() throws IllegalValueException {
-        final List<Tag> recipeTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            recipeTags.add(tag.toModelType());
-        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
@@ -89,7 +85,7 @@ class JsonAdaptedRecipe {
         }
         final Name modelName = new Name(name);
 
-        if (instruction == null) {
+        if (instruction == null || instruction.size() == 0) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Instruction.class.getSimpleName()));
         }
@@ -131,6 +127,14 @@ class JsonAdaptedRecipe {
         }
         final Calories modelCalories = new Calories(calories);
 
+        if (tagged == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Tag.class.getSimpleName()));
+        }
+        final List<Tag> recipeTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            recipeTags.add(tag.toModelType());
+        }
         final Set<Tag> modelTags = new HashSet<>(recipeTags);
 
         return new Recipe(modelName, modelInstruction, modelRecipeImage,
