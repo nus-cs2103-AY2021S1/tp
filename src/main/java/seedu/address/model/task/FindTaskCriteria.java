@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -20,6 +22,7 @@ public class FindTaskCriteria {
      * @param predicate Predicate to be added.
      */
     public void addPredicate(Predicate<Task> predicate) {
+        requireNonNull(predicate);
         predicateList.add(predicate);
     }
 

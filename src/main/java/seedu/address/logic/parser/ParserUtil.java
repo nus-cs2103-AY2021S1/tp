@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SEARCH_KEYWORD;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,7 +18,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModularCredits;
+import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
@@ -176,6 +182,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String lesson} into a {@code ModuleLesson}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lesson} is invalid.
+     */
+    public static ModuleLesson parseModuleLesson(String lesson) throws ParseException {
+        requireNonNull(lesson);
+        String trimmedLesson = lesson.trim();
+        if (!ModuleLesson.isValidLesson(trimmedLesson)) {
+            throw new ParseException(ModuleLesson.MESSAGE_CONSTRAINTS);
+        }
+        return new ModuleLesson(trimmedLesson);
+    }
+
+    /**
      * Parses a {@code String assignmentName}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -242,7 +263,7 @@ public class ParserUtil {
     public static GradePoint parseGradePoint(String gradePoint) throws ParseException {
         double trimmedGradePoint;
         if (!GradePoint.isValidGradePoint(gradePoint)) {
-            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+            throw new ParseException(GradePoint.MESSAGE_CONSTRAINTS);
         } else {
             trimmedGradePoint = Double.parseDouble(gradePoint.trim());
         }
@@ -276,8 +297,6 @@ public class ParserUtil {
         assert priority != null;
         String priorityAllUpperCase = priority.toUpperCase();
         switch(priorityAllUpperCase) {
-        case("HIGHEST"):
-            return Priority.HIGHEST;
         case("HIGH"):
             return Priority.HIGH;
         case("NORMAL"):
@@ -313,8 +332,7 @@ public class ParserUtil {
         assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
         switch(criterionAllUpperCase) {
-        case("DESCRIPTION"):
-        case("DESC"):
+        case("NAME"):
             return Criterion.NAME;
         case("DATE"):
         case("DEADLINE"):
@@ -324,6 +342,55 @@ public class ParserUtil {
             return Criterion.PRIORITY;
         default:
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    ///////////////////// Scheduler /////////////////////////////
+
+    /**
+     * Checks and parses the given input into an EventName.
+     * @param name name of event.
+     * @return EventName the container for the name.
+     * @throws ParseException invalid name.
+     */
+    public static EventName parseEventName(String name) throws ParseException {
+        if (EventName.isValidName(name)) {
+            return new EventName(name);
+        } else {
+            throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses the input string and creates an EventTime object based on that.
+     * @param date string to be parsed.
+     * @return EventTime.
+     */
+    public static EventTime parseEventTime(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return new EventTime(localDateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(EventTime.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Returns a LocalDateTime based on the given input.
+     *
+     * @param date date in string.
+     * @return LocalDateTime datetime object.
+     * @throws ParseException when the given string is in the wrong format.
+     */
+    public static LocalDateTime parseDate(String date) throws ParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+            return localDateTime;
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date and time entered. Please follow this format: "
+                    + System.lineSeparator() + "day-month-year 24h time (d-M-uuuu HHmm)");
         }
     }
 }

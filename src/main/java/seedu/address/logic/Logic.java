@@ -8,9 +8,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -34,8 +36,13 @@ public interface Logic {
      */
     ReadOnlyModuleList getModuleList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
+
+    /**
+     * Returns an unmodifiable view of the filtered list of modules for display
+     */
+    ObservableList<Module> getFilteredModuleListDisplay();
 
     /**
      * Returns the user prefs' address book file path.
@@ -77,4 +84,11 @@ public interface Logic {
      * @return Path of contact list.
      */
     public Path getContactListFilePath();
+
+    public ReadOnlyEventList getEventList();
+
+    public ObservableList<Event> getFilteredEventList();
+
+    public Path getEventListFilePath();
+
 }

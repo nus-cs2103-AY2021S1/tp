@@ -2,6 +2,9 @@ package seedu.address.logic.commands.modulelistcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TARGET_CAP;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.Command;
@@ -18,6 +21,8 @@ public class TargetCapCalculatorCommand extends Command {
     public static final String COMMAND_WORD = "targetcap";
     public static final String MESSAGE_CONSTRAINTS =
             "Unable to calculate CAP details because you do not have any completed mods";
+    public static final String MESSAGE_NO_PLANNED_MODULAR_CREDITS_CONSTRAINT =
+            "Unable to calculate CAP details because you do not have any planned modular credits";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Determines CAP needed for ongoing modules for user to reach specified target CAP. "
             + "Parameters: "
@@ -40,8 +45,11 @@ public class TargetCapCalculatorCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         double capNeeded;
+        List<Module> lastShownList = new ArrayList<>();
+        lastShownList.addAll(model.getFilteredUnarchivedModuleList());
+        lastShownList.addAll(model.getFilteredArchivedModuleList());
         try {
-            capNeeded = calculateCapNeeded(model.getFilteredModuleList());
+            capNeeded = calculateCapNeeded(lastShownList);
         } catch (CapCalculationException capCalculationException) {
             throw new CommandException(capCalculationException.getMessage());
         }
@@ -62,6 +70,9 @@ public class TargetCapCalculatorCommand extends Command {
             throw new CapCalculationException(MESSAGE_CONSTRAINTS);
         }
         double plannedCredits = getPlannedCredits(modules);
+        if (plannedCredits == 0) {
+            throw new CapCalculationException(MESSAGE_NO_PLANNED_MODULAR_CREDITS_CONSTRAINT);
+        }
         double completedCredits = getCompletedCredits(modules);
         double totalCredits = plannedCredits + completedCredits;
         double capNeeded = (targetCap - (currentCap * (completedCredits / totalCredits)))
@@ -96,14 +107,16 @@ public class TargetCapCalculatorCommand extends Command {
      * @return String containing the success message.
      */
     public String createSuccessMessage(double capNeeded, double plannedCredits) {
-        //String message = "Your CAP for completed mods has been successfully calculated : " + Double.toString(cap);
+        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        numberFormat.setRoundingMode(RoundingMode.HALF_UP);
         String message;
         if (capNeeded > 5) {
             message = "It is impossible to attain the targeted CAP with the amount of planned credits";
         } else {
             message = "To attain the target CAP of " + Double.toString(targetCap) + "\n"
-                    + "You will need to achieve a CAP of at least " + Double.toString(capNeeded)
-                    + " for your ongoing modules worth a total of " + Double.toString(plannedCredits) + " credits";
+                    + "You will need to achieve a CAP of at least " + numberFormat.format(capNeeded)
+                    + " for your ongoing modules worth a total of "
+                    + numberFormat.format(plannedCredits) + " credits";
         }
         return message;
     }
