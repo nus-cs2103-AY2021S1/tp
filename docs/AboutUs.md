@@ -13,8 +13,7 @@ You can reach us at the email `e0388997@u.nus.edu`
 
 <img src="images/vielheim.png" width="200px">
 
-[[github](https://github.com/vielheim)]
-[[portfolio](team/vielheim.md)]
+[[github](https://github.com/vielheim)][[portfolio](team/vielheim.md)]
 
 * Role: Team Lead
 * Responsibilities: Overall project coordination. Ensures team is on schedule.
