@@ -1,18 +1,7 @@
 package com.eva.logic.commands;
 
-import com.eva.commons.core.Messages;
-import com.eva.commons.core.PanelState;
-import com.eva.commons.core.index.Index;
-import com.eva.model.Model;
-import com.eva.model.ModelManager;
-import com.eva.model.UserPrefs;
-import com.eva.model.person.Person;
-import com.eva.model.person.staff.Staff;
-import org.junit.jupiter.api.Test;
-
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static com.eva.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static com.eva.logic.commands.CommandTestUtil.showStaffAtIndex;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -21,6 +10,15 @@ import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import com.eva.commons.core.Messages;
+import com.eva.commons.core.index.Index;
+import com.eva.model.Model;
+import com.eva.model.ModelManager;
+import com.eva.model.UserPrefs;
+import com.eva.model.person.staff.Staff;
 
 public class DeleteStaffCommandTest {
 

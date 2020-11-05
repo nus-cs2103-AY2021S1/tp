@@ -7,7 +7,6 @@ import static com.eva.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static com.eva.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static com.eva.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static com.eva.logic.commands.CommandTestUtil.showStaffAtIndex;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -18,8 +17,6 @@ import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.eva.model.person.staff.Staff;
-import com.eva.testutil.staff.StaffBuilder;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.Messages;
@@ -29,9 +26,9 @@ import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
 import com.eva.model.UserPrefs;
-import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 import com.eva.testutil.EditPersonDescriptorBuilder;
-import com.eva.testutil.PersonBuilder;
+import com.eva.testutil.staff.StaffBuilder;
 
 public class EditStaffTest {
     private Model model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),

@@ -6,6 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Test;
+
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.exceptions.CommandException;
@@ -21,18 +30,12 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
-import com.eva.testutil.PersonBuilder;
 import com.eva.testutil.staff.StaffBuilder;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.function.Predicate;
+import javafx.collections.ObservableList;
+
+
+
 
 public class AddStaffCommandTest {
     @Test
@@ -54,10 +57,13 @@ public class AddStaffCommandTest {
     @Test
     public void execute_duplicateStaff_throwsCommandException() {
         Staff validStaff = new StaffBuilder().build();
-        AddStaffCommand addStaffCommand = new AddStaffCommand(validStaff);
-        AddStaffCommandTest.ModelStub modelStub = new AddStaffCommandTest.ModelStubWithStaffWithPanelState(validStaff, PanelState.STAFF_LIST);
+        AddStaffCommand addStaffCommand =
+                new AddStaffCommand(validStaff);
+        AddStaffCommandTest.ModelStub modelStub =
+                new AddStaffCommandTest.ModelStubWithStaffWithPanelState(validStaff, PanelState.STAFF_LIST);
 
-        assertThrows(CommandException.class, AddStaffCommand.MESSAGE_DUPLICATE_PERSON, () -> addStaffCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddStaffCommand.MESSAGE_DUPLICATE_PERSON, () -> addStaffCommand.execute(modelStub));
     }
 
     @Test
@@ -361,7 +367,7 @@ public class AddStaffCommandTest {
      */
     private class ModelStubAcceptingStaffAdded extends ModelStub {
         final ArrayList<Person> staffsAdded = new ArrayList<>();
-        PanelState panelState;
+        private PanelState panelState;
 
         @Override
         public boolean hasStaff(Staff staff) {
