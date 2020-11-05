@@ -16,27 +16,27 @@ PlaNus reduces the time spent by students in task management as adding tasks and
 
 Given below are my contributions to the project.
 
-* **New Features** *: Added the ability to find tasks/lessons.
+* **New Features**: Added the ability to find tasks/lessons.
   * What it does: easy-to-use CLI commands to find a particular task or lesson according to a set of specified attributes.
   * Justifications: The `find-task` and `find-lesson` features are integral in managing a large amount of tasks and lessons.
   * Highlights: This feature requires deep integration with other features because the there are many attributes that a task/lesson
   can be searched for. Also, it requires some clever design to decide specifically what attributes to search so as to allow easy finding.
 
-* **New Features** *: Added the ability to edit/delete lesson.
+* **New Features**: Added the ability to edit/delete lesson.
   * What it does: allows user to edit or delete a lesson by a set of attributes. The calendar and data analysis will be updated as well.
   * Justifications: The ability to edit or delete a lesson is important in managing lessons. Users need to use this feature frequently to edit a lesson under
   many situations, for example the user makes a typo in the lesson title or the lesson is not relevant anymore.
   * Highlights: This feature requires a meticulous and creative design to ensure that the edited lesson is reflected on the calendar view
   as well as the data analysis as well.
  
-* **New Features** *: Refactor the `help` command from AB3.
+* **New Features**: Refactor the `help` command from AB3.
   * What it does: refactor the help window when the user types `help` in the CLI. The new help window includes a set of command summary instead of
   simply providing a URL to the user guide as in the AB3.
   * Justifications: Allowing users to look up commands directly in PlaNus is much more user-friendly than asking users to navigate to the user guide for
   relevant information.
   * Highlights: The implementation requires good JavaFx skills to make sure the UI looks aesthetically appealing.
   
-* **New Features** *: Adds the ability to save lessons in JSON.
+* **New Features**: Adds the ability to save lessons in JSON.
   * What it does: Allows lessons to be saved locally to a JSON.
   * Justifications: Similar to tasks, it is important that the lessons that a user adds to PlaNus is properly saved and can be referred next time
   PlaNus runs.
