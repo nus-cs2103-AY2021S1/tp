@@ -31,8 +31,12 @@ public class ImportCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
         }
 
-        TimetableData data = TimetableUrlParser.parseTimetableUrl(url);
-        return new ImportCommand(data);
+        try {
+            TimetableData data = TimetableUrlParser.parseTimetableUrl(url);
+            return new ImportCommand(data);
+        } catch (Exception e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));
+        }
     }
 
     /**

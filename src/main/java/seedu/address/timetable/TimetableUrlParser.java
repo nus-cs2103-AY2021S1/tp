@@ -2,6 +2,7 @@ package seedu.address.timetable;
 
 public class TimetableUrlParser {
     private static final String nusModsProtocolAndHost = "https://nusmods.com/timetable/";
+    private static final String nusModsHost = "nusmods.com/timetable/";
 
     /**
      * Parses timetable url and returns timetable data.
@@ -22,9 +23,18 @@ public class TimetableUrlParser {
     }
 
     private static int parseTimetableUrlForSem(String url) {
-        String semester = url.split("/sem-", 2)[1];
-        semester = semester.substring(0, 1);
-        return Integer.parseInt(semester);
+        String temp = url.split(nusModsHost)[1];
+        String semesterType = temp.split("-", 2)[0];
+        String semesterNumber = "0";
+        if (semesterType.equals("sem")) {
+            semesterNumber = url.split("/sem-", 2)[1];
+            semesterNumber = semesterNumber.split("/", 2)[0];
+        } else if (semesterType.equals("st")) {
+            semesterNumber = url.split("/st-", 2)[1];
+            semesterNumber = semesterNumber.split("/", 2)[0];
+            semesterNumber = semesterNumber.equals("i") ? "3" : "4";
+        }
+        return Integer.parseInt(semesterNumber);
     }
 
     private static String[] parseTimetableUrlForData(String url) {
