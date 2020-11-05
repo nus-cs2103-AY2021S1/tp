@@ -31,9 +31,10 @@ public class TypicalStudents {
             .withAttendance("1", "2", "5", "13")
             .build();
 
+    // don't add attendance to this student
     public static final Student CHARLIE = new StudentBuilder()
             .withName("CHARLIE CHEN")
-            .withEmail("ccharlie@u.nus.edu")
+            .withEmail("charlie@hi.com")
             .withPhone("82223333")
             .withTags("CS2103T")
             .withStudentId("A1928835B")
