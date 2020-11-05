@@ -37,7 +37,7 @@ public class ImageParserTest {
     @Test
     public void parse_validUrlDifferentComputers_failure() throws ParseException, IOException, URISyntaxException {
         RecipeImage expectedImage = new RecipeImage(
-                "file:///C:/Users/Qi/Documents/tp/build/classes/java/main/data/Big-Italian-Salad.jpg");
+                "file:///D:/Users/Documents/tp/build/classes/java/main/data/Big-Italian-Salad.jpg");
         ImageParser imageParser = new ImageParser();
         assertFalse(expectedImage.equals(imageParser.parse(VALID_URL_IMAGE_STRING)));
     }
