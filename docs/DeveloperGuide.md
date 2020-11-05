@@ -138,13 +138,13 @@ This section describes some noteworthy details on how certain features are imple
 The Add feature 
 The add feature is facilitated by `LogicManager` and `ModelManager`. The add command supports the following inputs from the user
 
-* q/QUESTION
-* a/ANSWER
-* c/CATEGORY
-* n/NOTE
-* r/RATING
-* d/DIAGRAM
-* t/TAG
+* `q/QUESTION`
+* `a/ANSWER`
+* `c/CATEGORY`
+* `n/NOTE`
+* `r/RATING`
+* `d/DIAGRAM`
+* `t/TAG`
 
 Question and answer are mandatory inputs while the rest are optional inputs. When the user adds a flashcard, the user’s inputs will be passed on to `ParserUtil`. `ParserUtil` will conduct input validation and trim any leading and trailing whitespaces. If the user’s inputs are valid and there are no duplicate flashcard, a `Flashcard` object will be created and added to the `FlashcardDeck`. Otherwise `ParseException` will be thrown and the relevant error message will be displayed to the user. 
 
@@ -162,7 +162,7 @@ The following sequence diagram shows how the `add` operation works:
 #### Current Implementation
 
 The review feature is one of the two abstract study features. The review feature is facilitated by `StudyManager` which
-keeps track of the review state. It maintains the list of `Flashcard` and the `currentIndex` at which the user is at.
+keeps track of the review state. `StudyManager` maintains the list of `Flashcard` and the `currentIndex` at which the user is at.
 The review feature also involves the UI via `ReviewPanel` which will handle user input and displaying of the flashcards.
 
 `StudyManager` implements the following operations:
@@ -181,7 +181,7 @@ Given below is an example of how the review mechanism behaves at each step:
 Step 1. The user launches the application.
 
 Step 2. The user executes `review` command. `MainWindow` will receive a `CommandResult` and calls `CommandResult#isReviewMode` which returns true. A new `ReviewPanel` 
-is created and `MainWindow#enterStudyMode` is then called with this `ReviewPanel` to enter review mode.
+is created and `MainWindow#enterStudyMode` is then called with this `ReviewPanel`, to enter review mode.
 
 Step 3. In `MainWindow#enterStudyMode`, the UI elements are altered to show the review user interface. In `ReviewPanel` a listener is set 
 up to listen for arrow key presses, and a new `StudyManager` is created to keep track of state.
