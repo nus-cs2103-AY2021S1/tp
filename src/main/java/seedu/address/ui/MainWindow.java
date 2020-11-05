@@ -149,18 +149,18 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private void setStylesheet(String theme, boolean triggerResultDisplay) {
         logger.info("Switching to " + theme + " theme");
         assert theme.equals(LIGHT_THEME) || theme.equals(DARK_THEME);
-        ObservableList<String> stylesheets = mainContainer.getStylesheets();
-        if (stylesheets.size() != 0) {
-            stylesheets.remove(0);
+        ObservableList<String> mainContainerStylesheets = mainContainer.getStylesheets();
+        if (mainContainerStylesheets.size() != 0) {
+            mainContainerStylesheets.remove(0);
         }
         String feedbackToUser;
         switch (theme) {
         case DARK_THEME:
-            stylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
+            mainContainerStylesheets.add(getClass().getResource("/view/DarkTheme.css").toExternalForm());
             feedbackToUser = "Dark theme set successfully.";
             break;
         case LIGHT_THEME:
-            stylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
+            mainContainerStylesheets.add(getClass().getResource("/view/LightTheme.css").toExternalForm());
             feedbackToUser = "Light theme set successfully.";
             break;
         default:
@@ -243,7 +243,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            helpWindow.show(hostServices);
+            helpWindow.show(hostServices, getTheme());
         } else {
             helpWindow.focus();
         }

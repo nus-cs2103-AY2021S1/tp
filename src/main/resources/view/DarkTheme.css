@@ -472,3 +472,9 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.help-window {
+        -fx-background-color: derive(#121212, 10%);
+        -fx-border-color: derive(#121212, 10%);
+        -fx-border-top-width: 1px;
+}
