@@ -1,0 +1,22 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "students" : [],
+  "rooms": [ {
+    "floor" : "11",
+    "roomNumber" : "108",
+    "roomType" : "CA",
+    "tagged" : [ "normal" ]
+  }, {
+    "floor" : "11",
+    "roomNumber" : "108",
+    "roomType" : "CA",
+    "tagged" : [ "normal" ]
+  } ],
+  "allocations": [],
+  "binItems": []
+}
