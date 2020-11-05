@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -14,6 +15,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+
+import static java.util.Objects.requireNonNull;
 
 public class FzfModule {
 
@@ -40,6 +43,8 @@ public class FzfModule {
     }
 
     public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier) {
+        requireNonNull(tf);
+        requireNonNull(supplier);
         return new FzfModule(tf, supplier);
     }
 
@@ -47,7 +52,6 @@ public class FzfModule {
         setupExitPoints();
         setupEntryPoints();
         setupMainLogic();
-
     }
 
     private void setupMainLogic() {
@@ -67,7 +71,11 @@ public class FzfModule {
                     menu.hide();
                 }
                 if (!menu.isShowing()) {
-                    menu.show(attachedTextField, menuX, menuY);
+                    if (Thread.currentThread().getName() == "Test worker") {
+                        Platform.runLater(() -> menu.show(attachedTextField, menuX, menuY));
+                    } else {
+                        menu.show(attachedTextField, menuX, menuY);
+                    }
                 }
             }
         });
