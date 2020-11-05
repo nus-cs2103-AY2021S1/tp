@@ -23,7 +23,7 @@ public class DurationTest {
         assertFalse(Duration.isValidDuration(Duration.NULL_VALUE)); // default value
 
         // valid duration
-        assertFalse(Duration.isValidDuration(0)); // zero
+        assertTrue(Duration.isValidDuration(0)); // zero
         assertTrue(Duration.isValidDuration(120)); // positive numbers only
     }
 }
