@@ -12,7 +12,7 @@ public class VendorCommand extends Command {
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         model.selectVendor(-1);
         model.clearOrder();
-        return new CommandResult(MESSAGE_RESET_VENDOR_SUCCESS);
+        return new CommandResult(MESSAGE_RESET_VENDOR_SUCCESS, false, false, false, true);
     }
 
     @Override
