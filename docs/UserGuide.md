@@ -565,6 +565,7 @@ Figure 6.3: <i>The newly created recipe in the recipe list</i>
 
 <a name="EditRecipeCommand"></a>
 #### 5.4.4&ensp;Editing Recipes — **`edit`**`recipe` (Alex)
+
 This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
 To accommodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
@@ -1132,9 +1133,26 @@ Again, to reset the search filter or go back to the full ingredient view, you ca
 
 
 <a name="EditIngredientCommand"></a>
-#### 5.5.6&ensp;Editing Recipes (coming soon) — **`edit`**`ingredient`
+#### 5.5.6&ensp;Editing Ingredients — **`edit`**`ingredient`
 
-This command edits the given ingredient. Right now, it is not implemented yet!
+This command edits the given ingredient, in a similar fashion to the [`edit recipe`](#EditRecipeCommand) command. However, currently its functionality is limited to only editing the tags of an ingredient (more features coming soon!).
+
+Again, do refer to the documention on the [`edit recipe`](#EditRecipeCommand) above to find out how edit-descriptors work; this command currently only supports `/tag:add` and `/tag:delete`.
+
+It is an error to delete a tag from an ingredient that did not contain that tag, and similarly to add a duplicate tag to an ingredient.
+
+**Usage**:
+```
+edit ingredient <#REF>
+  [/tag:<action> <tag-name>]...
+```
+
+Examples:
+- `edit ingredient #4 /tag:add frozen` <br/>
+  This tags the fourth ingredient currently shown in the GUI's view with **frozen**.
+
+- `edit ingredient sprinkles /tag:delete fridge` <br/>
+  This removes the tag **fridge** from the ingredient named 'sprinkles'.
 
 
 
@@ -1331,6 +1349,15 @@ delete ingredient &lt;#REF&gt;
     <td>Completely deletes a recipe</td>
     <td><pre>
 delete recipe &lt;#REF&gt;
+</pre></td>
+    <td><b>YES</b></td>
+  </tr><tr>
+    <td><a href="#EditIngredientCommand">edit ingredient</a></td>
+    <td>Edits an existing ingredient</td>
+    <td><pre>
+edit ingredient &lt;#REF&gt;
+  [/tag:&lt;action&gt;
+    &lt;tag-name&gt;]...
 </pre></td>
     <td><b>YES</b></td>
   </tr><tr>
