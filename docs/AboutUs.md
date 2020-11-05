@@ -27,8 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Tutor
 
-
-### Pin Xi
+### Pinxi
 
 <img src="images/AboutUs/fizzyagent.png" width="200px">
 
@@ -36,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/fizzyagent.md)]
 
 * Role: Team Lead
-* Responsibilities: NA
+* Responsibilities: Finance components, Testing and Documentation
 
 ### Dora
 
@@ -46,7 +45,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/dora.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: UI, Testing and Documentation
 
 ### Ee Liang
 
@@ -56,9 +55,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/eeliang.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: Inventory components, Testing and Documentation
 
-### XiHao
+### Xihao
 
 <img src="images/AboutUs/howtoosee.png" width="200px">
 
@@ -66,7 +65,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/xihao.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: Storage components, Testing and Documentation
 
 ### Yu Yang
 
@@ -76,8 +75,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yuyang.md)]
 
 * Role: Developer
-* Responsibilities: NA
-
-
-
-
+* Responsibilities: UI, Testing and Documentation
