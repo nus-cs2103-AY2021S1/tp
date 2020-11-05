@@ -54,14 +54,14 @@ not be so obvious!
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`c-list`** : Lists all employees.
 
-   * **`add`**`n/John Doe p/98765432 e/81234567 t/part time` : Adds an employee's contact
+   * **`c-add`**`n/John Doe p/98765432 e/81234567 t/parttime` : Adds an employee
     named `John Doe` to tCheck.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`c-clear`** : Deletes all employees.
 
    * **`exit`** : Exits the app.
 
@@ -275,7 +275,7 @@ An employee can have any number of tags (including 0)
 
 Examples:
 * `c-add n/John Doe p/98765432 e/81234567 a/Blk 123 ABC Road`.
-* `c-add n/Betsy Crowe e/81234567 p/1234567 a/Blk 120 ABC Road t/Friday t/PartTime`.
+* `c-add n/Betsy Crowe e/81234567 p/89007413 a/Blk 120 ABC Road t/Friday t/PartTime`.
 
 #### 3.2 Listing all employees : `c-list`
 
