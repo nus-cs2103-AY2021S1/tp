@@ -9,15 +9,48 @@ SWEe! is a desktop application used for managing CS2103T learning progress mainl
 
 Given below are my contributions to the project.
 
-* **New Feature**:
-* **Code contributed**: 
+* **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tanzhuoyao-nus)
 
-* **Project management**:
+* **Enhancements implemented**:
+  * Refactor AddCommandParserTest and ParserUtilTest classes to support the testing of adding of flashcards
+  [#29](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/29)
+  * Refactor ListCommand and ListCommandTest classes to list out all the flashcards
+  [#39](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/39)
+  * Add FilterCommand to filter for flashcards
+  [#41](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/41/files) &
+  [#97](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/97/files)
+    * What it does: Allows the user to filter for flashcards according to category, rating and/or favourites status
+    * Justification: This allows the user to toggle through the flashcard deck to display flashcards of specific
+    requirements to aid navigability and ease for revision during quiz mode
+    * Highlights: I have implemented the "and search" function to allow users to specify more than one filter attribute
+    specification
+  * Add test cases for FilterCommand under FilterCommandTest
+  [#45](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/45)
+  * Refactor FindCommand and FindCommandTest classes to support finding of flashcards
+  [#57](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/57/files)
+  * Add tag feature in flashcards to support up to multiple tags on a flashcard
+  [#88](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/88)
+  * Refactor LogicManagerTest, FilterCommandTest, FlashcardDeckParserTest,
+  ModelManagerTest to ensure remaining test cases fully support the application
+  [#110](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/110)
 
-* **Enhancements to existing features**:
+* **Contributions to DG**:
+  * Added implementation for `filter` feature along with activity and sequence diagrams
+  * Minor fixes to formatting of DG
 
-* **Documentation**:
+* **Contributions to UG**:
+  * Added documentation to `filter` feature
+  * Minor fixes to formatting of UG
 
-* **Community**:
+* **Contributions to team-based tasks:**:
+  * Maintaining the issue-tracker
+  * Refactor remaining test cases to remove instances of AB3
 
-* **Tools**:
+**Review/mentoring contributions**:
+  * Reported bugs to other teams: [Issue Tracker](https://github.com/tanzhuoyao-nus/ped/issues)
+  * PRs reviewed: [#53](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/53),
+  [#101](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/101),
+  [#105](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/105),
+  [#106](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/106),
+  [#109](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/109),
+  [#164](https://github.com/AY2021S1-CS2103T-T17-2/tp/pull/164)

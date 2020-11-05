@@ -39,6 +39,8 @@ public class FlashcardQuestionCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private ImageView diagram;
+    @FXML
+    private Label diagramErrorMessage;
 
     /**
      * Creates a {@code FlashcardQuestionCard} with the given {@code Flashcard} and index to display.
@@ -50,12 +52,15 @@ public class FlashcardQuestionCard extends UiPart<Region> {
         category.setText(flashcard.getCategory().toString());
         String diagramFilePath = flashcard.getDiagram().toString();
         diagram.managedProperty().bind(diagram.visibleProperty());
+        diagramErrorMessage.managedProperty().bind(diagramErrorMessage.visibleProperty());
         if (diagramFilePath.isEmpty()) {
             diagram.setVisible(false);
         } else {
             Image image = loadImage(diagramFilePath);
             if (image == null) {
                 diagram.setVisible(false);
+                diagramErrorMessage.setText("Diagram at " + diagramFilePath + " could not be loaded");
+                diagramErrorMessage.setVisible(true);
             }
             diagram.setImage(image);
         }

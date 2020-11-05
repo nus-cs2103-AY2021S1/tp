@@ -47,7 +47,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_CATEGORY + "CATEGORY]"
             + "[" + PREFIX_NOTE + "NOTE]"
             + "[" + PREFIX_RATING + "RATING]"
-            + "[" + PREFIX_TAG + "TAG\n]"
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_DIAGRAM + "DIAGRAM]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "What does the S in SOLID stand for? "
