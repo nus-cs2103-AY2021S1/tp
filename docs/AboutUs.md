@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/gilberttan19.png" width="200px">
 
 [[github](https://github.com/GilbertTan19)]
-[[portfolio](team/gilbert.md)]
+[[portfolio](team/gilberttan19.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality
