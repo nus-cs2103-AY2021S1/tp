@@ -30,7 +30,6 @@ import jimmy.mcgymmy.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    private static final String VALIDATION_REGEX = "[0-9]+";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -38,10 +37,11 @@ public class ParserUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        String validationRegex = "[0-9]+";
         String trimmedIndex = oneBasedIndex.trim();
 
         // if contains non-digit -> invalid index
-        if (!trimmedIndex.matches(VALIDATION_REGEX)) {
+        if (!trimmedIndex.matches(validationRegex)) {
             throw new ParseException(Index.MESSAGE_INVALID_INDEX);
         }
 
