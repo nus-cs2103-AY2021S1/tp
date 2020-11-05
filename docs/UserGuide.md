@@ -71,7 +71,33 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+Note(s):
+* Can be activated by the F1 key.
+* Can be activated by clicking the context menu.
+
+### Setting light theme: `light`
+
+Sets the application to the light theme.
+
+![help message](images/lightTheme.png)
+
+Format: `light`
+
+Note(s):
+* Can be activated by the F2 key.
+* Can be activated by clicking the context menu.
+
+### Setting dark theme: `dark`
+
+Sets the application to the dark theme.
+
+![help message](images/darkTheme.png)
+
+Format: `dark`
+
+Note(s):
+* Can be activated by the F3 key.
+* Can be activated by clicking the context menu.
 
 ### Fuzzy Finding Completion (Fzf)
 
