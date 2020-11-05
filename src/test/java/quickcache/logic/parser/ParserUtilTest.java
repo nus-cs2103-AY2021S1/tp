@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Answer;
+import quickcache.model.flashcard.Difficulty;
 import quickcache.model.flashcard.Tag;
 
 
@@ -21,13 +22,24 @@ public class ParserUtilTest {
     private static final String INVALID_QUESTION = " ";
     private static final String INVALID_ANSWER = " ";
     private static final String INVALID_TAG = " ";
+    private static final String INVALID_CHOICE = " ";
 
     private static final String VALID_QUESTION = "Is this a question?";
     private static final String VALID_ANSWER = "yes";
+    private static final String VALID_ANSWER_MCQ = "5";
+    private static final String VALID_ANSWER_MCQ_2 = "1";
+    private static final String VALID_DIFFICULTY_LOW = "LOW";
+    private static final String VALID_DIFFICULTY_UNSPECIFIED = "UNSPECIFIED";
+    private static final String VALID_DIFFICULTY_EMPTY = "";
     private static final String VALID_TAG_1 = "CS2103T";
     private static final String VALID_TAG_2 = "HardModule";
+    private static final String VALID_CHOICE_1 = "Choice 1";
+    private static final String VALID_CHOICE_2 = "Choice 2";
+
 
     private static final String WHITESPACE = " \t\r\n";
+
+
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -72,6 +84,28 @@ public class ParserUtilTest {
         assertEquals(expectedQuestion, ParserUtil.parseQuestion(questionWithWhitespace));
     }
 
+    @Test
+    public void parseMultipleChoiceQuestion_answerSmallerThanChoice_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultipleChoiceQuestion(VALID_QUESTION,
+                VALID_ANSWER_MCQ, ParserUtil.parseChoices(Arrays.asList(VALID_CHOICE_1, VALID_CHOICE_2))));
+    }
+
+    @Test
+    public void parseMultipleChoiceQuestion_invalidAnswer_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultipleChoiceQuestion(VALID_QUESTION, VALID_ANSWER,
+                ParserUtil.parseChoices(Arrays.asList(VALID_CHOICE_1, VALID_CHOICE_2))));
+    }
+
+    @Test
+    public void parseMultipleChoiceQuestion_invalidQuestion_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultipleChoiceQuestion(INVALID_QUESTION,
+                VALID_ANSWER_MCQ_2, ParserUtil.parseChoices(Arrays.asList(VALID_CHOICE_1, VALID_CHOICE_2))));
+    }
+
+    @Test
+    public void parseOpenEndedQuestion_invalidQuestion_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseOpenEndedQuestion(INVALID_QUESTION, VALID_ANSWER));
+    }
 
     @Test
     public void parseAnswer_null_throwsNullPointerException() {
@@ -200,4 +234,36 @@ public class ParserUtilTest {
         assertEquals(expectedKeywords, ParserUtil.parseKeywords(spacedInputs));
     }
 
+    @Test
+    public void parseDifficulty_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDifficulty(null));
+    }
+
+    @Test
+    public void parseDifficulty_validValueWithoutWhitespace_returnsDifficultyLow() throws Exception {
+        Difficulty expectedDifficulty = new Difficulty(VALID_DIFFICULTY_LOW);
+        assertEquals(expectedDifficulty, ParserUtil.parseDifficulty(VALID_DIFFICULTY_LOW));
+    }
+
+    @Test
+    public void parseDifficulty_emptyString_returnsDifficultyUnspecified() throws Exception {
+        Difficulty expectedDifficulty = new Difficulty(VALID_DIFFICULTY_UNSPECIFIED);
+        assertEquals(expectedDifficulty, ParserUtil.parseDifficulty(VALID_DIFFICULTY_EMPTY));
+    }
+
+    @Test
+    public void parseDifficulty_invalid_throwsParseException() {
+        // throws error if null character is part of the file name string
+        assertThrows(ParseException.class, () -> ParserUtil.parseDifficulty("Invalid Value"));
+    }
+
+    @Test
+    public void parseChoices_collectionWithDuplicateChoices_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseChoices(Arrays.asList("Choice", "Choice")));
+    }
+
+    @Test
+    public void parseChoice_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseChoice(INVALID_CHOICE));
+    }
 }
