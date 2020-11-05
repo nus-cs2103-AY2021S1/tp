@@ -33,5 +33,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_EDIT_TYPE = "You cannot edit this task with the given attributes";
     public static final String MESSAGE_INVALID_DEADLINE_EDIT_STATUS = "You cannot edit a deadline after marked as done";
     public static final String MESSAGE_START_BEFORE_END = "start time is cannot be before end time!";
+    public static final String MESSAGE_MULTIPLE_ATTRIBUTES = "Please do not include more than one of each attribute.";
 
 }

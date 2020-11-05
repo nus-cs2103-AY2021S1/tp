@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASKS_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -55,6 +57,12 @@ public class LogicManagerTest {
     }
 
     @Test
+    public void execute_multipleAttributes_throwsMultipleAttributesException() {
+        String multipleAttributesCommand = "edit-task 1 title:1 title:2";
+        assertMultipleAttributesException(multipleAttributesCommand, MESSAGE_MULTIPLE_ATTRIBUTES);
+    }
+
+    @Test
     public void execute_validCommand_success() throws Exception {
         String listCommand = ListTaskCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListTaskCommand.MESSAGE_SUCCESS, model);
@@ -73,7 +81,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, ParseException, MultipleAttributesException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -85,6 +93,15 @@ public class LogicManagerTest {
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
         assertCommandFailure(inputCommand, ParseException.class, expectedMessage);
+    }
+
+    /**
+     * Executes the command, confirms that a MultipleAttributeException is thrown
+     * and that the result message is correct.
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertMultipleAttributesException(String inputCommand, String expectedMessage) {
+        assertCommandFailure(inputCommand, MultipleAttributesException.class, expectedMessage);
     }
 
     /**
