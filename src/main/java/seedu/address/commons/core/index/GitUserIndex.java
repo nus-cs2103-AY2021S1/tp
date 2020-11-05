@@ -1,6 +1,5 @@
 package seedu.address.commons.core.index;
 
-
 import seedu.address.model.person.GitUserName;
 
 /**
@@ -34,6 +33,7 @@ public class GitUserIndex {
      * @return boolean to indicate validity of gitusername
      */
     public boolean isValidGitUserIndex(String gitUserName) {
+        assert (gitUserName != null);
         String trimmedGitUserName = gitUserName.trim();
         return GitUserName.isValidGitUserName(trimmedGitUserName);
     }

@@ -24,7 +24,7 @@ import seedu.address.model.project.Project;
 public class DeleteTeammateCommandTest {
 
     @Test
-    public void execute_validIndexValidPerson_throwsCommandException() {
+    public void execute_validGitUserIndex_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
@@ -47,7 +47,7 @@ public class DeleteTeammateCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexValidPerson_throwsCommandException() {
+    public void execute_invalidGitUserIndex_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);

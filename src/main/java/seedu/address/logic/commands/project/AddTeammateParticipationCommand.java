@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Project;
@@ -21,7 +20,6 @@ public class AddTeammateParticipationCommand extends Command {
 
     public static final String COMMAND_WORD = "addpart";
     public static final String MESSAGE_ADD_TEAMMATE_PARTICIPATION_SUCCESS = "New Teammate added: %1$s";
-    public static final String MESSAGE_TEAMMATE_NOT_FOUND = "Teammate not found";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds teammate to this project"
         + "Parameters: Git UserName (must be a single word)\n "
@@ -31,14 +29,13 @@ public class AddTeammateParticipationCommand extends Command {
     private final Person toAdd;
 
     /**
-     * Creates an new teammate that is associated with the project
+     * Adds an existing teammate to a project,
      */
-    public AddTeammateParticipationCommand(GitUserIndex index) throws ParseException {
+    public AddTeammateParticipationCommand(GitUserIndex index) {
         requireNonNull(index);
         toAdd = Person.getPersonFromList(index);
         if (isNull(toAdd)) {
             logger.log(Level.INFO, "Teammate gitusername incorrect");
-            throw new ParseException(MESSAGE_TEAMMATE_NOT_FOUND);
         }
     }
 
@@ -58,6 +55,13 @@ public class AddTeammateParticipationCommand extends Command {
         logger.log(Level.INFO, "Teammate added to project");
         return new CommandResult(String.format(MESSAGE_ADD_TEAMMATE_PARTICIPATION_SUCCESS,
             toAdd.getGitUserNameString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof AddTeammateParticipationCommand) // instanceof handles nulls
+            && toAdd.equals(((AddTeammateParticipationCommand) other).toAdd); // state check
     }
 
 }
