@@ -6,13 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModulesPopulatedWithTutorialGroups.getTypicalTrackr;
-import static seedu.address.testutil.TypicalStudents.BENG;
-import static seedu.address.testutil.TypicalStudents.CHARLIE;
-import static seedu.address.testutil.TypicalStudents.DAVID;
-import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalTutorialGroups.T05;
 
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
