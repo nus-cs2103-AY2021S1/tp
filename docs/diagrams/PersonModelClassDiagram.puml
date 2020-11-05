@@ -4,6 +4,11 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+Package PersonModel <<Rectangle>>{
+Class ModelManager
+Class AddressBook
+Class ReadOnlyAddressBook
+
 Package Person {
 Class Person
 Class Name
@@ -17,8 +22,11 @@ Class UniquePersonList
 Package Tag {
 Class Tag
 }
+}
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBook
 
-
+AddressBook .left.|> ReadOnlyAddressBook
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
 ModelManager o-left-> "1" AddressBook
