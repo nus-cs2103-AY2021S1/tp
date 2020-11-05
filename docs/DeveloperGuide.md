@@ -2,51 +2,59 @@
 layout: page
 title: Developer Guide
 ---
+
+<img align="right" height="170" src="images/inventoryinator.jpg">
+
 ## Introduction
 
 This is the developer guide for `Inventoryinator` a brownfield project evolved
 from [AddressBook3](https://github.com/nus-cs2103-AY2021S1/tp).
 
-![inventoryinator](images/inventoryinator.jpg)
+**Inventoryinator** is a **desktop app for managing game inventories**. Our app is optimized for use via
+the **typing** of commands, while your inventory is shown on our **Graphical User Interface (GUI)**.
+If you can type fast, Inventoryinator can get your inventory management tasks done faster than traditional GUI apps.
 
-Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
-get your inventory management tasks done faster than traditional GUI apps.
+If you would like to take part in developing Inventoryinator, this Developer Guide will help you get familiarized with the architecture
+and provide an overview of the implementation of the features and components. You may use the table of
+contents below to easily navigate to sections in this document.
 
 * Table of Contents
 {:toc}
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-* [EndUserPersona](EndUserPersona.md)
+* [End User Persona](EndUserPersona.md)
 * [Usecases](Usecases.md)
 * [Implementation Details and Sequence Flow](CommandSequenceDiagram.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [UserGuide](UserGuide.md).
 
-
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## Design
+
+This section will elaborate on the design and software patterns applied in Inventoryinator.
 
 ### Architecture
 
-![Archietecture Diagram](images/ArchitectureDiagram.png)
+This application applies the [MVC pattern](https://www.tutorialspoint.com/design_pattern/mvc_pattern.html).
+
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 Given below is a quick overview of each component.
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java).
+and [`MainApp`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/MainApp.java).
 It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -74,7 +82,7 @@ and exposes its functionality using the `LogicManager.java` class which implemen
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other
- for the scenario where the user issues the command `delr bob's toenail -r 1`.
+ for the scenario where the user issues the command `deli -n bob's toenail`.
 
 ![architecture](images/commandseqdiagrams/ArchitectureSequenceDiagram.png)
 
@@ -87,13 +95,13 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`,
-`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `InventoryMainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `InventoryListPanel`,
+`StatusBarFooter` etc. All these, including the `InventoryMainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of the
-[`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
-is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+[`InventoryMainWindow`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/ui/InventoryMainWindow.java)
+is specified in [`InventoryMainWindow.fxml`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/resources/view/InventoryMainWindow.fxml)
 
 The `UI` component,
 
@@ -102,22 +110,26 @@ The `UI` component,
 
 ### Logic component
 
+The Logic component of Inventoryinator applies a [command](https://refactoring.guru/design-patterns/command) behavioural design pattern. 
+
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-F13-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `InventoryinatorParser` class to parse the user command.
+1. `Logic` uses the `InventoryParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding an item).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
+1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delr bob's toenail -r 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("deli -n bob's toenail")` API call.
 
-![Interactions Inside the Logic Component for the `delr bob's toenail -r 1` Command](images/commandseqdiagrams/DeleteRecipeSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deli -n bob's toenail` Command](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
 
 ### Model component
+
+![//]: (TODO Diagram @Rahul, possibly to split the diagram)
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -126,12 +138,15 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the Inventoryinator data like items, recipes etc.
-* exposes an unmodifiable `ObservableList<Item>` and `ObservableList<Recipe>` which can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Inventory data like items, recipes etc.
+* exposes an unmodifiable `ObservableList<Item>` and `ObservableList<Recipe>` which can be 'observed' e.g. the UI can
+ be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
 ### Storage component
+
+![//]: (TODO Diagram @Stephen)
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -149,7 +164,7 @@ Classes used by multiple components are stored in the `seedu.address.commons` pa
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Feature Implementation**
+## Feature Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -165,8 +180,7 @@ This command is a specific invocation of an `EditItemCommand` that only modifies
 and instead of replacing the quantity by a new value in `EditItemCommand`, the user-input quantity
 is added to the existing `Item`'s `Quantity`.
 
-This added `Quantity` can be negative and this is why `int` is used in `AddQuantityToItemCommand` as
-opposed to `Quantity`, which only accepts non-negative integers. However, the final `Quantity` of the
+This added `Quantity` can be negative, however the final `Quantity` of the
 modified `Item` cannot be below 0.
 
 `AddQuantityToItemCommand` is dependent on `EditItemCommand` and utilises it to execute its
@@ -188,8 +202,10 @@ default list display of all items which may truncate some information.
 #### Implementation
 
 During execution of view command, `LogicManager` detects that it is a view command, then has `InventoryParser` parse
-the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` then has 
-`ViewDetailsCommand` filter the list of items such that only the exact item the user has requested remains.
+the item name that the user has input using `ViewDetailsCommandParser`. After parsing, `LogicManager` has the
+`Model` reset it's current filters for the lists of items and recipes. Then, `LogicManager` executes the 
+`ViewDetailsCommand`, which applies it's own filter to the list of items, such that only the exact item 
+the user has requested remains, and also parses the recipes to find recipes that creates this item.
 
 After executing the view command, `LogicManager` sends feedback to `InventoryMainWindow` that the command has a 
 `DisplayedInventoryType` of `DETAILED_ITEM`, which prompts `InventoryListPanel` to change the display card of items
@@ -197,32 +213,38 @@ into a more detailed display card on the GUI.
 
 This is the sequence diagram of view detailed item command:
 
-![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png )
+![ViewDetailedItemSequenceDiagram](images/commandseqdiagrams/ViewDetailedItemSequenceDiagram.png)
 
 #### Reasoning behind current implementation
 
 View detailed item was first implemented with the idea of changing GUI on demand, but we eventually realised due to
 AB3's abstraction, `Model` and `Logic` can't communicate directly, which means we could not change the GUI during
 execution of the command. It was only after looking at the `help` command that we discovered how AB3 used `LogicManager`
-to communicate with `MainWindow` to make changes to the GUI. This led to us changing the implementation of 
-`CommandResult`, augmenting it to send feedback of `DisplayedInventoryType`.
+to communicate with `MainWindow` by checking for a certain `help` flag in the `CommandResult` that 
+`LogicManager` returns. This information allows `CommandResult` to know when to make changes to the GUI. 
+At last, this discovery has led to us changing the implementation of `CommandResult` by adding more flags to support
+our new commands that will affect the GUI. Specifically, the check for whether to use a more detailed card to display
+items is through checking the `DisplayedInventoryType` of `CommandResult`.
 
 #### Alternative implementation
 
-One problem with the current implementation is that it is rather slow due to AB3's amount of abstraction. An alternative
-implementation is to create an association class between `Logic` and `Model`, and allow for `Logic` to access `Model`'s 
-`FilteredItemList` directly, which would greatly simplify the command execution process. However, this might not be
-possible without breaking abstraction or heavy modifications to `Model` or `ModelManager`.
+One problem with the current implementation is that it is rather inconvenient to find the correct file to make changes,
+due to AB3's amount of abstraction. An alternative implementation is to create an association class between `Logic` 
+and `Model`, that allow for `Logic` to access `Model`'s `FilteredItemList` directly, which would greatly simplify 
+the sequence of command flow (as well as the sequence diagram). However, the amount of resources and effort required
+to implement such an association class, as well as the additional need for testing and debugging this new association
+class, might ironically lead to bigger time wastage than looking through each class involved in the execution of the
+view command.
 
 ### Delete Item Feature
 
 `DeleteItemCommand` facilitates the deletion of an existing `Item`. This deletion cascades to impact any 
 `Recipe` in the list of recipes that are associated with this item, as such, these matching `Recipe` are also deleted.
 
-This command was implemented to resolve the [userstory](user-stories-for-v1.1), regarding "As a user I want to delete
+This command was implemented to resolve the [userstory](), regarding "As a user I want to delete
  a item so that I can remove item that I no longer need to track."
 
-#### Current Implementation
+#### Implementation
 
 During the execution of an `DeleteItemCommand`, as referenced from the [architecture sequence diagram](#Architecture), 
 the input is accepted by the GUI, and passed into the `LogicManager` that calls `InventoryParser` to parse the command 
@@ -277,6 +299,8 @@ current inventory.
 
 #### Implementation
 
+TODO ADD Alternative Implementation @khenghun
+
 There are three main view modes available: the existing item list, existing recipe list, and detailed item view.
 
 In `InventoryMainWindow`, whenever a command is executed, the `InventoryListPanel` is refreshed, to be filled with the relevant inventory list.
@@ -327,6 +351,9 @@ The following sequence diagram illustrates how the find items command works.
 
 ### Undo/redo feature
 
+The undo/redo feature allows users to undo and redo commands that change the state of the inventory, so that users
+can undo their mistakes.
+
 #### Implementation
 
 `VersionedInventory` facilitates the proposed undo/redo feature. It extends `Inventory`, with
@@ -349,14 +376,14 @@ the initial inventory state, and the `currentStatePointer` pointing to that sing
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `deli Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
+Step 2. The user executes `deli -n Bob’s 28th finger` (a `DeleteItemCommand`) command to delete the matching item in
 the inventory. The `deli` command calls `Model#commitInventory()`, causing the modified state of the inventory
-after the `deli Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
+after the `deli -n Bob’s 28th finger` command executes to be saved in the `inventoryStateList`, and the
 `currentStatePointer` is shifted to the newly inserted inventory state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addi Bob’s 6th regret -q 8` (a `AddItemCommand`) to add a new item.
+Step 3. The user executes `addi -n Bob’s 6th regret -q 8` (a `AddItemCommand`) to add a new item.
 The `addi` command also calls `Model#commitInventory()`, causing another modified inventory state to be
 saved into the `inventoryStateList`.
 
@@ -391,13 +418,13 @@ rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as 
 `listi`, will usually not call `Model#commitInventory()`, `Model#undoInventory()` or `Model#redoInventory()`.
-Thus, the `inventoryinatorStateList` remains unchanged.
+Thus, the `inventoryStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
 Step 6. The user executes `clear`, which calls `Model#commitInventory()`. Since the `currentStatePointer`
 is not pointing at the end of the `inventoryStateList`, all inventory states after the `currentStatePointer`
-will be purged. Reason: It no longer makes sense to redo the `addi Bob’s 6th regret -q 8` command. This is the
+will be purged. Reason: It no longer makes sense to redo the `addi -n Bob’s 6th regret -q 8` command. This is the
 behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -425,7 +452,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 --------------------------------------------------------------------------------------------------------------------
 
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -439,7 +466,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**: manage inventory faster than a typical mouse/GUI driven app
 
-### User stories for V1.1
+### User stories for V1.4
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -447,36 +474,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new item                 |                                                                        |
+| `* * *`  | user                                       | add quantity to an item        | track the items that I have managed in my inventory                    |
+| `* * *`  | user                                       | add tags to an item            | classify the items i have managed in my inventory                      |
 | `* * *`  | user                                       | add a recipe                   |                                                                        |
+| `* * *`  | user                                       | edit a item                    | to ensure that all parameters in the item are updated correctly        |
 | `* * *`  | user                                       | delete an item                 | remove item that I no longer need to track                             |
-| `* * *`  | user                                       | delete a recipe                | remove recepies that I no longer need to use                           |
+| `* * *`  | user                                       | delete a recipe                | remove recipes that I no longer need to use                            |
 | `* * *`  | user                                       | find an item by name           | locate details of items without having to go through the entire list   |
+| `* * *`  | user                                       | find an item by tags           | locate details of items without having to go through the entire list   |
 | `* * *`  | user                                       | list all my items              | visually see what items are currently stored in my inventory           |
-| `* * *`  | user                                       | list all my recipes            | visually see what items are currently stored in my inventory           |
-| `* * *`  | user                                       | see a detailed view of an  item| see additional information on the item not displayed by default        |
+| `* * *`  | user                                       | list all my recipes            | visually see what recipes are currently stored in my inventory         |
+| `* * *`  | user                                       | see a detailed view of an item | see recipes associated with this item                                  |
 | `* * `   | user                                       | tag an item by location        | locate items by where they are located                                 |
 | `* * `   | user                                       | tag an item using custom tags  | further organise and categorise my items                               |
 | `* * `   | user                                       | undo commands                  | revert changes that I no longer want                                   |
+| `* * `   | user                                       | redo commands                  | revert changes that I actually want                                    |
+| `* * `   | user                                       | craft items                    | easily craft what I want from the items I have in my inventory         |
 | `* * `   | user                                       | simulate crafting              | easily find out if I have enough items to make what I want             |
-| `* * `   | experienced user                           | use shortcuts                  | quickly use commands instead of typing them out in full                |
+| `*`      | user                                       | clear all items                | clear this inventory of items to use it to track another game          |
+| `*`      | user                                       | clear all recipes              | clear the clutter in my inventory                                      |
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 items without noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 items and recipes without noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
  should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  A user should be able to view visually the output from the application.
 5.  Should work without requiring internet connectivity.
-*{More to be added}*
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **GUI**: The graphical user interface is a form of user interface that allows users
+This is a reference for technical terms that you may need to refer to when reading this developer guide.
+
+* Mainstream OS: Windows, Linux, Unix, OS-X
+* GUI: The graphical user interface is a form of user interface that allows users
  to interact with electronic devices through graphical icons and audio indicator such as primary notation.
-* **Item**: An item represents an object you obtain in a game. Eg a <u>Rock</u>
-* **Recipe**: A recipe is associated with multiple items, and represents the consumption of items in the input,
+* Parameter: a user input to be used by the application
+* Item: An item represents an object you obtain in a game. Eg a <u>Rock</u>
+* Recipe: A recipe is associated with multiple items, and represents the consumption of items in the input,
  to produce an item of the output. Eg: 3 <u>Sticks</u> -> <u>Staff</u>
-* **Location**: The place where an item can be found in game. Eg: <u>Sleepywood</u>
-* **Inventory**: The entire state of the Inventoryinator, including recipes, items, locations etc.
+* Location: The place where an item can be found in game. Eg: <u>Sleepywood</u>
+* Inventory: The entire state of the Inventoryinator, including recipes, items, locations etc.

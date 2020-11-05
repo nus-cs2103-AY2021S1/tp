@@ -11,8 +11,10 @@ This document will store the **feature usecases** and **workflow usecases** in o
 For more information on how we come up with our Workflow Usecases, please check [Personas](EndUserPersona.md)
 
 ### Feature Usecases
+
 ![usecases](images/usecases/UsecaseDiagram1.png)
-#### Usecase 1 Create Item
+
+#### Usecase 1: Create Item
 - Software System: Inventoryinator (`inv`)
 - Use Case UC1 - Create Item
 - Precondition: Inventoryinator is running
@@ -34,7 +36,8 @@ Steps 2a1-2a2 repeat until data is correct, or user enters a different command.
 3b1. `inv` adds quantity of item from command into registered item.<br>
 3b2. `inv` displays that item quantity is updated.<br>
 Usecase ends
-#### Usecase 2 View Item
+
+#### Usecase 2: View Item
 
 - Software System: Inventoryinator (`inv`)
 - Use Case UC2 - View Item
@@ -54,7 +57,7 @@ Usecase ends
 Steps 2a1-2a2 repeat until data is correct, or user enters a different command<br>
 Usecase ends.
 
-#### Usecase 3 Create Recipe
+#### Usecase 3: Create Recipe
 - Software System: Inventoryinator (`inv`)
 - Use Case UC3 - Create Recipe
 - Precondition: Inventoryinator is running
@@ -77,7 +80,7 @@ Steps 2a1-2a2 repeat until data is correct, or user enters a different command.
 2b1. `inv` creates a new item with the appropriate fields, or if not, the default fields<br>
 Usecase resumes from step 3 normally
 
-#### Usecase 4 List items
+#### Usecase 4: List items
 - Software System: Inventoryinator (`inv`)
 - Use Case UC4 - List items
 - Precondition: Inventoryinator is running
@@ -96,7 +99,7 @@ Usecase end
 
 ### Workflow Usecases
 
-#### Workflow Usecase 1
+#### Workflow Usecase 1:
 - Software System: Inventoryinator (`inv`)
 - Use Case WU1 - Querying and validating uniqueness of items
 - Precondition: Inventoryinator is running, a and b are registered in system already 
@@ -106,3 +109,16 @@ Usecase end
 1. User adds 10 of item a and 20 of item b (UC1)
 2. User lists items (UC4)
 3. `inv` returns item a and item b with quantity increased 10 and 20 respectively
+
+#### Workflow Usecase 2:
+- Software System: Inventoryinator (`inv`)
+- Use Case WU2 - Crafting Items
+- Precondition: Inventoryinator is running, a, b and c are registered in system already,
+ recipe producing c is registered in system.
+- Actor: Hardcore Gamer
+
+**MSS:**
+1. User adds 10 of item a and 20 of item b (UC1)
+2. User crafts 10 of item c (UC5)
+3. `inv` returns that 10 of item c has been crafted 
+
