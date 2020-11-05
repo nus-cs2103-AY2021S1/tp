@@ -152,6 +152,14 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     @Override
+    public ObservableList<Student> getStudentList(Module targetModule, TutorialGroup targetTg) {
+        return moduleList
+                .getUniqueTutorialGroupList(targetModule)
+                .getUniqueStudentList(targetTg)
+                .asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Trackr // instanceof handles nulls
