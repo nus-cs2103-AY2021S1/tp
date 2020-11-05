@@ -102,6 +102,9 @@ This section provides you with the most basic features to get you started with Z
 
 * You can enter the parameters in any order you like.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
+  
+* If you accidentally repeat any non-optional parameter fields when keying in a command, only the latest parameter entered will be recorded.<br>
+  e.g. if the command specifies `add n/Buttercup i/123 s/Python n/Nemo i/456`, `ZooKeep` will record it as `add n/Nemo i/456 s/Python`.
 
 </div>
 
