@@ -106,6 +106,18 @@ public class CommandTestUtil {
             new Tag(VALID_TAG_CS2100), new Description(VALID_DESC_CS2100), DayOfWeek.TUESDAY,
             LocalTime.of(14, 0), LocalTime.of(16, 0),
             LocalDate.of(2020, 11, 1), LocalDate.of(2020, 12, 1));
+    //invalid lesson
+    public static final String INVALID_DAY_CS2103T = "ajhsf";
+    public static final String INVALID_START_TIME_CS2103T = "14:60";
+    public static final String INVALID_END_TIME_CS2103T = "16:60";
+    public static final String INVALID_START_DATE_CS2103T = "32-11-2020";
+    public static final String INVALID_END_DATE_CS2103T = "01-13-2020";
+    //invalid lesson
+    public static final String INVALID_DAY_CS2100 = "ajhsf";
+    public static final String INVALID_START_TIME_CS2100 = "14:60";
+    public static final String INVALID_END_TIME_CS2100 = "16:60";
+    public static final String INVALID_START_DATE_CS2100 = "32-11-2020";
+    public static final String INVALID_END_DATE_CS2100 = "01-13-2020";
     //valid event
     public static final String VALID_TITLE_EXPERIMENT = "Science experiment";
     public static final String VALID_DESC_EXPERIMENT = "Do grape experiment";
@@ -116,6 +128,17 @@ public class CommandTestUtil {
     public static final Event VALID_EVENT_EXPERIMENT = Event.createUserEvent(new Title(VALID_TITLE_EXPERIMENT),
             new StartDateTime(VALID_START_DATETIME_EXPERIMENT), new EndDateTime(VALID_END_DATETIME_EXPERIMENT),
             new Description(VALID_DESC_EXPERIMENT), new Tag(VALID_TAG_EXPERIMENT));
+    //valid event
+    public static final String VALID_TITLE_MEETING = "Project meeting";
+    public static final String VALID_DESC_MEETING = "Important meeting";
+    public static final String VALID_DATE_MEETING = "01-01-2020";
+    public static final String VALID_START_TIME_MEETING = "20:00";
+    public static final String VALID_END_TIME_MEETING = "22:00";
+    public static final String VALID_TAG_MEETING = "CS2101";
+    //invalid event
+    public static final String INVALID_DATE_MEETING = "32-01-2020";
+    public static final String INVALID_START_TIME_MEETING = "20:60";
+    public static final String INVALID_END_TIME_MEETING = "25:60";
     //valid deadline
     public static final String VALID_TITLE_LAB = "Do weekly lab assignment";
     public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
@@ -123,6 +146,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_LAB = "CS2100";
     public static final Deadline VALID_DEADLINE_LAB = Deadline.createDeadline(new Title(VALID_TITLE_LAB),
             new DeadlineDateTime(VALID_DATETIME_LAB), new Description(VALID_DESC_LAB), new Tag(VALID_TAG_LAB));
+    //valid deadline
+    public static final String VALID_TITLE_ESSAY = "Do final essay";
+    public static final String VALID_DESC_ESSAY = "At least 800 words";
+    public static final String VALID_DATETIME_ESSAY = "01-01-2020 23:59";
+    public static final String VALID_TAG_ESSAY = "ES2660";
+    //invalid deadline
+    public static final String INVALID_DATETIME_LAB = "01-13-2020 23:59";
 
     /**
      * Executes the given {@code command}, confirms that <br>

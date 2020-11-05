@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.DateTimeUtil.isStartDateBeforeEndDate;
 import static seedu.address.commons.util.DateTimeUtil.isStartTimeBeforeEndTime;
@@ -20,6 +21,7 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.LessonCommand;
+import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.Time;
@@ -37,7 +39,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public LessonCommand parse(String args) throws ParseException {
+    public LessonCommand parse(String args) throws ParseException, MultipleAttributesException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_TAG, PREFIX_DESCRIPTION, PREFIX_DAY,
                         PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME);
@@ -45,6 +47,16 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TAG, PREFIX_DAY, PREFIX_START_DATE, PREFIX_END_DATE,
                 PREFIX_START_TIME, PREFIX_END_TIME) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "", LessonCommand.MESSAGE_USAGE));
+        }
+        if (argMultimap.hasMultipleValues(PREFIX_TITLE)
+                || argMultimap.hasMultipleValues(PREFIX_DAY)
+                || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)
+                || argMultimap.hasMultipleValues(PREFIX_TAG)
+                || argMultimap.hasMultipleValues(PREFIX_START_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_END_DATE)
+                || argMultimap.hasMultipleValues(PREFIX_START_TIME)
+                || argMultimap.hasMultipleValues(PREFIX_END_TIME)) {
+            throw new MultipleAttributesException(MESSAGE_MULTIPLE_ATTRIBUTES);
         }
         Description description = Description.defaultDescription();
 
@@ -65,6 +77,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         } else {
             throw new ParseException(DateTimeUtil.DATE_TIME_CONSTRAINTS);
         }
+
         if (!isStartDateBeforeEndDate(startDate, endDate)) {
             throw new ParseException(DateTimeUtil.RANGE_CONSTRAINTS);
         }
