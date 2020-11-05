@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ResiRegParser" as ResiRegParser LOGIC_COLOR
+participant "<<class>>\n:ResiRegParser" as ResiRegParser LOGIC_COLOR
 participant ":AllocateCommandParser" as AllocateCommandParser LOGIC_COLOR
 participant "command:AllocateCommand" as AllocateCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,15 +16,8 @@ end box
 [-> LogicManager : execute("allocate si/1 ri/1")
 activate LogicManager
 
-LogicManager -> ResiRegParser : parseCommand("allocate si/1 ri/1")
+LogicManager -> ResiRegParser : parseCommand()
 activate ResiRegParser
-
-create AllocateCommandParser
-ResiRegParser -> AllocateCommandParser
-activate AllocateCommandParser
-
-AllocateCommandParser --> ResiRegParser
-deactivate AllocateCommandParser
 
 ResiRegParser -> AllocateCommandParser : parse("si/1 ri/1")
 activate AllocateCommandParser
@@ -38,9 +31,6 @@ deactivate AllocateCommand
 
 AllocateCommandParser --> ResiRegParser : command
 deactivate AllocateCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AllocateCommandParser -[hidden]-> ResiRegParser
-destroy AllocateCommandParser
 
 ResiRegParser --> LogicManager : command
 deactivate ResiRegParser
@@ -67,6 +57,10 @@ deactivate CommandResult
 
 AllocateCommand --> LogicManager : commandResult
 deactivate AllocateCommand
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AllocateCommand -[hidden]-> ResiRegParser
+destroy AllocateCommand
 
 [<--LogicManager
 deactivate LogicManager

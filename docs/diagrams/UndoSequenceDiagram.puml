@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ResiRegParser" as ResiRegParser LOGIC_COLOR
+participant "<<class>>\n:ResiRegParser" as ResiRegParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
@@ -14,7 +14,7 @@ end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> ResiRegParser : parseCommand(undo)
+LogicManager -> ResiRegParser : parseCommand()
 activate ResiRegParser
 
 create UndoCommand

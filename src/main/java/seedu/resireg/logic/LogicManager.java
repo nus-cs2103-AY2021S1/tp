@@ -61,10 +61,10 @@ public class LogicManager implements Logic {
         isAltered = false;
 
         CommandResult commandResult;
-        Map<String, Parser<Command>> map = new HashMap<>(commandWordToParserMap);
-        addAliases(map, model.getCommandWordAliases());
+        Map<String, Parser<Command>> parserMap = new HashMap<>(commandWordToParserMap);
+        addAliases(parserMap, model.getCommandWordAliases());
         try {
-            Command command = ResiRegParser.parseCommand(commandText, map);
+            Command command = ResiRegParser.parseCommand(commandText, parserMap);
             commandResult = command.execute(model, storage, history);
         } finally {
             history.add(commandText);
@@ -85,7 +85,7 @@ public class LogicManager implements Logic {
 
     private void addAliases(Map<String, Parser<Command>> map, List<CommandWordAlias> aliasList) {
         for (CommandWordAlias alias : aliasList) {
-            String commandWord = alias.getCommandWord().commandWord;
+            String commandWord = alias.getCommandWord().toString();
             String aliasString = alias.getAlias().toString();
             if (map.containsKey(commandWord)) {
                 map.put(aliasString, map.get(commandWord));

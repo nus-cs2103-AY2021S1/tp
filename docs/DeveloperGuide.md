@@ -106,8 +106,9 @@ Notes:
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `LogicManager` generates a map of command words to `Parser`s from `CommandWordEnum` and a list of the current aliases from `Model`.
-1. `LogicManager` passes this map to `ResiRegParser`, which parses the user command.
+1. `LogicManager` gets a list of the current user-defined aliases from the `Model`.
+1. `LogicManager` uses the list of aliases together with information from `CommandWordEnum` to generate a map of strings (representing all the possible strings that a user may use to call a command) to `Parser`s.
+1. `LogicManager` passes the user input and this map to `ResiRegParser`, which parses the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -117,7 +118,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete-student 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -460,6 +461,9 @@ HelpCommand basically requires a mapping of each command to its Help object. To 
    - Pros: 
        - Similar to alternative 2, this ensures the HelpCommand is always up to date as developers must bind the command word to both its Help and Parser. 
        - Does not violate the single responsibility principle like alternative 2. Both ResiRegParser and HelpCommand only store the information they need. 
+   - Cons:
+       - `CommandWordEnum` does not check if there are multiple commands with the same command word. 
+
 
 ---
 
