@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.pivot.logic.commands.documentcommands.EditDocumentCommand.MESSAGE_EDIT_DOCUMENT_SUCCESS;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.getTypicalCases;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
+import static seedu.pivot.testutil.TypicalIndexes.SECOND_INDEX;
+import static seedu.pivot.testutil.TypicalIndexes.THIRD_INDEX;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.UserMessages;
+import seedu.pivot.logic.commands.Undoable;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
@@ -41,13 +42,13 @@ public class EditDocumentCommandTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(null, INDEX_FIRST_PERSON,
+        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(null, FIRST_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.of(DEFAULT_FIRST_REFERENCE)));
-        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(INDEX_FIRST_PERSON, null,
+        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(FIRST_INDEX, null,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.of(DEFAULT_FIRST_REFERENCE)));
-        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON,
+        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(FIRST_INDEX, FIRST_INDEX,
                 null, Optional.of(DEFAULT_FIRST_REFERENCE)));
-        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON,
+        assertThrows(NullPointerException.class, () -> new EditDocumentCommand(FIRST_INDEX, FIRST_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), null));
     }
 
@@ -56,13 +57,13 @@ public class EditDocumentCommandTest {
     public void execute_allFieldsSpecified_success() throws CommandException {
 
         //set up case page
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
 
         //set up model with case list
         ModelStub modelStub = new ModelStubWithCaseList(getTypicalCases());
 
         //initialise valid edit command
-        EditDocumentCommand command = new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON,
+        EditDocumentCommand command = new EditDocumentCommand(FIRST_INDEX, FIRST_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.of(DEFAULT_FIRST_REFERENCE));
 
         //edit document success
@@ -77,7 +78,7 @@ public class EditDocumentCommandTest {
     @Test
     public void execute_nullModel_throwsNullPointerException() {
         //initialise valid edit command
-        EditDocumentCommand command = new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON,
+        EditDocumentCommand command = new EditDocumentCommand(FIRST_INDEX, FIRST_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.of(DEFAULT_FIRST_REFERENCE));
 
         assertThrows(NullPointerException.class, () -> command.execute(null));
@@ -86,13 +87,13 @@ public class EditDocumentCommandTest {
     @Test
     public void execute_documentIndexOutOfBounds_throwsCommandException() {
         //set up
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
         List<Case> caseList = new ArrayList<>();
         caseList.add(CASE_WITH_DOCUMENT);
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
 
         //initialise command
-        EditDocumentCommand command = new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_THIRD_PERSON,
+        EditDocumentCommand command = new EditDocumentCommand(FIRST_INDEX, THIRD_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.of(DEFAULT_FIRST_REFERENCE));
 
         assertThrows(CommandException.class, UserMessages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX, (
@@ -104,14 +105,14 @@ public class EditDocumentCommandTest {
     @Test
     public void execute_duplicateDocument_throwsCommandException() {
         //set up
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
         List<Case> caseList = new ArrayList<>();
         caseList.add(CASE_WITH_DOCUMENT);
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
 
         //initialise command
         //edits second document to become the first
-        EditDocumentCommand command = new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
+        EditDocumentCommand command = new EditDocumentCommand(FIRST_INDEX, SECOND_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.of(DEFAULT_FIRST_REFERENCE));
 
         assertThrows(CommandException.class,
@@ -124,14 +125,14 @@ public class EditDocumentCommandTest {
     @Test
     public void execute_editNameOnly_success() throws CommandException {
         //set up
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
         List<Case> caseList = new ArrayList<>();
         caseList.add(CASE_WITH_DOCUMENT);
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
 
         //initialise command
         //edits second document name to become the first document name
-        EditDocumentCommand command = new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
+        EditDocumentCommand command = new EditDocumentCommand(FIRST_INDEX, SECOND_INDEX,
                 Optional.of(DEFAULT_FIRST_NAME), Optional.empty());
 
         //edit document success
@@ -146,14 +147,14 @@ public class EditDocumentCommandTest {
     @Test
     public void execute_editReferenceOnly_success() throws CommandException {
         //set up
-        StateManager.setState(INDEX_FIRST_PERSON);
+        StateManager.setState(FIRST_INDEX);
         List<Case> caseList = new ArrayList<>();
         caseList.add(CASE_WITH_DOCUMENT);
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
 
         //initialise command
         //edits second document reference to become the first document reference
-        EditDocumentCommand command = new EditDocumentCommand(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
+        EditDocumentCommand command = new EditDocumentCommand(FIRST_INDEX, SECOND_INDEX,
                  Optional.empty(), Optional.of(DEFAULT_FIRST_REFERENCE));
 
         //edit document success
@@ -191,7 +192,7 @@ public class EditDocumentCommandTest {
         }
 
         @Override
-        public void commitPivot(String command, boolean isMainPageCommand) {}
+        public void commitPivot(String commandMessage, Undoable command) {}
     }
 
 }

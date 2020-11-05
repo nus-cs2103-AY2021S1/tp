@@ -7,7 +7,7 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -38,7 +38,7 @@ public class AddDocumentCommandParserTest {
     public static final String VALID_REFERENCE = "existingReference.txt";
     public static final String INVALID_REFERENCE = "invalidReference.myExt";
 
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index index = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
 
     private AddDocumentCommandParser parser = new AddDocumentCommandParser();
 

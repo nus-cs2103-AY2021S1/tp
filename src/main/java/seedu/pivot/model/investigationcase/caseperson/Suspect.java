@@ -10,8 +10,22 @@ public class Suspect extends CasePerson {
      *
      * @param name A valid name.
      */
-    public Suspect(Name name, Gender gender, Phone phone, Email email, Address address) {
-        super(name, gender, phone, email, address);
+    public Suspect(Name name, Sex sex, Phone phone, Email email, Address address) {
+        super(name, sex, phone, email, address);
+    }
+
+    /**
+     * Returns true if both cases have the same name, sex and phone.
+     * This defines a weaker notion of equality between two suspects.
+     */
+    public boolean isSamePerson(Suspect otherSuspect) {
+        if (otherSuspect == this) {
+            return true;
+        }
+
+        return otherSuspect.getName().equals(getName())
+                && otherSuspect.getSex().equals(getSex())
+                && otherSuspect.getPhone().equals(getPhone());
     }
 
     /**
@@ -30,7 +44,7 @@ public class Suspect extends CasePerson {
 
         Suspect otherSuspect = (Suspect) other;
         return otherSuspect.getName().equals(getName())
-                && otherSuspect.getGender().equals(getGender())
+                && otherSuspect.getSex().equals(getSex())
                 && otherSuspect.getPhone().equals(getPhone())
                 && otherSuspect.getEmail().equals(getEmail())
                 && otherSuspect.getAddress().equals(getAddress());

@@ -5,9 +5,9 @@ import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_SEX;
 import static seedu.pivot.logic.parser.PivotParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
@@ -40,7 +40,7 @@ public class EditSuspectCommandParser implements Parser<EditSuspectCommand> {
         Index caseIndex = StateManager.getState();
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                arguments, PREFIX_NAME, PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
+                arguments, PREFIX_NAME, PREFIX_SEX, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
         EditPersonDescriptor editPersonDescriptor =
                 ParserUtil.parseEditedPersonFields(argMultimap, EditSuspectCommand.MESSAGE_USAGE);

@@ -20,7 +20,7 @@ public class UserMessages {
 
     // Case page messages
     public static final String MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX = "The document index provided is invalid";
-    public static final String MESSAGE_INVALID_SUSPECTS_DISPLAYED_INDEX = "The suspect index provided is invalid";
+    public static final String MESSAGE_INVALID_SUSPECT_DISPLAYED_INDEX = "The suspect index provided is invalid";
     public static final String MESSAGE_INVALID_WITNESS_DISPLAYED_INDEX = "The witness index provided is invalid";
     public static final String MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX = "The victim index provided is invalid";
 
