@@ -13,6 +13,10 @@ public interface ReadOnlyUserPrefs {
 
     Path getModuleListFilePath();
 
+    Path getArchivedModuleListFilePath();
+
     Path getContactListFilePath();
+
+    Path getTodoListFilePath();
 
 }

@@ -12,11 +12,11 @@ import seedu.address.model.contact.exceptions.ContactNotFoundException;
 import seedu.address.model.contact.exceptions.DuplicateContactException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of modules that enforces uniqueness between its elements and does not allow nulls.
+ * A module is considered unique by comparing using {@code Module#isSameModule(Module)}. As such, adding and updating of
+ * modules uses Module#isSameModule(Module) for equality so as to ensure that the Module being added or updated is
+ * unique in terms of identity in the UniqueModuleList. However, the removal of a module uses Module#equals(Object) so
+ * as to ensure that the module with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniqueModuleList implements Iterable<Module> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent module as the given argument.
      */
     public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a module to the list.
+     * The module must not already exist in the list.
      */
     public void add(Module toAdd) {
         requireNonNull(toAdd);
@@ -49,28 +49,28 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the list.
      */
-    public void setModule(Module target, Module editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new ContactNotFoundException();
         }
 
-        if (!target.isSameModule(editedPerson) && contains(editedPerson)) {
+        if (!target.isSameModule(editedModule) && contains(editedModule)) {
             throw new DuplicateContactException();
         }
 
-        internalList.set(index, editedPerson);
+        internalList.set(index, editedModule);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent module from the list.
+     * The module must exist in the list.
      */
     public void remove(Module toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +85,8 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
      */
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
@@ -122,7 +122,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code modules} contains only unique modules.
      */
     private boolean modulesAreUnique(List<Module> modules) {
         for (int i = 0; i < modules.size() - 1; i++) {

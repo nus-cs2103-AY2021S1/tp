@@ -5,5 +5,5 @@ package seedu.address.model.task;
  */
 public enum Status {
     COMPLETED,
-    NOT_COMPLETED
+    NOT_COMPLETED;
 }

@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModuleListParser" as ModuleListParser LOGIC_COLOR
+participant "c:CalculateCapCommand" as CalculateCapCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute(calculatecap)
+activate LogicManager
+
+LogicManager -> ModuleListParser : parseCommand(calculatecap)
+activate ModuleListParser
+
+create CalculateCapCommand
+ModuleListParser -> CalculateCapCommand
+activate CalculateCapCommand
+CalculateCapCommand -> CalculateCapCommand : CalculateCap()
+activate CalculateCapCommand #DarkSalmon
+return
+
+CalculateCapCommand --> ModuleListParser : result
+deactivate CalculateCapCommand
+
+ModuleListParser --> LogicManager : result
+deactivate ModuleListParser
+
+destroy CalculateCapCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 // import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,10 +21,12 @@ import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 // import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
@@ -85,7 +88,6 @@ public class AddModuleCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -107,7 +109,7 @@ public class AddModuleCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getModuleListFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -128,6 +130,11 @@ public class AddModuleCommandTest {
 
         @Override
         public ReadOnlyModuleList getModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyModuleList getModuleListDisplayed() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -197,6 +204,11 @@ public class AddModuleCommandTest {
         }
 
         @Override
+        public Path getContactListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -233,6 +245,202 @@ public class AddModuleCommandTest {
 
         @Override
         public void updateFilteredTodoList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getSortedTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedTodoList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEventList(ReadOnlyEventList eventList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyEventList getEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteEvent(Event target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setEvent(Event target, Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredEventList(Predicate<Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Contact> getSortedContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedContactList(Comparator<Contact> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void commit(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void redo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void setArchivedModuleList(ReadOnlyModuleList readOnlyArchivedModuleList) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ModuleList getArchivedModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean hasArchivedModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void deleteArchivedModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void addArchivedModule(Module module) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setArchivedModule(Module module, Module editedModule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void archiveModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unarchiveModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void displayArchivedModules() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void displayNonArchivedModules() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredArchivedModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Module> getFilteredUnarchivedModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredArchivedModuleList(Predicate<Module> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public boolean getModuleListDisplay() {
             throw new AssertionError("This method should not be called.");
         }
     }
