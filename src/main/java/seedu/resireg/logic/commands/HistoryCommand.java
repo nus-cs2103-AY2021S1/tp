@@ -15,11 +15,11 @@ public class HistoryCommand extends Command {
 
     public static final String COMMAND_WORD = "history";
 
-    public static final String MESSAGE_SUCCESS = "Entered commands: \n%1$s";
-    public static final String MESSAGE_NO_HISTORY = "No commands have been entered yet.";
+    public static final String MESSAGE_SUCCESS = "Entered nonempty commands: \n%1$s";
+    public static final String MESSAGE_NO_HISTORY = "No nonempty commands have been entered yet.";
 
     public static final Help HELP =
-            new Help(COMMAND_WORD, "Shows all previous commands and their respective positions"
+            new Help(COMMAND_WORD, "Shows all previous nonempty commands and their respective positions"
                     + " entered in chronological order.");
 
     @Override
