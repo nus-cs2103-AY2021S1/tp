@@ -1,7 +1,9 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_NOODLE;
 
@@ -23,8 +25,9 @@ public class TypicalIngredients {
     public static final Ingredient GRAPE = new IngredientBuilder().withValue("Grape").build();
     public static final Ingredient BANANA = new IngredientBuilder().withValue("Banana").build();
     public static final Ingredient OAT = new IngredientBuilder().withValue("Oat").build();
-    public static final Ingredient CHOCOLATE = new IngredientBuilder().withValue("Chocolate").build();
-    public static final Ingredient VALID_INGREDIENT1 =
+    public static final Ingredient CHOCOLATE = new IngredientBuilder()
+            .withValues(VALID_INGREDIENT_CHOCOLATE, VALID_QUANTITY_CHOCOLATE).build();
+    public static final Ingredient POTATO1 =
             new IngredientBuilder().withValues("Potato", "2 whole").build();
     public static final Ingredient VALID_INGREDIENT2 =
             new IngredientBuilder().withValues("Banana", "200g").build();

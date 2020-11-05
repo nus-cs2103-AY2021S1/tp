@@ -24,7 +24,7 @@ import seedu.address.model.recipe.RecipeContainsIngredientsPredicate;
 import seedu.address.model.recipe.TagContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code SearchRecipeCommand}.
  */
 public class SearchRecipeCommandTest {
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());

@@ -50,7 +50,7 @@ public class IngredientParser {
      * @return quantity string
      * @throws ParseException
      */
-    private static String getIngredientQuantity(String args) throws ParseException {
+    public static String getIngredientQuantity(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimapQuantity =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY);
@@ -67,7 +67,7 @@ public class IngredientParser {
     }
 
     /**
-     * Detects if there are duplicate ingredients in a recipe's ingredients.
+     * Detects if there are duplicate ingredient names in a recipe's ingredients.
      * @param ingredients the list of ingredients
      * @return true if there are duplicate ingredients in the recipe
      */

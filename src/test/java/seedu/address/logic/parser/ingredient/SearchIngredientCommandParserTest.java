@@ -22,7 +22,7 @@ public class SearchIngredientCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsSearchIngredientCommand() {
         // no leading and trailing whitespaces
         SearchIngredientCommand expectedSearchIngredientCommand =
                 new SearchIngredientCommand(new IngredientContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));

@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
-//import java.util.Collections;
-//import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,6 +24,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.data.IngredientParser;
 import seedu.address.model.Model;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Calories;
@@ -66,6 +65,8 @@ public class EditRecipeCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "No edit made. At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the Recipe collection.";
     public static final String MESSAGE_EMPTY_INSTRUCTIONS = "This instructions for recipe cannot be empty.";
+    public static final String MESSAGE_DUPLICATE_INGREDIENTS = "This recipe contains duplicate ingredients";
+
     private static Logger logger = Logger.getLogger("EditRecipeLogger");
 
     private final Index index;
@@ -96,18 +97,22 @@ public class EditRecipeCommand extends Command {
         Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
         Recipe editedRecipe = createEditedRecipe(recipeToEdit, editRecipeDescriptor);
 
-        if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
+        //if recipe name or ingredient name changes, check if it has changed to an existing recipe
+        if (!recipeToEdit.isSameRecipeNameAndIngredientName(editedRecipe) && model.hasMinimalRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
+        }
+
+        if (IngredientParser.hasDuplicates(editedRecipe.getIngredient())) {
+            throw new CommandException(MESSAGE_DUPLICATE_INGREDIENTS);
         }
 
         model.setRecipe(recipeToEdit, editedRecipe);
         model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
         if (recipeToEdit.isSameRecipe(editedRecipe)) {
-            return new CommandResult(String.format(MESSAGE_NOT_EDITED, editedRecipe));
+            throw new CommandException(MESSAGE_NOT_EDITED);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
-
-
+        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe),
+                ListRecipesCommand.COMMAND_WORD);
     }
 
     /**

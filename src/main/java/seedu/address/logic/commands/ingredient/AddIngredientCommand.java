@@ -54,7 +54,7 @@ public class AddIngredientCommand extends Command {
 
         StringBuilder ingredientsAdded = new StringBuilder();
         for (Ingredient ingredient : toAdd) {
-            if (model.hasIngredient(ingredient)) {
+            if (model.hasMinimalIngredient(ingredient)) {
                 throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
             }
             ingredientsAdded.append(ingredient + ", ");
@@ -62,7 +62,8 @@ public class AddIngredientCommand extends Command {
         }
         String ingredientsAddedString = ingredientsAdded.toString();
         ingredientsAddedString = ingredientsAddedString.substring(0, ingredientsAddedString.length() - 2);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientsAddedString));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientsAddedString),
+                ListIngredientsCommand.COMMAND_WORD);
     }
 
     private boolean checkEachIngredient(ArrayList<Ingredient> firstToCheck, ArrayList<Ingredient> otherToCheck) {

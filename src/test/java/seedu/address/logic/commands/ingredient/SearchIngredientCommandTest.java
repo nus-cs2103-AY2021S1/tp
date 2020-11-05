@@ -21,7 +21,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.ingredient.IngredientContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code SearchIngredientCommand}.
  */
 public class SearchIngredientCommandTest {
     private Model model = new ModelManager(getTypicalWishfulShrinking(), new UserPrefs());

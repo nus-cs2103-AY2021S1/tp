@@ -21,8 +21,8 @@ public class Ingredient {
                     + " or a single forward slash.\n"
                     + "5. Ingredient quantity should be a number greater than 0.";
     public static final String QUANTITY_CONSTRAINTS =
-            "1. Ingredient quantity should be in format -NUMBER UNITS\n"
-                    + "2. Ingredient quantity should only consist of alphanumeric characters, a single full stop\n"
+            "1. Ingredient quantity should be in format -NUMBER UNITS with an optional space in between\n"
+                    + "2. Ingredient quantity should only consist of alphanumeric characters, a single full stop "
                     + "or a single forward slash.\n"
                     + "3. Ingredient quantity should be a number greater than 0 and is only accurate up to 45 "
                     + "decimal places.";
@@ -85,9 +85,7 @@ public class Ingredient {
             return true;
         }
 
-        return otherIngredient != null
-                && otherIngredient.getValue().toLowerCase().equals(getValue().toLowerCase())
-                && otherIngredient.getQuantity().equals(getQuantity());
+        return isSameIngredientName(otherIngredient) && otherIngredient.getQuantity().equals(getQuantity());
     }
 
     /**
@@ -118,6 +116,11 @@ public class Ingredient {
     public static boolean isValidQuantity(String quantity) {
         int fullStopIndex = quantity.indexOf(".");
         int forwardSlashIndex = quantity.indexOf("/");
+
+        //Presence of 1 decimal point and 1 forward slash
+        if (fullStopIndex != -1 && forwardSlashIndex != -1) {
+            return false;
+        }
 
         //More than one occurence of decimal point or forward slash
         if (fullStopIndex != quantity.lastIndexOf(".")
@@ -187,9 +190,9 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        String ingredientString = value;
+        String ingredientString = value.trim();
         if (!quantity.isBlank()) {
-            ingredientString += " (Quantity: " + quantity + ")";
+            ingredientString += " (Quantity: " + quantity.trim() + ")";
         }
         return ingredientString;
     }

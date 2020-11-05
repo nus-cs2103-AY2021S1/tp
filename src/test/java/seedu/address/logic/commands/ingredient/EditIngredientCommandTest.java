@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_INGREDIENT_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_CHOCOLATE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showIngredientAtIndex;
@@ -47,7 +49,7 @@ public class EditIngredientCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_ingredientFieldSpecifiedUnfilteredList_success() {
         Index indexLastIngredient = Index.fromOneBased(model.getFilteredIngredientList().size());
         Ingredient lastIngredient = model.getFilteredIngredientList().get(indexLastIngredient.getZeroBased());
 
@@ -70,17 +72,57 @@ public class EditIngredientCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
-                new EditIngredientCommand.EditIngredientDescriptor());
-        Ingredient editedIngredient = model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
+    public void execute_editIngredientQuantitySpecifiedUnfilteredList_success() {
+        Index indexFirstIngredient = Index.fromZeroBased(0);
+        Ingredient firstIngredient = model.getFilteredIngredientList().get(indexFirstIngredient.getZeroBased());
 
-        String expectedMessage = String.format(EditIngredientCommand.MESSAGE_NOT_EDITED,
+        IngredientBuilder ingredientInList = new IngredientBuilder(firstIngredient);
+        Ingredient editedIngredient = ingredientInList.withValues(firstIngredient.getValue(),
+                VALID_QUANTITY_CHOCOLATE).build();
+
+        EditIngredientCommand.EditIngredientDescriptor descriptor =
+                new EditIngredientDescriptorBuilder().withIngredient(
+                        new Ingredient(firstIngredient.getValue(), VALID_QUANTITY_CHOCOLATE)).build();
+        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(indexFirstIngredient, descriptor);
+
+        String expectedMessage = String.format(EditIngredientCommand.MESSAGE_EDIT_INGREDIENT_SUCCESS,
                 editedIngredient);
 
         Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
+        expectedModel.setIngredient(firstIngredient, editedIngredient);
 
         assertCommandSuccess(editIngredientCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateLastIngredientUnfilteredList_failure() {
+        EditIngredientCommand.EditIngredientDescriptor descriptor =
+                new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_INGREDIENT_CHOCOLATE,
+                        VALID_QUANTITY_CHOCOLATE)).build();
+        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
+                descriptor);
+
+        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+    }
+
+    @Test
+    public void execute_duplicateIngredientNameUnfilteredList_failure() {
+        EditIngredientCommand.EditIngredientDescriptor descriptor =
+                new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_INGREDIENT_CHOCOLATE))
+                        .build();
+        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
+                descriptor);
+
+        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_DUPLICATE_INGREDIENT);
+    }
+
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
+        EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
+                new EditIngredientCommand.EditIngredientDescriptor());
+
+        assertCommandFailure(editIngredientCommand, model, EditIngredientCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test

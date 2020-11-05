@@ -1,7 +1,9 @@
 package seedu.address.logic.parser.recipe;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INSTRUCTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -27,7 +29,7 @@ public class SearchRecipeCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsSearchRecipeCommand() {
         // no leading and trailing whitespaces in name
         SearchRecipeCommand expectedSearchRecipeCommand =
                 new SearchRecipeCommand(new NameContainsKeywordsPredicate(Arrays.asList("Pork", "Sandwich")));
@@ -51,6 +53,32 @@ public class SearchRecipeCommandParserTest {
 
         // multiple whitespaces between tag keywords
         assertParseSuccess(parser, " " + PREFIX_TAG + " \n low \n \t calories  \t", expectedSearchRecipeCommand);
+    }
+
+    @Test
+    public void parse_emptyPrefix_throwsParseException() {
+        // empty name prefix
+        assertParseFailure(parser, " " + PREFIX_NAME,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
+
+        // empty ingredient prefix
+        assertParseFailure(parser, " " + PREFIX_INGREDIENT,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
+
+        // empty tag prefix
+        assertParseFailure(parser, " " + PREFIX_TAG,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidPrefix_throwsParseException() {
+        // instruction prefix
+        assertParseFailure(parser, " " + PREFIX_INSTRUCTION + " Cook. Eat.",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
+
+        // calorie prefix
+        assertParseFailure(parser, " " + PREFIX_CALORIES + " 100",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchRecipeCommand.MESSAGE_USAGE));
     }
 
 }

@@ -1,12 +1,10 @@
 package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-//import java.util.Set;
 import seedu.address.logic.commands.ingredient.AddIngredientCommand;
-import seedu.address.logic.commands.recipe.EditRecipeCommand.EditRecipeDescriptor;
+import seedu.address.logic.commands.ingredient.EditIngredientCommand;
 import seedu.address.model.ingredient.Ingredient;
 
 /**
@@ -31,17 +29,17 @@ public class IngredientUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditRecipeDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditIngredientDescriptor}'s details.
      */
-    public static String getEditRecipeDescriptorDetails(EditRecipeDescriptor descriptor) {
+    public static String getEditIngredientDescriptorDetails(EditIngredientCommand.EditIngredientDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getIngredient()
-                .ifPresent(ingredients -> sb.append(PREFIX_INGREDIENT)
-                        .append(ingredients.stream()
-                                .map(item -> item.getValue())
-                                .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a)).append(" "));
-
+        descriptor.getIngredient().ifPresent(ingredient -> {
+            if (ingredient.getQuantity() != "") {
+                sb.append(PREFIX_INGREDIENT).append(ingredient.getValue() + " " + PREFIX_QUANTITY).append(" ");
+            } else {
+                sb.append(PREFIX_INGREDIENT).append(ingredient.getValue()).append(" ");
+            }
+        });
         return sb.toString();
     }
 }

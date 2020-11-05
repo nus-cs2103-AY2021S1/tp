@@ -77,7 +77,6 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         }
         ImageParser imageParser = new ImageParser();
         RecipeImage recipeImage = imageParser.parse(img);
-        //RecipeImage recipeImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_TAG).get());
 
         Recipe recipe = new Recipe(name, instructions, recipeImage, ingredients, calories, tagList);
         return new AddRecipeCommand(recipe);

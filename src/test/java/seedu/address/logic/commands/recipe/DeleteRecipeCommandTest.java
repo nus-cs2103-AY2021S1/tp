@@ -19,8 +19,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model and Logic) and unit tests for
+ * {@code DeleteRecipeCommand}.
  */
 public class DeleteRecipeCommandTest {
 
