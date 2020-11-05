@@ -227,36 +227,96 @@ Lists the ingredient's levels of all ingredient types.
 
 Format: `i-list`
 
-#### 2.5 Viewing a single ingredient's level : `i-view-single`
-Shows the ingredient's level of a particular type of ingredient that is specified by the user’s command.
-
-Format: `i-view-single i/INGREDIENT_NAME`
-
 Example:
-* `i-view-single i/Green Tea`
-Shows the amount of green tea recorded by tCheck.
+Let's say you want to list all the ingredients. 
+You can follow these instructions.
+
+Steps:
+1. Type `i-list` into the _Command Box_.
+1. Press `Enter` on your keyboard to execute the command.
+
+Outcome:
+1. The _Result Display_ will show a success message.
+2. The _Ingredient Tracker_ will show the list of ingredients.
+
+{Example outcome screenshot to be added later}
+
+#### 2.5 Finding ingredients by keywords : `i-find`
+Finds all ingredients that contain the KEYWORD(s) in their names.
+
+Format: `i-find KEYWORD [MORE_KEYWORDS] ...`
+
+* The search is case-insensitive. e.g `milk` will match `Milk`.
+* The order of the keywords does not matter. e.g. `Milk Boba` will match `Boba Milk`.
+* Only the ingredient name is searched.
+* Only full words will be matched e.g. `Mil` will not match `Milk`.
+* Ingredients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Milk Boba` will return the ingredient `Milk` and the ingredient `Boba`.
+
+Example: Let's say you want to find the ingredients that have names containing the keyword `Tea`.
+You can follow these instructions:
+
+Steps:
+1. Type `i-find Tea Sugar` into the _Command Box_.
+2. Press `Enter` to execute the command.
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+2. The _Ingredient Tracker_ will show the ingredient `Black Tea`, the ingredient `Green Tea` and 
+the ingredient `Brown Sugar`.
+
+{Example outcome screenshot to be added later}
 
 #### 2.6 Resetting all ingredients' levels to zero : `i-reset-all`
 Resets all types of ingredients' levels to zero in tCheck.
 
 Format: `i-reset-all`
 
+Example: Let's say you want to reset all ingredients' levels to zero, and the ingredient's levels are not currently all at zero.
+You can follow these instructions:
+
+Steps:
+1. Type ` i-reset-all` into the _Command Box_.
+2. Press `Enter` to execute the command.
+
+Outcome:
+
+1. The _Result Display_ will show a success message.
+2. You can now see that tCheck has updated all the ingredients' levels to zero in the _Ingredient Tracker_.
+
+{Example outcome screenshot to be added later}
+
 #### 2.7 Listing all ingredients that user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that fall below their minimum stock levels and require the user to 
-restock. 
+restock. The list also includes the amount needed for each ingredient to reach the minimum stock level.
 
 The table below shows the minimum stock levels of different types of ingredients:
 
 Ingredient Type | Minimum Stock Level
 -------|------------------------------
-**Milk** | 5 L
-**Pearl** | 5 KG
-**Boba** | 5 KG
-**Black Tea** | 5 L
-**Green Tea** | 5 L
-**Brown Sugar** | 5 KG
+**Milk** | 50 L
+**Pearl** | 20 KG
+**Boba** | 20 KG
+**Black Tea** | 50 L
+**Green Tea** | 50 L
+**Brown Sugar** | 20 KG
 
 Format: `i-restock`
+
+Example: Let's say you want to find out which ingredients you need to restock.
+You can follow these instructions:
+
+Steps:
+1. Type ` i-restock` into the _Command Box_.
+2. Press `Enter` to execute the command.
+
+Outcome:
+
+1. The _Result Display_ will show the list of ingredients including their ingredient names, their ingredients' levels and
+the amount needed for each ingredient to reach the minimum restock level.
+
+{Example outcome screenshot to be added later}
 
 ### 3. Commands - Contact details <a name="commands-contact-details"></a>
 
@@ -472,7 +532,7 @@ Action | Format, Examples
 **Rank**| `s-rank`
 
 
-### Ingredients  Tracking
+### Ingredients Tracking
 
 Action | Format, Examples
 -------|------------------------------
@@ -481,7 +541,7 @@ Action | Format, Examples
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **List**| `i-list`
 **Find**| `i-find KEYWORD [MORE_KEYWORDS] ...`  <br> e.g., `i-find milk sugar`
-**Reset all ingredients**| `i-reset-all`
+**Reset all ingredients to zero**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
 
 ### Employees' Contact Details
