@@ -177,7 +177,7 @@ public class ParserUtil {
         try {
             result = DayOfWeek.valueOf(dayOfWeek);
         } catch (NullPointerException | IllegalArgumentException e) {
-            throw new ParseException(DateUtil.DAY_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
         }
         return result;
     }
