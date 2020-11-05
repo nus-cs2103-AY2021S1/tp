@@ -178,17 +178,14 @@ public class Event extends Task implements TimeSlot {
         }
         if (otherTask instanceof Event) {
             return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
-        } else {
-            Deadline deadline = (Deadline) otherTask;
-            if (deadline.isDone()) {
-                return 1;
-            }
-            if (deadline.isDeadlineDateTimeFilled()) {
-                return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
-            } else {
-                return -1;
-            }
         }
+        Deadline deadline = (Deadline) otherTask;
+        if (deadline.isDone()) {
+            return 1;
+        }
+        if (deadline.isDeadlineDateTimeFilled()) {
+            return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
+        }
+        return -1;
     }
-
 }
