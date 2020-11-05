@@ -491,6 +491,7 @@
     -fx-background-color: #272C3F;
     -fx-background-radius: 20;
 	-fx-border-color: white;
+	-fx-border-width: 2;
     -fx-border-radius: 20;
 }
 
