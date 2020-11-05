@@ -88,8 +88,8 @@ public class Allocation {
         }
         return otherAllocation != null
                 && ((otherAllocation.getFloor().equals(getFloor())
-                    && otherAllocation.getRoomNumber().equals(getRoomNumber()))
-                        || otherAllocation.getStudentId().equals(getStudentId()));
+                && otherAllocation.getRoomNumber().equals(getRoomNumber()))
+                || otherAllocation.getStudentId().equals(getStudentId()));
     }
 
     /**

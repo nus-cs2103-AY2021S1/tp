@@ -65,7 +65,7 @@ public class AllocateCommand extends Command {
         List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
 
         if (studentIndex.getZeroBased() >= lastShownListStudent.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         } else if (roomIndex.getZeroBased() >= lastShownListRoom.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }

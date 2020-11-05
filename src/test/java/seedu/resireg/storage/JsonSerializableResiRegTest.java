@@ -43,7 +43,7 @@ public class JsonSerializableResiRegTest {
     public void toModelType_duplicateStudents_throwsIllegalValueException() throws Exception {
         JsonSerializableResiReg dataFromFile = JsonUtil.readJsonFile(DUPLICATE_STUDENT_FILE,
                 JsonSerializableResiReg.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableResiReg.MESSAGE_DUPLICATE_PERSON,
+        assertThrows(IllegalValueException.class, JsonSerializableResiReg.MESSAGE_DUPLICATE_STUDENT,
                 dataFromFile::toModelType);
     }
 

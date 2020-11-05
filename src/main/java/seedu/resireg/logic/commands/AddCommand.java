@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add-student";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s (%2$s)";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in ResiReg";
 
     public static final Help HELP = new Help(COMMAND_WORD,
         "Adds a student to ResiReg.\n",
@@ -55,7 +55,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         model.addStudent(toAdd);

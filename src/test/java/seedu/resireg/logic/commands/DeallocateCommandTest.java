@@ -8,10 +8,10 @@ import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.resireg.logic.commands.DeallocateCommand.MESSAGE_STUDENT_NOT_ALLOCATED;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.getTypicalUserPrefs;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_STUDENT;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
 import java.util.List;
 
@@ -40,8 +40,8 @@ public class DeallocateCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Room roomToDeallocate = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
-        Student studentToDeallocate = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FIRST_PERSON);
+        Student studentToDeallocate = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(DeallocateCommand.MESSAGE_SUCCESS,
                 roomToDeallocate.getFloor().toString() + '-' + roomToDeallocate.getRoomNumber(),
@@ -66,35 +66,35 @@ public class DeallocateCommandTest {
     public void execute_invalidIndexStudentUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexStudent = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeallocateCommand deallocateCommand = new DeallocateCommand(outOfBoundIndexStudent);
-        assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndexStudentFilteredList_throwsCommandException() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of ResiReg list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         DeallocateCommand deallocateCommand = new DeallocateCommand(outOfBoundIndex);
-        assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_studentNotAllocated_throwsCommandException() {
-        DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FOURTH_PERSON);
+        DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FOURTH_STUDENT);
         assertCommandFailure(deallocateCommand, model, history, MESSAGE_STUDENT_NOT_ALLOCATED);
     }
 
     @Test
     public void equals() {
-        DeallocateCommand deallocateFirstCommand = new DeallocateCommand(INDEX_FIRST_PERSON);
-        DeallocateCommand deallocateSecondCommand = new DeallocateCommand(INDEX_SECOND_PERSON);
+        DeallocateCommand deallocateFirstCommand = new DeallocateCommand(INDEX_FIRST_STUDENT);
+        DeallocateCommand deallocateSecondCommand = new DeallocateCommand(INDEX_SECOND_STUDENT);
 
         // same object -> returns true
         assertTrue(deallocateFirstCommand.equals(deallocateFirstCommand));
 
         // same values -> returns true
-        DeallocateCommand deallocateFirstCommandCopy = new DeallocateCommand(INDEX_FIRST_PERSON);
+        DeallocateCommand deallocateFirstCommandCopy = new DeallocateCommand(INDEX_FIRST_STUDENT);
         assertTrue(deallocateFirstCommand.equals(deallocateFirstCommandCopy));
 
         // different types -> returns false

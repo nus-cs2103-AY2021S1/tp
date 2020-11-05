@@ -22,7 +22,7 @@ import seedu.resireg.model.student.Student;
 @JsonRootName(value = "resireg")
 class JsonSerializableResiReg {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
     public static final String MESSAGE_DUPLICATE_ALLOCATION = "Allocation list contains duplicate allocation(s).";
     public static final String MESSAGE_DUPLICATE_BIN_ITEM = "Bin items list contains duplicate bin item(s).";
@@ -76,7 +76,7 @@ class JsonSerializableResiReg {
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
             if (resiReg.hasStudent(student)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+                throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
             resiReg.addStudent(student);
         }

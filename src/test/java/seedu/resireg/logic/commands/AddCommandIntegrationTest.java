@@ -44,7 +44,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getResiReg().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model, history, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(studentInList), model, history, AddCommand.MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

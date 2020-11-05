@@ -11,12 +11,12 @@ import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_SAME_ROOM_A
 import static seedu.resireg.logic.commands.ReallocateCommand.MESSAGE_STUDENT_NOT_ALLOCATED;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIFTH_ROOM;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_ROOM;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_STUDENT;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class ReallocateCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student studentToReallocate = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student studentToReallocate = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Room roomToReallocate = model.getFilteredRoomList().get(INDEX_FOURTH_ROOM.getZeroBased());
         List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
 
@@ -60,7 +60,7 @@ public class ReallocateCommandTest {
         Allocation editedAllocate = new Allocation(roomToReallocate.getFloor(),
                 roomToReallocate.getRoomNumber(), studentToReallocate.getStudentId());
 
-        ReallocateCommand allocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FOURTH_ROOM);
+        ReallocateCommand allocateCommand = new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_FOURTH_ROOM);
         String expectedMessage = String.format(ReallocateCommand.MESSAGE_SUCCESS,
                 studentToReallocate.getNameAsString(),
                 roomToReallocate.getRoomLabel());
@@ -76,24 +76,24 @@ public class ReallocateCommandTest {
     public void execute_invalidIndexStudentUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexStudent = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         ReallocateCommand reallocateCommand = new ReallocateCommand(outOfBoundIndexStudent, INDEX_FOURTH_ROOM);
-        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndexRoomUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexRoom = Index.fromOneBased(model.getFilteredRoomList().size() + 1);
-        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, outOfBoundIndexRoom);
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_STUDENT, outOfBoundIndexRoom);
         assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndexStudentFilteredList_throwsCommandException() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
+        Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         ReallocateCommand reallocateCommand = new ReallocateCommand(outOfBoundIndex, INDEX_FOURTH_ROOM);
-        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -102,38 +102,38 @@ public class ReallocateCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_ROOM;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getRoomList().size());
-        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_STUDENT, outOfBoundIndex);
         assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_studentNotAllocated_throwsCommandException() {
-        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FOURTH_PERSON, INDEX_FIRST_ROOM);
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FOURTH_STUDENT, INDEX_FIRST_ROOM);
         assertCommandFailure(reallocateCommand, model, history, MESSAGE_STUDENT_NOT_ALLOCATED);
     }
 
     @Test
     public void execute_sameRoomReallocated_throwsCommandException() {
-        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ROOM);
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_FIRST_ROOM);
         assertCommandFailure(reallocateCommand, model, history, MESSAGE_SAME_ROOM_ALLOCATED);
     }
 
     @Test
     public void execute_roomAlreadyAllocated_throwsCommandException() {
-        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_SECOND_ROOM);
+        ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_SECOND_ROOM);
         assertCommandFailure(reallocateCommand, model, history, MESSAGE_ROOM_ALREADY_ALLOCATED);
     }
 
     @Test
     public void equals() {
-        ReallocateCommand reallocateFirstCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FOURTH_ROOM);
-        ReallocateCommand reallocateSecondCommand = new ReallocateCommand(INDEX_SECOND_PERSON, INDEX_FIFTH_ROOM);
+        ReallocateCommand reallocateFirstCommand = new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_FOURTH_ROOM);
+        ReallocateCommand reallocateSecondCommand = new ReallocateCommand(INDEX_SECOND_STUDENT, INDEX_FIFTH_ROOM);
 
         // same object -> returns true
         assertTrue(reallocateFirstCommand.equals(reallocateFirstCommand));
 
         // same values -> returns true
-        ReallocateCommand reallocateFirstCommandCopy = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FOURTH_ROOM);
+        ReallocateCommand reallocateFirstCommandCopy = new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_FOURTH_ROOM);
         assertTrue(reallocateFirstCommand.equals(reallocateFirstCommandCopy));
 
         // different types -> returns false
@@ -146,9 +146,9 @@ public class ReallocateCommandTest {
         assertFalse(reallocateFirstCommand.equals(reallocateSecondCommand));
 
         ReallocateCommand reallocateDifferentStudentCommand =
-                new ReallocateCommand(INDEX_SECOND_PERSON, INDEX_FOURTH_ROOM);
+                new ReallocateCommand(INDEX_SECOND_STUDENT, INDEX_FOURTH_ROOM);
         ReallocateCommand reallocateDifferentRoomCommand =
-                new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FIFTH_ROOM);
+                new ReallocateCommand(INDEX_FIRST_STUDENT, INDEX_FIFTH_ROOM);
 
         // different student -> returns false
         assertFalse(reallocateFirstCommand.equals(reallocateDifferentStudentCommand));

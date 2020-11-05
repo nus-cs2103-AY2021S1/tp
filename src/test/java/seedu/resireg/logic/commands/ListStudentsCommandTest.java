@@ -4,7 +4,7 @@ import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertToggleCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.resireg.testutil.TypicalStudents.ALICE;
 import static seedu.resireg.testutil.TypicalStudents.AMY;
 import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
@@ -49,7 +49,7 @@ public class ListStudentsCommandTest {
 
     @Test
     public void execute_listStudentsIsFiltered_showsEverything() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         assertCommandSuccess(new ListStudentsCommand(filter),
                 model, history, ListStudentsCommand.MESSAGE_SUCCESS, expectedModel);
     }
