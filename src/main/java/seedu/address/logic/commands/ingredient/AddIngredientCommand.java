@@ -62,7 +62,8 @@ public class AddIngredientCommand extends Command {
         }
         String ingredientsAddedString = ingredientsAdded.toString();
         ingredientsAddedString = ingredientsAddedString.substring(0, ingredientsAddedString.length() - 2);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientsAddedString));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientsAddedString),
+                ListIngredientsCommand.COMMAND_WORD);
     }
 
     private boolean checkEachIngredient(ArrayList<Ingredient> firstToCheck, ArrayList<Ingredient> otherToCheck) {

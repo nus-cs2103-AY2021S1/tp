@@ -62,9 +62,11 @@ public class CommandResult {
             break;
         case GetEditIngredientCommand.COMMAND_WORD:
             this.isEditIngredient = true;
+            this.isShowIngredient = true;
             break;
         case GetEditRecipeCommand.COMMAND_WORD:
             this.isEditRecipe = true;
+            this.isShowRecipe = true;
             break;
         case ListIngredientsCommand.COMMAND_WORD:
             this.isShowIngredient = true;

@@ -22,14 +22,12 @@ Wishful Shrinking targets **office workers** who tend to discount healthy eating
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tianyong-goh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
 * **New Feature**: Added the `Eat Recipe` command. (Pull Requests [\#51](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/51))
   * What it does: allows the user "eat" the recipe that is listed in the recipes' collection.
   * Justification: This feature improves the product as it is the base feature of Wishful Shrinking to help user to keep track of their daily consumption.
-  * Highlights: This feature work similar to `add Recipe`/ `add Ingredient` feature.
-   However, it instead intakes a positive index as an argument to indicate the specific recipe,
-   get the recipe's data from Recipe List and add the recipe's data to the Consumption List.
+  * Highlights: This feature work similar to `delete` feature.
+   It instead intakes a positive index as an argument to indicate the specific recipe.
+   Get the recipe's data from Recipe List and then add the recipe's data to the Consumption List.
   * Credits: AddressBook Level 3 `delete` feature.
 
 * **New Feature**: Added `List Consumption` feature. (Pull Requests [\#84](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/84), [\#87](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/87))
@@ -49,6 +47,11 @@ Given below are my contributions to the project.
   * What it does: allows the user to clear their daily consumption in Consumption List.
   * Justification: This feature improves the product because it allows user to start a new Consumption List with a single command instead of repeatedly using `deleteC` feature.
 
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=tianyong-goh&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
+
+* **Project management**:
+  * Produce shadowJar file for test and release `v1.2`.
+  * Setting up group meeting for discussion
 * **Enhancements to existing features**:
   * Refactor `Search Recipe` feature from `find` feature in *AddressBook Level 3* (Pull Requests [\#37](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/37))
   * Added Calories field into Recipe for `Eat Recipe` feature (Pull Requests [\#80](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/80))
@@ -62,11 +65,9 @@ Given below are my contributions to the project.
     * Updated the `addRecipe` (Pull Requests [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117))
     * Added documentation for the features `eatR`, `calories`, `clearR`, `clearF` and `clearC`  (Pull Requests [\#51](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/51), [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117), [\#170](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/170))
   * [Developer Guide](https://ay2021s1-cs2103t-w10-2.github.io/tp/DeveloperGuide.html):
-    * Added implementation details of the `eatRecipe`, `listConsumption`  `selectRecipe` and `clear` feature. (Pull Requests [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117))
+    * Added implementation details of the `eatRecipe`, `listConsumption`,  `selectRecipe` and `clear` feature. (Pull Requests [\#117](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/117))
     * Combined the implementation of the similar feature e.g. combine `listConsumption`, `listRecipe` and `listIngredient` to `list`. (Pull Requests [\#181](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/181))
-
-* **Project management**:
-  * Produce shadowJar file for test and release `v1.2`.
+    * Added the table of content in Developer Guide
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#172](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/172), [\#178](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/178), [\#24](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/24)
