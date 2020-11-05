@@ -128,12 +128,14 @@ public class AddressBookParser {
         case IngredientRestockCommand.COMMAND_WORD:
             return new IngredientRestockCommand();
 
+        // @@author ureshiiYing
         case SalesUpdateCommand.COMMAND_WORD:
             return new SalesUpdateCommandParser().parse(arguments);
 
         case SalesListCommand.COMMAND_WORD:
             return new SalesListCommand();
 
+        // @@author
         case SalesFindCommand.COMMAND_WORD:
             return new SalesFindCommandParser().parse(arguments);
 
