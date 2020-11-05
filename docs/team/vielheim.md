@@ -50,8 +50,5 @@ Given below are my contributions to the project.
     * Added `OpenCaseCommand` and `ReturnCommand`. Included Sequence Diagrams for the Commands for clarity (Pull request [\#149](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/149))
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Reported bugs and suggestions for other teams in the class during [PE-Dry Run](https://github.com/Vielheim/ped/issues)
 
