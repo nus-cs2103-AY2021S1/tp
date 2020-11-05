@@ -18,7 +18,7 @@ import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 
 /**
- * Edits an ingredient identified using it's displayed index or name from the recipe book.
+ * Edits an ingredient identified using it's displayed index or name from the ingredient book.
  */
 public class EditIngredientCommand extends Command implements Undoable {
     private final ItemReference item;
@@ -66,8 +66,8 @@ public class EditIngredientCommand extends Command implements Undoable {
             newTags.getValue());
 
         model.setIngredient(this.ingredient, this.editedIngredient);
-        return CommandResult.message("Edited ingredient '%s'", this.ingredient.getName()
-        ).showingIngredientList();
+        return CommandResult.message("Edited ingredient '%s'", this.ingredient.getName())
+            .showingIngredientList();
     }
 
     private Result<Set<Tag>> performTagEdits(List<TagEditDescriptor> edits) {
