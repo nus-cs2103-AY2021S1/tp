@@ -1,20 +1,23 @@
 package seedu.address.logic.textfieldmodules;
 
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.SimulatedKeyPress.ENTER_EVENT;
+import static seedu.address.testutil.SimulatedKeyPress.SHIFT_TAB_EVENT;
+import static seedu.address.testutil.SimulatedKeyPress.TAB_EVENT;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.SimulatedKeyPress.*;
+import javafx.scene.Scene;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 @ExtendWith(ApplicationExtension.class)
 class AutocompleteModuleTest {
@@ -130,7 +133,7 @@ class AutocompleteModuleTest {
         textField.end();
         robot.write(prefix);
 
-        for (int i = 0 ; i < sampleNameList.size() + 1; i++) {
+        for (int i = 0; i < sampleNameList.size() + 1; i++) {
             textField.fireEvent(TAB_EVENT);
         }
 
@@ -156,7 +159,7 @@ class AutocompleteModuleTest {
         textField.end();
         robot.write(prefix);
 
-        for (int i = 0 ; i < sampleNameList.size() + 1; i++) {
+        for (int i = 0; i < sampleNameList.size() + 1; i++) {
             textField.fireEvent(SHIFT_TAB_EVENT);
         }
 

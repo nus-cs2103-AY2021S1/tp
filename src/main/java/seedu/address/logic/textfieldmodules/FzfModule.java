@@ -1,5 +1,7 @@
 package seedu.address.logic.textfieldmodules;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -16,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-import static java.util.Objects.requireNonNull;
 
 public class FzfModule {
 
@@ -42,6 +43,11 @@ public class FzfModule {
         setupFzf();
     }
 
+    /**
+     * Attaches FZF module to a TextField component which generates suggestions from the supplied list
+     * @param tf  TextField to be attached.
+     * @param supplier  Supplies the list from which suggestions will be generated
+     */
     public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier) {
         requireNonNull(tf);
         requireNonNull(supplier);

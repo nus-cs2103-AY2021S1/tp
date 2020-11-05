@@ -35,6 +35,10 @@ public class AutocompleteModule {
         setupExitKeys();
     }
 
+    /**
+     * Attaches autocomplete module to a TextField component which generates suggestions from the supplied list
+     * @param tf  TextField to be attached.
+     */
     public static AutocompleteModule attachTo(TextField tf) {
         requireNonNull(tf);
         return new AutocompleteModule(tf);
@@ -43,7 +47,6 @@ public class AutocompleteModule {
     /**
      * Setups Autocompletion Generator for stipulated command prefix.
      */
-
     public void addSuggestions(String commandPrefix, Supplier<List<String>> suggestionsDataGenerator) {
         requireNonNull(commandPrefix);
         requireNonNull(suggestionsDataGenerator);
@@ -116,8 +119,7 @@ public class AutocompleteModule {
             if (isAutocompleteMode && (
                     event.getCode() == KeyCode.BACK_SPACE
                             || event.getCode() == KeyCode.ENTER
-                            || (event.getCode() == KeyCode.W && event.isControlDown())
-            )) {
+                            || (event.getCode() == KeyCode.W && event.isControlDown()))) {
                 hasSetPrefix = false;
                 if (event.getCode() == KeyCode.ENTER) {
                     toggleAutocompleteModeOff();
