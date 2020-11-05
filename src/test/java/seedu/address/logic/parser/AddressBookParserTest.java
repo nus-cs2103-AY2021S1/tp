@@ -28,9 +28,9 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SalesListCommand;
 import seedu.address.logic.commands.SalesRankCommand;
 import seedu.address.logic.commands.SalesUpdateCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientFindCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
-import seedu.address.logic.commands.ingredientcommands.IngredientViewSingleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Drink;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -107,10 +107,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_ingredientViewSingle() throws Exception {
-        final String userInput = IngredientViewSingleCommand.COMMAND_WORD
+        final String userInput = IngredientFindCommand.COMMAND_WORD
                 + " " + PREFIX_INGREDIENT + "Milk ";
-        IngredientViewSingleCommand command = (IngredientViewSingleCommand) parser.parseCommand(userInput);
-        assertTrue(command instanceof IngredientViewSingleCommand);
+        IngredientFindCommand command = (IngredientFindCommand) parser.parseCommand(userInput);
+        assertTrue(command instanceof IngredientFindCommand);
     }
 
     @Test

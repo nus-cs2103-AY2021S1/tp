@@ -20,11 +20,15 @@ public class IngredientRestockCommand extends Command {
     public static final String COMMAND_WORD = "i-restock";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the ingredient's levels of all ingredient types"
-            + " that fall below their minimum stock levels and require the user to restock.\n"
+            + " that fall below their minimum stock levels, which are their default levels\n"
+            + "and require the user to restock. The amount needed for each ingredient to reach the minimum "
+            + "stock level is also stated.\n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients that should be restocked: \n\n";
+    public static final String AMOUNT_NEEDED_WHEN_RESTOCK = "    Amount needed to reach the minimum stock level: ";
+
+    public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients that should be restocked: \n";
 
     public static final String MESSAGE_NO_NEED_TO_RESTOCK = "All Ingredients has not fallen below restock levels.";
 
@@ -53,7 +57,8 @@ public class IngredientRestockCommand extends Command {
             throw new CommandException(MESSAGE_NO_NEED_TO_RESTOCK);
         }
         for (Ingredient i : ingredientInShortage) {
-            ingredientList += i.toString() + LINE_SEPARATOR;
+            ingredientList += LINE_SEPARATOR + i.toString() + AMOUNT_NEEDED_WHEN_RESTOCK;
+            ingredientList += i.amountNeededToReachRestockLevel() + LINE_SEPARATOR;
         }
         return new CommandResult(MESSAGE_SUCCESS + ingredientList);
     }
