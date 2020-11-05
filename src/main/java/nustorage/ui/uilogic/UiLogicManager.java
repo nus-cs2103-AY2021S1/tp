@@ -7,6 +7,8 @@ import javafx.scene.control.TabPane;
 import nustorage.logic.commands.CommandResult;
 import nustorage.logic.parser.exceptions.ParseException;
 
+/*Solution below adapted from
+https://github.com/AY1920S1-CS2103T-T13-3/main/blob/master/src/main/java/seedu/address/ui/logic/LogicManager.java*/
 public class UiLogicManager implements UiLogic {
 
     public static final String COMMAND_WORD_NAVIGATION = "switch";
