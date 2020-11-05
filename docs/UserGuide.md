@@ -464,14 +464,14 @@ Examples:
 To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_1.png" width="75%" /> <br />
-Figure 3.1: <i>The recipe list view</i>
+Figure 4.1: <i>The recipe list view</i>
 </div>
 
 After pressing <kbd>enter</kbd>, you will see this view, showing the recipe you wish to view:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_2.png" width="75%" /> <br />
-Figure 3.2: <i>The detailed recipe view</i>
+Figure 4.2: <i>The detailed recipe view</i>
 </div>
 
 
@@ -493,7 +493,7 @@ Executing this command simply brings you back to the recipe list view:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recipes.png" width="75%" /> <br />
-Figure 4: <i>The recipe list view</i>
+Figure 5: <i>The recipe list view</i>
 </div>
 
 
@@ -536,21 +536,21 @@ add recipe Pancakes
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_1.png" width="75%" /> <br />
-Figure 5.1: <i>The add recipe command</i>
+Figure 6.1: <i>The add recipe command</i>
 </div>
 
 After pressing <kbd>enter</kbd>, you will see this view, showing your newly created recipe:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_2.png" width="75%" /> <br />
-Figure 5.2: <i>The recipe detail view</i>
+Figure 6.2: <i>The recipe detail view</i>
 </div>
 
 If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list (ChopChop won't actually highlight it, but we do here for clarity):
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
-Figure 5.3: <i>The newly created recipe in the recipe list</i>
+Figure 6.3: <i>The newly created recipe in the recipe list</i>
 </div>
 
 
@@ -565,6 +565,7 @@ Figure 5.3: <i>The newly created recipe in the recipe list</i>
 
 <a name="EditRecipeCommand"></a>
 #### 5.4.4&ensp;Editing Recipes — **`edit`**`recipe` (Alex)
+
 This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
 To accommodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
@@ -597,7 +598,7 @@ When adding or editing ingredients, a `/qty` *must* be specified after the ingre
 If you want to edit the tags for a recipe, use `/tag` with the corresponding action, which are either `add` or `delete`. For example:
 
 - `/tag:add vegetarian` <br />
-  This adds the 'vegetarian' tag to the recipe. It is not an error if the recipe already contains this tag.
+  This adds the 'vegetarian' tag to the recipe. If the recipe already contains this tag, an error is displayed.
 
 - `/tag:delete cold` <br />
   This removes the 'cold' tag from the recipe. If the recipe did not have this tag, an error is displayed.
@@ -656,66 +657,66 @@ To illustrate how to use this powerful command, let us recreate the Pancake reci
 <!-- to editors: don't mind the image names, i cut out some steps for brevity and i'm lazy to rename the files. -->
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_1.png" width="75%" /> <br />
-Figure 6.1: <i>The empty recipe</i>
+Figure 7.1: <i>The empty recipe</i>
 </div>
 
 Now, let's add our ingredients, using `/ingredient:add`; first, 400 grams of flour:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
-Figure 6.2: <i>The command to add a new ingredient to the recipe</i>
+Figure 7.2: <i>The command to add a new ingredient to the recipe</i>
 </div>
 
 Next, adding the eggs and milk in one go:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
-Figure 6.3: <i>The edit command supports multiple operations at once</i>
+Figure 7.3: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity using `/ingredient:edit`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
-Figure 6.4: <i>Editing an ingredient to change its quantity</i>
+Figure 7.4: <i>Editing an ingredient to change its quantity</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
-Figure 6.5: <i>The recipe now uses only 3 eggs</i>
+Figure 7.5: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps with `/step:add`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
-Figure 6.6: <i>Multiple steps can be added at the same time</i>
+Figure 7.6: <i>Multiple steps can be added at the same time</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 6.7: <i>The finished recipe</i>
+Figure 7.7: <i>The finished recipe</i>
 </div>
 
 Wait, we forgot to mix the ingredients together! Let's fix it by inserting a new step 2 with `/step:add:2`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 6.8: <i>Adding a new step in the second position</i>
+Figure 7.8: <i>Adding a new step in the second position</i>
 </div>
 
 Oh no, we also forgot the most important thing — syrup! So let's modify the last step (4) to include syrup with `/step:edit:4`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
-Figure 6.9: <i>Editing the last step</i>
+Figure 7.9: <i>Editing the last step</i>
 </div>
 
 And now the pancake recipe is complete!
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 6.10: <i>The finished recipe</i>
+Figure 7.10: <i>The finished recipe</i>
 </div>
 
 
@@ -729,6 +730,7 @@ Figure 6.10: <i>The finished recipe</i>
 
 <a name="DeleteRecipeCommand"></a>
 #### 5.4.5&ensp;Deleting Recipes — **`delete`**`recipe`
+
 This command deletes a specific recipe from ChopChop. Don't worry if you did this accidentally, because commands can be undone! (see: [undo](#UndoCommand)).
 
 **Usage**: `delete recipe <#REF>`
@@ -739,12 +741,20 @@ Examples:
 - `delete recipe pancakes` <br />
 	This deletes the recipe named 'pancakes'. Note that the name here is case insensitive.
 
+In this example, `delete recipe #7` will delete the **Pancakes** recipe:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
+Figure 8: <i>The initial list of ingredients</i>
+</div>
+
 
 
 
 
 <a name="FindRecipeCommand"></a>
 #### 5.4.6&ensp;Finding Recipes — **`find`**`recipe`
+
 This command finds all recipes containing the given keywords in the name.
 
 **Usage**: `find recipe <keyword> [<keyword>]...`
@@ -761,21 +771,21 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 8.1: <i>The initial list of recipes</i>
+Figure 9.1: <i>The initial list of recipes</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
-Figure 8.2: <i>The recipes containing 'cake'</i>
+Figure 9.2: <i>The recipes containing 'cake'</i>
 </div>
 
 To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_3.png" width="75%" /> <br />
-Figure 8.3: <i>Back to the main recipe list</i>
+Figure 9.3: <i>Back to the main recipe list</i>
 </div>
 
 
@@ -787,7 +797,8 @@ Figure 8.3: <i>Back to the main recipe list</i>
 
 <a name="FilterRecipeCommand"></a>
 #### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe` (Jialei)
-This command filters all recipes and lists those containing all ingredients and tags specified in the command.
+
+This command filters all recipes and lists those containing all the ingredients and tags specified in the command.
 
 **Usage**:
 ```
@@ -802,30 +813,48 @@ filter recipe
 - The filtering is case-insensitive and allows spaces between keywords in a single search term. e.g. `/tag family favourite` is allowed.
 
 Constraints:
-- At least one search term must be given, and they should be either `/tag` `/ingredient`.
+- At least one search term must be given, and they should be either `/tag` or `/ingredient`.
 - Search terms must not be empty.
 
 Examples:
-- `filter recipe /tag family reunion` will match **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
-- `filter recipe /tag snacks /tag sweet` will match **Chocolate Cookie** and **Gummy Bears**, the only recipes with 'tag' **snacks** and 'tag' **sweet**.
-- `filter recipe /ingredient egg` will match **Egg Tart** and **Scrambled Eggs**, the only recipes using the 'ingredient' **egg**.
-- `filter recipe /ingredient chicken /ingredient cheese /ingredient pineapple` will match **Chicken Quesadilla**, the only recipe containing 'ingredient' **chicken**, **cheese**, and **pineapple**.
-- `filter recipe /tag local dish /ingredient chicken /ingredient white rice /tag family favourite` will match **Chicken Rice**, the only recipe that matches all criteria specified.
+- `filter recipe /tag family reunion`<br />
+  This matches **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
 
-To illustrate, suppose you want to search for recipes with 'tags' **Christmas** and **home baked** that use the 'ingredient' **Ginger Root**, **Honey** and **Molasses**, you could use `filter recipe /tag christmas /ingredient ginger root /tag home baked /ingredient honey /ingredient molasses`:
+- `filter recipe /tag snacks /tag sweet` <br />
+  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes with 'tag' **snacks** and 'tag' **sweet**.
+
+- `filter recipe /ingredient eggs` <br />
+  This matches **Egg Tart** and **Scrambled Eggs**, assuming they are the only recipes using **eggs**.
+
+- `filter recipe /ingredient chicken /ingredient cheese /ingredient pineapple` <br />
+  This matches **Chicken Quesadilla**, assuming it is the only recipe using **chicken**, **cheese**, and **pineapple**.
+
+- `filter recipe /tag local dish /ingredient chicken /ingredient white rice /tag family favourite` <br />
+  This matches **Chicken Rice**, assuming it is the only recipe that matches all the criteria specified.
+
+To illustrate, suppose you had the following two recipes:
+
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/filter_recipe_1.png" width="75%" /> <br />
-Figure 8.1: <i>The starting state of the application</i>
+  <img src="images/ug/filter_recipe_1.png" width="35%" style="margin-right: 20px;" />
+  <img src="images/ug/filter_recipe_2.png" width="35%" style="margin-left: 20px;" /> <br /> <br />
+  Figure 10.1: <i>The starting recipes</i>
 </div>
 
-After executing the command, similar to the effect of **find recipe** command, the recipe list has changed, showing only the matching recipe, **gingerbread man**.
+Then, you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses** — you would use this command (separated into lines for clarity):
+```
+filter recipe
+  /tag christmas /tag baked
+  /ingredient honey /ingredient ginger /ingredient molasses
+```
+
+After executing the command, similar to the effect of [`find recipe`](#FindRecipeCommand) command, the recipe list has changed, showing only the matching recipe, **Gingerbread Men**:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/filter_recipe_2.png" width="75%" /> <br />
-Figure 8.2: <i>The recipe matching all criteria provided</i>
+<img src="images/ug/filter_recipe_3.png" width="75%" /> <br />
+Figure 10.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
-Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
+Note how the search term `ginger` matched the ingredient `ginger root`, and the search term `baked` matched the tag `home baked`. Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
 
 
@@ -847,21 +876,21 @@ Examples:
 To illustrate suppose you wanted to make the pancakes here, you would use `make recipe pancakes`. You can run this command from any view (not necessarily from the recipe detail view):
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_1.png" width="75%" /> <br />
-Figure 9.1: <i>Making pancakes</i>
+Figure 11.1: <i>Making pancakes</i>
 </div>
 
 After pressing <kbd>enter</kbd>, ChopChop will open up the recipe that you've just made:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_2.png" width="75%" /> <br />
-Figure 9.2: <i>The detailed recipe view</i>
+Figure 11.2: <i>The detailed recipe view</i>
 </div>
 
 If there are ingredients that are missing, or that you have insufficient amounts of, ChopChop will display this message in the command output window:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_3.png" width="55%" /> <br />
-Figure 9.3: <i>Insufficient ingredients to make the pancakes</i>
+Figure 11.3: <i>Insufficient ingredients to make the pancakes</i>
 </div>
 
 
@@ -885,6 +914,8 @@ Figure 9.3: <i>Insufficient ingredients to make the pancakes</i>
 <a name="GroupIngredientCommands"></a>
 ### 5.5&ensp;Ingredient Commands
 
+These commands allow you to add, delete, and edit ingredients.
+
 <a name="ListIngredientCommand"></a>
 #### 5.5.1&ensp;Listing Ingredients — **`list`**`ingredients`
 This command shows a list of all recipes in ChopChop. As with the `list recipes` command, you can use this command to switch between panes without clicking, or to reset any filters.
@@ -897,7 +928,7 @@ This command shows a list of all recipes in ChopChop. As with the `list recipes`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_ingredients.png" width="75%" /> <br />
-Figure 10: <i>The ingredient list view</i>
+Figure 12: <i>The ingredient list view</i>
 </div>
 
 
@@ -934,35 +965,35 @@ Suppose you just finished a grocery run, and want to add the items to ChopChop. 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 11.1: <i>Adding 2 litres of milk</i>
+Figure 13.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 11.2: <i>The newly added milk ingredient</i>
+Figure 13.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 11.3: <i>Adding 24 blueberries</i>
+Figure 13.3: <i>Adding 24 blueberries</i>
 </div>
 
-This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
+This time, since ChopChop already knew about blueberries, our previous 19 blueberries now become 43:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 11.4: <i>You now have 29 blueberries</i>
+Figure 13.4: <i>You now have 43 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
-Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
+<img src="images/ug/add_ingredient_5.png" width="45%" /> <br />
+Figure 13.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -977,7 +1008,7 @@ Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
 
 This command deletes a specific ingredient from ChopChop. Similar to the `add ingredient` command, this command also allows you to delete quantities of ingredients instead of the whole ingredient. In this scenario, ChopChop will intelligently remove the earliest-expiring ingredients first.
 
-If `/qty` is not specified, then the behaviour of this command is to completely remove the ingredient from ChopChop. Worry not: if you accidentally delete something, you can always `undo` it.
+If `/qty` is not specified, then the behaviour of this command is to completely remove the ingredient from ChopChop. Worry not: if you accidentally delete something, you can always [`undo`](#UndoCommand) it.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:** If specified, the quantity needs to have compatible units with the existing ingredient; see [this section](#QuantitiesAndUnits) for how it works.
@@ -995,14 +1026,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 12.1: <i>Removing 250ml of milk</i>
+Figure 14.1: <i>Removing 350ml of milk</i>
 </div>
 
-Notice how the amount of milk decreased from 2 litres to 1.75 litres:
+Notice how the amount of milk decreased from 2 litres to 1.65 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 12.2: <i>You now only have 1.75 litres of milk left</i>
+Figure 14.2: <i>You now only have 1.65 litres of milk left</i>
 </div>
 
 
@@ -1027,14 +1058,14 @@ For example, suppose you wanted to find all ingredients containing fish (not in 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 13.1: <i>The complete ingredient list</i>
+Figure 15.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 13.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 15.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
@@ -1048,6 +1079,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 <a name="FilterIngredientCommand"></a>
 #### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient` (Jialei)
+
 This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
 
 **Usage**:
@@ -1060,41 +1092,67 @@ filter ingredient
 - Keywords following `/tag` do not have to be complete to match the 'tag' name.
 - `/expiry <expiry-date>` filters the ingredients and only lists those that expire before the date provided.
 - When there are multiple expiry dates specified,, only the earliest one will be considered.
-- Except for the changes in the search fields, this feature works identically to the `filter recipe` command [above](#FilterRecipeCommand).
+- Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above.
 
 Constraints:
 - At least one search term must be given, and they should be either `/expiry` or `/tag`.
 - Search terms must not be empty.
 
 Examples:
-- `filter ingredient /tag bitter taste` will match **bitter melon** and **dark chocolate**, the only ingredients with the 'tag' **bitter taste**.
-- `filter ingredient /tag frequently used /tag sweet` will match **sugar**, the only ingredient with the 'tag' **frequently used** and 'tag' **sweet**.
-- `filter ingredient /expiry 2020-12-01` will match **apple**, the only 'ingredient' expiring before **2020-12-01**.
-- `filter ingredient /expiry 2022-12-31 /expiry 2020-10-31 /expiry 2023-01-01` will match **chocolate**, the only ingredient expiring before **2020-10-31**.
-- `filter ingredient /tag powdery /expiry 2020-12-31 /expiry 2020-12-01 /tag bakery` will match **baking soda**, the only ingredient that matches all criteria specified.
+- `filter ingredient /tag bitter taste` <br />
+  This matches **bitter melon** and **dark chocolate**, assuming they are the only ingredients tagged with **bitter taste**.
 
-To illustrate, suppose you want to search for ingredients with 'tags' **all time** and **favourite**, and expire earlier than the 'expiry date' **2020-12-31**, you could use `filter ingredient /tag all time /expiry 2020-12-31 /expiry 2021-01-01 /tag favourite`:
+- `filter ingredient /tag frequently used /tag sweet` <br />
+  This matches **sugar**, if it is the only ingredient tagged both **frequently used** and **sweet**.
+
+- `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
+  This matches **apple**, if it is the only ingredient expiring before **2020-10-31**. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
+
+- `filter ingredient /tag powdery /expiry 2020-12-31 /tag bakery` <br />
+  This matches **baking soda**, assuming it is the only ingredient that matches all the specified criteria.
+
+To illustrate, suppose you want to search for ingredients tagged both **delicious** and **favourite**, and expiring before **2020-12-31**; you can use `filter ingredient /tag delicious /expiry 2020-12-31 /tag favourite`:
+
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
-Figure 14.1: <i>The starting state of the application</i>
+Figure 16.1: <i>The initial list of ingredients</i>
 </div>
 
-After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing only the matching ingredient, **apple**.
+After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Bacon** and **Rainbow Sprinkles**:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
-Figure 14.2: <i>The ingredient matching all criteria provided</i>
+Figure 16.2: <i>The ingredients matching all the provided criteria</i>
 </div>
 
-Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command:
+Note that **Chocolate Sprinkles**, which was also tagged **delicious** and **favourite**, was not included because it expired in 2021.
+
+Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
 
 
 
 
 <a name="EditIngredientCommand"></a>
-#### 5.5.6&ensp;Editing Recipes (coming soon) — **`edit`**`ingredient`
+#### 5.5.6&ensp;Editing Ingredients — **`edit`**`ingredient`
 
-This command edits the given ingredient. Right now, it is not implemented yet!
+This command edits the given ingredient, in a similar fashion to the [`edit recipe`](#EditRecipeCommand) command. However, currently its functionality is limited to only editing the tags of an ingredient (more features coming soon!).
+
+Again, do refer to the documention on the [`edit recipe`](#EditRecipeCommand) above to find out how edit-descriptors work; this command currently only supports `/tag:add` and `/tag:delete`.
+
+It is an error to delete a tag from an ingredient that did not contain that tag, and similarly to add a duplicate tag to an ingredient.
+
+**Usage**:
+```
+edit ingredient <#REF>
+  [/tag:<action> <tag-name>]...
+```
+
+Examples:
+- `edit ingredient #4 /tag:add frozen` <br/>
+  This tags the fourth ingredient currently shown in the GUI's view with **frozen**.
+
+- `edit ingredient sprinkles /tag:delete fridge` <br/>
+  This removes the tag **fridge** from the ingredient named 'sprinkles'.
 
 
 
@@ -1131,7 +1189,7 @@ For example, here is the output for someone who really really loves pancakes:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_top.png" width="45%" /> <br />
-Figure 15: <i>No pancakes were sacrificed for this picture</i>
+Figure 17: <i>No pancakes were sacrificed for this picture</i>
 </div>
 
 
@@ -1146,7 +1204,7 @@ Note that this is also the view that is displayed by default when no statistics 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_recent.png" width="45%" /> <br />
-Figure 16: <i>The recently-made recipes view</i>
+Figure 18: <i>The recently-made recipes view</i>
 </div>
 
 
@@ -1183,14 +1241,14 @@ For example, `stats recipe made /after 2020-11-02 /before 2020-11-04 23:00` show
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_1.png" width="45%" /> <br />
-Figure 17: <i>Showing the recipes made between a date range</i>
+Figure 19: <i>Showing the recipes made between a date range</i>
 </div>
 
 Meanwhile, just executing `stats recipe made` only shows the recipes made on the current day:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_2.png" width="45%" /> <br />
-Figure 18: <i>Showing the recipes made on the current day</i>
+Figure 20: <i>Showing the recipes made on the current day</i>
 </div>
 
 
@@ -1291,6 +1349,15 @@ delete ingredient &lt;#REF&gt;
     <td>Completely deletes a recipe</td>
     <td><pre>
 delete recipe &lt;#REF&gt;
+</pre></td>
+    <td><b>YES</b></td>
+  </tr><tr>
+    <td><a href="#EditIngredientCommand">edit ingredient</a></td>
+    <td>Edits an existing ingredient</td>
+    <td><pre>
+edit ingredient &lt;#REF&gt;
+  [/tag:&lt;action&gt;
+    &lt;tag-name&gt;]...
 </pre></td>
     <td><b>YES</b></td>
   </tr><tr>
