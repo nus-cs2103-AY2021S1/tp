@@ -17,8 +17,8 @@ Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 Class Help
-Enum  CommandWordEnum <<enumeration>>
 }
+Enum  CommandWordEnum <<enumeration>>
 
 Interface Logic <<Interface>>
 Class LogicManager
@@ -33,22 +33,20 @@ Class HiddenOutside #FFFFFF
 
 HiddenOutside ..> Logic
 
-/'
- ' Essentials
- '/
 Logic ..> CommandResult
 
 LogicManager .up.|> Logic
 LogicManager --> Model
-LogicManager ..> CommandResult
 LogicManager ..> Command : executes >
-LogicManager --> CommandHistory : adds to >
+LogicManager -right-> CommandHistory
 LogicManager ..> ResiRegParser : calls >
 LogicManager ..> CommandWordEnum
 
+ResiRegParser ..> Parser : calls >
+
 CommandWordEnum ..> XYZCommand
 CommandWordEnum --> Help
-CommandWordEnum --> XYZCommandParser
+CommandWordEnum -right-> XYZCommandParser
 
 Command ..> Model
 Command ..> CommandResult
@@ -57,8 +55,6 @@ XYZCommand --|> Command
 XYZCommand --> Help
 
 XYZCommandParser ..|> Parser
-XYZCommandParser ..> XYZCommand : creates >
-
-ResiRegParser ..> Parser : calls >
+XYZCommandParser .left.> XYZCommand : creates >
 
 @enduml

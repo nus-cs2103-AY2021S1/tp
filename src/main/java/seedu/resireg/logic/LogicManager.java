@@ -14,7 +14,6 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.logic.commands.Command;
 import seedu.resireg.logic.commands.CommandResult;
-import seedu.resireg.logic.commands.CommandWordEnum;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ResiRegParser;

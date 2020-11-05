@@ -6,7 +6,7 @@ import static seedu.resireg.commons.util.AppUtil.checkArgument;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.resireg.logic.commands.CommandWordEnum;
+import seedu.resireg.logic.CommandWordEnum;
 
 /**
  * Represents a Student's name in the address book.

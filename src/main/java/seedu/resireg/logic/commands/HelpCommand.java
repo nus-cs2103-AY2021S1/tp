@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.logic.CommandHistory;
+import seedu.resireg.logic.CommandWordEnum;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.alias.AliasUtils;
