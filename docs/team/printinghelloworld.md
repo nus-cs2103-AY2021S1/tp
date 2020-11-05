@@ -3,44 +3,39 @@ layout: page
 title: Jerry Ho's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: ProductiveNUS
 
-AddressBook - Level 3 is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+ProductiveNUS is a desktop application created for School of Computing students studying in the National University of Singapore (NUS) to manage and schedule their academic tasks more effecively.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=printinghelloworld)
+
+* **New Feature**: Added the ability to mark assignments as done and undone.
+  * What it does: Allows the user to mark (multiple) completed assignments as done and uncompleted assignments as undone. Allows the user to easily differentiate between completed assignments and uncompleted assignments simply by looking at the Graphical User Interface (GUI). 
+  * Justification: This feature improves the product because a user can now keep track of the assignments that he/she has completed and focus on those that are not yet completed. In the event that the user realised that he/she an uncompleted assignment marked as done, he/she can simply remove the done status of the assignment using the undone command.
+  * Highlights: This enhancement affects several other classes and some of the existing features. The implementation required changes to the existing GUI, CommandParser and AssignmentBuilder.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link]()
-
-* **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
 * **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Updated the Add Assignment feature to handle the new features (Remind & Priority) added by my teammates (Pull requests [\#74](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/74), [\#154](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/154))
+  * Updated the Help feature to make it informative by providing a comprehensive summary of the features in our project (Pull requests [\146](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/146), [\233](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/233))
+
+* **Team-based tasks contributions**:
+  * Removed multiple classes and attributes from the existing classes to facilitate the morphing process of our project from an addressbook to a task scheduler and manager. (Pull requests [\66](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/66), [\67](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/67))
+  * Renamed Deadline class to Time class as Time is a more suitable name for the parent Task class. (Pull request [\230](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/230)
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Added documentation for the features `Done` and `Undone` [\#135](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/135)
+    * Added documentation for the features `Help` and `Clear` [\#166](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/166)
+    * Added documentation for the FAQ section: [\#166](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/166), [\#182](https://github.com/AY2021S1-CS2103T-F11-3/tp/pull/182)
+    
   * Developer Guide:
     * Added implementation details of the `delete` feature.
+    * To be added
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
   * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
   * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
