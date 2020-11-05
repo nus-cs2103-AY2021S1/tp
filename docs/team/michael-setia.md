@@ -3,10 +3,14 @@ layout: page
 title: Michael Setia Atmaja's Project Portfolio Page
 ---
 
-## Project: Cap 5.0 Buddy
+## Project: CAP 5 Buddy
 
-Cap 5.0 Buddy is a project developed for a software engineering module (CS2103T) at the National University of Singapore.
+### Project Overview
+
+Cap 5 Buddy is a project developed for a software engineering module (CS2103T) at the National University of Singapore.
 It has a GUI created using JavaFX, and it is written in Java.
+
+### Summary of Contributions
 
 Given below are my contributions to the project.
 
@@ -21,6 +25,22 @@ Given below are my contributions to the project.
   * Implemented some of TodoList commands.
   * Added a non-command feature to view statistics related to the TodoList.
   * Updated GUI for TodoList (Tasks tab)
+  * The following are some notable commands that the TodoList have,
+   
+   (Some big feature will be mentioned below)
+   
+* **Notable Feature**: Added sorting feature for TodoList
+  * Added implementation for sorting a TodoList based on a criterion.
+  * Updated implementation of `Model` to support this feature
+  
+* **Notable Feature**: Enhanced task managing of TodoList by updating the GUI
+  * Added indicators for representing the state of a task
+  * Added a pie chart to show the completion ration of the tasks
+  * Added a bar chart to show the incoming tasks within a week
+
+* **Notable Feature**: Contributed in implementing mechanism to store zoom links in a module
+  * Implemented the base code for storing zoom links in the memory or disk
+  * This implementation is used by zoom-links related commands
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=michael-setia&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -56,3 +76,11 @@ Given below are my contributions to the project.
   * Integrated a new Github plugin (CircleCI) to the team repo
 
 * _{you can add/remove categories in the list above}_
+
+### Contributions to the Developer Guide (Extracts)
+
+(Some screenshots and diagrams will be added)
+
+### Contributions to the User Guide (Extracts)
+
+(Some screenshots and diagrams will be added)
