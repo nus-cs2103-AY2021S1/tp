@@ -1,20 +1,5 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.model.ArchivedModuleList;
-import seedu.address.model.ContactList;
-import seedu.address.model.EventList;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ModuleList;
-import seedu.address.model.TodoList;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.grade.Assignment;
-import seedu.address.testutil.AssignmentBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_NAME_1;
@@ -31,22 +16,38 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModules.getTypicalModulesWithAssignmentList;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.model.ArchivedModuleList;
+import seedu.address.model.ContactList;
+import seedu.address.model.EventList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleList;
+import seedu.address.model.TodoList;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.grade.Assignment;
+import seedu.address.testutil.AssignmentBuilder;
+
 public class AddAssignmentCommandTest {
 
     private Model model = new ModelManager(getTypicalModulesWithAssignmentList(), new ArchivedModuleList(),
             new ContactList(), new TodoList(), new EventList(), new UserPrefs());
-    Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+    private Module moduleToUpdate = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
 
-    Assignment assignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
+    private Assignment assignmentQuiz1 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_1)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_1)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_1).build();
-    Module moduleWithAddedAssignment = moduleToUpdate.addAssignment(assignmentQuiz1);
+    private Module moduleWithAddedAssignment = moduleToUpdate.addAssignment(assignmentQuiz1);
 
-    Assignment assignmentOralPresentation2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
+    private Assignment assignmentOralPresentation2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
             .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
             .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
 
-    ModuleName moduleToAddName = moduleToUpdate.getName();
+    private ModuleName moduleToAddName = moduleToUpdate.getName();
 
     @Test
     public void constructor_nullModuleToAdd_throwsNullPointerException() {
@@ -102,8 +103,8 @@ public class AddAssignmentCommandTest {
                 assignmentOralPresentation2);
 
         // same index and descriptor -> returns true
-        Assignment duplicateAssignmentOralPresentation2 = new AssignmentBuilder().withAssignmentName(VALID_ASSIGNMENT_NAME_2)
-                .withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
+        Assignment duplicateAssignmentOralPresentation2 = new AssignmentBuilder()
+                .withAssignmentName(VALID_ASSIGNMENT_NAME_2).withAssignmentPercentage(VALID_ASSIGNMENT_PERCENTAGE_2)
                 .withAssignmentResult(VALID_ASSIGNMENT_RESULT_2).build();
         AddAssignmentCommand commandWithSameValues = new AddAssignmentCommand(moduleToAddName,
                 duplicateAssignmentOralPresentation2);

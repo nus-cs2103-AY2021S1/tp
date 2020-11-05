@@ -115,7 +115,8 @@ public class CommandTestUtil {
     public static final double VALID_ASSIGNMENT_PERCENTAGE_2 = 20;
     public static final double VALID_ASSIGNMENT_RESULT_1 = 0.8;
     public static final double VALID_ASSIGNMENT_RESULT_2 = 0.9;
-
+    public static final double VALID_GRADE_1 = 0.9;
+    public static final double VALID_GRADE_2 = 0.9;
 
     static {
         VALID_ZOOMLINKS_CS2030.put(new ModuleLesson(VALID_MODULE_LESSON_LECTURE), new ZoomLink(VALID_ZOOM_LINK_CS2030));

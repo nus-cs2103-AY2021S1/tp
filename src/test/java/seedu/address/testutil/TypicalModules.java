@@ -43,11 +43,11 @@ public class TypicalModules {
         .withZoomLink(VALID_MODULE_LESSON_TUTORIAL, VALID_ZOOM_LINK_ES2660).build();
 
     // Modules with assignments
-    public static final Module CS2030WithAssignment = new ModuleBuilder().withName("CS2030")
+    public static final Module CS2030_WITH_ASSIGNMENT = new ModuleBuilder().withName("CS2030")
             .withAssignment("Quiz 1", 10, 0.8).build();
-    public static final Module CS2101WithAssignment = new ModuleBuilder().withName("CS2101")
+    public static final Module CS2101_WITH_ASSIGNMENT = new ModuleBuilder().withName("CS2101")
             .withAssignment("Quiz 2", 20, 0.9).build();
-    public static final Module CS2105WithAssignment = new ModuleBuilder().withName("CS2105")
+    public static final Module CS2105_WITH_ASSIGNMENT = new ModuleBuilder().withName("CS2105")
             .withAssignment("Lab 1", 5, 1).build();
 
     private TypicalModules() {} // prevents instantiation
@@ -68,7 +68,7 @@ public class TypicalModules {
     }
 
     public static List<Module> getTypicalModulesWithAssignment() {
-        return new ArrayList<>(Arrays.asList(CS2030WithAssignment, CS2101WithAssignment, CS2105WithAssignment));
+        return new ArrayList<>(Arrays.asList(CS2030_WITH_ASSIGNMENT, CS2101_WITH_ASSIGNMENT, CS2105_WITH_ASSIGNMENT));
     }
 
     public static ModuleList getTypicalModulesWithAssignmentList() {
