@@ -7,9 +7,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +31,10 @@ import seedu.address.testutil.AssignmentBuilder;
  */
 public class RemindCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private Model model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
+
+    private List<Index> indexesToRemind = new ArrayList<>();
+    private List<Assignment> assignmentsToRemind = new ArrayList<>();
 
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
@@ -36,12 +43,15 @@ public class RemindCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
+        indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
+
         Assignment assignmentToRemind = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        RemindCommand remindCommand = new RemindCommand(INDEX_FIRST_ASSIGNMENT);
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
+        assignmentsToRemind.add(assignmentToRemind);
 
-        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentToRemind);
+        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
@@ -50,7 +60,8 @@ public class RemindCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
-        RemindCommand remindCommand = new RemindCommand(outOfBoundIndex);
+        indexesToRemind.add(outOfBoundIndex);
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
         assertCommandFailure(remindCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
@@ -58,13 +69,15 @@ public class RemindCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
+        indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
 
         Assignment assignmentToRemind = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
-        RemindCommand remindCommand = new RemindCommand(INDEX_FIRST_ASSIGNMENT);
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
+        assignmentsToRemind.add(assignmentToRemind);
 
-        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentToRemind);
+        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), assignmentToRemind);
 
         assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
@@ -75,52 +88,109 @@ public class RemindCommandTest {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        indexesToRemind.add(outOfBoundIndex);
 
-        RemindCommand remindCommand = new RemindCommand(outOfBoundIndex);
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
         assertCommandFailure(remindCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
 
     @Test
+    public void execute_validMultipleIndexesUnfilteredList_success() {
+        indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
+        indexesToRemind.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to remind
+
+        Assignment firstAssignmentToRemind = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+
+        Assignment secondAssignmentToRemind = model.getFilteredAssignmentList()
+                .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+
+        assignmentsToRemind.add(secondAssignmentToRemind);
+        assignmentsToRemind.add(firstAssignmentToRemind);
+
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
+
+        String expectedMessage = String.format(RemindCommand.MESSAGE_REMIND_ASSIGNMENT_SUCCESS, assignmentsToRemind);
+
+        ModelManager expectedModel = new ModelManager(model.getProductiveNus(), new UserPrefs(), null);
+        expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), firstAssignmentToRemind);
+        expectedModel.setAssignment(model.getFilteredAssignmentList().get(1), secondAssignmentToRemind);
+
+        assertCommandSuccess(remindCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_alreadyRemindedAssignmentUnfilteredList_failure() {
-        // Set reminders for assignment in filtered list in address book
+        indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
+
+        // Set reminders for assignment in filtered list in ProductiveNus
         Assignment firstAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment firstAssignmentReminded = new AssignmentBuilder(firstAssignment).withRemindersSet().build();
         model.setAssignment(firstAssignment, firstAssignmentReminded);
 
-        RemindCommand remindCommand = new RemindCommand(INDEX_FIRST_ASSIGNMENT);
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+        assertCommandFailure(remindCommand, model, String.format(
+                RemindCommand.MESSAGE_REMINDED_ASSIGNMENT, firstAssignment));
     }
 
     @Test
     public void execute_alreadyRemindedAssignmentFilteredList_failure() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
+        indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
 
-        // Set reminders for assignment in filtered list in address book
-        Assignment assignmentInList = model.getAddressBook().getAssignmentList()
+        // Set reminders for assignment in filtered list in ProductiveNus
+        Assignment assignmentInList = model.getProductiveNus().getAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
         Assignment assignmentInListReminded = new AssignmentBuilder(assignmentInList).withRemindersSet().build();
         model.setAssignment(assignmentInList, assignmentInListReminded);
         model.updateFilteredAssignmentList(PREDICATE_SHOW_ALL_ASSIGNMENT);
 
-        RemindCommand remindCommand = new RemindCommand(INDEX_FIRST_ASSIGNMENT);
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+        assertCommandFailure(remindCommand, model, String.format(
+                RemindCommand.MESSAGE_REMINDED_ASSIGNMENT, assignmentInList));
+    }
+
+    @Test
+    public void execute_duplicatedIndexFilteredList_throwsCommandException() {
+        showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
+
+        Index duplicatedIndex = INDEX_FIRST_ASSIGNMENT;
+
+        // adds duplicated indexes to list
+        indexesToRemind.add(duplicatedIndex);
+        indexesToRemind.add(duplicatedIndex);
+
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(duplicatedIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
+
+        RemindCommand remindCommand = new RemindCommand(indexesToRemind);
+
+        assertCommandFailure(remindCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Messages
+                .MESSAGE_DUPLICATE_INDEXES));
     }
 
     @Test
     public void equals() {
-        RemindCommand remindFirstCommand = new RemindCommand(INDEX_FIRST_ASSIGNMENT);
-        RemindCommand remindSecondCommand = new RemindCommand(INDEX_SECOND_ASSIGNMENT);
+        List<Index> firstCommandIndexes = new ArrayList<>();
+        firstCommandIndexes.add(INDEX_FIRST_ASSIGNMENT);
+        firstCommandIndexes.add(INDEX_THIRD_ASSIGNMENT);
+
+        List<Index> secondCommandIndexes = new ArrayList<>();
+        secondCommandIndexes.add(INDEX_SECOND_ASSIGNMENT);
+
+        RemindCommand remindFirstCommand = new RemindCommand(firstCommandIndexes);
+        RemindCommand remindSecondCommand = new RemindCommand(secondCommandIndexes);
 
         // same object -> returns true
         assertTrue(remindFirstCommand.equals(remindFirstCommand));
 
         // same values -> returns true
-        RemindCommand remindFirstCommandCopy = new RemindCommand(INDEX_FIRST_ASSIGNMENT);
+        RemindCommand remindFirstCommandCopy = new RemindCommand(firstCommandIndexes);
         assertTrue(remindFirstCommand.equals(remindFirstCommandCopy));
 
         // different types -> returns false

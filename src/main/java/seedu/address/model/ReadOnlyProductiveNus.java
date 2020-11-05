@@ -7,9 +7,9 @@ import seedu.address.model.task.Task;
 import seedu.address.timetable.TimetableData;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of ProductiveNus
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyProductiveNus {
 
     /**
      * Returns an unmodifiable view of the Assignments list.

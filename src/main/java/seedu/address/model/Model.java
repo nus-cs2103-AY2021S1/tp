@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.task.Task;
@@ -36,6 +37,11 @@ public interface Model {
     void preUpdateModel();
 
     /**
+     * Goes to previous model
+     */
+    void goToPreviousModel();
+
+    /**
      * Returns the user prefs.
      */
     ReadOnlyUserPrefs getUserPrefs();
@@ -51,22 +57,27 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the filtered assignment list
      */
-    Path getAddressBookFilePath();
+    FilteredList<Assignment> getFilteredAssignments();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Returns the user prefs' ProductiveNus file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    Path getProductiveNusFilePath();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Sets the user prefs' ProductiveNus file path.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setProductiveNusFilePath(Path productiveNusFilePath);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /**
+     * Replaces ProductiveNus data with the data in {@code productiveNus}.
+     */
+    void setProductiveNus(ReadOnlyProductiveNus productiveNus);
+
+    /** Returns ProductiveNus */
+    ReadOnlyProductiveNus getProductiveNus();
 
     /**
      * Adds lessons based on NUSMods Timetable data.
@@ -74,27 +85,27 @@ public interface Model {
     void importTimetable(TimetableData data);
 
     /**
-     * Returns true if an assignment with the same identity as {@code assignment} exists in the address book.
+     * Returns true if an assignment with the same identity as {@code assignment} exists in ProductiveNus.
      */
     boolean hasAssignment(Assignment assignment);
 
     /**
      * Deletes the given assignment.
-     * The assignment must exist in the address book.
+     * The assignment must exist in ProductiveNus.
      */
     void deleteAssignment(Assignment target);
 
     /**
      * Adds the given assignment.
-     * {@code assignment} must not already exist in the address book.
+     * {@code assignment} must not already exist in ProductiveNus.
      */
     void addAssignment(Assignment assignment);
 
     /**
      * Replaces the given assignment {@code target} with {@code editedAssignment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProductiveNus.
      * The assignment identity of {@code editedAssignment} must not be the same as another
-     * existing assignment in the address book.
+     * existing assignment in ProductiveNus.
      */
     void setAssignment(Assignment target, Assignment editedAssignment);
 

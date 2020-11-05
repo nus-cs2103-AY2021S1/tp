@@ -20,7 +20,7 @@ import seedu.address.model.task.Name;
 
 
 /**
- * Removes the scheduler for an assignment identified using it's displayed index from the address book.
+ * Removes the scheduler for an assignment identified using it's displayed index from ProductiveNus.
  */
 public class UnscheduleCommand extends NegateCommand {
 

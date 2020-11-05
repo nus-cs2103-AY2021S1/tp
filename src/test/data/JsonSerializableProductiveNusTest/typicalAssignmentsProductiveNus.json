@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Assignment values as in TypicalAssignments#getTypicalAddressBook()",
+  "_comment": "ProductiveNus save file which contains the same Assignment values as in TypicalAssignments#getTypicalProductiveNus()",
   "assignments" : [ {
     "name" : "CS1231S Homework",
     "deadline" : "01-01-2020 1800",
