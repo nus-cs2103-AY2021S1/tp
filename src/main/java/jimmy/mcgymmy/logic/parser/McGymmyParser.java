@@ -53,9 +53,9 @@ public class McGymmyParser {
      * @throws ParseException if an argument to the command is not in the correct format
      */
     public CommandExecutable parse(String text) throws ParseException {
-        Pair<String, String[]> headTail = ParserUtil.splitString(text);
-        String commandName = headTail.getKey();
-        String[] commandArguments = headTail.getValue();
+        Pair<String, String[]> splitString = ParserUtil.splitString(text);
+        String commandName = splitString.getKey();
+        String[] commandArguments = splitString.getValue();
         if (commandName.equals("macro")) {
             return parseCreateMacro(text);
         } else if (this.macroList.hasMacro(commandName)) {
