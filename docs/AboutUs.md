@@ -12,7 +12,7 @@ We are a team based in the [School of Computing, National University of Singapor
 <img src="images/weijie96.png" width="200px">
 
 [github](https://github.com/WeiJie96)
-[portfolio](team/johndoe.md)
+[portfolio](team/weijie96.md)
 
 * Role: Code Quality
 * Responsibilities: 
