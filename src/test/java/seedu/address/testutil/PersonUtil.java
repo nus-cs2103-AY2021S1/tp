@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
+import seedu.address.logic.commands.AddTagCommand.TagPersonDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -61,7 +61,7 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
      */
-    public static String getLabelPersonDescriptorDetails(LabelPersonDescriptor descriptor) {
+    public static String getTagPersonDescriptorDetails(TagPersonDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();

@@ -23,6 +23,6 @@ public class ClearCommand extends Command {
         model.setAddressBook(new AddressBook());
         model.setMeetingBook(new MeetingBook());
         model.setModuleBook(new ModuleBook());
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, true);
     }
 }

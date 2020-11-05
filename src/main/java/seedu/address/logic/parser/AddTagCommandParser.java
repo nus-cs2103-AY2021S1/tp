@@ -10,8 +10,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddLabelCommand;
-import seedu.address.logic.commands.AddLabelCommand.LabelPersonDescriptor;
+import seedu.address.logic.commands.AddTagCommand;
+import seedu.address.logic.commands.AddTagCommand.TagPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
@@ -19,34 +19,34 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class AddLabelCommandParser implements Parser<AddLabelCommand> {
+public class AddTagCommandParser implements Parser<AddTagCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddLabelCommand
-     * and returns an AddLabelCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddTagCommand
+     * and returns an AddTagCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddLabelCommand parse(String args) throws ParseException {
+    public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TAG);
         if (!arePrefixesPresent(argMultimap, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabelCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
         Name name;
 
         name = ParserUtil.parseName(argMultimap.getPreamble());
 
-        LabelPersonDescriptor labelPersonDescriptor = new AddLabelCommand.LabelPersonDescriptor();
+        TagPersonDescriptor tagPersonDescriptor = new AddTagCommand.TagPersonDescriptor();
 
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(labelPersonDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(tagPersonDescriptor::setTags);
 
-        if (labelPersonDescriptor.getTags().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLabelCommand.MESSAGE_USAGE));
+        if (tagPersonDescriptor.getTags().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
-        return new AddLabelCommand(name, labelPersonDescriptor);
+        return new AddTagCommand(name, tagPersonDescriptor);
     }
 
     /**

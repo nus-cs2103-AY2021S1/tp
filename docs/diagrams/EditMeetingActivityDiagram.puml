@@ -1,0 +1,37 @@
+@startuml
+start
+:User inputs edit meeting command;
+:EditMeetingCommandParser checks input;
+if () then ([not all required fields present])
+    :Throw ParseException;
+    end
+else ([else])
+    :Parse all inputs;
+    :Model contains module;
+    if () then ([no])
+        :Throw CommandException;
+        end
+    else ([yes])
+        :Model contains given meeting;
+        if () then ([no])
+            :Throw CommandException;
+            end
+        else ([yes])
+            :Model contains another meeting that has same identity as edited meeting;
+            if () then ([yes])
+            :Throw CommandException;
+            end
+                else ([no])
+            :Model contains another meeting at same date and time;
+            if () then ([yes])
+                :Throw CommandException;
+                end
+                else ([no])
+                    :Given module contains all edited participants;
+                    if () then ([no])
+                        :Throw CommandException;
+                        end
+                        else ([yes])
+                            :Create new EditMeetingCommand;
+                            stop
+@enduml

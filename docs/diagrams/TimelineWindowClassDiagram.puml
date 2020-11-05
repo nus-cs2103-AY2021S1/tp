@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Interface Ui <<Interface>>
+Class UiManager
+Class MainWindow
+Class TimelineWindow
+Class TimelineSection
+Class TimelineMeetingCard
+Class "{abstract}\nUiPart" as UiPart
+}
+
+package Logic <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Model <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+
+HiddenOutside .down.> Ui
+UiManager .up.|> Ui
+UiManager -right-> MainWindow
+
+MainWindow -right-> TimelineWindow
+TimelineWindow -right-> TimelineSection
+TimelineSection -right-> TimelineMeetingCard
+
+MainWindow -up-|> UiPart
+TimelineWindow -up-|> UiPart
+TimelineSection -up-|> UiPart
+TimelineMeetingCard -up-|> UiPart
+
+UiManager --> Logic
+MainWindow --> Logic
+TimelineWindow --> Logic
+
+TimelineMeetingCard ..> Model
+
+@enduml

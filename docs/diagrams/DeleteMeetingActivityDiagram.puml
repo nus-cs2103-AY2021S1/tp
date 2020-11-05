@@ -1,0 +1,22 @@
+@startuml
+start
+:User inputs delete meeting command;
+:DeleteMeetingCommandParser checks input;
+if () then ([not all required fields present])
+    :Throw ParseException;
+    end
+else ([else])
+    :Parse all inputs;
+    :Model contains module;
+    if () then ([no])
+        :Throw CommandException;
+        end
+    else ([yes])
+        :Model contains meeting;
+        if () then ([no])
+            :Throw CommandException;
+            end
+        else ([yes])
+            :Create new DeleteMeetingCommand;
+            stop
+@enduml

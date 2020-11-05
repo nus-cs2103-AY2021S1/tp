@@ -45,16 +45,20 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/CONTACT_NAME`, `CONTACT_NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/CONTACT_NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/CONTACT_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/CONTACT_NAME` is also acceptable.
+  
+* All parameters are `CASE-SENSITIVE` unless stated otherwise.<br>
+
+* The `CONTACT_NAME` parameter refers to the full name of the contact.
 
 * There are 2 special tags `prof` and `ta`. Contacts with either of these tags will be classified as professor or ta
  respectively. Users are not allowed to tag a contact as both `prof` and `ta`.
@@ -96,8 +100,8 @@ Typing in these trigger phrases will turn the text yellow to show that CommandBo
 Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions.
 
 Note that this autocompletion can only be triggered at the end of input string e.g.
-- `contact edit cname/` will trigger the autocomplete but
-- `contact edit cname/ p/98830181` this would not as there is text after the prefix.
+- `contact edit cn/` will trigger the autocomplete but
+- `contact edit cn/ p/98830181` this would not as there is text after the prefix.
 
 ![Autocomplete Example](images/AutocompleteExample.gif)
 
@@ -108,11 +112,11 @@ Note that this autocompletion can only be triggered at the end of input string e
 
 Adds a contact to Modduke.
 
-Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
+# Format: `contact add n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
 Note(s): 
 * All fields are required except those in square brackets. No duplicate names.
-* NAME must be alphanumeric.
+* CONTACT_NAME must be alphanumeric.
 * PHONE_NUMBER must be at least 3 digits but not longer than 20 digits.
 
 Example(s):
@@ -176,42 +180,42 @@ Example(s):
 *   `find n/Tan` Shows all contacts with `tan` (case-insensitive) in their name or have initials `tan`.
 *   `find n/jcyy t/classmates` Shows all contacts with `jcyy` in their name or have initials `jcyy` and persons with the `classmates` tag.
 
-### Adding a tag to a user : `label add`
+### Adding a tag to a user : `tag add`
 
-Adds the given labels to a contact.
+Adds the given tags to a contact.
 
-Format: `label add CONTACT_NAME t/TAG_NAME...`
+Format: `tag add CONTACT_NAME t/TAG_NAME...`
 
 Note(s):
 * Only 1 contact name can be used at a time but multiple tags can be added.
 
 Example(s):
-* `label add Jay t/classmate t/friend`
+* `tag add Jay t/classmate t/friend`
 
-### Deleting a tag from a user : `label delete`
+### Deleting a tag from a user : `tag delete`
 
-Deletes the given labels from a contact.
+Deletes the given tags from a contact.
 
-Format: `label delete CONTACT_NAME t/TAG_NAMES...`
+Format: `tag delete CONTACT_NAME t/TAG_NAMES...`
 
 Note(s)
 * Only 1 contact name can be used at a time but multiple tags can be deleted.
 * The contact has to have the given tag.
 
 Example(s):
-* `label delete Jay t/friend`
+* `tag delete Jay t/friend`
 
-### Clear tags of a user : `label clear`
+### Clear tags of a user : `tag clear`
 
-Deletes all labels of a contact.
+Deletes all tags of a contact.
 
-Format: `label clear CONTACT_NAME`
+Format: `tag clear CONTACT_NAME`
 
 Note(s):
 * Only 1 contact name can be used at a time.
 
 Example(s):
-* `label clear Jay`
+* `tag clear Jay`
 
 ### Creating a module : `module add`
 
@@ -291,7 +295,7 @@ a/Discuss sequence diagram no/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`
 
-Deletes the specified meeting from Modduke.
+Deletes the specified meeting from Modduke, indentified by the unique combination of module and meeting name.
 
 Format: `meeting delete m/MODULE n/MEETING_NAME`
 
@@ -346,10 +350,10 @@ Example(s):
 
 Copies email address of contacts with the given criteria to your clipboard.
 
-Format: `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
+Format: `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
 Example(s):
@@ -360,10 +364,10 @@ Example(s):
 
 Copies phone numbers of contacts with the given criteria to your clipboard.
 
-Format: `copy phone [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
+Format: `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`
 
 Note(s):
-* [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
 Example(s):
@@ -380,7 +384,7 @@ Format: `timeline`
 
 Note(s):
 * Meetings are displayed in chronological order, with the earliest meeting on the left side of the window
-* Meetings that have passed the current date and time are marked red
+* Meetings that have passed the date and time at the point which the application was first opened are marked red
 
 ### Exiting the program : `exit`
 
@@ -422,7 +426,7 @@ Modduke's data is saved in the hard disk automatically after any command that ch
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
+**Add Contact** | `contact add n/CONTACT_NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
 **Clear Contacts** | `contact clear`
 **Delete Contacts** | `contact delete [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...`<br> e.g., `contact delete n/Jay t/friend m/CS2103`
 **Edit Contacts** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
@@ -430,14 +434,14 @@ Action | Format, Examples
 **Find Contacts** | `find [n/KEYWORD]... [t/TAG_NAME]...` <br> e.g.,`find n/Roy t/friend`
 **Add Module** | `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`<br> e.g., `module add n/CS2103 m/Jay, Roy`
 **List Modules** | `module list  [n/MODULE_NAME]`<br> e.g., `module list n/CS2103`
-**Add Labels** | `label add CONTACT_NAME t/TAG_NAME...` <br> e.g., `label add Jay t/acquaintance`
-**Delete Labels** | `label delete CONTACT_NAME t/TAG_NAME...` <br> e.g., `label delete Jay t/friend`
-**Clear Labels** | `label clear CONTACT_NAME` <br> e.g., `label clear Jay`
+**Add Tags** | `tag add CONTACT_NAME t/TAG_NAME...` <br> e.g., `tag add Jay t/acquaintance`
+**Delete Tags** | `tag delete CONTACT_NAME t/TAG_NAME...` <br> e.g., `tag delete Jay t/friend`
+**Clear Tags** | `tag clear CONTACT_NAME` <br> e.g., `tag clear Jay`
 **Add Meeting** | `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting add m/CS2103 n/Meeting d/2020:09:23 t/10:00 p/Ekam p/Jay p/Jerryl p/Roy`
 **Delete Meeting** | `meeting delete m/MODULE n/MEETING_NAME` <br> e.g., `meeting delete m/CS2103 n/Weekly Meeting`
 **Edit Meeting** |  `meeting edit m/MODULE n/MEETING_NAME [nn/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [p/NEW_PARTICIPANTS]... [a/AGENDA]... [no/NOTES]...` <br> e.g., `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00`
 **List Meetings** | `meeting list`
 **View Meeting** | `meeting view m/MODULE n/MEETING_NAME`  <br> e.g., `meeting view m/CS2100 n/Report Discussion`
-**Copy Email** | `copy email [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
-**Copy Phone** | `copy phone [n/CONTACT_FULL_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
+**Copy Email** | `copy email [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
+**Copy Phone** | `copy phone [n/CONTACT_NAME]... [m/MODULE_NAME]... [t/TAG_NAME]...` <br> e.g.,`copy phone m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 **Display Timeline** | `timeline`
