@@ -114,7 +114,7 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    public void execute_duplicateTaskFilteredList_failure() throws ParseException {
+    public void execute_duplicateTaskUnfilteredList_failure() throws ParseException {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         Task editedTask = project.getFilteredSortedTaskList().get(1);
@@ -125,7 +125,7 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    public void execute_duplicateProjectFilteredList_failure() throws ParseException {
+    public void execute_duplicateTaskFilteredList_failure() throws ParseException {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.addTask(SampleDataUtil.generateTask(SampleDataUtil.getTask4()));
