@@ -12,7 +12,7 @@ import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.storage.JsonMcGymmyStorage;
 
 /**
- * Import a McGymmy datafile into McGymmy.
+ * Imports a McGymmy datafile into McGymmy.
  */
 public class ImportCommand extends Command {
 

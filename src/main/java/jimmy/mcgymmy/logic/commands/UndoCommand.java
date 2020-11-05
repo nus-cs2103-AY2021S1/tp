@@ -3,7 +3,7 @@ package jimmy.mcgymmy.logic.commands;
 import jimmy.mcgymmy.model.Model;
 
 /**
- * Undo the last command that changed McGymmy.
+ * Undoes the last command that changed McGymmy.
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
