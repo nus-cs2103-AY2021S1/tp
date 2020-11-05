@@ -70,7 +70,8 @@ public class EditIngredientCommand extends Command {
         Ingredient ingredientToEdit = lastShownList.get(index.getZeroBased());
         Ingredient editedIngredient = createEditedIngredient(ingredientToEdit, editIngredientDescriptor);
 
-        if (!ingredientToEdit.isSameIngredient(editedIngredient) && model.hasIngredient(editedIngredient)) {
+        //if ingredient name change, check if it has changed to an existing ingredient
+        if (!ingredientToEdit.isSameIngredientName(editedIngredient) && model.hasMinimalIngredient(editedIngredient)) {
             throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
         }
 

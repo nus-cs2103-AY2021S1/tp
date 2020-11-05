@@ -2,8 +2,8 @@ package seedu.address.logic.commands.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_MARGARITAS;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_NOODLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_MARGARITAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTOR_NOODLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_INGREDIENT_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MARGARITAS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_MARGARITAS;
@@ -71,15 +71,10 @@ public class EditRecipeCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditRecipeCommand editRecipeCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, new EditRecipeDescriptor());
-        Recipe editedRecipe = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
 
-        String expectedMessage = String.format(EditRecipeCommand.MESSAGE_NOT_EDITED, editedRecipe);
-
-        Model expectedModel = new ModelManager(new WishfulShrinking(model.getWishfulShrinking()), new UserPrefs());
-
-        assertCommandSuccess(editRecipeCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editRecipeCommand, model, EditRecipeCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
@@ -148,10 +143,10 @@ public class EditRecipeCommandTest {
 
     @Test
     public void equals() {
-        final EditRecipeCommand standardCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, DESC_NOODLE);
+        final EditRecipeCommand standardCommand = new EditRecipeCommand(INDEX_FIRST_RECIPE, VALID_DESCRIPTOR_NOODLE);
 
         // same values -> returns true
-        EditRecipeDescriptor copyDescriptor = new EditRecipeDescriptor(DESC_NOODLE);
+        EditRecipeDescriptor copyDescriptor = new EditRecipeDescriptor(VALID_DESCRIPTOR_NOODLE);
         EditRecipeCommand commandWithSameValues = new EditRecipeCommand(INDEX_FIRST_RECIPE, copyDescriptor);
 
         assertTrue(standardCommand.equals(commandWithSameValues));
@@ -166,10 +161,10 @@ public class EditRecipeCommandTest {
         assertFalse(standardCommand.equals(new ClearRecipeCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_SECOND_RECIPE, DESC_NOODLE)));
+        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_SECOND_RECIPE, VALID_DESCRIPTOR_NOODLE)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_FIRST_RECIPE, DESC_MARGARITAS)));
+        assertFalse(standardCommand.equals(new EditRecipeCommand(INDEX_FIRST_RECIPE, VALID_DESCRIPTOR_MARGARITAS)));
     }
 
 }
