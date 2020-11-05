@@ -22,7 +22,7 @@ public class RedoCommand extends Command {
         }
 
         model.redoPivot();
-        String redoneCommand = model.getStateCommand();
+        String redoneCommand = model.getCommandMessage();
 
         if (model.isMainPageCommand()) {
             StateManager.resetState();

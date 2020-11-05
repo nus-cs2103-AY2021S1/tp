@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.documentcommands.OpenDocumentCommand.MESSAGE_OPEN_DOCUMENT_SUCCESS;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.pivot.testutil.TypicalIndexes.FIRST_INDEX;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class OpenDocumentCommandTest {
 
     private static Index validDocIndex = Index.fromOneBased(1);
     private static Index invalidDocIndex = Index.fromOneBased(2);
-    private static Index firstCaseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static Index firstCaseIndex = Index.fromZeroBased(FIRST_INDEX.getZeroBased());
     private Model model;
 
     //OpenDocumentCommand assumes program to have a state

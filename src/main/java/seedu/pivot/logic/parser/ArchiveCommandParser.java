@@ -17,9 +17,9 @@ import seedu.pivot.logic.state.StateManager;
  */
 public class ArchiveCommandParser implements Parser<ArchiveCommand> {
 
-    private static final String MESSAGE_CASE_INCORRECT_SECTION_MAIN_PAGE = "Invalid command. "
+    public static final String MESSAGE_CASE_INCORRECT_SECTION_MAIN_PAGE = "Invalid command. "
             + "Type 'list case' to see cases that you can archive.";
-    private static final String MESSAGE_CASE_INCORRECT_SECTION_CASE_PAGE = "Invalid command. "
+    public static final String MESSAGE_CASE_INCORRECT_SECTION_CASE_PAGE = "Invalid command. "
             + "Return to the Main Page and type 'list case' to see cases that you can archive.";
 
     /**

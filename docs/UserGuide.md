@@ -27,11 +27,11 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
    * **`list case`** : Lists all cases.
 
-   * **`add case`**` t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
+   * **`add case`** t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
    
    * **`open case`**`1` : Opens the 1st case shown in the current list in the right panel with more details.
    
-   * **`add victim`**` n:Joseph g:M` : Adds a victim in the current opened case.
+   * **`add victim`**`n:Joseph g:M` : Adds a victim in the current opened case.
    
    * **`return`** : Returns to the main page and closes the details on the right panel.
 
@@ -66,7 +66,7 @@ Lists all archived cases in PIVOT.
 
 Format: `list archive`
 
-#### Adding a case: `add case t:TITLE [s:STATUS]`
+#### Add case: `add case t:TITLE [s:STATUS]`
 Adds a new case with the specified TITLE. The STATUS is active by default, if not specified. The user can provide 3 status types:
 
 1. `ACTIVE`
@@ -84,14 +84,14 @@ Example:
 * `add case t:Kovan double murders` creates a new case with the title “Kovan double murders”, the status initialized as an active case.
 * `add case t:Kovan double murders s:Closed` creates a new case with the title “Kovan double murders”, the status initialized as a closed case.
 
-#### Delete a case: `delete case CASE_NO`
+#### Delete case: `delete case CASE_NO`
 Deletes the specified case.
 
 Format: `delete case CASE_NO`
 
 Example: `list case` followed by `delete case 2` deletes the 2nd case in the list.
 
-#### Open a case: `open case CASE_NO`
+#### Open case: `open case CASE_NO`
 Enters the specified case where users can add more information regarding the case
 [(see Investigation Case Page)](#investigation-case-page).
 
@@ -99,21 +99,21 @@ Format:  `open case CASE_NO`
 
 Example: `list case` followed by `open case 1` opens the 1st case in the list.
 
-#### Archiving a case in the DEFAULT section: `archive case CASE_NO`
+#### Archive case in the DEFAULT section: `archive case CASE_NO`
 Archives the specified case in the DEFAULT section of PIVOT.
 
 Format:  `archive case CASE_NO`
 
 Example: `list case` followed by `archive case 1` archives the 1st case in the list.
 
-#### Unarchiving a case in the ARCHIVED section: `unarchive case CASE_NO`
+#### Unarchive case in the ARCHIVED section: `unarchive case CASE_NO`
 Unarchives the specified case in the ARCHIVED section of Pivot.
 
 Format:  `unarchive case CASE_NO`
 
 Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the list.
 
-#### Finding a case: `find KEYWORD [MORE_KEYWORDS]`
+#### Find case: `find KEYWORD [MORE_KEYWORDS]`
 
 Find cases whose details contain any of the given keywords.
 
@@ -168,7 +168,7 @@ Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the desc
 This command is flexible. If a description has been added, this command will overwrite the current description.
 Tip: You can also use `add desc d:` to remove the current desc.
 
-#### Add a document to the current case: `add doc n:TITLE r:FILE_NAME`
+#### Add document to the current case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
 
 Format: `add doc n:TITLE r:FILE_NAME`
@@ -177,7 +177,7 @@ Example: `add doc n:Case Details r:case_details.pdf` adds a new document with ti
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
 
-#### Add a Suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new suspect to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
 
@@ -187,7 +187,7 @@ Example: `add suspect n:John Doe g:M`
 
 Gender must either be `M` or `F`, not case-sensitive.
 
-#### Add a victim to the current case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Add victim to the current case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new victim to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
 
@@ -195,10 +195,9 @@ Format: `add victim n:NAME g:GENDER`
 
 Example: `add victim n:James Lee g:M`
 
-#### Add a witness to the current case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
-
 Gender must either be `M` or `F`, not case-sensitive.
 
+#### Add witness to the current case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new witness to the current case with the specified `NAME` and `GENDER`. The other fields are optional.
 
@@ -208,7 +207,7 @@ Example: `add witness n:John Doe g:M`
 
 Gender must either be `M` or `F`, not case-sensitive.
 
-#### Opens a document in the current case: `open doc DOC_NO`
+#### Open document in the current case: `open doc DOC_NO`
 
 Opens the specified document at index `DOC_NO` in the list.
 
@@ -230,7 +229,6 @@ Edits the status (ACTIVE, COLD, CLOSED) of the case with the specified `STATUS`.
 Format: `edit status s:STATUS`
 
 Example: `edit status s:CLOSED` updates the status of this case to “CLOSED”.
-
 
 #### Edit an existing document in the current case: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 
@@ -285,7 +283,7 @@ Deletes the document specified with `DOC_NO` from the list of documents.
 
 Format: `delete doc DOC_NO`
 
-Example: `delete doc 0`
+Example: `delete doc 1`
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
@@ -293,15 +291,15 @@ Deletes the suspect specified with `SUSPECT_NO` from the list of suspects.
 
 Format: `delete suspect SUSPECT_NO`
 
-Example: `delete suspect 0`
+Example: `delete suspect 1`
 
-#### Delete Victim: `delete victim VICTIM_NO`
+#### Delete victim: `delete victim VICTIM_NO`
 
 Deletes the victim specified with `VICTIM_NO` from the list of victims.
 
 Format: `delete victim VICTIM_NO`
 
-Example: `delete victim 0`
+Example: `delete victim 1`
 
 
 #### Delete witness: `delete witness WITNESS_NO`
@@ -310,7 +308,7 @@ Deletes the witness specified with `WITNESS_NO` from the list of witnesses.
 
 Format: `delete witness WITNESS_NO`
 
-Example: `delete witness 0`
+Example: `delete witness 1`
 
 #### Return to main page: `return`
 
@@ -320,16 +318,27 @@ Returns to the application main page.
 
 #### Undo: `undo`
 
-Undoes the previous command.
+Undoes the previous command. Open, list, find and return commands are unable to be undone.
 
 Format: `undo`
 
 #### Redo: `redo`
 
-Redoes the command that was just undone. If another command that changes the data of PIVOT is used after an undo 
+Redoes the command that was just undone. Open, list, find and return commands are unable to be redone. If another command that changes the data of PIVOT is used after an undo 
 command, redo will not be able to be called.
 
 Format: `redo`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about undo/redo:**<br>
+
+If the command that is being undone/redone is a `main page command`, and if the application is currently on the case page,
+using undo/redo will make the application return to the main page.<br>
+e.g. `add case t:Lost Wallet` will add a new case to PIVOT. `open case 1` will open the first case in the list of cases,
+and the application will now be at the case page. Using `undo` will undo the `add case t:Lost Wallet command`, which is
+a `main page command`. This will bring the application back to the main page.
+</div>
 
 #### Exit application: `exit`
 
