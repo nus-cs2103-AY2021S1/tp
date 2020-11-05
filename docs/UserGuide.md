@@ -787,7 +787,8 @@ Figure 8.3: <i>Back to the main recipe list</i>
 
 <a name="FilterRecipeCommand"></a>
 #### 5.4.7&ensp;Filtering Recipes — **`filter`**`recipe` (Jialei)
-This command filters all recipes and lists those containing all ingredients and tags specified in the command.
+
+This command filters all recipes and lists those containing all the ingredients and tags specified in the command.
 
 **Usage**:
 ```
@@ -802,30 +803,48 @@ filter recipe
 - The filtering is case-insensitive and allows spaces between keywords in a single search term. e.g. `/tag family favourite` is allowed.
 
 Constraints:
-- At least one search term must be given, and they should be either `/tag` `/ingredient`.
+- At least one search term must be given, and they should be either `/tag` or `/ingredient`.
 - Search terms must not be empty.
 
 Examples:
-- `filter recipe /tag family reunion` will match **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
-- `filter recipe /tag snacks /tag sweet` will match **Chocolate Cookie** and **Gummy Bears**, the only recipes with 'tag' **snacks** and 'tag' **sweet**.
-- `filter recipe /ingredient egg` will match **Egg Tart** and **Scrambled Eggs**, the only recipes using the 'ingredient' **egg**.
-- `filter recipe /ingredient chicken /ingredient cheese /ingredient pineapple` will match **Chicken Quesadilla**, the only recipe containing 'ingredient' **chicken**, **cheese**, and **pineapple**.
-- `filter recipe /tag local dish /ingredient chicken /ingredient white rice /tag family favourite` will match **Chicken Rice**, the only recipe that matches all criteria specified.
+- `filter recipe /tag family reunion`<br />
+  This matches **Spring Rolls** and **Hot Pot**, the only recipes with 'tag' **family reunion**.
 
-To illustrate, suppose you want to search for recipes with 'tags' **Christmas** and **home baked** that use the 'ingredient' **Ginger Root**, **Honey** and **Molasses**, you could use `filter recipe /tag christmas /ingredient ginger root /tag home baked /ingredient honey /ingredient molasses`:
+- `filter recipe /tag snacks /tag sweet` <br />
+  This matches **Chocolate Cookie** and **Gummy Bears**, the only recipes with 'tag' **snacks** and 'tag' **sweet**.
+
+- `filter recipe /ingredient eggs` <br />
+  This matches **Egg Tart** and **Scrambled Eggs**, assuming they are the only recipes using **eggs**.
+
+- `filter recipe /ingredient chicken /ingredient cheese /ingredient pineapple` <br />
+  This matches **Chicken Quesadilla**, assuming it is the only recipe using **chicken**, **cheese**, and **pineapple**.
+
+- `filter recipe /tag local dish /ingredient chicken /ingredient white rice /tag family favourite` <br />
+  This matches **Chicken Rice**, assuming it is the only recipe that matches all the criteria specified.
+
+To illustrate, suppose you had the following two recipes:
+
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/filter_recipe_1.png" width="75%" /> <br />
-Figure 8.1: <i>The starting state of the application</i>
+  <img src="images/ug/filter_recipe_1.png" width="35%" style="margin-right: 20px;" />
+  <img src="images/ug/filter_recipe_2.png" width="35%" style="margin-left: 20px;" /> <br /> <br />
+  Figure 8.1: <i>The starting recipes</i>
 </div>
 
-After executing the command, similar to the effect of **find recipe** command, the recipe list has changed, showing only the matching recipe, **gingerbread man**.
+Then, you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses** — you would use this command (separated into lines for clarity):
+```
+filter recipe
+  /tag christmas /tag baked
+  /ingredient honey /ingredient ginger /ingredient molasses
+```
+
+After executing the command, similar to the effect of [`find recipe`](#FindRecipeCommand) command, the recipe list has changed, showing only the matching recipe, **Gingerbread Men**:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/filter_recipe_2.png" width="75%" /> <br />
-Figure 8.2: <i>The recipe matching all criteria provided</i>
+<img src="images/ug/filter_recipe_3.png" width="75%" /> <br />
+Figure 8.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
-Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
+Note how the search term `ginger` matched the ingredient `ginger root`, and the search term `baked` matched the tag `home baked`. Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
 
 
 
