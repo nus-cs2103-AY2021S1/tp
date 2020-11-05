@@ -227,21 +227,25 @@ giving their pitch.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …                                     | I can …                        | So that I can…                                                         |
+| Priority | As a/an …                                  | I can …                        | So that I can…                                                         |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | regular user                               | add more clients               | handle more clients                                                    |
 | `* * *`  | regular user                               | delete a client                | account for my clients who churned                                     |
 |  `* *`   | first-time user                            | get some help on using the product | know how to use it                                                 |
-| `* * *`  | first-time user                            | view all clients               | get a general overview                                                 |
+| `* * *`  | first-time user                            | view all (active) clients      | get a general overview                                                 |
 | `* * *`  | first-time user                            | load existing data that I have on user personal details |                                               |
 | `* * *`  | regular user                               | save my client information     | save my edits for next time use                                        |
+| `* *`    | expert user                                | archive clients                | hide clients whom I am no longer working with                          |
+| `* *`    | expert user                                | view all archived clients      | see the clients that I am no longer working with                       |
+| `* *`    | expert user                                | unarchive clients              | display them when I start working with them again                      |
+| `* *`    | regular user                               | clear all clients              | delete irrelevant client data when I move to a new company             |
 
 
 ### Use cases
 
 (For all use cases below, the **System** is `I4I` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01 - User adds Client**
+**UC01 - User adds client**
 
 **MSS**
 
@@ -258,53 +262,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC02 - User deletes Client**
+* 1b. User attempts to add clients in the archive mode.
+   
+    * 1b1. System gives corresponding error message.
 
-**MSS**
+      Use case ends.
 
-1. User requests to list persons.
-2. System shows a list of persons.
-3. User chooses to delete particular client.
-4. System gives success message.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. User enters wrong delete command format.
-
-    * 3a1. System gives corresponding error message.
+* 1c. User attempts to add an existing client.
+   
+    * 1c1. System gives corresponding error message.
 
       Use case ends.
       
-* 3b. User enters invalid index.
-
-    * 3b1. System gives corresponding error message.
-
-      Use case ends.
-
-**UC03 - User lists all Clients**
+**UC02 - User deletes client**
 
 **MSS**
 
-1. User chooses to list all clients.
-2. System shows all clients.
+1. User requests to <ins>list all active clients (UC03)</ins> or to <ins>list all archived clients (UC04)</ins>.
+2. User chooses to delete particular client.
+3. System gives success message.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. User enters wrong list command format.
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. User enters wrong delete command format.
+
+    * 2a1. System gives corresponding error message.
+
+      Use case ends.
+      
+* 2b. User enters invalid index.
+
+    * 2b1. System gives corresponding error message.
+
+      Use case ends.
+
+**UC03 - User lists all active clients**
+
+**MSS**
+
+1. User chooses to list all active clients.
+2. System shows all active clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong list command format (for active clients).
 
     * 1a1. System gives corresponding error message.
 
       Use case ends.
       
-**UC04 - User requests for help**
+**UC04 - User lists all archived clients**
+
+**MSS**
+
+1. User chooses to list all archived clients.
+2. System shows all archived clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters wrong list command format (for archived clients).
+
+    * 1a1. System gives corresponding error message.
+
+      Use case ends.
+
+**UC05 - User requests for help**
 
 **MSS**
 
@@ -321,6 +353,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
       
+**UC06 - User archives client**
+
+**MSS**
+
+1. User requests to <ins>list all active clients (UC03)</ins>.
+2. User chooses to archive particular active client.
+3. System gives success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. User enters wrong archive command format.
+
+    * 2a1. System gives corresponding error message.
+
+      Use case ends.
+      
+* 2b. User enters invalid index.
+
+    * 2b1. System gives corresponding error message.
+
+      Use case ends.
+
+**UC07 - User unarchives client**
+
+**MSS**
+
+1. User requests to <ins>list all archived clients (UC04)</ins>.
+2. User chooses to unarchive particular archived client.
+3. System gives success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. User enters wrong unarchive command format.
+
+    * 2a1. System gives corresponding error message.
+
+      Use case ends.
+      
+* 2b. User enters invalid index.
+
+    * 2b1. System gives corresponding error message.
+
+      Use case ends.
+
+      
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` installed.
@@ -333,9 +422,139 @@ should be able to accomplish most of the tasks faster using commands than using 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Insurance4Insurance**: Name of the product.
 * **I4I**: Short for Insurance4Insurance, the name of the product.
+* **Active Client**: A client not in the archive.
+* **Active List** / **Active Client List**: List of clients not in the archive.
+* **Active Mode**: The mode which allows users to view the active list.
+* **Archive Mode**: The mode which allows users to view the archive.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
-Coming soon.
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+
+### Launch and shutdown
+
+1. Initial launch
+
+   1. Download the jar file and copy into an empty folder.
+
+   2. Launch the app by using the `java -jar` command (do not use double-clicking). Expected: Shows the GUI with a set of sample clients. The window size may not be optimum.
+
+1. Saving window preferences
+
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+   2. Re-launch the app by using the `java -jar` command.<br>
+      Expected: The most recent window size and location is retained.
+      
+      
+ ### Listing all active clients
+ 
+ 1. Listing all active clients
+ 
+    1. Prerequisites: At least one active client (for easier comparison).
+ 
+    2. Test case: `list`<br>
+       Expected: All active clients listed. Success message shown. "Active Client List" is shown below the success message.
+       
+       ![List All Active Clients](images/listAllActiveClients.png)
+ 
+ 
+### Listing all archived clients
+ 
+ 1. Listing all archived clients
+ 
+    1. Prerequisites: At least one archived client (for easier comparison). See [Archiving a Client](#archiving-a-client) for details on how to archive a client.
+ 
+    2. Test case: `list r/`<br>
+       Expected: All archived clients listed. Success message shown. "Archived Client List" is shown below the success message.
+       
+       ![List All Archived Clients](images/listAllArchivedClients.png)
+
+### Archiving a client
+
+1. Archiving a client while active clients are being shown
+
+   1. Prerequisites: List all active clients (see [List Active Clients](#listing-all-active-clients)). At least one active client.
+
+   2. Test case: `archive 1`<br>
+      Expected: 
+      First client is archived, and is no longer shown in the active list. Details of the archived client shown in the status message.
+      Upon listing all archived clients (see [List Archived Clients](#listing-all-archived-clients)), the archived client can be seen.
+
+   3. Test case: `archive 0`<br>
+      Expected: No client is archived. Error details shown in the status message.
+
+   4. Other incorrect archive commands to try: `archive`, `archive x`, `...` (where x is larger than the active list size)<br>
+      Expected: Similar to previous.
+
+
+### Unarchiving a client
+
+1. Unarchiving a client while archived clients are being shown
+
+   1. Prerequisites: List all archived clients (see [List Archived Clients](#listing-all-archived-clients)). At least one archived client.
+
+   2. Test case: `unarchive 1`<br>
+      Expected: 
+      First client is unarchived, and is no longer shown in the archive. Details of the unarchived client shown in the status message.
+      Upon listing all active clients (see [List Active Clients](#listing-all-active-clients)), the unarchived client can be seen.
+
+   3. Test case: `unarchive 0`<br>
+      Expected: No client is unarchived. Error details shown in the status message.
+
+   4. Other incorrect unarchive commands to try: `unarchive`, `unarchive x`, `...` (where x is larger than the archive size)<br>
+      Expected: Similar to previous.
+
+
+### Deleting a client
+
+1. Deleting a client while active clients are being shown
+
+   1. Prerequisites: List all active clients (see [List Active Clients](#listing-all-active-clients)). At least one active client.
+
+   2. Test case: `delete 1`<br>
+      Expected: 
+      First client is deleted, and is no longer shown in the active list. Details of the deleted client shown in the status message.
+      
+   3. Test case: `delete 0`<br>
+      Expected: No client is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the active list size)<br>
+      Expected: Similar to previous.
+   
+   5. Another similar test to try: Deleting a client while archived clients are being shown
+     
+
+### Displaying help
+ 
+ 1. Displaying help
+ 
+    1. Prerequisites: Internet access.
+
+    2. Test case: `help`<br>
+       Expected: Success message shown. Also shows a popup explaining how to access the User Guide. The URL can be copied with "Copy URL".
+       
+       ![help message](images/helpMessage.png)
+       
+       Upon pasting the URL into the browser, the User Guide is displayed.
+       
+     
+**TO UPDATE BELOW**
+
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
