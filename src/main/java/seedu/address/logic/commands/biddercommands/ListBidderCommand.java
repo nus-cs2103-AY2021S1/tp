@@ -14,7 +14,7 @@ public class ListBidderCommand extends Command {
 
     public static final String COMMAND_WORD = "list-b";
 
-    public static final String MESSAGE_SUCCESS = "Listed all bidder";
+    public static final String MESSAGE_SUCCESS = "Displaying full bidder list.";
 
     @Override
     public CommandResult execute(Model model) {

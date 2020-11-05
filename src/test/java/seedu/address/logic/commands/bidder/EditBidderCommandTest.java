@@ -44,7 +44,7 @@ public class EditBidderCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Bidder editedBidder = new BidderBuilder().build();
+        Bidder editedBidder = model.getBidderAddressBook().getBidderList().get(0);
         EditBidderDescriptor bidderDescriptor = new EditBidderDescriptorBuilder(editedBidder).build();
         EditBidderCommand editBidderCommand = new EditBidderCommand(INDEX_FIRST_PERSON, bidderDescriptor);
 
