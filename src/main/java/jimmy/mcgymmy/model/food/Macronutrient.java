@@ -5,12 +5,13 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    protected static final String MESSAGE_CONSTRAINTS =
-            " can only contain non-negative integers less than 1000";
 
     private static final int LOWER_BOUND = 0; //Inclusive
     private static final int UPPER_BOUND = 999; //Non inclusive
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
+
+    protected static final String MESSAGE_CONSTRAINTS = String.format(
+            " can only contain non-negative integers between %d and %d", LOWER_BOUND, UPPER_BOUND);
 
     private final int amount;
     private final int totalCalories;
