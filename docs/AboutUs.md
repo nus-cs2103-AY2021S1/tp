@@ -53,7 +53,7 @@ You can reach us at the email `e0388997@u.nus.edu`
 <img src="images/codychew.png" width="200px">
 
 [[github](http://github.com/CodyChew)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/codychew.md)]
 
 * Role: Code Quality
 * Responsibilities: Looks after code quality,
