@@ -97,6 +97,7 @@ title: Developer Guide
 7. [Appendix: Model Component](#7-appendix-model-component)
     - [7.1 Recipe](#71-recipe)
     - [7.2 Ingredient](#72-ingredient)
+    - [7.3 Consumption](#73-consumption)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1054,3 +1055,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.2 Ingredient <a id="72-ingredient"></a>
 ![Ingredient in Model Component](images/ModelClass_Ingredient.png)
+
+### 7.3 Consumption <a id="72-consumption"></a>
+![Consumption in Model Component](images/ModelClass_Consumption.png)

@@ -52,10 +52,13 @@ Given below are my contributions to the project.
 * **Project management**:
   * Produce shadowJar file for test and release `v1.2`.
   * Setting up group meeting for discussion
+  * Remind team members to approve members' PRs
+  
 * **Enhancements to existing features**:
   * Refactor `Search Recipe` feature from `find` feature in *AddressBook Level 3* (Pull Requests [\#37](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/37))
   * Added Calories field into Recipe for `Eat Recipe` feature (Pull Requests [\#80](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/80))
   * Updated the GUI to list out consumption (Pull Requests [\#88](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/88))
+  * Refactor AddressBook Level 3 **Test Sample** to fit the current Wishful Shrinking. (Pull Requests [\#111](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/111))
   * Resolve most the tests that failed when we commented out while refactoring from *AddressBook Level 3*. (Pull Requests [\#111](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/111))
   * Added tests to `Search Recipe` feature and `Recommand` feature. (Pull Requests [\#116](https://github.com/AY2021S1-CS2103T-W10-2/tp/pull/116))
 
