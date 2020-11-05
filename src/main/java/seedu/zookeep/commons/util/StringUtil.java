@@ -49,9 +49,12 @@ public class StringUtil {
      * @param subString cannot be null, cannot be empty, must be a single word
      * @return
      */
+    //@@author JunCheng98-reused
+    //Reused from https://mkyong.com/java/java-check-if-a-string-contains-another-string/
     public static boolean containsIgnoreCase(String str, String subString) {
         return str.toLowerCase().contains(subString.toLowerCase());
     }
+    //@@author
 
     /**
      * Returns a detailed message of the t, including the stack trace.
