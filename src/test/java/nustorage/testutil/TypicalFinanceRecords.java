@@ -4,6 +4,7 @@ import static nustorage.logic.commands.CommandTestUtil.AMOUNT_A;
 import static nustorage.logic.commands.CommandTestUtil.AMOUNT_B;
 import static nustorage.logic.commands.CommandTestUtil.AMOUNT_C;
 import static nustorage.logic.commands.CommandTestUtil.AMOUNT_D;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_WITH_INVENTORY_A;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_B;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_C;
@@ -27,6 +28,8 @@ public class TypicalFinanceRecords {
     public static final FinanceRecord RECORD_B = new FinanceRecord(ID_B, AMOUNT_B, DATE_TIME_B, false);
     public static final FinanceRecord RECORD_C = new FinanceRecord(ID_C, AMOUNT_C, DATE_TIME_C, false);
     public static final FinanceRecord RECORD_D = new FinanceRecord(ID_D, AMOUNT_D, DATE_TIME_D, false);
+    public static final FinanceRecord RECORD_WITH_INVENTORY_A = new FinanceRecord(
+            ID_A, AMOUNT_WITH_INVENTORY_A, DATE_TIME_A, true);
 
 
     private TypicalFinanceRecords() {} // prevents instantiation

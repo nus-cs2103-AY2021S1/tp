@@ -2,6 +2,9 @@ package nustorage.logic.commands;
 
 import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
+import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -33,10 +36,23 @@ public class CommandTestUtil {
     public static final double COST_1 = 0;
     public static final double COST_2 = 13.7;
     public static final double COST_3 = 27.5;
+    public static final double NEGATIVE_COST = -35.5;
 
     public static final int QUANTITY_1 = 10;
     public static final int QUANTITY_2 = 0;
     public static final int QUANTITY_3 = 17;
+    public static final double DOUBLE_QUANTITY = 13.5;
+    public static final int NEGATIVE_QUANTITY = -3;
+
+    public static final String COST_DESC_1 = " " + PREFIX_ITEM_COST + COST_1;
+    public static final String NEGATIVE_COST_DESC = " " + PREFIX_ITEM_COST + NEGATIVE_COST;
+
+    public static final String ITEM_NAME_DESC_1 = " " + PREFIX_ITEM_DESCRIPTION + ITEM_NAME_1;
+
+    public static final String QUANTITY_DESC_1 = " " + PREFIX_QUANTITY + QUANTITY_1;
+    public static final String DOUBLE_QUANTITY_DESC = " " + PREFIX_QUANTITY + DOUBLE_QUANTITY;
+    public static final String NEGATIVE_QUANTITY_DESC = " " + PREFIX_QUANTITY + NEGATIVE_QUANTITY;
+
 
     public static final int ID_A = 12345789;
     public static final int ID_B = 92502649;
@@ -47,6 +63,7 @@ public class CommandTestUtil {
     public static final double AMOUNT_B = 17.17;
     public static final double AMOUNT_C = 128.99;
     public static final double AMOUNT_D = 9999999;
+    public static final double AMOUNT_WITH_INVENTORY_A = COST_1 * QUANTITY_1;
 
     public static final boolean HAS_INVENTORY_A = false;
     public static final boolean HAS_INVENTORY_B = false;
