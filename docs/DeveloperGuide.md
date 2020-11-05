@@ -366,13 +366,16 @@ The following sequence diagram shows how the filter operation works:
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: CS2103 Students 
 
-* has a need to manage a significant number of flashcards
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to organise all the quiz questions on Luminus 
+* Has a need to consolidate and summarize large amount of information from CS2103 textbook
+* Has a need to organise key learning points from textbook in website and quiz questions on Luminus in a single platform
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
+* Has technical background
 
 **Value proposition**:
 * Remind students on what is due soon
