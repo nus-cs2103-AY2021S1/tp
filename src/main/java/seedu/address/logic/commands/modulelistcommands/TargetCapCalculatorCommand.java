@@ -30,9 +30,6 @@ public class TargetCapCalculatorCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + "4.5";
     private final double targetCap;
-    /*private final double plannedCredits;
-    private final double completedCredits;
-    private final double totalCredits;*/
 
     /**
      * Creates an AddCommand to add the specified {@code Module}
@@ -121,7 +118,6 @@ public class TargetCapCalculatorCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        //System.out.println(targetCap + "\n" + Double.toString(((TargetCapCalculatorCommand) other).targetCap));
         return other == this // short circuit if same object
                 || (other instanceof TargetCapCalculatorCommand // instanceof handles nulls
                 && targetCap == (((TargetCapCalculatorCommand) other).targetCap));

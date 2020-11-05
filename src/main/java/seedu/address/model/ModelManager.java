@@ -75,8 +75,6 @@ public class ModelManager implements Model {
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModulesDisplay = new FilteredList<>(this.moduleListDisplay.getModuleList());
-        //filteredModules = new FilteredList<>(this.moduleList.getModuleList());
-        //filteredArchivedModules = new FilteredList<>(this.archivedModuleList.getModuleList());
         sortedContacts = new SortedList<>(this.contactList.getContactList());
         filteredContacts = new FilteredList<>(sortedContacts);
         filteredEvents = new FilteredList<>(this.eventList.getEventList());
