@@ -127,7 +127,7 @@ public class ParserUtil {
             Date dateObject = formatter.parse(trimmedTime);
             Date currentActualDate = Calendar.getInstance().getTime();
             if (dateObject.before(currentActualDate)) {
-                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
             }
             String dateString = formatter.format(dateObject);
             return new MeetingDate(dateString);

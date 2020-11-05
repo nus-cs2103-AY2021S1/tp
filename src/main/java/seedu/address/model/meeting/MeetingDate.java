@@ -9,8 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class MeetingDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "MeetingDate should only contain numbers,"
+    public static final String MESSAGE_CONSTRAINTS = "Meeting Date should only contain numbers,"
             + " and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_PAST_DATE = "Meeting Date should be a date from today and should"
+            + "not be of a past date";
 
     /*
      * The first character of the address must not be a whitespace,

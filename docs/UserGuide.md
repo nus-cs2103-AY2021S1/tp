@@ -648,90 +648,62 @@ Expected Output:
 
 There are three types of meetings of which the agent will be able to add:
 
-1. View - For viewing of properties
-2. Admin - For general admin meetings
-3. Paperwork - For signing of paperwork related to the selling and buying of the house
+1. View - For viewing of properties `v`
+2. Admin - For general admin meetings `a`
+3. Paperwork - For signing of paperwork related to the selling and buying of the house `p`
 
 ---
 
-## Add a View Meeting
+## Add a Meeting
 
-Creates a view meeting to be added to the schedule.
+Creates a meeting of the various type to be added to the schedule. To create the 3 different types of meeting we use the `q/`
+attribute. 
 
-- Command: `add-m q/v`
-- Format: `add-m q/v b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE`
+- Command: `add-m`
+- Format: `add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME`
+
+| Attributes      |Example Inputs |Remarks|
+|------|------|-----| 
+| Meeting Type| `v` `a` `p` | Represents the three different meetings.|
+| Bidder ID| `B1` `B3` | The bidder has to exist to create the meeting. The letter "B" has to be capitalised.|
+| Property ID| `P1`  `P4` | The property has to exist to create the meeting. The letter "P" has to be capitalised.|
+| Venue| `Bedok Mall Starbucks` `Tampines St 3, BLK 222, #05-211`| Represents meeting venue. This does not have to be at the property itself.|
+| Date| `12-12-2021` `12-08-2021`| Date has to be of the format `DD-MM-YYYY` and cannot be a past date.|
+| Start Time, End Time| `16:20` `14:20`| Time has to be of the format `HH:MM`. The meetings timings are allowed to clash each other and can be past midnight.|
 
 Example:
 
 ```
-add-m q/v b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
+add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00 
+
 ```
 
 Expected Output:
 
 ```
-New meeting added: Viewing
-Bidder Id: B12
-Property Id: P12
+New meeting added: 
+Meeting Type: Viewing
+Bidder Id: B1
+Property Id: P1
 Venue: 2 ALBERT PARK
 Date: 11-12-2021
-```
-
-## Add an Administrative Meeting
-
-Creates an admin meeting to be added to the schedule.
-
-- Command: `add-m q/a`
-- Format: `add-m q/a b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE>`
-
-Example:
-
-```
-add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
-```
-
-Expected Output:
-
-```
-New meeting added: Admin
-Bidder Id: B12
-Property Id: P12
-Venue: 2 ALBERT PARK
-Date: 11-12-2021
-```
-
-## Add a Paperwork Meeting
-
-Creates a paperwork meeting to be added to the schedule.
-
-- Command: `add-m q/p`
-- Format: `add-m q/p b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE>`
-
-Example:
-
-```
-add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
-```
-
-Expected Output:
-
-```
-New meeting added: Paperwork
-Bidder Id: B12
-Property Id: P12
-Venue: 2 ALBERT PARK
-Date: 11-12-2021
+Start Time: 12:30
+End Time: 13:00
 ```
 
 ## Deleting an Existing Meeting
 
 
-Deletes a meeting from the calendar when a meeting is cancelled
+Deletes a meeting from the calendar when a meeting is cancelled.
 
 - Command: `delete-m`
 - Format: `delete-m <INDEX_NUMBER>`
 
+
+💡 The index has to be a positive number and the meeting has to exist.
+
 > - Deletes the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
+
 
 Example:
 
@@ -742,11 +714,14 @@ delete-m 3
 Expected Output:
 
 ```
-Deleted Meeting: Paperwork
-Bidder Id: B12
-Property Id: P12
-Venue: eunos
-Date: 12-05-2016
+Deleted Meeting: 
+Meeting Type: Viewing
+Bidder Id: B1
+Property Id: P1
+Venue: 2 ALBERT PARK
+Date: 11-12-2021
+Start Time: 12:30
+End Time: 13:00
 ```
 
 ## View the list of all Meetings
@@ -777,6 +752,7 @@ Edits an existing meeting detail that is in the list.
 > - Edits the meeting at the specified `INDEX_NUMBER`, which refers to the index shown on the displayed meeting list. The index must be a positive integer 1, 2, 3...
 
 
+
 Example:
 
 ```
@@ -792,6 +768,33 @@ Property Id: P12
 Venue: eunos
 Date: 12-05-2016
 ```
+
+The index will only correspond to the original list, NOT the filtered list (when used in find).
+
+## Find an Existing Meeting
+
+Finds an existing meeting detail that is in the list.
+
+- Command: `find-m`
+- Format: `find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME`
+
+💡 Meetings can be found with by specifying at least one of the attributes. Not all attributes are compulsory.
+
+💡 Attributes can be any order and inputs can be in any case (Upper and Lower).
+
+Example:
+
+```
+find-m b/B1 v/bedok
+```
+
+Expected Output:
+
+```
+2 meeting(s) listed!
+```
+The index will only correspond to the original list, NOT the filtered list (when used in find).
+
 
 ## Calendar Navigation Features
 
@@ -849,5 +852,58 @@ Picture Example:
 | ![november](images/CalendarPictures/Calendar_November.png) | ![october](images/CalendarPictures/Calendar_October.png) |
 
 ---
+
+
+
+### Command Format Summary Tables
+
+
+| Command Format (Property)  | Example |
+| :--- | :--- |
+| add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL  | add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No  |
+| edit-p <INDEX_NUMBER> [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]  | edit-p 1 n/Cove Residences a/23 Cove Street |
+| find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL] [c/IS_CLOSED_DEAL] | n/Sunrise Cove a/Street Road |
+| delete-p PROPERTY_ID or delete-p <INDEX_NUMBER> | delete-p P23 or delete-p 5 |
+| list-p | list-p |
+
+| Command Format (Bidder)  | Example |
+| :--- | :--- |
+| add-b n/BIDDER_NAME p/PHONE_NUMBER  | add-b n/Marcus Duigan p/12345678  |
+| edit-b <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMBER] | edit-b 1 n/Marcus Weagle Duigan p/987654321 |
+| find-b [KEYWORDS] | find-b duigan |
+| delete-b <INDEX_NUMBER> | delete-b 1 |
+| list-b | list-b |
+
+| Command Format (Seller)  | Example |
+| :--- | :--- |
+| add-s n/SELLER_NAME p/PHONE_NUMBER  | add-b n/Marcus Duigan p/12345678  |
+| edit-s <INDEX_NUMBER> [n/NEW_NAME] [p/NEW_PHONE_NUMBER] | edit-s 1 n/Marcus Weagle Duigan p/987654321 |
+| find-s [KEYWORDS] | find-s duigan |
+| delete-s <INDEX_NUMBER> | delete-s 1 |
+| list-s | list-s |
+
+| Command Format (Bid)  | Example |
+| :--- | :--- |
+| add-bid b/PROPERTY_ID c/BIDDER_ID m/BID_AMOUNT  | add-bid b/P1 c/B2 m/150000.20  |
+| edit-bid <INDEX_NUMBER> b/[NEW_PROPERTY_ID] c/[NEW_BIDDER_ID] m/[NEW_BID_AMOUNT] | edit-bid 1 b/ P99 c/ B12 m/1.20 |
+| find-bid [KEYWORDS] | find-bid P1 B2 $65000.00 |
+| delete-bid <INDEX_NUMBER> | delete-bid 1 |
+| list-bid | list-bid |
+
+|  Command Format (Meeting)  | Example |
+| :---| :--- |
+| add-m q/MEETING_TYPE b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME | add-m q/v b/B1 p/P1 v/2 ALBERT PARK d/11-12-2021 s/12:30 e/13:00  |
+| delete-m <INDEX> | delete-m 1 |
+| find-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE s/STARTTIME v/ENDTIME | find-m b/B1 p/P1|
+| list-m | list-m |
+
+
+| Command Format (Calendar)  | Example |
+| :--- | :--- |
+| next  | next  |
+| prev | prev |
+
+
 #Thank You For Using PropertyFree!
+
 

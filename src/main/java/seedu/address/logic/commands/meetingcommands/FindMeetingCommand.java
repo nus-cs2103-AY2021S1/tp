@@ -38,15 +38,15 @@ public class FindMeetingCommand extends Command {
             + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "can find by as many types of attributes in any order\n"
             + "Parameters:\n"
-            + "[" + PREFIX_MEETING_BIDDER_ID + "BIDDER ID] "
-            + "[" + PREFIX_MEETING_PROPERTY_ID + "PROPERTY ID] "
-            + "[" + PREFIX_MEETING_VENUE + "VENUE] "
-            + "[" + PREFIX_MEETING_DATE + "DATE] "
-            + "[" + PREFIX_MEETING_STARTTIME + "START TIME] "
-            + "[" + PREFIX_MEETING_ENDTIME + "END TIME] "
+            + "[" + PREFIX_MEETING_BIDDER_ID + "BIDDER ID] \n"
+            + "[" + PREFIX_MEETING_PROPERTY_ID + "PROPERTY ID] \n"
+            + "[" + PREFIX_MEETING_VENUE + "VENUE]\n"
+            + "[" + PREFIX_MEETING_DATE + "DATE] \n"
+            + "[" + PREFIX_MEETING_STARTTIME + "START TIME] \n"
+            + "[" + PREFIX_MEETING_ENDTIME + "END TIME]\n "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEETING_BIDDER_ID + "b12 b13"
-            + PREFIX_MEETING_PROPERTY_ID + "p12";
+            + PREFIX_MEETING_PROPERTY_ID + " p12";
     public static final String MESSAGE_NO_FILTERS = "At least one field to filter must be provided.";
 
     private final FindMeetingDescriptor findMeetingDescriptor;
