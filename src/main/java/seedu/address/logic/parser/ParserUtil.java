@@ -24,9 +24,26 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.";
+    public static final String MINIMUM_AMOUNT_AS_STRING = "0";
+    public static final String MAXIMUM_AMOUNT_AS_STRING = "999";
+    public static final String NEGATIVE_SIGN = "-";
+    public static final String MESSAGE_INVALID_AMOUNT = "Amount has to be a non-negative integer.\n"
+            + "Please note that record to the nearest KG/L is sufficient for inventory keeping.";
+    public static final int MAXIMUM_AMOUNT = 999;
+    public static final int MINIMUM_AMOUNT = 0;
+    public static final String MESSAGE_EXCEED_MAXIMUM_AMOUNT = "The amount entered is greater than "
+            + "999 KG / L, which is the maximum capacity for any kind of ingredient for one stall.\n"
+            + "Please double check the current amount and enter the actual current amount !";
+    public static final String MESSAGE_EXCEED_MAXIMUM_LENGTH = "The amount entered has at least four "
+            + "digits(inclusive of Decimal Point), "
+            + "which is either more than the maximum capacity of storage\n"
+            + " (999 KG / L) for any one ingredient or contains decimal part."
+            + "\nPlease record the amount to nearest KG/L and remove any excess leading zeros !\n"
+            + "Please note that only amounts with less than four digits will be accepted.\n"
+            + "For example : 0000000000000000009 is not acceptable, but 009 is.";
     public static final String MESSAGE_INVALID_INGREDIENT_NAME = "The ingredient is not found, it "
-            + "has to be chosen from : " + Arrays.toString(IngredientName.INGREDIENTS);
+            + "has to be chosen from : " + Arrays.toString(IngredientName.INGREDIENTS)
+            + "\nPlease note that ingredient names are CASE-SENSITIVE to ensure consistency.";
     public static final String MESSAGE_INVALID_NUMBER_SOLD = "The entered number of drinks sold should be a "
             + "non-negative integer.";
 
@@ -118,18 +135,30 @@ public class ParserUtil {
     }
 
     /**
-     * Parse a string representing amount into an amount.
+     * Parses a string representing amount into an amount.
      */
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
         String trimmedAmount = amount.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedAmount) && !trimmedAmount.equals("0")) {
+        if (trimmedAmount.contains(NEGATIVE_SIGN)) {
             throw new ParseException(MESSAGE_INVALID_AMOUNT);
+        }
+        if (trimmedAmount.length() > MAXIMUM_AMOUNT_AS_STRING.length()) {
+            throw new ParseException(MESSAGE_EXCEED_MAXIMUM_LENGTH);
+        }
+        if (!StringUtil.isUnsignedInteger(trimmedAmount)) {
+            throw new ParseException(MESSAGE_INVALID_AMOUNT);
+        }
+        if (Integer.parseInt(trimmedAmount) > MAXIMUM_AMOUNT) {
+            throw new ParseException(MESSAGE_EXCEED_MAXIMUM_AMOUNT);
+        }
+        if (Integer.parseInt(trimmedAmount) == MINIMUM_AMOUNT) {
+            return new Amount(MINIMUM_AMOUNT_AS_STRING);
         }
         return new Amount(trimmedAmount);
     }
     /**
-     * Parse a string representing ingredient into an ingredient name.
+     * Parses a string representing ingredient into an ingredient name.
      */
     public static IngredientName parseIngredientName(String ingredient) throws ParseException {
         requireNonNull(ingredient);
@@ -141,7 +170,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parse a string representing ingredient into an ingredient.
+     * Parses a string representing ingredient into an ingredient.
      */
     public static Ingredient parseIngredient(String ingredient) throws ParseException {
         requireNonNull(ingredient);
