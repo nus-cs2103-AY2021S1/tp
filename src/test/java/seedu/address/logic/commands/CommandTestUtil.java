@@ -8,6 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_DAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_END_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -47,12 +51,23 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_ID_ALEX = "A1234567X";
     public static final String VALID_STUDENT_ID_BOB = "A7654321X";
     public static final String VALID_STUDENT_ID_BENG = "A7654321B";
+    public static final String VALID_TUTORIAL_GROUP_B014 = "B014";
+    public static final String VALID_TUTORIAL_GROUP_DAY_MON = "MON";
+    public static final String VALID_TUTORIAL_GROUP_1300 = "13:00";
+    public static final String VALID_TUTORIAL_GROUP_1500 = "15:00";
+    public static final String INVALID_TUTORIAL_GROUP_1500 = "1500";
+
     public static final String VALID_MODULE_CS2103T = "CS2103T";
     public static final String VALID_MODULE_CS2040 = "CS2040";
 
     public static final String MODULE_ID_DESC_CS2103T = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
     public static final String MODULE_ID_DESC_CS2040 = " " + PREFIX_MODULE + VALID_MODULE_CS2040;
     public static final String INVALID_MODULE_ID = " " + PREFIX_MODULE + "CS@";
+
+    public static final String TUTORIAL_GROUP_ID_B014 = " " + PREFIX_TUTORIAL_GRP + VALID_TUTORIAL_GROUP_B014
+        + " " + PREFIX_TUTORIAL_GRP_DAY + VALID_TUTORIAL_GROUP_DAY_MON
+        + " " + PREFIX_TUTORIAL_GRP_START_TIME + VALID_TUTORIAL_GROUP_1300
+        + " " + PREFIX_TUTORIAL_GRP_END_TIME + VALID_TUTORIAL_GROUP_1500;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
