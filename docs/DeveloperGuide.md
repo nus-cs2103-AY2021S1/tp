@@ -258,6 +258,8 @@ The review feature also involves the UI via `ReviewPanel` which will handle user
 
 The following class diagrams show how the relationship between the different UI components involved in review, and `StudyManager`.
 
+![ReviewClassDiagram](images/ReviewClassDiagram.png)
+
 Given below is an example of how the review mechanism behaves at each step:
 
 Step 1. The user launches the application.
