@@ -7,11 +7,12 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="QuickCache" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="1000.0" onCloseRequest="#handleExit" title="QuickCache" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/QuickCache.png" />
     </icons>
@@ -32,17 +33,21 @@
                     </Menu>
                 </MenuBar>
 
-                <StackPane fx:id="displayPlaceholder" minHeight="180.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                    </padding>
-                </StackPane>
-
-                <VBox fx:id="personList" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                            <VBox fx:id="personList" prefHeight="500.0" prefWidth="400.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                     <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
-                    <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS" />
+               <HBox VBox.vgrow="ALWAYS">
+                  <children>
+                          <StackPane fx:id="listPanelPlaceholder" />
+         
+                                     <StackPane fx:id="displayPlaceholder" minHeight="180.0" styleClass="pane-with-border">
+                             <padding>
+                                 <Insets bottom="5" left="10" right="10" top="5" />
+                             </padding>
+                         </StackPane>
+                  </children>
+               </HBox>
                 </VBox>
 
                 <StackPane fx:id="commandBoxPlaceholder" minWidth="50.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
