@@ -318,6 +318,7 @@ Note(s):
 * Participants added need to be contacts that exist in the given module
 * The `PARTICIPANTS` parameter refers to the full name of the contact
 * The combination of module and meeting name must be unique
+* No two meetings should be held on the same date and time
 
 Example(s):
 *  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 p/Jay p/Roy p/Jerryl p/Yeeloon p/Ekam
@@ -351,6 +352,7 @@ Note(s):
 * Participants added need to be contacts that exist in the given module
 * The `PARTICIPANTS` parameter refers to the full name of the contact
 * The combination of module and meeting name must be unique
+* No two meetings should be held on the same date and time
 * All the newly provided fields will override previous fields
 
 Example(s):
