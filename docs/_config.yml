@@ -1,5 +1,5 @@
 title: "Eva"
-theme: jekyll-theme-slate
+theme: jekyll-theme-dinky
 
 header_pages:
   - UserGuide.md
