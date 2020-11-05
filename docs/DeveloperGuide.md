@@ -16,7 +16,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Introduction
 
-**ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks. ResiReg allows admin to allocate rooms to students, and manage student and room records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+**ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks. **ResiReg** allows admin to allocate rooms to students, and manage student and room records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
 
 **ResiReg** has the following main features:
 
@@ -26,9 +26,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Purpose and Audience for this Guide
 
-This Developer Guide specifies the architecture, design, implementation and use cases for ResiReg, as well as our considerations behind key design decisions.
+This Developer Guide specifies the architecture, design, implementation and use cases for **ResiReg**, as well as our considerations behind key design decisions.
 
-It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about ResiReg.
+It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
 
 ## Setting Up
 
