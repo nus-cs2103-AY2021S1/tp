@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.contact;
 
 import seedu.address.model.contact.ContactContainsTagsPredicate;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;

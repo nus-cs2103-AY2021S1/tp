@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.testutil.todolist;
 
 import seedu.address.model.task.FindTaskCriteria;
 import seedu.address.model.task.TaskContainsTagsPredicate;

@@ -17,7 +17,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.contact.Contact;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.contact.ContactBuilder;
 
 public class AddContactCommandTest {
 

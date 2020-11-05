@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.contact.ContactBuilder;
 
 public class ContactContainsTagsPredicateTest {
 

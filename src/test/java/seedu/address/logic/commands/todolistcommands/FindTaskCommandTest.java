@@ -36,7 +36,7 @@ import seedu.address.model.task.TaskMatchesDatePredicate;
 import seedu.address.model.task.TaskMatchesPriorityPredicate;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.testutil.FindTaskCriteriaBuilder;
+import seedu.address.testutil.todolist.FindTaskCriteriaBuilder;
 
 public class FindTaskCommandTest {
 
