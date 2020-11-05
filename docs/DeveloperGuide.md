@@ -263,55 +263,7 @@ The following activity diagram shows how the find drink's sales data operation w
     * Cons: Every execution of the command will require one to access the sales record list loop through 
     the list once, which may increase the time required for the operation. 
          
-## \[Completed\] View a single ingredient's level feature
-  
-View a single ingredients' level feature allows the user to view the level of a particular ingredient when the need
-arises. The command is:
-  
-* `i-view-single i/INGREDIENT_NAME` - Views the ingredient's level of the ingredient with the specified ingredient name.
-  
-#### Completed Implementation
-  
-The completed view a single ingredient's level mechanism is facilitated by `IngredientBook`. It implements 
-`ReadOnlyIngredientBook` interface and offers methods to view the ingredients' levels from the application's 
-`ingredientBook`. Particularly, it implements the following operation:
-  
-  * `IngredientBook#findIngredientByName(IngredientName ingredientName)` — Returns the ingredient with the target 
-  ingredient name. 
-  
-This operation is exposed in the `Model` interface as `Model#findIngredientByName(IngredientName ingredientName)`.
-  
-Given below is an example usage scenario and how the view a single ingredient's level mechanism behaves at each step.
-  
-Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
-be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, 
-with an amount of 0 for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
-data from the storage file.
-  
-Step 2. The user executes `i-view-single i/Milk` to view milk's current level. The `i-view-single i/Milk` command is
-parsed by `IngredientViewSingleCommandParser` which parses the ingredient to get the ingredient name and 
-returns an  `IngredientViewSingleCommand`. Logic executes the `IngredientViewSingleCommand` and calls 
-`Model#findIngredientByName(IngredientName ingredientName)`, which returns the ingredient with the ingredient name
-entered by the user.
-  
-The following activity diagram shows how the view a single ingredient level operation works:
-![View a Single Ingredient Activity Diagram](images/IngredientViewSingleActivityDiagram.png) 
 
-#### Design consideration:
-  
-##### Aspect: How find the ingredient's level executes
-  
-  * **Alternative 1 (current choice):** Obtain the ingredient name of the ingredient entered by the user, and use the
-  ingredient name to find the ingredient by looping through the ingredient list.
-    * Pros: Code is more readable.
-    * Cons: Every execution of the command will require one to access the name of the ingredient and loop through 
-    the list once, which may increase the time required for the operation. 
-    
-  * **Alternative 2:** Map the ingredient entered by the user to a index which corresponds to the index of the 
-  ingredient in the list, then find the ingredient using the index.
-    * Pros: Do not require looping through the list every time `IngredientViewSingleCommand` executes.
-    * Cons: Code may be less readable.     
-  
 ### \[Completed\] Set ingredients' levels feature
 
 The completed set ingredients' levels feature consists of three commands with slightly different formats, which complement one another, to provide a set of useful commands for enhanced user experiences. The three commands are :
@@ -377,106 +329,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Easier to implement and test. Theoretically speaking, this one command can achieve the same effect as `i-set-default` and `i-set-all`  by entering it multiple times.
   * Cons: Does not really suit the user's needs because it can be tedious to set each ingredient individually.
 
-
-### \[Completed\] List ingredients' levels feature
-
-List ingredients' levels feature allows the user to view all the ingredient levels to check if any ingredient should
-be restocked. The command is:
-  
-* `i-list` - Lists the ingredients' levels of all ingredients.
-
-#### Completed Implementation
-
-The completed list ingredients' levels mechanism is facilitated by `IngredientBook`. It implements 
-`ReadOnlyIngredientBook` interface and offers methods to view the ingredients' levels from the application's 
-`ingredientBook`. Particularly, it implements the following operation:
-
-* `IngredientBook#getFilteredIngredientList()` — Returns the list of ingredients consisting of ingredient names and 
-ingredient levels in the ingredient book.
-
-This operation is exposed in the `Model` interface as `Model#getFilteredIngredientList()`.
-
-Given below is an example usage scenario and how the list ingredients' levels mechanism behaves at each step.
-
-Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
-be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, 
-with an amount of 0 for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
-data from the storage file.
-
-Step 2. The user executes `i-list` to view the list of all ingredients and their levels. The `i-list` command calls 
-`Model#getFilteredIngredientList()`, which returns the list of ingredients in `IngredientBook`.
-
-The following sequence diagram shows how the list ingredients operation works:
-![List Ingredients Sequence Diagram](images/IngredientListSequenceDiagram.png)
-#### Design consideration:
-
-##### Aspect: How list ingredients' levels executes
-
-* **Alternative 1 (current choice):** Access the ingredient list and loop through the list to return the list of 
-ingredients showing their ingredient names and levels.
-  * Pros: Easier to implement and code is more readable.
-  * Cons: Every execution of the command will loop through the list once, which can be avoided if an alternative design
-  is used.
-* **Alternative 2:** Maintain a field in `ingredientbook` that stores the string representing the list of ingredients in
-terms of their ingredient names and levels.
-
- * Pros: Clearer implementation. `IngredientListCommand` will not need to manipulate the list of ingredients during
- execution.
- * Cons: This may result in a slower response of the application since the field would be updated every time the 
- ingredient list is updated.
-  
-## \[Completed\] View a single ingredient's level feature
-  
-View a single ingredients' level feature allows the user to view the level of a particular ingredient when the need
-arises. The command is:
-  
-* `i-view-single i/INGREDIENT_NAME` - Views the ingredient's level of the ingredient with the specified ingredient name.
-  
-#### Completed Implementation
-  
-The completed view a single ingredient's level mechanism is facilitated by `IngredientBook`. It implements 
-`ReadOnlyIngredientBook` interface and offers methods to view the ingredients' levels from the application's 
-`ingredientBook`. Particularly, it implements the following operation:
-  
-  * `IngredientBook#findIngredientByName(IngredientName ingredientName)` — Returns the ingredient with the target 
-  ingredient name. 
-  
-This operation is exposed in the `Model` interface as `Model#findIngredientByName(IngredientName ingredientName)`.
-  
-Given below is an example usage scenario and how the view a single ingredient's level mechanism behaves at each step.
-  
-Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
-be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, 
-with an amount of 0 for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
-data from the storage file.
-  
-Step 2. The user executes `i-view-single i/Milk` to view milk's current level. The `i-view-single i/Milk` command is
-parsed by `IngredientViewSingleCommandParser` which parses the ingredient to get the ingredient name and 
-returns an  `IngredientViewSingleCommand`. Logic executes the `IngredientViewSingleCommand` and calls 
-`Model#findIngredientByName(IngredientName ingredientName)`, which returns the ingredient with the ingredient name
-entered by the user.
-  
-The following activity diagram shows how the view a single ingredient level operation works:
-![View a Single Ingredient Activity Diagram](images/IngredientViewSingleActivityDiagram.png) 
-
-#### Design consideration:
-  
-##### Aspect: How find the ingredient's level executes
-  
-  * **Alternative 1 (current choice):** Obtain the ingredient name of the ingredient entered by the user, and use the
-  ingredient name to find the ingredient by looping through the ingredient list.
-    * Pros: Code is more readable.
-    * Cons: Every execution of the command will require one to access the name of the ingredient and loop through 
-    the list once, which may increase the time required for the operation. 
-    
-  * **Alternative 2:** Map the ingredient entered by the user to a index which corresponds to the index of the 
-  ingredient in the list, then find the ingredient using the index.
-    * Pros: Do not require looping through the list every time `IngredientViewSingleCommand` executes.
-    * Cons: Code may be less readable.
-    
 ## \[Completed\] Reset all ingredients' levels feature
 
-Reset all ingredients' levels feature allows the user to reset all the ingredient levels to zero. It helps the user to
+tCheck allows the user to reset all the ingredient levels to zero. It helps the user to
 remove data that are no longer needed. The command is:
   
 * `i-reset-all` - Resets the ingredients' levels of all ingredients to zero.
@@ -484,42 +339,50 @@ remove data that are no longer needed. The command is:
 #### Completed Implementation
   
 The completed reset all ingredients' levels mechanism is facilitated by `IngredientBook`. It implements 
-ReadOnlyIngredientBook` interface and offers methods to view the ingredients' levels from the application's 
-ingredientBook`. Particularly, it implements the following operation:
+`ReadOnlyIngredientBook` interface, which will allow the ingredients to be displayed in the user interface.
+Particularly, it implements the following operation:
   
-  * `IngredientBook#getFilteredIngredientList()` — Returns the list of ingredients consisting of ingredient names and 
-  ingredient levels in the ingredient book.
+  * `IngredientBook#setIngredient(originalIngredient, updatedIngredient)` — Replaces the original ingredient object with the
+  updated ingredient object in the ingredient book.
   
-This operation is exposed in the `Model` interface as `Model#getFilteredIngredientList()`.
-  
+This operation is exposed in the `Model` interface as `Model#setIngredient(originalIngredient, updatedIngredient)`.
+
+It also implements the following operation:
+  * `Model#getFilteredIngredientList()` - Returns the list of ingredients in the `IngredientBook`.
+
 Given below is an example usage scenario and how the reset all ingredients' levels mechanism behaves at each step.
   
 Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
-be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, 
-with an amount of 0 for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
+be initialized with the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea`, `Green Tea` and `Brown Sugar`, 
+with an amount of zero for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
 data from the storage file.
   
-Step 2. The user executes `i-reset-all` to reset all ingredients' levels. The `i-reset-all` command calls
-`Model#getFilteredIngredientList()`, which returns the list of ingredients in `IngredientBook`. The list of 
-ingredients is checked to see whether all ingredient levels are already at zero. If it is true, the user will 
-be informed that all ingredient levels are already at zero. Otherwise, ingredients that have levels not at zero
-would be replaced by a new ingredient object with the same ingredient name and a zero ingredient level.
+Step 2. The user executes `i-reset-all` command to reset all ingredients' levels to zero. The `i-reset-all` command calls
+`Model#getFilteredIngredientList()`, which returns the list of ingredients in `IngredientBook`. The `i-reset-all` command checks the list of 
+ingredients to see whether all ingredients' levels are already at zero. If it is true, the user will 
+be informed that all ingredient levels are already at zero. Otherwise, The `i-reset-all` command would call
+`IngredientBook#setIngredient(originalIngredient, updatedIngredient)` each time the command find an ingredient with a non-zero ingredient's level,
+which replaces the ingredient with a non-zero ingredient's level by a new ingredient object with the same ingredient name and a zero ingredient level. 
   
-The following activity diagram shows how the reset all ingredients' levels operation works:
+The following sequence diagram shows how the reset all ingredients' levels operation works:
+![Reset all Ingredients' Levels Sequence Diagram](images/IngredientResetAllSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes the reset all ingredients' levels command.
 ![Reset all Ingredients' Levels Activity Diagram](images/IngredientResetAllActivityDiagram.png)
+
 #### Design consideration:
   
 ##### Aspect: How reset the ingredients' levels executes
   
   * **Alternative 1 (current choice):** Loop through the ingredient list twice, the first time to check if all 
-  ingredient levels are at zero, the second time to replace the original ingredient that has a non-zero ingredient 
-  level with a new ingredient with the same ingredient name and a zero ingredient level.
+  ingredients' levels are at zero, the second time to replace the original ingredient that has a non-zero ingredient's 
+  level with a new ingredient with the same ingredient name and a zero ingredient's level.
     * Pros: Easier implementation.
     * Cons: Execution of the command may require one to create one or more new ingredients, which may increase the time 
-    required for the operation. 
+    required for the operation.
     
-  * **Alternative 2:** Loop through the ingredient list twice, the first time to check if all ingredient levels are 
-  already at zero, the second time to update the ingredient level to zero.
+  * **Alternative 2:** Loop through the ingredient list twice, the first time to check if all ingredients' levels are 
+  already at zero, the second time to update the ingredient's level to zero.
     * Pros: Clear implementation. Do not lead to creation of new ingredient objects.
     * Cons: Editing the ingredient level may be more error-prone.
 
@@ -694,8 +557,6 @@ with phone number, using a prefix to identify them.
 * is a fast typist
 * has many employees (both part-time and full-time) to manage
 * needs to save all the employees’ contact numbers
-* needs to forward one person’s contact to another
-  employee to let them directly communicate with each other 
 * cares about the daily revenue
 * does an inventory check daily to ensure that ingredients are sufficient
   for the shop to operate smoothly
@@ -965,3 +826,30 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Resetting all ingredients' levels to zero
+
+1. Resetting all ingredients' levels to zero when all ingredients' levels are at zero
+
+   1. Test case: `i-reset-all`<br>
+      Expected: All ingredients' levels should be reset to zero.
+
+   1. Test case: `i-reset-all 1`<br>
+      Expected: All ingredients' levels should be reset to zero, the extra input `1` will be ignored.
+   
+1. Resetting all ingredients' levels to zero when some ingredients' levels are at zero
+
+   1. Test case: `i-reset-all`<br>
+      Expected: All ingredients' levels should be at zero, ingredients originally with a non-zero ingredient's level will have their ingredients' levels reset to zero.
+
+   1. Test case: `i-reset-all pack`<br>
+      Expected: All ingredients' levels should be at zero, the extra input `pack` will be ignored.
+
+1. Resetting all ingredients' levels to zero when all ingredients' levels are already at zero
+
+   1. Test case: `i-reset-all`<br>
+      Expected: All ingredients'levels are still at zero. A message will be shown explaining that all ingredients' levels are already at zero.
+
+   1. Test case: `i-reset-all pack`<br>
+      Expected: All ingredients'levels are still at zero. A message will be shown explaining that all ingredients' levels are already at zero.
+      the extra input `pack` will be ignored.

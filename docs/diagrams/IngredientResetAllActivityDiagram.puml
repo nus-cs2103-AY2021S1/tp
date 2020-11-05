@@ -8,8 +8,8 @@ start
 if () then ([not all ingredients' levels are already at zero])
     :Find the ingredient(s) that has non-zero ingredient level in IngredientBook
     and replace them with new ingredient objects that has the same ingredient name,
-    and zero ingredient level(s);
-    :Save the updated IngredientBook in storage;
+    and zero amount(s);
+    :Save the updated IngredientBook and show the updated ingredient list to the user;
 else ([else])
     : Show a message stating that all ingredient levels are already at zero;
 endif
