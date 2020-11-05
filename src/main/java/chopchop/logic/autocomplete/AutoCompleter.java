@@ -8,6 +8,7 @@ import static chopchop.commons.util.Enforce.enforceNotEmpty;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,13 @@ import chopchop.model.Model;
 public class AutoCompleter {
 
     private static final Log logger = new Log(AutoCompleter.class);
+    private static final Comparator<String> lexicographicalComparator = (a, b) -> {
+        if (a.length() == b.length()) {
+            return a.compareTo(b);
+        } else {
+            return a.length() - b.length();
+        }
+    };
 
     private int lastCompletionIndex = 0;
     private List<String> lastViableCompletions = null;
@@ -156,12 +164,12 @@ public class AutoCompleter {
 
         var valids = new ArrayList<String>();
         for (var cmd : Strings.COMMAND_NAMES) {
-            if (cmd.startsWith(partial)) {
+            if (cmd.startsWith(partial.toLowerCase())) {
                 valids.add(cmd);
             }
         }
 
-        valids.sort((a, b) -> a.length() - b.length());
+        valids.sort(lexicographicalComparator);
 
         if (this.lastViableCompletions == null) {
             this.lastViableCompletions = new ArrayList<String>(valids);
@@ -199,6 +207,50 @@ public class AutoCompleter {
     }
 
     /**
+     * abstracts away the cycled completion thing
+     */
+    private Optional<String> tryMultiCompletionUsing(List<String> items, String orig, String partial) {
+
+        // the entire command string *except* the partial item name.
+        var allExceptLast = orig.stripTrailing().substring(0,
+            orig.stripTrailing().replace("\\/", "/").length() - partial.length());
+
+        // un-escape the user input first
+        partial = partial.replace("\\/", "/").toLowerCase();
+
+        // make a copy of the list, then sort by name length.
+        var valids = new ArrayList<String>();
+        for (var item : items) {
+            if (item.toLowerCase().startsWith(partial)) {
+                valids.add(item);
+            }
+        }
+
+        valids.sort(lexicographicalComparator);
+
+        if (this.lastViableCompletions == null) {
+            this.lastViableCompletions = new ArrayList<String>(valids);
+        }
+
+        if (this.lastViableCompletions.isEmpty()) {
+            return Optional.empty();
+        } else {
+
+            // see the note in completeCommand ('this should always hold, because...')
+            enforceLessThan(this.lastCompletionIndex, this.lastViableCompletions.size());
+
+            var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
+            this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
+
+            // re-escape the user output.
+            completion = completion.replace("/", "\\/");
+
+            return Optional.of(allExceptLast + completion + " ");
+        }
+    }
+
+
+    /**
      * Returns a completion for the target only.
      */
     private String completeTarget(CommandArguments args, String orig, boolean nested) {
@@ -217,37 +269,15 @@ public class AutoCompleter {
             partial = args.getFirstWordFromRemaining();
         }
 
-        var valids = new ArrayList<String>();
-        for (var tgt : CommandTarget.values()) {
-            if (tgt.toString().startsWith(partial)) {
-                if (commandSupportsTarget(cmd, tgt)) {
-                    valids.add(tgt.toString());
-                }
-            }
-        }
-
-        valids.sort((a, b) -> a.length() - b.length());
-
-        if (this.lastViableCompletions == null) {
-            this.lastViableCompletions = new ArrayList<String>(valids);
-        }
-
-
-        var allExceptLast = orig.stripTrailing().substring(0,
-            orig.stripTrailing().length() - partial.length());
-
-        if (this.lastViableCompletions.isEmpty()) {
-            return orig;
-        } else {
-
-            // see the note in completeCommand ('this should always hold, because...')
-            enforceLessThan(this.lastCompletionIndex, this.lastViableCompletions.size());
-
-            var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
-            this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
-
-            return allExceptLast + completion + " ";
-        }
+        final String c = cmd;
+        return tryMultiCompletionUsing(
+            Arrays.stream(CommandTarget.values())
+                .filter(t -> commandSupportsTarget(c, t))
+                .map(t -> t.toString())
+                .collect(Collectors.toList()),
+            orig,
+            partial
+        ).orElse(orig);
     }
 
     private String completeTag(Model model, CommandArguments args, String orig) {
@@ -268,7 +298,7 @@ public class AutoCompleter {
                     return Optional.empty();
                 }
 
-                return tryCompletionUsing(tags, orig, partial);
+                return tryMultiCompletionUsing(tags, orig, partial);
             })
             .orElse(orig);
     }
@@ -466,49 +496,8 @@ public class AutoCompleter {
             }
         }
 
-        // the entire command string *except* the partial item name.
-        var allExceptLast = orig.stripTrailing().substring(0,
-            orig.stripTrailing().replace("\\/", "/").length() - partial.length());
-
-
-        // un-escape the user input first
-        partial = partial.replace("\\/", "/");
-
-
-        // make a copy of the list, then sort by name length.
-        var sortedList = new ArrayList<>(entries);
-        sortedList.sort((a, b) -> {
-            return a.getName().length() - b.getName().length();
-        });
-
-        if (this.lastViableCompletions == null) {
-            this.lastViableCompletions = new ArrayList<String>();
-
-            for (var entry : sortedList) {
-                var name = entry.getName();
-
-                if (name.toLowerCase().startsWith(partial)) {
-                    this.lastViableCompletions.add(name);
-                }
-            }
-        }
-
-        if (this.lastViableCompletions.isEmpty()) {
-            return Optional.empty();
-        } else {
-
-            // see the note in completeCommand ('this should always hold, because...')
-
-            enforceLessThan(this.lastCompletionIndex, this.lastViableCompletions.size());
-
-            var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
-            this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
-
-            // re-escape the user output.
-            completion = completion.replace("/", "\\/");
-
-            return Optional.of(allExceptLast + completion + " ");
-        }
+        return tryMultiCompletionUsing(entries.stream().map(x -> x.getName()).collect(Collectors.toList()),
+            orig, partial);
     }
 
 
@@ -659,9 +648,9 @@ public class AutoCompleter {
         String appending) {
 
         for (var arg : candidates) {
-            if (arg.equals(partial)) {
+            if (arg.equals(partial.toLowerCase())) {
                 return Optional.of(orig);
-            } else if (arg.startsWith(partial)) {
+            } else if (arg.startsWith(partial.toLowerCase())) {
                 return Optional.of(orig + arg.substring(partial.length()) + appending);
             }
         }
