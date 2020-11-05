@@ -38,12 +38,11 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Path filepath = fileParameter.consume();
+        JsonMcGymmyStorage importedMcgymmy = new JsonMcGymmyStorage(filepath);
         String localFailureMessage = String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath);
         String localSuccessMessage = String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName());
 
         try {
-
-            JsonMcGymmyStorage importedMcgymmy = new JsonMcGymmyStorage(filepath);
             Optional<ReadOnlyMcGymmy> readOnlyMcGymmyOptional = importedMcgymmy.readMcGymmy();
 
             if (readOnlyMcGymmyOptional.isEmpty()) {
