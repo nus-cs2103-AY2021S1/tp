@@ -30,16 +30,16 @@ Given below are my contributions to the project.
     * Included a legend to explain the relevant symbols ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
     * Distinguished the features to basic and advanced features for the user ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
     * Refined the ID constraints for different features ([\#298](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/298))
+    * Added details to the FAQ section ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
   * Developer Guide:
     * Added user profile, value proposition and user stories ([\#33](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/33))
     * Added implementation details of the `sort` feature ([\#145](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/145), [\#150](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/150))
     * Added numbering for TOC ([\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
     * Modified formatting and edited details in the appendix ([\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
+    * Added and modified all use cases ([\#151](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/151), [\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): ([\#148](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/148), [\#199](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/199), [\#222](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/222))
 
 * **Team-based tasks**:
-  * Added and modified all use cases for the DG ([\#151](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/151), [\#301](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/301))
   * Created necessary issues to the repository for v1.3 & v1.4
-  * Added details to the FAQ section in the UG ([\#181](https://github.com/AY2021S1-CS2103T-W15-4/tp/pull/181))
