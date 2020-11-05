@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+title Inside Consumption
+
+Class WishfulShrinking
+Class ModelManager
+
+Package Consumption {
+Class ConsumptionList
+Class Consumption
+
+Package Recipe {
+Class Recipe
+Class Ingredient
+Class Name
+Class Calories
+Class Instruction
+Class Image
+}
+
+}
+
+
+Package Tag {
+Class Tag
+}
+
+WishfulShrinking *--> "1" ConsumptionList
+ConsumptionList--> "*" Consumption
+Consumption--> "1" Recipe
+Recipe *--> Name
+Recipe *--> Ingredient
+Recipe *--> Calories
+Recipe *--> Instruction
+Recipe *--> Image
+Recipe --> "*" Tag
+
+Name -[hidden]right-> Ingredient
+Ingredient -[hidden]right-> Calories
+Calories -[hidden]right-> Instruction
+Instruction -[hidden]right-> Image
+
+ModelManager -->"1" Consumption: filtered consumption list
+@enduml
