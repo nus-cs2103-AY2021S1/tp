@@ -2,9 +2,11 @@ package com.eva.testutil;
 
 import java.util.Optional;
 
+import com.eva.logic.parser.SampleResume;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.applicant.application.Application;
 
 
 public class ApplicantBuilder extends PersonBuilder {
@@ -13,6 +15,7 @@ public class ApplicantBuilder extends PersonBuilder {
 
     private Optional<InterviewDate> interviewDate;
     private ApplicationStatus applicationStatus;
+    private final Application application = new SampleResume().generateSampleApplication();
 
     /**
      * Creates a {@code ApplicantBuilder} with the default details.
