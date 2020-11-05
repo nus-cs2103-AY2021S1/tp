@@ -38,18 +38,25 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Path filepath = fileParameter.consume();
+        String localFailureMessage = String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath);
+        String localSuccessMessage = String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName());
+
         try {
+
             JsonMcGymmyStorage importedMcgymmy = new JsonMcGymmyStorage(filepath);
             Optional<ReadOnlyMcGymmy> readOnlyMcGymmyOptional = importedMcgymmy.readMcGymmy();
+
             if (readOnlyMcGymmyOptional.isEmpty()) {
-                throw new CommandException(String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath));
+                throw new CommandException(localFailureMessage);
             }
+
             model.setMcGymmy(readOnlyMcGymmyOptional.get());
-            importLogger.fine(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()));
-            return new CommandResult(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()));
+            importLogger.fine(localSuccessMessage);
+            return new CommandResult(localSuccessMessage);
+
         } catch (DataConversionException e) {
-            importLogger.warning(String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath));
-            throw new CommandException(String.format(MESSAGE_IMPORT_FOOD_FAILURE, filepath));
+            importLogger.warning(localFailureMessage);
+            throw new CommandException(localFailureMessage);
         }
     }
 }
