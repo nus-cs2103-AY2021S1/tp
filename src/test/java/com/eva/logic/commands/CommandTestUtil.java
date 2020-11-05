@@ -19,6 +19,7 @@ import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 import com.eva.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -121,6 +122,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getPersonDatabase());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s eva database.
@@ -133,6 +135,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s eva database.
+     */
+    public static void showStaffAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStaffList().size());
+
+        Staff staff = model.getFilteredStaffList().get(targetIndex.getZeroBased());
+        final String[] splitName = staff.getName().fullName.split("\\s+");
+        model.updateFilteredStaffList(new NameContainsKeywordsPredicate<>(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStaffList().size());
     }
 
 }
