@@ -546,7 +546,7 @@ After pressing <kbd>enter</kbd>, you will see this view, showing your newly crea
 Figure 5.2: <i>The recipe detail view</i>
 </div>
 
-If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list:
+If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list (ChopChop won't actually highlight it, but we do here for clarity):
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
