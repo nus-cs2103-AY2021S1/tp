@@ -35,3 +35,4 @@ Given below are my contributions to the project.
     * Standardised parameter of contact's name to `CONTACT_NAME`.
   * Developer Guide:
     * Added implementation details of the `contact delete`, `contact clear`, `contact list`, `contact find`, `tag add`, `tag delete`, `tag clear`, `copy email` and `copy phone` features.
+    
