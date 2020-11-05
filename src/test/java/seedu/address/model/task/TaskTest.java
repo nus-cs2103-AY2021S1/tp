@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CS2100;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.testutil.TypicalTasks.DEADLINE1;
 import static seedu.address.testutil.TypicalTasks.EVENT_TEST;
@@ -39,12 +39,12 @@ public class TaskTest {
 
         // same title, same dateTime, different attributes -> returns false
         editedAlice = new DeadlineBuilder(DEADLINE1).withDescription(VALID_DESCRIPTION_BOB)
-                .withTag(VALID_TAG_HUSBAND).build();
+                .withTag(VALID_TAG_CS2100).build();
         assertFalse(DEADLINE1.isSameTask(editedAlice));
 
 
         // same title, same dateTime, different attributes -> returns false
-        editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND).build();
+        editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_CS2100).build();
         assertFalse(DEADLINE1.isSameTask(editedAlice));
     }
 
@@ -75,7 +75,7 @@ public class TaskTest {
         assertFalse(DEADLINE1.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND).build();
+        editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_CS2100).build();
         assertFalse(DEADLINE1.equals(editedAlice));
     }
 }
