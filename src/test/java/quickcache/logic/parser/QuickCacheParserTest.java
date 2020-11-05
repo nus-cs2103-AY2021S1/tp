@@ -18,19 +18,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import quickcache.commons.core.Messages;
-import quickcache.logic.commands.AddOpenEndedQuestionCommand;
-import quickcache.logic.commands.ClearCommand;
-import quickcache.logic.commands.DeleteCommand;
-import quickcache.logic.commands.EditCommand;
-import quickcache.logic.commands.ExitCommand;
-import quickcache.logic.commands.ExportCommand;
-import quickcache.logic.commands.FindCommand;
-import quickcache.logic.commands.HelpCommand;
-import quickcache.logic.commands.ImportCommand;
-import quickcache.logic.commands.ListCommand;
-import quickcache.logic.commands.OpenCommand;
-import quickcache.logic.commands.StatsCommand;
-import quickcache.logic.commands.TestCommand;
+import quickcache.logic.commands.*;
 import quickcache.logic.parser.exceptions.ParseException;
 import quickcache.model.flashcard.Flashcard;
 import quickcache.model.flashcard.FlashcardContainsTagPredicate;
@@ -50,6 +38,18 @@ public class QuickCacheParserTest {
         AddOpenEndedQuestionCommand command = (AddOpenEndedQuestionCommand)
             parser.parseCommand(FlashcardUtil.getAddCommand(flashcard));
         assertEquals(new AddOpenEndedQuestionCommand(flashcard), command);
+    }
+
+    @Test
+    public void parseCommand_addMcq() throws Exception {
+        String[] choices = {"first", "second", "third", "fourth"};
+        Flashcard flashcard = new FlashcardBuilder().withMultipleChoiceQuestion("MCQ", choices)
+                .withAnswer("2").build();
+        Flashcard finalFlashcard = new FlashcardBuilder().withMultipleChoiceQuestion("MCQ", choices)
+                .withAnswer("second").build();
+        AddMultipleChoiceQuestionCommand command = (AddMultipleChoiceQuestionCommand)
+                parser.parseCommand(FlashcardUtil.getAddMcqCommand(flashcard));
+        assertEquals(new AddMultipleChoiceQuestionCommand(finalFlashcard), command);
     }
 
     @Test
