@@ -276,6 +276,8 @@ Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`
 
 Pointers to take note when adding a delivery:
 * You can add a delivery even if the same `Name`, `Phone` and `Address` already exists in the delivery book.
+* Unit of `Time` is minutes ie. `add-d n/JASON p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1 by/15` indicates
+that this order needs to be delivered out in 15 minutes.
 
 Example 1: 
 
