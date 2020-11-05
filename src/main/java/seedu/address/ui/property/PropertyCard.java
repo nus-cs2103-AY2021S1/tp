@@ -20,7 +20,7 @@ public class PropertyCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Text propertyName;
+    private Label propertyName;
     @FXML
     private Label id;
     @FXML
@@ -45,10 +45,9 @@ public class PropertyCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         propertyId.setText("Property Id: " + property.getPropertyId().toString());
         propertyName.setText(property.getPropertyName().toString());
-        propertyName.setWrappingWidth(150);
         address.setText("Addr: " + property.getAddress().toString());
         sellerId.setText("Seller Id: " + property.getSellerId().toString());
-        askingPrice.setText("Asking price: " + property.getAskingPrice().toString());
+        askingPrice.setText("A/P: " + property.getAskingPrice().toString());
         propertyType.setText("Type: " + property.getPropertyType().toString());
         isRental.setText("Is rental: " + property.getIsRental().toString());
     }
