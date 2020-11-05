@@ -113,7 +113,7 @@ If you want to see a step-by-step guide for all QuickCache commands, you can get
 
 Format: `help`
 
-![HelpMessage](images/HelpMessage.png)
+![HelpMessage](images/helpMessage.png)
 
 ### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.

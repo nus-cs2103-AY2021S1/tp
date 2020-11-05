@@ -43,14 +43,16 @@ public class PieChartDisplay extends UiPart<Region> {
         int timesTested = feedbackToUser.getStatistics().map(Statistics::getTimesTested).orElse(0);
         int timesTestedCorrect = feedbackToUser.getStatistics().map(Statistics::getTimesTestedCorrect).orElse(0);
         double correctRate = feedbackToUser.getStatistics().map(Statistics::getCorrectRate).orElse(0.0);
-        double incorrectRate = correctRate == 0.0 ? 0.0 : 100.0 - correctRate;
+        double incorrectRate = correctRate == 0.0 && timesTested == 0 ? 0.0 : 100.0 - correctRate;
 
         pieChartDisplay.setTitle(feedbackToUser.getQuestion().map(Object::toString)
                 .orElseGet(() -> "No Question to display"));
 
-        PieChart.Data correctPie = new PieChart.Data("Correct (" + correctRate + "%)", timesTestedCorrect);
-        PieChart.Data wrongPie = new PieChart.Data(
-                "Incorrect (" + incorrectRate + "%)", timesTested - timesTestedCorrect);
+        String itemCorrect = String.format("Correct (%.2f%%)", correctRate);
+        String itemIncorrect = String.format("Incorrect (%.2f%%)", incorrectRate);
+
+        PieChart.Data correctPie = new PieChart.Data(itemCorrect, timesTestedCorrect);
+        PieChart.Data wrongPie = new PieChart.Data(itemIncorrect, timesTested - timesTestedCorrect);
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList(correctPie, wrongPie);
 

@@ -110,6 +110,9 @@ public class EditCommand extends Command {
             Answer finalAnswer = new Answer(updatedChoices[ans - 1].getValue());
             finalQuestion = new MultipleChoiceQuestion(updatedQuestion, finalAnswer, updatedChoices);
         } else {
+            if (editFlashcardDescriptor.getChoices().isPresent()) {
+                throw new CommandException("Choices should not be provided for open ended question");
+            }
             finalQuestion = new OpenEndedQuestion(updatedQuestion, updatedAnswer);
         }
         return new Flashcard(finalQuestion, updatedTags, difficulty, statistics);

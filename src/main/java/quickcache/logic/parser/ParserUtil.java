@@ -117,8 +117,8 @@ public class ParserUtil {
         int ans;
         try {
             ans = Integer.parseInt(tempAnswer.getValue());
-            if (ans > choices.length) {
-                throw new ParseException("Answer must be smaller than number of choices");
+            if (ans > choices.length || ans < 1) {
+                throw new ParseException("Answer must be smaller than number of choices and should be positive");
             }
         } catch (NumberFormatException e) {
             throw new ParseException("Answer must be integer");
@@ -198,10 +198,14 @@ public class ParserUtil {
         requireNonNull(choices);
         List<Choice> choicesList = new ArrayList<>();
         for (String choice : choices) {
-            choicesList.add(parseChoice(choice));
+            Choice toAdd = parseChoice(choice);
+            if (choicesList.contains(toAdd)) {
+                throw new ParseException("Choices must not be the same.");
+            }
+            choicesList.add(toAdd);
         }
         Choice[] result = new Choice[choicesList.size()];
-        if (result.length <= 1) {
+        if (result.length < 1) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMultipleChoiceQuestionCommand.MESSAGE_USAGE));
         }

@@ -18,7 +18,7 @@ public class AddOpenEndedQuestionCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a flashcard to the QuickCache. "
             + "Parameters: "
             + PREFIX_QUESTION + "Question "
             + PREFIX_ANSWER + "Answer "
