@@ -2,8 +2,6 @@ package seedu.address.logic.textfieldmodules;
 
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -16,40 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.testutil.SimulatedKeyPress.*;
 
 @ExtendWith(ApplicationExtension.class)
 class AutocompleteModuleTest {
-    private final KeyEvent TAB_EVENT = new KeyEvent(
-            KeyEvent.KEY_PRESSED,
-            KeyEvent.CHAR_UNDEFINED,
-            "",
-            KeyCode.TAB,
-            false,
-            false,
-            false,
-            false
-    );
-    private final KeyEvent SHIFT_TAB_EVENT = new KeyEvent(
-            KeyEvent.KEY_PRESSED,
-            KeyEvent.CHAR_UNDEFINED,
-            "",
-            KeyCode.TAB,
-            true,
-            false,
-            false,
-            false
-    );
-
-    private final KeyEvent ENTER_EVENT = new KeyEvent(
-            KeyEvent.KEY_PRESSED,
-            KeyEvent.CHAR_UNDEFINED,
-            "",
-            KeyCode.ENTER,
-            false,
-            false,
-            false,
-            false
-    );
 
     private String sampleCmdPrefix = "test/";
     private List<String> sampleNameList = Arrays.asList("Alice", "Bravo", "Charlie");
