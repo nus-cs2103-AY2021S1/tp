@@ -73,7 +73,7 @@ You can reach us at the email `nustorage[at]comp.nus.edu.sg`
 <img src="images/AboutUs/ironbiscuit.png" width="200px">
 
 [[github](https://github.com/IronBiscuit)]
-[[portfolio](team/yuyang.md)]
+[[portfolio](team/ironbiscuit.md)]
 
 * Role: Developer
 * Responsibilities: UI, Testing and Documentation
