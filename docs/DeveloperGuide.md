@@ -398,32 +398,339 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `FlashcardList` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `SWEe!` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a flashcard**
+#### Use case: UC01 - Add a flashcard
 
 **MSS**
 
-1.  User requests to list flashcards
-2.  FlashcardList shows a list of flashcards
-3.  User requests to delete a specific flashcard in the list
-4.  FlashcardList deletes the flashcard
+1.  User adds a flashcard
+2.  SWEe! shows a list of flashcards, containing the newly added flashcard
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. Input format is invalid.
+
+    * 1a1. SWEe! shows an error message.
+
+      Use case ends.
+
+* 1b. The given flashcard already exists.
+
+    * 1b1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC02 - List flashcards
+
+**MSS**
+
+1.  User requests to list flashcards
+2.  SWEe! shows a list of flashcards
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input format is invalid.
+
+    * 1a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC03 - Delete a flashcard
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to delete a specific flashcard based on the index in the list
+3.  SWEe! deletes the flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. FlashcardList shows an error message.
+    * 2a1. SWEe! shows an error message.
 
-      Use case resumes at step 2.
+      Use case ends.
 
-*{More to be added}*
+
+#### Use case: UC04 - Edit a flashcard
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to edit the details of a specific flashcard based on the index in the list
+3.  SWEe! edits the flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+  
+* 2a. The given index is invalid.
+
+    * 2a1. SWEe! shows an error message.
+
+      Use case ends.
+
+* 2b. The format of the given details are invalid.
+
+    * 2b1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC05 - Favourite a flashcard
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to favourite a specific flashcard based on the index in the list
+3.  SWEe! favourites the flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC06 - Unfavourite a flashcard
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to unfavourite a specific flashcard based on the index in the list
+3.  SWEe! unfavourites the flashcard
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC07 - Clear all flashcards
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to clear all flashcards in the list
+3.  SWEe! clears the list
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+
+#### Use case: UC08 - Find flashcards
+
+**MSS**
+
+1.  User requests to find flashcards with keywords
+2.  SWEe! shows a list of flashcards matching keywords
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input format is invalid.
+
+    * 1a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC09 - Filter flashcards
+
+**MSS**
+
+1.  User requests to filter flashcards according to attributes
+2.  SWEe! shows a list of flashcards matching attributes
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Input format is invalid.
+
+    * 1a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC10 - Sort flashcards
+
+**MSS**
+
+1.  User requests to list flashcards (UC02)_
+2.  User requests to sort the list in an order based on a sort criteria
+3.  SWEe! displays the list of flashcards in the specified order
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+  
+* 2a. The given sort criteria is invalid.
+
+    * 2a1. SWEe! shows an error message.
+
+      Use case ends.
+
+* 2b. The given order is invalid.
+
+    * 2b1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC11 - Requesting for help
+
+**MSS**
+
+1.  User requests for help
+2.  SWEe! displays help window with link to User Guide
+
+    Use case ends.
+    
+    
+#### Use case: UC12 - Review flashcards
+
+**MSS**
+
+1.  User requests to review flashcards
+2.  SWEe! enters review mode
+3.  User enters `down` key to show answer
+4.  User enters `right` key to show the next flashcard in the list
+    Steps 3-4 are repeated until the user finishes reviewing all flashcards or until the user enters `q` key to quit review mode
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. SWEe! shows an error message.
+
+    Use case ends.
+  
+    
+#### Use case: UC13 - Quiz flashcards
+
+**MSS**
+
+1.  User requests to quiz flashcards
+2.  SWEe! enters quiz mode
+3.  User enters `down` key to show answer
+4.  User enters `y`/`n` key depending on whether user answers the flashcard correctly
+5.  SWEe! shows the next flashcard to quiz
+    Steps 3-5 are repeated until the user finishes quizzing all flashcards or until the user enters `q` key to quit quiz mode
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+    * 1a1. SWEe! shows an error message.
+
+    Use case ends.
+
+
+#### Use case: UC14 - View a flashcard
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to view a specific flashcard based on the index in the list
+3.  SWEe! shows the flashcard in detail
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC15 - View the statistics of a flashcard
+
+**MSS**
+
+1.  User requests to _list flashcards (UC02)_
+2.  User requests to view the statistics of a specific flashcard based on the index in the list
+3.  SWEe! shows the flashcard's statistics
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. SWEe! shows an error message.
+
+      Use case ends.
+
+
+#### Use case: UC16 - Exit SWEe!
+
+**MSS**
+
+1.  User requests to exit SWEe!
+2.  SWEe! terminates and exits.
+
+    Use case ends.
+
+
 
 ### Non-Functional Requirements
 
