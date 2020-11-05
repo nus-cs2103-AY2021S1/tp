@@ -5,11 +5,23 @@ import java.util.List;
 
 import seedu.address.model.exceptions.VersionedListException;
 
+/**
+ * Class that stores versioned history and future of a module list used for undo/redo functions
+ */
 public class VersionedModuleList extends ModuleList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Module List commands to redo";
     private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Module List commands to undo";
     private List<ReadOnlyModuleList> moduleListStateList = new ArrayList<>();
     private int currentStatePointer;
+    /**
+     * Creates a versioned module list with an empty initial module list
+     */
+    public VersionedModuleList() {
+        super(new ModuleList());
+        moduleListStateList.add(new ModuleList());
+        this.currentStatePointer = 0;
+    }
+
     /**
      * Creates a versioned module list using the module list in the {@code toBeCopied}
      * @param toBeCopied

@@ -5,11 +5,23 @@ import java.util.List;
 
 import seedu.address.model.exceptions.VersionedListException;
 
+/**
+ * Class that stores versioned history and future of a todo list used for undo/redo functions
+ */
 public class VersionedTodoList extends TodoList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Todo List commands to redo";
     private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Todo List commands to undo";
     private List<ReadOnlyTodoList> todoListStateList = new ArrayList<>();
     private int currentStatePointer;
+
+    /**
+     * Creates a versioned todo list with an empty initial todo list
+     */
+    public VersionedTodoList() {
+        super();
+        todoListStateList.add(new TodoList());
+        this.currentStatePointer = 0;
+    }
 
     /**
      * Creates a versioned todo list using the todo lists in the {@code toBeCopied}

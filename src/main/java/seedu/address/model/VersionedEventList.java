@@ -5,11 +5,24 @@ import java.util.List;
 
 import seedu.address.model.exceptions.VersionedListException;
 
+/**
+ * Class that stores versioned history and future of a event list used for undo/redo functions
+ */
 public class VersionedEventList extends EventList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Event List commands to redo";
     private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Event List commands to undo";
     private List<ReadOnlyEventList> eventListStateList = new ArrayList<>();
     private int currentStatePointer;
+
+    /**
+     * Creates a versioned event list with an empty initial event list
+     */
+    public VersionedEventList() {
+        super();
+        eventListStateList.add(new EventList());
+        this.currentStatePointer = 0;
+    }
+
     /**
      * Creates a versioned event list using the event list in the {@code toBeCopied}
      * @param toBeCopied

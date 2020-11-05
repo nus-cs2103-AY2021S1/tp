@@ -5,12 +5,22 @@ import java.util.List;
 
 import seedu.address.model.exceptions.VersionedListException;
 
+/**
+ * Class that stores versioned history and future of a contact list used for undo/redo functions
+ */
 public class VersionedContactList extends ContactList {
     private static final String MESSAGE_NO_REDO_HISTORY = "There are no Contact List commands to redo";
     private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Contact List commands to undo";
     private List<ReadOnlyContactList> contactListStateList = new ArrayList<>();
     private int currentStatePointer;
-
+    /**
+     * Creates a versioned contact list with an empty initial contact list
+     */
+    public VersionedContactList() {
+        super();
+        contactListStateList.add(new ContactList());
+        this.currentStatePointer = 0;
+    }
     /**
      * Creates a versioned contact list using the contact list in the {@code toBeCopied}
      * @param toBeCopied
