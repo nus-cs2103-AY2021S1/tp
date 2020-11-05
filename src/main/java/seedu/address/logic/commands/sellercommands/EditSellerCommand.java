@@ -128,7 +128,7 @@ public class EditSellerCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setTag(toCopy.tag);
-            setId(toCopy.id);
+            setSellerId(toCopy.id);
         }
 
         /**
@@ -162,7 +162,7 @@ public class EditSellerCommand extends Command {
             return Optional.ofNullable(tag);
         }
 
-        public void setId(SellerId id) {
+        public void setSellerId(SellerId id) {
             this.id = id;
         }
 
