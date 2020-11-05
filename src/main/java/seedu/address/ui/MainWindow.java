@@ -180,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the schedule with updated events.
      */
     @FXML
-    private void handleCalendar() {
+    private void handleSchedule() {
         schedulePanel.updateSchedule(logic.getVEventList());
         if (logic.getScheduleViewMode().equals(ScheduleViewMode.WEEKLY)) {
             schedulePanel.setWeekView();
@@ -245,7 +245,7 @@ public class MainWindow extends UiPart<Stage> {
 
             // this is to open schedule when schedule command is called
             if (commandResult.isSchedule()) {
-                handleCalendar();
+                handleSchedule();
                 return commandResult;
             }
 

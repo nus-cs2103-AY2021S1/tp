@@ -230,18 +230,26 @@ The student administrative details feature keeps track of essential administrati
 The following describes the flow of how `AddCommand` is performed.
 
 1. Upon successfully parsing the user input, the `AddCommand#execute(Model model)` is called which checks whether
-the added student already exists in the `UniqueStudentList`.
+the added student already exists in the `UniqueStudentList` using the `Model#hasStudent(Student toAdd)`.
 2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined,
 a `CommandException` is thrown and the student will not be added.
-3. If the added student is not a duplicate, then the `Model#addStudent(Student student)` is called to add the student.
+3. The `AddCommand#execute(Model model)` also checks if the student to be added has clashing `ClassTime` with other students already in the `UniqueStudentList`.
+4. Two student's `ClassTime` is considered clashing if they overlap either partially or fully. A `CommandException` will be thrown if there are other students with clashing class time.
+5. If the added student is not a duplicate and there are no clashes in class time, then the `Model#addStudent(Student toAdd)` is called to add the student.
 A new `CommandResult` is returned with a success message and the added student.
-4. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
+6. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
 
 The following activity diagram summarizes the flow of events when the `AddCommand` is being executed:
 
 ![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
 
-Figure ___. Activity Diagram for AddStudentCommand
+Figure ___. Activity Diagram for `AddCommand`
+
+The following sequence diagram summarizes the execution of the `AddCommand`
+
+![Execution of Add Student Command](images/AddStudentSequenceDiagram.png)
+
+Figure /__. Sequence Diagram for `AddCommand`
 
 #### 6.2.2 Edit Student Command
 

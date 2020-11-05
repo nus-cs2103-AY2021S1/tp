@@ -16,6 +16,8 @@ Class StudentAdminCard
 Class StudentAcademicCard
 Class StatusBarFooter
 Class CommandBox
+Class NoteBook
+Class NoteTile
 }
 
 package Model <<Rectangle>> {
@@ -31,16 +33,20 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
+
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> StudentListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> NoteBook
 
 StudentListPanel --> StudentAdminCard
 StudentListPanel --> StudentAcademicCard
 
-MainWindow -left-|> UiPart
+NoteBook --> NoteTile
+
+NoteBook -right-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -49,18 +55,18 @@ StudentAdminCard --|> UiPart
 StudentAcademicCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+MainWindow -|> UiPart
+NoteTile--|> UiPart
 
+NoteTile ..> Model
 StudentAcademicCard ..> Model
-StudentAdminCard .right.> Model
+StudentAdminCard ..> Model
+
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-StudentAcademicCard -[hidden]down-StudentAdminCard
-StudentAcademicCard -[hidden]down-StudentListPanel
-StudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
-ResultDisplay -[hidden]left- StatusBarFooter
+StatusBarFooter -[hidden]left- ResultDisplay
 
-MainWindow -[hidden]-|> UiPart
 @enduml
