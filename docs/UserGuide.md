@@ -597,7 +597,7 @@ When adding or editing ingredients, a `/qty` *must* be specified after the ingre
 If you want to edit the tags for a recipe, use `/tag` with the corresponding action, which are either `add` or `delete`. For example:
 
 - `/tag:add vegetarian` <br />
-  This adds the 'vegetarian' tag to the recipe. It is not an error if the recipe already contains this tag.
+  This adds the 'vegetarian' tag to the recipe. If the recipe already contains this tag, an error is displayed.
 
 - `/tag:delete cold` <br />
   This removes the 'cold' tag from the recipe. If the recipe did not have this tag, an error is displayed.
@@ -729,6 +729,7 @@ Figure 6.10: <i>The finished recipe</i>
 
 <a name="DeleteRecipeCommand"></a>
 #### 5.4.5&ensp;Deleting Recipes — **`delete`**`recipe`
+
 This command deletes a specific recipe from ChopChop. Don't worry if you did this accidentally, because commands can be undone! (see: [undo](#UndoCommand)).
 
 **Usage**: `delete recipe <#REF>`
@@ -739,12 +740,20 @@ Examples:
 - `delete recipe pancakes` <br />
 	This deletes the recipe named 'pancakes'. Note that the name here is case insensitive.
 
+In this example, `delete recipe #7` will delete the **Pancakes** recipe:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
+Figure 14.1: <i>The initial list of ingredients</i>
+</div>
+
 
 
 
 
 <a name="FindRecipeCommand"></a>
 #### 5.4.6&ensp;Finding Recipes — **`find`**`recipe`
+
 This command finds all recipes containing the given keywords in the name.
 
 **Usage**: `find recipe <keyword> [<keyword>]...`
@@ -1069,6 +1078,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 <a name="FilterIngredientCommand"></a>
 #### 5.5.5&ensp;Filtering Ingredients — **`filter`**`ingredient` (Jialei)
+
 This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
 
 **Usage**:
@@ -1081,33 +1091,42 @@ filter ingredient
 - Keywords following `/tag` do not have to be complete to match the 'tag' name.
 - `/expiry <expiry-date>` filters the ingredients and only lists those that expire before the date provided.
 - When there are multiple expiry dates specified,, only the earliest one will be considered.
-- Except for the changes in the search fields, this feature works identically to the `filter recipe` command [above](#FilterRecipeCommand).
+- Except for the changes in the search fields, this feature works identically to the [`filter recipe`](#FilterRecipeCommand) command above.
 
 Constraints:
 - At least one search term must be given, and they should be either `/expiry` or `/tag`.
 - Search terms must not be empty.
 
 Examples:
-- `filter ingredient /tag bitter taste` will match **bitter melon** and **dark chocolate**, the only ingredients with the 'tag' **bitter taste**.
-- `filter ingredient /tag frequently used /tag sweet` will match **sugar**, the only ingredient with the 'tag' **frequently used** and 'tag' **sweet**.
-- `filter ingredient /expiry 2020-12-01` will match **apple**, the only 'ingredient' expiring before **2020-12-01**.
-- `filter ingredient /expiry 2022-12-31 /expiry 2020-10-31 /expiry 2023-01-01` will match **chocolate**, the only ingredient expiring before **2020-10-31**.
-- `filter ingredient /tag powdery /expiry 2020-12-31 /expiry 2020-12-01 /tag bakery` will match **baking soda**, the only ingredient that matches all criteria specified.
+- `filter ingredient /tag bitter taste` <br />
+  This matches **bitter melon** and **dark chocolate**, assuming they are the only ingredients tagged with **bitter taste**.
 
-To illustrate, suppose you want to search for ingredients with 'tags' **all time** and **favourite**, and expire earlier than the 'expiry date' **2020-12-31**, you could use `filter ingredient /tag all time /expiry 2020-12-31 /expiry 2021-01-01 /tag favourite`:
+- `filter ingredient /tag frequently used /tag sweet` <br />
+  This matches **sugar**, if it is the only ingredient tagged both **frequently used** and **sweet**.
+
+- `filter ingredient /expiry 2020-12-01 /expiry 2020-10-31 /expiry 2023-01-01` <br />
+  This matches **apple**, if it is the only ingredient expiring before **2020-10-31**. Note that only the earliest date is considered here (in this case, 31st October 2020), and the rest are ignored.
+
+- `filter ingredient /tag powdery /expiry 2020-12-31 /tag bakery` <br />
+  This matches **baking soda**, assuming it is the only ingredient that matches all the specified criteria.
+
+To illustrate, suppose you want to search for ingredients tagged both **delicious** and **favourite**, and expiring before **2020-12-31**; you can use `filter ingredient /tag delicious /expiry 2020-12-31 /tag favourite`:
+
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
-Figure 14.1: <i>The starting state of the application</i>
+Figure 14.1: <i>The initial list of ingredients</i>
 </div>
 
-After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing only the matching ingredient, **apple**.
+After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Bacon** and **Rainbow Sprinkles**:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
-Figure 14.2: <i>The ingredient matching all criteria provided</i>
+Figure 14.2: <i>The ingredients matching all the provided criteria</i>
 </div>
 
-Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command:
+Note that **Chocolate Sprinkles**, which was also tagged **delicious** and **favourite**, was not included because it expired in 2021.
+
+Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command.
 
 
 
