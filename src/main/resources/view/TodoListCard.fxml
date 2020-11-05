@@ -53,7 +53,7 @@
         <Label fx:id="name" style="-fx-wrap-text: true;" styleClass="cell_big_label" text="\$name" wrapText="true" />
       </HBox>
          <Label style="-fx-font-size: 1;" />
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="taskTags" />
          <Label style="-fx-font-size: 5;" />
       <Label fx:id="priority" style="-fx-font-size: 16; -fx-text-fill: yellow;" styleClass="cell_small_label" text="\$priority" />
          <Label style="-fx-font-size: 5;" />
