@@ -24,7 +24,7 @@ public class TypicalIngredients {
     public static final Ingredient BANANA = new IngredientBuilder().withValue("Banana").build();
     public static final Ingredient OAT = new IngredientBuilder().withValue("Oat").build();
     public static final Ingredient CHOCOLATE = new IngredientBuilder().withValue("Chocolate").build();
-    public static final Ingredient VALID_INGREDIENT1 =
+    public static final Ingredient POTATO1 =
             new IngredientBuilder().withValues("Potato", "2 whole").build();
     public static final Ingredient VALID_INGREDIENT2 =
             new IngredientBuilder().withValues("Banana", "200g").build();

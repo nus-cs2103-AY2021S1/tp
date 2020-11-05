@@ -133,6 +133,11 @@ public class AddRecipeCommandTest {
         }
 
         @Override
+        public boolean hasMinimalRecipe(Recipe recipe) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteRecipe(Recipe target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -188,6 +193,11 @@ public class AddRecipeCommandTest {
         }
 
         @Override
+        public boolean hasMinimalIngredient(Ingredient ingredient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteIngredient(Ingredient target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -236,6 +246,12 @@ public class AddRecipeCommandTest {
             requireNonNull(recipe);
             return this.recipe.isSameRecipe(recipe);
         }
+
+        @Override
+        public boolean hasMinimalRecipe(Recipe recipe) {
+            requireNonNull(recipe);
+            return this.recipe.isSameRecipeNameAndIngredientName(recipe);
+        }
     }
 
     /**
@@ -248,6 +264,12 @@ public class AddRecipeCommandTest {
         public boolean hasRecipe(Recipe recipe) {
             requireNonNull(recipe);
             return recipesAdded.stream().anyMatch(recipe::isSameRecipe);
+        }
+
+        @Override
+        public boolean hasMinimalRecipe(Recipe recipe) {
+            requireNonNull(recipe);
+            return recipesAdded.stream().anyMatch(recipe::isSameRecipeNameAndIngredientName);
         }
 
         @Override
