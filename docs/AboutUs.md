@@ -53,7 +53,7 @@ You can reach us at the email `nustorage[at]comp.nus.edu.sg`
 <img src="images/AboutUs/elgoh.png" width="200px">
 
 [[github](https://github.com/Elgoh)]
-[[portfolio](team/eeliang.md)]
+[[portfolio](team/elgoh.md)]
 
 * Role: Developer
 * Responsibilities: Inventory components, Testing and Documentation
@@ -63,7 +63,7 @@ You can reach us at the email `nustorage[at]comp.nus.edu.sg`
 <img src="images/AboutUs/howtoosee.png" width="200px">
 
 [[github](https://github.com/howtoosee)]
-[[portfolio](team/xihao.md)]
+[[portfolio](team/howtoosee.md)]
 
 * Role: Developer
 * Responsibilities: Storage components, Testing and Documentation
@@ -73,7 +73,7 @@ You can reach us at the email `nustorage[at]comp.nus.edu.sg`
 <img src="images/AboutUs/ironbiscuit.png" width="200px">
 
 [[github](https://github.com/IronBiscuit)]
-[[portfolio](team/yuyang.md)]
+[[portfolio](team/ironbiscuit.md)]
 
 * Role: Developer
 * Responsibilities: UI, Testing and Documentation
