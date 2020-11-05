@@ -226,8 +226,10 @@ public class EditRecipeCommand extends Command implements Undoable {
 
             if (edit.getEditType() == EditOperationType.ADD) {
 
-                // it's a Set<Tag>, so we don't need to check for dupes.
-                tags.add(new Tag(tagName));
+                if (!tags.add(new Tag(tagName))) {
+                    return Result.error("Recipe '%s' already has tag '%s'", this.recipe.getName(),
+                            tagName);
+                }
 
             } else if (edit.getEditType() == EditOperationType.DELETE) {
 

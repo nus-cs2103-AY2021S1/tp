@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
 
+import chopchop.logic.commands.EditIngredientCommand;
 import chopchop.logic.commands.EditRecipeCommand;
+import chopchop.logic.edit.IngredientEditDescriptor;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.commons.util.Result;
@@ -41,14 +43,25 @@ public class EditCommandParser {
 
         return getCommandTarget(args)
             .then(target -> {
-                if (target.fst() != CommandTarget.RECIPE) {
-                    return Result.error("Only recipes can be edited");
-                } else if (target.snd().isEmpty()) {
-                    return Result.error("Recipe name cannot be empty");
+                if (target.snd().isEmpty()) {
+                    return Result.error("Recipe or ingredient name cannot be empty");
                 }
 
-                return ItemReference.parse(target.snd());
-            })
+                switch (target.fst()) {
+                case RECIPE:
+                    return parseEditRecipeCommand(target.snd().strip(), args);
+
+                case INGREDIENT:
+                    return parseEditIngredientCommand(target.snd().strip(), args);
+
+                default:
+                    return Result.error("Can only delete recipes or ingredients ('%s' invalid)", target.fst());
+                }
+            });
+    }
+
+    private static Result<EditRecipeCommand> parseEditRecipeCommand(String name, CommandArguments args) {
+        return ItemReference.parse(name)
             .then(item -> {
 
                 Optional<String> editedName = Optional.empty();
@@ -106,7 +119,7 @@ public class EditCommandParser {
                         return Result.error("/qty can only appear after an /ingredient:add or /ingredient:delete");
 
                     } else {
-                        return Result.error("'edit' command doesn't support '%s'", argName);
+                        return Result.error("'edit recipe' command doesn't support '%s'", argName);
                     }
                 }
 
@@ -129,8 +142,33 @@ public class EditCommandParser {
             });
     }
 
+    private static Result<EditIngredientCommand> parseEditIngredientCommand(String name, CommandArguments args) {
+        return ItemReference.parse(name)
+            .then(item -> {
+                var tagEdits = new ArrayList<Result<TagEditDescriptor>>();
 
+                for (var arg : args.getAllArguments()) {
+                    var argName = arg.fst();
+                    var argValue = arg.snd();
 
+                    if (argName.nameEquals(ARG_TAG)) {
+                        tagEdits.add(parseTagEdit(argName, argValue));
+                    } else {
+                        return Result.error("'edit ingredient' command doesn't support '%s'", argName);
+                    }
+                }
+
+                var tes = Result.sequence(tagEdits);
+
+                if (tes.isError()) {
+                    return Result.error(tes.getError());
+                }
+
+                return Result.of(new EditIngredientCommand(item,
+                    new IngredientEditDescriptor(tes.getValue())
+                ));
+            });
+    }
 
     private static Result<IngredientRefEditDescriptor> parseIngredientEdit(ArgName argName, String ingredientName,
                                                                            Optional<Quantity> qty) {

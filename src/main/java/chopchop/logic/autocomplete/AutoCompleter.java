@@ -718,8 +718,7 @@ public class AutoCompleter {
             // all commands that take a target will take ingredients, except MAKE, EDIT, and VIEW.
             return commandRequiresTarget(command)
                 && !command.equals(Strings.COMMAND_VIEW)
-                && !command.equals(Strings.COMMAND_MAKE)
-                && !command.equals(Strings.COMMAND_EDIT);
+                && !command.equals(Strings.COMMAND_MAKE);
         } else {
 
             // only list accepts recommendations.

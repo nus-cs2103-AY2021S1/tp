@@ -59,7 +59,7 @@ public class HelpCommand extends Command {
         var ret = CommandResult.message("%s: %s", cmdStr, cmdHelp);
 
         if (!ugSection.endsWith("Dummy")) {
-            return ret.appending("see the", /* newline: */ true)
+            return ret.appending("See the", /* newline: */ true)
                 .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + ugSection,
                     /* newline: */ false);
         } else {
@@ -236,7 +236,7 @@ public class HelpCommand extends Command {
             return "edit";
         }
         public static String getCommandHelp() {
-            return "Edits an item; see 'edit recipe'";
+            return "Edits an item; see 'edit recipe' or 'edit ingredient'";
         }
     }
 
