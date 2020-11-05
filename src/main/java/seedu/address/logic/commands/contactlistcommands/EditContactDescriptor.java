@@ -19,6 +19,7 @@ public class EditContactDescriptor {
     private ContactName name;
     private Email email;
     private Telegram telegram;
+    private boolean isTelegramDeleted = false;
     private Set<Tag> tags;
 
     public EditContactDescriptor() {}
@@ -32,13 +33,14 @@ public class EditContactDescriptor {
         setEmail(toCopy.email);
         setTelegram(toCopy.telegram);
         setTags(toCopy.tags);
+        this.isTelegramDeleted = toCopy.isTelegramDeleted;
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, email, telegram, tags);
+        return CollectionUtil.isAnyNonNull(name, email, telegram, tags) || isTelegramDeleted;
     }
 
     public void setName(ContactName name) {
@@ -63,6 +65,14 @@ public class EditContactDescriptor {
 
     public Optional<Telegram> getTelegram() {
         return Optional.ofNullable(telegram);
+    }
+
+    public void setTelegramDeleted() {
+        this.isTelegramDeleted = true;
+    }
+
+    public boolean isTelegramDeleted() {
+        return this.isTelegramDeleted;
     }
 
     /**
