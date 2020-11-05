@@ -6,7 +6,7 @@ title: About Us
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg), formed
 to fulfill the team project requirements of [CS2103T](https://nusmods.com/modules/CS2103T/software-engineering)
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `nustorage[at]comp.nus.edu.sg`
 
 ## Project team
 
@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/fizzyagent.md)]
 
 * Role: Team Lead
-* Responsibilities: NA
+* Responsibilities: Finance components, Testing and Documentation
 
 ### Dora Heng
 
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/dora.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: UI, Testing and Documentation
 
 ### Goh Ee Liang
 
@@ -56,9 +56,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/eeliang.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: Inventory components, Testing and Documentation
 
-### Chen XiHao
+### Chen Xihao
 
 <img src="images/AboutUs/howtoosee.png" width="200px">
 
@@ -66,7 +66,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/xihao.md)]
 
 * Role: Developer
-* Responsibilities: NA
+* Responsibilities: Storage components, Testing and Documentation
 
 ### Lim Yu Yang
 
@@ -76,8 +76,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yuyang.md)]
 
 * Role: Developer
-* Responsibilities: NA
-
-
-
-
+* Responsibilities: UI, Testing and Documentation
