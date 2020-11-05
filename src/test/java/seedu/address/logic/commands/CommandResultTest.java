@@ -139,7 +139,7 @@ public class CommandResultTest {
                 false, false, false).isShouldShowSchedule());
         // same showSchedule -> returns same showSchedule
         assertEquals(true, new CommandResult("feedback", false,
-        false, true, false).isShouldShowSchedule());
+                false, true, false).isShouldShowSchedule());
     }
 
     @Test
