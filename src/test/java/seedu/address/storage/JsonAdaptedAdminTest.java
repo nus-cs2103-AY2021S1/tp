@@ -28,7 +28,7 @@ public class JsonAdaptedAdminTest {
     private static final String VALID_CLASS_VENUE = BOB.getClassVenue().toString();
     private static final String VALID_CLASS_TIME = BOB.getClassTime().convertClassTimeToUserInputString();
     private static final String VALID_FEE = BOB.getFee().convertFeeToUserInputString();
-    private static final String VALID_PAYMENT_DATE = BOB.getPaymentDate().convertPaymentDateToUserInputString();
+    private static final String VALID_PAYMENT_DATE = BOB.getPaymentDate().getUserInputDate();
     private static final List<JsonAdaptedDetail> VALID_ADDITIONAL_DETAILS =
             BOB.getDetails().stream().map(JsonAdaptedDetail::new).collect(Collectors.toList());
 

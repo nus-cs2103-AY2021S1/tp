@@ -12,7 +12,8 @@ import seedu.address.model.schedule.ScheduleViewMode;
 public class ScheduleViewCommand extends ScheduleCommand {
     public static final String COMMAND_WORD = "schedule";
     public static final String MESSAGE_INVALID_VIEW_MODE = "Invalid view mode!";
-    public static final String MESSAGE_INVALID_DATE = "Invalid date!";
+    public static final String MESSAGE_CONSTRAINTS = "Input date should be in the form dd/mm/yyyy, "
+            + "and should not be blank";
     public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
             + "m/[weekly / daily]\n"
             + "d/[dd/mm/yyyy]\n"

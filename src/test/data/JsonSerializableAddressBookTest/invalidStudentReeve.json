@@ -19,7 +19,7 @@
       } ],
       "attendanceList" : [{
         "date" : "14/04/1998",
-        "attendanceStatus" : "attended",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {

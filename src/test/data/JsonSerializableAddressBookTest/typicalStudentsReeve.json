@@ -24,7 +24,7 @@
       }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -61,7 +61,7 @@
       }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -98,7 +98,7 @@
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -135,7 +135,7 @@
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -172,7 +172,7 @@
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -209,7 +209,7 @@
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -246,7 +246,7 @@
       } ],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : "present",
+        "attendanceStatus" : true,
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {

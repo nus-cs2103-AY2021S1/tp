@@ -7,7 +7,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,10 +66,8 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
         }
         Student studentToDeleteAttendance = lastShownList.get(index.getZeroBased());
 
-        List<Attendance> attendanceList = new ArrayList<>(studentToDeleteAttendance.getAttendance());
-        List<Attendance> updatedAttendanceList = this.updateAttendanceList(attendanceList);
-
-        Student updatedStudent = super.updateStudentAttendance(studentToDeleteAttendance, updatedAttendanceList);
+        List<Attendance> updatedAttendance = updateAttendanceList(studentToDeleteAttendance.getAttendance());
+        Student updatedStudent = updateStudentAttendance(studentToDeleteAttendance, updatedAttendance);
 
         model.setStudent(studentToDeleteAttendance, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
@@ -80,8 +77,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
     }
 
     private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
-        boolean containsAttendanceAtDate = attendanceList
-                .stream()
+        boolean containsAttendanceAtDate = attendanceList.stream()
                 .anyMatch(attendance -> attendance.getLessonDate().equals(attendanceDate));
 
         if (!containsAttendanceAtDate) {
