@@ -19,8 +19,9 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_AMOUNT = "Amount is not a decimal value.";
     public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
-    public static final String MESSAGE_INVALID_QUANITY = "Quantity is not a non-zero integer.";
-    public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be a positive numerical value.";
+    public static final String MESSAGE_INVALID_QUANTITY = "Quantity must be an integer"
+            + " and more than or equals to zero.";
+    public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be more than or equals to zero.";
     public static final String MESSAGE_INVALID_YESNO = "Yes/No input must be one of the following: yes/y/no/n.";
 
     /**
@@ -31,7 +32,7 @@ public class ParserUtil {
         String trimmedAmount = itemCost.trim();
         try {
             double cost = Double.parseDouble(trimmedAmount);
-            if (cost <= 0) {
+            if (cost < 0) {
                 throw new ParseException(MESSAGE_INVALID_ITEM_COST);
             }
             return cost;
@@ -56,9 +57,13 @@ public class ParserUtil {
     public static int parseQuantity(String quantity) throws ParseException {
         String trimmedQuantity = quantity.trim();
         try {
+            int itemQuantity = Integer.parseInt(trimmedQuantity);
+            if (itemQuantity < 0) {
+                throw new ParseException(MESSAGE_INVALID_QUANTITY);
+            }
             return Integer.parseInt(trimmedQuantity);
         } catch (NumberFormatException e) {
-            throw new ParseException(MESSAGE_INVALID_QUANITY);
+            throw new ParseException(MESSAGE_INVALID_QUANTITY);
         }
     }
 

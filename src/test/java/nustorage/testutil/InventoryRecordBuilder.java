@@ -15,10 +15,11 @@ public class InventoryRecordBuilder {
     public static final String DEFAULT_TIME = "13:00";
     public static final double DEFAULT_COST = 30;
     public static final int DEFAULT_QUANTITY = 55;
+    public static final int DEFAULT_FINANCE_ID = 0;
 
     private String itemName;
     private LocalDateTime dateTime;
-    private double cost;
+    private Double cost;
     private int financeId;
     private int quantity;
 
@@ -30,6 +31,7 @@ public class InventoryRecordBuilder {
         dateTime = LocalDateTime.of(LocalDate.parse(DEFAULT_DATE), LocalTime.parse(DEFAULT_TIME));
         cost = DEFAULT_COST;
         quantity = DEFAULT_QUANTITY;
+        financeId = DEFAULT_FINANCE_ID;
     }
 
     /**
@@ -39,6 +41,7 @@ public class InventoryRecordBuilder {
         itemName = recordToCopy.getItemName();
         dateTime = recordToCopy.getDateTime();
         cost = recordToCopy.getUnitCost();
+        quantity = recordToCopy.getQuantity();
         financeId = recordToCopy.getFinanceId();
     }
 
@@ -52,8 +55,8 @@ public class InventoryRecordBuilder {
 
     /**
      * Sets the record's unit cost and returns the record.
-     * @param cost
-     * @return
+     * @param cost updated cost of inventory record.
+     * @return Inventory record builder
      */
     public InventoryRecordBuilder withCost(double cost) {
         this.cost = cost;

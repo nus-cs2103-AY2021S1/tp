@@ -8,6 +8,7 @@ import nustorage.model.FinanceAccount;
 import nustorage.model.Inventory;
 import nustorage.model.Model;
 import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyInventory;
 import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
