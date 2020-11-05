@@ -166,7 +166,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Displays menu if vendor has been selected, otherwise display vendor list.
      */
-    void updateMenu() {
+    void updateMode() {
         boolean bool = logic.isSelected();
 
         foodListPanel = new FoodListPanel(logic.getFilteredMenuItemList());
@@ -241,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isVendor()) {
-                updateMenu();
+                updateMode();
             }
 
             return commandResult;
