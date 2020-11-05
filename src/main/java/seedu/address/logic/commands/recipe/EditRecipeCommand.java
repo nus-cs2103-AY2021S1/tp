@@ -105,9 +105,8 @@ public class EditRecipeCommand extends Command {
         if (recipeToEdit.isSameRecipe(editedRecipe)) {
             throw new CommandException(MESSAGE_NOT_EDITED);
         }
-        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
-
-
+        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe),
+                ListRecipesCommand.COMMAND_WORD);
     }
 
     /**
