@@ -1,6 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DAY_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATE_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103T;
@@ -52,8 +58,9 @@ public class LessonCommandParserTest {
                 ),
                 Time.RANGE_CONSTRAINTS);
     }
+
     @Test
-    public void parse_invalidTime_returnsFalse() {
+    public void parse_invalidTimeRange_returnsFalse() {
         // start time same as end time
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
@@ -81,6 +88,115 @@ public class LessonCommandParserTest {
                 ),
                 Time.RANGE_CONSTRAINTS);
     }
+
+    @Test
+    public void parse_invalidDateRange_returnsFalse() {
+        // start date same as end date
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_START_DATE_CS2103T
+                ),
+                DateTimeUtil.RANGE_CONSTRAINTS);
+        // end date before start date
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_END_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_START_DATE_CS2103T
+                ),
+                DateTimeUtil.RANGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidTime_returnsFalse() {
+        //invalid start time
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, INVALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                DateTimeUtil.TIME_CONSTRAINTS);
+
+        //invalid end time
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, INVALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                DateTimeUtil.TIME_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidDate_returnsFalse() {
+        //invalid start date
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, INVALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                DateTimeUtil.DATE_CONSTRAINTS);
+
+        //invalid end date
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, INVALID_END_DATE_CS2103T
+                ),
+                DateTimeUtil.DATE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidDay_returnsFalse() {
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, INVALID_DAY_CS2103T,
+                        PREFIX_DESCRIPTION, VALID_DESC_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                DateTimeUtil.DAY_MESSAGE_CONSTRAINTS);
+    }
+
     @Test
     public void parse_validArgs_returnsLessonCommand() {
         Lesson expectedLesson = new Lesson(new Title(VALID_TITLE_CS2103T), new Tag(VALID_TAG_CS2103T),
@@ -253,7 +369,7 @@ public class LessonCommandParserTest {
         //missing day
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
                         PREFIX_TAG, VALID_TAG_CS2103T,
                         PREFIX_START_TIME, VALID_START_TIME_CS2103T,
                         PREFIX_END_TIME, VALID_END_TIME_CS2103T,
@@ -264,7 +380,7 @@ public class LessonCommandParserTest {
         //missing start time
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
                         PREFIX_TAG, VALID_TAG_CS2103T,
                         PREFIX_DAY, VALID_DAY_CS2103T,
                         PREFIX_END_TIME, VALID_END_TIME_CS2103T,
@@ -275,7 +391,7 @@ public class LessonCommandParserTest {
         //missing end time
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
                         PREFIX_TAG, VALID_TAG_CS2103T,
                         PREFIX_DAY, VALID_DAY_CS2103T,
                         PREFIX_START_TIME, VALID_START_TIME_CS2103T,
@@ -286,7 +402,7 @@ public class LessonCommandParserTest {
         //missing start date
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
                         PREFIX_TAG, VALID_TAG_CS2103T,
                         PREFIX_DAY, VALID_DAY_CS2103T,
                         PREFIX_START_TIME, VALID_START_TIME_CS2103T,
@@ -297,7 +413,7 @@ public class LessonCommandParserTest {
         //missing end date
         assertParseFailure(parser,
                 String.format(" %s%s %s%s %s%s %s%s %s%s %s%s",
-                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
                         PREFIX_TAG, VALID_TAG_CS2103T,
                         PREFIX_DAY, VALID_DAY_CS2103T,
                         PREFIX_START_TIME, VALID_START_TIME_CS2103T,
@@ -305,5 +421,108 @@ public class LessonCommandParserTest {
                         PREFIX_START_DATE, VALID_START_DATE_CS2103T
                 ),
                 expectedErrorMessage);
+    }
+
+    @Test
+    public void parse_multipleAttributes_returnsFalse() {
+        String expectedErrorMessage = MESSAGE_MULTIPLE_ATTRIBUTES;
+        //multiple titles
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+        //multiple tags
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+        //multiple days
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+        //multiple start times
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+        //multiple end times
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+        //multiple start dates
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+        //multiple end dates
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_CS2103T,
+                        PREFIX_TAG, VALID_TAG_CS2103T,
+                        PREFIX_DAY, VALID_DAY_CS2103T,
+                        PREFIX_START_TIME, VALID_START_TIME_CS2103T,
+                        PREFIX_END_TIME, VALID_END_TIME_CS2103T,
+                        PREFIX_START_DATE, VALID_START_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T,
+                        PREFIX_END_DATE, VALID_END_DATE_CS2103T
+                ),
+                expectedErrorMessage);
+
+
     }
 }
