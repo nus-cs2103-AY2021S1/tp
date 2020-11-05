@@ -10,6 +10,11 @@ import java.util.Objects;
 
 import seedu.address.model.patient.Name;
 
+//@@author SQwQ-reused
+//Reused from
+//github.com/AY1920S1-CS2103T-F12-2/main/blob/master/src/main/java/unrealunity/visit/model/person/VisitReport.java
+//with modifications
+
 /**
  * Represents a patient's visit in the CliniCal application.
  * Guarantees: details are present and not null, field values are validated, immutable.
