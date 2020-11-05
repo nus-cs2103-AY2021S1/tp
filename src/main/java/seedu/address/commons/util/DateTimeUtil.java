@@ -4,6 +4,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
@@ -60,7 +61,18 @@ public class DateTimeUtil {
     public static boolean isValidTime(String test) {
         return test.matches(TIME_VALIDATION_REGEX);
     }
-
+    /**
+     * Returns true if the start date is before the end date.
+     */
+    public static boolean isStartDateBeforeEndDate(LocalDate startDate, LocalDate endDate) {
+        return startDate.isBefore(endDate);
+    }
+    /**
+     * Returns true if the start time is before the end time.
+     */
+    public static boolean isStartTimeBeforeEndTime(LocalTime startTime, LocalTime endTime) {
+        return startTime.isBefore(endTime);
+    }
     /**
      * @param input the string value for a date
      * @return a LocalDate object representing the specific date
