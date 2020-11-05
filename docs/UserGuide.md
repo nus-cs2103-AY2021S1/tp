@@ -178,8 +178,8 @@ Edits a flashcard.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...`
 
-* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 * Edits the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to `NOTE`, `RATING`, `TAG` or `DIAGRAM` eg. `r/` will remove the corresponding field in the flashcard.
 * Although `QUESTION`, `ANSWER` and `CATEGORY` are optional values, you are not allowed to specify an empty value to those attributes 
@@ -217,13 +217,12 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
-* You can remove all filters applied by using the [list](#List-all-flashcards) command.
 <div markdown="span" class="alert alert-primary">:memo: Note:
 <code>filter r/</code> will filter for all unrated flashcards.
 </div><br>
-<span markdown="1" class="alert alert-primary">:bulb: **Tip:**</span> 
+<div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
 
-Want to list all your flashcards after using `filter`? Use the [list](#List-all-flashcards) command.
+Want to list all your flashcards after using `filter`? Use the [list](#list-all-flashcards--list) command.
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
@@ -275,7 +274,7 @@ Format: `find KEYWORD [KEYWORD]...`
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
 <div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
 
-Want to list all your flashcards after using `find`? Use the [list](#List-all-flashcards) command.
+Want to list all your flashcards after using `find`? Use the [list](#list-all-flashcards--list) command.
 
 Examples: 
 * `find general` 
@@ -398,6 +397,10 @@ Format: `view INDEX [-a]`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
+Examples:
+* `view 1` shows the 1st flashcard (in the displayed list) on the view pane without answer.
+* `view 1 -a` shows the 1st flashcard (in the displayed list) on the view pane with answer.
+
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
@@ -430,17 +433,17 @@ Format: `stats INDEX`
 * Shows the statistics of the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
-The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
+Example:
+* `stats 1` shows the statistics of the 1st flashcard (in the displayed list) on the view pane.
+
+The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
 The following information will be displayed on the view pane:
 * Question of the flashcard.
 * Reviewed count of the flashcard.
 * Correct count of the flashcard.
-* Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard.
+* Pie chart to show the graphical representation of correct attempts vs wrong attempts in quiz mode of the flashcard. (No pie chart will be shown if the flashcard has not been reviewed.)
 
-<div markdown="span" class="alert alert-primary">:memo: Note: No pie chart will be shown if the flashcard has not been reviewed.    
-</div>
-<br>
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane containing the statistics will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
 </div>
