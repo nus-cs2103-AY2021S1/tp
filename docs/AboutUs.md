@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Eugene
+### Eugene Teu
 
 <img src="images/AboutUs/eugeneteu.png" width="200px">
 
@@ -28,7 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Tutor
 
 
-### Pin Xi
+### Tan Pinxi
 
 <img src="images/AboutUs/fizzyagent.png" width="200px">
 
@@ -38,7 +38,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Team Lead
 * Responsibilities: NA
 
-### Dora
+### Dora Heng
 
 <img src="images/AboutUs/door-oof.png" width="200px">
 
@@ -48,7 +48,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: NA
 
-### Ee Liang
+### Goh Ee Liang
 
 <img src="images/AboutUs/elgoh.png" width="200px">
 
@@ -58,7 +58,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: NA
 
-### XiHao
+### Chen XiHao
 
 <img src="images/AboutUs/howtoosee.png" width="200px">
 
@@ -68,7 +68,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: NA
 
-### Yu Yang
+### Lim Yu Yang
 
 <img src="images/AboutUs/ironbiscuit.png" width="200px">
 

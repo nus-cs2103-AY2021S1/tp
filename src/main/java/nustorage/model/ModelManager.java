@@ -1,6 +1,5 @@
 package nustorage.model;
 
-
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -89,8 +88,12 @@ public class ModelManager implements Model {
 
     //=========== InventoryWindow ================================================================================
 
+    /**
+     * Adds a new inventory record to the list
+     */
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
+        updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
     }
 
     public ObservableList<InventoryRecord> getFilteredInventory() {
@@ -143,6 +146,7 @@ public class ModelManager implements Model {
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addFinanceRecord(newRecord);
+        updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCE);
     }
 
     @Override

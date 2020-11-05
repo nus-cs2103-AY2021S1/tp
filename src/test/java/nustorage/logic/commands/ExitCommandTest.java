@@ -2,6 +2,7 @@ package nustorage.logic.commands;
 
 import static nustorage.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static nustorage.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,5 +17,6 @@ public class ExitCommandTest {
     public void execute_exit_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
+        assertTrue(expectedCommandResult.isExit() == true);
     }
 }
