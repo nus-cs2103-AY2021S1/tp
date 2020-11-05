@@ -24,7 +24,7 @@
             </stylesheets>
             <HBox>
                 <children>
-                    <VBox>
+                    <VBox maxWidth="-Infinity" prefWidth="300.0">
                         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                             <Menu mnemonicParsing="false" text="File">
                                 <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />

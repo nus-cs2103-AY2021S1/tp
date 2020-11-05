@@ -22,7 +22,7 @@
                         <Font size="70.0" />
                      </font>
                      <padding>
-                        <Insets bottom="30" top="10" />
+                        <Insets bottom="15" top="5" />
                      </padding>
                   </Label>
                </children>
@@ -32,7 +32,7 @@
                   <Font size="50.0" />
                </font>
                <padding>
-                  <Insets bottom="20" top="20" />
+                  <Insets bottom="10" top="10" />
                </padding>
             </Label>
             <Label id="dashboardRU" fx:id="repoUrl" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$repoUrl" wrapText="true">
@@ -40,7 +40,7 @@
                   <Font size="50.0" />
                </font>
                <padding>
-                  <Insets bottom="20" />
+                  <Insets bottom="10" />
                </padding>
             </Label>
             <Label id="Header" fx:id="header1" layoutX="25.0" layoutY="384.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header1">
@@ -48,7 +48,7 @@
                   <Font size="50.0" />
                </font>
                <padding>
-                  <Insets bottom="10" />
+                  <Insets bottom="5" />
                </padding>
             </Label>
             <Text id="dashboardPD" fx:id="projectDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="projectDesc">
@@ -56,7 +56,7 @@
                   <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" top="10.0" />
+                  <Insets bottom="10.0" top="5.0" />
                </VBox.margin>
             </Text>
             <Label id="Header" fx:id="header2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
@@ -64,7 +64,7 @@
                   <Font size="50.0" />
                </font>
                <padding>
-                  <Insets bottom="10" />
+                  <Insets bottom="5" />
                </padding>
             </Label>
             <Text id="List" fx:id="teammates" layoutX="25.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="teammates">
@@ -72,7 +72,7 @@
                   <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
             </Text>
             <Label id="Header" fx:id="header3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header3">
@@ -80,7 +80,7 @@
                   <Font size="50.0" />
                </font>
                <padding>
-                  <Insets bottom="10" />
+                  <Insets bottom="5" />
                </padding>
             </Label>
             <Text id="List" fx:id="tasks" layoutX="25.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tasks">
@@ -88,7 +88,7 @@
                   <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
             </Text>
          </children>

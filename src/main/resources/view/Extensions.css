@@ -20,12 +20,12 @@
 }
 
 #Header {
-    -fx-font: 25pt"Arial";
+    -fx-font: 20pt"Arial";
     -fx-background-color: #F3CE8F;
 }
 
 #Title {
-    -fx-font: 45pt"Arial";
+    -fx-font: 25pt"Arial";
     -fx-background-color: #F3CE8F;
 }
 
@@ -34,10 +34,6 @@
 }
 
 /*----------------------------------------- Project Dashboard ---------------------------------------------------*/
-
-#dashboardPT {
-    -fx-font: 25pt"Arial";
-}
 
 #dashboardDeadline {
     -fx-font: 15pt"Arial";
@@ -49,10 +45,6 @@
 
 #dashboardRU {
     -fx-font: 15pt"Arial";
-}
-
-#dashboardTask {
-    -fx-font: 25pt"Arial";
 }
 
 /*--------------------------------------- Task Dashboard ---------------------------------------------------*/
