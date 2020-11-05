@@ -14,6 +14,7 @@ import jimmy.mcgymmy.model.tag.Tag;
 
 /**
  * Represents a Food item in McGymmy.
+ * Immutable for defensive coding.
  */
 public class Food {
 
