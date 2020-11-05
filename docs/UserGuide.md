@@ -669,48 +669,54 @@ Figure 6.2: <i>The command to add a new ingredient to the recipe</i>
 Next, adding the eggs and milk in one go:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
+<img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
 Figure 6.3: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity using `/ingredient:edit`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
+<img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
 Figure 6.4: <i>Editing an ingredient to change its quantity</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
+<img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
 Figure 6.5: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps with `/step:add`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 6.6: <i>Adding the first step</i>
+<img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
+Figure 6.6: <i>Multiple steps can be added at the same time</i>
 </div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
+Figure 6.7: <i>The finished recipe</i>
+</div>
+
+Wait, we forgot to mix the ingredients together! Let's fix it by inserting a new step 2 with `/step:add:2`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 6.7: <i>Adding steps 2 and 3</i>
+Figure 6.8: <i>Adding a new step in the second position</i>
 </div>
 
-Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it with `/step:edit:2`:
+Oh no, we also forgot the most important thing — syrup! So let's modify the last step (4) to include syrup with `/step:edit:4`:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 6.8: <i>Editing the second step</i>
-</div>
-
-<div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/edit_recipe_11.png" width="75%" /> <br />
-Figure 6.9: <i>The actual completed recipe</i>
+<img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
+Figure 6.9: <i>Editing the last step</i>
 </div>
 
 And now the pancake recipe is complete!
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
+Figure 6.10: <i>The finished recipe</i>
+</div>
 
 
 
