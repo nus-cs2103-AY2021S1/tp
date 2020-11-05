@@ -197,11 +197,27 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+Figure 4.5.1. Class diagram for `Storage` component
 
-The `Storage` component,
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+From the diagram above, the `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save `Reeve` data in json format and read it back.
+* stores `Student` and `Note` data from the `Model` component in `JsonSerializableReeve` and `JsonSerializableNotebook` objects respectively.
+
+The `JsonSerializableReeve` component stores `JsonAdaptedStudent` objects converted from the `Student` objects in the `Model` component.
+Each `JsonAdaptedStudent` object also contains json-friendly versions of `Student` data as shown in the class diagram below.
+
+![Structure of JsonSerializableReeve](images/JsonSerializableReeveClassDiagram.png)
+
+Figure 4.5.2. Class diagram for `JsonSerializableReeve` component
+
+The `JsonSerializableNotebook` component stores `JsonAdaptedNote` objects converted from `Note` objects in the `Model` component, as shown in the class diagram below.
+
+![Structure of JsonSerializableNotebook](images/JsonSerializableNotebookClassDiagram.png)
+
+Figure 4.5.3. Class diagram for `JsonSerializableNotebook` component
 
 ### 5.6 Common classes
 
@@ -307,13 +323,13 @@ The following sequence diagram shows how the `OverdueCommand` execution works.
 
 ![OverdueSequence](images/OverdueSequenceDiagram.png)
 
-Figure \___. Sequence diagram for `OverdueCommand` execution
+Figure 5.1.5.1. Sequence diagram for `OverdueCommand` execution
 
 The following activity diagram summarises the flow of events when `OverdueCommand` is executed.
 
 ![OverdueActivity](images/OverdueActivityDiagram.png)
 
-Figure \___. Activity diagram for `OverdueCommand` execution
+Figure 5.1.5.2. Activity diagram for `OverdueCommand` execution
 
 ### 6.3 Student academic details features
 
@@ -341,13 +357,13 @@ The following sequence diagram shows how the question adding operation works.
 
 ![AddQuestionSequence](images/AddQuestionSequenceDiagram.png)
 
-Figure \___. Sequence diagram for `AddQuestionCommand` execution
+Figure 5.2.1.1. Sequence diagram for `AddQuestionCommand` execution
 
 The following activity diagram summarises the flow of events when `AddQuestionCommand` is executed.
 
 ![AddQuestionActivity](images/AddQuestionActivityDiagram.png)
 
-Figure \___. Activity diagram for `AddQuestionCommand` execution
+Figure 5.2.1.2. Activity diagram for `AddQuestionCommand` execution
 
 ##### 6.3.1.2 Solve Question Command
 
@@ -365,13 +381,13 @@ The following sequence diagram shows how the question solving operation works.
 
 ![SolveQuestionSequence](images/SolveQuestionSequenceDiagram.png)
 
-Figure \___. Sequence diagram for `SolveQuestionCommand` execution
+Figure 5.2.2.1. Sequence diagram for `SolveQuestionCommand` execution
 
 The following activity diagram summarises the flow of events when `SolveQuestionCommand` is executed.
 
 ![SolveQuestionActivity](images/SolveQuestionActivityDiagram.png)
 
-Figure \___. Activity diagram for `SolveQuestionCommand` execution
+Figure 5.2.2.2. Activity diagram for `SolveQuestionCommand` execution
 
 ##### 6.3.1.3 Delete Question Command
 
@@ -389,13 +405,13 @@ The following sequence diagram shows how the question deletion operation works.
 
 ![DeleteQuestionSequence](images/DeleteQuestionSequenceDiagram.png)
 
-Figure \___. Sequence diagram for `DeleteQuestionCommand` execution
+Figure 5.2.3.1. Sequence diagram for `DeleteQuestionCommand` execution
 
 The following activity diagram summarises the flow of events when `DeleteQuestionCommand` is executed.
 
 ![DeleteQuestionActivity](images/DeleteQuestionActivityDiagram.png)
 
-Figure \___. Activity diagram for `DeleteQuestionCommand` execution
+Figure 5.2.3.2. Activity diagram for `DeleteQuestionCommand` execution
 
 #### 6.3.2 Student exam features
 
