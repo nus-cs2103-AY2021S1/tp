@@ -33,6 +33,10 @@ import seedu.address.logic.commands.ingredientcommands.IngredientRestockCommand;
 import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
 import seedu.address.logic.commands.ingredientcommands.SetCommand;
 import seedu.address.logic.commands.ingredientcommands.SetDefaultCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientSetDefaultCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientViewSingleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -102,8 +106,8 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case SetCommand.COMMAND_WORD:
-            return new SetCommandParser().parse(arguments);
+        case IngredientSetCommand.COMMAND_WORD:
+            return new IngredientSetCommandParser().parse(arguments);
 
         //@@author WM71811
         case IngredientFindCommand.COMMAND_WORD:
@@ -116,8 +120,11 @@ public class AddressBookParser {
         case SetAllCommand.COMMAND_WORD:
             return new SetAllCommandParser().parse(arguments);
 
-        case SetDefaultCommand.COMMAND_WORD:
-            return new SetDefaultCommand();
+        case IngredientSetAllCommand.COMMAND_WORD:
+            return new IngredientSetAllCommandParser().parse(arguments);
+
+        case IngredientSetDefaultCommand.COMMAND_WORD:
+            return new IngredientSetDefaultCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
