@@ -23,7 +23,7 @@ activate CommandParser
 
 CommandParser -> CommandParser : parseArgs("delete recipe #1")
 activate CommandParser
-CommandParser --> CommandParser : "recipe #1"
+CommandParser --> CommandParser
 deactivate CommandParser
 
 CommandParser -> DeleteCommandParser : parseDeleteCommand("recipe #1")
