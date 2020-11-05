@@ -1,9 +1,11 @@
 package com.eva.logic.commands;
 
+import static com.eva.logic.commands.AddLeaveCommand.MESSAGE_DUPLICATE_RECORD;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.testutil.Assert.assertThrows;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
 import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
@@ -37,7 +39,6 @@ import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
-import com.eva.testutil.PersonBuilder;
 import com.eva.testutil.staff.StaffBuilder;
 
 import javafx.collections.ObservableList;
@@ -105,7 +106,7 @@ class AddLeaveCommandTest {
     }
 
     @Test
-    public void execute_leaveRejectedByModelOnApplicantProfile_addFailure() throws Exception {
+    public void execute_leaveRejectedByModelOnApplicantProfile_throwsCommandException() throws Exception {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                 AddLeaveCommand.MESSAGE_WRONG_PANEL);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
@@ -116,7 +117,7 @@ class AddLeaveCommandTest {
     }
 
     @Test
-    public void execute_leaveRejectedByModelOnApplicantList_addFailure() throws Exception {
+    public void execute_leaveRejectedByModelOnApplicantList_throwsCommandException() throws Exception {
         String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL,
                 AddLeaveCommand.MESSAGE_WRONG_PANEL);
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
@@ -130,44 +131,54 @@ class AddLeaveCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStaffList().size() + 1);
         AddLeaveCommand addLeaveCommand = new AddLeaveCommand(outOfBoundIndex, LEAVE_LIST);
         assertCommandFailure(addLeaveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    /*
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        AddCommandTest.ModelStub modelStub = new AddCommandTest.ModelStubWithPerson(validPerson);
+    public void execute_duplicateLeaveStaff_throwsCommandException() {
+        model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        Staff staffToAddLeave = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
+        AddLeaveCommand addLeaveCommand = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+
+        for (Leave leave : LEAVE_LIST) {
+            model.addStaffLeave(staffToAddLeave, leave);
+        }
+
+        String expectedMessage = String.format(MESSAGE_DUPLICATE_RECORD, staffToAddLeave.getName(),
+                LEAVE_LIST.get(0).toErrorMessage());
+        assertCommandFailure(addLeaveCommand, model, expectedMessage);
     }
-    */
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddLeaveCommand differentIndex1 = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+        AddLeaveCommand differentIndex2 = new AddLeaveCommand(INDEX_SECOND_PERSON, LEAVE_LIST);
+        List<Leave> differentLeaves = new ArrayList<>();
+        differentLeaves.add(new Leave("10/10/2020"));
+        AddLeaveCommand differentLeave = new AddLeaveCommand(INDEX_FIRST_PERSON, differentLeaves);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(differentIndex1.equals(differentIndex1));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddLeaveCommand differentIndex1copy = new AddLeaveCommand(INDEX_FIRST_PERSON, LEAVE_LIST);
+        assertTrue(differentIndex1.equals(differentIndex1copy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(differentIndex1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(differentIndex1.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different index -> returns false
+        assertFalse(differentIndex1.equals(differentIndex2));
+
+        // different leaveList -> returns false
+        assertFalse(differentIndex1.equals(differentLeave));
     }
 
     /**

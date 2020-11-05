@@ -29,8 +29,8 @@ public class ListCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
                 getTypicalApplicantDatabase(), new UserPrefs());
-        expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
-                model.getApplicantDatabase(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalPersonDatabase(), getTypicalStaffDatabase(),
+                getTypicalApplicantDatabase(), new UserPrefs());
     }
 
     @Test
