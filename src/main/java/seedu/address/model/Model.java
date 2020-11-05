@@ -95,6 +95,11 @@ public interface Model {
     void setSalesBookFilePath(Path salesBookFilePath);
 
     /**
+     * Sets the user prefs' ingredient book file path.
+     */
+    void setIngredientBookFilePath(Path ingredientBookFilePath);
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
@@ -118,6 +123,8 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    boolean hasIngredient(Ingredient ingredient);
 
     /**
      * Deletes the given person.

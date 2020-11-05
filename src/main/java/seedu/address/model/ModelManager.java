@@ -116,7 +116,14 @@ public class ModelManager implements Model {
         userPrefs.setSalesBookFilePath(salesBookFilePath);
     }
 
+    @Override
+    public void setIngredientBookFilePath(Path ingredientBookFilePath) {
+        requireNonNull(ingredientBookFilePath);
+        userPrefs.setIngredientBookFilePath(ingredientBookFilePath);
+    }
+
     //=========== AddressBook ================================================================================
+
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -142,6 +149,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return ingredientBook.hasIngredient(ingredient);
     }
 
     @Override
