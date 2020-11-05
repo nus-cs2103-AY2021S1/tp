@@ -26,6 +26,8 @@ import seedu.address.model.food.MenuItem;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.profile.Profile;
+import seedu.address.model.vendor.Address;
+import seedu.address.model.vendor.Phone;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonPresetManagerStorage;
 import seedu.address.storage.JsonProfileManagerStorage;
@@ -94,7 +96,7 @@ public class SubmitCommandTest {
         Model model = TypicalModel.getModelManagerWithMenu();
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
         Storage storage = getDefaultStorage();
-        storage.saveProfileManager(new Profile("Block 123, Bobby Street 3", "22222222"));
+        storage.saveProfileManager(new Profile(new Phone("88888888"), new Address("Block 123, Bobby Street 3")));
         ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
 
         boolean copySuccess = true;
