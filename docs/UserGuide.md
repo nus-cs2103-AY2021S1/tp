@@ -92,7 +92,7 @@ Format: `delete case CASE_NO`
 Example: `list case` followed by `delete case 2` deletes the 2nd case in the list.
 
 #### Open case: `open case CASE_NO`
-Enters the specified case where users can add more information regarding the case
+Enters the specified case (opened to the right panel), where users can view and edit information for that particular case.
 [(see Investigation Case Page)](#investigation-case-page).
 
 Format:  `open case CASE_NO`
@@ -159,23 +159,26 @@ Switches to the `Witness` tab and lists all victims for the current case.
 Format: `list witness`
 
 #### Add description to the current case: `add desc d:DESC`
-Adds the description of the case.
+Adds the description of the current case if it does not already have a description.
 
 Format: `add desc d:DESC`
+- `DESC` cannot be blank.
 
-Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this case to “Kovan double murders of twins xxx and yyy”.
+Example: 
+- `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this case to “Kovan double murders of twins xxx and yyy”.
 
-This command is flexible. If a description has been added, this command will overwrite the current description.
-Tip: You can also use `add desc d:` to remove the current desc.
 
 #### Add document to the current case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document to the current case with the specified `TITLE` and `FILE_NAME`.
 
 Format: `add doc n:TITLE r:FILE_NAME`
+- `TITLE` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- This document with file name `FILE_NAME` must be manually added to the `references` folder provided before it can be added to the PIVOT system.
 
-Example: `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
+Example: 
+- `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
-This document must be manually added to the references folder provided before it can be added to the PIVOT system.
+
 
 #### Add suspect to the current case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
@@ -207,39 +210,42 @@ Example: `add witness n:John Doe g:M`
 
 Gender must either be `M` or `F`, not case-sensitive.
 
-#### Open document in the current case: `open doc DOC_NO`
-
-Opens the specified document at index `DOC_NO` in the list.
-
-Format: `open doc DOC_NO`
-
-Example: `open doc 1` opens the document in the list with index 1.
 
 #### Edit title in the current case: `edit title t:TITLE`
-Edits the title of the case with the specified `TITLE`.
+Edits the title of the case with the specified `TITLE`. Cannot be edited to another existing case title in the PIVOT program (Both Home and Archive).
 
 Format: `edit title t:TITLE`
+- `TITLE` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
 
-Example: `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
+Example: 
+- `edit title t:Murder case 29` updates the title of this case to “Murder case 29”.
 
 #### Edit status in the current case: `edit status s:STATUS`
 
-Edits the status (ACTIVE, COLD, CLOSED) of the case with the specified `STATUS`.
+Edits the status (ACTIVE, COLD, CLOSED) of the case with the specified `STATUS`. It will overwrite the existing status as long as the input status is valid.
 
 Format: `edit status s:STATUS`
+- `STATUS` can only be active, cold, or closed
+- `STATUS` is not case-sensitive.
 
-Example: `edit status s:CLOSED` updates the status of this case to “CLOSED”.
+Example: 
+- `edit status s:CLOSED` updates the status of this case to “CLOSED”.
 
 #### Edit an existing document in the current case: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 
 Edits the document of the current case at the specified `DOC_NO` of the list. There must be at least one field indicated.
+A document cannot be edited to contain duplicates in the document list.
 
 Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
+- `DOC_NO` must be a valid index (starting from 1) of the document list.
+- `NAME` should only contain alphanumeric and spaces, and it should not be blank(no value, spaces only).
+- The specified `REFERENCE` must be a valid file name in the `references` folder provided before it can be added to the PIVOT system.
 
-Example: `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
+Example: 
+- `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
 name `Fire outbreak details` and reference `newFireDoc.pdf`.
-
-This document `newFireDoc.pdf` must be manually added to the references folder provided and must be present before the document can be successfully updated.
+<br>
+This document `newFireDoc.pdf` must be manually added to the `references` folder provided and must be present before the document can be successfully updated.
 
 #### Edit an existing suspect in the current case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
@@ -282,8 +288,10 @@ Gender must either be `M` or `F`, not case-sensitive.
 Deletes the document specified with `DOC_NO` from the list of documents.
 
 Format: `delete doc DOC_NO`
+- `DOC_NO` must be a valid index (starting from 1) of the document list.
 
-Example: `delete doc 1`
+Example: 
+- `delete doc 1`
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
@@ -309,6 +317,16 @@ Deletes the witness specified with `WITNESS_NO` from the list of witnesses.
 Format: `delete witness WITNESS_NO`
 
 Example: `delete witness 1`
+
+#### Open document in the current case: `open doc DOC_NO`
+
+Opens the specified document at index `DOC_NO` in the list. 
+
+Format: `open doc DOC_NO`
+- `DOC_NO` must be a valid index (starting from 1) of the document list.
+
+Example: 
+- `open doc 1` opens the document in the list with index 1.
 
 #### Return to main page: `return`
 
