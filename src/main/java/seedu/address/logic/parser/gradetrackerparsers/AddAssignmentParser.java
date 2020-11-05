@@ -44,13 +44,23 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         try {
             assignmentName = ParserUtil.parseAssignmentName(
                     argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignmentName.MESSAGE_CONSTRAINTS), pe);
+        }
+        try {
             assignmentPercentage = ParserUtil.parseAssignmentPercentage(
                     argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AssignmentPercentage.MESSAGE_CONSTRAINTS), pe);
+        }
+        try {
             assignmentResult = ParserUtil.parseAssignmentResult(
                     argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAssignmentCommand.MESSAGE_USAGE), pe);
+                    AssignmentResult.MESSAGE_CONSTRAINTS), pe);
         }
         newAssignment = new Assignment(assignmentName, assignmentPercentage, assignmentResult);
 
