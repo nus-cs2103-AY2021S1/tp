@@ -30,13 +30,9 @@ import seedu.address.logic.commands.ingredientcommands.IngredientFindCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientRestockCommand;
-import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
-import seedu.address.logic.commands.ingredientcommands.SetCommand;
-import seedu.address.logic.commands.ingredientcommands.SetDefaultCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientSetAllCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientSetCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientSetDefaultCommand;
-import seedu.address.logic.commands.ingredientcommands.IngredientViewSingleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -117,9 +113,6 @@ public class AddressBookParser {
             return new IngredientListCommand();
 
         //@@author
-        case SetAllCommand.COMMAND_WORD:
-            return new SetAllCommandParser().parse(arguments);
-
         case IngredientSetAllCommand.COMMAND_WORD:
             return new IngredientSetAllCommandParser().parse(arguments);
 
