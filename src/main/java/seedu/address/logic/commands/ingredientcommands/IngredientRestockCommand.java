@@ -23,6 +23,11 @@ public class IngredientRestockCommand extends Command {
             + " that fall below their minimum stock levels, which are their default levels\n"
             + "and require the user to restock. The amount needed for each ingredient to reach the minimum "
             + "stock level is also stated.\n"
+            + "The minimum stock levels for Boba, Pearl and Brown Sugar are 20 kg, while the minimum stock levels for "
+            + "Milk, Black Tea and Green Tea are 50 L.\n"
+            + "If the input contains extra words, those extra words will be ignored. "
+            + "For example, if the input is 'i-restock 121',\ntCheck will ignore the extra input '121' "
+            + "and show the list of ingredients that the user should restock.\n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
