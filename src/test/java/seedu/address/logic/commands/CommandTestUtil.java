@@ -96,6 +96,13 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    ////////////////////////////////////// SCHEDULER /////////////////////////////////////
+    public static final String VALID_EVENT_NAME_1 = "CS2103T Quiz";
+    public static final String VALID_EVENT_NAME_2 = "ES2660 Essay";
+    public static final String VALID_EVENT_DATE_1 = "1-2-2020 1200";
+    public static final String VALID_EVENT_DATE_2 = "2-2-2020 1200";
+    public static final String INVALID_EVENT_NAME = "CS@2103T Quiz";
+    public static final String INVALID_EVENT_DATE = "123-2-2020 1200";
     public static final EditContactDescriptor DESC_AMY;
     public static final EditContactDescriptor DESC_BOB;
     public static final EditModuleDescriptor DESC_CS2030;
@@ -182,7 +189,7 @@ public class CommandTestUtil {
     public static void showContactAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredContactList().size());
         Contact contact = model.getFilteredContactList().get(targetIndex.getZeroBased());
-        final String[] splitName = contact.getName().getName().split("\\s+");
+        final String[] splitName = contact.getName().toString().split("\\s+");
         model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredContactList().size());
     }

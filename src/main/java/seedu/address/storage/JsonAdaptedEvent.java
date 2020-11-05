@@ -11,7 +11,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 import seedu.address.model.event.EventTime;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,7 +72,7 @@ public class JsonAdaptedEvent {
                     EventTime.class.getSimpleName()));
         }
         if (!EventTime.isValidDateTime(dateTime)) {
-            throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(EventTime.MESSAGE_CONSTRAINTS);
         }
         final LocalDateTime time = LocalDateTime.parse(dateTime);
         final EventTime eventTime = new EventTime(time);
