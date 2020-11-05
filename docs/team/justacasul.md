@@ -2,7 +2,7 @@
 layout: page
 title: Liu Zheng Dao's Project Portfolio Page
 ---
-<img src="../images/justacasul.png" height=250>
+<img src="../images/justacasul.png" height=225>
 
 ## Project: Inventoryinator
 
@@ -39,9 +39,8 @@ Given below are my contributions to the project.
     
 * **New Feature**: Added the `view` command to view the detailed information of a single item. 
     [\#44](https://github.com/AY2021S1-CS2103T-F13-1/tp/pull/44)
-  * What it does: Displays the item with it's details, quantity, tags and recipes that will create said item.
-  * Justification: This feature is required for users who wish to view more detailed information regarding the item,
-    such as the description which would normally be truncated, or the recipes that will create this item.
+  * What it does: Displays an item's details, quantity, tags and recipes to craft the item.
+  * Justification: This is for users who wish to view detailed information of an item that's usually truncated in list view.
   * Highlights: Implementing this feature resulted in the change of `CommandResult` to allow for changing parts of the 
     GUI while the program is still running.
   * Credits: Rahul(@Rahul0506) suggested looking at how `executeCommand` handled the `help` command.
