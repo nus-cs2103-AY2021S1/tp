@@ -39,7 +39,7 @@ public class NameTest {
     }
 
     @Test
-    public void  isValidLength() {
+    public void isValidLength() {
         // invalid length
         assertFalse(Name.isValidLength("abcefghijklmnopqrstuvcdvfasdsafdsaaa")); // without spaces
         assertFalse(Name.isValidLength("peter the 2nd the 3rd the 4th the 5th")); // with spaces
