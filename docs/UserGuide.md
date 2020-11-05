@@ -464,14 +464,14 @@ Examples:
 To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_1.png" width="75%" /> <br />
-Figure 3.1: <i>The recipe list view</i>
+Figure 4.1: <i>The recipe list view</i>
 </div>
 
 After pressing <kbd>enter</kbd>, you will see this view, showing the recipe you wish to view:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/view_recipe_2.png" width="75%" /> <br />
-Figure 3.2: <i>The detailed recipe view</i>
+Figure 4.2: <i>The detailed recipe view</i>
 </div>
 
 
@@ -493,7 +493,7 @@ Executing this command simply brings you back to the recipe list view:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_recipes.png" width="75%" /> <br />
-Figure 4: <i>The recipe list view</i>
+Figure 5: <i>The recipe list view</i>
 </div>
 
 
@@ -536,21 +536,21 @@ add recipe Pancakes
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_1.png" width="75%" /> <br />
-Figure 5.1: <i>The add recipe command</i>
+Figure 6.1: <i>The add recipe command</i>
 </div>
 
 After pressing <kbd>enter</kbd>, you will see this view, showing your newly created recipe:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_2.png" width="75%" /> <br />
-Figure 5.2: <i>The recipe detail view</i>
+Figure 6.2: <i>The recipe detail view</i>
 </div>
 
 If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list (ChopChop won't actually highlight it, but we do here for clarity):
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
-Figure 5.3: <i>The newly created recipe in the recipe list</i>
+Figure 6.3: <i>The newly created recipe in the recipe list</i>
 </div>
 
 
@@ -656,66 +656,66 @@ To illustrate how to use this powerful command, let us recreate the Pancake reci
 <!-- to editors: don't mind the image names, i cut out some steps for brevity and i'm lazy to rename the files. -->
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_1.png" width="75%" /> <br />
-Figure 6.1: <i>The empty recipe</i>
+Figure 7.1: <i>The empty recipe</i>
 </div>
 
 Now, let's add our ingredients, using `/ingredient:add`; first, 400 grams of flour:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
-Figure 6.2: <i>The command to add a new ingredient to the recipe</i>
+Figure 7.2: <i>The command to add a new ingredient to the recipe</i>
 </div>
 
 Next, adding the eggs and milk in one go:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
-Figure 6.3: <i>The edit command supports multiple operations at once</i>
+Figure 7.3: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity using `/ingredient:edit`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
-Figure 6.4: <i>Editing an ingredient to change its quantity</i>
+Figure 7.4: <i>Editing an ingredient to change its quantity</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
-Figure 6.5: <i>The recipe now uses only 3 eggs</i>
+Figure 7.5: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps with `/step:add`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
-Figure 6.6: <i>Multiple steps can be added at the same time</i>
+Figure 7.6: <i>Multiple steps can be added at the same time</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 6.7: <i>The finished recipe</i>
+Figure 7.7: <i>The finished recipe</i>
 </div>
 
 Wait, we forgot to mix the ingredients together! Let's fix it by inserting a new step 2 with `/step:add:2`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 6.8: <i>Adding a new step in the second position</i>
+Figure 7.8: <i>Adding a new step in the second position</i>
 </div>
 
 Oh no, we also forgot the most important thing — syrup! So let's modify the last step (4) to include syrup with `/step:edit:4`:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
-Figure 6.9: <i>Editing the last step</i>
+Figure 7.9: <i>Editing the last step</i>
 </div>
 
 And now the pancake recipe is complete!
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 6.10: <i>The finished recipe</i>
+Figure 7.10: <i>The finished recipe</i>
 </div>
 
 
@@ -744,7 +744,7 @@ In this example, `delete recipe #7` will delete the **Pancakes** recipe:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
-Figure 14.1: <i>The initial list of ingredients</i>
+Figure 8: <i>The initial list of ingredients</i>
 </div>
 
 
@@ -770,21 +770,21 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 8.1: <i>The initial list of recipes</i>
+Figure 9.1: <i>The initial list of recipes</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
-Figure 8.2: <i>The recipes containing 'cake'</i>
+Figure 9.2: <i>The recipes containing 'cake'</i>
 </div>
 
 To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_3.png" width="75%" /> <br />
-Figure 8.3: <i>Back to the main recipe list</i>
+Figure 9.3: <i>Back to the main recipe list</i>
 </div>
 
 
@@ -836,7 +836,7 @@ To illustrate, suppose you had the following two recipes:
 <div style="text-align: center; padding-bottom: 2em">
   <img src="images/ug/filter_recipe_1.png" width="35%" style="margin-right: 20px;" />
   <img src="images/ug/filter_recipe_2.png" width="35%" style="margin-left: 20px;" /> <br /> <br />
-  Figure 8.1: <i>The starting recipes</i>
+  Figure 10.1: <i>The starting recipes</i>
 </div>
 
 Then, you wanted to search for recipes with tags **christmas** and **baked**, using ingredients **honey**, **ginger root**, and **molasses** — you would use this command (separated into lines for clarity):
@@ -850,7 +850,7 @@ After executing the command, similar to the effect of [`find recipe`](#FindRecip
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_recipe_3.png" width="75%" /> <br />
-Figure 8.2: <i>Only one recipe matched all the provided criteria</i>
+Figure 10.2: <i>Only one recipe matched all the provided criteria</i>
 </div>
 
 Note how the search term `ginger` matched the ingredient `ginger root`, and the search term `baked` matched the tag `home baked`. Again, to reset the search filter or go back to the full recipe view, you can click the Recipes button or run the `list recipes` command.
@@ -875,21 +875,21 @@ Examples:
 To illustrate suppose you wanted to make the pancakes here, you would use `make recipe pancakes`. You can run this command from any view (not necessarily from the recipe detail view):
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_1.png" width="75%" /> <br />
-Figure 9.1: <i>Making pancakes</i>
+Figure 11.1: <i>Making pancakes</i>
 </div>
 
 After pressing <kbd>enter</kbd>, ChopChop will open up the recipe that you've just made:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_2.png" width="75%" /> <br />
-Figure 9.2: <i>The detailed recipe view</i>
+Figure 11.2: <i>The detailed recipe view</i>
 </div>
 
 If there are ingredients that are missing, or that you have insufficient amounts of, ChopChop will display this message in the command output window:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/make_recipe_3.png" width="55%" /> <br />
-Figure 9.3: <i>Insufficient ingredients to make the pancakes</i>
+Figure 11.3: <i>Insufficient ingredients to make the pancakes</i>
 </div>
 
 
@@ -927,7 +927,7 @@ This command shows a list of all recipes in ChopChop. As with the `list recipes`
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/list_ingredients.png" width="75%" /> <br />
-Figure 10: <i>The ingredient list view</i>
+Figure 12: <i>The ingredient list view</i>
 </div>
 
 
@@ -964,35 +964,35 @@ Suppose you just finished a grocery run, and want to add the items to ChopChop. 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 11.1: <i>Adding 2 litres of milk</i>
+Figure 13.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 11.2: <i>The newly added milk ingredient</i>
+Figure 13.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 11.3: <i>Adding 24 blueberries</i>
+Figure 13.3: <i>Adding 24 blueberries</i>
 </div>
 
 This time, since ChopChop already knew about blueberries, our previous 19 blueberries now become 43:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 11.4: <i>You now have 43 blueberries</i>
+Figure 13.4: <i>You now have 43 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_5.png" width="45%" /> <br />
-Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
+Figure 13.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -1025,14 +1025,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 12.1: <i>Removing 350ml of milk</i>
+Figure 14.1: <i>Removing 350ml of milk</i>
 </div>
 
 Notice how the amount of milk decreased from 2 litres to 1.65 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 12.2: <i>You now only have 1.65 litres of milk left</i>
+Figure 14.2: <i>You now only have 1.65 litres of milk left</i>
 </div>
 
 
@@ -1057,14 +1057,14 @@ For example, suppose you wanted to find all ingredients containing fish (not in 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 13.1: <i>The complete ingredient list</i>
+Figure 15.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 13.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 15.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
@@ -1114,14 +1114,14 @@ To illustrate, suppose you want to search for ingredients tagged both **deliciou
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
-Figure 14.1: <i>The initial list of ingredients</i>
+Figure 16.1: <i>The initial list of ingredients</i>
 </div>
 
 After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing the only matching ingredients, **Bacon** and **Rainbow Sprinkles**:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
-Figure 14.2: <i>The ingredients matching all the provided criteria</i>
+Figure 16.2: <i>The ingredients matching all the provided criteria</i>
 </div>
 
 Note that **Chocolate Sprinkles**, which was also tagged **delicious** and **favourite**, was not included because it expired in 2021.
@@ -1171,7 +1171,7 @@ For example, here is the output for someone who really really loves pancakes:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_top.png" width="45%" /> <br />
-Figure 15: <i>No pancakes were sacrificed for this picture</i>
+Figure 17: <i>No pancakes were sacrificed for this picture</i>
 </div>
 
 
@@ -1186,7 +1186,7 @@ Note that this is also the view that is displayed by default when no statistics 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_recent.png" width="45%" /> <br />
-Figure 16: <i>The recently-made recipes view</i>
+Figure 18: <i>The recently-made recipes view</i>
 </div>
 
 
@@ -1223,14 +1223,14 @@ For example, `stats recipe made /after 2020-11-02 /before 2020-11-04 23:00` show
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_1.png" width="45%" /> <br />
-Figure 17: <i>Showing the recipes made between a date range</i>
+Figure 19: <i>Showing the recipes made between a date range</i>
 </div>
 
 Meanwhile, just executing `stats recipe made` only shows the recipes made on the current day:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/stats_recipe_made_2.png" width="45%" /> <br />
-Figure 18: <i>Showing the recipes made on the current day</i>
+Figure 20: <i>Showing the recipes made on the current day</i>
 </div>
 
 
