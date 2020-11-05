@@ -1,0 +1,26 @@
+{
+  "recipes" : [ ],
+  "ingredients" : [ {
+    "value" : "Potato",
+    "quantity" : ""
+  }, {
+    "value" : "Olive",
+    "quantity" : ""
+  }, {
+    "value" : "White Bread",
+    "quantity" : ""
+  }, {
+    "value" : "Grape",
+    "quantity" : ""
+  } , {
+    "value" : "Banana",
+    "quantity" : ""
+  }, {
+    "value" : "Oat",
+    "quantity" : ""
+  }, {
+    "value" : "Chocolate",
+    "quantity" : ""
+  }],
+  "consumption" : [ ]
+}

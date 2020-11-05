@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedRecipe.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -31,7 +29,9 @@ public class JsonAdaptedRecipeTest {
     private static final String VALID_NAME = PASTA.getName().toString();
     private static final ArrayList<Ingredient> VALID_INGREDIENT = PASTA.getIngredient();
     private static final int VALID_CALORIES = PASTA.getCalories().value;
-    private static final ArrayList<Instruction> VALID_INSTRUCTION = PASTA.getInstruction();
+    private static final List<JsonAdaptedInstruction> VALID_INSTRUCTION = PASTA.getInstruction().stream()
+            .map(JsonAdaptedInstruction::new)
+            .collect(Collectors.toList());
     private static final RecipeImage VALID_RECIPE_IMAGE = PASTA.getRecipeImage();
     private static final List<JsonAdaptedTag> VALID_TAGS = PASTA.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -95,11 +95,27 @@ public class JsonAdaptedRecipeTest {
     }
 
     @Test
+    public void toModelType_nullInstruction_throwsIllegalValueException() {
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, null,
+                VALID_RECIPE_IMAGE, VALID_INGREDIENT, VALID_CALORIES, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Instruction.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullImage_throwsIllegalValueException() {
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_INSTRUCTION,
+                null, VALID_INGREDIENT, VALID_CALORIES, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RecipeImage.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
+    }
+
+    @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedConsumption consump = new JsonAdaptedConsumption(VALID_NAME, VALID_INSTRUCTION,
-                VALID_RECIPE_IMAGE, VALID_INGREDIENT, null, invalidTags);
-        assertThrows(IllegalValueException.class, consump::toModelType);
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_INSTRUCTION,
+                VALID_RECIPE_IMAGE, VALID_INGREDIENT, VALID_CALORIES, invalidTags);
+        assertThrows(IllegalValueException.class, recipe::toModelType);
     }
 }
