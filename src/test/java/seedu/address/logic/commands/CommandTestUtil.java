@@ -19,6 +19,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactNameContainsKeywordsPredicate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventNameContainsKeyWordsPredicate;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleLesson;
 import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
@@ -163,7 +165,7 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
+        // ModuleList expectedModuleList = new ModuleList(actualModel.getModuleList());
         // List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -192,6 +194,18 @@ public class CommandTestUtil {
         final String[] splitName = contact.getName().getName().split("\\s+");
         model.updateFilteredContactList(new ContactNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredContactList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s event list.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitName = event.getName().getName().split("\\s+");
+        model.updateFilteredEventList(new EventNameContainsKeyWordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredEventList().size());
     }
 
 }

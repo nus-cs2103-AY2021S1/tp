@@ -112,6 +112,7 @@ public class AddEventCommandTest {
         public ReadOnlyEventList getEventList() {
             return new EventList();
         }
+
         @Override
         public void commitEventList() {}
     }
