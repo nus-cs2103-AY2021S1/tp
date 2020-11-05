@@ -13,13 +13,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.schedule.ScheduleViewMode;
 
 /**
- * Parses input arguments and creates a new ScheduleCommand object
+ * Parses input arguments and creates a new ScheduleCommand object.
  */
-public class ScheduleCommandParser implements Parser<ScheduleCommand> {
+public class ScheduleCommandParser extends PrefixDependentParser<ScheduleCommand> {
 
     /**
-     * Parses the given String and returns a ScheduleCommand with the view mode and viewDateTime
-     * @throws ParseException if the user input does not conform the expected date format
+     * Parses the given String and returns a ScheduleCommand with the view mode and viewDateTime.
+     *
+     * @throws ParseException if the user input does not conform the expected date format.
      */
     @Override
     public ScheduleCommand parse(String args) throws ParseException {
@@ -28,13 +29,7 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_VIEW_MODE, PREFIX_VIEW_DATE);
 
 
-        if (argMultimap.getValue(PREFIX_VIEW_MODE).isEmpty()
-                || argMultimap.getValue(PREFIX_VIEW_DATE).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ScheduleViewCommand.MESSAGE_USAGE));
-        }
-
-        if (!argMultimap.getPreamble().isEmpty()) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_VIEW_MODE, PREFIX_VIEW_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ScheduleViewCommand.MESSAGE_USAGE));
         }
