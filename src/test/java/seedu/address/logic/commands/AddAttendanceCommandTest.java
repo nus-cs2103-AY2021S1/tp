@@ -18,9 +18,12 @@ import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 import static seedu.address.testutil.notes.TypicalNotes.getTypicalNotebook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -79,8 +82,8 @@ public class AddAttendanceCommandTest {
 
     @Test
     public void execute_duplicateAttendanceDateUnfilteredList_throwsCommandException() {
-        String dateToDuplicate = "14/04/1998";
-        Attendance invalidAttendance = new Attendance(dateToDuplicate, "present",
+        LocalDate dateToDuplicate = DateUtil.parseToDate("14/04/1998");
+        Attendance invalidAttendance = new Attendance(dateToDuplicate, true,
                 new Feedback("sleepy"));
         AddAttendanceCommand command = new AddAttendanceCommand(INDEX_SECOND_PERSON, invalidAttendance);
 
