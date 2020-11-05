@@ -18,7 +18,7 @@ public class EditCommandParserTest {
         var parser = new CommandParser();
 
         cases.put("edit recipe",                                                        false);
-        cases.put("edit ingredient x",                                                  false);
+        cases.put("edit ingredient",                                                    false);
         cases.put("edit recipe x /ingredient",                                          false);
         cases.put("edit recipe x /ingredient:owo",                                      false);
         cases.put("edit recipe x /ingredient:owo:uwu",                                  false);
@@ -62,6 +62,9 @@ public class EditCommandParserTest {
         cases.put("edit recipe x /ingredient:add y /qty 1",                             true);
         cases.put("edit recipe x /ingredient:delete y",                                 true);
         cases.put("edit recipe x /ingredient:delete y /step:add z",                     true);
+
+        cases.put("edit ingredient x /tag:add y",                                       true);
+        cases.put("edit ingredient x /tag:delete y",                                    true);
 
 
         cases.forEach((k, v) -> {

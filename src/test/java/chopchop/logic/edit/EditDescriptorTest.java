@@ -19,8 +19,8 @@ public class EditDescriptorTest {
     private static EditOperationType opEdit = EditOperationType.EDIT;
     private static EditOperationType opDelete = EditOperationType.DELETE;
 
-    private IngredientEditDescriptor ied(EditOperationType op, String name, Quantity q) {
-        return new IngredientEditDescriptor(op, name, Optional.ofNullable(q));
+    private IngredientRefEditDescriptor ied(EditOperationType op, String name, Quantity q) {
+        return new IngredientRefEditDescriptor(op, name, Optional.ofNullable(q));
     }
 
     private TagEditDescriptor ted(EditOperationType op, String name) {

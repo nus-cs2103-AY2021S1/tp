@@ -187,6 +187,12 @@ public class AutoCompleterTest {
         cases.put("edit recipe cake /tag:a",                "edit recipe cake /tag:add");
         cases.put("edit recipe cake /tag:d",                "edit recipe cake /tag:delete");
 
+        cases.put("edit i",                                 "edit ingredient");
+        cases.put("edit ingredient c",                      "edit ingredient Custard");
+        cases.put("edit ingredient cream /t",               "edit ingredient cream /tag:");
+        cases.put("edit ingredient cream /tag:a",           "edit ingredient cream /tag:add");
+        cases.put("edit ingredient cream /tag:d",           "edit ingredient cream /tag:delete");
+
         // no completions:
         cases.put("edit ingredient /f",                     "edit ingredient /f");
         cases.put("edit recipe /qty:e",                     "edit recipe /qty:e");

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class RecipeEditDescriptor {
 
-    private final List<IngredientEditDescriptor> ingredientEdits;
+    private final List<IngredientRefEditDescriptor> ingredientEdits;
     private final List<StepEditDescriptor> stepEdits;
     private final List<TagEditDescriptor> tagEdits;
     private final Optional<String> nameEdit;
@@ -21,7 +21,7 @@ public class RecipeEditDescriptor {
      * @param tagEdits          the list of edit descriptors for tags
      * @param nameEdit          the edited name (if present)
      */
-    public RecipeEditDescriptor(Optional<String> nameEdit, List<IngredientEditDescriptor> ingredientEdits,
+    public RecipeEditDescriptor(Optional<String> nameEdit, List<IngredientRefEditDescriptor> ingredientEdits,
         List<StepEditDescriptor> stepEdits, List<TagEditDescriptor> tagEdits) {
 
         this.ingredientEdits = ingredientEdits;
@@ -30,7 +30,7 @@ public class RecipeEditDescriptor {
         this.nameEdit = nameEdit;
     }
 
-    public List<IngredientEditDescriptor> getIngredientEdits() {
+    public List<IngredientRefEditDescriptor> getIngredientEdits() {
         return this.ingredientEdits;
     }
 

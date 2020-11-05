@@ -330,6 +330,8 @@ public class AutoCompleter {
         } else if (cmd.equals(Strings.COMMAND_EDIT)) {
             if (tgt.equals(CommandTarget.RECIPE.toString())) {
                 return completeEditRecipeArguments(args, partial, orig);
+            } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+                return completeEditIngredientArguments(args, partial, orig);
             }
         } else if (cmd.equals(Strings.COMMAND_DELETE)) {
             if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
@@ -426,7 +428,11 @@ public class AutoCompleter {
         .orElse(orig);
     }
 
-
+    private String completeEditIngredientArguments(CommandArguments args, String partial, String orig) {
+        return tryCompletionUsing(getArgNames(Strings.ARG_TAG),
+            orig, partial, /* appending: */ ":")
+        .orElse(orig);
+    }
 
 
 
@@ -718,8 +724,7 @@ public class AutoCompleter {
             // all commands that take a target will take ingredients, except MAKE, EDIT, and VIEW.
             return commandRequiresTarget(command)
                 && !command.equals(Strings.COMMAND_VIEW)
-                && !command.equals(Strings.COMMAND_MAKE)
-                && !command.equals(Strings.COMMAND_EDIT);
+                && !command.equals(Strings.COMMAND_MAKE);
         } else {
 
             // only list accepts recommendations.

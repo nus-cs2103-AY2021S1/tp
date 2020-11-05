@@ -13,7 +13,7 @@ import java.util.function.BiFunction;
 
 import chopchop.commons.util.Result;
 import chopchop.logic.edit.EditOperationType;
-import chopchop.logic.edit.IngredientEditDescriptor;
+import chopchop.logic.edit.IngredientRefEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
 import chopchop.logic.edit.StepEditDescriptor;
 import chopchop.logic.edit.TagEditDescriptor;
@@ -97,7 +97,7 @@ public class EditRecipeCommand extends Command implements Undoable {
 
 
 
-    private Result<List<IngredientReference>> performIngredientEdits(List<IngredientEditDescriptor> edits) {
+    private Result<List<IngredientReference>> performIngredientEdits(List<IngredientRefEditDescriptor> edits) {
 
         // this is a reference.
         var ingredients = new ArrayList<>(this.recipe.getIngredients());
@@ -226,8 +226,10 @@ public class EditRecipeCommand extends Command implements Undoable {
 
             if (edit.getEditType() == EditOperationType.ADD) {
 
-                // it's a Set<Tag>, so we don't need to check for dupes.
-                tags.add(new Tag(tagName));
+                if (!tags.add(new Tag(tagName))) {
+                    return Result.error("Recipe '%s' already has tag '%s'", this.recipe.getName(),
+                            tagName);
+                }
 
             } else if (edit.getEditType() == EditOperationType.DELETE) {
 

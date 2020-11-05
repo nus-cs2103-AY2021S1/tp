@@ -1,51 +1,23 @@
-// IngredientEditDescriptor.java
-
 package chopchop.logic.edit;
 
-import static chopchop.commons.util.Enforce.enforce;
-import static chopchop.commons.util.Enforce.enforceContains;
-import static chopchop.commons.util.Enforce.enforceEmpty;
-import static chopchop.commons.util.Enforce.enforcePresent;
+import java.util.List;
+import java.util.Objects;
 
-import java.util.Optional;
+public class IngredientEditDescriptor {
 
-import chopchop.model.attributes.Quantity;
-
-public class IngredientEditDescriptor extends EditDescriptor {
-
-    private final Optional<Quantity> ingredientQuantity;
-    private final String ingredientName;
+    private final List<TagEditDescriptor> tagEdits;
 
     /**
-     * Creates a new descriptor representing ingredient editing.
+     * Creates a IngredientEditDescriptor to edit an ingredient.
      *
-     * @param editType the type of edit
-     * @param name     the name of the ingredient to edit
-     * @param qty      the new quantity of the ingredient; should only be present iff type is EDIT or ADD
+     * @param tagEdits          the list of edit descriptors for tags
      */
-    public IngredientEditDescriptor(EditOperationType editType, String name, Optional<Quantity> qty) {
-
-        super(editType);
-
-        enforce(!name.isEmpty());
-        enforceContains(editType, EditOperationType.ADD, EditOperationType.EDIT, EditOperationType.DELETE);
-
-        if (editType == EditOperationType.EDIT || editType == EditOperationType.ADD) {
-            enforcePresent(qty);
-        } else {
-            enforceEmpty(qty);
-        }
-
-        this.ingredientName = name;
-        this.ingredientQuantity = qty;
+    public IngredientEditDescriptor(List<TagEditDescriptor> tagEdits) {
+        this.tagEdits = tagEdits;
     }
 
-    public String getIngredientName() {
-        return this.ingredientName;
-    }
-
-    public Optional<Quantity> getIngredientQuantity() {
-        return this.ingredientQuantity;
+    public List<TagEditDescriptor> getTagEdits() {
+        return this.tagEdits;
     }
 
     @Override
@@ -56,9 +28,8 @@ public class IngredientEditDescriptor extends EditDescriptor {
             return false;
         } else {
             var other = (IngredientEditDescriptor) obj;
-            return this.getEditType() == other.getEditType()
-                && this.ingredientQuantity.equals(other.ingredientQuantity)
-                && this.ingredientName.equalsIgnoreCase(other.ingredientName);
+
+            return Objects.equals(this.tagEdits, other.tagEdits);
         }
     }
 }

@@ -48,6 +48,7 @@ public class CommandBox extends UiPart<Region> {
                     this.commandTextField.positionCaret(command.length());
                 }
 
+                logic.resetCompletionState();
                 event.consume();
             } else if (event.getCode().equals(KeyCode.UP) && this.historyPointer > 0) {
                 this.historyPointer--;
@@ -55,6 +56,7 @@ public class CommandBox extends UiPart<Region> {
                 this.commandTextField.setText(command);
                 this.commandTextField.positionCaret(command.length());
 
+                logic.resetCompletionState();
                 event.consume();
             } else if (event.getCode().equals(KeyCode.TAB)) {
                 var text = this.commandTextField.getText();
