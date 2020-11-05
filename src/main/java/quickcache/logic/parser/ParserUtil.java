@@ -93,8 +93,8 @@ public class ParserUtil {
     public static Question parseOpenEndedQuestion(String question, String answer) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
-        if (!MultipleChoiceQuestion.isValidQuestion(trimmedQuestion)) {
-            throw new ParseException(MultipleChoiceQuestion.MESSAGE_CONSTRAINTS);
+        if (!OpenEndedQuestion.isValidQuestion(trimmedQuestion)) {
+            throw new ParseException(OpenEndedQuestion.MESSAGE_CONSTRAINTS);
         }
         Answer finalAnswer = ParserUtil.parseAnswer(answer);
         return new OpenEndedQuestion(question, finalAnswer);
