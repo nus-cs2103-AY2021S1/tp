@@ -28,7 +28,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 This Developer Guide specifies the architecture, design, implementation and use cases for **ResiReg**, as well as our considerations behind key design decisions.
 
-It is intended for developers, software testers, open-source contrubitors and any like-minded persons who wish to contribute this project or gain deeper insights about **ResiReg**.
+It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
 
 **Note about sequence diagrams**: For all sequence diagrams, the lifeline should end at the end of the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
 
@@ -88,7 +88,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/java/seedu/resireg/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-T16-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -112,7 +112,7 @@ Notes:
 1. `LogicManager` uses the list of aliases together with information from `CommandWordEnum` to generate a map of strings (representing all the possible strings that a user may use to call a command) to `Parser`s.
 1. `LogicManager` passes the user input and this map to `ResiRegParser`, which parses the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -129,7 +129,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 - stores a `UserPref` object that represents the user’s preferences.
-- stores the residence regulation data
+- stores the ResiReg data
 - exposes the following `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change:
     - unmodifiable `ObservableList<Student>`
     - unmodifiable `ObservableList<Room>`
@@ -145,7 +145,7 @@ The `Model`,
 The `Storage` component,
 
 - can save `UserPref` objects in json format and read it back.
-- can save the residence regulation data in json format and read it back.
+- can save the ResiReg data in json format and read it back.
 
 ### Common classes
 
@@ -171,8 +171,8 @@ The following is a run-through of a typical user session where ResiReg is starte
 
 Step 1. On launching ResiReg, `ModelManager` calls `ModelManager#deleteExpiredItems()` during initialization. This method iterates through `UniqueBinItemList` and removes all bin items which have expired (i.e they have persisted in the bin for more days than the user-specified cutoff) by calling `UniqueBinItemList#remove()` for the expired object.
 
-Step 2. The user executes the `delete 1` command to delete the first student in ResiReg. The `delete`
-command calls the constructor of `BinItem` with the deleted student to create a new `BinItem` object. The `dateDeleted` attribute is initialized with the current system time. 
+Step 2. The user executes the `delete 1` command to delete the first student in ResiReg. 
+The `delete` command calls the constructor of `BinItem` with the deleted student to create a new `BinItem` object. The `dateDeleted` attribute is initialized with the current system time. 
 
 Step 3. The `delete` command then adds the new `BinItem` object to the `UniqueBinItemList` by first checking for uniqueness (as a defensive precaution) and calling `Model#addBinItem(studentToBin)`.
 
@@ -271,25 +271,33 @@ the `Allocation` association class (alternative 4).
 ### Undo/redo feature
 
 #### Implementation
+The undo/redo mechanism is added to allow users of ResiReg to revert to a previous state
+or return to the future state (that is the previously current state), undoing or redoing 
+changes made to the state of ResiReg.
 
-The undo/redo mechanism is facilitated by `StatefulResiReg`. It extends `ResiReg` with an undo/redo history, for commands that
+This mechanism is facilitated by `StatefulResiReg`, an instance of which is stored inside `ModelManager`. It extends `ResiReg` with an undo/redo history, for commands that
 modify the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
-The history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
 
-- `VersionedResiReg#save()` — Saves the current residence regulation state in its history.
-- `VersionedResiReg#undo()` — Restores the previous residence regulation state from its history.
-- `VersionedResiReg#redo()` — Restores a previously undone residence regulation state from its history.
+The class diagram below gives a pictorial representation of the class structure.
+
+![UndoRedoClassDiagram](images/UndoRedoClassDiagram.png)
+
+The state history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
+
+- `StatefulResiReg#save()` — Saves the current ResiReg state in its state history.
+- `StatefulResiReg#undo()` — Restores the previous ResiReg state from its state history.
+- `StatefulResiReg#redo()` — Restores a previously undone ResiReg state from its state history.
 
 These operations are exposed in the `Model` interface as `Model#saveStateResiReg()`, `Model#undoResiReg()` and `Model#redoResiReg()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedResiReg` will be initialized with the initial residence regulation state.
-Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` will be set to this single residence regulation state.
+Step 1. The user launches the application for the first time. The `StatefulResiReg` will be initialized with the initial ResiReg state.
+Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` will be set to this single ResiReg state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 3` command to delete the 3rd person in the residence regulation. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the residence regulation before the `delete 3` command executes
+Step 2. The user executes `delete 3` command to delete the 3rd student in the ResiReg. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the ResiReg before the `delete 3` command executes
 to be saved in the `undoStatesStack` and setting `currState` to be the state of the resident regulation after command execution.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -306,7 +314,7 @@ both `currState` and `undoStatesStack` will not be updated.
 
 Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoResiReg()`,
 which will add the current state `stateAfterAdd` to `redoStatesStack` and set `currState` to the last entry in
-`undoStatesStack`, the previous residence regulation state (`stateBeforeAdd`), and restores the residence regulation to that state.
+`undoStatesStack`, the previous ResiReg state (`stateBeforeAdd`), and restores the ResiReg to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -325,7 +333,7 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `undoStatesStack` and set `currState` to the last entry in
-`redoStatesStack`, the next residence regulation state, and restores the residence regulation to that state.
+`redoStatesStack`, the next ResiReg state, and restores the ResiReg to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `redoStatesStack` is empty, then there are no undone ResiReg states to restore. The `redo` command uses `Model#canRedoResiReg()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -341,9 +349,15 @@ As before, the current state `stateBeforeClear` clear will be pushed into `undoS
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new command, 
+that is not `undo` or `redo`:
 
 ![SaveActivityDiagram](images/SaveActivityDiagram.png)
+
+Separately, the following activity diagram summarizes what happens when a user executes
+the `undo` command. (The activity diagram for redo is largely similar).
+
+![UndoActivityDiagram](images/UndoActivityDiagram.png)
 
 #### Design consideration:
 ##### How undo & redo executes
@@ -355,8 +369,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 - **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+  - Cons: We must ensure that the implementation of each individual command is correct.
 
 ##### Aspect: Data structure to support the undo/redo commands
 
@@ -365,14 +379,21 @@ The following activity diagram summarizes what happens when a user executes a ne
 
   - Pros: Closer to the command pattern than the alternative below, meaning a change from Alternative 1
     to Alternative 2 in how undo & redo executes will incur less additional work.
-  - Cons: May have performance issues in terms of memory usage due to holding an additional reference and
+  - Cons: 
+    - May have performance issues in terms of memory usage due to holding an additional reference and
     managing two data structures.
+    - Follows the Separation of Concerns principle, so the management of 
+    undoing and redoing can be viewed separately for easier understanding.
 
-- **Alternative 2:** Use a list to store the history.
+- **Alternative 2:** Use a list to store the state history.
   - Pros: Better performance in terms of memory usage as compared to Alternative 1 and
     has a simpler implementation.
-  - Cons: Further away from the command pattern than Alternative 1, so shifting to Alternative 2
-    in how undo & redo executes will incur more additional work.
+  - Cons: 
+    - Further away from the command pattern than Alternative 1, so shifting to Alternative 2
+    in how undo & redo executes will incur more additional work. 
+    - Also, goes against the Separation
+    of Concerns principle since the management of both undoing and redoing
+    is handled together.
 
 ### Data archiving for semester
 Allocations of a student to a room are valid only for a given semester. This implies that ResiReg should support the archival and creation of multiple semesters, so that the data can be managed and stored in an organized fashion that suits the OHS admin. The `archive` command accomplishes this by allowing the user to achive the current semester's allocations, and advance to a new semester which pre-fills the Student and Room details.
@@ -716,14 +737,15 @@ Use case ends.
 
 **MSS**
 
-1. OHS admin requests to list history of previously entered commands.
-1. ResiReg shows a history of previously entered commands in reverse chronological order.
+1. OHS admin requests to list history of previously entered nonempty commands.
+1. ResiReg shows all the nonempty commands previously entered in chronological order, along with numerical
+labels in front of commands that indicate position.
 
 Use case ends.
 
 **Extensions**
 
-- 1a. The history of previously entered commands is empty.
+- 1a. The history of previously entered nonempty commands is empty.
     - ResiReg shows an error message.
    
       Use case ends.

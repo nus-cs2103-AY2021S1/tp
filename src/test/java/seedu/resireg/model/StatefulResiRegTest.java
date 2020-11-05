@@ -239,9 +239,9 @@ class StatefulResiRegTest {
     }
 
     /**
-     * Asserts that {@code versionedResiReg} currently points to {@code expectedCurrentState},
-     * states before {@code versionedResiReg#currentStatePtr} is equal to
-     * {@code expectedStatesBeforePtr} and states after {@code versionedResiReg#currentStatePtr}
+     * Asserts that {@code statefulResiReg} currently points to {@code expectedCurrentState},
+     * states before {@code statefulResiReg#currentStatePtr} is equal to
+     * {@code expectedStatesBeforePtr} and states after {@code statefulResiReg#currentStatePtr}
      * is equal to {@code expectedStatesAfterPtr}
      */
     private void assertResiRegStatesStatus(StatefulResiReg statefulResiReg,

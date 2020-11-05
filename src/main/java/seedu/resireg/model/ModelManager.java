@@ -327,7 +327,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedResiReg}
+     * {@code statefulResiReg}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -350,7 +350,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
-     * {@code versionedResiReg}
+     * {@code statefulResiReg}
      */
     @Override
     public ObservableList<Room> getFilteredRoomList() {

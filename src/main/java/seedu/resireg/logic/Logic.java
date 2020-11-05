@@ -51,7 +51,7 @@ public interface Logic {
 
     /**
      * Returns an unmodifiable view of the list of commands entered by the user.
-     * The list is ordered in reverse chronological order.
+     * The list is ordered in chronological order.
      */
     ObservableList<String> getHistory();
 
