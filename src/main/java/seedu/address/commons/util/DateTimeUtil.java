@@ -80,7 +80,18 @@ public class DateTimeUtil {
         }
         return true;
     }
-
+    /**
+     * Returns true if the start date is before the end date.
+     */
+    public static boolean isStartDateBeforeEndDate(LocalDate startDate, LocalDate endDate) {
+        return startDate.isBefore(endDate);
+    }
+    /**
+     * Returns true if the start time is before the end time.
+     */
+    public static boolean isStartTimeBeforeEndTime(LocalTime startTime, LocalTime endTime) {
+        return startTime.isBefore(endTime);
+    }
     /**
      * @param input the string value for a date
      * @return a LocalDate object representing the specific date
