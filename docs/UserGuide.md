@@ -226,7 +226,7 @@ Want to list all your flashcards after using `filter`? Use the [list](#list-all-
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
-*  `filter t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
+*  `filter t/examinable t/study` filters and lists all flashcards that have both an “examinable” tag and a “study” tag.
 *  `filter r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
 
 **Steps for filtering for a flashcard based on category and tag**:
@@ -249,7 +249,7 @@ Format: `fav INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
+* `list` followed by `fav 2` favourites the 2nd flashcard in the displayed list.
 
 ### Unfavourite a flashcard  : `unfav`
 
@@ -261,7 +261,7 @@ Format: `unfav INDEX`
 * `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
-* `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
+* `list` followed by `unfav 2` unfavourites the 2nd flashcard in the displayed list.
 
 ### Find flashcards : `find`
 
@@ -310,7 +310,7 @@ Upon entering review mode, the following user input will be recognised:
 * `q` quits review mode
 
 <div markdown="span" class="alert alert-primary">:memo: Note:
-The review and success frequency of a flashcard is not affected by review mode.
+The review and success frequency of a flashcard is <b>not affected</b> by review mode.
 </div>
 <br>
 
@@ -398,8 +398,8 @@ Format: `view INDEX [-a]`
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 Examples:
-* `view 1` shows the 1st flashcard (in the displayed list) on the view pane without answer.
-* `view 1 -a` shows the 1st flashcard (in the displayed list) on the view pane with answer.
+* `view 1` shows the 1st flashcard (in the displayed list) on the view pane without answer and notes.
+* `view 1 -a` shows the 1st flashcard (in the displayed list) on the view pane with answer and notes.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
 flashcard was not modified/deleted.
