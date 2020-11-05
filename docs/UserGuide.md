@@ -49,27 +49,11 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
    * **`delete 3`**: Deletes the 3rd flashcard in the current list.
    
-   * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
-
-   * **`filter c/OOP`** : Filters out flashcard(s) belonging to the OOP category. 
-   
-   * **`fav 1`** : Favourites the 1st flashcard in the current list.
-     
-   * **`unfav 1`** : Unfavourites the 1st flashcard in the current list.
-   
-   * **`find general`**: Finds all flashcards containing general.
-
    * **`list`** : Lists all flashcards.
 
    * **`review`** : Reviews the current list of flashcards.
    
-   * **`quiz`** : Quizzes the current list of flashcards.
-   
-   * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
-   
    * **`view 1`** : Views the 1st flashcard in the current list.
-   
-   * **`stats 1`** : Views the statistics of the 1st flashcard in the current list.
 
    * **`exit`** : Exits the app.
   
@@ -140,6 +124,7 @@ Adds a flashcard.
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM] [t/TAG]...`
 
 * Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
+* After a new flashcard is added, all flashcards will be listed. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 If the category is not specified, the flashcard will have the <b>General</b> category.
@@ -232,9 +217,13 @@ Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
+* You can remove all filters applied by using the [list](#List-all-flashcards) command.
 <div markdown="span" class="alert alert-primary">:memo: Note:
 <code>filter r/</code> will filter for all unrated flashcards.
 </div><br>
+<span markdown="1" class="alert alert-primary">:bulb: **Tip:**</span> 
+
+Want to list all your flashcards after using `filter`? Use the [list](#List-all-flashcards) command.
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
@@ -284,6 +273,9 @@ Format: `find KEYWORD [KEYWORD]...`
 * Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
 * The keywords are **case insensitive**.
 * Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
+<div markdown="1" class="alert alert-primary">:bulb: **Tip:**</div> 
+
+Want to list all your flashcards after using `find`? Use the [list](#List-all-flashcards) command.
 
 Examples: 
 * `find general` 
@@ -392,6 +384,8 @@ Examples:
 * `sort success -d` shows a list of all flashcards sorted according to success rate in descending order
 
 <div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
+</div>
+<div markdown="span" class="alert alert-primary">:memo: Note: Sorting results in a permanent change in the ordering of the flashcards. This means your list of flashcards will follow the sorted order even after you relaunch the app.
 </div>
     
 ### View a flashcard  : `view`
