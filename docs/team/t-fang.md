@@ -21,19 +21,17 @@ Given below are my contributions to the project.
   * What it means: Participation class is updated after creation of the Task class
   * What changes made:
     * Added more methods in Participation.
-* **New Feature**: Added task/meeting filter commands. 
+* **New Feature**: Added task filter command. 
     (Pull request: Pull request [\#96](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/96))
-    (Pull request: Pull request [\#135](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/135))
-  * What changes made: 
-    * Created TaskFilterCommand and MeetingFilterCommand
+    * What changes made: 
+    * Created TaskFilterCommand
     * Created relevant parsers
     * Allowed user to filter tasks by assignee, deadline, or task name, progress, done status
-    * Allowed user to filter meeting by meeting name.
     * Added relevant test cases.
-* **New Feature**: Added commands to show all the tasks/meetings.
+* **New Feature**: Added commands to show all the tasks
     (Pull Request [\#138](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/138))
   * What changes made: 
-    * Created AllTasksCommand and AllMeetingsCommand
+    * Created AllTasksCommand
     * Updated MainCatalogueParser
 * **New Feature**: Added a command to sort the task list
     (Pull Request [\#188](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/188))
@@ -73,8 +71,8 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for basic task-related features.
     * Came up with the first draft of feature list.
-    * Added `filtert` feature guide
-    * Added `allt` and `allm` feature guides (Pull Request [\#149](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/149))
+    * Added `filter` feature guide
+    * Added `alltasks` feature guides (Pull Request [\#149](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/149))
   * Developer Guide:
     * Wrote first draft of non-functional requirements. (Pull Request [\#54](https://github.com/AY2021S1-CS2103T-W10-3/tp/pull/54))
     * Added and updated Use Cases related to `filter`
