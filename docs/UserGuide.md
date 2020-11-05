@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Modduke is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Modduke can get your module management tasks done faster than traditional GUI apps.
+Modduke is a **desktop app targeted towards NUS students. It allows them to easily manage their contacts, modules and meetings during the semester.** The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 * Table of Contents
 {:toc}
