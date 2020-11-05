@@ -19,7 +19,7 @@ import seedu.address.storage.StorageManager;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_BOB = "66666666";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";

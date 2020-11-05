@@ -1,10 +1,10 @@
 package seedu.address.model.vendor;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Represents a Vendor's phone number in the address book.
@@ -14,7 +14,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should a valid phone number with at least 8 digits long";
+            "Phone numbers should only contain numbers, and it should be a valid phone number"
+                    + " (First digit must start with a 6/8/9 and must be at least 8 digits long)";
     public static final String VALIDATION_REGEX = "[689][\\d]{7}";
     public final String value;
 

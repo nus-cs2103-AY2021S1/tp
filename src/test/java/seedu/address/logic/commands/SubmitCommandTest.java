@@ -96,7 +96,7 @@ public class SubmitCommandTest {
         Model model = TypicalModel.getModelManagerWithMenu();
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
         Storage storage = getDefaultStorage();
-        storage.saveProfileManager(new Profile(new Phone("88888888"), new Address("Block 123, Bobby Street 3")));
+        storage.saveProfileManager(new Profile(new Phone("66666666"), new Address("Block 123, Bobby Street 3")));
         ObservableList<MenuItem> menu = model.getFilteredMenuItemList();
 
         boolean copySuccess = true;
