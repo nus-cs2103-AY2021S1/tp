@@ -18,8 +18,8 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_NOTE_ORANGE;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_APPLE;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 
 import org.junit.jupiter.api.Test;
 
@@ -96,7 +96,7 @@ public class NoteCommandParserTest {
         Note noteStubOrange = new Note(VALID_NOTE_ORANGE);
         // no leading and trailing whitespaces
         NoteCommand expectedNoteCommand =
-                new NoteCommand(SERIAL_NUMBER_FIRST_STOCK, noteStubOrange);
+                new NoteCommand(SERIAL_NUMBER_SECOND_STOCK, noteStubOrange);
         assertParseSuccess(parser,
                 SERIAL_NUMBER_DESC_APPLE + NOTE_DESC_ORANGE,
                 expectedNoteCommand);
@@ -111,24 +111,24 @@ public class NoteCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + SERIAL_NUMBER_DESC_APPLE + NOTE_DESC_ORANGE,
-                new NoteCommand(SERIAL_NUMBER_FIRST_STOCK, noteStub));
+                new NoteCommand(SERIAL_NUMBER_SECOND_STOCK, noteStub));
 
         // field headers in different order
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NOTE_DESC_ORANGE + SERIAL_NUMBER_DESC_BANANA,
-                new NoteCommand(SERIAL_NUMBER_SECOND_STOCK, noteStub));
+                new NoteCommand(SERIAL_NUMBER_THIRD_STOCK, noteStub));
 
         // whitespaces in between different headers
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NOTE_DESC_ORANGE
                 + "                  " + SERIAL_NUMBER_DESC_BANANA,
-                new NoteCommand(SERIAL_NUMBER_SECOND_STOCK, noteStub));
+                new NoteCommand(SERIAL_NUMBER_THIRD_STOCK, noteStub));
 
         // unknown fields eg. r/, g/ success
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + NOTE_DESC_ORANGE
                         + "/g                  " + SERIAL_NUMBER_DESC_BANANA,
-                new NoteCommand(SERIAL_NUMBER_SECOND_STOCK, noteStubWithUnknownPrefix));
+                new NoteCommand(SERIAL_NUMBER_THIRD_STOCK, noteStubWithUnknownPrefix));
 
     }
 

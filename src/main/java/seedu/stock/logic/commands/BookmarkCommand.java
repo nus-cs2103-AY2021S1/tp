@@ -32,7 +32,7 @@ public class BookmarkCommand extends Command {
             + PREFIX_SERIAL_NUMBER + "China3 ";
 
 
-    public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock: %1$s";
+    public static final String MESSAGE_BOOKMARK_STOCK_SUCCESS = "Bookmarked Stock:%1$s";
     public static final String MESSAGE_SERIAL_NUMBER_NOT_FOUND = "Stock with given serial number does not exists:"
             + ": %1$s";
     public static final String MESSAGE_ALREADY_BOOKMARKED = "Stock with given serial number is already bookmarked"
@@ -171,6 +171,8 @@ public class BookmarkCommand extends Command {
         for (int i = 0; i < stringList.size(); i++) {
             serialNumbersAsString += "\n" + stringList.get(i);
         }
+        serialNumbersAsString += "\n";
+
         return serialNumbersAsString;
     }
 

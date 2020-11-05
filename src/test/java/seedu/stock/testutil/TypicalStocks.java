@@ -16,6 +16,14 @@ import seedu.stock.model.stock.Stock;
  */
 public class TypicalStocks {
 
+    public static final Stock ALMOND = new StockBuilder().withName("almond milk")
+            .withSerialNumber("cold storage1").withSource("cold storage")
+            .withQuantity("2000", "0")
+            .withLocation("fruit section, subsection c")
+            .withNotes("Fresh from New Zealand.", "Friday")
+            .withBookmark(true)
+            .build();
+
     public static final Stock APPLE = new StockBuilder().withName("apple juice")
             .withSerialNumber("ntuc1").withSource("ntuc")
             .withQuantity("2000", "0")
@@ -48,9 +56,11 @@ public class TypicalStocks {
     public static final Index INDEX_FIRST_STOCK = Index.fromOneBased(1);
     public static final Index INDEX_SECOND_STOCK = Index.fromOneBased(2);
     public static final Index INDEX_THIRD_STOCK = Index.fromOneBased(3);
-    public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
-    public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
-    public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = ORANGE.getSerialNumber();
+    public static final Index INDEX_FOURTH_STOCK = Index.fromOneBased(4);
+    public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = ALMOND.getSerialNumber();
+    public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = APPLE.getSerialNumber();
+    public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = BANANA.getSerialNumber();
+    public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
     public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown1");
 
     public static final String RESERVED_NON_EXISTENCE_SOURCE = "$non-existent-source";
@@ -88,7 +98,7 @@ public class TypicalStocks {
     }
 
     public static List<Stock> getTypicalStocks() {
-        return new ArrayList<>(Arrays.asList(APPLE, BANANA, ORANGE));
+        return new ArrayList<>(Arrays.asList(ALMOND, APPLE, BANANA, ORANGE));
     }
 
     /**

@@ -65,7 +65,7 @@
         <Label fx:id="locationStored" styleClass="list-cell-header-text" text="Location" wrapText="true"/>
       </HBox>
 
-      <HBox styleClass="list-cell-header"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="7">
+      <HBox styleClass="list-cell-header-right-end"  minHeight="50" alignment="BOTTOM_LEFT" GridPane.columnIndex="7">
         <Label fx:id="notes" styleClass="list-cell-header-text" text="Notes" wrapText="true" />
       </HBox>
 

@@ -12,8 +12,8 @@ import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANA
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_BANANA;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_THIRD_STOCK;
 
 import org.junit.jupiter.api.Test;
 
@@ -83,7 +83,7 @@ public class StockViewCommandParserTest {
 
         // no leading and trailing whitespaces
         StockViewCommand expectedStockViewCommand =
-                new StockViewCommand(SERIAL_NUMBER_FIRST_STOCK);
+                new StockViewCommand(SERIAL_NUMBER_SECOND_STOCK);
         assertParseSuccess(parser, SERIAL_NUMBER_DESC_APPLE, expectedStockViewCommand);
 
     }
@@ -94,12 +94,12 @@ public class StockViewCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + SERIAL_NUMBER_DESC_APPLE,
-                new StockViewCommand(SERIAL_NUMBER_FIRST_STOCK));
+                new StockViewCommand(SERIAL_NUMBER_SECOND_STOCK));
 
         // whitespaces in between different headers
         assertParseSuccess(parser,
                 PREAMBLE_WHITESPACE + SERIAL_NUMBER_DESC_BANANA + "          ",
-                new StockViewCommand(SERIAL_NUMBER_SECOND_STOCK));
+                new StockViewCommand(SERIAL_NUMBER_THIRD_STOCK));
 
     }
 

@@ -167,7 +167,14 @@
 }
 
 .list-cell-header {
-    -fx-border-width: 0 0 0 1;
+    -fx-border-width: 1 0 0 1;
+    -fx-border-color: #000000;
+    -fx-padding: 0 0 2 0;
+    -fx-background-color: #a3a1a1;
+}
+
+.list-cell-header-right-end {
+    -fx-border-width: 1 1 0 1;
     -fx-border-color: #000000;
     -fx-padding: 0 0 2 0;
     -fx-background-color: #a3a1a1;
