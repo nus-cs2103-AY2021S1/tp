@@ -31,11 +31,11 @@ User Guide:
 
 Developer Guide:
 
-* Contributed to the UI section of the developer guide, which documents how UI components interact with each other and how it is executed in our programme. 
+* Contributed to the UI section of the developer guide, which documents how UI components interact with each other and how it is executed in our programme.
 
 ### Contributions to Team Based Task
 
-* Helped my teammates in debugging, including identifying sources of major bugs. 
+* Helped my teammates in debugging, including identifying sources of major bugs.
 
 ### Community
 

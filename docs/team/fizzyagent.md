@@ -40,8 +40,8 @@ I contributed to the Logic section of the developer guide, which documents how u
 
 ### Contributions to Team Based Task
 
-I helped my teammates in debugging, including identifying sources of major bugs. 
+I helped my teammates in debugging, including identifying sources of major bugs.
 
 ### Contributions to Other Projects
 
-I helped review bugs for [Team F12-2](https://github.com/AY2021S1-CS2103T-F12-2/tp) as part of the PE dry run, during which I reported about 20 errors ranging from simple UI suggestions to potential programme-breaking bugs. 
+I helped review bugs for [Team F12-2](https://github.com/AY2021S1-CS2103T-F12-2/tp) as part of the PE dry run, during which I reported about 20 errors ranging from simple UI suggestions to potential programme-breaking bugs.
