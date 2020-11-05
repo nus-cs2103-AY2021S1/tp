@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/royleochan.png" width="200px">
 
 [[github](http://github.com/royleochan)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/royleochan.md)]
 
 * Role: Team Lead + Developer
 * Responsibilities: Overall project coordination
