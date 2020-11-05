@@ -12,9 +12,36 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick Start [coming soon]
+## Quick start
+
+1. Ensure you have Java `11` installed in your Computer. 
+   You can check the version by opening a command window, and running the `java -version` command.
+
+2. Download the latest `[CS2103-T16-2][Insurance4Insurance].jar` from [here](https://github.com/AY2021S1-CS2103-T16-2/tp/releases).
+
+3. Copy the file to the **empty folder** you want to use as the _home folder_.
+
+4. Launch the app by using the `java -jar` command (do not use double-clicking). 
+   The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   
+   ![Ui](images/Ui.png)
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * **`list`** : Lists all active clients.
+
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/h` : 
+   Adds a contact named `John Doe` to the client list.
+
+   * **`delete`**`3` : Deletes the 3rd client shown in the current list.
+
+   * **`exit`** : Exits the app.
+
+6. Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Commands
 
 <div markdown="block" class="alert alert-info">
@@ -35,7 +62,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
   
 **:information_source: Notes and terminologies on archiving:**<br>
 
-* Clients not in the archive are said to be in the "active list", or the "active client list".
+* Clients not in the archive are said to be "active clients" in the "active list".
  
 * Upon starting up the app, users would see the active list by default.
  
@@ -45,7 +72,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -104,7 +131,7 @@ Archives the client at the given index.
 
 Format: `archive CLIENT_INDEX`
 
-Example: `list` followed by `archive 2` archives the 2nd client in I4I.
+Example: `list` followed by `archive 2` archives the 2nd active client in I4I.
 
 Notes: 
 
@@ -122,13 +149,13 @@ Lists the archived clients in I4I.
 
 Format: `list r/`
 
-### Unarchiving an active client : `unarchive`
+### Unarchiving an archived client : `unarchive`
 
 Unarchives the client at the given index.
 
 Format: `unarchive CLIENT_INDEX`
 
-Example: `list r/` followed by `unarchive 2` unarchives the 2nd client in I4I.
+Example: `list r/` followed by `unarchive 2` unarchives the 2nd archived client in I4I.
 
 Notes: 
 
@@ -197,10 +224,10 @@ They are:
  
 |Priority Type   |Syntax  |Picture   |
 |---|---|---|
-|Undefined   |`l/undefined`,`l/u`, `l/U`   |![help message](images/Priority Bar/UndefinedPriority.png)  |
-|Low   |`l/low`,`l/l`, `l/L`    |![help message](images/Priority Bar/LowPriority.png)   |
-|Medium   |`l/medium`,`l/m`, `l/M`    |![help message](images/Priority Bar/MediumPriority.png)   |
-|High   |`l/high`,`l/h`, `l/H`    |![help message](images/Priority Bar/HighPriority.png)   |
+|Undefined   |`l/undefined`,`l/u`, `l/U`   |![Undefined Priority](images/Priority Bar/UndefinedPriority.png)  |
+|Low   |`l/low`,`l/l`, `l/L`    |![Low Priority](images/Priority Bar/LowPriority.png)   |
+|Medium   |`l/medium`,`l/m`, `l/M`    |![Medium Priority](images/Priority Bar/MediumPriority.png)   |
+|High   |`l/high`,`l/h`, `l/H`    |![High Priority](images/Priority Bar/HighPriority.png)   |
 
 Note: 
 * If a client is not assigned a priority, I4I would automatically assign an undefined priority to the client.
@@ -214,8 +241,8 @@ Example:
 
 ### Policy Feature
 
-I4I allows for insurance policies that the user's company have to be added into a policy list.
-These policies can then be added into the client list as a person's field.
+Insurance policies belonging to the user's company can be added into I4I's policy list.
+A client can then be added with the corresponding policy.
 
 Policies have a name and a description.
 
@@ -223,9 +250,28 @@ The policy list is also saved to the hard disk.
 
 Currently, 2 commands, `addp` & `clearp`, are used to control the policy list.
 
+### Archive Feature
+
+The archive is meant as a way to store clients which may not be currently relevant to the user. 
+For example, clients which are no longer managed by the user can be stored in the archive, with the `archive` command. 
+The user may decide not to delete the client straight away, 
+in case they happen to start interacting again, so the users can store them in the archive.
+
+The archive has a separate view from the active list, so that the user would not be distracted by archived clients. 
+The default view upon starting up the app is the active list.
+The user has the option to switch the view to the archive if needed, with `list r/`. 
+They can also switch the view back to the active list with `list`.
+
+The user can unarchive an archived client, for which case the client would become active, with `unarchive`.
+
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ [coming soon]
+## FAQ
+
+**Q**: How do I transfer my data to another computer?
+
+**A**: Install the app in the other computer, and overwrite the empty data files it creates with the files that contain 
+the data of your previous I4I home folder. By default, the 2 data files are named `clientlist.json` and `policylist.json`.
 
 --------------------------------------------------------------------------------------------------------------------
 
