@@ -97,8 +97,8 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         helpWindow = new HelpWindow();
         timelineWindow = new TimelineWindow(logic);
 
-        // default theme is light
-        setStylesheet(LIGHT_THEME, false);
+        // default theme is dark
+        setStylesheet(DARK_THEME, false);
     }
 
     public Stage getPrimaryStage() {
