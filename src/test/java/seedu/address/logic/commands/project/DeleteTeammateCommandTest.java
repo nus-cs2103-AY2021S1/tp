@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.project;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGitIndexes.GIT_USERINDEX_FIRST_TEAMMATE;
@@ -10,6 +12,7 @@ import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -46,6 +49,14 @@ public class DeleteTeammateCommandTest {
         assertCommandSuccess(deleteTeammateCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test public void execute_validIndexValidPersonNotAddedToList_throwsCommandException() {
+        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        assertThrows(CommandException.class, () -> deleteTeammateCommand.execute(model)); //
+    }
+
     @Test
     public void execute_invalidIndexValidPerson_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
@@ -59,4 +70,27 @@ public class DeleteTeammateCommandTest {
         model.addPerson(person);
         assertThrows(NullPointerException.class, () -> model.addParticipation(participation));
     }
+
+    @Test
+    public void equals() {
+        DeleteTeammateCommand deleteOne = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateCommand deleteTwe = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        DeleteTeammateCommand deleteThree = new DeleteTeammateCommand(GIT_USERINDEX_SECOND_TEAMMATE);
+
+        // Same object -> returns true
+        assertTrue(deleteOne.equals(deleteOne));
+
+        // Same values -> return true
+        assertTrue(deleteOne.equals(deleteTwe));
+
+        // different types -> returns false
+        assertFalse(deleteOne.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteOne.equals(null));
+
+        // different task -> returns false
+        assertFalse(deleteOne.equals(deleteThree));
+    }
+
 }
