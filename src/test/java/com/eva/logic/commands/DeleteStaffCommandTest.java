@@ -1,6 +1,7 @@
 package com.eva.logic.commands;
 
 import com.eva.commons.core.Messages;
+import com.eva.commons.core.PanelState;
 import com.eva.commons.core.index.Index;
 import com.eva.model.Model;
 import com.eva.model.ModelManager;
@@ -12,11 +13,12 @@ import org.junit.jupiter.api.Test;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandFailure;
 import static com.eva.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static com.eva.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static com.eva.logic.commands.CommandTestUtil.showStaffAtIndex;
 import static com.eva.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static com.eva.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static com.eva.testutil.TypicalPersons.getTypicalApplicantDatabase;
 import static com.eva.testutil.TypicalPersons.getTypicalPersonDatabase;
-import static com.eva.testutil.TypicalPersons.getTypicalStaffDatabase;
+import static com.eva.testutil.staff.TypicalStaffs.getTypicalStaffDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,12 +33,13 @@ public class DeleteStaffCommandTest {
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS, staffToDelete);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
 
         ModelManager expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
                 model.getApplicantDatabase(), new UserPrefs());
         expectedModel.deleteStaff(staffToDelete);
 
-        assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStaffCommand, model, expectedResult, expectedModel);
     }
 
     @Test
@@ -49,24 +52,25 @@ public class DeleteStaffCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStaffAtIndex(model, INDEX_FIRST_PERSON);
 
         Staff staffToDelete = model.getFilteredStaffList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteStaffCommand deleteStaffCommand = new DeleteStaffCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteStaffCommand.MESSAGE_DELETE_STAFF_SUCCESS, staffToDelete);
+        CommandResult expectedResult = new CommandResult(expectedMessage, false, false, true);
 
         Model expectedModel = new ModelManager(model.getPersonDatabase(), model.getStaffDatabase(),
                 model.getApplicantDatabase(), new UserPrefs());
         expectedModel.deleteStaff(staffToDelete);
         showNoStaff(expectedModel);
 
-        assertCommandSuccess(deleteStaffCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStaffCommand, model, expectedResult, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStaffAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of eva database list
