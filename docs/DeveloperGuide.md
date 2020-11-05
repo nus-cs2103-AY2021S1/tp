@@ -961,6 +961,16 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking shows all valid commands.
 
      Use case ends.
+**Use case: Select a recipe in the recipe list**
+
+**MSS**
+
+  1. User requests to view a single recipe.
+  1. Wishful Shrinking opens a drawer that contains only the requested recipe.
+  1. User requests to close the drawer.
+  1. Wishful Shrinking closes the drawer.
+
+     Use case ends.
 
 *{More to be added}*
 
