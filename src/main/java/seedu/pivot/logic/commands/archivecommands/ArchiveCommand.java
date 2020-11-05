@@ -74,7 +74,6 @@ public class ArchiveCommand extends Command implements Undoable {
 
         model.deleteCase(caseToArchive);
         model.addCase(updatedCase);
-        //model.setCase(caseToArchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
         model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase), this);
