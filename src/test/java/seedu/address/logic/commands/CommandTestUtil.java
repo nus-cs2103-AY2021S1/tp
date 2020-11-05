@@ -24,6 +24,9 @@ import seedu.address.model.Model;
 import seedu.address.model.Trackr;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
+import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -170,4 +173,20 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredModuleList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the student at the give {@code targetIndex} in the
+     * {@code mode}'s student list.
+     */
+    public static void showStudentAtIndex(Model model, Index targetIndex, Module targetModule,
+                                          TutorialGroup targetTutorialGroup) {
+        model.setViewToTutorialGroup(targetModule);
+        model.setViewToStudent(targetTutorialGroup);
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        final String[] splitName = student.getName().toString().split("\\s+");
+        model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredStudentList().size());
+    }
 }
