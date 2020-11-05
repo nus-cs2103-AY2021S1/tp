@@ -2,7 +2,8 @@
 layout: page
 title: Liu Zheng Dao's Project Portfolio Page
 ---
-![profileimage](../images/justacasul.png)
+<img src="../images/justacasul.png" height=300>
+
 ## Project: Inventoryinator
 
 Inventoryinator is a desktop inventory management application that helps gamers quickly and easily manage
