@@ -12,13 +12,13 @@ It is written in Java, and has about 20 kLoC.
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to archive and unarchive cases, as well as list the archived cases. (Pull Request [\#164](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/164))
-  * What it does: Allows the user to archive cases in the Home Section one at a time, which would be automatically shifted to the Archive Section on the GUI.
-  The archived cases can be unarchived using the unarchive command in the Archive Section.
+  * What it does: Allows the user to archive cases in the Home section one at a time, which would be automatically shifted to the Archive section on the GUI.
+  The archived cases can be unarchived using the unarchive command in the Archive section. They can easily switch between the two lists via `list case` and `list archive` commands.
   * Justification: This feature improves the product significantly as it allows users to better organise the cases on hand. 
-  They can archive cases that they deem of lower priority, hence helping to de-clutter the application. 
-  At the same time, it provides a convenient way to unarchive cases if they wish to.
+  They can archive cases that they deem of lower priority, hence helping to de-clutter the application, only viewing the list they wish to at one time. 
+  At the same time, it provides a convenient way to unarchive cases if they wish to. 
   * Highlights: In implementing this feature, the team considered various design alternatives. 
-  This enhancement builds on the newly implemented StateManager class, as well as the ability to edit the current list with a predicate.
+  This enhancement builds on the newly implemented StateManager class, as well as the ability to update the currently shown list with a predicate.
 
 * **New Feature**: Added the ability to add a victim to a case and delete a victim. (Pull Request [\#129](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/129))
   * What it does: Allows users to add a victim with the relevant fields (name, sex, phone, email, address) into a specified case.
@@ -29,7 +29,7 @@ Given below are my contributions to the project.
 * **New Feature**: Developed CasePerson (Suspect/Witness/Victim) to contain more fields (Pull Request [\#153](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/153), [\#235](https://github.com/AY2021S1-CS2103-F09-2/tp/pull/235))
   * What it does: Users can specify the name, sex, phone, email and address when adding a suspect, witness or victim to the case.
   Name, sex and phone are compulsory fields used to identify two different suspects/victims/witnesses, while other fields are optional.
-  * Justification: This features improves the product as it provides more depth to the product, allowing users to specify more details related to the person to be added to the case. 
+  * Justification: This feature improves the product as it provides more depth to the product, allowing users to specify more details related to the person to be added to the case. 
   This gives more importance to the added CasePerson rather than just having a name, as the CasePersons could be contacted with the extra information provided. 
   Within each category, the compulsory fields identify the specific CasePerson to prevent duplicates.
   * Highlights: This enhancement affects existing commands and commands to be added in the future. 
