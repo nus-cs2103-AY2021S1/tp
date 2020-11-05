@@ -382,7 +382,8 @@ Adds a property and its relevant details to the property list.
 - Command:  `add-p`
 - Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL`
 
-💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n
+💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n  
+💡 Property name refers to the generic brand name and can be the same for multiple properties, whereas address refers to the full address of the property and must be unique.  
 
 ⚠️ : The seller id must exist inside the seller list.  
 ⚠️ : Price must be greater than 0 and less or equals to 1 trillion.
@@ -403,6 +404,8 @@ Property type: Landed
 Asking price: $100.00
 Seller Id: S1
 ```
+
+ℹ️ As seen in the example, a unique unmodifiable property id is automatically generated for every new property.  
 
 ## Listing all properties
 
