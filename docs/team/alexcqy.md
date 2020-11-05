@@ -31,6 +31,6 @@ Given below are my contributions to the project.
     * Added implementation details of the `schedule`.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62))
-  * Reported bugs and suggestions for other teams in the class (examples: [#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68))
+  * PRs reviewed (with non-trivial review comments): ([#62](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/62), [#68](https://github.com/AY2021S1-CS2103T-W15-2/tp/pull/68))
+  * Reported bugs and suggestions for other teams in the class (examples: [#1](https://github.com/AlexCQY/ped/issues/1), [#2](https://github.com/AlexCQY/ped/issues/2),  )
 
