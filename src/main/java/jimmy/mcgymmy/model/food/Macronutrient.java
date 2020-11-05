@@ -9,7 +9,7 @@ public abstract class Macronutrient {
             " can only contain non-negative integers less than 1000";
 
     private static final int LOWER_BOUND = 0; //Inclusive
-    private static final int UPPER_BOUND = 1000; //Non inclusive
+    private static final int UPPER_BOUND = 999; //Non inclusive
     private static final String VALIDATION_REGEX = "(\\d){1,3}";
 
     private final int amount;
@@ -45,7 +45,7 @@ public abstract class Macronutrient {
     }
 
     private boolean isValidAmount(int amount) {
-        return amount >= LOWER_BOUND && amount < UPPER_BOUND;
+        return amount >= LOWER_BOUND && amount <= UPPER_BOUND;
     }
 
     abstract String getMessageConstraint();
