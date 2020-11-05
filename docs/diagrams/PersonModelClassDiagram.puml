@@ -41,5 +41,5 @@ Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 
 
-ModelManager -down->"1" Person : filtered list
+ModelManager -down->"1" Person : filteredPersons
 @enduml
