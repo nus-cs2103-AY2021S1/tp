@@ -716,11 +716,10 @@ with phone number, using a prefix to identify them.
 * is reasonably comfortable using CLI apps
 
 **Value proposition**:
-
-* To manage the employees' contact information digitally
-    * The product will provide a platform to allow the user to save his/ her employees’ contact 
-      information (eg. emergency contacts, address etc).
-    * It can manage contacts faster than a typical mouse/GUI driven app 
+* To assist on manpower management
+    * The product will provide a platform to allow the user to manage employees’ contact 
+      information (e.g. contact number, emergency contact, address etc).
+    * The product could help the user to find available manpower for specific days.
 * To digitise inventory keeping
     * The product will help to digitise inventory keeping, and thus helps to save the user’s time and prevent 
       human error in calculation. It does not ensure that the employees use the same amount of ingredients in making 
