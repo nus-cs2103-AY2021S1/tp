@@ -1,6 +1,7 @@
 package seedu.address.model.schedule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -33,5 +34,18 @@ public class LessonEventTest {
         LocalDateTime expected = dummyDateCreated.plusDays(1);
 
         assertEquals(expected, LessonEvent.computeLessonStartDate(dummyDateCreated, DayOfWeek.FRIDAY));
+    }
+
+    @Test
+    public void computeLessonStartDate_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                LessonEvent.computeLessonStartDate(null, DayOfWeek.THURSDAY));
+    }
+
+    @Test
+    public void computeLessonStartDate_nullDayOfWeek_throwsNullPointerException() {
+        LocalDateTime dummyDateCreated = LocalDateTime.of(2020, 10, 29, 9, 0);
+        assertThrows(NullPointerException.class, () ->
+                LessonEvent.computeLessonStartDate(dummyDateCreated, null));
     }
 }

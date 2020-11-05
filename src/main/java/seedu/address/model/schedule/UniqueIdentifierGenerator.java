@@ -1,5 +1,7 @@
 package seedu.address.model.schedule;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDateTime;
 
 /**
@@ -10,6 +12,7 @@ public class UniqueIdentifierGenerator {
      * Generates a unique string identifier for the Events object as required by VEvent.
      */
     public static String generateUid(String eventName, String eventStartDateTime, String eventEndDateTime) {
+        requireAllNonNull(eventName, eventStartDateTime, eventEndDateTime);
         StringBuilder builder = new StringBuilder();
         builder.append(LocalDateTime.now().toString())
                 .append("/")

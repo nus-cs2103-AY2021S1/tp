@@ -73,5 +73,4 @@ public class LessonEvent extends Event {
         }
         return LocalDateTime.from(adjuster.adjustInto(dateCreated));
     }
-
 }
