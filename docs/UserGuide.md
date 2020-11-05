@@ -633,7 +633,7 @@ If you need to quickly look up a command, we have added a table below to summari
             </td>
             <td rowspan=1>add</td>
             <td rowspan=1>
-            	<code>add q/QUESTION ans/ANSWER</code>
+            	<code>add q/QUESTION ans/ANSWER [t/TAG]... [d/DIFFICULTY]</code>
             </td>
             <td rowspan=1>
             	<code>add q/Sample Question? ans/A</code>
@@ -643,7 +643,7 @@ If you need to quickly look up a command, we have added a table below to summari
             <td rowspan=1>addmcq</td>
             <td rowspan=1>
             	<code>addmcq q/QUESTION ans/ANSWER <br>
-            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            	c/CHOICE... [t/TAG]... [d/DIFFICULTY]</code>
             </td>
             <td rowspan=1>
             	<code>addmcq q/Sample Question? ans/1 c/A c/B c/C</code>
@@ -662,7 +662,7 @@ If you need to quickly look up a command, we have added a table below to summari
         </tr>
         <tr>
         	<td rowspan=1>
-        		<code>delete t/TAG1</code>
+        		<code>delete t/TAG...</code>
         	</td>
           <td rowspan=1>
             	<code>delete t/Assembly</code>
@@ -682,8 +682,7 @@ If you need to quickly look up a command, we have added a table below to summari
             	<Strong>Editing a flashcard</Strong></td>
             <td>edit</td>
             <td rowspan=1>
-            	<code>edit INDEX q/QUESTION ans/ANSWER <br>
-            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            	<code>edit INDEX [q/QUESTION] [ans/ANSWER] [c/CHOICE]... [t/TAG]... [d/DIFFICULTY]</code>
             </td>
             <td rowspan=1>
             	<code>edit 1 q/Sample Question? ans/2 c/A c/C c/B</code>
@@ -706,7 +705,7 @@ If you need to quickly look up a command, we have added a table below to summari
             	<Strong>Finding flashcards</Strong></td>
             <td rowspan=3>find</td>
             <td rowspan=1>
-            	<code>find q/KEYWORD1 q/KEYWORD2 ..</code>
+            	<code>find q/KEYWORD...</code>
             </td>
             <td rowspan=1>
             	<code>find q/CS2103T q/What q/is</code>
@@ -714,7 +713,7 @@ If you need to quickly look up a command, we have added a table below to summari
         </tr>
         <tr>
         	<td rowspan=1>
-        		<code>find t/TAG1 t/TAG2 ..</code>
+        		<code>find t/TAG...</code>
         	</td>
           <td rowspan=1>
             	<code>find t/Assembly t/MCQ</code>
@@ -722,8 +721,7 @@ If you need to quickly look up a command, we have added a table below to summari
         </tr>
         <tr>
         	<td rowspan=1>
-        		<code>find t/TAG1 t/TAG2 .. <br>
-        		q/KEYWORD1 q/KEYWORD2 ..</code>
+        		<code>find [t/TAG]... [q/KEYWORD1]...</code>
         	</td>
           <td rowspan=1>
             	<code>find t/Assembly t/MCQ q/CS2100 q/What</code>
