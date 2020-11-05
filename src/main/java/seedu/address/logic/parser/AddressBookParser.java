@@ -72,6 +72,7 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
+        //@@author yanbingtao
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);
 
@@ -92,6 +93,7 @@ public class AddressBookParser {
 
         case FindByTagCommand.COMMAND_WORD:
             return new TagFindCommandParser().parse(arguments);
+        //@@author
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
