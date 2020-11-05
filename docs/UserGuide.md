@@ -168,7 +168,7 @@ Examples:
 
 :information_source:
  * The default value for `PROTEIN`, `FATS` and `CARBS` is 0. The default date is the day in which the food item is added.<br>
- * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, not exceeding 1000g.<br>
+ * Values of `PROTEIN`, `FATS` and `CARBS` must be a non-negative integer, less than 1000g.<br>
  * To view the list of supported date formats, see *Appendix A*.<br>
 
 </div>
