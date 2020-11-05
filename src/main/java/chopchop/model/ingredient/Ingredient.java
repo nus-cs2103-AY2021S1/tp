@@ -144,27 +144,29 @@ public class Ingredient extends Entry {
             var exp = entry.getKey();
             var qty = entry.getValue();
 
+            if (qty.isZero()) {
+                continue;
+            }
+
+            Quantity newQty = null;
+
             // get the existing quantity of ingredient with the given expiry date
             var existingQty = newSets.get(exp);
-
             if (existingQty != null) {
                 // it exists; time to combine them using Quantity::add()
                 // (assuming they are compatible, of course)
-                var newQty = existingQty.add(qty)
-                    .orElseThrow(IncompatibleIngredientsException::new);
-
-                newSets.put(exp, newQty);
-
+                newQty = existingQty.add(qty).orElseThrow(IncompatibleIngredientsException::new);
             } else {
-                if (!thisQty.compatibleWith(qty)) {
-                    throw new IncompatibleIngredientsException(
-                        String.format("incompatible units ('%s' and '%s')", thisQty, qty)
-                    );
-                }
-
-                // it doesn't exist; so just add it in.
-                newSets.put(exp, qty);
+                newQty = qty;
             }
+
+            if (!thisQty.compatibleWith(newQty)) {
+                throw new IncompatibleIngredientsException(
+                    String.format("incompatible units ('%s' and '%s')", thisQty, newQty)
+                );
+            }
+
+            newSets.put(exp, newQty);
         }
 
         // here we combine the tags.

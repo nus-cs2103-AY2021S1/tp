@@ -904,6 +904,8 @@ Figure 9.3: <i>Insufficient ingredients to make the pancakes</i>
 <a name="GroupIngredientCommands"></a>
 ### 5.5&ensp;Ingredient Commands
 
+These commands allow you to add, delete, and edit ingredients.
+
 <a name="ListIngredientCommand"></a>
 #### 5.5.1&ensp;Listing Ingredients — **`list`**`ingredients`
 This command shows a list of all recipes in ChopChop. As with the `list recipes` command, you can use this command to switch between panes without clicking, or to reset any filters.
@@ -970,17 +972,17 @@ Next, suppose you also bought 24 blueberries:
 Figure 11.3: <i>Adding 24 blueberries</i>
 </div>
 
-This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
+This time, since ChopChop already knew about blueberries, our previous 19 blueberries now become 43:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 11.4: <i>You now have 29 blueberries</i>
+Figure 11.4: <i>You now have 43 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
-<img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
+<img src="images/ug/add_ingredient_5.png" width="45%" /> <br />
 Figure 11.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
