@@ -52,7 +52,10 @@ Refer to the features below for details of each command.
 
 1. Afterwards, copy the file to the folder you want to use as the _home folder_ for your McGymmy.
 
-1. Double-click the file to start the app. You should notice a GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. You should notice a GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+<br>
+*Note* For Ubuntu users, you will need to set execution permissions on the application using `chmod` before double-clicking will work.
+<br>
 
    ![Ui](images/Ui.png)
 
