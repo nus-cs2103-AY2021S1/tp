@@ -213,7 +213,6 @@ Format: `edits INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 
 Example:
 * `edits 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
-* `edits 1 c/ ti/title d/10/10/2010 desc/new_description`
 
 
 #### 3.3.4. Record leave taken by staff: `addl`
@@ -297,7 +296,6 @@ Format: `edita INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]
 
 Example:
 * `edita 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
-* `edita 1 c/ ti/title d/10/10/2010 desc/new_description`
 * `edita 1 id/ 10/10/2010`
 
 
@@ -345,16 +343,16 @@ Commands to add, delete and edit comments on staff or applicants
  
 #### 3.5.1 Add comment to a staff/applicant: `addc INDEX c/ ti/TITLE d/Date desc/DESCRIPTION`
 
-Adds a comment to a staff/applicant under eva
+Adds a comment to a staff/applicant under eva depending on which panel you are in
 
-Format: `addc 1 s- ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
+Format: `addc 1 ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
 
 Example:
-* `addc 1 s- ti/title d/10/10/2010 desc/description`
+* `addc 1 ti/title d/10/10/2010 desc/description`
 
 #### 3.5.2 Delete comment from a staff/applicant: `delc INDEX c/ ti/TITLE_TO_DELETE`
 
-Deletes a comment from a staff/applicant under eva
+Deletes a comment from a staff/applicant under eva depending on which panel you are in
 
 #### 3.5.3 Edit comment on an applicant: `editc INDEX c/ ti/TITLE_TO_EDIT d/DATE_OF_TITLE_TO_EDIT desc/ NEW_DESC`
 

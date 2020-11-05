@@ -123,7 +123,7 @@ public class DeleteCommentCommand extends CommentCommand {
      * the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createDeleteEditedPerson(Person personToEdit,
+    public static Person createDeleteEditedPerson(Person personToEdit,
                                                    CommentCommand.CommentPersonDescriptor commentPersonDescriptor)
             throws CommandException {
         assert personToEdit != null;
