@@ -67,7 +67,7 @@ public class RecipeCard extends UiPart<Region> {
         } catch (IllegalArgumentException | NoSuchElementException | NullPointerException ex) {
             recipe.setDefaultImage();
         } finally {
-           setImageToRecipeCard(recipe);
+            setImageToRecipeCard(recipe);
         }
 
         //Responsive resizing
