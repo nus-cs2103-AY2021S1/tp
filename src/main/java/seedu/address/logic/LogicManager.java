@@ -20,6 +20,7 @@ import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.location.Location;
+import seedu.address.model.recipe.PrintableRecipe;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.storage.Storage;
 import seedu.address.ui.DisplayedInventoryType;
@@ -57,7 +58,6 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            // TODO: different saves
             storage.saveModel(model);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -145,9 +145,18 @@ public class LogicManager implements Logic {
         case DETAILED_ITEM:
             // adds the single matching item into the inventory list
             model.getFilteredItemList().forEach(item -> inventoryList.add(item.detailedItem()));
+
+            model.resetItemFilters();
+            // adds all recipes which can craft the item into the inventory list
+            model.getFilteredRecipeList()
+                    .forEach(recipe -> {
+                        PrintableRecipe pr = recipe.print(model.getFilteredItemList());
+                        pr.includeOffset(); // toggles that index should be adjusted
+                        inventoryList.add(pr);
+                    });
             break;
         case UNCHANGED:
-            assert false;
+            assert false : "unchanged called in getInventoryList";
             break;
         default:
             throw new IllegalStateException("This inventoryType is not valid" + inventoryType);

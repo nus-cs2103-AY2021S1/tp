@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("del bob's toenail -r 1")
+[-> LogicManager : execute("delr bob's toenail -i 1")
 activate LogicManager
 
-LogicManager -> InventoryParser : parseCommand("del bob's toenail -r 1")
+LogicManager -> InventoryParser : parseCommand("delr bob's toenail -i 1")
 activate InventoryParser
 
 create DeleteCommandParser
@@ -26,7 +26,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> InventoryParser
 deactivate DeleteCommandParser
 
-InventoryParser -> DeleteCommandParser : parse("bob's toenail -r 1")
+InventoryParser -> DeleteCommandParser : parse("bob's toenail -i 1")
 activate DeleteCommandParser
 
 create DeleteCommand
