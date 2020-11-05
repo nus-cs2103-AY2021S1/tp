@@ -536,25 +536,25 @@ The following activity diagram shows how the reset all ingredients' levels opera
 
 ### Archiving employee feature
 
-When employees are no longer working in the store, their contact information would usually be deleted, or kept in
+When employees are no longer working in the store, their information would usually be deleted, or kept in
 the archive. tCheck simulates this archive, storing these contact information in the app so that the user can still
 retrieve them back when needed. For example, when an employee is rehired by the manager, the manager(user) can move
 this specific employee's contact information back to the currently active contact information list from the
 archived record.
 
-The archiving-employee feature consists of four commands with slightly different
+The archiving employee feature consists of four commands with slightly different
 formats, which complement one another, to provide a set of useful commands for enhanced user experiences. The four
 commands are :
 
-* `c-archive INDEX` — Archives the person identified by the index number used in the displayed person list.
-* `c-unarchive INDEX` — Unarchives the person identified by the index number used in the displayed person list.
-* `c-archive-all` — Archives all persons in the displayed person list.
-* `c-archive-list` — Shows a list of all archived persons' contact details.
+* `c-archive INDEX` — Archives the employee identified by the index number used in _Employee Directory_ pane.
+* `c-unarchive INDEX` —  Unarchives the employee identified by the index number used in _Employee Directory_ pane.
+* `c-archive-all` — Archives all employees in _Employee Directory_ pane.
+* `c-archive-list` — Shows a list of all archived employees.
 
 #### Implementation
 
-The archiving of persons is facilitated by the `ArchiveStatus` attribute of a person. The following methods in the
- `Person` class and the `Model` interface facilitate this feature:
+In tCheck, each employee is modeled as `person` object. The archiving employee feature is facilitated by the
+ `ArchiveStatus` attribute of a `person`. The following methods in the `Person` class and the `Model`interface facilitate this feature:
 
 * `Person#archive()` — A method that sets the person's `ArchiveStatus` to `true`. It's equivalent to archive the person.
 * `Person#unarchive()` — A method that sets the person's `ArchiveStatus` to `false`. It's equivalent to unarchive the
@@ -574,11 +574,13 @@ Given below shows how the `c-archive`, `c-unarchive`, and `c-archive-all` mechan
 
 *Figure Archive-2. Activity diagram representation of the general flow of archiving of a peron in tCheck*
 
-User can archive a specific person by entering the `c-archive INDEX` command. The following steps describe how this behavior is implemented:
+User can archive a specific employee (modeled as a `person` in the code) by entering the `c-archive INDEX` command. The
+ following steps describe how this behavior is implemented:
 
 Step 1: The user archives a `Person` in the current observable `PersonList` with command `c-archive 1`. `ArchiveCommand` is created with the parsed arguments, and executed.
 
-Step 2: The `Person` will then be checked if the `ArchiveStatus` is `true`. An error message will be displayed if the user tries to archive a person from the archived person list.
+Step 2: The `Person` will then be checked if the `ArchiveStatus` is `true`. An error message will be displayed if the
+ user tries to archive a person from the archived person list.
  
 Step 3: The `Person` will have a new `ArchivedStatus` value, which will be set to `true` by using the `Person#archive()` method.
 
@@ -586,15 +588,16 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/ArchiveSequenceDiagram.png)
 
-*Figure Archive-3. Sequence diagram representation of archiving a person*
+*Figure Archive-3. Sequence diagram representation of archiving an employee*
 
 ##### 2. Unarchiving an employee
 
 ![Structure of the Storage Component](images/UnarchiveActivityDiagram.png)
 
-*Figure Archive-4. Activity diagram representation of the general flow of unarchiving of a peron in tCheck*
+*Figure Archive-4. Activity diagram representation of the general flow of unarchiving of an employee in tCheck*
 
-User can unarchive an already-archived person's contact information by entering the `c-unarchive INDEX` command. The following steps describe how this behavior is implemented:
+User can unarchive an already-archived employee(modeled as `person` in the code) by entering the `c-unarchive INDEX
+` command. The following steps describe how this behavior is implemented:
 
 Step 1: The user unarchives a `Person` in the current observable `PersonList` with command `c-unarchive 1`. `UnarchiveCommand` is created with the parsed arguments, and executed.
 
@@ -606,10 +609,11 @@ Step 4: The current `FilteredList` will be updated to only show active `Persons`
 
 ![Structure of the Storage Component](images/UnarchiveSequenceDiagram.png)
 
-*Figure Archive-5. Sequence diagram representation of unarchiving a person*
+*Figure Archive-5. Sequence diagram representation of unarchiving an employee*
 
 ##### 3. Archiving all employees
-User can archive all persons' contact information by entering the `c-archive-all` command. The following steps describe how this behavior is implemented:
+User can archive all employees(employee is modeled as `person` in the code) by entering the `c-archive-all` command. The
+ following steps describe how this behavior is implemented:
 
 Step 1: The user archives all `Person`s in the current observable `PersonList` with command `c-archive-all`. `ArchiveAllCommand` is created with the parsed arguments, and executed.
 
@@ -619,11 +623,13 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
 
 ![Structure of the Storage Component](images/ArchiveAllSequenceDiagram.png)
 
-*Figure Archive-6. Sequence diagram representation of archiving all persons*
+*Figure Archive-6. Sequence diagram representation of archiving all employees*
 
 #### Design consideration:
 
-##### Aspect: The implementation to store archived persons
+##### Aspect: The implementation to store archived employees
+
+Notes: Employee is modeled as `person` in the code.
 
 * **Alternative 1 (current choice):** `Person` contains an `ArchiveStatus` field.
 
@@ -631,7 +637,7 @@ Step 3: The current `FilteredList` will be updated to only show the empty active
     * Cons: If the `PersonList` contains a huge number of `Person`s, the processing speech will be slow for certain
       command (eg: c-archive-list), because it needs to go into each `Person` to check if the `ArchiveStatus` is `true`.
 
-* **Alternative 2:** Storing archived persons in a separate json file.
+* **Alternative 2:** Storing archived employees in a separate json file.
 
   * Pros:  Execute `c-archive-list` very fast, even for huge amount of data, because it can just display all the data
    inside this file.
