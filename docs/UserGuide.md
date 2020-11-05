@@ -8,6 +8,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 * Table of Contents
     - [Quick start](#quick-start)
+    - [Notes about the command format](#Notes-about-the-command-format)
+    - [Common Input Fields](#Common-Input-Fields)
     - [Features](#features)
         - [Add a flashcard](#add-a-flashcard--add): `add`
         - [Clear all flashcards](#clear-all-flashcards--clear): `clear`
@@ -88,14 +90,14 @@ must be specified exactly.
 
 * Items in square brackets are optional (zero or one instance).<br>
   e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
-  * Note: Multiple instances of the same prefix will not throw an error. 
+  * Multiple instances of the same prefix will not throw an error. 
   However, the app will only read the last instance in the input. 
   * e.g `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
   
 * Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
   e.g. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
   `q/What is my name? t/topic1 t/fun` 
-  * Note: Multiple instances of the tag prefix is accepted, and the app will read every instance
+  * Multiple instances of the tag prefix is accepted, and the app will read every instance
   in the input.
 
 * Parameters can be in any order.<br>
@@ -224,12 +226,14 @@ This will return all the flashcards whose fields match all the fields specified 
 Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
 * Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
-* `f/yes` filters for favourited flashcards while `f/no` filters for unfavourited flashcards.
+* Specifying `f/yes` filters for favourited flashcards while `f/no` filters for unfavourited flashcards.
 * Filters the specified flashcard based on category, rating, favourite status or tags.
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
-* Note: `filter r/` will filter for all unrated flashcards.
+<div markdown="span" class="alert alert-primary">:memo: Note:
+<code>filter r/</code> will filter for all unrated flashcards.
+</div><br>
 
 Examples:
 *  `filter c/SDLC` filters and lists all flashcards belonging to the SDLC category.
@@ -351,7 +355,7 @@ The quiz mode works in conjunction with the [statistics](#view-the-statistics-of
 
 Format: `quiz`
 
-<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
+<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses <code>y</code> or <code>n</code>, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
 <br>
 
