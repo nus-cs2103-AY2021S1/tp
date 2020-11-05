@@ -21,7 +21,7 @@ public class TypicalSeller {
             .withPhone("1111").withId(1).build();
     public static final Seller SELLER_ALICE = new SellerBuilder().withName("Alice Pauline")
             .withPhone("2222").withId(1).build();
-    public static final Seller BENSON = new SellerBuilder().withName("Benson Meier")
+    public static final Seller SELLER_BENSON = new SellerBuilder().withName("Benson Meier")
             .withPhone("3333").withId(2).build();
     public static final Seller CARL = new SellerBuilder().withName("Carl Kurz")
             .withPhone("4444").withId(3).build();
@@ -56,6 +56,6 @@ public class TypicalSeller {
     }
 
     public static List<Seller> getTypicalSellers() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, SELLER_BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

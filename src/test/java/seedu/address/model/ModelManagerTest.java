@@ -5,14 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.propertybook.PropertyModel.PREDICATE_SHOW_ALL_PROPERTIES;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.bidder.TypicalBidder.ALICE;
 import static seedu.address.testutil.bidder.TypicalBidder.BIDDER_ALICE;
+import static seedu.address.testutil.bidder.TypicalBidder.BIDDER_GEORGE;
+import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.BID_A;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
+import static seedu.address.testutil.meeting.TypicalMeeting.ADMINMEETING01;
+import static seedu.address.testutil.meeting.TypicalMeeting.PAPERWORKMEETING05;
+import static seedu.address.testutil.meeting.TypicalMeeting.VIEWINGMEETING03;
 import static seedu.address.testutil.meeting.TypicalMeeting.getTypicalMeetingAddressBook;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
 import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.SELLER_ALICE;
+import static seedu.address.testutil.seller.TypicalSeller.SELLER_BENSON;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import java.nio.file.Path;
@@ -458,6 +465,37 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBidderList().remove(0));
     }
 
+    @Test
+    public void cascadingDeleteBidder_returnsTrue() {
+        // no cascading
+        // bids or meeting to be removed - only BIDDER_GEORGE
+        modelManager.addBidder(BIDDER_GEORGE);
+        modelManager.deleteBidder(BIDDER_GEORGE);
+        ModelManager expectedModelManager = new ModelManager();
+        assertEquals(expectedModelManager, modelManager);
+
+        // cascading delete
+        modelManager = TestUtil.getTypicalModelManager();
+        modelManager.deleteBidder(ALICE); // with bidderId B1
+        expectedModelManager = TestUtil.getTypicalModelManager();
+
+        BidderAddressBook expectedBidderAddressBook = getTypicalBidderAddressBook();
+        expectedBidderAddressBook.removeBidder(ALICE);
+        expectedModelManager.setBidderAddressBook(expectedBidderAddressBook);
+
+        BidBook expectedBidBook = getTypicalBidBook();
+        expectedBidBook.removeBid(BID_A);
+        expectedModelManager.setBidBook(expectedBidBook);
+
+        MeetingBook expectedMeetingBook = getTypicalMeetingAddressBook();
+        expectedMeetingBook.removeMeeting(ADMINMEETING01);
+        expectedMeetingBook.removeMeeting(VIEWINGMEETING03);
+        expectedMeetingBook.removeMeeting(PAPERWORKMEETING05);
+        expectedModelManager.setMeetingManager(expectedMeetingBook);
+
+        assertEquals(expectedModelManager, modelManager);
+    }
+
     // ----------------- SELLER ---------------------
     @Test
     public void setSellerAddressBookFilePath_nullPath_throwsNullPointerException() {
@@ -491,6 +529,40 @@ public class ModelManagerTest {
     public void getFilteredSellerList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredSellerList().remove(0));
     }
+
+    @Test
+    public void cascadingDeleteSeller_returnsTrue() {
+        // no cascading
+        // properties removed - only BIDDER_GEORGE
+        modelManager.addSeller(SELLER_BENSON);
+        modelManager.deleteSeller(SELLER_BENSON);
+        ModelManager expectedModelManager = new ModelManager();
+        assertEquals(expectedModelManager, modelManager);
+
+        // cascading delete
+        modelManager = TestUtil.getTypicalModelManager();
+        modelManager.deleteSeller(SELLER_BENSON); // with sellerId S2
+        expectedModelManager = TestUtil.getTypicalModelManager();
+
+        SellerAddressBook expectedSellerAddessBook = getTypicalSellerAddressBook();
+        expectedSellerAddessBook.removeSeller(SELLER_BENSON);
+        expectedModelManager.setSellerAddressBook(expectedSellerAddessBook);
+
+        PropertyBook expectedPropertyBook = getTypicalPropertyBook();
+        expectedPropertyBook.removeProperty(PROPERTY_B);
+        expectedModelManager.setPropertyBook(expectedPropertyBook);
+
+        BidBook expectedBidBook = getTypicalBidBook();
+        expectedBidBook.removeAllBidsWithPropertyId(PROPERTY_B.getPropertyId());
+        expectedModelManager.setBidBook(expectedBidBook);
+
+        MeetingBook expectedMeetingBook = getTypicalMeetingAddressBook();
+        expectedMeetingBook.removeAllMeetingsWithPropertyId(PROPERTY_B.getPropertyId());
+        expectedModelManager.setMeetingManager(expectedMeetingBook);
+
+        assertEquals(expectedModelManager, modelManager);
+    }
+
     // ------------------- GENERAL -------------------
 
     @Test

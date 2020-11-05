@@ -31,7 +31,7 @@ public class TypicalBidder {
             .withPhone("55555").withId(5).build();
     public static final Bidder FIONA = new BidderBuilder().withName("Fiona Kunz")
             .withPhone("44444").withId(6).build();
-    public static final Bidder GEORGE = new BidderBuilder().withName("George Best")
+    public static final Bidder BIDDER_GEORGE = new BidderBuilder().withName("George Best")
             .withPhone("33333").withId(7).build();
 
     // Manually added
@@ -56,6 +56,6 @@ public class TypicalBidder {
     }
 
     public static List<Bidder> getTypicalBidders() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, BIDDER_GEORGE));
     }
 }
