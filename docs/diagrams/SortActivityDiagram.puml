@@ -1,0 +1,28 @@
+@startuml
+start
+:User enters command;
+
+:Warenager passes command input \n to their respective parsers.;
+
+if () then ([sort command])
+    :SortCommandParser parses user input and determines \n if it is valid or not;
+    if () then ([valid input])
+        :Warenager creates the SortCommand;
+        :SortCommand executes the sorting;
+        if () then ([update successful])
+            :SortCommand generates a CommandResult;
+            :CommandResult gets displayed to the user;
+        else ([error occurs])
+            :CommandException is thrown;
+            :Error message is displayed to the user;
+        endif
+    else ([invalid input])
+        :ParseException is thrown;
+        :Warenager generates a suggestion to the user;
+    endif
+else ([non-sort command])
+
+endif
+stop
+
+@enduml

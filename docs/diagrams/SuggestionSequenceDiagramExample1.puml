@@ -6,6 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StockBookParser" as StockBookParser LOGIC_COLOR
 participant ":SuggestionCommandParser" as SuggestionCommandParser LOGIC_COLOR
 participant ":SuggestionCommand" as SuggestionCommand LOGIC_COLOR
+participant ":CommandException" as CommandException LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -19,25 +20,28 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> StockBookParser : parseCommand()
+LogicManager -> StockBookParser : parseCommand(...)
 activate StockBookParser
 
 create SuggestionCommandParser
 StockBookParser -> SuggestionCommandParser
 activate SuggestionCommandParser
 
-SuggestionCommandParser -> SuggestionCommandParser : parse(args)
+SuggestionCommandParser --> StockBookParser
+deactivate SuggestionCommandParser
+
+StockBookParser -> SuggestionCommandParser : parse(args)
 activate SuggestionCommandParser
 
 loop all command words
-    SuggestionCommandParser -> SuggestionUtil : minimumEditDistance()
+    SuggestionCommandParser -> SuggestionUtil : minimumEditDistance(...)
     activate SuggestionUtil
 
     SuggestionUtil --> SuggestionCommandParser
     deactivate SuggestionUtil
 end
 
-SuggestionCommandParser -> SuggestionCommandParser : generateUpdateSuggestion()
+SuggestionCommandParser -> SuggestionCommandParser : generateUpdateSuggestion(...)
 activate SuggestionCommandParser
 
 SuggestionCommandParser --> SuggestionCommandParser
@@ -50,9 +54,6 @@ activate SuggestionCommand
 SuggestionCommand --> SuggestionCommandParser
 deactivate SuggestionCommand
 
-SuggestionCommandParser --> SuggestionCommandParser
-deactivate SuggestionCommandParser
-
 SuggestionCommandParser --> StockBookParser
 deactivate SuggestionCommandParser
 
@@ -62,11 +63,18 @@ deactivate StockBookParser
 LogicManager -> SuggestionCommand : execute()
 activate SuggestionCommand
 
-SuggestionCommand -> Model : updateFilteredStockList()
+SuggestionCommand -> Model : updateFilteredStockList(...)
 activate Model
 
 Model --> SuggestionCommand
 deactivate Model
+
+create CommandException
+SuggestionCommand -> CommandException
+activate CommandException
+
+CommandException --> SuggestionCommand
+deactivate CommandException
 
 SuggestionCommand --> LogicManager
 deactivate SuggestionCommand

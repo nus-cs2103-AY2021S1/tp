@@ -48,12 +48,11 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
         List<Prefix> illegalPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_QUANTITY, PREFIX_FILE_NAME,
                 PREFIX_LIST_TYPE, PREFIX_NOTE, PREFIX_NOTE_INDEX, PREFIX_SORT_FIELD, PREFIX_SORT_ORDER,
-                PREFIX_STATISTICS_TYPE);
+                PREFIX_SOURCE, PREFIX_STATISTICS_TYPE);
         boolean isSerialNumberPresent = argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent();
         boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
         boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
         boolean isNamePresent = argMultimap.getValue(PREFIX_NAME).isPresent();
-        boolean isSourcePresent = argMultimap.getValue(PREFIX_SOURCE).isPresent();
         boolean isLocationPresent = argMultimap.getValue(PREFIX_LOCATION).isPresent();
         boolean isLowQuantityPresent = argMultimap.getValue(PREFIX_LOW_QUANTITY).isPresent();
         boolean isInvalidPrefixPresent = argMultimap.checkIfAnyExist(illegalPrefixes);
@@ -95,12 +94,6 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         if (isNamePresent) {
             String nameLowerCased = argMultimap.getValue(PREFIX_NAME).get().toLowerCase();
             updateStockDescriptor.setName(ParserUtil.parseName(nameLowerCased));
-        }
-
-        // Update source with new source provided
-        if (isSourcePresent) {
-            String sourceLowerCased = argMultimap.getValue(PREFIX_SOURCE).get().toLowerCase();
-            updateStockDescriptor.setSource(ParserUtil.parseSource(sourceLowerCased));
         }
 
         // Update quantity with new quantity provided

@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 
 import seedu.stock.logic.commands.ListAllCommand;
 import seedu.stock.logic.commands.ListBookmarkCommand;
@@ -13,6 +14,9 @@ import seedu.stock.logic.parser.exceptions.ParseException;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
+    private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
+    private static final Prefix[] validPrefixesForList = { PREFIX_LIST_TYPE };
+
     /**
      * Parses the given {@code String} of arguments in the context of the ListCommand
      * and returns an ListCommand object for execution.
@@ -21,8 +25,12 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         String trimmedListType = args.trim();
 
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
+
         // Checks if the args start with "lt/"
-        if (!trimmedListType.startsWith("lt/")) {
+        if (!trimmedListType.startsWith("lt/")
+                || ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForList)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 

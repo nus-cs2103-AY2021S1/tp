@@ -9,12 +9,14 @@ if () then ([stats command])
     if () then ([valid input])
         if () then ([source])
             :Source statistics data generated;
-            :Ui for source statistics popup;
+            :Pie chart updated;
+            :Warenager automatically toggles to \n Statistics tab;
         else ([source-qd])
             :Warenager checks if source exists;
                 if () then ([exists])
                     :Source quantity distribution \n statistics data generated;
-                    :Ui for Source quantity distribution \n statistics popup;
+                    :Pie chart updated;
+                    :Warenager automatically toggles to \n Statistics tab;
                 else ([dont exist])
             endif
         endif

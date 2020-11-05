@@ -211,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleTab() {
-        if (tabPane.getSelectionModel().getSelectedIndex() == 1) {
+        if (tabPane.getSelectionModel().getSelectedIndex() == 2) {
             tabPane.getSelectionModel().select(0);
         } else {
             tabPane.getSelectionModel().selectNext();

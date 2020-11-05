@@ -29,8 +29,6 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static final Prefix[] allPossiblePrefixes = CliSyntax.getAllPossiblePrefixesAsArray();
     private static final Prefix[]
             validPrefixesForFind = { PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_SERIAL_NUMBER };
-    private static final Prefix[] invalidPrefixesForFind =
-            ParserUtil.getInvalidPrefixesForCommand(validPrefixesForFind);
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -43,8 +41,8 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, allPossiblePrefixes);
 
         // Check if command format is correct
-        if (!isAnyPrefixPresent(argMultimap, validPrefixesForFind)
-                || isAnyPrefixPresent(argMultimap, invalidPrefixesForFind)
+        if (!ParserUtil.isAnyPrefixPresent(argMultimap, validPrefixesForFind)
+                || ParserUtil.isInvalidPrefixPresent(argMultimap, validPrefixesForFind)
                 || !argMultimap.getPreamble().isEmpty()) {
 
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -61,19 +59,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 parsePrefixAndKeywords(argMultimap, validPrefixesForFind);
 
         return new FindCommand(predicatesToTest);
-    }
-
-    /**
-     * Returns true if any one of the prefixes does not contain
-     * an empty {@code Optional} value in the given {@code ArgumentMultimap}.
-     * @param argumentMultimap map of prefix to keywords entered by user
-     * @param prefixes prefixes to parse
-     * @return boolean true if a prefix specified is present
-     */
-    private static boolean isAnyPrefixPresent(
-            ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix ->
-                argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**

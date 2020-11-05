@@ -33,7 +33,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/audreyfelicio.png" width="200px">
 
 [[github](https://github.com/AudreyFelicio)]
-[[portfolio](team/audrey.md)]
+[[portfolio](team/audreyfelicio.md)]
 
 * Role: Developer
 * Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature,
@@ -45,7 +45,7 @@ project documents, Coding standards, format of deliverables
 <img src="images/ashley-lau.png" width="200px">
 
 [[github](https://github.com/ashley-lau)]
-[[portfolio](team/ashley.md)]
+[[portfolio](team/ashley-lau.md)]
 
 * Role: Developer
 * Responsibilities: Scheduling and tracking manager - In charge of defining, assigning, and tracking project tasks.
