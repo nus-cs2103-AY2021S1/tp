@@ -22,15 +22,8 @@ Class Year
 Class Name
 Class Phone
 Class UniqueStudentList
-}
-
-Package Admin {
-Class Admin
-}
-
-Package Academic {
 Class Academic
-}
+Class Admin
 }
 
 Class HiddenOutside #FFFFFF
@@ -50,7 +43,7 @@ Student *--> Name
 Student *--> Phone
 Student *--> School
 Student *--> Year
-Student *-left-> "1" Admin
+Student *--> "1" Admin
 Student *--> "1" Academic
 
 Name -[hidden]right-> Phone
