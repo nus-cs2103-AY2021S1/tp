@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
-import seedu.address.storage.JsonAdaptedAssignment;
 import seedu.address.storage.JsonAdaptedGradeTracker;
 import seedu.address.storage.JsonAdaptedModule;
 import seedu.address.storage.JsonAdaptedTag;
@@ -26,7 +25,6 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MC = "-1.0";
-    //private static final JsonAdaptedGradeTracker INVALID_GRADE_TRACKER;
 
     private static final String VALID_NAME = CS2030.getName().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
@@ -38,9 +36,6 @@ public class JsonAdaptedModuleTest {
             .collect(Collectors.toList());
     private static final String VALID_MC = CS2030.getModularCredits().toString();
     static {
-        ArrayList<JsonAdaptedAssignment> invalidAssignmentList = new ArrayList<>();
-        //invalidAssignmentList.add(INVALID_ASSIGNMENT);
-        //INVALID_GRADE_TRACKER = new JsonAdaptedGradeTracker(invalidAssignmentList, 0, "5.0");
         CS2030.getAllLinks().forEach((key, link) -> VALID_ZOOM_LINKS
                 .add(new JsonAdaptedZoomLink(key.getLesson(), link.getLink())));
     }
@@ -84,14 +79,5 @@ public class JsonAdaptedModuleTest {
                 new JsonAdaptedModule(VALID_NAME, VALID_ZOOM_LINKS, VALID_GRADE_TRACKER,
                         INVALID_MC, invalidTags);
         assertThrows(IllegalValueException.class, module::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidGradeTracker_throwsIllegalValueException() {
-        /*JsonAdaptedModule module =
-                new JsonAdaptedModule(VALID_NAME, VALID_ZOOM_LINKS, INVALID_GRADE_TRACKER,
-                        VALID_MC, VALID_TAGS);
-        String expectedMessage = Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);*/
     }
 }
