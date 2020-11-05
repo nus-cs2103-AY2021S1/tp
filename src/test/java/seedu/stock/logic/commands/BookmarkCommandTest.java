@@ -99,8 +99,8 @@
 //    }
 //
 //    /**
-//     * Displays the list of serialNumbers in a clearer view, with each subsequent serialNumbers moved to the next line.
-//     *
+//     * Displays the list of serialNumbers in a clearer view, with each subsequent
+//     * serialNumbers moved to the next line.
 //     * @param stringList The list of serialNumbers to be converted to String.
 //     * @return The String listing all serialNumbers in the list.
 //     */
