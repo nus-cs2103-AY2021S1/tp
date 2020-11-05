@@ -17,6 +17,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.student.Student;
@@ -36,7 +37,7 @@ public class DeleteStudentCommandTest {
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-        ModelManager expectedModel = new ModelManager(model.getModuleList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(new Trackr(model.getModuleList()), new UserPrefs());
         expectedModel.setViewToTutorialGroup(moduleInView);
         expectedModel.setViewToStudent(tgInView);
 
@@ -73,6 +74,9 @@ public class DeleteStudentCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON, moduleInView, tgInView);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        // ensures than outOfBoundIndex is still in bounds of student list
+        assertTrue(outOfBoundIndex.getZeroBased()
+                < model.getModuleList().getStudentList(moduleInView, tgInView).size());
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
         assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
