@@ -14,10 +14,10 @@ Given below are my contributions to the project.
 
 * **New Feature**: Create the model of the app, by including `Tag`, `Label`, `FileAddress`, and `CurrentPath` class.
 (Pull request [\#81](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/81)) 
-  * What it does: allow developers to have a strong architecture to continue the app development.
-  * Justification: This feature improves the product significantly because these models are the key to the continuation of the app.
-  * Highlights: This enhancement affect the current AddressBook Level 3 at that point. So a lot of modification and refactoring were made on that period.
-  * Credits: This enhancement was developed upon the AddressBook Level 3 model class, with some class being modified and some class being removed.
+  * What it does: allows developers to have a strong architecture to continue the app development.
+  * Justification: This feature improves the product significantly because these models are the keys to the continuation of the app.
+  * Highlights: This enhancement affects the current AddressBook Level 3 at that point. So a lot of modification and refactoring were made on that period.
+  * Credits: This enhancement was developed upon the AddressBook Level 3 model class, with some classes being modified and some class being removed.
   
   
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=HynRidge&tabRepo=AY2021S1-CS2103T-F12-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
@@ -31,13 +31,13 @@ Given below are my contributions to the project.
   
 * **Documentation**:
   * User Guide (UG):
-    * Added documentation for the feature `label` and `find` [\#169](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/169)
+    * Added documentation for the features `label` and `find` [\#169](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/169)
     * Added `help COMMAND` in Features section [\#210](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/210)
     * Added screenshots in the User Interface section. [\#212](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/212)
     * Added some screenshots for the Basic Workflow section. [\#214](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/214)
     
   * Developer Guide(DG):
-    * Added description for feature `Tag` class and `Label` class [\#164](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/164)
+    * Added description for features `Tag` class and `Label` class [\#164](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/164)
     * Updated User Stories section [\#173](https://github.com/AY2021S1-CS2103T-F12-1/tp/pull/173).
 
 * **Community**:
