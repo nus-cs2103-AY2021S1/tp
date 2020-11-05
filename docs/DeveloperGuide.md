@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Autocomplete Feature
 
-This autocomplete mechanism is facilitated by `AutocompleteCommandBox`. It extends `CommandBox` with an autocomplete mode, which is a state stored internally as `isAutocompleteMode`. This feature also adds 
+This autocomplete mechanism is facilitated by `AutocompleteCommandBox`. It extends `CommandBox` with an autocomplete mode, which is a state stored internally as `isAutocompleteMode`. This feature also adds
 a new private class `Suggestions` to facilitate suggestion generation.
 This new `AutocompleteCommandBox` class exposes one public function:
 
@@ -161,7 +161,7 @@ Given below is an example usage scenario and how the autocomplete mechanism beha
 
 ##### Initialization
 
-Initialisation Code Snippet : 
+Initialisation Code Snippet :
 ```
  AutocompleteCommandBox commandBox = new AutocompleteCommandBox(cmdExecutor);
  commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
@@ -206,7 +206,7 @@ On the other hand, pressing `Enter` allows the user to lock in their suggestion,
       * Unable to support editing of suggestions.
 
 * **Alternative 2:** Using regex to match pattern (e.g. `.*<CMD_PREFIX>\S*`)
-  * Pros: 
+  * Pros:
       * Less complex code. (Lesser Conditionals)
       * Able to support moving caret around to adjust suggestion
   * Cons: Unable to support names with spaces as space is the delimiter.
@@ -546,7 +546,7 @@ is passed into the respective command object that will be returned by each parse
 
 ##### Obtaining a List of Tags
 
-This is only applicable to `AddTagCommandParser` and `DeleteTagCommandParser`. Both parsers obtain a List of 
+This is only applicable to `AddTagCommandParser` and `DeleteTagCommandParser`. Both parsers obtain a List of
 Strings that follow the `t/` prefix from the argument. Then it obtains a Set of Tags Strings.
 
 Obtaining Set of Tag Strings Code Snippet:
@@ -637,8 +637,8 @@ Given below is the sequence diagram of how the mechanism behaves when called usi
 
 The add meeting mechanism is primarily facilitated by `AddMeetingCommand`. It extends `Command` and implements the `execute` operation:
 
-* `execute(Model model)` — Executes the `AddMeetingCommand` on the model, 
-creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+* `execute(Model model)` — Executes the `AddMeetingCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
 triggering a UI update in `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
@@ -657,19 +657,19 @@ The user input is the parsed in the context of the `AddMeetingCommand`.
 `AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
 
 #####Check if model contains given meeting
-`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
 Meetings are identified by their modules and names for deletion, editing and viewing.
 If the given meeting already exists in the model, a `CommandException` is thrown, indicating that the user is trying to add a duplicate meeting.
 
 #####Check if model contains another meeting at same date and time
 `AddMeetingCommand` checks if the model contains another meeting at the same time and date as the given meeting.
-We assume that a user is unable to attend two meetings simultaneously at the same time and date. 
+We assume that a user is unable to attend two meetings simultaneously at the same time and date.
 If there is another meeting with conflicting time and date, a `CommandException` is thrown.
 
 #####Check if given module contains given participants
-`AddMeetingCommand` checks if the given participants are members of the given module. 
+`AddMeetingCommand` checks if the given participants are members of the given module.
 We assume that all meetings occur between members of the same module.
-If any one of the given participants are not members of the given module, a `CommandException` is thrown. 
+If any one of the given participants are not members of the given module, a `CommandException` is thrown.
 
 ####Activity Diagram
 Given below is the activity diagram of how the logic component behaves when called using the `meeting add` command.
@@ -681,8 +681,8 @@ Given below is the activity diagram of how the logic component behaves when call
 
 The delete meeting mechanism is primarily facilitated by `DeleteMeetingCommand`. It extends `Command` and implements the `execute` operation:
 
-* `execute(Model model)` — Executes the `DeleteMeetingCommand` on the model, 
-creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+* `execute(Model model)` — Executes the `DeleteMeetingCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
 triggering a UI update in `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
@@ -701,7 +701,7 @@ The user input is the parsed in the context of the `DeleteMeetingCommand`.
 `AddMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
 
 #####Check if model contains given meeting
-`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+`AddMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
 If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying delete a non existent meeting.
 
 ####Activity Diagram
@@ -714,8 +714,8 @@ Given below is the activity diagram of how the logic component behaves when call
 
 The edit meeting mechanism is primarily facilitated by `EditMeetingCommand`. It extends `Command` and implements the `execute` operation:
 
-* `execute(Model model)` — Executes the `EditMeetingCommand` on the model, 
-creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`, 
+* `execute(Model model)` — Executes the `EditMeetingCommand` on the model,
+creating and adding a new meeting in the `Model Manager` before creating a `CommandResult`,
 triggering a UI update in `MeetingListPanel`
 
 This operation is exposed in the Command class as `Command#execute`
@@ -734,22 +734,22 @@ The user input is the parsed in the context of the `EditMeetingCommand`.
 `EditMeetingCommand` checks if the model contains the given module. If not, a `CommandException` is thrown, indicating that the module does not exist in the model.
 
 #####Check if model contains given meeting
-`EditMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name. 
+`EditMeetingCommand` checks if the model contains the given meeting, identified by the unique combination of module and meeting name.
 If the given meeting does not exist in the model, a `CommandException` is thrown, indicating that the user is trying to edit a non existent meeting.
 
 #####Check if model contains edited meeting
-`EditMeetingCommand` checks if the model contains the edited meeting, identified by the unique combination of module and meeting name. 
+`EditMeetingCommand` checks if the model contains the edited meeting, identified by the unique combination of module and meeting name.
 If the edited meeting exists in the model, a `CommandException` is thrown, indicating that the user is trying to edit the meeting into a meeting that already exists.
 
 #####Check if model contains another meeting at same date and time
 `EditMeetingCommand` checks if the model contains another meeting at the same time and date as the edited meeting.
-We assume that a user is unable to attend two meetings simultaneously at the same time and date. 
+We assume that a user is unable to attend two meetings simultaneously at the same time and date.
 If there is another meeting with conflicting time and date, a `CommandException` is thrown.
 
 #####Check if given module contains given participants
-`EditMeetingCommand` checks if the edited participants are members of the given module. 
+`EditMeetingCommand` checks if the edited participants are members of the given module.
 We assume that all meetings occur between members of the same module.
-If any one of the edited participants are not members of the given module, a `CommandException` is thrown. 
+If any one of the edited participants are not members of the given module, a `CommandException` is thrown.
 
 ####Activity Diagram
 Given below is the activity diagram of how the logic component behaves when called using the `meeting edit` command.
@@ -759,7 +759,7 @@ Given below is the activity diagram of how the logic component behaves when call
 `EditMeetingDescriptor` is a nested class within EditMeetingCommand to facilitate the creation of the edited meeting.
 It stores the details to edit the meeting with and each non-empty field value will replace the corresponding field value of the given meeting.
 
-### Viewing a Specific Meeting's Agendas and Notes 
+### Viewing a Specific Meeting's Agendas and Notes
 
 #### Implementation:
 
@@ -769,20 +769,20 @@ extends `Command` and implements the `execute` operation:
 • `execute(Model model)` - Executes the ViewMeetingCommand on the model, setting the selected meeting to update the
 selected meeting field in the `ModelManager` before creating a `CommandResult` which triggers a UI update in
  `MainWindow`.
- 
- <div markdown="span" class="alert alert-info">:information_source: **Note:** Although the `ViewMeetingCommand` is the 
+
+ <div markdown="span" class="alert alert-info">:information_source: **Note:** Although the `ViewMeetingCommand` is the
  main command to view the details of a selected meeting, other commands may also trigger UI updates for the selected
  meeting. For example, if the module name of the currently selected meeting is updated using the `EditModuleCommand`,
  a UI update will be triggered such that the changes will be reflected in the `MeetingDetailsPanel`.
- More details about this will be explained under design considerations. 
+ More details about this will be explained under design considerations.
  </div>
- 
+
  As an illustration of the interactions between the different architectural components, given below is the sequence
  diagram for the `meeting view m/CS2100 n/Report Discussion` command execution.
- 
+
  ![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
- 
-When the Logic signals that an update is required, the following update method in `MainWindow` is invoked to update the 
+
+When the Logic signals that an update is required, the following update method in `MainWindow` is invoked to update the
 selected meeting user interface:
 
 ```
@@ -803,7 +803,7 @@ public void update() {
 ```
 
 Given below is a object diagram of the initial state of the application. If the `MeetingBook` is not empty, the
-`selectedMeeting` field in `ModelManager` will be set to the first meeting in the `MeetingBook`. Otherwise, it will be 
+`selectedMeeting` field in `ModelManager` will be set to the first meeting in the `MeetingBook`. Otherwise, it will be
 set to null. Note that on the first launch, the `MeetingBook` is guaranteed to have sample data with the first meeting
 being CS2100 Report Discussion. Irrelevant details have been omitted from the diagram.
 
@@ -820,27 +820,27 @@ Given below is the object diagram after the `meeting view m/CS2103 n/Weekly Meet
 As mentioned earlier, the `SelectedMeeting` details can be changed whenever information pertaining to the meeting gets
  deleted or edited. These are the following commands that can affect the `SelectedMeeting` details
  (namely all edit and delete commands):
-* `DeleteCommand` 
+* `DeleteCommand`
 * `EditCommand`
-* `DeleteMeetingCommand` 
+* `DeleteMeetingCommand`
 * `EditMeetingCommand`
-* `DeleteModuleCommand` 
+* `DeleteModuleCommand`
 * `EditModuleCommand`
 
 Hence this feature is designed in such a way that whenever any of the above commands are executed, the Ui will be
-updated accordingly if necessary. 
+updated accordingly if necessary.
 Given below is the activity diagram which illustrates the workflow of this process:
 
 ![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
 
 ##### Alternatives considered
 * **Alternative 1 (current choice):** Boolean flag `triggerUpdate` in `CommandResult`
-  * Pros: 
+  * Pros:
       * Ease of implementation. (Simply set the flag to true for commands that need to update the Ui)
       * Ease of extension. (Can create additional boolean flags to update other parts of the Ui)
   * Cons:
       * Need to be wary of all cases (Must remember to adjust relevant commands to set `triggerUpdate` to true)
-      * If there are many different Ui components that wish to get updated separately, can end up having many boolean 
+      * If there are many different Ui components that wish to get updated separately, can end up having many boolean
       attributes in `CommandResult`
 
 * **Alternative 2:** JavaFX ObservableList
@@ -851,7 +851,7 @@ Given below is the activity diagram which illustrates the workflow of this proce
       * Only certain JavaFX views can be used with ObservableList.
 
 ###Timeline Feature
-The mechanism to display the timeline window is facilitated by `TimelineWindow`, which extends `UiPart`. 
+The mechanism to display the timeline window is facilitated by `TimelineWindow`, which extends `UiPart`.
 The components `TimelineSection` and `TimelineMeetingCard` help display various sections in the timeline window.
 
 ![TimelineWindowClassDiagram](images/TimelineWindowClassDiagram.png)
@@ -860,7 +860,7 @@ The `ShowTimelineCommand` triggers the timeline window to be displayed.
 
 ![ShowTimelineSequenceDiagram](images/ShowTimelineSequenceDiagram.png)
 
-When the Logic signals that the `ShowTimelineCommand` has been triggered, 
+When the Logic signals that the `ShowTimelineCommand` has been triggered,
 the following `handleShowTimeline` method in `MainWindow` is invoked to open the timeline window or focus on it if it is already opened.
 ```
 public void handleShowTimeline() {
@@ -874,7 +874,7 @@ public void handleShowTimeline() {
 }
 ```
 
-Whenever an update has been made to the model that affects any of the components in timeline, 
+Whenever an update has been made to the model that affects any of the components in timeline,
 the following `updateTimeline` method in `MainWindow` is invoked.
 ```
 public void updateTimeline() {
