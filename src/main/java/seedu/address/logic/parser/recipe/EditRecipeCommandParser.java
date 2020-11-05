@@ -11,10 +11,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.NoSuchElementException;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.recipe.AddRecipeCommand;
 import seedu.address.logic.commands.recipe.EditRecipeCommand;
 import seedu.address.logic.commands.recipe.EditRecipeCommand.EditRecipeDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -80,7 +84,6 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
             editRecipeDescriptor.setCalories(calories);
         }
-        
         /*
         if (argMultimap.getValue(PREFIX_RECIPE_IMAGE).isPresent()) {
             String recipeImageString = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
@@ -98,8 +101,6 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
         ImageParser imageParser = new ImageParser();
         RecipeImage recipeImage = imageParser.parse(img);
         editRecipeDescriptor.setRecipeImage(recipeImage);
-        
-        
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             editRecipeDescriptor.setTags(tagList);
