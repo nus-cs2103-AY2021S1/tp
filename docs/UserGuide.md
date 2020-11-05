@@ -46,15 +46,15 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list case`** : Lists all unarchived cases.
+   * **`list case`** : Lists all unarchived `Cases`.
 
-   * **`add case t:Kovan double murders`** : Adds a case named `Kovan double murders` to PIVOT.
+   * **`add case t:Kovan double murders`** : Adds a `Case` named `Kovan double murders` to PIVOT.
    
-   * **`open case 1`** : Opens the 1st case shown in the current list in the right panel with more details.
+   * **`open case 1`** : Opens the first `Case` listed in the `Main Page`. Its details are shown in the `Case Page`.
    
-   * **`add victim n:Joseph g:M`** : Adds a victim in the current opened case.
+   * **`add victim n:Joseph sex:M p:91234567`** : Adds a victim into the currently opened case.
    
-   * **`return`** : Returns to the main page and closes the details on the right panel.
+   * **`return`** : Returns to the `Main Page` and closes the `Case Page`.
 
    * **`delete case 3`** : Deletes the 3rd case shown in the current list.
 
