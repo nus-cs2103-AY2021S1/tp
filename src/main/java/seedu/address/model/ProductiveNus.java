@@ -26,10 +26,10 @@ import seedu.address.timetable.TimetableRetriever;
 
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the ProductiveNus level
  * Duplicates are not allowed (by .isSameAssignment comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ProductiveNus implements ReadOnlyProductiveNus {
 
     private final UniqueAssignmentList assignments;
     private final UniqueLessonList lessons;
@@ -48,12 +48,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks = new UniqueTaskList();
     }
 
-    public AddressBook() { }
+    public ProductiveNus() { }
 
     /**
-     * Creates an AddressBook using the Assignments in the {@code toBeCopied}
+     * Creates a ProductiveNus using the Assignments in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ProductiveNus(ReadOnlyProductiveNus toBeCopied) {
         this();
         resetData(toBeCopied);
         autoUpdateTaskList();
@@ -86,9 +86,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ProductiveNus} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyProductiveNus newData) {
         requireNonNull(newData);
 
         setAssignments(newData.getAssignmentList());
@@ -99,7 +99,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// assignment-level operations
 
     /**
-     * Returns true if an assignment with the same identity as {@code assignment} exists in the address book.
+     * Returns true if an assignment with the same identity as {@code assignment} exists in ProductiveNus.
      */
     public boolean hasAssignment(Assignment assignment) {
         requireNonNull(assignment);
@@ -107,8 +107,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds an assignment to the address book.
-     * The assignment must not already exist in the address book.
+     * Adds an assignment to ProductiveNus.
+     * The assignment must not already exist in ProductiveNus.
      */
     public void addAssignment(Assignment a) {
         assignments.add(a);
@@ -117,9 +117,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given assignment {@code target} in the list with {@code editedAssignment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProductiveNus.
      * The assignment identity of {@code editedAssignment} must not be the same as another
-     * existing assignment in the address book.
+     * existing assignment in ProductiveNus.
      */
     public void setAssignment(Assignment target, Assignment editedAssignment) {
         requireNonNull(editedAssignment);
@@ -129,8 +129,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ProductiveNus}.
+     * {@code key} must exist in ProductiveNus.
      */
     public void removeAssignment(Assignment key) {
         assignments.remove(key);
@@ -156,15 +156,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a lesson to the address book.
-     * The lesson must not already exist in the address book.
+     * Adds a lesson to ProductiveNus.
+     * The lesson must not already exist in ProductiveNus.
      */
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
     }
 
     /**
-     * Clears all lessons in address book.
+     * Clears all lessons in ProductiveNus.
      */
     public void clearLessons() {
         lessons.removeAll();
@@ -229,7 +229,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Updates the task list in the address book.
+     * Updates the task list in ProductiveNus.
      */
     private void updateTasks() {
         retrieveTasks();
@@ -245,7 +245,6 @@ public class AddressBook implements ReadOnlyAddressBook {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        System.out.println("ping");
                         Task upcomingTask = tasks.getInternalList().get(0);
                         boolean isOver = isOver(upcomingTask);
 
@@ -301,9 +300,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && assignments.equals(((AddressBook) other).assignments))
-                && lessons.equals(((AddressBook) other).lessons);
+                || (other instanceof ProductiveNus // instanceof handles nulls
+                && assignments.equals(((ProductiveNus) other).assignments))
+                && lessons.equals(((ProductiveNus) other).lessons);
     }
 
     @Override

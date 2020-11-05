@@ -10,7 +10,7 @@ import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
 
 /**
- * Represents an Assignment in the address book.
+ * Represents an Assignment in ProductiveNus.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Assignment extends Task {

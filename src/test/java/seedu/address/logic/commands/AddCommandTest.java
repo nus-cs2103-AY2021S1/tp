@@ -17,9 +17,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ProductiveNus;
+import seedu.address.model.ReadOnlyProductiveNus;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.task.Task;
@@ -123,12 +123,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getProductiveNusFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setProductiveNusFilePath(Path productiveNusFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -143,12 +143,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setProductiveNus(ReadOnlyProductiveNus newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyProductiveNus getProductiveNus() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -230,8 +230,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyProductiveNus getProductiveNus() {
+            return new ProductiveNus();
         }
     }
 }

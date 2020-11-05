@@ -62,22 +62,22 @@ public interface Model {
     FilteredList<Assignment> getFilteredAssignments();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ProductiveNus file path.
      */
-    Path getAddressBookFilePath();
+    Path getProductiveNusFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' ProductiveNus file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setProductiveNusFilePath(Path productiveNusFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces ProductiveNus data with the data in {@code productiveNus}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setProductiveNus(ReadOnlyProductiveNus productiveNus);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns ProductiveNus */
+    ReadOnlyProductiveNus getProductiveNus();
 
     /**
      * Adds lessons based on NUSMods Timetable data.
@@ -85,27 +85,27 @@ public interface Model {
     void importTimetable(TimetableData data);
 
     /**
-     * Returns true if an assignment with the same identity as {@code assignment} exists in the address book.
+     * Returns true if an assignment with the same identity as {@code assignment} exists in ProductiveNus.
      */
     boolean hasAssignment(Assignment assignment);
 
     /**
      * Deletes the given assignment.
-     * The assignment must exist in the address book.
+     * The assignment must exist in ProductiveNus.
      */
     void deleteAssignment(Assignment target);
 
     /**
      * Adds the given assignment.
-     * {@code assignment} must not already exist in the address book.
+     * {@code assignment} must not already exist in ProductiveNus.
      */
     void addAssignment(Assignment assignment);
 
     /**
      * Replaces the given assignment {@code target} with {@code editedAssignment}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ProductiveNus.
      * The assignment identity of {@code editedAssignment} must not be the same as another
-     * existing assignment in the address book.
+     * existing assignment in ProductiveNus.
      */
     void setAssignment(Assignment target, Assignment editedAssignment);
 

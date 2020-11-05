@@ -10,7 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAssignmentAtIndex;
-import static seedu.address.testutil.TypicalAssignments.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalAssignments.getTypicalProductiveNus;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 
@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditAssignmentDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ProductiveNus;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.testutil.AssignmentBuilder;
@@ -32,7 +32,7 @@ import seedu.address.testutil.EditAssignmentDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
+    private Model model = new ModelManager(getTypicalProductiveNus(), new UserPrefs(), null);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(new ProductiveNus(model.getProductiveNus()), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), editedAssignment);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +63,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(new ProductiveNus(model.getProductiveNus()), new UserPrefs(), null);
         expectedModel.setAssignment(lastAssignment, editedAssignment);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -84,7 +84,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(new ProductiveNus(model.getProductiveNus()), new UserPrefs(), null);
         expectedModel.setAssignment(lastAssignment, editedAssignment);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -96,7 +96,7 @@ public class EditCommandTest {
         Assignment editedAssignment = model.getFilteredAssignmentList().get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+        Model expectedModel = new ModelManager(new ProductiveNus(model.getProductiveNus()), new UserPrefs(),
                 model.getPreviousModel());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(), null);
+        Model expectedModel = new ModelManager(new ProductiveNus(model.getProductiveNus()), new UserPrefs(), null);
         expectedModel.setAssignment(model.getFilteredAssignmentList().get(0), editedAssignment);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -134,7 +134,7 @@ public class EditCommandTest {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
 
         // edit assignment in filtered list into a duplicate in ProductiveNUS
-        Assignment assignmentInList = model.getAddressBook().getAssignmentList()
+        Assignment assignmentInList = model.getProductiveNus().getAssignmentList()
                 .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ASSIGNMENT,
                 new EditAssignmentDescriptorBuilder(assignmentInList).build());
@@ -153,14 +153,14 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of ProductiveNus
      */
     @Test
     public void execute_invalidAssignmentIndexFilteredList_failure() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ProductiveNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProductiveNus().getAssignmentList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditAssignmentDescriptorBuilder().withName(VALID_NAME_LAB).build());
