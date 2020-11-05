@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TutorialGroupId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should only contain alphanumeric characters and spaces, and it should not be blank";
+            "TUTORIAL_GROUP_CODE should only contain alphanumeric characters and spaces, and it should not be blank.";
 
     /*
      * The first character of the address must not be a whitespace,
