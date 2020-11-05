@@ -19,6 +19,9 @@ import seedu.cc.testutil.TypicalEntries;
 
 
 public class AddAccountCommandTest {
+    private static final String ACCOUNT_1_NAME = "Account 1";
+    private static final String ACCOUNT_2_NAME = "Account 2";
+
     @Test
     public void constructor_nullAccount_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddAccountCommand(null));
@@ -51,8 +54,8 @@ public class AddAccountCommandTest {
 
     @Test
     public void equals() {
-        Account accountOne = new Account(new Name("Account 1"));
-        Account accountTwo = new Account(new Name("Account 2"));
+        Account accountOne = new Account(new Name(ACCOUNT_1_NAME));
+        Account accountTwo = new Account(new Name(ACCOUNT_2_NAME));
         AddAccountCommand addAccountOneCommand = new AddAccountCommand(accountOne);
         AddAccountCommand addAccountTwoCommand = new AddAccountCommand(accountTwo);
 

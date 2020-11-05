@@ -29,6 +29,9 @@ import seedu.cc.model.account.entry.exceptions.EntryNotFoundException;
 
 public class ActiveAccountManagerTest {
     private static final String GENERAL_ACC_NAME = "General account";
+    private static final String TEST = "test";
+    private static final String STRINGS = "strings";
+    private static final String FLOWERS = "flowers";
     private static final Account GENERAL_ACC = new Account(new Name(GENERAL_ACC_NAME));
 
     private ActiveAccountManager activeAccountManager;
@@ -81,7 +84,7 @@ public class ActiveAccountManagerTest {
 
     @Test
     public void setName() {
-        Name newName = new Name("test");
+        Name newName = new Name(TEST);
         activeAccountManager.setName(newName);
         assertEquals(newName, activeAccountManager.getAccount().getName());
     }
@@ -258,7 +261,7 @@ public class ActiveAccountManagerTest {
         activeAccountManager.addExpense(BUY_SHOVEL);
         activeAccountManager.addExpense(BUY_STRING);
         List<String> keywords = new ArrayList<>();
-        keywords.add("strings");
+        keywords.add(STRINGS);
         activeAccountManager.updateFilteredExpenseList(new ExpenseDescriptionContainsKeywordsPredicate(keywords));
         assertEquals(activeAccountManager.getFilteredExpenseList().size(), 1);
     }
@@ -275,7 +278,7 @@ public class ActiveAccountManagerTest {
         activeAccountManager.addRevenue(SELL_FLOWER_POTS);
         activeAccountManager.addRevenue(SELL_SUNFLOWER);
         List<String> keywords = new ArrayList<>();
-        keywords.add("flowers");
+        keywords.add(FLOWERS);
         activeAccountManager.updateFilteredRevenueList(new RevenueDescriptionContainsKeywordsPredicate(keywords));
         assertEquals(activeAccountManager.getFilteredRevenueList().size(), 1);
     }

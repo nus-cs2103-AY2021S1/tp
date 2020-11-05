@@ -23,12 +23,20 @@ import seedu.cc.testutil.TypicalEntries;
 
 
 public class UndoCommandTest {
+    private static final String ERROR_MESSAGE = "Execution of command should not fail.";
+    private static final String EXAMPLE_DESCRIPTION = "test";
+    private static final String AMOUNT_DESCRIPTION = "0.39";
+    private static final String EXAMPLE_EXPENSE_CATEGORY = "e";
+    private static final String NEW_DESCRIPTION = "new description";
+    private static final String NEW_AMOUNT = "1242.45";
+
     private final Model model = new ModelManager(TypicalEntries.getTypicalCommonCents(), new UserPrefs());
     private final ActiveAccount activeAccount = new ActiveAccountManager(TypicalEntries.getTypicalAccount());
 
     @Test
     public void execute_undoAddCommand_success() {
-        ExpenseBuilder expenseBuilder = new ExpenseBuilder().withDescription("test").withAmount("0.39");
+        ExpenseBuilder expenseBuilder = new ExpenseBuilder().withDescription(EXAMPLE_DESCRIPTION)
+                .withAmount(AMOUNT_DESCRIPTION);
         Expense expenseStub = expenseBuilder.build();
 
         AddCommand addCommand = new AddCommand(expenseStub);
@@ -44,13 +52,13 @@ public class UndoCommandTest {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, model);
         } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+            throw new AssertionError(ERROR_MESSAGE, ce);
         }
     }
 
     @Test
     public void execute_undoDeleteCommand_success() {
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY, new Category("e"));
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY, new Category(EXAMPLE_EXPENSE_CATEGORY));
         UndoCommand undoCommand = new UndoCommand();
         Model expectedModel = new ModelManager(TypicalEntries.getTypicalCommonCents(), new UserPrefs());
         CommandResult expectedCommandResult =
@@ -61,14 +69,15 @@ public class UndoCommandTest {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, model);
         } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+            throw new AssertionError(ERROR_MESSAGE, ce);
         }
     }
 
     @Test
     public void execute_undoEditCommand_success() {
         EditEntryDescriptorBuilder editEntryDescriptorBuilder = new EditEntryDescriptorBuilder();
-        editEntryDescriptorBuilder.withDescription("new description").withAmount("1242.45").withCategory("e");
+        editEntryDescriptorBuilder.withDescription(NEW_DESCRIPTION).withAmount(NEW_AMOUNT)
+                .withCategory(EXAMPLE_EXPENSE_CATEGORY);
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, editEntryDescriptorBuilder.build());
         UndoCommand undoCommand = new UndoCommand();
         Model expectedModel = new ModelManager(TypicalEntries.getTypicalCommonCents(), new UserPrefs());
@@ -80,7 +89,7 @@ public class UndoCommandTest {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, model);
         } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+            throw new AssertionError(ERROR_MESSAGE, ce);
         }
     }
 
@@ -97,7 +106,7 @@ public class UndoCommandTest {
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, model);
         } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+            throw new AssertionError(ERROR_MESSAGE, ce);
         }
     }
 
