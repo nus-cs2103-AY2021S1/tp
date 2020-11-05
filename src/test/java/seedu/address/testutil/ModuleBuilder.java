@@ -27,6 +27,7 @@ public class ModuleBuilder {
      */
     public ModuleBuilder(Module moduleToCopy) {
         moduleName = moduleToCopy.getModuleName();
+        members = moduleToCopy.getClassmates();
     }
 
     /**
