@@ -2,14 +2,12 @@ package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.storage.Storage;
 
 /**
- * Lists all the commands entered by user from the start of app launch,
+ * Lists all the nonempty commands entered by user from the start of app launch,
  * in chronological order. The positive integer n in front of a command
  * specifies that it is the nth command to be entered.
  */
@@ -28,19 +26,13 @@ public class HistoryCommand extends Command {
     public CommandResult execute(Model model, Storage storage, CommandHistory history) {
         requireNonNull(history);
 
-        ArrayList<String> commands = new ArrayList<>(history.getHistory());
-        Integer numCommands = history.getCounter();
+        String result = history.getCommandResultString();
 
-        for (int i = 1; i <= numCommands; i++) {
-            String labelled = i + "\t" + commands.get(i - 1);
-            commands.set(i - 1, labelled);
-        }
-
-        if (commands.isEmpty()) {
+        if (result.equals("")) {
             return new CommandResult(MESSAGE_NO_HISTORY);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, String.join("\n", commands)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, result));
     }
 
 }

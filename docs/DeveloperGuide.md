@@ -16,7 +16,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Introduction
 
-**ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks. **ResiReg** allows admin to allocate rooms to students, and manage student and room records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
+**ResiReg** is a productivity app designed to help OHS* admin at Residential Colleges (RCs)* in NUS with their daily tasks. ResiReg allows admin to allocate rooms to students, and manage student and room records, generate billing and OHS reports, and export CSVs for easy reference and sharing.
 
 **ResiReg** has the following main features:
 
@@ -26,9 +26,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## Purpose and Audience for this Guide
 
-This Developer Guide specifies the architecture, design, implementation and use cases for **ResiReg**, as well as our considerations behind key design decisions.
+This Developer Guide specifies the architecture, design, implementation and use cases for ResiReg, as well as our considerations behind key design decisions.
 
-It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about **ResiReg**.
+It is intended for developers, software testers, open-source contributors and any like-minded students who wish to contribute this project or gain deeper insights about ResiReg.
 
 ## Setting Up
 
@@ -129,7 +129,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 - stores a `UserPref` object that represents the user’s preferences.
-- stores the residence regulation data
+- stores the ResiReg data
 - exposes the following `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change:
     - unmodifiable `ObservableList<Student>`
     - unmodifiable `ObservableList<Room>`
@@ -145,7 +145,7 @@ The `Model`,
 The `Storage` component,
 
 - can save `UserPref` objects in json format and read it back.
-- can save the residence regulation data in json format and read it back.
+- can save the ResiReg data in json format and read it back.
 
 ### Common classes
 
@@ -271,9 +271,9 @@ the `Allocation` association class (alternative 4).
 ### Undo/redo feature
 
 #### Implementation
-The undo/redo mechanism is added to allow users of `ResiReg` to revert to a previous state
+The undo/redo mechanism is added to allow users of ResiReg to revert to a previous state
 or return to the future state (that is the previously current state), undoing or redoing 
-changes made to the state of `ResiReg`.
+changes made to the state of ResiReg.
 
 This mechanism is facilitated by `StatefulResiReg`, an instance of which is stored inside `ModelManager`. It extends `ResiReg` with an undo/redo history, for commands that
 modify the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
@@ -282,22 +282,22 @@ The class diagram below gives a pictorial representation of the class structure.
 
 ![UndoRedoClassDiagram](images/UndoRedoClassDiagram.png)
 
-The history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
+The state history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
 
-- `StatefulResiReg#save()` — Saves the current residence regulation state in its history.
-- `StatefulResiReg#undo()` — Restores the previous residence regulation state from its history.
-- `StatefulResiReg#redo()` — Restores a previously undone residence regulation state from its history.
+- `StatefulResiReg#save()` — Saves the current ResiReg state in its state history.
+- `StatefulResiReg#undo()` — Restores the previous ResiReg state from its state history.
+- `StatefulResiReg#redo()` — Restores a previously undone ResiReg state from its state history.
 
 These operations are exposed in the `Model` interface as `Model#saveStateResiReg()`, `Model#undoResiReg()` and `Model#redoResiReg()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `StatefulResiReg` will be initialized with the initial residence regulation state.
-Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` will be set to this single residence regulation state.
+Step 1. The user launches the application for the first time. The `StatefulResiReg` will be initialized with the initial ResiReg state.
+Both `redoStatesStack` and `undoStatesStack` will be empty, while `currState` will be set to this single ResiReg state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 3` command to delete the 3rd student in the residence regulation. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the residence regulation before the `delete 3` command executes
+Step 2. The user executes `delete 3` command to delete the 3rd student in the ResiReg. The `delete` command calls `Model#saveStateResiReg()`, causing the current state of the ResiReg before the `delete 3` command executes
 to be saved in the `undoStatesStack` and setting `currState` to be the state of the resident regulation after command execution.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -314,7 +314,7 @@ both `currState` and `undoStatesStack` will not be updated.
 
 Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoResiReg()`,
 which will add the current state `stateAfterAdd` to `redoStatesStack` and set `currState` to the last entry in
-`undoStatesStack`, the previous residence regulation state (`stateBeforeAdd`), and restores the residence regulation to that state.
+`undoStatesStack`, the previous ResiReg state (`stateBeforeAdd`), and restores the ResiReg to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -333,7 +333,7 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `undoStatesStack` and set `currState` to the last entry in
-`redoStatesStack`, the next residence regulation state, and restores the residence regulation to that state.
+`redoStatesStack`, the next ResiReg state, and restores the ResiReg to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `redoStatesStack` is empty, then there are no undone ResiReg states to restore. The `redo` command uses `Model#canRedoResiReg()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -385,7 +385,7 @@ the `undo` command. (The activity diagram for redo is largely similar).
     - Follows the Separation of Concerns principle, so the management of 
     undoing and redoing can be viewed separately for easier understanding.
 
-- **Alternative 2:** Use a list to store the history.
+- **Alternative 2:** Use a list to store the state history.
   - Pros: Better performance in terms of memory usage as compared to Alternative 1 and
     has a simpler implementation.
   - Cons: 
@@ -730,15 +730,15 @@ Use case ends.
 
 **MSS**
 
-1. OHS admin requests to list history of previously entered commands.
-1. ResiReg shows all the commands previously entered in chronological order, along with numerical
+1. OHS admin requests to list history of previously entered nonempty commands.
+1. ResiReg shows all the nonempty commands previously entered in chronological order, along with numerical
 labels in front of commands that indicate position.
 
 Use case ends.
 
 **Extensions**
 
-- 1a. The history of previously entered commands is empty.
+- 1a. The history of previously entered nonempty commands is empty.
     - ResiReg shows an error message.
    
       Use case ends.

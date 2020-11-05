@@ -164,20 +164,30 @@ public class LogicManagerTest {
     private void assertHistoryCorrect(String ...expectedCommands) {
         try {
             CommandResult result = logic.execute(HistoryCommand.COMMAND_WORD);
+            String resultString = getExpectedResultString(expectedCommands);
 
-            List<String> expected = Arrays.asList(expectedCommands);
-            for (int i = 0; i < expectedCommands.length; i++) {
-                String labelled = (i + 1) + "\t" + expected.get(i);
-                expected.set(i, labelled);
-            }
-
-            String expectedMessage = String.format(
-                    HistoryCommand.MESSAGE_SUCCESS, String.join("\n",
-                            expected));
-            assertEquals(expectedMessage, result.getFeedbackToUser());
+            assertEquals(resultString, result.getFeedbackToUser());
         } catch (ParseException | CommandException e) {
             throw new AssertionError("Parsing and execution of HistoryCommand.COMMAND_WORD should succeed.", e);
         }
+    }
+
+    /**
+     * Helper method for {@code assertHistoryCorrect} which formats the
+     * {@expectedCommands} according to the format specified in
+     * {@link CommandHistory#getCommandResultString}
+     */
+    private String getExpectedResultString(String ...expectedCommands) {
+        List<String> expected = Arrays.asList(expectedCommands);
+
+        for (int i = 0; i < expectedCommands.length; i++) {
+            String labelled = (i + 1) + "\t" + expected.get(i);
+            expected.set(i, labelled);
+        }
+
+        return String.format(
+                HistoryCommand.MESSAGE_SUCCESS, String.join("\n",
+                        expected));
     }
 
     /**

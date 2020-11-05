@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -16,12 +16,13 @@ class ListPtrTest {
     private static final String FIRST = "first";
     private static final String SECOND = "second";
     private static final String THIRD = "third";
+
     private List<String> ptrList;
     private ListPtr ptr;
 
     @BeforeEach
     public void setUp() {
-        ptrList = new ArrayList<>();
+        ptrList = new LinkedList<>();
         ptrList.add(FIRST);
         ptrList.add(SECOND);
         ptrList.add(THIRD);
@@ -29,7 +30,7 @@ class ListPtrTest {
 
     @Test
     public void constructor_defensiveCopying_backingListUnmodified() {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         ptr = new ListPtr(list);
         list.add(FIRST);
 
@@ -39,7 +40,7 @@ class ListPtrTest {
 
     @Test
     public void emptyList() {
-        ptr = new ListPtr(new ArrayList<>());
+        ptr = new ListPtr(new LinkedList<>());
         assertCurrFailure();
         assertPrevFailure();
         assertNextFailure();
@@ -50,7 +51,7 @@ class ListPtrTest {
 
     @Test
     public void singletonList() {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
         list.add(FIRST);
         ptr = new ListPtr(list);
 
