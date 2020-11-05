@@ -34,7 +34,7 @@ class History {
 
     /**
      * Get the previous state from history
-     * @throws AssertionError
+     * @throws EmptyStackException
      */
     void pop() throws EmptyStackException {
         assert !stack.empty() : "History is empty";
