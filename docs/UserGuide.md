@@ -83,28 +83,29 @@ This section will give you some useful information about the various command for
 <div markdown="block" class="alert alert-info">
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
-  e.g. in add `q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/`What is my name?
+  eg. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is my name?`
 
 * Words in lower_case are to be specified exactly. e.g. in `sort <success|reviewed>`, `success` and `reviewed` 
 must be specified exactly.
 
 * Items in square brackets are optional (zero or one instance).<br>
-  e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
-  * Multiple instances of the same prefix will not throw an error. 
-  However, the app will only read the last instance in the input. 
-  * e.g `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
-  
+  * eg. `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name?` or as `q/What is my name? c/topic 1`
+  * eg. `add q/Are apples red? a/Yes c/fruit c/test` will add a flashcard belonging to "test" category 
+
 * Items in square brackets with trailing ellipsis are optional (zero, one or multiple instances).<br>
-  e.g. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
+  eg. `q/QUESTION [t/TAG]...` can be used as `q/What is my name?`, `q/What is my name? t/topic1` or
   `q/What is my name? t/topic1 t/fun` 
   * Multiple instances of the tag prefix is accepted, and the app will read every instance
   in the input.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
   
 * Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
-  e.g `<success|reviewed>` can be used as `success` or `reviewed` but not both.
+  eg. `<success|reviewed>` can be used as `success` or `reviewed` but not both.
+
+* Multiple instances of the same prefix will not throw an error. 
+    However, the app will only read the **last instance** in the input (except for tags).
+
+* Parameters can be in any order.<br>
+  eg. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
 
 </div>
 
@@ -180,8 +181,8 @@ Deletes the specified flashcard.
 
 Format: `delete INDEX`
 
-* Deletes the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
-* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+* Deletes the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples:
 *  `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list.
@@ -195,8 +196,8 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 * Edits the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
 * Although all fields are optional, a minimum of one field has to be given.
-* Specifying empty values to NOTE, RATING, TAG or DIAGRAM eg. `r/` will remove the corresponding field in the flashcard.
-* Although QUESTION, ANSWER and CATEGORY are optional values, you are not allowed to specify an empty value to those attributes 
+* Specifying empty values to `NOTE`, `RATING`, `TAG` or `DIAGRAM` eg. `r/` will remove the corresponding field in the flashcard.
+* Although `QUESTION`, `ANSWER` and `CATEGORY` are optional values, you are not allowed to specify an empty value to those attributes 
 once the prefix is declared e.g. `c/` is not allowed and will not remove category.
 
 Examples:
@@ -225,9 +226,9 @@ This will return all the flashcards whose fields match all the fields specified 
 
 Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
+* Filters the specified flashcard based on category, rating, favourite status or tags.
 * Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 * Specifying `f/yes` filters for favourited flashcards while `f/no` filters for unfavourited flashcards.
-* Filters the specified flashcard based on category, rating, favourite status or tags.
 * Supports filtering of one or more different fields. For example:
     - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
 * Although all fields are optional, a minimum of one field has to be given.
@@ -256,8 +257,8 @@ Favourites the specified flashcard.
 
 Format: `fav INDEX`
 
-* Favourites the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
-* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+* Favourites the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
@@ -268,8 +269,8 @@ Unfavourites the specified flashcard.
 
 Format: `unfav INDEX`
 
-* Unfavourites the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
-* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+* Unfavourites the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 Examples: 
 * `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
@@ -279,10 +280,10 @@ Examples:
 Searches for all flashcards matching any of the search keywords.
 
 Format: `find KEYWORD [KEYWORD]...`
-* Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
 * Finds all flashcards containing any of the keywords.
+* Refer to [common input fields](#Common-Input-fields) on how to specify the different fields.
 * The keywords are **case insensitive**.
-* Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. Eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
+* Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
 
 Examples: 
 * `find general` 
@@ -399,8 +400,8 @@ Views the specified flashcard. A "snapshot" of the flashcard is taken and displa
 
 Format: `view INDEX [-a]`
 
-* Views the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
-* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+* Views the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 * If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once another command is executed, the view pane will be returned to a blank state even if the shown
@@ -432,8 +433,8 @@ View the statistics of a flashcard.
 
 Format: `stats INDEX`
 
-* Shows the statistics of the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
-* INDEX must be a positive integer **greater than 0**. eg. 1, 2, 3, …
+* Shows the statistics of the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
+* `INDEX` must be a positive integer **greater than 0**. eg. 1, 2, 3, …
 
 The statistics of the flashcard will be displayed in the view pane. The statistics feature works in conjunction with the [quiz](#quiz-flashcards-quiz) feature.
 
