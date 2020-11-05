@@ -93,4 +93,22 @@ public class EditStaffCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
                 false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditStaffCommand)) {
+            return false;
+        }
+
+        // state check
+        EditStaffCommand e = (EditStaffCommand) other;
+        return index.equals(e.index)
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
+    }
 }

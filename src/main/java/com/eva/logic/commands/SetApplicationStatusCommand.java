@@ -72,8 +72,6 @@ public class SetApplicationStatusCommand extends Command {
         Applicant targetApplicant = lastShownList.get(targetIndex.getZeroBased());
         ApplicationStatus oldApplicationStatus = targetApplicant.getApplicationStatus();
         model.setApplicationStatus(targetApplicant, newApplicationStatus);
-
-        model.setApplicant(targetApplicant, targetApplicant);
         model.setApplicant(targetApplicant, targetApplicant);
         model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         if (panelState.equals(APPLICANT_PROFILE)) {
