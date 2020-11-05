@@ -79,6 +79,9 @@ Adds a log.
 
 Format: `add e/<exercise> r/<reps> c/[comment]`
 
+Constraints:
+- reps must be within range 1-1000 inclusive
+
 Examples:
 
 - `add e/Sit ups r/1 c/my abs hurt :(`
@@ -101,6 +104,9 @@ Format: `list`
 Edits an existing log in the application.
 
 Format: `edit <index> [r/reps] [c/comment]`
+
+Constraints:
+- reps must be within range 1-1000 inclusive
 
 - Edits the existing log at the specified `<index>`. The index refers to the index number shown in the displayed log list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -155,6 +161,9 @@ Format: `addex e/<exercise> c/<calories per rep>`
 - The exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 - Calories per rep would be used to calculate the calories burnt for each log.
 
+Constraints:
+- calories must be within range 1-1000 inclusive
+
 ![Ui](images/screenshots/v1.3addex.png)
 
 Success:
@@ -170,6 +179,9 @@ Format: `editex <index> [e/exercise] [c/calories]`
 * At least one of the optional fields must be provided.
 * The new exercise must not already exist. [Exercise names are case-insensitive and whitespace-insensitive.](#command-format)
 * Existing values will be updated to the input values.
+
+Constraints:
+- calories must be within range 1-1000 inclusive
 
 ![Ui](images/screenshots/editex.png)
 
