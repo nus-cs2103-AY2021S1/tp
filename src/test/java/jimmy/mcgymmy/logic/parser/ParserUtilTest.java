@@ -14,6 +14,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.parser.exceptions.ParseException;
 import jimmy.mcgymmy.model.food.Carbohydrate;
 import jimmy.mcgymmy.model.food.Fat;
@@ -53,7 +54,8 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class,
-                ParserUtil.MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                Index.MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(
+                        Long.toString(((long) Integer.MAX_VALUE + 1))));
     }
 
     @Test

@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [homepage](https://ay2021s1-cs2103t-w17-3.github.io/tp/)
 [github](https://github.com/dcchan98)
-[portfolio](team/sean.md)
+[portfolio](team/dcchan98)
 
 * Role: Team Lead
 
