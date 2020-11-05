@@ -375,7 +375,7 @@ All related properties and meetings have been deleted.
 
 # Property Features
 
-## Adding a property: 
+## Adding a property
 
 Adds a property and its relevant details to the property list.
 
@@ -384,7 +384,8 @@ Adds a property and its relevant details to the property list.
 
 💡 ```IS_RENTAL``` can be one of the following formats: Yes / yes / Y / y or No / no / N / n
 
-Warning: The seller id must exist inside the seller list.
+⚠️ : The seller id must exist inside the seller list.  
+⚠️ : Price must be greater than 0 and less or equals to 1 trillion.
 
 Example:
 
@@ -432,6 +433,7 @@ Edits an existing property in the property list.
 > - At least one optional field must be provided.
 > - Edits the property at the specified ```INDEX_NUMBER```, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
 
+💡 Note that the property id cannot be modified.  
 
 Example:
 
@@ -479,7 +481,9 @@ Displays all properties whose names contains either `Cove` or `Sunrise`, asking 
 
 ## Deleting a property
 
-Deletes a property listing from the property list.
+Deletes a property listing from the property list.  
+
+💡 Automatically deletes all bids and meetings associated with the property being deleted.
 
 - Command: `delete-p`
 - Format: `delete-p PROPERTY_ID` or `delete-p <INDEX_NUMBER>`
