@@ -40,11 +40,6 @@ public interface Logic {
     ObservableList<Module> getFilteredModuleList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of modules for display
-     */
-    ObservableList<Module> getFilteredModuleListDisplay();
-
-    /**
      * Returns the user prefs' address book file path.
      */
     Path getModuleListFilePath();

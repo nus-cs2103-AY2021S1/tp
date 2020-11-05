@@ -30,8 +30,9 @@ public class CalculateCapCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = new ArrayList<>();
-        lastShownList.addAll(model.getFilteredUnarchivedModuleList());
-        lastShownList.addAll(model.getFilteredArchivedModuleList());
+
+        lastShownList.addAll(model.getModuleList().getModuleList());
+        lastShownList.addAll(model.getArchivedModuleList().getModuleList());
         try {
             cap = calculateCap(lastShownList);
         } catch (CapCalculationException capCalculationException) {
@@ -77,7 +78,7 @@ public class CalculateCapCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddModuleCommand); // instanceof handles nulls
+                || (other instanceof CalculateCapCommand); // instanceof handles nulls
     }
     /**
      * Indicates if the application session has ended.

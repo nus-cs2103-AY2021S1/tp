@@ -20,7 +20,8 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
     // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
-        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2030").build();
+        .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2030")
+            .withGradePoint(5.0).withTag("completed").build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
         .withZoomLink("Lecture", "https://nus-sg.zoom.us/CS2101").build();
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105")

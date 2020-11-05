@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private final ModuleList moduleListDisplay;
     private final ModuleList moduleList;
-    private final ArchivedModuleList archivedModuleList;
+    private final ModuleList archivedModuleList;
     private final VersionedModuleList versionedModuleList;
     private final VersionedModuleList versionedArchivedModuleList;
     private final ContactList contactList;
@@ -41,8 +41,6 @@ public class ModelManager implements Model {
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModulesDisplay;
-    private final FilteredList<Module> filteredModules;
-    private final FilteredList<Module> filteredArchivedModules;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Event> filteredEvents;
@@ -51,7 +49,6 @@ public class ModelManager implements Model {
     private int accessPointer;
     private final List<CommandType> accessSequence;
     private boolean isArchiveModuleOnDisplay = false;
-    private FilteredList<Module> mainList;
 
     /**
      * Initializes a ModelManager with the given moduleList, archivedModuleList, contactList, todoList,
@@ -67,7 +64,7 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
         this.moduleList = new ModuleList(moduleList);
         this.moduleListDisplay = new ModuleList(moduleList);
-        this.archivedModuleList = new ArchivedModuleList(archivedModuleList);
+        this.archivedModuleList = new ModuleList(archivedModuleList);
         this.versionedModuleList = new VersionedModuleList(moduleList);
         this.versionedArchivedModuleList = new VersionedModuleList(archivedModuleList);
         this.contactList = new ContactList(contactList);
@@ -78,8 +75,6 @@ public class ModelManager implements Model {
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModulesDisplay = new FilteredList<>(this.moduleListDisplay.getModuleList());
-        filteredModules = new FilteredList<>(this.moduleList.getModuleList());
-        filteredArchivedModules = new FilteredList<>(this.archivedModuleList.getModuleList());
         sortedContacts = new SortedList<>(this.contactList.getContactList());
         filteredContacts = new FilteredList<>(sortedContacts);
         filteredEvents = new FilteredList<>(this.eventList.getEventList());
@@ -94,7 +89,7 @@ public class ModelManager implements Model {
      * eventList and userPrefs.
      */
     public ModelManager() {
-        this(new ModuleList(), new ArchivedModuleList(), new ContactList(), new TodoList(),
+        this(new ModuleList(), new ModuleList(), new ContactList(), new TodoList(),
                 new EventList(), new UserPrefs());
     }
 
@@ -245,7 +240,8 @@ public class ModelManager implements Model {
         if (getModuleListDisplay()) {
             this.moduleListDisplay.addModule(module);
         }
-        updateFilteredArchivedModuleList(PREDICATE_SHOW_ALL_MODULES);
+        //updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        //updateFilteredArchivedModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -266,13 +262,16 @@ public class ModelManager implements Model {
     @Override
     public void unarchiveModule(Module target) {
         deleteArchivedModule(target);
-        addModule(target);
+        moduleList.addModule(target);
+        /*if (!getModuleListDisplay()) {
+            moduleListDisplay.addModule(module);
+        }
+        addModule(target);*/
     }
     @Override
     public void displayArchivedModules() {
         isArchiveModuleOnDisplay = true;
         this.moduleListDisplay.resetData(archivedModuleList);
-        //mainList = filteredArchivedModules;
     }
     @Override
     public void displayNonArchivedModules() {
@@ -464,35 +463,8 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        //filteredModules.setPredicate(predicate);
         filteredModulesDisplay.setPredicate(predicate);
     }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedModuleList}
-     */
-    @Override
-    public ObservableList<Module> getFilteredArchivedModuleList() {
-        return filteredArchivedModules;
-    }
-    @Override
-    public void updateFilteredArchivedModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        filteredArchivedModules.setPredicate(predicate);
-    }
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Module> getFilteredUnarchivedModuleList() {
-        return filteredModules;
-    }
-
-
-
     /**
      * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
      * {@code versionedAddressBook}
@@ -638,11 +610,12 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return moduleList.equals(other.moduleList)
+                && archivedModuleList.equals(other.archivedModuleList)
                 && contactList.equals(other.contactList)
                 && todoList.equals(other.todoList)
                 && eventList.equals(other.eventList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModulesDisplay.equals(other.filteredModulesDisplay);
     }
     private enum CommandType {
         NULL,

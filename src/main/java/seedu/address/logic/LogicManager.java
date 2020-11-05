@@ -72,16 +72,15 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Module> getFilteredModuleList() {
         return model.getFilteredModuleList();
-        //return model.getFilteredModuleList();
     }
 
-    @Override
+    /*@Override
     public ObservableList<Module> getFilteredModuleListDisplay() {
         if (model.getModuleListDisplay()) {
             return model.getFilteredArchivedModuleList();
         }
         return model.getFilteredModuleList();
-    }
+    }*/
 
     @Override
     public Path getModuleListFilePath() {

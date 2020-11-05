@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.contactlistcommands;
+package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ContactList;
 import seedu.address.model.Model;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
@@ -30,71 +29,66 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.TypicalModules;
 
-public class AddContactCommandTest {
-
+public class AddCompletedModuleCommandTest {
     @Test
-    public void constructor_nullContact_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddContactCommand(null));
+    public void constructor_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCompletedModuleCommand(null));
     }
 
     @Test
-    public void execute_contactAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingContactAdded modelStub = new ModelStubAcceptingContactAdded();
-        Contact validContact = new ContactBuilder().build();
-
-        CommandResult commandResult = new AddContactCommand(validContact).execute(modelStub);
-
-        assertEquals(String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validContact), modelStub.contactsAdded);
+    public void execute_moduleAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingModuleAdded modelStub =
+                new ModelStubAcceptingModuleAdded();
+        Module validCompletedModule = TypicalModules.CS2030;
+        CommandResult commandResult = new AddCompletedModuleCommand(validCompletedModule).execute(modelStub);
+        assertEquals(String.format(AddCompletedModuleCommand.MESSAGE_SUCCESS, validCompletedModule),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCompletedModule), modelStub.modulesAdded);
     }
 
     @Test
-    public void execute_nullModel_throwsNullPointerException() {
-        Contact contact = new ContactBuilder().build();
-        AddContactCommand addContactCommand = new AddContactCommand(contact);
-        assertThrows(NullPointerException.class, () -> addContactCommand.execute(null));
-    }
-
-    @Test
-    public void execute_duplicateContact_throwsCommandException() {
-        Contact validContact = new ContactBuilder().build();
-        AddContactCommand addContactCommand = new AddContactCommand(validContact);
-        ModelStub modelStub = new ModelStubWithContact(validContact);
+    public void execute_duplicateModule_throwsCommandException() {
+        Module validCompletedModule = TypicalModules.CS2030;
+        AddCompletedModuleCommand addCompletedModuleCommand =
+                new AddCompletedModuleCommand(validCompletedModule);
+        ModelStub modelStub = new ModelStubWithModule(validCompletedModule);
 
         assertThrows(CommandException.class,
-                AddContactCommand.MESSAGE_DUPLICATE_CONTACT, () -> addContactCommand.execute(modelStub));
+            AddCompletedModuleCommand.MESSAGE_DUPLICATE_MODULE, () ->
+                        addCompletedModuleCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Contact alice = new ContactBuilder().withName("Alice").build();
-        Contact bob = new ContactBuilder().withName("Bob").build();
-        AddContactCommand addAliceCommand = new AddContactCommand(alice);
-        AddContactCommand addBobCommand = new AddContactCommand(bob);
+        Module firstModule = TypicalModules.CS2030;
+        Module secondModule = new ModuleBuilder().withName("CS2040").withGradePoint(4.0).withTag("completed").build();
+        AddCompletedModuleCommand addCompletedCS2030Command = new AddCompletedModuleCommand(firstModule);
+        AddCompletedModuleCommand addCompletedCS2040Command = new AddCompletedModuleCommand(secondModule);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addCompletedCS2030Command.equals(addCompletedCS2030Command));
 
-        // same contact -> returns true
-        AddContactCommand addAliceCommandCopy = new AddContactCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        // same values -> returns true
+        AddCompletedModuleCommand addCompletedCS2030CommandCopy = new AddCompletedModuleCommand(firstModule);
+        assertTrue(addCompletedCS2030Command.equals(addCompletedCS2030CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(8));
+        assertFalse(addCompletedCS2030Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addCompletedCS2030Command.equals(null));
 
-        // different contact -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different module -> returns false
+        assertFalse(addCompletedCS2030Command.equals(addCompletedCS2040Command));
     }
 
     /**
      * A default model stub that have all of the methods failing.
      */
-    private class ModelStub implements Model {
+    protected class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -296,21 +290,6 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void undoEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void redoEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void commitEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -376,40 +355,47 @@ public class AddContactCommandTest {
         }
 
         @Override
-        public void commit(int i) {
+        public void commitEventList() {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void redoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void commit(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void undo() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void redo() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void setArchivedModuleList(ReadOnlyModuleList readOnlyArchivedModuleList) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public ModuleList getArchivedModuleList() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public boolean hasArchivedModule(Module module) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void deleteArchivedModule(Module target) {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public void addArchivedModule(Module module) {
             throw new AssertionError("This method should not be called.");
@@ -439,59 +425,57 @@ public class AddContactCommandTest {
         public void displayNonArchivedModules() {
             throw new AssertionError("This method should not be called.");
         }
-
         @Override
         public boolean getModuleListDisplay() {
             throw new AssertionError("This method should not be called.");
         }
-
     }
 
     /**
-     * A Model stub that contains a single contact.
+     * A Model stub that contains a single module.
      */
-    private class ModelStubWithContact extends ModelStub {
-        private final Contact contact;
+    public class ModelStubWithModule extends ModelStub {
+        private final Module module;
 
-        ModelStubWithContact(Contact contact) {
-            requireNonNull(contact);
-            this.contact = contact;
+        ModelStubWithModule(Module module) {
+            requireNonNull(module);
+            this.module = module;
         }
 
         @Override
-        public boolean hasContact(Contact contact) {
-            requireNonNull(contact);
-            return this.contact.isSameContact(contact);
+        public boolean hasModule(Module module) {
+            requireNonNull(module);
+            return this.module.isSameModule(module);
         }
     }
 
     /**
-     * A Model stub that always accept the contact being added.
+     * A Model stub that always accept the module being added.
      */
-    private class ModelStubAcceptingContactAdded extends ModelStub {
-        final ArrayList<Contact> contactsAdded = new ArrayList<>();
+    public class ModelStubAcceptingModuleAdded extends ModelStub {
+        final ArrayList<Module> modulesAdded = new ArrayList<>();
 
         @Override
-        public boolean hasContact(Contact contact) {
-            requireNonNull(contact);
-            return contactsAdded.stream().anyMatch(contact::isSameContact);
+        public boolean hasModule(Module module) {
+            requireNonNull(module);
+            return modulesAdded.stream().anyMatch(module::isSameModule);
         }
 
         @Override
-        public void addContact(Contact contact) {
-            requireNonNull(contact);
-            contactsAdded.add(contact);
+        public boolean hasArchivedModule(Module module) {
+            requireNonNull(module);
+            return modulesAdded.stream().anyMatch(module::isSameModule);
         }
 
         @Override
-        public void commitContactList() {}
+        public void addModule(Module module) {
+            requireNonNull(module);
+            modulesAdded.add(module);
+        }
 
         @Override
-        public ReadOnlyContactList getContactList() {
-            return new ContactList();
+        public ReadOnlyModuleList getModuleList() {
+            return new ModuleList();
         }
     }
-
-
 }
-

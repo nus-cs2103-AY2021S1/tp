@@ -36,13 +36,15 @@ public class DeleteModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
-
         Module moduleToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteModule(moduleToDelete);
+        if (model.getModuleListDisplay()) {
+            model.deleteArchivedModule(moduleToDelete);
+        } else {
+            model.deleteModule(moduleToDelete);
+        }
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
