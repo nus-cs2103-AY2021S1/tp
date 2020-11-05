@@ -6,31 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.function.Predicate;
+
 
 import org.junit.jupiter.api.Test;
-
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.ModelStub;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ContactList;
-import seedu.address.model.Model;
-import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
-import seedu.address.model.ReadOnlyEventList;
-import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.ReadOnlyTodoList;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.event.Event;
-import seedu.address.model.module.Module;
-import seedu.address.model.task.Task;
 import seedu.address.testutil.ContactBuilder;
 
 public class AddContactCommandTest {

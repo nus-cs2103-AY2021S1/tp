@@ -42,7 +42,7 @@ public class TaskBuilder {
         tags.addAll(DEFAULT_TAGS.stream().map(Tag::new).collect(Collectors.toList()));
         priority = Priority.valueOf(DEFAULT_PRIORITY);
         date = new Date(DEFAULT_DATE);
-        status = Status.valueOf(DEFAULT_STATUS);
+        // status = Status.valueOf(DEFAULT_STATUS);
     }
 
     /**
