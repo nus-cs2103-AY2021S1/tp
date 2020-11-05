@@ -63,7 +63,7 @@ public class AddRecipeCommand extends Command {
         }
 
         model.addRecipe(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ListRecipesCommand.COMMAND_WORD);
     }
 
     @Override
