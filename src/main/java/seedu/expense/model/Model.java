@@ -156,10 +156,22 @@ public interface Model {
     void topupBudget(Amount amount);
 
     /**
-     * Adds the given amount to the {@code CategoryBudget} that corresponding to the specified {@code category}.
+     * Adds the given {@code amount} to the {@code CategoryBudget} that corresponds to the specified {@code category}.
      *
      */
     void topupCategoryBudget(Tag category, Amount amount) throws CategoryNotFoundException;
+
+    /**
+     * Checks if the {@code CategoryBudget} that corresponds to the specified {@code category} contains at least the
+     * given {@code amount}.
+     */
+    boolean categoryBudgetHasAmount(Tag category, Amount amount);
+
+    /**
+     * Subtracts the given {@code amount} from the {@code CategoryBudget} that corresponds to the specified
+     * {@code category}.
+     */
+    void reduceCategoryBudget(Tag category, Amount amount);
 
     /**
      * Checks if the given Tag is present in any of the category budget.

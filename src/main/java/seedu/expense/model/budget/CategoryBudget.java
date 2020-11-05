@@ -12,13 +12,13 @@ public class CategoryBudget implements Budget {
 
     /**
      * Constructs a new category-budget with the specified {@code Tag} with zero amount.
-     * @param tag
      */
     public CategoryBudget(Tag tag) {
         amount = new Amount(0);
         this.tag = tag;
     }
 
+    @Override
     public Amount getAmount() {
         return amount;
     }
@@ -30,20 +30,35 @@ public class CategoryBudget implements Budget {
     /**
      * Tops up the budget by the specified {@code Amount}.
      */
+    @Override
     public void topupBudget(Amount toAdd) {
         assert toAdd.greaterThanEquals(Amount.zeroAmount());
         amount = amount.add(toAdd);
     }
 
     /**
-     * Resets the amount in the {@code budget} to have zero value.
+     * Reduces the budget by the specified {@code Amount}
      */
-    public void reset() {
-        amount = new Amount(0);
+    @Override
+    public void reduceBudget(Amount toSubtract) {
+        assert toSubtract.greaterThanEquals(Amount.zeroAmount());
+        if (toSubtract.smallerThanEquals(amount)) {
+            amount = amount.subtract(toSubtract);
+        } else {
+            reset();
+        }
     }
 
     /**
-     * Sets the amount in the default category-budget to be the same as {@code toCopy}
+     * Resets the amount in the {@code budget} to have zero value.
+     */
+    @Override
+    public void reset() {
+        amount = Amount.zeroAmount();
+    }
+
+    /**
+     * Sets the amount in the category-budget to be the same as {@code toCopy}
      */
     public void copyAmount(Amount toCopy) {
         reset();
@@ -59,6 +74,14 @@ public class CategoryBudget implements Budget {
             return true;
         }
         return otherCategoryBudget != null && otherCategoryBudget.getTag().equals(tag);
+    }
+
+    /**
+     * Returns true if the category-budget contains the specified {@code amount} or more.
+     */
+    @Override
+    public boolean hasAmount(Amount amount) {
+        return this.amount.greaterThanEquals(amount);
     }
 
     @Override

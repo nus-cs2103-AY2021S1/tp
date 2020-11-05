@@ -172,6 +172,21 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
                 .forEach(categoryBudget -> categoryBudget.topupBudget(toAdd));
     }
 
+    /**
+     * Reduces the {@code CategoryBudget} that matches the specified category by the given amount {@code toSubtract}.
+     */
+    public void reduceCategoryBudget(Tag category, Amount toSubtract) {
+        requireAllNonNull(category, toSubtract);
+
+        if (category.equals(DEFAULT_TAG)) {
+            reduceBudget(toSubtract);
+        }
+
+        internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .forEach(categoryBudget -> categoryBudget.reduceBudget(toSubtract));
+    }
+
     @Override
     public Amount getAmount() {
         return tallyAmounts();
@@ -180,6 +195,27 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     @Override
     public void topupBudget(Amount toAdd) {
         defaultCategory.topupBudget(toAdd);
+    }
+
+    @Override
+    public void reduceBudget(Amount toSubtract) {
+        defaultCategory.reduceBudget(toSubtract);
+    }
+
+    /**
+     * Returns true if the default budget contains the specified {@code amount} or more.
+     */
+    @Override
+    public boolean hasAmount(Amount amount) {
+        return defaultCategory.hasAmount(amount);
+    }
+
+    /**
+     * Returns true if the {@code CategoryBudget} that matches the specified category contains the given {@code amount}
+     * or more.
+     */
+    public boolean categoryBudgetHasAmount(Tag category, Amount amount) {
+        return getCategoryBudget(category).hasAmount(amount);
     }
 
     private boolean isAllDefaultCategory() {
