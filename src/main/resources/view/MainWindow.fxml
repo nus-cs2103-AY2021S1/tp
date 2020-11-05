@@ -29,19 +29,19 @@
     <BorderPane fx:id="container" prefWidth="600" prefHeight="500">
         <top>
             <HBox fx:id="nav">
-                <HBox>
+                <HBox styleClass="nav-option">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
                     <Label fx:id="recipeOption" text="Recipes"/>
                 </HBox>
-                <HBox>
+                <HBox styleClass="nav-option">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
                     <Label fx:id="fridgeOption" text="Fridge"/>
                 </HBox>
-                <HBox>
+                <HBox styleClass="nav-option">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10" />
                     </padding>
