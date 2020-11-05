@@ -561,11 +561,11 @@ Given below is an example usage scenario and how the mechanism behaves:
 
 #### 3.6.2 Design Considerations (**Get Edit Recipe**) <a id="362-design-consideration-get-edit-recipe"></a>
 ##### Aspect: Concern while adding a new feature <a id="3621-aspect"></a>
-* Workflow must be consistent with other get edit commands e.g get ingredient command.
+* Workflow must be consistent with other get edit commands.
 
 #### 3.6.3 Design Considerations (**Get Edit Ingredient**) <a id="363-design-consideration-get-edit-ingredient"></a>
 ##### Aspect: Concern while adding a new feature <a id="3631-aspect"></a>
-* Workflow must be consistent with other get edit commands e.g get edit recipe command.
+* Workflow must be consistent with other get edit commands.
 
 ### 3.7 Select Recipe Feature <a id="37-select-recipe-features"></a>
 Select Recipe features allows users to get the existing recipe from the recipe list.
