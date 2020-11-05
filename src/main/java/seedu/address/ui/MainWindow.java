@@ -171,15 +171,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         if (triggerResultDisplay) {
             resultDisplay.setFeedbackToUser(feedbackToUser);
         }
-
-        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand, getTheme());
-        commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
-                .map(p -> p.getName().fullName).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()
-                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
-        commandBox.setupAutocompletionListeners("mtn/", () -> logic.getFilteredMeetingList().stream()
-                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -210,7 +201,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand, getTheme());
+        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
         commandBox.setupAutocompletionListeners("cn/", () -> logic.getFilteredPersonList().stream()
                 .map(p -> p.getName().fullName).collect(Collectors.toList()));
         commandBox.setupAutocompletionListeners("mdn/", () -> logic.getFilteredModuleList().stream()

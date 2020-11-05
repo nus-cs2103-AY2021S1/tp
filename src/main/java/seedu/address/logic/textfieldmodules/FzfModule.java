@@ -1,9 +1,12 @@
-package seedu.address.ui;
+package seedu.address.logic.textfieldmodules;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
@@ -22,7 +25,6 @@ public class FzfModule {
     private int fzfStartPos; // caret position where fzf was triggered
     private double menuX;
     private double menuY;
-    private String theme;
 
     private TextField query = new TextField() {
         {
@@ -32,24 +34,29 @@ public class FzfModule {
     private TextField attachedTextField;
     private ContextMenu menu;
 
-    private FzfModule(TextField tf, Supplier<List<String>> supplier, String theme) {
+    private FzfModule(TextField tf, Supplier<List<String>> supplier) {
         this.optionSupplier = supplier;
         this.attachedTextField = tf;
-        this.theme = theme;
         menu = new ContextMenu();
 
         setupFzf();
     }
 
-    public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier, String theme) {
-        return new FzfModule(tf, supplier, theme);
+    /**
+     * Attaches FZF module to a TextField component which generates suggestions from the supplied list
+     * @param tf  TextField to be attached.
+     * @param supplier  Supplies the list from which suggestions will be generated
+     */
+    public static FzfModule attachTo(TextField tf, Supplier<List<String>> supplier) {
+        requireNonNull(tf);
+        requireNonNull(supplier);
+        return new FzfModule(tf, supplier);
     }
 
     private void setupFzf() {
         setupExitPoints();
         setupEntryPoints();
         setupMainLogic();
-
     }
 
     private void setupMainLogic() {
@@ -69,7 +76,11 @@ public class FzfModule {
                     menu.hide();
                 }
                 if (!menu.isShowing()) {
-                    menu.show(attachedTextField, menuX, menuY);
+                    if (Thread.currentThread().getName() == "Test worker") {
+                        Platform.runLater(() -> menu.show(attachedTextField, menuX, menuY));
+                    } else {
+                        menu.show(attachedTextField, menuX, menuY);
+                    }
                 }
             }
         });
@@ -121,22 +132,9 @@ public class FzfModule {
         return item;
     }
     private TextFlow buildTextFlow(String text, String query) {
-        Color color;
-        switch (theme) {
-        case "LightTheme.css":
-            color = Color.BLACK;
-            break;
-        case "DarkTheme.css":
-            color = Color.WHITE;
-            break;
-        default:
-            assert false : theme;
-            color = Color.BLACK;
-        }
-
         if (query.length() == 0) {
             Text t = new Text(text);
-            t.setFill(color);
+            t.setFill(Color.GRAY);
             return new TextFlow(t);
         }
         int filterIndex = text.toLowerCase().indexOf(query.toLowerCase());
@@ -145,10 +143,10 @@ public class FzfModule {
         Text textAfter = new Text(text.substring(filterIndex + query.length()));
         Text textFilter = new Text(text.substring(filterIndex, filterIndex + query.length()));
 
+        textBefore.setFill(Color.GRAY);
+        textAfter.setFill(Color.GRAY);
+        textFilter.setFill(Color.DARKORANGE);
 
-        textBefore.setFill(color);
-        textAfter.setFill(color);
-        textFilter.setFill(Color.ORANGE);
 
         return new TextFlow(textBefore, textFilter, textAfter);
     }
@@ -165,5 +163,9 @@ public class FzfModule {
             isFzfMode = false;
             query.setText("");
         }
+    }
+
+    public ContextMenu getMenu() {
+        return menu;
     }
 }
