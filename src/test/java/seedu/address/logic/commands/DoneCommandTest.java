@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_DURATION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FOURTH_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_DURATION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_DURATION;
@@ -89,8 +91,8 @@ public class DoneCommandTest {
 
     @Test
     public void execute_incorrectStatusTask_throwsCommandException() {
-        Index[] indexes = {INDEX_SECOND_TASK};
-        int[] durations = {INDEX_SECOND_DURATION};
+        Index[] indexes = {INDEX_FOURTH_TASK};
+        int[] durations = {INDEX_FOURTH_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 

@@ -109,6 +109,12 @@ public class Event extends Task implements TimeSlot {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    /**
+     * Returns true if the event is already ended
+     */
+    public boolean isEnded() {
+        return getEndDateTimeValue().isBefore(LocalDateTime.now());
+    }
 
     /**
      * Returns true if both events have the same identity and data fields.
@@ -168,15 +174,24 @@ public class Event extends Task implements TimeSlot {
     @Override
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
-            return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
-        } else {
-            Deadline deadline = (Deadline) otherTask;
-            if (deadline.isDeadlineDateTimeFilled()) {
-                return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
-            } else {
-                return -1;
+            if (this.isEnded() == ((Event) otherTask).isEnded()) {
+                return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
             }
+            if (this.isEnded()) {
+                return 1;
+            }
+            return -1;
         }
+        Deadline deadline = (Deadline) otherTask;
+        if (this.isEnded()) {
+            return 1;
+        }
+        if (deadline.isDone()) {
+            return 1;
+        }
+        if (deadline.isDeadlineDateTimeFilled()) {
+            return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
+        }
+        return -1;
     }
-
 }
