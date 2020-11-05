@@ -5,6 +5,15 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+## **Introduction**
+
+tCheck is a desktop application that offers an integrated system to efficiently manage a bubble tea shop, of 
+the (imaginary) brand T-sugar, by providing sales tracking, ingredient tracking and manpower management. It is 
+optimized for CLI users to update and retrieve the information more efficiently.
+
+### Purpose of Document
+This document specifies the architecture and software design for the application, tCheck.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -23,11 +32,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T12-2/tp/tree/master/docs/diagrams) folder.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -138,9 +147,11 @@ This section describes some noteworthy details on how certain features are imple
 ### \[Completed\] Recording/ Updating Sales Data
 
 tCheck allows users to record and update the sales information on the drink sold. The command to use this feature is:
-`s-update A/NUM B/NUM ...` where:
+`s-update A/NUM [B/NUM] ...` where:
 * `A`, `B`, `C` are abbreviations for the drink types.
 * `NUM` refers to the number of drinks sold.
+
+The user may use this command for a single `Drink`, or multiple `Drink`s types, as indicated by the
 
 Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSBM`  : Brown Sugar Boba Milk
