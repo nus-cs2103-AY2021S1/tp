@@ -21,6 +21,7 @@ This guide will help you to get started with tCheck, and provide useful tips alo
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
         * [Commands - Contact details](#commands-contact-details)
         * [Commands - General](#commands-general)
+    * [FAQ](#FAQ)
     * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -453,7 +454,14 @@ Format: `exit`
 All tCheck data (i.e. contact details, ingredient data, sales data) are saved in the hard disk automatically after any
  command that changes the data. There is no need to save manually by entering any command.
  
- 
+## 5. FAQ <a name="FAQ"></a>
+
+**Q**: Why for single-word commands like `help`, it will ignore extra inputs that I inputted? <br>
+**A**: Any extra inputs after the single-word command, for example, the input `123` inside the input `c-list 123`, will
+ be ignored because extra inputs does not affect the operation conducted by `c-list`. These single-word commands
+ include: `s-list`, `s-rank`, `i-set-default`, `i-list`, `i-reset-all`, `i-restock`, `c-list`, `c-today`, `c-tomorrow`,
+  `c-clear`, `c-archive-all`, `c-archive-list`, `help`, `exit`.
+
 ## Command summary <a name="command-summary"></a>
 
 ### Sales Tracking
@@ -473,10 +481,10 @@ Action | Format, Examples
 **Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
 **Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 L/50 G/20 S/100`
 **Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**View a single ingredient**| `i-view-single i/INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**List**| `i-list`
+**Find**| `i-find KEYWORD [MORE_KEYWORDS] ...`  <br> e.g., `i-find milk sugar`
 **Reset all ingredients**| `i-reset-all`
 **View all ingredients that the user should restock**| `i-restock`
-**List**| `i-list`
 
 ### Employees' Contact Details
 
