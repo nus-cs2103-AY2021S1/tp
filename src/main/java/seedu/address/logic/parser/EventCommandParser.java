@@ -48,7 +48,7 @@ public class EventCommandParser implements Parser<EventCommand> {
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_START_TIME).get());
         EndDateTime endDateTime = ParserUtil.parseEndDateTime(
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_END_TIME).get());
-        if (!DateTimeUtil.isStartTimeBeforeEndTime(startDateTime.getValue(), endDateTime.getValue())) {
+        if (!DateTimeUtil.isStartDateTimeBeforeEndDateTime(startDateTime.getValue(), endDateTime.getValue())) {
             throw new ParseException(Time.RANGE_CONSTRAINTS);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
