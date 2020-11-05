@@ -170,6 +170,15 @@ public class SampleDataUtil {
     }
 
     /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<Tag> getTagSet(List<String> strings) {
+        return strings.stream()
+                .map(Tag::new)
+                .collect(Collectors.toSet());
+    }
+
+    /**
      * Returns a comment set containing the list of strings given.
      */
     public static Set<Comment> getCommentSet(String... strings) {
@@ -181,10 +190,35 @@ public class SampleDataUtil {
     }
 
     /**
+     * Returns a comment set containing the list of strings given.
+     */
+    public static Set<Comment> getCommentSet(List<String> strings) {
+        return strings.stream()
+                .map(string -> new Comment(LocalDate.parse(string.split("\\|", 3)[1]),
+                        string.split("\\|", 3)[2], string.split("\\|", 3)[0]))
+                .collect(Collectors.toSet());
+    }
+
+    /**
      * Returns a leave set containing the list of strings given.
      */
     public static Set<Leave> getLeaveSet(String[]... strings) {
         return Arrays.stream(strings)
+                .map(string -> {
+                    if (string.length > 1) {
+                        return new Leave(string[0], string[1]);
+                    } else {
+                        return new Leave(string[0]);
+                    }
+                })
+                .collect(Collectors.toSet());
+    }
+
+    /**
+     * Returns a leave set containing the list of strings given.
+     */
+    public static Set<Leave> getLeaveSet(List<String[]> strings) {
+        return strings.stream()
                 .map(string -> {
                     if (string.length > 1) {
                         return new Leave(string[0], string[1]);

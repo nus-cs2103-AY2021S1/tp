@@ -141,9 +141,9 @@ public class EditCommand extends Command {
             Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, newComments, updatedInterviewDate, applicationStatus);
+        } else {
+            throw new CommandException("Invalid personType");
         }
-        return new Person(updatedName, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags, newComments);
     }
 
     /**
