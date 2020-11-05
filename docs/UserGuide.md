@@ -485,7 +485,7 @@ Format: `c-archive-all`
 
 * Archives all employees in the _Employee Directory_ pane.
 * If _Employee Directory_ currently shows a list of archived employees (archived employees are displayed with a red
- color label, named as `[Archived]`, in front of the name), command `c-active-list` needs to be used first to see a
+ color label, named as `[Archived]`, in front of their names), command `c-active-list` needs to be used first to see a
   list of all your employees. Then, `c-archive-all` can be used to archive all employees.
 
 
@@ -544,8 +544,9 @@ Format: `c-unarchive INDEX`
 _Employee Directory_ pane. (e.g. There are 2 employees listed in the current _Employee Directory_ pane. The `INDEX`
 should be less or equal to 2.)
 * If _Employee Directory_ currently shows a list of active/unarchived employees (Archived employees are displayed with a
- red color label, named as `[Archived]`, in front of the name. While employees in the active/unarchived employee list
-  don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
+ red color label, named as `[Archived]`, in front of their names. While employees in the active/unarchived employee list
+  don't have this red label.), command `c-archive-list` needs to be used first to see a list of all your archived
+  employees. Then, `c-unarchive INDEX` can be used to unarchive a specified
    employee identified by `INDEX`.
 
 
@@ -553,7 +554,7 @@ Examples:
 * Let's say one of your ex-employees, Alex Yeoh, is now rehired to work in your bubble tea shop. Since he worked in
  the store before, and you archived his data when he left last time. Now, instead of typing his information again and
   use `c-add` command to add him into your employee directory. You can just unarchive him
- and move his data to your current employee directory by following these steps.
+ and move his data to your employee directory by following these steps.
 
 Steps to unarchive the first employee, Alex Yeoh, in the archived employee list:
 1. Type `c-unarchive 1` into the _Command Box_.
