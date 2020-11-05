@@ -48,13 +48,13 @@ public class EditIngredientCommand extends Command implements Undoable {
 
         this.ingredient = res.getValue();
 
-        var red = this.ingredientEditDescriptor;
-        if (red.getTagEdits().isEmpty()) {
+        var ied = this.ingredientEditDescriptor;
+        if (ied.getTagEdits().isEmpty()) {
             return CommandResult.message("No edits provided; ingredient '%s' was not modified",
                 this.ingredient.getName());
         }
 
-        var newTags = performTagEdits(red.getTagEdits());
+        var newTags = performTagEdits(ied.getTagEdits());
 
         var foo = Result.firstError(newTags);
         if (foo.isPresent()) {

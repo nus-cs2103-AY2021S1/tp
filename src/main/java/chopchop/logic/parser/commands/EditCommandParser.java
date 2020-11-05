@@ -55,7 +55,7 @@ public class EditCommandParser {
                     return parseEditIngredientCommand(target.snd().strip(), args);
 
                 default:
-                    return Result.error("Can only delete recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only edit recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }
