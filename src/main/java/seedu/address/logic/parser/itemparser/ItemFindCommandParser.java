@@ -37,6 +37,8 @@ public class ItemFindCommandParser implements Parser<ItemFindCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SUPPLIER, PREFIX_TAG);
 
+        assert argMultimap != null;
+
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUPPLIER, PREFIX_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ItemFindCommand.MESSAGE_USAGE));

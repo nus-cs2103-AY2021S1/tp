@@ -16,7 +16,7 @@ public class Time implements Comparable<Time> {
             "Time is in minutes, should only contain numbers, and it should be at least 1 digit long, \n"
                     + "and it should be greater than or equals to 0";
     public static final String VALIDATION_REGEX = "\\d{1,}";
-    public static final String TIME_FORMAT_PATTERN = "dd MMMM yyyy HH:mm:ss";
+    public static final String TIME_FORMAT_PATTERN = "dd MMMM yyyy HH:mm:ss SSS";
     public final String minutes;
     public final LocalDateTime endTime;
 

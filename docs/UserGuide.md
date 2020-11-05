@@ -36,7 +36,10 @@ Installation Steps:
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-1. Double-click the file to start the app.
+1. Double-click the file to start the app. If you are unable to open the file by double-clicking, 
+you may want to install 
+[Java SE Platform](https://www.oracle.com/sg/java/technologies/javase-downloads.html) or you can also open **OneShelf**
+using the terminal, refer to the installation guide video above.
 
 1. Refer to the [Features](#3-features) below for details of each command.
 
@@ -54,6 +57,8 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 Inventory items are the items that you want to keep track in your restaurant. The input for inventory items are flexible,
 so that you can define the items according to your needs. <br>
 
+`Name` and `Supplier` are used to uniquely identify an inventory item.
+
 You can keep track of restaurant items such as chair, frying pan, spoon or even ingredients such as milk, chicken, etc. <br>
 
 All items related commands have a suffix `-i`. 
@@ -61,7 +66,14 @@ All items related commands have a suffix `-i`.
 #### Pending deliveries
 
 Pending deliveries are deliveries that has yet to be delivered out to customers. Imagine you have received a call from
-a customer requesting for a delivery, you can also keep track for all the deliveries' request.
+a customer requesting for a delivery, you can also keep track for all the deliveries' request. <br>
+
+All delivery orders are unique.
+You are able to add multiple delivery orders from the same `Name`, `Phone` and `Address`. There is no duplication in
+pending deliveries, unlike inventory items. <br>
+*Reason: A person have ordered from the restaurant. 10 minutes later, the same person called again to add 
+a new order. Therefore, we allow you to add different orders even if `Name`, `Phone` and `Address` are already in
+the list.*
 
 All pending deliveries related command have a suffix `-d`.
 
@@ -94,7 +106,7 @@ All pending deliveries related command have a suffix `-d`.
 
    <a name="uihelpstart"></a>
 * Type the command `help start` in the command box and press Enter to execute it. <br>
-   A new help window shown below should appear on your desktop. You are strongly encouraged to follow
+   A new help window shown below (Figure 2) should appear on your desktop. You are strongly encouraged to follow
    the steps in the help window if you are a new user.
     <br>
     
@@ -147,6 +159,12 @@ Things to note for the commands:
   e.g. a command with format `add-i n/NAME q/QUANTITY` can be used as
   1. either `add-i n/Chicken q/10`
   1. or `add-i q/10 n/Chicken`
+  
+* If you add multiple inputs of the same parameter in a single command, OneShelf will take in the last parameter
+as the actual input. <br>
+  e.g. `add-i n/Chicken q/10 n/Fish` <br>
+  Notice that in this example, `NAME` appears twice in one single command, OneShelf will take Fish as the actual
+  name and ignore Chicken.
 
 
 #### 3.1.1 Viewing help : `help`
@@ -174,7 +192,7 @@ To open up `help summary` window, you can also do the following:
 * Press `F2`
 * Click on `Help` located at the top toolbar and then click `Summary F2`
     
-A new help window similar to Figure 4 below should appear on your desktop.
+A new help window similar below (Figure 4) should appear on your desktop.
 <a name="helpsummary"></a>
 <br>
 
@@ -192,8 +210,11 @@ Adds inventory item or pending delivery to **OneShelf**.
 ##### 3.1.2a `add-i`
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
-* If item does not exist in the inventory book, a new item will be added.
-* If similar inventory item already exist, The `QUANTITY` of that particular item will be increased.
+
+Pointers to take note when adding an item:
+
+* If item does not exist in the inventory book, then a new item will be added.
+* If similar inventory item already exist, then the `QUANTITY` of that particular item will be increased.
 * An item which has the same `NAME` and `SUPPLIER` is considered similar.
 * `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * `TAG` could be used to categorise items. EG: Duck can be tagged as meat.
@@ -208,7 +229,7 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. The new item will show up in Inventory Book, refer to the diagram below:
+3. The new item will show up in Inventory Book, refer to Figure 5:
     <br>
     
     ![add-i_step_1](images/add-i_eg1.1.PNG)
@@ -217,8 +238,8 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
     Figure 5: Add new item of duck
     <br>
 
-4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
-through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below:
+4. Press key arrow up on your keyboard to toggle to previous command and press Enter. 
+   You should receive an error message, refer to Figure 6:
     <br>
 
     ![add-i_step_2](images/add-i_eg1.2.PNG)
@@ -227,17 +248,22 @@ through as you are not allowed to add with max quantity and metric. You should r
     Figure 6: Error for invalid input
     <br>
  
+    Your command should not pass through as you are not allowed to add an existing item with max quantity and metric.
+    
    *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
 
-5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
-are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
-You can refer to the diagram below for the expected result:
+5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. 
+   You can refer to Figure 7 for the expected result:
     <br>
     
     ![add-i_step3](images/add-i_eg1.3.PNG)
     <br>
     
     Figure 7: Successfully added quantity with new tag
+    
+    Notice that you 
+    are adding to an existing `item` DUCK which was just added. A new tag of perishable should also appear.
+    
     
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
@@ -246,7 +272,12 @@ An item can have any number of tags (including 0) and adding exactly the same ta
 
 ##### 3.1.2b `add-d`
 
-Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/]`
+Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]`
+
+Pointers to take note when adding a delivery:
+* You can add a delivery even if the same `Name`, `Phone` and `Address` already exists in the delivery book.
+* Unit of `Time` is minutes ie. `add-d n/JASON p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1 by/15` indicates
+that this order needs to be delivered out in 15 minutes.
 
 Example 1: 
 
@@ -255,7 +286,7 @@ Example 1:
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
- you may want to refer to the diagram below:
+ you may want to refer to Figure 8:
     <br>
     
     ![add-d_step1](images/add-d_eg1.1.PNG)
@@ -270,7 +301,7 @@ Example 2:
  `add-d n/HUGO p/91123421 a/Blk 253 BUKIT TIMAH o/Fish fillet x1 by/10`.
 
 2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
- you may want to refer to the diagram below:
+ you may want to refer to Figure 9 below:
     <br>
     
     ![add-d_step2](images/add-d_eg1.2.PNG)
@@ -290,6 +321,8 @@ Pending deliveries are automatically sorted based on their `deliver by` time and
 Removes a specified quantity of an existing item from **OneShelf**.
 
 Format: `remove-i INDEX q/QUANTITY`
+
+Pointers to take note when removing an item's quantity:
 * Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`.
 The [index](#index) refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -315,6 +348,8 @@ The `|` symbol means the user must provide at least one of the fields
 separated by the `|`
 </div>
 
+Pointers to take note when editing an item:
+
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * Updates the components of an item.
 * When editing tags, the existing tags of the item will be removed
@@ -327,7 +362,8 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
+3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields,
+refer to Figure 10.
     <br>
     
     ![edit-iexampleonestepthree](images/edit-i_example_one_step_three.png)
@@ -342,7 +378,8 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
+3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated 
+fields as shown in Figure 11.
     <br>
     
     ![add-i example two step three](images/edit-i_example_two_step_three.png)
@@ -370,6 +407,8 @@ Finds items or deliveries whose attributes contain any of the given keywords.
 
 Format: `find-i [n/NAME | s/SUPPLIER | t/TAG…​]`
 
+Pointers to take note when finding an item:
+
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
 * `Name`, `Supplier` and `Tag` can be searched
@@ -387,7 +426,8 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to 
+Figure 12:
     <br>
     
     ![find-command-4](images/find-command-1.PNG)
@@ -399,6 +439,8 @@ Example:
 ##### 3.1.5b `find-d`
 
 Format: `find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]`
+
+Pointers to take note when finding a delivery:
 
 * The search is case-insensitive. e.g `john` will match `JOHN`
 * The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
@@ -419,7 +461,7 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+3. Success Message will be shown in the Result Display, and the number of matches will be shown. Refer to Figure 13:
     <br>
     <a name="findexample1"></a>
 
@@ -444,7 +486,7 @@ Example:
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display.
+3. Success Message will be shown in the Result Display, refer to Figure 14:
     <br>
     
     ![list-command-1](images/list-command-1.PNG)
@@ -460,12 +502,14 @@ for delivery as you would often need to delete a pending delivery once it has be
 
 Format: `delete-i INDEX` or `delete-d INDEX`
 
+Pointers to take note when deleting an item or delivery:
+
 * Deletes an item or delivery at the specified `INDEX`.
 * The index refers to the index number shown in the displayed item/ delivery list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example 1:
-1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below:
+1. Assume by entering `list-i`, we have the following inventory items as shown in Figure 15:
     <br>
      
     ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
@@ -474,7 +518,7 @@ Example 1:
     Figure 15: Before deleting index 2
     <br>
  
-2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
+2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown in Figure 16:
     <br>
     
     ![delete-i_step2](images/UG_delete_eg1_step2.PNG)
@@ -502,6 +546,8 @@ Format: `clear-i` or `clear-d`
 Undoes the previous command by reverting the current data displayed to the state it was in before the last command was executed.
 
 Format: `undo`
+
+Pointers to take note about `undo`:
 
 * If there is a previous state available, the current state is reverted to that state
 * If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
@@ -534,6 +580,8 @@ Format: `undo`
 Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
 
 Format: `redo`
+
+Pointers to take note about `redo`:
 
 * If there is an undone state available, the current state is reverted to that state
 * If the current state is the latest possible one, it shows a message informing the user that there is nothing more to redo
@@ -585,7 +633,7 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 ##### 3.2.3b Sorting Pending Deliveries
 
-* Pending deliveries are sorted based on deliver by timing.
+* Pending deliveries are sorted based on deliver by timing ie. delivery by.
 
 
 ### 3.3 Coming Soon
@@ -673,7 +721,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 
 <a name="6-glossary"></a>
-### 6. Glossary
+## 6. Glossary
 * **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
 *(i.e milk, cheese)*
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant

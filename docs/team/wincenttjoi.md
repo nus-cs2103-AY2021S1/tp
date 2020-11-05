@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 
 
 * **Project management**:
-  * Managed releases `v1.1`, `v1.2`, `v1.2b`, `v1.3` on GitHub
+  * Managed releases `v1.1`, `v1.2`, `v1.2b`, `v1.3`, `v1.4` on GitHub
 
 * **Added help and preview window**: Help window and summary command window.
   * What it does: Allows users to have easy reference when they want to start learning OneShelf.
@@ -51,10 +51,11 @@ Given below are my contributions to the project.
     * Updated documentation for the features `clear-i`, `clear-d`, `list-i`, `list-d` in v1.2
     * Added numberings, introduction, GUI annotated diagram, quick start installation guide video, FAQ in v1.3
     * Updated documentation for `add-i`, `add-d`, `help start` and `help summary`, `delete-i`, `delete-d` in v1.3
+    * Added/ Updated Installation Guide, How to Use OneShelf, User Interface sections.
   * Developer Guide:
     * Added introduction with target audience, purpose of document and summary of document
     * Added Use Cases and Manual Testing
-    * Updated UI Class Diagram and description
+    * Redesigned UI UML diagram
     * Updated Glossary
     * Provided description for all components before Diagrams and standardize Figure numbers
     * Added description for structures of `Item` and `Delivery`
@@ -81,8 +82,24 @@ Given below are my contributions to the project.
      [6](https://github.com/nus-cs2103-AY2021S1/forum/issues/116#issuecomment-683417502),
      [7](https://github.com/nus-cs2103-AY2021S1/forum/issues/278),
      [8](https://github.com/nus-cs2103-AY2021S1/forum/issues/328))
-  * Reported bugs and suggestions for other teams in the class (examples: )
-  * Some parts of the history feature I added was adopted by several other class mates ()
+  * Reported bugs and suggestions for other teams in the class (examples: 
+     [1](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/175),
+     [2](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/176),
+     [3](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/177),
+     [4](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/178),
+     [5](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/179),
+     [6](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/180),
+     [7](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/181),
+     [8](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/182),
+     [9](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/183),
+     [10](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/184),
+     [11](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/185),
+     [12](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/186),
+     [13](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/187),
+     [14](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/188),
+     [15](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/189),
+     [16](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/190),
+     [17](https://github.com/AY2021S1-CS2103T-T17-4/tp/issues/191))
 
 
 * **Tools**:
