@@ -5,7 +5,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.eva.model.comment.Comment;
-import com.eva.model.person.*;
+import com.eva.model.person.Address;
+import com.eva.model.person.Email;
+import com.eva.model.person.Name;
+import com.eva.model.person.Phone;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
