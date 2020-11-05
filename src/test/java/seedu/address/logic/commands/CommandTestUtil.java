@@ -69,6 +69,18 @@ public class CommandTestUtil {
     public static final String VALID_START_DATE_CS2100 = "01-11-2020";
     public static final String VALID_END_DATE_CS2100 = "01-12-2020";
     public static final String VALID_TAG_CS2100 = "CS2100";
+    //invalid lesson
+    public static final String INVALID_DAY_CS2103T = "ajhsf";
+    public static final String INVALID_START_TIME_CS2103T = "14:60";
+    public static final String INVALID_END_TIME_CS2103T = "16:60";
+    public static final String INVALID_START_DATE_CS2103T = "32-11-2020";
+    public static final String INVALID_END_DATE_CS2103T = "01-13-2020";
+    //invalid lesson
+    public static final String INVALID_DAY_CS2100 = "ajhsf";
+    public static final String INVALID_START_TIME_CS2100 = "14:60";
+    public static final String INVALID_END_TIME_CS2100 = "16:60";
+    public static final String INVALID_START_DATE_CS2100 = "32-11-2020";
+    public static final String INVALID_END_DATE_CS2100 = "01-13-2020";
     //valid event
     public static final String VALID_TITLE_EXPERIMENT = "Science experiment";
     public static final String VALID_DESC_EXPERIMENT = "Do grape experiment";
@@ -83,6 +95,10 @@ public class CommandTestUtil {
     public static final String VALID_START_TIME_MEETING = "20:00";
     public static final String VALID_END_TIME_MEETING = "22:00";
     public static final String VALID_TAG_MEETING = "CS2101";
+    //invalid event
+    public static final String INVALID_DATE_MEETING = "32-01-2020";
+    public static final String INVALID_START_TIME_MEETING = "20:60";
+    public static final String INVALID_END_TIME_MEETING = "25:60";
     //valid deadline
     public static final String VALID_TITLE_LAB = "Do weekly lab assignment";
     public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
@@ -93,6 +109,8 @@ public class CommandTestUtil {
     public static final String VALID_DESC_ESSAY = "At least 800 words";
     public static final String VALID_DATETIME_ESSAY = "01-01-2020 23:59";
     public static final String VALID_TAG_ESSAY = "ES2660";
+    //invalid deadline
+    public static final String INVALID_DATETIME_LAB = "01-13-2020 23:59";
 
     /**
      * Executes the given {@code command}, confirms that <br>

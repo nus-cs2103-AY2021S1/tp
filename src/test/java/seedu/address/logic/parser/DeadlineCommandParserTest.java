@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LAB;
@@ -26,6 +27,19 @@ import seedu.address.model.task.deadline.DeadlineDateTime;
 public class DeadlineCommandParserTest {
 
     private final DeadlineCommandParser parser = new DeadlineCommandParser();
+
+    @Test
+    public void parse_invalidDateTime_returnsFalse() {
+        //invalid date time
+        assertParseFailure(parser,
+                String.format(" %s%s %s%s %s%s %s%s",
+                        PREFIX_TITLE, VALID_TITLE_LAB,
+                        PREFIX_TAG, VALID_TAG_LAB,
+                        PREFIX_DATE_TIME, INVALID_DATETIME_LAB,
+                        PREFIX_DESCRIPTION, VALID_DESC_LAB
+                ),
+                DateTimeUtil.DATE_TIME_CONSTRAINTS);
+    }
 
     @Test
     public void parse_validArgs_returnsDeadlineCommand() {

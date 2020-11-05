@@ -11,11 +11,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.time.LocalTime;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Time;
+
 
 /**
  * Parses input arguments and creates a new EditTaskCommand object
@@ -41,6 +45,14 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
                     EditTaskCommand.MESSAGE_USAGE), pe);
         }
 
+        if (argMultimap.getValue(PREFIX_START_TIME).isPresent()
+                && argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
+            LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
+            LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+            if (!startTime.isBefore(endTime)) {
+                throw new ParseException(Time.RANGE_CONSTRAINTS);
+            }
+        }
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         if (argMultimap.hasMultipleValues(PREFIX_TITLE)
                 || argMultimap.hasMultipleValues(PREFIX_DESCRIPTION)

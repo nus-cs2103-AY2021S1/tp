@@ -1,6 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_ATTRIBUTES;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_LAB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_TIME_MEETING;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_TIME_MEETING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_ESSAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_LAB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_EXPERIMENT;
@@ -27,6 +31,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.util.DateTimeUtil;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
@@ -34,6 +39,61 @@ import seedu.address.model.task.Title;
 public class EditTaskCommandParserTest {
 
     private final EditTaskCommandParser parser = new EditTaskCommandParser();
+
+    @Test
+    public void parse_inValidTimeRange_returnsFalse() {
+        //start time same as end time for event
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_START_TIME, VALID_START_TIME_MEETING,
+                        PREFIX_END_TIME, VALID_START_TIME_MEETING),
+                Time.RANGE_CONSTRAINTS);
+
+        //end time before start time for event
+        assertParseFailure(parser,
+                String.format(" %s %s%s %s%s",
+                        "1",
+                        PREFIX_START_TIME, VALID_END_TIME_MEETING,
+                        PREFIX_END_TIME, VALID_START_TIME_MEETING),
+                Time.RANGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidDate_returnsFalse() {
+        //invalid day of month
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DATE, INVALID_DATE_MEETING),
+                DateTimeUtil.DATE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidTime_returnsFalse() {
+        //invalid start time
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_START_TIME, INVALID_START_TIME_MEETING),
+                DateTimeUtil.TIME_CONSTRAINTS);
+
+        //invalid end time
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_END_TIME, INVALID_END_TIME_MEETING),
+                DateTimeUtil.TIME_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidDateTime_returnsFalse() {
+        assertParseFailure(parser,
+                String.format(" %s %s%s",
+                        "1",
+                        PREFIX_DATE_TIME, INVALID_DATETIME_LAB),
+                DateTimeUtil.DATE_TIME_CONSTRAINTS);
+    }
 
     @Test
     public void parse_emptyArgs_returnsFalse() {

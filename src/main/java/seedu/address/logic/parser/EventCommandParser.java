@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import seedu.address.logic.commands.EventCommand;
 import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
@@ -55,6 +56,9 @@ public class EventCommandParser implements Parser<EventCommand> {
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_START_TIME).get());
         EndDateTime endDateTime = ParserUtil.parseEndDateTime(
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_END_TIME).get());
+        if (!startDateTime.isBeforeEndDateTime(endDateTime)) {
+            throw new ParseException(Time.RANGE_CONSTRAINTS);
+        }
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());

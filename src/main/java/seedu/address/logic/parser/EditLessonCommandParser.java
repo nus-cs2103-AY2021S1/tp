@@ -12,11 +12,17 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.EditLessonCommand;
 import seedu.address.logic.commands.EditLessonCommand.EditLessonDescriptor;
 import seedu.address.logic.parser.exceptions.MultipleAttributesException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.Time;
+
 
 /**
  * Parses input arguments and creates a new EditLessonCommand object
@@ -43,6 +49,24 @@ public class EditLessonCommandParser implements Parser<EditLessonCommand> {
                     EditLessonCommand.MESSAGE_USAGE), e);
         }
 
+        if (argMultimap.getValue(PREFIX_START_DATE).isPresent()
+                && argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
+            LocalDate startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
+            LocalDate endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+            if (!startDate.isBefore(endDate)) {
+                throw new ParseException(DateTimeUtil.RANGE_CONSTRAINTS);
+            }
+        }
+
+        if (argMultimap.getValue(PREFIX_START_TIME).isPresent()
+                && argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
+            LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
+            LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+            if (!startTime.isBefore(endTime)) {
+                throw new ParseException(Time.RANGE_CONSTRAINTS);
+            }
+        }
+
         EditLessonDescriptor editLessonDescriptor = new EditLessonDescriptor();
         if (argMultimap.hasMultipleValues(PREFIX_TITLE)
                 || argMultimap.hasMultipleValues(PREFIX_DAY)
@@ -65,6 +89,7 @@ public class EditLessonCommandParser implements Parser<EditLessonCommand> {
         if (argMultimap.getValue(PREFIX_DAY).isPresent()) {
             editLessonDescriptor.setDayOfWeek(ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get()));
         }
+
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
             editLessonDescriptor.setStartTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get()));
         }
