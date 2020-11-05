@@ -378,11 +378,16 @@ The following sequence diagram shows how the filter operation works:
 * Has technical background
 
 **Value proposition**:
-* Remind students on what is due soon
-* Help students keep track of their CS2103T progress (assignments, results)
-* Provide students with the ease of access to CS2103T content
-* Aid students in learning and revision of CS2103T topics (through flashcards and “self-quiz”)
-
+* Provide a centralised platform to organise textbook content on CS2103 website and quiz questions on Luminus
+* Store quiz's questions and their answers through a flashcard
+* Customize each flashcard through flashcard's category, tags
+* Allow users to rate/favourite flashcards
+* Allow users to add a note to a flashcard
+* Allow users to revise effectively by through quiz and review feature
+* Provide statistics of the each flashcard so that users can better identify flashcards to focus on
+* Search for flashcards easily by search keywords
+* Filter the list of flashcards by various fields
+* Sort the list of flashcards according to most/least reviewed
 
 
 ### User stories
