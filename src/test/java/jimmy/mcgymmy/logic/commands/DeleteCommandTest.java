@@ -19,11 +19,6 @@ import jimmy.mcgymmy.testutil.TypicalIndexes;
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-    /*
-    TODO:
-    1. fails when index is out of bounds
-    2. succeeds when index is valid
-     */
 
     private final Model model = new ModelManager(TypicalFoods.getTypicalMcGymmy(), new UserPrefs());
 

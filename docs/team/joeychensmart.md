@@ -14,10 +14,9 @@ Given below are my contributions to the project.
   * What I changed: Replaced the existing parser with the [Apache commons-cli](https://github.com/apache/commons-cli) library, and made the creation of commands follow
   a more declarative style. Also eliminated the need for parsers for each command.
   * Justification: I found that the old architecture was problematic as it required the programmer to create a lot of boilerplate just to achieve simple tasks.
-  This new architecture also made it easier for me to implement the macro feature below. For more information on the justification, you can visit
+  For more information, you can visit
   [the pull request](https://github.com/AY2021S1-CS2103T-W17-3/tp/pull/39).
-  * Highlights: Developers now need to write about half the amount of code to get new features working (instead of creating a command and a parser class, now they only
-  needed to create the command class). The code in each command class was also neater, and more intuitive by virtue of being more declarative.
+  * Highlights: Developers now need to write about half the amount of code to get new features working. The code in each command class was also neater, and more intuitive by virtue of being more declarative.
   The design had to be carefully thought out to maximize developer productivity, and cost-benefit analysis had to be carried out for many design alternatives, including the original.
   The implementation was non-trivial, and required changing about 3 kLoC. The new API also had to be documented well enough for fellow developers to understand.
   * Credits: As mentioned above, this design made use of the [Apache commons-cli](https://github.com/apache/commons-cli) library for parsing text from the user, and automatically
@@ -26,17 +25,12 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to create macros.
   * What it does: allows the user to create a 'macro' to run several commands in succession. Macros are saved on disk, and can be deleted in the CLI.
   * Justification: This feature allows users to automate routine, repetitive tasks by creating a macro or alias for it.
-  For example, if I have a piece of toast and an egg for breakfast every morning, i would have to key in 2 commands `add -n toast -c 100` and `add -n egg -p 50` every morning.
-  With this feature I can simply create a new macro called `breakfast`, and simply enter that instead of the same 2 commands every morning.
   * Highlights: This enhancement works for all commands in the app. The design had to be carefully crafted to ensure the implementation was easy to carry out and understand,
   and followed good design principles, and also to avoid bugs such as infinite loops. The implementation was also non-trivial, and required creating many different classes.
   * Credits: The design and implementation was inspired by [my ip](https://github.com/JoeyChenSmart/ip), but many design and implementation details were revisited and
   tweaked to fit with McGymmy (e.g. saving to storage). Both implementations also rely on the redesigned logic component above.
   
-
 * **New Feature**: Added a help command.
-  * What it does: shows a list of all commands to the user, along with a short description of each command. The user can also request for information on a specific command.
-  * Justification: allows the user to very conveniently get assistance on how to use the app, within the app itself.
   * Highlights: This feature leverages on the above redesigned logic component. Cleverly reusing information provided by the developer using the declarative style,
   this feature automatically generates help strings for each command. The design was carefully thought out to follow the DRY (don't repeat yourself) principle, to minimize
   bugs due to code duplication.

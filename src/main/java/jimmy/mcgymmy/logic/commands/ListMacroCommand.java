@@ -1,5 +1,7 @@
 package jimmy.mcgymmy.logic.commands;
 
+import java.util.Optional;
+
 import jimmy.mcgymmy.logic.commands.exceptions.CommandException;
 import jimmy.mcgymmy.logic.parser.parameter.OptionalParameter;
 import jimmy.mcgymmy.model.Model;
@@ -7,7 +9,7 @@ import jimmy.mcgymmy.model.macro.Macro;
 import jimmy.mcgymmy.model.macro.MacroList;
 
 /**
- * Lists all the currently available Macros.
+ * Lists all macros, or specific info on a macro.
  */
 public class ListMacroCommand extends Command {
     public static final String COMMAND_WORD = "listmacro";
@@ -27,12 +29,13 @@ public class ListMacroCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         MacroList macroList = model.getMacroList();
+        Optional<String> commandName = commandNameParameter.getValue();
 
-        if (commandNameParameter.getValue().isEmpty()) {
+        if (commandName.isEmpty()) {
             return new CommandResult(listAllMacros(macroList));
         }
 
-        String macroName = commandNameParameter.getValue().get();
+        String macroName = commandName.get();
 
         if (!macroList.hasMacro(macroName)) {
             throw new CommandException(macroName + " is not an existing macro.");
