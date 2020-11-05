@@ -451,7 +451,7 @@ and the `DATE` to `2020-11-04`.
 
 Finds all tasks that fulfil all the provided search criteria.
 
-Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
+Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [s/STATUS] [t/TAG_KEYWORDS]`
 
  * The search is case-insensitive, e.g. `lab` will match `Lab`.
 
@@ -488,6 +488,14 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
      * You should only provide one search priority, i.e. `p/highest low` is not allowed.
 
      * Tasks with their priority matching the search priority exactly are considered to have fulfilled the task priority search criteria.
+   
+   * Status
+   
+     * Your search status should be one of the following: `completed`, `incomplete` (case-insensitive).
+     
+     * You should only provide one search status, i.e. `s/completed incomplete` is not allowed.
+     
+     * Tasks with their status matching the search status exactly are considered to have fulfilled the task status search criteria.
 
    * Tag
 

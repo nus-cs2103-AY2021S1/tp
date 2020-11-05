@@ -146,6 +146,17 @@ public class Task {
     }
 
     /**
+     * Returns true if this task has the specified status.
+     *
+     * @param status the specified status.
+     * @return True if this task has the specified status.
+     */
+    public boolean hasSameStatus(Status status) {
+        requireNonNull(this.status);
+        return this.status.equals(status);
+    }
+
+    /**
      * Returns true if this task has the specified tag(s).
      *
      * @param tag the specified tag
