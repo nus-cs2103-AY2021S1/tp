@@ -761,7 +761,7 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 8.1: <i>The starting state of the application</i>
+Figure 8.1: <i>The initial list of recipes</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list:
