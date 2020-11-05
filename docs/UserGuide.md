@@ -178,7 +178,7 @@ Edits a flashcard.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM] [t/TAG]...`
 
-* Edits the flashcard at the specified INDEX. The INDEX refers to the index number shown in the displayed flashcard list.
+* Edits the flashcard at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed flashcard list.
 * Refer to [common input fields](#Common-Input-fields) on what the different fields are and how to specify them.
 * Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to `NOTE`, `RATING`, `TAG` or `DIAGRAM` eg. `r/` will remove the corresponding field in the flashcard.
@@ -300,14 +300,14 @@ Format: `list`
 Reviews the current list of flashcards. This puts the user in review mode and the user can no 
 longer input commands to the textbox.
 
+Format: `review`
+
 Upon entering review mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `↑ key` hides answer and notes of the current flashcard  
 * `→ key` moves on to the next flashcard (if there is a next flashcard)
 * `← key` moves to the previous flashcard (if there is a previous flashcard)
 * `q` quits review mode
-
-Format: `review`
 
 <div markdown="span" class="alert alert-primary">:memo: Note:
 The review and success frequency of a flashcard is not affected by review mode.
@@ -332,6 +332,8 @@ The review and success frequency of a flashcard is not affected by review mode.
 
 Quizzes the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
 
+Format: `quiz`
+
 Upon entering quiz mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `q` quits quiz mode
@@ -344,8 +346,6 @@ Upon pressing the `↓ key`, the user will be prompted if they got the answer co
 The quiz mode works in conjunction with the [statistics](#view-the-statistics-of-flashcard-stats) feature. Quiz attempts are recorded and information about the success frequency can be displayed using the [statistics](#view-the-statistics-of-flashcard-stats) feature.
 * Pressing `y` will increase the review and success frequency of the flashcard.
 * Pressing `n` will increase the review frequency of the flashcard.
-
-Format: `quiz`
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses <code>y</code> or <code>n</code>, the review and success frequency of the flashcard is updated accordingly even if the user quits the quiz prematurely.
 </div>
