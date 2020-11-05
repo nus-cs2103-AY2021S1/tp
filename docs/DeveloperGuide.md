@@ -92,8 +92,10 @@ The `UI` component has two modes, the Vendor mode and the Menu mode.
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding an order item).
+1. The command execution can affect the `Storage` (e.g loading from a preset).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
+1. The `CommandResult` object can also instruct the `UI` to re-render the menu when some commands such as `SortCommand` and `FindCommand`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remove 1")` API call.
 
@@ -135,6 +137,8 @@ The `Model`,
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
+* can save the `Preset` objects in json format and read it back.
+* can save the `Profile` object in json format and read it back.
 
 ### Common classes
 
@@ -303,10 +307,8 @@ Step 8: The `RemoveCommand` is executed and one quantity of the first item in th
 * If the vendor does not exist, a `Command Exception` will be thrown
 * If the vendor selected is different from the current vendor, the model will clear the current order.
 
+- If the vendor selected is different from the current vendor, the model will clear the current order.
 
-
-* If the vendor selected is different from the current vendor, the model will clear the current order.
-=======
 #### Switch Vendor Command
 The following activity diagram summarises the process when the SwitchVendorCommand is executed.
 <img src="images/SwitchVendorCommandActivityDiagram.png" alt="SwitchVendorCommandActivityDiagram" style="zoom:40%;" />
