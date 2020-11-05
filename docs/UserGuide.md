@@ -55,9 +55,7 @@ not be so obvious!
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`c-list`** : Lists all employees.
-
-   * **`c-add`**`n/John Doe p/98765432 e/81234567 t/parttime` : Adds an employee
+   * **`c-add`**`n/John Doe p/98765432 e/81234567 a/Blk 123 Brooklin Street t/parttime` : Adds an employee
     named `John Doe` to tCheck.
 
    * **`c-delete`**`3` : Deletes the 3rd employee shown in the current list.
