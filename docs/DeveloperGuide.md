@@ -623,12 +623,11 @@ This feature is facilitated by the following classes:
     * It implements `FindContactParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
 
   * `FindContactCriteria`:
-    * It stores all the predicates which will be used to test for matching contacts
+    * It encapsulates all the predicates which will be used to test for matching contacts
     * It implements the following operations:
       * `FindContactCriteria#addPredicate():` Adds a new predicate into the list of predicates 
          to test for matching contacts
-      * `FindContactCriteria#getFindContactPredicate():` To compose all predicates into a 
-         single predicate
+      * `FindContactCriteria#getFindContactPredicate():` To compose all the predicates into a single predicate
 
     * Predicate objects that can be stored in `FindContactCriteria`:
       * `ContactNameContainsKeywordsPredicate`:
@@ -644,7 +643,7 @@ Given below is an example usage scenario and how the mechanism for finding conta
 Step 1. `LogicManager` receives the user input `findcontact n/John t/friend` from `Ui`
 Step 2. `LogicManager` calls `ContactListParser#parseCommand()` to create a `FindContactParser`
 Step 3. Additionally, `ContactListParser` will call the `FindContactParser#parse()` method to parse the command arguments
-Step 4. This creates a `FindContactCriteria` that stores the created `Predicate` objects to test for matching contacts
+Step 4. This creates a `FindContactCriteria` that encapsulates the created `Predicate` objects to test for matching contacts
 Step 4. Additionally, a `FindContactCommand` is created and `FindContactCommand#execute()` will be invoked by `LogicManager` to find matching contacts
 Step 5. The `Model#updateFilteredContactList()` operation exposed in the `Model` interface is invoked to update the displayed contact list 
         using the predicate from `FindContactCriteria`
@@ -665,7 +664,7 @@ Given below is the sequence diagram showing the interaction between `FindContact
 * **Alternative 1 (current choice):** Store the predicates as a list of predicates
   * Pros: Composing the predicates into a single predicate is easier as we can simply iterate through the list
           and compose all the predicates.
-  * Cons: Using a list means that we will not know the exact predicate objects in the list. This can make testing and
+  * Cons: Using a list means that the exact predicate objects in the list are not known. This can make testing and
           debugging more complicated. Moreover, we need to enforce checks on the predicate ensure that
           null objects, which can cause `NullPointerException` to be thrown, are not added.
 
@@ -709,12 +708,11 @@ This feature is facilitated by the following classes:
     * It implements `FindTaskParser#isAtLeastOnePrefixPresent()` to validate that at least one search parameter was provided by the user
     
   * `FindTaskCriteria`:
-    * It stores all the predicates which will be used to test for matching contacts
+    * It encapsulates all the predicates which will be used to test for matching tasks
     * It implements the following operations:
       * `FindTaskCriteria#addPredicate():` Adds a new predicate into the list of predicates 
         to test for matching contacts
-      * `FindTaskCriteria#getFindTaskPredicate():` To compose all predicates into a 
-        single predicate
+      * `FindTaskCriteria#getFindTaskPredicate():` To compose all the predicates into a single predicate
         
   * Predicate objects that can be stored in `FindTaskCriteria`:
     * `TaskNameContainsKeywordsPredicate`:
@@ -727,8 +725,51 @@ This feature is facilitated by the following classes:
       * Tests if the priority of a given task matches the search priority exactly.
     * `TaskMatchesStatusPredicate`:
       * Tests if the status of a given task matches the search status exactly.
-      
-  ![FindTaskCriteriaClassDiagram] 
+  
+Given below is the class diagram describing the `FindTaskCriteria` class:
+![FindTaskCriteriaClassDiagram](images/FindTaskCriteriaClassDiagram.png)
+
+   * `FindTaskCommand`:
+     * It implements `FindTaskCommand#execute()` to find all matching tasks by updating the 
+       filtered todo list in `Model` using the predicate from `FindTaskCriteria`
+       
+Given below is an example usage scenario and how the mechanism for finding tasks behaves at each step:
+
+Step 1. `LogicManager` receives the user input `findtask n/lab d/2020-01-01` from `Ui`
+
+Step 2. `LogicManager` calls `TodoListParser#parseCommand()` to create a `FindTaskParser`
+
+Step 3. Additionally, `TodoListParser` will call the `FindTaskParser#parse()` method to parse the command arguments
+
+Step 4. This creates a `FindTaskCriteria` that encapsulates the created `Predicate` objects to test for matching tasks
+
+Step 4. Additionally, a `FindTaskCommand` is created and `FindTaskCommand#execute()` will be invoked by `LogicManager` to find matching tasks
+
+Step 5. The `Model#updateFilteredTodoList()` operation exposed in the `Model` interface is invoked to update the displayed todo list 
+        using the predicate from `FindTaskCriteria`
+
+Step 6. A `CommandResult` from the command execution is returned to `LogicManager`
+
+![FindTaskCommandActivityDiagram](images/FindTaskCommandActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to handle instances when the user does not provide any search parameter
+
+* **Alternative 1 :** Allow users to provide 0 search parameters, in which case the find task command does not perform any operation.
+  
+  * Pros: Implementation of the command is simpler as we do not need to check if at least one search parameter was provided.
+  * Cons: The command does not perform any meaningful operation.
+  
+* **Alternative 2 (current choice):** Handle instances when no search parameter was provided using exceptions and inform users that at least one parameter is required.
+
+  * Pros: Ensures that users are aware of any constraints related to the command.
+  * Cons: The implementation of the command is slighly more complex since exception handling is required and 
+          we need to check if at least one search parameter was provided.
+
+Alternative 2 was chosen as it conformed with the standard practice of handling errors using exception. Moreover, it removes any room for 
+ambiguity by ensuring all constraints related to the command are made known to the users.
+
 
 ### \[Proposed\] Calculate CAP feature
 
