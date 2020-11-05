@@ -128,7 +128,7 @@ find-b duigan
 Expected Output:
 
 ```
-1 bidders listed.
+1 bidders listed!
 ```
 
 ## View List **of Bidder**
@@ -147,7 +147,7 @@ list-b
 Expected Output:
 
 ```
-Listed all bidders.
+Listed all bidder(s).
 ```
 
 ## Edit **of Bidder**
@@ -265,7 +265,7 @@ list-b
 Expected Output:
 
 ```
-Listed all sellers.
+Listed all seller(s).
 ```
 
 ## Edit **of Seller**

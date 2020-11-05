@@ -15,7 +15,7 @@ public class ListSellerCommand extends Command {
 
     public static final String COMMAND_WORD = "list-s";
 
-    public static final String MESSAGE_SUCCESS = "Listed all sellers";
+    public static final String MESSAGE_SUCCESS = "Listed all seller(s).";
 
     @Override
     public CommandResult execute(Model model) {
