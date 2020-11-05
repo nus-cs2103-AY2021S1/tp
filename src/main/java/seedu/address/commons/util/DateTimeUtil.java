@@ -89,4 +89,11 @@ public class DateTimeUtil {
         checkArgument(isValidDate(input), DATE_TIME_CONSTRAINTS);
         return LocalDate.parse(input, DateTimeUtil.DATE_FORMATTER);
     }
+
+    /**
+     * Returns true if the start time is before the end time.
+     */
+    public static boolean isStartTimeBeforeEndTime(LocalDateTime startTime, LocalDateTime endTime) {
+        return startTime.isBefore(endTime);
+    }
 }

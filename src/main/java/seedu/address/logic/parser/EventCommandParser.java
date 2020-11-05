@@ -8,8 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.time.LocalDateTime;
-
+import seedu.address.commons.util.DateTimeUtil;
 import seedu.address.logic.commands.EventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lesson.Time;
@@ -49,7 +48,7 @@ public class EventCommandParser implements Parser<EventCommand> {
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_START_TIME).get());
         EndDateTime endDateTime = ParserUtil.parseEndDateTime(
                 argMultimap.getValue(PREFIX_DATE).get(), argMultimap.getValue(PREFIX_END_TIME).get());
-        if (!isStartTimeBeforeEndTime(startDateTime.getValue(), endDateTime.getValue())) {
+        if (!DateTimeUtil.isStartTimeBeforeEndTime(startDateTime.getValue(), endDateTime.getValue())) {
             throw new ParseException(Time.RANGE_CONSTRAINTS);
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
@@ -61,13 +60,6 @@ public class EventCommandParser implements Parser<EventCommand> {
         Event event = Event.createUserEvent(title, startDateTime, endDateTime, description, tag);
 
         return new EventCommand(event);
-    }
-
-    /**
-     * Returns true if the start time is before the end time.
-     */
-    private static boolean isStartTimeBeforeEndTime(LocalDateTime startTime, LocalDateTime endTime) {
-        return startTime.isBefore(endTime);
     }
 
 }
