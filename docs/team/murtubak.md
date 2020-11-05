@@ -5,7 +5,12 @@ title: Joshua Wong's Project Portfolio Page
 
 ## Project: Cap 5.0 Buddy
 
-Cap 5.0 Buddy helps NUS SoC students to keep track of their module details and contacts efficiently. It helps them centralize key module details, contacts and information,  and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
+### Project Overview
+
+Cap 5 Buddy is a project developed for a software engineering module (CS2103T) at the National University of Singapore.
+It has a GUI created using JavaFX, and it is written in Java.
+
+### Summary of Contributions
 
 Given below are my contributions to the project.
 
@@ -16,7 +21,7 @@ Given below are my contributions to the project.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: Added the Assignment components to each module.
-  * What it does:
+  * What it does: allows the user to add their assignment with a percentage and result to the module.
   * Justification:
   * Highlights:
   * Credits:
@@ -27,24 +32,35 @@ Given below are my contributions to the project.
   * Highlights:
   * Credits:
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=murtubak&zR=AY2021S1-CS2103T-F12-3%2Ftp%5Bmaster%5D&zACS=258.1984652947332&zS=2020-08-14&zFS=&zU=2020-10-14&zMG=false&zFTF=commit&zFGS=groupByRepos)
+* **New Feature**: Tested Module components.
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits:
+
+* **New Feature**: Tested Assignment and GradeTracker components.
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits:
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=murtubak)
 
 * **Project management**:
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
-
-* **Enhancements to existing features**:
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Approved PRs.
 
 * **Enhancements to existing features**:
   * Refactored Add / Delete / View / Edit / Add Zoom Link commands (Pull requests [\#200](https://github.com/AY2021S1-CS2103T-F12-3/tp/pull/200))
 
-* **Documentation**:
+* **Contributions to documentation**:
   * User Guide:
     * Added documentation for the features `delete` and `find` [\#72]()
     * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
   * Developer Guide:
     * Added implementation details of the `delete` feature.
+
+* **Contributions to team-based tasks**:
+  * Refactor past team contributions from the previous iteration from before we shifted our paradigm back to brownfield.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()

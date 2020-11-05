@@ -17,7 +17,7 @@ import seedu.address.model.module.Module;
  * An Immutable AddressBook that is serializable to JSON format.
  */
 @JsonRootName(value = "modulelist")
-class JsonSerializableModuleList {
+public class JsonSerializableModuleList {
 
     public static final String MESSAGE_DUPLICATE_MODULE = "Module list contains duplicate moduke(s).";
 

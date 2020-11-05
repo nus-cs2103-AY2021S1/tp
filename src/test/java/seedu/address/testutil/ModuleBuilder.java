@@ -79,9 +79,8 @@ public class ModuleBuilder {
         this.zoomLinkMap = updatedLinks;
         return this;
     }
-
     /**
-     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
+     * Sets the {@code ModularCredits} of the {@code Module} that we are building.
      */
     public ModuleBuilder withModularCredits(double modularCredits) {
         this.modularCredits = new ModularCredits(modularCredits);
