@@ -971,6 +971,14 @@ For all use cases below, the **System** is the `Wishful Shrinking` and the **Act
   1. Wishful Shrinking closes the drawer.
 
      Use case ends.
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. Wishful Shrinking shows an error message.
+
+      Use case ends.
+
 
 *{More to be added}*
 
