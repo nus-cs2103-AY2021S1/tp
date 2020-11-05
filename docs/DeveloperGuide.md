@@ -1,34 +1,101 @@
-Reeve - Developer Guide
----
-* Table of Contents
-{:toc}
+## Reeve - Developer Guide
 
---------------------------------------------------------------------------------------------------------------------
-## Introduction
-Welcome to Reeve!
+**Table of Contents**
+- [1. Introduction](#1-introduction)
+- [2. About](#2-about)
+- [3. Understanding the guide](#3-understanding-the-guide)
+- [4. Getting started](#4-getting-started)
+- [5. Design](#5-design)
+    * [5.1 Architecture](#51-architecture)
+    * [5.2 UI component](#52-ui-component)
+    * [5.3 Logic component](#53-logic-component)
+    * [5.4 Model component](#54-model-component)
+    * [5.5 Storage component](#55-storage-component)
+    * [5.6 Common classes](#56-common-classes)
+- [6. Implementation](#6-implementation)
+    * [6.1 General features](#61-general-features)
+        * [6.1.1 Help Command](#611-help-command)
+        * [6.1.2 Toggle Command](#612-toggle-command)
+        * [6.1.3 Exit Command](#613-exit-command)
+    * [6.2 Student administrative details features](#62-student-administrative-details-features)
+        * [6.2.1 Add student command](#621-add-student-command)
+        * [6.2.2 Edit student command](#622-edit-student-command)
+        * [6.2.3 Delete student command](#623-delete-student-command)      
+        * [6.2.4 Find student command](#624-find-student-command)  
+        * [6.2.5 Overdue command](#625-overdue-command)
+    * [6.3 Student academic details features](#63-student-academic-details-features)
+        * [6.3.1 Student questions features](#631-student-questions-features)
+            * [6.3.1.1 Add question command](#6311-add-question-command)
+            * [6.3.1.2 Solve question command](#6312-solve-question-command)
+            * [6.3.1.3 Delete question command](#6313-delete-question-command)
+        * [6.3.2 Student exam features](#632-student-exam-features)
+            * [6.3.2.1 Add exam command](#6321-add-exam-command)
+            * [6.3.2.2 Delete exam command](#6322-delete-exam-command)
+            * [6.3.2.3 Exam Stats command](#6323-exam-stats-command)
+        * [6.3.3 Student attendance features](#633-student-attendance-features)
+    * [6.4 Schedule command](#64-schedule-command)    
+    * [6.5 Notes command](#65-notes-command)    
+- [7. Documentation](#7-documentation)
+- [8. Logging](#8-logging)
+- [9. Testing](#9-testing)
+- [10. Configuration](#10-configuration)
+- [11. DevOps](#11-devops)
+- [Appendix A: Product Scope](#appendix-a-product-scope)
+- [Appendix B: User Stories](#appendix-b-user-stories)
+- [Appendix C: Use Cases](#appendix-c-use-cases)
+- [Appendix D: Non-Functional Requirements](#appendix-d-non-functional-requirements)
+- [Appendix E: Glossary](#appendix-e-glossary)
+- [Appendix F: Instructions for Manual Testing](#appendix-f-instructions-for-manual-testing)
+    * [F.1 Launch and Shutdown](#f1-launch-and-shutdown)
+    * [F.2 Deleting a Student](#f2-deleting-a-student)
+    * [F.3 Saving Data](#f3-saving-data)
+          
 
-Reeve is an integrated platform specifically catered to Primary, Secondary and Tertiary education private tutors to better manage their students' individual needs.
-It contains  students' particulars, administrative and academic details.
+## 1. Introduction
+Welcome to **Reeve**!
+
+**Reeve** is a desktop application for **private tutors to better manage both administrative and academic details of their students**, optimised for use via a
+**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. 
+In addition, **Reeve** comes with a customisable personal scheduler to assist users to keep track of their classes. **Reeve** also allows users to set timely reminders for themselves.
 
 Reeve is optimized for users that are very comfortable with typing as it works on a Command Line Interface (CLI).
 
 Students' details are displayed in a neat and organized manner through the use of a Graphical User Interface (GUI).
 
-If you are looking for an application to better allow you to track your students' administrative and academic details so that you can better meet their needs? Look no further!
+## 2. About
 
-## 1. About
+This developer guide will provide you the details of the software architecture and implementation of **Reeve**. 
+It is made for developers who wish to understand the internal and external workings of the application. 
 
-## 2. Understanding the Guide
+All developers are warmly welcome to contribute your ideas and improve **Reeve**!
+To contribute, simply head over to [our github](https://github.com/AY2021S1-CS2103T-W15-2/tp) and raise an issue.
 
-## 3. **Getting started**
+## 3. Understanding the Guide
+
+This section will share with you how should you go about understanding this guide in order to best understand **Reeve**.
+
+We have adopted the "top-down" approach into the structure of this guide where we will first look at the high-level structure of our application 
+before going into the implementation details of each feature.
+
+We highly encourage you to read the guide from top to bottom in order to have the best understanding of **Reeve**. 
+
+Here is a summary (Table 1) of the symbols that are used in this Developer Guide:
+
+Table 1: Summary of symbols
+
+Symbol | Meaning
+-------|--------
+`command` | A grey highlight indicates a command that can be executed by **Reeve**.
+:information_source: | Indicates important information. 
+:bulb: | Indicates tips.
+
+## 4. **Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+## 5. **Design**
 
-## 4. **Design**
-
-### 4.1 Architecture
+### 5.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -70,7 +137,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### 4.2 UI component
+### 5.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -86,7 +153,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### 4.3 Logic component
+### 5.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -106,7 +173,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### 4.4 Model component
+### 5.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -126,7 +193,7 @@ The `Model`,
 </div>
 
 
-### 4.5 Storage component
+### 5.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -136,17 +203,23 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### 4.6 Common classes
+### 5.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
-
-## 5. **Implementation**
+## 6. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 5.1 Student administrative details features
+### 6.1 General features
+
+#### 6.1.1 Help Command
+
+#### 6.1.2 Toggle Command
+
+#### 6.1.3 Exit Command
+
+### 6.2 Student administrative details features
 
 The student administrative details feature keeps track of essential administrative student details. The feature comprises of the following commands,
 * `AddCommand` - Adds a student into the student list
@@ -156,7 +229,7 @@ The student administrative details feature keeps track of essential administrati
 * `OverdueCommand` - Finds students who have overdue payments
 * `ClearCommand` - Deletes all students in the student list
 
-#### 5.1.1 Add Student Command
+#### 6.2.1 Add Student Command
 
 The following describes the flow of how `AddCommand` is performed.
 
@@ -174,7 +247,7 @@ The following activity diagram summarizes the flow of events when the `AddComman
 
 Figure ___. Activity Diagram for AddStudentCommand
 
-#### 5.1.2 Edit Student Command
+#### 6.2.2 Edit Student Command
 
 The edit student feature allows the tutor to edit a particular student within **Reeve**.
 It is handled by the `EditCommand`.
@@ -200,7 +273,27 @@ The following activity diagram summarises the flow of events when `EditCommand` 
 
 Figure \___. Activity diagram for `EditCommand` execution
 
-#### 5.1.5 Overdue Command
+### 6.2.3 Delete Student Command
+
+### 6.2.4 Find Student Command
+
+This is an explanation of how `FindCommand` works.
+
+This is an activity diagram showing the high level idea of how `FindCommand` is executed.
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
+This is a sequence diagram together with an explanation of the implementation.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+ 1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
+ 2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
+ 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
+ 4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
+ 5. A new `CommandResult` will be returned with the success message.
+
+#### 6.2.5 Overdue Command
 
 The overdue payment filter feature allows the tutor to find all students who have not paid their tuition fees in the past month. It is handled by the `OverdueCommand`.
 
@@ -222,23 +315,9 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure \___. Activity diagram for `OverdueCommand` execution
 
-#### 5.1.6 Schedule Command
+### 6.3 Student academic details features
 
-This section describes the operations that `ScheduleCommand` performs.
-
-1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
-2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
-3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
-4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
-5. The StudentListPanel is then populated with the students that have lesson on the day.
-
-The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
-
-![ScheduleActivity](images/ScheduleActivityDiagram.png)
-
-Figure \___. Activity diagram for `ScheduleCommand` execution
-
-### 5.2 Student questions features
+#### 6.3.1 Student questions features
 
 The student questions feature keeps track of questions raised by a student to his tutor. The features comprises of the following commands:
 
@@ -246,7 +325,7 @@ The student questions feature keeps track of questions raised by a student to hi
 * `SolveQuestionCommand` - Marks a specified question from a specified student as solved
 * `DeleteQuestionCommand` - Deletes a specified question from a specified student
 
-#### 5.2.1 Add question command
+##### 6.3.1.1 Add Question Command
 
 The following describes the flow of how `AddQuestionCommand` is performed.
 
@@ -270,7 +349,7 @@ The following activity diagram summarises the flow of events when `AddQuestionCo
 
 Figure \___. Activity diagram for `AddQuestionCommand` execution
 
-#### 5.2.2 Solve question command
+##### 6.3.1.2 Solve Question Command
 
 The following describes the flow of how `SolveQuestionCommand` is performed.
 
@@ -294,7 +373,7 @@ The following activity diagram summarises the flow of events when `SolveQuestion
 
 Figure \___. Activity diagram for `SolveQuestionCommand` execution
 
-#### 5.2.3 Delete question command
+##### 6.3.1.3 Delete Question Command
 
 The following describes the flow of how `DeleteQuestionCommand` is performed.
 
@@ -318,39 +397,50 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 
 Figure \___. Activity diagram for `DeleteQuestionCommand` execution
 
-### 5.3 Student Find Command
+#### 6.3.2 Student exam features
 
-This is an explanation of how `FindCommand` works.
+##### 6.3.2.1 Add exam command
 
-This is an activity diagram showing the high level idea of how `FindCommand` is executed.
+##### 6.3.2.2 Delete exam command
 
-![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+##### 6.3.2.3 Exam Stats command
 
-This is a sequence diagram together with an explanation of the implementation.
+#### 6.3.3 Student attendance features
 
-![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+### 6.4 Schedule Command
 
- 1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
- 2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
- 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
- 4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
- 5. A new `CommandResult` will be returned with the success message.
+This section describes the operations that `ScheduleCommand` performs.
 
---------------------------------------------------------------------------------------------------------------------
+1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
+2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
+3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
+4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
+5. The StudentListPanel is then populated with the students that have lesson on the day.
 
-## **Documentation, logging, testing, configuration, dev-ops**
+The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+![ScheduleActivity](images/ScheduleActivityDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
+Figure \___. Activity diagram for `ScheduleCommand` execution
 
-## **Appendix: Requirements**
+### 6.5 Notes Command
 
-### Product scope
+## 7. **Documentation**
+Refer to the [Documentation guide](Documentation.md).
+
+## 8. **Logging**
+Refer to the [Logging guide](Logging.md).
+
+## 9. **Testing**
+Refer to the [Testing guide](Testing.md).
+
+## 10. **Configuration**
+Refer to the [Configuration guide](Configuration.md).
+
+## 11. **DevOps**
+Refer to the [DevOps guide](DevOps.md).
+
+## **Appendix A: Product Scope**
 
 **Target user profile**:
 
@@ -366,7 +456,7 @@ This is a sequence diagram together with an explanation of the implementation.
 **Value proposition**: Helps tutors organise administrative details of their students and lesson with ease and manage student needs better.
 
 
-### User stories
+## **Appendix B: User Stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -383,7 +473,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+## **Appendix C: Use Cases**
 
 (For all use cases below, the **System** is `Reeve` and the **Actor** is the `Tutor (User)`, unless specified otherwise)
 
@@ -617,7 +707,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Non-Functional Requirements
+## **Appendix D: Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The response to any use action should become visible within 5 seconds.
@@ -626,14 +716,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Glossary
+## **Appendix E: Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Instructions for manual testing**
+## **Appendix F: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
@@ -642,7 +730,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### F.1 Launch and Shutdown
 
 1. Initial launch
 
@@ -659,7 +747,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a student
+### F.2 Deleting a Student
 
 1. Deleting a student while all students are being shown
 
@@ -676,7 +764,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### F.3 Saving Data
 
 1. Dealing with missing/corrupted data files
 
