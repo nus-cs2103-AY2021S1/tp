@@ -41,6 +41,7 @@ You can reach us via the issues tracker of this [repository](https://github.com/
     * Documentation
     * Javadoc Standards
     * Light Mode Advocate
+    * Internal Bug Tester
 
 ### Liu Zhengdao
 
@@ -70,7 +71,6 @@ You can reach us via the issues tracker of this [repository](https://github.com/
     * Testing
     * Main Feature Developer
     
-
 ### Rahul
 
 ![rahul](images/rahul0506.png)
