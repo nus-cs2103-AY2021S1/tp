@@ -43,7 +43,7 @@ public class FindMeetingCommandParserTest {
     public void parse_missingParts_failure() {
 
         // no field specified
-        assertParseFailure(parser, "", FindMeetingCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "", FindMeetingCommand.MESSAGE_USAGE);
 
     }
 
@@ -51,10 +51,10 @@ public class FindMeetingCommandParserTest {
     public void parse_invalidPreamble_failure() {
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", FindMeetingCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "1 some random string", FindMeetingCommand.MESSAGE_USAGE);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", FindMeetingCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "1 i/ string", FindMeetingCommand.MESSAGE_USAGE);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class FindMeetingCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, INVALID_MEETING_DATE_DESC_A + INVALID_START_TIME_DESC_A,
-                MeetingDate.MESSAGE_CONSTRAINTS);
+                MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
     }
 
     @Test
