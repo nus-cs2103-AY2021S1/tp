@@ -86,6 +86,7 @@ Format: `light`
 Note(s):
 * Can be activated by the F2 key.
 * Can be activated by clicking the context menu.
+* If the help window or timeline window was opened and a change of theme was done, they must be closed and reopened for the change of theme to take effect.
 
 ### Setting dark theme: `dark`
 
@@ -98,6 +99,8 @@ Format: `dark`
 Note(s):
 * Can be activated by the F3 key.
 * Can be activated by clicking the context menu.
+* If the help window or timeline window was opened and a change of theme was done, they must be closed and reopened for the change of theme to take effect.
+
 
 ### Fuzzy Finding Completion (Fzf)
 
