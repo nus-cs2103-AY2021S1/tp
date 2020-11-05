@@ -13,17 +13,17 @@
     },
     "academic" : {
       "questions": [{
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
         }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
@@ -50,17 +50,17 @@
     },
     "academic" : {
       "questions": [{
-        "status" : false,
+        "status" : "unsolved",
         "question" : "What is Newton's Second Law?",
         "solution" : ""
       }, {
-        "status" : false,
+        "status" : "unsolved",
         "question" : "How do you inverse a matrix?",
         "solution" : ""
       }],
       "attendanceList" : [ {
         "date" : "14/04/1998",
-        "attendanceStatus" : true,
+        "attendanceStatus" : "present",
         "feedback" : "sleepy during lesson"
       }],
       "exams" : [ {
