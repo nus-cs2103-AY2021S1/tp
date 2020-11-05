@@ -10,11 +10,8 @@ import static seedu.address.model.util.Overlap.overlapWithOtherTimeSlots;
 
 import org.junit.jupiter.api.Test;
 
-import javax.annotation.processing.SupportedAnnotationTypes;
-
 public class OverlapTest {
     private ModelManager modelManager = new ModelManager();
-    
     @Test
     public void isSameTimeSlot_returnsTrue() {
         //same lesson

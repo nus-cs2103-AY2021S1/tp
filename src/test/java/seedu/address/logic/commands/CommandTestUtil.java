@@ -76,7 +76,7 @@ public class CommandTestUtil {
             new Tag(VALID_TAG_CS2103T), new Description(VALID_DESC_CS2103T), DayOfWeek.MONDAY,
             LocalTime.of(12, 0), LocalTime.of(14, 0),
             LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
-    public static final Lesson VALID_LESSON_CS2103T_NO_DESC = new Lesson(new Title(VALID_TITLE_CS2103T), 
+    public static final Lesson VALID_LESSON_CS2103T_NO_DESC = new Lesson(new Title(VALID_TITLE_CS2103T),
             new Tag(VALID_TAG_CS2103T), Description.defaultDescription(), DayOfWeek.MONDAY,
             LocalTime.of(12, 0), LocalTime.of(14, 0),
             LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
