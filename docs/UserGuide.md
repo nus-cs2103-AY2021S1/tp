@@ -132,7 +132,14 @@ and ```seller``` are created automatically and ***cannot be modified***.
 - ```Tag```: Visual identifier for clients
 - ```Id```: Unique ID assigned to each client for identification.
 
-💡 Note also that PropertyFree assumes that all phone numbers are unique, and as such will not allow duplicates of
+💡 Note that the following applies for information a client.
+
+1. The length of the name of any clients 
+that PropertyFree accepts is of **26 characters or lesser** (including spaces).
+2. The length of the phone number of any clients
+that PropertyFree accepts is of **11 numbers of lesser**.
+
+PropertyFree assumes that **all phone numbers are unique**, and as such will not allow duplicates of
 phone number. 
 
 # Bidder Features
