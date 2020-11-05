@@ -1016,14 +1016,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 12.1: <i>Removing 250ml of milk</i>
+Figure 12.1: <i>Removing 350ml of milk</i>
 </div>
 
-Notice how the amount of milk decreased from 2 litres to 1.75 litres:
+Notice how the amount of milk decreased from 2 litres to 1.65 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 12.2: <i>You now only have 1.75 litres of milk left</i>
+Figure 12.2: <i>You now only have 1.65 litres of milk left</i>
 </div>
 
 
