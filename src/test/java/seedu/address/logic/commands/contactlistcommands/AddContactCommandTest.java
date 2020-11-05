@@ -9,8 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.ModelStub;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;

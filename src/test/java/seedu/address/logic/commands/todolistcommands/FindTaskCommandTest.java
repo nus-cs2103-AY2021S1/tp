@@ -12,7 +12,6 @@ import static seedu.address.testutil.todolist.TypicalTasks.LAB_02;
 import static seedu.address.testutil.todolist.TypicalTasks.PROBLEM_SET_01;
 import static seedu.address.testutil.todolist.TypicalTasks.PROBLEM_SET_02;
 import static seedu.address.testutil.todolist.TypicalTasks.QUIZ_01;
-import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTasks;
 import static seedu.address.testutil.todolist.TypicalTasks.getTypicalTodoList;
 
 import java.util.Arrays;
@@ -27,7 +26,6 @@ import seedu.address.model.EventList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ModuleList;
-import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
