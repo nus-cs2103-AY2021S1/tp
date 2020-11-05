@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULES_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
+import static seedu.address.testutil.TypicalModules.CS2040;
+import static seedu.address.testutil.TypicalModules.CS2100;
+import static seedu.address.testutil.TypicalModules.CS2103T;
+import static seedu.address.testutil.TypicalModules.getTypicalTrackr;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -21,8 +24,8 @@ import seedu.address.model.module.ModuleContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindModuleCommandTest {
-    private Model model = new ModelManager(getTypicalModuleList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalModuleList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTrackr(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalTrackr(), new UserPrefs());
 
     @Test
     public void equals() {
@@ -61,18 +64,15 @@ public class FindModuleCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredModuleList());
     }
 
-
-    // Todo: PASS THIS TESTCASE!
-
-    //    @Test
-    //    public void execute_multipleKeywords_multipleModulesFound() {
-    //        String expectedMessage = String.format(MESSAGE_MODULES_LISTED_OVERVIEW, 3);
-    //        ModuleContainsKeywordsPredicate predicate = preparePredicate("CS2100 CS2103T CS2040");
-    //        FindModuleCommand command = new FindModuleCommand(predicate);
-    //        expectedModel.updateFilteredModuleList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(CS2100, CS2103T, CS2040), model.getFilteredModuleList());
-    //    }
+    @Test
+    public void execute_multipleKeywords_multipleModulesFound() {
+        String expectedMessage = String.format(MESSAGE_MODULES_LISTED_OVERVIEW, 3);
+        ModuleContainsKeywordsPredicate predicate = preparePredicate("CS2100 CS2103T CS2040");
+        FindModuleCommand command = new FindModuleCommand(predicate);
+        expectedModel.updateFilteredModuleList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CS2100, CS2103T, CS2040), model.getFilteredModuleList());
+    }
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
