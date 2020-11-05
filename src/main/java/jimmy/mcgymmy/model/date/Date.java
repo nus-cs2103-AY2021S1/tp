@@ -9,6 +9,10 @@ import java.time.format.DateTimeParseException;
 import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 
+/**
+ * Represents the Date of the food item is consumed in McGymmy.
+ * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
+ */
 public class Date {
     private static final String[] SUPPORTED_FORMATS = {
         "yyyy-MM-dd",
@@ -61,7 +65,7 @@ public class Date {
     }
 
     /**
-     * Construct a {@code date} that contains the current date
+     * Construct a {@code date} that contains the current date.
      */
     public static Date currentDate() {
         return new Date();

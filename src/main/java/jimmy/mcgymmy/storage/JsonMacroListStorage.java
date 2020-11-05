@@ -15,7 +15,7 @@ import jimmy.mcgymmy.commons.util.JsonUtil;
 import jimmy.mcgymmy.model.macro.MacroList;
 
 /**
- * A class to access the Macrolist stored as a json file on the hard disk.
+ * A class to access {@link MacroList} stored as a json file on the hard disk.
  */
 public class JsonMacroListStorage implements MacroListStorage {
 

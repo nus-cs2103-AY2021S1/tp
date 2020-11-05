@@ -11,6 +11,9 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.ReadOnlyMcGymmy;
 import jimmy.mcgymmy.storage.JsonMcGymmyStorage;
 
+/**
+ * Imports a McGymmy datafile into McGymmy.
+ */
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";

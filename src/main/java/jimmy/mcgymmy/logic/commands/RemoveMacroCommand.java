@@ -6,7 +6,7 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.macro.MacroList;
 
 /**
- * Removes a macro from the model.
+ * Removes a Macro from the Model.
  */
 public class RemoveMacroCommand extends Command {
     public static final String COMMAND_WORD = "remmacro";

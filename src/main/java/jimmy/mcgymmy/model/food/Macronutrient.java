@@ -4,6 +4,9 @@ import jimmy.mcgymmy.commons.exceptions.IllegalValueException;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
+/**
+ * Represents a food item with hidden internal logic.
+ */
 public abstract class Macronutrient {
     protected static final String MESSAGE_CONSTRAINTS =
             " can only contain non-negative integers less than 1000";
