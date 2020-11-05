@@ -6,6 +6,9 @@ import jimmy.mcgymmy.model.Model;
 import jimmy.mcgymmy.model.macro.Macro;
 import jimmy.mcgymmy.model.macro.MacroList;
 
+/**
+ * Lists all the currently available Macros.
+ */
 public class ListMacroCommand extends Command {
     public static final String COMMAND_WORD = "listmacro";
     public static final String SHORT_DESCRIPTION = "List all macros in McGymmy.";
