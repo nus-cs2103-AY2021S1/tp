@@ -38,7 +38,7 @@ public class Overlap {
     /**
      * Checks if a time slot overlaps with an existing lesson in PlaNus.
      */
-    public static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot) {
+    private static boolean overlapWithOtherLessons(Model model, TimeSlot timeSlot) {
         requireNonNull(model);
         ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
         for (Lesson lesson: existingLessons) {
@@ -51,7 +51,7 @@ public class Overlap {
     /**
      * Checks if a time slot overlaps with an existing event in PlaNus.
      */
-    public static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot) {
+    private static boolean overlapWithOtherEvents(Model model, TimeSlot timeSlot) {
         requireNonNull(model);
         ObservableList<Task> existingTasks = model.getFilteredTaskList();
         for (Task task: existingTasks) {

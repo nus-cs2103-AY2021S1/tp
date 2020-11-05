@@ -8,6 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +18,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Planus;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Contains helper methods for testing commands.
@@ -60,6 +72,14 @@ public class CommandTestUtil {
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";
     public static final String VALID_END_DATE_CS2103T = "01-11-2020";
     public static final String VALID_TAG_CS2103T = "CS2103T";
+    public static final Lesson VALID_LESSON_CS2103T = new Lesson(new Title(VALID_TITLE_CS2103T),
+            new Tag(VALID_TAG_CS2103T), new Description(VALID_DESC_CS2103T), DayOfWeek.MONDAY,
+            LocalTime.of(12, 0), LocalTime.of(14, 0),
+            LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
+    public static final Lesson VALID_LESSON_CS2103T_NO_DESC = new Lesson(new Title(VALID_TITLE_CS2103T), 
+            new Tag(VALID_TAG_CS2103T), Description.defaultDescription(), DayOfWeek.MONDAY,
+            LocalTime.of(12, 0), LocalTime.of(14, 0),
+            LocalDate.of(2020, 1, 1), LocalDate.of(2020, 11, 1));
     //valid lesson
     public static final String VALID_TITLE_CS2100 = "CS2100 Lecture";
     public static final String VALID_DESC_CS2100 = "Cool lecture!";
@@ -69,18 +89,27 @@ public class CommandTestUtil {
     public static final String VALID_START_DATE_CS2100 = "01-11-2020";
     public static final String VALID_END_DATE_CS2100 = "01-12-2020";
     public static final String VALID_TAG_CS2100 = "CS2100";
+    public static final Lesson VALID_LESSON_CS2100 = new Lesson(new Title(VALID_TITLE_CS2100),
+            new Tag(VALID_TAG_CS2100), new Description(VALID_DESC_CS2100), DayOfWeek.TUESDAY,
+            LocalTime.of(14, 0), LocalTime.of(16, 0),
+            LocalDate.of(2020, 11, 1), LocalDate.of(2020, 12, 1));
     //valid event
     public static final String VALID_TITLE_EXPERIMENT = "Science experiment";
     public static final String VALID_DESC_EXPERIMENT = "Do grape experiment";
     public static final String VALID_DATE_EXPERIMENT = "01-01-2020";
-    public static final String VALID_START_TIME_EXPERIMENT = "10:00";
-    public static final String VALID_END_TIME_EXPERIMENT = "12:00";
+    public static final String VALID_START_DATETIME_EXPERIMENT = "01-01-2020 10:00";
+    public static final String VALID_END_DATETIME_EXPERIMENT = "01-01-2020 12:00";
     public static final String VALID_TAG_EXPERIMENT = "LSM1301";
+    public static final Event VALID_EVENT_EXPERIMENT = Event.createUserEvent(new Title(VALID_TITLE_EXPERIMENT),
+            new StartDateTime(VALID_START_DATETIME_EXPERIMENT), new EndDateTime(VALID_END_DATETIME_EXPERIMENT),
+            new Description(VALID_DESC_EXPERIMENT), new Tag(VALID_TAG_EXPERIMENT));
     //valid deadline
     public static final String VALID_TITLE_LAB = "Do weekly lab assignment";
     public static final String VALID_DESC_LAB = "Prepare for demo during tutorial";
-    public static final String VALID_DATETIME_LAB = "01-01-2020";
+    public static final String VALID_DATETIME_LAB = "01-01-2020 22:00";
     public static final String VALID_TAG_LAB = "CS2100";
+    public static final Deadline VALID_DEADLINE_LAB = Deadline.createDeadline(new Title(VALID_TITLE_LAB),
+            new DeadlineDateTime(VALID_DATETIME_LAB), new Description(VALID_DESC_LAB), new Tag(VALID_TAG_LAB));
 
     /**
      * Executes the given {@code command}, confirms that <br>
