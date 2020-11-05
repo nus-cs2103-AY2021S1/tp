@@ -19,7 +19,7 @@ You can reach us at the following emails:
 <img src="images/jonasngs.png" width="200px">
 
 [[github](https://github.com/jonasngs)]
-[[portfolio](team/jonasng.md)]
+[[portfolio](team/jonasngs.md)]
 
 * Role: Team lead, Integration
 * Responsibilities:
