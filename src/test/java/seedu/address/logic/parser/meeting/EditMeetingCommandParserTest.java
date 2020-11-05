@@ -86,7 +86,7 @@ public class EditMeetingCommandParserTest {
 
         // valid date followed by invalid date. The date case for invalid date then valid date
         assertParseFailure(parser, "1" + MEETING_DATE_DESC_A
-                + INVALID_MEETING_DATE_DESC_A, MeetingDate.MESSAGE_CONSTRAINTS);
+                + INVALID_MEETING_DATE_DESC_A, MeetingDate.MESSAGE_CONSTRAINTS_PAST_DATE);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_PROPERTY_ID_DESC_B
