@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -46,6 +47,14 @@ public class DeleteTeammateCommandTest {
             person);
 
         assertCommandSuccess(deleteTeammateCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test public void execute_validIndexValidPersonNotAddedToList_throwsCommandException() {
+        Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
+        Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
+        model.enter(project);
+        DeleteTeammateCommand deleteTeammateCommand = new DeleteTeammateCommand(GIT_USERINDEX_FIRST_TEAMMATE);
+        assertThrows(CommandException.class, () -> deleteTeammateCommand.execute(model)); //
     }
 
     @Test

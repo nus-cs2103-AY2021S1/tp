@@ -32,7 +32,7 @@ public class Task implements Comparable<Task> {
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
         "Is done values should only contain booleans, and it should not be blank";
 
-    public final String taskName;
+    private final String taskName;
     private final String description;
     private final Deadline deadline;
     private final Double progress;

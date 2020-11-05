@@ -174,9 +174,9 @@ Adds a project to the project list.
 Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `
   - The fields can be entered in any order, as long as the prefixes are matched correctly
   - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Repo URL must be a valid link
+  - Repo URL must be a valid link.
   - Description can be anything, as long as it is not blank.
-  - Any number of tags can be added, separated by space " ".
+  - Any number of tags can be added, where each new tag would require the prefix tg/ before the tag.
 
 Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` 
 
@@ -223,7 +223,7 @@ Format: `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTIO
   - Description can be anything, as long as it is not blank.
   - Any number of tags can be added, separated by space " ".
 
-Example: `edit n/Resident Evil project /d new horror` changes the name of the project to **Evil project**, and the description to **new horror**`
+Example: `edit n/Resident Evil project /d new horror` changes the name of the project to **Evil project**, and the description to **new horror**.
 
 # **Features** in project scope
 
@@ -253,16 +253,16 @@ Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 
 Edits the indicated task in a project.
 
-Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] `
-  - INDEX field is necessary to include.
+Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [td/TASK_DEADLINE] `
+  - Edits the task at the specified index.
+  - The index refers to the index number shown in the displayed task list.
   - Any combination and any number of the subsequent fields above can be entered.
   - The information entered will replace all the data in each respective field.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task deadline is indicated by a date and time with the format *DD-MM-YYYY hh:mm:ss* 
 
-Example: `edittask 3 tn/Finish project status/true` changes the name of task 3 in the list to Finish project, and the done status to true, indicating the task is completed.
+Example: `edittask 3 tn/Finish project` changes the name of task 3 in the list to Finish project.
 
 ### Delete a task from the project `deletetask `
 
@@ -281,20 +281,18 @@ Examples: `deletetask 2` deletes the second task shown in the displayed task lis
 Filters tasks in the task list by various predicates:
   - by assignee's name
   - by deadline (either a specific deadline or a time range for the deadline)
-  - by done status
   - by progress
   - by task's name
 
-Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(done/DONE_STATUS)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
+Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
   - Start date and end date in the time range follows the format *DD-MM-YYYY*
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
 
-Example: `filter done/true` filters all the tasks that are done, and displays the done tasks to the user.
+Example: `filter ta/Lucas` filters all the tasks who have Lucas assigned to them, and displays those tasks.
 
 ### List all tasks `alltasks `
 
@@ -311,16 +309,14 @@ Example: `alltasks` displays all tasks in the task list.
 Sorts tasks in the task list in ascending/descending order:
 
   - by deadline (either a specific deadline or a time range for the deadline)
-  - by done status
   - by progress
   - by task's name
 
-Format: `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)` 
+Format: `sort (sa/)||(sd/) (td/)||((tp/)||(tn/)` 
 
   - User may choose the sorting order (`sa/` for ascending order and `sd/` for descending order)
   - User may choose one attribute of task to sort the task list
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
-  - Task status is simply *true* to signify the task is completed or *false* otherwise.
   - Task progress is a percentage value indicating how much of the task is done.
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
 
@@ -422,13 +418,13 @@ Action | Format, Examples | Scope
 **Delete project** | `delete INDEX` <br> e.g. `delete 2` | global scope
 **Find KEYWORD** | `find KEYWORD` <br> e.g. `find read` | global scope
 **edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
-**Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
+**Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 td/29-02-2020 00:00:00` | project scope
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
+**Edit task details** | `edittask INDEX [n/TASK_NAME[ [tp/TASK_PROGRESS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
 **Delete Task** | `deletetask INDEX` <br>e.g. `deletetask 1` | project scope 
-**Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS)||(done/ISDONE)``<br>e.g. `filter ta/Alice` | project scope
+**Filter Tasks** | ``filter (ta/ASSIGNEE_NAME)||(td/DEADLINE)||(start/START_DATE end/END_DATE)||(tn/TASK_NAME)||(tp/PROGRESS))``<br>e.g. `filter ta/Alice` | project scope
 **Show all the tasks** | `alltasks` | project scope 
-**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(done/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
+**Sort tasks ** | `sort (sa/)||(sd/) (td/)||(tp/)||(tn/)`<br>e.g. `sort sa/ td/` | project scope 
 **View Details of A Task** | `viewtask INDEX` <br> e.g. `viewtask 1` | project scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`|
